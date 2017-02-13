@@ -51,6 +51,9 @@
 		8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C2681E5250AF005FB1BB /* Main.storyboard */; };
 		8FD3C26B1E5250EE005FB1BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C26A1E5250EE005FB1BB /* LaunchScreen.storyboard */; };
+		8FD3C26F1E52576F005FB1BB /* BGE-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */; };
+		8FD3C2701E52576F005FB1BB /* ComEd-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */; };
+		8FD3C2711E52576F005FB1BB /* Peco-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C26E1E52576F005FB1BB /* Peco-Info.plist */; };
 		B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
 		B58B5AC71E4E28740051FD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC61E4E28740051FD5F /* ViewController.swift */; };
 		B58B5B111E515BD50051FD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC61E4E28740051FD5F /* ViewController.swift */; };
@@ -138,14 +141,14 @@
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8FD3C26A1E5250EE005FB1BB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BGE-Info.plist"; sourceTree = "<group>"; };
+		8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
+		8FD3C26E1E52576F005FB1BB /* Peco-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Info.plist"; sourceTree = "<group>"; };
 		B58B5AC11E4E28740051FD5F /* BGE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BGE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5AC41E4E28740051FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B58B5AC61E4E28740051FD5F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B58B5AD01E4E28740051FD5F /* BGE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Info.plist"; sourceTree = "<group>"; };
 		B58B5B1E1E515BD50051FD5F /* Peco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B2F1E515C840051FD5F /* ComEd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComEd.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B58B5B421E515E870051FD5F /* Peco-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Info.plist"; sourceTree = "<group>"; };
-		B58B5B441E515E970051FD5F /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
 		B58B5B591E516B100051FD5F /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		B58B5B5A1E516B9A0051FD5F /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		B58B5B5B1E516C360051FD5F /* BGE-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-AUT.plist"; sourceTree = "<group>"; };
@@ -220,16 +223,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8FD3C2661E524FC3005FB1BB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B58B5AD01E4E28740051FD5F /* BGE-Info.plist */,
-				B58B5B421E515E870051FD5F /* Peco-Info.plist */,
-				B58B5B441E515E970051FD5F /* ComEd-Info.plist */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		8FD3C2671E525023005FB1BB /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,8 +261,10 @@
 				B5AC06E21E522E7A00BBA4ED /* Core */,
 				B5AC06C61E521B2600BBA4ED /* Assets */,
 				B58B5B571E516A9B0051FD5F /* Configuration */,
-				8FD3C2661E524FC3005FB1BB /* Supporting Files */,
 				8FD3C2671E525023005FB1BB /* Storyboards */,
+				8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */,
+				8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */,
+				8FD3C26E1E52576F005FB1BB /* Peco-Info.plist */,
 			);
 			path = Mobile;
 			sourceTree = "<group>";
@@ -476,6 +471,8 @@
 				8FD3C26B1E5250EE005FB1BB /* LaunchScreen.storyboard in Resources */,
 				B5AC068D1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
+				8FD3C2701E52576F005FB1BB /* ComEd-Info.plist in Resources */,
+				8FD3C2711E52576F005FB1BB /* Peco-Info.plist in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				B5AC06A21E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */,
@@ -485,6 +482,7 @@
 				B5AC068A1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */,
 				B5AC069C1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */,
 				B5AC06961E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */,
+				8FD3C26F1E52576F005FB1BB /* BGE-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,7 +595,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/BGE-Environment-$env.plist $dir/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\n \n# done\necho \"Done.\"\n";
+			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/BGE-Environment-$env.plist $dir/Configuration/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/Configuration/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}/Configuration\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/BGE-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/BGE-Info.plist\n \n# done\necho \"Done.\"\n";
 		};
 		B5AC06B11E5216E300BBA4ED /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -610,7 +608,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/ComEd-Environment-$env.plist $dir/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\n \n# done\necho \"Done.\"\n";
+			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/ComEd-Environment-$env.plist $dir/Configuration/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/Configuration/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}/Configuration\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/ComEd-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/ComEd-Info.plist\n \n# done\necho \"Done.\"\n";
 		};
 		B5AC06B31E52171800BBA4ED /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -623,7 +621,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/Peco-Environment-$env.plist $dir/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\n \n# done\necho \"Done.\"\n";
+			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/Peco-Environment-$env.plist $dir/Configuration/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/Configuration/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}/Configuration\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/Peco-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/Peco-Info.plist\n \n# done\necho \"Done.\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -734,7 +732,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -783,7 +781,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -805,7 +803,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/BGE-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -824,7 +822,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/BGE-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -875,7 +873,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -898,7 +896,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/BGE-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -949,7 +947,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -972,7 +970,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/BGE-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1023,7 +1021,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1046,7 +1044,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/BGE-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1065,7 +1063,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/Peco-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1084,7 +1082,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/Peco-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1103,7 +1101,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/Peco-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1122,7 +1120,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/Peco-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1141,7 +1139,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/Peco-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1160,7 +1158,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/ComEd-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1179,7 +1177,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/ComEd-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1198,7 +1196,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/ComEd-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1217,7 +1215,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/ComEd-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1236,7 +1234,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/ComEd-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
