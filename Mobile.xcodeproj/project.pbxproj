@@ -1,0 +1,1442 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		B58B5B601E516EEE0051FD5F /* BGE Environment Switch */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B58B5B611E516EEE0051FD5F /* Build configuration list for PBXAggregateTarget "BGE Environment Switch" */;
+			buildPhases = (
+				B58B5B6A1E51728B0051FD5F /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "BGE Environment Switch";
+			productName = "Environment Switch";
+		};
+		B5AC06AA1E5216C300BBA4ED /* ComEd Environment Switch */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B5AC06AB1E5216C300BBA4ED /* Build configuration list for PBXAggregateTarget "ComEd Environment Switch" */;
+			buildPhases = (
+				B5AC06B11E5216E300BBA4ED /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "ComEd Environment Switch";
+			productName = "ComEd Environment Switch";
+		};
+		B5AC06B21E52171800BBA4ED /* Peco Environment Switch */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B5AC06B41E52171800BBA4ED /* Build configuration list for PBXAggregateTarget "Peco Environment Switch" */;
+			buildPhases = (
+				B5AC06B31E52171800BBA4ED /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Peco Environment Switch";
+			productName = "ComEd Environment Switch";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
+		B58B5AC71E4E28740051FD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC61E4E28740051FD5F /* ViewController.swift */; };
+		B58B5ACA1E4E28740051FD5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5AC81E4E28740051FD5F /* Main.storyboard */; };
+		B58B5ACF1E4E28740051FD5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5ACD1E4E28740051FD5F /* LaunchScreen.storyboard */; };
+		B58B5B111E515BD50051FD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC61E4E28740051FD5F /* ViewController.swift */; };
+		B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
+		B58B5B151E515BD50051FD5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5ACD1E4E28740051FD5F /* LaunchScreen.storyboard */; };
+		B58B5B171E515BD50051FD5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5AC81E4E28740051FD5F /* Main.storyboard */; };
+		B58B5B221E515C840051FD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC61E4E28740051FD5F /* ViewController.swift */; };
+		B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
+		B58B5B261E515C840051FD5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5ACD1E4E28740051FD5F /* LaunchScreen.storyboard */; };
+		B58B5B281E515C840051FD5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5AC81E4E28740051FD5F /* Main.storyboard */; };
+		B5AC06791E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		B5AC067D1E5178AB00BBA4ED /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
+		B5AC067E1E5178AB00BBA4ED /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
+		B5AC067F1E5178AB00BBA4ED /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
+		B5AC068A1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06801E5212E300BBA4ED /* ComEd-Environment-AUT.plist */; };
+		B5AC068B1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06801E5212E300BBA4ED /* ComEd-Environment-AUT.plist */; };
+		B5AC068C1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06801E5212E300BBA4ED /* ComEd-Environment-AUT.plist */; };
+		B5AC068D1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */; };
+		B5AC068E1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */; };
+		B5AC068F1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */; };
+		B5AC06901E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */; };
+		B5AC06911E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */; };
+		B5AC06921E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */; };
+		B5AC06931E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */; };
+		B5AC06941E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */; };
+		B5AC06951E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */; };
+		B5AC06961E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */; };
+		B5AC06971E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */; };
+		B5AC06981E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */; };
+		B5AC06991E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */; };
+		B5AC069A1E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */; };
+		B5AC069B1E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */; };
+		B5AC069C1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */; };
+		B5AC069D1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */; };
+		B5AC069E1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */; };
+		B5AC069F1E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */; };
+		B5AC06A01E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */; };
+		B5AC06A11E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */; };
+		B5AC06A21E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */; };
+		B5AC06A31E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */; };
+		B5AC06A41E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */; };
+		B5AC06A51E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */; };
+		B5AC06A61E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */; };
+		B5AC06A71E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */; };
+		B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */; };
+		B5AC06CE1E521B7B00BBA4ED /* PecoAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* PecoAssets.xcassets */; };
+		B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */; };
+		B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06D71E52238900BBA4ED /* MobileTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B58B5B671E516F200051FD5F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B58B5B601E516EEE0051FD5F;
+			remoteInfo = "Environment Switch";
+		};
+		B5AC06BA1E52173600BBA4ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5AC06AA1E5216C300BBA4ED;
+			remoteInfo = "ComEd Environment Switch";
+		};
+		B5AC06BC1E52173B00BBA4ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5AC06B21E52171800BBA4ED;
+			remoteInfo = "Peco Environment Switch";
+		};
+		B5AC06DA1E52238900BBA4ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B58B5AC01E4E28740051FD5F;
+			remoteInfo = BGE;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B58B5AC11E4E28740051FD5F /* BGE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BGE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B58B5AC41E4E28740051FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B58B5AC61E4E28740051FD5F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B58B5AC91E4E28740051FD5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B58B5ACE1E4E28740051FD5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B58B5AD01E4E28740051FD5F /* BGE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Info.plist"; sourceTree = "<group>"; };
+		B58B5B1E1E515BD50051FD5F /* Mobile copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Mobile copy.app"; path = Peco.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B58B5B2F1E515C840051FD5F /* ComEd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComEd.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B58B5B421E515E870051FD5F /* Peco-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Info.plist"; sourceTree = "<group>"; };
+		B58B5B441E515E970051FD5F /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
+		B58B5B591E516B100051FD5F /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BGE-Environment-DEVELOP.plist"; path = "Configuration/BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		B58B5B5A1E516B9A0051FD5F /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BGE-Environment-TESTING.plist"; path = "Configuration/BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		B58B5B5B1E516C360051FD5F /* BGE-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BGE-Environment-AUT.plist"; path = "Configuration/BGE-Environment-AUT.plist"; sourceTree = "<group>"; };
+		B58B5B5C1E516C360051FD5F /* BGE-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BGE-Environment-PRODUCTION.plist"; path = "Configuration/BGE-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
+		B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BGE-Environment-STAGING.plist"; path = "Configuration/BGE-Environment-STAGING.plist"; sourceTree = "<group>"; };
+		B58B5B6B1E51737F0051FD5F /* environment_preprocess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
+		B5AC06781E51763200BBA4ED /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		B5AC067C1E5178AB00BBA4ED /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
+		B5AC06801E5212E300BBA4ED /* ComEd-Environment-AUT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ComEd-Environment-AUT.plist"; path = "Configuration/ComEd-Environment-AUT.plist"; sourceTree = "<group>"; };
+		B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ComEd-Environment-DEVELOP.plist"; path = "Configuration/ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ComEd-Environment-PRODUCTION.plist"; path = "Configuration/ComEd-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
+		B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ComEd-Environment-STAGING.plist"; path = "Configuration/ComEd-Environment-STAGING.plist"; sourceTree = "<group>"; };
+		B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ComEd-Environment-TESTING.plist"; path = "Configuration/ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Peco-Environment-AUT.plist"; path = "Configuration/Peco-Environment-AUT.plist"; sourceTree = "<group>"; };
+		B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Peco-Environment-DEVELOP.plist"; path = "Configuration/Peco-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Peco-Environment-PRODUCTION.plist"; path = "Configuration/Peco-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
+		B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Peco-Environment-STAGING.plist"; path = "Configuration/Peco-Environment-STAGING.plist"; sourceTree = "<group>"; };
+		B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Peco-Environment-TESTING.plist"; path = "Configuration/Peco-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		B5AC06C71E521B3200BBA4ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets/Assets.xcassets; sourceTree = "<group>"; };
+		B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = BGEAssets.xcassets; path = Assets/BGEAssets.xcassets; sourceTree = "<group>"; };
+		B5AC06CD1E521B7B00BBA4ED /* PecoAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = PecoAssets.xcassets; path = Assets/PecoAssets.xcassets; sourceTree = "<group>"; };
+		B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ComEdAssets.xcassets; path = Assets/ComEdAssets.xcassets; sourceTree = "<group>"; };
+		B5AC06D51E52238900BBA4ED /* MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5AC06D71E52238900BBA4ED /* MobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileTests.swift; sourceTree = "<group>"; };
+		B5AC06D91E52238900BBA4ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B58B5ABE1E4E28740051FD5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B58B5B131E515BD50051FD5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B58B5B241E515C840051FD5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5AC06D21E52238900BBA4ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B58B5AB81E4E28740051FD5F = {
+			isa = PBXGroup;
+			children = (
+				B58B5AC31E4E28740051FD5F /* Mobile */,
+				B5AC06D61E52238900BBA4ED /* MobileTests */,
+				B58B5AC21E4E28740051FD5F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B58B5AC21E4E28740051FD5F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B58B5AC11E4E28740051FD5F /* BGE.app */,
+				B58B5B1E1E515BD50051FD5F /* Mobile copy.app */,
+				B58B5B2F1E515C840051FD5F /* ComEd.app */,
+				B5AC06D51E52238900BBA4ED /* MobileTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B58B5AC31E4E28740051FD5F /* Mobile */ = {
+			isa = PBXGroup;
+			children = (
+				B5AC06E21E522E7A00BBA4ED /* Core */,
+				B5AC06C61E521B2600BBA4ED /* Assets */,
+				B58B5B571E516A9B0051FD5F /* Configuration */,
+				B58B5AC41E4E28740051FD5F /* AppDelegate.swift */,
+				B58B5AC61E4E28740051FD5F /* ViewController.swift */,
+				B58B5AC81E4E28740051FD5F /* Main.storyboard */,
+				B58B5ACD1E4E28740051FD5F /* LaunchScreen.storyboard */,
+				B58B5AD01E4E28740051FD5F /* BGE-Info.plist */,
+				B58B5B421E515E870051FD5F /* Peco-Info.plist */,
+				B58B5B441E515E970051FD5F /* ComEd-Info.plist */,
+			);
+			path = Mobile;
+			sourceTree = "<group>";
+		};
+		B58B5B571E516A9B0051FD5F /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				B58B5B6B1E51737F0051FD5F /* environment_preprocess.h */,
+				B5AC067C1E5178AB00BBA4ED /* environment.plist */,
+				B58B5B5B1E516C360051FD5F /* BGE-Environment-AUT.plist */,
+				B58B5B591E516B100051FD5F /* BGE-Environment-DEVELOP.plist */,
+				B58B5B5A1E516B9A0051FD5F /* BGE-Environment-TESTING.plist */,
+				B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */,
+				B58B5B5C1E516C360051FD5F /* BGE-Environment-PRODUCTION.plist */,
+				B5AC06801E5212E300BBA4ED /* ComEd-Environment-AUT.plist */,
+				B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */,
+				B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */,
+				B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */,
+				B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */,
+				B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */,
+				B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */,
+				B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */,
+				B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */,
+				B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */,
+				B5AC06781E51763200BBA4ED /* Environment.swift */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		B5AC06C61E521B2600BBA4ED /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B5AC06C71E521B3200BBA4ED /* Assets.xcassets */,
+				B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */,
+				B5AC06CD1E521B7B00BBA4ED /* PecoAssets.xcassets */,
+				B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		B5AC06D61E52238900BBA4ED /* MobileTests */ = {
+			isa = PBXGroup;
+			children = (
+				B5AC06D71E52238900BBA4ED /* MobileTests.swift */,
+				B5AC06D91E52238900BBA4ED /* Info.plist */,
+			);
+			path = MobileTests;
+			sourceTree = "<group>";
+		};
+		B5AC06E21E522E7A00BBA4ED /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B58B5AC01E4E28740051FD5F /* BGE */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B58B5AE91E4E28740051FD5F /* Build configuration list for PBXNativeTarget "BGE" */;
+			buildPhases = (
+				B58B5ABD1E4E28740051FD5F /* Sources */,
+				B58B5ABE1E4E28740051FD5F /* Frameworks */,
+				B58B5ABF1E4E28740051FD5F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B58B5B681E516F200051FD5F /* PBXTargetDependency */,
+			);
+			name = BGE;
+			productName = Mobile;
+			productReference = B58B5AC11E4E28740051FD5F /* BGE.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B58B5B0F1E515BD50051FD5F /* Peco */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B58B5B181E515BD50051FD5F /* Build configuration list for PBXNativeTarget "Peco" */;
+			buildPhases = (
+				B58B5B101E515BD50051FD5F /* Sources */,
+				B58B5B131E515BD50051FD5F /* Frameworks */,
+				B58B5B141E515BD50051FD5F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5AC06BD1E52173B00BBA4ED /* PBXTargetDependency */,
+			);
+			name = Peco;
+			productName = Mobile;
+			productReference = B58B5B1E1E515BD50051FD5F /* Mobile copy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B58B5B201E515C840051FD5F /* ComEd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B58B5B291E515C840051FD5F /* Build configuration list for PBXNativeTarget "ComEd" */;
+			buildPhases = (
+				B58B5B211E515C840051FD5F /* Sources */,
+				B58B5B241E515C840051FD5F /* Frameworks */,
+				B58B5B251E515C840051FD5F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5AC06BB1E52173600BBA4ED /* PBXTargetDependency */,
+			);
+			name = ComEd;
+			productName = Mobile;
+			productReference = B58B5B2F1E515C840051FD5F /* ComEd.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B5AC06D41E52238900BBA4ED /* MobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5AC06DC1E52238900BBA4ED /* Build configuration list for PBXNativeTarget "MobileTests" */;
+			buildPhases = (
+				B5AC06D11E52238900BBA4ED /* Sources */,
+				B5AC06D21E52238900BBA4ED /* Frameworks */,
+				B5AC06D31E52238900BBA4ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5AC06DB1E52238900BBA4ED /* PBXTargetDependency */,
+			);
+			name = MobileTests;
+			productName = MobileTests;
+			productReference = B5AC06D51E52238900BBA4ED /* MobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B58B5AB91E4E28740051FD5F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Exelon Corporation";
+				TargetAttributes = {
+					B58B5AC01E4E28740051FD5F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = LTS485TKXA;
+						ProvisioningStyle = Automatic;
+					};
+					B58B5B0F1E515BD50051FD5F = {
+						DevelopmentTeam = LTS485TKXA;
+					};
+					B58B5B201E515C840051FD5F = {
+						DevelopmentTeam = LTS485TKXA;
+					};
+					B58B5B601E516EEE0051FD5F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = LTS485TKXA;
+						ProvisioningStyle = Automatic;
+					};
+					B5AC06AA1E5216C300BBA4ED = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					B5AC06D41E52238900BBA4ED = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B58B5AC01E4E28740051FD5F;
+					};
+				};
+			};
+			buildConfigurationList = B58B5ABC1E4E28740051FD5F /* Build configuration list for PBXProject "Mobile" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B58B5AB81E4E28740051FD5F;
+			productRefGroup = B58B5AC21E4E28740051FD5F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B58B5AC01E4E28740051FD5F /* BGE */,
+				B58B5B201E515C840051FD5F /* ComEd */,
+				B58B5B0F1E515BD50051FD5F /* Peco */,
+				B58B5B601E516EEE0051FD5F /* BGE Environment Switch */,
+				B5AC06AA1E5216C300BBA4ED /* ComEd Environment Switch */,
+				B5AC06B21E52171800BBA4ED /* Peco Environment Switch */,
+				B5AC06D41E52238900BBA4ED /* MobileTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B58B5ABF1E4E28740051FD5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5AC06901E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */,
+				B5AC067D1E5178AB00BBA4ED /* environment.plist in Resources */,
+				B5AC06A51E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */,
+				B5AC068D1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */,
+				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
+				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
+				B58B5ACF1E4E28740051FD5F /* LaunchScreen.storyboard in Resources */,
+				B5AC06A21E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */,
+				B5AC069F1E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */,
+				B5AC06931E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */,
+				B5AC06991E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */,
+				B5AC068A1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */,
+				B58B5ACA1E4E28740051FD5F /* Main.storyboard in Resources */,
+				B5AC069C1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */,
+				B5AC06961E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B58B5B141E515BD50051FD5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5AC069B1E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */,
+				B5AC06A41E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */,
+				B5AC069E1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */,
+				B58B5B151E515BD50051FD5F /* LaunchScreen.storyboard in Resources */,
+				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
+				B5AC068F1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */,
+				B5AC06CE1E521B7B00BBA4ED /* PecoAssets.xcassets in Resources */,
+				B5AC06981E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */,
+				B5AC06921E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */,
+				B5AC068C1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */,
+				B58B5B171E515BD50051FD5F /* Main.storyboard in Resources */,
+				B5AC06A71E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */,
+				B5AC067F1E5178AB00BBA4ED /* environment.plist in Resources */,
+				B5AC06A11E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */,
+				B5AC06951E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B58B5B251E515C840051FD5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5AC069A1E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */,
+				B5AC06A31E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */,
+				B5AC069D1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */,
+				B58B5B261E515C840051FD5F /* LaunchScreen.storyboard in Resources */,
+				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
+				B5AC068E1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */,
+				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
+				B5AC06971E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */,
+				B5AC06911E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */,
+				B5AC068B1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */,
+				B58B5B281E515C840051FD5F /* Main.storyboard in Resources */,
+				B5AC06A61E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */,
+				B5AC067E1E5178AB00BBA4ED /* environment.plist in Resources */,
+				B5AC06A01E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */,
+				B5AC06941E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5AC06D31E52238900BBA4ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B58B5B6A1E51728B0051FD5F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/BGE-Environment-$env.plist $dir/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\n \n# done\necho \"Done.\"\n";
+		};
+		B5AC06B11E5216E300BBA4ED /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/ComEd-Environment-$env.plist $dir/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\n \n# done\necho \"Done.\"\n";
+		};
+		B5AC06B31E52171800BBA4ED /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/Peco-Environment-$env.plist $dir/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\n \n# done\necho \"Done.\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B58B5ABD1E4E28740051FD5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B58B5AC71E4E28740051FD5F /* ViewController.swift in Sources */,
+				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
+				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B58B5B101E515BD50051FD5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B58B5B111E515BD50051FD5F /* ViewController.swift in Sources */,
+				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
+				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B58B5B211E515C840051FD5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B58B5B221E515C840051FD5F /* ViewController.swift in Sources */,
+				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
+				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5AC06D11E52238900BBA4ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B58B5B681E516F200051FD5F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B58B5B601E516EEE0051FD5F /* BGE Environment Switch */;
+			targetProxy = B58B5B671E516F200051FD5F /* PBXContainerItemProxy */;
+		};
+		B5AC06BB1E52173600BBA4ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5AC06AA1E5216C300BBA4ED /* ComEd Environment Switch */;
+			targetProxy = B5AC06BA1E52173600BBA4ED /* PBXContainerItemProxy */;
+		};
+		B5AC06BD1E52173B00BBA4ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5AC06B21E52171800BBA4ED /* Peco Environment Switch */;
+			targetProxy = B5AC06BC1E52173B00BBA4ED /* PBXContainerItemProxy */;
+		};
+		B5AC06DB1E52238900BBA4ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B58B5AC01E4E28740051FD5F /* BGE */;
+			targetProxy = B5AC06DA1E52238900BBA4ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B58B5AC81E4E28740051FD5F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B58B5AC91E4E28740051FD5F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B58B5ACD1E4E28740051FD5F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B58B5ACE1E4E28740051FD5F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B58B5AE71E4E28740051FD5F /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXM_BUNDLE_ID = com.exelon.mobile.develop;
+				EXM_ENVIRONMENT = DEVELOP;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Develop;
+		};
+		B58B5AE81E4E28740051FD5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXM_BUNDLE_ID = com.exelon.mobile.release;
+				EXM_ENVIRONMENT = PRODUCTION;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B58B5AEA1E4E28740051FD5F /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.bge.develop;
+				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Develop;
+		};
+		B58B5AEB1E4E28740051FD5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.bge.release;
+				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		B58B5AF21E5149770051FD5F /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXM_BUNDLE_ID = com.exelon.mobile.automation;
+				EXM_ENVIRONMENT = AUTOMATION;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Automation;
+		};
+		B58B5AF31E5149770051FD5F /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.bge.automation;
+				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Automation;
+		};
+		B58B5AF61E51497B0051FD5F /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXM_BUNDLE_ID = com.exelon.mobile.staging;
+				EXM_ENVIRONMENT = STAGING;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		B58B5AF71E51497B0051FD5F /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.bge.staging;
+				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Staging;
+		};
+		B58B5AFA1E51497F0051FD5F /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXM_BUNDLE_ID = com.exelon.mobile.testing;
+				EXM_ENVIRONMENT = TESTING;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Testing;
+		};
+		B58B5AFB1E51497F0051FD5F /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.bge.testing;
+				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Testing;
+		};
+		B58B5B191E515BD50051FD5F /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.peco.develop;
+				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Develop;
+		};
+		B58B5B1A1E515BD50051FD5F /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.peco.testing;
+				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Testing;
+		};
+		B58B5B1B1E515BD50051FD5F /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.peco.staging;
+				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		B58B5B1C1E515BD50051FD5F /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.peco.automation;
+				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Automation;
+		};
+		B58B5B1D1E515BD50051FD5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.peco.release;
+				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B58B5B2A1E515C840051FD5F /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.comed.develop;
+				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Develop;
+		};
+		B58B5B2B1E515C840051FD5F /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.comed.testing;
+				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Testing;
+		};
+		B58B5B2C1E515C840051FD5F /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.comed.staging;
+				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Staging;
+		};
+		B58B5B2D1E515C840051FD5F /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.comed.automation;
+				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Automation;
+		};
+		B58B5B2E1E515C840051FD5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				EXM_BUNDLE_ID = com.exelon.comed.release;
+				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		B58B5B621E516EEE0051FD5F /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_PREFIX_HEADER = "";
+				INFOPLIST_PREPROCESS = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Develop;
+		};
+		B58B5B631E516EEE0051FD5F /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_PREFIX_HEADER = "";
+				INFOPLIST_PREPROCESS = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Testing;
+		};
+		B58B5B641E516EEE0051FD5F /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_PREFIX_HEADER = "";
+				INFOPLIST_PREPROCESS = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Staging;
+		};
+		B58B5B651E516EEE0051FD5F /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_PREFIX_HEADER = "";
+				INFOPLIST_PREPROCESS = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Automation;
+		};
+		B58B5B661E516EEE0051FD5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_PREFIX_HEADER = "";
+				INFOPLIST_PREPROCESS = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B5AC06AC1E5216C300BBA4ED /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Develop;
+		};
+		B5AC06AD1E5216C300BBA4ED /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Testing;
+		};
+		B5AC06AE1E5216C300BBA4ED /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Staging;
+		};
+		B5AC06AF1E5216C300BBA4ED /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Automation;
+		};
+		B5AC06B01E5216C300BBA4ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B5AC06B51E52171800BBA4ED /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Develop;
+		};
+		B5AC06B61E52171800BBA4ED /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Testing;
+		};
+		B5AC06B71E52171800BBA4ED /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Staging;
+		};
+		B5AC06B81E52171800BBA4ED /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Automation;
+		};
+		B5AC06B91E52171800BBA4ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B5AC06DD1E52238900BBA4ED /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
+			};
+			name = Develop;
+		};
+		B5AC06DE1E52238900BBA4ED /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
+			};
+			name = Testing;
+		};
+		B5AC06DF1E52238900BBA4ED /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
+			};
+			name = Staging;
+		};
+		B5AC06E01E52238900BBA4ED /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
+			};
+			name = Automation;
+		};
+		B5AC06E11E52238900BBA4ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B58B5ABC1E4E28740051FD5F /* Build configuration list for PBXProject "Mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B58B5AE71E4E28740051FD5F /* Develop */,
+				B58B5AFA1E51497F0051FD5F /* Testing */,
+				B58B5AF61E51497B0051FD5F /* Staging */,
+				B58B5AF21E5149770051FD5F /* Automation */,
+				B58B5AE81E4E28740051FD5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B58B5AE91E4E28740051FD5F /* Build configuration list for PBXNativeTarget "BGE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B58B5AEA1E4E28740051FD5F /* Develop */,
+				B58B5AFB1E51497F0051FD5F /* Testing */,
+				B58B5AF71E51497B0051FD5F /* Staging */,
+				B58B5AF31E5149770051FD5F /* Automation */,
+				B58B5AEB1E4E28740051FD5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B58B5B181E515BD50051FD5F /* Build configuration list for PBXNativeTarget "Peco" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B58B5B191E515BD50051FD5F /* Develop */,
+				B58B5B1A1E515BD50051FD5F /* Testing */,
+				B58B5B1B1E515BD50051FD5F /* Staging */,
+				B58B5B1C1E515BD50051FD5F /* Automation */,
+				B58B5B1D1E515BD50051FD5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B58B5B291E515C840051FD5F /* Build configuration list for PBXNativeTarget "ComEd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B58B5B2A1E515C840051FD5F /* Develop */,
+				B58B5B2B1E515C840051FD5F /* Testing */,
+				B58B5B2C1E515C840051FD5F /* Staging */,
+				B58B5B2D1E515C840051FD5F /* Automation */,
+				B58B5B2E1E515C840051FD5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B58B5B611E516EEE0051FD5F /* Build configuration list for PBXAggregateTarget "BGE Environment Switch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B58B5B621E516EEE0051FD5F /* Develop */,
+				B58B5B631E516EEE0051FD5F /* Testing */,
+				B58B5B641E516EEE0051FD5F /* Staging */,
+				B58B5B651E516EEE0051FD5F /* Automation */,
+				B58B5B661E516EEE0051FD5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5AC06AB1E5216C300BBA4ED /* Build configuration list for PBXAggregateTarget "ComEd Environment Switch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5AC06AC1E5216C300BBA4ED /* Develop */,
+				B5AC06AD1E5216C300BBA4ED /* Testing */,
+				B5AC06AE1E5216C300BBA4ED /* Staging */,
+				B5AC06AF1E5216C300BBA4ED /* Automation */,
+				B5AC06B01E5216C300BBA4ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B5AC06B41E52171800BBA4ED /* Build configuration list for PBXAggregateTarget "Peco Environment Switch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5AC06B51E52171800BBA4ED /* Develop */,
+				B5AC06B61E52171800BBA4ED /* Testing */,
+				B5AC06B71E52171800BBA4ED /* Staging */,
+				B5AC06B81E52171800BBA4ED /* Automation */,
+				B5AC06B91E52171800BBA4ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5AC06DC1E52238900BBA4ED /* Build configuration list for PBXNativeTarget "MobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5AC06DD1E52238900BBA4ED /* Develop */,
+				B5AC06DE1E52238900BBA4ED /* Testing */,
+				B5AC06DF1E52238900BBA4ED /* Staging */,
+				B5AC06E01E52238900BBA4ED /* Automation */,
+				B5AC06E11E52238900BBA4ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B58B5AB91E4E28740051FD5F /* Project object */;
+}
