@@ -43,18 +43,20 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
+		8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
+		8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
+		8FD3C2601E524548005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
+		8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
+		8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
+		8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C2681E5250AF005FB1BB /* Main.storyboard */; };
+		8FD3C26B1E5250EE005FB1BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C26A1E5250EE005FB1BB /* LaunchScreen.storyboard */; };
 		B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
 		B58B5AC71E4E28740051FD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC61E4E28740051FD5F /* ViewController.swift */; };
-		B58B5ACA1E4E28740051FD5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5AC81E4E28740051FD5F /* Main.storyboard */; };
-		B58B5ACF1E4E28740051FD5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5ACD1E4E28740051FD5F /* LaunchScreen.storyboard */; };
 		B58B5B111E515BD50051FD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC61E4E28740051FD5F /* ViewController.swift */; };
 		B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
-		B58B5B151E515BD50051FD5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5ACD1E4E28740051FD5F /* LaunchScreen.storyboard */; };
-		B58B5B171E515BD50051FD5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5AC81E4E28740051FD5F /* Main.storyboard */; };
 		B58B5B221E515C840051FD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC61E4E28740051FD5F /* ViewController.swift */; };
 		B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
-		B58B5B261E515C840051FD5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5ACD1E4E28740051FD5F /* LaunchScreen.storyboard */; };
-		B58B5B281E515C840051FD5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58B5AC81E4E28740051FD5F /* Main.storyboard */; };
 		B5AC06791E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
@@ -132,38 +134,40 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		8FD3C26A1E5250EE005FB1BB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B58B5AC11E4E28740051FD5F /* BGE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BGE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5AC41E4E28740051FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B58B5AC61E4E28740051FD5F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B58B5AC91E4E28740051FD5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B58B5ACE1E4E28740051FD5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B58B5AD01E4E28740051FD5F /* BGE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Info.plist"; sourceTree = "<group>"; };
-		B58B5B1E1E515BD50051FD5F /* Mobile copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Mobile copy.app"; path = Peco.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B58B5B1E1E515BD50051FD5F /* Peco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B2F1E515C840051FD5F /* ComEd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComEd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B421E515E870051FD5F /* Peco-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Info.plist"; sourceTree = "<group>"; };
 		B58B5B441E515E970051FD5F /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
-		B58B5B591E516B100051FD5F /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BGE-Environment-DEVELOP.plist"; path = "Configuration/BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
-		B58B5B5A1E516B9A0051FD5F /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BGE-Environment-TESTING.plist"; path = "Configuration/BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
-		B58B5B5B1E516C360051FD5F /* BGE-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BGE-Environment-AUT.plist"; path = "Configuration/BGE-Environment-AUT.plist"; sourceTree = "<group>"; };
-		B58B5B5C1E516C360051FD5F /* BGE-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BGE-Environment-PRODUCTION.plist"; path = "Configuration/BGE-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
-		B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BGE-Environment-STAGING.plist"; path = "Configuration/BGE-Environment-STAGING.plist"; sourceTree = "<group>"; };
+		B58B5B591E516B100051FD5F /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		B58B5B5A1E516B9A0051FD5F /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		B58B5B5B1E516C360051FD5F /* BGE-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-AUT.plist"; sourceTree = "<group>"; };
+		B58B5B5C1E516C360051FD5F /* BGE-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
+		B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-STAGING.plist"; sourceTree = "<group>"; };
 		B58B5B6B1E51737F0051FD5F /* environment_preprocess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
 		B5AC06781E51763200BBA4ED /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		B5AC067C1E5178AB00BBA4ED /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
-		B5AC06801E5212E300BBA4ED /* ComEd-Environment-AUT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ComEd-Environment-AUT.plist"; path = "Configuration/ComEd-Environment-AUT.plist"; sourceTree = "<group>"; };
-		B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ComEd-Environment-DEVELOP.plist"; path = "Configuration/ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
-		B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ComEd-Environment-PRODUCTION.plist"; path = "Configuration/ComEd-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
-		B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ComEd-Environment-STAGING.plist"; path = "Configuration/ComEd-Environment-STAGING.plist"; sourceTree = "<group>"; };
-		B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ComEd-Environment-TESTING.plist"; path = "Configuration/ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
-		B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Peco-Environment-AUT.plist"; path = "Configuration/Peco-Environment-AUT.plist"; sourceTree = "<group>"; };
-		B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Peco-Environment-DEVELOP.plist"; path = "Configuration/Peco-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
-		B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Peco-Environment-PRODUCTION.plist"; path = "Configuration/Peco-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
-		B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Peco-Environment-STAGING.plist"; path = "Configuration/Peco-Environment-STAGING.plist"; sourceTree = "<group>"; };
-		B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Peco-Environment-TESTING.plist"; path = "Configuration/Peco-Environment-TESTING.plist"; sourceTree = "<group>"; };
-		B5AC06C71E521B3200BBA4ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets/Assets.xcassets; sourceTree = "<group>"; };
-		B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = BGEAssets.xcassets; path = Assets/BGEAssets.xcassets; sourceTree = "<group>"; };
-		B5AC06CD1E521B7B00BBA4ED /* PecoAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = PecoAssets.xcassets; path = Assets/PecoAssets.xcassets; sourceTree = "<group>"; };
-		B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ComEdAssets.xcassets; path = Assets/ComEdAssets.xcassets; sourceTree = "<group>"; };
+		B5AC06801E5212E300BBA4ED /* ComEd-Environment-AUT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-AUT.plist"; sourceTree = "<group>"; };
+		B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
+		B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-STAGING.plist"; sourceTree = "<group>"; };
+		B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Environment-AUT.plist"; sourceTree = "<group>"; };
+		B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
+		B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Environment-STAGING.plist"; sourceTree = "<group>"; };
+		B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		B5AC06C71E521B3200BBA4ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BGEAssets.xcassets; sourceTree = "<group>"; };
+		B5AC06CD1E521B7B00BBA4ED /* PecoAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PecoAssets.xcassets; sourceTree = "<group>"; };
+		B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ComEdAssets.xcassets; sourceTree = "<group>"; };
 		B5AC06D51E52238900BBA4ED /* MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5AC06D71E52238900BBA4ED /* MobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileTests.swift; sourceTree = "<group>"; };
 		B5AC06D91E52238900BBA4ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
+				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +187,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
+				8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +196,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
+				8FD3C2601E524548005FB1BB /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,12 +211,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8FD3C25D1E524514005FB1BB /* RxSwift.framework */,
+				8FD3C25B1E524511005FB1BB /* RxCocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8FD3C2661E524FC3005FB1BB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B58B5AD01E4E28740051FD5F /* BGE-Info.plist */,
+				B58B5B421E515E870051FD5F /* Peco-Info.plist */,
+				B58B5B441E515E970051FD5F /* ComEd-Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8FD3C2671E525023005FB1BB /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8FD3C26A1E5250EE005FB1BB /* LaunchScreen.storyboard */,
+				8FD3C2681E5250AF005FB1BB /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		B58B5AB81E4E28740051FD5F = {
 			isa = PBXGroup;
 			children = (
 				B58B5AC31E4E28740051FD5F /* Mobile */,
 				B5AC06D61E52238900BBA4ED /* MobileTests */,
 				B58B5AC21E4E28740051FD5F /* Products */,
+				8FD3C25A1E524511005FB1BB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,7 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				B58B5AC11E4E28740051FD5F /* BGE.app */,
-				B58B5B1E1E515BD50051FD5F /* Mobile copy.app */,
+				B58B5B1E1E515BD50051FD5F /* Peco.app */,
 				B58B5B2F1E515C840051FD5F /* ComEd.app */,
 				B5AC06D51E52238900BBA4ED /* MobileTests.xctest */,
 			);
@@ -224,16 +263,13 @@
 		B58B5AC31E4E28740051FD5F /* Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				B58B5AC41E4E28740051FD5F /* AppDelegate.swift */,
+				B58B5AC61E4E28740051FD5F /* ViewController.swift */,
 				B5AC06E21E522E7A00BBA4ED /* Core */,
 				B5AC06C61E521B2600BBA4ED /* Assets */,
 				B58B5B571E516A9B0051FD5F /* Configuration */,
-				B58B5AC41E4E28740051FD5F /* AppDelegate.swift */,
-				B58B5AC61E4E28740051FD5F /* ViewController.swift */,
-				B58B5AC81E4E28740051FD5F /* Main.storyboard */,
-				B58B5ACD1E4E28740051FD5F /* LaunchScreen.storyboard */,
-				B58B5AD01E4E28740051FD5F /* BGE-Info.plist */,
-				B58B5B421E515E870051FD5F /* Peco-Info.plist */,
-				B58B5B441E515E970051FD5F /* ComEd-Info.plist */,
+				8FD3C2661E524FC3005FB1BB /* Supporting Files */,
+				8FD3C2671E525023005FB1BB /* Storyboards */,
 			);
 			path = Mobile;
 			sourceTree = "<group>";
@@ -260,7 +296,7 @@
 				B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */,
 				B5AC06781E51763200BBA4ED /* Environment.swift */,
 			);
-			name = Configuration;
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		B5AC06C61E521B2600BBA4ED /* Assets */ = {
@@ -271,7 +307,7 @@
 				B5AC06CD1E521B7B00BBA4ED /* PecoAssets.xcassets */,
 				B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */,
 			);
-			name = Assets;
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		B5AC06D61E52238900BBA4ED /* MobileTests */ = {
@@ -287,7 +323,7 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = Core;
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +336,7 @@
 				B58B5ABD1E4E28740051FD5F /* Sources */,
 				B58B5ABE1E4E28740051FD5F /* Frameworks */,
 				B58B5ABF1E4E28740051FD5F /* Resources */,
+				8FD3C2641E5245D8005FB1BB /* Carthage App Store Submission Bug Workaround Run Script */,
 			);
 			buildRules = (
 			);
@@ -318,6 +355,7 @@
 				B58B5B101E515BD50051FD5F /* Sources */,
 				B58B5B131E515BD50051FD5F /* Frameworks */,
 				B58B5B141E515BD50051FD5F /* Resources */,
+				8FD3C2631E52455C005FB1BB /* Carthage App Store Submission Bug Workaround Run Script */,
 			);
 			buildRules = (
 			);
@@ -326,7 +364,7 @@
 			);
 			name = Peco;
 			productName = Mobile;
-			productReference = B58B5B1E1E515BD50051FD5F /* Mobile copy.app */;
+			productReference = B58B5B1E1E515BD50051FD5F /* Peco.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B58B5B201E515C840051FD5F /* ComEd */ = {
@@ -336,6 +374,7 @@
 				B58B5B211E515C840051FD5F /* Sources */,
 				B58B5B241E515C840051FD5F /* Frameworks */,
 				B58B5B251E515C840051FD5F /* Resources */,
+				8FD3C2651E5245E9005FB1BB /* Carthage App Store Submission Bug Workaround Run Script */,
 			);
 			buildRules = (
 			);
@@ -434,16 +473,16 @@
 				B5AC06901E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */,
 				B5AC067D1E5178AB00BBA4ED /* environment.plist in Resources */,
 				B5AC06A51E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */,
+				8FD3C26B1E5250EE005FB1BB /* LaunchScreen.storyboard in Resources */,
 				B5AC068D1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
-				B58B5ACF1E4E28740051FD5F /* LaunchScreen.storyboard in Resources */,
+				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				B5AC06A21E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */,
 				B5AC069F1E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */,
 				B5AC06931E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */,
 				B5AC06991E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */,
 				B5AC068A1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */,
-				B58B5ACA1E4E28740051FD5F /* Main.storyboard in Resources */,
 				B5AC069C1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */,
 				B5AC06961E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */,
 			);
@@ -456,14 +495,12 @@
 				B5AC069B1E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */,
 				B5AC06A41E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */,
 				B5AC069E1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */,
-				B58B5B151E515BD50051FD5F /* LaunchScreen.storyboard in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC068F1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PecoAssets.xcassets in Resources */,
 				B5AC06981E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */,
 				B5AC06921E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */,
 				B5AC068C1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */,
-				B58B5B171E515BD50051FD5F /* Main.storyboard in Resources */,
 				B5AC06A71E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */,
 				B5AC067F1E5178AB00BBA4ED /* environment.plist in Resources */,
 				B5AC06A11E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */,
@@ -478,14 +515,12 @@
 				B5AC069A1E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */,
 				B5AC06A31E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */,
 				B5AC069D1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */,
-				B58B5B261E515C840051FD5F /* LaunchScreen.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC068E1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				B5AC06971E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */,
 				B5AC06911E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */,
 				B5AC068B1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */,
-				B58B5B281E515C840051FD5F /* Main.storyboard in Resources */,
 				B5AC06A61E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */,
 				B5AC067E1E5178AB00BBA4ED /* environment.plist in Resources */,
 				B5AC06A01E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */,
@@ -503,6 +538,54 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8FD3C2631E52455C005FB1BB /* Carthage App Store Submission Bug Workaround Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+			);
+			name = "Carthage App Store Submission Bug Workaround Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		8FD3C2641E5245D8005FB1BB /* Carthage App Store Submission Bug Workaround Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+			);
+			name = "Carthage App Store Submission Bug Workaround Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		8FD3C2651E5245E9005FB1BB /* Carthage App Store Submission Bug Workaround Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+			);
+			name = "Carthage App Store Submission Bug Workaround Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		B58B5B6A1E51728B0051FD5F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -608,25 +691,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		B58B5AC81E4E28740051FD5F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B58B5AC91E4E28740051FD5F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B58B5ACD1E4E28740051FD5F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B58B5ACE1E4E28740051FD5F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		B58B5AE71E4E28740051FD5F /* Develop */ = {
 			isa = XCBuildConfiguration;
@@ -672,7 +736,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -721,7 +785,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				SDKROOT = iphoneos;
@@ -737,11 +801,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.bge.develop;
-				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Develop;
 		};
@@ -751,11 +820,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.bge.release;
-				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -803,7 +877,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -820,11 +894,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.bge.automation;
-				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Automation;
 		};
@@ -872,7 +951,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -889,11 +968,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.bge.staging;
-				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Staging;
 		};
@@ -941,7 +1025,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -958,11 +1042,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.bge.testing;
-				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Testing;
 		};
@@ -972,7 +1061,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.peco.develop;
-				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -987,7 +1080,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.peco.testing;
-				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1002,7 +1099,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.peco.staging;
-				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1017,7 +1118,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.peco.automation;
-				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1032,7 +1137,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.peco.release;
-				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1047,11 +1156,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.comed.develop;
-				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Develop;
 		};
@@ -1061,11 +1175,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.comed.testing;
-				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Testing;
 		};
@@ -1075,11 +1194,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.comed.staging;
-				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Staging;
 		};
@@ -1089,11 +1213,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.comed.automation;
-				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Automation;
 		};
@@ -1103,11 +1232,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.comed.release;
-				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Supporting Files/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1412,6 +1546,7 @@
 				B5AC06B01E5216C300BBA4ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B5AC06B41E52171800BBA4ED /* Build configuration list for PBXAggregateTarget "Peco Environment Switch" */ = {
 			isa = XCConfigurationList;
@@ -1435,6 +1570,7 @@
 				B5AC06E11E52238900BBA4ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
