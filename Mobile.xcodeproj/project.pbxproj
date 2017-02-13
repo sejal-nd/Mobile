@@ -51,9 +51,13 @@
 		8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C2681E5250AF005FB1BB /* Main.storyboard */; };
 		8FD3C26B1E5250EE005FB1BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C26A1E5250EE005FB1BB /* LaunchScreen.storyboard */; };
-		8FD3C26F1E52576F005FB1BB /* BGE-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */; };
-		8FD3C2701E52576F005FB1BB /* ComEd-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */; };
-		8FD3C2711E52576F005FB1BB /* Peco-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C26E1E52576F005FB1BB /* Peco-Info.plist */; };
+		8FD3C2721E525CE3005FB1BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C26A1E5250EE005FB1BB /* LaunchScreen.storyboard */; };
+		8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C2681E5250AF005FB1BB /* Main.storyboard */; };
+		8FD3C2741E525CE9005FB1BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C26A1E5250EE005FB1BB /* LaunchScreen.storyboard */; };
+		8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C2681E5250AF005FB1BB /* Main.storyboard */; };
+		8FD3C2761E525D76005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
+		8FD3C2771E525D80005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
+		8FD3C2781E525D84005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
 		B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
 		B58B5AC71E4E28740051FD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC61E4E28740051FD5F /* ViewController.swift */; };
 		B58B5B111E515BD50051FD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC61E4E28740051FD5F /* ViewController.swift */; };
@@ -63,39 +67,6 @@
 		B5AC06791E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		B5AC067D1E5178AB00BBA4ED /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
-		B5AC067E1E5178AB00BBA4ED /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
-		B5AC067F1E5178AB00BBA4ED /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
-		B5AC068A1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06801E5212E300BBA4ED /* ComEd-Environment-AUT.plist */; };
-		B5AC068B1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06801E5212E300BBA4ED /* ComEd-Environment-AUT.plist */; };
-		B5AC068C1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06801E5212E300BBA4ED /* ComEd-Environment-AUT.plist */; };
-		B5AC068D1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */; };
-		B5AC068E1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */; };
-		B5AC068F1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */; };
-		B5AC06901E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */; };
-		B5AC06911E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */; };
-		B5AC06921E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */; };
-		B5AC06931E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */; };
-		B5AC06941E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */; };
-		B5AC06951E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */; };
-		B5AC06961E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */; };
-		B5AC06971E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */; };
-		B5AC06981E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */; };
-		B5AC06991E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */; };
-		B5AC069A1E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */; };
-		B5AC069B1E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */; };
-		B5AC069C1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */; };
-		B5AC069D1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */; };
-		B5AC069E1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */; };
-		B5AC069F1E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */; };
-		B5AC06A01E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */; };
-		B5AC06A11E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */; };
-		B5AC06A21E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */; };
-		B5AC06A31E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */; };
-		B5AC06A41E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */; };
-		B5AC06A51E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */; };
-		B5AC06A61E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */; };
-		B5AC06A71E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */; };
 		B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
@@ -410,7 +381,6 @@
 				ORGANIZATIONNAME = "Exelon Corporation";
 				TargetAttributes = {
 					B58B5AC01E4E28740051FD5F = {
-						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = LTS485TKXA;
 						ProvisioningStyle = Automatic;
 					};
@@ -421,16 +391,13 @@
 						DevelopmentTeam = LTS485TKXA;
 					};
 					B58B5B601E516EEE0051FD5F = {
-						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = LTS485TKXA;
 						ProvisioningStyle = Automatic;
 					};
 					B5AC06AA1E5216C300BBA4ED = {
-						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 					};
 					B5AC06D41E52238900BBA4ED = {
-						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
@@ -465,24 +432,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5AC06901E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */,
-				B5AC067D1E5178AB00BBA4ED /* environment.plist in Resources */,
-				B5AC06A51E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */,
+				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
 				8FD3C26B1E5250EE005FB1BB /* LaunchScreen.storyboard in Resources */,
-				B5AC068D1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */,
-				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
-				8FD3C2701E52576F005FB1BB /* ComEd-Info.plist in Resources */,
-				8FD3C2711E52576F005FB1BB /* Peco-Info.plist in Resources */,
-				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
-				B5AC06A21E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */,
-				B5AC069F1E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */,
-				B5AC06931E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */,
-				B5AC06991E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */,
-				B5AC068A1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */,
-				B5AC069C1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */,
-				B5AC06961E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */,
-				8FD3C26F1E52576F005FB1BB /* BGE-Info.plist in Resources */,
+				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
+				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,19 +444,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5AC069B1E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */,
-				B5AC06A41E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */,
-				B5AC069E1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */,
+				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
+				8FD3C2741E525CE9005FB1BB /* LaunchScreen.storyboard in Resources */,
+				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
-				B5AC068F1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PecoAssets.xcassets in Resources */,
-				B5AC06981E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */,
-				B5AC06921E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */,
-				B5AC068C1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */,
-				B5AC06A71E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */,
-				B5AC067F1E5178AB00BBA4ED /* environment.plist in Resources */,
-				B5AC06A11E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */,
-				B5AC06951E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,19 +456,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5AC069A1E5212E300BBA4ED /* Peco-Environment-AUT.plist in Resources */,
-				B5AC06A31E5212E300BBA4ED /* Peco-Environment-STAGING.plist in Resources */,
-				B5AC069D1E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist in Resources */,
+				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
+				8FD3C2721E525CE3005FB1BB /* LaunchScreen.storyboard in Resources */,
+				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
-				B5AC068E1E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
-				B5AC06971E5212E300BBA4ED /* ComEd-Environment-TESTING.plist in Resources */,
-				B5AC06911E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist in Resources */,
-				B5AC068B1E5212E300BBA4ED /* ComEd-Environment-AUT.plist in Resources */,
-				B5AC06A61E5212E300BBA4ED /* Peco-Environment-TESTING.plist in Resources */,
-				B5AC067E1E5178AB00BBA4ED /* environment.plist in Resources */,
-				B5AC06A01E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist in Resources */,
-				B5AC06941E5212E300BBA4ED /* ComEd-Environment-STAGING.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
