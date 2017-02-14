@@ -6,5 +6,9 @@
 	<string>PROD</string>
 	<key>appName</key>
 	<string>ComEd</string>
+    <key>opco</key>
+    <string>COMED</string>
+    <key>oauthEndpoint</key>
+    <string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 </dict>
 </plist>
