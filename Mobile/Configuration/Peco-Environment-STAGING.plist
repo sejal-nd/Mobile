@@ -6,5 +6,10 @@
 	<string>STAGE</string>
 	<key>appName</key>
 	<string>Peco_STAGE</string>
+    <key>opco</key>
+    <string>PECO</string>
+    <key>oauthEndpoint</key>
+    <string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+
 </dict>
 </plist>

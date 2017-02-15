@@ -6,5 +6,9 @@
 	<string>STAGE</string>
 	<key>appName</key>
 	<string>BGE_STAGE</string>
+    <key>opco</key>
+    <string>BGE</string>
+    <key>oauthEndpoint</key>
+    <string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 </dict>
 </plist>

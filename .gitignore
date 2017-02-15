@@ -21,6 +21,7 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+Mobile/Configuration/environment_preprocess.h
 
 ## Obj-C/Swift specific
 *.hmap

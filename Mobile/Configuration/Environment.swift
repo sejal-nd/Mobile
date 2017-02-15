@@ -8,12 +8,17 @@
 
 import Foundation
 
+
+/// Convenience singlton that wraps 
+/// envinronment variables.
 struct Environment  {
     
     static let sharedInstance = Environment()
     
     let environmentName: String
     let appName: String
+    let opco: String
+    let oAuthEndpoint: String
     
     private init() {
         
@@ -22,5 +27,7 @@ struct Environment  {
     
         environmentName = dict?["environment"] as! String
         appName = dict?["appName"] as! String
+        opco = dict?["opco"] as! String
+        oAuthEndpoint = dict?["oauthEndpoint"] as! String
     }
 }
