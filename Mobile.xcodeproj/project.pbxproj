@@ -58,6 +58,12 @@
 		8FD3C2761E525D76005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
 		8FD3C2771E525D80005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
 		8FD3C2781E525D84005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
+		B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
+		B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
+		B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
+		B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */; };
+		B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
+		B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
@@ -134,6 +140,8 @@
 		8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BGE-Info.plist"; sourceTree = "<group>"; };
 		8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
 		8FD3C26E1E52576F005FB1BB /* Peco-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Info.plist"; sourceTree = "<group>"; };
+		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
+		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
 		B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		B58B5AC11E4E28740051FD5F /* BGE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BGE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5AC41E4E28740051FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -239,6 +247,14 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		B5389EA11E53D8640028AF89 /* Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */,
+			);
+			path = Parsing;
+			sourceTree = "<group>";
+		};
 		B58B5AB81E4E28740051FD5F = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +334,7 @@
 			children = (
 				B5AC06D71E52238900BBA4ED /* MobileTests.swift */,
 				B5AC06D91E52238900BBA4ED /* Info.plist */,
+				B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */,
 			);
 			path = MobileTests;
 			sourceTree = "<group>";
@@ -334,6 +351,7 @@
 		B5AC06E41E5269D700BBA4ED /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				B5389EA11E53D8640028AF89 /* Parsing */,
 				B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */,
 				B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */,
 				B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */,
@@ -635,6 +653,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
@@ -649,6 +668,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
@@ -663,6 +683,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
@@ -677,6 +698,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
+				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
+				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

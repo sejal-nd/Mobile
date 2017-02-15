@@ -9,21 +9,10 @@
 import Foundation
 
 /// A representation of an error case at the service level.
-/// ServiceErrors consist of a code and a message.
-struct ServiceError {
-    let code: Int
-    let message: String
-    
-    
-    /// Initialize a ServiceError
-    ///
-    /// - Parameters:
-    ///   - errorCode: the error code.
-    ///   - errorMessage: a message suitable to show the user.
-    init(errorCode: Int, errorMessage: String) {
-        code = errorCode;
-        message = errorMessage;
-    }
+enum ServiceError : Error {
+    case JSONParsing
+    case Custom(code: String, description: String)
+    case Other(error: Error)
 }
 
 /// A representation of the result of a service request.

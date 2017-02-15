@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 private enum OAuthQueryParams: String {
     case Username = "username"
@@ -21,7 +22,7 @@ class OMCAuthenticationService : AuthenticationService {
     //  1. Retreive token from api gateway
     //  2. Exchange the token with the Oracle SDK
     //  3. Fetch the user through the Oracle SDK
-    func login(username: String, password: String, completion: @escaping (_ result: ServiceResult<String>) -> Swift.Void) {
+    func login(_ username: String, password: String, completion: @escaping (_ result: ServiceResult<String>) -> Swift.Void) {
         
         //1
         fetchAuthToken(username: username, password: password) { (result: ServiceResult<String>) in
@@ -48,72 +49,11 @@ class OMCAuthenticationService : AuthenticationService {
         ]
         
         let task = URLSession.shared.dataTask(with: urlComponents.url!) {(data, response, error) in
-            let serviceResponse = self.parseAuthTokenResponse(data: data, response: response, error: error)
+            let serviceResponse = AuthTokenParser.parseAuthTokenResponse(data: data, response: response, error: error)
             completion(serviceResponse)
         }
         
         task.resume()
-    }
-    
-    /// Parse the response received from an authorization token request.
-    ///
-    /// - Parameters:
-    ///   - data: the raw response data.
-    ///   - response: the url response.
-    ///   - error: an error if once was received.
-    /// - Returns: A ServiceResult with either the token on success, or a ServiceError for failure.
-    private func parseAuthTokenResponse(data: Data?, response: URLResponse?, error: Error?) -> ServiceResult<String> {
-        if let responseData = data {
-            
-            //TODO: Replace with DLog
-            print(NSString(data: responseData, encoding: String.Encoding.utf8.rawValue) ?? "No Response Data")
-            
-            do {
-                let parsedData = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String:Any]
-                let success = parsedData["success"] as! Bool
-                
-                if(success == false) {
-                    return self.parseError(parsedData: parsedData)
-                } else {
-                    return self.parseSuccess(parsedData: parsedData)
-                }
-            } catch let err as NSError {
-                return ServiceResult.Failure(ServiceError(errorCode: 0, errorMessage: "Unable to parse response. " + err.localizedDescription))
-            }
-            
-        } else {
-            if let message = error?.localizedDescription {
-                return ServiceResult.Failure(ServiceError(errorCode: 0, errorMessage: message))
-            } else {
-                return ServiceResult.Failure(ServiceError(errorCode: 0, errorMessage: "An Unknown Error Occurred"))
-            }
-        }
-    }
-    
-    
-    /// Retrieves the assertion/token and wrap it in a ServiceResult
-    ///
-    /// - Parameter parsedData: The dictionary that was parsed from the response.
-    /// - Returns: A successful ServiceResult containing the assertion/token
-    private func parseSuccess(parsedData: [String:Any]) -> ServiceResult<String> {
-        let data: NSDictionary = parsedData["data"] as! NSDictionary
-        let assertion: String = data["assertion"] as! String
-        
-        return ServiceResult.Success(assertion)
-    }
-    
-    
-    /// Retreives the error and wrap it in a ServiceResult
-    ///
-    /// - Parameter parsedData: The dictionary that was parsed from the response.
-    /// - Returns: A failure ServiceResult containing the error information.
-    private func parseError(parsedData: [String:Any]) -> ServiceResult<String> {
-        let meta: NSDictionary = parsedData["meta"] as! NSDictionary
-        let code = meta["code"] as! String
-        let description = meta["description"] as! String
-        let serviceError = ServiceError(errorCode: code.hash, errorMessage: description)
-        
-        return ServiceResult.Failure(serviceError)
     }
     
     // OMC Logout Implementation
@@ -123,7 +63,7 @@ class OMCAuthenticationService : AuthenticationService {
     }
     
     // OMC Change Password Implementation
-    func changePassword(currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<String>) -> Void) {
+    func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<String>) -> Void) {
         //TODO: when the oracle sdk is available
         completion(ServiceResult.Success("success"))
     }
