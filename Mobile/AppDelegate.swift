@@ -19,7 +19,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("Environment %@", Environment.sharedInstance.environmentName)
         NSLog("AppName %@", Environment.sharedInstance.appName)
         
+        setupAppearance()
+        
         return true
+    }
+    
+    func setupAppearance() {
+        // Tab Bar
+        UITabBar.appearance().tintColor = .primaryColor
+        
+        // Nav Bar
+        UINavigationBar.appearance().tintColor = .textButtonColor
+        
+        // Buttons
+        UIButton.appearance().tintColor = .textButtonColor
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
