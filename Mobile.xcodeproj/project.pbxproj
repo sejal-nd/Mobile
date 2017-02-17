@@ -29,15 +29,15 @@
 			name = "ComEd Environment Switch";
 			productName = "ComEd Environment Switch";
 		};
-		B5AC06B21E52171800BBA4ED /* Peco Environment Switch */ = {
+		B5AC06B21E52171800BBA4ED /* PECO Environment Switch */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = B5AC06B41E52171800BBA4ED /* Build configuration list for PBXAggregateTarget "Peco Environment Switch" */;
+			buildConfigurationList = B5AC06B41E52171800BBA4ED /* Build configuration list for PBXAggregateTarget "PECO Environment Switch" */;
 			buildPhases = (
 				B5AC06B31E52171800BBA4ED /* ShellScript */,
 			);
 			dependencies = (
 			);
-			name = "Peco Environment Switch";
+			name = "PECO Environment Switch";
 			productName = "ComEd Environment Switch";
 		};
 /* End PBXAggregateTarget section */
@@ -185,7 +185,7 @@
 		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BGE-Info.plist"; sourceTree = "<group>"; };
 		8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
-		8FD3C26E1E52576F005FB1BB /* Peco-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Info.plist"; sourceTree = "<group>"; };
+		8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Info.plist"; sourceTree = "<group>"; };
 		8FD5AE7E1E54EA34003F640D /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLandingViewController.swift; sourceTree = "<group>"; };
 		8FD5AE841E54EA49003F640D /* LoginTermsConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsConditionsViewController.swift; sourceTree = "<group>"; };
@@ -218,11 +218,11 @@
 		B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
 		B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-STAGING.plist"; sourceTree = "<group>"; };
 		B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
-		B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Environment-AUT.plist"; sourceTree = "<group>"; };
-		B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
-		B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
-		B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Environment-STAGING.plist"; sourceTree = "<group>"; };
-		B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peco-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		B5AC06851E5212E300BBA4ED /* PECO-Environment-AUT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-AUT.plist"; sourceTree = "<group>"; };
+		B5AC06861E5212E300BBA4ED /* PECO-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		B5AC06871E5212E300BBA4ED /* PECO-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
+		B5AC06881E5212E300BBA4ED /* PECO-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-STAGING.plist"; sourceTree = "<group>"; };
+		B5AC06891E5212E300BBA4ED /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		B5AC06C71E521B3200BBA4ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BGEAssets.xcassets; sourceTree = "<group>"; };
 		B5AC06CD1E521B7B00BBA4ED /* PecoAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PecoAssets.xcassets; sourceTree = "<group>"; };
@@ -419,7 +419,7 @@
 				B58B5B571E516A9B0051FD5F /* Configuration */,
 				8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */,
 				8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */,
-				8FD3C26E1E52576F005FB1BB /* Peco-Info.plist */,
+				8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */,
 			);
 			path = Mobile;
 			sourceTree = "<group>";
@@ -436,14 +436,14 @@
 				B58B5B5C1E516C360051FD5F /* BGE-Environment-PRODUCTION.plist */,
 				B5AC06801E5212E300BBA4ED /* ComEd-Environment-AUT.plist */,
 				B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */,
-				B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */,
-				B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */,
 				B5AC06841E5212E300BBA4ED /* ComEd-Environment-TESTING.plist */,
-				B5AC06851E5212E300BBA4ED /* Peco-Environment-AUT.plist */,
-				B5AC06861E5212E300BBA4ED /* Peco-Environment-DEVELOP.plist */,
-				B5AC06871E5212E300BBA4ED /* Peco-Environment-PRODUCTION.plist */,
-				B5AC06881E5212E300BBA4ED /* Peco-Environment-STAGING.plist */,
-				B5AC06891E5212E300BBA4ED /* Peco-Environment-TESTING.plist */,
+				B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */,
+				B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */,
+				B5AC06851E5212E300BBA4ED /* PECO-Environment-AUT.plist */,
+				B5AC06861E5212E300BBA4ED /* PECO-Environment-DEVELOP.plist */,
+				B5AC06891E5212E300BBA4ED /* PECO-Environment-TESTING.plist */,
+				B5AC06881E5212E300BBA4ED /* PECO-Environment-STAGING.plist */,
+				B5AC06871E5212E300BBA4ED /* PECO-Environment-PRODUCTION.plist */,
 				B5AC06781E51763200BBA4ED /* Environment.swift */,
 			);
 			path = Configuration;
@@ -555,9 +555,9 @@
 			productReference = B58B5AC11E4E28740051FD5F /* BGE.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B58B5B0F1E515BD50051FD5F /* Peco */ = {
+		B58B5B0F1E515BD50051FD5F /* PECO */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B58B5B181E515BD50051FD5F /* Build configuration list for PBXNativeTarget "Peco" */;
+			buildConfigurationList = B58B5B181E515BD50051FD5F /* Build configuration list for PBXNativeTarget "PECO" */;
 			buildPhases = (
 				B58B5B101E515BD50051FD5F /* Sources */,
 				B58B5B131E515BD50051FD5F /* Frameworks */,
@@ -569,7 +569,7 @@
 			dependencies = (
 				B5AC06BD1E52173B00BBA4ED /* PBXTargetDependency */,
 			);
-			name = Peco;
+			name = PECO;
 			productName = Mobile;
 			productReference = B58B5B1E1E515BD50051FD5F /* Peco.app */;
 			productType = "com.apple.product-type.application";
@@ -662,10 +662,10 @@
 			targets = (
 				B58B5AC01E4E28740051FD5F /* BGE */,
 				B58B5B201E515C840051FD5F /* ComEd */,
-				B58B5B0F1E515BD50051FD5F /* Peco */,
+				B58B5B0F1E515BD50051FD5F /* PECO */,
 				B58B5B601E516EEE0051FD5F /* BGE Environment Switch */,
 				B5AC06AA1E5216C300BBA4ED /* ComEd Environment Switch */,
-				B5AC06B21E52171800BBA4ED /* Peco Environment Switch */,
+				B5AC06B21E52171800BBA4ED /* PECO Environment Switch */,
 				B5AC06D41E52238900BBA4ED /* MobileTests */,
 			);
 		};
@@ -821,7 +821,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/Peco-Environment-$env.plist $dir/Configuration/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/Configuration/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}/Configuration\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/Peco-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/Peco-Info.plist\n \n# done\necho \"Done.\"\n";
+			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/PECO-Environment-$env.plist $dir/Configuration/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/Configuration/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}/Configuration\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/Peco-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/Peco-Info.plist\n \n# done\necho \"Done.\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -924,7 +924,7 @@
 		};
 		B5AC06BD1E52173B00BBA4ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B5AC06B21E52171800BBA4ED /* Peco Environment Switch */;
+			target = B5AC06B21E52171800BBA4ED /* PECO Environment Switch */;
 			targetProxy = B5AC06BC1E52173B00BBA4ED /* PBXContainerItemProxy */;
 		};
 		B5AC06DB1E52238900BBA4ED /* PBXTargetDependency */ = {
@@ -1790,7 +1790,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B58B5B181E515BD50051FD5F /* Build configuration list for PBXNativeTarget "Peco" */ = {
+		B58B5B181E515BD50051FD5F /* Build configuration list for PBXNativeTarget "PECO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B58B5B191E515BD50051FD5F /* Develop */,
@@ -1838,7 +1838,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B5AC06B41E52171800BBA4ED /* Build configuration list for PBXAggregateTarget "Peco Environment Switch" */ = {
+		B5AC06B41E52171800BBA4ED /* Build configuration list for PBXAggregateTarget "PECO Environment Switch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5AC06B51E52171800BBA4ED /* Develop */,

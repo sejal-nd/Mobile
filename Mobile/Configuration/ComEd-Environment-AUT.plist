@@ -6,9 +6,9 @@
 	<string>AUT</string>
 	<key>appName</key>
 	<string>ComEd_AUT</string>
-    <key>opco</key>
-    <string>COMED</string>
-    <key>oauthEndpoint</key>
-    <string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+	<key>opco</key>
+	<string>ComEd</string>
+	<key>oauthEndpoint</key>
+	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 </dict>
 </plist>
