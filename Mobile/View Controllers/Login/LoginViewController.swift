@@ -19,9 +19,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signInButton: LoginButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
-    var username = Variable("")
-    var password = Variable("")
+
+    var viewModel: LoginViewModel?
     
     let disposeBag = DisposeBag()
 
@@ -38,8 +37,10 @@ class LoginViewController: UIViewController {
 
         logoView.backgroundColor = .primaryColor
         
-        usernameTextField.rx.text.orEmpty.bindTo(username).addDisposableTo(disposeBag)
-        passwordTextField.rx.text.orEmpty.bindTo(password).addDisposableTo(disposeBag)
+        viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
+        
+        usernameTextField.rx.text.orEmpty.bindTo(viewModel!.username).addDisposableTo(disposeBag)
+        passwordTextField.rx.text.orEmpty.bindTo(viewModel!.password).addDisposableTo(disposeBag)
         
         usernameTextField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.passwordTextField.becomeFirstResponder()
@@ -47,6 +48,10 @@ class LoginViewController: UIViewController {
         passwordTextField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.onLoginPress()
         }).addDisposableTo(disposeBag)
+        
+        viewModel!.attemptLoginWithTouchID { 
+            self.launchMainApp()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -63,33 +68,34 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
-        let service = ServiceFactory.createAuthenticationService()
-        
-        let signedIn = service.login(username.value, password: password.value).observeOn(MainScheduler.instance)
-    
         signInButton.setLoading()
-        signedIn.subscribe(onNext: { (signed: Bool) in
-            self.signInButton.setSuccess(animationCompletion: { () in
-                let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-                self.present(viewController!, animated: true, completion: nil)
-            })
-        }, onError: { (error: Error) in
-            self.signInButton.setFailure()
-            var errorString = ""
-            switch(error as! ServiceError) {
-                case ServiceError.JSONParsing:
-                    errorString = ""
-                    break
-                case ServiceError.Custom(let code, let description):
-                    errorString = description
-                    break
-                case ServiceError.Other(let error):
-                    errorString = error.localizedDescription
-                    break
+        
+        viewModel!.performLogin(onSuccess: {
+            if UserDefaults.standard.object(forKey: UserDefaultKeys.HavePromptedForTouchID) == nil && self.viewModel!.isDeviceTouchIDEnabled() {
+                let touchIDAlert = UIAlertController(title: "Enable Touch ID", message: "Would you like to sign in with Touch ID in the future?", preferredStyle: .alert)
+                touchIDAlert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+                touchIDAlert.addAction(UIAlertAction(title: "Enable", style: .default, handler: { (action) in
+                    self.viewModel!.enableTouchID()
+                    self.launchMainApp()
+                }))
+                self.present(touchIDAlert, animated: true, completion: nil)
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.HavePromptedForTouchID)
+            } else {
+                self.signInButton.setSuccess(animationCompletion: { () in
+                    self.launchMainApp()
+                })
             }
-            let errorAlert = UIAlertView(title: "Error", message: errorString, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK")
-            errorAlert.show()
-        }).addDisposableTo(disposeBag)
+        }, onError: { (errorMessage) in
+            self.signInButton.setFailure()
+            let errorAlert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+            errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(errorAlert, animated: true, completion: nil)
+        })
+    }
+    
+    func launchMainApp() {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        self.present(viewController!, animated: true, completion: nil)
     }
     
     // MARK: Scroll View
