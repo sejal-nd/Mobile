@@ -8,6 +8,9 @@
 
 struct UserDefaultKeys {
     
+    // Terms & Conditions
+    static let HasAcceptedTerms = "kHasAcceptedTerms"
+    
     // Touch ID
     static let HavePromptedForTouchID = "kHavePromptedForTouchID"
     static let StoredTouchIDUsername = "kStoredTouchIDUsername"

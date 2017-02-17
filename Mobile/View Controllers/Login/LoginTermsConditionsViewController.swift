@@ -52,6 +52,7 @@ class LoginTermsConditionsViewController: UIViewController {
     }
     
     @IBAction func onContinuePress() {
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.HasAcceptedTerms)
         dismiss(animated: true, completion: nil)
     }
     

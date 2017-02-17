@@ -11,8 +11,6 @@ import UIKit
 class LoginLandingViewController: UIViewController {
     @IBOutlet weak var logoView: UIView!
     
-    var hasSeenTerms = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,9 +25,8 @@ class LoginLandingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
         
-        if (!hasSeenTerms) { // use NSUserDefaults eventually
+        if (!UserDefaults.standard.bool(forKey: UserDefaultKeys.HasAcceptedTerms)) { // use NSUserDefaults eventually
             performSegue(withIdentifier: "termsConditionsModalSegue", sender: self)
-            hasSeenTerms = true
         }
         
     }
