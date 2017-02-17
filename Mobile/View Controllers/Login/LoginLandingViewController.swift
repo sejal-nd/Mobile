@@ -32,8 +32,8 @@ class LoginLandingViewController: UIViewController {
     }
     
     @IBAction func onSkipForNowPress(_ sender: UIButton) {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        self.present(viewController!, animated: true, completion: nil)
+//        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+//        self.present(viewController!, animated: true, completion: nil)
     }
 
     // MARK: - Navigation
