@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-////        // Uncomment to reset UserDefaults
+//        Uncomment to reset UserDefaults
 //        let appDomain = Bundle.main.bundleIdentifier!
 //        UserDefaults.standard.removePersistentDomain(forName: appDomain)
         

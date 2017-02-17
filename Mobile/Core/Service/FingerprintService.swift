@@ -40,8 +40,13 @@ class FingerprintService {
     }
     
     func getStoredPassword() -> String? {
-        let message = NSLocalizedString("Sign in to your account", comment: "Touch ID prompt message")
-        return keychain.string(forKey: KEYCHAIN_KEY, promptMessage: message)
+        var promptString = ""
+        if let username = getStoredUsername() {
+            let startIndex = username.index(username.startIndex, offsetBy: 6)
+            let hiddenUsername = username.replacingCharacters(in: startIndex..<username.endIndex, with: "**********")
+            promptString = NSLocalizedString("Sign in as ", comment: "Touch ID prompt message") + hiddenUsername
+        }
+        return keychain.string(forKey: KEYCHAIN_KEY, promptMessage: promptString)
     }
     
     func setStoredPassword(password: String) {
