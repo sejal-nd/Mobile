@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import UIKit
 
 class LoginViewModel {
     
@@ -25,6 +26,15 @@ class LoginViewModel {
     
     func isDeviceTouchIDEnabled() -> Bool {
         return fingerprintService!.isFingerprintAvailable()
+    }
+    
+    func didLoginWithDifferentAccountThanStoredInKeychain() -> Bool {
+        if let username = fingerprintService!.getStoredUsername() {
+            if self.username.value != username {
+                return true
+            }
+        }
+        return false
     }
     
     func performLogin(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -52,21 +62,21 @@ class LoginViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    func enableTouchID() {
+    func storeCredentialsInTouchIDKeychain() {
         fingerprintService!.setStoredUsername(username: username.value)
         fingerprintService!.setStoredPassword(password: password.value)
     }
     
-    func attemptLoginWithTouchID(onSuccess: @escaping () -> Void) {
+    func attemptLoginWithTouchID(onLoad: @escaping () -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         if let username = fingerprintService!.getStoredUsername() {
-            self.username = Variable(username)
+            self.username.value = username
             if let password = fingerprintService!.getStoredPassword() {
-                self.password = Variable(password)
-                performLogin(onSuccess: { 
-                    onSuccess()
-                }, onError: { (errorString) in
-
-                })
+                self.password.value = password
+                onLoad()
+                performLogin(onSuccess: onSuccess, onError: onError)
+            } else { // Cancelled Touch ID dialog
+                self.username.value = ""
+                self.password.value = ""
             }
         }
     }

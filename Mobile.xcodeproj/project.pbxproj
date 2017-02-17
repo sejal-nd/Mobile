@@ -138,12 +138,11 @@
 		E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */; };
 		E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */; };
 		E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */; };
-		E8EEF71E1E567908006804D4 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF71D1E567908006804D4 /* SAMKeychain.framework */; };
-		E8EEF71F1E56791A006804D4 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF71D1E567908006804D4 /* SAMKeychain.framework */; };
-		E8EEF7201E56792B006804D4 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF71D1E567908006804D4 /* SAMKeychain.framework */; };
 		E8EEF7211E56793B006804D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07411E52A49900BBA4ED /* CoreLocation.framework */; };
 		E8EEF7221E567941006804D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07411E52A49900BBA4ED /* CoreLocation.framework */; };
 		E8EEF7241E5682BC006804D4 /* SimpleKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7231E5682BC006804D4 /* SimpleKeychain.framework */; };
+		E8EEF7251E575DC1006804D4 /* SimpleKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7231E5682BC006804D4 /* SimpleKeychain.framework */; };
+		E8EEF7261E575DE0006804D4 /* SimpleKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7231E5682BC006804D4 /* SimpleKeychain.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,13 +247,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8EEF7201E56792B006804D4 /* SAMKeychain.framework in Frameworks */,
-				E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */,
 				B5AC07421E52A49900BBA4ED /* CoreLocation.framework in Frameworks */,
+				E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */,
 				B5AC073C1E52A2BD00BBA4ED /* Security.framework in Frameworks */,
 				B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
+				E8EEF7251E575DC1006804D4 /* SimpleKeychain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,14 +261,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8EEF7241E5682BC006804D4 /* SimpleKeychain.framework in Frameworks */,
 				E8EEF7221E567941006804D4 /* CoreLocation.framework in Frameworks */,
-				E8EEF71E1E567908006804D4 /* SAMKeychain.framework in Frameworks */,
 				E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */,
 				B5AC07401E52A2ED00BBA4ED /* Security.framework in Frameworks */,
 				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */,
+				E8EEF7241E5682BC006804D4 /* SimpleKeychain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,12 +276,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8EEF7211E56793B006804D4 /* CoreLocation.framework in Frameworks */,
-				E8EEF71F1E56791A006804D4 /* SAMKeychain.framework in Frameworks */,
 				E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */,
 				B5AC073E1E52A2E000BBA4ED /* Security.framework in Frameworks */,
 				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2601E524548005FB1BB /* RxSwift.framework in Frameworks */,
+				E8EEF7261E575DE0006804D4 /* SimpleKeychain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,7 +714,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SAMKeychain.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SimpleKeychain.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
@@ -735,7 +732,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SAMKeychain.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SimpleKeychain.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -753,7 +750,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SAMKeychain.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SimpleKeychain.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (

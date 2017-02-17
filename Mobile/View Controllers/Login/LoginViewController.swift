@@ -10,8 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-// Test login: "User_0005084051@test.com"
-// Test pass: "Password1"
+// PECO test logins:
+// User_0005084051@test.com / Password1
+// kat@test.com / Password1
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
@@ -20,7 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
-    var viewModel: LoginViewModel?
+    var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     
     let disposeBag = DisposeBag()
 
@@ -36,11 +37,9 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .white
 
         logoView.backgroundColor = .primaryColor
-        
-        viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
-        
-        usernameTextField.rx.text.orEmpty.bindTo(viewModel!.username).addDisposableTo(disposeBag)
-        passwordTextField.rx.text.orEmpty.bindTo(viewModel!.password).addDisposableTo(disposeBag)
+                
+        usernameTextField.rx.text.orEmpty.bindTo(viewModel.username).addDisposableTo(disposeBag)
+        passwordTextField.rx.text.orEmpty.bindTo(viewModel.password).addDisposableTo(disposeBag)
         
         usernameTextField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.passwordTextField.becomeFirstResponder()
@@ -48,10 +47,20 @@ class LoginViewController: UIViewController {
         passwordTextField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.onLoginPress()
         }).addDisposableTo(disposeBag)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        viewModel!.attemptLoginWithTouchID { 
-            self.launchMainApp()
-        }
+        viewModel.attemptLoginWithTouchID(onLoad: {
+            self.signInButton.setLoading()
+        }, onSuccess: {
+            self.signInButton.setSuccess(animationCompletion: { () in
+                self.launchMainApp()
+            })
+        }, onError: { (errorMessage) in
+            self.showErrorAlertWithMessage(errorMessage)
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,34 +77,57 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
-        signInButton.setLoading()
+        view.endEditing(true)
         
-        viewModel!.performLogin(onSuccess: {
-            if UserDefaults.standard.object(forKey: UserDefaultKeys.HavePromptedForTouchID) == nil && self.viewModel!.isDeviceTouchIDEnabled() {
-                let touchIDAlert = UIAlertController(title: "Enable Touch ID", message: "Would you like to sign in with Touch ID in the future?", preferredStyle: .alert)
-                touchIDAlert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
-                touchIDAlert.addAction(UIAlertAction(title: "Enable", style: .default, handler: { (action) in
-                    self.viewModel!.enableTouchID()
+        signInButton.setLoading()
+        viewModel.performLogin(onSuccess: {
+            self.signInButton.setSuccess(animationCompletion: { () in
+                if self.viewModel.isDeviceTouchIDEnabled() {
+                    if UserDefaults.standard.object(forKey: UserDefaultKeys.HavePromptedForTouchID) == nil {
+                        let touchIDAlert = UIAlertController(title: "Enable Touch ID", message: "Would you like to use Touch ID to sign in from now on?", preferredStyle: .alert)
+                        touchIDAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+                            self.launchMainApp()
+                        }))
+                        touchIDAlert.addAction(UIAlertAction(title: "Enable", style: .default, handler: { (action) in
+                            self.viewModel.storeCredentialsInTouchIDKeychain()
+                            self.launchMainApp()
+                        }))
+                        self.present(touchIDAlert, animated: true, completion: nil)
+                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.HavePromptedForTouchID)
+                    } else if self.viewModel.didLoginWithDifferentAccountThanStoredInKeychain() {
+                        let differentAccountAlert = UIAlertController(title: "Change Touch ID", message: "This is different account than the one linked to your Touch ID. Would you like to use Touch ID for this account from now on?", preferredStyle: .alert)
+                        differentAccountAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+                            self.launchMainApp()
+                        }))
+                        differentAccountAlert.addAction(UIAlertAction(title: "Change", style: .default, handler: { (action) in
+                            self.viewModel.storeCredentialsInTouchIDKeychain()
+                            self.launchMainApp()
+                        }))
+                        self.present(differentAccountAlert, animated: true, completion: nil)
+                    } else {
+                        self.launchMainApp()
+                    }
+                } else {
                     self.launchMainApp()
-                }))
-                self.present(touchIDAlert, animated: true, completion: nil)
-                UserDefaults.standard.set(true, forKey: UserDefaultKeys.HavePromptedForTouchID)
-            } else {
-                self.signInButton.setSuccess(animationCompletion: { () in
-                    self.launchMainApp()
-                })
-            }
+                }
+
+            })
         }, onError: { (errorMessage) in
-            self.signInButton.setFailure()
-            let errorAlert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-            errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(errorAlert, animated: true, completion: nil)
+            self.showErrorAlertWithMessage(errorMessage)
         })
     }
     
     func launchMainApp() {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         self.present(viewController!, animated: true, completion: nil)
+    }
+    
+    func showErrorAlertWithMessage(_ errorMessage: String) {
+        signInButton.setFailure()
+        
+        let errorAlert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+        errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(errorAlert, animated: true, completion: nil)
     }
     
     // MARK: Scroll View

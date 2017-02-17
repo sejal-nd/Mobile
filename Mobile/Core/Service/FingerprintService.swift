@@ -8,10 +8,18 @@
 
 import UIKit
 import LocalAuthentication
-import SAMKeychain
 import SimpleKeychain
 
 class FingerprintService {
+    
+    final private let KEYCHAIN_KEY = "kExelon_PW"
+    
+    private let keychain = A0SimpleKeychain()
+    
+    init() {
+        keychain.useAccessControl = true
+        keychain.defaultAccessiblity = A0SimpleKeychainItemAccessible.whenPasscodeSetThisDeviceOnly
+    }
     
     func isFingerprintAvailable() -> Bool {
         let context = LAContext()
@@ -32,21 +40,12 @@ class FingerprintService {
     }
     
     func getStoredPassword() -> String? {
-//        return SAMKeychain.password(forService: "FingerprintService", account: "user")
-        
-        let message = NSLocalizedString("Please enter your fingerprint to sign in", comment: "Prompt TouchID message")
-        let keychain = A0SimpleKeychain()
-        return keychain.string(forKey: "exelon-pw-2", promptMessage:message)
+        let message = NSLocalizedString("Sign in to your account", comment: "Touch ID prompt message")
+        return keychain.string(forKey: KEYCHAIN_KEY, promptMessage: message)
     }
     
     func setStoredPassword(password: String) {
-//        SAMKeychain.setAccessibilityType(kSecAttrAccessibleWhenUnlockedThisDeviceOnly)
-//        SAMKeychain.setPassword(password, forService: "FingerprintService", account: "user")
-        
-        let keychain = A0SimpleKeychain()
-        keychain.useAccessControl = true
-        keychain.defaultAccessiblity = A0SimpleKeychainItemAccessible.whenUnlockedThisDeviceOnly
-        keychain.setString(password, forKey:"exelon-pw-2")
+        keychain.setString(password, forKey: KEYCHAIN_KEY)
     }
     
 }
