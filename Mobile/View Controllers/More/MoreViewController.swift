@@ -9,7 +9,9 @@
 import UIKit
 import RxSwift
 
-class MoreViewController: UIViewController {
+class MoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
     
     let disposeBag = DisposeBag()
 
@@ -31,15 +33,11 @@ class MoreViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onLogOutPress(_ sender: Any) {
+    func onSignOutPress() {
         let confirmAlert = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .alert)
         confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         confirmAlert.addAction(UIAlertAction(title: "Sign Out", style: .default, handler: logout))
         present(confirmAlert, animated: true, completion: nil)
-    }
-    
-    @IBAction func onTermsPress(_ sender: Any) {
-        performSegue(withIdentifier: "termsConditionsSegue", sender: self)
     }
     
     func logout(action: UIAlertAction) {
@@ -53,6 +51,42 @@ class MoreViewController: UIViewController {
         }, onCompleted: {
             
         }).addDisposableTo(disposeBag)
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        var label = ""
+        if indexPath.row == 0 {
+            label = "Settings"
+        } else if indexPath.row == 1 {
+            label = "Contact Us"
+        } else if indexPath.row == 2 {
+            label = "Terms & Policies"
+        } else if indexPath.row == 3 {
+            label = "Sign Out"
+        }
+        cell.textLabel?.text = label
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        if indexPath.row == 2 {
+            performSegue(withIdentifier: "termsConditionsSegue", sender: self)
+        } else if indexPath.row == 3 {
+            onSignOutPress()
+        }
     }
     
 
