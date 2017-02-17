@@ -9,14 +9,14 @@
 import UIKit
 import RxSwift
 
-class MoreViewController: UIViewController, UINavigationBarDelegate {
+class MoreViewController: UIViewController {
     
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.delegate = self
+        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barTintColor = .primaryColor
         
         let titleDict: [String: Any] = [NSForegroundColorAttributeName: UIColor.white]
@@ -38,6 +38,10 @@ class MoreViewController: UIViewController, UINavigationBarDelegate {
         present(confirmAlert, animated: true, completion: nil)
     }
     
+    @IBAction func onTermsPress(_ sender: Any) {
+        performSegue(withIdentifier: "termsConditionsSegue", sender: self)
+    }
+    
     func logout(action: UIAlertAction) {
         let authService = ServiceFactory.createAuthenticationService()
         authService.logout().subscribe(onNext: { (success) in
@@ -51,10 +55,6 @@ class MoreViewController: UIViewController, UINavigationBarDelegate {
         }).addDisposableTo(disposeBag)
     }
     
-    func position(for bar: UIBarPositioning) -> UIBarPosition {
-        return .topAttached
-    }
-
 
     /*
     // MARK: - Navigation

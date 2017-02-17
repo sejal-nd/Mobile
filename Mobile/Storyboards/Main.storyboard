@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feature not implemented" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWV-VO-ITI">
-                                <rect key="frame" x="91.5" y="323" width="192" height="21"/>
+                                <rect key="frame" x="92" y="323" width="192" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -53,7 +54,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feature not implemented" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EiG-hM-dzl">
-                                <rect key="frame" x="91.5" y="323" width="192" height="21"/>
+                                <rect key="frame" x="92" y="323" width="192" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -148,7 +149,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ll-j1-O9L">
-                                <rect key="frame" x="157.5" y="167" width="60" height="44"/>
+                                <rect key="frame" x="158" y="167" width="60" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="mPI-Ii-LoN"/>
                                 </constraints>
@@ -163,6 +164,9 @@
                                     <constraint firstAttribute="height" constant="44" id="PCF-Nd-mjr"/>
                                 </constraints>
                                 <state key="normal" title="View Terms &amp; Conditions"/>
+                                <connections>
+                                    <action selector="onTermsPress:" destination="K6z-e5-jDa" eventType="touchUpInside" id="ZvS-Ee-bnF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,10 +178,52 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="More" id="vtI-kh-mSw"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <segue destination="22D-Qg-knq" kind="show" identifier="termsConditionsSegue" id="kxE-Jn-v8W"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soR-q1-J5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1431.2" y="1405.5472263868066"/>
+        </scene>
+        <!--Terms and Conditions-->
+        <scene sceneID="kxf-Jm-TNk">
+            <objects>
+                <viewController id="22D-Qg-knq" customClass="TermsConditionsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Af1-bX-6pj"/>
+                        <viewControllerLayoutGuide type="bottom" id="yBh-Nt-fjL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ynx-ML-niy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4gT-TD-aaN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="topMargin" secondItem="4gT-TD-aaN" secondAttribute="top" id="4v1-3d-2Qa"/>
+                            <constraint firstItem="4gT-TD-aaN" firstAttribute="leading" secondItem="Ynx-ML-niy" secondAttribute="leading" id="9WT-UT-GcV"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="4gT-TD-aaN" secondAttribute="bottom" id="Dar-qp-IVl"/>
+                            <constraint firstAttribute="trailing" secondItem="4gT-TD-aaN" secondAttribute="trailing" id="eP8-UV-4ij"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Terms and Conditions" id="Ony-UU-oy1"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="textView" destination="4gT-TD-aaN" id="yoW-Y9-fPh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OCe-AH-ygY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2365.5999999999999" y="1405.5472263868066"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7Xa-r0-Tv0">

@@ -146,6 +146,9 @@
 		E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EEF7351E57895F006804D4 /* LaunchScreen-BGE.storyboard */; };
 		E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EEF7361E57895F006804D4 /* LaunchScreen-ComEd.storyboard */; };
 		E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */; };
+		E8EEF7451E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsConditionsViewController.swift */; };
+		E8EEF7461E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsConditionsViewController.swift */; };
+		E8EEF7471E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsConditionsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -246,6 +249,7 @@
 		E8EEF7351E57895F006804D4 /* LaunchScreen-BGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-BGE.storyboard"; sourceTree = "<group>"; };
 		E8EEF7361E57895F006804D4 /* LaunchScreen-ComEd.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-ComEd.storyboard"; sourceTree = "<group>"; };
 		E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-PECO.storyboard"; sourceTree = "<group>"; };
+		E8EEF7441E578BCC006804D4 /* TermsConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsConditionsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -519,6 +523,7 @@
 			isa = PBXGroup;
 			children = (
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
+				E8EEF7441E578BCC006804D4 /* TermsConditionsViewController.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -844,6 +849,7 @@
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E8EEF7451E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				B5AC06E61E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
@@ -868,6 +874,7 @@
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E8EEF7471E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				B5AC06E81E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
@@ -892,6 +899,7 @@
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E8EEF7461E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				B5AC06E71E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
