@@ -70,8 +70,16 @@
                                     <segue destination="Pib-RC-igc" kind="show" id="GW7-HC-G0J"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNV-D6-Tjj">
+                                <rect key="frame" x="68" y="353" width="100" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Jv7-kh-tcH"/>
+                                    <constraint firstAttribute="height" constant="1" id="gIN-i2-jJ1"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRy-eH-SXJ">
-                                <rect key="frame" x="175" y="343" width="24" height="21"/>
+                                <rect key="frame" x="176" y="343" width="24" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6H8-qC-HyQ"/>
                                 </constraints>
@@ -79,6 +87,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MF0-BA-DVg">
+                                <rect key="frame" x="208" y="353" width="100" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="avp-52-81c"/>
+                                    <constraint firstAttribute="height" constant="1" id="tyt-fx-UP1"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtv-0B-6Rn" customClass="LoginButton" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="32" y="384" width="311" height="60"/>
                                 <color key="backgroundColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -106,6 +122,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Mtv-0B-6Rn" secondAttribute="trailing" constant="32" id="6LS-WU-8TI"/>
+                            <constraint firstItem="cRy-eH-SXJ" firstAttribute="leading" secondItem="VNV-D6-Tjj" secondAttribute="trailing" constant="8" id="AIN-qG-zy0"/>
                             <constraint firstItem="Mtv-0B-6Rn" firstAttribute="top" secondItem="cRy-eH-SXJ" secondAttribute="bottom" constant="20" id="Apl-Lw-cfQ"/>
                             <constraint firstAttribute="trailing" secondItem="oHs-4V-Y7S" secondAttribute="trailing" constant="32" id="O9K-Bq-xId"/>
                             <constraint firstItem="cRy-eH-SXJ" firstAttribute="top" secondItem="oHs-4V-Y7S" secondAttribute="bottom" constant="20" id="OrV-lv-EgF"/>
@@ -113,11 +130,14 @@
                             <constraint firstItem="oHs-4V-Y7S" firstAttribute="leading" secondItem="V4v-xx-mGY" secondAttribute="leading" constant="32" id="QUT-Lq-LEL"/>
                             <constraint firstItem="Mtv-0B-6Rn" firstAttribute="leading" secondItem="V4v-xx-mGY" secondAttribute="leading" constant="32" id="URT-XA-txk"/>
                             <constraint firstItem="cRy-eH-SXJ" firstAttribute="centerX" secondItem="V4v-xx-mGY" secondAttribute="centerX" id="dAQ-iu-Oku"/>
+                            <constraint firstItem="MF0-BA-DVg" firstAttribute="centerY" secondItem="cRy-eH-SXJ" secondAttribute="centerY" id="dLJ-uI-3nP"/>
                             <constraint firstItem="uSr-Qq-HMQ" firstAttribute="leading" secondItem="V4v-xx-mGY" secondAttribute="leading" id="gbi-Qn-kes"/>
                             <constraint firstItem="SSH-Ni-ZZW" firstAttribute="top" secondItem="Mtv-0B-6Rn" secondAttribute="bottom" constant="24" id="grW-ZN-BcD"/>
+                            <constraint firstItem="VNV-D6-Tjj" firstAttribute="centerY" secondItem="cRy-eH-SXJ" secondAttribute="centerY" id="hXp-mz-VDT"/>
                             <constraint firstItem="uSr-Qq-HMQ" firstAttribute="top" secondItem="asp-PR-d5k" secondAttribute="bottom" constant="-20" id="htV-no-dSb"/>
                             <constraint firstItem="oHs-4V-Y7S" firstAttribute="top" secondItem="uSr-Qq-HMQ" secondAttribute="bottom" constant="55" id="kCA-dH-uKv"/>
                             <constraint firstAttribute="trailing" secondItem="uSr-Qq-HMQ" secondAttribute="trailing" id="qNg-3k-es3"/>
+                            <constraint firstItem="MF0-BA-DVg" firstAttribute="leading" secondItem="cRy-eH-SXJ" secondAttribute="trailing" constant="8" id="qo8-J8-gzI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iC8-QL-izm"/>
@@ -153,7 +173,7 @@
                                 <rect key="frame" x="0.0" y="547" width="375" height="60"/>
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="STf-Fi-lUb">
-                                        <rect key="frame" x="16" y="14.5" width="51" height="31"/>
+                                        <rect key="frame" x="16" y="15" width="51" height="31"/>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I agree to PECO's Terms and Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s57-Nu-gGZ">
                                         <rect key="frame" x="73" y="21" width="294" height="18"/>
@@ -184,7 +204,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERMS AND CONDITIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgG-uH-2y6">
-                                <rect key="frame" x="16" y="40" width="235.5" height="21"/>
+                                <rect key="frame" x="16" y="40" width="236" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="SQo-uZ-aha"/>
                                 </constraints>
@@ -342,6 +362,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="forgotPasswordButton" destination="fvJ-hV-8nY" id="E8K-v3-2YY"/>
                         <outlet property="logoView" destination="4XV-D5-ZeZ" id="WGC-Sa-RVG"/>
                         <outlet property="passwordTextField" destination="of3-Zt-Zlr" id="RXe-5s-7Q1"/>
                         <outlet property="scrollView" destination="876-Ds-EGF" id="odj-at-Uqx"/>

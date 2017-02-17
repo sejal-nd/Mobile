@@ -17,9 +17,10 @@ import RxCocoa
 class LoginViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var logoView: UIView!
-    @IBOutlet weak var signInButton: LoginButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signInButton: LoginButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
 
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     
@@ -138,7 +139,7 @@ class LoginViewController: UIViewController {
         let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
-        scrollView.scrollRectToVisible(signInButton.frame, animated: true)
+        scrollView.scrollRectToVisible(forgotPasswordButton.frame, animated: true)
     }
     
     func keyboardWillHide(notification: Notification) {
