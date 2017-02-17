@@ -19,5 +19,9 @@ class ServiceFactory {
         }
     }
     
+    class func createFingerprintService() -> FingerprintService {
+        return FingerprintService()
+    }
+    
     //TODO: UserService, BillService etc.
 }
