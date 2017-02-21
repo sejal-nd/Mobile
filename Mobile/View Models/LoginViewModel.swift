@@ -68,8 +68,8 @@ class LoginViewModel {
     
     func attemptLoginWithTouchID(onLoad: @escaping () -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         if let username = fingerprintService!.getStoredUsername() {
-            self.username.value = username
             if let password = fingerprintService!.getStoredPassword() {
+                self.username.value = username
                 self.password.value = password
                 onLoad()
                 performLogin(onSuccess: onSuccess, onError: onError)
