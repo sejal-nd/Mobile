@@ -150,10 +150,10 @@
             </objects>
             <point key="canvasLocation" x="624.79999999999995" y="90.404797601199405"/>
         </scene>
-        <!--Login Terms Conditions View Controller-->
+        <!--Login Terms Policies View Controller-->
         <scene sceneID="uIe-sJ-gHd">
             <objects>
-                <viewController id="0vR-kF-bp8" customClass="LoginTermsConditionsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0vR-kF-bp8" customClass="LoginTermsPoliciesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LV1-2o-5O7"/>
                         <viewControllerLayoutGuide type="bottom" id="HRe-wR-dkC"/>
@@ -230,6 +230,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="agreeLabel" destination="s57-Nu-gGZ" id="dUy-LM-Hqx"/>
                         <outlet property="agreeSwitch" destination="STf-Fi-lUb" id="MBP-U7-G8X"/>
                         <outlet property="agreeView" destination="xdc-lo-y4f" id="lAD-Oa-7dj"/>
                         <outlet property="continueButton" destination="T2d-t3-Jmn" id="Wz7-t5-9NI"/>

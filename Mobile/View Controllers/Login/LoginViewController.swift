@@ -14,6 +14,9 @@ import RxCocoa
 // User_0005084051@test.com / Password1
 // kat@test.com / Password1
 
+// BGE:
+// multprem02 / Password1
+
 class LoginViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var logoView: UIView!

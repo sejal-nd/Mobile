@@ -61,9 +61,9 @@
 		8FD5AE861E54EA49003F640D /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */; };
 		8FD5AE871E54EA49003F640D /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */; };
 		8FD5AE881E54EA49003F640D /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */; };
-		8FD5AE891E54EA49003F640D /* LoginTermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE841E54EA49003F640D /* LoginTermsConditionsViewController.swift */; };
-		8FD5AE8A1E54EA49003F640D /* LoginTermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE841E54EA49003F640D /* LoginTermsConditionsViewController.swift */; };
-		8FD5AE8B1E54EA49003F640D /* LoginTermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE841E54EA49003F640D /* LoginTermsConditionsViewController.swift */; };
+		8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */; };
+		8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */; };
+		8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */; };
 		8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE851E54EA49003F640D /* LoginViewController.swift */; };
 		8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE851E54EA49003F640D /* LoginViewController.swift */; };
 		8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE851E54EA49003F640D /* LoginViewController.swift */; };
@@ -123,6 +123,9 @@
 		B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
+		E83EFA371E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
+		E83EFA381E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
+		E83EFA391E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
 		E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
 		E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
 		E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
@@ -146,9 +149,9 @@
 		E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EEF7351E57895F006804D4 /* LaunchScreen-BGE.storyboard */; };
 		E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EEF7361E57895F006804D4 /* LaunchScreen-ComEd.storyboard */; };
 		E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */; };
-		E8EEF7451E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsConditionsViewController.swift */; };
-		E8EEF7461E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsConditionsViewController.swift */; };
-		E8EEF7471E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsConditionsViewController.swift */; };
+		E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
+		E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
+		E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,7 +194,7 @@
 		8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Info.plist"; sourceTree = "<group>"; };
 		8FD5AE7E1E54EA34003F640D /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLandingViewController.swift; sourceTree = "<group>"; };
-		8FD5AE841E54EA49003F640D /* LoginTermsConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsConditionsViewController.swift; sourceTree = "<group>"; };
+		8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsPoliciesViewController.swift; sourceTree = "<group>"; };
 		8FD5AE851E54EA49003F640D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8FD5AE8F1E54EA53003F640D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		8FD5AE931E54EA5E003F640D /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -206,7 +209,7 @@
 		B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		B58B5AC11E4E28740051FD5F /* BGE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BGE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5AC41E4E28740051FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B58B5B1E1E515BD50051FD5F /* Peco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peco.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B58B5B1E1E515BD50051FD5F /* Peco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Peco.app; path = PECO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B2F1E515C840051FD5F /* ComEd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComEd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B591E516B100051FD5F /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		B58B5B5A1E516B9A0051FD5F /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
@@ -239,6 +242,7 @@
 		B5AC073B1E52A2BD00BBA4ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCAuthenticationService.swift; sourceTree = "<group>"; };
+		E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E8EEF7151E566FD8006804D4 /* FingerprintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
@@ -249,7 +253,7 @@
 		E8EEF7351E57895F006804D4 /* LaunchScreen-BGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-BGE.storyboard"; sourceTree = "<group>"; };
 		E8EEF7361E57895F006804D4 /* LaunchScreen-ComEd.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-ComEd.storyboard"; sourceTree = "<group>"; };
 		E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-PECO.storyboard"; sourceTree = "<group>"; };
-		E8EEF7441E578BCC006804D4 /* TermsConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsConditionsViewController.swift; sourceTree = "<group>"; };
+		E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,7 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */,
-				8FD5AE841E54EA49003F640D /* LoginTermsConditionsViewController.swift */,
+				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
 				8FD5AE851E54EA49003F640D /* LoginViewController.swift */,
 			);
 			path = Login;
@@ -515,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */,
+				E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -523,7 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
-				E8EEF7441E578BCC006804D4 /* TermsConditionsViewController.swift */,
+				E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -836,7 +841,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
-				8FD5AE891E54EA49003F640D /* LoginTermsConditionsViewController.swift in Sources */,
+				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
@@ -849,10 +854,11 @@
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
-				E8EEF7451E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */,
+				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				B5AC06E61E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
+				E83EFA371E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -862,7 +868,7 @@
 			files = (
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
-				8FD5AE8B1E54EA49003F640D /* LoginTermsConditionsViewController.swift in Sources */,
+				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
@@ -874,10 +880,11 @@
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
-				E8EEF7471E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */,
+				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				B5AC06E81E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
+				E83EFA391E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,7 +894,7 @@
 			files = (
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
-				8FD5AE8A1E54EA49003F640D /* LoginTermsConditionsViewController.swift in Sources */,
+				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
@@ -899,10 +906,11 @@
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
-				E8EEF7461E578BCC006804D4 /* TermsConditionsViewController.swift in Sources */,
+				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				B5AC06E71E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
+				E83EFA381E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

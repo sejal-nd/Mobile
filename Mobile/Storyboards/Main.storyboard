@@ -189,7 +189,7 @@
         <!--Terms & Policies-->
         <scene sceneID="kxf-Jm-TNk">
             <objects>
-                <viewController id="22D-Qg-knq" customClass="TermsConditionsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="22D-Qg-knq" customClass="TermsPoliciesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Af1-bX-6pj"/>
                         <viewControllerLayoutGuide type="bottom" id="yBh-Nt-fjL"/>

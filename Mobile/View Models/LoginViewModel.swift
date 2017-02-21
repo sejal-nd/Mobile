@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import UIKit
 
 class LoginViewModel {
     
