@@ -39,10 +39,12 @@ Mobile/Configuration/environment_preprocess.h
 
 # Carthage
 #
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
 Carthage/Checkouts
-
-!Carthage/Build/iOS
+!Carthage/Build
+!Carthage/Build/iOS/*.dSYM
+Carthage/Build/Mac
+Carthage/Build/tvOS
+Carthage/Build/watchOS
 
 # fastlane
 #

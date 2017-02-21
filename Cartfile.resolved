@@ -1,3 +1,2 @@
 github "ReactiveX/RxSwift" "3.2.0"
-github "auth0/SimpleKeychain" "0.7.0"
 github "airbnb/lottie-ios" "1ebc1b91829705f79a52c212e2dfc1d4447ffe3d"
