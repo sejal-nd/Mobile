@@ -17,15 +17,6 @@ class MoreViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        
-        let titleDict: [String: Any] = [NSForegroundColorAttributeName: UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
-        navigationController?.navigationBar.barStyle = .black
-        
-        setNeedsStatusBarAppearanceUpdate()
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,7 +74,7 @@ class MoreViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.deselectRow(at: indexPath, animated: false)
         
         if indexPath.row == 2 {
-            performSegue(withIdentifier: "termsConditionsSegue", sender: self)
+            performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
         } else if indexPath.row == 3 {
             onSignOutPress()
         }

@@ -143,7 +143,7 @@
                     <navigationItem key="navigationItem" id="iC8-QL-izm"/>
                     <connections>
                         <outlet property="logoView" destination="uSr-Qq-HMQ" id="A8L-dw-7Ta"/>
-                        <segue destination="0vR-kF-bp8" kind="presentation" identifier="termsConditionsModalSegue" id="CiC-oU-f3I"/>
+                        <segue destination="0vR-kF-bp8" kind="presentation" identifier="termsPoliciesModalSegue" id="CiC-oU-f3I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upp-SQ-sws" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -126,6 +126,24 @@
 		E83EFA371E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
 		E83EFA381E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
 		E83EFA391E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
+		E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
+		E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
+		E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
+		E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
+		E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
+		E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
+		E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B21E5C99380031D934 /* Alerts.storyboard */; };
+		E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B21E5C99380031D934 /* Alerts.storyboard */; };
+		E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B21E5C99380031D934 /* Alerts.storyboard */; };
+		E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B61E5C99A00031D934 /* Outage.storyboard */; };
+		E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B61E5C99A00031D934 /* Outage.storyboard */; };
+		E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B61E5C99A00031D934 /* Outage.storyboard */; };
+		E8B4F4BB1E5C99E00031D934 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BA1E5C99E00031D934 /* Bill.storyboard */; };
+		E8B4F4BC1E5C99E00031D934 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BA1E5C99E00031D934 /* Bill.storyboard */; };
+		E8B4F4BD1E5C99E00031D934 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BA1E5C99E00031D934 /* Bill.storyboard */; };
+		E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BE1E5C9A200031D934 /* Home.storyboard */; };
+		E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BE1E5C9A200031D934 /* Home.storyboard */; };
+		E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BE1E5C9A200031D934 /* Home.storyboard */; };
 		E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
 		E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
 		E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
@@ -243,6 +261,12 @@
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCAuthenticationService.swift; sourceTree = "<group>"; };
 		E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsPoliciesViewModel.swift; sourceTree = "<group>"; };
+		E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBaseNavigationController.swift; sourceTree = "<group>"; };
+		E8B4F4AE1E5C957A0031D934 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		E8B4F4B21E5C99380031D934 /* Alerts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
+		E8B4F4B61E5C99A00031D934 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
+		E8B4F4BA1E5C99E00031D934 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
+		E8B4F4BE1E5C9A200031D934 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E8EEF7151E566FD8006804D4 /* FingerprintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
@@ -329,6 +353,11 @@
 			children = (
 				8FD5AE8F1E54EA53003F640D /* Login.storyboard */,
 				8FD3C2681E5250AF005FB1BB /* Main.storyboard */,
+				E8B4F4AE1E5C957A0031D934 /* More.storyboard */,
+				E8B4F4B21E5C99380031D934 /* Alerts.storyboard */,
+				E8B4F4B61E5C99A00031D934 /* Outage.storyboard */,
+				E8B4F4BA1E5C99E00031D934 /* Bill.storyboard */,
+				E8B4F4BE1E5C9A200031D934 /* Home.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -336,6 +365,7 @@
 		8FD5AE7C1E54EA04003F640D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
 				E8EEF7271E577781006804D4 /* More */,
 				8FD5AE821E54EA39003F640D /* Login */,
 			);
@@ -687,14 +717,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD5AE941E54EA5E003F640D /* Cartfile in Resources */,
+				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
+				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
+				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
+				E8B4F4BB1E5C99E00031D934 /* Bill.storyboard in Resources */,
+				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,14 +738,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
+				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
+				E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */,
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
+				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PecoAssets.xcassets in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
+				E8B4F4BD1E5C99E00031D934 /* Bill.storyboard in Resources */,
+				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,14 +759,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
+				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE951E54EA5E003F640D /* Cartfile in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
+				E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
+				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
+				E8B4F4BC1E5C99E00031D934 /* Bill.storyboard in Resources */,
+				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,6 +902,7 @@
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
+				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B5AC06E61E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
 				E83EFA371E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
 			);
@@ -883,6 +929,7 @@
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
+				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B5AC06E81E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
 				E83EFA391E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
 			);
@@ -909,6 +956,7 @@
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
+				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B5AC06E71E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
 				E83EFA381E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
 			);
