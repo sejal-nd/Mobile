@@ -12,7 +12,7 @@ import RxCocoa
 
 class LoginTermsPoliciesViewController: UIViewController {
     
-    @IBOutlet weak var agreeSwitch: UISwitch!
+    @IBOutlet weak var agreeSwitch: Switch!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var agreeView: UIView!
@@ -33,10 +33,6 @@ class LoginTermsPoliciesViewController: UIViewController {
         agreeView.layer.shadowRadius = 2
         agreeView.layer.masksToBounds = false
 
-        agreeSwitch.tintColor = UIColor(red: 193/255, green: 193/255, blue: 193/255, alpha: 1)
-        agreeSwitch.onTintColor = .primaryColor
-        agreeSwitch.backgroundColor = .switchOffColor
-        agreeSwitch.layer.cornerRadius = 16
         _ = agreeSwitch.rx.isOn.bindTo(continueButton.rx.isEnabled)
         
         agreeLabel.text = viewModel.agreeLabelText;

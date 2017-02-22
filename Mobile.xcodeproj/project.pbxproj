@@ -147,6 +147,9 @@
 		E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
 		E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
 		E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
+		E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
+		E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
+		E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
 		E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
 		E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
 		E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
@@ -270,6 +273,7 @@
 		E8B4F4C91E5CE1BA0031D934 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		E8B4F4CE1E5CE21D0031D934 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		E8ECCD561E5E25CD00C9E46F /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E8EEF7151E566FD8006804D4 /* FingerprintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
@@ -372,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				8FD5AE7E1E54EA34003F640D /* LoginButton.swift */,
+				E8ECCD561E5E25CD00C9E46F /* Switch.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -677,17 +682,14 @@
 				ORGANIZATIONNAME = "Exelon Corporation";
 				TargetAttributes = {
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = 87ACSVM3C4;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = 87ACSVM3C4;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = 87ACSVM3C4;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
@@ -902,6 +904,7 @@
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
+				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
@@ -930,6 +933,7 @@
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
@@ -958,6 +962,7 @@
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
@@ -1129,7 +1134,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.bge.develop;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1142,7 +1148,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1156,7 +1162,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.bge.release;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1169,7 +1176,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1239,7 +1246,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.bge.automation;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1252,7 +1260,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1323,6 +1331,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Commonwealth Edison Company (87ACSVM3C4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.comed.exelon.bge;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1335,7 +1344,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "700f9ded-3be5-4f85-aec5-df422e0f4b12";
 				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1407,7 +1416,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.bge.testing;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1420,7 +1430,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1434,7 +1444,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.peco.develop;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1445,7 +1456,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonPeco Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1459,7 +1470,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.peco.testing;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1470,7 +1482,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonPeco Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1484,6 +1496,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Commonwealth Edison Company (87ACSVM3C4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.comed.exelon.peco;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1494,7 +1507,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "89411b8e-3fa0-4e53-9d9e-984321bb00c6";
 				PROVISIONING_PROFILE_SPECIFIER = "ExelonPeco Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1509,7 +1522,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.peco.automation;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1520,7 +1534,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonPeco Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1534,7 +1548,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.peco.release;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1545,7 +1560,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonPeco Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1558,7 +1573,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.comed.develop;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1569,7 +1585,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonComEd Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1583,7 +1599,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.comed.testing;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1594,7 +1611,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonComEd Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1608,6 +1625,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Commonwealth Edison Company (87ACSVM3C4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.comed.exelon.comed;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1618,7 +1636,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c0d88062-be11-4a5a-9551-a19db787c8f2";
 				PROVISIONING_PROFILE_SPECIFIER = "ExelonComEd Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1633,7 +1651,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.comed.automation;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1644,7 +1663,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonComEd Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1658,7 +1677,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.comed.release;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1669,7 +1689,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonComEd Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
