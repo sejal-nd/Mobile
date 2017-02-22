@@ -23,7 +23,7 @@ class LoginLandingViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated);
+        super.viewDidAppear(animated)
         
         if (!UserDefaults.standard.bool(forKey: UserDefaultKeys.HasAcceptedTerms)) {
             performSegue(withIdentifier: "termsPoliciesModalSegue", sender: self)
