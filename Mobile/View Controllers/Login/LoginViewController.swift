@@ -89,10 +89,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func onLoginPress() {
         view.endEditing(true)
+        view.isUserInteractionEnabled = false
         
         signInButton.setLoading()
         viewModel.performLogin(onSuccess: {
             self.signInButton.setSuccess(animationCompletion: { () in
+                self.view.isUserInteractionEnabled = true
                 if self.viewModel.isDeviceTouchIDEnabled() {
                     if UserDefaults.standard.object(forKey: UserDefaultKeys.HavePromptedForTouchID) == nil {
                         let touchIDAlert = UIAlertController(title: "Enable Touch ID", message: "Would you like to use Touch ID to sign in from now on?", preferredStyle: .alert)
@@ -124,6 +126,7 @@ class LoginViewController: UIViewController {
 
             })
         }, onError: { (errorMessage) in
+            self.view.isUserInteractionEnabled = true
             self.showErrorAlertWithMessage(errorMessage)
         })
     }
