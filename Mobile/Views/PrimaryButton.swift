@@ -9,9 +9,7 @@
 import UIKit
 import Lottie
 
-class LoginButton: UIButton {
-    
-    @IBInspectable var roundCorners = false
+class PrimaryButton: UIButton {
     
     var loadingAnimationView = LOTAnimationView.animationNamed("loading")
     var checkmarkAnimationView = LOTAnimationView.animationNamed("checkmark")
@@ -41,9 +39,8 @@ class LoginButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if roundCorners {
-            layer.cornerRadius = (frame.size.height / 2.0)
-        } else if frame.size.width != UIScreen.main.bounds.size.width {
+        // If button is not full width, add rounded corners
+        if frame.size.width != UIScreen.main.bounds.size.width {
             layer.cornerRadius = 2
         }
     }

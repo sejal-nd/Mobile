@@ -55,9 +55,9 @@
 		8FD3C2761E525D76005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
 		8FD3C2771E525D80005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
 		8FD3C2781E525D84005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
-		8FD5AE7F1E54EA34003F640D /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* LoginButton.swift */; };
-		8FD5AE801E54EA34003F640D /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* LoginButton.swift */; };
-		8FD5AE811E54EA34003F640D /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* LoginButton.swift */; };
+		8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */; };
+		8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */; };
+		8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */; };
 		8FD5AE861E54EA49003F640D /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */; };
 		8FD5AE871E54EA49003F640D /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */; };
 		8FD5AE881E54EA49003F640D /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */; };
@@ -213,7 +213,7 @@
 		8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BGE-Info.plist"; sourceTree = "<group>"; };
 		8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
 		8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Info.plist"; sourceTree = "<group>"; };
-		8FD5AE7E1E54EA34003F640D /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLandingViewController.swift; sourceTree = "<group>"; };
 		8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsPoliciesViewController.swift; sourceTree = "<group>"; };
 		8FD5AE851E54EA49003F640D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -375,7 +375,7 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8FD5AE7E1E54EA34003F640D /* LoginButton.swift */,
+				8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */,
 				E8ECCD561E5E25CD00C9E46F /* Switch.swift */,
 			);
 			path = Views;
@@ -910,7 +910,7 @@
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
-				8FD5AE7F1E54EA34003F640D /* LoginButton.swift in Sources */,
+				8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
@@ -939,7 +939,7 @@
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
-				8FD5AE811E54EA34003F640D /* LoginButton.swift in Sources */,
+				8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
@@ -968,7 +968,7 @@
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
-				8FD5AE801E54EA34003F640D /* LoginButton.swift in Sources */,
+				8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE871E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
