@@ -104,7 +104,7 @@
 		B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */; };
-		B5AC06CE1E521B7B00BBA4ED /* PecoAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* PecoAssets.xcassets */; };
+		B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* PECOAssets.xcassets */; };
 		B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */; };
 		B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06D71E52238900BBA4ED /* MobileTests.swift */; };
 		B5AC06E61E526AD500BBA4ED /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
@@ -249,7 +249,7 @@
 		B5AC06891E5212E300BBA4ED /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		B5AC06C71E521B3200BBA4ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BGEAssets.xcassets; sourceTree = "<group>"; };
-		B5AC06CD1E521B7B00BBA4ED /* PecoAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PecoAssets.xcassets; sourceTree = "<group>"; };
+		B5AC06CD1E521B7B00BBA4ED /* PECOAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PECOAssets.xcassets; sourceTree = "<group>"; };
 		B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ComEdAssets.xcassets; sourceTree = "<group>"; };
 		B5AC06D51E52238900BBA4ED /* MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5AC06D71E52238900BBA4ED /* MobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileTests.swift; sourceTree = "<group>"; };
@@ -491,7 +491,7 @@
 				8FD5AE971E54EA8C003F640D /* Lottie Animations */,
 				B5AC06C71E521B3200BBA4ED /* Assets.xcassets */,
 				B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */,
-				B5AC06CD1E521B7B00BBA4ED /* PecoAssets.xcassets */,
+				B5AC06CD1E521B7B00BBA4ED /* PECOAssets.xcassets */,
 				B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */,
 			);
 			path = Assets;
@@ -761,7 +761,7 @@
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
-				B5AC06CE1E521B7B00BBA4ED /* PecoAssets.xcassets in Resources */,
+				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
 				E8B4F4BD1E5C99E00031D934 /* Bill.storyboard in Resources */,
