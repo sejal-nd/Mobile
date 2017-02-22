@@ -227,7 +227,7 @@
 		B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		B58B5AC11E4E28740051FD5F /* BGE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BGE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5AC41E4E28740051FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B58B5B1E1E515BD50051FD5F /* Peco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Peco.app; path = PECO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B58B5B1E1E515BD50051FD5F /* PECO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PECO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B2F1E515C840051FD5F /* ComEd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComEd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B591E516B100051FD5F /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		B58B5B5A1E516B9A0051FD5F /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
@@ -429,7 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				B58B5AC11E4E28740051FD5F /* BGE.app */,
-				B58B5B1E1E515BD50051FD5F /* Peco.app */,
+				B58B5B1E1E515BD50051FD5F /* PECO.app */,
 				B58B5B2F1E515C840051FD5F /* ComEd.app */,
 				B5AC06D51E52238900BBA4ED /* MobileTests.xctest */,
 			);
@@ -626,7 +626,7 @@
 			);
 			name = PECO;
 			productName = Mobile;
-			productReference = B58B5B1E1E515BD50051FD5F /* Peco.app */;
+			productReference = B58B5B1E1E515BD50051FD5F /* PECO.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B58B5B201E515C840051FD5F /* ComEd */ = {
@@ -677,17 +677,19 @@
 				ORGANIZATIONNAME = "Exelon Corporation";
 				TargetAttributes = {
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = 87ACSVM3C4;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = 87ACSVM3C4;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = 87ACSVM3C4;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 					};
 					B58B5B601E516EEE0051FD5F = {
 						DevelopmentTeam = LTS485TKXA;
@@ -1126,7 +1128,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.bge.develop;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1136,8 +1139,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1150,7 +1155,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.bge.release;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1160,8 +1166,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1230,7 +1238,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.bge.automation;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1240,8 +1249,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1311,8 +1322,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
-				EXM_BUNDLE_ID = com.exelon.bge.staging;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Commonwealth Edison Company (87ACSVM3C4)";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				EXM_BUNDLE_ID = com.comed.exelon.bge;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1321,8 +1333,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1392,7 +1406,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.bge.testing;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1402,8 +1417,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1416,7 +1433,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.peco.develop;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1424,8 +1442,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonPeco Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1438,7 +1458,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.peco.testing;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1446,8 +1467,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonPeco Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1460,16 +1483,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
-				EXM_BUNDLE_ID = com.exelon.peco.staging;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Commonwealth Edison Company (87ACSVM3C4)";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				EXM_BUNDLE_ID = com.comed.exelon.peco;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonPeco Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1482,7 +1508,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.peco.automation;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1490,8 +1517,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonPeco Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1504,7 +1533,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.peco.release;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1512,8 +1542,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonPeco Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1525,7 +1557,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.comed.develop;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1533,8 +1566,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonComEd Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1547,7 +1582,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.comed.testing;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1555,8 +1591,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonComEd Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1569,16 +1607,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
-				EXM_BUNDLE_ID = com.exelon.comed.staging;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Commonwealth Edison Company (87ACSVM3C4)";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				EXM_BUNDLE_ID = com.comed.exelon.comed;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonComEd Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1591,7 +1632,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.comed.automation;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1599,8 +1641,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonComEd Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1613,7 +1657,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.exelon.comed.release;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1621,8 +1666,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.Mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonComEd Adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
