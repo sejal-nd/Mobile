@@ -275,7 +275,8 @@
                                                 <rect key="frame" x="48" y="204" width="279" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="MXS-z4-Qe7"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="MXS-z4-Qe7"/>
+                                                    <constraint firstAttribute="height" priority="250" constant="60" id="ggv-qT-0bF"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1I-Rs-9TH" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
