@@ -10,7 +10,7 @@ import UIKit
 import JVFloatLabeledText
 
 class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
-
+    
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         let rect = super.textRect(forBounds: bounds)
         return rect.insetBy(dx: 8, dy: 0)

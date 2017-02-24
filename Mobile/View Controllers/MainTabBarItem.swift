@@ -10,8 +10,8 @@ import UIKit
 
 class MainTabBarItem: UITabBarItem {
     
-    let normalTitleFont = UIFont.systemFont(ofSize: 10, weight: UIFontWeightRegular)
-    let selectedTitleFont = UIFont.systemFont(ofSize: 10, weight: UIFontWeightBold)
+    let normalTitleFont = UIFont.systemFont(ofSize: 10)
+    let selectedTitleFont = UIFont.boldSystemFont(ofSize: 10)
     
     let normalTitleColor = UIColor.gray
     let selectedTitleColor = UIColor.primaryColor.darker()!

@@ -12,19 +12,19 @@ import JVFloatLabeledText
 class FloatLabelTextField: UIView, UITextFieldDelegate {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var textField: InsetJVFloatLabeledTextField!
+    @IBOutlet weak var checkAccessoryImageView: UIImageView!
+    @IBOutlet weak var errorAccessoryImageView: UIImageView!
     @IBOutlet weak var leftColorBar: UIView!
     @IBOutlet weak var bottomColorBar: UIView!
-    
-    @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var disabledColorBar: UIView!
+    @IBOutlet weak var textFieldTrailingSpaceConstraint: NSLayoutConstraint!
     
     final let deselectedBottomBarColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
-    final let deselectedTextColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 1.0)
-    final let deselectedFont = UIFont.systemFont(ofSize: 17)
-    final let selectedFont = UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)
-    final let errorColor = UIColor(red: 115/255, green: 0/255, blue: 26/255, alpha: 1)
+    final let errorColor = UIColor(red: 113/255, green: 0/255, blue: 28/255, alpha: 1)
     
     var errorState = false
+    var textFieldIsFocused = false
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -43,23 +43,38 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
+        view.layer.borderWidth = 0.5
+        view.layer.borderColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1).cgColor
         addSubview(view)
 
         leftColorBar.backgroundColor = .primaryColor
         bottomColorBar.isHidden = true
         
-        errorView.isHidden = true
         errorLabel.textColor = errorColor
+        errorLabel.text = nil
         
-        textField.delegate = self
-        textField.backgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor(red: 236/255, green: 236/255, blue: 236/255, alpha: 1).cgColor
-        textField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        
+        if #available(iOS 8.2, *) {
+            textField.floatingLabelFont = UIFont.systemFont(ofSize: 11, weight: UIFontWeightSemibold)
+        } else {
+            textField.floatingLabelFont = UIFont.boldSystemFont(ofSize: 11)
+        }
         textField.floatingLabelYPadding = 6
         textField.floatingLabelTextColor = UIColor.primaryColor.darker()
         textField.floatingLabelActiveTextColor = UIColor.primaryColor.darker()
-        textField.floatingLabelFont = UIFont.boldSystemFont(ofSize: 10)
+        textField.delegate = self
+        
+        setDefaultStyles()
+    }
+    
+    func setDefaultStyles() {
+        disabledColorBar.isHidden = true
+        
+        view.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.3)
+        
+        textField.placeholderColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
+        textField.setPlaceholder(textField.placeholder, floatingTitle: textField.placeholder) // Needed to update the color
+        textField.textColor = UIColor(red: 35/255, green: 31/255, blue: 32/255, alpha: 1.0)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -67,14 +82,10 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
             bottomColorBar.backgroundColor = .primaryColor
             bottomColorBar.isHidden = false
         }
-
-        textFieldDidChange(textField: textField)
+        textFieldIsFocused = true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.textColor = deselectedTextColor
-        textField.font = deselectedFont
-        
         if !errorState {
             if textField.hasText {
                 bottomColorBar.backgroundColor = deselectedBottomBarColor
@@ -82,21 +93,14 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
                 bottomColorBar.isHidden = true
             }
         }
+        textFieldIsFocused = false
     }
     
-    func textFieldDidChange(textField: UITextField) {
-        if textField.hasText {
-            textField.textColor = .black
-            textField.font = selectedFont
-        } else {
-            textField.textColor = deselectedTextColor
-            textField.font = deselectedFont
-        }
-    }
-    
-    func setError(error: Bool) {
-        if error {
+    func setError(_ errorMessage: String?) {
+        if errorMessage != nil {
             errorState = true
+            errorAccessoryImageView.isHidden = false
+            textFieldTrailingSpaceConstraint.constant = 33
             
             leftColorBar.backgroundColor = errorColor
             bottomColorBar.backgroundColor = errorColor
@@ -104,27 +108,50 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
             textField.floatingLabelActiveTextColor = errorColor
             textField.floatingLabel.textColor = errorColor
             bottomColorBar.isHidden = false
-            
-            errorView.isHidden = false
         } else {
             errorState = false
+            errorAccessoryImageView.isHidden = true
+            textFieldTrailingSpaceConstraint.constant = 0
             
             leftColorBar.backgroundColor = .primaryColor
-            bottomColorBar.backgroundColor = .primaryColor
+            if textFieldIsFocused {
+                bottomColorBar.backgroundColor = .primaryColor
+            } else {
+                bottomColorBar.backgroundColor = deselectedBottomBarColor
+                if !textField.hasText {
+                    bottomColorBar.isHidden = true
+                }
+            }
+            
             textField.floatingLabelTextColor = UIColor.primaryColor.darker()
             textField.floatingLabelActiveTextColor = UIColor.primaryColor.darker()
+            textField.floatingLabel.textColor = UIColor.primaryColor.darker()
+        }
+        errorLabel.text = errorMessage
+    }
+    
+    func setEnabled(_ enabled: Bool) {
+        if enabled {
+            isUserInteractionEnabled = true
+            setDefaultStyles()
+        } else {
+            isUserInteractionEnabled = false
             
-            errorView.isHidden = true
+            disabledColorBar.isHidden = false
+            view.backgroundColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 0.08)
+            textField.placeholderColor = UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1) 
+            textField.setPlaceholder(textField.placeholder, floatingTitle: textField.placeholder) // Needed to update the color
         }
     }
     
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    func setValidated(_ validated: Bool) {
+        if validated {
+            checkAccessoryImageView.isHidden = false
+            textFieldTrailingSpaceConstraint.constant = 33
+        } else {
+            checkAccessoryImageView.isHidden = true
+            textFieldTrailingSpaceConstraint.constant = 0
+        }
     }
-    */
-
+    
 }

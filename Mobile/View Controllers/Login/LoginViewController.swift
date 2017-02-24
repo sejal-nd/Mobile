@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: FloatLabelTextField!
     @IBOutlet weak var signInButton: PrimaryButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
-
+    
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     
     let disposeBag = DisposeBag()
@@ -94,49 +94,47 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
-        usernameTextField.setError(error: true)
+        view.endEditing(true)
+        view.isUserInteractionEnabled = false
         
-//        view.endEditing(true)
-//        view.isUserInteractionEnabled = false
-//        
-//        signInButton.setLoading()
-//        viewModel.performLogin(onSuccess: {
-//            self.signInButton.setSuccess(animationCompletion: { () in
-//                self.view.isUserInteractionEnabled = true
-//                if self.viewModel.isDeviceTouchIDEnabled() {
-//                    if UserDefaults.standard.object(forKey: UserDefaultKeys.HavePromptedForTouchID) == nil {
-//                        let touchIDAlert = UIAlertController(title: "Enable Touch ID", message: "Would you like to use Touch ID to sign in from now on?", preferredStyle: .alert)
-//                        touchIDAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
-//                            self.launchMainApp()
-//                        }))
-//                        touchIDAlert.addAction(UIAlertAction(title: "Enable", style: .default, handler: { (action) in
-//                            self.viewModel.storeCredentialsInTouchIDKeychain()
-//                            self.launchMainApp()
-//                        }))
-//                        self.present(touchIDAlert, animated: true, completion: nil)
-//                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.HavePromptedForTouchID)
-//                    } else if self.viewModel.didLoginWithDifferentAccountThanStoredInKeychain() {
-//                        let differentAccountAlert = UIAlertController(title: "Change Touch ID", message: "This is different account than the one linked to your Touch ID. Would you like to use Touch ID for this account from now on?", preferredStyle: .alert)
-//                        differentAccountAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
-//                            self.launchMainApp()
-//                        }))
-//                        differentAccountAlert.addAction(UIAlertAction(title: "Change", style: .default, handler: { (action) in
-//                            self.viewModel.storeCredentialsInTouchIDKeychain()
-//                            self.launchMainApp()
-//                        }))
-//                        self.present(differentAccountAlert, animated: true, completion: nil)
-//                    } else {
-//                        self.launchMainApp()
-//                    }
-//                } else {
-//                    self.launchMainApp()
-//                }
-//
-//            })
-//        }, onError: { (errorMessage) in
-//            self.view.isUserInteractionEnabled = true
-//            self.showErrorAlertWithMessage(errorMessage)
-//        })
+        signInButton.setLoading()
+        viewModel.performLogin(onSuccess: {
+            self.signInButton.setSuccess(animationCompletion: { () in
+                self.view.isUserInteractionEnabled = true
+                if self.viewModel.isDeviceTouchIDEnabled() {
+                    if UserDefaults.standard.object(forKey: UserDefaultKeys.HavePromptedForTouchID) == nil {
+                        let touchIDAlert = UIAlertController(title: "Enable Touch ID", message: "Would you like to use Touch ID to sign in from now on?", preferredStyle: .alert)
+                        touchIDAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+                            self.launchMainApp()
+                        }))
+                        touchIDAlert.addAction(UIAlertAction(title: "Enable", style: .default, handler: { (action) in
+                            self.viewModel.storeCredentialsInTouchIDKeychain()
+                            self.launchMainApp()
+                        }))
+                        self.present(touchIDAlert, animated: true, completion: nil)
+                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.HavePromptedForTouchID)
+                    } else if self.viewModel.didLoginWithDifferentAccountThanStoredInKeychain() {
+                        let differentAccountAlert = UIAlertController(title: "Change Touch ID", message: "This is different account than the one linked to your Touch ID. Would you like to use Touch ID for this account from now on?", preferredStyle: .alert)
+                        differentAccountAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+                            self.launchMainApp()
+                        }))
+                        differentAccountAlert.addAction(UIAlertAction(title: "Change", style: .default, handler: { (action) in
+                            self.viewModel.storeCredentialsInTouchIDKeychain()
+                            self.launchMainApp()
+                        }))
+                        self.present(differentAccountAlert, animated: true, completion: nil)
+                    } else {
+                        self.launchMainApp()
+                    }
+                } else {
+                    self.launchMainApp()
+                }
+
+            })
+        }, onError: { (errorMessage) in
+            self.view.isUserInteractionEnabled = true
+            self.showErrorAlertWithMessage(errorMessage)
+        })
     }
     
     func launchMainApp() {
