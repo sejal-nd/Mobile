@@ -25,8 +25,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: FloatLabelTextField!
     @IBOutlet weak var signInButton: PrimaryButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
-    @IBOutlet weak var usernameHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var passwordHeightConstraint: NSLayoutConstraint!
 
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     
@@ -97,7 +95,6 @@ class LoginViewController: UIViewController {
     
     @IBAction func onLoginPress() {
         usernameTextField.setError(error: true)
-        usernameHeightConstraint.constant = 80
         
 //        view.endEditing(true)
 //        view.isUserInteractionEnabled = false

@@ -14,7 +14,7 @@
         <scene sceneID="XPV-ae-tB6">
             <objects>
                 <navigationController navigationBarHidden="YES" id="pTL-u9-WiQ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="16V-d7-W9g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="16V-d7-W9g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -351,11 +351,9 @@
                     <connections>
                         <outlet property="forgotPasswordButton" destination="fvJ-hV-8nY" id="E8K-v3-2YY"/>
                         <outlet property="logoView" destination="4XV-D5-ZeZ" id="WGC-Sa-RVG"/>
-                        <outlet property="passwordHeightConstraint" destination="8bf-2q-YaL" id="PTK-YF-Wft"/>
                         <outlet property="passwordTextField" destination="Q1I-Rs-9TH" id="HOg-AZ-fuq"/>
                         <outlet property="scrollView" destination="876-Ds-EGF" id="odj-at-Uqx"/>
                         <outlet property="signInButton" destination="K0X-bw-geb" id="SHf-3j-jsZ"/>
-                        <outlet property="usernameHeightConstraint" destination="MXS-z4-Qe7" id="2am-BI-ccd"/>
                         <outlet property="usernameTextField" destination="vZj-Ib-Qvv" id="g3Q-tv-LO3"/>
                     </connections>
                 </viewController>

@@ -57,8 +57,8 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         textField.layer.borderColor = UIColor(red: 236/255, green: 236/255, blue: 236/255, alpha: 1).cgColor
         textField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
         textField.floatingLabelYPadding = 6
-        textField.floatingLabelTextColor = UIColor.primaryColor.darker(by: 30)
-        textField.floatingLabelActiveTextColor = UIColor.primaryColor.darker(by: 30)
+        textField.floatingLabelTextColor = UIColor.primaryColor.darker()
+        textField.floatingLabelActiveTextColor = UIColor.primaryColor.darker()
         textField.floatingLabelFont = UIFont.boldSystemFont(ofSize: 10)
     }
     
@@ -75,10 +75,12 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         textField.textColor = deselectedTextColor
         textField.font = deselectedFont
         
-        if textField.hasText {
-            bottomColorBar.backgroundColor = deselectedBottomBarColor
-        } else {
-            bottomColorBar.isHidden = true
+        if !errorState {
+            if textField.hasText {
+                bottomColorBar.backgroundColor = deselectedBottomBarColor
+            } else {
+                bottomColorBar.isHidden = true
+            }
         }
     }
     
@@ -109,8 +111,8 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
             
             leftColorBar.backgroundColor = .primaryColor
             bottomColorBar.backgroundColor = .primaryColor
-            textField.floatingLabelTextColor = UIColor.primaryColor.darker(by: 30)
-            textField.floatingLabelActiveTextColor = UIColor.primaryColor.darker(by: 30)
+            textField.floatingLabelTextColor = UIColor.primaryColor.darker()
+            textField.floatingLabelActiveTextColor = UIColor.primaryColor.darker()
             
             errorView.isHidden = true
         }

@@ -53,6 +53,7 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstAttribute="height" constant="60" id="0Za-Yu-rt6"/>
                                 <constraint firstAttribute="bottom" secondItem="HJi-q8-qVh" secondAttribute="bottom" id="9f7-Tp-g6I"/>
                                 <constraint firstAttribute="bottom" secondItem="99j-1x-Nn3" secondAttribute="bottom" id="J9X-GP-S04"/>
                                 <constraint firstItem="TnQ-GT-WNf" firstAttribute="top" secondItem="yWb-Mv-Mh9" secondAttribute="top" id="SxR-dN-KY5"/>
@@ -78,7 +79,8 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="dny-ww-tgA" secondAttribute="bottom" id="0Yf-sA-z58"/>
-                                <constraint firstAttribute="height" constant="20" id="1IP-ur-YN6"/>
+                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="20" id="1IP-ur-YN6"/>
+                                <constraint firstAttribute="height" priority="500" constant="20" id="Efv-WX-4uZ"/>
                                 <constraint firstItem="dny-ww-tgA" firstAttribute="leading" secondItem="STx-MU-dwU" secondAttribute="leading" constant="14" id="eeO-fP-hDB"/>
                                 <constraint firstItem="dny-ww-tgA" firstAttribute="top" secondItem="STx-MU-dwU" secondAttribute="top" id="jWf-e9-odb"/>
                             </constraints>
