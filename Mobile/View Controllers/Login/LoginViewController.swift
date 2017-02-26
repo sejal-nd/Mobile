@@ -44,14 +44,17 @@ class LoginViewController: UIViewController {
         
         usernameTextField.textField.placeholder = "Username / Email Address"
         usernameTextField.textField.autocorrectionType = .no
+        usernameTextField.textField.returnKeyType = .next
+        
         passwordTextField.textField.placeholder = "Password"
         passwordTextField.textField.isSecureTextEntry = true
+        passwordTextField.textField.returnKeyType = .done
     
         usernameTextField.textField.rx.text.orEmpty.bindTo(viewModel.username).addDisposableTo(disposeBag)
         passwordTextField.textField.rx.text.orEmpty.bindTo(viewModel.password).addDisposableTo(disposeBag)
         
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            self.passwordTextField.becomeFirstResponder()
+            self.passwordTextField.textField.becomeFirstResponder()
         }).addDisposableTo(disposeBag)
         passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.onLoginPress()
