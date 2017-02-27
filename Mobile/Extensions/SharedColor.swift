@@ -27,15 +27,33 @@ extension UIColor {
         }
     }
     
+    class var secondaryButtonBackgroundHightlightColor: UIColor {
+        get {
+            return UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
+        }
+    }
+    
+    class var tableViewBackgroundColor: UIColor {
+        get {
+            return UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.15)
+        }
+    }
+    
     class var textButtonColor: UIColor {
         get {
-            return UIColor(red: 0/255, green: 90/255, blue: 163/255, alpha: 1)
+            return UIColor(red: 0/255, green: 89/255, blue: 164/255, alpha: 1)
         }
     }
     
     class var switchOffColor: UIColor {
         get {
             return UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
+        }
+    }
+    
+    class var darkJungleGreen: UIColor {
+        get {
+            return UIColor(red: 35/255, green: 31/255, blue: 32/255, alpha: 1)
         }
     }
 }

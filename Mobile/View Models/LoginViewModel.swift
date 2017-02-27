@@ -23,8 +23,8 @@ class LoginViewModel {
         self.fingerprintService = fingerprintService
     }
     
-    func isDeviceTouchIDEnabled() -> Bool {
-        return fingerprintService!.isFingerprintAvailable()
+    func isDeviceTouchIDCompatible() -> Bool {
+        return fingerprintService!.isDeviceTouchIDCompatible()
     }
     
     func didLoginWithDifferentAccountThanStoredInKeychain() -> Bool {
@@ -61,8 +61,11 @@ class LoginViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    func storeCredentialsInTouchIDKeychain() {
+    func storeUsername() {
         fingerprintService!.setStoredUsername(username: username.value)
+    }
+    
+    func storePasswordInTouchIDKeychain() {
         fingerprintService!.setStoredPassword(password: password.value)
     }
     

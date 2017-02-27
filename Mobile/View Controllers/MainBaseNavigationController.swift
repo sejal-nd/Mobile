@@ -15,11 +15,11 @@ class MainBaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationBar.barStyle = .black
-        navigationBar.barTintColor = .primaryColor
-        navigationBar.tintColor = .white
+        //navigationBar.barStyle = .black
+        navigationBar.barTintColor = .white
+        navigationBar.tintColor = .textButtonColor
         
-        let titleDict: [String: Any] = [NSForegroundColorAttributeName: UIColor.white]
+        let titleDict: [String: Any] = [NSForegroundColorAttributeName: UIColor.darkJungleGreen]
         navigationBar.titleTextAttributes = titleDict
         
         setNeedsStatusBarAppearanceUpdate()

@@ -20,7 +20,7 @@ class FingerprintService {
         keychain.defaultAccessiblity = A0SimpleKeychainItemAccessible.whenPasscodeSetThisDeviceOnly
     }
     
-    func isFingerprintAvailable() -> Bool {
+    func isDeviceTouchIDCompatible() -> Bool {
         let context = LAContext()
         
         var error: NSError?
@@ -30,12 +30,19 @@ class FingerprintService {
         return false
     }
     
+    func isTouchIDEnabled() -> Bool {
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.TouchIDEnabled) {
+            return true
+        }
+        return false
+    }
+    
     func getStoredUsername() -> String? {
-        return UserDefaults.standard.string(forKey: UserDefaultKeys.StoredTouchIDUsername)
+        return UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
     }
     
     func setStoredUsername(username: String) {
-        UserDefaults.standard.set(username, forKey: UserDefaultKeys.StoredTouchIDUsername)
+        UserDefaults.standard.set(username, forKey: UserDefaultKeys.LoggedInUsername)
     }
     
     func getStoredPassword() -> String? {
@@ -50,6 +57,12 @@ class FingerprintService {
     
     func setStoredPassword(password: String) {
         keychain.setString(password, forKey: KEYCHAIN_KEY)
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.TouchIDEnabled)
+    }
+    
+    func disableTouchID() {
+        keychain.deleteEntry(forKey: KEYCHAIN_KEY)
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.TouchIDEnabled)
     }
     
 }

@@ -8,10 +8,11 @@
 
 struct UserDefaultKeys {
     
-    // Terms & Conditions
-    static let HasAcceptedTerms = "kHasAcceptedTerms"
+    // Terms & Policies
+    static let HasAcceptedTerms = "kHasAcceptedTerms" // Used to determine whether or not to display the Terms screen on first app launch
     
     // Touch ID
-    static let HavePromptedForTouchID = "kHavePromptedForTouchID"
-    static let StoredTouchIDUsername = "kStoredTouchIDUsername"
+    static let TouchIDEnabled = "kTouchIDEnabled"
+    static let PromptedForTouchID = "kPromptedForTouchID" // Have we prompted the user to enable Touch ID upon first time logging in
+    static let LoggedInUsername = "kLoggedInUsername" // The username of the currently logged in user
 }

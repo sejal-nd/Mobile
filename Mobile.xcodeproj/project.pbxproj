@@ -123,9 +123,24 @@
 		B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
-		E83EFA371E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
-		E83EFA381E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
-		E83EFA391E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
+		E80042E11E647CEA005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042E01E647CEA005CF531 /* SettingsViewController.swift */; };
+		E80042E21E647CEA005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042E01E647CEA005CF531 /* SettingsViewController.swift */; };
+		E80042E31E647CEA005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042E01E647CEA005CF531 /* SettingsViewController.swift */; };
+		E80042EC1E6488FD005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042EA1E6488FD005CF531 /* TableViewCell.swift */; };
+		E80042ED1E6488FD005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042EA1E6488FD005CF531 /* TableViewCell.swift */; };
+		E80042EE1E6488FD005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042EA1E6488FD005CF531 /* TableViewCell.swift */; };
+		E80042EF1E6488FD005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80042EB1E6488FD005CF531 /* TableViewCell.xib */; };
+		E80042F01E6488FD005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80042EB1E6488FD005CF531 /* TableViewCell.xib */; };
+		E80042F11E6488FD005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80042EB1E6488FD005CF531 /* TableViewCell.xib */; };
+		E80042F31E64C7C4005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F21E64C7C4005CF531 /* SettingsViewModel.swift */; };
+		E80042F41E64C7C4005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F21E64C7C4005CF531 /* SettingsViewModel.swift */; };
+		E80042F51E64C7C4005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F21E64C7C4005CF531 /* SettingsViewModel.swift */; };
+		E80042F71E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F61E64D1C2005CF531 /* ChangePasswordViewController.swift */; };
+		E80042F81E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F61E64D1C2005CF531 /* ChangePasswordViewController.swift */; };
+		E80042F91E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F61E64D1C2005CF531 /* ChangePasswordViewController.swift */; };
+		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
+		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
+		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
 		E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
 		E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
@@ -263,7 +278,12 @@
 		B5AC073B1E52A2BD00BBA4ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCAuthenticationService.swift; sourceTree = "<group>"; };
-		E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsPoliciesViewModel.swift; sourceTree = "<group>"; };
+		E80042E01E647CEA005CF531 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E80042EA1E6488FD005CF531 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		E80042EB1E6488FD005CF531 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		E80042F21E64C7C4005CF531 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		E80042F61E64D1C2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBaseNavigationController.swift; sourceTree = "<group>"; };
 		E8B4F4AE1E5C957A0031D934 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		E8B4F4B21E5C99380031D934 /* Alerts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
@@ -375,6 +395,7 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E80042E91E6488DD005CF531 /* TableViewCell */,
 				8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */,
 				E8ECCD561E5E25CD00C9E46F /* Switch.swift */,
 			);
@@ -548,6 +569,15 @@
 			path = OMC;
 			sourceTree = "<group>";
 		};
+		E80042E91E6488DD005CF531 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E80042EA1E6488FD005CF531 /* TableViewCell.swift */,
+				E80042EB1E6488FD005CF531 /* TableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -569,7 +599,8 @@
 			isa = PBXGroup;
 			children = (
 				E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */,
-				E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */,
+				E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */,
+				E80042F21E64C7C4005CF531 /* SettingsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -578,7 +609,9 @@
 			isa = PBXGroup;
 			children = (
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
+				E80042E01E647CEA005CF531 /* SettingsViewController.swift */,
 				E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */,
+				E80042F61E64D1C2005CF531 /* ChangePasswordViewController.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -737,6 +770,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD5AE941E54EA5E003F640D /* Cartfile in Resources */,
+				E80042EF1E6488FD005CF531 /* TableViewCell.xib in Resources */,
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
@@ -758,6 +792,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
+				E80042F11E6488FD005CF531 /* TableViewCell.xib in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
@@ -779,6 +814,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
+				E80042F01E6488FD005CF531 /* TableViewCell.xib in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE951E54EA5E003F640D /* Cartfile in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
@@ -911,19 +947,23 @@
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */,
+				E80042EC1E6488FD005CF531 /* TableViewCell.swift in Sources */,
+				E80042F31E64C7C4005CF531 /* SettingsViewModel.swift in Sources */,
 				E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E80042E11E647CEA005CF531 /* SettingsViewController.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
+				E80042F71E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B5AC06E61E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
-				E83EFA371E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
+				E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,19 +980,23 @@
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */,
+				E80042EE1E6488FD005CF531 /* TableViewCell.swift in Sources */,
+				E80042F51E64C7C4005CF531 /* SettingsViewModel.swift in Sources */,
 				E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E80042E31E647CEA005CF531 /* SettingsViewController.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
+				E80042F91E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B5AC06E81E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
-				E83EFA391E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
+				E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -969,19 +1013,23 @@
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */,
+				E80042ED1E6488FD005CF531 /* TableViewCell.swift in Sources */,
+				E80042F41E64C7C4005CF531 /* SettingsViewModel.swift in Sources */,
 				E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE871E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E80042E21E647CEA005CF531 /* SettingsViewController.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
+				E80042F81E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B5AC06E71E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
-				E83EFA381E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
+				E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

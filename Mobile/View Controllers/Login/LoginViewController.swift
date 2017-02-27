@@ -95,25 +95,26 @@ class LoginViewController: UIViewController {
         viewModel.performLogin(onSuccess: {
             self.signInButton.setSuccess(animationCompletion: { () in
                 self.view.isUserInteractionEnabled = true
-                if self.viewModel.isDeviceTouchIDEnabled() {
-                    if UserDefaults.standard.object(forKey: UserDefaultKeys.HavePromptedForTouchID) == nil {
+                self.viewModel.storeUsername() // We store the logged in username regardless of Touch ID
+                if self.viewModel.isDeviceTouchIDCompatible() {
+                    if UserDefaults.standard.object(forKey: UserDefaultKeys.PromptedForTouchID) == nil {
                         let touchIDAlert = UIAlertController(title: "Enable Touch ID", message: "Would you like to use Touch ID to sign in from now on?", preferredStyle: .alert)
                         touchIDAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
                             self.launchMainApp()
                         }))
                         touchIDAlert.addAction(UIAlertAction(title: "Enable", style: .default, handler: { (action) in
-                            self.viewModel.storeCredentialsInTouchIDKeychain()
+                            self.viewModel.storePasswordInTouchIDKeychain()
                             self.launchMainApp()
                         }))
                         self.present(touchIDAlert, animated: true, completion: nil)
-                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.HavePromptedForTouchID)
+                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.PromptedForTouchID)
                     } else if self.viewModel.didLoginWithDifferentAccountThanStoredInKeychain() {
                         let differentAccountAlert = UIAlertController(title: "Change Touch ID", message: "This is different account than the one linked to your Touch ID. Would you like to use Touch ID for this account from now on?", preferredStyle: .alert)
                         differentAccountAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
                             self.launchMainApp()
                         }))
                         differentAccountAlert.addAction(UIAlertAction(title: "Change", style: .default, handler: { (action) in
-                            self.viewModel.storeCredentialsInTouchIDKeychain()
+                            self.viewModel.storePasswordInTouchIDKeychain()
                             self.launchMainApp()
                         }))
                         self.present(differentAccountAlert, animated: true, completion: nil)
