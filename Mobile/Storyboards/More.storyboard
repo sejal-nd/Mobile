@@ -113,67 +113,60 @@
                         <viewControllerLayoutGuide type="bottom" id="sMz-dx-V7K"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MAy-au-tEX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="css-Si-oMh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="css-Si-oMh">
+                                <rect key="frame" x="0.0" y="64" width="375" height="836"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kES-Fi-P4P" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="836"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kcn-Qi-wwP">
-                                                <rect key="frame" x="8" y="30" width="359" height="60"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="884-Yk-5tq" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="30" width="315" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="Nfw-AF-UAu"/>
-                                                </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4uz-0I-hvQ">
-                                                <rect key="frame" x="8" y="98" width="359" height="60"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="dfM-i3-oQB"/>
-                                                </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="9Ug-ji-Hni" id="LJv-gs-NJb"/>
-                                                </connections>
-                                            </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5Z-Bc-Efn">
-                                                <rect key="frame" x="8" y="166" width="359" height="300"/>
-                                                <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="300" id="wL0-9h-Qhe"/>
+                                                    <constraint firstAttribute="height" constant="60" id="eXo-ZV-J18"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RSk-oj-LHn">
-                                                <rect key="frame" x="8" y="474" width="359" height="60"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLR-ET-G9c" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="120" width="315" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="m6y-Ey-Y0l"/>
+                                                    <constraint firstAttribute="height" constant="60" id="qhj-s1-1hW"/>
                                                 </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5Z-Bc-Efn">
+                                                <rect key="frame" x="30" y="210" width="315" height="300"/>
+                                                <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="500" constant="300" id="d8a-Zd-EBR"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="wL0-9h-Qhe"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0b-5f-05z" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="540" width="315" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="32l-cG-AKQ"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="H5Z-Bc-Efn" secondAttribute="trailing" constant="8" id="1vm-ns-zQT"/>
-                                            <constraint firstItem="RSk-oj-LHn" firstAttribute="top" secondItem="H5Z-Bc-Efn" secondAttribute="bottom" constant="8" id="3nR-2B-ckl"/>
-                                            <constraint firstItem="RSk-oj-LHn" firstAttribute="leading" secondItem="kES-Fi-P4P" secondAttribute="leading" constant="8" id="4Cy-pC-0hG"/>
-                                            <constraint firstItem="H5Z-Bc-Efn" firstAttribute="top" secondItem="4uz-0I-hvQ" secondAttribute="bottom" constant="8" id="9vd-Xn-7cH"/>
-                                            <constraint firstItem="H5Z-Bc-Efn" firstAttribute="leading" secondItem="kES-Fi-P4P" secondAttribute="leading" constant="8" id="Cv5-pg-Mcn"/>
-                                            <constraint firstItem="4uz-0I-hvQ" firstAttribute="leading" secondItem="kES-Fi-P4P" secondAttribute="leading" constant="8" id="GFK-xY-G5i"/>
-                                            <constraint firstItem="kcn-Qi-wwP" firstAttribute="top" secondItem="kES-Fi-P4P" secondAttribute="top" constant="30" id="J5U-eb-IUj"/>
-                                            <constraint firstItem="4uz-0I-hvQ" firstAttribute="top" secondItem="kcn-Qi-wwP" secondAttribute="bottom" constant="8" id="XeV-Tk-lPh"/>
-                                            <constraint firstAttribute="trailing" secondItem="kcn-Qi-wwP" secondAttribute="trailing" constant="8" id="n3M-Fc-EvO"/>
-                                            <constraint firstItem="kcn-Qi-wwP" firstAttribute="leading" secondItem="kES-Fi-P4P" secondAttribute="leading" constant="8" id="nGL-EF-yO3"/>
-                                            <constraint firstAttribute="trailing" secondItem="4uz-0I-hvQ" secondAttribute="trailing" constant="8" id="oVZ-MH-fRf"/>
-                                            <constraint firstAttribute="trailing" secondItem="RSk-oj-LHn" secondAttribute="trailing" constant="8" id="sZA-8l-t23"/>
+                                            <constraint firstAttribute="trailing" secondItem="H5Z-Bc-Efn" secondAttribute="trailing" constant="30" id="1vm-ns-zQT"/>
+                                            <constraint firstItem="YLR-ET-G9c" firstAttribute="leading" secondItem="kES-Fi-P4P" secondAttribute="leading" constant="30" id="BeH-z6-trN"/>
+                                            <constraint firstItem="H5Z-Bc-Efn" firstAttribute="leading" secondItem="kES-Fi-P4P" secondAttribute="leading" constant="30" id="Cv5-pg-Mcn"/>
+                                            <constraint firstItem="m0b-5f-05z" firstAttribute="top" secondItem="H5Z-Bc-Efn" secondAttribute="bottom" constant="30" id="HHe-OR-SpV"/>
+                                            <constraint firstAttribute="trailing" secondItem="YLR-ET-G9c" secondAttribute="trailing" constant="30" id="JTJ-8E-bdW"/>
+                                            <constraint firstAttribute="trailing" secondItem="884-Yk-5tq" secondAttribute="trailing" constant="30" id="PsP-yq-RBl"/>
+                                            <constraint firstItem="884-Yk-5tq" firstAttribute="leading" secondItem="kES-Fi-P4P" secondAttribute="leading" constant="30" id="SVE-71-pec"/>
+                                            <constraint firstItem="H5Z-Bc-Efn" firstAttribute="top" secondItem="YLR-ET-G9c" secondAttribute="bottom" constant="30" id="bk3-bR-WLM"/>
+                                            <constraint firstItem="m0b-5f-05z" firstAttribute="leading" secondItem="kES-Fi-P4P" secondAttribute="leading" constant="30" id="di4-eT-h9R"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="m0b-5f-05z" secondAttribute="bottom" constant="30" id="ehl-tx-cfb"/>
+                                            <constraint firstItem="884-Yk-5tq" firstAttribute="top" secondItem="kES-Fi-P4P" secondAttribute="top" constant="30" id="kN5-YG-gDD"/>
+                                            <constraint firstItem="YLR-ET-G9c" firstAttribute="top" secondItem="884-Yk-5tq" secondAttribute="bottom" constant="30" id="qOx-eP-ka9"/>
+                                            <constraint firstAttribute="trailing" secondItem="m0b-5f-05z" secondAttribute="trailing" constant="30" id="vih-OV-XUg"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -196,9 +189,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Change Password" id="Q7B-3b-v3s"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="900"/>
                     <connections>
-                        <outlet property="newPasswordTextField" destination="4uz-0I-hvQ" id="pAg-bd-ecM"/>
+                        <outlet property="confirmPasswordHeightConstraint" destination="HHe-OR-SpV" id="Oes-vh-94T"/>
+                        <outlet property="confirmPasswordTextField" destination="m0b-5f-05z" id="yIU-5L-KB2"/>
+                        <outlet property="currentPasswordTextField" destination="884-Yk-5tq" id="b5c-Rr-DjV"/>
+                        <outlet property="newPasswordTextField" destination="YLR-ET-G9c" id="y7d-Bn-MBI"/>
                         <outlet property="passwordRequirementsViewHeightConstraint" destination="wL0-9h-Qhe" id="f6c-Eq-rqF"/>
+                        <outlet property="scrollView" destination="css-Si-oMh" id="wE3-lG-Kvn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2A-zE-RJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>

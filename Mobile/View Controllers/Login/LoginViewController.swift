@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import JVFloatLabeledText
 
 // PECO test logins:
 // User_0005084051@test.com / Password1
