@@ -123,24 +123,42 @@
 		B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
-		E80042E11E647CEA005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042E01E647CEA005CF531 /* SettingsViewController.swift */; };
-		E80042E21E647CEA005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042E01E647CEA005CF531 /* SettingsViewController.swift */; };
-		E80042E31E647CEA005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042E01E647CEA005CF531 /* SettingsViewController.swift */; };
-		E80042EC1E6488FD005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042EA1E6488FD005CF531 /* TableViewCell.swift */; };
-		E80042ED1E6488FD005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042EA1E6488FD005CF531 /* TableViewCell.swift */; };
-		E80042EE1E6488FD005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042EA1E6488FD005CF531 /* TableViewCell.swift */; };
-		E80042EF1E6488FD005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80042EB1E6488FD005CF531 /* TableViewCell.xib */; };
-		E80042F01E6488FD005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80042EB1E6488FD005CF531 /* TableViewCell.xib */; };
-		E80042F11E6488FD005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80042EB1E6488FD005CF531 /* TableViewCell.xib */; };
-		E80042F31E64C7C4005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F21E64C7C4005CF531 /* SettingsViewModel.swift */; };
-		E80042F41E64C7C4005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F21E64C7C4005CF531 /* SettingsViewModel.swift */; };
-		E80042F51E64C7C4005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F21E64C7C4005CF531 /* SettingsViewModel.swift */; };
-		E80042F71E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F61E64D1C2005CF531 /* ChangePasswordViewController.swift */; };
-		E80042F81E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F61E64D1C2005CF531 /* ChangePasswordViewController.swift */; };
-		E80042F91E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042F61E64D1C2005CF531 /* ChangePasswordViewController.swift */; };
+		E80043011E64DED4005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042FF1E64DED4005CF531 /* TableViewCell.swift */; };
+		E80043021E64DED4005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042FF1E64DED4005CF531 /* TableViewCell.swift */; };
+		E80043031E64DED4005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042FF1E64DED4005CF531 /* TableViewCell.swift */; };
+		E80043041E64DED4005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80043001E64DED4005CF531 /* TableViewCell.xib */; };
+		E80043051E64DED4005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80043001E64DED4005CF531 /* TableViewCell.xib */; };
+		E80043061E64DED4005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80043001E64DED4005CF531 /* TableViewCell.xib */; };
+		E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
+		E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
+		E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
+		E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043081E64DEE2005CF531 /* SettingsViewController.swift */; };
+		E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043081E64DEE2005CF531 /* SettingsViewController.swift */; };
+		E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043081E64DEE2005CF531 /* SettingsViewController.swift */; };
+		E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
+		E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
+		E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
 		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
+		E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */; };
+		E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */; };
+		E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */; };
+		E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */; };
+		E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */; };
+		E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */; };
+		E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
+		E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
+		E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
+		E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A01E609DC900F87F87 /* MainTabBarController.swift */; };
+		E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A01E609DC900F87F87 /* MainTabBarController.swift */; };
+		E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A01E609DC900F87F87 /* MainTabBarController.swift */; };
+		E89D07A51E60A9C000F87F87 /* MainTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */; };
+		E89D07A61E60A9C000F87F87 /* MainTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */; };
+		E89D07A71E60A9C000F87F87 /* MainTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */; };
+		E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
+		E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
+		E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
 		E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
 		E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
 		E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
@@ -278,12 +296,18 @@
 		B5AC073B1E52A2BD00BBA4ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCAuthenticationService.swift; sourceTree = "<group>"; };
-		E80042E01E647CEA005CF531 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		E80042EA1E6488FD005CF531 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		E80042EB1E6488FD005CF531 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
-		E80042F21E64C7C4005CF531 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		E80042F61E64D1C2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		E80042FF1E64DED4005CF531 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		E80043001E64DED4005CF531 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		E80043081E64DEE2005CF531 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E800430F1E64DF10005CF531 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
+		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
+		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
+		E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetJVFloatLabeledTextField.swift; sourceTree = "<group>"; };
+		E89D07A01E609DC900F87F87 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarItem.swift; sourceTree = "<group>"; };
+		E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JVFloatLabeledText.framework; path = Carthage/Build/iOS/JVFloatLabeledText.framework; sourceTree = "<group>"; };
 		E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBaseNavigationController.swift; sourceTree = "<group>"; };
 		E8B4F4AE1E5C957A0031D934 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		E8B4F4B21E5C99380031D934 /* Alerts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
@@ -316,6 +340,7 @@
 				B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
+				E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +354,7 @@
 				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */,
+				E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +368,7 @@
 				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2601E524548005FB1BB /* RxSwift.framework in Frameworks */,
+				E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +385,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */,
 				E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */,
 				B5AC07411E52A49900BBA4ED /* CoreLocation.framework */,
 				B5AC073B1E52A2BD00BBA4ED /* Security.framework */,
@@ -385,6 +413,8 @@
 		8FD5AE7C1E54EA04003F640D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
+				E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */,
 				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
 				E8EEF7271E577781006804D4 /* More */,
 				8FD5AE821E54EA39003F640D /* Login */,
@@ -395,7 +425,8 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E80042E91E6488DD005CF531 /* TableViewCell */,
+				E80042FA1E64DEB3005CF531 /* TableViewCell */,
+				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */,
 				E8ECCD561E5E25CD00C9E46F /* Switch.swift */,
 			);
@@ -569,13 +600,23 @@
 			path = OMC;
 			sourceTree = "<group>";
 		};
-		E80042E91E6488DD005CF531 /* TableViewCell */ = {
+		E80042FA1E64DEB3005CF531 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				E80042EA1E6488FD005CF531 /* TableViewCell.swift */,
-				E80042EB1E6488FD005CF531 /* TableViewCell.xib */,
+				E80042FF1E64DED4005CF531 /* TableViewCell.swift */,
+				E80043001E64DED4005CF531 /* TableViewCell.xib */,
 			);
 			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		E86334721E5F96980091E6FE /* FloatLabelTextField */ = {
+			isa = PBXGroup;
+			children = (
+				E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */,
+				E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */,
+				E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */,
+			);
+			path = FloatLabelTextField;
 			sourceTree = "<group>";
 		};
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
@@ -598,9 +639,9 @@
 		E8EEF70B1E565BE7006804D4 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				E800430F1E64DF10005CF531 /* SettingsViewModel.swift */,
 				E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */,
 				E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */,
-				E80042F21E64C7C4005CF531 /* SettingsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -608,10 +649,10 @@
 		E8EEF7271E577781006804D4 /* More */ = {
 			isa = PBXGroup;
 			children = (
+				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
+				E80043081E64DEE2005CF531 /* SettingsViewController.swift */,
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
-				E80042E01E647CEA005CF531 /* SettingsViewController.swift */,
 				E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */,
-				E80042F61E64D1C2005CF531 /* ChangePasswordViewController.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -770,10 +811,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD5AE941E54EA5E003F640D /* Cartfile in Resources */,
-				E80042EF1E6488FD005CF531 /* TableViewCell.xib in Resources */,
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
+				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
+				E80043041E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
@@ -792,10 +834,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
-				E80042F11E6488FD005CF531 /* TableViewCell.xib in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
+				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
+				E80043061E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */,
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
@@ -814,10 +857,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
-				E80042F01E6488FD005CF531 /* TableViewCell.xib in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE951E54EA5E003F640D /* Cartfile in Resources */,
+				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
+				E80043051E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
@@ -850,6 +894,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -867,6 +912,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -884,6 +930,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -940,25 +987,29 @@
 			files = (
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
+				E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
+				E89D07A51E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
+				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */,
-				E80042EC1E6488FD005CF531 /* TableViewCell.swift in Sources */,
-				E80042F31E64C7C4005CF531 /* SettingsViewModel.swift in Sources */,
+				E80043011E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
-				E80042E11E647CEA005CF531 /* SettingsViewController.swift in Sources */,
+				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
-				E80042F71E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
+				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -973,25 +1024,29 @@
 			files = (
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
+				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
+				E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
+				E89D07A71E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
+				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */,
-				E80042EE1E6488FD005CF531 /* TableViewCell.swift in Sources */,
-				E80042F51E64C7C4005CF531 /* SettingsViewModel.swift in Sources */,
+				E80043031E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
-				E80042E31E647CEA005CF531 /* SettingsViewController.swift in Sources */,
+				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
-				E80042F91E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
+				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -1006,25 +1061,29 @@
 			files = (
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
+				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
+				E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
+				E89D07A61E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
+				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */,
-				E80042ED1E6488FD005CF531 /* TableViewCell.swift in Sources */,
-				E80042F41E64C7C4005CF531 /* SettingsViewModel.swift in Sources */,
+				E80043021E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE871E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
-				E80042E21E647CEA005CF531 /* SettingsViewController.swift in Sources */,
+				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
-				E80042F81E64D1C2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
+				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -1115,7 +1174,7 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1166,7 +1225,7 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -1277,7 +1336,7 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1362,7 +1421,7 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1447,7 +1506,7 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;

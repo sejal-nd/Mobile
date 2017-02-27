@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import JVFloatLabeledText
 
 // PECO test logins:
 // User_0005084051@test.com / Password1
@@ -20,11 +21,11 @@ import RxCocoa
 class LoginViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var logoView: UIView!
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: FloatLabelTextField!
+    @IBOutlet weak var passwordTextField: FloatLabelTextField!
     @IBOutlet weak var signInButton: PrimaryButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
-
+    
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     
     let disposeBag = DisposeBag()
@@ -40,14 +41,22 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .white
 
         logoView.backgroundColor = .primaryColor
-                
-        usernameTextField.rx.text.orEmpty.bindTo(viewModel.username).addDisposableTo(disposeBag)
-        passwordTextField.rx.text.orEmpty.bindTo(viewModel.password).addDisposableTo(disposeBag)
         
-        usernameTextField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            self.passwordTextField.becomeFirstResponder()
+        usernameTextField.textField.placeholder = "Username / Email Address"
+        usernameTextField.textField.autocorrectionType = .no
+        usernameTextField.textField.returnKeyType = .next
+        
+        passwordTextField.textField.placeholder = "Password"
+        passwordTextField.textField.isSecureTextEntry = true
+        passwordTextField.textField.returnKeyType = .done
+    
+        usernameTextField.textField.rx.text.orEmpty.bindTo(viewModel.username).addDisposableTo(disposeBag)
+        passwordTextField.textField.rx.text.orEmpty.bindTo(viewModel.password).addDisposableTo(disposeBag)
+        
+        usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
+            self.passwordTextField.textField.becomeFirstResponder()
         }).addDisposableTo(disposeBag)
-        passwordTextField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
+        passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.onLoginPress()
         }).addDisposableTo(disposeBag)
     }
