@@ -4,15 +4,14 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="7Xa-r0-Tv0">
             <objects>
-                <tabBarController id="a7N-G9-44d" sceneMemberID="viewController">
+                <tabBarController id="a7N-G9-44d" customClass="MainTabBarController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="HVf-M0-rqZ">
@@ -36,7 +35,7 @@
         <scene sceneID="f2e-QZ-YFW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="860-AT-jXi" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="ic_nav_home" id="v6H-gB-TMz"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Home" image="ic_nav_home" id="v6H-gB-TMz" customClass="MainTabBarItem" customModule="BGE" customModuleProvider="target"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lcz-28-eLx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -55,7 +54,7 @@
         <scene sceneID="q78-Wg-4VI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4hR-iJ-D1w" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Bill" image="ic_nav_bill" id="c1S-Sq-ZJ5"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Bill" image="ic_nav_bill" id="c1S-Sq-ZJ5" customClass="MainTabBarItem" customModule="BGE" customModuleProvider="target"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ABC-PP-DNT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -74,7 +73,7 @@
         <scene sceneID="y3e-kT-QNP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zQz-iR-hWE" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="More" image="ic_nav_more" id="p1s-rN-bzt"/>
+                    <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" id="p1s-rN-bzt" customClass="MainTabBarItem" customModule="BGE" customModuleProvider="target"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IWc-2N-l9Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -93,7 +92,7 @@
         <scene sceneID="xkn-nT-BRd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="coO-LU-Nds" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alerts" image="ic_nav_alerts" id="DvY-zh-7M0"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="Alerts" image="ic_nav_alerts" id="DvY-zh-7M0" customClass="MainTabBarItem" customModule="BGE" customModuleProvider="target"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LRe-IY-ItP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -112,7 +111,7 @@
         <scene sceneID="hUx-td-Zrv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bdC-Bo-rcI" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Outage" image="ic_nav_outage" id="vXF-ge-4jE"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Outage" image="ic_nav_outage" id="vXF-ge-4jE" customClass="MainTabBarItem" customModule="BGE" customModuleProvider="target"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tph-83-2fc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
