@@ -174,6 +174,9 @@
 		E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
 		E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
 		E80043431E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
+		E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
+		E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
+		E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
 		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
@@ -349,6 +352,7 @@
 		E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
@@ -716,6 +720,7 @@
 				E800430F1E64DF10005CF531 /* SettingsViewModel.swift */,
 				E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */,
 				E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */,
+				E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1105,6 +1110,7 @@
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
+				E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E89D07A51E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */,
@@ -1142,6 +1148,7 @@
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
+				E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E89D07A71E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */,
@@ -1179,6 +1186,7 @@
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
+				E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E89D07A61E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */,

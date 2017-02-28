@@ -13,7 +13,6 @@ import RxCocoa
 class ChangePasswordViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var passwordRequirementsView: UIView!
     @IBOutlet weak var currentPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var newPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
@@ -21,17 +20,30 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var passwordRequirementsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var confirmPasswordHeightConstraint: NSLayoutConstraint!
     
+    // Check ImageViews
+    @IBOutlet weak var characterCountCheck: UIImageView!
+    @IBOutlet weak var uppercaseCheck: UIImageView!
+    @IBOutlet weak var lowercaseCheck: UIImageView!
+    @IBOutlet weak var numberCheck: UIImageView!
+    @IBOutlet weak var specialCharacterCheck: UIImageView!
+    
     let disposeBag = DisposeBag()
+    
+    let viewModel = ChangePasswordViewModel()
+    
+    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDonePress))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDonePress))
+        navigationItem.rightBarButtonItem = doneButton
+        doneButton.isEnabled = false
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
+        setupValidation()
 
-        //passwordRequirementsView.translatesAutoresizingMaskIntoConstraints = true
         passwordRequirementsViewHeightConstraint.constant = 0
         confirmPasswordHeightConstraint.constant = 0
         
@@ -48,14 +60,16 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.setEnabled(false)
         
+        currentPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.currentPassword).addDisposableTo(disposeBag)
+        newPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.newPassword).addDisposableTo(disposeBag)
+        confirmPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.confirmPassword).addDisposableTo(disposeBag)
+        
         newPasswordTextField.textField.rx.controlEvent(UIControlEvents.editingDidBegin).subscribe(onNext: { _ in
             self.view.layoutIfNeeded()
-            self.scrollView.layoutIfNeeded()
             UIView.animate(withDuration: 0.5, animations: {
                 self.passwordRequirementsViewHeightConstraint.constant = 254
                 self.confirmPasswordHeightConstraint.constant = 30
                 self.view.layoutIfNeeded()
-                self.scrollView.layoutIfNeeded()
             })
         }).addDisposableTo(disposeBag)
         
@@ -90,6 +104,18 @@ class ChangePasswordViewController: UIViewController {
     
     func onDonePress() {
         NSLog("Done")
+    }
+    
+    func setupValidation() {
+        viewModel.characterCountValid().map{ !$0 }.bindTo(characterCountCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsUppercaseLetter().map{ !$0 }.bindTo(uppercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsLowercaseLetter().map{ !$0 }.bindTo(lowercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsNumber().map{ !$0 }.bindTo(numberCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsSpecialCharacter().map{ !$0 }.bindTo(specialCharacterCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.everythingValid().subscribe(onNext: { valid in
+            self.newPasswordTextField.setValidated(valid)
+            self.confirmPasswordTextField.setEnabled(valid)
+        }).addDisposableTo(disposeBag)
     }
     
     // MARK: Scroll View
