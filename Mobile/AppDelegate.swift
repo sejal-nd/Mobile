@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("AppName %@", Environment.sharedInstance.appName)
         
         setupAppearance()
+        printFonts()
         
         return true
     }
@@ -58,6 +59,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func printFonts() {
+        for familyName in UIFont.familyNames {
+            print("------------------------------")
+            print("Font Family Name = [\(familyName)]")
+            let names = UIFont.fontNames(forFamilyName: familyName)
+            print("Font Names = [\(names)]")
+        }
     }
 
 
