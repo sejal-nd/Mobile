@@ -1,3 +1,5 @@
 github "jverdi/JVFloatLabeledTextField" "1.1.1"
+github "jdg/MBProgressHUD" "1.0.0"
 github "ReactiveX/RxSwift" "3.2.0"
-github "airbnb/lottie-ios" "3b7abdf2d87746dceeea39aa097af8d6ec6e0bbc"
+github "scalessec/Toast-Swift" "2.0.0"
+github "airbnb/lottie-ios" "57d26396fa3798ca1b14cd882c8804fab97b567d"

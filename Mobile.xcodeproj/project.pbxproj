@@ -138,6 +138,12 @@
 		E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
 		E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
 		E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
+		E80043141E65D126005CF531 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043131E65D126005CF531 /* MBProgressHUD.framework */; };
+		E80043151E65D13A005CF531 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043131E65D126005CF531 /* MBProgressHUD.framework */; };
+		E80043161E65D149005CF531 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043131E65D126005CF531 /* MBProgressHUD.framework */; };
+		E80043181E65DFE4005CF531 /* ToastSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */; };
+		E80043191E65E004005CF531 /* ToastSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */; };
+		E800431A1E65E016005CF531 /* ToastSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */; };
 		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
@@ -301,6 +307,8 @@
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E80043081E64DEE2005CF531 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E800430F1E64DF10005CF531 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		E80043131E65D126005CF531 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
+		E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Carthage/Build/iOS/ToastSwiftFramework.framework; sourceTree = "<group>"; };
 		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
@@ -341,6 +349,8 @@
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
 				E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */,
+				E80043141E65D126005CF531 /* MBProgressHUD.framework in Frameworks */,
+				E80043181E65DFE4005CF531 /* ToastSwiftFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +365,8 @@
 				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */,
 				E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */,
+				E80043161E65D149005CF531 /* MBProgressHUD.framework in Frameworks */,
+				E800431A1E65E016005CF531 /* ToastSwiftFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +381,8 @@
 				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2601E524548005FB1BB /* RxSwift.framework in Frameworks */,
 				E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */,
+				E80043151E65D13A005CF531 /* MBProgressHUD.framework in Frameworks */,
+				E80043191E65E004005CF531 /* ToastSwiftFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +399,8 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */,
+				E80043131E65D126005CF531 /* MBProgressHUD.framework */,
 				E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */,
 				E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */,
 				B5AC07411E52A49900BBA4ED /* CoreLocation.framework */,
@@ -895,6 +911,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -913,6 +931,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -931,6 +951,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (

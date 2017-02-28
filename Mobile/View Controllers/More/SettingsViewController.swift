@@ -8,12 +8,18 @@
 
 import UIKit
 import RxSwift
+import MBProgressHUD
+import ToastSwiftFramework
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let viewModel = SettingsViewModel(fingerprintService: ServiceFactory.createFingerprintService())
+    let viewModel = SettingsViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
+    
+    let disposeBag = DisposeBag()
+    
+    var touchIdCell: TableViewCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,17 +68,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.configureWith(label: "Change Password", carat: true)
         } else {
             cell.configureWith(label: "Touch ID", switchOn: viewModel.isTouchIDEnabled(), switchObserver: { isOn in
-                if isOn {
-//                    let storyboard = UIStoryboard(name: "Login", bundle: nil)
-//                    let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
-//                    loginVC.hidesBottomBarWhenPushed = true
-//                    self.navigationController?.pushViewController(loginVC, animated: true)
-                    
-                    // DECISION MADE TO PRESENT PASSWORD ENTRY ALERT ON THIS SCREEN
-                } else {
-                    self.viewModel.disableTouchID()
-                }
+                self.switchObserver(cell: cell, isOn: isOn)
             })
+            touchIdCell = cell
         }
         
         return cell
@@ -84,6 +82,42 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if indexPath.section == 0 {
             performSegue(withIdentifier: "changePasswordSegue", sender: self)
         }
+    }
+    
+    // MARK: - Touch ID Switch Handling
+    
+    func switchObserver(cell: TableViewCell, isOn: Bool) {
+        if isOn {
+            presentPasswordAlert(message: "Enter your password to enable Touch ID")
+        } else {
+            self.viewModel.disableTouchID()
+        }
+    }
+    
+    func presentPasswordAlert(message: String) {
+        let pwAlert = UIAlertController(title: "Confirm your password", message: message, preferredStyle: .alert)
+        pwAlert.addTextField(configurationHandler: { (textField) in
+            textField.placeholder = "Password"
+            textField.isSecureTextEntry = true
+            textField.rx.text.orEmpty.bindTo(self.viewModel.password).addDisposableTo(self.disposeBag)
+        })
+        pwAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+            self.touchIdCell?.setSwitch(on: false)
+        }))
+        pwAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
+            hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+            hud.contentColor = .white
+            self.viewModel.validateCredentials(onSuccess: {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.view.makeToast("Touch ID Enabled", duration: 2.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 100))
+            }, onError: { (error) in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.presentPasswordAlert(message: "Error: \(error)")
+            })
+        }))
+        self.present(pwAlert, animated: true, completion: nil)
     }
     
     

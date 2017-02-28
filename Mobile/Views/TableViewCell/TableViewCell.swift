@@ -46,7 +46,13 @@ class TableViewCell: UITableViewCell {
         
         switchAccessory.isHidden = false
         switchAccessory.isOn = switchOn
-        switchAccessory.rx.isOn.asObservable().bindNext(switchObserver).addDisposableTo(disposeBag)
+        
+        // Skip 1 so that the initial state does not trigger a change
+        switchAccessory.rx.isOn.asObservable().skip(1).bindNext(switchObserver).addDisposableTo(disposeBag)
+    }
+    
+    func setSwitch(on: Bool) {
+        switchAccessory.setOn(on, animated: true)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
