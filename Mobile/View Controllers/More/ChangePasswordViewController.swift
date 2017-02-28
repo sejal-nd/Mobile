@@ -13,6 +13,7 @@ import RxCocoa
 class ChangePasswordViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var passwordRequirementsView: UIView!
     @IBOutlet weak var currentPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var newPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
@@ -30,6 +31,7 @@ class ChangePasswordViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
 
+        //passwordRequirementsView.translatesAutoresizingMaskIntoConstraints = true
         passwordRequirementsViewHeightConstraint.constant = 0
         confirmPasswordHeightConstraint.constant = 0
         
@@ -48,16 +50,18 @@ class ChangePasswordViewController: UIViewController {
         
         newPasswordTextField.textField.rx.controlEvent(UIControlEvents.editingDidBegin).subscribe(onNext: { _ in
             self.view.layoutIfNeeded()
-            UIView.animate(withDuration: 1, animations: {
-                self.passwordRequirementsViewHeightConstraint.constant = 300
+            self.scrollView.layoutIfNeeded()
+            UIView.animate(withDuration: 0.5, animations: {
+                self.passwordRequirementsViewHeightConstraint.constant = 254
                 self.confirmPasswordHeightConstraint.constant = 30
                 self.view.layoutIfNeeded()
+                self.scrollView.layoutIfNeeded()
             })
         }).addDisposableTo(disposeBag)
         
         newPasswordTextField.textField.rx.controlEvent(UIControlEvents.editingDidEnd).subscribe(onNext: { _ in
             self.view.layoutIfNeeded()
-            UIView.animate(withDuration: 1, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.passwordRequirementsViewHeightConstraint.constant = 0
                 self.confirmPasswordHeightConstraint.constant = 0
                 self.view.layoutIfNeeded()
