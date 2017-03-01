@@ -9,12 +9,11 @@
 import UIKit
 
 class LoginLandingViewController: UIViewController {
-    @IBOutlet weak var logoView: UIView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        logoView.backgroundColor = .primaryColor
+        view.backgroundColor = .primaryColor
     }
 
     override func didReceiveMemoryWarning() {

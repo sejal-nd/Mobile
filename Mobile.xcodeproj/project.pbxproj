@@ -123,6 +123,9 @@
 		B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
+		E80043511E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
+		E80043521E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
+		E80043531E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
 		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
@@ -281,6 +284,7 @@
 		B5AC073B1E52A2BD00BBA4ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCAuthenticationService.swift; sourceTree = "<group>"; };
+		E80043501E675AC4005CF531 /* SecondaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
@@ -407,6 +411,7 @@
 			children = (
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */,
+				E80043501E675AC4005CF531 /* SecondaryButton.swift */,
 				E8ECCD561E5E25CD00C9E46F /* Switch.swift */,
 			);
 			path = Views;
@@ -967,6 +972,7 @@
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E80043511E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
@@ -1000,6 +1006,7 @@
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E80043531E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
@@ -1033,6 +1040,7 @@
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E80043521E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,

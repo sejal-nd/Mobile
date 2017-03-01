@@ -29,10 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupAppearance() {
         // Nav Bar
-        UINavigationBar.appearance().tintColor = .textButtonColor
+        UINavigationBar.appearance().tintColor = UIColor.secondaryButtonText
         
         // Buttons
-        UIButton.appearance().tintColor = .textButtonColor
+        UIButton.appearance().tintColor = .secondaryButtonText
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
