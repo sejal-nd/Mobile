@@ -139,7 +139,7 @@
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5Z-Bc-Efn">
                                                 <rect key="frame" x="30" y="210" width="315" height="254"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5L-gY-cdK">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5L-gY-cdK" customClass="PasswordStrengthMeterView" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="8"/>
                                                         <color key="backgroundColor" red="0.43137254899999999" green="0.72156862749999995" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -338,6 +338,8 @@
                         <outlet property="newPasswordTextField" destination="YLR-ET-G9c" id="y7d-Bn-MBI"/>
                         <outlet property="numberCheck" destination="blI-aw-jQa" id="Cet-9c-fWn"/>
                         <outlet property="passwordRequirementsViewHeightConstraint" destination="wL0-9h-Qhe" id="f6c-Eq-rqF"/>
+                        <outlet property="passwordStrengthLabel" destination="BzU-26-lhj" id="OYC-Sp-EbE"/>
+                        <outlet property="passwordStrengthMeterView" destination="T5L-gY-cdK" id="de8-OM-l7K"/>
                         <outlet property="scrollView" destination="css-Si-oMh" id="wE3-lG-Kvn"/>
                         <outlet property="specialCharacterCheck" destination="oTL-Kh-MW2" id="gmI-5e-4Ye"/>
                         <outlet property="uppercaseCheck" destination="X2B-PT-aSA" id="ufU-ZC-C2W"/>

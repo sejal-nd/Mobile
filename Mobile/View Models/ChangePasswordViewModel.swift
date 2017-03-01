@@ -8,10 +8,9 @@
 
 import RxSwift
 import UIKit
+import Zxcvbn
 
 class ChangePasswordViewModel {
-    let disposeBag = DisposeBag()
-    
     var currentPassword = Variable("")
     var newPassword = Variable("")
     var confirmPassword = Variable("")
@@ -58,9 +57,16 @@ class ChangePasswordViewModel {
         })
     }
     
+    func passwordMatchesUsername() -> Observable<Bool> {
+        return newPassword.asObservable().map({ text -> Bool in
+            let username = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
+            return text == username
+        })
+    }
+    
     func everythingValid() -> Observable<Bool> {
-        return Observable.combineLatest(characterCountValid(), containsUppercaseLetter(), containsLowercaseLetter(), containsNumber(), containsSpecialCharacter()) {
-            if $0 {
+        return Observable.combineLatest(characterCountValid(), containsUppercaseLetter(), containsLowercaseLetter(), containsNumber(), containsSpecialCharacter(), passwordMatchesUsername()) {
+            if $0 && !$5 { // Valid character and password != username
                 let otherArray = [$1, $2, $3, $4].filter{ $0 }
                 if otherArray.count >= 3 {
                     return true
@@ -69,5 +75,26 @@ class ChangePasswordViewModel {
             return false
         }
     }
+    
+    func getPasswordScore() -> Int32 {
+        var score: Int32 = -1
+        if newPassword.value.characters.count > 0 {
+            score = DBZxcvbn().passwordStrength(newPassword.value).score
+        }
+        return score
+    }
+    
+    func confirmPasswordMatches() -> Observable<Bool> {
+        return Observable.combineLatest(newPassword.asObservable(), confirmPassword.asObservable()) {
+            return $0 == $1
+        }
+    }
+    
+    func doneButtonEnabled() -> Observable<Bool> {
+        return Observable.combineLatest(everythingValid(), confirmPasswordMatches()) {
+            return $0 && $1
+        }
+    }
+
     
 }

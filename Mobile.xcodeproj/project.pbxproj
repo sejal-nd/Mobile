@@ -177,6 +177,12 @@
 		E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
 		E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
 		E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
+		E80043491E671F0B005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
+		E800434A1E671F36005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
+		E800434B1E671F4F005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
+		E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
+		E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
+		E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
 		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
@@ -353,6 +359,8 @@
 		E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		E80043481E671F0B005CF531 /* Zxcvbn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zxcvbn.framework; path = Carthage/Build/iOS/Zxcvbn.framework; sourceTree = "<group>"; };
+		E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordStrengthMeterView.swift; sourceTree = "<group>"; };
 		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
@@ -395,6 +403,7 @@
 				E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */,
 				E80043141E65D126005CF531 /* MBProgressHUD.framework in Frameworks */,
 				E80043181E65DFE4005CF531 /* ToastSwiftFramework.framework in Frameworks */,
+				E80043491E671F0B005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +420,7 @@
 				E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */,
 				E80043161E65D149005CF531 /* MBProgressHUD.framework in Frameworks */,
 				E800431A1E65E016005CF531 /* ToastSwiftFramework.framework in Frameworks */,
+				E800434B1E671F4F005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +437,7 @@
 				E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */,
 				E80043151E65D13A005CF531 /* MBProgressHUD.framework in Frameworks */,
 				E80043191E65E004005CF531 /* ToastSwiftFramework.framework in Frameworks */,
+				E800434A1E671F36005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +454,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E80043481E671F0B005CF531 /* Zxcvbn.framework */,
 				E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */,
 				E80043131E65D126005CF531 /* MBProgressHUD.framework */,
 				E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */,
@@ -489,6 +501,7 @@
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */,
 				E8ECCD561E5E25CD00C9E46F /* Switch.swift */,
+				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1006,6 +1019,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -1026,6 +1040,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -1046,6 +1061,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -1120,6 +1136,7 @@
 				8FD5AE861E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
+				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
@@ -1158,6 +1175,7 @@
 				8FD5AE881E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
+				E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
@@ -1196,6 +1214,7 @@
 				8FD5AE871E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
+				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,

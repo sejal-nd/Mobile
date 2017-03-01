@@ -17,6 +17,9 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var newPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
     
+    @IBOutlet weak var passwordStrengthMeterView: PasswordStrengthMeterView!
+    @IBOutlet weak var passwordStrengthLabel: UILabel!
+    
     @IBOutlet weak var passwordRequirementsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var confirmPasswordHeightConstraint: NSLayoutConstraint!
     
@@ -37,8 +40,7 @@ class ChangePasswordViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = doneButton
-        doneButton.isEnabled = false
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
@@ -64,6 +66,10 @@ class ChangePasswordViewController: UIViewController {
         newPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.newPassword).addDisposableTo(disposeBag)
         confirmPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.confirmPassword).addDisposableTo(disposeBag)
         
+        currentPasswordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
+            self.newPasswordTextField.textField.becomeFirstResponder()
+        }).addDisposableTo(disposeBag)
+        
         newPasswordTextField.textField.rx.controlEvent(UIControlEvents.editingDidBegin).subscribe(onNext: { _ in
             self.view.layoutIfNeeded()
             UIView.animate(withDuration: 0.5, animations: {
@@ -72,7 +78,17 @@ class ChangePasswordViewController: UIViewController {
                 self.view.layoutIfNeeded()
             })
         }).addDisposableTo(disposeBag)
-        
+        newPasswordTextField.textField.rx.text.orEmpty.subscribe(onNext: { text in
+            let score = self.viewModel.getPasswordScore()
+            self.passwordStrengthMeterView.setScore(score)
+            if score < 2 {
+                self.passwordStrengthLabel.text = "Weak"
+            } else if score < 4 {
+                self.passwordStrengthLabel.text = "Medium"
+            } else {
+                self.passwordStrengthLabel.text = "Strong"
+            }
+        }).addDisposableTo(disposeBag)
         newPasswordTextField.textField.rx.controlEvent(UIControlEvents.editingDidEnd).subscribe(onNext: { _ in
             self.view.layoutIfNeeded()
             UIView.animate(withDuration: 0.5, animations: {
@@ -81,15 +97,17 @@ class ChangePasswordViewController: UIViewController {
                 self.view.layoutIfNeeded()
             })
         }).addDisposableTo(disposeBag)
-        
-        currentPasswordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            self.newPasswordTextField.textField.becomeFirstResponder()
-        }).addDisposableTo(disposeBag)
         newPasswordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            self.confirmPasswordTextField.textField.becomeFirstResponder()
+            if self.confirmPasswordTextField.isUserInteractionEnabled {
+                self.confirmPasswordTextField.textField.becomeFirstResponder()
+            }
         }).addDisposableTo(disposeBag)
+        
+
         confirmPasswordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            self.onDonePress()
+            if self.doneButton.isEnabled {
+                self.onDonePress()
+            }
         }).addDisposableTo(disposeBag)
     }
     
@@ -103,19 +121,45 @@ class ChangePasswordViewController: UIViewController {
     }
     
     func onDonePress() {
-        NSLog("Done")
+        print("Done")
+        // TODO: Call change password API
+        // TODO: If successful and Touch ID enabled, update password in keychain
     }
     
     func setupValidation() {
-        viewModel.characterCountValid().map{ !$0 }.bindTo(characterCountCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsUppercaseLetter().map{ !$0 }.bindTo(uppercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsLowercaseLetter().map{ !$0 }.bindTo(lowercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsNumber().map{ !$0 }.bindTo(numberCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsSpecialCharacter().map{ !$0 }.bindTo(specialCharacterCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.characterCountValid().map(!).bindTo(characterCountCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsUppercaseLetter().map(!).bindTo(uppercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsLowercaseLetter().map(!).bindTo(lowercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsNumber().map(!).bindTo(numberCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsSpecialCharacter().map(!).bindTo(specialCharacterCheck.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.everythingValid().subscribe(onNext: { valid in
             self.newPasswordTextField.setValidated(valid)
             self.confirmPasswordTextField.setEnabled(valid)
         }).addDisposableTo(disposeBag)
+        
+        // Password cannot match username
+        viewModel.passwordMatchesUsername().subscribe(onNext: { matches in
+            if matches {
+                self.newPasswordTextField.setError("Passsword cannot match username")
+            } else {
+                self.newPasswordTextField.setError(nil)
+            }
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.confirmPasswordMatches().subscribe(onNext: { matches in
+            if self.confirmPasswordTextField.textField.hasText {
+                if matches {
+                    self.confirmPasswordTextField.setValidated(matches)
+                } else {
+                    self.confirmPasswordTextField.setError("Passwords do not match")
+                }
+            } else {
+                self.confirmPasswordTextField.setValidated(false)
+                self.confirmPasswordTextField.setError(nil)
+            }
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.doneButtonEnabled().bindTo(doneButton.rx.isEnabled).addDisposableTo(disposeBag)
     }
     
     // MARK: Scroll View
@@ -139,15 +183,4 @@ class ChangePasswordViewController: UIViewController {
         scrollView.scrollIndicatorInsets = .zero
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

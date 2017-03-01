@@ -45,7 +45,7 @@ extension UIColor {
         }
     }
 
-    class var switchOffColor: UIColor {
+    class var timberwolf: UIColor {
         get {
             return UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
         }
