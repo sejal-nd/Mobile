@@ -23,8 +23,8 @@ class LoginTermsPoliciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textView.textContainerInset = UIEdgeInsetsMake(0, 12, 8, 16)
-        textView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 8, 4)
+        textView.textContainerInset = UIEdgeInsetsMake(26, 29, 8, 29)
+        //textView.scrollIndicatorInsets = UIEdgeInsetsMake(8, 0, 8, 0)
         textView.attributedText = viewModel.attributedTermsString
 
         agreeView.layer.shadowColor = UIColor.black.cgColor
@@ -37,7 +37,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         agreeLabel.text = viewModel.agreeLabelText;
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

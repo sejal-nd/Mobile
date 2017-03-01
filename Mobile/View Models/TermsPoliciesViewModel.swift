@@ -23,8 +23,11 @@ class TermsPoliciesViewModel {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 10
             let attrString = NSMutableAttributedString(string: termsString)
-            attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-            attrString.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 17), range: NSMakeRange(0, attrString.length))
+            let range = NSMakeRange(0, attrString.length)
+            attrString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: range)
+            attrString.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 17), range: range)
+            //attrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-Regular", size: 18)!, range: range)
+            //attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.darkJungleGreen, range: range)
             return NSAttributedString(attributedString: attrString)
         }
     }

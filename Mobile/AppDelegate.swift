@@ -28,9 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setupAppearance() {
-        // Tab Bar
-        UITabBar.appearance().tintColor = .primaryColor
-        
         // Nav Bar
         UINavigationBar.appearance().tintColor = .textButtonColor
         

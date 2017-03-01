@@ -24,9 +24,11 @@ class MainBaseNavigationController: UINavigationController {
         
         setNeedsStatusBarAppearanceUpdate()
         
-        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
-        let rootViewController = storyboard.instantiateInitialViewController()
-        setViewControllers([rootViewController!], animated: false)
+        if storyboardName != nil {
+            let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+            let rootViewController = storyboard.instantiateInitialViewController()
+            setViewControllers([rootViewController!], animated: false)
+        }
     }
 
     override func didReceiveMemoryWarning() {
