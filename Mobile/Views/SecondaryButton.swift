@@ -27,6 +27,12 @@ class SecondaryButton: UIButton {
     func commonInit() {
         backgroundColor = .white
         
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.2
+        layer.shadowRadius = 6
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.masksToBounds = false
+        
         titleLabel!.font = UIFont.boldSystemFont(ofSize: 20)
         setTitleColor(.secondaryButtonText, for: .normal)
         setTitleColor(.secondaryButtonText, for: .highlighted)
@@ -48,9 +54,11 @@ class SecondaryButton: UIButton {
         }
         set {
             if newValue {
+                layer.shadowOpacity = 0
                 backgroundColor = .secondaryButtonHighlight
             }
             else {
+                layer.shadowOpacity = 0.2
                 backgroundColor = .white
             }
             super.isHighlighted = newValue
@@ -63,8 +71,10 @@ class SecondaryButton: UIButton {
         }
         set {
             if newValue {
+                layer.shadowOpacity = 0.2
                 backgroundColor = .white
             } else {
+                layer.shadowOpacity = 0
                 backgroundColor = .secondaryButtonHighlight
             }
             super.isEnabled = newValue
