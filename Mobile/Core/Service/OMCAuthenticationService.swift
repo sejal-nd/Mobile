@@ -26,9 +26,24 @@ class OMCAuthenticationService : AuthenticationService {
         
         //1
         fetchAuthToken(username: username, password: password) { (result: ServiceResult<String>) in
-            //2 - TODO: when the oracle SDK is available
-            //3 - TODO: when the oracle SDK is available
-            completion(result)
+            
+            let backend = OMCMobileBackendManager.shared().defaultMobileBackend
+            let auth = backend?.authorization
+            
+            switch(result) {
+            case .Success(let token):
+                // 2
+                auth?.authenticateSSOTokenExchange(token, completionBlock: { (tokenExchangeError: Error?) in
+                    if let error = tokenExchangeError {
+                        completion(ServiceResult.Failure(ServiceError.Other(error: error)))
+                    } else {
+                        //TODO 3 - Get the user?
+                        completion(ServiceResult.Success("Success"))
+                    }
+                })
+            case .Failure:
+                completion(result)
+            }
         }
     }
     
@@ -43,7 +58,7 @@ class OMCAuthenticationService : AuthenticationService {
         var urlComponents = URLComponents(string: Environment.sharedInstance.oAuthEndpoint)!
         
         urlComponents.queryItems = [
-            URLQueryItem(name: OAuthQueryParams.Username.rawValue, value: Environment.sharedInstance.opco + "\\" + username),
+            URLQueryItem(name: OAuthQueryParams.Username.rawValue, value: Environment.sharedInstance.opco.uppercased() + "\\" + username),
             URLQueryItem(name: OAuthQueryParams.Password.rawValue, value: password),
             URLQueryItem(name: OAuthQueryParams.Encode.rawValue, value: "compress")
         ]

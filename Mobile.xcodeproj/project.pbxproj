@@ -91,6 +91,42 @@
 		B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */; };
 		B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
+		B55735D81E674089003B9369 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
+		B55735D91E674089003B9369 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
+		B55735DA1E674089003B9369 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
+		B55735DB1E674089003B9369 /* libOMCCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D31E674089003B9369 /* libOMCCore.a */; };
+		B55735DC1E674089003B9369 /* libOMCCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D31E674089003B9369 /* libOMCCore.a */; };
+		B55735DD1E674089003B9369 /* libOMCCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D31E674089003B9369 /* libOMCCore.a */; };
+		B55735DE1E674089003B9369 /* libOMCLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D41E674089003B9369 /* libOMCLocation.a */; };
+		B55735DF1E674089003B9369 /* libOMCLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D41E674089003B9369 /* libOMCLocation.a */; };
+		B55735E01E674089003B9369 /* libOMCLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D41E674089003B9369 /* libOMCLocation.a */; };
+		B55735E11E674089003B9369 /* libOMCNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D51E674089003B9369 /* libOMCNotifications.a */; };
+		B55735E21E674089003B9369 /* libOMCNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D51E674089003B9369 /* libOMCNotifications.a */; };
+		B55735E31E674089003B9369 /* libOMCNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D51E674089003B9369 /* libOMCNotifications.a */; };
+		B55735E41E674089003B9369 /* libOMCStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D61E674089003B9369 /* libOMCStorage.a */; };
+		B55735E51E674089003B9369 /* libOMCStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D61E674089003B9369 /* libOMCStorage.a */; };
+		B55735E61E674089003B9369 /* libOMCStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D61E674089003B9369 /* libOMCStorage.a */; };
+		B55735E71E674089003B9369 /* libOMCSynchronization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D71E674089003B9369 /* libOMCSynchronization.a */; };
+		B55735E81E674089003B9369 /* libOMCSynchronization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D71E674089003B9369 /* libOMCSynchronization.a */; };
+		B55735E91E674089003B9369 /* libOMCSynchronization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D71E674089003B9369 /* libOMCSynchronization.a */; };
+		B55736321E6740A8003B9369 /* INFO.txt in Resources */ = {isa = PBXBuildFile; fileRef = B55735EB1E6740A8003B9369 /* INFO.txt */; };
+		B55736331E6740A8003B9369 /* INFO.txt in Resources */ = {isa = PBXBuildFile; fileRef = B55735EB1E6740A8003B9369 /* INFO.txt */; };
+		B55736341E6740A8003B9369 /* INFO.txt in Resources */ = {isa = PBXBuildFile; fileRef = B55735EB1E6740A8003B9369 /* INFO.txt */; };
+		B55736351E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */; };
+		B55736361E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */; };
+		B55736371E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */; };
+		B55736381E6740A8003B9369 /* OMLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B55736141E6740A8003B9369 /* OMLocalizable.strings */; };
+		B55736391E6740A8003B9369 /* OMLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B55736141E6740A8003B9369 /* OMLocalizable.strings */; };
+		B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B55736141E6740A8003B9369 /* OMLocalizable.strings */; };
+		B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */ = {isa = PBXBuildFile; fileRef = B557363C1E6740C9003B9369 /* SyncStore.mom */; };
+		B557363F1E6740C9003B9369 /* SyncStore.mom in Resources */ = {isa = PBXBuildFile; fileRef = B557363C1E6740C9003B9369 /* SyncStore.mom */; };
+		B55736401E6740C9003B9369 /* SyncStore.mom in Resources */ = {isa = PBXBuildFile; fileRef = B557363C1E6740C9003B9369 /* SyncStore.mom */; };
+		B55736411E6740C9003B9369 /* VersionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = B557363D1E6740C9003B9369 /* VersionInfo.plist */; };
+		B55736421E6740C9003B9369 /* VersionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = B557363D1E6740C9003B9369 /* VersionInfo.plist */; };
+		B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = B557363D1E6740C9003B9369 /* VersionInfo.plist */; };
+		B55736451E6742A6003B9369 /* OMC.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* OMC.plist */; };
+		B55736461E6742A6003B9369 /* OMC.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* OMC.plist */; };
+		B55736471E6742A6003B9369 /* OMC.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* OMC.plist */; };
 		B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
@@ -224,6 +260,136 @@
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
+		B55735971E67406D003B9369 /* OMCAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalytics.h; sourceTree = "<group>"; };
+		B55735981E67406D003B9369 /* OMCAnalyticsApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalyticsApplicationDelegate.h; sourceTree = "<group>"; };
+		B55735991E67406D003B9369 /* OMCAnalyticsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalyticsDelegate.h; sourceTree = "<group>"; };
+		B557359A1E67406D003B9369 /* OMCMobileBackend+OMC_Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMCMobileBackend+OMC_Analytics.h"; sourceTree = "<group>"; };
+		B557359C1E67406D003B9369 /* OMCAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAppConfig.h; sourceTree = "<group>"; };
+		B557359D1E67406D003B9369 /* OMCAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAuthorization.h; sourceTree = "<group>"; };
+		B557359E1E67406D003B9369 /* OMCCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCCore.h; sourceTree = "<group>"; };
+		B557359F1E67406D003B9369 /* OMCCustomCodeClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCCustomCodeClient.h; sourceTree = "<group>"; };
+		B55735A01E67406D003B9369 /* OMCDiagnostics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCDiagnostics.h; sourceTree = "<group>"; };
+		B55735A11E67406D003B9369 /* OMCMobileBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCMobileBackend.h; sourceTree = "<group>"; };
+		B55735A21E67406D003B9369 /* OMCMobileBackendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCMobileBackendManager.h; sourceTree = "<group>"; };
+		B55735A31E67406D003B9369 /* OMCServiceProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCServiceProxy.h; sourceTree = "<group>"; };
+		B55735A41E67406D003B9369 /* OMCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCUser.h; sourceTree = "<group>"; };
+		B55735A61E67406D003B9369 /* OMCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocation.h; sourceTree = "<group>"; };
+		B55735A71E67406D003B9369 /* OMCLocationAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationAddress.h; sourceTree = "<group>"; };
+		B55735A81E67406D003B9369 /* OMCLocationAltBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationAltBeacon.h; sourceTree = "<group>"; };
+		B55735A91E67406D003B9369 /* OMCLocationAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationAsset.h; sourceTree = "<group>"; };
+		B55735AA1E67406D003B9369 /* OMCLocationAssetQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationAssetQuery.h; sourceTree = "<group>"; };
+		B55735AB1E67406D003B9369 /* OMCLocationBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationBeacon.h; sourceTree = "<group>"; };
+		B55735AC1E67406D003B9369 /* OMCLocationDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationDevice.h; sourceTree = "<group>"; };
+		B55735AD1E67406D003B9369 /* OMCLocationDeviceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationDeviceContainer.h; sourceTree = "<group>"; };
+		B55735AE1E67406D003B9369 /* OMCLocationDeviceContainerQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationDeviceContainerQuery.h; sourceTree = "<group>"; };
+		B55735AF1E67406D003B9369 /* OMCLocationDeviceQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationDeviceQuery.h; sourceTree = "<group>"; };
+		B55735B01E67406D003B9369 /* OMCLocationEddystoneBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationEddystoneBeacon.h; sourceTree = "<group>"; };
+		B55735B11E67406D003B9369 /* OMCLocationGeoCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationGeoCircle.h; sourceTree = "<group>"; };
+		B55735B21E67406D003B9369 /* OMCLocationGeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationGeoPoint.h; sourceTree = "<group>"; };
+		B55735B31E67406D003B9369 /* OMCLocationGeoPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationGeoPolygon.h; sourceTree = "<group>"; };
+		B55735B41E67406D003B9369 /* OMCLocationIBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationIBeacon.h; sourceTree = "<group>"; };
+		B55735B51E67406D003B9369 /* OMCLocationObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationObject.h; sourceTree = "<group>"; };
+		B55735B61E67406D003B9369 /* OMCLocationObjectQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationObjectQuery.h; sourceTree = "<group>"; };
+		B55735B71E67406D003B9369 /* OMCLocationObjectQueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationObjectQueryResult.h; sourceTree = "<group>"; };
+		B55735B81E67406D003B9369 /* OMCLocationPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationPlace.h; sourceTree = "<group>"; };
+		B55735B91E67406D003B9369 /* OMCLocationPlaceQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCLocationPlaceQuery.h; sourceTree = "<group>"; };
+		B55735BA1E67406D003B9369 /* OMCMobileBackend+OMC_Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMCMobileBackend+OMC_Location.h"; sourceTree = "<group>"; };
+		B55735BC1E67406D003B9369 /* OMCMobileBackend+OMC_Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMCMobileBackend+OMC_Notifications.h"; sourceTree = "<group>"; };
+		B55735BD1E67406D003B9369 /* OMCNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCNotifications.h; sourceTree = "<group>"; };
+		B55735BF1E67406D003B9369 /* OMCMobileBackend+OMC_Storage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMCMobileBackend+OMC_Storage.h"; sourceTree = "<group>"; };
+		B55735C01E67406D003B9369 /* OMCStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCStorage.h; sourceTree = "<group>"; };
+		B55735C11E67406D003B9369 /* OMCStorageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCStorageCollection.h; sourceTree = "<group>"; };
+		B55735C21E67406D003B9369 /* OMCStorageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCStorageConstants.h; sourceTree = "<group>"; };
+		B55735C31E67406D003B9369 /* OMCStorageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCStorageObject.h; sourceTree = "<group>"; };
+		B55735C51E67406D003B9369 /* OMCFetchFileBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCFetchFileBuilder.h; sourceTree = "<group>"; };
+		B55735C61E67406D003B9369 /* OMCFetchObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCFetchObjectBuilder.h; sourceTree = "<group>"; };
+		B55735C71E67406D003B9369 /* OMCFetchObjectCollectionBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCFetchObjectCollectionBuilder.h; sourceTree = "<group>"; };
+		B55735C81E67406D003B9369 /* OMCMobileBackend+OMC_Synchronization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OMCMobileBackend+OMC_Synchronization.h"; sourceTree = "<group>"; };
+		B55735C91E67406D003B9369 /* OMCMobileEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCMobileEndpoint.h; sourceTree = "<group>"; };
+		B55735CA1E67406D003B9369 /* OMCMobileFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCMobileFile.h; sourceTree = "<group>"; };
+		B55735CB1E67406D003B9369 /* OMCMobileObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCMobileObject.h; sourceTree = "<group>"; };
+		B55735CC1E67406D003B9369 /* OMCMobileObjectCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCMobileObjectCollection.h; sourceTree = "<group>"; };
+		B55735CD1E67406D003B9369 /* OMCMobileResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCMobileResource.h; sourceTree = "<group>"; };
+		B55735CE1E67406D003B9369 /* OMCSyncGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCSyncGlobals.h; sourceTree = "<group>"; };
+		B55735CF1E67406D003B9369 /* OMCSynchronization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCSynchronization.h; sourceTree = "<group>"; };
+		B55735D01E67406D003B9369 /* OMCSyncPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCSyncPolicy.h; sourceTree = "<group>"; };
+		B55735D11E67406D003B9369 /* OMCSyncStoreState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCSyncStoreState.h; sourceTree = "<group>"; };
+		B55735D21E674089003B9369 /* libOMCAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOMCAnalytics.a; sourceTree = "<group>"; };
+		B55735D31E674089003B9369 /* libOMCCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOMCCore.a; sourceTree = "<group>"; };
+		B55735D41E674089003B9369 /* libOMCLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOMCLocation.a; sourceTree = "<group>"; };
+		B55735D51E674089003B9369 /* libOMCNotifications.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOMCNotifications.a; sourceTree = "<group>"; };
+		B55735D61E674089003B9369 /* libOMCStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOMCStorage.a; sourceTree = "<group>"; };
+		B55735D71E674089003B9369 /* libOMCSynchronization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOMCSynchronization.a; sourceTree = "<group>"; };
+		B55735EB1E6740A8003B9369 /* INFO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = INFO.txt; sourceTree = "<group>"; };
+		B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIDMMobileSDK.a; sourceTree = "<group>"; };
+		B55735EE1E6740A8003B9369 /* IDMMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMMobileSDK.h; sourceTree = "<group>"; };
+		B55735EF1E6740A8003B9369 /* NSData+OMBase32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+OMBase32.h"; sourceTree = "<group>"; };
+		B55735F01E6740A8003B9369 /* NSData+OMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+OMBase64.h"; sourceTree = "<group>"; };
+		B55735F11E6740A8003B9369 /* NSDictionary+OMJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+OMJSON.h"; sourceTree = "<group>"; };
+		B55735F21E6740A8003B9369 /* OAMMSSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAMMSSDK.h; sourceTree = "<group>"; };
+		B55735F31E6740A8003B9369 /* OMADFMobileSecurityConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMADFMobileSecurityConfiguration.h; sourceTree = "<group>"; };
+		B55735F41E6740A8003B9369 /* OMAsyncOpHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAsyncOpHandle.h; sourceTree = "<group>"; };
+		B55735F51E6740A8003B9369 /* OMAuthenticationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAuthenticationContext.h; sourceTree = "<group>"; };
+		B55735F61E6740A8003B9369 /* OMAuthenticationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAuthenticationRequest.h; sourceTree = "<group>"; };
+		B55735F71E6740A8003B9369 /* OMAuthProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAuthProgressView.h; sourceTree = "<group>"; };
+		B55735F81E6740A8003B9369 /* OMAuthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAuthView.h; sourceTree = "<group>"; };
+		B55735F91E6740A8003B9369 /* OMCertInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCertInfo.h; sourceTree = "<group>"; };
+		B55735FA1E6740A8003B9369 /* OMCertService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCertService.h; sourceTree = "<group>"; };
+		B55735FB1E6740A8003B9369 /* OMCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCredential.h; sourceTree = "<group>"; };
+		B55735FC1E6740A8003B9369 /* OMCredentialStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCredentialStore.h; sourceTree = "<group>"; };
+		B55735FD1E6740A8003B9369 /* OMCredentialStoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCredentialStoreService.h; sourceTree = "<group>"; };
+		B55735FE1E6740A8003B9369 /* OMCryptoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCryptoService.h; sourceTree = "<group>"; };
+		B55735FF1E6740A8003B9369 /* OMDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMDefinitions.h; sourceTree = "<group>"; };
+		B55736001E6740A8003B9369 /* OMEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMEntity.h; sourceTree = "<group>"; };
+		B55736011E6740A8003B9369 /* OMEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMEntityManager.h; sourceTree = "<group>"; };
+		B55736021E6740A8003B9369 /* OMErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMErrorCodes.h; sourceTree = "<group>"; };
+		B55736031E6740A8003B9369 /* OMHTTPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMHTTPService.h; sourceTree = "<group>"; };
+		B55736041E6740A8003B9369 /* OMIdentityProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMIdentityProvider.h; sourceTree = "<group>"; };
+		B55736051E6740A8003B9369 /* OMMobileSecurityConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMobileSecurityConfiguration.h; sourceTree = "<group>"; };
+		B55736061E6740A8003B9369 /* OMMobileSecurityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMobileSecurityService.h; sourceTree = "<group>"; };
+		B55736071E6740A8003B9369 /* OMMutableCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMutableCredential.h; sourceTree = "<group>"; };
+		B55736081E6740A8003B9369 /* OMObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMObject.h; sourceTree = "<group>"; };
+		B55736091E6740A8003B9369 /* OMOICMobileSecurityConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMOICMobileSecurityConfiguration.h; sourceTree = "<group>"; };
+		B557360A1E6740A8003B9369 /* OMOTPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMOTPService.h; sourceTree = "<group>"; };
+		B557360B1E6740A8003B9369 /* OMRESTRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMRESTRequest.h; sourceTree = "<group>"; };
+		B557360C1E6740A8003B9369 /* OMRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMRole.h; sourceTree = "<group>"; };
+		B557360D1E6740A8003B9369 /* OMRoleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMRoleManager.h; sourceTree = "<group>"; };
+		B557360E1E6740A8003B9369 /* OMToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMToken.h; sourceTree = "<group>"; };
+		B557360F1E6740A8003B9369 /* OMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMUser.h; sourceTree = "<group>"; };
+		B55736101E6740A8003B9369 /* OMUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMUserManager.h; sourceTree = "<group>"; };
+		B55736111E6740A8003B9369 /* OMUserRoleProfileService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMUserRoleProfileService.h; sourceTree = "<group>"; };
+		B55736151E6740A8003B9369 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736161E6740A8003B9369 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736171E6740A8003B9369 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736181E6740A8003B9369 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736191E6740A8003B9369 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557361A1E6740A8003B9369 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557361B1E6740A8003B9369 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557361C1E6740A8003B9369 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557361D1E6740A8003B9369 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557361E1E6740A8003B9369 /* fr_CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr_CA; path = fr_CA.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557361F1E6740A8003B9369 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736201E6740A8003B9369 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736211E6740A8003B9369 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736221E6740A8003B9369 /* iw */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = iw; path = iw.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736231E6740A8003B9369 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736241E6740A8003B9369 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736251E6740A8003B9369 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736261E6740A8003B9369 /* no */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = no; path = no.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736271E6740A8003B9369 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736281E6740A8003B9369 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736291E6740A8003B9369 /* pt_BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt_BR; path = pt_BR.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557362A1E6740A8003B9369 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557362B1E6740A8003B9369 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557362C1E6740A8003B9369 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557362D1E6740A8003B9369 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557362E1E6740A8003B9369 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557362F1E6740A8003B9369 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736301E6740A8003B9369 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_CN; path = zh_CN.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B55736311E6740A8003B9369 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = zh_TW.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
+		B557363C1E6740C9003B9369 /* SyncStore.mom */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = SyncStore.mom; sourceTree = "<group>"; };
+		B557363D1E6740C9003B9369 /* VersionInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = VersionInfo.plist; sourceTree = "<group>"; };
+		B55736441E6742A6003B9369 /* OMC.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OMC.plist; sourceTree = "<group>"; };
 		B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		B58B5AC11E4E28740051FD5F /* BGE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BGE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5AC41E4E28740051FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -286,10 +452,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55735E11E674089003B9369 /* libOMCNotifications.a in Frameworks */,
 				B5AC07421E52A49900BBA4ED /* CoreLocation.framework in Frameworks */,
+				B55735E71E674089003B9369 /* libOMCSynchronization.a in Frameworks */,
 				E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */,
+				B55735DB1E674089003B9369 /* libOMCCore.a in Frameworks */,
 				B5AC073C1E52A2BD00BBA4ED /* Security.framework in Frameworks */,
 				B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B55736351E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
+				B55735E41E674089003B9369 /* libOMCStorage.a in Frameworks */,
+				B55735DE1E674089003B9369 /* libOMCLocation.a in Frameworks */,
+				B55735D81E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
 			);
@@ -299,10 +472,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55735E31E674089003B9369 /* libOMCNotifications.a in Frameworks */,
 				E8EEF7221E567941006804D4 /* CoreLocation.framework in Frameworks */,
+				B55735E91E674089003B9369 /* libOMCSynchronization.a in Frameworks */,
 				E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */,
+				B55735DD1E674089003B9369 /* libOMCCore.a in Frameworks */,
 				B5AC07401E52A2ED00BBA4ED /* Security.framework in Frameworks */,
 				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B55736371E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
+				B55735E61E674089003B9369 /* libOMCStorage.a in Frameworks */,
+				B55735E01E674089003B9369 /* libOMCLocation.a in Frameworks */,
+				B55735DA1E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
 				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */,
 			);
@@ -312,10 +492,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55735E21E674089003B9369 /* libOMCNotifications.a in Frameworks */,
 				E8EEF7211E56793B006804D4 /* CoreLocation.framework in Frameworks */,
+				B55735E81E674089003B9369 /* libOMCSynchronization.a in Frameworks */,
 				E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */,
+				B55735DC1E674089003B9369 /* libOMCCore.a in Frameworks */,
 				B5AC073E1E52A2E000BBA4ED /* Security.framework in Frameworks */,
 				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B55736361E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
+				B55735E51E674089003B9369 /* libOMCStorage.a in Frameworks */,
+				B55735DF1E674089003B9369 /* libOMCLocation.a in Frameworks */,
+				B55735D91E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
 				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2601E524548005FB1BB /* RxSwift.framework in Frameworks */,
 			);
@@ -414,6 +601,194 @@
 			path = Parsing;
 			sourceTree = "<group>";
 		};
+		B55735951E674043003B9369 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				B55735961E67406D003B9369 /* OMCAnalytics */,
+				B557359B1E67406D003B9369 /* OMCCore */,
+				B55735A51E67406D003B9369 /* OMCLocation */,
+				B55735BB1E67406D003B9369 /* OMCNotifications */,
+				B55735BE1E67406D003B9369 /* OMCStorage */,
+				B55735C41E67406D003B9369 /* OMCSynchronization */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		B55735961E67406D003B9369 /* OMCAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				B55735971E67406D003B9369 /* OMCAnalytics.h */,
+				B55735981E67406D003B9369 /* OMCAnalyticsApplicationDelegate.h */,
+				B55735991E67406D003B9369 /* OMCAnalyticsDelegate.h */,
+				B557359A1E67406D003B9369 /* OMCMobileBackend+OMC_Analytics.h */,
+			);
+			path = OMCAnalytics;
+			sourceTree = "<group>";
+		};
+		B557359B1E67406D003B9369 /* OMCCore */ = {
+			isa = PBXGroup;
+			children = (
+				B557359C1E67406D003B9369 /* OMCAppConfig.h */,
+				B557359D1E67406D003B9369 /* OMCAuthorization.h */,
+				B557359E1E67406D003B9369 /* OMCCore.h */,
+				B557359F1E67406D003B9369 /* OMCCustomCodeClient.h */,
+				B55735A01E67406D003B9369 /* OMCDiagnostics.h */,
+				B55735A11E67406D003B9369 /* OMCMobileBackend.h */,
+				B55735A21E67406D003B9369 /* OMCMobileBackendManager.h */,
+				B55735A31E67406D003B9369 /* OMCServiceProxy.h */,
+				B55735A41E67406D003B9369 /* OMCUser.h */,
+			);
+			path = OMCCore;
+			sourceTree = "<group>";
+		};
+		B55735A51E67406D003B9369 /* OMCLocation */ = {
+			isa = PBXGroup;
+			children = (
+				B55735A61E67406D003B9369 /* OMCLocation.h */,
+				B55735A71E67406D003B9369 /* OMCLocationAddress.h */,
+				B55735A81E67406D003B9369 /* OMCLocationAltBeacon.h */,
+				B55735A91E67406D003B9369 /* OMCLocationAsset.h */,
+				B55735AA1E67406D003B9369 /* OMCLocationAssetQuery.h */,
+				B55735AB1E67406D003B9369 /* OMCLocationBeacon.h */,
+				B55735AC1E67406D003B9369 /* OMCLocationDevice.h */,
+				B55735AD1E67406D003B9369 /* OMCLocationDeviceContainer.h */,
+				B55735AE1E67406D003B9369 /* OMCLocationDeviceContainerQuery.h */,
+				B55735AF1E67406D003B9369 /* OMCLocationDeviceQuery.h */,
+				B55735B01E67406D003B9369 /* OMCLocationEddystoneBeacon.h */,
+				B55735B11E67406D003B9369 /* OMCLocationGeoCircle.h */,
+				B55735B21E67406D003B9369 /* OMCLocationGeoPoint.h */,
+				B55735B31E67406D003B9369 /* OMCLocationGeoPolygon.h */,
+				B55735B41E67406D003B9369 /* OMCLocationIBeacon.h */,
+				B55735B51E67406D003B9369 /* OMCLocationObject.h */,
+				B55735B61E67406D003B9369 /* OMCLocationObjectQuery.h */,
+				B55735B71E67406D003B9369 /* OMCLocationObjectQueryResult.h */,
+				B55735B81E67406D003B9369 /* OMCLocationPlace.h */,
+				B55735B91E67406D003B9369 /* OMCLocationPlaceQuery.h */,
+				B55735BA1E67406D003B9369 /* OMCMobileBackend+OMC_Location.h */,
+			);
+			path = OMCLocation;
+			sourceTree = "<group>";
+		};
+		B55735BB1E67406D003B9369 /* OMCNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				B55735BC1E67406D003B9369 /* OMCMobileBackend+OMC_Notifications.h */,
+				B55735BD1E67406D003B9369 /* OMCNotifications.h */,
+			);
+			path = OMCNotifications;
+			sourceTree = "<group>";
+		};
+		B55735BE1E67406D003B9369 /* OMCStorage */ = {
+			isa = PBXGroup;
+			children = (
+				B55735BF1E67406D003B9369 /* OMCMobileBackend+OMC_Storage.h */,
+				B55735C01E67406D003B9369 /* OMCStorage.h */,
+				B55735C11E67406D003B9369 /* OMCStorageCollection.h */,
+				B55735C21E67406D003B9369 /* OMCStorageConstants.h */,
+				B55735C31E67406D003B9369 /* OMCStorageObject.h */,
+			);
+			path = OMCStorage;
+			sourceTree = "<group>";
+		};
+		B55735C41E67406D003B9369 /* OMCSynchronization */ = {
+			isa = PBXGroup;
+			children = (
+				B55735C51E67406D003B9369 /* OMCFetchFileBuilder.h */,
+				B55735C61E67406D003B9369 /* OMCFetchObjectBuilder.h */,
+				B55735C71E67406D003B9369 /* OMCFetchObjectCollectionBuilder.h */,
+				B55735C81E67406D003B9369 /* OMCMobileBackend+OMC_Synchronization.h */,
+				B55735C91E67406D003B9369 /* OMCMobileEndpoint.h */,
+				B55735CA1E67406D003B9369 /* OMCMobileFile.h */,
+				B55735CB1E67406D003B9369 /* OMCMobileObject.h */,
+				B55735CC1E67406D003B9369 /* OMCMobileObjectCollection.h */,
+				B55735CD1E67406D003B9369 /* OMCMobileResource.h */,
+				B55735CE1E67406D003B9369 /* OMCSyncGlobals.h */,
+				B55735CF1E67406D003B9369 /* OMCSynchronization.h */,
+				B55735D01E67406D003B9369 /* OMCSyncPolicy.h */,
+				B55735D11E67406D003B9369 /* OMCSyncStoreState.h */,
+			);
+			path = OMCSynchronization;
+			sourceTree = "<group>";
+		};
+		B55735EA1E6740A8003B9369 /* oamms_sdk_for_ios */ = {
+			isa = PBXGroup;
+			children = (
+				B55735EB1E6740A8003B9369 /* INFO.txt */,
+				B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */,
+				B55735ED1E6740A8003B9369 /* PublicHeaders */,
+				B55736121E6740A8003B9369 /* PublicResources */,
+			);
+			path = oamms_sdk_for_ios;
+			sourceTree = "<group>";
+		};
+		B55735ED1E6740A8003B9369 /* PublicHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				B55735EE1E6740A8003B9369 /* IDMMobileSDK.h */,
+				B55735EF1E6740A8003B9369 /* NSData+OMBase32.h */,
+				B55735F01E6740A8003B9369 /* NSData+OMBase64.h */,
+				B55735F11E6740A8003B9369 /* NSDictionary+OMJSON.h */,
+				B55735F21E6740A8003B9369 /* OAMMSSDK.h */,
+				B55735F31E6740A8003B9369 /* OMADFMobileSecurityConfiguration.h */,
+				B55735F41E6740A8003B9369 /* OMAsyncOpHandle.h */,
+				B55735F51E6740A8003B9369 /* OMAuthenticationContext.h */,
+				B55735F61E6740A8003B9369 /* OMAuthenticationRequest.h */,
+				B55735F71E6740A8003B9369 /* OMAuthProgressView.h */,
+				B55735F81E6740A8003B9369 /* OMAuthView.h */,
+				B55735F91E6740A8003B9369 /* OMCertInfo.h */,
+				B55735FA1E6740A8003B9369 /* OMCertService.h */,
+				B55735FB1E6740A8003B9369 /* OMCredential.h */,
+				B55735FC1E6740A8003B9369 /* OMCredentialStore.h */,
+				B55735FD1E6740A8003B9369 /* OMCredentialStoreService.h */,
+				B55735FE1E6740A8003B9369 /* OMCryptoService.h */,
+				B55735FF1E6740A8003B9369 /* OMDefinitions.h */,
+				B55736001E6740A8003B9369 /* OMEntity.h */,
+				B55736011E6740A8003B9369 /* OMEntityManager.h */,
+				B55736021E6740A8003B9369 /* OMErrorCodes.h */,
+				B55736031E6740A8003B9369 /* OMHTTPService.h */,
+				B55736041E6740A8003B9369 /* OMIdentityProvider.h */,
+				B55736051E6740A8003B9369 /* OMMobileSecurityConfiguration.h */,
+				B55736061E6740A8003B9369 /* OMMobileSecurityService.h */,
+				B55736071E6740A8003B9369 /* OMMutableCredential.h */,
+				B55736081E6740A8003B9369 /* OMObject.h */,
+				B55736091E6740A8003B9369 /* OMOICMobileSecurityConfiguration.h */,
+				B557360A1E6740A8003B9369 /* OMOTPService.h */,
+				B557360B1E6740A8003B9369 /* OMRESTRequest.h */,
+				B557360C1E6740A8003B9369 /* OMRole.h */,
+				B557360D1E6740A8003B9369 /* OMRoleManager.h */,
+				B557360E1E6740A8003B9369 /* OMToken.h */,
+				B557360F1E6740A8003B9369 /* OMUser.h */,
+				B55736101E6740A8003B9369 /* OMUserManager.h */,
+				B55736111E6740A8003B9369 /* OMUserRoleProfileService.h */,
+			);
+			path = PublicHeaders;
+			sourceTree = "<group>";
+		};
+		B55736121E6740A8003B9369 /* PublicResources */ = {
+			isa = PBXGroup;
+			children = (
+				B55736131E6740A8003B9369 /* Localization */,
+			);
+			path = PublicResources;
+			sourceTree = "<group>";
+		};
+		B55736131E6740A8003B9369 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				B55736141E6740A8003B9369 /* OMLocalizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		B557363B1E6740C9003B9369 /* SyncStore.momd */ = {
+			isa = PBXGroup;
+			children = (
+				B557363C1E6740C9003B9369 /* SyncStore.mom */,
+				B557363D1E6740C9003B9369 /* VersionInfo.plist */,
+			);
+			path = SyncStore.momd;
+			sourceTree = "<group>";
+		};
 		B58B5AB81E4E28740051FD5F = {
 			isa = PBXGroup;
 			children = (
@@ -456,6 +831,7 @@
 				8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */,
 				8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */,
 				E8B4F4CE1E5CE21D0031D934 /* Bridging-Header.h */,
+				B55736441E6742A6003B9369 /* OMC.plist */,
 			);
 			path = Mobile;
 			sourceTree = "<group>";
@@ -539,6 +915,15 @@
 		B5AC06F21E52A18700BBA4ED /* OMC */ = {
 			isa = PBXGroup;
 			children = (
+				B55735951E674043003B9369 /* include */,
+				B55735EA1E6740A8003B9369 /* oamms_sdk_for_ios */,
+				B557363B1E6740C9003B9369 /* SyncStore.momd */,
+				B55735D21E674089003B9369 /* libOMCAnalytics.a */,
+				B55735D31E674089003B9369 /* libOMCCore.a */,
+				B55735D41E674089003B9369 /* libOMCLocation.a */,
+				B55735D51E674089003B9369 /* libOMCNotifications.a */,
+				B55735D61E674089003B9369 /* libOMCStorage.a */,
+				B55735D71E674089003B9369 /* libOMCSynchronization.a */,
 			);
 			path = OMC;
 			sourceTree = "<group>";
@@ -711,6 +1096,34 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
+				cs,
+				da,
+				de,
+				el,
+				es,
+				fi,
+				fr,
+				fr_CA,
+				hr,
+				hu,
+				it,
+				iw,
+				ja,
+				ko,
+				nl,
+				no,
+				pl,
+				pt,
+				pt_BR,
+				ro,
+				ru,
+				sk,
+				sv,
+				th,
+				tr,
+				zh_CN,
+				zh_TW,
 			);
 			mainGroup = B58B5AB81E4E28740051FD5F;
 			productRefGroup = B58B5AC21E4E28740051FD5F /* Products */;
@@ -736,17 +1149,22 @@
 				8FD5AE941E54EA5E003F640D /* Cartfile in Resources */,
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
+				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
+				B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */,
+				B55736321E6740A8003B9369 /* INFO.txt in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
+				B55736381E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
 				E8B4F4BB1E5C99E00031D934 /* Bill.storyboard in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
+				B55736411E6740C9003B9369 /* VersionInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,17 +1175,22 @@
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
+				B55736471E6742A6003B9369 /* OMC.plist in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
+				B55736401E6740C9003B9369 /* SyncStore.mom in Resources */,
+				B55736341E6740A8003B9369 /* INFO.txt in Resources */,
 				E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */,
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
+				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
 				E8B4F4BD1E5C99E00031D934 /* Bill.storyboard in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
+				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,17 +1201,22 @@
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE951E54EA5E003F640D /* Cartfile in Resources */,
+				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
+				B557363F1E6740C9003B9369 /* SyncStore.mom in Resources */,
+				B55736331E6740A8003B9369 /* INFO.txt in Resources */,
 				E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
+				B55736391E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
 				E8B4F4BC1E5C99E00031D934 /* Bill.storyboard in Resources */,
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
+				B55736421E6740C9003B9369 /* VersionInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1015,6 +1443,45 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		B55736141E6740A8003B9369 /* OMLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B55736151E6740A8003B9369 /* ar */,
+				B55736161E6740A8003B9369 /* cs */,
+				B55736171E6740A8003B9369 /* da */,
+				B55736181E6740A8003B9369 /* de */,
+				B55736191E6740A8003B9369 /* el */,
+				B557361A1E6740A8003B9369 /* en */,
+				B557361B1E6740A8003B9369 /* es */,
+				B557361C1E6740A8003B9369 /* fi */,
+				B557361D1E6740A8003B9369 /* fr */,
+				B557361E1E6740A8003B9369 /* fr_CA */,
+				B557361F1E6740A8003B9369 /* hr */,
+				B55736201E6740A8003B9369 /* hu */,
+				B55736211E6740A8003B9369 /* it */,
+				B55736221E6740A8003B9369 /* iw */,
+				B55736231E6740A8003B9369 /* ja */,
+				B55736241E6740A8003B9369 /* ko */,
+				B55736251E6740A8003B9369 /* nl */,
+				B55736261E6740A8003B9369 /* no */,
+				B55736271E6740A8003B9369 /* pl */,
+				B55736281E6740A8003B9369 /* pt */,
+				B55736291E6740A8003B9369 /* pt_BR */,
+				B557362A1E6740A8003B9369 /* ro */,
+				B557362B1E6740A8003B9369 /* ru */,
+				B557362C1E6740A8003B9369 /* sk */,
+				B557362D1E6740A8003B9369 /* sv */,
+				B557362E1E6740A8003B9369 /* th */,
+				B557362F1E6740A8003B9369 /* tr */,
+				B55736301E6740A8003B9369 /* zh_CN */,
+				B55736311E6740A8003B9369 /* zh_TW */,
+			);
+			name = OMLocalizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		B58B5AE71E4E28740051FD5F /* Develop */ = {
 			isa = XCBuildConfiguration;
@@ -1065,6 +1532,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1115,6 +1583,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1138,7 +1607,10 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1165,7 +1637,10 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1225,6 +1700,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1248,7 +1724,10 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1309,6 +1788,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1332,7 +1812,10 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1393,6 +1876,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1416,7 +1900,10 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1442,6 +1929,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1467,6 +1958,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1492,6 +1987,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1517,6 +2016,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1542,6 +2045,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1566,6 +2073,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1591,6 +2102,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1616,6 +2131,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1641,6 +2160,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1666,6 +2189,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
