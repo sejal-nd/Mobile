@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>mobileBackends</key>
+	<dict>
+		<key>MyBackend</key>
+		<dict>
+			<key>default</key>
+			<true/>
+			<key>baseURL</key>
+			<string>http://MyBaseURL</string>
+			<key>appKey</key>
+			<string>847b8281-47f1-4e57-87e9-b026de6a30ee</string>
+			<key>authorization</key>
+			<dict>
+				<key>authenticationType</key>
+				<string>OAuth</string>
+				<key>OAuth</key>
+				<dict>
+					<key>tokenEndpoint</key>
+					<string>http://MyTokenEndpoint</string>
+					<key>clientID</key>
+					<string>fde74696-07b3-437a-9e34-0e286119b940</string>
+					<key>clientSecret</key>
+					<string>VbuSWrtOGkTlEQBBNJP6</string>
+				</dict>
+				<key>Basic</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>70c873d4-585a-4990-b046-ede635b887d1</string>
+					<key>anonymousKey</key>
+					<string>QU5PTllNT1VTX0FQUElEOnBhc3N3b3Jk</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+	<key>logLevel</key>
+	<string>info</string>
+</dict>
+</plist>
