@@ -169,7 +169,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - Scroll View
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        opcoLogo.alpha = lerp(1, 0, scrollView.contentOffset.y / 99.0)
+        opcoLogo.alpha = lerp(1, 0, scrollView.contentOffset.y / 50.0)
     }
     
     // MARK: - Keyboard
@@ -180,7 +180,9 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
-        scrollView.scrollRectToVisible(forgotPasswordButton.frame, animated: true)
+        
+        let rect = signInButton.convert(signInButton.bounds, to: scrollView)
+        scrollView.scrollRectToVisible(rect, animated: true)
     }
     
     func keyboardWillHide(notification: Notification) {
