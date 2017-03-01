@@ -99,6 +99,7 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
     func setError(_ errorMessage: String?) {
         if errorMessage != nil {
             errorState = true
+            checkAccessoryImageView.isHidden = true
             errorAccessoryImageView.isHidden = false
             textFieldTrailingSpaceConstraint.constant = 33
             
@@ -137,6 +138,11 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         } else {
             isUserInteractionEnabled = false
             
+            textField.text = ""
+            textField.sendActions(for: UIControlEvents.valueChanged)
+            setError(nil)
+            setValidated(false)
+            
             disabledColorBar.isHidden = false
             view.backgroundColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 0.08)
             textField.placeholderColor = UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1) 
@@ -146,6 +152,7 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
     
     func setValidated(_ validated: Bool) {
         if validated {
+            setError(nil)
             checkAccessoryImageView.isHidden = false
             textFieldTrailingSpaceConstraint.constant = 33
         } else {

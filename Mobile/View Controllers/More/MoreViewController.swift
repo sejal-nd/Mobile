@@ -73,7 +73,9 @@ class MoreViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        if indexPath.row == 2 {
+        if indexPath.row == 0 {
+            performSegue(withIdentifier: "settingsSegue", sender: self)
+        } else if indexPath.row == 2 {
             performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
         } else if indexPath.row == 3 {
             onSignOutPress()

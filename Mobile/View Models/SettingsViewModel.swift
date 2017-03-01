@@ -1,14 +1,14 @@
 //
-//  LoginViewModel.swift
+//  SettingsViewModel.swift
 //  Mobile
 //
-//  Created by Marc Shilling on 2/16/17.
+//  Created by Marc Shilling on 2/27/17.
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
 import RxSwift
 
-class LoginViewModel {
+class SettingsViewModel {
     
     let disposeBag = DisposeBag()
     
@@ -21,27 +21,33 @@ class LoginViewModel {
     init(authService: AuthenticationService, fingerprintService: FingerprintService) {
         self.authService = authService
         self.fingerprintService = fingerprintService
+        
+        // We should always have a stored username unless user skipped login, in which case this will probably change
+        // in a future sprint anyway
+        if let storedUsername = fingerprintService.getStoredUsername() {
+            username.value = storedUsername
+        }
     }
     
     func isDeviceTouchIDCompatible() -> Bool {
         return fingerprintService!.isDeviceTouchIDCompatible()
     }
     
-    func didLoginWithDifferentAccountThanStoredInKeychain() -> Bool {
-        if let username = fingerprintService!.getStoredUsername() {
-            if self.username.value != username {
-                return true
-            }
-        }
-        return false
+    func isTouchIDEnabled() -> Bool {
+        return fingerprintService!.isTouchIDEnabled()
     }
     
-    func performLogin(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func disableTouchID() {
+        fingerprintService!.disableTouchID()
+    }
+    
+    func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         authService!
             .login(username.value, password: password.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { (success: Bool) in
+                self.fingerprintService!.setStoredPassword(password: self.password.value)
                 onSuccess()
             }, onError: { (error: Error) in
                 var errorString = ""
@@ -60,28 +66,5 @@ class LoginViewModel {
             })
             .addDisposableTo(disposeBag)
     }
-    
-    func storeUsername() {
-        fingerprintService!.setStoredUsername(username: username.value)
-    }
-    
-    func storePasswordInTouchIDKeychain() {
-        fingerprintService!.setStoredPassword(password: password.value)
-    }
-    
-    func attemptLoginWithTouchID(onLoad: @escaping () -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        if let username = fingerprintService!.getStoredUsername() {
-            if let password = fingerprintService!.getStoredPassword() {
-                self.username.value = username
-                self.password.value = password
-                onLoad()
-                performLogin(onSuccess: onSuccess, onError: onError)
-            } else { // Cancelled Touch ID dialog
-                self.username.value = ""
-                self.password.value = ""
-            }
-        }
-    }
-    
 
 }

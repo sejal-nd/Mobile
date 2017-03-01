@@ -16,9 +16,12 @@ class MainBaseNavigationController: UINavigationController {
         super.viewDidLoad()
         
         navigationBar.barTintColor = .white
-        navigationBar.tintColor = UIColor.secondaryButtonText
-        
-        let titleDict: [String: Any] = [NSForegroundColorAttributeName: UIColor.white]
+        navigationBar.tintColor = .secondaryButtonText
+
+        let titleDict: [String: Any] = [
+            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
+            NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
+        ]
         navigationBar.titleTextAttributes = titleDict
         
         setNeedsStatusBarAppearanceUpdate()

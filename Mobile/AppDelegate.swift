@@ -14,13 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-//        Uncomment to reset UserDefaults
-//        let appDomain = Bundle.main.bundleIdentifier!
-//        UserDefaults.standard.removePersistentDomain(forName: appDomain)
-        
         NSLog("Environment %@", Environment.sharedInstance.environmentName)
         NSLog("AppName %@", Environment.sharedInstance.appName)
+        
+        //printFonts()
         
         return true
     }
@@ -45,6 +42,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func printFonts() {
+        for familyName in UIFont.familyNames {
+            print("------------------------------")
+            print("Font Family Name = \(familyName)")
+            let names = UIFont.fontNames(forFamilyName: familyName)
+            print("Font Names = \(names)")
+        }
     }
 
 

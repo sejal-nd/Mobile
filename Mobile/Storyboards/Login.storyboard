@@ -219,7 +219,7 @@
         <!--Login View Controller-->
         <scene sceneID="PsW-YN-t0v">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Pib-RC-igc" customClass="LoginViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" automaticallyAdjustsScrollViewInsets="NO" id="Pib-RC-igc" customClass="LoginViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ryu-17-7dO"/>
                         <viewControllerLayoutGuide type="bottom" id="xt2-3j-cml"/>

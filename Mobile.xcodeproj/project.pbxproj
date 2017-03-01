@@ -159,6 +159,66 @@
 		B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
+		E80043011E64DED4005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042FF1E64DED4005CF531 /* TableViewCell.swift */; };
+		E80043021E64DED4005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042FF1E64DED4005CF531 /* TableViewCell.swift */; };
+		E80043031E64DED4005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042FF1E64DED4005CF531 /* TableViewCell.swift */; };
+		E80043041E64DED4005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80043001E64DED4005CF531 /* TableViewCell.xib */; };
+		E80043051E64DED4005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80043001E64DED4005CF531 /* TableViewCell.xib */; };
+		E80043061E64DED4005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80043001E64DED4005CF531 /* TableViewCell.xib */; };
+		E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
+		E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
+		E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
+		E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043081E64DEE2005CF531 /* SettingsViewController.swift */; };
+		E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043081E64DEE2005CF531 /* SettingsViewController.swift */; };
+		E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043081E64DEE2005CF531 /* SettingsViewController.swift */; };
+		E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
+		E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
+		E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
+		E80043141E65D126005CF531 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043131E65D126005CF531 /* MBProgressHUD.framework */; };
+		E80043151E65D13A005CF531 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043131E65D126005CF531 /* MBProgressHUD.framework */; };
+		E80043161E65D149005CF531 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043131E65D126005CF531 /* MBProgressHUD.framework */; };
+		E80043181E65DFE4005CF531 /* ToastSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */; };
+		E80043191E65E004005CF531 /* ToastSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */; };
+		E800431A1E65E016005CF531 /* ToastSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */; };
+		E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */; };
+		E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */; };
+		E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */; };
+		E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */; };
+		E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */; };
+		E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */; };
+		E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */; };
+		E800432D1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */; };
+		E800432E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */; };
+		E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf */; };
+		E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf */; };
+		E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf */; };
+		E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043201E65FF70005CF531 /* OpenSans-Italic.ttf */; };
+		E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043201E65FF70005CF531 /* OpenSans-Italic.ttf */; };
+		E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043201E65FF70005CF531 /* OpenSans-Italic.ttf */; };
+		E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043211E65FF70005CF531 /* OpenSans-Light.ttf */; };
+		E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043211E65FF70005CF531 /* OpenSans-Light.ttf */; };
+		E80043371E65FF70005CF531 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043211E65FF70005CF531 /* OpenSans-Light.ttf */; };
+		E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043221E65FF70005CF531 /* OpenSans-LightItalic.ttf */; };
+		E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043221E65FF70005CF531 /* OpenSans-LightItalic.ttf */; };
+		E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043221E65FF70005CF531 /* OpenSans-LightItalic.ttf */; };
+		E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */; };
+		E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */; };
+		E800433D1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */; };
+		E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */; };
+		E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */; };
+		E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */; };
+		E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
+		E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
+		E80043431E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
+		E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
+		E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
+		E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
+		E80043491E671F0B005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
+		E800434A1E671F36005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
+		E800434B1E671F4F005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
+		E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
+		E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
+		E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
 		E80043511E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
 		E80043521E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
 		E80043531E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
@@ -450,6 +510,26 @@
 		B5AC073B1E52A2BD00BBA4ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCAuthenticationService.swift; sourceTree = "<group>"; };
+		E80042FF1E64DED4005CF531 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		E80043001E64DED4005CF531 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		E80043081E64DEE2005CF531 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E800430F1E64DF10005CF531 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		E80043131E65D126005CF531 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
+		E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Carthage/Build/iOS/ToastSwiftFramework.framework; sourceTree = "<group>"; };
+		E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		E800431F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		E80043201E65FF70005CF531 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		E80043211E65FF70005CF531 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		E80043221E65FF70005CF531 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		E80043481E671F0B005CF531 /* Zxcvbn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zxcvbn.framework; path = Carthage/Build/iOS/Zxcvbn.framework; sourceTree = "<group>"; };
+		E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordStrengthMeterView.swift; sourceTree = "<group>"; };
 		E80043501E675AC4005CF531 /* SecondaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
@@ -498,6 +578,9 @@
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
 				E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */,
+				E80043141E65D126005CF531 /* MBProgressHUD.framework in Frameworks */,
+				E80043181E65DFE4005CF531 /* ToastSwiftFramework.framework in Frameworks */,
+				E80043491E671F0B005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +602,9 @@
 				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */,
 				E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */,
+				E80043161E65D149005CF531 /* MBProgressHUD.framework in Frameworks */,
+				E800431A1E65E016005CF531 /* ToastSwiftFramework.framework in Frameworks */,
+				E800434B1E671F4F005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +626,9 @@
 				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2601E524548005FB1BB /* RxSwift.framework in Frameworks */,
 				E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */,
+				E80043151E65D13A005CF531 /* MBProgressHUD.framework in Frameworks */,
+				E80043191E65E004005CF531 /* ToastSwiftFramework.framework in Frameworks */,
+				E800434A1E671F36005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +645,9 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E80043481E671F0B005CF531 /* Zxcvbn.framework */,
+				E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */,
+				E80043131E65D126005CF531 /* MBProgressHUD.framework */,
 				E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */,
 				E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */,
 				B5AC07411E52A49900BBA4ED /* CoreLocation.framework */,
@@ -596,10 +688,12 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E80042FA1E64DEB3005CF531 /* TableViewCell */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */,
 				E80043501E675AC4005CF531 /* SecondaryButton.swift */,
 				E8ECCD561E5E25CD00C9E46F /* Switch.swift */,
+				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -905,6 +999,7 @@
 		B5AC06C61E521B2600BBA4ED /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E800431B1E65FF4D005CF531 /* Fonts */,
 				8FD5AE971E54EA8C003F640D /* Lottie Animations */,
 				B5AC06C71E521B3200BBA4ED /* Assets.xcassets */,
 				B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */,
@@ -969,6 +1064,32 @@
 			path = OMC;
 			sourceTree = "<group>";
 		};
+		E80042FA1E64DEB3005CF531 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E80042FF1E64DED4005CF531 /* TableViewCell.swift */,
+				E80043001E64DED4005CF531 /* TableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		E800431B1E65FF4D005CF531 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */,
+				E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */,
+				E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */,
+				E800431F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf */,
+				E80043201E65FF70005CF531 /* OpenSans-Italic.ttf */,
+				E80043211E65FF70005CF531 /* OpenSans-Light.ttf */,
+				E80043221E65FF70005CF531 /* OpenSans-LightItalic.ttf */,
+				E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */,
+				E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */,
+				E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		E86334721E5F96980091E6FE /* FloatLabelTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -1001,6 +1122,8 @@
 			children = (
 				E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */,
 				E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */,
+				E800430F1E64DF10005CF531 /* SettingsViewModel.swift */,
+				E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1008,6 +1131,8 @@
 		E8EEF7271E577781006804D4 /* More */ = {
 			isa = PBXGroup;
 			children = (
+				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
+				E80043081E64DEE2005CF531 /* SettingsViewController.swift */,
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
 				E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */,
 			);
@@ -1196,23 +1321,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD5AE941E54EA5E003F640D /* Cartfile in Resources */,
+				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
+				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
+				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
+				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
+				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				E80043041E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736321E6740A8003B9369 /* INFO.txt in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
+				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
+				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				B55736381E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
+				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
 				E8B4F4BB1E5C99E00031D934 /* Bill.storyboard in Resources */,
+				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
+				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736411E6740C9003B9369 /* VersionInfo.plist in Resources */,
 			);
@@ -1223,23 +1359,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
+				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
+				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736471E6742A6003B9369 /* OMC.plist in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
+				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
+				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
+				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				E80043061E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				B55736401E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736341E6740A8003B9369 /* INFO.txt in Resources */,
 				E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */,
+				E800432E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
+				E80043431E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
+				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
 				E8B4F4BD1E5C99E00031D934 /* Bill.storyboard in Resources */,
+				E80043371E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
+				E800433D1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
 			);
@@ -1250,23 +1397,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
+				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE951E54EA5E003F640D /* Cartfile in Resources */,
+				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
+				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
+				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
+				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				E80043051E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				B557363F1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736331E6740A8003B9369 /* INFO.txt in Resources */,
 				E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */,
+				E800432D1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
+				E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				B55736391E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
+				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
 				E8B4F4BC1E5C99E00031D934 /* Bill.storyboard in Resources */,
+				E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
+				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736421E6740C9003B9369 /* VersionInfo.plist in Resources */,
 			);
@@ -1292,6 +1450,9 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -1310,6 +1471,9 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -1328,6 +1492,9 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -1387,23 +1554,29 @@
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
+				E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
+				E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E89D07A51E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */,
+				E80043011E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
+				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				E80043511E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
+				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -1421,23 +1594,29 @@
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
+				E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
+				E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E89D07A71E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */,
+				E80043031E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
+				E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				E80043531E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
+				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -1455,23 +1634,29 @@
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
+				E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
+				E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E89D07A61E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */,
+				E80043021E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE871E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
+				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				E80043521E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
+				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -1680,6 +1865,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1711,6 +1897,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1799,6 +1986,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1888,6 +2076,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1977,6 +2166,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2007,6 +2197,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2037,6 +2228,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2067,6 +2259,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2097,6 +2290,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2127,6 +2321,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2156,6 +2351,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2186,6 +2382,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2216,6 +2413,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2246,6 +2444,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2276,6 +2475,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
