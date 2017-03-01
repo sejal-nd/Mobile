@@ -587,8 +587,8 @@
 				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
 				E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */,
 				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
-				E8EEF7271E577781006804D4 /* More */,
 				8FD5AE821E54EA39003F640D /* Login */,
+				E8EEF7271E577781006804D4 /* More */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

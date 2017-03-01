@@ -18,9 +18,10 @@ import JVFloatLabeledText
 // BGE:
 // multprem02 / Password1
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var logoView: UIView!
+    @IBOutlet weak var opcoLogo: UIImageView!
+    @IBOutlet weak var loginFormView: UIView!
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
     @IBOutlet weak var passwordTextField: FloatLabelTextField!
     @IBOutlet weak var signInButton: PrimaryButton!
@@ -36,11 +37,20 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
+        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backgroundColor = .white
-
-        logoView.backgroundColor = .primaryColor
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.tintColor = .white
+        
+        view.backgroundColor = .primaryColor
+        
+        loginFormView.layer.shadowColor = UIColor.black.cgColor
+        loginFormView.layer.shadowOpacity = 0.15
+        loginFormView.layer.shadowRadius = 8
+        loginFormView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        loginFormView.layer.masksToBounds = false
+        loginFormView.layer.cornerRadius = 2
         
         usernameTextField.textField.placeholder = "Username / Email Address"
         usernameTextField.textField.autocorrectionType = .no
@@ -59,6 +69,8 @@ class LoginViewController: UIViewController {
         passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.onLoginPress()
         }).addDisposableTo(disposeBag)
+        
+        forgotPasswordButton.tintColor = UIColor.secondaryButtonText
     }
     
     deinit {
@@ -153,7 +165,13 @@ class LoginViewController: UIViewController {
         self.present(errorAlert, animated: true, completion: nil)
     }
     
-    // MARK: Scroll View
+    // MARK: - Scroll View
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        opcoLogo.alpha = lerp(1, 0, scrollView.contentOffset.y / 99.0)
+    }
+    
+    // MARK: - Keyboard
     
     func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
@@ -169,15 +187,14 @@ class LoginViewController: UIViewController {
         scrollView.scrollIndicatorInsets = .zero
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Other
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
-    */
-
+    
+    func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
+        return a + (b - a) * t;
+    }
+    
 }

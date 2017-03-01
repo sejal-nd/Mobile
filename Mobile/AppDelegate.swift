@@ -22,17 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("Environment %@", Environment.sharedInstance.environmentName)
         NSLog("AppName %@", Environment.sharedInstance.appName)
         
-        setupAppearance()
-        
         return true
-    }
-    
-    func setupAppearance() {
-        // Nav Bar
-        UINavigationBar.appearance().tintColor = UIColor.secondaryButtonText
-        
-        // Buttons
-        UIButton.appearance().tintColor = .secondaryButtonText
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -24,7 +24,6 @@ class LoginTermsPoliciesViewController: UIViewController {
         super.viewDidLoad()
         
         textView.textContainerInset = UIEdgeInsetsMake(26, 29, 8, 29)
-        //textView.scrollIndicatorInsets = UIEdgeInsetsMake(8, 0, 8, 0)
         textView.attributedText = viewModel.attributedTermsString
 
         agreeView.layer.shadowColor = UIColor.black.cgColor
@@ -46,6 +45,10 @@ class LoginTermsPoliciesViewController: UIViewController {
     @IBAction func onContinuePress() {
         UserDefaults.standard.set(true, forKey: UserDefaultKeys.HasAcceptedTerms)
         dismiss(animated: true, completion: nil)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
     }
     
 
