@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>environment</key>
-	<string>DEV</string>
+	<string>STAGE</string>
 	<key>appName</key>
-	<string>BGE_DEV</string>
+	<string>BGE_STAGE</string>
     <key>opco</key>
     <string>BGE</string>
     <key>oauthEndpoint</key>
