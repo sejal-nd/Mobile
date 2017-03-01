@@ -123,9 +123,9 @@
 		B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
 		B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
-		E83EFA371E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
-		E83EFA381E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
-		E83EFA391E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */; };
+		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
+		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
+		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */; };
 		E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */; };
 		E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */; };
@@ -281,7 +281,7 @@
 		B5AC073B1E52A2BD00BBA4ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCAuthenticationService.swift; sourceTree = "<group>"; };
-		E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsPoliciesViewModel.swift; sourceTree = "<group>"; };
+		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
 		E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetJVFloatLabeledTextField.swift; sourceTree = "<group>"; };
@@ -610,7 +610,7 @@
 			isa = PBXGroup;
 			children = (
 				E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */,
-				E83EFA361E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift */,
+				E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -974,7 +974,7 @@
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B5AC06E61E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
-				E83EFA371E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
+				E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1007,7 +1007,7 @@
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B5AC06E81E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
-				E83EFA391E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
+				E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1040,7 +1040,7 @@
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B5AC06E71E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
-				E83EFA381E5BAAAD00869FE3 /* LoginTermsPoliciesViewModel.swift in Sources */,
+				E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
