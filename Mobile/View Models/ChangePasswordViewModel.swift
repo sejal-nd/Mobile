@@ -11,12 +11,16 @@ import UIKit
 import Zxcvbn
 
 class ChangePasswordViewModel {
+    let disposeBag = DisposeBag()
+    
     var currentPassword = Variable("")
     var newPassword = Variable("")
     var confirmPassword = Variable("")
     
-    required init() {
-        
+    private var authService: AuthenticationService?
+    
+    required init(authService: AuthenticationService) {
+        self.authService = authService
     }
     
     func characterCountValid() -> Observable<Bool> {
@@ -94,6 +98,19 @@ class ChangePasswordViewModel {
         return Observable.combineLatest(everythingValid(), confirmPasswordMatches()) {
             return $0 && $1
         }
+    }
+    
+    func changePassword(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        authService!
+            .changePassword(currentPassword.value, newPassword: newPassword.value)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { (success: Bool) in
+                print("change pw success")
+            }, onError: { (error: Error) in
+                print("change pw error: \(error)")
+            })
+            .addDisposableTo(disposeBag)
     }
 
     

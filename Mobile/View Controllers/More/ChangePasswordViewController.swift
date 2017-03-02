@@ -32,14 +32,18 @@ class ChangePasswordViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = ChangePasswordViewModel()
+    let viewModel = ChangePasswordViewModel(authService: ServiceFactory.createAuthenticationService())
     
-    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDonePress))
+    var cancelButton: UIBarButtonItem?
+    var doneButton: UIBarButtonItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = doneButton
+        cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
+        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDonePress))
+        navigationItem.leftBarButtonItem = cancelButton!
+        navigationItem.rightBarButtonItem = doneButton!
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -105,7 +109,7 @@ class ChangePasswordViewController: UIViewController {
         
 
         confirmPasswordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            if self.doneButton.isEnabled {
+            if self.doneButton!.isEnabled {
                 self.onDonePress()
             }
         }).addDisposableTo(disposeBag)
@@ -118,6 +122,10 @@ class ChangePasswordViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func onCancelPress() {
+        _ = navigationController?.popViewController(animated: true)
     }
     
     func onDonePress() {
@@ -159,7 +167,7 @@ class ChangePasswordViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
-        viewModel.doneButtonEnabled().bindTo(doneButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.doneButtonEnabled().bindTo(doneButton!.rx.isEnabled).addDisposableTo(disposeBag)
     }
     
     // MARK: Scroll View

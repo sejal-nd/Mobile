@@ -26,7 +26,7 @@ class ResponseParserTests: XCTestCase {
              
         switch result {
         case .Failure( _):
-            XCTFail("Incorrect Result - Valid Success response shoudl result in a Success return value.")
+            XCTFail("Incorrect Result - Valid Success response should result in a Success return value.")
             break
         case .Success:
             break
