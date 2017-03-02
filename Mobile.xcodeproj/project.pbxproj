@@ -227,6 +227,9 @@
 		E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
 		E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
 		E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
+		E80043511E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
+		E80043521E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
+		E80043531E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
 		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
@@ -538,6 +541,7 @@
 		E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		E80043481E671F0B005CF531 /* Zxcvbn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zxcvbn.framework; path = Carthage/Build/iOS/Zxcvbn.framework; sourceTree = "<group>"; };
 		E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordStrengthMeterView.swift; sourceTree = "<group>"; };
+		E80043501E675AC4005CF531 /* SecondaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
@@ -686,8 +690,8 @@
 				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
 				E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */,
 				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
-				E8EEF7271E577781006804D4 /* More */,
 				8FD5AE821E54EA39003F640D /* Login */,
+				E8EEF7271E577781006804D4 /* More */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -698,6 +702,7 @@
 				E80042FA1E64DEB3005CF531 /* TableViewCell */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */,
+				E80043501E675AC4005CF531 /* SecondaryButton.swift */,
 				E8ECCD561E5E25CD00C9E46F /* Switch.swift */,
 				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
 			);
@@ -1129,9 +1134,9 @@
 		E8EEF70B1E565BE7006804D4 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				E800430F1E64DF10005CF531 /* SettingsViewModel.swift */,
 				E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */,
 				E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */,
+				E800430F1E64DF10005CF531 /* SettingsViewModel.swift */,
 				E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */,
 			);
 			path = "View Models";
@@ -1140,10 +1145,10 @@
 		E8EEF7271E577781006804D4 /* More */ = {
 			isa = PBXGroup;
 			children = (
-				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
-				E80043081E64DEE2005CF531 /* SettingsViewController.swift */,
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
 				E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */,
+				E80043081E64DEE2005CF531 /* SettingsViewController.swift */,
+				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -1247,7 +1252,7 @@
 				ORGANIZATIONNAME = "Exelon Corporation";
 				TargetAttributes = {
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = 87ACSVM3C4;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
@@ -1582,6 +1587,7 @@
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				B5AC07451E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E80043511E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
@@ -1623,6 +1629,7 @@
 				E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				B5AC07471E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E80043531E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
@@ -1664,6 +1671,7 @@
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				B5AC07461E52B4E800BBA4ED /* OMCAuthenticationService.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E80043521E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  LoginButton.swift
+//  PrimaryButton.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 2/13/17.
@@ -28,7 +28,7 @@ class PrimaryButton: UIButton {
     }
     
     func commonInit() {
-        backgroundColor = .buttonBackgroundNormalColor
+        backgroundColor = .primaryButtonBackground
 
         titleLabel!.font = UIFont.boldSystemFont(ofSize: 20)
         setTitleColor(.white, for: .normal)
@@ -51,10 +51,10 @@ class PrimaryButton: UIButton {
         }
         set {
             if newValue {
-                backgroundColor = .buttonBackgroundHighlightColor
+                backgroundColor = .primaryButtonHighlight
             }
             else {
-                backgroundColor = .buttonBackgroundNormalColor
+                backgroundColor = .primaryButtonBackground
             }
             super.isHighlighted = newValue
         }
@@ -66,9 +66,9 @@ class PrimaryButton: UIButton {
         }
         set {
             if newValue {
-                backgroundColor = .buttonBackgroundNormalColor
+                backgroundColor = .primaryButtonBackground
             } else {
-                backgroundColor = .buttonBackgroundDisabledColor
+                backgroundColor = .primaryButtonDisabled
             }
             super.isEnabled = newValue
         }

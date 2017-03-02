@@ -15,10 +15,9 @@ class MainBaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //navigationBar.barStyle = .black
         navigationBar.barTintColor = .white
-        navigationBar.tintColor = .textButtonColor
-        
+        navigationBar.tintColor = .secondaryButtonText
+
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.darkJungleGreen,
             NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
@@ -27,9 +26,11 @@ class MainBaseNavigationController: UINavigationController {
         
         setNeedsStatusBarAppearanceUpdate()
         
-        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
-        let rootViewController = storyboard.instantiateInitialViewController()
-        setViewControllers([rootViewController!], animated: false)
+        if storyboardName != nil {
+            let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+            let rootViewController = storyboard.instantiateInitialViewController()
+            setViewControllers([rootViewController!], animated: false)
+        }
     }
 
     override func didReceiveMemoryWarning() {

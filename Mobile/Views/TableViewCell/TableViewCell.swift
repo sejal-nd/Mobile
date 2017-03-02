@@ -62,7 +62,7 @@ class TableViewCell: UITableViewCell {
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if !highlightDisabled {
             if highlighted {
-                innerContentView.backgroundColor = .secondaryButtonBackgroundHightlightColor
+                innerContentView.backgroundColor = .secondaryButtonHighlight
             } else {
                 innerContentView.backgroundColor = .white
             }
