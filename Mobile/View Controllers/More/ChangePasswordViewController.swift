@@ -9,8 +9,15 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import MBProgressHUD
+
+protocol ChangePasswordViewControllerDelegate: class {
+    func didChangePassword(sender: ChangePasswordViewController)
+}
 
 class ChangePasswordViewController: UIViewController {
+    
+    weak var delegate: ChangePasswordViewControllerDelegate?
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var currentPasswordTextField: FloatLabelTextField!
@@ -132,6 +139,22 @@ class ChangePasswordViewController: UIViewController {
         print("Done")
         // TODO: Call change password API
         // TODO: If successful and Touch ID enabled, update password in keychain
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        hud.contentColor = .white
+        
+        viewModel.changePassword(onSuccess: {
+            hud.hide(animated: true)
+            self.delegate?.didChangePassword(sender: self)
+            _ = self.navigationController?.popViewController(animated: true)
+        }, onError: { (errorMessage) in
+            hud.hide(animated: true)
+            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
+        })
     }
     
     func setupValidation() {

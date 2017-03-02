@@ -106,9 +106,9 @@ class ChangePasswordViewModel {
             .observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { (success: Bool) in
-                print("change pw success")
+                onSuccess()
             }, onError: { (error: Error) in
-                print("change pw error: \(error)")
+                onError(error.localizedDescription)
             })
             .addDisposableTo(disposeBag)
     }

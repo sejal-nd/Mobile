@@ -18,15 +18,15 @@
 				<string>SSOTokenExchange</string>
 				<key>SSOTokenExchange</key>
 				<dict>
-                    <key>mobileBackendID</key>
-                    <string>ea2d2100-c557-4258-a374-bc53d8a7302e</string>
-                    <key>anonymousKey</key>
-                    <string>VVNPUkFDTEVBTUVSSVRSSUFMNjc2NDVfTU9CSUxFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WHpmYjRlNXV0X2N3cG4=</string>
+					<key>mobileBackendID</key>
+					<string>ea2d2100-c557-4258-a374-bc53d8a7302e</string>
+					<key>anonymousKey</key>
+					<string>VVNPUkFDTEVBTUVSSVRSSUFMNjc2NDVfTU9CSUxFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WHpmYjRlNXV0X2N3cG4=</string>
 				</dict>
 			</dict>
 		</dict>
 	</dict>
 	<key>logLevel</key>
-	<string>info</string>
+	<string>debug</string>
 </dict>
 </plist>
