@@ -14,6 +14,7 @@ class LoginViewModel {
     
     var username = Variable("")
     var password = Variable("")
+    var keepMeSignedIn = Variable(false)
     
     private var authService: AuthenticationService?
     private var fingerprintService: FingerprintService?
@@ -37,6 +38,13 @@ class LoginViewModel {
     }
     
     func performLogin(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        print("Keep me signed in = \(keepMeSignedIn.value)") // TODO: Something with this
+        
+        if username.value.isEmpty || password.value.isEmpty {
+            onError("Please enter your username and password")
+            return;
+        }
+        
         authService!
             .login(username.value, password: password.value)
             .observeOn(MainScheduler.instance)

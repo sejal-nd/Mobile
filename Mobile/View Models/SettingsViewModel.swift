@@ -22,7 +22,11 @@ class SettingsViewModel {
         self.authService = authService
         self.fingerprintService = fingerprintService
         
-        username.value = fingerprintService.getStoredUsername()!
+        // We should always have a stored username unless user skipped login, in which case this will probably change
+        // in a future sprint anyway
+        if let storedUsername = fingerprintService.getStoredUsername() {
+            username.value = storedUsername
+        }
     }
     
     func isDeviceTouchIDCompatible() -> Bool {

@@ -9,25 +9,31 @@
 import UIKit
 
 extension UIColor {
-    class var buttonBackgroundNormalColor: UIColor {
+    class var primaryButtonBackground: UIColor {
         get {
             return UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
         }
     }
 
-    class var buttonBackgroundHighlightColor: UIColor {
+    class var primaryButtonHighlight: UIColor {
         get {
            return UIColor(red: 0/255, green: 38/255, blue: 88/255, alpha: 1)
         }
     }
 
-    class var buttonBackgroundDisabledColor: UIColor {
+    class var primaryButtonDisabled: UIColor {
         get {
             return UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1)
         }
     }
-
-    class var secondaryButtonBackgroundHightlightColor: UIColor {
+    
+    class var secondaryButtonText: UIColor {
+        get {
+            return UIColor(red: 0/255, green: 89/255, blue: 164/255, alpha: 1)
+        }
+    }
+    
+    class var secondaryButtonHighlight: UIColor {
         get {
             return UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
         }
@@ -36,12 +42,6 @@ extension UIColor {
     class var tableViewBackgroundColor: UIColor {
         get {
             return UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.15)
-        }
-    }
-
-    class var textButtonColor: UIColor {
-        get {
-            return UIColor(red: 0/255, green: 89/255, blue: 164/255, alpha: 1)
         }
     }
 

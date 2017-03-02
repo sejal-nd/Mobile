@@ -23,8 +23,7 @@ class LoginTermsPoliciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textView.textContainerInset = UIEdgeInsetsMake(0, 12, 8, 16)
-        textView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 8, 4)
+        textView.textContainerInset = UIEdgeInsetsMake(26, 29, 8, 29)
         textView.attributedText = viewModel.attributedTermsString
 
         agreeView.layer.shadowColor = UIColor.black.cgColor
@@ -37,7 +36,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         agreeLabel.text = viewModel.agreeLabelText;
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,6 +45,10 @@ class LoginTermsPoliciesViewController: UIViewController {
     @IBAction func onContinuePress() {
         UserDefaults.standard.set(true, forKey: UserDefaultKeys.HasAcceptedTerms)
         dismiss(animated: true, completion: nil)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
     }
     
 
