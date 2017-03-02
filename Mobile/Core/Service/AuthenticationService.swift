@@ -32,7 +32,7 @@ protocol AuthenticationService {
     /// - Parameter completion: the completion block to execute upon completion.
     ///     The ServiceResult that is provided will econtain the user id on success,
     ///     or the error on failure.
-    func logout(completion: @escaping (_ result: ServiceResult<String>) -> Swift.Void)
+    func logout(completion: @escaping (_ result: ServiceResult<Void>) -> Swift.Void)
     
     /// Change the currently logged in users password.
     ///
@@ -42,7 +42,7 @@ protocol AuthenticationService {
     ///   - completion: the completion block to execute upon completion. The
     ///     ServiceResult that is provided will contain the user id on success,
     ///     or the error on failure.
-    func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (_ result: ServiceResult<String>) -> Swift.Void)
+    func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (_ result: ServiceResult<Void>) -> Swift.Void)
 }
 
 
@@ -79,7 +79,7 @@ extension AuthenticationService {
     /// - Returns: An observable to subscribe to.
     func logout() -> Observable<Bool> {
         return Observable.create { observer in
-            self.logout(completion: { (result: ServiceResult<String>) in
+            self.logout(completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
                     observer.onNext(true)
@@ -101,7 +101,7 @@ extension AuthenticationService {
     /// - Returns: An observable to subscribe to.
     func changePassword(_ currentPassword: String, newPassword: String) -> Observable<Bool> {
         return Observable.create { observer in
-            self.changePassword(currentPassword, newPassword: newPassword, completion: { (result: ServiceResult<String>) in
+            self.changePassword(currentPassword, newPassword: newPassword, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
                     observer.onNext(true)
