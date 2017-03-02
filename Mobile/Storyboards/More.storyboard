@@ -66,7 +66,7 @@
         <!--Settings-->
         <scene sceneID="2mB-1R-Nng">
             <objects>
-                <viewController id="TZa-54-G4b" customClass="SettingsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="TZa-54-G4b" customClass="SettingsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k8c-4H-vZr"/>
                         <viewControllerLayoutGuide type="bottom" id="AK0-u0-4ij"/>
@@ -352,7 +352,7 @@
         <!--Terms & Policies-->
         <scene sceneID="Y5c-le-Fkt">
             <objects>
-                <viewController id="6Py-2X-RBq" customClass="TermsPoliciesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="6Py-2X-RBq" customClass="TermsPoliciesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gll-ha-gZ7"/>
                         <viewControllerLayoutGuide type="bottom" id="GSd-fN-0FS"/>
