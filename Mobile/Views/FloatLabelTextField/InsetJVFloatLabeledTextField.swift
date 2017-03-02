@@ -12,15 +12,34 @@ import JVFloatLabeledText
 class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
     
     var borderLayers = [CALayer]()
+    var isShowingAccessory = false
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        let rect = super.textRect(forBounds: bounds)
-        return rect.insetBy(dx: 8, dy: 0)
+        if isShowingAccessory {
+            if hasText {
+                return CGRect(x: 8, y: 7, width: bounds.size.width - 41, height: bounds.size.height)
+            }
+            return CGRect(x: 8, y: 0, width: bounds.size.width - 41, height: bounds.size.height)
+        } else {
+            if hasText {
+                return CGRect(x: 8, y: 7, width: bounds.size.width - 16, height: bounds.size.height)
+            }
+            return CGRect(x: 8, y: 0, width: bounds.size.width - 16, height: bounds.size.height)
+        }
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        let rect = super.editingRect(forBounds: bounds)
-        return rect.insetBy(dx: 8, dy: 0)
+        if isShowingAccessory {
+            if hasText {
+                return CGRect(x: 8, y: 7, width: bounds.size.width - 41, height: bounds.size.height)
+            }
+            return CGRect(x: 8, y: 0, width: bounds.size.width - 41, height: bounds.size.height)
+        } else {
+            if hasText {
+                return CGRect(x: 8, y: 7, width: bounds.size.width - 16, height: bounds.size.height)
+            }
+            return CGRect(x: 8, y: 0, width: bounds.size.width - 16, height: bounds.size.height)
+        }
     }
     
     // We have to add the borders here because the textView's frame is not yet available in either

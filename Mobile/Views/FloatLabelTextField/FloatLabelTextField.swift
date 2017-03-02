@@ -18,13 +18,14 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
     @IBOutlet weak var bottomColorBar: UIView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var disabledColorBar: UIView!
-    @IBOutlet weak var textFieldTrailingSpaceConstraint: NSLayoutConstraint!
     
     final let deselectedBottomBarColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
     final let errorColor = UIColor(red: 113/255, green: 0/255, blue: 28/255, alpha: 1)
     
     var errorState = false
     var textFieldIsFocused = false
+    
+    var borderLayers = [CALayer]()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -98,18 +99,18 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
             errorState = true
             checkAccessoryImageView.isHidden = true
             errorAccessoryImageView.isHidden = false
-            textFieldTrailingSpaceConstraint.constant = 33
-            
+
             leftColorBar.backgroundColor = errorColor
             bottomColorBar.backgroundColor = errorColor
+            bottomColorBar.isHidden = false
+            
+            textField.isShowingAccessory = true
             textField.floatingLabelTextColor = errorColor
             textField.floatingLabelActiveTextColor = errorColor
             textField.floatingLabel.textColor = errorColor
-            bottomColorBar.isHidden = false
         } else {
             errorState = false
             errorAccessoryImageView.isHidden = true
-            textFieldTrailingSpaceConstraint.constant = 0
             
             leftColorBar.backgroundColor = .primaryColor
             if textFieldIsFocused {
@@ -121,6 +122,7 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
                 }
             }
             
+            textField.isShowingAccessory = false
             textField.floatingLabelTextColor = UIColor.primaryColor.darker()
             textField.floatingLabelActiveTextColor = UIColor.primaryColor.darker()
             textField.floatingLabel.textColor = UIColor.primaryColor.darker()
@@ -151,10 +153,10 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         if validated {
             setError(nil)
             checkAccessoryImageView.isHidden = false
-            textFieldTrailingSpaceConstraint.constant = 33
+            textField.isShowingAccessory = true
         } else {
             checkAccessoryImageView.isHidden = true
-            textFieldTrailingSpaceConstraint.constant = 0
+            textField.isShowingAccessory = false
         }
     }
     

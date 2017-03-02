@@ -18,7 +18,6 @@
                 <outlet property="errorLabel" destination="dny-ww-tgA" id="kUZ-cB-hhP"/>
                 <outlet property="leftColorBar" destination="HJi-q8-qVh" id="j0F-jv-otR"/>
                 <outlet property="textField" destination="TnQ-GT-WNf" id="eK7-tE-eE3"/>
-                <outlet property="textFieldTrailingSpaceConstraint" destination="m5r-ay-IIP" id="RvY-xO-kKw"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Qdz-UB-iMc"/>
             </connections>
         </placeholder>
