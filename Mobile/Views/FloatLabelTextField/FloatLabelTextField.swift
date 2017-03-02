@@ -43,8 +43,6 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
-        view.layer.borderWidth = 0.5
-        view.layer.borderColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1).cgColor
         addSubview(view)
 
         leftColorBar.backgroundColor = .primaryColor
@@ -52,7 +50,6 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         
         errorLabel.textColor = errorColor
         errorLabel.text = nil
-        
         
         if #available(iOS 8.2, *) {
             textField.floatingLabelFont = UIFont.systemFont(ofSize: 11, weight: UIFontWeightSemibold)
