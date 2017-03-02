@@ -88,14 +88,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func switchObserver(cell: TableViewCell, isOn: Bool) {
         if isOn {
-            presentPasswordAlert(message: "Enter your password to enable Touch ID")
+            presentPasswordAlert(message: viewModel.getConfirmPasswordMessage())
         } else {
             self.viewModel.disableTouchID()
         }
     }
     
     func presentPasswordAlert(message: String) {
-        let pwAlert = UIAlertController(title: "Confirm your password", message: message, preferredStyle: .alert)
+        let pwAlert = UIAlertController(title: "Confirm Password", message: message, preferredStyle: .alert)
         pwAlert.addTextField(configurationHandler: { (textField) in
             textField.placeholder = "Password"
             textField.isSecureTextEntry = true
