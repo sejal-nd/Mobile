@@ -26,8 +26,8 @@ class MoreViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func onSignOutPress() {
         let confirmAlert = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .alert)
-        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        confirmAlert.addAction(UIAlertAction(title: "Sign Out", style: .default, handler: logout))
+        confirmAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: logout))
         present(confirmAlert, animated: true, completion: nil)
     }
     
@@ -38,9 +38,7 @@ class MoreViewController: UIViewController, UITableViewDelegate, UITableViewData
             let rootVC = loginStoryboard.instantiateInitialViewController()
             UIApplication.shared.keyWindow?.rootViewController = rootVC
         }, onError: { (error) in
-            
-        }, onCompleted: {
-            
+            print("Logout Error: \(error)")
         }).addDisposableTo(disposeBag)
     }
     
