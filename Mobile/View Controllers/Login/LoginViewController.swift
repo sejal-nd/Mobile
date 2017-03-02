@@ -24,13 +24,14 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var loginFormView: UIView!
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
     @IBOutlet weak var passwordTextField: FloatLabelTextField!
+    @IBOutlet weak var keepMeSignedInSwitch: Switch!
     @IBOutlet weak var signInButton: PrimaryButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     
     let disposeBag = DisposeBag()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +63,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     
         usernameTextField.textField.rx.text.orEmpty.bindTo(viewModel.username).addDisposableTo(disposeBag)
         passwordTextField.textField.rx.text.orEmpty.bindTo(viewModel.password).addDisposableTo(disposeBag)
+        keepMeSignedInSwitch.rx.isOn.bindTo(viewModel.keepMeSignedIn).addDisposableTo(disposeBag)
         
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.passwordTextField.textField.becomeFirstResponder()

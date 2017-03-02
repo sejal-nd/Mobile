@@ -1131,10 +1131,10 @@
 		E8EEF7271E577781006804D4 /* More */ = {
 			isa = PBXGroup;
 			children = (
-				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
-				E80043081E64DEE2005CF531 /* SettingsViewController.swift */,
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
 				E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */,
+				E80043081E64DEE2005CF531 /* SettingsViewController.swift */,
+				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
