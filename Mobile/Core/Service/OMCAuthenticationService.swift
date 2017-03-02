@@ -15,6 +15,11 @@ private enum OAuthQueryParams: String {
     case Encode = "encode"
 }
 
+private enum ChangePasswordParams: String {
+    case OldPassword = "old_password"
+    case NewPassword = "new_password"
+}
+
 class OMCAuthenticationService : AuthenticationService {
     
     // OMC Login Implementation
@@ -72,15 +77,42 @@ class OMCAuthenticationService : AuthenticationService {
     }
     
     // OMC Logout Implementation
-    func logout(completion: @escaping (ServiceResult<String>) -> Void) {
-        //TODO: when the oracle sdk is available
-        completion(ServiceResult.Success("loggedout@mail.com"))
+    func logout(completion: @escaping (ServiceResult<Void>) -> Void) {
+        
+        let backend = OMCMobileBackendManager.shared().defaultMobileBackend
+        let auth = backend?.authorization
+        
+        auth?.logoutClearCredentials(true, completionBlock: { (error: Error?) in
+            if error != nil {
+                completion(ServiceResult.Failure(ServiceError.Other(error: error!)))
+            } else {
+                completion(ServiceResult.Success())
+            }
+        })
     }
     
     // OMC Change Password Implementation
-    func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<String>) -> Void) {
-        //TODO: when the oracle sdk is available
-        completion(ServiceResult.Success("success"))
+    func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
+        
+        let backend = OMCMobileBackendManager.shared().defaultMobileBackend
+        let client = backend?.customCodeClient
+        
+        let params = [ChangePasswordParams.OldPassword.rawValue: currentPassword,
+                      ChangePasswordParams.NewPassword.rawValue: newPassword]
+        
+        client?.invokeCustomRequest("auth/profile/password", method:HttpMethod.Put.rawValue, data: params, completion: { (error: Error?, response: HTTPURLResponse?, data: Any?) in
+            
+            let result = OMCResponseParser.parse(data: data, error: error, response: response)
+            
+            switch result {
+            case .Success:
+                completion(ServiceResult.Success())
+                break
+            case .Failure(let err):
+                completion(ServiceResult.Failure(err))
+                break
+            }
+        })
     }
 
 }
