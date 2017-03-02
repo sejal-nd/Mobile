@@ -22,7 +22,6 @@ class AuthTokenParser : NSObject {
             
             //TODO: Replace with DLog
             print(NSString(data: responseData, encoding: String.Encoding.utf8.rawValue) ?? "No Response Data")
-            let vl = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
             
             do {
                 
