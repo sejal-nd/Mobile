@@ -102,7 +102,7 @@ class ChangePasswordViewModel {
         }
     }
     
-    func changePassword(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func changePassword(onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
         authService!
             .changePassword(currentPassword.value, newPassword: newPassword.value)
             .observeOn(MainScheduler.instance)
@@ -113,7 +113,21 @@ class ChangePasswordViewModel {
                 }
                 onSuccess()
             }, onError: { (error: Error) in
-                onError(error.localizedDescription)
+                switch(error as! ServiceError) {
+                    case ServiceError.JSONParsing:
+                        onError("JSONParsing Error")
+                        break
+                    case ServiceError.Custom(let code, let description):
+                        if code == "FN-PWD-NOMATCH" {
+                            onPasswordNoMatch()
+                        } else {
+                            onError(description)
+                        }
+                        break
+                    case ServiceError.Other(let error):
+                        onError(error.localizedDescription)
+                        break
+                }
             })
             .addDisposableTo(disposeBag)
     }

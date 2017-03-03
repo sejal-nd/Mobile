@@ -73,15 +73,23 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.setEnabled(false)
         
+        // Bind to the view model
         currentPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.currentPassword).addDisposableTo(disposeBag)
         newPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.newPassword).addDisposableTo(disposeBag)
         confirmPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.confirmPassword).addDisposableTo(disposeBag)
+        
+        currentPasswordTextField.textField.rx.controlEvent(UIControlEvents.editingChanged).subscribe(onNext: { _ in
+            // If we displayed an inline error, clear it when user edits the text
+            if self.currentPasswordTextField.errorState {
+                self.currentPasswordTextField.setError(nil)
+            }
+        }).addDisposableTo(disposeBag)
         
         currentPasswordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.newPasswordTextField.textField.becomeFirstResponder()
         }).addDisposableTo(disposeBag)
         
-        newPasswordTextField.textField.rx.controlEvent(UIControlEvents.editingDidBegin).subscribe(onNext: { _ in
+        newPasswordTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.view.layoutIfNeeded()
             UIView.animate(withDuration: 0.5, animations: {
                 self.passwordRequirementsViewHeightConstraint.constant = 254
@@ -100,7 +108,7 @@ class ChangePasswordViewController: UIViewController {
                 self.passwordStrengthLabel.text = "Strong"
             }
         }).addDisposableTo(disposeBag)
-        newPasswordTextField.textField.rx.controlEvent(UIControlEvents.editingDidEnd).subscribe(onNext: { _ in
+        newPasswordTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             self.view.layoutIfNeeded()
             UIView.animate(withDuration: 0.5, animations: {
                 self.passwordRequirementsViewHeightConstraint.constant = 0
@@ -136,6 +144,8 @@ class ChangePasswordViewController: UIViewController {
     }
     
     func onDonePress() {
+        self.view.endEditing(true)
+        
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
         hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
@@ -145,9 +155,12 @@ class ChangePasswordViewController: UIViewController {
             hud.hide(animated: true)
             self.delegate?.didChangePassword(sender: self)
             _ = self.navigationController?.popViewController(animated: true)
-        }, onError: { (errorMessage) in
+        }, onPasswordNoMatch: { _ in
             hud.hide(animated: true)
-            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+            self.currentPasswordTextField.setError("Your current password was entered incorrectly")
+        }, onError: { (error: String) in
+            hud.hide(animated: true)
+            let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(alert, animated: true)
         })
