@@ -18,9 +18,11 @@ class ChangePasswordViewModel {
     var confirmPassword = Variable("")
     
     private var authService: AuthenticationService?
+    private var fingerprintService: FingerprintService?
     
-    required init(authService: AuthenticationService) {
+    required init(authService: AuthenticationService, fingerprintService: FingerprintService) {
         self.authService = authService
+        self.fingerprintService = fingerprintService
     }
     
     func characterCountValid() -> Observable<Bool> {
@@ -106,6 +108,9 @@ class ChangePasswordViewModel {
             .observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { (success: Bool) in
+                if self.fingerprintService!.isTouchIDEnabled() { // Store the new password in the keychain
+                    self.fingerprintService!.setStoredPassword(password: self.newPassword.value)
+                }
                 onSuccess()
             }, onError: { (error: Error) in
                 onError(error.localizedDescription)

@@ -39,7 +39,7 @@ class ChangePasswordViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = ChangePasswordViewModel(authService: ServiceFactory.createAuthenticationService())
+    let viewModel = ChangePasswordViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     
     var cancelButton: UIBarButtonItem?
     var doneButton: UIBarButtonItem?
@@ -136,10 +136,6 @@ class ChangePasswordViewController: UIViewController {
     }
     
     func onDonePress() {
-        print("Done")
-        // TODO: Call change password API
-        // TODO: If successful and Touch ID enabled, update password in keychain
-        
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
         hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
