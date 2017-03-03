@@ -9,7 +9,7 @@
 			<key>default</key>
 			<true/>
 			<key>baseURL</key>
-			<string>https://mobile-usoracleameritrial67645.mobileenv.us2.oraclecloud.com:443</string>
+			<string>https://mobile-usexelontrial20809.mobileenv.us2.oraclecloud.com:443</string>
 			<key>appKey</key>
 			<string>4da04928-285c-4860-9837-08954413228a</string>
 			<key>authorization</key>
@@ -19,9 +19,9 @@
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>
-					<string>ea2d2100-c557-4258-a374-bc53d8a7302e</string>
+					<string>64e3e14e-0cec-4bad-bae7-6fa156c8054e</string>
 					<key>anonymousKey</key>
-					<string>VVNPUkFDTEVBTUVSSVRSSUFMNjc2NDVfTU9CSUxFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WHpmYjRlNXV0X2N3cG4=</string>
+					<string>VVNFWEVMT05UUklBTDIwODA5X01PQklMRV9NT0JJTEVfQU5PTllNT1VTX0FQUElEOlZwc2xmbWtvMS40YXpo</string>
 				</dict>
 			</dict>
 		</dict>
