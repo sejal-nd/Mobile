@@ -97,7 +97,7 @@
 		B54846871E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */; };
 		B54846881E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */; };
 		B54846891E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */; };
-		B548468D1E6885FC008CE1B1 /* ResponseParserTets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548468C1E6885FC008CE1B1 /* ResponseParserTets.swift */; };
+		B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */; };
 		B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */; };
 		B55735D81E674089003B9369 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
 		B55735D91E674089003B9369 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
@@ -357,7 +357,7 @@
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
 		B54846821E687CEB008CE1B1 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCResponseParser.swift; sourceTree = "<group>"; };
-		B548468C1E6885FC008CE1B1 /* ResponseParserTets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseParserTets.swift; sourceTree = "<group>"; };
+		B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseParserTests.swift; sourceTree = "<group>"; };
 		B55735971E67406D003B9369 /* OMCAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalytics.h; sourceTree = "<group>"; };
 		B55735981E67406D003B9369 /* OMCAnalyticsApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalyticsApplicationDelegate.h; sourceTree = "<group>"; };
 		B55735991E67406D003B9369 /* OMCAnalyticsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalyticsDelegate.h; sourceTree = "<group>"; };
@@ -1032,7 +1032,7 @@
 				B5AC06D71E52238900BBA4ED /* MobileTests.swift */,
 				B5AC06D91E52238900BBA4ED /* Info.plist */,
 				B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */,
-				B548468C1E6885FC008CE1B1 /* ResponseParserTets.swift */,
+				B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */,
 			);
 			path = MobileTests;
 			sourceTree = "<group>";
@@ -1700,7 +1700,7 @@
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
-				B548468D1E6885FC008CE1B1 /* ResponseParserTets.swift in Sources */,
+				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 			);
