@@ -112,12 +112,12 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func onLoginPress() {
         view.endEditing(true)
-        view.isUserInteractionEnabled = false
-        
+        navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
+
         signInButton.setLoading()
         viewModel.performLogin(onSuccess: {
             self.signInButton.setSuccess(animationCompletion: { () in
-                self.view.isUserInteractionEnabled = true
+                self.navigationController?.view.isUserInteractionEnabled = true
                 self.viewModel.storeUsername() // We store the logged in username regardless of Touch ID
                 if self.viewModel.isDeviceTouchIDCompatible() {
                     if UserDefaults.standard.object(forKey: UserDefaultKeys.PromptedForTouchID) == nil {
@@ -150,7 +150,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
 
             })
         }, onError: { (errorMessage) in
-            self.view.isUserInteractionEnabled = true
+            self.navigationController?.view.isUserInteractionEnabled = true
             self.showErrorAlertWithMessage(errorMessage)
         })
     }
