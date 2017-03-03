@@ -111,7 +111,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             hud.contentColor = .white
             self.viewModel.validateCredentials(onSuccess: {
                 MBProgressHUD.hide(for: self.view, animated: true)
-                self.view.makeToast("Touch ID Enabled", duration: 2.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 100))
+                self.view.makeToast("Touch ID Enabled", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
             }, onError: { (error) in
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.presentPasswordAlert(message: "Error: \(error)")
@@ -122,7 +122,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func didChangePassword(sender: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast("Password successfully changed", duration: 2.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 100))
+            self.view.makeToast("Password successfully changed", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
     

@@ -87,6 +87,7 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         if !errorState {
             if textField.hasText {
                 bottomColorBar.backgroundColor = deselectedBottomBarColor
+                bottomColorBar.isHidden = false
             } else {
                 bottomColorBar.isHidden = true
             }

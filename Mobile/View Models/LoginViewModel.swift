@@ -22,6 +22,10 @@ class LoginViewModel {
     init(authService: AuthenticationService, fingerprintService: FingerprintService) {
         self.authService = authService
         self.fingerprintService = fingerprintService
+        
+        if let username = fingerprintService.getStoredUsername() {
+            self.username.value = username
+        }
     }
     
     func isDeviceTouchIDCompatible() -> Bool {
@@ -35,6 +39,14 @@ class LoginViewModel {
             }
         }
         return false
+    }
+    
+    func shouldPromptToEnableTouchID() -> Bool {
+        return UserDefaults.standard.bool(forKey: UserDefaultKeys.ShouldPromptToEnableTouchID)
+    }
+    
+    func setShouldPromptToEnableTouchID(_ prompt: Bool) {
+        UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.ShouldPromptToEnableTouchID)
     }
     
     func performLogin(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -84,12 +96,12 @@ class LoginViewModel {
                 self.password.value = password
                 onLoad()
                 performLogin(onSuccess: onSuccess, onError: onError)
-            } else { // Cancelled Touch ID dialog
-                self.username.value = ""
-                self.password.value = ""
             }
         }
     }
     
-
+    func disableTouchID() {
+        fingerprintService!.disableTouchID()
+    }
+    
 }

@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("Environment %@", Environment.sharedInstance.environmentName)
         NSLog("AppName %@", Environment.sharedInstance.appName)
         
+        setupUserDefaults()
         //printFonts()
         
         return true
@@ -42,6 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func setupUserDefaults() {
+        UserDefaults.standard.register(defaults: [
+            UserDefaultKeys.ShouldPromptToEnableTouchID: true
+        ])
     }
     
     func printFonts() {

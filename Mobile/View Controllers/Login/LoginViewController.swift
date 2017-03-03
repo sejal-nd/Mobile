@@ -29,6 +29,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
+    var passwordAutofilledFromTouchID = false
     
     let disposeBag = DisposeBag()
     
@@ -61,8 +62,26 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         passwordTextField.textField.isSecureTextEntry = true
         passwordTextField.textField.returnKeyType = .done
     
+        // Two-way data binding for the username/password fields
+        viewModel.username.asObservable().bindTo(usernameTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        viewModel.password.asObservable().bindTo(passwordTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        viewModel.password.asObservable().subscribe(onNext: { (password) in
+            if self.passwordAutofilledFromTouchID {
+                // The password field was successfully auto-filled from Touch ID, but then the user manually changed it,
+                // presumably because the password has been changed and is now different than what's stored in the keychain.
+                // Therefore, we disable Touch ID, and reset the UserDefaults flag to prompt to enable it upon the 
+                // next successful login
+                self.viewModel.disableTouchID()
+                self.viewModel.setShouldPromptToEnableTouchID(true)
+                self.passwordAutofilledFromTouchID = false
+            }
+        }).addDisposableTo(disposeBag)
         usernameTextField.textField.rx.text.orEmpty.bindTo(viewModel.username).addDisposableTo(disposeBag)
         passwordTextField.textField.rx.text.orEmpty.bindTo(viewModel.password).addDisposableTo(disposeBag)
+        
+        // Update the text field appearance in case data binding autofilled text
+        usernameTextField.textFieldDidEndEditing(usernameTextField.textField)
+        
         keepMeSignedInSwitch.rx.isOn.bindTo(viewModel.keepMeSignedIn).addDisposableTo(disposeBag)
         
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
@@ -88,13 +107,19 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        viewModel.attemptLoginWithTouchID(onLoad: {
+        viewModel.attemptLoginWithTouchID(onLoad: { // fingerprint was successful
+            self.passwordAutofilledFromTouchID = true
+            self.passwordTextField.textFieldDidEndEditing(self.passwordTextField.textField) // Update the text field appearance
+            
             self.signInButton.setLoading()
-        }, onSuccess: {
+            self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
+        }, onSuccess: { // fingerprint and subsequent login successful
             self.signInButton.setSuccess(animationCompletion: { () in
+                self.navigationController?.view.isUserInteractionEnabled = true
                 self.launchMainApp()
             })
-        }, onError: { (errorMessage) in
+        }, onError: { (errorMessage) in // fingerprint successful but login failed
+            self.navigationController?.view.isUserInteractionEnabled = true
             self.showErrorAlertWithMessage(errorMessage)
         })
     }
@@ -120,7 +145,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
                 self.navigationController?.view.isUserInteractionEnabled = true
                 self.viewModel.storeUsername() // We store the logged in username regardless of Touch ID
                 if self.viewModel.isDeviceTouchIDCompatible() {
-                    if UserDefaults.standard.object(forKey: UserDefaultKeys.PromptedForTouchID) == nil {
+                    if self.viewModel.shouldPromptToEnableTouchID() {
                         let touchIDAlert = UIAlertController(title: "Enable Touch ID", message: "Would you like to use Touch ID to sign in from now on?", preferredStyle: .alert)
                         touchIDAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
                             self.launchMainApp()
@@ -130,7 +155,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
                             self.launchMainApp()
                         }))
                         self.present(touchIDAlert, animated: true, completion: nil)
-                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.PromptedForTouchID)
+                        self.viewModel.setShouldPromptToEnableTouchID(false)
                     } else if self.viewModel.didLoginWithDifferentAccountThanStoredInKeychain() {
                         let differentAccountAlert = UIAlertController(title: "Change Touch ID", message: "This is different account than the one linked to your Touch ID. Would you like to use Touch ID for this account from now on?", preferredStyle: .alert)
                         differentAccountAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in

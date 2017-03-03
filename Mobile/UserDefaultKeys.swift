@@ -13,6 +13,6 @@ struct UserDefaultKeys {
     
     // Touch ID
     static let TouchIDEnabled = "kTouchIDEnabled"
-    static let PromptedForTouchID = "kPromptedForTouchID" // Have we prompted the user to enable Touch ID upon first time logging in
+    static let ShouldPromptToEnableTouchID = "kShouldPromptToEnableTouchID" // Should we prompt the user to enable Touch ID after a successful login?
     static let LoggedInUsername = "kLoggedInUsername" // The username of the currently logged in user
 }
