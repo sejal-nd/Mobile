@@ -17,8 +17,7 @@ class TermsPoliciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textView.textContainerInset = UIEdgeInsetsMake(8, 12, 8, 16)
-        textView.scrollIndicatorInsets = UIEdgeInsetsMake(8, 0, 8, 4)
+        textView.textContainerInset = UIEdgeInsetsMake(26, 29, 26, 29)
         textView.attributedText = viewModel.attributedTermsString
     }
 

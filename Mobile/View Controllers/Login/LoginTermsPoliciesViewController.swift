@@ -23,7 +23,7 @@ class LoginTermsPoliciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textView.textContainerInset = UIEdgeInsetsMake(26, 29, 8, 29)
+        textView.textContainerInset = UIEdgeInsetsMake(26, 29, 26, 29)
         textView.attributedText = viewModel.attributedTermsString
 
         agreeView.layer.shadowColor = UIColor.black.cgColor
