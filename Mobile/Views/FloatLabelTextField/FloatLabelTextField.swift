@@ -52,11 +52,7 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         errorLabel.textColor = errorColor
         errorLabel.text = nil
         
-        if #available(iOS 8.2, *) {
-            textField.floatingLabelFont = UIFont.systemFont(ofSize: 11, weight: UIFontWeightSemibold)
-        } else {
-            textField.floatingLabelFont = UIFont.boldSystemFont(ofSize: 11)
-        }
+        textField.floatingLabelFont = UIFont.systemFont(ofSize: 11, weight: UIFontWeightSemibold)
         textField.floatingLabelYPadding = 6
         textField.floatingLabelTextColor = UIColor.primaryColor.darker()
         textField.floatingLabelActiveTextColor = UIColor.primaryColor.darker()

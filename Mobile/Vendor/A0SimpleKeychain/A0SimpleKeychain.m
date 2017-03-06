@@ -222,17 +222,9 @@
             break;
 #if TARGET_OS_IPHONE
         case A0SimpleKeychainItemAccessibleWhenPasscodeSetThisDeviceOnly:
-#ifdef __IPHONE_8_0
-            if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1) { //iOS 8
-                accessibility = kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly;
-            } else { //iOS <= 7.1
-                accessibility = kSecAttrAccessibleWhenUnlockedThisDeviceOnly;
-            }
-#else
-            accessibility = kSecAttrAccessibleWhenUnlockedThisDeviceOnly;
-#endif
-#endif
+            accessibility = kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly;
             break;
+#endif
         case A0SimpleKeychainItemAccessibleWhenUnlocked:
             accessibility = kSecAttrAccessibleWhenUnlocked;
             break;
@@ -331,14 +323,14 @@
     query[(__bridge id)kSecValueData] = value;
 #if TARGET_OS_IPHONE
 #ifdef __IPHONE_8_0
-    if (self.useAccessControl && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_0) {
+    if (self.useAccessControl) {
         CFErrorRef error = NULL;
         // kSecAccessControlUserPresence: Touch ID or Passcode. Access IS NOT invalidated if fingerprints added/removed
         // kSecAccessControlTouchIDCurrentSet: Touch ID only. Access IS invalidated if fingerprints added/removed
         SecAccessControlRef accessControl = SecAccessControlCreateWithFlags(kCFAllocatorDefault, [self accessibility], kSecAccessControlTouchIDCurrentSet, &error);
         if (error == NULL || accessControl != NULL) {
             query[(__bridge id)kSecAttrAccessControl] = (__bridge_transfer id)accessControl;
-            query[(__bridge id)kSecUseNoAuthenticationUI] = @YES;
+            query[(__bridge id)kSecUseAuthenticationUI] = @NO;
         }
     } else {
         query[(__bridge id)kSecAttrAccessible] = (__bridge id)[self accessibility];
