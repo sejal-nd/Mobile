@@ -66,7 +66,7 @@ class ChangePasswordViewModel {
     func passwordMatchesUsername() -> Observable<Bool> {
         return newPassword.asObservable().map({ text -> Bool in
             let username = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
-            return text == username
+            return text.lowercased() == username?.lowercased()
         })
     }
     
