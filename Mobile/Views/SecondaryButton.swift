@@ -29,7 +29,7 @@ class SecondaryButton: UIButton {
         
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.2
-        layer.shadowRadius = 6
+        layer.shadowRadius = 3
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.masksToBounds = false
         

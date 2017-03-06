@@ -27,7 +27,7 @@ class TableViewCell: UITableViewCell {
         
         innerContentView.layer.shadowColor = UIColor.black.cgColor
         innerContentView.layer.shadowOpacity = 0.2
-        innerContentView.layer.shadowRadius = 6
+        innerContentView.layer.shadowRadius = 3
         innerContentView.layer.shadowOffset = CGSize(width: 0, height: 0)
         innerContentView.layer.masksToBounds = false
         

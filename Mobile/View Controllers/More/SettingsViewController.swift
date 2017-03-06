@@ -39,6 +39,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Table View
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
         if viewModel.isDeviceTouchIDCompatible() {
             return 2
         }

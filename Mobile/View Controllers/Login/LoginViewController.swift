@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         
         loginFormView.layer.shadowColor = UIColor.black.cgColor
         loginFormView.layer.shadowOpacity = 0.15
-        loginFormView.layer.shadowRadius = 8
+        loginFormView.layer.shadowRadius = 4
         loginFormView.layer.shadowOffset = CGSize(width: 0, height: 0)
         loginFormView.layer.masksToBounds = false
         loginFormView.layer.cornerRadius = 2

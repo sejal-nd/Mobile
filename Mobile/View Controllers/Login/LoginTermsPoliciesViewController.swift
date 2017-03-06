@@ -27,7 +27,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         textView.attributedText = viewModel.attributedTermsString
 
         agreeView.layer.shadowColor = UIColor.black.cgColor
-        agreeView.layer.shadowOffset = CGSize(width: 0, height: -1)
+        agreeView.layer.shadowOffset = CGSize(width: 0, height: 0)
         agreeView.layer.shadowOpacity = 0.1
         agreeView.layer.shadowRadius = 2
         agreeView.layer.masksToBounds = false
