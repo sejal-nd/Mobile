@@ -11,8 +11,8 @@ import Lottie
 
 class PrimaryButton: UIButton {
     
-    var loadingAnimationView = LOTAnimationView.animationNamed("loading")
-    var checkmarkAnimationView = LOTAnimationView.animationNamed("checkmark")
+    var loadingAnimationView = LOTAnimationView(name: "loading")
+    var checkmarkAnimationView = LOTAnimationView(name: "checkmark")
     var restoreTitle = ""
     
     override init(frame: CGRect) {

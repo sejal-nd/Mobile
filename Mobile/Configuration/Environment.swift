@@ -8,9 +8,7 @@
 
 import Foundation
 
-
-/// Convenience singlton that wraps 
-/// envinronment variables.
+/// Convenience singleton that wraps environment variables.
 struct Environment  {
     
     static let sharedInstance = Environment()

@@ -1,6 +1,7 @@
+github "bitstadium/HockeySDK-iOS" "4.1.4"
 github "jverdi/JVFloatLabeledTextField" "1.1.1"
 github "jdg/MBProgressHUD" "1.0.0"
 github "ReactiveX/RxSwift" "3.2.0"
 github "scalessec/Toast-Swift" "2.0.0"
-github "airbnb/lottie-ios" "5edbdac3cbac17c07771bf15f2d595ab9e3c6045"
+github "airbnb/lottie-ios" "1.5.1"
 github "dropbox/zxcvbn-ios" "v1.0.4"

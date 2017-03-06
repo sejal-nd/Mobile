@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HockeySDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         NSLog("Environment %@", Environment.sharedInstance.environmentName)
         NSLog("AppName %@", Environment.sharedInstance.appName)
+        
+        if Environment.sharedInstance.environmentName == "STAGE" {
+            switch Environment.sharedInstance.opco {
+                case "BGE":
+                    BITHockeyManager.shared().configure(withIdentifier: "bec696e55dec44239187ffc959dec386")
+                    break
+                case "ComEd":
+                    BITHockeyManager.shared().configure(withIdentifier: "7399eb2b4dc44f91ac86e219d947b7b5")
+                    break
+                case "PECO":
+                    BITHockeyManager.shared().configure(withIdentifier: "51e89ca780064447b2373609c35e5b68")
+                    break
+                default:
+                    break
+            }
+            BITHockeyManager.shared().crashManager.crashManagerStatus = .autoSend
+            BITHockeyManager.shared().start()
+            BITHockeyManager.shared().authenticator.authenticateInstallation()
+        }
         
         setupUserDefaults()
         //printFonts()

@@ -275,6 +275,12 @@
 		E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
 		E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
 		E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
+		E8D2520C1E6DB74600C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
+		E8D2520E1E6DB78800C90584 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520D1E6DB78800C90584 /* Lottie.framework */; };
+		E8D2520F1E6DB7B400C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
+		E8D252101E6DB7B400C90584 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520D1E6DB78800C90584 /* Lottie.framework */; };
+		E8D252111E6DB82C00C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
+		E8D252121E6DB82C00C90584 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520D1E6DB78800C90584 /* Lottie.framework */; };
 		E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
 		E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
 		E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
@@ -562,6 +568,8 @@
 		E8B4F4C91E5CE1BA0031D934 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		E8B4F4CE1E5CE21D0031D934 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		E8D2520B1E6DB74600C90584 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
+		E8D2520D1E6DB78800C90584 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		E8ECCD561E5E25CD00C9E46F /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
@@ -579,21 +587,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B55735E11E674089003B9369 /* libOMCNotifications.a in Frameworks */,
 				B5AC07421E52A49900BBA4ED /* CoreLocation.framework in Frameworks */,
+				E8D2520C1E6DB74600C90584 /* HockeySDK.framework in Frameworks */,
+				E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */,
+				B55736351E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
+				B55735D81E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
+				B55735DB1E674089003B9369 /* libOMCCore.a in Frameworks */,
+				B55735DE1E674089003B9369 /* libOMCLocation.a in Frameworks */,
+				B55735E11E674089003B9369 /* libOMCNotifications.a in Frameworks */,
+				B55735E41E674089003B9369 /* libOMCStorage.a in Frameworks */,
 				B55735E71E674089003B9369 /* libOMCSynchronization.a in Frameworks */,
 				E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */,
-				B55735DB1E674089003B9369 /* libOMCCore.a in Frameworks */,
-				B5AC073C1E52A2BD00BBA4ED /* Security.framework in Frameworks */,
-				B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */,
-				B55736351E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
-				B55735E41E674089003B9369 /* libOMCStorage.a in Frameworks */,
-				B55735DE1E674089003B9369 /* libOMCLocation.a in Frameworks */,
-				B55735D81E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
+				E8D2520E1E6DB78800C90584 /* Lottie.framework in Frameworks */,
+				E80043141E65D126005CF531 /* MBProgressHUD.framework in Frameworks */,
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
-				E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */,
-				E80043141E65D126005CF531 /* MBProgressHUD.framework in Frameworks */,
+				B5AC073C1E52A2BD00BBA4ED /* Security.framework in Frameworks */,
+				B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				E80043181E65DFE4005CF531 /* ToastSwiftFramework.framework in Frameworks */,
 				E80043491E671F0B005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
@@ -603,21 +613,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B55735E31E674089003B9369 /* libOMCNotifications.a in Frameworks */,
 				E8EEF7221E567941006804D4 /* CoreLocation.framework in Frameworks */,
+				E8D252111E6DB82C00C90584 /* HockeySDK.framework in Frameworks */,
+				E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */,
+				B55736371E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
+				B55735DA1E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
+				B55735DD1E674089003B9369 /* libOMCCore.a in Frameworks */,
+				B55735E01E674089003B9369 /* libOMCLocation.a in Frameworks */,
+				B55735E31E674089003B9369 /* libOMCNotifications.a in Frameworks */,
+				B55735E61E674089003B9369 /* libOMCStorage.a in Frameworks */,
 				B55735E91E674089003B9369 /* libOMCSynchronization.a in Frameworks */,
 				E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */,
-				B55735DD1E674089003B9369 /* libOMCCore.a in Frameworks */,
-				B5AC07401E52A2ED00BBA4ED /* Security.framework in Frameworks */,
-				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
-				B55736371E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
-				B55735E61E674089003B9369 /* libOMCStorage.a in Frameworks */,
-				B55735E01E674089003B9369 /* libOMCLocation.a in Frameworks */,
-				B55735DA1E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
+				E8D252121E6DB82C00C90584 /* Lottie.framework in Frameworks */,
+				E80043161E65D149005CF531 /* MBProgressHUD.framework in Frameworks */,
 				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */,
-				E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */,
-				E80043161E65D149005CF531 /* MBProgressHUD.framework in Frameworks */,
+				B5AC07401E52A2ED00BBA4ED /* Security.framework in Frameworks */,
+				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				E800431A1E65E016005CF531 /* ToastSwiftFramework.framework in Frameworks */,
 				E800434B1E671F4F005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
@@ -627,21 +639,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B55735E21E674089003B9369 /* libOMCNotifications.a in Frameworks */,
 				E8EEF7211E56793B006804D4 /* CoreLocation.framework in Frameworks */,
+				E8D2520F1E6DB7B400C90584 /* HockeySDK.framework in Frameworks */,
+				E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */,
+				B55736361E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
+				B55735D91E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
+				B55735DC1E674089003B9369 /* libOMCCore.a in Frameworks */,
+				B55735DF1E674089003B9369 /* libOMCLocation.a in Frameworks */,
+				B55735E21E674089003B9369 /* libOMCNotifications.a in Frameworks */,
+				B55735E51E674089003B9369 /* libOMCStorage.a in Frameworks */,
 				B55735E81E674089003B9369 /* libOMCSynchronization.a in Frameworks */,
 				E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */,
-				B55735DC1E674089003B9369 /* libOMCCore.a in Frameworks */,
-				B5AC073E1E52A2E000BBA4ED /* Security.framework in Frameworks */,
-				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
-				B55736361E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
-				B55735E51E674089003B9369 /* libOMCStorage.a in Frameworks */,
-				B55735DF1E674089003B9369 /* libOMCLocation.a in Frameworks */,
-				B55735D91E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
+				E8D252101E6DB7B400C90584 /* Lottie.framework in Frameworks */,
+				E80043151E65D13A005CF531 /* MBProgressHUD.framework in Frameworks */,
 				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2601E524548005FB1BB /* RxSwift.framework in Frameworks */,
-				E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */,
-				E80043151E65D13A005CF531 /* MBProgressHUD.framework in Frameworks */,
+				B5AC073E1E52A2E000BBA4ED /* Security.framework in Frameworks */,
+				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				E80043191E65E004005CF531 /* ToastSwiftFramework.framework in Frameworks */,
 				E800434A1E671F36005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
@@ -660,6 +674,8 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8D2520D1E6DB78800C90584 /* Lottie.framework */,
+				E8D2520B1E6DB74600C90584 /* HockeySDK.framework */,
 				E80043481E671F0B005CF531 /* Zxcvbn.framework */,
 				E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */,
 				E80043131E65D126005CF531 /* MBProgressHUD.framework */,
@@ -1472,6 +1488,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -1493,6 +1510,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -1514,6 +1532,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
