@@ -14,7 +14,7 @@
         <scene sceneID="XPV-ae-tB6">
             <objects>
                 <navigationController navigationBarHidden="YES" id="pTL-u9-WiQ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="16V-d7-W9g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="16V-d7-W9g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -58,11 +58,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNV-D6-Tjj">
-                                <rect key="frame" x="68" y="342" width="100" height="1"/>
+                                <rect key="frame" x="29" y="342" width="118" height="0.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Jv7-kh-tcH"/>
-                                    <constraint firstAttribute="height" constant="1" id="gIN-i2-jJ1"/>
+                                    <constraint firstAttribute="height" constant="0.5" id="gIN-i2-jJ1"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRy-eH-SXJ">
@@ -75,11 +74,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MF0-BA-DVg">
-                                <rect key="frame" x="208" y="342" width="100" height="1"/>
+                                <rect key="frame" x="229" y="342" width="117" height="0.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="avp-52-81c"/>
-                                    <constraint firstAttribute="height" constant="1" id="tyt-fx-UP1"/>
+                                    <constraint firstAttribute="height" constant="0.5" id="tyt-fx-UP1"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtv-0B-6Rn" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
@@ -110,9 +108,10 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Mtv-0B-6Rn" secondAttribute="trailing" constant="29" id="6LS-WU-8TI"/>
                             <constraint firstItem="oRl-ty-kRc" firstAttribute="top" secondItem="V4v-xx-mGY" secondAttribute="topMargin" constant="119" id="96v-qg-IIP"/>
-                            <constraint firstItem="cRy-eH-SXJ" firstAttribute="leading" secondItem="VNV-D6-Tjj" secondAttribute="trailing" constant="8" id="AIN-qG-zy0"/>
+                            <constraint firstItem="cRy-eH-SXJ" firstAttribute="leading" secondItem="VNV-D6-Tjj" secondAttribute="trailing" constant="29" id="AIN-qG-zy0"/>
                             <constraint firstItem="Mtv-0B-6Rn" firstAttribute="top" secondItem="cRy-eH-SXJ" secondAttribute="bottom" constant="21" id="Apl-Lw-cfQ"/>
                             <constraint firstAttribute="trailing" secondItem="oRl-ty-kRc" secondAttribute="trailing" constant="19" id="CAk-8K-hlF"/>
+                            <constraint firstAttribute="trailing" secondItem="MF0-BA-DVg" secondAttribute="trailing" constant="29" id="LPH-LB-kH9"/>
                             <constraint firstAttribute="trailing" secondItem="oHs-4V-Y7S" secondAttribute="trailing" constant="29" id="O9K-Bq-xId"/>
                             <constraint firstItem="cRy-eH-SXJ" firstAttribute="top" secondItem="oHs-4V-Y7S" secondAttribute="bottom" constant="21" id="OrV-lv-EgF"/>
                             <constraint firstItem="SSH-Ni-ZZW" firstAttribute="centerX" secondItem="V4v-xx-mGY" secondAttribute="centerX" id="PsS-5a-b04"/>
@@ -123,7 +122,8 @@
                             <constraint firstItem="MF0-BA-DVg" firstAttribute="centerY" secondItem="cRy-eH-SXJ" secondAttribute="centerY" id="dLJ-uI-3nP"/>
                             <constraint firstItem="SSH-Ni-ZZW" firstAttribute="top" secondItem="Mtv-0B-6Rn" secondAttribute="bottom" constant="32" id="grW-ZN-BcD"/>
                             <constraint firstItem="VNV-D6-Tjj" firstAttribute="centerY" secondItem="cRy-eH-SXJ" secondAttribute="centerY" id="hXp-mz-VDT"/>
-                            <constraint firstItem="MF0-BA-DVg" firstAttribute="leading" secondItem="cRy-eH-SXJ" secondAttribute="trailing" constant="8" id="qo8-J8-gzI"/>
+                            <constraint firstItem="VNV-D6-Tjj" firstAttribute="leading" secondItem="V4v-xx-mGY" secondAttribute="leading" constant="29" id="pWx-mN-btd"/>
+                            <constraint firstItem="MF0-BA-DVg" firstAttribute="leading" secondItem="cRy-eH-SXJ" secondAttribute="trailing" constant="29" id="qo8-J8-gzI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iC8-QL-izm"/>
@@ -363,7 +363,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sli-Tt-vCb" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xPE-hv-B2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xPE-hv-B2n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
