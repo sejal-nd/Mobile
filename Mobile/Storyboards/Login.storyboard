@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +13,7 @@
         <scene sceneID="XPV-ae-tB6">
             <objects>
                 <navigationController navigationBarHidden="YES" id="pTL-u9-WiQ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="16V-d7-W9g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="16V-d7-W9g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -24,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kQ-pZ-jhs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-266" y="92"/>
+            <point key="canvasLocation" x="95" y="90"/>
         </scene>
         <!--Login Landing View Controller-->
         <scene sceneID="LmY-Jb-a4W">
@@ -214,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuu-u2-aL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="625" y="1567"/>
+            <point key="canvasLocation" x="625" y="1725"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="PsW-YN-t0v">
@@ -258,7 +257,7 @@
                                                             <constraint firstAttribute="height" constant="60" id="8bf-2q-YaL"/>
                                                         </constraints>
                                                     </view>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IUg-Sl-dIh" customClass="Switch" customModule="BGE" customModuleProvider="target">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IUg-Sl-dIh" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="22" y="198" width="51" height="31"/>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keep me signed in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfa-fy-2Sb">
@@ -356,14 +355,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YmP-vJ-xfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1448.8" y="90.404797601199405"/>
+            <point key="canvasLocation" x="1154" y="90"/>
         </scene>
         <!--Main Base Navigation Controller-->
         <scene sceneID="d2e-hw-Oo9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sli-Tt-vCb" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xPE-hv-B2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xPE-hv-B2n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -374,7 +373,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpu-w7-s7o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="624.79999999999995" y="833.43328335832086"/>
+            <point key="canvasLocation" x="625" y="906"/>
         </scene>
     </scenes>
     <resources>
