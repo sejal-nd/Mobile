@@ -20,6 +20,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     let disposeBag = DisposeBag()
     
     var touchIdCell: TableViewCell?
+    var touchIdPasswordRetryCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Table View
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
         if viewModel.isDeviceTouchIDCompatible() {
             return 2
         }
@@ -103,7 +103,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             textField.rx.text.orEmpty.bindTo(self.viewModel.password).addDisposableTo(self.disposeBag)
         })
         pwAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
-            self.touchIdCell?.setSwitch(on: false)
+            
         }))
         pwAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -115,7 +115,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 self.view.makeToast("Touch ID Enabled", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
             }, onError: { (error) in
                 MBProgressHUD.hide(for: self.view, animated: true)
-                self.presentPasswordAlert(message: "Error: \(error)")
+                
+                self.touchIdPasswordRetryCount += 1
+                if self.touchIdPasswordRetryCount < 3 {
+                    self.presentPasswordAlert(message: "Error: \(error)")
+                } else {
+                    self.touchIdPasswordRetryCount = 0
+                    self.touchIdCell?.setSwitch(on: false)
+                }
             })
         }))
         self.present(pwAlert, animated: true, completion: nil)
