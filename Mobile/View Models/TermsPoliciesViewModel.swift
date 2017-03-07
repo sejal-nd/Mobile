@@ -12,7 +12,7 @@ class TermsPoliciesViewModel {
     
     var agreeLabelText: String {
         get {
-            return "I agree to \(Environment.sharedInstance.opco)'s Terms and Conditions"
+            return "I agree to \(Environment.sharedInstance.opco)'s Terms and Policies"
         }
     }
     

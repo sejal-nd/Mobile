@@ -157,7 +157,7 @@ class ChangePasswordViewController: UIViewController {
             _ = self.navigationController?.popViewController(animated: true)
         }, onPasswordNoMatch: { _ in
             hud.hide(animated: true)
-            self.currentPasswordTextField.setError("Your current password was entered incorrectly")
+            self.currentPasswordTextField.setError("Incorrect current password")
         }, onError: { (error: String) in
             hud.hide(animated: true)
             let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)

@@ -23,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kQ-pZ-jhs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="95" y="90"/>
+            <point key="canvasLocation" x="-354" y="90"/>
         </scene>
         <!--Login Landing View Controller-->
         <scene sceneID="LmY-Jb-a4W">
@@ -134,7 +134,7 @@
             </objects>
             <point key="canvasLocation" x="624.79999999999995" y="90.404797601199405"/>
         </scene>
-        <!--Terms and Conditions-->
+        <!--Terms and Policies-->
         <scene sceneID="uIe-sJ-gHd">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="0vR-kF-bp8" customClass="LoginTermsPoliciesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
@@ -202,7 +202,7 @@
                             <constraint firstAttribute="trailing" secondItem="xdc-lo-y4f" secondAttribute="trailing" id="kX0-mm-3KP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Terms and Conditions" id="EH4-ec-m7z"/>
+                    <navigationItem key="navigationItem" title="Terms and Policies" id="EH4-ec-m7z"/>
                     <connections>
                         <outlet property="agreeLabel" destination="s57-Nu-gGZ" id="dUy-LM-Hqx"/>
                         <outlet property="agreeSwitch" destination="STf-Fi-lUb" id="MBP-U7-G8X"/>
@@ -355,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YmP-vJ-xfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1154" y="90"/>
+            <point key="canvasLocation" x="1628" y="90"/>
         </scene>
         <!--Main Base Navigation Controller-->
         <scene sceneID="d2e-hw-Oo9">
