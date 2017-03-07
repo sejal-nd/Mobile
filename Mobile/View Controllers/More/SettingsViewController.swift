@@ -103,7 +103,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             textField.rx.text.orEmpty.bindTo(self.viewModel.password).addDisposableTo(self.disposeBag)
         })
         pwAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
-            
+            self.touchIdCell?.setSwitch(on: false)
         }))
         pwAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
