@@ -233,6 +233,26 @@
 		E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043551E68CDCB005CF531 /* IndividualBorders.swift */; };
 		E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043551E68CDCB005CF531 /* IndividualBorders.swift */; };
 		E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043551E68CDCB005CF531 /* IndividualBorders.swift */; };
+		E800435F1E6A08D7005CF531 /* ChangePasswordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800435E1E6A08D7005CF531 /* ChangePasswordTests.swift */; };
+		E80043601E6A117A005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
+		E80043611E6A11B7005CF531 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
+		E80043621E6A11C3005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
+		E80043631E6A11D1005CF531 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
+		E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
+		E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* FingerprintService.swift */; };
+		E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
+		E80043681E6A1250005CF531 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		E80043691E6A126E005CF531 /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */; };
+		E800436A1E6A12A3005CF531 /* libOMCCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D31E674089003B9369 /* libOMCCore.a */; };
+		E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
+		E800436C1E6A1339005CF531 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
+		E800436D1E6A133D005CF531 /* libOMCLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D41E674089003B9369 /* libOMCLocation.a */; };
+		E800436E1E6A133F005CF531 /* libOMCNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D51E674089003B9369 /* libOMCNotifications.a */; };
+		E800436F1E6A1341005CF531 /* libOMCStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D61E674089003B9369 /* libOMCStorage.a */; };
+		E80043701E6A1343005CF531 /* libOMCSynchronization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D71E674089003B9369 /* libOMCSynchronization.a */; };
+		E80043711E6A139B005CF531 /* libIDMMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */; };
+		E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
+		E80043761E6A1701005CF531 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
 		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
@@ -552,6 +572,7 @@
 		E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordStrengthMeterView.swift; sourceTree = "<group>"; };
 		E80043501E675AC4005CF531 /* SecondaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		E80043551E68CDCB005CF531 /* IndividualBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualBorders.swift; sourceTree = "<group>"; };
+		E800435E1E6A08D7005CF531 /* ChangePasswordTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordTests.swift; sourceTree = "<group>"; };
 		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
@@ -665,6 +686,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E80043621E6A11C3005CF531 /* Zxcvbn.framework in Frameworks */,
+				E80043611E6A11B7005CF531 /* RxSwift.framework in Frameworks */,
+				E80043761E6A1701005CF531 /* RxCocoa.framework in Frameworks */,
+				E800436E1E6A133F005CF531 /* libOMCNotifications.a in Frameworks */,
+				E80043711E6A139B005CF531 /* libIDMMobileSDK.a in Frameworks */,
+				E800436D1E6A133D005CF531 /* libOMCLocation.a in Frameworks */,
+				E800436F1E6A1341005CF531 /* libOMCStorage.a in Frameworks */,
+				E800436C1E6A1339005CF531 /* libOMCAnalytics.a in Frameworks */,
+				E80043701E6A1343005CF531 /* libOMCSynchronization.a in Frameworks */,
+				E800436A1E6A12A3005CF531 /* libOMCCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1049,6 +1080,7 @@
 				B5AC06D91E52238900BBA4ED /* Info.plist */,
 				B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */,
 				B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */,
+				E800435E1E6A08D7005CF531 /* ChangePasswordTests.swift */,
 			);
 			path = MobileTests;
 			sourceTree = "<group>";
@@ -1717,12 +1749,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
+				E80043691E6A126E005CF531 /* OMCAuthenticationService.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
+				E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */,
+				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
+				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
+				E80043631E6A11D1005CF531 /* AuthenticationService.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
+				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
+				E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */,
+				E80043601E6A117A005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
+				E800435F1E6A08D7005CF531 /* ChangePasswordTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2673,6 +2715,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2690,12 +2736,17 @@
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
@@ -2706,10 +2757,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
@@ -2719,10 +2779,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
@@ -2732,10 +2801,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
@@ -2745,10 +2823,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};

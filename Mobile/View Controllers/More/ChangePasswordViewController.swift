@@ -39,7 +39,7 @@ class ChangePasswordViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = ChangePasswordViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
+    let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard, authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     
     var cancelButton: UIBarButtonItem?
     var doneButton: UIBarButtonItem?
