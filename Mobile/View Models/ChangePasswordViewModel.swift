@@ -25,6 +25,12 @@ class ChangePasswordViewModel {
         self.fingerprintService = fingerprintService
     }
     
+    func currentPasswordHasText() -> Observable<Bool> {
+        return currentPassword.asObservable().map{ text -> Bool in
+            return text.characters.count > 0
+        }
+    }
+    
     func characterCountValid() -> Observable<Bool> {
         return newPassword.asObservable()
             .map{ text -> String in
@@ -97,8 +103,8 @@ class ChangePasswordViewModel {
     }
     
     func doneButtonEnabled() -> Observable<Bool> {
-        return Observable.combineLatest(everythingValid(), confirmPasswordMatches()) {
-            return $0 && $1
+        return Observable.combineLatest(everythingValid(), confirmPasswordMatches(), currentPasswordHasText()) {
+            return $0 && $1 && $2
         }
     }
     
