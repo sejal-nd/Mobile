@@ -17,10 +17,12 @@ class ChangePasswordViewModel {
     var newPassword = Variable("")
     var confirmPassword = Variable("")
     
+    private var userDefaults: UserDefaults?
     private var authService: AuthenticationService?
     private var fingerprintService: FingerprintService?
     
-    required init(authService: AuthenticationService, fingerprintService: FingerprintService) {
+    required init(userDefaults: UserDefaults, authService: AuthenticationService, fingerprintService: FingerprintService) {
+        self.userDefaults = userDefaults
         self.authService = authService
         self.fingerprintService = fingerprintService
     }
@@ -34,7 +36,7 @@ class ChangePasswordViewModel {
     func characterCountValid() -> Observable<Bool> {
         return newPassword.asObservable()
             .map{ text -> String in
-                text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                return text.components(separatedBy: .whitespacesAndNewlines).joined()
             }
             .map{ text -> Bool in
                 return text.characters.count >= 8 && text.characters.count <= 16
@@ -63,15 +65,19 @@ class ChangePasswordViewModel {
     }
     
     func containsSpecialCharacter() -> Observable<Bool> {
-        return newPassword.asObservable().map({ text -> Bool in
-            let regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-            return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
-        })
+        return newPassword.asObservable()
+            .map{ text -> String in
+                return text.components(separatedBy: .whitespacesAndNewlines).joined()
+            }
+            .map({ text -> Bool in
+                let regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
+                return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
+            })
     }
     
     func passwordMatchesUsername() -> Observable<Bool> {
         return newPassword.asObservable().map({ text -> Bool in
-            let username = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
+            let username = self.userDefaults!.string(forKey: UserDefaultKeys.LoggedInUsername)
             return text.lowercased() == username?.lowercased()
         })
     }
