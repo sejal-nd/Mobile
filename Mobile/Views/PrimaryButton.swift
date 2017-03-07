@@ -78,8 +78,8 @@ class PrimaryButton: UIButton {
         restoreTitle = currentTitle!
         setTitle("", for: .normal)
         
-        let animationWidth = frame.size.height - 8
-        let animationRect = CGRect(x: (frame.size.width / 2) - (animationWidth / 2), y: 4, width: animationWidth, height: animationWidth)
+        let animationWidth = frame.size.height - 16
+        let animationRect = CGRect(x: (frame.size.width / 2) - (animationWidth / 2), y: 8, width: animationWidth, height: animationWidth)
         
         loadingAnimationView!.frame = animationRect
         loadingAnimationView!.loopAnimation = true
@@ -88,10 +88,12 @@ class PrimaryButton: UIButton {
     }
     
     func setSuccess(animationCompletion: @escaping (Void) -> Void) {
+        setTitle("", for: .normal)
+        
         loadingAnimationView!.removeFromSuperview()
         
-        let animationWidth = frame.size.height - 8
-        let animationRect = CGRect(x: (frame.size.width / 2) - (animationWidth / 2), y: 4, width: animationWidth, height: animationWidth)
+        let animationWidth = frame.size.height - 24
+        let animationRect = CGRect(x: (frame.size.width / 2) - (animationWidth / 2), y: 10, width: animationWidth, height: animationWidth)
         
         checkmarkAnimationView!.frame = animationRect
         addSubview(checkmarkAnimationView!)
