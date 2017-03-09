@@ -99,6 +99,13 @@
 		B54846891E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */; };
 		B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */; };
 		B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */; };
+		B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548468F1E6F4446008CE1B1 /* LoginViewModelTests.swift */; };
+		B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
+		B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
+		B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
+		B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
+		B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
+		B548469B1E709FC8008CE1B1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
 		B55735D81E674089003B9369 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
 		B55735D91E674089003B9369 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
 		B55735DA1E674089003B9369 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
@@ -151,9 +158,6 @@
 		B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* PECOAssets.xcassets */; };
 		B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */; };
 		B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06D71E52238900BBA4ED /* MobileTests.swift */; };
-		B5AC06E61E526AD500BBA4ED /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
-		B5AC06E71E526AD500BBA4ED /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
-		B5AC06E81E526AD500BBA4ED /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
 		B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
@@ -237,7 +241,6 @@
 		E80043601E6A117A005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
 		E80043611E6A11B7005CF531 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		E80043621E6A11C3005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
-		E80043631E6A11D1005CF531 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
 		E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* FingerprintService.swift */; };
 		E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
@@ -384,6 +387,8 @@
 		B54846821E687CEB008CE1B1 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCResponseParser.swift; sourceTree = "<group>"; };
 		B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseParserTests.swift; sourceTree = "<group>"; };
+		B548468F1E6F4446008CE1B1 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		B55735971E67406D003B9369 /* OMCAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalytics.h; sourceTree = "<group>"; };
 		B55735981E67406D003B9369 /* OMCAnalyticsApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalyticsApplicationDelegate.h; sourceTree = "<group>"; };
 		B55735991E67406D003B9369 /* OMCAnalyticsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalyticsDelegate.h; sourceTree = "<group>"; };
@@ -800,6 +805,14 @@
 			path = Parsing;
 			sourceTree = "<group>";
 		};
+		B54846921E6F4FD7008CE1B1 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		B55735951E674043003B9369 /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -1081,6 +1094,7 @@
 				B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */,
 				B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */,
 				E800435E1E6A08D7005CF531 /* ChangePasswordTests.swift */,
+				B548468F1E6F4446008CE1B1 /* LoginViewModelTests.swift */,
 			);
 			path = MobileTests;
 			sourceTree = "<group>";
@@ -1097,6 +1111,7 @@
 		B5AC06E41E5269D700BBA4ED /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				B54846921E6F4FD7008CE1B1 /* Mock */,
 				B5389EA11E53D8640028AF89 /* Parsing */,
 				B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */,
 				B5AC07441E52B4E800BBA4ED /* OMCAuthenticationService.swift */,
@@ -1310,11 +1325,12 @@
 						ProvisioningStyle = Manual;
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = 87ACSVM3C4;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
 					B58B5B201E515C840051FD5F = {
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
@@ -1623,6 +1639,7 @@
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
+				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
@@ -1653,7 +1670,6 @@
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
-				B5AC06E61E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
 				E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 				B54846871E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
@@ -1666,6 +1682,7 @@
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
+				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
@@ -1696,7 +1713,6 @@
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
-				B5AC06E81E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
 				E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
@@ -1709,6 +1725,7 @@
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
+				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
@@ -1739,7 +1756,6 @@
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
-				B5AC06E71E526AD500BBA4ED /* AuthenticationService.swift in Sources */,
 				E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
@@ -1752,12 +1768,13 @@
 				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
 				E80043691E6A126E005CF531 /* OMCAuthenticationService.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
+				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
 				E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
 				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
-				E80043631E6A11D1005CF531 /* AuthenticationService.swift in Sources */,
+				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
@@ -1765,6 +1782,8 @@
 				E80043601E6A117A005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordTests.swift in Sources */,
+				B548469B1E709FC8008CE1B1 /* LoginViewModel.swift in Sources */,
+				B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
