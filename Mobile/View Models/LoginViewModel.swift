@@ -31,16 +31,7 @@ class LoginViewModel {
     func isDeviceTouchIDCompatible() -> Bool {
         return fingerprintService!.isDeviceTouchIDCompatible()
     }
-    
-    func didLoginWithDifferentAccountThanStoredInKeychain() -> Bool {
-        if let username = fingerprintService!.getStoredUsername() {
-            if self.username.value != username {
-                return true
-            }
-        }
-        return false
-    }
-    
+        
     func shouldPromptToEnableTouchID() -> Bool {
         return UserDefaults.standard.bool(forKey: UserDefaultKeys.ShouldPromptToEnableTouchID)
     }
@@ -79,6 +70,10 @@ class LoginViewModel {
                 onError(errorString)
             })
             .addDisposableTo(disposeBag)
+    }
+    
+    func getStoredUsername() -> String? {
+        return fingerprintService!.getStoredUsername()
     }
     
     func storeUsername() {

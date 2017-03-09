@@ -256,6 +256,10 @@
 		E80043711E6A139B005CF531 /* libIDMMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */; };
 		E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
 		E80043761E6A1701005CF531 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
+		E80D2E171E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
+		E80D2E181E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
+		E80D2E191E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
+		E80D2E1A1E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
 		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
@@ -578,6 +582,7 @@
 		E80043501E675AC4005CF531 /* SecondaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		E80043551E68CDCB005CF531 /* IndividualBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualBorders.swift; sourceTree = "<group>"; };
 		E800435E1E6A08D7005CF531 /* ChangePasswordTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordTests.swift; sourceTree = "<group>"; };
+		E80D2E161E721668002626C9 /* ObfuscatedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObfuscatedString.swift; sourceTree = "<group>"; };
 		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
@@ -792,6 +797,7 @@
 				8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */,
 				8FDF8C681E550545000B7BD0 /* PecoColor.swift */,
 				E80043551E68CDCB005CF531 /* IndividualBorders.swift */,
+				E80D2E161E721668002626C9 /* ObfuscatedString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1641,6 +1647,7 @@
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
+				E80D2E171E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
@@ -1684,6 +1691,7 @@
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				E80D2E191E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
@@ -1727,6 +1735,7 @@
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				E80D2E181E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
@@ -1777,6 +1786,7 @@
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
+				E80D2E1A1E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
 				E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */,
 				E80043601E6A117A005CF531 /* ChangePasswordViewModel.swift in Sources */,

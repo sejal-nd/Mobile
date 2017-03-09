@@ -142,8 +142,11 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         signInButton.setLoading()
         viewModel.performLogin(onSuccess: {
             self.signInButton.setSuccess(animationCompletion: { () in
-                self.navigationController?.view.isUserInteractionEnabled = true
-                self.viewModel.storeUsername() // We store the logged in username regardless of Touch ID
+                
+                // Get the last username that logged in first, and then store the one currently logging in
+                let lastLoggedInUsername: String? = self.viewModel.getStoredUsername()
+                self.viewModel.storeUsername()
+                
                 if self.viewModel.isDeviceTouchIDCompatible() {
                     if self.viewModel.shouldPromptToEnableTouchID() {
                         let touchIDAlert = UIAlertController(title: "Enable Touch ID", message: "Would you like to use Touch ID to sign in from now on?", preferredStyle: .alert)
@@ -156,12 +159,13 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
                         }))
                         self.present(touchIDAlert, animated: true, completion: nil)
                         self.viewModel.setShouldPromptToEnableTouchID(false)
-                    } else if self.viewModel.didLoginWithDifferentAccountThanStoredInKeychain() {
-                        let differentAccountAlert = UIAlertController(title: "Change Touch ID", message: "This is different account than the one linked to your Touch ID. Would you like to use Touch ID for this account from now on?", preferredStyle: .alert)
+                    } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
+                        let message = "Touch ID settings for \(lastLoggedInUsername!.obfuscate()) will be erased upon signing in as \(self.viewModel.username.value.obfuscate()). Would you like to enable Touch ID for \(self.viewModel.username.value.obfuscate()) at this time?"
+                        let differentAccountAlert = UIAlertController(title: "Enable Touch ID", message: message, preferredStyle: .alert)
                         differentAccountAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
                             self.launchMainApp()
                         }))
-                        differentAccountAlert.addAction(UIAlertAction(title: "Change", style: .default, handler: { (action) in
+                        differentAccountAlert.addAction(UIAlertAction(title: "Enable", style: .default, handler: { (action) in
                             self.viewModel.storePasswordInTouchIDKeychain()
                             self.launchMainApp()
                         }))
@@ -172,7 +176,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
                 } else {
                     self.launchMainApp()
                 }
-
+                
             })
         }, onError: { (errorMessage) in
             self.navigationController?.view.isUserInteractionEnabled = true

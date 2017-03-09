@@ -42,9 +42,7 @@ class SettingsViewModel {
     }
     
     func getConfirmPasswordMessage() -> String {
-        let startIndex = username.value.index(username.value.startIndex, offsetBy: 6)
-        let hiddenUsername = username.value.replacingCharacters(in: startIndex..<username.value.endIndex, with: "**********")
-        return "Enter the password for \(hiddenUsername) to enable Touch ID"
+        return "Enter the password for \(username.value.obfuscate()) to enable Touch ID"
     }
     
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
