@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,29 +11,35 @@
         <!--Outage-->
         <scene sceneID="Vsd-Z1-Jl7">
             <objects>
-                <viewController id="WUY-4d-zPg" sceneMemberID="viewController">
+                <viewController id="WUY-4d-zPg" customClass="OutageViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rcn-a8-ST7"/>
                         <viewControllerLayoutGuide type="bottom" id="eoo-sl-0bw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5sA-d6-43i">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feature not implemented" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5I-RV-bOH">
-                                <rect key="frame" x="92" y="323" width="192" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FN2-AG-tRU" customClass="AccountScroller" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="7KH-KE-gEs"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Y5I-RV-bOH" firstAttribute="centerY" secondItem="5sA-d6-43i" secondAttribute="centerY" id="AsT-N0-3OV"/>
-                            <constraint firstItem="Y5I-RV-bOH" firstAttribute="centerX" secondItem="5sA-d6-43i" secondAttribute="centerX" id="RUT-nH-PhE"/>
+                            <constraint firstItem="FN2-AG-tRU" firstAttribute="top" secondItem="rcn-a8-ST7" secondAttribute="bottom" id="Y8t-7J-Hyv"/>
+                            <constraint firstAttribute="trailing" secondItem="FN2-AG-tRU" secondAttribute="trailing" id="kTc-ey-8Ws"/>
+                            <constraint firstItem="FN2-AG-tRU" firstAttribute="leading" secondItem="5sA-d6-43i" secondAttribute="leading" id="uZu-vq-hII"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Outage" id="p64-58-CHY"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="accountScroller" destination="FN2-AG-tRU" id="abQ-kv-CdM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9f-N0-ewH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -56,6 +56,12 @@ extension UIColor {
             return UIColor(red: 35/255, green: 31/255, blue: 32/255, alpha: 1)
         }
     }
+    
+    class var outerSpace: UIColor {
+        get {
+            return UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
+        }
+    }
 
     func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
         return self.adjust(by: abs(percentage))

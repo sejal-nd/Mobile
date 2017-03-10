@@ -261,6 +261,17 @@
 		E80D2E181E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
 		E80D2E191E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
 		E80D2E1A1E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
+		E80D2E271E72FC2C002626C9 /* AccountScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E261E72FC2C002626C9 /* AccountScroller.swift */; };
+		E80D2E281E72FC2C002626C9 /* AccountScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E261E72FC2C002626C9 /* AccountScroller.swift */; };
+		E80D2E291E72FC2C002626C9 /* AccountScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E261E72FC2C002626C9 /* AccountScroller.swift */; };
+		E80D2E2A1E72FC2C002626C9 /* AccountScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E261E72FC2C002626C9 /* AccountScroller.swift */; };
+		E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
+		E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
+		E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
+		E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
+		E80D2E331E7301B8002626C9 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E321E7301B8002626C9 /* OutageViewController.swift */; };
+		E80D2E341E7301B8002626C9 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E321E7301B8002626C9 /* OutageViewController.swift */; };
+		E80D2E351E7301B8002626C9 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E321E7301B8002626C9 /* OutageViewController.swift */; };
 		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
@@ -594,6 +605,9 @@
 		E80043551E68CDCB005CF531 /* IndividualBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualBorders.swift; sourceTree = "<group>"; };
 		E800435E1E6A08D7005CF531 /* ChangePasswordTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordTests.swift; sourceTree = "<group>"; };
 		E80D2E161E721668002626C9 /* ObfuscatedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObfuscatedString.swift; sourceTree = "<group>"; };
+		E80D2E261E72FC2C002626C9 /* AccountScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountScroller.swift; sourceTree = "<group>"; };
+		E80D2E2B1E72FEC5002626C9 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		E80D2E321E7301B8002626C9 /* OutageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewController.swift; sourceTree = "<group>"; };
 		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
@@ -779,6 +793,7 @@
 				E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */,
 				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
 				8FD5AE821E54EA39003F640D /* Login */,
+				E80D2E301E730180002626C9 /* Outage */,
 				E8EEF7271E577781006804D4 /* More */,
 			);
 			path = "View Controllers";
@@ -793,6 +808,7 @@
 				E80043501E675AC4005CF531 /* SecondaryButton.swift */,
 				E8ECCD561E5E25CD00C9E46F /* Switch.swift */,
 				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
+				E80D2E261E72FC2C002626C9 /* AccountScroller.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1161,6 +1177,7 @@
 		B5AC06ED1E52766A00BBA4ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E80D2E2B1E72FEC5002626C9 /* Account.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1205,6 +1222,14 @@
 				E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E80D2E301E730180002626C9 /* Outage */ = {
+			isa = PBXGroup;
+			children = (
+				E80D2E321E7301B8002626C9 /* OutageViewController.swift */,
+			);
+			path = Outage;
 			sourceTree = "<group>";
 		};
 		E86334721E5F96980091E6FE /* FloatLabelTextField */ = {
@@ -1717,12 +1742,14 @@
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				E80D2E171E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				E80D2E271E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E89D07A51E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
@@ -1741,6 +1768,7 @@
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
+				E80D2E331E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
@@ -1761,12 +1789,14 @@
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E80D2E191E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				E80D2E291E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E89D07A71E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
@@ -1785,6 +1815,7 @@
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
+				E80D2E351E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
@@ -1805,12 +1836,14 @@
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E80D2E181E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				E80D2E281E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E89D07A61E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
@@ -1829,6 +1862,7 @@
 				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
+				E80D2E341E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
@@ -1843,7 +1877,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
+				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
 				E80043691E6A126E005CF531 /* OMCAuthenticationService.swift in Sources */,
+				E80D2E2A1E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
