@@ -27,3 +27,8 @@ Third party libraries are managed using Carthage: https://github.com/Carthage/Ca
 Libraries Used:
 - RXSwift
 - RXCocoa
+- JVFloatLabeledTextField
+- ToastSwift
+- Zxcvbn
+- Lottie
+- HockeySDK
