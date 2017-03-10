@@ -9,7 +9,6 @@
 import UIKit
 import Lottie
 
-@IBDesignable
 class SecondaryButton: UIButton {
     
     override init(frame: CGRect) {
