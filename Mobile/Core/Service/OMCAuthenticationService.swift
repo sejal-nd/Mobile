@@ -20,7 +20,7 @@ private enum ChangePasswordParams: String {
     case NewPassword = "new_password"
 }
 
-class OMCAuthenticationService : AuthenticationService {
+struct OMCAuthenticationService : AuthenticationService {
     
     // OMC Login Implementation
     // Steps:

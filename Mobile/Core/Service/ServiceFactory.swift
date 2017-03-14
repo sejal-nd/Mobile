@@ -23,5 +23,11 @@ class ServiceFactory {
         return FingerprintService()
     }
     
-    //TODO: UserService, BillService etc.
+    class func createAccountService() -> AccountService {
+        return MockAccountService()
+    }
+    
+    class func createOutageService() -> OutageService {
+        return MockOutageService()
+    }
 }

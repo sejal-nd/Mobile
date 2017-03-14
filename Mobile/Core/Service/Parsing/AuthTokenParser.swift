@@ -8,6 +8,20 @@
 
 import Foundation
 
+private enum ProfileStatusKey : String {
+    case ProfileStatus = "profileStatus"
+    case Status = "status"
+    case Name = "name"
+    case Value = "value"
+    case Offset = "offset"
+}
+
+private enum ProfileStatusNameValue : String {
+    case LockedPassword = "isLockedPassword"
+    case Active = "active"
+    case Primary = "primary"
+}
+
 class AuthTokenParser : NSObject {
     
     /// Parse the response received from an authorization token request.
@@ -20,13 +34,10 @@ class AuthTokenParser : NSObject {
     class func parseAuthTokenResponse(data: Data?, response: URLResponse?, error: Error?) -> ServiceResult<String> {
         if let responseData = data {
             
-            //TODO: Replace with DLog
-            print(NSString(data: responseData, encoding: String.Encoding.utf8.rawValue) ?? "No Response Data")
+            dLog(message: String(data: responseData, encoding: String.Encoding.utf8) ?? "No Response Data")
             
             do {
-                
                 let parsedData = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
-               
                 
                 if let success = parsedData["success"] as? Bool {
                     if(success == false) {
@@ -37,7 +48,6 @@ class AuthTokenParser : NSObject {
                 } else {
                     return ServiceResult.Failure(ServiceError.JSONParsing)
                 }
-                
                 
             } catch let err as NSError {
                 return ServiceResult.Failure(ServiceError.Other(error: err))
@@ -56,10 +66,55 @@ class AuthTokenParser : NSObject {
     class private func parseSuccess(parsedData: [String:Any]) -> ServiceResult<String> {
         let data: NSDictionary = parsedData["data"] as! NSDictionary
         let assertion: String = data["assertion"] as! String
+    
+        if let statusData = data["profileStatus"] as? [String:Any] {
+            let profileStatus = parseProfileStatus(profileStatus: statusData)
+            
+            if(profileStatus.passwordLocked) {
+                return ServiceResult.Failure(ServiceError.Custom(code: "ACCOUNT_LOCKED",
+                                                                 description: NSLocalizedString("error_message_login_account_locked",
+                                                                                                tableName: "ErrorMessages",
+                                                                                                bundle: Bundle.main,
+                                                                                                value: "",
+                                                                                                comment: "")))
+            }
+        }
         
         return ServiceResult.Success(assertion)
     }
     
+    
+    /// Parse a ProfileStatus instance from json.
+    ///
+    /// - Parameter profileStatus: the json value to parse
+    /// - Returns: a ProfileStatus
+    class private func parseProfileStatus(profileStatus: [String:Any]) -> ProfileStatus {
+        
+        var lockedPassword = false;
+        var active  = false;
+        var primary  = false;
+        
+        if let status = profileStatus[ProfileStatusKey.Status.rawValue] as? Array<NSDictionary> {
+            for item in status {
+                if let name = item[ProfileStatusKey.Name.rawValue] as? String {
+                    switch name {
+                    case ProfileStatusNameValue.LockedPassword.rawValue:
+                        lockedPassword = item[ProfileStatusKey.Value.rawValue] as! Bool
+                        break
+                    case ProfileStatusNameValue.Active.rawValue:
+                        active = item[ProfileStatusKey.Value.rawValue] as! Bool
+                        break
+                    case ProfileStatusNameValue.Primary.rawValue:
+                        primary = item[ProfileStatusKey.Value.rawValue] as! Bool
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        
+        return ProfileStatus(active:active, primary:primary, passwordLocked:lockedPassword)
+    }
     
     /// Retreives the error and wrap it in a ServiceResult
     ///
@@ -67,10 +122,24 @@ class AuthTokenParser : NSObject {
     /// - Returns: A failure ServiceResult containing the error information.
     class private func parseError(parsedData: [String:Any]) -> ServiceResult<String> {
         let meta: NSDictionary = parsedData["meta"] as! NSDictionary
-        let code = meta["code"] as! String
-        let description = meta["description"] as! String
-        let serviceError = ServiceError.Custom(code: code, description: description)
+        let code = meta[OMCResponseKey.Code.rawValue] as! String
+        let description = meta[OMCResponseKey.Description.rawValue] as! String
         
+        let data: NSDictionary = parsedData[OMCResponseKey.Data.rawValue] as! NSDictionary
+        if let statusData = data[ProfileStatusKey.ProfileStatus.rawValue] as? [String:Any] {
+            let profileStatus = parseProfileStatus(profileStatus: statusData)
+            
+            if(profileStatus.passwordLocked) {
+                return ServiceResult.Failure(ServiceError.Custom(code: "ACCOUNT_LOCKED",
+                                                                 description: NSLocalizedString("error_message_login_account_locked",
+                                                                                                tableName: "ErrorMessages",
+                                                                                                bundle: Bundle.main,
+                                                                                                value: "",
+                                                                                                comment: "")))
+            }
+        }
+        
+        let serviceError = ServiceError.Custom(code: code, description: description)
         return ServiceResult.Failure(serviceError)
     }
 }
