@@ -264,7 +264,6 @@
 		E80D2E271E72FC2C002626C9 /* AccountScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E261E72FC2C002626C9 /* AccountScroller.swift */; };
 		E80D2E281E72FC2C002626C9 /* AccountScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E261E72FC2C002626C9 /* AccountScroller.swift */; };
 		E80D2E291E72FC2C002626C9 /* AccountScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E261E72FC2C002626C9 /* AccountScroller.swift */; };
-		E80D2E2A1E72FC2C002626C9 /* AccountScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E261E72FC2C002626C9 /* AccountScroller.swift */; };
 		E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
 		E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
 		E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
@@ -1879,7 +1878,6 @@
 				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
 				E80043691E6A126E005CF531 /* OMCAuthenticationService.swift in Sources */,
-				E80D2E2A1E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
@@ -3099,6 +3097,7 @@
 				087630E91E72F5D000FA7020 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B58B5ABC1E4E28740051FD5F /* Build configuration list for PBXProject "Mobile" */ = {
 			isa = XCConfigurationList;
