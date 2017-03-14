@@ -15,7 +15,7 @@ protocol ChangePasswordViewControllerDelegate: class {
     func didChangePassword(sender: ChangePasswordViewController)
 }
 
-class ChangePasswordViewController: UIViewController {
+class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     
     weak var delegate: ChangePasswordViewControllerDelegate?
 
@@ -67,6 +67,7 @@ class ChangePasswordViewController: UIViewController {
         newPasswordTextField.textField.placeholder = "New Password"
         newPasswordTextField.textField.isSecureTextEntry = true
         newPasswordTextField.textField.returnKeyType = .next
+        newPasswordTextField.textField.delegate = self
         
         confirmPasswordTextField.textField.placeholder = "Confirm Password"
         confirmPasswordTextField.textField.isSecureTextEntry = true
@@ -202,7 +203,7 @@ class ChangePasswordViewController: UIViewController {
         viewModel.doneButtonEnabled().bindTo(doneButton!.rx.isEnabled).addDisposableTo(disposeBag)
     }
     
-    // MARK: Scroll View
+    // MARK: - ScrollView
     
     func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
@@ -221,6 +222,16 @@ class ChangePasswordViewController: UIViewController {
     func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
+    }
+    
+    // MARK: - TextField Delegate
+    
+    // Don't allow whitespace entry in the newPasswordTextField
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.trimmingCharacters(in: .whitespacesAndNewlines).characters.count == 0 {
+            return false
+        }
+        return true
     }
     
 }
