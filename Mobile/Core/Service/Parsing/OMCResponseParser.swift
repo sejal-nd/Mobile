@@ -36,13 +36,13 @@ class OMCResponseParser : NSObject {
                 if let d = data as? [String:Any] {
                     result = parseData(data: d) //1.
                 } else {
-                    result = ServiceResult.Failure(ServiceError.JSONParsing) //2.
+                    result = ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue)) //2.
                 }
             } else {
-                result = ServiceResult.Failure(ServiceError.JSONParsing) //3.
+                result = ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue)) //3.
             }
         } else {
-            result = ServiceResult.Failure(ServiceError.Other(error: error!)) //4.
+            result = ServiceResult.Failure(ServiceError(cause: error!)) //4.
         }
     
         return result
@@ -65,11 +65,11 @@ class OMCResponseParser : NSObject {
                 if let meta = data[OMCResponseKey.Meta.rawValue] as? [String:Any] {
                     return ServiceResult.Failure(parseMetaError(meta:meta))
                 } else {
-                    return ServiceResult.Failure(ServiceError.JSONParsing)
+                    return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue))
                 }
             }
         } else {
-            return ServiceResult.Failure(ServiceError.JSONParsing)
+            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue))
         }
     }
     
@@ -83,14 +83,12 @@ class OMCResponseParser : NSObject {
         
         if let code = meta[OMCResponseKey.Code.rawValue] as? String {
             if let description = meta[OMCResponseKey.Description.rawValue] as? String {
-                return ServiceError.Custom(code: code, description: description)
+                return ServiceError(serviceCode: code, serviceMessage: description)
             } else {
-                //TODO - Map any known codes to the description
-                //-- For now we are just setting the description as the code.
-                return ServiceError.Custom(code: code, description: code)
+                return ServiceError(serviceCode: code)
             }
         } else {
-            return ServiceError.JSONParsing
+            return ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue)
         }
     }
 }

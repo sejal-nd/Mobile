@@ -46,15 +46,15 @@ class AuthTokenParser : NSObject {
                         return self.parseSuccess(parsedData: parsedData)
                     }
                 } else {
-                    return ServiceResult.Failure(ServiceError.JSONParsing)
+                    return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue))
                 }
                 
             } catch let err as NSError {
-                return ServiceResult.Failure(ServiceError.Other(error: err))
+                return ServiceResult.Failure(ServiceError(cause: err))
             }
             
         } else {
-            return ServiceResult.Failure(ServiceError.Other(error: error!))
+            return ServiceResult.Failure(ServiceError(cause: error!))
         }
     }
     
@@ -71,12 +71,7 @@ class AuthTokenParser : NSObject {
             let profileStatus = parseProfileStatus(profileStatus: statusData)
             
             if(profileStatus.passwordLocked) {
-                return ServiceResult.Failure(ServiceError.Custom(code: "ACCOUNT_LOCKED",
-                                                                 description: NSLocalizedString("error_message_login_account_locked",
-                                                                                                tableName: "ErrorMessages",
-                                                                                                bundle: Bundle.main,
-                                                                                                value: "",
-                                                                                                comment: "")))
+                return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
             }
         }
         
@@ -125,21 +120,16 @@ class AuthTokenParser : NSObject {
         let code = meta[OMCResponseKey.Code.rawValue] as! String
         let description = meta[OMCResponseKey.Description.rawValue] as! String
         
-        let data: NSDictionary = parsedData[OMCResponseKey.Data.rawValue] as! NSDictionary
-        if let statusData = data[ProfileStatusKey.ProfileStatus.rawValue] as? [String:Any] {
-            let profileStatus = parseProfileStatus(profileStatus: statusData)
+        if let data = parsedData[OMCResponseKey.Data.rawValue] as? [String:Any] {
+            if let statusData = data[ProfileStatusKey.ProfileStatus.rawValue] as? [String:Any] {
+                let profileStatus = parseProfileStatus(profileStatus: statusData)
             
-            if(profileStatus.passwordLocked) {
-                return ServiceResult.Failure(ServiceError.Custom(code: "ACCOUNT_LOCKED",
-                                                                 description: NSLocalizedString("error_message_login_account_locked",
-                                                                                                tableName: "ErrorMessages",
-                                                                                                bundle: Bundle.main,
-                                                                                                value: "",
-                                                                                                comment: "")))
+                if(profileStatus.passwordLocked) {
+                    return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
+                }
             }
         }
-        
-        let serviceError = ServiceError.Custom(code: code, description: description)
+        let serviceError = ServiceError(serviceCode: code, serviceMessage: description)
         return ServiceResult.Failure(serviceError)
     }
 }

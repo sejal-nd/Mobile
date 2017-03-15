@@ -18,7 +18,7 @@ struct MockAuthenticationService : AuthenticationService {
         if(username == validUsername) {
             completion(ServiceResult.Success(""))
         } else {
-            completion(ServiceResult.Failure(ServiceError.Custom(code: "FN_INVALID", description: "Invalid credentials")))
+            completion(ServiceResult.Failure(ServiceError(serviceCode: "FN_INVALID", serviceMessage: "Invalid credentials")))
         }
         
     }

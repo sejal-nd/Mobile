@@ -10,6 +10,7 @@ import Foundation
 
 /// Utility class for intantiating Service Instances
 class ServiceFactory {
+    
     class func createAuthenticationService() -> AuthenticationService {
         switch(Environment.sharedInstance.environmentName) {
         case "DEV", "TEST", "STAGE", "AUT":

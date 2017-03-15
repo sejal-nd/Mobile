@@ -125,20 +125,12 @@ class ChangePasswordViewModel {
                 }
                 onSuccess()
             }, onError: { (error: Error) in
-                switch(error as! ServiceError) {
-                    case ServiceError.JSONParsing:
-                        onError("JSONParsing Error")
-                        break
-                    case ServiceError.Custom(let code, let description):
-                        if code == "FN-PWD-NOMATCH" {
-                            onPasswordNoMatch()
-                        } else {
-                            onError(description)
-                        }
-                        break
-                    case ServiceError.Other(let error):
-                        onError(error.localizedDescription)
-                        break
+                let serviceError = error as! ServiceError
+                
+                if(serviceError.serviceCode == ServiceErrorCode.FNPwdNoMatch.rawValue) {
+                    onPasswordNoMatch()
+                } else {
+                    onError(error.localizedDescription)
                 }
             })
             .addDisposableTo(disposeBag)

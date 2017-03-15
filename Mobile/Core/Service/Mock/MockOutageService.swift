@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct MockOutageService : OutageService {
+class MockOutageService : OutageService {
+    
+    var outageMap = [String:OutageInfo]()
     
     func fetchOutageStatus(account: Account, completion: @escaping (ServiceResult<OutageStatus>) -> Void) {
         let outageStatus = getOutageStatus(account: account)
@@ -16,80 +18,102 @@ struct MockOutageService : OutageService {
     }
     
     private func getOutageStatus(account: Account) -> OutageStatus {
+        
+        let outageInfo = outageMap[account.accountNumber]
         var status: OutageStatus
+        
+        let reportedTitle = "Your outage report has been received. Your confirmation number is: 84759864125"
+        let reportedMessage = "As of 6:21 AM EST on 8/19/2017 we are working to identify the cause of this outage. We currently estimate your service will be restored by 10:30 AM EST on 8/19/2025."
+        
         switch account.accountNumber {
         case "1234567890":
             status = OutageStatus(accountInfo: account,
                                   gasOnly:false,
-                                  homeContactNumbner:"5555555555",
+                                  homeContactNumber:"5555555555",
                                   isPasswordProtected:false,
                                   isUserAuthenticated:true,
                                   activeOutage:false,
-                                  outageMessageTitle:"Our records show your power is on.",
-                                  outageMessage:"Of you reported an outage within the past fifteen minutes it may not yet be reflected here.",
-                                  restorationTime:Date(),
-                                  outageReported:false,
+                                  outageMessageTitle:outageInfo == nil ? "Our records show your power is on." : reportedTitle,
+                                  outageMessage:outageInfo == nil ? "If you reported an outage within the past fifteen minutes it may not yet be reflected here." : reportedMessage,
                                   accountFinaled:false,
-                                  accountPaid:true)
+                                  accountPaid:true,
+                                  outageInfo:outageInfo)
             break
         case "9836621902":
             status = OutageStatus(accountInfo: account,
                                   gasOnly:false,
-                                  homeContactNumbner:"5555555555",
+                                  homeContactNumber:"5555555555",
                                   isPasswordProtected:false,
                                   isUserAuthenticated:true,
                                   activeOutage:true,
-                                  outageMessageTitle:"We have detected an outage in your area.",
-                                  outageMessage:"As of 6:21 AM EST on 8/19/2017 we indicate that 10 customers(s) are affected by a power outage in your area. The cause of your outage is under investigation. We apologie for any inconvenience it may have caused you. The preliminary restore time is 10:30 AM EST on 8/19/2017.",
-                                  restorationTime:Date().addingTimeInterval(3600),
-                                  outageReported:false,
+                                  outageMessageTitle:outageInfo == nil ? "We have detected an outage in your area." : reportedTitle,
+                                  outageMessage:outageInfo == nil ? "As of 6:21 AM EST on 8/19/2017 we indicate that 10 customers(s) are affected by a power outage in your area. The cause of your outage is under investigation. We apologie for any inconvenience it may have caused you. The preliminary restore time is 10:30 AM EST on 8/19/2017." : reportedMessage,
                                   accountFinaled:false,
-                                  accountPaid:true)
+                                  accountPaid:true,
+                                  restorationTime:Date().addingTimeInterval(3600))
             break
         case "7003238921":
             status = OutageStatus(accountInfo: account,
                                   gasOnly:false,
-                                  homeContactNumbner:"5555555555",
+                                  homeContactNumber:"5555555555",
                                   isPasswordProtected:false,
                                   isUserAuthenticated:true,
                                   activeOutage:false,
-                                  outageMessageTitle:"Your outage report has been received. Your confirmation number is: 84759864125",
-                                  outageMessage:"As of 6:21 AM EST on 8/19/2017 we are working to identify the cause of this outage. We currently estimate your service will be restored by 10:30 AM EST on 8/19/2017.",
-                                  restorationTime:Date().addingTimeInterval(3600),
-                                  outageReported:true,
+                                  outageMessageTitle:outageInfo == nil ? "Our records show your power is on." : reportedTitle,
+                                  outageMessage:outageInfo == nil ? "If you reported an outage within the past fifteen minutes it may not yet be reflected here." : reportedMessage,
+                                  accountFinaled:false,
+                                  accountPaid:true,
+                                  outageInfo:outageInfo)
+            break
+        case "5591032201":
+            status = OutageStatus(accountInfo: account,
+                                  gasOnly:true,
+                                  homeContactNumber:"5555555555",
+                                  isPasswordProtected:false,
+                                  isUserAuthenticated:true,
+                                  activeOutage:false,
+                                  outageMessageTitle:"",
+                                  outageMessage:"",
                                   accountFinaled:false,
                                   accountPaid:true)
             break
         case "5591032201":
             status = OutageStatus(accountInfo: account,
-                                  gasOnly:true,
-                                  homeContactNumbner:"5555555555",
-                                  isPasswordProtected:false,
-                                  isUserAuthenticated:true,
-                                  activeOutage:false,
-                                  outageMessageTitle:"",
-                                  outageMessage:"",
-                                  restorationTime:Date(),
-                                  outageReported:false,
-                                  accountFinaled:false,
-                                  accountPaid:true)
-            break
-        default:
-            status = OutageStatus(accountInfo: account,
                                   gasOnly:false,
-                                  homeContactNumbner:"5555555555",
+                                  homeContactNumber:"5555555555",
                                   isPasswordProtected:false,
                                   isUserAuthenticated:true,
                                   activeOutage:false,
                                   outageMessageTitle:"",
                                   outageMessage:"",
-                                  restorationTime:Date(),
-                                  outageReported:false,
                                   accountFinaled:false,
                                   accountPaid:false)
             break
-            
+            default:
+                status = OutageStatus(accountInfo: account,
+                                      gasOnly:false,
+                                      homeContactNumber:"5555555555",
+                                      isPasswordProtected:false,
+                                      isUserAuthenticated:true,
+                                      activeOutage:false,
+                                      outageMessageTitle:"",
+                                      outageMessage:"",
+                                      accountFinaled:false,
+                                      accountPaid:false)
+            break
         }
         return status
+    }
+    
+    
+    func reportOutage(outageInfo: OutageInfo, completion: @escaping (ServiceResult<Void>) -> Void) {
+        
+        if(outageInfo.account.accountNumber != "5591032201" &&
+            outageInfo.account.accountNumber != "5591032202") {
+            outageMap[outageInfo.account.accountNumber] = outageInfo
+            completion(ServiceResult.Success())
+        } else {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.TcAcctInvalid.rawValue, serviceMessage: "Invalid Account")))
+        }
     }
 }

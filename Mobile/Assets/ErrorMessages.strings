@@ -6,4 +6,4 @@
   Copyright © 2017 Exelon Corporation. All rights reserved.
 */
 
-"error_message_login_account_locked" = "You cannot access your account because you have exceeded the limit of login attempts. Your account may be locked out for the next 30 minutes. Please try again later.";
+"FN-ACCT-LOCKED-LOGIN" = "You cannot access your account because you have exceeded the limit of login attempts. Your account may be locked out for the next 30 minutes. Please try again later.";

@@ -55,19 +55,7 @@ class LoginViewModel {
             .subscribe(onNext: { (success: Bool) in
                 onSuccess()
             }, onError: { (error: Error) in
-                var errorString = ""
-                switch(error as! ServiceError) {
-                case ServiceError.JSONParsing:
-                    errorString = "JSONParsing Error"
-                    break
-                case ServiceError.Custom(let code, let description):
-                    errorString = description
-                    break
-                case ServiceError.Other(let error):
-                    errorString = error.localizedDescription
-                    break
-                }
-                onError(errorString)
+                onError(error.localizedDescription)
             })
             .addDisposableTo(disposeBag)
     }
