@@ -64,19 +64,49 @@ class BGEUITests: XCTestCase {
         app.buttons["Sign In"].tap()
         let elementsQuery = app.scrollViews.otherElements
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        let errorAlert = app.alerts["Error"]
+
         
         usernameEmailAddressTextField.tap()
+        clearText(usernameEmailAddressTextField)
         usernameEmailAddressTextField.typeText("multprem03")
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         passwordSecureTextField.tap()
         passwordSecureTextField.typeText("Password3")
         elementsQuery.buttons["Sign In"].tap()
         
+        //Assert that the Home page loaded after a valid login
+        waitForElementToAppear(app.navigationBars["Home"])
+        XCTAssert(app.navigationBars["Home"].staticTexts["Home"].exists)
+    }
+    
+    func testNoPassword(){
+        app.buttons["Sign In"].tap()
+        let elementsQuery = app.scrollViews.otherElements
+        let errorAlert = app.alerts["Error"]
+        let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
+        
+        
+        usernameEmailAddressTextField.tap()
+        clearText(usernameEmailAddressTextField)
+        usernameEmailAddressTextField.typeText("multprem03")
+        elementsQuery.buttons["Sign In"].tap()
+        
         waitForElementToAppear(errorAlert)
         XCTAssert(errorAlert.exists)
-        //Assert that the Home page loaded after a valid login
-        //XCTAssert(app.navigationBars["Home"].staticTexts["Home"].exists)
+    }
+    
+    func testNoUsername(){
+        app.buttons["Sign In"].tap()
+        let elementsQuery = app.scrollViews.otherElements
+        let errorAlert = app.alerts["Error"]
+        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
+        
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText("Password3")
+        elementsQuery.buttons["Sign In"].tap()
+        
+        waitForElementToAppear(errorAlert)
+        XCTAssert(errorAlert.exists)
     }
     
     func testInvalidUsername(){
@@ -113,9 +143,14 @@ class BGEUITests: XCTestCase {
         XCTAssert(errorAlert.exists)
     }
     
+    //Helper function to delete text from a field, 12 is arbitrary
+    func clearText (_ field: XCUIElement){
+        for _ in 0...12{
+            field.typeText(XCUIKeyboardKeyDelete)
+        }
+    }
     
-    
-    
+    //Helper function that waits for a specific element to appear
     func waitForElementToAppear (_ element: XCUIElement){
         let predicate = NSPredicate(format: "exists==true")
         expectation(for: predicate, evaluatedWith: element, handler: nil)
