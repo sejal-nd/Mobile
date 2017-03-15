@@ -32,12 +32,7 @@ class AuthTokenParserTests: XCTestCase {
             
             switch result {
             case .Failure(let serviceError):
-                switch(serviceError) {
-                case .JSONParsing:
-                    break;
-                default:
-                    XCTFail("Incorrect Result - ServiceError should be .JSONParsing")
-                }
+                XCTAssert(serviceError.serviceCode == ServiceErrorCode.Parsing.rawValue, "Incorrect Result - ServiceError should be parse error")
             default:
                 XCTFail("Unable to correctly parse a 'failure' response value - result should be success-false")
             }
@@ -55,13 +50,7 @@ class AuthTokenParserTests: XCTestCase {
             
             switch result {
             case .Failure(let serviceError):
-                switch(serviceError) {
-                case .Custom(let code, let description):
-                    XCTAssert(code == "FN-CRED-INVALID")
-                    XCTAssert(description == "Invalid user name or password")
-                default:
-                    XCTFail("Incorrect Result")
-                }
+                XCTAssert(serviceError.localizedDescription == "Invalid user name or password")
             default:
                 XCTFail("Unable to correctly parse a 'failure' response value - result should be success-false")
             }

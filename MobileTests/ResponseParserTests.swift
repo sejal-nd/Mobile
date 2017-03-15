@@ -48,14 +48,9 @@ class ResponseParserTests: XCTestCase {
         
         switch result {
         case .Failure(let err):
-            
-            switch err {
-            case .JSONParsing:
-                break
-            default:
-                XCTFail("Incorrect Result - Invalid Success response should result in a Success return value.")
+            if(err.serviceCode != ServiceErrorCode.Parsing.rawValue) {
+                XCTFail("Incorrect Result - Invalid Success response should result in a parse error return value.")
             }
-            
             break
         case .Success:
             XCTFail("Incorrect Result - Invalid response should result in a Failure return value.")
@@ -91,15 +86,7 @@ class ResponseParserTests: XCTestCase {
  
         switch result {
         case .Failure(let err):
-            
-            switch(err) {
-            case .Other(let otherError):
-                XCTAssert(otherError.localizedDescription == "error description", "Incorrect error description")
-                break
-            default:
-                XCTFail("Incorrect Error Type")
-            }
-        
+            XCTAssert(err.localizedDescription == "error description", "Incorrect error description")
             break
         case .Success:
             XCTFail("Incorrect Result - Valid Failure response should result in a Failure return value.")

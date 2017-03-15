@@ -40,7 +40,7 @@ struct OMCAuthenticationService : AuthenticationService {
                 // 2
                 auth?.authenticateSSOTokenExchange(token, completionBlock: { (tokenExchangeError: Error?) in
                     if let error = tokenExchangeError {
-                        completion(ServiceResult.Failure(ServiceError.Other(error: error)))
+                        completion(ServiceResult.Failure(ServiceError(cause:error)))
                     } else {
                         //TODO 3 - Get the user?
                         completion(ServiceResult.Success("Success"))
@@ -84,7 +84,7 @@ struct OMCAuthenticationService : AuthenticationService {
         
         auth?.logoutClearCredentials(true, completionBlock: { (error: Error?) in
             if error != nil {
-                completion(ServiceResult.Failure(ServiceError.Other(error: error!)))
+                completion(ServiceResult.Failure(ServiceError(cause: error!)))
             } else {
                 completion(ServiceResult.Success())
             }
