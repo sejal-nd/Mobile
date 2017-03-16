@@ -91,7 +91,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
             self.onLoginPress()
         }).addDisposableTo(disposeBag)
         
-        forgotPasswordButton.tintColor = UIColor.secondaryButtonText
+        forgotPasswordButton.tintColor = UIColor.mediumPersianBlue
     }
     
     deinit {

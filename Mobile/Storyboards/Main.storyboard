@@ -35,9 +35,9 @@
         <scene sceneID="f2e-QZ-YFW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="860-AT-jXi" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Home" image="ic_nav_home" id="v6H-gB-TMz" customClass="MainTabBarItem" customModule="BGE" customModuleProvider="target"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Home" image="ic_nav_home" id="v6H-gB-TMz"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lcz-28-eLx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lcz-28-eLx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -54,9 +54,9 @@
         <scene sceneID="q78-Wg-4VI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4hR-iJ-D1w" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="2" title="Bill" image="ic_nav_bill" id="c1S-Sq-ZJ5" customClass="MainTabBarItem" customModule="BGE" customModuleProvider="target"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Bill" image="ic_nav_bill" id="c1S-Sq-ZJ5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ABC-PP-DNT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ABC-PP-DNT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -73,9 +73,9 @@
         <scene sceneID="y3e-kT-QNP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zQz-iR-hWE" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" id="p1s-rN-bzt" customClass="MainTabBarItem" customModule="BGE" customModuleProvider="target"/>
+                    <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" id="p1s-rN-bzt"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IWc-2N-l9Q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IWc-2N-l9Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -92,9 +92,9 @@
         <scene sceneID="xkn-nT-BRd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="coO-LU-Nds" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="4" title="Alerts" image="ic_nav_alerts" id="DvY-zh-7M0" customClass="MainTabBarItem" customModule="BGE" customModuleProvider="target"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="Alerts" image="ic_nav_alerts" id="DvY-zh-7M0"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LRe-IY-ItP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LRe-IY-ItP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -111,9 +111,9 @@
         <scene sceneID="hUx-td-Zrv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bdC-Bo-rcI" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="3" title="Outage" image="ic_nav_outage" id="vXF-ge-4jE" customClass="MainTabBarItem" customModule="BGE" customModuleProvider="target"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Outage" image="ic_nav_outage" id="vXF-ge-4jE"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tph-83-2fc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Tph-83-2fc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -16,7 +16,7 @@ class MainBaseNavigationController: UINavigationController {
         super.viewDidLoad()
         
         navigationBar.barTintColor = .white
-        navigationBar.tintColor = .secondaryButtonText
+        navigationBar.tintColor = .mediumPersianBlue
 
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.darkJungleGreen,

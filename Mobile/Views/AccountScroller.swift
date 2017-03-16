@@ -34,6 +34,8 @@ class AccountScroller: UIView, UIScrollViewDelegate {
     }
     
     func commonInit() {
+        backgroundColor = .clear
+        
         scrollView = UIScrollView(frame: .zero)
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
@@ -54,7 +56,7 @@ class AccountScroller: UIView, UIScrollViewDelegate {
         pageControl.currentPageIndicatorTintColor = UIColor(red: 41/255, green: 51/255, blue: 107/255, alpha: 1)
     }
     
-    func setAccounts(accounts: [Account]) {
+    func setAccounts(_ accounts: [Account]) {
         self.accounts = accounts
         
         if self.accounts.count > 1 {

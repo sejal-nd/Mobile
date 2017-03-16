@@ -14,16 +14,24 @@ class MainTabBarController: UITabBarController {
     let selectedTitleFont = UIFont.boldSystemFont(ofSize: 10)
     
     let normalTitleColor = UIColor.gray
-    let selectedTitleColor = UIColor.primaryColor.darker()!
+    let selectedTitleColor = UIColor.primaryColorDark
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         tabBar.tintColor = .primaryColor
+        setButtonStates(itemTag: 1)
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         setButtonStates(itemTag: item.tag)
+    }
+    
+    // Needed for programmatically changing tabs
+    override var selectedIndex: Int {
+        didSet {
+            setButtonStates(itemTag: selectedIndex + 1)
+        }
     }
     
     func setButtonStates (itemTag: Int) {
