@@ -74,6 +74,11 @@ class AuthTokenParser : NSObject {
                 return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
             }
         }
+        if let profileType = data["profileType"] as? String {
+            if(profileType != "commercial" && profileType != "residential") {
+                return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
+            }
+        }
         
         return ServiceResult.Success(assertion)
     }
