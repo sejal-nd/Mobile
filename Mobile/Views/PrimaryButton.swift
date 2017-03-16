@@ -68,7 +68,7 @@ class PrimaryButton: UIButton {
             if newValue {
                 backgroundColor = .primaryButtonBackground
             } else {
-                backgroundColor = .primaryButtonDisabled
+                backgroundColor = .oldLavender
             }
             super.isEnabled = newValue
         }

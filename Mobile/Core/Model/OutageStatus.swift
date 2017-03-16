@@ -54,6 +54,6 @@ struct OutageStatus {
         if(restorationTime != nil) {
             self.restorationTime = restorationTime!
         }
-        
+
     }
 }

@@ -335,9 +335,6 @@
 		E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A01E609DC900F87F87 /* MainTabBarController.swift */; };
 		E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A01E609DC900F87F87 /* MainTabBarController.swift */; };
 		E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A01E609DC900F87F87 /* MainTabBarController.swift */; };
-		E89D07A51E60A9C000F87F87 /* MainTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */; };
-		E89D07A61E60A9C000F87F87 /* MainTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */; };
-		E89D07A71E60A9C000F87F87 /* MainTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */; };
 		E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
 		E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
 		E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
@@ -368,6 +365,12 @@
 		E8D252101E6DB7B400C90584 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520D1E6DB78800C90584 /* Lottie.framework */; };
 		E8D252111E6DB82C00C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
 		E8D252121E6DB82C00C90584 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520D1E6DB78800C90584 /* Lottie.framework */; };
+		E8EB4D131E784394002587C5 /* TableViewCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EB4D121E784394002587C5 /* TableViewCellButton.swift */; };
+		E8EB4D141E784394002587C5 /* TableViewCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EB4D121E784394002587C5 /* TableViewCellButton.swift */; };
+		E8EB4D151E784394002587C5 /* TableViewCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EB4D121E784394002587C5 /* TableViewCellButton.swift */; };
+		E8EB4D171E7843A1002587C5 /* TableViewCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */; };
+		E8EB4D181E7843A1002587C5 /* TableViewCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */; };
+		E8EB4D191E7843A1002587C5 /* TableViewCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */; };
 		E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
 		E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
 		E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
@@ -394,6 +397,13 @@
 		E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
 		E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
 		E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
+		E8FE30A11E7859F2009D28B7 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */; };
+		E8FE30A21E7859F2009D28B7 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */; };
+		E8FE30A31E7859F2009D28B7 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */; };
+		E8FE30A41E7859F2009D28B7 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */; };
+		E8FE30B11E787625009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B01E787625009D28B7 /* outage.json */; };
+		E8FE30B61E787632009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B41E78762F009D28B7 /* outage.json */; };
+		E8FE30B71E787635009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B21E78762B009D28B7 /* outage.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -671,7 +681,6 @@
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
 		E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetJVFloatLabeledTextField.swift; sourceTree = "<group>"; };
 		E89D07A01E609DC900F87F87 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarItem.swift; sourceTree = "<group>"; };
 		E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JVFloatLabeledText.framework; path = Carthage/Build/iOS/JVFloatLabeledText.framework; sourceTree = "<group>"; };
 		E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBaseNavigationController.swift; sourceTree = "<group>"; };
 		E8B4F4AE1E5C957A0031D934 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
@@ -684,6 +693,8 @@
 		E8B4F4CE1E5CE21D0031D934 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		E8D2520B1E6DB74600C90584 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
 		E8D2520D1E6DB78800C90584 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
+		E8EB4D121E784394002587C5 /* TableViewCellButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellButton.swift; sourceTree = "<group>"; };
+		E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCellButton.xib; sourceTree = "<group>"; };
 		E8ECCD561E5E25CD00C9E46F /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
@@ -694,6 +705,10 @@
 		E8EEF7361E57895F006804D4 /* LaunchScreen-ComEd.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-ComEd.storyboard"; sourceTree = "<group>"; };
 		E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-PECO.storyboard"; sourceTree = "<group>"; };
 		E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewController.swift; sourceTree = "<group>"; };
+		E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewModel.swift; sourceTree = "<group>"; };
+		E8FE30B01E787625009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
+		E8FE30B21E78762B009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
+		E8FE30B41E78762F009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -848,7 +863,6 @@
 			isa = PBXGroup;
 			children = (
 				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
-				E89D07A41E60A9C000F87F87 /* MainTabBarItem.swift */,
 				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
 				8FD5AE821E54EA39003F640D /* Login */,
 				E80D2E301E730180002626C9 /* Outage */,
@@ -861,6 +875,7 @@
 			isa = PBXGroup;
 			children = (
 				E80042FA1E64DEB3005CF531 /* TableViewCell */,
+				E8EB4D111E784369002587C5 /* TableViewCellButton */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */,
 				E80043501E675AC4005CF531 /* SecondaryButton.swift */,
@@ -884,6 +899,9 @@
 		8FD5AE971E54EA8C003F640D /* Lottie Animations */ = {
 			isa = PBXGroup;
 			children = (
+				E8FE30AD1E7875E5009D28B7 /* BGE */,
+				E8FE30AE1E7875EA009D28B7 /* ComEd */,
+				E8FE30AF1E7875F0009D28B7 /* PECO */,
 				8FD5AE981E54EAB8003F640D /* checkmark.json */,
 				8FD5AE991E54EAB8003F640D /* loading.json */,
 			);
@@ -1327,6 +1345,15 @@
 			path = A0SimpleKeychain;
 			sourceTree = "<group>";
 		};
+		E8EB4D111E784369002587C5 /* TableViewCellButton */ = {
+			isa = PBXGroup;
+			children = (
+				E8EB4D121E784394002587C5 /* TableViewCellButton.swift */,
+				E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */,
+			);
+			path = TableViewCellButton;
+			sourceTree = "<group>";
+		};
 		E8EEF70B1E565BE7006804D4 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1334,6 +1361,7 @@
 				E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */,
 				E800430F1E64DF10005CF531 /* SettingsViewModel.swift */,
 				E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */,
+				E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1357,6 +1385,30 @@
 				E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */,
 			);
 			path = "Launch Screens";
+			sourceTree = "<group>";
+		};
+		E8FE30AD1E7875E5009D28B7 /* BGE */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE30B01E787625009D28B7 /* outage.json */,
+			);
+			path = BGE;
+			sourceTree = "<group>";
+		};
+		E8FE30AE1E7875EA009D28B7 /* ComEd */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE30B21E78762B009D28B7 /* outage.json */,
+			);
+			path = ComEd;
+			sourceTree = "<group>";
+		};
+		E8FE30AF1E7875F0009D28B7 /* PECO */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE30B41E78762F009D28B7 /* outage.json */,
+			);
+			path = PECO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1570,12 +1622,14 @@
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
+				E8EB4D171E7843A1002587C5 /* TableViewCellButton.xib in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				E80043041E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
+				E8FE30B11E787625009D28B7 /* outage.json in Resources */,
 				B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736321E6740A8003B9369 /* INFO.txt in Resources */,
 				B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
@@ -1609,12 +1663,14 @@
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736471E6742A6003B9369 /* OMC.plist in Resources */,
+				E8EB4D191E7843A1002587C5 /* TableViewCellButton.xib in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				E80043061E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
+				E8FE30B61E787632009D28B7 /* outage.json in Resources */,
 				B55736401E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736341E6740A8003B9369 /* INFO.txt in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
@@ -1648,12 +1704,14 @@
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
+				E8EB4D181E7843A1002587C5 /* TableViewCellButton.xib in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				E80043051E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
+				E8FE30B71E787635009D28B7 /* outage.json in Resources */,
 				B557363F1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736331E6740A8003B9369 /* INFO.txt in Resources */,
 				B574BAD01E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
@@ -1839,11 +1897,12 @@
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				B574BAE51E784779001E8A44 /* AccountDetail.swift in Sources */,
-				E89D07A51E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E80043011E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E8EB4D131E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
+				E8FE30A11E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
@@ -1895,11 +1954,12 @@
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				B574BAE71E784779001E8A44 /* AccountDetail.swift in Sources */,
-				E89D07A71E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E80043031E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E8EB4D151E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
+				E8FE30A31E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
@@ -1951,11 +2011,12 @@
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				B574BAE61E784779001E8A44 /* AccountDetail.swift in Sources */,
-				E89D07A61E60A9C000F87F87 /* MainTabBarItem.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E80043021E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E8EB4D141E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
+				E8FE30A21E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE871E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
@@ -2004,6 +2065,7 @@
 				B574BAE81E784779001E8A44 /* AccountDetail.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
+				E8FE30A41E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */,
 				E80043601E6A117A005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,

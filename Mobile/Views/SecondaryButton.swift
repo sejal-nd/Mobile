@@ -33,9 +33,9 @@ class SecondaryButton: UIButton {
         layer.masksToBounds = false
         
         titleLabel!.font = UIFont.boldSystemFont(ofSize: 20)
-        setTitleColor(.secondaryButtonText, for: .normal)
-        setTitleColor(.secondaryButtonText, for: .highlighted)
-        setTitleColor(.primaryButtonDisabled, for: .disabled)
+        setTitleColor(.mediumPersianBlue, for: .normal)
+        setTitleColor(.mediumPersianBlue, for: .highlighted)
+        setTitleColor(.oldLavender, for: .disabled)
     }
     
     override func layoutSubviews() {
