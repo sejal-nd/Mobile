@@ -226,7 +226,7 @@ class OutageViewController: UIViewController, AccountScrollerDelegate {
         } else if viewModel.currentOutageStatus!.accountPaid == false {
             let outstandingBalanceLabel = UILabel(frame: CGRect(x: 14, y: 51, width: 166, height: 84))
             outstandingBalanceLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
-            outstandingBalanceLabel.textColor = UIColor(red: 97/255, green: 97/255, blue: 97/255, alpha: 1)
+            outstandingBalanceLabel.textColor = .oldLavender
             outstandingBalanceLabel.textAlignment = .center
             outstandingBalanceLabel.numberOfLines = 0
             outstandingBalanceLabel.text = viewModel.getAccountNotPaidMessage()
