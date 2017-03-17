@@ -47,7 +47,7 @@ class MockOutageService : OutageService {
                                   isUserAuthenticated:true,
                                   activeOutage:true,
                                   outageMessageTitle:outageInfo == nil ? "We have detected an outage in your area." : reportedTitle,
-                                  outageMessage:outageInfo == nil ? "As of 6:21 AM EST on 8/19/2017 we indicate that 10 customers(s) are affected by a power outage in your area. The cause of your outage is under investigation. We apologie for any inconvenience it may have caused you. The preliminary restore time is 10:30 AM EST on 8/19/2017." : reportedMessage,
+                                  outageMessage:outageInfo == nil ? "As of 6:21 AM EST on 8/19/2017 we indicate that 10 customers(s) are affected by a power outage in your area. The cause of your outage is under investigation. We apologize for any inconvenience it may have caused you. The preliminary restore time is 10:30 AM EST on 8/19/2017." : reportedMessage,
                                   accountFinaled:false,
                                   accountPaid:true,
                                   restorationTime:Date().addingTimeInterval(3600))
