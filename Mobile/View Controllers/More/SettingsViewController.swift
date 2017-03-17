@@ -28,7 +28,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "Cell")
         
-        tableView.backgroundColor = .tableViewBackgroundColor
+        tableView.backgroundColor = .whiteSmoke
         tableView.contentInset = UIEdgeInsetsMake(30, 0, 30, 0)
     }
 

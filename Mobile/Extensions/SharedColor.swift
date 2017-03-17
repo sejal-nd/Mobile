@@ -9,69 +9,60 @@
 import UIKit
 
 extension UIColor {
-    @nonobjc static var primaryButtonBackground: UIColor {
-        get {
-            return UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
-        }
-    }
 
-    @nonobjc static var primaryButtonHighlight: UIColor {
-        get {
-           return UIColor(red: 0/255, green: 38/255, blue: 88/255, alpha: 1)
-        }
-    }
-    
-    @nonobjc static var secondaryButtonHighlight: UIColor {
+    // The color to be used for the pressed/highlighted state for white buttons/cells
+    @nonobjc static var whiteButtonHighlight: UIColor {
         get {
             return UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
         }
     }
-
-    @nonobjc static var tableViewBackgroundColor: UIColor {
+    
+    // CTA Blue
+    @nonobjc static var darkMidnightBlue: UIColor {
         get {
-            return UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.15)
+            return UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
         }
     }
     
+    // Action Blue
     @nonobjc static var mediumPersianBlue: UIColor {
         get {
             return UIColor(red: 0/255, green: 89/255, blue: 164/255, alpha: 1)
         }
     }
-    
-    @nonobjc static var dimGray: UIColor {
-        get {
-            return UIColor(red: 97/255, green: 97/255, blue: 97/255, alpha: 1)
-        }
-    }
-    
-    @nonobjc static var silver: UIColor {
-        get {
-            return UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1)
-        }
-    }
-    
-    @nonobjc static var oldLavender: UIColor {
-        get {
-            return UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1)
-        }
-    }
-
-    @nonobjc static var timberwolf: UIColor {
-        get {
-            return UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
-        }
-    }
-
+        
+    // "Black" Text
     @nonobjc static var darkJungleGreen: UIColor {
         get {
             return UIColor(red: 35/255, green: 31/255, blue: 32/255, alpha: 1)
         }
     }
     
+    // Deep Gray
     @nonobjc static var outerSpace: UIColor {
         get {
             return UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
+        }
+    }
+    
+    // Middle Gray
+    @nonobjc static var oldLavender: UIColor {
+        get {
+            return UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1)
+        }
+    }
+    
+    // Accent Gray
+    @nonobjc static var timberwolf: UIColor {
+        get {
+            return UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
+        }
+    }
+    
+    // Soft Gray
+    @nonobjc static var whiteSmoke: UIColor {
+        get {
+            return UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
         }
     }
 

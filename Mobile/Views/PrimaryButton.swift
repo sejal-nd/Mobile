@@ -28,7 +28,7 @@ class PrimaryButton: UIButton {
     }
     
     func commonInit() {
-        backgroundColor = .primaryButtonBackground
+        backgroundColor = .darkMidnightBlue
 
         titleLabel!.font = UIFont.boldSystemFont(ofSize: 20)
         setTitleColor(.white, for: .normal)
@@ -51,10 +51,10 @@ class PrimaryButton: UIButton {
         }
         set {
             if newValue {
-                backgroundColor = .primaryButtonHighlight
+                backgroundColor = UIColor(red: 0/255, green: 38/255, blue: 88/255, alpha: 1)
             }
             else {
-                backgroundColor = .primaryButtonBackground
+                backgroundColor = .darkMidnightBlue
             }
             super.isHighlighted = newValue
         }
@@ -66,7 +66,7 @@ class PrimaryButton: UIButton {
         }
         set {
             if newValue {
-                backgroundColor = .primaryButtonBackground
+                backgroundColor = .darkMidnightBlue
             } else {
                 backgroundColor = .oldLavender
             }

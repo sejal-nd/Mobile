@@ -54,7 +54,7 @@ class SecondaryButton: UIButton {
         set {
             if newValue {
                 layer.shadowOpacity = 0
-                backgroundColor = .secondaryButtonHighlight
+                backgroundColor = .whiteButtonHighlight
             }
             else {
                 layer.shadowOpacity = 0.2
@@ -74,7 +74,7 @@ class SecondaryButton: UIButton {
                 backgroundColor = .white
             } else {
                 layer.shadowOpacity = 0
-                backgroundColor = .secondaryButtonHighlight
+                backgroundColor = .whiteButtonHighlight
             }
             super.isEnabled = newValue
         }

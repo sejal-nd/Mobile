@@ -52,8 +52,8 @@ class AccountScroller: UIView, UIScrollViewDelegate {
         
         scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 57)
         pageControl.frame = CGRect(x: frame.size.width / 2 - 50, y: 57, width: 100, height: 7)
-        pageControl.pageIndicatorTintColor = UIColor(red: 144/255, green: 168/255, blue: 255/255, alpha: 0.43)
-        pageControl.currentPageIndicatorTintColor = UIColor(red: 41/255, green: 51/255, blue: 107/255, alpha: 1)
+        pageControl.pageIndicatorTintColor = UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 0.5)
+        pageControl.currentPageIndicatorTintColor = UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
     }
     
     func setAccounts(_ accounts: [Account]) {

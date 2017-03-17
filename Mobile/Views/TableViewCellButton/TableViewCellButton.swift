@@ -62,7 +62,7 @@ class TableViewCellButton: UIButton {
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-               view.backgroundColor = .secondaryButtonHighlight
+               view.backgroundColor = .whiteButtonHighlight
             }
             else {
                 view.backgroundColor = .white
