@@ -72,6 +72,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         confirmPasswordTextField.textField.placeholder = "Confirm Password"
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.returnKeyType = .done
+        confirmPasswordTextField.textField.delegate = self
         confirmPasswordTextField.setEnabled(false)
         
         // Bind to the view model
