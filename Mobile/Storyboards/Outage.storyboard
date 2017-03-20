@@ -26,6 +26,10 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDU-Ch-dvR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSc-mq-7Vd">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <subviews>
@@ -211,10 +215,14 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="UDU-Ch-dvR" firstAttribute="leading" secondItem="5sA-d6-43i" secondAttribute="leading" id="KOX-G9-4W6"/>
                             <constraint firstAttribute="trailing" secondItem="qSc-mq-7Vd" secondAttribute="trailing" id="OzI-rA-gjT"/>
                             <constraint firstItem="qSc-mq-7Vd" firstAttribute="top" secondItem="rcn-a8-ST7" secondAttribute="bottom" id="Pf1-ZV-Egm"/>
                             <constraint firstItem="eoo-sl-0bw" firstAttribute="top" secondItem="qSc-mq-7Vd" secondAttribute="bottom" id="QyO-hL-LuP"/>
                             <constraint firstItem="qSc-mq-7Vd" firstAttribute="leading" secondItem="5sA-d6-43i" secondAttribute="leading" id="XA5-bY-Jq8"/>
+                            <constraint firstItem="UDU-Ch-dvR" firstAttribute="top" secondItem="rcn-a8-ST7" secondAttribute="bottom" id="dai-3M-hIG"/>
+                            <constraint firstAttribute="trailing" secondItem="UDU-Ch-dvR" secondAttribute="trailing" id="myP-W4-RK3"/>
+                            <constraint firstItem="eoo-sl-0bw" firstAttribute="top" secondItem="UDU-Ch-dvR" secondAttribute="bottom" id="uRc-Zg-g6e"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Outage" id="p64-58-CHY"/>
@@ -228,6 +236,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                         <outlet property="footerTextView" destination="QN1-1Y-eoZ" id="DtU-Dv-8Uz"/>
                         <outlet property="gasOnlyTextView" destination="nUe-Ah-Ffw" id="sVi-Ap-BSv"/>
                         <outlet property="gasOnlyView" destination="H0L-QG-hAo" id="gUc-Os-TqR"/>
+                        <outlet property="gradientBackground" destination="UDU-Ch-dvR" id="VEL-GO-tuo"/>
                         <outlet property="innerCircleView" destination="h8j-at-hGY" id="JKB-tQ-ujN"/>
                         <outlet property="outerCircleView" destination="ETa-nw-YVn" id="I2e-gh-f0a"/>
                         <outlet property="reportOutageButton" destination="UK3-yj-xRE" id="Mts-dt-8zK"/>

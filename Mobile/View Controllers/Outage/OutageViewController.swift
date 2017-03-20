@@ -12,6 +12,7 @@ import MBProgressHUD
 
 class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOutageViewControllerDelegate {
     
+    @IBOutlet weak var gradientBackground: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollViewContent: UIView!
     @IBOutlet weak var accountScroller: AccountScroller!
@@ -34,15 +35,15 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let gradientBackground = CAGradientLayer()
-        gradientBackground.frame = view.bounds
-        gradientBackground.colors = [
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = gradientBackground.bounds
+        gradientLayer.colors = [
             UIColor.white.cgColor,
             UIColor(red: 246/255, green: 247/255, blue: 248/255, alpha: 1).cgColor,
             UIColor(red: 240/255, green: 242/255, blue: 243/255, alpha: 1).cgColor
         ]
-        gradientBackground.locations = [0.0, 0.38, 1.0]
-        view.layer.insertSublayer(gradientBackground, below: scrollView.layer)
+        gradientLayer.locations = [0.0, 0.38, 1.0]
+        gradientBackground.layer.addSublayer(gradientLayer)
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
@@ -156,7 +157,9 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
             subview.removeFromSuperview()
         }
         
-        if viewModel.currentOutageStatus!.activeOutage {
+        let currentOutageStatus = viewModel.currentOutageStatus!
+        
+        if currentOutageStatus.activeOutage {
             let icon = UIImageView(frame: CGRect(x: 85, y: 31, width: 22, height: 28))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_out")
             
@@ -190,7 +193,7 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
             bigButtonView.addSubview(outLabel)
             bigButtonView.addSubview(estRestorationLabel)
             bigButtonView.addSubview(timeLabel)
-        } else if viewModel.currentOutageStatus!.outageReported {
+        } else if currentOutageStatus.outageReported {
             let icon = UIImageView(frame: CGRect(x: 89, y: 28, width: 27, height: 29))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
             
@@ -224,7 +227,7 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
             bigButtonView.addSubview(reportedLabel)
             bigButtonView.addSubview(estRestorationLabel)
             bigButtonView.addSubview(timeLabel)
-        } else if viewModel.currentOutageStatus!.accountPaid == false {
+        } else if currentOutageStatus.accountFinaled || !currentOutageStatus.accountPaid {
             let outstandingBalanceLabel = UILabel(frame: CGRect(x: 14, y: 51, width: 166, height: 84))
             outstandingBalanceLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
             outstandingBalanceLabel.textColor = .oldLavender
