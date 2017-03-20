@@ -15,4 +15,5 @@ struct Account {
     var accountType: AccountType
     var accountNumber: String
     var address: String
+    var homeContactNumber: String
 }

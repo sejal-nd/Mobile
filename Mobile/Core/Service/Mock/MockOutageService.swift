@@ -111,7 +111,9 @@ class MockOutageService : OutageService {
         if(outageInfo.account.accountNumber != "5591032201" &&
             outageInfo.account.accountNumber != "5591032202") {
             outageMap[outageInfo.account.accountNumber] = outageInfo
-            completion(ServiceResult.Success())
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+                completion(ServiceResult.Success())
+            }
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.TcAcctInvalid.rawValue, serviceMessage: "Invalid Account")))
         }

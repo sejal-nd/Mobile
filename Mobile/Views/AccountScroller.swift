@@ -78,7 +78,8 @@ class AccountScroller: UIView, UIScrollViewDelegate {
             accountNumberLabel.textColor = UIColor.darkJungleGreen
             accountNumberLabel.text = account.accountNumber
             
-            let addressLabel = UILabel(frame: CGRect(x: center.x - 30, y: 32, width: 200, height: 14))
+            let addressLabelWidth = UIScreen.main.bounds.width - (center.x - 30) - 16
+            let addressLabel = UILabel(frame: CGRect(x: center.x - 30, y: 32, width: addressLabelWidth, height: 14))
             addressLabel.font = UIFont.systemFont(ofSize: 12)
             addressLabel.textColor = UIColor.outerSpace
             addressLabel.text = account.address
