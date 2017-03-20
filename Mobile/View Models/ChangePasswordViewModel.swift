@@ -17,9 +17,9 @@ class ChangePasswordViewModel {
     var newPassword = Variable("")
     var confirmPassword = Variable("")
     
-    private var userDefaults: UserDefaults?
-    private var authService: AuthenticationService?
-    private var fingerprintService: FingerprintService?
+    private var userDefaults: UserDefaults
+    private var authService: AuthenticationService
+    private var fingerprintService: FingerprintService
     
     required init(userDefaults: UserDefaults, authService: AuthenticationService, fingerprintService: FingerprintService) {
         self.userDefaults = userDefaults
@@ -77,7 +77,7 @@ class ChangePasswordViewModel {
     
     func passwordMatchesUsername() -> Observable<Bool> {
         return newPassword.asObservable().map({ text -> Bool in
-            let username = self.userDefaults!.string(forKey: UserDefaultKeys.LoggedInUsername)
+            let username = self.userDefaults.string(forKey: UserDefaultKeys.LoggedInUsername)
             return text.lowercased() == username?.lowercased()
         })
     }
@@ -115,13 +115,12 @@ class ChangePasswordViewModel {
     }
     
     func changePassword(onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        authService!
-            .changePassword(currentPassword.value, newPassword: newPassword.value)
+        authService.changePassword(currentPassword.value, newPassword: newPassword.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { (success: Bool) in
-                if self.fingerprintService!.isTouchIDEnabled() { // Store the new password in the keychain
-                    self.fingerprintService!.setStoredPassword(password: self.newPassword.value)
+                if self.fingerprintService.isTouchIDEnabled() { // Store the new password in the keychain
+                    self.fingerprintService.setStoredPassword(password: self.newPassword.value)
                 }
                 onSuccess()
             }, onError: { (error: Error) in

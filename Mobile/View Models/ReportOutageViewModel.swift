@@ -10,7 +10,7 @@ import RxSwift
 
 class ReportOutageViewModel {
     
-    private var outageService: OutageService?
+    private var outageService: OutageService
     
     var account: Account?
     var selectedSegmentIndex = Variable(0)
@@ -58,7 +58,7 @@ class ReportOutageViewModel {
             outageInfo.phoneExtension = phoneNumber.value
         }
         
-        outageService!.reportOutage(outageInfo: outageInfo) { (result: ServiceResult<Void>) in
+        outageService.reportOutage(outageInfo: outageInfo) { (result: ServiceResult<Void>) in
             onSuccess()
         }
     }

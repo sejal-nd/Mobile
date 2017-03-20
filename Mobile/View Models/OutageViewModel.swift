@@ -8,8 +8,8 @@
 
 class OutageViewModel {
     
-    private var accountService: AccountService?
-    private var outageService: OutageService?
+    private var accountService: AccountService
+    private var outageService: OutageService
     
     var currentAccount: Account?
     var currentOutageStatus: OutageStatus?
@@ -20,7 +20,7 @@ class OutageViewModel {
     }
     
     func getAccounts(onSuccess: @escaping ([Account]) -> Void, onError: @escaping (String) -> Void) {
-        accountService!.fetchAccounts(page: 0, offset: 0) { (result: ServiceResult<AccountPage>) in
+        accountService.fetchAccounts(page: 0, offset: 0) { (result: ServiceResult<AccountPage>) in
             switch(result) {
                 case .Success(let accountPage):
                     self.currentAccount = accountPage.accounts[0]
@@ -34,7 +34,7 @@ class OutageViewModel {
     }
     
     func getOutageStatus(forAccount account: Account, onSuccess: @escaping (OutageStatus) -> Void, onError: @escaping (String) -> Void) {
-        outageService!.fetchOutageStatus(account: account) { (result: ServiceResult<OutageStatus>) in
+        outageService.fetchOutageStatus(account: account) { (result: ServiceResult<OutageStatus>) in
             switch(result) {
                 case .Success(let outageStatus):
                     self.currentOutageStatus = outageStatus

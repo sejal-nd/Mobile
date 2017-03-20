@@ -15,8 +15,8 @@ class SettingsViewModel {
     var username = Variable("")
     var password = Variable("")
     
-    private var authService: AuthenticationService?
-    private var fingerprintService: FingerprintService?
+    private var authService: AuthenticationService
+    private var fingerprintService: FingerprintService
     
     init(authService: AuthenticationService, fingerprintService: FingerprintService) {
         self.authService = authService
@@ -30,15 +30,15 @@ class SettingsViewModel {
     }
     
     func isDeviceTouchIDCompatible() -> Bool {
-        return fingerprintService!.isDeviceTouchIDCompatible()
+        return fingerprintService.isDeviceTouchIDCompatible()
     }
     
     func isTouchIDEnabled() -> Bool {
-        return fingerprintService!.isTouchIDEnabled()
+        return fingerprintService.isTouchIDEnabled()
     }
     
     func disableTouchID() {
-        fingerprintService!.disableTouchID()
+        fingerprintService.disableTouchID()
     }
     
     func getConfirmPasswordMessage() -> String {
@@ -46,12 +46,11 @@ class SettingsViewModel {
     }
     
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        authService!
-            .login(username.value, password: password.value)
+        authService.login(username.value, password: password.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { (success: Bool) in
-                self.fingerprintService!.setStoredPassword(password: self.password.value)
+                self.fingerprintService.setStoredPassword(password: self.password.value)
                 onSuccess()
             }, onError: { (error: Error) in
                 onError(error.localizedDescription)

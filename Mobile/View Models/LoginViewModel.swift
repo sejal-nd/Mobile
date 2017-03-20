@@ -16,8 +16,8 @@ class LoginViewModel {
     var password = Variable("")
     var keepMeSignedIn = Variable(false)
     
-    private var authService: AuthenticationService?
-    private var fingerprintService: FingerprintService?
+    private var authService: AuthenticationService
+    private var fingerprintService: FingerprintService
     
     init(authService: AuthenticationService, fingerprintService: FingerprintService) {
         self.authService = authService
@@ -29,7 +29,7 @@ class LoginViewModel {
     }
     
     func isDeviceTouchIDCompatible() -> Bool {
-        return fingerprintService!.isDeviceTouchIDCompatible()
+        return fingerprintService.isDeviceTouchIDCompatible()
     }
         
     func shouldPromptToEnableTouchID() -> Bool {
@@ -48,8 +48,7 @@ class LoginViewModel {
             return;
         }
         
-        authService!
-            .login(username.value, password: password.value)
+        authService.login(username.value, password: password.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { (success: Bool) in
@@ -61,20 +60,20 @@ class LoginViewModel {
     }
     
     func getStoredUsername() -> String? {
-        return fingerprintService!.getStoredUsername()
+        return fingerprintService.getStoredUsername()
     }
     
     func storeUsername() {
-        fingerprintService!.setStoredUsername(username: username.value)
+        fingerprintService.setStoredUsername(username: username.value)
     }
     
     func storePasswordInTouchIDKeychain() {
-        fingerprintService!.setStoredPassword(password: password.value)
+        fingerprintService.setStoredPassword(password: password.value)
     }
     
     func attemptLoginWithTouchID(onLoad: @escaping () -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        if let username = fingerprintService!.getStoredUsername() {
-            if let password = fingerprintService!.getStoredPassword() {
+        if let username = fingerprintService.getStoredUsername() {
+            if let password = fingerprintService.getStoredPassword() {
                 self.username.value = username
                 self.password.value = password
                 onLoad()
@@ -84,7 +83,7 @@ class LoginViewModel {
     }
     
     func disableTouchID() {
-        fingerprintService!.disableTouchID()
+        fingerprintService.disableTouchID()
     }
     
 }
