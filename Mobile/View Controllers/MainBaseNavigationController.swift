@@ -18,6 +18,10 @@ class MainBaseNavigationController: UINavigationController {
         navigationBar.barTintColor = .white
         navigationBar.tintColor = .mediumPersianBlue
         navigationBar.isTranslucent = false
+        
+//        // Removes the bottom border line:
+//        navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        navigationBar.shadowImage = UIImage()
 
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.darkJungleGreen,
