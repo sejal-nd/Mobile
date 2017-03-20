@@ -10,7 +10,7 @@ import UIKit
 import Lottie
 import MBProgressHUD
 
-class OutageViewController: UIViewController, AccountScrollerDelegate {
+class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOutageViewControllerDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollViewContent: UIView!
@@ -103,7 +103,6 @@ class OutageViewController: UIViewController, AccountScrollerDelegate {
         })
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -173,17 +172,18 @@ class OutageViewController: UIViewController, AccountScrollerDelegate {
             outLabel.textAlignment = .center
             outLabel.text = "OUT"
             
-            let estRestorationLabel = UILabel(frame: CGRect(x: 33, y: 117, width: 127, height: 14))
+            let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: 130, height: 14))
             estRestorationLabel.font = UIFont(name: "OpenSans", size: 12)
             estRestorationLabel.textColor = .outerSpace
             estRestorationLabel.textAlignment = .center
             estRestorationLabel.text = "Estimated Restoration"
             
-            let timeLabel = UILabel(frame: CGRect(x: 33, y: 136, width: 127, height: 12))
+            let timeLabel = UILabel(frame: CGRect(x: 30, y: 134, width: 130, height: 15))
             timeLabel.font = UIFont(name: "OpenSans-Bold", size: 15)
             timeLabel.textColor = .outerSpace
             timeLabel.textAlignment = .center
             timeLabel.text = viewModel.getEstimatedRestorationDateString()
+            timeLabel.sizeToFit()
             
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourPowerIsLabel)
@@ -206,17 +206,18 @@ class OutageViewController: UIViewController, AccountScrollerDelegate {
             reportedLabel.textAlignment = .center
             reportedLabel.text = "REPORTED"
             
-            let estRestorationLabel = UILabel(frame: CGRect(x: 33, y: 117, width: 127, height: 14))
+            let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: 130, height: 14))
             estRestorationLabel.font = UIFont(name: "OpenSans", size: 12)
             estRestorationLabel.textColor = .outerSpace
             estRestorationLabel.textAlignment = .center
             estRestorationLabel.text = "Estimated Restoration"
             
-            let timeLabel = UILabel(frame: CGRect(x: 33, y: 136, width: 127, height: 12))
+            let timeLabel = UILabel(frame: CGRect(x: 30, y: 134, width: 130, height: 15))
             timeLabel.font = UIFont(name: "OpenSans-Bold", size: 15)
             timeLabel.textColor = .outerSpace
             timeLabel.textAlignment = .center
             timeLabel.text = viewModel.getEstimatedRestorationDateString()
+            timeLabel.sizeToFit()
             
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourOutageIsLabel)
@@ -278,28 +279,49 @@ class OutageViewController: UIViewController, AccountScrollerDelegate {
     }
     
     func onPullToRefresh() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            self.refreshControl.endRefreshing()
-        }
+        viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+                self.updateContent()
+                self.refreshControl.endRefreshing()
+            }
+        }, onError: { error in
+            print("getOutageStatus error = \(error)")
+        })
     }
     
     @IBAction func onReportOutagePress() {
-        print("Report Outage")
+        performSegue(withIdentifier: "reportOutageSegue", sender: self)
     }
     
     @IBAction func onViewOutageMapPress() {
         print("View Outage Map")
     }
     
+    // MARK: - Report Outage Delegate
+    func didReportOutage(sender: ReportOutageViewController) {
+        viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
+            self.updateContent()
+        }, onError: { error in
+            print("getOutageStatus error = \(error)")
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast("Your outage report has been received.", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 89))
+        })
+    }
+    
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.destination.isKind(of: ReportOutageViewController.self) {
+            let vc = segue.destination as! ReportOutageViewController
+            vc.viewModel.account = viewModel.currentAccount!
+            vc.viewModel.phoneNumber.value = viewModel.currentAccount!.homeContactNumber
+            vc.delegate = self
+        }
     }
-    */
+ 
 
 }

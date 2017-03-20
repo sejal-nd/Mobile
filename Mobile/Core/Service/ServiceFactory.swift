@@ -11,6 +11,8 @@ import Foundation
 /// Utility class for intantiating Service Instances
 class ServiceFactory {
     
+    static let sharedOutageService = MockOutageService()
+    
     class func createAuthenticationService() -> AuthenticationService {
         switch(Environment.sharedInstance.environmentName) {
         case "DEV", "TEST", "STAGE", "AUT":
@@ -29,6 +31,6 @@ class ServiceFactory {
     }
     
     class func createOutageService() -> OutageService {
-        return MockOutageService()
+        return sharedOutageService
     }
 }

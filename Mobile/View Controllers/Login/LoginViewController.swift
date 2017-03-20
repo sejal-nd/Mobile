@@ -80,7 +80,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         passwordTextField.textField.rx.text.orEmpty.bindTo(viewModel.password).addDisposableTo(disposeBag)
         
         // Update the text field appearance in case data binding autofilled text
-        usernameTextField.textFieldDidEndEditing(usernameTextField.textField)
+        usernameTextField.textField.sendActions(for: .editingDidEnd)
         
         keepMeSignedInSwitch.rx.isOn.bindTo(viewModel.keepMeSignedIn).addDisposableTo(disposeBag)
         
@@ -109,7 +109,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         
         viewModel.attemptLoginWithTouchID(onLoad: { // fingerprint was successful
             self.passwordAutofilledFromTouchID = true
-            self.passwordTextField.textFieldDidEndEditing(self.passwordTextField.textField) // Update the text field appearance
+            self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
             
             self.signInButton.setLoading()
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button

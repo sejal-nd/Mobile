@@ -8,6 +8,7 @@
 
 import UIKit
 import JVFloatLabeledText
+import RxSwift
 
 class FloatLabelTextField: UIView, UITextFieldDelegate {
     @IBOutlet weak var view: UIView!
@@ -19,13 +20,13 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var disabledColorBar: UIView!
     
-    final let deselectedBottomBarColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
     final let errorColor = UIColor(red: 113/255, green: 0/255, blue: 28/255, alpha: 1)
     
     var errorState = false
     var textFieldIsFocused = false
     
     var borderLayers = [CALayer]()
+    let disposeBag = DisposeBag()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -56,7 +57,24 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         textField.floatingLabelYPadding = 6
         textField.floatingLabelTextColor = .floatLabelColor
         textField.floatingLabelActiveTextColor = .floatLabelColor
-        textField.delegate = self
+        textField.rx.controlEvent(.editingDidBegin).asObservable().subscribe(onNext: { _ in
+            if !self.errorState {
+                self.bottomColorBar.backgroundColor = .primaryColor
+                self.bottomColorBar.isHidden = false
+            }
+            self.textFieldIsFocused = true
+        }).addDisposableTo(disposeBag)
+        textField.rx.controlEvent(.editingDidEnd).asObservable().subscribe(onNext: { _ in
+            if !self.errorState {
+                if self.textField.hasText {
+                    self.bottomColorBar.backgroundColor = .timberwolf
+                    self.bottomColorBar.isHidden = false
+                } else {
+                    self.bottomColorBar.isHidden = true
+                }
+            }
+            self.textFieldIsFocused = false
+        }).addDisposableTo(disposeBag)
         
         setDefaultStyles()
     }
@@ -69,26 +87,6 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         textField.placeholderColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
         textField.setPlaceholder(textField.placeholder, floatingTitle: textField.placeholder) // Needed to update the color
         textField.textColor = UIColor(red: 35/255, green: 31/255, blue: 32/255, alpha: 1.0)
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if !errorState {
-            bottomColorBar.backgroundColor = .primaryColor
-            bottomColorBar.isHidden = false
-        }
-        textFieldIsFocused = true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if !errorState {
-            if textField.hasText {
-                bottomColorBar.backgroundColor = deselectedBottomBarColor
-                bottomColorBar.isHidden = false
-            } else {
-                bottomColorBar.isHidden = true
-            }
-        }
-        textFieldIsFocused = false
     }
     
     func setError(_ errorMessage: String?) {
@@ -113,7 +111,7 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
             if textFieldIsFocused {
                 bottomColorBar.backgroundColor = .primaryColor
             } else {
-                bottomColorBar.backgroundColor = deselectedBottomBarColor
+                bottomColorBar.backgroundColor = .timberwolf
                 if !textField.hasText {
                     bottomColorBar.isHidden = true
                 }
