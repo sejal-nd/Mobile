@@ -280,7 +280,8 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
     
     func onBigButtonTap() {
         if !viewModel.currentOutageStatus!.accountPaid && Environment.sharedInstance.opco != "BGE"  {
-            tabBarController?.selectedIndex = 1 // Jump to Bill tab
+            // TEMPORARILY DISABLED
+            //tabBarController?.selectedIndex = 1 // Jump to Bill tab
         } else {
             let title = viewModel.currentOutageStatus!.outageMessageTitle
             let message = viewModel.currentOutageStatus!.outageMessage
