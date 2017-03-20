@@ -68,7 +68,7 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
         bigButtonView.layer.shadowRadius = 10 // Blur of 20pt
         bigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
         bigButtonView.layer.masksToBounds = false
-        
+        bigButtonView.clipsToBounds = true
         bigButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
         
         footerTextView.textContainerInset = .zero
@@ -128,11 +128,11 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
         accountContentView.isHidden = currentOutageStatus.gasOnly
         
         // Display either the Lottie animation or draw our own border circles
-        let powerIsOn = !currentOutageStatus.activeOutage && !currentOutageStatus.outageReported && currentOutageStatus.accountPaid
+        let powerIsOn = !currentOutageStatus.activeOutage && !currentOutageStatus.outageReported && currentOutageStatus.accountPaid && !currentOutageStatus.accountFinaled
         animationView.isHidden = !powerIsOn
         outerCircleView.isHidden = powerIsOn
         innerCircleView.isHidden = powerIsOn
-        if currentOutageStatus.activeOutage || !currentOutageStatus.accountPaid {
+        if currentOutageStatus.activeOutage || !currentOutageStatus.accountPaid || currentOutageStatus.accountFinaled {
             outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1)
             innerCircleView.backgroundColor = .oldLavender
         } else {
@@ -147,9 +147,9 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
             reportOutageButton.setDetailLabel(text: "", checkHidden: true)
         }
         
-        // Disable bottom buttons if account is not paid
-        reportOutageButton.isEnabled = currentOutageStatus.accountPaid
-        viewOutageMapButton.isEnabled = currentOutageStatus.accountPaid
+        // Disable bottom buttons if account is finaled or not paid
+        reportOutageButton.isEnabled = currentOutageStatus.accountPaid && !currentOutageStatus.accountFinaled
+        viewOutageMapButton.isEnabled = currentOutageStatus.accountPaid && !currentOutageStatus.accountFinaled
     }
     
     func layoutBigButtonContent() {
@@ -158,6 +158,7 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
         }
         
         let currentOutageStatus = viewModel.currentOutageStatus!
+        let bigButtonWidth = bigButtonView.frame.size.width
         
         if currentOutageStatus.activeOutage {
             let icon = UIImageView(frame: CGRect(x: 85, y: 31, width: 22, height: 28))
@@ -228,21 +229,31 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
             bigButtonView.addSubview(estRestorationLabel)
             bigButtonView.addSubview(timeLabel)
         } else if currentOutageStatus.accountFinaled || !currentOutageStatus.accountPaid {
-            let outstandingBalanceLabel = UILabel(frame: CGRect(x: 14, y: 51, width: 166, height: 84))
-            outstandingBalanceLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
-            outstandingBalanceLabel.textColor = .oldLavender
-            outstandingBalanceLabel.textAlignment = .center
-            outstandingBalanceLabel.numberOfLines = 0
-            outstandingBalanceLabel.text = viewModel.getAccountNotPaidMessage()
-            
-            let payBillLabel = UILabel(frame: CGRect(x: 23, y: 145, width: 146, height: 19))
-            payBillLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
-            payBillLabel.textColor = .mediumPersianBlue
-            payBillLabel.textAlignment = .center
-            payBillLabel.text = "Pay Bill"
-            
-            bigButtonView.addSubview(outstandingBalanceLabel)
-            bigButtonView.addSubview(payBillLabel)
+            let nonPayFinaledTextView = UITextView(frame: CGRect(x: 14, y: 38, width: bigButtonWidth - 28, height: 120))
+            let payBillLabel = UILabel(frame: .zero)
+            if Environment.sharedInstance.opco != "BGE" {
+                if currentOutageStatus.accountFinaled {
+                    nonPayFinaledTextView.frame = CGRect(x: 14, y: 68, width: bigButtonWidth - 28, height: 84)
+                } else { // accountPaid = false
+                    payBillLabel.frame = CGRect(x: 23, y: 150, width: bigButtonWidth - 46, height: 19)
+                    payBillLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
+                    payBillLabel.textColor = .mediumPersianBlue
+                    payBillLabel.textAlignment = .center
+                    payBillLabel.text = "Pay Bill"
+                    bigButtonView.addSubview(payBillLabel)
+                }
+            }
+            nonPayFinaledTextView.textContainerInset = .zero
+            nonPayFinaledTextView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
+            nonPayFinaledTextView.tintColor = .mediumPersianBlue // For the phone numbers
+            nonPayFinaledTextView.textColor = .oldLavender
+            nonPayFinaledTextView.textAlignment = .center
+            nonPayFinaledTextView.isEditable = false
+            nonPayFinaledTextView.dataDetectorTypes = .phoneNumber
+            nonPayFinaledTextView.text = viewModel.getAccountNonPayFinaledMessage()
+
+            bigButtonView.addSubview(nonPayFinaledTextView)
+            bigButtonView.bringSubview(toFront: payBillLabel)
         } else { // Power is on
             let icon = UIImageView(frame: CGRect(x: 82, y: 49, width: 30, height: 38))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
@@ -268,7 +279,7 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
     // MARK: - Actions
     
     func onBigButtonTap() {
-        if viewModel.currentOutageStatus!.accountPaid == false {
+        if !viewModel.currentOutageStatus!.accountPaid && Environment.sharedInstance.opco != "BGE"  {
             tabBarController?.selectedIndex = 1 // Jump to Bill tab
         } else {
             let title = viewModel.currentOutageStatus!.outageMessageTitle

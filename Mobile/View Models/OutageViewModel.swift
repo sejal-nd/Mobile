@@ -79,7 +79,17 @@ class OutageViewModel {
         return "1-800-841-4141"
     }
     
-    func getAccountNotPaidMessage() -> String {
-        return "Outage Status and Outage Reporting are not available for accounts with an outstanding balance."
+    func getAccountNonPayFinaledMessage() -> String {
+        var string = ""
+        if Environment.sharedInstance.opco == "BGE" {
+            string = "Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information."
+        } else {
+            if currentOutageStatus!.accountFinaled {
+                string = "Outage Status and Outage Reporting are not available for this account."
+            } else if !currentOutageStatus!.accountPaid {
+                string = "Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment."
+            }
+        }
+        return string
     }
 }
