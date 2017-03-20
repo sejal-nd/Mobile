@@ -22,7 +22,7 @@ class ReportOutageViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
-    @IBOutlet weak var footerTextView: UITextView!
+    @IBOutlet weak var footerTextView: DataDetectorTextView!
     
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
     let opco = Environment.sharedInstance.opco

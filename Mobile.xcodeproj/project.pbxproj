@@ -381,6 +381,9 @@
 		E8EB4D171E7843A1002587C5 /* TableViewCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */; };
 		E8EB4D181E7843A1002587C5 /* TableViewCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */; };
 		E8EB4D191E7843A1002587C5 /* TableViewCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */; };
+		E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
+		E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
+		E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
 		E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
 		E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
 		E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
@@ -708,6 +711,7 @@
 		E8D2520D1E6DB78800C90584 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		E8EB4D121E784394002587C5 /* TableViewCellButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellButton.swift; sourceTree = "<group>"; };
 		E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCellButton.xib; sourceTree = "<group>"; };
+		E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDetectorTextView.swift; sourceTree = "<group>"; };
 		E8ECCD561E5E25CD00C9E46F /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
@@ -896,6 +900,7 @@
 				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
 				E80D2E261E72FC2C002626C9 /* AccountScroller.swift */,
 				E8542FFA1E7AE1740054AC53 /* SegmentedControl.swift */,
+				E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1544,7 +1549,7 @@
 						ProvisioningStyle = Manual;
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = 87ACSVM3C4;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
@@ -1903,6 +1908,7 @@
 				E80D2E171E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountScroller.swift in Sources */,
+				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -1963,6 +1969,7 @@
 				E80D2E191E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountScroller.swift in Sources */,
+				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -2023,6 +2030,7 @@
 				E80D2E181E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountScroller.swift in Sources */,
+				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,

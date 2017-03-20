@@ -24,8 +24,8 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
     @IBOutlet weak var bigButtonView: UIView!
     @IBOutlet weak var reportOutageButton: TableViewCellButton!
     @IBOutlet weak var viewOutageMapButton: TableViewCellButton!
-    @IBOutlet weak var gasOnlyTextView: UITextView!
-    @IBOutlet weak var footerTextView: UITextView!
+    @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
+    @IBOutlet weak var footerTextView: DataDetectorTextView!
     
     var onAnimationView = LOTAnimationView(name: "outage")!
     var refreshControl: UIRefreshControl!
@@ -229,7 +229,7 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
             bigButtonView.addSubview(estRestorationLabel)
             bigButtonView.addSubview(timeLabel)
         } else if currentOutageStatus.accountFinaled || !currentOutageStatus.accountPaid {
-            let nonPayFinaledTextView = UITextView(frame: CGRect(x: 14, y: 38, width: bigButtonWidth - 28, height: 120))
+            let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 14, y: 38, width: bigButtonWidth - 28, height: 120))
             let payBillLabel = UILabel(frame: .zero)
             if Environment.sharedInstance.opco != "BGE" {
                 if currentOutageStatus.accountFinaled {
@@ -248,8 +248,6 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
             nonPayFinaledTextView.tintColor = .mediumPersianBlue // For the phone numbers
             nonPayFinaledTextView.textColor = .oldLavender
             nonPayFinaledTextView.textAlignment = .center
-            nonPayFinaledTextView.isEditable = false
-            nonPayFinaledTextView.dataDetectorTypes = .phoneNumber
             nonPayFinaledTextView.text = viewModel.getAccountNonPayFinaledMessage()
 
             bigButtonView.addSubview(nonPayFinaledTextView)
