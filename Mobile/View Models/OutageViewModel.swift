@@ -51,6 +51,20 @@ class OutageViewModel {
         if let restorationTime = currentOutageStatus!.restorationTime {
             let formatter = DateFormatter()
             formatter.dateFormat = "h:mm a MM/dd/yy"
+            switch Environment.sharedInstance.opco {
+                case "BGE":
+                    formatter.dateFormat = "MM/dd/yyyy hh:mm a"
+                    break
+                case "ComEd":
+                    formatter.dateFormat = "hh:mm a 'on' MM/dd/yyyy"
+                    break
+                case "PECO":
+                    formatter.dateFormat = "h:mm a zz 'on' MM/dd/yyyy"
+                    break
+                default:
+                    formatter.dateFormat = "h:mm a MM/dd/yy"
+                    break
+            }
             return formatter.string(from: restorationTime)
         } else {
             return "Assessing Damage"

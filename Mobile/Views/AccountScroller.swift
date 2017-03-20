@@ -66,20 +66,23 @@ class AccountScroller: UIView, UIScrollViewDelegate {
             pageControl.isHidden = true
         }
         
+        let screenWidth = UIScreen.main.bounds.width
+        let centerX = screenWidth / 2
+        
         for (index, account) in self.accounts.enumerated() {
-            let pageView = UIView(frame: CGRect(x: CGFloat(index) * frame.size.width, y: 0, width: frame.size.width, height: 57))
+            let pageView = UIView(frame: CGRect(x: CGFloat(index) * screenWidth, y: 0, width: screenWidth, height: 57))
             
             let icon = account.accountType == .Commercial ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
             let iconImageView = UIImageView(image: icon)
-            iconImageView.frame = CGRect(x: center.x - 80, y: 4, width: 43, height: 43)
+            iconImageView.frame = CGRect(x: centerX - 80, y: 4, width: 43, height: 43)
 
-            let accountNumberLabel = UILabel(frame: CGRect(x: center.x - 30, y: 11, width: 100, height: 20))
+            let accountNumberLabel = UILabel(frame: CGRect(x: centerX - 30, y: 11, width: 100, height: 20))
             accountNumberLabel.font = UIFont.systemFont(ofSize: 17)
             accountNumberLabel.textColor = UIColor.darkJungleGreen
             accountNumberLabel.text = account.accountNumber
             
-            let addressLabelWidth = UIScreen.main.bounds.width - (center.x - 30) - 16
-            let addressLabel = UILabel(frame: CGRect(x: center.x - 30, y: 32, width: addressLabelWidth, height: 14))
+            let addressLabelWidth = screenWidth - (center.x - 30) - 16
+            let addressLabel = UILabel(frame: CGRect(x: centerX - 30, y: 32, width: addressLabelWidth, height: 14))
             addressLabel.font = UIFont.systemFont(ofSize: 12)
             addressLabel.textColor = UIColor.outerSpace
             addressLabel.text = account.address
@@ -90,7 +93,7 @@ class AccountScroller: UIView, UIScrollViewDelegate {
             scrollView.addSubview(pageView)
         }
         
-        scrollView.contentSize = CGSize(width: frame.size.width * CGFloat(self.accounts.count), height: 57)
+        scrollView.contentSize = CGSize(width: screenWidth * CGFloat(self.accounts.count), height: 57)
     }
     
     // MARK: - ScrollView Delegate

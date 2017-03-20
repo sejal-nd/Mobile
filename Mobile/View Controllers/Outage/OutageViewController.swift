@@ -161,33 +161,34 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
         let bigButtonWidth = bigButtonView.frame.size.width
         
         if currentOutageStatus.activeOutage {
-            let icon = UIImageView(frame: CGRect(x: 85, y: 31, width: 22, height: 28))
+            let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 11, y: 31, width: 22, height: 28))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_out")
             
-            let yourPowerIsLabel = UILabel(frame: CGRect(x: 44, y: 62, width: 106, height: 20))
+            let yourPowerIsLabel = UILabel(frame: CGRect(x: 30, y: 62, width: bigButtonWidth - 60, height: 20))
             yourPowerIsLabel.font = UIFont(name: "OpenSans", size: 16)
             yourPowerIsLabel.textColor = .mediumPersianBlue
             yourPowerIsLabel.textAlignment = .center
             yourPowerIsLabel.text = "Your power is"
             
-            let outLabel = UILabel(frame: CGRect(x: 44, y: 82, width: 106, height: 25))
+            let outLabel = UILabel(frame: CGRect(x: 44, y: 82, width: bigButtonWidth - 88, height: 25))
             outLabel.font = UIFont(name: "OpenSans-Bold", size: 22)
             outLabel.textColor = .mediumPersianBlue
             outLabel.textAlignment = .center
             outLabel.text = "OUT"
             
-            let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: 130, height: 14))
+            let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
             estRestorationLabel.font = UIFont(name: "OpenSans", size: 12)
             estRestorationLabel.textColor = .outerSpace
             estRestorationLabel.textAlignment = .center
             estRestorationLabel.text = "Estimated Restoration"
             
-            let timeLabel = UILabel(frame: CGRect(x: 30, y: 134, width: 130, height: 15))
+            let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
             timeLabel.font = UIFont(name: "OpenSans-Bold", size: 15)
             timeLabel.textColor = .outerSpace
             timeLabel.textAlignment = .center
+            timeLabel.adjustsFontSizeToFitWidth = true
+            timeLabel.minimumScaleFactor = 0.5
             timeLabel.text = viewModel.getEstimatedRestorationDateString()
-            timeLabel.sizeToFit()
             
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourPowerIsLabel)
@@ -195,33 +196,34 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
             bigButtonView.addSubview(estRestorationLabel)
             bigButtonView.addSubview(timeLabel)
         } else if currentOutageStatus.outageReported {
-            let icon = UIImageView(frame: CGRect(x: 89, y: 28, width: 27, height: 29))
+            let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 13.5, y: 28, width: 27, height: 29))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
             
-            let yourOutageIsLabel = UILabel(frame: CGRect(x: 39, y: 61, width: 115, height: 20))
+            let yourOutageIsLabel = UILabel(frame: CGRect(x: 30, y: 61, width: bigButtonWidth - 60, height: 20))
             yourOutageIsLabel.font = UIFont(name: "OpenSans", size: 16)
             yourOutageIsLabel.textColor = .mediumPersianBlue
             yourOutageIsLabel.textAlignment = .center
             yourOutageIsLabel.text = "Your outage is"
             
-            let reportedLabel = UILabel(frame: CGRect(x: 39, y: 81, width: 115, height: 25))
+            let reportedLabel = UILabel(frame: CGRect(x: 30, y: 81, width: bigButtonWidth - 60, height: 25))
             reportedLabel.font = UIFont(name: "OpenSans-Bold", size: 22)
             reportedLabel.textColor = .mediumPersianBlue
             reportedLabel.textAlignment = .center
             reportedLabel.text = "REPORTED"
             
-            let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: 130, height: 14))
+            let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
             estRestorationLabel.font = UIFont(name: "OpenSans", size: 12)
             estRestorationLabel.textColor = .outerSpace
             estRestorationLabel.textAlignment = .center
             estRestorationLabel.text = "Estimated Restoration"
             
-            let timeLabel = UILabel(frame: CGRect(x: 30, y: 134, width: 130, height: 15))
+            let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
             timeLabel.font = UIFont(name: "OpenSans-Bold", size: 15)
             timeLabel.textColor = .outerSpace
             timeLabel.textAlignment = .center
+            timeLabel.adjustsFontSizeToFitWidth = true
+            timeLabel.minimumScaleFactor = 0.5
             timeLabel.text = viewModel.getEstimatedRestorationDateString()
-            timeLabel.sizeToFit()
             
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourOutageIsLabel)
@@ -253,16 +255,16 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
             bigButtonView.addSubview(nonPayFinaledTextView)
             bigButtonView.bringSubview(toFront: payBillLabel)
         } else { // Power is on
-            let icon = UIImageView(frame: CGRect(x: 82, y: 49, width: 30, height: 38))
+            let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 15, y: 49, width: 30, height: 38))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
             
-            let yourPowerIsLabel = UILabel(frame: CGRect(x: 44, y: 89, width: 106, height: 20))
+            let yourPowerIsLabel = UILabel(frame: CGRect(x: 40, y: 89, width: bigButtonWidth - 80, height: 20))
             yourPowerIsLabel.font = UIFont(name: "OpenSans", size: 16)
             yourPowerIsLabel.textColor = .mediumPersianBlue
             yourPowerIsLabel.textAlignment = .center
             yourPowerIsLabel.text = "Your power is"
             
-            let onLabel = UILabel(frame: CGRect(x: 44, y: 109, width: 106, height: 25))
+            let onLabel = UILabel(frame: CGRect(x: 40, y: 109, width: bigButtonWidth - 80, height: 25))
             onLabel.font = UIFont(name: "OpenSans-Bold", size: 22)
             onLabel.textColor = .mediumPersianBlue
             onLabel.textAlignment = .center
