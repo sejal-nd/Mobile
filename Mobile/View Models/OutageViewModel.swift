@@ -75,8 +75,14 @@ class OutageViewModel {
         return string
     }
     
-    func getGasOnlyPhoneNumber() -> String {
-        return "1-800-841-4141"
+    func getGasOnlyMessage() -> String {
+        var string = ""
+        if Environment.sharedInstance.opco == "BGE" {
+            string = "To report a gas emergency, please call 1-800-685-0123.  For downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222."
+        } else {
+            string = "We currently do not allow reporting of gas issues online but want to hear from you right away."
+        }
+        return string
     }
     
     func getAccountNonPayFinaledMessage() -> String {

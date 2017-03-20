@@ -78,7 +78,7 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
         
         gasOnlyTextView.textContainerInset = .zero
         gasOnlyTextView.tintColor = .mediumPersianBlue
-        gasOnlyTextView.text = viewModel.getGasOnlyPhoneNumber()
+        gasOnlyTextView.text = viewModel.getGasOnlyMessage()
         
         scrollViewContent.isHidden = true
         
