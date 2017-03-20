@@ -20,8 +20,6 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var disabledColorBar: UIView!
     
-    final let errorColor = UIColor(red: 113/255, green: 0/255, blue: 28/255, alpha: 1)
-    
     var errorState = false
     var textFieldIsFocused = false
     
@@ -50,7 +48,7 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
         leftColorBar.backgroundColor = .primaryColor
         bottomColorBar.isHidden = true
         
-        errorLabel.textColor = errorColor
+        errorLabel.textColor = .errorRed
         errorLabel.text = nil
         
         textField.floatingLabelFont = UIFont.systemFont(ofSize: 11, weight: UIFontWeightSemibold)
@@ -95,14 +93,14 @@ class FloatLabelTextField: UIView, UITextFieldDelegate {
             checkAccessoryImageView.isHidden = true
             errorAccessoryImageView.isHidden = false
 
-            leftColorBar.backgroundColor = errorColor
-            bottomColorBar.backgroundColor = errorColor
+            leftColorBar.backgroundColor = .errorRed
+            bottomColorBar.backgroundColor = .errorRed
             bottomColorBar.isHidden = false
             
             textField.isShowingAccessory = true
-            textField.floatingLabelTextColor = errorColor
-            textField.floatingLabelActiveTextColor = errorColor
-            textField.floatingLabel.textColor = errorColor
+            textField.floatingLabelTextColor = .errorRed
+            textField.floatingLabelActiveTextColor = .errorRed
+            textField.floatingLabel.textColor = .errorRed
         } else {
             errorState = false
             errorAccessoryImageView.isHidden = true

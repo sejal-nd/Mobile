@@ -23,7 +23,6 @@ class ReportOutageViewModel {
     
     func submitButtonEnabled() -> Observable<Bool> {
         return phoneNumber.asObservable().map{ text -> Bool in
-            print(text)
             return text.characters.count > 0
         }
     }

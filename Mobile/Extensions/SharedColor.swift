@@ -17,20 +17,6 @@ extension UIColor {
         }
     }
     
-    // CTA Blue
-    @nonobjc static var darkMidnightBlue: UIColor {
-        get {
-            return UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
-        }
-    }
-    
-    // Action Blue
-    @nonobjc static var mediumPersianBlue: UIColor {
-        get {
-            return UIColor(red: 0/255, green: 89/255, blue: 164/255, alpha: 1)
-        }
-    }
-        
     // "Black" Text
     @nonobjc static var darkJungleGreen: UIColor {
         get {
@@ -65,7 +51,56 @@ extension UIColor {
             return UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
         }
     }
-
+    
+    // CTA Blue
+    @nonobjc static var darkMidnightBlue: UIColor {
+        get {
+            return UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
+        }
+    }
+    
+    // Action Blue
+    @nonobjc static var mediumPersianBlue: UIColor {
+        get {
+            return UIColor(red: 0/255, green: 89/255, blue: 164/255, alpha: 1)
+        }
+    }
+    
+    // Error Red ("Burgundy" in Sympli)
+    @nonobjc static var errorRed: UIColor {
+        get {
+            return UIColor(red: 113/255, green: 0/255, blue: 28/255, alpha: 1)
+        }
+    }
+    
+    // Attention Orange ("Pumpkin" in Sympli)
+    @nonobjc static var attentionOrange: UIColor {
+        get {
+            return UIColor(red: 254/255, green: 114/255, blue: 18/255, alpha: 1)
+        }
+    }
+    
+    // Lightbulb Yellow ("Dark tangerine" in Sympli)
+    @nonobjc static var lightbulbYellow: UIColor {
+        get {
+            return UIColor(red: 255/255, green: 173/255, blue: 40/255, alpha: 1)
+        }
+    }
+    
+    // Success Green ("Apple green" in Sympli)
+    @nonobjc static var successGreen: UIColor {
+        get {
+            return UIColor(red: 120/255, green: 190/255, blue: 32/255, alpha: 1)
+        }
+    }
+    
+    // Success Green Text ("La Salle Green" in Sympli)
+    @nonobjc static var successGreenText: UIColor {
+        get {
+            return UIColor(red: 0/255, green: 122/255, blue: 51/255, alpha: 1)
+        }
+    }
+    
 //    func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
 //        return self.adjust(by: abs(percentage))
 //    }
