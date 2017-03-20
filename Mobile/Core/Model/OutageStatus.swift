@@ -11,7 +11,7 @@ import Foundation
 struct OutageStatus {
     let accountInfo: Account
     let gasOnly: Bool
-    let homeContactNumbner: String
+    let homeContactNumber: String
     let isPasswordProtected: Bool
     let isUserAuthenticated: Bool
     let activeOutage: Bool
@@ -38,7 +38,7 @@ struct OutageStatus {
         
         self.accountInfo = accountInfo
         self.gasOnly = gasOnly
-        self.homeContactNumbner = homeContactNumber
+        self.homeContactNumber = homeContactNumber
         self.isPasswordProtected = isPasswordProtected
         self.isUserAuthenticated = isUserAuthenticated
         self.activeOutage = activeOutage
