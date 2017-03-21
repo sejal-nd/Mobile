@@ -18,7 +18,7 @@ import RxCocoa
 // multprem02 / Password1
 // multprem03 / Abc12345
 
-class LoginViewController: UIViewController, UIScrollViewDelegate {
+class LoginViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var opcoLogo: UIImageView!
     @IBOutlet weak var loginFormView: UIView!
@@ -129,11 +129,6 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func onLoginPress() {
         view.endEditing(true)
@@ -197,12 +192,6 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         self.present(errorAlert, animated: true, completion: nil)
     }
     
-    // MARK: - Scroll View
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        opcoLogo.alpha = lerp(1, 0, scrollView.contentOffset.y / 50.0)
-    }
-    
     // MARK: - Keyboard
     
     func keyboardWillShow(notification: Notification) {
@@ -229,6 +218,14 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     
     func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
         return a + (b - a) * t;
+    }
+    
+}
+
+extension LoginViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        opcoLogo.alpha = lerp(1, 0, scrollView.contentOffset.y / 50.0)
     }
     
 }

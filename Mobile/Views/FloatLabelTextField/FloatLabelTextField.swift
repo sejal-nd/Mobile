@@ -10,7 +10,7 @@ import UIKit
 import JVFloatLabeledText
 import RxSwift
 
-class FloatLabelTextField: UIView, UITextFieldDelegate {
+class FloatLabelTextField: UIView {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var textField: InsetJVFloatLabeledTextField!
     @IBOutlet weak var checkAccessoryImageView: UIImageView!

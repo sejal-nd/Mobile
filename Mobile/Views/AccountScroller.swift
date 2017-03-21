@@ -12,7 +12,7 @@ protocol AccountScrollerDelegate: class {
     func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account)
 }
 
-class AccountScroller: UIView, UIScrollViewDelegate {
+class AccountScroller: UIView {
     
     weak var delegate: AccountScrollerDelegate?
 
@@ -96,7 +96,14 @@ class AccountScroller: UIView, UIScrollViewDelegate {
         scrollView.contentSize = CGSize(width: screenWidth * CGFloat(self.accounts.count), height: 57)
     }
     
-    // MARK: - ScrollView Delegate
+    func onPageControlTap(sender: UIPageControl) {
+        scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: true)
+        delegate?.accountScroller(self, didChangeAccount: accounts[pageControl.currentPage])
+    }
+    
+}
+
+extension AccountScroller: UIScrollViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
@@ -105,11 +112,6 @@ class AccountScroller: UIView, UIScrollViewDelegate {
             pageControl.currentPage = currentPage
             delegate?.accountScroller(self, didChangeAccount: accounts[currentPage])
         }
-    }
-    
-    func onPageControlTap(sender: UIPageControl) {
-        scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: true)
-        delegate?.accountScroller(self, didChangeAccount: accounts[pageControl.currentPage])
     }
     
 }

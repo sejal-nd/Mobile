@@ -15,7 +15,7 @@ protocol ChangePasswordViewControllerDelegate: class {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController)
 }
 
-class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
+class ChangePasswordViewController: UIViewController {
     
     weak var delegate: ChangePasswordViewControllerDelegate?
 
@@ -135,11 +135,6 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func onCancelPress() {
         _ = navigationController?.popViewController(animated: true)
@@ -225,7 +220,9 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         scrollView.scrollIndicatorInsets = .zero
     }
     
-    // MARK: - TextField Delegate
+}
+
+extension ChangePasswordViewController: UITextFieldDelegate {
     
     // Don't allow whitespace entry in the newPasswordTextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class MoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MoreViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,11 +17,6 @@ class MoreViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func onSignOutPress() {
@@ -41,6 +36,26 @@ class MoreViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("Logout Error: \(error)")
         }).addDisposableTo(disposeBag)
     }
+    
+}
+
+extension MoreViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        if indexPath.row == 0 {
+            performSegue(withIdentifier: "settingsSegue", sender: self)
+        } else if indexPath.row == 2 {
+            performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
+        } else if indexPath.row == 3 {
+            onSignOutPress()
+        }
+    }
+    
+}
+
+extension MoreViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -68,27 +83,4 @@ class MoreViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        
-        if indexPath.row == 0 {
-            performSegue(withIdentifier: "settingsSegue", sender: self)
-        } else if indexPath.row == 2 {
-            performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
-        } else if indexPath.row == 3 {
-            onSignOutPress()
-        }
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

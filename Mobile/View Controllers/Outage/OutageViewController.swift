@@ -10,7 +10,7 @@ import UIKit
 import Lottie
 import MBProgressHUD
 
-class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOutageViewControllerDelegate {
+class OutageViewController: UIViewController {
     
     @IBOutlet weak var gradientBackground: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -102,11 +102,6 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
             hud.hide(animated: true)
             print("getAccounts error = \(error)")
         })
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func updateContent() {
@@ -303,7 +298,20 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
         print("View Outage Map")
     }
     
-    // MARK: - AccountScroller Delegate
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.isKind(of: ReportOutageViewController.self) {
+            let vc = segue.destination as! ReportOutageViewController
+            vc.viewModel.account = viewModel.currentAccount!
+            vc.viewModel.phoneNumber.value = viewModel.currentAccount!.homeContactNumber
+            vc.delegate = self
+        }
+    }
+ 
+}
+
+extension OutageViewController: AccountScrollerDelegate {
     
     func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account) {
         viewModel.currentAccount = account
@@ -314,7 +322,9 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
         })
     }
     
-    // MARK: - Report Outage Delegate
+}
+
+extension OutageViewController: ReportOutageViewControllerDelegate {
     
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
         viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
@@ -327,17 +337,4 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
         })
     }
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination.isKind(of: ReportOutageViewController.self) {
-            let vc = segue.destination as! ReportOutageViewController
-            vc.viewModel.account = viewModel.currentAccount!
-            vc.viewModel.phoneNumber.value = viewModel.currentAccount!.homeContactNumber
-            vc.delegate = self
-        }
-    }
- 
-
 }

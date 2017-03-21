@@ -37,9 +37,5 @@ class MainBaseNavigationController: UINavigationController {
             setViewControllers([rootViewController!], animated: false)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
 }

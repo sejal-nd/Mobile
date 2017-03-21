@@ -11,7 +11,7 @@ import RxSwift
 import MBProgressHUD
 import ToastSwiftFramework
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangePasswordViewControllerDelegate {
+class SettingsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,59 +32,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.contentInset = UIEdgeInsetsMake(30, 0, 30, 0)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Table View
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        if viewModel.isDeviceTouchIDCompatible() {
-            return 2
-        }
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
-        
-        if indexPath.section == 0 {
-            cell.configureWith(label: "Change Password", carat: true)
-        } else {
-            cell.configureWith(label: "Touch ID", switchOn: viewModel.isTouchIDEnabled(), switchObserver: { isOn in
-                self.switchObserver(cell: cell, isOn: isOn)
-            })
-            touchIdCell = cell
-        }
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        
-        if indexPath.section == 0 {
-            performSegue(withIdentifier: "changePasswordSegue", sender: self)
-        }
-    }
-    
     // MARK: - Touch ID Switch Handling
     
     func switchObserver(cell: TableViewCell, isOn: Bool) {
@@ -128,12 +75,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         self.present(pwAlert, animated: true, completion: nil)
     }
     
-    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast("Password successfully changed", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
-        })
-    }
-    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -143,4 +84,68 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
+}
+
+extension SettingsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        if indexPath.section == 0 {
+            performSegue(withIdentifier: "changePasswordSegue", sender: self)
+        }
+    }
+    
+}
+
+extension SettingsViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if viewModel.isDeviceTouchIDCompatible() {
+            return 2
+        }
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
+        
+        if indexPath.section == 0 {
+            cell.configureWith(label: "Change Password", carat: true)
+        } else {
+            cell.configureWith(label: "Touch ID", switchOn: viewModel.isTouchIDEnabled(), switchObserver: { isOn in
+                self.switchObserver(cell: cell, isOn: isOn)
+            })
+            touchIdCell = cell
+        }
+        
+        return cell
+    }
+    
+}
+
+extension SettingsViewController: ChangePasswordViewControllerDelegate {
+    
+    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast("Password successfully changed", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
+    
 }

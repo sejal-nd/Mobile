@@ -14,7 +14,7 @@ protocol ReportOutageViewControllerDelegate: class {
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController)
 }
 
-class ReportOutageViewController: UIViewController, UITextFieldDelegate {
+class ReportOutageViewController: UIViewController {
     
     weak var delegate: ReportOutageViewControllerDelegate?
     
@@ -88,11 +88,6 @@ class ReportOutageViewController: UIViewController, UITextFieldDelegate {
         let range = NSMakeRange(0, viewModel.phoneNumber.value.characters.count)
         _ = textField(phoneNumberTextField.textField, shouldChangeCharactersIn: range, replacementString: viewModel.phoneNumber.value)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -130,12 +125,15 @@ class ReportOutageViewController: UIViewController, UITextFieldDelegate {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
-    
+
+}
+
+extension ReportOutageViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-    
+        
         let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
-
+        
         let decimalString = components.joined(separator: "") as NSString
         let length = decimalString.length
         let hasLeadingOne = length > 0 && decimalString.character(at: 0) == (1 as unichar)
@@ -166,21 +164,9 @@ class ReportOutageViewController: UIViewController, UITextFieldDelegate {
         let remainder = decimalString.substring(from: index)
         formattedString.append(remainder)
         textField.text = formattedString as String
-
+        
         textField.sendActions(for: .valueChanged) // Send rx events
-    
+        
         return false
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
