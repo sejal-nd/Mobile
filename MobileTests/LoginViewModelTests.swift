@@ -10,38 +10,44 @@ import XCTest
 
 class LoginViewModelTests: XCTestCase {
     
-    //Test that the view model correctly executes the login
-    //functionality on the service.
+    var viewModel: LoginViewModel!
+    
+    override func setUp() {
+        viewModel = LoginViewModel(authService: MockAuthenticationService(), fingerprintService: FingerprintService())
+    }
+    
     func testSuccessfulLogin() {
-        let service = MockAuthenticationService()
-        
-        let viewModel = LoginViewModel(authService: service, fingerprintService: FingerprintService())
+        let asyncExpectation = expectation(description: "testSuccessfulLogin")
         
         viewModel.username.value = "valid@test.com"
         viewModel.password.value = "password"
         
         viewModel.performLogin(onSuccess: { 
-            //Test Pass
+            asyncExpectation.fulfill()
         }) { (message) in
             print(message)
             XCTFail("Unexpected failure response")
         }
+        
+        waitForExpectations(timeout: 5) { error in
+            XCTAssertNil(error, "timeout")
+        }
     }
     
-    //Test that the view model correctly executes the login
-    //functionality on the service.
     func testUnsuccessfulLogin() {
-        let service = MockAuthenticationService()
-        
-        let viewModel = LoginViewModel(authService: service, fingerprintService: FingerprintService())
-        
+        let asyncExpectation = expectation(description: "testUnsuccessfulLogin")
+
         viewModel.username.value = "invalid@test.com"
         viewModel.password.value = "password"
         
         viewModel.performLogin(onSuccess: {
             XCTFail("Unexpected success response")
         }) { (message) in
-            //Test Pass
+            asyncExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5) { error in
+            XCTAssertNil(error, "timeout")
         }
     }
 }

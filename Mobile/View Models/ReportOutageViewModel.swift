@@ -57,9 +57,16 @@ class ReportOutageViewModel {
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
-        
+
         outageService.reportOutage(outageInfo: outageInfo) { (result: ServiceResult<Void>) in
-            onSuccess()
+            switch(result) {
+            case .Success:
+                onSuccess()
+                break
+            case .Failure(let error):
+                onError(error.localizedDescription)
+                break
+            }
         }
     }
 }
