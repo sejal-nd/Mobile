@@ -11,7 +11,7 @@ import RxSwift
 import MBProgressHUD
 
 protocol ReportOutageViewControllerDelegate: class {
-    func didReportOutage(sender: ReportOutageViewController)
+    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController)
 }
 
 class ReportOutageViewController: UIViewController, UITextFieldDelegate {
@@ -109,7 +109,7 @@ class ReportOutageViewController: UIViewController, UITextFieldDelegate {
         hud.contentColor = .white
         viewModel.reportOutage(onSuccess: {
             hud.hide(animated: true)
-            self.delegate?.didReportOutage(sender: self)
+            self.delegate?.reportOutageViewControllerDidReportOutage(self)
             _ = self.navigationController?.popViewController(animated: true)
         }) { error in
             print(error)

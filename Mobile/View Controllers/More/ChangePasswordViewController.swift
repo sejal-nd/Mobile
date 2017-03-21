@@ -12,7 +12,7 @@ import RxCocoa
 import MBProgressHUD
 
 protocol ChangePasswordViewControllerDelegate: class {
-    func didChangePassword(sender: ChangePasswordViewController)
+    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController)
 }
 
 class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
@@ -155,7 +155,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         
         viewModel.changePassword(onSuccess: {
             hud.hide(animated: true)
-            self.delegate?.didChangePassword(sender: self)
+            self.delegate?.changePasswordViewControllerDidChangePassword(self)
             _ = self.navigationController?.popViewController(animated: true)
         }, onPasswordNoMatch: { _ in
             hud.hide(animated: true)

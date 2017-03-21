@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AccountScrollerDelegate: class {
-    func accountScrollerDidChangeAccount(accountScroller: AccountScroller, account: Account)
+    func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account)
 }
 
 class AccountScroller: UIView, UIScrollViewDelegate {
@@ -103,15 +103,13 @@ class AccountScroller: UIView, UIScrollViewDelegate {
         
         if currentPage != pageControl.currentPage {
             pageControl.currentPage = currentPage
-            delegate?.accountScrollerDidChangeAccount(accountScroller: self, account: accounts[currentPage])
+            delegate?.accountScroller(self, didChangeAccount: accounts[currentPage])
         }
     }
     
     func onPageControlTap(sender: UIPageControl) {
         scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: true)
-        delegate?.accountScrollerDidChangeAccount(accountScroller: self, account: accounts[pageControl.currentPage])
+        delegate?.accountScroller(self, didChangeAccount: accounts[pageControl.currentPage])
     }
     
-    
-
 }

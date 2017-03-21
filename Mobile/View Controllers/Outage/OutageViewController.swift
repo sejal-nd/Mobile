@@ -109,15 +109,6 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
         // Dispose of any resources that can be recreated.
     }
     
-    func accountScrollerDidChangeAccount(accountScroller: AccountScroller, account: Account) {
-        viewModel.currentAccount = account
-        viewModel.getOutageStatus(forAccount: account, onSuccess: { outageStatus in
-            self.updateContent()
-        }, onError: { error in
-            print("getOutageStatus error = \(error)")
-        })
-    }
-    
     func updateContent() {
         layoutBigButtonContent()
         
@@ -312,8 +303,20 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
         print("View Outage Map")
     }
     
+    // MARK: - AccountScroller Delegate
+    
+    func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account) {
+        viewModel.currentAccount = account
+        viewModel.getOutageStatus(forAccount: account, onSuccess: { outageStatus in
+            self.updateContent()
+        }, onError: { error in
+            print("getOutageStatus error = \(error)")
+        })
+    }
+    
     // MARK: - Report Outage Delegate
-    func didReportOutage(sender: ReportOutageViewController) {
+    
+    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
         viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
             self.updateContent()
         }, onError: { error in
@@ -323,8 +326,6 @@ class OutageViewController: UIViewController, AccountScrollerDelegate, ReportOut
             self.view.makeToast("Your outage report has been received.", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 89))
         })
     }
-    
-
     
     // MARK: - Navigation
 
