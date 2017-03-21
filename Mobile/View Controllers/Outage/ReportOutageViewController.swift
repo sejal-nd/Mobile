@@ -22,6 +22,7 @@ class ReportOutageViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
+    @IBOutlet weak var footerContainerView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
@@ -58,14 +59,20 @@ class ReportOutageViewController: UIViewController, UITextFieldDelegate {
             phoneExtensionTextField.isHidden = true
         }
         
+        footerContainerView.layer.shadowColor = UIColor.black.cgColor
+        footerContainerView.layer.shadowOpacity = 0.15
+        footerContainerView.layer.shadowRadius = 2
+        footerContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        footerContainerView.layer.masksToBounds = false
+        
         footerTextView.textContainerInset = UIEdgeInsets(top: 16, left: 29, bottom: 16, right: 29)
         footerTextView.textColor = .darkJungleGreen
         footerTextView.tintColor = .mediumPersianBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
         footerTextView.layer.shadowColor = UIColor.black.cgColor
         footerTextView.layer.shadowOpacity = 0.15
-        footerTextView.layer.shadowRadius = 3
-        footerTextView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        footerTextView.layer.shadowRadius = 2
+        footerTextView.layer.shadowOffset = CGSize(width: 0, height: 1)
         footerTextView.layer.masksToBounds = false
         
         // Data binding

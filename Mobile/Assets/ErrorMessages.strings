@@ -7,5 +7,5 @@
 */
 
 "FN-ACCT-LOCKED-LOGIN" = "You cannot access your account because you have exceeded the limit of login attempts. Your account may be locked out for the next 30 minutes. Please try again later.";
-"FN-FAIL-LOGIN" = "Sign in Error - We're sorry, this combination of username and password is invalid. Please try again.";
+"FN-FAIL-LOGIN" = "We're sorry, this combination of username and password is invalid. Please try again.";
 "INVALID-PROFILE-TYPE" = "This profile type does not have access to the mobile app. Access your account on our responsive website.";

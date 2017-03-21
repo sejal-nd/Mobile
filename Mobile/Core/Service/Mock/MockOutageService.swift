@@ -50,7 +50,8 @@ class MockOutageService : OutageService {
                                   outageMessage:outageInfo == nil ? "As of 6:21 AM EST on 8/19/2017 we indicate that 10 customers(s) are affected by a power outage in your area. The cause of your outage is under investigation. We apologize for any inconvenience it may have caused you. The preliminary restore time is 10:30 AM EST on 8/19/2017." : reportedMessage,
                                   accountFinaled:false,
                                   accountPaid:true,
-                                  restorationTime:Date().addingTimeInterval(3600))
+                                  restorationTime:Date().addingTimeInterval(3600),
+                                  outageInfo:outageInfo)
             break
         case "7003238921":
             status = OutageStatus(accountInfo: account,

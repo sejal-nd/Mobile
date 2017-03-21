@@ -54,8 +54,8 @@ class ReportOutageViewModel {
         }
 
         var outageInfo = OutageInfo(account: account!, issue: outageIssue, phoneNumber: phoneNumber.value)
-        if phoneNumber.value.characters.count > 0 {
-            outageInfo.phoneExtension = phoneNumber.value
+        if phoneExtension.value.characters.count > 0 {
+            outageInfo.phoneExtension = phoneExtension.value
         }
         
         outageService.reportOutage(outageInfo: outageInfo) { (result: ServiceResult<Void>) in

@@ -107,9 +107,6 @@
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QN1-1Y-eoZ" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="29" y="412.5" width="317" height="65.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="51" id="47b-4B-b4O"/>
-                                                        </constraints>
                                                         <string key="text">To report a gas emergency, please call 1-800-685-0123
 For downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222</string>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
@@ -154,12 +151,9 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                         <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-Ah-Ffw" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="46" y="333" width="283" height="100"/>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-Ah-Ffw" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="46" y="333" width="283" height="35.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="100" id="d1R-9I-liK"/>
-                                                        </constraints>
                                                         <color key="textColor" red="0.38039215686274508" green="0.3803921569" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -169,7 +163,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="nUe-Ah-Ffw" secondAttribute="trailing" constant="46" id="0Vm-rJ-njV"/>
-                                                    <constraint firstItem="nUe-Ah-Ffw" firstAttribute="top" secondItem="ZQw-Ul-DsT" secondAttribute="bottom" constant="22.5" id="3dR-rr-ZNS"/>
+                                                    <constraint firstItem="nUe-Ah-Ffw" firstAttribute="top" secondItem="ZQw-Ul-DsT" secondAttribute="bottom" constant="23" id="3dR-rr-ZNS"/>
                                                     <constraint firstItem="ZQw-Ul-DsT" firstAttribute="leading" secondItem="H0L-QG-hAo" secondAttribute="leading" constant="46" id="5oU-4Q-Kht"/>
                                                     <constraint firstItem="rwO-5r-SUq" firstAttribute="centerX" secondItem="H0L-QG-hAo" secondAttribute="centerX" id="E5B-qD-Pi6"/>
                                                     <constraint firstItem="nUe-Ah-Ffw" firstAttribute="centerX" secondItem="H0L-QG-hAo" secondAttribute="centerX" id="PzE-7q-dZU"/>
@@ -288,14 +282,11 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Muq-JA-cLX">
-                                                <rect key="frame" x="0.0" y="467" width="375" height="136"/>
+                                                <rect key="frame" x="0.0" y="473.5" width="375" height="129.5"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="doS-PF-4Ay" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="29" y="24" width="317" height="80"/>
+                                                        <rect key="frame" x="29" y="24" width="317" height="73.5"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="yLo-ac-imh"/>
-                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
@@ -361,6 +352,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                     <navigationItem key="navigationItem" title="Report Outage" id="IsK-az-qit"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="footerContainerView" destination="Muq-JA-cLX" id="VgC-Ka-HV3"/>
                         <outlet property="footerTextView" destination="doS-PF-4Ay" id="TxS-EY-DqF"/>
                         <outlet property="phoneExtensionTextField" destination="FCi-Ha-Xvr" id="LDN-ZF-Q7L"/>
                         <outlet property="phoneNumberTextField" destination="bG0-Eg-V4i" id="0ad-0h-GHv"/>

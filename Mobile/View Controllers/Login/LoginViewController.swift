@@ -192,7 +192,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     func showErrorAlertWithMessage(_ errorMessage: String) {
         signInButton.setFailure()
         
-        let errorAlert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+        let errorAlert = UIAlertController(title: "Sign In Error", message: errorMessage, preferredStyle: .alert)
         errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(errorAlert, animated: true, completion: nil)
     }
