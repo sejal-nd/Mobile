@@ -118,18 +118,6 @@ class ChangePasswordViewController: UIViewController {
                 self.view.layoutIfNeeded()
             })
         }).addDisposableTo(disposeBag)
-        newPasswordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            if self.confirmPasswordTextField.isUserInteractionEnabled {
-                self.confirmPasswordTextField.textField.becomeFirstResponder()
-            }
-        }).addDisposableTo(disposeBag)
-        
-
-        confirmPasswordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            if self.doneButton!.isEnabled {
-                self.onDonePress()
-            }
-        }).addDisposableTo(disposeBag)
     }
     
     deinit {
@@ -233,6 +221,19 @@ extension ChangePasswordViewController: UITextFieldDelegate {
             return false
         }
         return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == newPasswordTextField.textField {
+            if confirmPasswordTextField.isUserInteractionEnabled {
+                confirmPasswordTextField.textField.becomeFirstResponder()
+            }
+        } else if textField == confirmPasswordTextField.textField {
+            if self.doneButton!.isEnabled {
+                self.onDonePress()
+            }
+        }
+        return false
     }
     
 }
