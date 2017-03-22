@@ -108,8 +108,8 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
         
         viewModel.attemptLoginWithTouchID(onLoad: { // fingerprint was successful
-            self.passwordAutofilledFromTouchID = true
             self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
+            self.passwordAutofilledFromTouchID = true // be sure to set this to true after the above line because will send an rx event on the text observer
             
             self.signInButton.setLoading()
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
