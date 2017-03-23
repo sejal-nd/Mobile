@@ -19,9 +19,20 @@ class ReportOutageViewController: UIViewController {
     weak var delegate: ReportOutageViewControllerDelegate?
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var meterPingStackView: UIStackView!
+    @IBOutlet weak var meterPingCurrentStatusLabel: UILabel!
+    @IBOutlet weak var meterPingPowerStatusView: UIView!
+    @IBOutlet weak var meterPingVoltageStatusView: UIView!
+    @IBOutlet weak var meterPingResultLabel: UILabel!
+    @IBOutlet weak var meterPingFuseBoxSwitchView: UIView!
+    @IBOutlet weak var meterPingFuseBoxSwitch: Switch!
+    
+    @IBOutlet weak var reportFormView: UIView!
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
+    
     @IBOutlet weak var footerContainerView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
@@ -42,6 +53,26 @@ class ReportOutageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
+        // METER PING
+        if Environment.sharedInstance.opco == "ComEd" {
+            let bg = UIView(frame: meterPingStackView.bounds)
+            bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            bg.backgroundColor = .whiteSmoke
+            bg.layer.shadowColor = UIColor.black.cgColor
+            bg.layer.shadowOpacity = 0.08
+            bg.layer.shadowRadius = 1.5
+            bg.layer.shadowOffset = CGSize(width: 0, height: 0)
+            bg.layer.masksToBounds = false
+            meterPingStackView.addSubview(bg)
+            meterPingStackView.sendSubview(toBack: bg)
+            
+            meterPingStackView.spacing = 16
+            meterPingStackView.isHidden = false
+            reportFormView.isHidden = true
+            
+            meterPingFuseBoxSwitch.rx.isOn.map(!).bindTo(reportFormView.rx.isHidden).addDisposableTo(disposeBag)
+        }
+
         if opco == "PECO" {
             segmentedControl.items = ["Yes", "Partially", "Dim/\nFlickering"]
         } else {
@@ -59,9 +90,10 @@ class ReportOutageViewController: UIViewController {
             phoneExtensionTextField.isHidden = true
         }
         
+        footerContainerView.backgroundColor = .whiteSmoke
         footerContainerView.layer.shadowColor = UIColor.black.cgColor
-        footerContainerView.layer.shadowOpacity = 0.15
-        footerContainerView.layer.shadowRadius = 2
+        footerContainerView.layer.shadowOpacity = 0.08
+        footerContainerView.layer.shadowRadius = 1.5
         footerContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
         footerContainerView.layer.masksToBounds = false
         
@@ -70,15 +102,16 @@ class ReportOutageViewController: UIViewController {
         footerTextView.tintColor = .mediumPersianBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
         footerTextView.layer.shadowColor = UIColor.black.cgColor
-        footerTextView.layer.shadowOpacity = 0.15
+        footerTextView.layer.shadowOpacity = 0.06
         footerTextView.layer.shadowRadius = 2
-        footerTextView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        footerTextView.layer.shadowOffset = CGSize(width: 0, height: 2)
         footerTextView.layer.masksToBounds = false
         
         // Data binding
         segmentedControl.selectedIndex.asObservable().bindTo(viewModel.selectedSegmentIndex).addDisposableTo(disposeBag)
         
-        viewModel.phoneNumber.asObservable().bindTo(phoneNumberTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        viewModel.phoneNumber.asObservable().bindTo(phoneNumberTextField.textField.rx.text.orEmpty)
+            .addDisposableTo(disposeBag)
         phoneNumberTextField.textField.rx.text.orEmpty.bindTo(viewModel.phoneNumber).addDisposableTo(disposeBag)
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
         
