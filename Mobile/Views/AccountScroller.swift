@@ -76,13 +76,14 @@ class AccountScroller: UIView {
             let iconImageView = UIImageView(image: icon)
             iconImageView.frame = CGRect(x: centerX - 80, y: 4, width: 43, height: 43)
 
-            let accountNumberLabel = UILabel(frame: CGRect(x: centerX - 30, y: 11, width: 100, height: 20))
+            let labelWidth = screenWidth - (center.x - 30) - 16
+            
+            let accountNumberLabel = UILabel(frame: CGRect(x: centerX - 30, y: 11, width: labelWidth, height: 20))
             accountNumberLabel.font = UIFont.systemFont(ofSize: 17)
             accountNumberLabel.textColor = UIColor.darkJungleGreen
             accountNumberLabel.text = account.accountNumber
-            
-            let addressLabelWidth = screenWidth - (center.x - 30) - 16
-            let addressLabel = UILabel(frame: CGRect(x: centerX - 30, y: 32, width: addressLabelWidth, height: 14))
+           
+            let addressLabel = UILabel(frame: CGRect(x: centerX - 30, y: 32, width: labelWidth, height: 14))
             addressLabel.font = UIFont.systemFont(ofSize: 12)
             addressLabel.textColor = UIColor.outerSpace
             addressLabel.text = account.address
