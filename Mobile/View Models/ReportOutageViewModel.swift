@@ -67,14 +67,15 @@ class ReportOutageViewModel {
         }
     }
     
-    func meterPingGetPowerStatus(onPowerVerified: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)) {
-            onPowerVerified()
+            onPowerVerified(true)
+            //onPowerVerified(false)
             //onError()
         }
     }
     
-    func meterPingGetVoltageStatus(onVoltageVerified: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func meterPingGetVoltageStatus(onVoltageVerified: @escaping () -> Void, onError: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)) {
             onVoltageVerified()
             //onError()

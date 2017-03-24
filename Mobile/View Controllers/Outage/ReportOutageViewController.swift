@@ -81,7 +81,7 @@ class ReportOutageViewController: UIViewController {
             meterPingStackView.addSubview(bg)
             meterPingStackView.sendSubview(toBack: bg)
             
-            meterPingStackView.spacing = 16
+            meterPingStackView.spacing = 20
             meterPingStackView.isHidden = false
             reportFormView.isHidden = true
             
@@ -99,10 +99,11 @@ class ReportOutageViewController: UIViewController {
             meterPingVoltageStatusLabel.textColor = .oldLavender
             meterPingResultLabel.textColor = .outerSpace
             meterPingFuseBoxLabel.textColor = .oldLavender
+            meterPingFuseBoxLabel.setLineHeight(lineHeight: 25)
         }
 
         if opco == "PECO" {
-            segmentedControl.items = ["Yes", "Partially", "Dim/\nFlickering"]
+            segmentedControl.items = ["Yes", "Partially", "Dim/Flickering"]
         } else {
             segmentedControl.items = ["Yes", "Partially"]
         }
@@ -155,26 +156,59 @@ class ReportOutageViewController: UIViewController {
         
         // METER PING
         if Environment.sharedInstance.opco == "ComEd" {
-            viewModel.meterPingGetPowerStatus(onPowerVerified: { 
-                self.meterPingCurrentStatusLabel.text = "Verifying voltage level of the meter..."
+            viewModel.meterPingGetPowerStatus(onPowerVerified: { canPerformVoltageCheck in
                 self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
                 self.meterPingPowerStatusLabel.textColor = .darkJungleGreen
                 
-                self.meterPingVoltageStatusView.isHidden = false
-                self.viewModel.meterPingGetVoltageStatus(onVoltageVerified: { 
+                if !canPerformVoltageCheck { // POWER STATUS SUCCESS BUT NO VOLTAGE CHECK
                     self.meterPingCurrentStatusActivityIndicator.isHidden = true
                     self.meterPingCurrentStatusImageView.isHidden = false
                     self.meterPingCurrentStatusLabel.text = "Check Complete"
-                    
-                    self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
-                    self.meterPingVoltageStatusLabel.textColor = .darkJungleGreen
-                    
+                    self.meterPingResultLabel.isHidden = false
+                    self.meterPingResultLabel.text = "Our status check verified your property's meter is operational and ComEd electrical service is being delivered to your home"
+                    self.meterPingResultLabel.setLineHeight(lineHeight: 25)
                     self.meterPingFuseBoxView.isHidden = false
-                }, onError: { error in
+                } else { // POWER STATUS SUCCESS
+                    self.meterPingCurrentStatusLabel.text = "Verifying voltage level of the meter..."
+                    self.meterPingVoltageStatusView.isHidden = false
+                    self.viewModel.meterPingGetVoltageStatus(onVoltageVerified: {
+                        self.meterPingCurrentStatusActivityIndicator.isHidden = true
+                        self.meterPingCurrentStatusImageView.isHidden = false
+                        self.meterPingCurrentStatusLabel.text = "Check Complete"
+                        
+                        self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
+                        self.meterPingVoltageStatusLabel.textColor = .darkJungleGreen
+                        
+                        self.meterPingFuseBoxView.isHidden = false
+                    }, onError: { error in // VOLTAGE STATUS ERROR
+                        self.meterPingCurrentStatusActivityIndicator.isHidden = true
+                        self.meterPingCurrentStatusImageView.isHidden = false
+                        self.meterPingCurrentStatusImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
+                        self.meterPingCurrentStatusLabel.text = "Check Complete"
+                        
+                        self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
+                        self.meterPingVoltageStatusLabel.textColor = .darkJungleGreen
+                        
+                        self.meterPingResultLabel.isHidden = false
+                        self.meterPingResultLabel.text = "Problems Found. Please tap \"Submit\" to report an outage."
+                        
+                        self.viewModel.reportFormHidden.value = false
+                    })
+                }
 
-                })
-            }, onError: { error in
+            }, onError: { error in // POWER STATUS ERROR
+                self.meterPingCurrentStatusActivityIndicator.isHidden = true
+                self.meterPingCurrentStatusImageView.isHidden = false
+                self.meterPingCurrentStatusImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
+                self.meterPingCurrentStatusLabel.text = "Check Complete"
                 
+                self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
+                self.meterPingPowerStatusLabel.textColor = .darkJungleGreen
+                
+                self.meterPingResultLabel.isHidden = false
+                self.meterPingResultLabel.text = "Problems Found. Please tap \"Submit\" to report an outage."
+                
+                self.viewModel.reportFormHidden.value = false
             })
         }
     }
