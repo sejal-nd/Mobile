@@ -93,6 +93,20 @@ extension SettingsViewController: UITableViewDelegate {
         
         if indexPath.section == 0 {
             performSegue(withIdentifier: "changePasswordSegue", sender: self)
+        } else if indexPath.section == 1 {
+            if !viewModel.isDeviceTouchIDCompatible() {
+                handleOpcoCellPress()
+            }
+        } else if indexPath.section == 2 {
+            handleOpcoCellPress()
+        }
+    }
+    
+    func handleOpcoCellPress() {
+        if Environment.sharedInstance.opco == "BGE" {
+            print("Default account")
+        } else if Environment.sharedInstance.opco == "PECO" {
+            print("Release of info")
         }
     }
     
@@ -101,10 +115,14 @@ extension SettingsViewController: UITableViewDelegate {
 extension SettingsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        var numSections = 1
         if viewModel.isDeviceTouchIDCompatible() {
-            return 2
+            numSections += 1
         }
-        return 1
+        if Environment.sharedInstance.opco == "BGE" || Environment.sharedInstance.opco == "PECO" {
+            numSections += 1
+        }
+        return numSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,14 +146,28 @@ extension SettingsViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             cell.configureWith(label: "Change Password", carat: true)
-        } else {
-            cell.configureWith(label: "Touch ID", switchOn: viewModel.isTouchIDEnabled(), switchObserver: { isOn in
-                self.switchObserver(cell: cell, isOn: isOn)
-            })
-            touchIdCell = cell
+        } else if indexPath.section == 1 {
+            if viewModel.isDeviceTouchIDCompatible() {
+                cell.configureWith(label: "Touch ID", switchOn: viewModel.isTouchIDEnabled(), switchObserver: { isOn in
+                    self.switchObserver(cell: cell, isOn: isOn)
+                })
+                touchIdCell = cell
+            } else {
+                configureOpcoCell(cell)
+            }
+        } else if indexPath.section == 2 {
+            configureOpcoCell(cell)
         }
         
         return cell
+    }
+    
+    func configureOpcoCell(_ cell: TableViewCell) {
+        if Environment.sharedInstance.opco == "BGE" {
+            cell.configureWith(label: "Default Account", carat: true)
+        } else if Environment.sharedInstance.opco == "PECO" {
+            cell.configureWith(label: "Release of Information", carat: true)
+        }
     }
     
 }
