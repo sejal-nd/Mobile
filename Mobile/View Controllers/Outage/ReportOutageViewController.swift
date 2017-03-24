@@ -20,19 +20,34 @@ class ReportOutageViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    // Meter Ping
     @IBOutlet weak var meterPingStackView: UIStackView!
-    @IBOutlet weak var meterPingCurrentStatusLabel: UILabel!
-    @IBOutlet weak var meterPingPowerStatusView: UIView!
-    @IBOutlet weak var meterPingVoltageStatusView: UIView!
-    @IBOutlet weak var meterPingResultLabel: UILabel!
-    @IBOutlet weak var meterPingFuseBoxSwitchView: UIView!
-    @IBOutlet weak var meterPingFuseBoxSwitch: Switch!
     
+    @IBOutlet weak var meterPingCurrentStatusImageView: UIImageView!
+    @IBOutlet weak var meterPingCurrentStatusActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var meterPingCurrentStatusLabel: UILabel!
+    
+    @IBOutlet weak var meterPingPowerStatusView: UIView!
+    @IBOutlet weak var meterPingPowerStatusImageView: UIImageView!
+    @IBOutlet weak var meterPingPowerStatusLabel: UILabel!
+    
+    @IBOutlet weak var meterPingVoltageStatusView: UIView!
+    @IBOutlet weak var meterPingVoltageStatusImageView: UIImageView!
+    @IBOutlet weak var meterPingVoltageStatusLabel: UILabel!
+    
+    @IBOutlet weak var meterPingResultLabel: UILabel!
+    
+    @IBOutlet weak var meterPingFuseBoxView: UIView!
+    @IBOutlet weak var meterPingFuseBoxSwitch: Switch!
+    @IBOutlet weak var meterPingFuseBoxLabel: UILabel!
+    
+    // Report Form
     @IBOutlet weak var reportFormView: UIView!
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
     
+    // Footer View
     @IBOutlet weak var footerContainerView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
@@ -70,7 +85,20 @@ class ReportOutageViewController: UIViewController {
             meterPingStackView.isHidden = false
             reportFormView.isHidden = true
             
-            meterPingFuseBoxSwitch.rx.isOn.map(!).bindTo(reportFormView.rx.isHidden).addDisposableTo(disposeBag)
+            meterPingFuseBoxSwitch.rx.isOn.map(!).bindTo(viewModel.reportFormHidden).addDisposableTo(disposeBag)
+            viewModel.reportFormHidden.asObservable().bindTo(reportFormView.rx.isHidden).addDisposableTo(disposeBag)
+            viewModel.reportFormHidden.asObservable().subscribe(onNext: { hidden in
+                if hidden {
+                    self.reportFormView.endEditing(true)
+                }
+            }).addDisposableTo(disposeBag)
+
+            meterPingCurrentStatusActivityIndicator.tintColor = .mediumPersianBlue
+            meterPingCurrentStatusLabel.textColor = .darkJungleGreen
+            meterPingPowerStatusLabel.textColor = .oldLavender
+            meterPingVoltageStatusLabel.textColor = .oldLavender
+            meterPingResultLabel.textColor = .outerSpace
+            meterPingFuseBoxLabel.textColor = .oldLavender
         }
 
         if opco == "PECO" {
@@ -120,6 +148,35 @@ class ReportOutageViewController: UIViewController {
         // Format the intial value
         let range = NSMakeRange(0, viewModel.phoneNumber.value.characters.count)
         _ = textField(phoneNumberTextField.textField, shouldChangeCharactersIn: range, replacementString: viewModel.phoneNumber.value)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // METER PING
+        if Environment.sharedInstance.opco == "ComEd" {
+            viewModel.meterPingGetPowerStatus(onPowerVerified: { 
+                self.meterPingCurrentStatusLabel.text = "Verifying voltage level of the meter..."
+                self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
+                self.meterPingPowerStatusLabel.textColor = .darkJungleGreen
+                
+                self.meterPingVoltageStatusView.isHidden = false
+                self.viewModel.meterPingGetVoltageStatus(onVoltageVerified: { 
+                    self.meterPingCurrentStatusActivityIndicator.isHidden = true
+                    self.meterPingCurrentStatusImageView.isHidden = false
+                    self.meterPingCurrentStatusLabel.text = "Check Complete"
+                    
+                    self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
+                    self.meterPingVoltageStatusLabel.textColor = .darkJungleGreen
+                    
+                    self.meterPingFuseBoxView.isHidden = false
+                }, onError: { error in
+
+                })
+            }, onError: { error in
+                
+            })
+        }
     }
     
     deinit {

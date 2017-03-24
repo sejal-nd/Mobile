@@ -250,13 +250,13 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zz7-Yi-MtH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="809.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wj3-R8-PEk">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="616"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="890"/>
                                         <subviews>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-bI-z1O">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="145"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="147.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfI-UU-K4K" userLabel="Spacer View">
                                                         <rect key="frame" x="67.5" y="0.0" width="240" height="0.0"/>
@@ -266,11 +266,34 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dFa-Qw-aDA">
-                                                        <rect key="frame" x="29" y="0.0" width="317" height="44"/>
+                                                        <rect key="frame" x="29" y="0.0" width="317" height="49"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifying meter has power..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afw-hD-sE0">
-                                                                <rect key="frame" x="39" y="12" width="270" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zzw-9g-k7M">
+                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="49"/>
+                                                                <subviews>
+                                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_meterping" translatesAutoresizingMaskIntoConstraints="NO" id="6af-Vg-Ogp">
+                                                                        <rect key="frame" x="21" y="17" width="18" height="14"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="18" id="dgH-PS-liW"/>
+                                                                            <constraint firstAttribute="height" constant="14" id="fYT-6u-usa"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="aMR-4v-dkk">
+                                                                        <rect key="frame" x="20" y="14" width="20" height="20"/>
+                                                                    </activityIndicatorView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="6af-Vg-Ogp" firstAttribute="centerX" secondItem="Zzw-9g-k7M" secondAttribute="centerX" id="1Y6-cj-v4r"/>
+                                                                    <constraint firstItem="aMR-4v-dkk" firstAttribute="centerX" secondItem="Zzw-9g-k7M" secondAttribute="centerX" id="4kZ-NV-jVa"/>
+                                                                    <constraint firstItem="aMR-4v-dkk" firstAttribute="centerY" secondItem="Zzw-9g-k7M" secondAttribute="centerY" id="5jX-nY-mkC"/>
+                                                                    <constraint firstAttribute="width" constant="60" id="g1m-0j-maZ"/>
+                                                                    <constraint firstItem="6af-Vg-Ogp" firstAttribute="centerY" secondItem="Zzw-9g-k7M" secondAttribute="centerY" id="tHr-6z-Ezh"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifying meter has power..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="afw-hD-sE0">
+                                                                <rect key="frame" x="60" y="15.5" width="241" height="19.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -278,15 +301,18 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="afw-hD-sE0" firstAttribute="centerY" secondItem="dFa-Qw-aDA" secondAttribute="centerY" id="1RE-sQ-uhd"/>
-                                                            <constraint firstAttribute="height" priority="999" constant="44" id="a4i-Ax-Fyi"/>
-                                                            <constraint firstAttribute="trailing" secondItem="afw-hD-sE0" secondAttribute="trailing" constant="8" id="g23-da-akR"/>
-                                                            <constraint firstItem="afw-hD-sE0" firstAttribute="leading" secondItem="dFa-Qw-aDA" secondAttribute="leading" constant="39" id="j6A-9I-hIL"/>
+                                                            <constraint firstItem="afw-hD-sE0" firstAttribute="leading" secondItem="Zzw-9g-k7M" secondAttribute="trailing" id="2U3-sY-ve7"/>
+                                                            <constraint firstItem="Zzw-9g-k7M" firstAttribute="leading" secondItem="dFa-Qw-aDA" secondAttribute="leading" id="4Ek-gN-dRN"/>
+                                                            <constraint firstItem="Zzw-9g-k7M" firstAttribute="top" secondItem="dFa-Qw-aDA" secondAttribute="top" id="VuV-87-cdy"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Zzw-9g-k7M" secondAttribute="bottom" id="WPE-iD-nEy"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="49" id="a4i-Ax-Fyi"/>
+                                                            <constraint firstAttribute="trailing" secondItem="afw-hD-sE0" secondAttribute="trailing" constant="16" id="g23-da-akR"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKm-Ee-71t">
-                                                        <rect key="frame" x="29" y="44" width="317" height="30"/>
+                                                        <rect key="frame" x="29" y="49" width="317" height="30"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_outage" translatesAutoresizingMaskIntoConstraints="NO" id="ZTg-SF-6yF">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_graycircle" translatesAutoresizingMaskIntoConstraints="NO" id="ZTg-SF-6yF">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="JrH-Dh-oHn"/>
@@ -294,8 +320,8 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb8-Vg-S1A">
-                                                                <rect key="frame" x="46" y="5" width="101" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <rect key="frame" x="46" y="4" width="115.5" height="23"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -309,10 +335,10 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                             <constraint firstItem="cb8-Vg-S1A" firstAttribute="centerY" secondItem="nKm-Ee-71t" secondAttribute="centerY" id="wSa-lf-auj"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2N-zO-4eI">
-                                                        <rect key="frame" x="29" y="74" width="317" height="30"/>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2N-zO-4eI">
+                                                        <rect key="frame" x="29" y="79" width="317" height="30"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_outage" translatesAutoresizingMaskIntoConstraints="NO" id="kDu-NL-o8r">
+                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_graycircle" translatesAutoresizingMaskIntoConstraints="NO" id="kDu-NL-o8r">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="6vy-FZ-bwK"/>
@@ -320,8 +346,8 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voltage Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIB-MD-rE5">
-                                                                <rect key="frame" x="46" y="5" width="111.5" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <rect key="frame" x="46" y="4" width="127.5" height="23"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -335,14 +361,14 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                             <constraint firstItem="wIB-MD-rE5" firstAttribute="leading" secondItem="kDu-NL-o8r" secondAttribute="trailing" constant="16" id="uh5-DZ-ucV"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Problems Found. Please tap &quot;Submit&quot; to report an outage." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AG-9d-VBi">
-                                                        <rect key="frame" x="29" y="104" width="317" height="41"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Problems Found. Please tap &quot;Submit&quot; to report an outage." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AG-9d-VBi">
+                                                        <rect key="frame" x="29" y="109" width="317" height="38.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TL3-7s-njY" userLabel="Spacer View">
-                                                        <rect key="frame" x="67.5" y="145" width="240" height="0.0"/>
+                                                        <rect key="frame" x="67.5" y="147.5" width="240" height="0.0"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" id="o2S-we-IbY"/>
@@ -350,18 +376,18 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                     </view>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="dFa-Qw-aDA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i9X-bI-z1O" secondAttribute="leading" constant="29" id="5nA-2w-o2H"/>
                                                     <constraint firstItem="nKm-Ee-71t" firstAttribute="leading" secondItem="i9X-bI-z1O" secondAttribute="leading" constant="29" id="6Sh-gG-QKC"/>
                                                     <constraint firstAttribute="trailing" secondItem="nKm-Ee-71t" secondAttribute="trailing" constant="29" id="Ab6-ew-TAq"/>
-                                                    <constraint firstAttribute="trailing" secondItem="dFa-Qw-aDA" secondAttribute="trailing" constant="29" id="FgL-8D-JNk"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dFa-Qw-aDA" secondAttribute="trailing" constant="29" id="G7O-Ct-MA2"/>
                                                     <constraint firstAttribute="trailing" secondItem="U2N-zO-4eI" secondAttribute="trailing" constant="29" id="Y1S-lq-d7g"/>
                                                     <constraint firstItem="U2N-zO-4eI" firstAttribute="leading" secondItem="i9X-bI-z1O" secondAttribute="leading" constant="29" id="Zip-ea-FGH"/>
-                                                    <constraint firstItem="dFa-Qw-aDA" firstAttribute="leading" secondItem="i9X-bI-z1O" secondAttribute="leading" constant="29" id="btS-Q1-Xh9"/>
                                                     <constraint firstAttribute="trailing" secondItem="9AG-9d-VBi" secondAttribute="trailing" constant="29" id="eKO-Xz-blZ"/>
                                                     <constraint firstItem="9AG-9d-VBi" firstAttribute="leading" secondItem="i9X-bI-z1O" secondAttribute="leading" constant="29" id="tsK-ai-gne"/>
                                                 </constraints>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-Bd-NCe">
-                                                <rect key="frame" x="0.0" y="145" width="375" height="113"/>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-Bd-NCe">
+                                                <rect key="frame" x="0.0" y="147.5" width="375" height="113"/>
                                                 <subviews>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Z3B-9b-TVX" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="29" y="32" width="51" height="31"/>
@@ -381,16 +407,16 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="MsO-JP-Q4X" firstAttribute="top" secondItem="JdA-Bd-NCe" secondAttribute="top" constant="24" id="A88-PD-jLC"/>
+                                                    <constraint firstItem="MsO-JP-Q4X" firstAttribute="top" secondItem="JdA-Bd-NCe" secondAttribute="top" priority="999" constant="24" id="A88-PD-jLC"/>
                                                     <constraint firstItem="Z3B-9b-TVX" firstAttribute="top" secondItem="JdA-Bd-NCe" secondAttribute="top" constant="32" id="BDS-zb-fTa"/>
                                                     <constraint firstItem="Z3B-9b-TVX" firstAttribute="leading" secondItem="JdA-Bd-NCe" secondAttribute="leading" constant="29" id="M99-r9-r77"/>
                                                     <constraint firstAttribute="trailing" secondItem="MsO-JP-Q4X" secondAttribute="trailing" constant="29" id="lyU-wG-c9c"/>
                                                     <constraint firstItem="MsO-JP-Q4X" firstAttribute="leading" secondItem="Z3B-9b-TVX" secondAttribute="trailing" constant="19" id="tR8-59-MJo"/>
-                                                    <constraint firstAttribute="bottom" secondItem="MsO-JP-Q4X" secondAttribute="bottom" constant="14" id="zs1-pp-Xfg"/>
+                                                    <constraint firstAttribute="bottom" secondItem="MsO-JP-Q4X" secondAttribute="bottom" priority="999" constant="14" id="zs1-pp-Xfg"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYK-ju-MPw" userLabel="Report Form">
-                                                <rect key="frame" x="0.0" y="258" width="375" height="358"/>
+                                                <rect key="frame" x="0.0" y="260.5" width="375" height="324"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are your lights out?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nce-RI-YJq">
                                                         <rect key="frame" x="29" y="20" width="317" height="20.5"/>
@@ -437,13 +463,43 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                     <constraint firstItem="afa-KO-KaI" firstAttribute="top" secondItem="Nce-RI-YJq" secondAttribute="bottom" constant="11" id="Xc6-Qs-W1y"/>
                                                     <constraint firstAttribute="trailing" secondItem="Nce-RI-YJq" secondAttribute="trailing" constant="29" id="XwM-Vd-eYk"/>
                                                     <constraint firstItem="Frr-Lq-EaC" firstAttribute="leading" secondItem="AYK-ju-MPw" secondAttribute="leading" constant="29" id="dcE-C0-Uwt"/>
-                                                    <constraint firstAttribute="height" priority="999" constant="358" id="df4-mb-vjs"/>
+                                                    <constraint firstAttribute="height" priority="999" constant="324" id="df4-mb-vjs"/>
                                                     <constraint firstItem="Nce-RI-YJq" firstAttribute="leading" secondItem="AYK-ju-MPw" secondAttribute="leading" constant="29" id="qTH-Vw-Hbx"/>
                                                     <constraint firstAttribute="trailing" secondItem="afa-KO-KaI" secondAttribute="trailing" constant="29" id="sKh-8i-9b8"/>
                                                     <constraint firstItem="afa-KO-KaI" firstAttribute="leading" secondItem="AYK-ju-MPw" secondAttribute="leading" constant="29" id="suI-6r-VOS"/>
                                                     <constraint firstItem="Frr-Lq-EaC" firstAttribute="top" secondItem="afa-KO-KaI" secondAttribute="bottom" constant="30" id="sza-cK-fg8"/>
                                                     <constraint firstItem="bG0-Eg-V4i" firstAttribute="top" secondItem="Frr-Lq-EaC" secondAttribute="bottom" constant="11" id="xxA-WN-DXo"/>
                                                     <constraint firstAttribute="trailing" secondItem="Frr-Lq-EaC" secondAttribute="trailing" constant="29" id="yov-xo-aU2"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6M8-NZ-rW4" userLabel="Footer Spacing View">
+                                                <rect key="frame" x="0.0" y="584.5" width="375" height="305.5"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Muq-JA-cLX">
+                                                        <rect key="frame" x="0.0" y="140" width="375" height="165.5"/>
+                                                        <subviews>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="doS-PF-4Ay" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="29" y="20" width="317" height="112.5"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                                            </textView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="doS-PF-4Ay" secondAttribute="bottom" constant="33" id="NF1-lR-ga1"/>
+                                                            <constraint firstAttribute="trailing" secondItem="doS-PF-4Ay" secondAttribute="trailing" constant="29" id="Rdq-Gg-ajh"/>
+                                                            <constraint firstItem="doS-PF-4Ay" firstAttribute="top" secondItem="Muq-JA-cLX" secondAttribute="top" constant="20" id="WFK-jp-0KI"/>
+                                                            <constraint firstItem="doS-PF-4Ay" firstAttribute="leading" secondItem="Muq-JA-cLX" secondAttribute="leading" constant="29" id="wqD-nr-HVz"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="Muq-JA-cLX" secondAttribute="bottom" id="Llo-nh-wYW"/>
+                                                    <constraint firstItem="Muq-JA-cLX" firstAttribute="leading" secondItem="6M8-NZ-rW4" secondAttribute="leading" id="M3u-sB-Gge"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Muq-JA-cLX" secondAttribute="trailing" id="Zyu-bx-U4c"/>
+                                                    <constraint firstItem="Muq-JA-cLX" firstAttribute="top" secondItem="6M8-NZ-rW4" secondAttribute="top" constant="140" id="qab-cm-6aA"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -457,34 +513,13 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                     <constraint firstItem="Wj3-R8-PEk" firstAttribute="top" secondItem="Zz7-Yi-MtH" secondAttribute="top" id="uiK-dA-e8b"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Muq-JA-cLX">
-                                <rect key="frame" x="0.0" y="809.5" width="375" height="126.5"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="doS-PF-4Ay" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="29" y="20" width="317" height="73.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
-                                    </textView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="doS-PF-4Ay" secondAttribute="bottom" constant="33" id="NF1-lR-ga1"/>
-                                    <constraint firstAttribute="trailing" secondItem="doS-PF-4Ay" secondAttribute="trailing" constant="29" id="Rdq-Gg-ajh"/>
-                                    <constraint firstItem="doS-PF-4Ay" firstAttribute="top" secondItem="Muq-JA-cLX" secondAttribute="top" constant="20" id="WFK-jp-0KI"/>
-                                    <constraint firstItem="doS-PF-4Ay" firstAttribute="leading" secondItem="Muq-JA-cLX" secondAttribute="leading" constant="29" id="wqD-nr-HVz"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Muq-JA-cLX" firstAttribute="leading" secondItem="obc-d4-nlp" secondAttribute="leading" id="8TW-R8-WQN"/>
                             <constraint firstAttribute="trailing" secondItem="Zz7-Yi-MtH" secondAttribute="trailing" id="Kbt-px-kZt"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Zz7-Yi-MtH" secondAttribute="bottom" id="PF8-I3-Pgd"/>
                             <constraint firstItem="Zz7-Yi-MtH" firstAttribute="leading" secondItem="obc-d4-nlp" secondAttribute="leading" id="Y4H-M3-v8D"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Muq-JA-cLX" secondAttribute="bottom" id="cgR-7r-6KI"/>
-                            <constraint firstItem="Muq-JA-cLX" firstAttribute="top" secondItem="Zz7-Yi-MtH" secondAttribute="bottom" id="fbo-eh-a6W"/>
                             <constraint firstAttribute="topMargin" secondItem="Zz7-Yi-MtH" secondAttribute="top" id="u6I-rp-Ks0"/>
-                            <constraint firstAttribute="trailing" secondItem="Muq-JA-cLX" secondAttribute="trailing" id="v3B-tq-e4W"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Report Outage" id="IsK-az-qit"/>
@@ -494,12 +529,19 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                     <connections>
                         <outlet property="footerContainerView" destination="Muq-JA-cLX" id="VgC-Ka-HV3"/>
                         <outlet property="footerTextView" destination="doS-PF-4Ay" id="TxS-EY-DqF"/>
+                        <outlet property="meterPingCurrentStatusActivityIndicator" destination="aMR-4v-dkk" id="hSb-Nt-j7W"/>
+                        <outlet property="meterPingCurrentStatusImageView" destination="6af-Vg-Ogp" id="5Ec-JR-azB"/>
                         <outlet property="meterPingCurrentStatusLabel" destination="afw-hD-sE0" id="4Sb-cT-382"/>
+                        <outlet property="meterPingFuseBoxLabel" destination="MsO-JP-Q4X" id="j3J-Q6-gMv"/>
                         <outlet property="meterPingFuseBoxSwitch" destination="Z3B-9b-TVX" id="T1q-4y-wGe"/>
-                        <outlet property="meterPingFuseBoxSwitchView" destination="JdA-Bd-NCe" id="hnC-Ew-H0B"/>
+                        <outlet property="meterPingFuseBoxView" destination="JdA-Bd-NCe" id="8PS-kR-rqQ"/>
+                        <outlet property="meterPingPowerStatusImageView" destination="ZTg-SF-6yF" id="dsM-GR-dh1"/>
+                        <outlet property="meterPingPowerStatusLabel" destination="cb8-Vg-S1A" id="s6m-SZ-2Sr"/>
                         <outlet property="meterPingPowerStatusView" destination="nKm-Ee-71t" id="Cc7-a4-HfB"/>
                         <outlet property="meterPingResultLabel" destination="9AG-9d-VBi" id="Pj4-BO-ZoJ"/>
                         <outlet property="meterPingStackView" destination="i9X-bI-z1O" id="g6c-8f-7Iy"/>
+                        <outlet property="meterPingVoltageStatusImageView" destination="kDu-NL-o8r" id="MFw-5s-jYa"/>
+                        <outlet property="meterPingVoltageStatusLabel" destination="wIB-MD-rE5" id="Cmh-Ft-R3n"/>
                         <outlet property="meterPingVoltageStatusView" destination="U2N-zO-4eI" id="HDW-LS-j7B"/>
                         <outlet property="phoneExtensionTextField" destination="FCi-Ha-Xvr" id="LDN-ZF-Q7L"/>
                         <outlet property="phoneNumberTextField" destination="bG0-Eg-V4i" id="0ad-0h-GHv"/>
@@ -515,6 +557,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
     </scenes>
     <resources>
         <image name="gasonly_graphic" width="197" height="197"/>
-        <image name="ic_check_outage" width="19" height="16"/>
+        <image name="ic_check_meterping" width="18" height="14"/>
+        <image name="ic_graycircle" width="30" height="30"/>
     </resources>
 </document>

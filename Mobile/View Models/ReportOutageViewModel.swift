@@ -16,14 +16,18 @@ class ReportOutageViewModel {
     var selectedSegmentIndex = Variable(0)
     var phoneNumber = Variable("")
     var phoneExtension = Variable("")
+    var reportFormHidden = Variable(false)
     
     required init(outageService: OutageService) {
         self.outageService = outageService
+        if Environment.sharedInstance.opco == "ComEd" {
+            reportFormHidden.value = true
+        }
     }
     
     func submitButtonEnabled() -> Observable<Bool> {
-        return phoneNumber.asObservable().map{ text -> Bool in
-            return text.characters.count > 0
+        return Observable.combineLatest(reportFormHidden.asObservable(), phoneNumber.asObservable()) {
+            return !$0 && $1.characters.count > 0
         }
     }
     
@@ -60,6 +64,20 @@ class ReportOutageViewModel {
         
         outageService.reportOutage(outageInfo: outageInfo) { (result: ServiceResult<Void>) in
             onSuccess()
+        }
+    }
+    
+    func meterPingGetPowerStatus(onPowerVerified: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)) {
+            onPowerVerified()
+            //onError()
+        }
+    }
+    
+    func meterPingGetVoltageStatus(onVoltageVerified: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)) {
+            onVoltageVerified()
+            //onError()
         }
     }
 }
