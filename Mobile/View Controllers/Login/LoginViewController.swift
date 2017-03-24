@@ -120,7 +120,7 @@ class LoginViewController: UIViewController {
             })
         }, onError: { (errorMessage) in // fingerprint successful but login failed
             self.navigationController?.view.isUserInteractionEnabled = true
-            self.showErrorAlertWithMessage(errorMessage)
+            self.showErrorAlertWithMessage(errorMessage + "\n\nIf you have changed your password recently, enter it manually and re-enable Touch ID")
         })
     }
     
