@@ -42,13 +42,15 @@ class ReportOutageViewController: UIViewController {
     @IBOutlet weak var meterPingFuseBoxLabel: UILabel!
     
     // Report Form
-    @IBOutlet weak var reportFormView: UIView!
+    @IBOutlet weak var reportFormStackView: UIStackView!
+    @IBOutlet weak var areYourLightsOutView: UIView!
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var phoneExtensionContainerView: UIView!
     @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
     
     // Footer View
-    @IBOutlet weak var footerTopSpace: NSLayoutConstraint!
+    @IBOutlet weak var footerContainerView: UIView!
     @IBOutlet weak var footerBackgroundView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
@@ -84,15 +86,21 @@ class ReportOutageViewController: UIViewController {
             
             meterPingStackView.spacing = 20
             meterPingStackView.isHidden = false
-            reportFormView.isHidden = true
+
+            footerContainerView.isHidden = true
             
             meterPingFuseBoxSwitch.rx.isOn.map(!).bindTo(viewModel.reportFormHidden).addDisposableTo(disposeBag)
-            viewModel.reportFormHidden.asObservable().bindTo(reportFormView.rx.isHidden).addDisposableTo(disposeBag)
+            viewModel.reportFormHidden.asObservable().bindTo(reportFormStackView.rx.isHidden).addDisposableTo(disposeBag)
             viewModel.reportFormHidden.asObservable().subscribe(onNext: { hidden in
                 if hidden {
-                    self.reportFormView.endEditing(true)
+                    self.reportFormStackView.spacing = 0
+                    self.reportFormStackView.endEditing(true)
+                } else {
+                    self.reportFormStackView.spacing = 30
                 }
             }).addDisposableTo(disposeBag)
+            
+            viewModel.reportFormHidden.value = true
 
             meterPingCurrentStatusActivityIndicator.tintColor = .mediumPersianBlue
             meterPingCurrentStatusLabel.textColor = .darkJungleGreen
@@ -117,8 +125,7 @@ class ReportOutageViewController: UIViewController {
         phoneExtensionTextField.textField.delegate = self
 
         if opco == "BGE" {
-            phoneExtensionTextField.isHidden = true
-            footerTopSpace.constant = -60
+            phoneExtensionContainerView.isHidden = true
         }
         
         footerBackgroundView.backgroundColor = .whiteSmoke
@@ -170,6 +177,7 @@ class ReportOutageViewController: UIViewController {
                     self.meterPingResultLabel.text = "Our status check verified your property's meter is operational and ComEd electrical service is being delivered to your home"
                     self.meterPingResultLabel.setLineHeight(lineHeight: 25)
                     self.meterPingFuseBoxView.isHidden = false
+                    self.footerContainerView.isHidden = false
                 } else { // POWER STATUS SUCCESS
                     self.meterPingCurrentStatusLabel.text = "Verifying voltage level of the meter..."
                     self.meterPingVoltageStatusView.isHidden = false
@@ -182,6 +190,7 @@ class ReportOutageViewController: UIViewController {
                         self.meterPingVoltageStatusLabel.textColor = .darkJungleGreen
                         
                         self.meterPingFuseBoxView.isHidden = false
+                        self.footerContainerView.isHidden = false
                     }, onError: { error in // VOLTAGE STATUS ERROR
                         self.meterPingCurrentStatusActivityIndicator.isHidden = true
                         self.meterPingCurrentStatusImageView.isHidden = false
@@ -194,7 +203,9 @@ class ReportOutageViewController: UIViewController {
                         self.meterPingResultLabel.isHidden = false
                         self.meterPingResultLabel.text = "Problems Found. Please tap \"Submit\" to report an outage."
                         
+                        self.areYourLightsOutView.isHidden = true
                         self.viewModel.reportFormHidden.value = false
+                        self.footerContainerView.isHidden = false
                     })
                 }
 
@@ -210,7 +221,9 @@ class ReportOutageViewController: UIViewController {
                 self.meterPingResultLabel.isHidden = false
                 self.meterPingResultLabel.text = "Problems Found. Please tap \"Submit\" to report an outage."
                 
+                self.areYourLightsOutView.isHidden = true
                 self.viewModel.reportFormHidden.value = false
+                self.footerContainerView.isHidden = false
             })
         }
     }
