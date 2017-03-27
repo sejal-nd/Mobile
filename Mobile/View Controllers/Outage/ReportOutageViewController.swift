@@ -48,7 +48,8 @@ class ReportOutageViewController: UIViewController {
     @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
     
     // Footer View
-    @IBOutlet weak var footerContainerView: UIView!
+    @IBOutlet weak var footerTopSpace: NSLayoutConstraint!
+    @IBOutlet weak var footerBackgroundView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
@@ -117,14 +118,15 @@ class ReportOutageViewController: UIViewController {
 
         if opco == "BGE" {
             phoneExtensionTextField.isHidden = true
+            footerTopSpace.constant = -60
         }
         
-        footerContainerView.backgroundColor = .whiteSmoke
-        footerContainerView.layer.shadowColor = UIColor.black.cgColor
-        footerContainerView.layer.shadowOpacity = 0.08
-        footerContainerView.layer.shadowRadius = 1.5
-        footerContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        footerContainerView.layer.masksToBounds = false
+        footerBackgroundView.backgroundColor = .whiteSmoke
+        footerBackgroundView.layer.shadowColor = UIColor.black.cgColor
+        footerBackgroundView.layer.shadowOpacity = 0.08
+        footerBackgroundView.layer.shadowRadius = 1.5
+        footerBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        footerBackgroundView.layer.masksToBounds = false
         
         footerTextView.textContainerInset = UIEdgeInsets(top: 16, left: 29, bottom: 16, right: 29)
         footerTextView.textColor = .darkJungleGreen

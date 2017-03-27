@@ -253,7 +253,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wj3-R8-PEk">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="907"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="907.5"/>
                                         <subviews>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-bI-z1O">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
@@ -292,7 +292,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifying meter has power..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="afw-hD-sE0">
-                                                                <rect key="frame" x="60" y="15.5" width="241" height="19.5"/>
+                                                                <rect key="frame" x="60" y="15" width="241" height="19.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -473,13 +473,20 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6M8-NZ-rW4" userLabel="Footer Spacing View">
-                                                <rect key="frame" x="0.0" y="601.5" width="375" height="305.5"/>
+                                                <rect key="frame" x="0.0" y="601.5" width="375" height="306"/>
                                                 <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3B-jb-AXr">
+                                                        <rect key="frame" x="0.0" y="31" width="375" height="1000"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1000" id="jmH-Um-Ocv"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Muq-JA-cLX">
-                                                        <rect key="frame" x="0.0" y="135" width="375" height="170.5"/>
+                                                        <rect key="frame" x="0.0" y="31" width="375" height="275"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="doS-PF-4Ay" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="29" y="20" width="317" height="117.5"/>
+                                                                <rect key="frame" x="29" y="20" width="317" height="222"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -496,10 +503,13 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="z3B-jb-AXr" firstAttribute="top" secondItem="Muq-JA-cLX" secondAttribute="top" id="BdI-la-mbV"/>
                                                     <constraint firstAttribute="bottom" secondItem="Muq-JA-cLX" secondAttribute="bottom" id="Llo-nh-wYW"/>
                                                     <constraint firstItem="Muq-JA-cLX" firstAttribute="leading" secondItem="6M8-NZ-rW4" secondAttribute="leading" id="M3u-sB-Gge"/>
                                                     <constraint firstAttribute="trailing" secondItem="Muq-JA-cLX" secondAttribute="trailing" id="Zyu-bx-U4c"/>
-                                                    <constraint firstItem="Muq-JA-cLX" firstAttribute="top" secondItem="6M8-NZ-rW4" secondAttribute="top" constant="135" id="qab-cm-6aA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="z3B-jb-AXr" secondAttribute="trailing" id="jLk-F5-V7F"/>
+                                                    <constraint firstItem="Muq-JA-cLX" firstAttribute="top" secondItem="6M8-NZ-rW4" secondAttribute="top" constant="31" id="qab-cm-6aA"/>
+                                                    <constraint firstItem="z3B-jb-AXr" firstAttribute="leading" secondItem="6M8-NZ-rW4" secondAttribute="leading" id="yqX-DK-3Il"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -527,8 +537,9 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
-                        <outlet property="footerContainerView" destination="Muq-JA-cLX" id="VgC-Ka-HV3"/>
+                        <outlet property="footerBackgroundView" destination="z3B-jb-AXr" id="vQE-ck-4iG"/>
                         <outlet property="footerTextView" destination="doS-PF-4Ay" id="TxS-EY-DqF"/>
+                        <outlet property="footerTopSpace" destination="qab-cm-6aA" id="28z-D0-wBv"/>
                         <outlet property="meterPingCurrentStatusActivityIndicator" destination="aMR-4v-dkk" id="hSb-Nt-j7W"/>
                         <outlet property="meterPingCurrentStatusImageView" destination="6af-Vg-Ogp" id="5Ec-JR-azB"/>
                         <outlet property="meterPingCurrentStatusLabel" destination="afw-hD-sE0" id="4Sb-cT-382"/>
