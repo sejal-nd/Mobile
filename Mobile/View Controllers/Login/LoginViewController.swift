@@ -120,7 +120,7 @@ class LoginViewController: UIViewController {
             })
         }, onError: { (errorMessage) in // fingerprint successful but login failed
             self.navigationController?.view.isUserInteractionEnabled = true
-            self.showErrorAlertWithMessage(errorMessage)
+            self.showErrorAlertWithMessage(errorMessage + "\n\nIf you have changed your password recently, enter it manually and re-enable Touch ID")
         })
     }
     
@@ -155,9 +155,10 @@ class LoginViewController: UIViewController {
                         self.present(touchIDAlert, animated: true, completion: nil)
                         self.viewModel.setShouldPromptToEnableTouchID(false)
                     } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
-                        let message = "Touch ID settings for \(lastLoggedInUsername!.obfuscate()) will be erased upon signing in as \(self.viewModel.username.value.obfuscate()). Would you like to enable Touch ID for \(self.viewModel.username.value.obfuscate()) at this time?"
+                        let message = "Touch ID settings for \(lastLoggedInUsername!.obfuscate()) will be disabled upon signing in as \(self.viewModel.username.value.obfuscate()). Would you like to enable Touch ID for \(self.viewModel.username.value) at this time?"
                         let differentAccountAlert = UIAlertController(title: "Enable Touch ID", message: message, preferredStyle: .alert)
-                        differentAccountAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+                        differentAccountAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+                            self.viewModel.disableTouchID()
                             self.launchMainApp()
                         }))
                         differentAccountAlert.addAction(UIAlertAction(title: "Enable", style: .default, handler: { (action) in

@@ -1,5 +1,5 @@
 //
-//  LoginLandingViewController.swift
+//  LandingViewController.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 2/13/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginLandingViewController: UIViewController {
+class LandingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

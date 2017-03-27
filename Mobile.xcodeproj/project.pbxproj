@@ -59,9 +59,9 @@
 		8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */; };
 		8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */; };
 		8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */; };
-		8FD5AE861E54EA49003F640D /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */; };
-		8FD5AE871E54EA49003F640D /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */; };
-		8FD5AE881E54EA49003F640D /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */; };
+		8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LandingViewController.swift */; };
+		8FD5AE871E54EA49003F640D /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LandingViewController.swift */; };
+		8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LandingViewController.swift */; };
 		8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */; };
 		8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */; };
 		8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */; };
@@ -471,7 +471,7 @@
 		8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
 		8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Info.plist"; sourceTree = "<group>"; };
 		8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
-		8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginLandingViewController.swift; sourceTree = "<group>"; };
+		8FD5AE831E54EA49003F640D /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsPoliciesViewController.swift; sourceTree = "<group>"; };
 		8FD5AE851E54EA49003F640D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8FD5AE8F1E54EA53003F640D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -912,7 +912,7 @@
 		8FD5AE821E54EA39003F640D /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				8FD5AE831E54EA49003F640D /* LoginLandingViewController.swift */,
+				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
 				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
 				8FD5AE851E54EA49003F640D /* LoginViewController.swift */,
 			);
@@ -1934,7 +1934,7 @@
 				E8FE30A11E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
-				8FD5AE861E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
+				8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
@@ -1996,7 +1996,7 @@
 				E8FE30A31E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */,
-				8FD5AE881E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
+				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B574BAFF1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
@@ -2058,7 +2058,7 @@
 				E8FE30A21E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
-				8FD5AE871E54EA49003F640D /* LoginLandingViewController.swift in Sources */,
+				8FD5AE871E54EA49003F640D /* LandingViewController.swift in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B574BAFE1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
