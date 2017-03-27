@@ -21,6 +21,11 @@ class AccountScroller: UIView {
     
     var accounts = [Account]()
     
+    var pageViews = [UIView]()
+    var iconImageViews = [UIImageView]()
+    var accountLabels = [UILabel]()
+    var addressLabels = [UILabel]()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -54,10 +59,35 @@ class AccountScroller: UIView {
         
         scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 57)
         pageControl.frame = CGRect(x: frame.size.width / 2 - 80, y: 57, width: 160, height: 7)
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let centerX = screenWidth / 2
+        let labelWidth = screenWidth - (center.x - 30) - 16
+        
+        for index in 0..<accounts.count {
+            let pageView = pageViews[index]
+            let iconImageView = iconImageViews[index]
+            let accountLabel = accountLabels[index]
+            let addressLabel = addressLabels[index]
+            
+            pageView.frame = CGRect(x: CGFloat(index) * screenWidth, y: 0, width: screenWidth, height: 57)
+
+            iconImageView.frame = CGRect(x: centerX - 80, y: 4, width: 43, height: 43)
+            accountLabel.frame = CGRect(x: centerX - 30, y: 11, width: labelWidth, height: 20)
+            addressLabel.frame = CGRect(x: centerX - 30, y: 32, width: labelWidth, height: 14)
+        }
+        
+        scrollView.contentSize = CGSize(width: screenWidth * CGFloat(accounts.count), height: 57)
+        scrollView.scrollRectToVisible(pageViews[pageControl.currentPage].frame, animated: false)
     }
     
     func setAccounts(_ accounts: [Account]) {
         self.accounts = accounts
+        
+        pageViews.removeAll()
+        iconImageViews.removeAll()
+        accountLabels.removeAll()
+        addressLabels.removeAll()
         
         if self.accounts.count > 1 {
             pageControl.numberOfPages = self.accounts.count
@@ -66,35 +96,31 @@ class AccountScroller: UIView {
             pageControl.isHidden = true
         }
         
-        let screenWidth = UIScreen.main.bounds.width
-        let centerX = screenWidth / 2
-        
-        for (index, account) in self.accounts.enumerated() {
-            let pageView = UIView(frame: CGRect(x: CGFloat(index) * screenWidth, y: 0, width: screenWidth, height: 57))
+        for account in self.accounts {
+            let pageView = UIView(frame: .zero)
+            pageViews.append(pageView)
             
             let icon = account.accountType == .Commercial ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
             let iconImageView = UIImageView(image: icon)
-            iconImageView.frame = CGRect(x: centerX - 80, y: 4, width: 43, height: 43)
-
-            let labelWidth = screenWidth - (center.x - 30) - 16
+            iconImageViews.append(iconImageView)
             
-            let accountNumberLabel = UILabel(frame: CGRect(x: centerX - 30, y: 11, width: labelWidth, height: 20))
+            let accountNumberLabel = UILabel(frame: .zero)
             accountNumberLabel.font = UIFont.systemFont(ofSize: 17)
             accountNumberLabel.textColor = UIColor.darkJungleGreen
             accountNumberLabel.text = account.accountNumber
+            accountLabels.append(accountNumberLabel)
            
-            let addressLabel = UILabel(frame: CGRect(x: centerX - 30, y: 32, width: labelWidth, height: 14))
+            let addressLabel = UILabel(frame: .zero)
             addressLabel.font = UIFont.systemFont(ofSize: 12)
             addressLabel.textColor = UIColor.outerSpace
             addressLabel.text = account.address
+            addressLabels.append(addressLabel)
             
             pageView.addSubview(iconImageView)
             pageView.addSubview(accountNumberLabel)
             pageView.addSubview(addressLabel)
             scrollView.addSubview(pageView)
         }
-        
-        scrollView.contentSize = CGSize(width: screenWidth * CGFloat(self.accounts.count), height: 57)
     }
     
     func onPageControlTap(sender: UIPageControl) {
