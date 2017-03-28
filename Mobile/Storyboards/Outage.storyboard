@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -278,15 +278,20 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                                             <constraint firstAttribute="height" constant="14" id="fYT-6u-usa"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="aMR-4v-dkk">
-                                                                        <rect key="frame" x="20" y="14" width="20" height="20"/>
-                                                                    </activityIndicatorView>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7JT-kt-C8S">
+                                                                        <rect key="frame" x="13.5" y="8" width="33" height="33"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="33" id="8Ph-jl-3Bd"/>
+                                                                            <constraint firstAttribute="width" constant="33" id="e5b-BU-vYh"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstItem="6af-Vg-Ogp" firstAttribute="centerX" secondItem="Zzw-9g-k7M" secondAttribute="centerX" id="1Y6-cj-v4r"/>
-                                                                    <constraint firstItem="aMR-4v-dkk" firstAttribute="centerX" secondItem="Zzw-9g-k7M" secondAttribute="centerX" id="4kZ-NV-jVa"/>
-                                                                    <constraint firstItem="aMR-4v-dkk" firstAttribute="centerY" secondItem="Zzw-9g-k7M" secondAttribute="centerY" id="5jX-nY-mkC"/>
+                                                                    <constraint firstItem="7JT-kt-C8S" firstAttribute="centerX" secondItem="Zzw-9g-k7M" secondAttribute="centerX" id="6RH-5w-MQa"/>
+                                                                    <constraint firstItem="7JT-kt-C8S" firstAttribute="centerY" secondItem="Zzw-9g-k7M" secondAttribute="centerY" id="9QH-YO-hwM"/>
                                                                     <constraint firstAttribute="width" constant="60" id="g1m-0j-maZ"/>
                                                                     <constraint firstItem="6af-Vg-Ogp" firstAttribute="centerY" secondItem="Zzw-9g-k7M" secondAttribute="centerY" id="tHr-6z-Ezh"/>
                                                                 </constraints>
@@ -578,9 +583,9 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                         <outlet property="footerBackgroundView" destination="z3B-jb-AXr" id="vQE-ck-4iG"/>
                         <outlet property="footerContainerView" destination="6M8-NZ-rW4" id="Dev-EO-jFF"/>
                         <outlet property="footerTextView" destination="doS-PF-4Ay" id="TxS-EY-DqF"/>
-                        <outlet property="meterPingCurrentStatusActivityIndicator" destination="aMR-4v-dkk" id="hSb-Nt-j7W"/>
-                        <outlet property="meterPingCurrentStatusImageView" destination="6af-Vg-Ogp" id="5Ec-JR-azB"/>
+                        <outlet property="meterPingCurrentStatusCheckImageView" destination="6af-Vg-Ogp" id="44l-MH-kYG"/>
                         <outlet property="meterPingCurrentStatusLabel" destination="afw-hD-sE0" id="4Sb-cT-382"/>
+                        <outlet property="meterPingCurrentStatusLoadingView" destination="7JT-kt-C8S" id="sRl-C6-K4g"/>
                         <outlet property="meterPingFuseBoxLabel" destination="MsO-JP-Q4X" id="j3J-Q6-gMv"/>
                         <outlet property="meterPingFuseBoxSwitch" destination="Z3B-9b-TVX" id="T1q-4y-wGe"/>
                         <outlet property="meterPingFuseBoxView" destination="JdA-Bd-NCe" id="8PS-kR-rqQ"/>

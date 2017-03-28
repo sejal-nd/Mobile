@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import MBProgressHUD
+import Lottie
 
 protocol ReportOutageViewControllerDelegate: class {
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController)
@@ -23,8 +24,8 @@ class ReportOutageViewController: UIViewController {
     // Meter Ping
     @IBOutlet weak var meterPingStackView: UIStackView!
     
-    @IBOutlet weak var meterPingCurrentStatusImageView: UIImageView!
-    @IBOutlet weak var meterPingCurrentStatusActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var meterPingCurrentStatusCheckImageView: UIImageView!
+    @IBOutlet weak var meterPingCurrentStatusLoadingView: UIView!
     @IBOutlet weak var meterPingCurrentStatusLabel: UILabel!
     
     @IBOutlet weak var meterPingPowerStatusView: UIView!
@@ -102,13 +103,19 @@ class ReportOutageViewController: UIViewController {
             
             viewModel.reportFormHidden.value = true
 
-            meterPingCurrentStatusActivityIndicator.tintColor = .mediumPersianBlue
             meterPingCurrentStatusLabel.textColor = .darkJungleGreen
             meterPingPowerStatusLabel.textColor = .oldLavender
             meterPingVoltageStatusLabel.textColor = .oldLavender
             meterPingResultLabel.textColor = .outerSpace
             meterPingFuseBoxLabel.textColor = .oldLavender
             meterPingFuseBoxLabel.setLineHeight(lineHeight: 25)
+            
+            let lottieAnimation = LOTAnimationView(name: "loading_blue")!
+            lottieAnimation.frame = CGRect(x: 0, y: 0, width: 33, height: 33)
+            lottieAnimation.loopAnimation = true
+            lottieAnimation.contentMode = .scaleToFill
+            meterPingCurrentStatusLoadingView.addSubview(lottieAnimation)
+            lottieAnimation.play()
         }
 
         if opco == "PECO" {
@@ -170,8 +177,8 @@ class ReportOutageViewController: UIViewController {
                 self.meterPingPowerStatusLabel.textColor = .darkJungleGreen
                 
                 if !canPerformVoltageCheck { // POWER STATUS SUCCESS BUT NO VOLTAGE CHECK
-                    self.meterPingCurrentStatusActivityIndicator.isHidden = true
-                    self.meterPingCurrentStatusImageView.isHidden = false
+                    self.meterPingCurrentStatusLoadingView.isHidden = true
+                    self.meterPingCurrentStatusCheckImageView.isHidden = false
                     self.meterPingCurrentStatusLabel.text = "Check Complete"
                     self.meterPingResultLabel.isHidden = false
                     self.meterPingResultLabel.text = "Our status check verified your property's meter is operational and ComEd electrical service is being delivered to your home"
@@ -182,8 +189,8 @@ class ReportOutageViewController: UIViewController {
                     self.meterPingCurrentStatusLabel.text = "Verifying voltage level of the meter..."
                     self.meterPingVoltageStatusView.isHidden = false
                     self.viewModel.meterPingGetVoltageStatus(onVoltageVerified: {
-                        self.meterPingCurrentStatusActivityIndicator.isHidden = true
-                        self.meterPingCurrentStatusImageView.isHidden = false
+                        self.meterPingCurrentStatusLoadingView.isHidden = true
+                        self.meterPingCurrentStatusCheckImageView.isHidden = false
                         self.meterPingCurrentStatusLabel.text = "Check Complete"
                         
                         self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
@@ -192,9 +199,9 @@ class ReportOutageViewController: UIViewController {
                         self.meterPingFuseBoxView.isHidden = false
                         self.footerContainerView.isHidden = false
                     }, onError: { error in // VOLTAGE STATUS ERROR
-                        self.meterPingCurrentStatusActivityIndicator.isHidden = true
-                        self.meterPingCurrentStatusImageView.isHidden = false
-                        self.meterPingCurrentStatusImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
+                        self.meterPingCurrentStatusLoadingView.isHidden = true
+                        self.meterPingCurrentStatusCheckImageView.isHidden = false
+                        self.meterPingCurrentStatusCheckImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
                         self.meterPingCurrentStatusLabel.text = "Check Complete"
                         
                         self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
@@ -210,9 +217,9 @@ class ReportOutageViewController: UIViewController {
                 }
 
             }, onError: { error in // POWER STATUS ERROR
-                self.meterPingCurrentStatusActivityIndicator.isHidden = true
-                self.meterPingCurrentStatusImageView.isHidden = false
-                self.meterPingCurrentStatusImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
+                self.meterPingCurrentStatusLoadingView.isHidden = true
+                self.meterPingCurrentStatusCheckImageView.isHidden = false
+                self.meterPingCurrentStatusCheckImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
                 self.meterPingCurrentStatusLabel.text = "Check Complete"
                 
                 self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
