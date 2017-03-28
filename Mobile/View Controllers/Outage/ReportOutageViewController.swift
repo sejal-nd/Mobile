@@ -19,10 +19,39 @@ class ReportOutageViewController: UIViewController {
     weak var delegate: ReportOutageViewControllerDelegate?
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    // Meter Ping
+    @IBOutlet weak var meterPingStackView: UIStackView!
+    
+    @IBOutlet weak var meterPingCurrentStatusImageView: UIImageView!
+    @IBOutlet weak var meterPingCurrentStatusActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var meterPingCurrentStatusLabel: UILabel!
+    
+    @IBOutlet weak var meterPingPowerStatusView: UIView!
+    @IBOutlet weak var meterPingPowerStatusImageView: UIImageView!
+    @IBOutlet weak var meterPingPowerStatusLabel: UILabel!
+    
+    @IBOutlet weak var meterPingVoltageStatusView: UIView!
+    @IBOutlet weak var meterPingVoltageStatusImageView: UIImageView!
+    @IBOutlet weak var meterPingVoltageStatusLabel: UILabel!
+    
+    @IBOutlet weak var meterPingResultLabel: UILabel!
+    
+    @IBOutlet weak var meterPingFuseBoxView: UIView!
+    @IBOutlet weak var meterPingFuseBoxSwitch: Switch!
+    @IBOutlet weak var meterPingFuseBoxLabel: UILabel!
+    
+    // Report Form
+    @IBOutlet weak var reportFormStackView: UIStackView!
+    @IBOutlet weak var areYourLightsOutView: UIView!
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var phoneExtensionContainerView: UIView!
     @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
+    
+    // Footer View
     @IBOutlet weak var footerContainerView: UIView!
+    @IBOutlet weak var footerBackgroundView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
@@ -42,8 +71,48 @@ class ReportOutageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
+        // METER PING
+        if Environment.sharedInstance.opco == "ComEd" {
+            let bg = UIView(frame: meterPingStackView.bounds)
+            bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            bg.backgroundColor = .whiteSmoke
+            bg.layer.shadowColor = UIColor.black.cgColor
+            bg.layer.shadowOpacity = 0.08
+            bg.layer.shadowRadius = 1.5
+            bg.layer.shadowOffset = CGSize(width: 0, height: 0)
+            bg.layer.masksToBounds = false
+            meterPingStackView.addSubview(bg)
+            meterPingStackView.sendSubview(toBack: bg)
+            
+            meterPingStackView.spacing = 20
+            meterPingStackView.isHidden = false
+
+            footerContainerView.isHidden = true
+            
+            meterPingFuseBoxSwitch.rx.isOn.map(!).bindTo(viewModel.reportFormHidden).addDisposableTo(disposeBag)
+            viewModel.reportFormHidden.asObservable().bindTo(reportFormStackView.rx.isHidden).addDisposableTo(disposeBag)
+            viewModel.reportFormHidden.asObservable().subscribe(onNext: { hidden in
+                if hidden {
+                    self.reportFormStackView.spacing = 0
+                    self.reportFormStackView.endEditing(true)
+                } else {
+                    self.reportFormStackView.spacing = 30
+                }
+            }).addDisposableTo(disposeBag)
+            
+            viewModel.reportFormHidden.value = true
+
+            meterPingCurrentStatusActivityIndicator.tintColor = .mediumPersianBlue
+            meterPingCurrentStatusLabel.textColor = .darkJungleGreen
+            meterPingPowerStatusLabel.textColor = .oldLavender
+            meterPingVoltageStatusLabel.textColor = .oldLavender
+            meterPingResultLabel.textColor = .outerSpace
+            meterPingFuseBoxLabel.textColor = .oldLavender
+            meterPingFuseBoxLabel.setLineHeight(lineHeight: 25)
+        }
+
         if opco == "PECO" {
-            segmentedControl.items = ["Yes", "Partially", "Dim/\nFlickering"]
+            segmentedControl.items = ["Yes", "Partially", "Dim/Flickering"]
         } else {
             segmentedControl.items = ["Yes", "Partially"]
         }
@@ -56,29 +125,31 @@ class ReportOutageViewController: UIViewController {
         phoneExtensionTextField.textField.delegate = self
 
         if opco == "BGE" {
-            phoneExtensionTextField.isHidden = true
+            phoneExtensionContainerView.isHidden = true
         }
         
-        footerContainerView.layer.shadowColor = UIColor.black.cgColor
-        footerContainerView.layer.shadowOpacity = 0.15
-        footerContainerView.layer.shadowRadius = 2
-        footerContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        footerContainerView.layer.masksToBounds = false
+        footerBackgroundView.backgroundColor = .whiteSmoke
+        footerBackgroundView.layer.shadowColor = UIColor.black.cgColor
+        footerBackgroundView.layer.shadowOpacity = 0.08
+        footerBackgroundView.layer.shadowRadius = 1.5
+        footerBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        footerBackgroundView.layer.masksToBounds = false
         
         footerTextView.textContainerInset = UIEdgeInsets(top: 16, left: 29, bottom: 16, right: 29)
         footerTextView.textColor = .darkJungleGreen
         footerTextView.tintColor = .mediumPersianBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
         footerTextView.layer.shadowColor = UIColor.black.cgColor
-        footerTextView.layer.shadowOpacity = 0.15
+        footerTextView.layer.shadowOpacity = 0.06
         footerTextView.layer.shadowRadius = 2
-        footerTextView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        footerTextView.layer.shadowOffset = CGSize(width: 0, height: 2)
         footerTextView.layer.masksToBounds = false
         
         // Data binding
         segmentedControl.selectedIndex.asObservable().bindTo(viewModel.selectedSegmentIndex).addDisposableTo(disposeBag)
         
-        viewModel.phoneNumber.asObservable().bindTo(phoneNumberTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        viewModel.phoneNumber.asObservable().bindTo(phoneNumberTextField.textField.rx.text.orEmpty)
+            .addDisposableTo(disposeBag)
         phoneNumberTextField.textField.rx.text.orEmpty.bindTo(viewModel.phoneNumber).addDisposableTo(disposeBag)
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
         
@@ -87,6 +158,74 @@ class ReportOutageViewController: UIViewController {
         // Format the intial value
         let range = NSMakeRange(0, viewModel.phoneNumber.value.characters.count)
         _ = textField(phoneNumberTextField.textField, shouldChangeCharactersIn: range, replacementString: viewModel.phoneNumber.value)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // METER PING
+        if Environment.sharedInstance.opco == "ComEd" {
+            viewModel.meterPingGetPowerStatus(onPowerVerified: { canPerformVoltageCheck in
+                self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
+                self.meterPingPowerStatusLabel.textColor = .darkJungleGreen
+                
+                if !canPerformVoltageCheck { // POWER STATUS SUCCESS BUT NO VOLTAGE CHECK
+                    self.meterPingCurrentStatusActivityIndicator.isHidden = true
+                    self.meterPingCurrentStatusImageView.isHidden = false
+                    self.meterPingCurrentStatusLabel.text = "Check Complete"
+                    self.meterPingResultLabel.isHidden = false
+                    self.meterPingResultLabel.text = "Our status check verified your property's meter is operational and ComEd electrical service is being delivered to your home"
+                    self.meterPingResultLabel.setLineHeight(lineHeight: 25)
+                    self.meterPingFuseBoxView.isHidden = false
+                    self.footerContainerView.isHidden = false
+                } else { // POWER STATUS SUCCESS
+                    self.meterPingCurrentStatusLabel.text = "Verifying voltage level of the meter..."
+                    self.meterPingVoltageStatusView.isHidden = false
+                    self.viewModel.meterPingGetVoltageStatus(onVoltageVerified: {
+                        self.meterPingCurrentStatusActivityIndicator.isHidden = true
+                        self.meterPingCurrentStatusImageView.isHidden = false
+                        self.meterPingCurrentStatusLabel.text = "Check Complete"
+                        
+                        self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
+                        self.meterPingVoltageStatusLabel.textColor = .darkJungleGreen
+                        
+                        self.meterPingFuseBoxView.isHidden = false
+                        self.footerContainerView.isHidden = false
+                    }, onError: { error in // VOLTAGE STATUS ERROR
+                        self.meterPingCurrentStatusActivityIndicator.isHidden = true
+                        self.meterPingCurrentStatusImageView.isHidden = false
+                        self.meterPingCurrentStatusImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
+                        self.meterPingCurrentStatusLabel.text = "Check Complete"
+                        
+                        self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
+                        self.meterPingVoltageStatusLabel.textColor = .darkJungleGreen
+                        
+                        self.meterPingResultLabel.isHidden = false
+                        self.meterPingResultLabel.text = "Problems Found. Please tap \"Submit\" to report an outage."
+                        
+                        self.areYourLightsOutView.isHidden = true
+                        self.viewModel.reportFormHidden.value = false
+                        self.footerContainerView.isHidden = false
+                    })
+                }
+
+            }, onError: { error in // POWER STATUS ERROR
+                self.meterPingCurrentStatusActivityIndicator.isHidden = true
+                self.meterPingCurrentStatusImageView.isHidden = false
+                self.meterPingCurrentStatusImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
+                self.meterPingCurrentStatusLabel.text = "Check Complete"
+                
+                self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
+                self.meterPingPowerStatusLabel.textColor = .darkJungleGreen
+                
+                self.meterPingResultLabel.isHidden = false
+                self.meterPingResultLabel.text = "Problems Found. Please tap \"Submit\" to report an outage."
+                
+                self.areYourLightsOutView.isHidden = true
+                self.viewModel.reportFormHidden.value = false
+                self.footerContainerView.isHidden = false
+            })
+        }
     }
     
     deinit {

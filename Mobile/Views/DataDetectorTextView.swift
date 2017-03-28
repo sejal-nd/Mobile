@@ -8,6 +8,8 @@
 
 import UIKit
 
+// NOTE: This is used to have a text view with clickable links (like phone numbers), but that disallows 
+//       selection of text by double tapping or pressing and holding
 class DataDetectorTextView: UITextView {
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {

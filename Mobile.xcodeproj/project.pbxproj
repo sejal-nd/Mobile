@@ -310,6 +310,9 @@
 		E801285C1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */; };
 		E801285D1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */; };
 		E801285E1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */; };
+		E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802AB3E1E85936700981D18 /* LineHeightLabel.swift */; };
+		E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802AB3E1E85936700981D18 /* LineHeightLabel.swift */; };
+		E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802AB3E1E85936700981D18 /* LineHeightLabel.swift */; };
 		E80D2E171E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
 		E80D2E181E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
 		E80D2E191E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
@@ -688,6 +691,7 @@
 		E80043551E68CDCB005CF531 /* IndividualBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualBorders.swift; sourceTree = "<group>"; };
 		E800435E1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModelTests.swift; sourceTree = "<group>"; };
 		E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewModel.swift; sourceTree = "<group>"; };
+		E802AB3E1E85936700981D18 /* LineHeightLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineHeightLabel.swift; sourceTree = "<group>"; };
 		E80D2E161E721668002626C9 /* ObfuscatedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObfuscatedString.swift; sourceTree = "<group>"; };
 		E80D2E261E72FC2C002626C9 /* AccountScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountScroller.swift; sourceTree = "<group>"; };
 		E80D2E2B1E72FEC5002626C9 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -940,6 +944,7 @@
 				8FDF8C681E550545000B7BD0 /* PecoColor.swift */,
 				E80043551E68CDCB005CF531 /* IndividualBorders.swift */,
 				E80D2E161E721668002626C9 /* ObfuscatedString.swift */,
+				E802AB3E1E85936700981D18 /* LineHeightLabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1184,8 +1189,8 @@
 				B5AC06E21E522E7A00BBA4ED /* Core */,
 				8FDF8C651E550459000B7BD0 /* Extensions */,
 				E8B4F4C31E5CE1500031D934 /* Vendor */,
-				E8EEF70B1E565BE7006804D4 /* View Models */,
 				8FD5AE7D1E54EA11003F640D /* Views */,
+				E8EEF70B1E565BE7006804D4 /* View Models */,
 				8FD5AE7C1E54EA04003F640D /* View Controllers */,
 				B5AC06C61E521B2600BBA4ED /* Assets */,
 				8FD3C2671E525023005FB1BB /* Storyboards */,
@@ -1933,6 +1938,7 @@
 				E8EB4D131E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A11E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
+				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
@@ -1994,6 +2000,7 @@
 				E8EB4D151E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A31E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
+				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
@@ -2055,6 +2062,7 @@
 				E8EB4D141E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A21E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
+				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE871E54EA49003F640D /* LandingViewController.swift in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
