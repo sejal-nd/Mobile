@@ -19,7 +19,10 @@ class MainTabBarController: UITabBarController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        tabBar.barTintColor = .white
         tabBar.tintColor = .primaryColor
+        tabBar.isTranslucent = false
+        
         setButtonStates(itemTag: 1)
     }
     

@@ -42,7 +42,7 @@ class MoreViewController: UIViewController {
 extension MoreViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        //tableView.deselectRow(at: indexPath, animated: false)
         
         if indexPath.row == 0 {
             performSegue(withIdentifier: "settingsSegue", sender: self)
