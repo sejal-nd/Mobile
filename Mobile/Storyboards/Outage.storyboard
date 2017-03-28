@@ -118,6 +118,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 <constraints>
                                                     <constraint firstItem="QN1-1Y-eoZ" firstAttribute="leading" secondItem="0lx-Wl-bvy" secondAttribute="leading" constant="29" id="03x-vT-BeA"/>
                                                     <constraint firstItem="5cM-eu-hDR" firstAttribute="leading" secondItem="0lx-Wl-bvy" secondAttribute="leading" constant="29" id="Eku-rx-dMY"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Kvg-3o-FGM"/>
                                                     <constraint firstItem="UK3-yj-xRE" firstAttribute="leading" secondItem="0lx-Wl-bvy" secondAttribute="leading" constant="29" id="NkQ-80-Sel"/>
                                                     <constraint firstItem="h8j-at-hGY" firstAttribute="centerX" secondItem="dc7-ff-3bf" secondAttribute="centerX" id="PaY-KA-eGa"/>
                                                     <constraint firstItem="h8j-at-hGY" firstAttribute="centerY" secondItem="dc7-ff-3bf" secondAttribute="centerY" id="QPY-g7-Lcx"/>
@@ -168,6 +169,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                     <constraint firstItem="rwO-5r-SUq" firstAttribute="centerX" secondItem="H0L-QG-hAo" secondAttribute="centerX" id="E5B-qD-Pi6"/>
                                                     <constraint firstItem="nUe-Ah-Ffw" firstAttribute="centerX" secondItem="H0L-QG-hAo" secondAttribute="centerX" id="PzE-7q-dZU"/>
                                                     <constraint firstItem="nUe-Ah-Ffw" firstAttribute="leading" secondItem="H0L-QG-hAo" secondAttribute="leading" constant="46" id="TAH-2i-DpL"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="TgD-mh-N0a"/>
                                                     <constraint firstItem="rwO-5r-SUq" firstAttribute="top" secondItem="H0L-QG-hAo" secondAttribute="top" constant="42" id="UCt-mA-vhT"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZQw-Ul-DsT" secondAttribute="trailing" constant="46" id="Vab-Ds-KK6"/>
                                                     <constraint firstItem="ZQw-Ul-DsT" firstAttribute="top" secondItem="rwO-5r-SUq" secondAttribute="bottom" constant="14" id="xsP-tc-thr"/>
@@ -176,18 +178,20 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="H0L-QG-hAo" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" id="2RT-IY-85o"/>
+                                            <constraint firstItem="H0L-QG-hAo" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" priority="999" id="2RT-IY-85o"/>
                                             <constraint firstItem="FN2-AG-tRU" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" id="2vO-Zj-K8m"/>
-                                            <constraint firstAttribute="trailing" secondItem="H0L-QG-hAo" secondAttribute="trailing" id="I2D-Oy-CUP"/>
+                                            <constraint firstItem="H0L-QG-hAo" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="71k-D6-8tq"/>
+                                            <constraint firstAttribute="trailing" secondItem="H0L-QG-hAo" secondAttribute="trailing" priority="999" id="I2D-Oy-CUP"/>
                                             <constraint firstAttribute="trailing" secondItem="FN2-AG-tRU" secondAttribute="trailing" id="LrU-ih-gyC"/>
+                                            <constraint firstItem="0lx-Wl-bvy" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="LwI-um-wff"/>
                                             <constraint firstAttribute="height" constant="554" id="Ojr-LP-SA5"/>
                                             <constraint firstItem="FN2-AG-tRU" firstAttribute="top" secondItem="4LE-Ih-Txu" secondAttribute="top" id="TvX-gh-ysz"/>
                                             <constraint firstItem="H0L-QG-hAo" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="Ual-of-aCU"/>
-                                            <constraint firstItem="0lx-Wl-bvy" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" id="VZ8-yy-E6R"/>
+                                            <constraint firstItem="0lx-Wl-bvy" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" priority="999" id="VZ8-yy-E6R"/>
                                             <constraint firstAttribute="bottom" secondItem="0lx-Wl-bvy" secondAttribute="bottom" id="Zdh-53-MLu"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="fjI-oh-c9e"/>
                                             <constraint firstAttribute="bottom" secondItem="H0L-QG-hAo" secondAttribute="bottom" id="kVK-Xp-waq"/>
-                                            <constraint firstAttribute="trailing" secondItem="0lx-Wl-bvy" secondAttribute="trailing" id="pSB-NR-AKC"/>
+                                            <constraint firstAttribute="trailing" secondItem="0lx-Wl-bvy" secondAttribute="trailing" priority="999" id="pSB-NR-AKC"/>
                                         </constraints>
                                     </view>
                                 </subviews>
