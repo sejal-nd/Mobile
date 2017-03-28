@@ -16,14 +16,18 @@ class ReportOutageViewModel {
     var selectedSegmentIndex = Variable(0)
     var phoneNumber = Variable("")
     var phoneExtension = Variable("")
+    var reportFormHidden = Variable(false)
     
     required init(outageService: OutageService) {
         self.outageService = outageService
+        if Environment.sharedInstance.opco == "ComEd" {
+            reportFormHidden.value = true
+        }
     }
     
     func submitButtonEnabled() -> Observable<Bool> {
-        return phoneNumber.asObservable().map{ text -> Bool in
-            return text.characters.count > 0
+        return Observable.combineLatest(reportFormHidden.asObservable(), phoneNumber.asObservable()) {
+            return !$0 && $1.characters.count > 0
         }
     }
     
@@ -57,9 +61,31 @@ class ReportOutageViewModel {
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
-        
+
         outageService.reportOutage(outageInfo: outageInfo) { (result: ServiceResult<Void>) in
-            onSuccess()
+            switch(result) {
+            case .Success:
+                onSuccess()
+                break
+            case .Failure(let error):
+                onError(error.localizedDescription)
+                break
+            }
+        }
+    }
+    
+    func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            onPowerVerified(true)
+            //onPowerVerified(false)
+            //onError()
+        }
+    }
+    
+    func meterPingGetVoltageStatus(onVoltageVerified: @escaping () -> Void, onError: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            onVoltageVerified()
+            //onError()
         }
     }
 }

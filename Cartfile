@@ -1,4 +1,4 @@
-github "ReactiveX/RxSwift" == 3.2.0
+github "ReactiveX/RxSwift" == 3.3.1
 github "airbnb/lottie-ios" == 1.5.1
 github "jverdi/JVFloatLabeledTextField" == 1.1.1
 github "jdg/MBProgressHUD" == 1.0.0
