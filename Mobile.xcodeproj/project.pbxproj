@@ -333,6 +333,9 @@
 		E8542FFB1E7AE1740054AC53 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8542FFA1E7AE1740054AC53 /* SegmentedControl.swift */; };
 		E8542FFC1E7AE1740054AC53 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8542FFA1E7AE1740054AC53 /* SegmentedControl.swift */; };
 		E8542FFD1E7AE1740054AC53 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8542FFA1E7AE1740054AC53 /* SegmentedControl.swift */; };
+		E85895771E8AACFF009485E3 /* loading_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = E85895761E8AACFF009485E3 /* loading_blue.json */; };
+		E85895781E8AACFF009485E3 /* loading_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = E85895761E8AACFF009485E3 /* loading_blue.json */; };
+		E85895791E8AACFF009485E3 /* loading_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = E85895761E8AACFF009485E3 /* loading_blue.json */; };
 		E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */; };
 		E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */; };
 		E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */; };
@@ -695,6 +698,7 @@
 		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewController.swift; sourceTree = "<group>"; };
 		E8542FFA1E7AE1740054AC53 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		E85895761E8AACFF009485E3 /* loading_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading_blue.json; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
 		E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetJVFloatLabeledTextField.swift; sourceTree = "<group>"; };
@@ -927,6 +931,7 @@
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
 				8FD5AE981E54EAB8003F640D /* checkmark.json */,
 				8FD5AE991E54EAB8003F640D /* loading.json */,
+				E85895761E8AACFF009485E3 /* loading_blue.json */,
 			);
 			path = "Lottie Animations";
 			sourceTree = "<group>";
@@ -1663,6 +1668,7 @@
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				E85895771E8AACFF009485E3 /* loading_blue.json in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
@@ -1704,6 +1710,7 @@
 				E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043431E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				E85895791E8AACFF009485E3 /* loading_blue.json in Resources */,
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
@@ -1745,6 +1752,7 @@
 				E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432D1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				E85895781E8AACFF009485E3 /* loading_blue.json in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
