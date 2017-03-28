@@ -12,13 +12,14 @@ import RxSwift
 struct MockAuthenticationService : AuthenticationService {
     
     let validUsername = "valid@test.com"
+    let validCurrentPassword = "Password1"
     
     func login(_ username: String, password: String, completion: @escaping (ServiceResult<String>) -> Void) {
         
         if(username == validUsername) {
             completion(ServiceResult.Success(""))
         } else {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: "FN_INVALID", serviceMessage: "Invalid credentials")))
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnPwdInvalid.rawValue, serviceMessage: "Invalid credentials")))
         }
         
     }
@@ -28,6 +29,11 @@ struct MockAuthenticationService : AuthenticationService {
     }
     
     func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
+        if currentPassword == validCurrentPassword {
+            completion(ServiceResult.Success())
+        } else {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
+        }
         
     }
 }
