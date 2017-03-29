@@ -122,7 +122,7 @@ class OutageViewController: UIViewController {
             outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1)
             innerCircleView.backgroundColor = .oldLavender
         } else {
-            outerCircleView.backgroundColor = .primaryColorLight
+            outerCircleView.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.7)
             innerCircleView.backgroundColor = .primaryColor
         }
         
