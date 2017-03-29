@@ -60,16 +60,16 @@ class ChangePasswordViewController: UIViewController {
         passwordRequirementsViewHeightConstraint.constant = 0
         confirmPasswordHeightConstraint.constant = 0
         
-        currentPasswordTextField.textField.placeholder = "Current Password"
+        currentPasswordTextField.textField.placeholder = NSLocalizedString("Current Password", comment: "")
         currentPasswordTextField.textField.isSecureTextEntry = true
         currentPasswordTextField.textField.returnKeyType = .next
         
-        newPasswordTextField.textField.placeholder = "New Password"
+        newPasswordTextField.textField.placeholder = NSLocalizedString("New Password", comment: "")
         newPasswordTextField.textField.isSecureTextEntry = true
         newPasswordTextField.textField.returnKeyType = .next
         newPasswordTextField.textField.delegate = self
         
-        confirmPasswordTextField.textField.placeholder = "Confirm Password"
+        confirmPasswordTextField.textField.placeholder = NSLocalizedString("Confirm Password", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
@@ -103,11 +103,11 @@ class ChangePasswordViewController: UIViewController {
             let score = self.viewModel.getPasswordScore()
             self.passwordStrengthMeterView.setScore(score)
             if score < 2 {
-                self.passwordStrengthLabel.text = "Weak"
+                self.passwordStrengthLabel.text = NSLocalizedString("Weak", comment: "")
             } else if score < 4 {
-                self.passwordStrengthLabel.text = "Medium"
+                self.passwordStrengthLabel.text = NSLocalizedString("Medium", comment: "")
             } else {
-                self.passwordStrengthLabel.text = "Strong"
+                self.passwordStrengthLabel.text = NSLocalizedString("Strong", comment: "")
             }
         }).addDisposableTo(disposeBag)
         newPasswordTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
@@ -142,11 +142,11 @@ class ChangePasswordViewController: UIViewController {
             _ = self.navigationController?.popViewController(animated: true)
         }, onPasswordNoMatch: { _ in
             hud.hide(animated: true)
-            self.currentPasswordTextField.setError("Incorrect current password")
+            self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))
         }, onError: { (error: String) in
             hud.hide(animated: true)
-            let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
             self.present(alert, animated: true)
         })
     }
@@ -165,7 +165,7 @@ class ChangePasswordViewController: UIViewController {
         // Password cannot match username
         viewModel.passwordMatchesUsername().subscribe(onNext: { matches in
             if matches {
-                self.newPasswordTextField.setError("Passsword cannot match username")
+                self.newPasswordTextField.setError(NSLocalizedString("Passsword cannot match username", comment: ""))
             } else {
                 self.newPasswordTextField.setError(nil)
             }
@@ -176,7 +176,7 @@ class ChangePasswordViewController: UIViewController {
                 if matches {
                     self.confirmPasswordTextField.setValidated(matches)
                 } else {
-                    self.confirmPasswordTextField.setError("Passwords do not match")
+                    self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
                 }
             } else {
                 self.confirmPasswordTextField.setValidated(false)

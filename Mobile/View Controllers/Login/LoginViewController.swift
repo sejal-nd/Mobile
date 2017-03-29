@@ -54,11 +54,11 @@ class LoginViewController: UIViewController {
         loginFormView.layer.masksToBounds = false
         loginFormView.layer.cornerRadius = 2
         
-        usernameTextField.textField.placeholder = "Username / Email Address"
+        usernameTextField.textField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .next
         
-        passwordTextField.textField.placeholder = "Password"
+        passwordTextField.textField.placeholder = NSLocalizedString("Password", comment: "")
         passwordTextField.textField.isSecureTextEntry = true
         passwordTextField.textField.returnKeyType = .done
     
@@ -120,7 +120,7 @@ class LoginViewController: UIViewController {
             })
         }, onError: { (errorMessage) in // fingerprint successful but login failed
             self.navigationController?.view.isUserInteractionEnabled = true
-            self.showErrorAlertWithMessage(errorMessage + "\n\nIf you have changed your password recently, enter it manually and re-enable Touch ID")
+            self.showErrorAlertWithMessage(NSLocalizedString(errorMessage + "\n\nIf you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
         })
     }
     
@@ -144,24 +144,24 @@ class LoginViewController: UIViewController {
                 
                 if self.viewModel.isDeviceTouchIDCompatible() {
                     if self.viewModel.shouldPromptToEnableTouchID() {
-                        let touchIDAlert = UIAlertController(title: "Enable Touch ID", message: "Would you like to use Touch ID to sign in from now on?", preferredStyle: .alert)
-                        touchIDAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+                        let touchIDAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: NSLocalizedString("Would you like to use Touch ID to sign in from now on?", comment: ""), preferredStyle: .alert)
+                        touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default, handler: { (action) in
                             self.launchMainApp()
                         }))
-                        touchIDAlert.addAction(UIAlertAction(title: "Enable", style: .default, handler: { (action) in
+                        touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
                             self.viewModel.storePasswordInTouchIDKeychain()
                             self.launchMainApp()
                         }))
                         self.present(touchIDAlert, animated: true, completion: nil)
                         self.viewModel.setShouldPromptToEnableTouchID(false)
                     } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
-                        let message = "Touch ID settings for \(lastLoggedInUsername!.obfuscate()) will be disabled upon signing in as \(self.viewModel.username.value.obfuscate()). Would you like to enable Touch ID for \(self.viewModel.username.value) at this time?"
-                        let differentAccountAlert = UIAlertController(title: "Enable Touch ID", message: message, preferredStyle: .alert)
-                        differentAccountAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+                        let message = NSLocalizedString("Touch ID settings for \(lastLoggedInUsername!.obfuscate()) will be disabled upon signing in as \(self.viewModel.username.value.obfuscate()). Would you like to enable Touch ID for \(self.viewModel.username.value) at this time?", comment: "")
+                        let differentAccountAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: message, preferredStyle: .alert)
+                        differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { (action) in
                             self.viewModel.disableTouchID()
                             self.launchMainApp()
                         }))
-                        differentAccountAlert.addAction(UIAlertAction(title: "Enable", style: .default, handler: { (action) in
+                        differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
                             self.viewModel.storePasswordInTouchIDKeychain()
                             self.launchMainApp()
                         }))
@@ -188,8 +188,8 @@ class LoginViewController: UIViewController {
     func showErrorAlertWithMessage(_ errorMessage: String) {
         signInButton.setFailure()
         
-        let errorAlert = UIAlertController(title: "Sign In Error", message: errorMessage, preferredStyle: .alert)
-        errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let errorAlert = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+        errorAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.present(errorAlert, animated: true, completion: nil)
     }
     

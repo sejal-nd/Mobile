@@ -64,7 +64,7 @@ class ReportOutageViewController: UIViewController {
         super.viewDidLoad()
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let submitButton = UIBarButtonItem(title: "Submit", style: .done, target: self, action: #selector(onSubmitPress))
+        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         viewModel.submitButtonEnabled().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
@@ -119,15 +119,15 @@ class ReportOutageViewController: UIViewController {
         }
 
         if opco == "PECO" {
-            segmentedControl.items = ["Yes", "Partially", "Dim/Flickering"]
+            segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: ""), NSLocalizedString("Dim/Flickering", comment: "")]
         } else {
-            segmentedControl.items = ["Yes", "Partially"]
+            segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: "")]
         }
 
-        phoneNumberTextField.textField.placeholder = "Contact Number *"
+        phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number *", comment: "")
         phoneNumberTextField.textField.keyboardType = .phonePad
         phoneNumberTextField.textField.delegate = self
-        phoneExtensionTextField.textField.placeholder = "Contact Number Ext. (Optional)"
+        phoneExtensionTextField.textField.placeholder = NSLocalizedString("Contact Number Ext. (Optional)", comment: "")
         phoneExtensionTextField.textField.keyboardType = .phonePad
         phoneExtensionTextField.textField.delegate = self
 
@@ -179,19 +179,19 @@ class ReportOutageViewController: UIViewController {
                 if !canPerformVoltageCheck { // POWER STATUS SUCCESS BUT NO VOLTAGE CHECK
                     self.meterPingCurrentStatusLoadingView.isHidden = true
                     self.meterPingCurrentStatusCheckImageView.isHidden = false
-                    self.meterPingCurrentStatusLabel.text = "Check Complete"
+                    self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                     self.meterPingResultLabel.isHidden = false
-                    self.meterPingResultLabel.text = "Our status check verified your property's meter is operational and ComEd electrical service is being delivered to your home"
+                    self.meterPingResultLabel.text = NSLocalizedString("Our status check verified your property's meter is operational and ComEd electrical service is being delivered to your home", comment: "")
                     self.meterPingResultLabel.setLineHeight(lineHeight: 25)
                     self.meterPingFuseBoxView.isHidden = false
                     self.footerContainerView.isHidden = false
                 } else { // POWER STATUS SUCCESS
-                    self.meterPingCurrentStatusLabel.text = "Verifying voltage level of the meter..."
+                    self.meterPingCurrentStatusLabel.text = NSLocalizedString("Verifying voltage level of the meter...", comment: "")
                     self.meterPingVoltageStatusView.isHidden = false
                     self.viewModel.meterPingGetVoltageStatus(onVoltageVerified: {
                         self.meterPingCurrentStatusLoadingView.isHidden = true
                         self.meterPingCurrentStatusCheckImageView.isHidden = false
-                        self.meterPingCurrentStatusLabel.text = "Check Complete"
+                        self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                         
                         self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
                         self.meterPingVoltageStatusLabel.textColor = .darkJungleGreen
@@ -202,13 +202,13 @@ class ReportOutageViewController: UIViewController {
                         self.meterPingCurrentStatusLoadingView.isHidden = true
                         self.meterPingCurrentStatusCheckImageView.isHidden = false
                         self.meterPingCurrentStatusCheckImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
-                        self.meterPingCurrentStatusLabel.text = "Check Complete"
+                        self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                         
                         self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
                         self.meterPingVoltageStatusLabel.textColor = .darkJungleGreen
                         
                         self.meterPingResultLabel.isHidden = false
-                        self.meterPingResultLabel.text = "Problems Found. Please tap \"Submit\" to report an outage."
+                        self.meterPingResultLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
                         
                         self.areYourLightsOutView.isHidden = true
                         self.viewModel.reportFormHidden.value = false
@@ -220,13 +220,13 @@ class ReportOutageViewController: UIViewController {
                 self.meterPingCurrentStatusLoadingView.isHidden = true
                 self.meterPingCurrentStatusCheckImageView.isHidden = false
                 self.meterPingCurrentStatusCheckImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
-                self.meterPingCurrentStatusLabel.text = "Check Complete"
+                self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                 
                 self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
                 self.meterPingPowerStatusLabel.textColor = .darkJungleGreen
                 
                 self.meterPingResultLabel.isHidden = false
-                self.meterPingResultLabel.text = "Problems Found. Please tap \"Submit\" to report an outage."
+                self.meterPingResultLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
                 
                 self.areYourLightsOutView.isHidden = true
                 self.viewModel.reportFormHidden.value = false

@@ -20,9 +20,9 @@ class MoreViewController: UIViewController {
     }
     
     func onSignOutPress() {
-        let confirmAlert = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .alert)
-        confirmAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        confirmAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: logout))
+        let confirmAlert = UIAlertController(title: NSLocalizedString("Sign Out", comment: ""), message: NSLocalizedString("Are you sure you want to sign out?", comment: ""), preferredStyle: .alert)
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: logout))
         present(confirmAlert, animated: true, completion: nil)
     }
     
@@ -70,13 +70,13 @@ extension MoreViewController: UITableViewDataSource {
         
         var label = ""
         if indexPath.row == 0 {
-            label = "Settings"
+            label = NSLocalizedString("Settings", comment: "")
         } else if indexPath.row == 1 {
-            label = "Contact Us"
+            label = NSLocalizedString("Contact Us", comment: "")
         } else if indexPath.row == 2 {
-            label = "Terms & Policies"
+            label = NSLocalizedString("Terms & Policies", comment: "")
         } else if indexPath.row == 3 {
-            label = "Sign Out"
+            label = NSLocalizedString("Sign Out", comment: "")
         }
         cell.textLabel?.text = label
         
