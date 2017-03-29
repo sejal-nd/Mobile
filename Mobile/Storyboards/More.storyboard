@@ -65,7 +65,7 @@
         <!--Settings-->
         <scene sceneID="2mB-1R-Nng">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="TZa-54-G4b" customClass="SettingsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="TZa-54-G4b" customClass="SettingsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k8c-4H-vZr"/>
                         <viewControllerLayoutGuide type="bottom" id="AK0-u0-4ij"/>
@@ -106,7 +106,7 @@
         <!--Change Password-->
         <scene sceneID="9e3-Th-Q4n">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="9Ug-ji-Hni" customClass="ChangePasswordViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="9Ug-ji-Hni" customClass="ChangePasswordViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zql-vQ-2eS"/>
                         <viewControllerLayoutGuide type="bottom" id="sMz-dx-V7K"/>
@@ -336,7 +336,7 @@
                             <constraint firstItem="css-Si-oMh" firstAttribute="top" secondItem="zql-vQ-2eS" secondAttribute="bottom" id="Fcb-oV-ogF"/>
                             <constraint firstAttribute="trailing" secondItem="css-Si-oMh" secondAttribute="trailing" id="bWm-aF-6sk"/>
                             <constraint firstItem="css-Si-oMh" firstAttribute="leading" secondItem="MAy-au-tEX" secondAttribute="leading" id="cWV-sx-Uhg"/>
-                            <constraint firstItem="sMz-dx-V7K" firstAttribute="top" secondItem="css-Si-oMh" secondAttribute="bottom" id="tFy-1b-fJL"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="css-Si-oMh" secondAttribute="bottom" id="wxg-hU-WpV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Change Password" id="Q7B-3b-v3s"/>
@@ -366,7 +366,7 @@
         <!--Terms & Policies-->
         <scene sceneID="Y5c-le-Fkt">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="6Py-2X-RBq" customClass="TermsPoliciesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="6Py-2X-RBq" customClass="TermsPoliciesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gll-ha-gZ7"/>
                         <viewControllerLayoutGuide type="bottom" id="GSd-fN-0FS"/>
@@ -376,7 +376,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="u6H-b0-4vD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -386,8 +386,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="u6H-b0-4vD" secondAttribute="bottom" id="8IF-qJ-NuC"/>
-                            <constraint firstAttribute="topMargin" secondItem="u6H-b0-4vD" secondAttribute="top" id="NwD-ef-vT5"/>
                             <constraint firstAttribute="trailing" secondItem="u6H-b0-4vD" secondAttribute="trailing" id="ONs-63-fAe"/>
+                            <constraint firstItem="u6H-b0-4vD" firstAttribute="top" secondItem="Gll-ha-gZ7" secondAttribute="bottom" id="bfY-2J-eZz"/>
                             <constraint firstItem="u6H-b0-4vD" firstAttribute="leading" secondItem="MPv-q7-tvM" secondAttribute="leading" id="k0m-nK-OKN"/>
                         </constraints>
                     </view>
@@ -404,9 +404,9 @@
         <!--Main Base Navigation Controller-->
         <scene sceneID="cSI-6d-WhU">
             <objects>
-                <navigationController storyboardIdentifier="splitViewMaster" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="QHx-Oo-GC3" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="splitViewMaster" automaticallyAdjustsScrollViewInsets="NO" id="QHx-Oo-GC3" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="XwZ-1G-6SY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XwZ-1G-6SY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -422,9 +422,9 @@
         <!--Main Base Navigation Controller-->
         <scene sceneID="roR-63-sUi">
             <objects>
-                <navigationController storyboardIdentifier="splitViewDetail" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="Lxd-XU-KqW" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="splitViewDetail" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Lxd-XU-KqW" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="R3M-3U-YcT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R3M-3U-YcT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -440,7 +440,7 @@
         <!--Main Base Navigation Controller-->
         <scene sceneID="odv-2K-Jlp">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1fe-7y-SPR" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="1fe-7y-SPR" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wOj-6K-XNw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

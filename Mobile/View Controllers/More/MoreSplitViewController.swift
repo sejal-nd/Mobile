@@ -11,7 +11,7 @@ import UIKit
 class MoreSplitViewController: UISplitViewController {
     
     required init?(coder aDecoder: NSCoder) {
-        super .init(coder: aDecoder)
+        super.init(coder: aDecoder)
         
         let storyboard = UIStoryboard(name: "More", bundle: nil)
         let masterNavController = storyboard.instantiateViewController(withIdentifier: "splitViewMaster")
@@ -19,13 +19,14 @@ class MoreSplitViewController: UISplitViewController {
         
         viewControllers = [masterNavController, detailNavController]
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         delegate = self
+        preferredDisplayMode = .allVisible // Always show master pane on iPad (even in portrait)
         
-        preferredDisplayMode = .allVisible
+        view.backgroundColor = .white
     }
 
 }
@@ -33,7 +34,9 @@ class MoreSplitViewController: UISplitViewController {
 extension MoreSplitViewController: UISplitViewControllerDelegate {
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
+        // Returning true here makes it so that on iPhone the MoreViewController (Master) is shown 
+        // initially rather than SettingsViewController (the default Detail)
         return true
     }
-
+    
 }

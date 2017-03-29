@@ -31,7 +31,15 @@ class SettingsViewController: UIViewController {
         tableView.backgroundColor = .whiteSmoke
         tableView.contentInset = UIEdgeInsetsMake(30, 0, 30, 0)
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            tabBarController?.tabBar.isHidden = true
+        }
+    }
+    
     // MARK: - Touch ID Switch Handling
     
     func switchObserver(cell: TableViewCell, isOn: Bool) {
