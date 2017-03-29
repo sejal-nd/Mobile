@@ -9,19 +9,19 @@
 import Foundation
 
 ///Defines a single paginated result set of an accounts list.
-struct AccountPage {
-    let accounts: [Account]
-    let page: Int
-    let offset: Int
-    let total: Int
-    
-    init(_ accounts:[Account], page: Int, offset: Int, total:Int) {
-        self.accounts = accounts
-        self.page = page
-        self.offset = offset
-        self.total = total
-    }
-}
+//struct AccountPage {
+//    let accounts: [Account]
+//    let page: Int
+//    let offset: Int
+//    let total: Int
+//    
+//    init(_ accounts:[Account], page: Int, offset: Int, total:Int) {
+//        self.accounts = accounts
+//        self.page = page
+//        self.offset = offset
+//        self.total = total
+//    }
+//}
 
 /// The AccountService protocol defines the interface necessary
 /// to deal with fetching and updating accoutns associated with
@@ -36,7 +36,7 @@ protocol AccountService {
     ///   - offset: the page offset
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain an AccountPage on success, or a ServiceError on failure.
-    func fetchAccounts(page: Int, offset: Int, completion: @escaping (_ result: ServiceResult<AccountPage>) -> Swift.Void)
+    func fetchAccounts(completion: @escaping (_ result: ServiceResult<[Account]>) -> Swift.Void)
     
     
     /// Fetch an accounts detailed information.

@@ -6,14 +6,24 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import Mapper
+
 enum AccountType {
     case Residential
     case Commercial
 }
 
-struct Account {
-    var accountType: AccountType
-    var accountNumber: String
-    var address: String
-    var homeContactNumber: String
+struct Account: Mappable {
+    let accountType: AccountType
+    let accountNumber: String
+    let address: String
+    let homeContactNumber: String
+    
+    init(map: Mapper) throws {
+        try accountNumber = map.from("accountNumber")
+        try address = map.from("address")
+        
+        accountType = .Residential
+        homeContactNumber = "4106939286"
+    }
 }

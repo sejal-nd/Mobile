@@ -20,11 +20,11 @@ class OutageViewModel {
     }
     
     func getAccounts(onSuccess: @escaping ([Account]) -> Void, onError: @escaping (String) -> Void) {
-        accountService.fetchAccounts(page: 0, offset: 0) { (result: ServiceResult<AccountPage>) in
+        accountService.fetchAccounts() { (result: ServiceResult<[Account]>) in
             switch(result) {
-                case .Success(let accountPage):
-                    self.currentAccount = accountPage.accounts[0]
-                    onSuccess(accountPage.accounts)
+                case .Success(let accounts):
+                    self.currentAccount = accounts[0]
+                    onSuccess(accounts)
                     break
                 case .Failure(let error):
                     onError(error.localizedDescription)

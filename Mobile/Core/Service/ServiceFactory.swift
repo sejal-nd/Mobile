@@ -27,7 +27,8 @@ class ServiceFactory {
     }
     
     class func createAccountService() -> AccountService {
-        return MockAccountService()
+        //return MockAccountService()
+        return OMCAccountService()
     }
     
     class func createOutageService() -> OutageService {
