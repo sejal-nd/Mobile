@@ -6,7 +6,6 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import Foundation
 import RxSwift
 
 /// The AuthenticationService protocol defines the interface necessary

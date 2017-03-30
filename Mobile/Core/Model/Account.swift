@@ -16,12 +16,12 @@ enum AccountType {
 struct Account: Mappable {
     let accountType: AccountType
     let accountNumber: String
-    let address: String
+    let address: String?
     let homeContactNumber: String
     
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
-        try address = map.from("address")
+        address = map.optionalFrom("address")
         
         accountType = .Residential
         homeContactNumber = "4106939286"

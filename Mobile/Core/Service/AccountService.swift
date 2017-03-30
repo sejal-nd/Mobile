@@ -6,22 +6,7 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import Foundation
-
-///Defines a single paginated result set of an accounts list.
-//struct AccountPage {
-//    let accounts: [Account]
-//    let page: Int
-//    let offset: Int
-//    let total: Int
-//    
-//    init(_ accounts:[Account], page: Int, offset: Int, total:Int) {
-//        self.accounts = accounts
-//        self.page = page
-//        self.offset = offset
-//        self.total = total
-//    }
-//}
+import RxSwift
 
 /// The AccountService protocol defines the interface necessary
 /// to deal with fetching and updating accoutns associated with
@@ -47,3 +32,26 @@ protocol AccountService {
     ///     that is provided will contain the AccountDetails on success, or a ServiceErro on failure.
     func fetchAccountDetail(account: Account, completion: @escaping (_ result: ServiceResult<AccountDetail>) -> Swift.Void)
 }
+
+// MARK: - Reactive Extension to AccountService
+extension AccountService {
+    
+    func fetchAccounts() -> Observable<[Account]> {
+        return Observable.create { observer in
+            self.fetchAccounts { (result: ServiceResult<[Account]>) in
+                switch result {
+                case ServiceResult.Success(let accounts):
+                    observer.onNext(accounts)
+                    observer.onCompleted()
+                    break
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                    break
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+}
+

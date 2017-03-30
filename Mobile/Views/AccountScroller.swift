@@ -58,9 +58,13 @@ class AccountScroller: UIView {
     
     func setAccounts(_ accounts: [Account]) {
         self.accounts = accounts
+        var pagedAccounts = accounts
         
         if self.accounts.count > 1 {
-            pageControl.numberOfPages = self.accounts.count
+            if self.accounts.count > 5 {
+                pagedAccounts = Array(self.accounts.prefix(5))
+            }
+            pageControl.numberOfPages = pagedAccounts.count
             pageControl.currentPage = 0
         } else {
             pageControl.isHidden = true
@@ -69,14 +73,15 @@ class AccountScroller: UIView {
         let screenWidth = UIScreen.main.bounds.width
         let centerX = screenWidth / 2
         
-        for (index, account) in self.accounts.enumerated() {
+        for (index, account) in pagedAccounts.enumerated() {
             let pageView = UIView(frame: CGRect(x: CGFloat(index) * screenWidth, y: 0, width: screenWidth, height: 57))
             
             let icon = account.accountType == .Commercial ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
             let iconImageView = UIImageView(image: icon)
             iconImageView.frame = CGRect(x: centerX - 80, y: 4, width: 43, height: 43)
 
-            let labelWidth = screenWidth - (center.x - 30) - 16
+            //let labelWidth = screenWidth - (center.x - 30) - 16
+            let labelWidth = CGFloat(150)
             
             let accountNumberLabel = UILabel(frame: CGRect(x: centerX - 30, y: 11, width: labelWidth, height: 20))
             accountNumberLabel.font = UIFont.systemFont(ofSize: 17)
@@ -94,7 +99,7 @@ class AccountScroller: UIView {
             scrollView.addSubview(pageView)
         }
         
-        scrollView.contentSize = CGSize(width: screenWidth * CGFloat(self.accounts.count), height: 57)
+        scrollView.contentSize = CGSize(width: screenWidth * CGFloat(pagedAccounts.count), height: 57)
     }
     
     func onPageControlTap(sender: UIPageControl) {
