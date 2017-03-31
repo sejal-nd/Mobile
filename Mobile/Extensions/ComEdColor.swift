@@ -28,10 +28,4 @@ extension UIColor {
         }
     }
     
-    // Used on Outage screen reported state circles
-    @nonobjc static var primaryColorLight: UIColor {
-        get {
-            return UIColor(red: 204/255, green: 0/255, blue: 51/255, alpha: 0.63)
-        }
-    }
 }

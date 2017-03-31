@@ -1,0 +1,9 @@
+stages:
+  - build
+build_project:
+  stage: build
+  script:
+    - xcodebuild -alltargets clean | xcpretty  
+    - xcodebuild test -project Mobile.xcodeproj -scheme BGE-DEV -destination 'platform=iOS Simulator,name=iPhone 6s' | xcpretty -s
+  only:
+    - develop

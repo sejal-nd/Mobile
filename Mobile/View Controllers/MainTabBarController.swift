@@ -38,16 +38,12 @@ class MainTabBarController: UITabBarController {
     }
     
     func setButtonStates (itemTag: Int) {
-        let tabs = self.tabBar.items
-        
-        var x = 0
-        while x < (tabs?.count)! {
-            if tabs?[x].tag == itemTag {
-                tabs?[x].setTitleTextAttributes([NSFontAttributeName: selectedTitleFont, NSForegroundColorAttributeName: selectedTitleColor], for: UIControlState.normal)
+        for tab in tabBar.items! {
+            if tab.tag == itemTag {
+                tab.setTitleTextAttributes([NSFontAttributeName: selectedTitleFont, NSForegroundColorAttributeName: selectedTitleColor], for: UIControlState.normal)
             } else {
-                tabs?[x].setTitleTextAttributes([NSFontAttributeName: normalTitleFont, NSForegroundColorAttributeName: normalTitleColor], for: UIControlState.normal)
+                tab.setTitleTextAttributes([NSFontAttributeName: normalTitleFont, NSForegroundColorAttributeName: normalTitleColor], for: UIControlState.normal)
             }
-            x += 1
         }
     }
     
