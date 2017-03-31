@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var keepMeSignedInSwitch: Switch!
     @IBOutlet weak var signInButton: PrimaryButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var keepMeSignedInLabel: UILabel!
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     var passwordAutofilledFromTouchID = false
@@ -53,6 +54,9 @@ class LoginViewController: UIViewController {
         loginFormView.layer.shadowOffset = CGSize(width: 0, height: 0)
         loginFormView.layer.masksToBounds = false
         loginFormView.layer.cornerRadius = 2
+        
+        keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
+        forgotPasswordButton.setTitle(NSLocalizedString("Forgot password or username?", comment: ""), for: .normal)
         
         usernameTextField.textField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
         usernameTextField.textField.autocorrectionType = .no

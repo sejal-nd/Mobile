@@ -24,7 +24,9 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.title = NSLocalizedString("Settings", comment: "")
+        
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "Cell")
         

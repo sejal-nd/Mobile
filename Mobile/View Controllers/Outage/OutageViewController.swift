@@ -34,6 +34,8 @@ class OutageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = NSLocalizedString("Outage", comment: "")
 
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientBackground.bounds

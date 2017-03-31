@@ -16,7 +16,9 @@ class TermsPoliciesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.title = NSLocalizedString("Terms and Policies", comment: "")
+        
         textView.textContainerInset = UIEdgeInsetsMake(26, 29, 26, 29)
         textView.attributedText = viewModel.attributedTermsString
     }

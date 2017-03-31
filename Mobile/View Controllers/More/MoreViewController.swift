@@ -17,6 +17,7 @@ class MoreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = NSLocalizedString("More", comment: "")
     }
     
     func onSignOutPress() {

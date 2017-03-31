@@ -47,6 +47,8 @@ class ChangePasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = NSLocalizedString("Change Password", comment: "")
+        
         cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDonePress))
         navigationItem.leftBarButtonItem = cancelButton!
