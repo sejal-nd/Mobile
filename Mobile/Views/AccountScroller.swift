@@ -13,53 +13,87 @@ protocol AccountScrollerDelegate: class {
 }
 
 class AccountScroller: UIView {
-    
+
     weak var delegate: AccountScrollerDelegate?
 
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
-    
+
     var accounts = [Account]()
-    
+
+    var pageViews = [UIView]()
+    var iconImageViews = [UIImageView]()
+    var accountLabels = [UILabel]()
+    var addressLabels = [UILabel]()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         commonInit()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         commonInit()
     }
-    
+
     func commonInit() {
         backgroundColor = .clear
-        
+
         scrollView = UIScrollView(frame: .zero)
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.delegate = self
         addSubview(scrollView)
-        
+
         pageControl = UIPageControl(frame: .zero)
         pageControl.pageIndicatorTintColor = UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 0.5)
         pageControl.currentPageIndicatorTintColor = UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
         pageControl.addTarget(self, action: #selector(onPageControlTap(sender:)), for: .valueChanged)
         addSubview(pageControl)
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 57)
         pageControl.frame = CGRect(x: frame.size.width / 2 - 80, y: 57, width: 160, height: 7)
+
+        let screenWidth = UIScreen.main.bounds.width
+        let centerX = screenWidth / 2
+        //let labelWidth = screenWidth - (center.x - 30) - 16
+        let labelWidth = CGFloat(150)
+
+        if pageViews.count > 0 {
+            for index in 0..<pageViews.count {
+                let pageView = pageViews[index]
+                let iconImageView = iconImageViews[index]
+                let accountLabel = accountLabels[index]
+                let addressLabel = addressLabels[index]
+                
+                pageView.frame = CGRect(x: CGFloat(index) * screenWidth, y: 0, width: screenWidth, height: 57)
+                
+                iconImageView.frame = CGRect(x: centerX - 80, y: 4, width: 43, height: 43)
+                accountLabel.frame = CGRect(x: centerX - 30, y: 11, width: labelWidth, height: 20)
+                addressLabel.frame = CGRect(x: centerX - 30, y: 32, width: labelWidth, height: 14)
+            }
+            
+            scrollView.contentSize = CGSize(width: screenWidth * CGFloat(pageViews.count), height: 57)
+            scrollView.scrollRectToVisible(pageViews[pageControl.currentPage].frame, animated: false)
+        }
+
     }
-    
+
     func setAccounts(_ accounts: [Account]) {
         self.accounts = accounts
         var pagedAccounts = accounts
-        
+
+        pageViews.removeAll()
+        iconImageViews.removeAll()
+        accountLabels.removeAll()
+        addressLabels.removeAll()
+
         if self.accounts.count > 1 {
             if self.accounts.count > 5 {
                 pagedAccounts = Array(self.accounts.prefix(5))
@@ -69,55 +103,52 @@ class AccountScroller: UIView {
         } else {
             pageControl.isHidden = true
         }
-        
-        let screenWidth = UIScreen.main.bounds.width
-        let centerX = screenWidth / 2
-        
-        for (index, account) in pagedAccounts.enumerated() {
-            let pageView = UIView(frame: CGRect(x: CGFloat(index) * screenWidth, y: 0, width: screenWidth, height: 57))
-            
+
+        for account in pagedAccounts {
+            let pageView = UIView(frame: .zero)
+            pageViews.append(pageView)
+
             let icon = account.accountType == .Commercial ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
             let iconImageView = UIImageView(image: icon)
-            iconImageView.frame = CGRect(x: centerX - 80, y: 4, width: 43, height: 43)
+            iconImageViews.append(iconImageView)
 
-            //let labelWidth = screenWidth - (center.x - 30) - 16
-            let labelWidth = CGFloat(150)
-            
-            let accountNumberLabel = UILabel(frame: CGRect(x: centerX - 30, y: 11, width: labelWidth, height: 20))
+            let accountNumberLabel = UILabel(frame: .zero)
             accountNumberLabel.font = UIFont.systemFont(ofSize: 17)
             accountNumberLabel.textColor = UIColor.darkJungleGreen
             accountNumberLabel.text = account.accountNumber
-           
-            let addressLabel = UILabel(frame: CGRect(x: centerX - 30, y: 32, width: labelWidth, height: 14))
+            accountLabels.append(accountNumberLabel)
+
+            let addressLabel = UILabel(frame: .zero)
             addressLabel.font = UIFont.systemFont(ofSize: 12)
             addressLabel.textColor = UIColor.outerSpace
             addressLabel.text = account.address
-            
+            addressLabels.append(addressLabel)
+
             pageView.addSubview(iconImageView)
             pageView.addSubview(accountNumberLabel)
             pageView.addSubview(addressLabel)
             scrollView.addSubview(pageView)
         }
         
-        scrollView.contentSize = CGSize(width: screenWidth * CGFloat(pagedAccounts.count), height: 57)
+        setNeedsLayout()
     }
-    
+
     func onPageControlTap(sender: UIPageControl) {
         scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: true)
         delegate?.accountScroller(self, didChangeAccount: accounts[pageControl.currentPage])
     }
-    
+
 }
 
 extension AccountScroller: UIScrollViewDelegate {
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
-        
+
         if currentPage != pageControl.currentPage {
             pageControl.currentPage = currentPage
             delegate?.accountScroller(self, didChangeAccount: accounts[currentPage])
         }
     }
-    
+
 }
