@@ -142,7 +142,7 @@ class OutageViewController: UIViewController {
         accountContentView.isHidden = currentOutageStatus.flagGasOnly
         
         // Display either the Lottie animation or draw our own border circles
-        let powerIsOn = !currentOutageStatus.activeOutage && currentOutageStatus.reportedOutageInfo != nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled
+        let powerIsOn = !currentOutageStatus.activeOutage && currentOutageStatus.reportedOutageInfo == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled
         animationView.isHidden = !powerIsOn
         outerCircleView.isHidden = powerIsOn
         innerCircleView.isHidden = powerIsOn
