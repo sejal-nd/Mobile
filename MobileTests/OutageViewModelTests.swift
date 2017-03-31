@@ -33,9 +33,9 @@ class OutageViewModelTests: XCTestCase {
     func testGetOutageStatusSuccess() {
         let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
         
-        let account = Account(accountType:.Residential, accountNumber:"1234567890", address:"573 Elm Street", homeContactNumber: "4106939286")
+        let account = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
         
-        viewModel.getOutageStatus(forAccount: account, onSuccess: { (status: OutageStatus) in
+        viewModel.getOutageStatus(forAccount: account!, onSuccess: { (status: OutageStatus) in
             asyncExpectation.fulfill()
         }, onError: { error in
             XCTFail("Unexpected failure response")

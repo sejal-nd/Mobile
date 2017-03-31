@@ -54,7 +54,7 @@ struct OutageStatus: Mappable {
             flagFinaled = false
         }
         do {
-            try flagNoPay = map.from("flagFinaled")
+            try flagNoPay = map.from("flagNoPay")
         } catch {
             flagNoPay = false
         }
@@ -70,39 +70,6 @@ struct OutageStatus: Mappable {
         reportedOutageInfo = nil
     }
     
-//    init(accountInfo: Account,
-//         gasOnly: Bool,
-//         homeContactNumber: String,
-//         isPasswordProtected: Bool,
-//         isUserAuthenticated: Bool,
-//         activeOutage: Bool,
-//         outageMessageTitle: String,
-//         outageMessage: String,
-//         accountFinaled: Bool,
-//         accountPaid: Bool,
-//         restorationTime: Date?=nil,
-//         outageInfo: OutageInfo?=nil) {
-//        
-//        self.accountInfo = accountInfo
-//        self.gasOnly = gasOnly
-//        self.homeContactNumber = homeContactNumber
-//        self.isPasswordProtected = isPasswordProtected
-//        self.isUserAuthenticated = isUserAuthenticated
-//        self.activeOutage = activeOutage
-//        self.outageMessageTitle = outageMessageTitle
-//        self.outageMessage = outageMessage
-//        self.accountFinaled = accountFinaled
-//        self.accountPaid = accountPaid
-//        
-//        self.outageReported = outageInfo != nil ? true : false;
-//        if(outageInfo != nil) {
-//            self.outageInfo = outageInfo!
-//        }
-//        if(restorationTime != nil) {
-//            self.restorationTime = restorationTime!
-//        }
-//
-//    }
 }
 
 struct MeterPingInfo: Mappable {

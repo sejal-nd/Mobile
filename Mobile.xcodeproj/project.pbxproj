@@ -359,6 +359,9 @@
 		E88ECFF11E8D8BA600A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
 		E88ECFF21E8D8BA600A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
 		E88ECFF31E8D8BA600A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
+		E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* OMCAuthenticationService.swift */; };
+		E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD81E8C43BB00550F99 /* OMCAccountService.swift */; };
+		E88ECFF71E8ED6DB00A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
 		E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A01E609DC900F87F87 /* MainTabBarController.swift */; };
 		E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A01E609DC900F87F87 /* MainTabBarController.swift */; };
 		E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89D07A01E609DC900F87F87 /* MainTabBarController.swift */; };
@@ -2160,7 +2163,9 @@
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
+				E88ECFF71E8ED6DB00A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAE81E784779001E8A44 /* AccountDetail.swift in Sources */,
+				E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
 				E8FE30A41E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
@@ -2169,6 +2174,7 @@
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
+				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
