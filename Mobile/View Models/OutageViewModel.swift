@@ -6,7 +6,11 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import RxSwift
+
 class OutageViewModel {
+    
+    let disposeBag = DisposeBag()
     
     private var accountService: AccountService
     private var outageService: OutageService
@@ -20,42 +24,40 @@ class OutageViewModel {
     }
     
     func getAccounts(onSuccess: @escaping ([Account]) -> Void, onError: @escaping (String) -> Void) {
-        accountService.fetchAccounts(page: 0, offset: 0) { (result: ServiceResult<AccountPage>) in
-            switch(result) {
-                case .Success(let accountPage):
-                    self.currentAccount = accountPage.accounts[0]
-                    onSuccess(accountPage.accounts)
-                    break
-                case .Failure(let error):
-                    onError(error.localizedDescription)
-                    break
-            }
-        }
+        accountService.fetchAccounts()
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { accounts in
+                self.currentAccount = accounts[0]
+                onSuccess(accounts)
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
     }
     
     func getOutageStatus(forAccount account: Account, onSuccess: @escaping (OutageStatus) -> Void, onError: @escaping (String) -> Void) {
-        outageService.fetchOutageStatus(account: account) { (result: ServiceResult<OutageStatus>) in
-            switch(result) {
-                case .Success(let outageStatus):
-                    self.currentOutageStatus = outageStatus
-                    onSuccess(outageStatus)
-                    break
-                case .Failure(let error):
-                    onError(error.localizedDescription)
-                    break
-            }
-        }
+        outageService.fetchOutageStatus(account: account)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { outageStatus in
+                self.currentOutageStatus = outageStatus
+                onSuccess(outageStatus)
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
     }
     
     func getEstimatedRestorationDateString() -> String {
-        if let restorationTime = currentOutageStatus!.restorationTime {
+        if let restorationTime = currentOutageStatus!.etr {
             return Environment.sharedInstance.opcoDateFormatter.string(from: restorationTime)
         }
         return "Assessing Damage"
     }
     
     func getOutageReportedDateString() -> String {
-        if let reportedTime = currentOutageStatus!.outageInfo?.reportedTime {
+        if let reportedTime = currentOutageStatus!.reportedOutageInfo?.reportedTime {
             let timeString = Environment.sharedInstance.opcoDateFormatter.string(from: reportedTime)
             return "Reported \(timeString)"
         }
@@ -95,9 +97,9 @@ class OutageViewModel {
         if Environment.sharedInstance.opco == "BGE" {
             string = "Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information."
         } else {
-            if currentOutageStatus!.accountFinaled {
+            if currentOutageStatus!.flagFinaled {
                 string = "Outage Status and Outage Reporting are not available for this account."
-            } else if !currentOutageStatus!.accountPaid {
+            } else if currentOutageStatus!.flagNoPay {
                 string = "Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment."
             }
         }

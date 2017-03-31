@@ -50,13 +50,15 @@ class OMCResponseParser : NSObject {
     
     /// Function to interpret the data or response body of a response.
     ///
-    /// - Parameter data: a dictionary containing the response body data
+    /// - Parameter data: JSON containing the response body data
     /// - Returns: a ServiceResult that represents the provided data
     private static func parseData(data: [String:Any]) -> ServiceResult<Any> {
         
         if let success = data[OMCResponseKey.Success.rawValue] as? Bool {
             if success {
-                if let returnData = data[OMCResponseKey.Data.rawValue] as? [String:Any] {
+                if let returnData = data[OMCResponseKey.Data.rawValue] as? [String: Any] { // Dictionary
+                    return ServiceResult.Success(returnData)
+                } else if let returnData = data[OMCResponseKey.Data.rawValue] as? [[String: Any]] { // Array
                     return ServiceResult.Success(returnData)
                 } else {
                     return ServiceResult.Success([:])

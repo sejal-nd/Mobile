@@ -11,7 +11,8 @@ import Foundation
 /// Utility class for intantiating Service Instances
 class ServiceFactory {
     
-    static let sharedOutageService = MockOutageService()
+    //static let sharedOutageService = MockOutageService()
+    static let sharedOutageService = OMCOutageService()
     
     class func createAuthenticationService() -> AuthenticationService {
         switch(Environment.sharedInstance.environmentName) {
@@ -27,7 +28,8 @@ class ServiceFactory {
     }
     
     class func createAccountService() -> AccountService {
-        return MockAccountService()
+        //return MockAccountService()
+        return OMCAccountService()
     }
     
     class func createOutageService() -> OutageService {
