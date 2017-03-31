@@ -27,6 +27,8 @@ class OutageViewController: UIViewController {
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
+    var gradientLayer: CAGradientLayer!
+    
     var onAnimationView = LOTAnimationView(name: "outage")!
     var refreshControl: UIRefreshControl!
     
@@ -35,7 +37,7 @@ class OutageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let gradientLayer = CAGradientLayer()
+        gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientBackground.bounds
         gradientLayer.colors = [
             UIColor.white.cgColor,
@@ -102,6 +104,12 @@ class OutageViewController: UIViewController {
             hud.hide(animated: true)
             print("getAccounts error = \(error)")
         })
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        gradientLayer.frame = gradientBackground.frame
     }
     
     func updateContent() {
@@ -333,7 +341,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
             print("getOutageStatus error = \(error)")
         })
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast("Your outage report has been received.", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 89))
+            self.view.makeToast("Your outage report has been received.", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
     
