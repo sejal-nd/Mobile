@@ -184,7 +184,9 @@ extension SettingsViewController: ChangePasswordViewControllerDelegate {
     
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast("Password successfully changed", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+            // iPad shows tab bar, iPhone does not
+            let yPos = UIDevice.current.userInterfaceIdiom == .pad ? self.view.frame.size.height - 89 : self.view.frame.size.height - 40
+            self.view.makeToast("Password successfully changed", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: yPos))
         })
     }
     
