@@ -10,7 +10,7 @@ import Foundation
 
 class MockOutageService : OutageService {
     
-    var outageMap = [String:OutageInfo]()
+    var outageMap = [String: ReportedOutageResult]()
     
     func fetchOutageStatus(account: Account, completion: @escaping (ServiceResult<OutageStatus>) -> Void) {
         let outageStatus = getOutageStatus(account: account)
@@ -19,7 +19,6 @@ class MockOutageService : OutageService {
     
     private func getOutageStatus(account: Account) -> OutageStatus {
         
-        //let outageInfo = outageMap[account.accountNumber]
         var status: OutageStatus
         
         let reportedMessage = "As of 6:21 AM EST on 8/19/2017 we are working to identify the cause of this outage. We currently estimate your service will be restored by 10:30 AM EST on 8/19/2025."
@@ -114,7 +113,7 @@ class MockOutageService : OutageService {
         
         if(outageInfo.account.accountNumber != "5591032201" &&
             outageInfo.account.accountNumber != "5591032202") {
-            outageMap[outageInfo.account.accountNumber] = outageInfo
+            outageMap[outageInfo.account.accountNumber] = ReportedOutageResult(reportedTime: Date(), etr: Date().addingTimeInterval(7200))
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
                 completion(ServiceResult.Success())
             }

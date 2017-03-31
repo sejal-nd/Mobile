@@ -142,7 +142,7 @@ class OutageViewController: UIViewController {
         accountContentView.isHidden = currentOutageStatus.flagGasOnly
         
         // Display either the Lottie animation or draw our own border circles
-        let powerIsOn = !currentOutageStatus.activeOutage && currentOutageStatus.reportedOutageInfo == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled
+        let powerIsOn = !currentOutageStatus.activeOutage && viewModel.getReportedOutage() == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled
         animationView.isHidden = !powerIsOn
         outerCircleView.isHidden = powerIsOn
         innerCircleView.isHidden = powerIsOn
@@ -155,7 +155,7 @@ class OutageViewController: UIViewController {
         }
         
         // Update the Report Outage button
-        if currentOutageStatus.reportedOutageInfo != nil {
+        if viewModel.getReportedOutage() != nil {
             reportOutageButton.setDetailLabel(text: viewModel.getOutageReportedDateString(), checkHidden: false)
         } else {
             reportOutageButton.setDetailLabel(text: "", checkHidden: true)
@@ -175,7 +175,7 @@ class OutageViewController: UIViewController {
         let currentOutageStatus = viewModel.currentOutageStatus!
         let bigButtonWidth = bigButtonView.frame.size.width
         
-        if currentOutageStatus.reportedOutageInfo != nil {
+        if viewModel.getReportedOutage() != nil {
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 13.5, y: 28, width: 27, height: 29))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
             
@@ -330,7 +330,8 @@ class OutageViewController: UIViewController {
         if segue.destination.isKind(of: ReportOutageViewController.self) {
             let vc = segue.destination as! ReportOutageViewController
             vc.viewModel.account = viewModel.currentAccount!
-            vc.viewModel.phoneNumber.value = viewModel.currentAccount!.homeContactNumber
+            vc.viewModel.outageStatus = viewModel.currentOutageStatus!
+            vc.viewModel.phoneNumber.value = viewModel.currentOutageStatus!.contactHomeNumber
             vc.delegate = self
         }
     }
@@ -358,11 +359,12 @@ extension OutageViewController: AccountScrollerDelegate {
 extension OutageViewController: ReportOutageViewControllerDelegate {
     
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
-        viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
-            self.updateContent()
-        }, onError: { error in
-            print("getOutageStatus error = \(error)")
-        })
+//        viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
+//            self.updateContent()
+//        }, onError: { error in
+//            print("getOutageStatus error = \(error)")
+//        })
+        self.updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.makeToast("Your outage report has been received.", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })

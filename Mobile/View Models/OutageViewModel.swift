@@ -37,6 +37,7 @@ class OutageViewModel {
     }
     
     func getOutageStatus(forAccount account: Account, onSuccess: @escaping (OutageStatus) -> Void, onError: @escaping (String) -> Void) {
+
         outageService.fetchOutageStatus(account: account)
             .observeOn(MainScheduler.instance)
             .asObservable()
@@ -49,6 +50,10 @@ class OutageViewModel {
             .addDisposableTo(disposeBag)
     }
     
+    func getReportedOutage() -> ReportedOutageResult? {
+        return outageService.outageMap[currentAccount!.accountNumber]
+    }
+    
     func getEstimatedRestorationDateString() -> String {
         if let restorationTime = currentOutageStatus!.etr {
             return Environment.sharedInstance.opcoDateFormatter.string(from: restorationTime)
@@ -57,8 +62,8 @@ class OutageViewModel {
     }
     
     func getOutageReportedDateString() -> String {
-        if let reportedTime = currentOutageStatus!.reportedOutageInfo?.reportedTime {
-            let timeString = Environment.sharedInstance.opcoDateFormatter.string(from: reportedTime)
+        if let reportedOutage = getReportedOutage() {
+            let timeString = Environment.sharedInstance.opcoDateFormatter.string(from: reportedOutage.reportedTime)
             return "Reported \(timeString)"
         }
         return "Reported"

@@ -60,9 +60,8 @@ class AccountScroller: UIView {
         scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 57)
         pageControl.frame = CGRect(x: frame.size.width / 2 - 80, y: 57, width: 160, height: 7)
 
-        let screenWidth = UIScreen.main.bounds.width
-        let centerX = screenWidth / 2
-        //let labelWidth = screenWidth - (center.x - 30) - 16
+        let centerX = frame.size.width / 2
+        //let labelWidth = frame.size.width - (center.x - 30) - 16
         let labelWidth = CGFloat(150)
 
         if pageViews.count > 0 {
@@ -72,14 +71,14 @@ class AccountScroller: UIView {
                 let accountLabel = accountLabels[index]
                 let addressLabel = addressLabels[index]
                 
-                pageView.frame = CGRect(x: CGFloat(index) * screenWidth, y: 0, width: screenWidth, height: 57)
+                pageView.frame = CGRect(x: CGFloat(index) * frame.size.width, y: 0, width: frame.size.width, height: 57)
                 
                 iconImageView.frame = CGRect(x: centerX - 80, y: 4, width: 43, height: 43)
                 accountLabel.frame = CGRect(x: centerX - 30, y: 11, width: labelWidth, height: 20)
                 addressLabel.frame = CGRect(x: centerX - 30, y: 32, width: labelWidth, height: 14)
             }
             
-            scrollView.contentSize = CGSize(width: screenWidth * CGFloat(pageViews.count), height: 57)
+            scrollView.contentSize = CGSize(width: frame.size.width * CGFloat(pageViews.count), height: 57)
             scrollView.scrollRectToVisible(pageViews[pageControl.currentPage].frame, animated: false)
         }
 
