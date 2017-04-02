@@ -176,6 +176,9 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                     <constraint firstItem="ZQw-Ul-DsT" firstAttribute="top" secondItem="rwO-5r-SUq" secondAttribute="bottom" constant="14" id="xsP-tc-thr"/>
                                                 </constraints>
                                             </view>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="990-Gc-Rmj">
+                                                <rect key="frame" x="177" y="22" width="20" height="20"/>
+                                            </activityIndicatorView>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nLN-0J-SNE">
                                                 <rect key="frame" x="169" y="258.5" width="37" height="37"/>
                                             </activityIndicatorView>
@@ -192,10 +195,12 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                             <constraint firstItem="FN2-AG-tRU" firstAttribute="top" secondItem="4LE-Ih-Txu" secondAttribute="top" id="TvX-gh-ysz"/>
                                             <constraint firstItem="H0L-QG-hAo" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="Ual-of-aCU"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" priority="999" id="VZ8-yy-E6R"/>
+                                            <constraint firstItem="990-Gc-Rmj" firstAttribute="top" secondItem="4LE-Ih-Txu" secondAttribute="top" constant="22" id="Vt5-kU-u0J"/>
                                             <constraint firstAttribute="bottom" secondItem="0lx-Wl-bvy" secondAttribute="bottom" id="Zdh-53-MLu"/>
                                             <constraint firstItem="FN2-AG-tRU" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="fSe-aZ-Wli"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="fjI-oh-c9e"/>
                                             <constraint firstAttribute="bottom" secondItem="H0L-QG-hAo" secondAttribute="bottom" id="kVK-Xp-waq"/>
+                                            <constraint firstItem="990-Gc-Rmj" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="mSu-PZ-ya3"/>
                                             <constraint firstAttribute="trailing" secondItem="0lx-Wl-bvy" secondAttribute="trailing" priority="999" id="pSB-NR-AKC"/>
                                         </constraints>
                                     </view>
@@ -229,6 +234,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                     <connections>
                         <outlet property="accountContentView" destination="0lx-Wl-bvy" id="XUH-hT-UpN"/>
                         <outlet property="accountScroller" destination="FN2-AG-tRU" id="abQ-kv-CdM"/>
+                        <outlet property="accountScrollerActivityIndicator" destination="990-Gc-Rmj" id="BDa-rC-Chr"/>
                         <outlet property="animationView" destination="zIa-Td-tAU" id="4Ac-1a-gG3"/>
                         <outlet property="bigButtonView" destination="dc7-ff-3bf" id="tVZ-Gm-tam"/>
                         <outlet property="footerTextView" destination="QN1-1Y-eoZ" id="DtU-Dv-8Uz"/>

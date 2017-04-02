@@ -79,7 +79,7 @@ class ReportOutageViewModel {
     func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
             if self.outageStatus!.meterPingInfo!.pingResult {
-                if self.outageStatus!.meterPingInfo!.voltageReads != nil {
+                if self.outageStatus!.meterPingInfo!.preCheckSuccess {
                     onPowerVerified(true)
                 } else {
                     onPowerVerified(false)
@@ -92,11 +92,14 @@ class ReportOutageViewModel {
     
     func meterPingGetVoltageStatus(onVoltageVerified: @escaping () -> Void, onError: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
-            let voltageReads = self.outageStatus!.meterPingInfo!.voltageReads!
-            if voltageReads.lowercased().contains("improper") {
+            if let voltageReads = self.outageStatus!.meterPingInfo!.voltageReads {
+                if voltageReads.lowercased().contains("improper") {
+                    onError()
+                } else if voltageReads.lowercased().contains("proper") {
+                    onVoltageVerified()
+                }
+            } else {
                 onError()
-            } else if voltageReads.lowercased().contains("proper") {
-                onVoltageVerified()
             }
         }
     }

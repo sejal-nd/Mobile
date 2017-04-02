@@ -17,6 +17,7 @@ class OutageViewController: UIViewController {
     @IBOutlet weak var accountScroller: AccountScroller!
     @IBOutlet weak var accountContentView: UIView!
     @IBOutlet weak var gasOnlyView: UIView!
+    @IBOutlet weak var accountScrollerActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var outageStatusActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var outerCircleView: UIView!
@@ -85,6 +86,7 @@ class OutageViewController: UIViewController {
         accountScroller.isHidden = true
         accountContentView.isHidden = true
         
+        accountScrollerActivityIndicator.color = .mediumPersianBlue
         outageStatusActivityIndicator.color = .mediumPersianBlue
     }
     
@@ -92,13 +94,9 @@ class OutageViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if viewModel.currentAccount == nil {
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-            hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-            hud.contentColor = .white
-            
+            accountScrollerActivityIndicator.isHidden = false
             viewModel.getAccounts(onSuccess: { accounts in
-                hud.hide(animated: true)
+                self.accountScrollerActivityIndicator.isHidden = true
                 self.accountScroller.setAccounts(accounts)
                 self.accountScroller.isHidden = false
                 self.outageStatusActivityIndicator.isHidden = false
@@ -110,7 +108,7 @@ class OutageViewController: UIViewController {
                     print("getOutageStatus error = \(error)")
                 })
             }, onError: { error in
-                hud.hide(animated: true)
+                self.accountScrollerActivityIndicator.isHidden = true
                 print("getAccounts error = \(error)")
             })
         } else if viewModel.currentOutageStatus == nil {
