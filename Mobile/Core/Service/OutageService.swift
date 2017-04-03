@@ -13,6 +13,7 @@ import RxSwift
 /// the currently logged in customer and their accounts.
 protocol OutageService {
     
+    var outageMap: [String: ReportedOutageResult] { get set }
     
     /// Fetch the outage status for a given Account.
     ///
@@ -48,6 +49,23 @@ extension OutageService {
                     break
                 }
 
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func reportOutage(outageInfo: OutageInfo) -> Observable<Void> {
+        return Observable.create { observer in
+            self.reportOutage(outageInfo: outageInfo, completion: { (result: ServiceResult<Void>) in
+                switch result {
+                case ServiceResult.Success:
+                    observer.onNext()
+                    observer.onCompleted()
+                    break
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                    break
+                }
             })
             return Disposables.create()
         }

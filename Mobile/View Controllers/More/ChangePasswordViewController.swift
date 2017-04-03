@@ -198,11 +198,6 @@ class ChangePasswordViewController: UIViewController {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        //        var tabBarHeight: CGFloat = 0
-        //        if let tabController = tabBarController {
-        //            tabBarHeight = tabController.tabBar.frame.size.height
-        //        }
-        
         let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets

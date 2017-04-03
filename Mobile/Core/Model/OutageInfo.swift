@@ -50,3 +50,13 @@ struct OutageInfo {
         self.isNeighbor = isNeighbor != nil ? isNeighbor! : nil
     }
 }
+
+struct ReportedOutageResult {
+    let reportedTime: Date
+    let etr: Date
+    
+    init(reportedTime: Date, etr: Date) {
+        self.reportedTime = reportedTime
+        self.etr = etr
+    }
+}
