@@ -79,7 +79,7 @@ class ReportOutageViewModel {
     func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
             if self.outageStatus!.meterPingInfo!.pingResult {
-                if self.outageStatus!.meterPingInfo!.preCheckSuccess {
+                if self.outageStatus!.meterPingInfo!.voltageResult {
                     onPowerVerified(true)
                 } else {
                     onPowerVerified(false)

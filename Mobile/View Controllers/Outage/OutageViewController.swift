@@ -311,6 +311,7 @@ class OutageViewController: UIViewController {
             self.refreshControl.endRefreshing()
         }, onError: { error in
             print("getOutageStatus error = \(error)")
+            self.refreshControl.endRefreshing()
         })
     }
     
