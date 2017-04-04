@@ -128,7 +128,8 @@ class OutageViewController: UIViewController {
         animationView.isHidden = !powerIsOn
         outerCircleView.isHidden = powerIsOn
         innerCircleView.isHidden = powerIsOn
-        if currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled {
+        
+        if viewModel.getReportedOutage() == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled) {
             outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1)
             innerCircleView.backgroundColor = .oldLavender
         } else {
