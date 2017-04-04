@@ -45,6 +45,7 @@ class OutageViewModel {
                 self.currentOutageStatus = outageStatus
                 onSuccess(outageStatus)
             }, onError: { error in
+                self.currentOutageStatus = nil
                 onError(error.localizedDescription)
             })
             .addDisposableTo(disposeBag)
@@ -55,8 +56,14 @@ class OutageViewModel {
     }
     
     func getEstimatedRestorationDateString() -> String {
-        if let restorationTime = currentOutageStatus!.etr {
-            return Environment.sharedInstance.opcoDateFormatter.string(from: restorationTime)
+        if let reportedOutage = getReportedOutage() {
+            if let reportedETR = reportedOutage.etr {
+                return Environment.sharedInstance.opcoDateFormatter.string(from: reportedETR)
+            }
+        } else {
+            if let statusETR = currentOutageStatus!.etr {
+                return Environment.sharedInstance.opcoDateFormatter.string(from: statusETR)
+            }
         }
         return "Assessing Damage"
     }

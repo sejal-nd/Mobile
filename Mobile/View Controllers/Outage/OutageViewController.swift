@@ -19,6 +19,7 @@ class OutageViewController: UIViewController {
     @IBOutlet weak var gasOnlyView: UIView!
     @IBOutlet weak var accountScrollerActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var outageStatusActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var outerCircleView: UIView!
     @IBOutlet weak var innerCircleView: UIView!
@@ -99,29 +100,12 @@ class OutageViewController: UIViewController {
                 self.accountScrollerActivityIndicator.isHidden = true
                 self.accountScroller.setAccounts(accounts)
                 self.accountScroller.isHidden = false
-                self.outageStatusActivityIndicator.isHidden = false
-                self.viewModel.getOutageStatus(forAccount: self.viewModel.currentAccount!, onSuccess: { outageStatus in
-                    self.outageStatusActivityIndicator.isHidden = true
-                    self.updateContent()
-                }, onError: { error in
-                    self.outageStatusActivityIndicator.isHidden = true
-                    print("getOutageStatus error = \(error)")
-                })
+                self.getOutageStatus()
             }, onError: { error in
-                self.accountScrollerActivityIndicator.isHidden = true
                 print("getAccounts error = \(error)")
-            })
-        } else if viewModel.currentOutageStatus == nil {
-            self.outageStatusActivityIndicator.isHidden = false
-            self.viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
-                self.outageStatusActivityIndicator.isHidden = true
-                self.updateContent()
-            }, onError: { error in
-                self.outageStatusActivityIndicator.isHidden = true
-                print("getOutageStatus error = \(error)")
+                self.accountScrollerActivityIndicator.isHidden = true
             })
         }
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -289,6 +273,23 @@ class OutageViewController: UIViewController {
         }
     }
     
+    func getOutageStatus() {
+        accountContentView.isHidden = true
+        gasOnlyView.isHidden = true
+        errorLabel.isHidden = true
+        outageStatusActivityIndicator.isHidden = false
+        
+        viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { _ in
+            self.outageStatusActivityIndicator.isHidden = true
+            self.errorLabel.isHidden = true
+            self.updateContent()
+        }, onError: { error in
+            self.outageStatusActivityIndicator.isHidden = true
+            self.errorLabel.text = error
+            self.errorLabel.isHidden = false
+        })
+    }
+    
     // MARK: - Actions
     
     func onBigButtonTap() {
@@ -307,11 +308,12 @@ class OutageViewController: UIViewController {
     
     func onPullToRefresh() {
         viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
+            self.refreshControl.endRefreshing()
             self.updateContent()
-            self.refreshControl.endRefreshing()
         }, onError: { error in
-            print("getOutageStatus error = \(error)")
             self.refreshControl.endRefreshing()
+            self.errorLabel.text = error
+            self.errorLabel.isHidden = false
         })
     }
     
@@ -341,16 +343,8 @@ extension OutageViewController: AccountScrollerDelegate {
     
     func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account) {
         viewModel.currentAccount = account
-        self.accountContentView.isHidden = true
-        self.gasOnlyView.isHidden = true
-        self.outageStatusActivityIndicator.isHidden = false
-        viewModel.getOutageStatus(forAccount: account, onSuccess: { outageStatus in
-            self.outageStatusActivityIndicator.isHidden = true
-            self.updateContent()
-        }, onError: { error in
-            self.outageStatusActivityIndicator.isHidden = true
-            print("getOutageStatus error = \(error)")
-        })
+        
+        getOutageStatus()
     }
     
 }
@@ -358,11 +352,6 @@ extension OutageViewController: AccountScrollerDelegate {
 extension OutageViewController: ReportOutageViewControllerDelegate {
     
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
-//        viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
-//            self.updateContent()
-//        }, onError: { error in
-//            print("getOutageStatus error = \(error)")
-//        })
         self.updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.makeToast("Your outage report has been received.", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
