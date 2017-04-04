@@ -113,7 +113,7 @@ class MockOutageService : OutageService {
         
         if(outageInfo.account.accountNumber != "5591032201" &&
             outageInfo.account.accountNumber != "5591032202") {
-            outageMap[outageInfo.account.accountNumber] = ReportedOutageResult(reportedTime: Date(), etr: Date().addingTimeInterval(7200))
+            outageMap[outageInfo.account.accountNumber] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
                 completion(ServiceResult.Success())
             }
