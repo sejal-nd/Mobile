@@ -23,6 +23,8 @@ class LoginTermsPoliciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = NSLocalizedString("Terms and Policies", comment: "")
+        
         textView.textContainerInset = UIEdgeInsetsMake(26, 29, 26, 29)
         textView.attributedText = viewModel.attributedTermsString
 
@@ -33,6 +35,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         agreeView.layer.masksToBounds = false
 
         _ = agreeSwitch.rx.isOn.bindTo(continueButton.rx.isEnabled)
+        continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)
         
         agreeLabel.text = viewModel.agreeLabelText;
     }

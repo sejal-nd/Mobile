@@ -13,7 +13,7 @@
         <scene sceneID="XPV-ae-tB6">
             <objects>
                 <navigationController navigationBarHidden="YES" id="pTL-u9-WiQ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="16V-d7-W9g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="16V-d7-W9g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -134,6 +134,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="iC8-QL-izm"/>
                     <connections>
+                        <outlet property="orLabel" destination="cRy-eH-SXJ" id="5NA-Uz-AHa"/>
+                        <outlet property="registerButton" destination="Mtv-0B-6Rn" id="niA-n6-3Nw"/>
+                        <outlet property="signInButton" destination="oHs-4V-Y7S" id="S4e-LI-eWW"/>
+                        <outlet property="skipForNowButon" destination="SSH-Ni-ZZW" id="woe-oi-sop"/>
                         <segue destination="Sli-Tt-vCb" kind="presentation" identifier="termsPoliciesModalSegue" id="CiC-oU-f3I"/>
                     </connections>
                 </viewController>
@@ -367,6 +371,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="forgotPasswordButton" destination="fvJ-hV-8nY" id="E8K-v3-2YY"/>
+                        <outlet property="keepMeSignedInLabel" destination="hfa-fy-2Sb" id="p3E-Kn-eFv"/>
                         <outlet property="keepMeSignedInSwitch" destination="IUg-Sl-dIh" id="c23-sj-oUa"/>
                         <outlet property="loginFormView" destination="q49-Xv-mts" id="QkH-Tk-pMT"/>
                         <outlet property="opcoLogo" destination="NYS-Lm-p3Z" id="R2M-hl-RcA"/>
@@ -385,7 +390,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sli-Tt-vCb" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xPE-hv-B2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xPE-hv-B2n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

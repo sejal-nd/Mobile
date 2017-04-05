@@ -38,6 +38,8 @@ class OutageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = NSLocalizedString("Outage", comment: "")
 
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientBackground.bounds
@@ -168,19 +170,19 @@ class OutageViewController: UIViewController {
             yourOutageIsLabel.font = UIFont(name: "OpenSans", size: 16)
             yourOutageIsLabel.textColor = .mediumPersianBlue
             yourOutageIsLabel.textAlignment = .center
-            yourOutageIsLabel.text = "Your outage is"
+            yourOutageIsLabel.text = NSLocalizedString("Your outage is", comment: "")
             
             let reportedLabel = UILabel(frame: CGRect(x: 30, y: 81, width: bigButtonWidth - 60, height: 25))
             reportedLabel.font = UIFont(name: "OpenSans-Bold", size: 22)
             reportedLabel.textColor = .mediumPersianBlue
             reportedLabel.textAlignment = .center
-            reportedLabel.text = "REPORTED"
+            reportedLabel.text = NSLocalizedString("REPORTED", comment: "")
             
             let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
             estRestorationLabel.font = UIFont(name: "OpenSans", size: 12)
             estRestorationLabel.textColor = .outerSpace
             estRestorationLabel.textAlignment = .center
-            estRestorationLabel.text = "Estimated Restoration"
+            estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
             timeLabel.font = UIFont(name: "OpenSans-Bold", size: 15)
@@ -203,19 +205,19 @@ class OutageViewController: UIViewController {
             yourPowerIsLabel.font = UIFont(name: "OpenSans", size: 16)
             yourPowerIsLabel.textColor = .mediumPersianBlue
             yourPowerIsLabel.textAlignment = .center
-            yourPowerIsLabel.text = "Your power is"
+            yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
             
             let outLabel = UILabel(frame: CGRect(x: 44, y: 82, width: bigButtonWidth - 88, height: 25))
             outLabel.font = UIFont(name: "OpenSans-Bold", size: 22)
             outLabel.textColor = .mediumPersianBlue
             outLabel.textAlignment = .center
-            outLabel.text = "OUT"
+            outLabel.text = NSLocalizedString("OUT", comment: "")
             
             let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
             estRestorationLabel.font = UIFont(name: "OpenSans", size: 12)
             estRestorationLabel.textColor = .outerSpace
             estRestorationLabel.textAlignment = .center
-            estRestorationLabel.text = "Estimated Restoration"
+            estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
             timeLabel.font = UIFont(name: "OpenSans-Bold", size: 15)
@@ -241,7 +243,7 @@ class OutageViewController: UIViewController {
                     payBillLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
                     payBillLabel.textColor = .mediumPersianBlue
                     payBillLabel.textAlignment = .center
-                    payBillLabel.text = "Pay Bill"
+                    payBillLabel.text = NSLocalizedString("Pay Bill", comment: "")
                     bigButtonView.addSubview(payBillLabel)
                 }
             }
@@ -262,13 +264,13 @@ class OutageViewController: UIViewController {
             yourPowerIsLabel.font = UIFont(name: "OpenSans", size: 16)
             yourPowerIsLabel.textColor = .mediumPersianBlue
             yourPowerIsLabel.textAlignment = .center
-            yourPowerIsLabel.text = "Your power is"
+            yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
             
             let onLabel = UILabel(frame: CGRect(x: 40, y: 109, width: bigButtonWidth - 80, height: 25))
             onLabel.font = UIFont(name: "OpenSans-Bold", size: 22)
             onLabel.textColor = .mediumPersianBlue
             onLabel.textAlignment = .center
-            onLabel.text = "ON"
+            onLabel.text = NSLocalizedString("ON", comment: "")
             
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourPowerIsLabel)
@@ -302,7 +304,7 @@ class OutageViewController: UIViewController {
             let message = viewModel.currentOutageStatus!.outageDescription
             if message.characters.count > 0 {
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
             }
         }
@@ -356,7 +358,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
         self.updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast("Your outage report has been received.", duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+            self.view.makeToast(NSLocalizedString("Your outage report has been received.", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
     

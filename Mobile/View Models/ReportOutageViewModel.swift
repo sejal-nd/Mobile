@@ -38,13 +38,13 @@ class ReportOutageViewModel {
         var string = ""
         switch Environment.sharedInstance.opco {
         case "BGE":
-            string = "To report a gas emergency, please call 1-800-685-0123\n\nFor downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222"
+            string = NSLocalizedString("To report a gas emergency, please call 1-800-685-0123\n\nFor downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222", comment: "")
             break
         case "ComEd":
-            string = "To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1"
+            string = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
             break
         case "PECO":
-            string = "To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141"
+            string = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
             break
         default:
             break

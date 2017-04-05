@@ -17,7 +17,9 @@ class TermsPoliciesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        self.title = NSLocalizedString("Terms and Policies", comment: "")
+
         if UIDevice.current.userInterfaceIdiom == .phone {
             extendedLayoutIncludesOpaqueBars = true
         }

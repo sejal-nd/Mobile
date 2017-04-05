@@ -65,28 +65,29 @@ class OutageViewModel {
                 return Environment.sharedInstance.opcoDateFormatter.string(from: statusETR)
             }
         }
-        return "Assessing Damage"
+        return NSLocalizedString("Assessing Damage", comment: "")
     }
     
     func getOutageReportedDateString() -> String {
         if let reportedOutage = getReportedOutage() {
             let timeString = Environment.sharedInstance.opcoDateFormatter.string(from: reportedOutage.reportedTime)
-            return "Reported \(timeString)"
+            return NSLocalizedString("Reported \(timeString)", comment: "")
         }
-        return "Reported"
+        
+        return NSLocalizedString("Reported", comment: "")
     }
     
     func getFooterTextViewText() -> String {
         var string = ""
         switch Environment.sharedInstance.opco {
             case "BGE":
-                string = "To report a gas emergency, please call 1-800-685-0123\nFor downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222"
+                string = NSLocalizedString("To report a gas emergency, please call 1-800-685-0123\nFor downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222", comment: "")
                 break
             case "ComEd":
-                string = "To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1"
+                string = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
                 break
             case "PECO":
-                string = "To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141"
+                string = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
                 break
             default:
                 break
@@ -97,9 +98,9 @@ class OutageViewModel {
     func getGasOnlyMessage() -> String {
         var string = ""
         if Environment.sharedInstance.opco == "BGE" {
-            string = "To report a gas emergency, please call 1-800-685-0123.  For downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222."
+            string = NSLocalizedString("To report a gas emergency, please call 1-800-685-0123.  For downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222.", comment: "")
         } else {
-            string = "We currently do not allow reporting of gas issues online but want to hear from you right away."
+            string = NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
         }
         return string
     }
@@ -107,12 +108,12 @@ class OutageViewModel {
     func getAccountNonPayFinaledMessage() -> String {
         var string = ""
         if Environment.sharedInstance.opco == "BGE" {
-            string = "Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information."
+            string = NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
         } else {
             if currentOutageStatus!.flagFinaled {
-                string = "Outage Status and Outage Reporting are not available for this account."
+                string = NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
             } else if currentOutageStatus!.flagNoPay {
-                string = "Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment."
+                string = NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
             }
         }
         return string
