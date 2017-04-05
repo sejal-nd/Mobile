@@ -119,6 +119,8 @@ class OutageViewController: UIViewController {
         
         let currentOutageStatus = viewModel.currentOutageStatus!
         
+        errorLabel.isHidden = true
+        
         // Show/hide the top level container views
         gasOnlyView.isHidden = !currentOutageStatus.flagGasOnly
         accountContentView.isHidden = currentOutageStatus.flagGasOnly
@@ -282,7 +284,6 @@ class OutageViewController: UIViewController {
         
         viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { _ in
             self.outageStatusActivityIndicator.isHidden = true
-            self.errorLabel.isHidden = true
             self.updateContent()
         }, onError: { error in
             self.outageStatusActivityIndicator.isHidden = true
