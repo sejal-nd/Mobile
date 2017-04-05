@@ -20,6 +20,21 @@ class MoreViewController: UIViewController {
         self.title = NSLocalizedString("More", comment: "")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let firstIndex = IndexPath(row: 0, section: 0)
+            tableView.selectRow(at: firstIndex, animated: false, scrollPosition: .none)
+        }
+    }
+    
     func onSignOutPress() {
         let confirmAlert = UIAlertController(title: NSLocalizedString("Sign Out", comment: ""), message: NSLocalizedString("Are you sure you want to sign out?", comment: ""), preferredStyle: .alert)
         confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
@@ -43,13 +58,16 @@ class MoreViewController: UIViewController {
 extension MoreViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            tableView.deselectRow(at: indexPath, animated: false)
+        }
         
         if indexPath.row == 0 {
             performSegue(withIdentifier: "settingsSegue", sender: self)
         } else if indexPath.row == 2 {
             performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
         } else if indexPath.row == 3 {
+            tableView.deselectRow(at: indexPath, animated: false)
             onSignOutPress()
         }
     }

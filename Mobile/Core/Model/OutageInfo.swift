@@ -6,7 +6,7 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import Foundation
+import Mapper
 
 enum OutageIssue : String {
     case AllOut = "allOut"
@@ -18,6 +18,16 @@ enum OutageTrivalent : String {
     case Yes = "Yes"
     case No = "No"
     case Unsure = "Unsure"
+}
+
+private func extractDate(object: Any?) throws -> Date? {
+    guard let dateString = object as? String else {
+        throw MapperError.convertibleError(value: object, type: Date.self)
+    }
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    return dateFormatter.date(from: dateString)
 }
 
 
@@ -48,5 +58,20 @@ struct OutageInfo {
         self.isUnusual = isUnusual != nil ? isUnusual! : nil
         self.unusualMessage = unusualMessage != nil ? unusualMessage! : nil
         self.isNeighbor = isNeighbor != nil ? isNeighbor! : nil
+    }
+}
+
+struct ReportedOutageResult: Mappable {
+    let reportedTime: Date
+    let etr: Date?
+    
+    init(map: Mapper) throws {
+        reportedTime = Date()
+        
+        do {
+            try etr = map.from("etr", transformation: extractDate)
+        } catch {
+            etr = nil
+        }
     }
 }

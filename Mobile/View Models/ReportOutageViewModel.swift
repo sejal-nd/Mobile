@@ -10,9 +10,12 @@ import RxSwift
 
 class ReportOutageViewModel {
     
+    let disposeBag = DisposeBag()
+    
     private var outageService: OutageService
     
     var account: Account?
+    var outageStatus: OutageStatus?
     var selectedSegmentIndex = Variable(0)
     var phoneNumber = Variable("")
     var phoneExtension = Variable("")
@@ -61,31 +64,43 @@ class ReportOutageViewModel {
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
-
-        outageService.reportOutage(outageInfo: outageInfo) { (result: ServiceResult<Void>) in
-            switch(result) {
-            case .Success:
+        
+        outageService.reportOutage(outageInfo: outageInfo)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { _ in
                 onSuccess()
-                break
-            case .Failure(let error):
+            }, onError: { error in
                 onError(error.localizedDescription)
-                break
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
+    func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
+            if self.outageStatus!.meterPingInfo!.pingResult {
+                if self.outageStatus!.meterPingInfo!.voltageResult {
+                    onPowerVerified(true)
+                } else {
+                    onPowerVerified(false)
+                }
+            } else {
+                onError()
             }
         }
     }
     
-    func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            onPowerVerified(true)
-            //onPowerVerified(false)
-            //onError()
-        }
-    }
-    
     func meterPingGetVoltageStatus(onVoltageVerified: @escaping () -> Void, onError: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            onVoltageVerified()
-            //onError()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
+            if let voltageReads = self.outageStatus!.meterPingInfo!.voltageReads {
+                if voltageReads.lowercased().contains("improper") {
+                    onError()
+                } else if voltageReads.lowercased().contains("proper") {
+                    onVoltageVerified()
+                }
+            } else {
+                onError()
+            }
         }
     }
 }

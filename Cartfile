@@ -5,3 +5,4 @@ github "jdg/MBProgressHUD" == 1.0.0
 github "scalessec/Toast-Swift" == 2.0.0
 github "dropbox/zxcvbn-ios" == 1.0.4
 github "bitstadium/HockeySDK-iOS" == 4.1.4
+github "lyft/mapper" == 6.0.0

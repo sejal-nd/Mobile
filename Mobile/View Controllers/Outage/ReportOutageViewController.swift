@@ -75,7 +75,7 @@ class ReportOutageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         // METER PING
-        if Environment.sharedInstance.opco == "ComEd" {
+        if Environment.sharedInstance.opco == "ComEd" && viewModel.outageStatus!.meterPingInfo != nil {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             bg.backgroundColor = .whiteSmoke
@@ -118,6 +118,8 @@ class ReportOutageViewController: UIViewController {
             lottieAnimation.contentMode = .scaleToFill
             meterPingCurrentStatusLoadingView.addSubview(lottieAnimation)
             lottieAnimation.play()
+        } else {
+            viewModel.reportFormHidden.value = false
         }
 
         if opco == "PECO" {
@@ -173,7 +175,7 @@ class ReportOutageViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // METER PING
-        if Environment.sharedInstance.opco == "ComEd" {
+        if Environment.sharedInstance.opco == "ComEd" && viewModel.outageStatus!.meterPingInfo != nil {
             viewModel.meterPingGetPowerStatus(onPowerVerified: { canPerformVoltageCheck in
                 self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
                 self.meterPingPowerStatusLabel.textColor = .darkJungleGreen
@@ -254,8 +256,11 @@ class ReportOutageViewController: UIViewController {
             hud.hide(animated: true)
             self.delegate?.reportOutageViewControllerDidReportOutage(self)
             _ = self.navigationController?.popViewController(animated: true)
-        }) { error in
-            print(error)
+        }) { errorMessage in
+            hud.hide(animated: true)
+            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

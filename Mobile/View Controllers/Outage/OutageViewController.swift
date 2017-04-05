@@ -14,10 +14,12 @@ class OutageViewController: UIViewController {
     
     @IBOutlet weak var gradientBackground: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var scrollViewContent: UIView!
     @IBOutlet weak var accountScroller: AccountScroller!
     @IBOutlet weak var accountContentView: UIView!
     @IBOutlet weak var gasOnlyView: UIView!
+    @IBOutlet weak var accountScrollerActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var outageStatusActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var outerCircleView: UIView!
     @IBOutlet weak var innerCircleView: UIView!
@@ -26,6 +28,8 @@ class OutageViewController: UIViewController {
     @IBOutlet weak var viewOutageMapButton: TableViewCellButton!
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
+    
+    var gradientLayer: CAGradientLayer!
     
     var onAnimationView = LOTAnimationView(name: "outage")!
     var refreshControl: UIRefreshControl!
@@ -37,7 +41,7 @@ class OutageViewController: UIViewController {
         
         self.title = NSLocalizedString("Outage", comment: "")
 
-        let gradientLayer = CAGradientLayer()
+        gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientBackground.bounds
         gradientLayer.colors = [
             UIColor.white.cgColor,
@@ -82,28 +86,34 @@ class OutageViewController: UIViewController {
         gasOnlyTextView.tintColor = .mediumPersianBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
         
-        scrollViewContent.isHidden = true
+        accountScroller.isHidden = true
+        accountContentView.isHidden = true
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
+        accountScrollerActivityIndicator.color = .mediumPersianBlue
+        outageStatusActivityIndicator.color = .mediumPersianBlue
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        viewModel.getAccounts(onSuccess: { accounts in
-            self.accountScroller.setAccounts(accounts)
-            self.viewModel.getOutageStatus(forAccount: self.viewModel.currentAccount!, onSuccess: { outageStatus in
-                self.updateContent()
-                
-                hud.hide(animated: true)
-                self.scrollViewContent.isHidden = false
+        if viewModel.currentAccount == nil {
+            accountScrollerActivityIndicator.isHidden = false
+            viewModel.getAccounts(onSuccess: { accounts in
+                self.accountScrollerActivityIndicator.isHidden = true
+                self.accountScroller.setAccounts(accounts)
+                self.accountScroller.isHidden = false
+                self.getOutageStatus()
             }, onError: { error in
-                hud.hide(animated: true)
-                print("getOutageStatus error = \(error)")
+                print("getAccounts error = \(error)")
+                self.accountScrollerActivityIndicator.isHidden = true
             })
-        }, onError: { error in
-            hud.hide(animated: true)
-            print("getAccounts error = \(error)")
-        })
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        gradientLayer.frame = gradientBackground.frame
     }
     
     func updateContent() {
@@ -111,33 +121,37 @@ class OutageViewController: UIViewController {
         
         let currentOutageStatus = viewModel.currentOutageStatus!
         
+        errorLabel.isHidden = true
+        
         // Show/hide the top level container views
-        gasOnlyView.isHidden = !currentOutageStatus.gasOnly
-        accountContentView.isHidden = currentOutageStatus.gasOnly
+        gasOnlyView.isHidden = !currentOutageStatus.flagGasOnly
+        accountContentView.isHidden = currentOutageStatus.flagGasOnly
         
         // Display either the Lottie animation or draw our own border circles
-        let powerIsOn = !currentOutageStatus.activeOutage && !currentOutageStatus.outageReported && currentOutageStatus.accountPaid && !currentOutageStatus.accountFinaled
+        let powerIsOn = !currentOutageStatus.activeOutage && viewModel.getReportedOutage() == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled
         animationView.isHidden = !powerIsOn
         outerCircleView.isHidden = powerIsOn
         innerCircleView.isHidden = powerIsOn
-        if currentOutageStatus.activeOutage || !currentOutageStatus.accountPaid || currentOutageStatus.accountFinaled {
+        
+        if viewModel.getReportedOutage() == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled) {
             outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1)
             innerCircleView.backgroundColor = .oldLavender
         } else {
-            outerCircleView.backgroundColor = .primaryColorLight
+            outerCircleView.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.7)
             innerCircleView.backgroundColor = .primaryColor
         }
         
         // Update the Report Outage button
-        if currentOutageStatus.outageReported {
+        if viewModel.getReportedOutage() != nil {
             reportOutageButton.setDetailLabel(text: viewModel.getOutageReportedDateString(), checkHidden: false)
         } else {
             reportOutageButton.setDetailLabel(text: "", checkHidden: true)
         }
         
         // Disable bottom buttons if account is finaled or not paid
-        reportOutageButton.isEnabled = currentOutageStatus.accountPaid && !currentOutageStatus.accountFinaled
-        viewOutageMapButton.isEnabled = currentOutageStatus.accountPaid && !currentOutageStatus.accountFinaled
+        let bottomButtonsEnabled = !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled
+        reportOutageButton.isEnabled = bottomButtonsEnabled
+        viewOutageMapButton.isEnabled = bottomButtonsEnabled
     }
     
     func layoutBigButtonContent() {
@@ -148,7 +162,7 @@ class OutageViewController: UIViewController {
         let currentOutageStatus = viewModel.currentOutageStatus!
         let bigButtonWidth = bigButtonView.frame.size.width
         
-        if currentOutageStatus.outageReported {
+        if viewModel.getReportedOutage() != nil {
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 13.5, y: 28, width: 27, height: 29))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
             
@@ -218,11 +232,11 @@ class OutageViewController: UIViewController {
             bigButtonView.addSubview(outLabel)
             bigButtonView.addSubview(estRestorationLabel)
             bigButtonView.addSubview(timeLabel)
-        } else if currentOutageStatus.accountFinaled || !currentOutageStatus.accountPaid {
+        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay {
             let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 14, y: 38, width: bigButtonWidth - 28, height: 120))
             let payBillLabel = UILabel(frame: .zero)
             if Environment.sharedInstance.opco != "BGE" {
-                if currentOutageStatus.accountFinaled {
+                if currentOutageStatus.flagFinaled {
                     nonPayFinaledTextView.frame = CGRect(x: 14, y: 68, width: bigButtonWidth - 28, height: 84)
                 } else { // accountPaid = false
                     payBillLabel.frame = CGRect(x: 23, y: 150, width: bigButtonWidth - 46, height: 19)
@@ -264,17 +278,32 @@ class OutageViewController: UIViewController {
         }
     }
     
+    func getOutageStatus() {
+        accountContentView.isHidden = true
+        gasOnlyView.isHidden = true
+        errorLabel.isHidden = true
+        outageStatusActivityIndicator.isHidden = false
+        
+        viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { _ in
+            self.outageStatusActivityIndicator.isHidden = true
+            self.updateContent()
+        }, onError: { error in
+            self.outageStatusActivityIndicator.isHidden = true
+            self.errorLabel.text = error
+            self.errorLabel.isHidden = false
+        })
+    }
+    
     // MARK: - Actions
     
     func onBigButtonTap() {
-        if !viewModel.currentOutageStatus!.accountPaid && Environment.sharedInstance.opco != "BGE"  {
+        if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != "BGE"  {
             // TEMPORARILY DISABLED
             //tabBarController?.selectedIndex = 1 // Jump to Bill tab
         } else {
-            let title = viewModel.currentOutageStatus!.outageMessageTitle
-            let message = viewModel.currentOutageStatus!.outageMessage
-            if title.characters.count > 0 && message.characters.count > 0 {
-                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let message = viewModel.currentOutageStatus!.outageDescription
+            if message.characters.count > 0 {
+                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
             }
@@ -283,12 +312,12 @@ class OutageViewController: UIViewController {
     
     func onPullToRefresh() {
         viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-                self.updateContent()
-                self.refreshControl.endRefreshing()
-            }
+            self.refreshControl.endRefreshing()
+            self.updateContent()
         }, onError: { error in
-            print("getOutageStatus error = \(error)")
+            self.refreshControl.endRefreshing()
+            self.errorLabel.text = error
+            self.errorLabel.isHidden = false
         })
     }
     
@@ -306,7 +335,8 @@ class OutageViewController: UIViewController {
         if segue.destination.isKind(of: ReportOutageViewController.self) {
             let vc = segue.destination as! ReportOutageViewController
             vc.viewModel.account = viewModel.currentAccount!
-            vc.viewModel.phoneNumber.value = viewModel.currentAccount!.homeContactNumber
+            vc.viewModel.outageStatus = viewModel.currentOutageStatus!
+            vc.viewModel.phoneNumber.value = viewModel.currentOutageStatus!.contactHomeNumber
             vc.delegate = self
         }
     }
@@ -317,11 +347,8 @@ extension OutageViewController: AccountScrollerDelegate {
     
     func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account) {
         viewModel.currentAccount = account
-        viewModel.getOutageStatus(forAccount: account, onSuccess: { outageStatus in
-            self.updateContent()
-        }, onError: { error in
-            print("getOutageStatus error = \(error)")
-        })
+        
+        getOutageStatus()
     }
     
 }
@@ -329,13 +356,9 @@ extension OutageViewController: AccountScrollerDelegate {
 extension OutageViewController: ReportOutageViewControllerDelegate {
     
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
-        viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
-            self.updateContent()
-        }, onError: { error in
-            print("getOutageStatus error = \(error)")
-        })
+        self.updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString("Your outage report has been received.", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 89))
+            self.view.makeToast(NSLocalizedString("Your outage report has been received.", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
     

@@ -18,12 +18,13 @@ protocol ChangePasswordViewControllerDelegate: class {
 class ChangePasswordViewController: UIViewController {
     
     weak var delegate: ChangePasswordViewControllerDelegate?
-
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var currentPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var newPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
     
+    @IBOutlet weak var expandingPasswordStrengthContainerView: UIView!
     @IBOutlet weak var passwordStrengthMeterView: PasswordStrengthMeterView!
     @IBOutlet weak var passwordStrengthLabel: UILabel!
     
@@ -53,12 +54,13 @@ class ChangePasswordViewController: UIViewController {
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDonePress))
         navigationItem.leftBarButtonItem = cancelButton!
         navigationItem.rightBarButtonItem = doneButton!
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         setupValidation()
-
+        
+        expandingPasswordStrengthContainerView.isHidden = true
         passwordRequirementsViewHeightConstraint.constant = 0
         confirmPasswordHeightConstraint.constant = 0
         
@@ -94,6 +96,7 @@ class ChangePasswordViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         
         newPasswordTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+            self.expandingPasswordStrengthContainerView.isHidden = false
             self.view.layoutIfNeeded()
             UIView.animate(withDuration: 0.5, animations: {
                 self.passwordRequirementsViewHeightConstraint.constant = 254
@@ -118,6 +121,8 @@ class ChangePasswordViewController: UIViewController {
                 self.passwordRequirementsViewHeightConstraint.constant = 0
                 self.confirmPasswordHeightConstraint.constant = 0
                 self.view.layoutIfNeeded()
+            }, completion: { _ in
+                self.expandingPasswordStrengthContainerView.isHidden = true
             })
         }).addDisposableTo(disposeBag)
     }
@@ -194,11 +199,6 @@ class ChangePasswordViewController: UIViewController {
     func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-//        var tabBarHeight: CGFloat = 0
-//        if let tabController = tabBarController {
-//            tabBarHeight = tabController.tabBar.frame.size.height
-//        }
         
         let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
         scrollView.contentInset = insets
