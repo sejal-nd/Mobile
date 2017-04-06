@@ -301,8 +301,7 @@ class OutageViewController: UIViewController {
             // TEMPORARILY DISABLED
             //tabBarController?.selectedIndex = 1 // Jump to Bill tab
         } else {
-            let message = viewModel.currentOutageStatus!.outageDescription
-            if message.characters.count > 0 {
+            if let message = viewModel.currentOutageStatus!.outageDescription {
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
@@ -336,7 +335,9 @@ class OutageViewController: UIViewController {
             let vc = segue.destination as! ReportOutageViewController
             vc.viewModel.account = viewModel.currentAccount!
             vc.viewModel.outageStatus = viewModel.currentOutageStatus!
-            vc.viewModel.phoneNumber.value = viewModel.currentOutageStatus!.contactHomeNumber
+            if let phone = viewModel.currentOutageStatus!.contactHomeNumber {
+                vc.viewModel.phoneNumber.value = phone
+            }
             vc.delegate = self
         }
     }
