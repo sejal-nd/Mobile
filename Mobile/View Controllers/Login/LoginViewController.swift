@@ -25,9 +25,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
     @IBOutlet weak var passwordTextField: FloatLabelTextField!
     @IBOutlet weak var keepMeSignedInSwitch: Switch!
-    @IBOutlet weak var signInButton: PrimaryButton!
-    @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var keepMeSignedInLabel: UILabel!
+    @IBOutlet weak var signInButton: PrimaryButton!
+    @IBOutlet weak var forgotUsernameButton: UIButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     var passwordAutofilledFromTouchID = false
@@ -56,7 +57,6 @@ class LoginViewController: UIViewController {
         loginFormView.layer.cornerRadius = 2
         
         keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
-        forgotPasswordButton.setTitle(NSLocalizedString("Forgot password or username?", comment: ""), for: .normal)
         
         usernameTextField.textField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
         usernameTextField.textField.autocorrectionType = .no
@@ -95,6 +95,7 @@ class LoginViewController: UIViewController {
             self.onLoginPress()
         }).addDisposableTo(disposeBag)
         
+        forgotUsernameButton.tintColor = UIColor.mediumPersianBlue
         forgotPasswordButton.tintColor = UIColor.mediumPersianBlue
     }
     
@@ -183,6 +184,14 @@ class LoginViewController: UIViewController {
             self.navigationController?.view.isUserInteractionEnabled = true
             self.showErrorAlertWithMessage(errorMessage)
         })
+    }
+    
+    @IBAction func onForgotUsernamePress() {
+        print("forgot username")
+    }
+    
+    @IBAction func onForgotPasswordPress() {
+        print("forgot password")
     }
     
     func launchMainApp() {
