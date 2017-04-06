@@ -389,6 +389,12 @@
 		E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
 		E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
 		E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
+		E8B674CE1E96E7D700BB0788 /* ForgotUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B674CD1E96E7D700BB0788 /* ForgotUsername.storyboard */; };
+		E8B674CF1E96E7D700BB0788 /* ForgotUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B674CD1E96E7D700BB0788 /* ForgotUsername.storyboard */; };
+		E8B674D11E96E7EF00BB0788 /* ForgotUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B674D01E96E7EF00BB0788 /* ForgotUsername.storyboard */; };
+		E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
+		E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
+		E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
 		E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */; };
 		E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
 		E8D2520C1E6DB74600C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
@@ -735,6 +741,9 @@
 		E8B4F4C91E5CE1BA0031D934 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		E8B4F4CE1E5CE21D0031D934 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		E8B674CD1E96E7D700BB0788 /* ForgotUsername.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgotUsername.storyboard; sourceTree = "<group>"; };
+		E8B674D01E96E7EF00BB0788 /* ForgotUsername.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgotUsername.storyboard; sourceTree = "<group>"; };
+		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
 		E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8D2520B1E6DB74600C90584 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
@@ -899,7 +908,9 @@
 		8FD3C2671E525023005FB1BB /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				E8B674CC1E96E79300BB0788 /* BGE */,
 				8FD5AE8F1E54EA53003F640D /* Login.storyboard */,
+				E8B674CD1E96E7D700BB0788 /* ForgotUsername.storyboard */,
 				8FD3C2681E5250AF005FB1BB /* Main.storyboard */,
 				E8B4F4AE1E5C957A0031D934 /* More.storyboard */,
 				E8B4F4B21E5C99380031D934 /* Alerts.storyboard */,
@@ -945,6 +956,7 @@
 				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
 				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
 				8FD5AE851E54EA49003F640D /* LoginViewController.swift */,
+				E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1413,6 +1425,14 @@
 			path = A0SimpleKeychain;
 			sourceTree = "<group>";
 		};
+		E8B674CC1E96E79300BB0788 /* BGE */ = {
+			isa = PBXGroup;
+			children = (
+				E8B674D01E96E7EF00BB0788 /* ForgotUsername.storyboard */,
+			);
+			path = BGE;
+			sourceTree = "<group>";
+		};
 		E8EB4D111E784369002587C5 /* TableViewCellButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1690,6 +1710,7 @@
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
+				E8B674D11E96E7EF00BB0788 /* ForgotUsername.storyboard in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
 				E8EB4D171E7843A1002587C5 /* TableViewCellButton.xib in Resources */,
@@ -1732,6 +1753,7 @@
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
+				E8B674CF1E96E7D700BB0788 /* ForgotUsername.storyboard in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736471E6742A6003B9369 /* OMC.plist in Resources */,
 				E8EB4D191E7843A1002587C5 /* TableViewCellButton.xib in Resources */,
@@ -1774,6 +1796,7 @@
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE951E54EA5E003F640D /* Cartfile in Resources */,
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
+				E8B674CE1E96E7D700BB0788 /* ForgotUsername.storyboard in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
 				E8EB4D181E7843A1002587C5 /* TableViewCellButton.xib in Resources */,
@@ -1997,6 +2020,7 @@
 				B574BAD41E736596001E8A44 /* Macros.swift in Sources */,
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
+				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				E80D2E331E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BAD91E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
@@ -2062,6 +2086,7 @@
 				B574BAD61E736596001E8A44 /* Macros.swift in Sources */,
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
+				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				E80D2E351E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
@@ -2127,6 +2152,7 @@
 				B574BAD51E736596001E8A44 /* Macros.swift in Sources */,
 				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
+				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				E80D2E341E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADA1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
