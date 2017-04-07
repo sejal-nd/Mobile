@@ -10,6 +10,8 @@ import UIKit
 
 class MoreSplitViewController: UISplitViewController {
     
+    var currentStatusBarStyle = UIStatusBarStyle.default
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -27,6 +29,14 @@ class MoreSplitViewController: UISplitViewController {
         preferredDisplayMode = .allVisible // Always show master pane on iPad (even in portrait)
         
         view.backgroundColor = .white
+    }
+    
+    func setStatusBarStyle(style: UIStatusBarStyle) {
+        currentStatusBarStyle = style
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return currentStatusBarStyle
     }
 
 }
