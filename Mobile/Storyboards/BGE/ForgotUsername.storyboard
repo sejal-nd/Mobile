@@ -104,18 +104,108 @@
                             <constraint firstAttribute="trailing" secondItem="B7G-x8-vNN" secondAttribute="trailing" id="Djg-u0-QPj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Forgot Username" id="sGi-wX-cFv"/>
+                    <navigationItem key="navigationItem" title="Forgot Username" id="sGi-wX-cFv">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="0ig-iR-O92"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="identifierDescriptionLabel" destination="7c8-HK-vqK" id="dlA-dq-Qlw"/>
                         <outlet property="identifierTextField" destination="dd5-CL-MPi" id="z9L-DH-GAr"/>
                         <outlet property="instructionLabel" destination="3ew-TX-nfK" id="tVS-bn-gyK"/>
                         <outlet property="phoneNumberTextField" destination="UzE-jx-xpW" id="jNj-k1-gUw"/>
+                        <outlet property="scrollView" destination="B7G-x8-vNN" id="8rc-py-s71"/>
+                        <segue destination="UFO-SD-coP" kind="show" identifier="BGEAccountNumberSegue" id="yXV-ZR-tJP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZf-BB-pmC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="232.80000000000001" y="-0.44977511244377816"/>
         </scene>
+        <!--Account Number View Controller-->
+        <scene sceneID="eA6-Z9-L6G">
+            <objects>
+                <viewController id="UFO-SD-coP" customClass="BGEAccountNumberViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nUv-cq-lBG"/>
+                        <viewControllerLayoutGuide type="bottom" id="HlP-zL-kja"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Qt-0T-0SQ">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nwj-QO-wzO" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8CP-V1-isD" userLabel="Tablet View">
+                                        <rect key="frame" x="29" y="0.0" width="317" height="269"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The information entered is associated with" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scs-uG-dZL">
+                                                <rect key="frame" x="0.0" y="30" width="317" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDk-5e-cP3" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="73.5" width="317" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="z0E-lQ-FLE"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0eL-xX-ybi">
+                                                <rect key="frame" x="266" y="78" width="51" height="51"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="51" id="CxX-RX-dhv"/>
+                                                    <constraint firstAttribute="width" constant="51" id="xtt-Ut-tid"/>
+                                                </constraints>
+                                                <state key="normal" image="ic_question"/>
+                                                <connections>
+                                                    <action selector="onAccountNumberTooltipPress" destination="UFO-SD-coP" eventType="touchUpInside" id="9hp-vN-W0G"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="scs-uG-dZL" firstAttribute="leading" secondItem="8CP-V1-isD" secondAttribute="leading" id="ANB-Gb-lXi"/>
+                                            <constraint firstAttribute="height" constant="269" id="Dhf-Eo-QiX"/>
+                                            <constraint firstAttribute="trailing" secondItem="scs-uG-dZL" secondAttribute="trailing" id="Ezj-1Z-jlr"/>
+                                            <constraint firstItem="0eL-xX-ybi" firstAttribute="centerY" secondItem="UDk-5e-cP3" secondAttribute="centerY" id="FEe-X8-Xqh"/>
+                                            <constraint firstItem="0eL-xX-ybi" firstAttribute="trailing" secondItem="UDk-5e-cP3" secondAttribute="trailing" id="Fg0-KJ-gMC"/>
+                                            <constraint firstAttribute="trailing" secondItem="UDk-5e-cP3" secondAttribute="trailing" id="JdB-07-jDU"/>
+                                            <constraint firstItem="UDk-5e-cP3" firstAttribute="leading" secondItem="8CP-V1-isD" secondAttribute="leading" id="d8X-z5-fB3"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="fOO-IU-WTm"/>
+                                            <constraint firstItem="scs-uG-dZL" firstAttribute="top" secondItem="8CP-V1-isD" secondAttribute="top" constant="30" id="jfo-Us-xhx"/>
+                                            <constraint firstItem="UDk-5e-cP3" firstAttribute="top" secondItem="scs-uG-dZL" secondAttribute="bottom" constant="24" id="xQs-kw-4x1"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="8CP-V1-isD" firstAttribute="top" secondItem="Nwj-QO-wzO" secondAttribute="top" id="9fm-hs-JXp"/>
+                                    <constraint firstItem="8CP-V1-isD" firstAttribute="leading" secondItem="Nwj-QO-wzO" secondAttribute="leading" constant="29" id="Vty-01-30y"/>
+                                    <constraint firstAttribute="trailing" secondItem="8CP-V1-isD" secondAttribute="trailing" constant="29" id="hfa-pS-1mM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Nwj-QO-wzO" secondAttribute="trailing" id="1Kw-Oc-Z7I"/>
+                            <constraint firstItem="Nwj-QO-wzO" firstAttribute="top" secondItem="nUv-cq-lBG" secondAttribute="bottom" id="AHi-PA-PIk"/>
+                            <constraint firstItem="HlP-zL-kja" firstAttribute="top" secondItem="Nwj-QO-wzO" secondAttribute="bottom" id="Ntq-Or-Whe"/>
+                            <constraint firstItem="Nwj-QO-wzO" firstAttribute="leading" secondItem="9Qt-0T-0SQ" secondAttribute="leading" id="t4X-GQ-jyD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="accountNumberTextField" destination="UDk-5e-cP3" id="yga-bR-t4a"/>
+                        <outlet property="instructionLabel" destination="scs-uG-dZL" id="X5j-4N-rf3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="50Z-jS-VuG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1062" y="0.0"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="ic_question" width="17" height="17"/>
+    </resources>
 </document>

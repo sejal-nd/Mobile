@@ -50,6 +50,17 @@
                                                             <constraint firstAttribute="height" constant="60" id="tNJ-8F-NGq"/>
                                                         </constraints>
                                                     </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67u-2h-bm7">
+                                                        <rect key="frame" x="257" y="163.5" width="60" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="60" id="iau-ii-X5o"/>
+                                                            <constraint firstAttribute="height" constant="60" id="yFM-Zb-4m5"/>
+                                                        </constraints>
+                                                        <state key="normal" image="ic_question"/>
+                                                        <connections>
+                                                            <action selector="onAccountNumberTooltipPress" destination="yJq-Kc-a1K" eventType="touchUpInside" id="EWH-yZ-Wza"/>
+                                                        </connections>
+                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQ7-Ds-TVZ">
                                                         <rect key="frame" x="136" y="238" width="181" height="30"/>
                                                         <constraints>
@@ -57,6 +68,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                         <state key="normal" title="Account Lookup Tool"/>
+                                                        <connections>
+                                                            <action selector="onAccountLookupToolPress" destination="yJq-Kc-a1K" eventType="touchUpInside" id="fIe-fx-M6Y"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,8 +81,10 @@
                                                     <constraint firstItem="CQ7-Ds-TVZ" firstAttribute="top" secondItem="fds-Vh-Ozp" secondAttribute="bottom" constant="14" id="HGc-el-lfE"/>
                                                     <constraint firstAttribute="trailing" secondItem="fds-Vh-Ozp" secondAttribute="trailing" id="Ime-NL-OnZ"/>
                                                     <constraint firstItem="Sbq-eT-FmB" firstAttribute="top" secondItem="Foj-gQ-BBL" secondAttribute="top" constant="30" id="JTJ-q6-dBM"/>
+                                                    <constraint firstItem="67u-2h-bm7" firstAttribute="centerY" secondItem="fds-Vh-Ozp" secondAttribute="centerY" id="Q0F-uT-lIn"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="S2Y-bd-h5E"/>
                                                     <constraint firstAttribute="trailing" secondItem="CQ7-Ds-TVZ" secondAttribute="trailing" id="Vaz-uS-YAi"/>
+                                                    <constraint firstItem="67u-2h-bm7" firstAttribute="trailing" secondItem="fds-Vh-Ozp" secondAttribute="trailing" id="Zur-tB-dOx"/>
                                                     <constraint firstAttribute="trailing" secondItem="Sbq-eT-FmB" secondAttribute="trailing" id="gCY-KY-8sC"/>
                                                     <constraint firstItem="Sbq-eT-FmB" firstAttribute="leading" secondItem="Foj-gQ-BBL" secondAttribute="leading" id="p9P-z6-Iz5"/>
                                                     <constraint firstAttribute="height" constant="269" id="t64-CD-HMV"/>
@@ -112,6 +128,7 @@
                         <outlet property="accountNumberTextField" destination="fds-Vh-Ozp" id="gyO-uk-dTk"/>
                         <outlet property="instructionLabel" destination="Sbq-eT-FmB" id="HG4-Ev-Ea1"/>
                         <outlet property="phoneNumberTextField" destination="roy-7M-IX5" id="jPT-ss-wa2"/>
+                        <outlet property="scrollView" destination="zSy-8g-cHV" id="zIv-uz-2l9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7XD-lF-yU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -119,4 +136,7 @@
             <point key="canvasLocation" x="232.80000000000001" y="-0.44977511244377816"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_question" width="17" height="17"/>
+    </resources>
 </document>
