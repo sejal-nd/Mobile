@@ -8,6 +8,7 @@
 
 import UIKit
 import HockeySDK
+import ToastSwiftFramework
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         setupUserDefaults()
+        setupToastStyles()
         //printFonts()
         
         return true
@@ -69,6 +71,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.register(defaults: [
             UserDefaultKeys.ShouldPromptToEnableTouchID: true
         ])
+    }
+    
+    func setupToastStyles() {
+        var globalStyle = ToastStyle()
+        globalStyle.backgroundColor = UIColor.outerSpace.withAlphaComponent(0.8)
+        globalStyle.cornerRadius = 17
+        globalStyle.messageAlignment = .center
+        ToastManager.shared.style = globalStyle
+        ToastManager.shared.duration = 3.0
     }
     
     func printFonts() {
