@@ -23,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kQ-pZ-jhs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-354" y="90"/>
+            <point key="canvasLocation" x="28" y="90"/>
         </scene>
         <!--Landing View Controller-->
         <scene sceneID="LmY-Jb-a4W">
@@ -138,12 +138,12 @@
                         <outlet property="registerButton" destination="Mtv-0B-6Rn" id="niA-n6-3Nw"/>
                         <outlet property="signInButton" destination="oHs-4V-Y7S" id="S4e-LI-eWW"/>
                         <outlet property="skipForNowButon" destination="SSH-Ni-ZZW" id="woe-oi-sop"/>
-                        <segue destination="Sli-Tt-vCb" kind="presentation" identifier="termsPoliciesModalSegue" id="CiC-oU-f3I"/>
+                        <segue destination="Sli-Tt-vCb" kind="show" identifier="termsPoliciesModalSegue" id="CiC-oU-f3I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upp-SQ-sws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="624.79999999999995" y="90.404797601199405"/>
+            <point key="canvasLocation" x="859" y="90"/>
         </scene>
         <!--Terms and Policies-->
         <scene sceneID="uIe-sJ-gHd">
@@ -224,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuu-u2-aL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="625" y="1771"/>
+            <point key="canvasLocation" x="858" y="1602"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="PsW-YN-t0v">
@@ -425,11 +425,62 @@
                         <outlet property="scrollView" destination="876-Ds-EGF" id="odj-at-Uqx"/>
                         <outlet property="signInButton" destination="K0X-bw-geb" id="SHf-3j-jsZ"/>
                         <outlet property="usernameTextField" destination="vZj-Ib-Qvv" id="g3Q-tv-LO3"/>
+                        <segue destination="QgC-yo-Y9S" kind="show" identifier="forgotPasswordSegue" id="uZk-z4-FlT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YmP-vJ-xfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1534.7826086956522" y="89.673913043478265"/>
+            <point key="canvasLocation" x="1722" y="90"/>
+        </scene>
+        <!--Forgot Password-->
+        <scene sceneID="wts-se-pTN">
+            <objects>
+                <viewController id="QgC-yo-Y9S" customClass="ForgotPasswordViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GWP-04-89w"/>
+                        <viewControllerLayoutGuide type="bottom" id="4JZ-gV-5Kl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4RO-DX-ZPx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your blah blah blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uva-Q7-VQ7">
+                                <rect key="frame" x="28" y="94" width="358" height="19.333333333333329"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="X4i-lP-tCk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZp-0Y-Qko" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="28" y="128.33333333333334" width="358" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="6BU-lv-njB"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="tZx-gG-k34"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DZp-0Y-Qko" secondAttribute="trailing" priority="999" constant="28" id="27f-x0-lAw"/>
+                            <constraint firstAttribute="trailing" secondItem="uva-Q7-VQ7" secondAttribute="trailing" priority="999" constant="28" id="HRW-eY-0SI"/>
+                            <constraint firstItem="DZp-0Y-Qko" firstAttribute="leading" secondItem="4RO-DX-ZPx" secondAttribute="leading" priority="999" constant="28" id="QgL-ih-qAM"/>
+                            <constraint firstItem="DZp-0Y-Qko" firstAttribute="top" secondItem="uva-Q7-VQ7" secondAttribute="bottom" constant="15" id="bbg-Je-Wxc"/>
+                            <constraint firstItem="uva-Q7-VQ7" firstAttribute="leading" secondItem="4RO-DX-ZPx" secondAttribute="leading" priority="999" constant="28" id="k29-Ik-GMb"/>
+                            <constraint firstItem="uva-Q7-VQ7" firstAttribute="top" secondItem="GWP-04-89w" secondAttribute="bottom" constant="30" id="nC3-QD-uVm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Forgot Password" id="X2f-hj-7XN"/>
+                    <connections>
+                        <outlet property="instructionLabel" destination="uva-Q7-VQ7" id="7eu-SF-c8y"/>
+                        <outlet property="usernameTextField" destination="DZp-0Y-Qko" id="gBh-aK-Ypa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ukF-Ys-QTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2582.608695652174" y="89.673913043478265"/>
         </scene>
         <!--Main Base Navigation Controller-->
         <scene sceneID="d2e-hw-Oo9">
@@ -447,7 +498,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpu-w7-s7o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="625" y="892"/>
+            <point key="canvasLocation" x="858" y="843"/>
         </scene>
     </scenes>
     <resources>

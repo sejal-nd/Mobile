@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ToastSwiftFramework
 
 // PECO:
 // User_0005084051@test.com / Password1
@@ -40,12 +41,6 @@ class LoginViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        
-        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.tintColor = .white
         
         view.backgroundColor = .primaryColor
         
@@ -106,6 +101,15 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = true
+        
+        setNeedsStatusBarAppearanceUpdate()
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -191,7 +195,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotPasswordPress() {
-        print("forgot password")
+        performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
     }
     
     func launchMainApp() {
@@ -235,6 +239,15 @@ class LoginViewController: UIViewController {
         return a + (b - a) * t;
     }
     
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.isKind(of: ForgotPasswordViewController.self) {
+            let vc = segue.destination as! ForgotPasswordViewController
+            vc.delegate = self
+        }
+    }
+    
 }
 
 extension LoginViewController: UIScrollViewDelegate {
@@ -243,4 +256,17 @@ extension LoginViewController: UIScrollViewDelegate {
         opcoLogo.alpha = lerp(1, 0, scrollView.contentOffset.y / 50.0)
     }
     
+}
+
+extension LoginViewController: ForgotPasswordViewControllerDelegate {
+    
+    func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            var toastStyle = ToastManager.shared.style
+            toastStyle.verticalPadding = 10
+            toastStyle.horizontalPadding = 44
+            toastStyle.cornerRadius = 30
+            self.view.makeToast(NSLocalizedString("An email has been sent with a\ntemporary password", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50), style: toastStyle)
+        })
+    }
 }
