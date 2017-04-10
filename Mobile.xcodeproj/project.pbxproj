@@ -389,6 +389,13 @@
 		E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
 		E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
 		E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
+		E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
+		E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
+		E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
+		E8B674C81E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
+		E8B674C91E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
+		E8B674CA1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
+		E8B674CB1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
 		E8B674CE1E96E7D700BB0788 /* ForgotUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B674CD1E96E7D700BB0788 /* ForgotUsername.storyboard */; };
 		E8B674CF1E96E7D700BB0788 /* ForgotUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B674CD1E96E7D700BB0788 /* ForgotUsername.storyboard */; };
 		E8B674D11E96E7EF00BB0788 /* ForgotUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B674D01E96E7EF00BB0788 /* ForgotUsername.storyboard */; };
@@ -399,17 +406,12 @@
 		E8B674D81E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
 		E8B674D91E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
 		E8B674DA1E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
-		E8B674DC1E981B1300BB0788 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
-		E8B674DD1E981B1300BB0788 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
-		E8B674E01E98284700BB0788 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
-		E8B674E11E98284700BB0788 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
-		E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
-		E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
-		E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
-		E8B674C81E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
-		E8B674C91E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
-		E8B674CA1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
-		E8B674CB1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
+		E8CA07DA1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
+		E8CA07DB1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
+		E8CA07DC1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
+		E8CA07DD1E9BD0FF00A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
+		E8CA07DE1E9BD10000A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
+		E8CA07DF1E9BD10100A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
 		E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */; };
 		E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
 		E8D2520C1E6DB74600C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
@@ -756,13 +758,14 @@
 		E8B4F4C91E5CE1BA0031D934 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		E8B4F4CE1E5CE21D0031D934 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		E8B674CD1E96E7D700BB0788 /* ForgotUsername.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgotUsername.storyboard; sourceTree = "<group>"; };
 		E8B674D01E96E7EF00BB0788 /* ForgotUsername.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgotUsername.storyboard; sourceTree = "<group>"; };
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
 		E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModel.swift; sourceTree = "<group>"; };
 		E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAccountNumberViewController.swift; sourceTree = "<group>"; };
-		E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
-		E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountNumberTooltipViewController.swift; sourceTree = "<group>"; };
 		E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8D2520B1E6DB74600C90584 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
@@ -978,6 +981,7 @@
 				E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */,
 				E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */,
 				E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */,
+				E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2013,7 +2017,6 @@
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
-				E8B674DC1E981B1300BB0788 /* BGEAccountNumberViewController.swift in Sources */,
 				E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
@@ -2031,6 +2034,8 @@
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E80043011E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E8CA07DD1E9BD0FF00A1D431 /* BGEAccountNumberViewController.swift in Sources */,
+				E8CA07DA1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E8EB4D131E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A11E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
@@ -2083,7 +2088,6 @@
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
-				E8B674E11E98284700BB0788 /* BGEAccountNumberViewController.swift in Sources */,
 				E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
@@ -2101,6 +2105,8 @@
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E80043031E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E8CA07DF1E9BD10100A1D431 /* BGEAccountNumberViewController.swift in Sources */,
+				E8CA07DC1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E8EB4D151E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A31E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
@@ -2153,7 +2159,6 @@
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
-				E8B674E01E98284700BB0788 /* BGEAccountNumberViewController.swift in Sources */,
 				E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
@@ -2171,6 +2176,8 @@
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E80043021E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E8CA07DE1E9BD10000A1D431 /* BGEAccountNumberViewController.swift in Sources */,
+				E8CA07DB1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E8EB4D141E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A21E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
@@ -2210,7 +2217,6 @@
 				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
 				E801285E1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
-				E8B674DD1E981B1300BB0788 /* BGEAccountNumberViewController.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
@@ -2523,6 +2529,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.bge.develop;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2538,6 +2545,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.bge.release;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2618,6 +2626,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.bge.automation;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2699,6 +2708,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.comed.exelon.bge;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2779,6 +2789,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.bge.testing;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
