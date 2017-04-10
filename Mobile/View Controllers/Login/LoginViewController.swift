@@ -191,8 +191,11 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePress() {
-        let forgotUsernameVC = UIStoryboard(name: "ForgotUsername", bundle: nil).instantiateInitialViewController()
-        self.navigationController?.pushViewController(forgotUsernameVC!, animated: true)
+        if Environment.sharedInstance.opco == "BGE" {
+            performSegue(withIdentifier: "forgotUsernameSegueBGE", sender: self)
+        } else {
+            performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
+        }
     }
     
     @IBAction func onForgotPasswordPress() {

@@ -396,9 +396,6 @@
 		E8B674C91E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
 		E8B674CA1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
 		E8B674CB1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
-		E8B674CE1E96E7D700BB0788 /* ForgotUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B674CD1E96E7D700BB0788 /* ForgotUsername.storyboard */; };
-		E8B674CF1E96E7D700BB0788 /* ForgotUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B674CD1E96E7D700BB0788 /* ForgotUsername.storyboard */; };
-		E8B674D11E96E7EF00BB0788 /* ForgotUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B674D01E96E7EF00BB0788 /* ForgotUsername.storyboard */; };
 		E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
 		E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
 		E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
@@ -760,8 +757,6 @@
 		E8B4F4CE1E5CE21D0031D934 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
-		E8B674CD1E96E7D700BB0788 /* ForgotUsername.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgotUsername.storyboard; sourceTree = "<group>"; };
-		E8B674D01E96E7EF00BB0788 /* ForgotUsername.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgotUsername.storyboard; sourceTree = "<group>"; };
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
 		E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModel.swift; sourceTree = "<group>"; };
 		E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAccountNumberViewController.swift; sourceTree = "<group>"; };
@@ -930,9 +925,7 @@
 		8FD3C2671E525023005FB1BB /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				E8B674CC1E96E79300BB0788 /* BGE */,
 				8FD5AE8F1E54EA53003F640D /* Login.storyboard */,
-				E8B674CD1E96E7D700BB0788 /* ForgotUsername.storyboard */,
 				8FD3C2681E5250AF005FB1BB /* Main.storyboard */,
 				E8B4F4AE1E5C957A0031D934 /* More.storyboard */,
 				E8B4F4B21E5C99380031D934 /* Alerts.storyboard */,
@@ -1450,14 +1443,6 @@
 			path = A0SimpleKeychain;
 			sourceTree = "<group>";
 		};
-		E8B674CC1E96E79300BB0788 /* BGE */ = {
-			isa = PBXGroup;
-			children = (
-				E8B674D01E96E7EF00BB0788 /* ForgotUsername.storyboard */,
-			);
-			path = BGE;
-			sourceTree = "<group>";
-		};
 		E8EB4D111E784369002587C5 /* TableViewCellButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1737,7 +1722,6 @@
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
-				E8B674D11E96E7EF00BB0788 /* ForgotUsername.storyboard in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
 				E8EB4D171E7843A1002587C5 /* TableViewCellButton.xib in Resources */,
@@ -1780,7 +1764,6 @@
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
-				E8B674CF1E96E7D700BB0788 /* ForgotUsername.storyboard in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736471E6742A6003B9369 /* OMC.plist in Resources */,
 				E8EB4D191E7843A1002587C5 /* TableViewCellButton.xib in Resources */,
@@ -1823,7 +1806,6 @@
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE951E54EA5E003F640D /* Cartfile in Resources */,
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
-				E8B674CE1E96E7D700BB0788 /* ForgotUsername.storyboard in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
 				E8EB4D181E7843A1002587C5 /* TableViewCellButton.xib in Resources */,

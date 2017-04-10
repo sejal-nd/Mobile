@@ -124,7 +124,7 @@ class ForgotUsernameViewController: UIViewController {
         viewModel.validateAccount(onSuccess: { 
             print("success")
         }, onNeedAccountNumber: {
-            self.performSegue(withIdentifier: "BGEAccountNumberSegue", sender: self)
+            self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { errorMessage in
             let alertController = UIAlertController(title: NSLocalizedString("Invalid Information", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
