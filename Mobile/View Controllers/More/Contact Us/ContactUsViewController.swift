@@ -12,25 +12,40 @@ class ContactUsViewController: UIViewController {
 
     @IBOutlet weak var emergencyNumberTextView: DataDetectorTextView!
     @IBOutlet weak var residentialNumberTextView: DataDetectorTextView!
-    @IBOutlet weak var businessNumberTextView: DataDetectorTextView!
-    @IBOutlet weak var ttyttdNumberTextView: DataDetectorTextView!
-    
+    @IBOutlet weak var businessNumberTextView: DataDetectorTextView?
+    @IBOutlet weak var ttyttdNumberTextView: DataDetectorTextView?
+    @IBOutlet weak var emergencyDescriptionTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .primaryColor
+        
+        
+//        let text = NSLocalizedString("If you see downed power lines or smell natural gas, leave the area immediately and then call BGE. Representatives are available 24 hours a day, 7 days a week.", comment: "")
+//        let attrString = NSMutableAttributedString(string: text as String)
+//        let range = NSMakeRange(52, 26)
+//        attrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: range)
+        let contactUsViewModel = ContactUsViewModel()
+        emergencyDescriptionTextView.attributedText = contactUsViewModel.makeAttributedString()
+        
         emergencyNumberTextView.textContainerInset = .zero
         emergencyNumberTextView.tintColor = .mediumPersianBlue // Color of the phone numbers
         residentialNumberTextView.textContainerInset = .zero
         residentialNumberTextView.tintColor = .mediumPersianBlue // Color of the phone numbers
-        businessNumberTextView.textContainerInset = .zero
-        businessNumberTextView.tintColor = .mediumPersianBlue // Color of the phone numbers
-        ttyttdNumberTextView.textContainerInset = .zero
-        ttyttdNumberTextView.tintColor = .mediumPersianBlue // Color of the phone numbers
+        businessNumberTextView?.textContainerInset = .zero
+        businessNumberTextView?.tintColor = .mediumPersianBlue // Color of the phone numbers
+        ttyttdNumberTextView?.textContainerInset = .zero
+        ttyttdNumberTextView?.tintColor = .mediumPersianBlue // Color of the phone numbers
         title = "Contact Us"
         
         extendedLayoutIncludesOpaqueBars = true
-        
-        // Do any additional setup after loading the view.
+    }
+    
+    func boldText(text: NSMutableAttributedString) -> NSMutableAttributedString {
+        let range = NSMakeRange(0, text.length)
+        text.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: range)
+        return text
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,6 +110,14 @@ class ContactUsViewController: UIViewController {
     
     @IBAction func flickrButtonTapped(_ sender: UIButton) {
         UIApplication.shared.openURL(NSURL(string: "https://www.flickr.com/photos/commonwealthedison")! as URL)
+    }
+    
+    @IBAction func pinterestButtonTapped(_ sender: UIButton) {
+        UIApplication.shared.openURL(NSURL(string: "https://www.pinterest.com/comedil/")! as URL)
+    }
+    
+    @IBAction func instagramButtonTapped(_ sender: UIButton) {
+        UIApplication.shared.openURL(NSURL(string: "https://www.instagram.com/commonwealthedison/")! as URL)
     }
     
     

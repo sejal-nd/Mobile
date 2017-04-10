@@ -86,6 +86,11 @@
 		8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
+		9A42541C1E9BF8A500866250 /* ContactUs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A42541B1E9BF8A500866250 /* ContactUs.xib */; };
+		9A42541E1E9BFBE200866250 /* ContactUs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A42541D1E9BFBE200866250 /* ContactUs.xib */; };
+		9A4254201E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42541F1E9C0E2A00866250 /* ContactUsViewModel.swift */; };
+		9A4254211E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42541F1E9C0E2A00866250 /* ContactUsViewModel.swift */; };
+		9A4254221E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42541F1E9C0E2A00866250 /* ContactUsViewModel.swift */; };
 		9AF6CB751E958B8A00CD83F9 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6CB741E958B8A00CD83F9 /* ContactUsViewController.swift */; };
 		9AF6CB761E958B8A00CD83F9 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6CB741E958B8A00CD83F9 /* ContactUsViewController.swift */; };
 		9AF6CB771E958B8A00CD83F9 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6CB741E958B8A00CD83F9 /* ContactUsViewController.swift */; };
@@ -505,6 +510,9 @@
 		8FDF8C681E550545000B7BD0 /* PecoColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PecoColor.swift; sourceTree = "<group>"; };
 		8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComEdColor.swift; sourceTree = "<group>"; };
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
+		9A42541B1E9BF8A500866250 /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
+		9A42541D1E9BFBE200866250 /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
+		9A42541F1E9C0E2A00866250 /* ContactUsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
 		9AF6CB741E958B8A00CD83F9 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		9AF6CB781E958BA800CD83F9 /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
@@ -1004,6 +1012,7 @@
 		9AF6CB721E958AE900CD83F9 /* PECO */ = {
 			isa = PBXGroup;
 			children = (
+				9A42541B1E9BF8A500866250 /* ContactUs.xib */,
 			);
 			path = PECO;
 			sourceTree = "<group>";
@@ -1011,6 +1020,7 @@
 		9AF6CB731E958AED00CD83F9 /* ComEd */ = {
 			isa = PBXGroup;
 			children = (
+				9A42541D1E9BFBE200866250 /* ContactUs.xib */,
 			);
 			path = ComEd;
 			sourceTree = "<group>";
@@ -1470,6 +1480,7 @@
 				E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */,
 				E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */,
 				E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */,
+				9A42541F1E9C0E2A00866250 /* ContactUsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1635,7 +1646,7 @@
 					B58B5AC01E4E28740051FD5F = {
 						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					B58B5B0F1E515BD50051FD5F = {
 						DevelopmentTeam = LTS485TKXA;
@@ -1798,6 +1809,7 @@
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
+				9A42541C1E9BF8A500866250 /* ContactUs.xib in Resources */,
 				E8B4F4BD1E5C99E00031D934 /* Bill.storyboard in Resources */,
 				E80043371E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433D1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
@@ -1840,6 +1852,7 @@
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
+				9A42541E1E9BFBE200866250 /* ContactUs.xib in Resources */,
 				E8B4F4BC1E5C99E00031D934 /* Bill.storyboard in Resources */,
 				E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
@@ -2042,6 +2055,7 @@
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				E80D2E331E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BAD91E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
+				9A4254201E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */,
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
@@ -2108,6 +2122,7 @@
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				E80D2E351E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
+				9A4254221E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
@@ -2174,6 +2189,7 @@
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				E80D2E341E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADA1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
+				9A4254211E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */,
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
@@ -2501,12 +2517,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.bge.develop;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Develop;
 		};
@@ -2675,13 +2691,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Commonwealth Edison Company (87ACSVM3C4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 87ACSVM3C4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.comed.exelon.bge;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Staging;
 		};
