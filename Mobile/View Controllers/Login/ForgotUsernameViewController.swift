@@ -121,8 +121,8 @@ class ForgotUsernameViewController: UIViewController {
     func onNextPress() {
         view.endEditing(true)
         
-        viewModel.validateAccount(onSuccess: { 
-            print("success")
+        viewModel.validateAccount(onSuccess: {
+            self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
         }, onNeedAccountNumber: {
             self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { errorMessage in

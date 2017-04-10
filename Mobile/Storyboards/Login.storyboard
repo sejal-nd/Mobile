@@ -21,7 +21,7 @@
         <scene sceneID="XPV-ae-tB6">
             <objects>
                 <navigationController navigationBarHidden="YES" id="pTL-u9-WiQ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="16V-d7-W9g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="16V-d7-W9g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -497,7 +497,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sli-Tt-vCb" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xPE-hv-B2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xPE-hv-B2n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -622,7 +622,9 @@
                             <constraint firstItem="Yvt-cb-Bo0" firstAttribute="leading" secondItem="dWt-ma-7Re" secondAttribute="leading" id="a8K-dg-Lfj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Forgot Username" id="2zg-gY-xNX"/>
+                    <navigationItem key="navigationItem" title="Forgot Username" id="2zg-gY-xNX">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="qJJ-Cp-1eU"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="accountLookupToolButton" destination="BTX-JA-L8m" id="QRv-fG-mzE"/>
@@ -630,6 +632,7 @@
                         <outlet property="instructionLabel" destination="UyI-xN-KUy" id="NGN-Dt-qg8"/>
                         <outlet property="phoneNumberTextField" destination="9xb-14-YsA" id="F5F-dc-hew"/>
                         <outlet property="scrollView" destination="Yvt-cb-Bo0" id="Njk-O7-W1F"/>
+                        <segue destination="F1v-ea-6RO" kind="show" identifier="forgotUsernameResultSegue" id="JKs-yE-NBJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Voj-tK-vgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -877,16 +880,17 @@
                         <outlet property="phoneNumberTextField" destination="eqT-Hr-cpE" id="edL-jJ-k4Z"/>
                         <outlet property="scrollView" destination="6R8-17-SHG" id="fJg-d7-EOM"/>
                         <segue destination="mMA-KZ-eGK" kind="show" identifier="bgeAccountNumberSegue" id="rXp-1z-U5u"/>
+                        <segue destination="F1v-ea-6RO" kind="show" identifier="forgotUsernameResultSegue" id="6eI-mv-PAf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GpE-gG-3Tq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2549" y="90"/>
         </scene>
-        <!--Account Number View Controller-->
+        <!--BGE Account Number-->
         <scene sceneID="2Q9-e3-PU7">
             <objects>
-                <viewController id="mMA-KZ-eGK" customClass="BGEAccountNumberViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mMA-KZ-eGK" userLabel="BGE Account Number" customClass="BGEAccountNumberViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SD2-o7-Pu8"/>
                         <viewControllerLayoutGuide type="bottom" id="hwd-Td-cXv"/>
@@ -958,14 +962,99 @@
                             <constraint firstAttribute="trailing" secondItem="wAt-6V-SWa" secondAttribute="trailing" id="rse-vA-Peg"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Forgot Username" id="Azv-fq-7gz">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="aTd-RP-qZ8"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="accountNumberTextField" destination="6ZH-i2-kyN" id="Wyj-rX-rg2"/>
                         <outlet property="instructionLabel" destination="jA6-cN-5xc" id="aBV-kn-pBm"/>
+                        <segue destination="F1v-ea-6RO" kind="show" identifier="forgotUsernameResultSegue" id="m8m-Zs-f6g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O6F-pA-lzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3372" y="90"/>
+        </scene>
+        <!--Forgot Username Result-->
+        <scene sceneID="7FK-pn-z41">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="F1v-ea-6RO" userLabel="Forgot Username Result" customClass="ForgotUsernameResultViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h8b-cW-D5z"/>
+                        <viewControllerLayoutGuide type="bottom" id="6jb-58-3sN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4wf-CW-w1F">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxf-wx-OFV">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ALH-VS-Txf" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cg5-y8-Ra2" userLabel="Tablet View">
+                                                <rect key="frame" x="29" y="0.0" width="356" height="200"/>
+                                                <subviews>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FoR-l7-FZR" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="30" width="356" height="96"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="96" id="0B0-cf-Hrq"/>
+                                                        </constraints>
+                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="F1v-ea-6RO" id="2dd-tf-Htv"/>
+                                                        </connections>
+                                                    </textView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="FoR-l7-FZR" secondAttribute="trailing" id="E3n-xE-sR4"/>
+                                                    <constraint firstItem="FoR-l7-FZR" firstAttribute="leading" secondItem="Cg5-y8-Ra2" secondAttribute="leading" id="JEu-jZ-ykN"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="UUF-2G-PoI"/>
+                                                    <constraint firstItem="FoR-l7-FZR" firstAttribute="top" secondItem="Cg5-y8-Ra2" secondAttribute="top" constant="30" id="hjt-bJ-uGM"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="24d-Ga-eoF"/>
+                                            <constraint firstAttribute="trailing" secondItem="Cg5-y8-Ra2" secondAttribute="trailing" priority="999" constant="29" id="N2A-c4-RdL"/>
+                                            <constraint firstItem="Cg5-y8-Ra2" firstAttribute="top" secondItem="ALH-VS-Txf" secondAttribute="top" id="elD-qG-P4w"/>
+                                            <constraint firstAttribute="bottom" secondItem="Cg5-y8-Ra2" secondAttribute="bottom" id="fZs-OL-85A"/>
+                                            <constraint firstItem="Cg5-y8-Ra2" firstAttribute="leading" secondItem="ALH-VS-Txf" secondAttribute="leading" priority="999" constant="29" id="i0j-nr-rSc"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ALH-VS-Txf" secondAttribute="trailing" id="9dd-NL-w1N"/>
+                                    <constraint firstItem="ALH-VS-Txf" firstAttribute="leading" secondItem="nxf-wx-OFV" secondAttribute="leading" id="lEp-Cx-mMC"/>
+                                    <constraint firstAttribute="bottom" secondItem="ALH-VS-Txf" secondAttribute="bottom" id="pJs-ao-ewo"/>
+                                    <constraint firstItem="ALH-VS-Txf" firstAttribute="centerX" secondItem="nxf-wx-OFV" secondAttribute="centerX" id="sPD-3F-fpA"/>
+                                    <constraint firstItem="ALH-VS-Txf" firstAttribute="top" secondItem="nxf-wx-OFV" secondAttribute="top" id="vtb-SF-GjG"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nxf-wx-OFV" firstAttribute="leading" secondItem="4wf-CW-w1F" secondAttribute="leading" id="SQb-RQ-1uR"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="nxf-wx-OFV" secondAttribute="bottom" id="XrY-GQ-xzw"/>
+                            <constraint firstAttribute="topMargin" secondItem="nxf-wx-OFV" secondAttribute="top" id="Zhs-gt-LO7"/>
+                            <constraint firstAttribute="trailing" secondItem="nxf-wx-OFV" secondAttribute="trailing" id="bY1-UW-xzy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Forgot Username" id="asE-1f-SyF"/>
+                    <connections>
+                        <outlet property="topTextView" destination="FoR-l7-FZR" id="tXk-ru-Y7H"/>
+                        <outlet property="topTextViewHeightConstraint" destination="0B0-cf-Hrq" id="nAc-zy-3oK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8lV-XJ-BCD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4237.68115942029" y="89.673913043478265"/>
         </scene>
     </scenes>
     <resources>
@@ -976,6 +1065,7 @@
         <image name="img_logo_white" width="251" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5IE-JS-td4"/>
+        <segue reference="m8m-Zs-f6g"/>
+        <segue reference="pLo-hi-rRZ"/>
     </inferredMetricsTieBreakers>
 </document>
