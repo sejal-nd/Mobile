@@ -27,8 +27,6 @@ class BGEAccountNumberViewController: UIViewController {
         navigationItem.rightBarButtonItem = nextButton
         viewModel.accountNumberNotEmpty().bindTo(nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        view.backgroundColor = .primaryColor
-        
         instructionLabel.textColor = .darkJungleGreen
         instructionLabel.text = NSLocalizedString("The information entered is associated with multiple accounts. Please enter the account number you would like to proceed with.", comment: "")
 
@@ -54,10 +52,5 @@ class BGEAccountNumberViewController: UIViewController {
         })
     }
     
-    @IBAction func onAccountNumberTooltipPress() {
-        print("account number tooltip")
-    }
-
-
 
 }

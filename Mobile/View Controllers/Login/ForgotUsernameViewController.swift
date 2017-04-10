@@ -31,8 +31,6 @@ class ForgotUsernameViewController: UIViewController {
         
         title = NSLocalizedString("Forgot Username", comment: "")
         
-        view.backgroundColor = .primaryColor
-        
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.leftBarButtonItem = cancelButton
@@ -103,8 +101,10 @@ class ForgotUsernameViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.backgroundColor = .primaryColor
-        
+        navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
+        navigationController?.navigationBar.barTintColor = .primaryColor
+        navigationController?.navigationBar.isTranslucent = false
+
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
             NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
@@ -134,10 +134,6 @@ class ForgotUsernameViewController: UIViewController {
     
     @IBAction func onAccountLookupToolPress() {
         print("account lookup tool")
-    }
-    
-    @IBAction func onAccountNumberTooltipPress() {
-        print("account number tooltip")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
