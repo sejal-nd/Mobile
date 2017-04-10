@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yJq-Kc-a1K">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Forgot Username-->
+        <scene sceneID="jtC-nI-Ldn">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="yJq-Kc-a1K" customClass="ForgotUsernameViewController" customModule="ComEd" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kjK-JS-RH7"/>
+                        <viewControllerLayoutGuide type="bottom" id="Eq8-dC-L8s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h7Q-CF-eQP">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSy-8g-cHV">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAf-6K-Etx" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Foj-gQ-BBL" userLabel="Tablet View">
+                                                <rect key="frame" x="29" y="0.0" width="317" height="269"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please help us validate your account." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sbq-eT-FmB">
+                                                        <rect key="frame" x="0.0" y="30" width="317" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roy-7M-IX5" customClass="FloatLabelTextField" customModule="ComEd" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="73.5" width="317" height="60"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="6iZ-je-zPN"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fds-Vh-Ozp" customClass="FloatLabelTextField" customModule="ComEd" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="163.5" width="317" height="60"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="tNJ-8F-NGq"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67u-2h-bm7">
+                                                        <rect key="frame" x="257" y="163.5" width="60" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="60" id="iau-ii-X5o"/>
+                                                            <constraint firstAttribute="height" constant="60" id="yFM-Zb-4m5"/>
+                                                        </constraints>
+                                                        <state key="normal" image="ic_question"/>
+                                                        <connections>
+                                                            <action selector="onAccountNumberTooltipPress" destination="yJq-Kc-a1K" eventType="touchUpInside" id="EWH-yZ-Wza"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQ7-Ds-TVZ">
+                                                        <rect key="frame" x="136" y="238" width="181" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="jTQ-F7-GG1"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                        <state key="normal" title="Account Lookup Tool"/>
+                                                        <connections>
+                                                            <action selector="onAccountLookupToolPress" destination="yJq-Kc-a1K" eventType="touchUpInside" id="fIe-fx-M6Y"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="fds-Vh-Ozp" firstAttribute="leading" secondItem="Foj-gQ-BBL" secondAttribute="leading" id="1gq-gc-rp8"/>
+                                                    <constraint firstItem="roy-7M-IX5" firstAttribute="leading" secondItem="Foj-gQ-BBL" secondAttribute="leading" id="1uF-k3-IBV"/>
+                                                    <constraint firstAttribute="trailing" secondItem="roy-7M-IX5" secondAttribute="trailing" id="EWn-fS-z9H"/>
+                                                    <constraint firstItem="CQ7-Ds-TVZ" firstAttribute="top" secondItem="fds-Vh-Ozp" secondAttribute="bottom" constant="14" id="HGc-el-lfE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="fds-Vh-Ozp" secondAttribute="trailing" id="Ime-NL-OnZ"/>
+                                                    <constraint firstItem="Sbq-eT-FmB" firstAttribute="top" secondItem="Foj-gQ-BBL" secondAttribute="top" constant="30" id="JTJ-q6-dBM"/>
+                                                    <constraint firstItem="67u-2h-bm7" firstAttribute="centerY" secondItem="fds-Vh-Ozp" secondAttribute="centerY" id="Q0F-uT-lIn"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="S2Y-bd-h5E"/>
+                                                    <constraint firstAttribute="trailing" secondItem="CQ7-Ds-TVZ" secondAttribute="trailing" id="Vaz-uS-YAi"/>
+                                                    <constraint firstItem="67u-2h-bm7" firstAttribute="trailing" secondItem="fds-Vh-Ozp" secondAttribute="trailing" id="Zur-tB-dOx"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Sbq-eT-FmB" secondAttribute="trailing" id="gCY-KY-8sC"/>
+                                                    <constraint firstItem="Sbq-eT-FmB" firstAttribute="leading" secondItem="Foj-gQ-BBL" secondAttribute="leading" id="p9P-z6-Iz5"/>
+                                                    <constraint firstAttribute="height" constant="269" id="t64-CD-HMV"/>
+                                                    <constraint firstItem="fds-Vh-Ozp" firstAttribute="top" secondItem="roy-7M-IX5" secondAttribute="bottom" constant="30" id="wdl-ml-Mpf"/>
+                                                    <constraint firstItem="roy-7M-IX5" firstAttribute="top" secondItem="Sbq-eT-FmB" secondAttribute="bottom" constant="24" id="ynM-o2-7hB"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="595" id="5Hh-9m-B5y"/>
+                                            <constraint firstItem="Foj-gQ-BBL" firstAttribute="leading" secondItem="cAf-6K-Etx" secondAttribute="leading" priority="999" constant="29" id="6fY-9r-5Nm"/>
+                                            <constraint firstItem="Foj-gQ-BBL" firstAttribute="centerX" secondItem="cAf-6K-Etx" secondAttribute="centerX" id="UJu-sx-vYA"/>
+                                            <constraint firstAttribute="trailing" secondItem="Foj-gQ-BBL" secondAttribute="trailing" priority="999" constant="29" id="XWs-23-UFa"/>
+                                            <constraint firstItem="Foj-gQ-BBL" firstAttribute="top" secondItem="cAf-6K-Etx" secondAttribute="top" id="l2G-6e-czI"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="cAf-6K-Etx" firstAttribute="centerX" secondItem="zSy-8g-cHV" secondAttribute="centerX" id="0it-cI-5q8"/>
+                                    <constraint firstItem="cAf-6K-Etx" firstAttribute="leading" secondItem="zSy-8g-cHV" secondAttribute="leading" id="4rr-Fj-7om"/>
+                                    <constraint firstItem="cAf-6K-Etx" firstAttribute="top" secondItem="zSy-8g-cHV" secondAttribute="top" id="6dT-lB-Ddz"/>
+                                    <constraint firstAttribute="trailing" secondItem="cAf-6K-Etx" secondAttribute="trailing" id="Ibt-W8-jun"/>
+                                    <constraint firstAttribute="bottom" secondItem="cAf-6K-Etx" secondAttribute="bottom" id="eAK-tb-i8t"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="zSy-8g-cHV" secondAttribute="bottom" id="5t4-nO-dN7"/>
+                            <constraint firstItem="zSy-8g-cHV" firstAttribute="top" secondItem="kjK-JS-RH7" secondAttribute="bottom" id="Phm-34-ntR"/>
+                            <constraint firstItem="zSy-8g-cHV" firstAttribute="leading" secondItem="h7Q-CF-eQP" secondAttribute="leading" id="eWb-Bk-rE6"/>
+                            <constraint firstAttribute="trailing" secondItem="zSy-8g-cHV" secondAttribute="trailing" id="jqv-Py-ERZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Forgot Username" id="Cx8-oK-9PT"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="accountLookupToolButton" destination="CQ7-Ds-TVZ" id="byS-qn-npw"/>
+                        <outlet property="accountNumberTextField" destination="fds-Vh-Ozp" id="gyO-uk-dTk"/>
+                        <outlet property="instructionLabel" destination="Sbq-eT-FmB" id="HG4-Ev-Ea1"/>
+                        <outlet property="phoneNumberTextField" destination="roy-7M-IX5" id="jPT-ss-wa2"/>
+                        <outlet property="scrollView" destination="zSy-8g-cHV" id="zIv-uz-2l9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7XD-lF-yU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="232.80000000000001" y="-0.44977511244377816"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_question" width="17" height="17"/>
+    </resources>
+</document>

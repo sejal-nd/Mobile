@@ -100,6 +100,15 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = true
+        
+        setNeedsStatusBarAppearanceUpdate()
 
         navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -191,7 +200,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePress() {
-        print("forgot username")
+        let forgotUsernameVC = UIStoryboard(name: "ForgotUsername", bundle: nil).instantiateInitialViewController()
+        self.navigationController?.pushViewController(forgotUsernameVC!, animated: true)
     }
     
     @IBAction func onForgotPasswordPress() {
