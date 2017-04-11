@@ -163,6 +163,9 @@ class ForgotUsernameViewController: UIViewController {
             let vc = segue.destination as! BGEAccountNumberViewController
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
             vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
+        } else if segue.destination.isKind(of: ForgotUsernameResultViewController.self) {
+            let vc = segue.destination as! ForgotUsernameResultViewController
+            vc.viewModel = viewModel
         }
     }
     
