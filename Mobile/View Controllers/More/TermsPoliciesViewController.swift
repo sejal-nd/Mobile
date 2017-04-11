@@ -31,7 +31,7 @@ class TermsPoliciesViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // Content was appearing already scrolled initially on iPad so this fixes it
+        // Content was appearing already scrolled initially so this fixes it
         if !viewAppeared {
             textView.setContentOffset(.zero, animated: false)
         }
@@ -51,10 +51,4 @@ class TermsPoliciesViewController: UIViewController {
         viewAppeared = true
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        viewAppeared = false
-    }
-
 }
