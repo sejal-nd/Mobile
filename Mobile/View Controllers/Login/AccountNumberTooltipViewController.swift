@@ -8,10 +8,9 @@
 
 import UIKit
 
-class AccountNumberTooltipViewController: UIViewController {
+class AccountNumberTooltipViewController: DismissableFormSheetViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
-    //@IBOutlet weak var billImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
 
     override func viewDidLoad() {
