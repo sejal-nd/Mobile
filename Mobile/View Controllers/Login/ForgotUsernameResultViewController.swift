@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import RxCocoa
 
 class ForgotUsernameResultViewController: UIViewController {
     
@@ -81,6 +80,19 @@ class ForgotUsernameResultViewController: UIViewController {
             if vc.isKind(of: LoginViewController.self) {
                 self.navigationController?.popToViewController(vc, animated: true)
             }
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.isKind(of: SecurityQuestionViewController.self) {
+            let vc = segue.destination as! SecurityQuestionViewController
+            vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
+            vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
+            vc.viewModel.accountNumber.value = viewModel.accountNumber.value
+            vc.viewModel.maskedUsernames = viewModel.maskedUsernames
+            vc.viewModel.selectedUsernameIndex = viewModel.selectedUsernameIndex
         }
     }
 

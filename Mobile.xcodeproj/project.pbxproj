@@ -420,6 +420,14 @@
 		E8CA07EB1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */; };
 		E8CA07EC1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */; };
 		E8CA07ED1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */; };
+		E8CA07EF1E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
+		E8CA07F01E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
+		E8CA07F11E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
+		E8CA07F21E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
+		E8CA07F41E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */; };
+		E8CA07F51E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */; };
+		E8CA07F61E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */; };
+		E8CA07F71E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */; };
 		E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */; };
 		E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
 		E8D2520C1E6DB74600C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
@@ -775,6 +783,8 @@
 		E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameResultViewController.swift; sourceTree = "<group>"; };
 		E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
 		E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameTableViewCell.swift; sourceTree = "<group>"; };
+		E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestionViewController.swift; sourceTree = "<group>"; };
+		E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableNavigationController.swift; sourceTree = "<group>"; };
 		E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8D2520B1E6DB74600C90584 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
@@ -955,6 +965,7 @@
 			children = (
 				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
 				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
+				E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */,
 				8FD5AE821E54EA39003F640D /* Login */,
 				E80D2E301E730180002626C9 /* Outage */,
 				E8EEF7271E577781006804D4 /* More */,
@@ -991,6 +1002,7 @@
 				E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */,
 				E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */,
 				E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */,
+				E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2017,8 +2029,10 @@
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8CA07EA1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */,
+				E8CA07EF1E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
+				E8CA07F41E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
@@ -2091,8 +2105,10 @@
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8CA07EC1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */,
+				E8CA07F11E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
+				E8CA07F61E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
@@ -2165,8 +2181,10 @@
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8CA07EB1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */,
+				E8CA07F01E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
 				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
+				E8CA07F51E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */,
 				E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
@@ -2226,6 +2244,7 @@
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
 				E801285E1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
+				E8CA07F21E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
@@ -2238,6 +2257,7 @@
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
+				E8CA07F71E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
 				E88ECFF71E8ED6DB00A570D0 /* OMCOutageService.swift in Sources */,

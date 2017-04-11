@@ -32,12 +32,11 @@ class BGEAccountNumberViewController: UIViewController {
 
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.autocorrectionType = .no
-        //accountNumberTextField.textField.keyboardType = .numberPad
         accountNumberTextField.textField.returnKeyType = .done
         accountNumberTextField.textField.isShowingAccessory = true
         accountNumberTextField.textField.rx.text.orEmpty.bindTo(viewModel.accountNumber).addDisposableTo(disposeBag)
     }
-
+    
     func onNextPress() {
         view.endEditing(true)
         

@@ -147,7 +147,7 @@
                         <outlet property="registerButton" destination="Mtv-0B-6Rn" id="niA-n6-3Nw"/>
                         <outlet property="signInButton" destination="oHs-4V-Y7S" id="S4e-LI-eWW"/>
                         <outlet property="skipForNowButon" destination="SSH-Ni-ZZW" id="woe-oi-sop"/>
-                        <segue destination="Sli-Tt-vCb" kind="show" identifier="termsPoliciesModalSegue" id="CiC-oU-f3I"/>
+                        <segue destination="Sli-Tt-vCb" kind="presentation" identifier="termsPoliciesModalSegue" id="CiC-oU-f3I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upp-SQ-sws" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -233,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuu-u2-aL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="858" y="1602"/>
+            <point key="canvasLocation" x="858" y="1587"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="PsW-YN-t0v">
@@ -491,7 +491,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukF-Ys-QTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1722" y="843"/>
+            <point key="canvasLocation" x="2548" y="836"/>
         </scene>
         <!--Main Base Navigation Controller-->
         <scene sceneID="d2e-hw-Oo9">
@@ -509,7 +509,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpu-w7-s7o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="858" y="843"/>
+            <point key="canvasLocation" x="858" y="836"/>
         </scene>
         <!--Forgot Username-->
         <scene sceneID="noX-Pi-gvC">
@@ -560,7 +560,7 @@
                                                         </constraints>
                                                         <state key="normal" image="ic_question"/>
                                                         <connections>
-                                                            <segue destination="goJ-y5-oyb" kind="presentation" id="5IE-JS-td4"/>
+                                                            <segue destination="goJ-y5-oyb" kind="presentation" modalPresentationStyle="formSheet" id="5IE-JS-td4"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTX-JA-L8m">
@@ -1072,6 +1072,7 @@
                                                         <state key="normal" title="Answer Security Question"/>
                                                         <connections>
                                                             <action selector="onLoginPress" destination="Pib-RC-igc" eventType="touchUpInside" id="j07-Sg-VcS"/>
+                                                            <segue destination="NE7-qa-4w2" kind="show" id="qc7-gL-rY3"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGk-Js-1y7">
@@ -1134,7 +1135,9 @@
                             <constraint firstAttribute="trailing" secondItem="nxf-wx-OFV" secondAttribute="trailing" id="bY1-UW-xzy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Forgot Username" id="asE-1f-SyF"/>
+                    <navigationItem key="navigationItem" title="Forgot Username" id="asE-1f-SyF">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="J9c-2h-yDG"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="answerSecurityQuestionButton" destination="phb-Vu-SmS" id="dAp-rV-hBB"/>
                         <outlet property="backToSignInButton" destination="pGk-Js-1y7" id="BBH-L5-z3v"/>
@@ -1149,6 +1152,75 @@
             </objects>
             <point key="canvasLocation" x="4237.68115942029" y="89.673913043478265"/>
         </scene>
+        <!--Security Question View Controller-->
+        <scene sceneID="pQh-HS-Oir">
+            <objects>
+                <viewController id="NE7-qa-4w2" customClass="SecurityQuestionViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kCO-WE-Crr"/>
+                        <viewControllerLayoutGuide type="bottom" id="EWv-iF-HOz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yNY-E9-bhs">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3h-ku-lSm" userLabel="Tablet View">
+                                <rect key="frame" x="29" y="0.0" width="356" height="672"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please answer the security question." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLM-eq-P7v">
+                                        <rect key="frame" x="0.0" y="30.000000000000004" width="356" height="19.333333333333339"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is your mother's maiden name?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4q-wH-7ZL">
+                                        <rect key="frame" x="0.0" y="72.333333333333329" width="356" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WCk-lC-Bql" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="97.333333333333343" width="356" height="60.000000000000028"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="nvx-4w-TEu"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="bLM-eq-P7v" secondAttribute="trailing" id="1Sb-sb-zGK"/>
+                                    <constraint firstItem="h4q-wH-7ZL" firstAttribute="top" secondItem="bLM-eq-P7v" secondAttribute="bottom" constant="23" id="4bh-FB-apT"/>
+                                    <constraint firstItem="WCk-lC-Bql" firstAttribute="top" secondItem="h4q-wH-7ZL" secondAttribute="bottom" constant="8" id="DxF-sk-DUY"/>
+                                    <constraint firstItem="bLM-eq-P7v" firstAttribute="leading" secondItem="u3h-ku-lSm" secondAttribute="leading" id="JNi-B3-AQ2"/>
+                                    <constraint firstAttribute="trailing" secondItem="WCk-lC-Bql" secondAttribute="trailing" id="Kog-NZ-ZTd"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="ULD-KT-VJK"/>
+                                    <constraint firstItem="WCk-lC-Bql" firstAttribute="leading" secondItem="u3h-ku-lSm" secondAttribute="leading" id="eD0-Tj-9al"/>
+                                    <constraint firstItem="h4q-wH-7ZL" firstAttribute="leading" secondItem="u3h-ku-lSm" secondAttribute="leading" id="eRj-zi-U2Z"/>
+                                    <constraint firstItem="bLM-eq-P7v" firstAttribute="top" secondItem="u3h-ku-lSm" secondAttribute="top" constant="30" id="oI5-iQ-1xh"/>
+                                    <constraint firstAttribute="trailing" secondItem="h4q-wH-7ZL" secondAttribute="trailing" id="xLV-5I-zVP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EWv-iF-HOz" firstAttribute="top" secondItem="u3h-ku-lSm" secondAttribute="bottom" id="LWr-EN-F9u"/>
+                            <constraint firstItem="u3h-ku-lSm" firstAttribute="centerX" secondItem="yNY-E9-bhs" secondAttribute="centerX" id="Max-R8-z0u"/>
+                            <constraint firstItem="u3h-ku-lSm" firstAttribute="top" secondItem="kCO-WE-Crr" secondAttribute="bottom" id="nNa-Rf-FFF"/>
+                            <constraint firstItem="u3h-ku-lSm" firstAttribute="leading" secondItem="yNY-E9-bhs" secondAttribute="leading" priority="999" constant="29" id="sQZ-XJ-Llf"/>
+                            <constraint firstAttribute="trailing" secondItem="u3h-ku-lSm" secondAttribute="trailing" priority="999" constant="29" id="vmu-E0-ljd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="answerTextField" destination="WCk-lC-Bql" id="Vcc-mt-Wgy"/>
+                        <outlet property="instructionLabel" destination="bLM-eq-P7v" id="2tW-LH-GRa"/>
+                        <outlet property="questionLabel" destination="h4q-wH-7ZL" id="BJR-8w-ISW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9xl-m3-uCQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5073.913043478261" y="89.673913043478265"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bill_infographic" width="227" height="298"/>
@@ -1159,7 +1231,7 @@
         <image name="img_logo_white" width="251" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="5IE-JS-td4"/>
         <segue reference="m8m-Zs-f6g"/>
-        <segue reference="pLo-hi-rRZ"/>
     </inferredMetricsTieBreakers>
 </document>

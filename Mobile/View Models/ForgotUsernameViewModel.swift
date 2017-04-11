@@ -18,6 +18,8 @@ class ForgotUsernameViewModel {
     var maskedUsernames = [ForgotUsernameMasked]()
     var selectedUsernameIndex = 0
     
+    let securityQuestionAnswer = Variable("")
+    
     func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String) -> Void) {
         print("Phone number: \(extractDigitsFrom(phoneNumber.value))")
         print("Identifier number: \(identifierNumber.value)")
@@ -28,12 +30,12 @@ class ForgotUsernameViewModel {
             let usernames = [
                 NSDictionary(dictionary: [
                     "email": "m**********g@gmail.com",
-                    "question": "What is your mother's maiden name?",
+                    "question": "What is your father's middle name?",
                     "question_id": 1
                 ]),
 //                NSDictionary(dictionary: [
 //                    "email": "m**********g@mindgrub.com",
-//                    "question": "What is your father's middle name?",
+//                    "question": "What is your mother's maiden name?",
 //                    "question_id": 4
 //                ]),
 //                NSDictionary(dictionary: [
@@ -82,6 +84,12 @@ class ForgotUsernameViewModel {
     
     func accountNumberNotEmpty() -> Observable<Bool> {
         return accountNumber.asObservable().map({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    
+    func securityQuestionAnswerNotEmpty() -> Observable<Bool> {
+        return securityQuestionAnswer.asObservable().map({ text -> Bool in
             return text.characters.count > 0
         })
     }
