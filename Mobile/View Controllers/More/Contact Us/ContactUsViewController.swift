@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactUsViewController: UIViewController, UIScrollViewDelegate {
+class ContactUsViewController: UIViewController {
 
     @IBOutlet weak var emergencyNumberTextView: DataDetectorTextView!
     @IBOutlet weak var residentialNumberTextView: DataDetectorTextView!
@@ -51,12 +51,6 @@ class ContactUsViewController: UIViewController, UIScrollViewDelegate {
      
     }
     
-    func boldText(text: NSMutableAttributedString) -> NSMutableAttributedString {
-        let range = NSMakeRange(0, text.length)
-        text.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: range)
-        return text
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -64,13 +58,11 @@ class ContactUsViewController: UIViewController, UIScrollViewDelegate {
             tabBarController?.tabBar.isHidden = true
         }
         
-        //navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = true
-        //navigationController?.setNavigationBarHidden(false, animated: true)
         
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
