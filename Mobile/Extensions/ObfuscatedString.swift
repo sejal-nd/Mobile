@@ -16,4 +16,9 @@ extension String {
         let startIndex = self.index(self.startIndex, offsetBy: 6)
         return self.replacingCharacters(in: startIndex..<self.endIndex, with: "**********")
     }
+    
+    func obfuscateAllButLast4Digits() -> String {
+        let endIndex = self.index(self.endIndex, offsetBy: -4)
+        return self.replacingCharacters(in: self.startIndex..<endIndex, with: "****")
+    }
 }
