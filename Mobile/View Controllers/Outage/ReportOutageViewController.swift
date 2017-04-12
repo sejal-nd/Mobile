@@ -133,7 +133,6 @@ class ReportOutageViewController: UIViewController {
         phoneNumberTextField.textField.delegate = self
         phoneExtensionTextField.textField.placeholder = NSLocalizedString("Contact Number Ext. (Optional)", comment: "")
         phoneExtensionTextField.textField.keyboardType = .phonePad
-        phoneExtensionTextField.textField.delegate = self
 
         if opco == "BGE" {
             phoneExtensionContainerView.isHidden = true
