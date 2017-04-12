@@ -57,6 +57,13 @@ class ForgotUsernameViewModel {
         
     }
     
+    func submitSecurityQuestionAnswer(onSuccess: @escaping (String) -> Void, onAnswerNoMatch: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
+        onSuccess("mshilling@mindgrub.com")
+        
+//        let serviceError = ServiceError(serviceCode: "FN-PROF-BADSECURITY")
+//        onAnswerNoMatch(serviceError.errorDescription!)
+    }
+    
     func nextButtonEnabled() -> Observable<Bool> {
         if Environment.sharedInstance.opco == "BGE" {
             return Observable.combineLatest(phoneNumberHasTenDigits(), identifierHasFourDigits()) {
