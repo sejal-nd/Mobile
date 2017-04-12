@@ -43,7 +43,6 @@ class ForgotUsernameViewController: UIViewController {
         
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
-        //phoneNumberTextField.textField.keyboardType = .phonePad
         phoneNumberTextField.textField.returnKeyType = .next
         phoneNumberTextField.textField.delegate = self
         phoneNumberTextField.textField.rx.text.orEmpty.bindTo(viewModel.phoneNumber).addDisposableTo(disposeBag)
@@ -52,8 +51,6 @@ class ForgotUsernameViewController: UIViewController {
                 self.viewModel.phoneNumberHasTenDigits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
-                    } else {
-                        self.phoneNumberTextField.setError(nil)
                     }
                 }).addDisposableTo(self.disposeBag)
             }
@@ -64,7 +61,6 @@ class ForgotUsernameViewController: UIViewController {
         
         identifierTextField?.textField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
         identifierTextField?.textField.autocorrectionType = .no
-        //identifierTextField?.textField.keyboardType = .numberPad
         identifierTextField?.textField.returnKeyType = .done
         identifierTextField?.textField.delegate = self
         identifierTextField?.textField.rx.text.orEmpty.bindTo(viewModel.identifierNumber).addDisposableTo(disposeBag)
@@ -73,8 +69,11 @@ class ForgotUsernameViewController: UIViewController {
                 self.viewModel.identifierHasFourDigits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.identifierTextField?.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
-                    } else {
-                        self.identifierTextField?.setError(nil)
+                    }
+                }).addDisposableTo(self.disposeBag)
+                self.viewModel.identifierIsNumeric().single().subscribe(onNext: { numeric in
+                    if !numeric {
+                        self.identifierTextField?.setError(NSLocalizedString("This number must be numeric.", comment: ""))
                     }
                 }).addDisposableTo(self.disposeBag)
             }
@@ -178,21 +177,15 @@ extension ForgotUsernameViewController: UITextFieldDelegate {
             
             let decimalString = components.joined(separator: "") as NSString
             let length = decimalString.length
-            let hasLeadingOne = length > 0 && decimalString.character(at: 0) == (1 as unichar)
             
-            if length == 0 || (length > 10 && !hasLeadingOne) || length > 11 {
-                let newLength = (textField.text! as NSString).length + (string as NSString).length - range.length as Int
-                
-                return (newLength > 10) ? false : true
+            if length > 10 {
+               return false
             }
+
             var index = 0 as Int
             let formattedString = NSMutableString()
             
-            if hasLeadingOne {
-                formattedString.append("1 ")
-                index += 1
-            }
-            if (length - index) > 3 {
+            if length - index > 3 {
                 let areaCode = decimalString.substring(with: NSMakeRange(index, 3))
                 formattedString.appendFormat("(%@) ", areaCode)
                 index += 3

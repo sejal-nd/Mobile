@@ -31,8 +31,8 @@ class ForgotUsernameViewModel {
     
     func nextButtonEnabled() -> Observable<Bool> {
         if Environment.sharedInstance.opco == "BGE" {
-            return Observable.combineLatest(phoneNumberHasTenDigits(), identifierHasFourDigits()) {
-                return $0 && $1
+            return Observable.combineLatest(phoneNumberHasTenDigits(), identifierHasFourDigits(), identifierIsNumeric()) {
+                return $0 && $1 && $2
             }
         } else {
             return Observable.combineLatest(phoneNumberHasTenDigits(), accountNumberNotEmpty()) {
@@ -51,6 +51,13 @@ class ForgotUsernameViewModel {
     func identifierHasFourDigits() -> Observable<Bool> {
         return identifierNumber.asObservable().map({ text -> Bool in
             return text.characters.count == 4
+        })
+    }
+    
+    func identifierIsNumeric() -> Observable<Bool> {
+        return identifierNumber.asObservable().map({ text -> Bool in
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.characters.count == text.characters.count
         })
     }
     
