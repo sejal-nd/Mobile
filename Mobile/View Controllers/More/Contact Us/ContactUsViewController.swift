@@ -8,26 +8,27 @@
 
 import UIKit
 
-class ContactUsViewController: UIViewController {
+class ContactUsViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var emergencyNumberTextView: DataDetectorTextView!
     @IBOutlet weak var residentialNumberTextView: DataDetectorTextView!
     @IBOutlet weak var businessNumberTextView: DataDetectorTextView?
     @IBOutlet weak var ttyttdNumberTextView: DataDetectorTextView?
-    @IBOutlet weak var emergencyDescriptionTextView: UITextView!
+    @IBOutlet weak var emergencyDescriptionLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var secondLabel: UILabel?
+    @IBOutlet weak var thirdLabel: UILabel?
+    @IBOutlet weak var customerServiceLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .primaryColor
         
-        
-//        let text = NSLocalizedString("If you see downed power lines or smell natural gas, leave the area immediately and then call BGE. Representatives are available 24 hours a day, 7 days a week.", comment: "")
-//        let attrString = NSMutableAttributedString(string: text as String)
-//        let range = NSMakeRange(52, 26)
-//        attrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: range)
         let contactUsViewModel = ContactUsViewModel()
-        emergencyDescriptionTextView.attributedText = contactUsViewModel.makeAttributedString()
+        emergencyDescriptionLabel.attributedText = contactUsViewModel.makeAttributedString()
         
         emergencyNumberTextView.textContainerInset = .zero
         emergencyNumberTextView.tintColor = .mediumPersianBlue // Color of the phone numbers
@@ -39,7 +40,15 @@ class ContactUsViewController: UIViewController {
         ttyttdNumberTextView?.tintColor = .mediumPersianBlue // Color of the phone numbers
         title = "Contact Us"
         
+        customerServiceLabel.text = NSLocalizedString("Customer Service", comment: "")
+        firstLabel.text = contactUsViewModel.makeLabel1()
+        secondLabel?.text = contactUsViewModel.makeLabel2()
+        thirdLabel?.text = contactUsViewModel.makeLabel3()
+        
         extendedLayoutIncludesOpaqueBars = true
+        
+        automaticallyAdjustsScrollViewInsets = false
+     
     }
     
     func boldText(text: NSMutableAttributedString) -> NSMutableAttributedString {
@@ -132,3 +141,4 @@ class ContactUsViewController: UIViewController {
     */
 
 }
+

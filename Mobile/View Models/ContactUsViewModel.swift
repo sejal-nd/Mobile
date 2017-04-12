@@ -39,4 +39,37 @@ class ContactUsViewModel {
         return attrString
     }
     
+    func makeLabel1() -> String {
+        if (target == "BGE") {
+            return NSLocalizedString("Residential", comment: "")
+        }
+        if (target == "PECO") {
+            return NSLocalizedString("All Customers", comment: "")
+        }
+        if (target == "ComEd") {
+            return NSLocalizedString("Residential", comment: "")
+        }
+        return ""
+    }
+    
+    func makeLabel2() -> String {
+        if (target == "BGE") {
+            return NSLocalizedString("Business", comment: "")
+        }
+        if (target == "ComEd") {
+            return NSLocalizedString("Business", comment: "")
+        }
+        return ""
+    }
+    
+    func makeLabel3() -> String {
+        if (target == "BGE") {
+            return NSLocalizedString("TTY/TTD", comment: "")
+        }
+        if (target == "ComEd") {
+            return NSLocalizedString("Spanish", comment: "")
+        }
+        return ""
+    }
+    
 }
