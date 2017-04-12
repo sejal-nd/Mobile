@@ -71,7 +71,7 @@ class OutageViewModel {
     func getOutageReportedDateString() -> String {
         if let reportedOutage = getReportedOutage() {
             let timeString = Environment.sharedInstance.opcoDateFormatter.string(from: reportedOutage.reportedTime)
-            return NSLocalizedString("Reported \(timeString)", comment: "")
+            return String(format: NSLocalizedString("Reported %@", comment: ""), timeString)
         }
         
         return NSLocalizedString("Reported", comment: "")

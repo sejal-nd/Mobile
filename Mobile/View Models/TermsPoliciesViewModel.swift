@@ -12,7 +12,7 @@ class TermsPoliciesViewModel {
     
     var agreeLabelText: String {
         get {
-            return NSLocalizedString("I agree to \(Environment.sharedInstance.opco)'s Terms and Policies", comment: "")
+            return String(format: NSLocalizedString("I agree to %@'s Terms and Policies", comment: ""), Environment.sharedInstance.opco)
         }
     }
     

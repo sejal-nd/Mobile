@@ -86,15 +86,6 @@
 		8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
-		9A42541C1E9BF8A500866250 /* ContactUs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A42541B1E9BF8A500866250 /* ContactUs.xib */; };
-		9A42541E1E9BFBE200866250 /* ContactUs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A42541D1E9BFBE200866250 /* ContactUs.xib */; };
-		9A4254201E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42541F1E9C0E2A00866250 /* ContactUsViewModel.swift */; };
-		9A4254211E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42541F1E9C0E2A00866250 /* ContactUsViewModel.swift */; };
-		9A4254221E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A42541F1E9C0E2A00866250 /* ContactUsViewModel.swift */; };
-		9AF6CB751E958B8A00CD83F9 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6CB741E958B8A00CD83F9 /* ContactUsViewController.swift */; };
-		9AF6CB761E958B8A00CD83F9 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6CB741E958B8A00CD83F9 /* ContactUsViewController.swift */; };
-		9AF6CB771E958B8A00CD83F9 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6CB741E958B8A00CD83F9 /* ContactUsViewController.swift */; };
-		9AF6CB791E958BA800CD83F9 /* ContactUs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF6CB781E958BA800CD83F9 /* ContactUs.xib */; };
 		B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
@@ -398,6 +389,26 @@
 		E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
 		E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
 		E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
+		E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
+		E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
+		E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
+		E8B674C81E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
+		E8B674C91E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
+		E8B674CA1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
+		E8B674CB1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
+		E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
+		E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
+		E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
+		E8B674D71E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
+		E8B674D81E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
+		E8B674D91E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
+		E8B674DA1E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
+		E8CA07DA1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
+		E8CA07DB1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
+		E8CA07DC1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
+		E8CA07DD1E9BD0FF00A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
+		E8CA07DE1E9BD10000A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
+		E8CA07DF1E9BD10100A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
 		E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */; };
 		E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
 		E8D2520C1E6DB74600C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
@@ -510,11 +521,6 @@
 		8FDF8C681E550545000B7BD0 /* PecoColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PecoColor.swift; sourceTree = "<group>"; };
 		8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComEdColor.swift; sourceTree = "<group>"; };
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
-		9A42541B1E9BF8A500866250 /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
-		9A42541D1E9BFBE200866250 /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
-		9A42541F1E9C0E2A00866250 /* ContactUsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
-		9AF6CB741E958B8A00CD83F9 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
-		9AF6CB781E958BA800CD83F9 /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
 		B54846821E687CEB008CE1B1 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
@@ -749,6 +755,12 @@
 		E8B4F4C91E5CE1BA0031D934 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		E8B4F4CE1E5CE21D0031D934 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
+		E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModel.swift; sourceTree = "<group>"; };
+		E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAccountNumberViewController.swift; sourceTree = "<group>"; };
+		E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountNumberTooltipViewController.swift; sourceTree = "<group>"; };
 		E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8D2520B1E6DB74600C90584 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
@@ -959,6 +971,10 @@
 				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
 				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
 				8FD5AE851E54EA49003F640D /* LoginViewController.swift */,
+				E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */,
+				E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */,
+				E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */,
+				E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -988,41 +1004,6 @@
 				E802AB3E1E85936700981D18 /* LineHeightLabel.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		9AF6CB701E958ACE00CD83F9 /* Contact Us */ = {
-			isa = PBXGroup;
-			children = (
-				9AF6CB731E958AED00CD83F9 /* ComEd */,
-				9AF6CB721E958AE900CD83F9 /* PECO */,
-				9AF6CB711E958AE300CD83F9 /* BGE */,
-				9AF6CB741E958B8A00CD83F9 /* ContactUsViewController.swift */,
-			);
-			path = "Contact Us";
-			sourceTree = "<group>";
-		};
-		9AF6CB711E958AE300CD83F9 /* BGE */ = {
-			isa = PBXGroup;
-			children = (
-				9AF6CB781E958BA800CD83F9 /* ContactUs.xib */,
-			);
-			path = BGE;
-			sourceTree = "<group>";
-		};
-		9AF6CB721E958AE900CD83F9 /* PECO */ = {
-			isa = PBXGroup;
-			children = (
-				9A42541B1E9BF8A500866250 /* ContactUs.xib */,
-			);
-			path = PECO;
-			sourceTree = "<group>";
-		};
-		9AF6CB731E958AED00CD83F9 /* ComEd */ = {
-			isa = PBXGroup;
-			children = (
-				9A42541D1E9BFBE200866250 /* ContactUs.xib */,
-			);
-			path = ComEd;
 			sourceTree = "<group>";
 		};
 		B5389EA11E53D8640028AF89 /* Parsing */ = {
@@ -1476,11 +1457,12 @@
 			children = (
 				E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */,
 				E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */,
+				E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */,
 				E800430F1E64DF10005CF531 /* SettingsViewModel.swift */,
 				E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */,
 				E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */,
 				E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */,
-				9A42541F1E9C0E2A00866250 /* ContactUsViewModel.swift */,
+				E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1488,7 +1470,6 @@
 		E8EEF7271E577781006804D4 /* More */ = {
 			isa = PBXGroup;
 			children = (
-				9AF6CB701E958ACE00CD83F9 /* Contact Us */,
 				E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */,
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
 				E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */,
@@ -1646,7 +1627,7 @@
 					B58B5AC01E4E28740051FD5F = {
 						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					B58B5B0F1E515BD50051FD5F = {
 						DevelopmentTeam = LTS485TKXA;
@@ -1766,7 +1747,6 @@
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
-				9AF6CB791E958BA800CD83F9 /* ContactUs.xib in Resources */,
 				E8B4F4BB1E5C99E00031D934 /* Bill.storyboard in Resources */,
 				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
@@ -1809,7 +1789,6 @@
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
-				9A42541C1E9BF8A500866250 /* ContactUs.xib in Resources */,
 				E8B4F4BD1E5C99E00031D934 /* Bill.storyboard in Resources */,
 				E80043371E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433D1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
@@ -1852,7 +1831,6 @@
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
-				9A42541E1E9BFBE200866250 /* ContactUs.xib in Resources */,
 				E8B4F4BC1E5C99E00031D934 /* Bill.storyboard in Resources */,
 				E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
@@ -2006,7 +1984,6 @@
 			files = (
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
-				9AF6CB751E958B8A00CD83F9 /* ContactUsViewController.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF11E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
@@ -2018,10 +1995,12 @@
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				E80D2E171E721668002626C9 /* ObfuscatedString.swift in Sources */,
+				E8B674D71E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
+				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -2037,9 +2016,12 @@
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E80043011E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E8CA07DD1E9BD0FF00A1D431 /* BGEAccountNumberViewController.swift in Sources */,
+				E8CA07DA1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E8EB4D131E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A11E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
+				E8B674C81E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */,
@@ -2052,10 +2034,10 @@
 				B574BAD41E736596001E8A44 /* Macros.swift in Sources */,
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
+				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				E80D2E331E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BAD91E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
-				9A4254201E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */,
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
@@ -2073,7 +2055,6 @@
 			files = (
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
-				9AF6CB771E958B8A00CD83F9 /* ContactUsViewController.swift in Sources */,
 				E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
@@ -2085,10 +2066,12 @@
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E80D2E191E721668002626C9 /* ObfuscatedString.swift in Sources */,
+				E8B674D91E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
+				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -2104,9 +2087,12 @@
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E80043031E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E8CA07DF1E9BD10100A1D431 /* BGEAccountNumberViewController.swift in Sources */,
+				E8CA07DC1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E8EB4D151E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A31E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
+				E8B674CA1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
@@ -2119,10 +2105,10 @@
 				B574BAD61E736596001E8A44 /* Macros.swift in Sources */,
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
+				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				E80D2E351E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
-				9A4254221E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
@@ -2140,7 +2126,6 @@
 			files = (
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
-				9AF6CB761E958B8A00CD83F9 /* ContactUsViewController.swift in Sources */,
 				E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,
@@ -2152,10 +2137,12 @@
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E80D2E181E721668002626C9 /* ObfuscatedString.swift in Sources */,
+				E8B674D81E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
+				E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -2171,9 +2158,12 @@
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */,
 				E80043021E64DED4005CF531 /* TableViewCell.swift in Sources */,
+				E8CA07DE1E9BD10000A1D431 /* BGEAccountNumberViewController.swift in Sources */,
+				E8CA07DB1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E8EB4D141E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A21E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
+				E8B674C91E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE871E54EA49003F640D /* LandingViewController.swift in Sources */,
@@ -2186,10 +2176,10 @@
 				B574BAD51E736596001E8A44 /* Macros.swift in Sources */,
 				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
+				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				E80D2E341E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADA1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
-				9A4254211E9C0E2A00866250 /* ContactUsViewModel.swift in Sources */,
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
@@ -2227,6 +2217,7 @@
 				B574BAE81E784779001E8A44 /* AccountDetail.swift in Sources */,
 				E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* ObfuscatedString.swift in Sources */,
+				E8B674CB1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
 				E8FE30A41E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */,
@@ -2234,6 +2225,7 @@
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
+				E8B674DA1E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
@@ -2517,12 +2509,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LTS485TKXA;
 				EXM_BUNDLE_ID = com.exelon.bge.develop;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
 			};
 			name = Develop;
 		};
@@ -2534,6 +2527,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.bge.release;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2614,6 +2608,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.bge.automation;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2691,13 +2686,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Commonwealth Edison Company (87ACSVM3C4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.comed.exelon.bge;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ExelonBGE Adhoc";
 			};
 			name = Staging;
 		};
@@ -2774,6 +2771,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.bge.testing;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2817,6 +2815,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Commonwealth Edison Company (87ACSVM3C4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.comed.exelon.peco;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
@@ -2892,6 +2891,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Commonwealth Edison Company (87ACSVM3C4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 87ACSVM3C4;
 				EXM_BUNDLE_ID = com.comed.exelon.comed;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
