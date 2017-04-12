@@ -17,9 +17,9 @@ class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         if isShowingAccessory {
             if hasText {
-                return CGRect(x: 8, y: 7, width: bounds.size.width - 41, height: bounds.size.height)
+                return CGRect(x: 8, y: 7, width: bounds.size.width - 51, height: bounds.size.height)
             }
-            return CGRect(x: 8, y: 0, width: bounds.size.width - 41, height: bounds.size.height)
+            return CGRect(x: 8, y: 0, width: bounds.size.width - 51, height: bounds.size.height)
         } else {
             if hasText {
                 return CGRect(x: 8, y: 7, width: bounds.size.width - 16, height: bounds.size.height)
@@ -31,9 +31,9 @@ class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         if isShowingAccessory {
             if hasText {
-                return CGRect(x: 8, y: 7, width: bounds.size.width - 41, height: bounds.size.height)
+                return CGRect(x: 8, y: 7, width: bounds.size.width - 51, height: bounds.size.height)
             }
-            return CGRect(x: 8, y: 0, width: bounds.size.width - 41, height: bounds.size.height)
+            return CGRect(x: 8, y: 0, width: bounds.size.width - 51, height: bounds.size.height)
         } else {
             if hasText {
                 return CGRect(x: 8, y: 7, width: bounds.size.width - 16, height: bounds.size.height)

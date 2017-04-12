@@ -60,7 +60,7 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.Flickering
         }
 
-        var outageInfo = OutageInfo(account: account!, issue: outageIssue, phoneNumber: phoneNumber.value)
+        var outageInfo = OutageInfo(account: account!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value))
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
@@ -102,5 +102,9 @@ class ReportOutageViewModel {
                 onError()
             }
         }
+    }
+    
+    private func extractDigitsFrom(_ string: String) -> String {
+        return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
     }
 }

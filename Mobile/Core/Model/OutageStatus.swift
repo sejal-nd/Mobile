@@ -32,8 +32,8 @@ private func extractOutageStatus(object: Any?) throws -> Bool {
 
 struct OutageStatus: Mappable {
     let flagGasOnly: Bool
-    let contactHomeNumber: String
-    let outageDescription: String
+    let contactHomeNumber: String?
+    let outageDescription: String?
     let activeOutage: Bool // "ACTIVE", "NOT ACTIVE"
     let smartMeterStatus: Bool
     var flagFinaled: Bool
@@ -42,16 +42,33 @@ struct OutageStatus: Mappable {
     var etr: Date?
     
     init(map: Mapper) throws {
-        try flagGasOnly = map.from("flagGasOnly")
-        try contactHomeNumber = map.from("contactHomeNumber")
-        try outageDescription = map.from("outageReported")
-        try activeOutage = map.from("status", transformation: extractOutageStatus)
-        try smartMeterStatus = map.from("smartMeterStatus")
+        do {
+            try flagGasOnly = map.from("flagGasOnly")
+        } catch {
+            flagGasOnly = false
+        }
+        
+        contactHomeNumber = map.optionalFrom("contactHomeNumber")
+        outageDescription = map.optionalFrom("outageReported")
+        
+        do {
+            try activeOutage = map.from("status", transformation: extractOutageStatus)
+        } catch {
+            activeOutage = false
+        }
+        
+        do {
+            try smartMeterStatus = map.from("smartMeterStatus")
+        } catch {
+            smartMeterStatus = false
+        }
+        
         do {
             try flagFinaled = map.from("flagFinaled")
         } catch {
             flagFinaled = false
         }
+        
         do {
             try flagNoPay = map.from("flagNoPay")
         } catch {

@@ -75,7 +75,7 @@ class SettingsViewController: UIViewController {
                 
                 self.touchIdPasswordRetryCount += 1
                 if self.touchIdPasswordRetryCount < 3 {
-                    self.presentPasswordAlert(message: NSLocalizedString("Error: \(error)", comment: ""))
+                    self.presentPasswordAlert(message: NSLocalizedString("Error", comment: "") + ": \(error)")
                 } else {
                     self.touchIdPasswordRetryCount = 0
                     self.touchIdCell?.setSwitch(on: false)

@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ToastSwiftFramework
 
 // PECO:
 // User_0005084051@test.com / Password1
@@ -25,9 +26,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
     @IBOutlet weak var passwordTextField: FloatLabelTextField!
     @IBOutlet weak var keepMeSignedInSwitch: Switch!
-    @IBOutlet weak var signInButton: PrimaryButton!
-    @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var keepMeSignedInLabel: UILabel!
+    @IBOutlet weak var signInButton: PrimaryButton!
+    @IBOutlet weak var forgotUsernameButton: UIButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     var passwordAutofilledFromTouchID = false
@@ -40,12 +42,6 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
-        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.tintColor = .white
-        
         view.backgroundColor = .primaryColor
         
         loginFormView.layer.shadowColor = UIColor.black.cgColor
@@ -56,7 +52,6 @@ class LoginViewController: UIViewController {
         loginFormView.layer.cornerRadius = 2
         
         keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
-        forgotPasswordButton.setTitle(NSLocalizedString("Forgot password or username?", comment: ""), for: .normal)
         
         usernameTextField.textField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
         usernameTextField.textField.autocorrectionType = .no
@@ -95,6 +90,7 @@ class LoginViewController: UIViewController {
             self.onLoginPress()
         }).addDisposableTo(disposeBag)
         
+        forgotUsernameButton.tintColor = UIColor.mediumPersianBlue
         forgotPasswordButton.tintColor = UIColor.mediumPersianBlue
     }
     
@@ -104,7 +100,16 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
+        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = true
+        
+        setNeedsStatusBarAppearanceUpdate()
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -124,7 +129,7 @@ class LoginViewController: UIViewController {
             })
         }, onError: { (errorMessage) in // fingerprint successful but login failed
             self.navigationController?.view.isUserInteractionEnabled = true
-            self.showErrorAlertWithMessage(NSLocalizedString(errorMessage + "\n\nIf you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
+            self.showErrorAlertWithMessage(errorMessage + "\n\n" + NSLocalizedString("If you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
         })
     }
     
@@ -159,7 +164,8 @@ class LoginViewController: UIViewController {
                         self.present(touchIDAlert, animated: true, completion: nil)
                         self.viewModel.setShouldPromptToEnableTouchID(false)
                     } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
-                        let message = NSLocalizedString("Touch ID settings for \(lastLoggedInUsername!.obfuscate()) will be disabled upon signing in as \(self.viewModel.username.value.obfuscate()). Would you like to enable Touch ID for \(self.viewModel.username.value) at this time?", comment: "")
+                        let message = String(format: NSLocalizedString("Touch ID settings for %@ will be disabled upon signing in as %@. Would you like to enable Touch ID for %@ at this time?", comment: ""), lastLoggedInUsername!.obfuscate(), self.viewModel.username.value.obfuscate(), self.viewModel.username.value)
+                        
                         let differentAccountAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: message, preferredStyle: .alert)
                         differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { (action) in
                             self.viewModel.disableTouchID()
@@ -182,6 +188,18 @@ class LoginViewController: UIViewController {
             self.navigationController?.view.isUserInteractionEnabled = true
             self.showErrorAlertWithMessage(errorMessage)
         })
+    }
+    
+    @IBAction func onForgotUsernamePress() {
+        if Environment.sharedInstance.opco == "BGE" {
+            performSegue(withIdentifier: "forgotUsernameSegueBGE", sender: self)
+        } else {
+            performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
+        }
+    }
+    
+    @IBAction func onForgotPasswordPress() {
+        performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
     }
     
     func launchMainApp() {
@@ -225,6 +243,15 @@ class LoginViewController: UIViewController {
         return a + (b - a) * t;
     }
     
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.isKind(of: ForgotPasswordViewController.self) {
+            let vc = segue.destination as! ForgotPasswordViewController
+            vc.delegate = self
+        }
+    }
+    
 }
 
 extension LoginViewController: UIScrollViewDelegate {
@@ -233,4 +260,17 @@ extension LoginViewController: UIScrollViewDelegate {
         opcoLogo.alpha = lerp(1, 0, scrollView.contentOffset.y / 50.0)
     }
     
+}
+
+extension LoginViewController: ForgotPasswordViewControllerDelegate {
+    
+    func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            var toastStyle = ToastManager.shared.style
+            toastStyle.verticalPadding = 10
+            toastStyle.horizontalPadding = 44
+            toastStyle.cornerRadius = 30
+            self.view.makeToast(NSLocalizedString("An email has been sent with a\ntemporary password", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50), style: toastStyle)
+        })
+    }
 }
