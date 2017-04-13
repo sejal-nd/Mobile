@@ -120,8 +120,8 @@ class ForgotUsernameViewController: UIViewController {
     func onNextPress() {
         view.endEditing(true)
         
-        viewModel.validateAccount(onSuccess: { 
-            print("success")
+        viewModel.validateAccount(onSuccess: {
+            self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
         }, onNeedAccountNumber: {
             self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { errorMessage in
@@ -129,10 +129,6 @@ class ForgotUsernameViewController: UIViewController {
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         })
-    }
-    
-    @IBAction func onAccountLookupToolPress() {
-        print("account lookup tool")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -162,10 +158,29 @@ class ForgotUsernameViewController: UIViewController {
             let vc = segue.destination as! BGEAccountNumberViewController
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
             vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
+        } else if segue.destination.isKind(of: AccountLookupToolViewController.self) {
+            let vc = segue.destination as! AccountLookupToolViewController
+            vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
+        } else if segue.destination.isKind(of: ForgotUsernameResultViewController.self) {
+            let vc = segue.destination as! ForgotUsernameResultViewController
+            vc.viewModel = viewModel
         }
     }
     
+}
 
+extension ForgotUsernameViewController: AccountLookupToolResultViewControllerDelegate {
+
+    func accountLookupToolResultViewController(_ accountLookupToolResultViewController: AccountLookupToolResultViewController, didSelectAccount accountNumber: String, phoneNumber: String) {
+        viewModel.phoneNumber.value = phoneNumber
+        phoneNumberTextField.textField.text = phoneNumber
+        phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
+        
+        viewModel.accountNumber.value = accountNumber
+        accountNumberTextField?.textField.text = accountNumber
+        accountNumberTextField?.textField.sendActions(for: .editingDidEnd)
+    }
+    
 }
 
 extension ForgotUsernameViewController: UITextFieldDelegate {
