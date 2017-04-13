@@ -11,6 +11,8 @@ import RxSwift
 class ForgotUsernameViewModel {
     let disposeBag = DisposeBag()
     
+    private var authService: AuthenticationService
+    
     let phoneNumber = Variable("")
     let identifierNumber = Variable("")
     let accountNumber = Variable("")
@@ -20,48 +22,50 @@ class ForgotUsernameViewModel {
     
     let securityQuestionAnswer = Variable("")
     
-    func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        print("Phone number: \(extractDigitsFrom(phoneNumber.value))")
-        print("Identifier number: \(identifierNumber.value)")
-        print("Account number: \(accountNumber.value)")
+    required init(authService: AuthenticationService) {
+        self.authService = authService
+    }
+    
+    func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         
-        //onError(NSLocalizedString("The information entered does not match our records. Please try again.", comment: ""))
-        if accountNumber.value.characters.count > 0 {
-            let usernames = [
-                NSDictionary(dictionary: [
-                    "email": "m**********g@gmail.com",
-                    "question": "What is your father's middle name?",
-                    "question_id": 1
-                ]),
-//                NSDictionary(dictionary: [
-//                    "email": "m**********g@mindgrub.com",
-//                    "question": "What is your mother's maiden name?",
-//                    "question_id": 4
-//                ]),
-//                NSDictionary(dictionary: [
-//                    "email": "m**********g@icloud.com",
-//                    "question": "What street did you grow up on?",
-//                    "question_id": 3
-//                ])
-            ]
-            for user in usernames {
-                if let mockModel = ForgotUsernameMasked.from(user) {
-                    maskedUsernames.append(mockModel)
+        let identifier = accountNumber.value.characters.count > 0 ? accountNumber.value : identifierNumber.value
+        authService.recoverMaskedUsername(phone: phoneNumber.value, identifier: identifier)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { usernames in
+                self.maskedUsernames = usernames
+                onSuccess()
+            }, onError: { error in
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue {
+                    onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
+                } else {
+                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
-            }
-
-            onSuccess()
-        } else {
-            onNeedAccountNumber()
-        }
-        
+            }).addDisposableTo(disposeBag)
     }
     
     func submitSecurityQuestionAnswer(onSuccess: @escaping (String) -> Void, onAnswerNoMatch: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
-        onSuccess("mshilling@mindgrub.com")
+        let maskedUsername = maskedUsernames[selectedUsernameIndex]
         
-//        let serviceError = ServiceError(serviceCode: "FN-PROF-BADSECURITY")
-//        onAnswerNoMatch(serviceError.errorDescription!)
+        let identifier = accountNumber.value.characters.count > 0 ? accountNumber.value : identifierNumber.value
+        authService.recoverUsername(phone: phoneNumber.value, identifier: identifier, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { username in
+                onSuccess(username)
+            }, onError: { error in
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.FnProfBadSecurity.rawValue {
+                    onAnswerNoMatch(serviceError.errorDescription!)
+                } else {
+                    onError(error.localizedDescription)
+                }
+            }).addDisposableTo(disposeBag)
+    }
+    
+    func getSecurityQuestion() -> String {
+        return maskedUsernames[selectedUsernameIndex].question!
     }
     
     func nextButtonEnabled() -> Observable<Bool> {

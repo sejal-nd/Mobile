@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import MBProgressHUD
 
 class ForgotUsernameViewController: UIViewController {
     
@@ -19,7 +20,7 @@ class ForgotUsernameViewController: UIViewController {
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField?
     @IBOutlet weak var accountLookupToolButton: UIButton?
     
-    let viewModel = ForgotUsernameViewModel()
+    let viewModel = ForgotUsernameViewModel(authService: MockAuthenticationService())
     
     let disposeBag = DisposeBag()
 
@@ -120,12 +121,20 @@ class ForgotUsernameViewController: UIViewController {
     func onNextPress() {
         view.endEditing(true)
         
+        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
+        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        hud.contentColor = .white
+        
         viewModel.validateAccount(onSuccess: {
+            hud.hide(animated: true)
             self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
         }, onNeedAccountNumber: {
+            hud.hide(animated: true)
             self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
-        }, onError: { errorMessage in
-            let alertController = UIAlertController(title: NSLocalizedString("Invalid Information", comment: ""), message: errorMessage, preferredStyle: .alert)
+        }, onError: { (title, message) in
+            hud.hide(animated: true)
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         })

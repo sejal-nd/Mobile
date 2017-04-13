@@ -63,7 +63,7 @@ class SettingsViewController: UIViewController {
             self.touchIdCell?.setSwitch(on: false)
         }))
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { (action) -> Void in
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
             hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
             hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
             hud.contentColor = .white

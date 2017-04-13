@@ -51,7 +51,7 @@ class LoginViewModel {
         authService.login(username.value, password: password.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
-            .subscribe(onNext: { (success: Bool) in
+            .subscribe(onNext: { _ in
                 onSuccess()
             }, onError: { (error: Error) in
                 onError(error.localizedDescription)

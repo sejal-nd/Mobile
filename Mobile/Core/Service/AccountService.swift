@@ -21,7 +21,7 @@ protocol AccountService {
     ///   - offset: the page offset
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain an AccountPage on success, or a ServiceError on failure.
-    func fetchAccounts(completion: @escaping (_ result: ServiceResult<[Account]>) -> Swift.Void)
+    func fetchAccounts(completion: @escaping (_ result: ServiceResult<[Account]>) -> Void)
     
     
     /// Fetch an accounts detailed information.
@@ -30,7 +30,7 @@ protocol AccountService {
     ///   - account: the account to fetch
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain the AccountDetails on success, or a ServiceErro on failure.
-    func fetchAccountDetail(account: Account, completion: @escaping (_ result: ServiceResult<AccountDetail>) -> Swift.Void)
+    func fetchAccountDetail(account: Account, completion: @escaping (_ result: ServiceResult<AccountDetail>) -> Void)
 }
 
 // MARK: - Reactive Extension to AccountService

@@ -363,7 +363,6 @@
 		E87C32061E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32041E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift */; };
 		E87C32071E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32041E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift */; };
 		E87C32081E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32041E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift */; };
-		E87C320D1E9ECA3900E5F6FD /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32091E9ECA3900E5F6FD /* ForgotUsername.swift */; };
 		E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */; };
 		E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */; };
 		E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */; };
@@ -417,6 +416,9 @@
 		E8B674D81E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
 		E8B674D91E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
 		E8B674DA1E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
+		E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
+		E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
+		E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8CA07DA1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
 		E8CA07DB1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
 		E8CA07DC1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
@@ -433,11 +435,9 @@
 		E8CA07EA1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */; };
 		E8CA07EB1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */; };
 		E8CA07EC1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */; };
-		E8CA07ED1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */; };
 		E8CA07EF1E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
 		E8CA07F01E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
 		E8CA07F11E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
-		E8CA07F21E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
 		E8CA07F41E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */; };
 		E8CA07F51E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */; };
 		E8CA07F61E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */; };
@@ -778,7 +778,6 @@
 		E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetJVFloatLabeledTextField.swift; sourceTree = "<group>"; };
 		E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolViewController.swift; sourceTree = "<group>"; };
 		E87C32041E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolViewModel.swift; sourceTree = "<group>"; };
-		E87C32091E9ECA3900E5F6FD /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
 		E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultViewController.swift; sourceTree = "<group>"; };
 		E87C32121E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultCell.swift; sourceTree = "<group>"; };
 		E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCOutageService.swift; sourceTree = "<group>"; };
@@ -2045,6 +2044,7 @@
 				E8CA07E51E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
+				E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
 				E87C32051E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
@@ -2125,6 +2125,7 @@
 				E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
+				E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */,
 				E87C32071E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
@@ -2205,6 +2206,7 @@
 				E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
+				E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
 				E87C32061E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */,
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
@@ -2279,9 +2281,7 @@
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
 				E801285E1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
-				E8CA07F21E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
-				E87C320D1E9ECA3900E5F6FD /* ForgotUsername.swift in Sources */,
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
 				B574BAF41E785AE3001E8A44 /* OutageStatus.swift in Sources */,
@@ -2302,7 +2302,6 @@
 				E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				E8B674CB1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
-				E8CA07ED1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
 				E8FE30A41E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */,

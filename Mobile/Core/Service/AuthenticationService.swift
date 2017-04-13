@@ -21,7 +21,7 @@ protocol AuthenticationService {
     ///   - completion: the completion block to execute upon completion. 
     ///     The ServiceResult that is provided will contain the user id on success,
     ///     or the error on failure.
-    func login(_ username: String, password: String, completion: @escaping (_ result: ServiceResult<String>) -> Swift.Void)
+    func login(_ username: String, password: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
     
     /// Log out the currently logged in user
     ///
@@ -31,7 +31,7 @@ protocol AuthenticationService {
     /// - Parameter completion: the completion block to execute upon completion.
     ///     The ServiceResult that is provided will econtain the user id on success,
     ///     or the error on failure.
-    func logout(completion: @escaping (_ result: ServiceResult<Void>) -> Swift.Void)
+    func logout(completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
     /// Change the currently logged in users password.
     ///
@@ -41,7 +41,47 @@ protocol AuthenticationService {
     ///   - completion: the completion block to execute upon completion. The
     ///     ServiceResult that is provided will contain the user id on success,
     ///     or the error on failure.
-    func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (_ result: ServiceResult<Void>) -> Swift.Void)
+    func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    /// Attempt to recover a username by providing a phone number and identifier.
+    ///
+    /// - Parameters:
+    ///   - phone: the phone number associated with the customer.
+    ///   - identifier: the identifier (e.g ssn/pin/account#) - varies by opco.
+    ///   - completion: the completion block to execute upon completion. If the 
+    ///     phone/identifier match an account, an array of ForgotUsernameMasked 
+    ///     objects is returned, which will contain a list of masked usernames 
+    ///     and security question info.
+    func recoverMaskedUsername(phone: String, identifier: String, completion: @escaping (_ result: ServiceResult<[ForgotUsernameMasked]>) -> Void)
+    
+    /// Attempt to recover a username by providing a security question answer
+    ///
+    /// - Parameters:
+    ///   - phone: the phone number associated with the customer.
+    ///   - identifier: the identifier (e.g ssn/pin/account#) - varies by opco.
+    ///   - questionId: the question id
+    ///   - questionResponse: the question response
+    ///   - completion: the completion block to execute upon completion. If the
+    ///     question/id are correct, the response will contain an unmasked username
+    func recoverUsername(phone: String, identifier: String, questionId: Int, questionResponse: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
+    
+    /// Look up an account number by phone and id
+    ///
+    /// - Parameters:
+    ///   - phone: the phone number associated with the customer.
+    ///   - identifier: the identifier (e.g ssn/pin) - varies by opco.
+    ///   - completion: the completion block to execute upon completion. If the
+    ///     phone/id match an account, an array of AccountLookupResult objects
+    ///     is returned.
+    func lookupAccount(phone: String, identifier: String, completion: @escaping (_ result: ServiceResult<[AccountLookupResult]>) -> Void)
+    
+    /// Reset a password by providing your username
+    ///
+    /// - Parameters:
+    ///   - username: the username associated with the account.
+    ///   - completion: the completion block to execute upon completion
+    ///     of the password reset initiation process
+    func recoverPassword(username: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
 }
 
 
@@ -54,12 +94,12 @@ extension AuthenticationService {
     ///   - username: the username to authenticate with.
     ///   - password: the password to authenticate with.
     /// - Returns: An observable to subscribe to.
-    func login(_ username: String, password: String) -> Observable<Bool> {
+    func login(_ username: String, password: String) -> Observable<Void> {
         return Observable.create { observer in
             self.login(username, password: password, completion: { (result: ServiceResult<String>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext(true)
+                    observer.onNext()
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -76,12 +116,12 @@ extension AuthenticationService {
     /// any cached information related to the user, either in memory or on disk.
     ///
     /// - Returns: An observable to subscribe to.
-    func logout() -> Observable<Bool> {
+    func logout() -> Observable<Void> {
         return Observable.create { observer in
             self.logout(completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext(true)
+                    observer.onNext()
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -98,18 +138,103 @@ extension AuthenticationService {
     ///   - currentPassword: the users current password.
     ///   - newPassword: the users new password to set.
     /// - Returns: An observable to subscribe to.
-    func changePassword(_ currentPassword: String, newPassword: String) -> Observable<Bool> {
+    func changePassword(_ currentPassword: String, newPassword: String) -> Observable<Void> {
         return Observable.create { observer in
             self.changePassword(currentPassword, newPassword: newPassword, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext(true)
+                    observer.onNext()
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
                 }
             })
             
+            return Disposables.create()
+        }
+    }
+    
+    /// Attempt to recover a username by providing a phone number and identifier.
+    ///
+    /// - Parameters:
+    ///   - phone: the phone number associated with the customer.
+    ///   - identifier: the identifier (e.g ssn/pin/account#) - varies by opco.
+    /// - Returns: An observable to subscribe to.
+    func recoverMaskedUsername(phone: String, identifier: String) -> Observable<[ForgotUsernameMasked]> {
+        return Observable.create { observer in
+            self.recoverMaskedUsername(phone: phone, identifier: identifier, completion: { (result: ServiceResult<[ForgotUsernameMasked]>) in
+                switch (result) {
+                case ServiceResult.Success(let usernameArray):
+                    observer.onNext(usernameArray)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    /// Attempt to recover a username by providing a security question answer
+    ///
+    /// - Parameters:
+    ///   - phone: the phone number associated with the customer.
+    ///   - identifier: the identifier (e.g ssn/pin/account#) - varies by opco.
+    ///   - questionId: the question id
+    ///   - questionResponse: the question response
+    /// - Returns: An observable to subscribe to.
+    func recoverUsername(phone: String, identifier: String, questionId: Int, questionResponse: String) -> Observable<String> {
+        return Observable.create { observer in
+            self.recoverUsername(phone: phone, identifier: identifier, questionId: questionId, questionResponse: questionResponse, completion: { (result: ServiceResult<String>) in
+                switch (result) {
+                case ServiceResult.Success(let username):
+                    observer.onNext(username)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    /// Look up an account number by phone and id
+    ///
+    /// - Parameters:
+    ///   - phone: the phone number associated with the customer.
+    ///   - identifier: the identifier (e.g ssn/pin) - varies by opco.
+    /// - Returns: An observable to subscribe to.
+    func lookupAccount(phone: String, identifier: String) -> Observable<[AccountLookupResult]> {
+        return Observable.create { observer in
+            self.lookupAccount(phone: phone, identifier: identifier, completion: { (result: ServiceResult<[AccountLookupResult]>) in
+                switch (result) {
+                case ServiceResult.Success(let accounts):
+                    observer.onNext(accounts)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    /// Reset a password by providing your username
+    ///
+    /// - Parameters:
+    ///   - username: the username associated with the account.
+    /// - Returns: An observable to subscribe to.
+    func recoverPassword(username: String) -> Observable<Void> {
+        return Observable.create { observer in
+            self.recoverPassword(username: username, completion: { (result: ServiceResult<Void>) in
+                switch (result) {
+                case ServiceResult.Success():
+                    observer.onNext()
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
             return Disposables.create()
         }
     }

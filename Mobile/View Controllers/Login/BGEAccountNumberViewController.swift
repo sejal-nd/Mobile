@@ -11,7 +11,7 @@ import RxSwift
 
 class BGEAccountNumberViewController: UIViewController {
     
-    let viewModel = ForgotUsernameViewModel()
+    let viewModel = ForgotUsernameViewModel(authService: MockAuthenticationService())
 
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
@@ -44,8 +44,8 @@ class BGEAccountNumberViewController: UIViewController {
             self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
         }, onNeedAccountNumber: {
             // wont happen?
-        }, onError: { errorMessage in
-            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+        }, onError: { title, message in
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         })
