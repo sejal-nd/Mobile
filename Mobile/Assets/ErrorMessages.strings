@@ -10,4 +10,5 @@
 "FN-FAIL-LOGIN" = "We're sorry, this combination of username and password is invalid. Please try again.";
 "INVALID-PROFILE-TYPE" = "This profile type does not have access to the mobile app. Access your account on our responsive website.";
 "FN-NOT-FOUND" = "Outage data for this account is not available.";
+"ERR-NO-NETWORK-CONNECTION" = "No network available, please try again later.";
 

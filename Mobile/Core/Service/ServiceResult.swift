@@ -12,6 +12,7 @@ import Foundation
 
 enum ServiceErrorCode : String {
     case LocalError = "LocalError"
+    case NoNetworkConnection = "ERR-NO-NETWORK-CONNECTION"
     case InvalidProfileType = "INVALID-PROFILE-TYPE"
     case Parsing = "Parsing"
     case TCNotImplemented = "TC-NOTIMPL"

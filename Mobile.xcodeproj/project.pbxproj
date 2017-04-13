@@ -107,6 +107,14 @@
 		B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
 		B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
 		B548469B1E709FC8008CE1B1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
+		B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
+		B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
+		B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
+		B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
+		B54F0FFB1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */; };
+		B54F0FFC1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */; };
+		B54F0FFD1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */; };
+		B54F0FFE1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */; };
 		B55735D81E674089003B9369 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
 		B55735D91E674089003B9369 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
 		B55735DA1E674089003B9369 /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
@@ -528,6 +536,8 @@
 		B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseParserTests.swift; sourceTree = "<group>"; };
 		B548468F1E6F4446008CE1B1 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
+		B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCApi.swift; sourceTree = "<group>"; };
+		B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		B55735971E67406D003B9369 /* OMCAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalytics.h; sourceTree = "<group>"; };
 		B55735981E67406D003B9369 /* OMCAnalyticsApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalyticsApplicationDelegate.h; sourceTree = "<group>"; };
 		B55735991E67406D003B9369 /* OMCAnalyticsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalyticsDelegate.h; sourceTree = "<group>"; };
@@ -809,6 +819,7 @@
 				E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D2520E1E6DB78800C90584 /* Lottie.framework in Frameworks */,
 				E801BADD1E8C5A4E00550F99 /* Mapper.framework in Frameworks */,
+				B54F0FFB1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E80043141E65D126005CF531 /* MBProgressHUD.framework in Frameworks */,
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
@@ -836,6 +847,7 @@
 				E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D252121E6DB82C00C90584 /* Lottie.framework in Frameworks */,
 				E801BADF1E8C5A8A00550F99 /* Mapper.framework in Frameworks */,
+				B54F0FFD1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E80043161E65D149005CF531 /* MBProgressHUD.framework in Frameworks */,
 				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */,
@@ -863,6 +875,7 @@
 				E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D252101E6DB7B400C90584 /* Lottie.framework in Frameworks */,
 				E801BADE1E8C5A7300550F99 /* Mapper.framework in Frameworks */,
+				B54F0FFC1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E80043151E65D13A005CF531 /* MBProgressHUD.framework in Frameworks */,
 				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C2601E524548005FB1BB /* RxSwift.framework in Frameworks */,
@@ -881,6 +894,7 @@
 				E80043611E6A11B7005CF531 /* RxSwift.framework in Frameworks */,
 				E80043761E6A1701005CF531 /* RxCocoa.framework in Frameworks */,
 				E800436E1E6A133F005CF531 /* libOMCNotifications.a in Frameworks */,
+				B54F0FFE1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E80043711E6A139B005CF531 /* libIDMMobileSDK.a in Frameworks */,
 				E800436D1E6A133D005CF531 /* libOMCLocation.a in Frameworks */,
 				E800436F1E6A1341005CF531 /* libOMCStorage.a in Frameworks */,
@@ -905,6 +919,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */,
 				E801BADC1E8C5A4E00550F99 /* Mapper.framework */,
 				E8D2520D1E6DB78800C90584 /* Lottie.framework */,
 				E8D2520B1E6DB74600C90584 /* HockeySDK.framework */,
@@ -1403,6 +1418,7 @@
 				E801BAD41E8C439500550F99 /* OMCAuthenticationService.swift */,
 				E801BAD81E8C43BB00550F99 /* OMCAccountService.swift */,
 				E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */,
+				B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */,
 			);
 			path = OMC;
 			sourceTree = "<group>";
@@ -1865,6 +1881,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -1888,6 +1905,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -1911,6 +1929,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -2000,6 +2019,7 @@
 				E80D2E271E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
+				B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
@@ -2071,6 +2091,7 @@
 				E80D2E291E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
+				B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
@@ -2142,6 +2163,7 @@
 				E80D2E281E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
+				B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
 				E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
@@ -2226,6 +2248,7 @@
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
 				E8B674DA1E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
+				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
