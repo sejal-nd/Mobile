@@ -19,6 +19,7 @@ class LoginTermsPoliciesViewController: UIViewController {
     @IBOutlet weak var agreeLabel: UILabel!
     
     let viewModel = TermsPoliciesViewModel()
+    var viewAppeared = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,21 @@ class LoginTermsPoliciesViewController: UIViewController {
         agreeLabel.text = viewModel.agreeLabelText;
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Content was appearing already scrolled initially so this fixes it
+        if !viewAppeared {
+            textView.setContentOffset(.zero, animated: false)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewAppeared = true
+    }
+    
     @IBAction func onContinuePress() {
         UserDefaults.standard.set(true, forKey: UserDefaultKeys.HasAcceptedTerms)
         dismiss(animated: true, completion: nil)
@@ -48,5 +64,7 @@ class LoginTermsPoliciesViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
+    
+
     
 }

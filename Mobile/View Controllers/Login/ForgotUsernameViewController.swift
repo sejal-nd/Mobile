@@ -120,8 +120,8 @@ class ForgotUsernameViewController: UIViewController {
     func onNextPress() {
         view.endEditing(true)
         
-        viewModel.validateAccount(onSuccess: { 
-            print("success")
+        viewModel.validateAccount(onSuccess: {
+            self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
         }, onNeedAccountNumber: {
             self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { errorMessage in
@@ -161,10 +161,12 @@ class ForgotUsernameViewController: UIViewController {
         } else if segue.destination.isKind(of: AccountLookupToolViewController.self) {
             let vc = segue.destination as! AccountLookupToolViewController
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
+        } else if segue.destination.isKind(of: ForgotUsernameResultViewController.self) {
+            let vc = segue.destination as! ForgotUsernameResultViewController
+            vc.viewModel = viewModel
         }
     }
     
-
 }
 
 extension ForgotUsernameViewController: AccountLookupToolResultViewControllerDelegate {

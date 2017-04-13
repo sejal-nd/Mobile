@@ -1,7 +1,6 @@
 //
 //  ForgotUsername.swift
 //  Mobile
-
 //
 //  Created by Marc Shilling on 4/11/17.
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
