@@ -24,3 +24,15 @@ struct ForgotUsernameMasked: Mappable {
         }
     }
 }
+
+struct AccountLookupResult: Mappable {
+    let accountNumber: String?
+    let streetNumber: String?
+    let unitNumber: String?
+    
+    init(map: Mapper) throws {
+        accountNumber = map.optionalFrom("accountNumber")
+        streetNumber = map.optionalFrom("streetNumber")
+        unitNumber = map.optionalFrom("unitNumber")
+    }
+}
