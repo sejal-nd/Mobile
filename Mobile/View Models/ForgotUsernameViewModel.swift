@@ -15,6 +15,11 @@ class ForgotUsernameViewModel {
     let identifierNumber = Variable("")
     let accountNumber = Variable("")
     
+    var maskedUsernames = [ForgotUsernameMasked]()
+    var selectedUsernameIndex = 0
+    
+    let securityQuestionAnswer = Variable("")
+    
     func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String) -> Void) {
         print("Phone number: \(extractDigitsFrom(phoneNumber.value))")
         print("Identifier number: \(identifierNumber.value)")
@@ -22,11 +27,41 @@ class ForgotUsernameViewModel {
         
         //onError(NSLocalizedString("The information entered does not match our records. Please try again.", comment: ""))
         if accountNumber.value.characters.count > 0 {
+            let usernames = [
+                NSDictionary(dictionary: [
+                    "email": "m**********g@gmail.com",
+                    "question": "What is your father's middle name?",
+                    "question_id": 1
+                ]),
+//                NSDictionary(dictionary: [
+//                    "email": "m**********g@mindgrub.com",
+//                    "question": "What is your mother's maiden name?",
+//                    "question_id": 4
+//                ]),
+//                NSDictionary(dictionary: [
+//                    "email": "m**********g@icloud.com",
+//                    "question": "What street did you grow up on?",
+//                    "question_id": 3
+//                ])
+            ]
+            for user in usernames {
+                if let mockModel = ForgotUsernameMasked.from(user) {
+                    maskedUsernames.append(mockModel)
+                }
+            }
+
             onSuccess()
         } else {
             onNeedAccountNumber()
         }
         
+    }
+    
+    func submitSecurityQuestionAnswer(onSuccess: @escaping (String) -> Void, onAnswerNoMatch: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
+        onSuccess("mshilling@mindgrub.com")
+        
+//        let serviceError = ServiceError(serviceCode: "FN-PROF-BADSECURITY")
+//        onAnswerNoMatch(serviceError.errorDescription!)
     }
     
     func nextButtonEnabled() -> Observable<Bool> {
@@ -63,6 +98,12 @@ class ForgotUsernameViewModel {
     
     func accountNumberNotEmpty() -> Observable<Bool> {
         return accountNumber.asObservable().map({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    
+    func securityQuestionAnswerNotEmpty() -> Observable<Bool> {
+        return securityQuestionAnswer.asObservable().map({ text -> Bool in
             return text.characters.count > 0
         })
     }

@@ -32,17 +32,16 @@ class BGEAccountNumberViewController: UIViewController {
 
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.autocorrectionType = .no
-        //accountNumberTextField.textField.keyboardType = .numberPad
         accountNumberTextField.textField.returnKeyType = .done
         accountNumberTextField.textField.isShowingAccessory = true
         accountNumberTextField.textField.rx.text.orEmpty.bindTo(viewModel.accountNumber).addDisposableTo(disposeBag)
     }
-
+    
     func onNextPress() {
         view.endEditing(true)
         
-        viewModel.validateAccount(onSuccess: { 
-            print("success!")
+        viewModel.validateAccount(onSuccess: {
+            self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
         }, onNeedAccountNumber: {
             // wont happen?
         }, onError: { errorMessage in
@@ -50,6 +49,15 @@ class BGEAccountNumberViewController: UIViewController {
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         })
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.isKind(of: ForgotUsernameResultViewController.self) {
+            let vc = segue.destination as! ForgotUsernameResultViewController
+            vc.viewModel = viewModel
+        }
     }
     
 
