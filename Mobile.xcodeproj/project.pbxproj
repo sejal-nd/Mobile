@@ -176,11 +176,6 @@
 		B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BADE1E7837A6001E8A44 /* MockAccountService.swift */; };
 		B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BADE1E7837A6001E8A44 /* MockAccountService.swift */; };
 		B574BAE31E7837A6001E8A44 /* MockAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BADE1E7837A6001E8A44 /* MockAccountService.swift */; };
-		B574BAE51E784779001E8A44 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAE41E784779001E8A44 /* AccountDetail.swift */; };
-		B574BAE61E784779001E8A44 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAE41E784779001E8A44 /* AccountDetail.swift */; };
-		B574BAE71E784779001E8A44 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAE41E784779001E8A44 /* AccountDetail.swift */; };
-		B574BAE81E784779001E8A44 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAE41E784779001E8A44 /* AccountDetail.swift */; };
-		B574BAE91E784779001E8A44 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAE41E784779001E8A44 /* AccountDetail.swift */; };
 		B574BAEB1E785A5F001E8A44 /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAEA1E785A5F001E8A44 /* OutageService.swift */; };
 		B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAEA1E785A5F001E8A44 /* OutageService.swift */; };
 		B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAEA1E785A5F001E8A44 /* OutageService.swift */; };
@@ -707,7 +702,6 @@
 		B574BAD31E736596001E8A44 /* Macros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Macros.swift; sourceTree = "<group>"; };
 		B574BAD81E78360D001E8A44 /* AccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		B574BADE1E7837A6001E8A44 /* MockAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAccountService.swift; sourceTree = "<group>"; };
-		B574BAE41E784779001E8A44 /* AccountDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetail.swift; sourceTree = "<group>"; };
 		B574BAEA1E785A5F001E8A44 /* OutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageService.swift; sourceTree = "<group>"; };
 		B574BAF01E785AE3001E8A44 /* OutageStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatus.swift; sourceTree = "<group>"; };
 		B574BAF61E786473001E8A44 /* MockOutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockOutageService.swift; sourceTree = "<group>"; };
@@ -1412,7 +1406,6 @@
 			children = (
 				E80D2E2B1E72FEC5002626C9 /* Account.swift */,
 				B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */,
-				B574BAE41E784779001E8A44 /* AccountDetail.swift */,
 				B574BAF01E785AE3001E8A44 /* OutageStatus.swift */,
 				B574BAFC1E787655001E8A44 /* OutageInfo.swift */,
 				E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */,
@@ -2043,7 +2036,6 @@
 				B574BB011E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B574BB021E79BF38001E8A44 /* Account.swift in Sources */,
 				B574BADD1E78360D001E8A44 /* AccountService.swift in Sources */,
-				B574BAE91E784779001E8A44 /* AccountDetail.swift in Sources */,
 				B574BAE31E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2090,7 +2082,6 @@
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
-				B574BAE51E784779001E8A44 /* AccountDetail.swift in Sources */,
 				E801285B1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */,
@@ -2172,7 +2163,6 @@
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
-				B574BAE71E784779001E8A44 /* AccountDetail.swift in Sources */,
 				E801285D1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */,
@@ -2254,7 +2244,6 @@
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
-				B574BAE61E784779001E8A44 /* AccountDetail.swift in Sources */,
 				E801285C1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */,
@@ -2320,7 +2309,6 @@
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
 				E88ECFF71E8ED6DB00A570D0 /* OMCOutageService.swift in Sources */,
-				B574BAE81E784779001E8A44 /* AccountDetail.swift in Sources */,
 				E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				E8B674CB1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,

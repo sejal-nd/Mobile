@@ -23,7 +23,7 @@ struct MockAccountService : AccountService {
     }
     
     func fetchAccountDetail(account: Account, completion: @escaping (ServiceResult<AccountDetail>) -> Void) {
-        let accountDetail = AccountDetail(accountInfo: account)
-        completion(ServiceResult.Success(accountDetail))
+//        let accountDetail = AccountDetail(accountInfo: account)
+//        completion(ServiceResult.Success(accountDetail))
     }
 }
