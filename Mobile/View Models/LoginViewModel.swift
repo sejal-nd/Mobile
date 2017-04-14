@@ -40,11 +40,11 @@ class LoginViewModel {
         UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.ShouldPromptToEnableTouchID)
     }
     
-    func performLogin(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func performLogin(onSuccess: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
         print("Keep me signed in = \(keepMeSignedIn.value)") // TODO: Something with this
         
         if username.value.isEmpty || password.value.isEmpty {
-            onError("Please enter your username and password")
+            onError(nil, "Please enter your username and password")
             return;
         }
         
@@ -53,8 +53,13 @@ class LoginViewModel {
             .asObservable()
             .subscribe(onNext: { _ in
                 onSuccess()
-            }, onError: { (error: Error) in
-                onError(error.localizedDescription)
+            }, onError: { error in
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.PasswordProtectedAccount.rawValue {
+                    onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
+                } else {
+                    onError(nil, error.localizedDescription)
+                }
             })
             .addDisposableTo(disposeBag)
     }
@@ -71,7 +76,7 @@ class LoginViewModel {
         fingerprintService.setStoredPassword(password: password.value)
     }
     
-    func attemptLoginWithTouchID(onLoad: @escaping () -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func attemptLoginWithTouchID(onLoad: @escaping () -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
         if let username = fingerprintService.getStoredUsername() {
             if let password = fingerprintService.getStoredPassword() {
                 self.username.value = username

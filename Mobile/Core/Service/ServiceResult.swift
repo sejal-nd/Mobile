@@ -30,6 +30,7 @@ enum ServiceErrorCode : String {
     case FnProfBadSecurity = "FN-PROF-BADSECURITY" // Forgot Username - security question answered incorrectly
     case FnProfNotFound = "FN-PROF-NOTFOUND" // Forgot Username/Password - profile not found
     case FnAccountNotFound = "FN-ACCT-NOTFOUND" // Forgot Username/Password - account not found
+    case PasswordProtectedAccount = "PASSWORD-PROTECTED-ACCOUNT" // Login - Password protected accounts can't login to app
 }
 
 // MARK: - ServiceError

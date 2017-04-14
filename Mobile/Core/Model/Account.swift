@@ -25,3 +25,16 @@ struct Account: Mappable {
         accountType = .Residential
     }
 }
+
+struct AccountDetail: Mappable {
+    let isPasswordProtected: Bool
+    
+    init(map: Mapper) throws {
+        do {
+            try isPasswordProtected = map.from("isPasswordProtected")
+        } catch {
+            isPasswordProtected = false
+        }
+    }
+}
+

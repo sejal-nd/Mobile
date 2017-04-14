@@ -44,11 +44,11 @@ struct MockAuthenticationService : AuthenticationService {
                 "question": "What is the Earth's circumference?",
                 "question_id": 1
                 ]),
-//                NSDictionary(dictionary: [
-//                    "email": "m**********g@mindgrub.com",
-//                    "question": "What is your mother's maiden name?",
-//                    "question_id": 4
-//                ]),
+                NSDictionary(dictionary: [
+                    "email": "m**********g@mindgrub.com",
+                    "question": "What is your mother's maiden name?",
+                    "question_id": 4
+                ]),
 //                NSDictionary(dictionary: [
 //                    "email": "m**********g@icloud.com",
 //                    "question": "What street did you grow up on?",
