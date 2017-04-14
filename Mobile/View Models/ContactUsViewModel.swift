@@ -40,22 +40,22 @@ class ContactUsViewModel {
     func setEmergencyAttributedString() {
         switch target {
         case "BGE":
-            let text = NSLocalizedString("If you see downed power lines or smell natural gas, leave the area immediately and then call BGE. Representatives are available 24 hours a day, 7 days a week.", comment: "")
-            emergencyAttrString = NSMutableAttributedString(string: text)
-            let range = NSMakeRange(52, 26)
-            emergencyAttrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: range)
+            let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
+            let localizedString = String(format: NSLocalizedString("If you see downed power lines or smell natural gas, %@ and then call BGE. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
+            emergencyAttrString = NSMutableAttributedString(string: localizedString)
+            emergencyAttrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: (localizedString as NSString).range(of: leaveAreaString))
             break
         case "PECO":
-            let text = NSLocalizedString("If you see downed power lines or smell natural gas, leave the area immediately and then call PECO. Representatives are available 24 hours a day, 7 days a week.", comment: "")
-            emergencyAttrString = NSMutableAttributedString(string: text)
-            let range = NSMakeRange(52, 26)
-            emergencyAttrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: range)
+            let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
+            let localizedString = String(format: NSLocalizedString("If you see downed power lines or smell natural gas, %@ and then call PECO. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
+            emergencyAttrString = NSMutableAttributedString(string: localizedString)
+            emergencyAttrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: (localizedString as NSString).range(of: leaveAreaString))
             break
         case "ComEd":
-            let text = NSLocalizedString("If you see downed power lines, leave the area immediately and then call ComEd. Representatives are available 24 hours a day, 7 days a week.", comment: "")
-            emergencyAttrString = NSMutableAttributedString(string: text)
-            let range = NSMakeRange(31, 26)
-            emergencyAttrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: range)
+            let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
+            let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
+            emergencyAttrString = NSMutableAttributedString(string: localizedString)
+            emergencyAttrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: (localizedString as NSString).range(of: leaveAreaString))
             break
         default:
             emergencyAttrString = NSMutableAttributedString(string: "Could not get text")
