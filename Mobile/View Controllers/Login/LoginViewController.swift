@@ -127,9 +127,9 @@ class LoginViewController: UIViewController {
                 self.navigationController?.view.isUserInteractionEnabled = true
                 self.launchMainApp()
             })
-        }, onError: { (errorMessage) in // fingerprint successful but login failed
+        }, onError: { (title, message) in // fingerprint successful but login failed
             self.navigationController?.view.isUserInteractionEnabled = true
-            self.showErrorAlertWithMessage(errorMessage + "\n\n" + NSLocalizedString("If you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
+            self.showErrorAlertWith(title: title, message: message + "\n\n" + NSLocalizedString("If you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
         })
     }
     
@@ -184,9 +184,9 @@ class LoginViewController: UIViewController {
                 }
                 
             })
-        }, onError: { (errorMessage) in
+        }, onError: { (title, message) in
             self.navigationController?.view.isUserInteractionEnabled = true
-            self.showErrorAlertWithMessage(errorMessage)
+            self.showErrorAlertWith(title: title, message: message)
         })
     }
     
@@ -207,10 +207,10 @@ class LoginViewController: UIViewController {
         self.present(viewController!, animated: true, completion: nil)
     }
     
-    func showErrorAlertWithMessage(_ errorMessage: String) {
+    func showErrorAlertWith(title: String?, message: String) {
         signInButton.setFailure()
         
-        let errorAlert = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+        let errorAlert = UIAlertController(title: title != nil ? title : NSLocalizedString("Sign In Error", comment: ""), message: message, preferredStyle: .alert)
         errorAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.present(errorAlert, animated: true, completion: nil)
     }
