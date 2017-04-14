@@ -118,7 +118,7 @@ class ChangePasswordViewModel {
         authService.changePassword(currentPassword.value, newPassword: newPassword.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
-            .subscribe(onNext: { (success: Bool) in
+            .subscribe(onNext: { _ in
                 if self.fingerprintService.isTouchIDEnabled() { // Store the new password in the keychain
                     self.fingerprintService.setStoredPassword(password: self.newPassword.value)
                 }

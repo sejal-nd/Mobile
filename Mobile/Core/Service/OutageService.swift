@@ -21,7 +21,7 @@ protocol OutageService {
     ///   - account: the account to fetch outage status for
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain the OutageStatus on success, or a ServiceError on failure.
-    func fetchOutageStatus(account: Account, completion: @escaping (_ result: ServiceResult<OutageStatus>) -> Swift.Void)
+    func fetchOutageStatus(account: Account, completion: @escaping (_ result: ServiceResult<OutageStatus>) -> Void)
     
     
     /// Report an outage for the current customer.
@@ -30,7 +30,7 @@ protocol OutageService {
     ///   - outageInfo: the outage information to report
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain a ServiceError on failure.
-    func reportOutage(outageInfo: OutageInfo, completion: @escaping (_ result: ServiceResult<Void>) -> Swift.Void)
+    func reportOutage(outageInfo: OutageInfo, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
 }
 
 // MARK: - Reactive Extension to OutageService

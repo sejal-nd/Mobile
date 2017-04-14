@@ -12,4 +12,5 @@
 "FN-NOT-FOUND" = "Outage data for this account is not available.";
 "ERR-NO-NETWORK-CONNECTION" = "No network available, please try again later.";
 "FN-PROF-BADSECURITY" = "The security answer does not match our records.";
-
+"FN-PROF-NOTFOUND" = "Incorrect username/email address. Please try again.";
+"FN-ACCT-NOTFOUND" = "The information entered does not match our records. Please try again.";

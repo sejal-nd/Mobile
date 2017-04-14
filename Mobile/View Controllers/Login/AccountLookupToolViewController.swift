@@ -7,12 +7,13 @@
 //
 
 import RxSwift
+import MBProgressHUD
 
 class AccountLookupToolViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = AccountLookupToolViewModel()
+    let viewModel = AccountLookupToolViewModel(authService: MockAuthenticationService())
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
@@ -91,9 +92,16 @@ class AccountLookupToolViewController: UIViewController {
     func onSearchPress() {
         view.endEditing(true)
         
-        viewModel.performSearch(onSuccess: { 
+        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
+        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        hud.contentColor = .white
+        
+        viewModel.performSearch(onSuccess: {
+            hud.hide(animated: true)
             self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
         }, onError: { errorMessage in
+            hud.hide(animated: true)
             let alertController = UIAlertController(title: NSLocalizedString("Invalid Information", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)

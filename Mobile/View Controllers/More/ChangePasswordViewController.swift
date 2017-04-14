@@ -136,9 +136,9 @@ class ChangePasswordViewController: UIViewController {
     }
     
     func onDonePress() {
-        self.view.endEditing(true)
+        view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
         hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
         hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         hud.contentColor = .white

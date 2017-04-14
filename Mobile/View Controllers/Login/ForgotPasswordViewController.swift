@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import MBProgressHUD
 
 protocol ForgotPasswordViewControllerDelegate: class {
     func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController)
@@ -19,7 +20,7 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
     
-    let viewModel = ForgotPasswordViewModel()
+    let viewModel = ForgotPasswordViewModel(authService: MockAuthenticationService())
     
     let disposeBag = DisposeBag()
 
@@ -48,6 +49,9 @@ class ForgotPasswordViewController: UIViewController {
                 }
             }).addDisposableTo(self.disposeBag)
         }).addDisposableTo(disposeBag)
+        usernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+            self.usernameTextField.setError(nil)
+        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,13 +78,20 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     func onSubmitPress() {
-        self.view.endEditing(true)
+        view.endEditing(true)
         
-        viewModel.submitChangePassword(onSuccess: { 
+        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
+        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        hud.contentColor = .white
+        
+        viewModel.submitChangePassword(onSuccess: {
+            hud.hide(animated: true)
             self.delegate?.forgotPasswordViewControllerDidSubmit(self)
             _ = self.navigationController?.popViewController(animated: true)
-        }, onProfileNotFound: {
-            self.usernameTextField.setError(NSLocalizedString("Incorrect username/email address", comment: ""))
+        }, onProfileNotFound: { error in
+            hud.hide(animated: true)
+            self.usernameTextField.setError(NSLocalizedString(error, comment: ""))
         }, onError: { errorMessage in
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))

@@ -34,6 +34,88 @@ struct MockAuthenticationService : AuthenticationService {
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
         }
-        
     }
+    
+    func recoverMaskedUsername(phone: String, identifier: String, completion: @escaping (_ result: ServiceResult<[ForgotUsernameMasked]>) -> Void) {
+        var maskedUsernames = [ForgotUsernameMasked]()
+        let usernames = [
+            NSDictionary(dictionary: [
+                "email": "userna**********",
+                "question": "What is the Earth's circumference?",
+                "question_id": 1
+                ]),
+//                NSDictionary(dictionary: [
+//                    "email": "m**********g@mindgrub.com",
+//                    "question": "What is your mother's maiden name?",
+//                    "question_id": 4
+//                ]),
+//                NSDictionary(dictionary: [
+//                    "email": "m**********g@icloud.com",
+//                    "question": "What street did you grow up on?",
+//                    "question_id": 3
+//                ])
+        ]
+        for user in usernames {
+            if let mockModel = ForgotUsernameMasked.from(user) {
+                maskedUsernames.append(mockModel)
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            if identifier == "0000" {
+                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAccountNotFound.rawValue)))
+            } else {
+                completion(ServiceResult.Success(maskedUsernames))
+            }
+        }
+    }
+    
+    func recoverUsername(phone: String, identifier: String, questionId: Int, questionResponse: String, completion: @escaping (ServiceResult<String>) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            if questionResponse.lowercased() == "24901" || questionResponse.lowercased() == "24,901" {
+                completion(ServiceResult.Success("username@email.com"))
+            } else {
+                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnProfBadSecurity.rawValue)))
+            }
+        }
+
+    }
+    
+    func lookupAccount(phone: String, identifier: String, completion: @escaping (ServiceResult<[AccountLookupResult]>) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            var accountResults = [AccountLookupResult]()
+            let accounts = [
+                NSDictionary(dictionary: [
+                    "accountNumber": "123456789123456",
+                    "streetNumber": "1268",
+                    "unitNumber": "12B"
+                ]),
+                NSDictionary(dictionary: [
+                    "accountNumber": "987654321987654",
+                    "streetNumber": "6789",
+                    "unitNumber": "99A"
+                ]),
+                NSDictionary(dictionary: [
+                    "accountNumber": "111111111111111",
+                    "streetNumber": "999",
+                ])
+            ]
+            for account in accounts {
+                if let mockModel = AccountLookupResult.from(account) {
+                    accountResults.append(mockModel)
+                }
+            }
+            completion(ServiceResult.Success(accountResults))
+        }
+    }
+    
+    func recoverPassword(username: String, completion: @escaping (ServiceResult<Void>) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            if username.lowercased() == "error" {
+                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnProfNotFound.rawValue)))
+            } else {
+                completion(ServiceResult.Success())
+            }
+        }
+    }
+
 }

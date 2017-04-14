@@ -49,7 +49,7 @@ class SettingsViewModel {
         authService.login(username.value, password: password.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
-            .subscribe(onNext: { (success: Bool) in
+            .subscribe(onNext: { _ in
                 self.fingerprintService.setStoredPassword(password: self.password.value)
                 onSuccess()
             }, onError: { (error: Error) in

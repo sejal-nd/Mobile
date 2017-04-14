@@ -11,34 +11,27 @@ import RxSwift
 class AccountLookupToolViewModel {
     let disposeBag = DisposeBag()
     
+    private var authService: AuthenticationService
+    
     let phoneNumber = Variable("")
     let identifierNumber = Variable("")
     
     var accountLookupResults = [AccountLookupResult]()
     
+    required init(authService: AuthenticationService) {
+        self.authService = authService
+    }
+    
     func performSearch(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        let accounts = [
-            NSDictionary(dictionary: [
-                "accountNumber": "123456789123456",
-                "streetNumber": "1268",
-                "unitNumber": "12B"
-            ]),
-            NSDictionary(dictionary: [
-                "accountNumber": "987654321987654",
-                "streetNumber": "6789",
-                "unitNumber": "99A"
-            ]),
-            NSDictionary(dictionary: [
-                "accountNumber": "111111111111111",
-                "streetNumber": "999",
-            ])
-        ]
-        for account in accounts {
-            if let mockModel = AccountLookupResult.from(account) {
-                accountLookupResults.append(mockModel)
-            }
-        }
-        onSuccess()
+        authService.lookupAccount(phone: phoneNumber.value, identifier: identifierNumber.value)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { accounts in
+                self.accountLookupResults = accounts
+                onSuccess()
+            }, onError: { error in
+                onError(error.localizedDescription)
+            }).addDisposableTo(disposeBag)
     }
     
     func searchButtonEnabled() -> Observable<Bool> {
