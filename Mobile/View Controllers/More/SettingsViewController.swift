@@ -68,11 +68,10 @@ class SettingsViewController: UIViewController {
             hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
             hud.contentColor = .white
             self.viewModel.validateCredentials(onSuccess: {
-                MBProgressHUD.hide(for: self.view, animated: true)
+                hud.hide(animated: true)
                 self.view.makeToast(NSLocalizedString("Touch ID Enabled", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
             }, onError: { (error) in
-                MBProgressHUD.hide(for: self.view, animated: true)
-                
+                hud.hide(animated: true)
                 self.touchIdPasswordRetryCount += 1
                 if self.touchIdPasswordRetryCount < 3 {
                     self.presentPasswordAlert(message: NSLocalizedString("Error", comment: "") + ": \(error)")
