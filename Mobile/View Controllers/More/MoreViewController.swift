@@ -87,15 +87,11 @@ extension MoreViewController: UITableViewDelegate {
             performSegue(withIdentifier: "settingsSegue", sender: self)
         } else if indexPath.row == 1 {
             let contactUs = ContactUsViewController(nibName: "ContactUs", bundle: nil)
-//            let mainBaseNavController = MainBaseNavigationController(rootViewController: contactUs)
             if UIDevice.current.userInterfaceIdiom == .phone {
                 self.navigationController?.pushViewController(contactUs, animated: true)
             } else {
                 self.navigationController?.showDetailViewController(contactUs, sender: self)
             }
-            
-//            self.navigationController?.showDetailViewController(mainBaseNavController, sender: self)
-           //performSegue(withIdentifier: "contactUsSegue", sender: self)
         } else if indexPath.row == 2 {
             performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
         } else if indexPath.row == 3 {

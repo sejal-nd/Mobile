@@ -6,8 +6,6 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
-
 class ContactUsViewController: UIViewController {
 
     @IBOutlet weak var emergencyNumberTextView: DataDetectorTextView!
@@ -26,8 +24,9 @@ class ContactUsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .primaryColor
+        title = NSLocalizedString("Contact Us", comment: "")
         
+        view.backgroundColor = .primaryColor
         
         emergencyDescriptionLabel.attributedText = contactUsViewModel.emergencyAttrString
         
@@ -43,7 +42,6 @@ class ContactUsViewController: UIViewController {
         ttyttdNumberTextView?.text = contactUsViewModel.phoneNumber4
         ttyttdNumberTextView?.textContainerInset = .zero
         ttyttdNumberTextView?.tintColor = .mediumPersianBlue // Color of the phone numbers
-        title = "Contact Us"
         
         customerServiceLabel.text = NSLocalizedString("Customer Service", comment: "")
         firstLabel.text = contactUsViewModel.label1
@@ -126,16 +124,5 @@ class ContactUsViewController: UIViewController {
         UIApplication.shared.openURL(NSURL(string: contactUsViewModel.instagramURL)! as URL)
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 

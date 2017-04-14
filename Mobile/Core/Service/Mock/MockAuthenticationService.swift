@@ -41,14 +41,14 @@ struct MockAuthenticationService : AuthenticationService {
         let usernames = [
             NSDictionary(dictionary: [
                 "email": "userna**********",
-                "question": "What is the Earth's circumference?",
+                "question": "What is your mother's maiden name?",
                 "question_id": 1
                 ]),
-                NSDictionary(dictionary: [
-                    "email": "m**********g@mindgrub.com",
-                    "question": "What is your mother's maiden name?",
-                    "question_id": 4
-                ]),
+//                NSDictionary(dictionary: [
+//                    "email": "m**********g@mindgrub.com",
+//                    "question": "What is your mother's maiden name?",
+//                    "question_id": 4
+//                ]),
 //                NSDictionary(dictionary: [
 //                    "email": "m**********g@icloud.com",
 //                    "question": "What street did you grow up on?",
@@ -71,7 +71,7 @@ struct MockAuthenticationService : AuthenticationService {
     
     func recoverUsername(phone: String, identifier: String, questionId: Int, questionResponse: String, completion: @escaping (ServiceResult<String>) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            if questionResponse.lowercased() == "24901" || questionResponse.lowercased() == "24,901" {
+            if questionResponse.lowercased() == "exelon" {
                 completion(ServiceResult.Success("username@email.com"))
             } else {
                 completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnProfBadSecurity.rawValue)))

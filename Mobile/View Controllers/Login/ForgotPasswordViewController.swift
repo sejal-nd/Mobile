@@ -57,19 +57,16 @@ class ForgotPasswordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.tintColor = .mediumPersianBlue
+        navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
+        navigationController?.navigationBar.barTintColor = .primaryColor
+        navigationController?.navigationBar.isTranslucent = false
         
         let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
+            NSForegroundColorAttributeName: UIColor.white,
             NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
-        
-        setNeedsStatusBarAppearanceUpdate()
-        
+                
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -97,6 +94,10 @@ class ForgotPasswordViewController: UIViewController {
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         })
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
 
