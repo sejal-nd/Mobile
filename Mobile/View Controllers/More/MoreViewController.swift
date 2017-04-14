@@ -24,6 +24,27 @@ class MoreViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = false
+        
+        //navigationController?.navigationBar.barStyle = .black // Needed for white status bar
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = .mediumPersianBlue
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        let titleDict: [String: Any] = [
+            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
+            NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
+        ]
+        navigationController?.navigationBar.titleTextAttributes = titleDict
+        
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            if let splitView = splitViewController as? MoreSplitViewController {
+                splitView.setStatusBarStyle(style: .default)
+            }
+            splitViewController?.setNeedsStatusBarAppearanceUpdate()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,6 +85,17 @@ extension MoreViewController: UITableViewDelegate {
         
         if indexPath.row == 0 {
             performSegue(withIdentifier: "settingsSegue", sender: self)
+        } else if indexPath.row == 1 {
+            let contactUs = ContactUsViewController(nibName: "ContactUs", bundle: nil)
+//            let mainBaseNavController = MainBaseNavigationController(rootViewController: contactUs)
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                self.navigationController?.pushViewController(contactUs, animated: true)
+            } else {
+                self.navigationController?.showDetailViewController(contactUs, sender: self)
+            }
+            
+//            self.navigationController?.showDetailViewController(mainBaseNavController, sender: self)
+           //performSegue(withIdentifier: "contactUsSegue", sender: self)
         } else if indexPath.row == 2 {
             performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
         } else if indexPath.row == 3 {
