@@ -21,29 +21,34 @@ class ContactUsViewController: UIViewController {
     @IBOutlet weak var thirdLabel: UILabel?
     @IBOutlet weak var customerServiceLabel: UILabel!
     
+    let contactUsViewModel = ContactUsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .primaryColor
         
-        let contactUsViewModel = ContactUsViewModel()
-        emergencyDescriptionLabel.attributedText = contactUsViewModel.makeAttributedString()
         
+        emergencyDescriptionLabel.attributedText = contactUsViewModel.emergencyAttrString
+        
+        emergencyNumberTextView.text = contactUsViewModel.phoneNumber1
         emergencyNumberTextView.textContainerInset = .zero
         emergencyNumberTextView.tintColor = .mediumPersianBlue // Color of the phone numbers
+        residentialNumberTextView.text = contactUsViewModel.phoneNumber2
         residentialNumberTextView.textContainerInset = .zero
         residentialNumberTextView.tintColor = .mediumPersianBlue // Color of the phone numbers
+        businessNumberTextView?.text = contactUsViewModel.phoneNumber3
         businessNumberTextView?.textContainerInset = .zero
         businessNumberTextView?.tintColor = .mediumPersianBlue // Color of the phone numbers
+        ttyttdNumberTextView?.text = contactUsViewModel.phoneNumber4
         ttyttdNumberTextView?.textContainerInset = .zero
         ttyttdNumberTextView?.tintColor = .mediumPersianBlue // Color of the phone numbers
         title = "Contact Us"
         
         customerServiceLabel.text = NSLocalizedString("Customer Service", comment: "")
-        firstLabel.text = contactUsViewModel.makeLabel1()
-        secondLabel?.text = contactUsViewModel.makeLabel2()
-        thirdLabel?.text = contactUsViewModel.makeLabel3()
+        firstLabel.text = contactUsViewModel.label1
+        secondLabel?.text = contactUsViewModel.label2
+        thirdLabel?.text = contactUsViewModel.label3
         
         extendedLayoutIncludesOpaqueBars = true
         
@@ -94,31 +99,31 @@ class ContactUsViewController: UIViewController {
     }
     
     @IBAction func facebookButtonTapped(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://www.facebook.com/ComEd")! as URL)
+        UIApplication.shared.openURL(NSURL(string: contactUsViewModel.facebookURL)! as URL)
     }
 
     @IBAction func twitterButtonTapped(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://twitter.com/ComEd")! as URL)
+        UIApplication.shared.openURL(NSURL(string: contactUsViewModel.twitterURL)! as URL)
     }
     
     @IBAction func youtubeButtonTapped(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://www.youtube.com/user/CommonwealthEdison/ComEd")! as URL)
+        UIApplication.shared.openURL(NSURL(string: contactUsViewModel.youtubeURL)! as URL)
     }
     
     @IBAction func linkedinButtonTapped(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://www.linkedin.com/company/comed")! as URL)
+        UIApplication.shared.openURL(NSURL(string: contactUsViewModel.linkedinURL)! as URL)
     }
     
     @IBAction func flickrButtonTapped(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://www.flickr.com/photos/commonwealthedison")! as URL)
+        UIApplication.shared.openURL(NSURL(string: contactUsViewModel.flickrURL)! as URL)
     }
     
     @IBAction func pinterestButtonTapped(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://www.pinterest.com/comedil/")! as URL)
+        UIApplication.shared.openURL(NSURL(string: contactUsViewModel.pinterestURL)! as URL)
     }
     
     @IBAction func instagramButtonTapped(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: "https://www.instagram.com/commonwealthedison/")! as URL)
+        UIApplication.shared.openURL(NSURL(string: contactUsViewModel.instagramURL)! as URL)
     }
     
     
