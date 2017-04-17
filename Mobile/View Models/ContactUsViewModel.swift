@@ -121,6 +121,7 @@ class ContactUsViewModel {
             facebookURL = "https://www.facebook.com/pecoconnect"
             twitterURL = "https://www.twitter.com/pecoconnect"
             youtubeURL = "https://www.youtube.com/pecoconnect"
+            linkedinURL = "https://www.linkedin.com/" // TODO: TEMPORARY LINK
             flickrURL = "https://www.flickr.com/pecoconnect"
             break
         case "ComEd":
@@ -153,6 +154,7 @@ class ContactUsViewModel {
             phoneNumber1 = "1-800-334-7661"
             phoneNumber2 = "1-800-334-7661"
             phoneNumber3 = "1-877-426-6331"
+            phoneNumber4 = "1-800-955-8237"
             break
         default:
             break

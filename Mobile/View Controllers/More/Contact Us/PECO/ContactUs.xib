@@ -49,6 +49,9 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COF-xI-Yv8" userLabel="Line">
                                             <rect key="frame" x="0.0" y="52" width="317" height="1"/>
                                             <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="0.5" id="hTm-kq-waY"/>
+                                            </constraints>
                                         </view>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="1-800-841-4141" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="4fC-le-kJc" customClass="DataDetectorTextView" customModule="PECO" customModuleProvider="target">
                                             <rect key="frame" x="180" y="27" width="129" height="20"/>
@@ -137,6 +140,9 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nl-P5-x7h" userLabel="Line">
                                             <rect key="frame" x="0.0" y="204" width="317" height="1"/>
                                             <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="0.5" id="DJ5-oS-5UG"/>
+                                            </constraints>
                                         </view>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="1-800-494-4000" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="eN9-dm-P6a" customClass="DataDetectorTextView" customModule="PECO" customModuleProvider="target">
                                             <rect key="frame" x="180" y="223" width="129" height="20"/>
@@ -159,7 +165,6 @@
                                         <constraint firstItem="8nl-P5-x7h" firstAttribute="top" secondItem="0af-hO-WBg" secondAttribute="top" constant="204" id="CrB-Fz-PAw"/>
                                         <constraint firstAttribute="trailing" secondItem="N7W-ed-UL7" secondAttribute="trailing" constant="12" id="FFr-6R-eXQ"/>
                                         <constraint firstItem="Q16-OP-FtK" firstAttribute="top" secondItem="MTF-aA-uys" secondAttribute="bottom" constant="30" id="G5Q-AD-FLt"/>
-                                        <constraint firstItem="COF-xI-Yv8" firstAttribute="top" secondItem="0af-hO-WBg" secondAttribute="top" constant="52" id="OwE-g6-PNR"/>
                                         <constraint firstItem="8nl-P5-x7h" firstAttribute="leading" secondItem="x5W-NA-yom" secondAttribute="leading" constant="-12" id="Pdw-CC-5fG"/>
                                         <constraint firstItem="MTF-aA-uys" firstAttribute="top" secondItem="8nl-P5-x7h" secondAttribute="bottom" constant="18" id="Pel-m9-9b9"/>
                                         <constraint firstAttribute="trailing" secondItem="Q16-OP-FtK" secondAttribute="trailing" constant="14" id="Q9L-WU-vR3"/>
@@ -176,7 +181,6 @@
                                         <constraint firstItem="eN9-dm-P6a" firstAttribute="trailing" secondItem="4fC-le-kJc" secondAttribute="trailing" id="e52-YR-lTj"/>
                                         <constraint firstItem="N7W-ed-UL7" firstAttribute="top" secondItem="COF-xI-Yv8" secondAttribute="bottom" constant="11.5" id="elg-bq-wM0"/>
                                         <constraint firstItem="COF-xI-Yv8" firstAttribute="top" secondItem="od9-uI-AB3" secondAttribute="bottom" constant="5" id="frw-x5-ShE"/>
-                                        <constraint firstAttribute="bottom" secondItem="8nl-P5-x7h" secondAttribute="bottom" constant="121" id="l8G-aY-68e"/>
                                         <constraint firstItem="4fC-le-kJc" firstAttribute="top" secondItem="0af-hO-WBg" secondAttribute="top" constant="27" id="ojV-9G-OYY"/>
                                         <constraint firstItem="8nl-P5-x7h" firstAttribute="trailing" secondItem="N7W-ed-UL7" secondAttribute="trailing" constant="12" id="pfb-OP-ubL"/>
                                         <constraint firstItem="COF-xI-Yv8" firstAttribute="top" secondItem="4fC-le-kJc" secondAttribute="bottom" constant="5" id="pu2-Yn-qWl"/>
