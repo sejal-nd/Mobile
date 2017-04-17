@@ -15,18 +15,25 @@ class OutageViewModel {
     private var accountService: AccountService
     private var outageService: OutageService
     
+    private var currentGetOutageStatusDisposable: Disposable?
+    
     var currentAccount: Account?
     var currentOutageStatus: OutageStatus?
-
+    
     required init(accountService: AccountService, outageService: OutageService) {
         self.accountService = accountService
         self.outageService = outageService
     }
     
+    deinit {
+        if let disposable = currentGetOutageStatusDisposable {
+            disposable.dispose()
+        }
+    }
+    
     func getAccounts(onSuccess: @escaping ([Account]) -> Void, onError: @escaping (String) -> Void) {
         accountService.fetchAccounts()
             .observeOn(MainScheduler.instance)
-            .asObservable()
             .subscribe(onNext: { accounts in
                 self.currentAccount = accounts[0]
                 onSuccess(accounts)
@@ -38,9 +45,13 @@ class OutageViewModel {
     
     func getOutageStatus(forAccount account: Account, onSuccess: @escaping (OutageStatus) -> Void, onError: @escaping (String) -> Void) {
 
-        outageService.fetchOutageStatus(account: account)
+        // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
+        if let disposable = currentGetOutageStatusDisposable {
+            disposable.dispose()
+        }
+        
+        currentGetOutageStatusDisposable = outageService.fetchOutageStatus(account: account)
             .observeOn(MainScheduler.instance)
-            .asObservable()
             .subscribe(onNext: { outageStatus in
                 self.currentOutageStatus = outageStatus
                 onSuccess(outageStatus)
@@ -48,7 +59,6 @@ class OutageViewModel {
                 self.currentOutageStatus = nil
                 onError(error.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
     }
     
     func getReportedOutage() -> ReportedOutageResult? {
