@@ -319,9 +319,9 @@ class OutageViewController: UIViewController {
             self.errorLabel.isHidden = false
             
             // Hide everything else
-            accountContentView.isHidden = true
-            gasOnlyView.isHidden = true
-            errorLabel.isHidden = true
+            self.accountContentView.isHidden = true
+            self.gasOnlyView.isHidden = true
+            self.errorLabel.isHidden = true
         })
     }
     
