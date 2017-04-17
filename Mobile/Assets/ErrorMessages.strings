@@ -14,4 +14,4 @@
 "FN-PROF-BADSECURITY" = "The security answer does not match our records.";
 "FN-PROF-NOTFOUND" = "Incorrect username/email address. Please try again.";
 "FN-ACCT-NOTFOUND" = "The information entered does not match our records. Please try again.";
-"PASSWORD-PROTECTED-ACCOUNT" = "Your account is password protected and cannot be accessed through the mobile app.";
+"FN-ACCT-PROTECTED" = "Your account is password protected and cannot be accessed through the mobile app.";

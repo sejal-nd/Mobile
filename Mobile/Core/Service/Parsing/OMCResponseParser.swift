@@ -31,18 +31,16 @@ class OMCResponseParser : NSObject {
         //3. We have no error, and do NOT have data to parse (unexpected type).
         //4. We have an error.
        
-        if error == nil {
-            if data != nil {
-                if let d = data as? [String:Any] {
-                    result = parseData(data: d) //1.
-                } else {
-                    result = ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue)) //2.
-                }
+        if data != nil {
+            if let d = data as? [String: Any] {
+                result = parseData(data: d) //1.
             } else {
-                result = ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue)) //3.
+                result = ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue)) //2.
             }
-        } else {
+        } else if error != nil {
             result = ServiceResult.Failure(ServiceError(cause: error!)) //4.
+        } else {
+            result = ServiceResult.Failure(ServiceError())
         }
     
         return result

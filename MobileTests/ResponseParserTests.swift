@@ -86,7 +86,7 @@ class ResponseParserTests: XCTestCase {
  
         switch result {
         case .Failure(let err):
-            XCTAssert(err.localizedDescription == "error description", "Incorrect error description")
+            XCTAssert(err.localizedDescription == "Account Locked", "Incorrect error description")
             break
         case .Success:
             XCTFail("Incorrect Result - Valid Failure response should result in a Failure return value.")
