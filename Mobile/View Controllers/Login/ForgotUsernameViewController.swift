@@ -169,6 +169,7 @@ class ForgotUsernameViewController: UIViewController {
             vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
         } else if segue.destination.isKind(of: AccountLookupToolViewController.self) {
             let vc = segue.destination as! AccountLookupToolViewController
+            vc.delegate = self
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
         } else if segue.destination.isKind(of: ForgotUsernameResultViewController.self) {
             let vc = segue.destination as! ForgotUsernameResultViewController
@@ -180,7 +181,7 @@ class ForgotUsernameViewController: UIViewController {
 
 extension ForgotUsernameViewController: AccountLookupToolResultViewControllerDelegate {
 
-    func accountLookupToolResultViewController(_ accountLookupToolResultViewController: AccountLookupToolResultViewController, didSelectAccount accountNumber: String, phoneNumber: String) {
+    func accountLookupToolDidSelectAccount(accountNumber: String, phoneNumber: String) {
         viewModel.phoneNumber.value = phoneNumber
         phoneNumberTextField.textField.text = phoneNumber
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd)

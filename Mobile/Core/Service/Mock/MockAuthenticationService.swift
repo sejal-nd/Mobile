@@ -81,30 +81,49 @@ struct MockAuthenticationService : AuthenticationService {
     }
     
     func lookupAccount(phone: String, identifier: String, completion: @escaping (ServiceResult<[AccountLookupResult]>) -> Void) {
+
+        
+
+        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            var accountResults = [AccountLookupResult]()
-            let accounts = [
-                NSDictionary(dictionary: [
-                    "accountNumber": "123456789123456",
-                    "streetNumber": "1268",
-                    "unitNumber": "12B"
-                ]),
-                NSDictionary(dictionary: [
-                    "accountNumber": "987654321987654",
-                    "streetNumber": "6789",
-                    "unitNumber": "99A"
-                ]),
-                NSDictionary(dictionary: [
-                    "accountNumber": "111111111111111",
-                    "streetNumber": "999",
-                ])
-            ]
-            for account in accounts {
-                if let mockModel = AccountLookupResult.from(account) {
-                    accountResults.append(mockModel)
+            if identifier == "0000" {
+                completion(ServiceResult.Failure(ServiceError(serviceMessage: "No accounts found")))
+                return
+            } else if identifier == "1111" {
+                var accountResults = [AccountLookupResult]()
+                accountResults.append(AccountLookupResult.from(
+                    NSDictionary(dictionary: [
+                        "accountNumber": "123456789123456",
+                        "streetNumber": "1268",
+                        "unitNumber": "12B"
+                    ])
+                )!)
+                completion(ServiceResult.Success(accountResults))
+            } else {
+                var accountResults = [AccountLookupResult]()
+                let accounts = [
+                    NSDictionary(dictionary: [
+                        "accountNumber": "123456789123456",
+                        "streetNumber": "1268",
+                        "unitNumber": "12B"
+                    ]),
+                    NSDictionary(dictionary: [
+                        "accountNumber": "987654321987654",
+                        "streetNumber": "6789",
+                        "unitNumber": "99A"
+                    ]),
+                    NSDictionary(dictionary: [
+                        "accountNumber": "111111111111111",
+                        "streetNumber": "999",
+                    ])
+                ]
+                for account in accounts {
+                    if let mockModel = AccountLookupResult.from(account) {
+                        accountResults.append(mockModel)
+                    }
                 }
+                completion(ServiceResult.Success(accountResults))
             }
-            completion(ServiceResult.Success(accountResults))
         }
     }
     

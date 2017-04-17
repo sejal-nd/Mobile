@@ -7,7 +7,7 @@
 //
 
 protocol AccountLookupToolResultViewControllerDelegate: class {
-    func accountLookupToolResultViewController(_ accountLookupToolResultViewController: AccountLookupToolResultViewController, didSelectAccount accountNumber: String, phoneNumber: String)
+    func accountLookupToolDidSelectAccount(accountNumber: String, phoneNumber: String)
 }
 
 class AccountLookupToolResultViewController: UIViewController {
@@ -78,7 +78,7 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
             if vc.isKind(of: ForgotUsernameViewController.self) {
                 if let vcDelegate = vc as? AccountLookupToolResultViewControllerDelegate {
                     self.delegate = vcDelegate
-                    self.delegate?.accountLookupToolResultViewController(self, didSelectAccount: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
+                    self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
                     self.navigationController?.popToViewController(vc, animated: true)
                 }
             }

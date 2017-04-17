@@ -15,6 +15,8 @@ class AccountLookupToolViewController: UIViewController {
     
     let viewModel = AccountLookupToolViewModel(authService: MockAuthenticationService())
     
+    weak var delegate: AccountLookupToolResultViewControllerDelegate?
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
@@ -99,7 +101,13 @@ class AccountLookupToolViewController: UIViewController {
         
         viewModel.performSearch(onSuccess: {
             hud.hide(animated: true)
-            self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
+            if self.viewModel.accountLookupResults.count == 1 {
+                let selectedAccount = self.viewModel.accountLookupResults.first!
+                self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
+            }
         }, onError: { errorMessage in
             hud.hide(animated: true)
             let alertController = UIAlertController(title: NSLocalizedString("Invalid Information", comment: ""), message: errorMessage, preferredStyle: .alert)
