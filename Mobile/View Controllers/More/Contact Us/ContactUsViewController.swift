@@ -73,6 +73,8 @@ class ContactUsViewController: UIViewController {
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
         if UIDevice.current.userInterfaceIdiom == .phone {
             if let splitView = splitViewController as? MoreSplitViewController {
                 splitView.setStatusBarStyle(style: .lightContent)
@@ -84,7 +86,7 @@ class ContactUsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
