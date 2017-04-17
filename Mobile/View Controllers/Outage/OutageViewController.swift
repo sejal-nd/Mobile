@@ -317,6 +317,11 @@ class OutageViewController: UIViewController {
             self.refreshControl.endRefreshing()
             self.errorLabel.text = error
             self.errorLabel.isHidden = false
+            
+            // Hide everything else
+            accountContentView.isHidden = true
+            gasOnlyView.isHidden = true
+            errorLabel.isHidden = true
         })
     }
     
