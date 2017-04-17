@@ -97,10 +97,16 @@ class OutageViewModel {
     
     func getGasOnlyMessage() -> String {
         var string = ""
-        if Environment.sharedInstance.opco == "BGE" {
-            string = NSLocalizedString("To report a gas emergency, please call 1-800-685-0123.  For downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222.", comment: "")
-        } else {
+        switch Environment.sharedInstance.opco {
+        case "BGE":
+            string = NSLocalizedString("This account receives gas service only.  We currently do not allow reporting of gas issues online but want to hear from you right away. To report a gas emergency, please call 1-800-685-0123.  For downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222.", comment: "")
+            break
+        case "PECO":
+            string = NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away. To issue a Gas Emergency Order, please call 1-800-841-4141.", comment: "")
+            break
+        default:
             string = NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
+            break
         }
         return string
     }

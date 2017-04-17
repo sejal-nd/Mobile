@@ -55,7 +55,7 @@ class LoginViewModel {
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.PasswordProtectedAccount.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.FnAccountProtected.rawValue {
                     onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
                 } else {
                     onError(nil, error.localizedDescription)
