@@ -31,7 +31,6 @@ class ForgotUsernameViewModel {
         let identifier = accountNumber.value.characters.count > 0 ? accountNumber.value : identifierNumber.value
         authService.recoverMaskedUsername(phone: phoneNumber.value, identifier: identifier)
             .observeOn(MainScheduler.instance)
-            .asObservable()
             .subscribe(onNext: { usernames in
                 self.maskedUsernames = usernames
                 onSuccess()
@@ -51,7 +50,6 @@ class ForgotUsernameViewModel {
         let identifier = accountNumber.value.characters.count > 0 ? accountNumber.value : identifierNumber.value
         authService.recoverUsername(phone: phoneNumber.value, identifier: identifier, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value)
             .observeOn(MainScheduler.instance)
-            .asObservable()
             .subscribe(onNext: { username in
                 onSuccess(username)
             }, onError: { error in

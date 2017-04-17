@@ -82,7 +82,7 @@ class ForgotPasswordViewController: UIViewController {
         hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         hud.contentColor = .white
         
-        viewModel.submitChangePassword(onSuccess: {
+        viewModel.submitForgotPassword(onSuccess: {
             hud.hide(animated: true)
             self.delegate?.forgotPasswordViewControllerDidSubmit(self)
             _ = self.navigationController?.popViewController(animated: true)
