@@ -97,16 +97,7 @@ class OutageViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if viewModel.currentAccount == nil {
-            accountScrollerActivityIndicator.isHidden = false
-            viewModel.getAccounts(onSuccess: { accounts in
-                self.accountScrollerActivityIndicator.isHidden = true
-                self.accountScroller.setAccounts(accounts)
-                self.accountScroller.isHidden = false
-                self.getOutageStatus()
-            }, onError: { error in
-                print("getAccounts error = \(error)")
-                self.accountScrollerActivityIndicator.isHidden = true
-            })
+            getAccounts()
         }
     }
     
@@ -278,6 +269,21 @@ class OutageViewController: UIViewController {
         }
     }
     
+    func getAccounts() {
+        accountScrollerActivityIndicator.isHidden = false
+        viewModel.getAccounts(onSuccess: { accounts in
+            self.accountScrollerActivityIndicator.isHidden = true
+            self.accountScroller.setAccounts(accounts)
+            self.accountScroller.isHidden = false
+            self.getOutageStatus()
+        }, onError: { message in
+            self.accountScrollerActivityIndicator.isHidden = true
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        })
+    }
+    
     func getOutageStatus() {
         accountContentView.isHidden = true
         gasOnlyView.isHidden = true
@@ -310,18 +316,24 @@ class OutageViewController: UIViewController {
     }
     
     func onPullToRefresh() {
-        viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { outageStatus in
-            self.refreshControl.endRefreshing()
-            self.updateContent()
-        }, onError: { error in
-            self.refreshControl.endRefreshing()
-            self.errorLabel.text = error
-            self.errorLabel.isHidden = false
-            
-            // Hide everything else
-            self.accountContentView.isHidden = true
-            self.gasOnlyView.isHidden = true
-            self.errorLabel.isHidden = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
+            if self.viewModel.currentAccount == nil {
+                self.refreshControl.endRefreshing()
+                self.getAccounts()
+            } else {
+                self.viewModel.getOutageStatus(forAccount: self.viewModel.currentAccount!, onSuccess: { outageStatus in
+                    self.refreshControl.endRefreshing()
+                    self.updateContent()
+                }, onError: { error in
+                    self.refreshControl.endRefreshing()
+                    self.errorLabel.text = error
+                    self.errorLabel.isHidden = false
+                    
+                    // Hide everything else
+                    self.accountContentView.isHidden = true
+                    self.gasOnlyView.isHidden = true
+                })
+            }
         })
     }
     
