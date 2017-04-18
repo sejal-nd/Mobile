@@ -93,7 +93,7 @@ struct MockAuthenticationService : AuthenticationService {
                 var accountResults = [AccountLookupResult]()
                 accountResults.append(AccountLookupResult.from(
                     NSDictionary(dictionary: [
-                        "accountNumber": "123456789123456",
+                        "accountNumber": "1234567890",
                         "streetNumber": "1268",
                         "unitNumber": "12B"
                     ])
@@ -103,17 +103,17 @@ struct MockAuthenticationService : AuthenticationService {
                 var accountResults = [AccountLookupResult]()
                 let accounts = [
                     NSDictionary(dictionary: [
-                        "accountNumber": "123456789123456",
+                        "accountNumber": "1234567890",
                         "streetNumber": "1268",
                         "unitNumber": "12B"
                     ]),
                     NSDictionary(dictionary: [
-                        "accountNumber": "987654321987654",
+                        "accountNumber": "9876543219",
                         "streetNumber": "6789",
                         "unitNumber": "99A"
                     ]),
                     NSDictionary(dictionary: [
-                        "accountNumber": "111111111111111",
+                        "accountNumber": "1111111111",
                         "streetNumber": "999",
                     ])
                 ]
