@@ -24,6 +24,7 @@
                 <outlet property="firstLabel" destination="MTF-aA-uys" id="PQB-I5-fnU"/>
                 <outlet property="residentialNumberTextView" destination="eN9-dm-P6a" id="AIt-Ew-jcv"/>
                 <outlet property="view" destination="iN0-l3-epB" id="b5m-I6-Kpk"/>
+                <outlet property="whiteView" destination="0af-hO-WBg" id="lWG-8i-PIw"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -186,15 +187,17 @@
                                         <constraint firstItem="COF-xI-Yv8" firstAttribute="top" secondItem="4fC-le-kJc" secondAttribute="bottom" constant="5" id="pu2-Yn-qWl"/>
                                         <constraint firstItem="8nl-P5-x7h" firstAttribute="top" secondItem="x5W-NA-yom" secondAttribute="bottom" constant="7" id="vAF-Fn-Ah3"/>
                                         <constraint firstItem="x5W-NA-yom" firstAttribute="baseline" secondItem="Gk5-6E-mSP" secondAttribute="baseline" constant="-0.5" id="vAb-gQ-HoS"/>
+                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="zst-q5-tFo"/>
                                     </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="450" id="5Lg-YH-UzV"/>
-                                <constraint firstItem="0af-hO-WBg" firstAttribute="leading" secondItem="5eQ-lk-YMC" secondAttribute="leading" constant="29" id="GCC-gZ-u74"/>
+                                <constraint firstItem="0af-hO-WBg" firstAttribute="leading" secondItem="5eQ-lk-YMC" secondAttribute="leading" priority="999" constant="29" id="GCC-gZ-u74"/>
                                 <constraint firstItem="0af-hO-WBg" firstAttribute="top" secondItem="5eQ-lk-YMC" secondAttribute="top" constant="60" id="Kdc-99-fOh"/>
-                                <constraint firstAttribute="trailing" secondItem="0af-hO-WBg" secondAttribute="trailing" constant="29" id="hqe-2t-u9Q"/>
+                                <constraint firstItem="0af-hO-WBg" firstAttribute="centerX" secondItem="5eQ-lk-YMC" secondAttribute="centerX" id="W3a-fV-gWX"/>
+                                <constraint firstAttribute="trailing" secondItem="0af-hO-WBg" secondAttribute="trailing" priority="999" constant="29" id="hqe-2t-u9Q"/>
                             </constraints>
                         </view>
                     </subviews>

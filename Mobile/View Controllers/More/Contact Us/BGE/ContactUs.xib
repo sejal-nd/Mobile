@@ -29,6 +29,7 @@
                 <outlet property="thirdLabel" destination="b8M-cO-NVK" id="R8u-z6-qJ1"/>
                 <outlet property="ttyttdNumberTextView" destination="7K1-eI-hJf" id="ejM-ca-AKe"/>
                 <outlet property="view" destination="iN0-l3-epB" id="b5m-I6-Kpk"/>
+                <outlet property="whiteView" destination="0af-hO-WBg" id="Rar-GF-CWw"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -239,6 +240,7 @@
                                         <constraint firstItem="SAn-3S-ff8" firstAttribute="leading" secondItem="0af-hO-WBg" secondAttribute="leading" constant="12" id="hdj-NP-jdg"/>
                                         <constraint firstItem="eN9-dm-P6a" firstAttribute="trailing" secondItem="PSM-UU-yIM" secondAttribute="trailing" id="l7k-cW-tiU"/>
                                         <constraint firstItem="8nl-P5-x7h" firstAttribute="top" secondItem="eN9-dm-P6a" secondAttribute="bottom" constant="11" id="lGj-yW-Ekz"/>
+                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="lLg-MO-Wa1"/>
                                         <constraint firstAttribute="trailing" secondItem="OjI-hE-nXW" secondAttribute="trailing" constant="12" id="ldi-D6-sM1"/>
                                         <constraint firstItem="OjI-hE-nXW" firstAttribute="top" secondItem="0af-hO-WBg" secondAttribute="top" constant="61" id="msw-zN-KF6"/>
                                         <constraint firstAttribute="trailing" secondItem="SAn-3S-ff8" secondAttribute="trailing" id="n4C-tu-5jT"/>
@@ -256,9 +258,10 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="0af-hO-WBg" firstAttribute="leading" secondItem="5eQ-lk-YMC" secondAttribute="leading" constant="29" id="GCC-gZ-u74"/>
+                                <constraint firstItem="0af-hO-WBg" firstAttribute="centerX" secondItem="5eQ-lk-YMC" secondAttribute="centerX" id="Dz7-Be-ACw"/>
+                                <constraint firstItem="0af-hO-WBg" firstAttribute="leading" secondItem="5eQ-lk-YMC" secondAttribute="leading" priority="999" constant="29" id="GCC-gZ-u74"/>
                                 <constraint firstItem="0af-hO-WBg" firstAttribute="top" secondItem="5eQ-lk-YMC" secondAttribute="top" constant="60" id="Kdc-99-fOh"/>
-                                <constraint firstAttribute="trailing" secondItem="0af-hO-WBg" secondAttribute="trailing" constant="29" id="hqe-2t-u9Q"/>
+                                <constraint firstAttribute="trailing" secondItem="0af-hO-WBg" secondAttribute="trailing" priority="999" constant="29" id="hqe-2t-u9Q"/>
                                 <constraint firstAttribute="height" constant="546" id="x9L-qg-vEF"/>
                             </constraints>
                         </view>

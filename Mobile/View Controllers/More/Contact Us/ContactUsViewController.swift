@@ -8,6 +8,7 @@
 
 class ContactUsViewController: UIViewController {
 
+    @IBOutlet weak var whiteView: UIView!
     @IBOutlet weak var emergencyNumberTextView: DataDetectorTextView!
     @IBOutlet weak var residentialNumberTextView: DataDetectorTextView!
     @IBOutlet weak var businessNumberTextView: DataDetectorTextView?
@@ -27,6 +28,13 @@ class ContactUsViewController: UIViewController {
         title = NSLocalizedString("Contact Us", comment: "")
         
         view.backgroundColor = .primaryColor
+        
+        whiteView.layer.cornerRadius = 2
+        whiteView.layer.masksToBounds = false
+        whiteView.layer.shadowColor = UIColor.black.cgColor
+        whiteView.layer.shadowOpacity = 0.1
+        whiteView.layer.shadowRadius = 2
+        whiteView.layer.shadowOffset = CGSize(width: 0, height: 0)
         
         emergencyDescriptionLabel.attributedText = contactUsViewModel.emergencyAttrString
         
