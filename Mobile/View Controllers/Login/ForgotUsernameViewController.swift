@@ -89,6 +89,18 @@ class ForgotUsernameViewController: UIViewController {
         accountNumberTextField?.textField.delegate = self
         accountNumberTextField?.textField.isShowingAccessory = true
         accountNumberTextField?.textField.rx.text.orEmpty.bindTo(viewModel.accountNumber).addDisposableTo(disposeBag)
+        accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
+            if self.viewModel.accountNumber.value.characters.count > 0 {
+                self.viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
+                    if !valid {
+                        self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
+        accountNumberTextField?.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+            self.accountNumberTextField?.setError(nil)
+        }).addDisposableTo(disposeBag)
         
         accountLookupToolButton?.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
         accountLookupToolButton?.setTitleColor(.mediumPersianBlue, for: .normal)
@@ -163,6 +175,8 @@ class ForgotUsernameViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        view.endEditing(true)
+        
         if segue.destination.isKind(of: BGEAccountNumberViewController.self) {
             let vc = segue.destination as! BGEAccountNumberViewController
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value

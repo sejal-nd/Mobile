@@ -72,7 +72,7 @@ class ForgotUsernameViewModel {
                 return $0 && $1 && $2
             }
         } else {
-            return Observable.combineLatest(phoneNumberHasTenDigits(), accountNumberNotEmpty()) {
+            return Observable.combineLatest(phoneNumberHasTenDigits(), accountNumberHasTenDigits()) {
                 return $0 && $1
             }
         }
@@ -98,9 +98,10 @@ class ForgotUsernameViewModel {
         })
     }
     
-    func accountNumberNotEmpty() -> Observable<Bool> {
+    func accountNumberHasTenDigits() -> Observable<Bool> {
         return accountNumber.asObservable().map({ text -> Bool in
-            return text.characters.count > 0
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.characters.count == 10
         })
     }
     
