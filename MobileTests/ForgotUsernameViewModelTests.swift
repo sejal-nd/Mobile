@@ -153,18 +153,18 @@ class ForgotUsernameViewModelTests: XCTestCase {
         }).addDisposableTo(disposeBag)
     }
     
-    func testAccountNumberNotEmpty() {
-        viewModel.accountNumber.value = "23850123"
-        viewModel.accountNumberNotEmpty().single().subscribe(onNext: { valid in
+    func testAccountNumberHasTenDigits() {
+        viewModel.accountNumber.value = "2385012311"
+        viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
             if !valid {
-                XCTFail("Account number \"23850123\" should pass the NotEmpty check")
+                XCTFail("Account number \"2385012311\" should pass the 10 digit check")
             }
         }).addDisposableTo(disposeBag)
         
-        viewModel.accountNumber.value = ""
-        viewModel.accountNumberNotEmpty().single().subscribe(onNext: { valid in
+        viewModel.accountNumber.value = "21254"
+        viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
             if valid {
-                XCTFail("Account number \"\" should fail the NotEmpty check")
+                XCTFail("Account number \"21254\" should fail the NotEmpty check")
             }
         }).addDisposableTo(disposeBag)
     }
