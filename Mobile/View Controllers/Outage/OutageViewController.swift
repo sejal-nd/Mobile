@@ -323,9 +323,11 @@ class OutageViewController: UIViewController {
             } else {
                 self.viewModel.getOutageStatus(forAccount: self.viewModel.currentAccount!, onSuccess: { outageStatus in
                     self.refreshControl.endRefreshing()
+                    self.outageStatusActivityIndicator.isHidden = true
                     self.updateContent()
                 }, onError: { error in
                     self.refreshControl.endRefreshing()
+                    self.outageStatusActivityIndicator.isHidden = true
                     self.errorLabel.text = error
                     self.errorLabel.isHidden = false
                     
