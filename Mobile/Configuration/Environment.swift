@@ -35,10 +35,10 @@ struct Environment  {
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
             break
         case "ComEd":
-            formatter.dateFormat = "hh:mm a 'on' MM/dd/yyyy"
+            formatter.dateFormat = "hh:mm a 'on' M/dd/yyyy"
             break
         case "PECO":
-            formatter.dateFormat = "h:mm a zz 'on' MM/dd/yyyy"
+            formatter.dateFormat = "h:mm a zz 'on' M/dd/yyyy"
             break
         default:
             formatter.dateFormat = "h:mm a MM/dd/yy"
