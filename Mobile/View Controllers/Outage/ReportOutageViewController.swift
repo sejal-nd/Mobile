@@ -130,7 +130,7 @@ class ReportOutageViewController: UIViewController {
 
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number *", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
-        phoneNumberTextField.textField.returnKeyType = opco == "BGE" ? .done:.next
+        phoneNumberTextField.textField.returnKeyType = opco == .bge ? .done:.next
         phoneNumberTextField.textField.delegate = self
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.phoneNumber.value.characters.count > 0 {
