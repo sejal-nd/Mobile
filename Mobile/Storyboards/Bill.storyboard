@@ -177,10 +177,10 @@
             </objects>
             <point key="canvasLocation" x="2392.8000000000002" y="-1115.8920539730136"/>
         </scene>
-        <!--View Controller-->
+        <!--Budget Billing View Controller-->
         <scene sceneID="Bcp-SV-j2J">
             <objects>
-                <viewController id="ea9-OX-qvD" sceneMemberID="viewController">
+                <viewController id="ea9-OX-qvD" customClass="BudgetBillingViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xgz-8a-qw8"/>
                         <viewControllerLayoutGuide type="bottom" id="NRL-6x-6E5"/>
@@ -189,23 +189,123 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Budget Billing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CN7-BE-Zwk">
-                                <rect key="frame" x="134.5" y="291" width="106" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePv-bH-pSP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Bq5-hO-8cE">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRB-vQ-A2r">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRV-PC-ieL">
+                                                        <rect key="frame" x="30" y="16" width="315" height="100"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evS-WD-Rt4">
+                                                                <rect key="frame" x="136" y="39" width="42" height="21"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnC-Me-4Jm">
+                                                                <rect key="frame" x="0.0" y="0.0" width="315" height="100"/>
+                                                                <connections>
+                                                                    <action selector="onButtonTouchCancel:" destination="ea9-OX-qvD" eventType="touchUpInside" id="VEf-L3-L3N"/>
+                                                                    <action selector="onButtonTouchCancel:" destination="ea9-OX-qvD" eventType="touchDragExit" id="dP1-An-p73"/>
+                                                                    <action selector="onButtonTouchCancel:" destination="ea9-OX-qvD" eventType="touchCancel" id="zQc-ZB-bM2"/>
+                                                                    <action selector="onButtonTouchDown:" destination="ea9-OX-qvD" eventType="touchDown" id="tJR-Sy-qXI"/>
+                                                                    <segue destination="LY9-7N-Sv1" kind="presentation" modalPresentationStyle="formSheet" id="1Dh-tu-FJ1"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstItem="BnC-Me-4Jm" firstAttribute="leading" secondItem="BRV-PC-ieL" secondAttribute="leading" id="9Ps-3i-FTY"/>
+                                                            <constraint firstAttribute="bottom" secondItem="BnC-Me-4Jm" secondAttribute="bottom" id="FLm-rM-sbL"/>
+                                                            <constraint firstItem="BnC-Me-4Jm" firstAttribute="top" secondItem="BRV-PC-ieL" secondAttribute="top" id="HK0-PE-hZS"/>
+                                                            <constraint firstAttribute="height" constant="100" id="Otg-On-ugw"/>
+                                                            <constraint firstAttribute="trailing" secondItem="BnC-Me-4Jm" secondAttribute="trailing" id="g1y-0H-gmz"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="BRV-PC-ieL" firstAttribute="top" secondItem="PRB-vQ-A2r" secondAttribute="top" constant="16" id="1gd-Ji-Fe9"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="3Yy-hN-Cey"/>
+                                                    <constraint firstItem="BRV-PC-ieL" firstAttribute="leading" secondItem="PRB-vQ-A2r" secondAttribute="leading" constant="30" id="HYr-O8-ox5"/>
+                                                    <constraint firstAttribute="trailing" secondItem="BRV-PC-ieL" secondAttribute="trailing" constant="30" id="UWu-YC-aBb"/>
+                                                    <constraint firstAttribute="height" constant="128" id="kLH-5U-dTG"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="PRB-vQ-A2r" secondAttribute="trailing" priority="999" id="1Eh-TM-Zma"/>
+                                            <constraint firstItem="PRB-vQ-A2r" firstAttribute="leading" secondItem="Bq5-hO-8cE" secondAttribute="leading" priority="999" id="Afc-Fi-PQm"/>
+                                            <constraint firstItem="PRB-vQ-A2r" firstAttribute="centerX" secondItem="Bq5-hO-8cE" secondAttribute="centerX" id="JtP-aV-dA9"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Bq5-hO-8cE" secondAttribute="bottom" id="EC1-Kn-vzr"/>
+                                    <constraint firstAttribute="trailing" secondItem="Bq5-hO-8cE" secondAttribute="trailing" id="Qnt-SV-QA9"/>
+                                    <constraint firstItem="Bq5-hO-8cE" firstAttribute="top" secondItem="ePv-bH-pSP" secondAttribute="top" id="kbM-Vr-5tq"/>
+                                    <constraint firstItem="Bq5-hO-8cE" firstAttribute="leading" secondItem="ePv-bH-pSP" secondAttribute="leading" id="wwy-gV-3YA"/>
+                                    <constraint firstItem="Bq5-hO-8cE" firstAttribute="width" secondItem="ePv-bH-pSP" secondAttribute="width" id="xf1-GI-HM3"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CN7-BE-Zwk" firstAttribute="centerY" secondItem="1Ug-Ed-kim" secondAttribute="centerY" id="C65-hh-OtU"/>
-                            <constraint firstItem="CN7-BE-Zwk" firstAttribute="centerX" secondItem="1Ug-Ed-kim" secondAttribute="centerX" id="Pn1-ZL-sJV"/>
+                            <constraint firstAttribute="trailing" secondItem="ePv-bH-pSP" secondAttribute="trailing" id="GvA-ge-zgO"/>
+                            <constraint firstItem="NRL-6x-6E5" firstAttribute="top" secondItem="ePv-bH-pSP" secondAttribute="bottom" id="W9k-52-73Y"/>
+                            <constraint firstItem="ePv-bH-pSP" firstAttribute="leading" secondItem="1Ug-Ed-kim" secondAttribute="leading" id="i72-gX-CoI"/>
+                            <constraint firstItem="ePv-bH-pSP" firstAttribute="top" secondItem="Xgz-8a-qw8" secondAttribute="bottom" id="ynU-YG-xLa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="ePv-bH-pSP" id="JcS-Q5-SAG"/>
+                        <outlet property="stackView" destination="Bq5-hO-8cE" id="7zL-1P-gTS"/>
+                        <outlet property="whatIsBudgetBillingButtonView" destination="BRV-PC-ieL" id="6QD-hL-bzk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2c-0C-jUg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2392.8000000000002" y="-367.46626686656674"/>
         </scene>
+        <!--What Is Budget Billing View Controller-->
+        <scene sceneID="g0H-0E-Iut">
+            <objects>
+                <viewController id="LY9-7N-Sv1" customClass="WhatIsBudgetBillingViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Ra-vJ-0aC"/>
+                        <viewControllerLayoutGuide type="bottom" id="wHh-am-ABG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f6X-Ue-izh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WfS-Se-Oql">
+                                <rect key="frame" x="16" y="28" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="ic_close"/>
+                                <connections>
+                                    <action selector="onXPress" destination="LY9-7N-Sv1" eventType="touchUpInside" id="Asj-Eq-Z0l"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="xButton" destination="WfS-Se-Oql" id="ftq-lk-OuI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HOA-I6-OBl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3289" y="-367"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="ic_close" width="24" height="24"/>
+    </resources>
 </document>

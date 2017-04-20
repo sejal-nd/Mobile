@@ -42,14 +42,14 @@ class BillViewController: UIViewController {
         budgetButtonView.layer.shadowColor = UIColor.black.cgColor
         budgetButtonView.layer.shadowRadius = 3
         budgetButtonView.layer.masksToBounds = false
-        budgetButtonView.isHidden = true
+        //budgetButtonView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if viewModel.currentAccount == nil {
-            getAccounts()
+            //getAccounts()
         }
     }
     
