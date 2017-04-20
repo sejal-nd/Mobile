@@ -112,9 +112,9 @@ extension SettingsViewController: UITableViewDelegate {
     }
     
     func handleOpcoCellPress() {
-        if Environment.sharedInstance.opco == "BGE" {
+        if Environment.sharedInstance.opco == .bge {
             print("Default account")
-        } else if Environment.sharedInstance.opco == "PECO" {
+        } else if Environment.sharedInstance.opco == .peco {
             print("Release of info")
         }
     }
@@ -128,7 +128,7 @@ extension SettingsViewController: UITableViewDataSource {
         if viewModel.isDeviceTouchIDCompatible() {
             numSections += 1
         }
-        if Environment.sharedInstance.opco == "BGE" || Environment.sharedInstance.opco == "PECO" {
+        if Environment.sharedInstance.opco == .bge || Environment.sharedInstance.opco == .peco {
             numSections += 1
         }
         return numSections
@@ -172,9 +172,9 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     func configureOpcoCell(_ cell: TableViewCell) {
-        if Environment.sharedInstance.opco == "BGE" {
+        if Environment.sharedInstance.opco == .bge {
             cell.configureWith(label: NSLocalizedString("Default Account", comment: ""), carat: true)
-        } else if Environment.sharedInstance.opco == "PECO" {
+        } else if Environment.sharedInstance.opco == .peco {
             cell.configureWith(label: NSLocalizedString("Release of Information", comment: ""), carat: true)
         }
     }

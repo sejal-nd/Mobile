@@ -8,6 +8,16 @@
 
 import Foundation
 
+enum OpCo: String {
+    case bge = "BGE"
+    case comEd = "ComEd"
+    case peco = "PECO"
+    
+    var displayString: String {
+        return rawValue
+    }
+}
+
 /// Convenience singleton that wraps environment variables.
 struct Environment  {
     
@@ -15,7 +25,7 @@ struct Environment  {
     
     let environmentName: String
     let appName: String
-    let opco: String
+    let opco: OpCo
     let oAuthEndpoint: String
     
     private init() {
@@ -24,25 +34,19 @@ struct Environment  {
     
         environmentName = dict?["environment"] as! String
         appName = dict?["appName"] as! String
-        opco = dict?["opco"] as! String
+        opco = OpCo(rawValue: dict?["opco"] as! String)!
         oAuthEndpoint = dict?["oauthEndpoint"] as! String
     }
     
     var opcoDateFormatter: DateFormatter {
         let formatter = DateFormatter()
         switch opco {
-        case "BGE":
+        case .bge:
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
-            break
-        case "ComEd":
+        case .comEd:
             formatter.dateFormat = "hh:mm a 'on' M/dd/yyyy"
-            break
-        case "PECO":
+        case .peco:
             formatter.dateFormat = "h:mm a zz 'on' M/dd/yyyy"
-            break
-        default:
-            formatter.dateFormat = "h:mm a MM/dd/yy"
-            break
         }
         return formatter
     }

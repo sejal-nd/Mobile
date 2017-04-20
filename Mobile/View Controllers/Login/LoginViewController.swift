@@ -191,7 +191,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePress() {
-        if Environment.sharedInstance.opco == "BGE" {
+        if Environment.sharedInstance.opco == .bge {
             performSegue(withIdentifier: "forgotUsernameSegueBGE", sender: self)
         } else {
             performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
