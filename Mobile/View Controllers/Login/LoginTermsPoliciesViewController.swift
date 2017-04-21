@@ -26,7 +26,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         self.title = NSLocalizedString("Terms and Policies", comment: "")
         
-        textView.textContainerInset = UIEdgeInsetsMake(26, 29, 26, 29)
+        textView.textContainerInset = UIEdgeInsetsMake(10, 29, 10, 29)
         textView.attributedText = viewModel.attributedTermsString
 
         agreeView.layer.shadowColor = UIColor.black.cgColor

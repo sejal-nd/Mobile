@@ -20,7 +20,7 @@ class ForgotPasswordViewModel {
     }
     
     func getInstructionLabelText() -> String {
-        return NSLocalizedString("Please enter your username/email address to have a temporary password sent to your primrary email address on file. The temporary password is valid only for 1 hour from the time it was requested.", comment: "")
+        return NSLocalizedString("Please enter your username/email address to have a temporary password sent to your primary email address on file. The temporary password is valid only for 1 hour from the time it was requested.", comment: "")
     }
     
     func submitForgotPassword(onSuccess: @escaping () -> Void, onProfileNotFound: @escaping (String) -> Void, onError: @escaping (String) -> Void) {

@@ -33,7 +33,6 @@ class ResponseParserTests: XCTestCase {
         switch result {
         case .Failure( _):
             XCTFail("Incorrect Result - Valid Success response should result in a Success return value.")
-            break
         case .Success:
             break
         }
@@ -51,10 +50,8 @@ class ResponseParserTests: XCTestCase {
             if(err.serviceCode != ServiceErrorCode.Parsing.rawValue) {
                 XCTFail("Incorrect Result - Invalid Success response should result in a parse error return value.")
             }
-            break
         case .Success:
             XCTFail("Incorrect Result - Invalid response should result in a Failure return value.")
-            break
         }
     }
     
@@ -70,7 +67,6 @@ class ResponseParserTests: XCTestCase {
             break
         case .Success:
             XCTFail("Incorrect Result - Valid Failure response should result in a Failure return value.")
-            break
         }
     }
     
@@ -87,10 +83,8 @@ class ResponseParserTests: XCTestCase {
         switch result {
         case .Failure(let err):
             XCTAssert(err.localizedDescription == "Account Locked", "Incorrect error description")
-            break
         case .Success:
             XCTFail("Incorrect Result - Valid Failure response should result in a Failure return value.")
-            break
         }
     }
 }

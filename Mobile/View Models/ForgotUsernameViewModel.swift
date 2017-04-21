@@ -67,7 +67,7 @@ class ForgotUsernameViewModel {
     }
     
     func nextButtonEnabled() -> Observable<Bool> {
-        if Environment.sharedInstance.opco == "BGE" {
+        if Environment.sharedInstance.opco == .bge {
             return Observable.combineLatest(phoneNumberHasTenDigits(), identifierHasFourDigits(), identifierIsNumeric()) {
                 return $0 && $1 && $2
             }

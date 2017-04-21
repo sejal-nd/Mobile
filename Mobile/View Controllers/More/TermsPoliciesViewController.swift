@@ -24,7 +24,7 @@ class TermsPoliciesViewController: UIViewController {
             extendedLayoutIncludesOpaqueBars = true
         }
 
-        textView.textContainerInset = UIEdgeInsetsMake(26, 29, 26, 29)
+        textView.textContainerInset = UIEdgeInsetsMake(10, 29, 10, 29)
         textView.attributedText = viewModel.attributedTermsString
     }
     
