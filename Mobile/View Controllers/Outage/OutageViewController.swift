@@ -226,7 +226,7 @@ class OutageViewController: UIViewController {
         } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay {
             let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 14, y: 38, width: bigButtonWidth - 28, height: 120))
             let payBillLabel = UILabel(frame: .zero)
-            if Environment.sharedInstance.opco != "BGE" {
+            if Environment.sharedInstance.opco != .bge {
                 if currentOutageStatus.flagFinaled {
                     nonPayFinaledTextView.frame = CGRect(x: 14, y: 68, width: bigButtonWidth - 28, height: 84)
                 } else { // accountPaid = false
@@ -303,7 +303,7 @@ class OutageViewController: UIViewController {
     // MARK: - Actions
     
     func onBigButtonTap() {
-        if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != "BGE"  {
+        if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != .bge  {
             // TEMPORARILY DISABLED
             //tabBarController?.selectedIndex = 1 // Jump to Bill tab
         } else {

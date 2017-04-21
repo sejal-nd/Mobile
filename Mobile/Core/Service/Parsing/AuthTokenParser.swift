@@ -100,10 +100,8 @@ class AuthTokenParser : NSObject {
                     switch name {
                     case ProfileStatusNameValue.LockedPassword.rawValue:
                         lockedPassword = item[ProfileStatusKey.Value.rawValue] as! Bool
-                        break
                     case ProfileStatusNameValue.Active.rawValue:
                         active = item[ProfileStatusKey.Value.rawValue] as! Bool
-                        break
                     case ProfileStatusNameValue.Primary.rawValue:
                         primary = item[ProfileStatusKey.Value.rawValue] as! Bool
                     default:

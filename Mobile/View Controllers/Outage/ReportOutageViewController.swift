@@ -75,7 +75,7 @@ class ReportOutageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         // METER PING
-        if Environment.sharedInstance.opco == "ComEd" && viewModel.outageStatus!.meterPingInfo != nil {
+        if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             bg.backgroundColor = .whiteSmoke
@@ -122,7 +122,7 @@ class ReportOutageViewController: UIViewController {
             viewModel.reportFormHidden.value = false
         }
 
-        if opco == "PECO" {
+        if opco == .peco {
             segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: ""), NSLocalizedString("Dim/Flickering", comment: "")]
         } else {
             segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: "")]
@@ -130,7 +130,7 @@ class ReportOutageViewController: UIViewController {
 
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number *", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
-        phoneNumberTextField.textField.returnKeyType = opco == "BGE" ? .done:.next
+        phoneNumberTextField.textField.returnKeyType = opco == .bge ? .done:.next
         phoneNumberTextField.textField.delegate = self
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.phoneNumber.value.characters.count > 0 {
@@ -149,7 +149,7 @@ class ReportOutageViewController: UIViewController {
         phoneExtensionTextField.textField.returnKeyType = .done
         phoneExtensionTextField.textField.delegate = self
 
-        if opco == "BGE" {
+        if opco == .bge {
             phoneExtensionContainerView.isHidden = true
         }
         
@@ -189,7 +189,7 @@ class ReportOutageViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // METER PING
-        if Environment.sharedInstance.opco == "ComEd" && viewModel.outageStatus!.meterPingInfo != nil {
+        if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
             viewModel.meterPingGetPowerStatus(onPowerVerified: { canPerformVoltageCheck in
                 self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
                 self.meterPingPowerStatusLabel.textColor = .darkJungleGreen

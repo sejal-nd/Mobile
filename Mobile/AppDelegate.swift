@@ -21,17 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if Environment.sharedInstance.environmentName == "STAGE" {
             switch Environment.sharedInstance.opco {
-                case "BGE":
-                    BITHockeyManager.shared().configure(withIdentifier: "bec696e55dec44239187ffc959dec386")
-                    break
-                case "ComEd":
-                    BITHockeyManager.shared().configure(withIdentifier: "7399eb2b4dc44f91ac86e219d947b7b5")
-                    break
-                case "PECO":
-                    BITHockeyManager.shared().configure(withIdentifier: "51e89ca780064447b2373609c35e5b68")
-                    break
-                default:
-                    break
+                case .bge: BITHockeyManager.shared().configure(withIdentifier: "bec696e55dec44239187ffc959dec386")
+                case .comEd: BITHockeyManager.shared().configure(withIdentifier: "7399eb2b4dc44f91ac86e219d947b7b5")
+                case .peco: BITHockeyManager.shared().configure(withIdentifier: "51e89ca780064447b2373609c35e5b68")
             }
             BITHockeyManager.shared().crashManager.crashManagerStatus = .autoSend
             BITHockeyManager.shared().start()

@@ -25,7 +25,7 @@ class ReportOutageViewModel {
     
     required init(outageService: OutageService) {
         self.outageService = outageService
-        if Environment.sharedInstance.opco == "ComEd" {
+        if Environment.sharedInstance.opco == .comEd {
             reportFormHidden.value = true
         }
         
@@ -38,21 +38,14 @@ class ReportOutageViewModel {
     }
     
     func getFooterTextViewText() -> String {
-        var string = ""
         switch Environment.sharedInstance.opco {
-        case "BGE":
-            string = NSLocalizedString("To report a gas emergency, please call 1-800-685-0123\n\nFor downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222", comment: "")
-            break
-        case "ComEd":
-            string = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
-            break
-        case "PECO":
-            string = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
-            break
-        default:
-            break
+        case .bge:
+            return NSLocalizedString("To report a gas emergency, please call 1-800-685-0123\n\nFor downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222", comment: "")
+        case .comEd:
+            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
+        case .peco:
+            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
         }
-        return string
     }
     
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
