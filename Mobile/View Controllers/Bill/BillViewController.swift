@@ -48,6 +48,16 @@ class BillViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .mediumPersianBlue
+    
+        let titleDict: [String: Any] = [
+            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
+            NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
+        ]
+        navigationController?.navigationBar.titleTextAttributes = titleDict
+        
         if viewModel.currentAccount == nil {
             //getAccounts()
         }
