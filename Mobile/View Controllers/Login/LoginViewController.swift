@@ -31,11 +31,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var forgotUsernameButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var eyeballButton: UIButton!
+    @IBOutlet weak var touchIDImage: UIImageView!
+    @IBOutlet weak var touchIDLabel: UILabel!
+    @IBOutlet weak var touchIDView: UIView!
+    @IBOutlet weak var loginFormViewHeightConstraint: NSLayoutConstraint!
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     var passwordAutofilledFromTouchID = false
-    var secureTextEntry = true
-    
+
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -45,6 +48,11 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         view.backgroundColor = .primaryColor
+        
+        if !viewModel.isTouchIDEnabled() {
+            touchIDView.isHidden = true
+            loginFormViewHeightConstraint.constant = 390
+        }
         
         loginFormView.layer.shadowColor = UIColor.black.cgColor
         loginFormView.layer.shadowOpacity = 0.15
@@ -119,22 +127,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        viewModel.attemptLoginWithTouchID(onLoad: { // fingerprint was successful
-            self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
-            self.passwordAutofilledFromTouchID = true // be sure to set this to true after the above line because will send an rx event on the text observer
-            
-            self.signInButton.setLoading()
-            self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
-        }, onSuccess: { // fingerprint and subsequent login successful
-            self.signInButton.setSuccess(animationCompletion: { () in
-                self.navigationController?.view.isUserInteractionEnabled = true
-                self.launchMainApp()
-            })
-        }, onError: { (title, message) in // fingerprint successful but login failed
-            self.navigationController?.view.isUserInteractionEnabled = true
-            self.showErrorAlertWith(title: title, message: message + "\n\n" + NSLocalizedString("If you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
-        })
+        presentTouchIDPrompt()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -207,13 +200,30 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onEyeballPress(_ sender: UIButton) {
-        if secureTextEntry {
-            secureTextEntry = false
+        if passwordTextField.textField.isSecureTextEntry {
             passwordTextField.textField.isSecureTextEntry = false
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_active"), for: .normal)
         } else {
-            secureTextEntry = true
             passwordTextField.textField.isSecureTextEntry = true
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
         }
+    }
+    
+    @IBAction func onTouchIDPress(_ sender: UIButton) {
+        touchIDImage.alpha = 1.0
+        touchIDLabel.alpha = 1.0
+        
+    }
+    
+    @IBAction func onTouchIDTouchDown(_ sender: UIButton) {
+        touchIDImage.alpha = 0.5
+        touchIDLabel.alpha = 0.5
+        presentTouchIDPrompt()
+    }
+    
+    @IBAction func onTouchIDTouchCancel(_ sender: UIButton) {
+        touchIDImage.alpha = 1.0
+        touchIDLabel.alpha = 1.0
     }
     
     func launchMainApp() {
@@ -223,10 +233,27 @@ class LoginViewController: UIViewController {
     
     func showErrorAlertWith(title: String?, message: String) {
         signInButton.setFailure()
-        
         let errorAlert = UIAlertController(title: title != nil ? title : NSLocalizedString("Sign In Error", comment: ""), message: message, preferredStyle: .alert)
         errorAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.present(errorAlert, animated: true, completion: nil)
+    }
+    
+    func presentTouchIDPrompt() {
+        viewModel.attemptLoginWithTouchID(onLoad: { // fingerprint was successful
+            self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
+            self.passwordAutofilledFromTouchID = true // be sure to set this to true after the above line because will send an rx event on the text observer
+            
+            self.signInButton.setLoading()
+            self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
+        }, onSuccess: { // fingerprint and subsequent login successful
+            self.signInButton.setSuccess(animationCompletion: { () in
+                self.navigationController?.view.isUserInteractionEnabled = true
+                self.launchMainApp()
+            })
+        }, onError: { (title, message) in // fingerprint successful but login failed
+            self.navigationController?.view.isUserInteractionEnabled = true
+            self.showErrorAlertWith(title: title, message: message + "\n\n" + NSLocalizedString("If you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
+        })
     }
     
     // MARK: - Keyboard
