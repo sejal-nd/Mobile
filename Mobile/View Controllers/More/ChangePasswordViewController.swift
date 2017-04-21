@@ -39,8 +39,6 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var numberCheck: UIImageView!
     @IBOutlet weak var specialCharacterCheck: UIImageView!
     
-    var secureTextEntry = true
-    
     let disposeBag = DisposeBag()
     
     let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard, authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
@@ -164,12 +162,12 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func onEyeballPress(_ sender: UIButton) {
-        if secureTextEntry {
-            secureTextEntry = false
+        if currentPasswordTextField.textField.isSecureTextEntry {
             currentPasswordTextField.textField.isSecureTextEntry = false
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_active"), for: .normal)
         } else {
-            secureTextEntry = true
             currentPasswordTextField.textField.isSecureTextEntry = true
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
         }
     }
     

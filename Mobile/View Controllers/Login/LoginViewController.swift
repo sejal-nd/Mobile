@@ -38,8 +38,7 @@ class LoginViewController: UIViewController {
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     var passwordAutofilledFromTouchID = false
-    var secureTextEntry = true
-    
+
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -201,12 +200,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onEyeballPress(_ sender: UIButton) {
-        if secureTextEntry {
-            secureTextEntry = false
+        if passwordTextField.textField.isSecureTextEntry {
             passwordTextField.textField.isSecureTextEntry = false
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_active"), for: .normal)
         } else {
-            secureTextEntry = true
             passwordTextField.textField.isSecureTextEntry = true
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
         }
     }
     
