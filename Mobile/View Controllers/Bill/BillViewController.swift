@@ -51,6 +51,16 @@ class BillViewController: UIViewController {
         if viewModel.currentAccount == nil {
             getAccounts()
         }
+        
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .mediumPersianBlue
+        
+        let titleDict: [String: Any] = [
+            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
+            NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
+        ]
+        navigationController?.navigationBar.titleTextAttributes = titleDict
     }
     
     func getAccounts() {
@@ -79,6 +89,12 @@ class BillViewController: UIViewController {
         button.superview?.backgroundColor = .white
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let paperlessEBillVC = segue.destination as? PaperlessEBillViewController {
+            paperlessEBillVC.accounts = accountScroller.accounts
+        }
+    }
 }
 
 extension BillViewController: AccountScrollerDelegate {

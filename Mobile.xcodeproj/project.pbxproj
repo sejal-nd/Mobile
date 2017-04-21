@@ -44,6 +44,9 @@
 
 /* Begin PBXBuildFile section */
 		087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087630E01E72F5D000FA7020 /* BGEUITests.swift */; };
+		82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
+		82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
+		82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
 		8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
@@ -557,6 +560,7 @@
 		087630DE1E72F5D000FA7020 /* BGEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BGEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		087630E01E72F5D000FA7020 /* BGEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEUITests.swift; sourceTree = "<group>"; };
 		087630E21E72F5D000FA7020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1554,6 +1558,7 @@
 			isa = PBXGroup;
 			children = (
 				E882B7E31EA8009500EA3C13 /* BillViewController.swift */,
+				82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -1766,7 +1771,7 @@
 						ProvisioningStyle = Manual;
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
@@ -2175,6 +2180,7 @@
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A11E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E8B674C81E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
+				82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
@@ -2260,6 +2266,7 @@
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A31E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E8B674CA1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
+				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */,
@@ -2345,6 +2352,7 @@
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A21E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E8B674C91E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
+				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
