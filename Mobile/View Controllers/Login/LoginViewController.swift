@@ -30,9 +30,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signInButton: PrimaryButton!
     @IBOutlet weak var forgotUsernameButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var eyeballButton: UIButton!
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     var passwordAutofilledFromTouchID = false
+    var secureTextEntry = true
     
     let disposeBag = DisposeBag()
     
@@ -60,6 +62,8 @@ class LoginViewController: UIViewController {
         passwordTextField.textField.placeholder = NSLocalizedString("Password", comment: "")
         passwordTextField.textField.isSecureTextEntry = true
         passwordTextField.textField.returnKeyType = .done
+        passwordTextField.addSubview(eyeballButton)
+        passwordTextField.textField.isShowingAccessory = true
     
         // Two-way data binding for the username/password fields
         viewModel.username.asObservable().bindTo(usernameTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
@@ -200,6 +204,16 @@ class LoginViewController: UIViewController {
     
     @IBAction func onForgotPasswordPress() {
         performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
+    }
+    
+    @IBAction func onEyeballPress(_ sender: UIButton) {
+        if secureTextEntry {
+            secureTextEntry = false
+            passwordTextField.textField.isSecureTextEntry = false
+        } else {
+            secureTextEntry = true
+            passwordTextField.textField.isSecureTextEntry = true
+        }
     }
     
     func launchMainApp() {

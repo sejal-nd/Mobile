@@ -126,9 +126,25 @@
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="884-Yk-5tq" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="30" width="315" height="60"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uok-hL-HCJ" userLabel="Eyeball Button">
+                                                                <rect key="frame" x="274" y="24" width="30" height="16"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="30" id="oPG-qg-c9a"/>
+                                                                    <constraint firstAttribute="height" constant="16" id="xMw-Ns-TpZ"/>
+                                                                </constraints>
+                                                                <state key="normal" image="ic_eyeball"/>
+                                                                <connections>
+                                                                    <action selector="onEyeballPress:" destination="9Ug-ji-Hni" eventType="touchUpInside" id="QbR-1X-Ntj"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="Uok-hL-HCJ" secondAttribute="trailing" constant="11" id="0hV-lu-dIg"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Uok-hL-HCJ" secondAttribute="bottom" constant="20" id="9ub-bR-eDF"/>
                                                             <constraint firstAttribute="height" constant="60" id="eXo-ZV-J18"/>
+                                                            <constraint firstItem="Uok-hL-HCJ" firstAttribute="top" secondItem="884-Yk-5tq" secondAttribute="top" constant="24" id="usQ-qN-oOU"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLR-ET-G9c" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
@@ -348,6 +364,7 @@
                         <outlet property="confirmPasswordTextField" destination="m0b-5f-05z" id="yIU-5L-KB2"/>
                         <outlet property="currentPasswordTextField" destination="884-Yk-5tq" id="b5c-Rr-DjV"/>
                         <outlet property="expandingPasswordStrengthContainerView" destination="H5Z-Bc-Efn" id="0is-Fe-RGz"/>
+                        <outlet property="eyeballButton" destination="Uok-hL-HCJ" id="q7g-rs-YT8"/>
                         <outlet property="lowercaseCheck" destination="Xg8-sV-U27" id="sce-zI-mmh"/>
                         <outlet property="newPasswordTextField" destination="YLR-ET-G9c" id="y7d-Bn-MBI"/>
                         <outlet property="numberCheck" destination="blI-aw-jQa" id="Cet-9c-fWn"/>
@@ -458,5 +475,6 @@
     </scenes>
     <resources>
         <image name="ic_check" width="13" height="10"/>
+        <image name="ic_eyeball" width="30" height="16"/>
     </resources>
 </document>

@@ -27,6 +27,7 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var expandingPasswordStrengthContainerView: UIView!
     @IBOutlet weak var passwordStrengthMeterView: PasswordStrengthMeterView!
     @IBOutlet weak var passwordStrengthLabel: UILabel!
+    @IBOutlet weak var eyeballButton: UIButton!
     
     @IBOutlet weak var passwordRequirementsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var confirmPasswordHeightConstraint: NSLayoutConstraint!
@@ -37,6 +38,8 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var lowercaseCheck: UIImageView!
     @IBOutlet weak var numberCheck: UIImageView!
     @IBOutlet weak var specialCharacterCheck: UIImageView!
+    
+    var secureTextEntry = true
     
     let disposeBag = DisposeBag()
     
@@ -67,6 +70,8 @@ class ChangePasswordViewController: UIViewController {
         currentPasswordTextField.textField.placeholder = NSLocalizedString("Current Password", comment: "")
         currentPasswordTextField.textField.isSecureTextEntry = true
         currentPasswordTextField.textField.returnKeyType = .next
+        currentPasswordTextField.addSubview(eyeballButton)
+        currentPasswordTextField.textField.isShowingAccessory = true
         
         newPasswordTextField.textField.placeholder = NSLocalizedString("New Password", comment: "")
         newPasswordTextField.textField.isSecureTextEntry = true
@@ -156,6 +161,16 @@ class ChangePasswordViewController: UIViewController {
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
             self.present(alert, animated: true)
         })
+    }
+    
+    @IBAction func onEyeballPress(_ sender: UIButton) {
+        if secureTextEntry {
+            secureTextEntry = false
+            currentPasswordTextField.textField.isSecureTextEntry = false
+        } else {
+            secureTextEntry = true
+            currentPasswordTextField.textField.isSecureTextEntry = true
+        }
     }
     
     func setupValidation() {
