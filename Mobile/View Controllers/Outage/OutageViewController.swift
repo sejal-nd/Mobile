@@ -359,6 +359,11 @@ class OutageViewController: UIViewController {
             }
             vc.delegate = self
         }
+        if segue.destination.isKind(of: AccountListViewController.self) {
+            let vc = segue.destination as! AccountListViewController
+            vc.accounts = viewModel.accounts
+            vc.currentAccount = viewModel.currentAccount
+        }
     }
  
 }

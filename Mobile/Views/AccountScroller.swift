@@ -206,15 +206,11 @@ class AccountScroller: UIView {
         
     }
     
-    
-
     func onPageControlTap(sender: UIPageControl) {
         scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: true)
         delegate?.accountScroller(self, didChangeAccount: accounts[pageControl.currentPage])
     }
     
-    
-
 }
 
 extension AccountScroller: UIScrollViewDelegate {

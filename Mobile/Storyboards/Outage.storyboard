@@ -37,7 +37,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_commercial" translatesAutoresizingMaskIntoConstraints="NO" id="Xpt-xJ-vXP">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xpt-xJ-vXP">
                                                     <rect key="frame" x="8" y="0.0" width="56" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="56" id="YCb-vl-jpT"/>
@@ -74,8 +74,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="accountImageView" destination="Xpt-xJ-vXP" id="mJ5-qF-hk0"/>
+                                            <outlet property="accountNumber" destination="DAO-4v-L19" id="Ae0-8h-vG1"/>
                                             <outlet property="addressLabel" destination="Axq-L0-Jf5" id="o9c-hp-dDp"/>
-                                            <outlet property="phoneNumberLabel" destination="DAO-4v-L19" id="db9-ZR-nP0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -727,7 +727,6 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
     <resources>
         <image name="gasonly_graphic" width="197" height="197"/>
         <image name="ic_check_meterping" width="18" height="14"/>
-        <image name="ic_commercial" width="43" height="43"/>
         <image name="ic_graycircle" width="30" height="30"/>
     </resources>
 </document>

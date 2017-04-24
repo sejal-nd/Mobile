@@ -11,7 +11,7 @@ import UIKit
 class AccountTableViewCell: UITableViewCell {
 
     @IBOutlet weak var accountImageView: UIImageView!
-    @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var accountNumber: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     
     override func awakeFromNib() {
