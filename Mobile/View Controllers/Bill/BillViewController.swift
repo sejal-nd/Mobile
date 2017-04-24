@@ -82,6 +82,10 @@ class BillViewController: UIViewController {
 }
 
 extension BillViewController: AccountScrollerDelegate {
+    func accountScrollerDidTap() {
+        //TODO: Implement this
+    }
+
     
     func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account) {
         viewModel.currentAccount = account

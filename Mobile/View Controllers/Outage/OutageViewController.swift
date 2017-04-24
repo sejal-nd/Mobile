@@ -371,6 +371,10 @@ extension OutageViewController: AccountScrollerDelegate {
         getOutageStatus()
     }
     
+    func accountScrollerDidTap() {
+        performSegue(withIdentifier: "advancedAccountSegue", sender: self)
+    }
+    
 }
 
 extension OutageViewController: ReportOutageViewControllerDelegate {

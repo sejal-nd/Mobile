@@ -14,6 +14,90 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Accounts-->
+        <scene sceneID="21V-hc-Lsq">
+            <objects>
+                <viewController id="uoI-3d-TDP" customClass="AccountListViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5L3-Ab-JFQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="TWY-Ec-dJM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1J9-Ag-EvC">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xAq-g0-pe7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountTableViewCell" rowHeight="50" id="A4b-qi-G2Y" customClass="AccountTableViewCell" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A4b-qi-G2Y" id="idt-a8-aFn">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_commercial" translatesAutoresizingMaskIntoConstraints="NO" id="Xpt-xJ-vXP">
+                                                    <rect key="frame" x="8" y="0.0" width="56" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="YCb-vl-jpT"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAO-4v-L19">
+                                                    <rect key="frame" x="72" y="8" width="271" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Axq-L0-Jf5">
+                                                    <rect key="frame" x="72" y="28" width="271" height="14"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="GhI-4m-9lZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DAO-4v-L19" firstAttribute="trailing" secondItem="Axq-L0-Jf5" secondAttribute="trailing" id="72T-DP-R00"/>
+                                                <constraint firstItem="Axq-L0-Jf5" firstAttribute="top" secondItem="DAO-4v-L19" secondAttribute="bottom" constant="3" id="Gal-qY-8wS"/>
+                                                <constraint firstItem="Xpt-xJ-vXP" firstAttribute="leading" secondItem="idt-a8-aFn" secondAttribute="leadingMargin" id="Hq1-NT-qcA"/>
+                                                <constraint firstItem="Xpt-xJ-vXP" firstAttribute="top" secondItem="idt-a8-aFn" secondAttribute="top" id="MuT-Ns-7PO"/>
+                                                <constraint firstItem="DAO-4v-L19" firstAttribute="leading" secondItem="Axq-L0-Jf5" secondAttribute="leading" id="VEx-Ac-2Bo"/>
+                                                <constraint firstItem="DAO-4v-L19" firstAttribute="leading" secondItem="Xpt-xJ-vXP" secondAttribute="trailing" constant="8" symbolic="YES" id="XzU-pG-6N2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DAO-4v-L19" secondAttribute="trailing" constant="24" id="dI5-sp-OOM"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Axq-L0-Jf5" secondAttribute="bottom" constant="-0.5" id="fRJ-rw-gFz"/>
+                                                <constraint firstItem="DAO-4v-L19" firstAttribute="top" secondItem="idt-a8-aFn" secondAttribute="topMargin" id="fsb-jb-JBO"/>
+                                                <constraint firstItem="Xpt-xJ-vXP" firstAttribute="centerY" secondItem="idt-a8-aFn" secondAttribute="centerY" id="oEH-8n-3fV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accountImageView" destination="Xpt-xJ-vXP" id="mJ5-qF-hk0"/>
+                                            <outlet property="addressLabel" destination="Axq-L0-Jf5" id="o9c-hp-dDp"/>
+                                            <outlet property="phoneNumberLabel" destination="DAO-4v-L19" id="db9-ZR-nP0"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xAq-g0-pe7" firstAttribute="top" secondItem="5L3-Ab-JFQ" secondAttribute="bottom" id="GGV-mW-yEF"/>
+                            <constraint firstItem="xAq-g0-pe7" firstAttribute="bottom" secondItem="TWY-Ec-dJM" secondAttribute="top" id="lLD-99-KsG"/>
+                            <constraint firstItem="xAq-g0-pe7" firstAttribute="leading" secondItem="1J9-Ag-EvC" secondAttribute="leading" id="lhG-4f-dnY"/>
+                            <constraint firstAttribute="trailing" secondItem="xAq-g0-pe7" secondAttribute="trailing" id="zYW-aU-r0w"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Accounts" id="aRK-pE-nDY"/>
+                    <connections>
+                        <outlet property="tableView" destination="xAq-g0-pe7" id="lxw-Lh-T4F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sm1-Ir-tjM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2296.8000000000002" y="-536.58170914542734"/>
+        </scene>
         <!--Outage-->
         <scene sceneID="Vsd-Z1-Jl7">
             <objects>
@@ -182,10 +266,10 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 <rect key="frame" x="177" y="22" width="20" height="20"/>
                                             </activityIndicatorView>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nLN-0J-SNE">
-                                                <rect key="frame" x="169" y="258.5" width="37" height="37"/>
+                                                <rect key="frame" x="169" y="259" width="37" height="37"/>
                                             </activityIndicatorView>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ERROR" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lL0-H1-J9Q">
-                                                <rect key="frame" x="161.5" y="267.5" width="52" height="19.5"/>
+                                                <rect key="frame" x="162" y="267" width="52" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -260,11 +344,12 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                         <outlet property="scrollView" destination="qSc-mq-7Vd" id="Arq-eX-7Ts"/>
                         <outlet property="viewOutageMapButton" destination="5cM-eu-hDR" id="Jpd-LW-ilQ"/>
                         <segue destination="ZQH-GI-7Fc" kind="show" identifier="reportOutageSegue" id="APc-d5-ZXG"/>
+                        <segue destination="uoI-3d-TDP" kind="show" identifier="advancedAccountSegue" id="WBJ-fb-kdz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9f-N0-ewH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1431.2" y="-73.313343328335833"/>
+            <point key="canvasLocation" x="1420" y="-88"/>
         </scene>
         <!--Report Outage-->
         <scene sceneID="aWI-55-Z7u">
@@ -636,12 +721,13 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vjy-S2-E4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2237.5999999999999" y="-73.763118440779621"/>
+            <point key="canvasLocation" x="2297" y="345"/>
         </scene>
     </scenes>
     <resources>
         <image name="gasonly_graphic" width="197" height="197"/>
         <image name="ic_check_meterping" width="18" height="14"/>
+        <image name="ic_commercial" width="43" height="43"/>
         <image name="ic_graycircle" width="30" height="30"/>
     </resources>
 </document>
