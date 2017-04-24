@@ -206,7 +206,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Bq5-hO-8cE">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="838"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="966"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRB-vQ-A2r">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
@@ -221,7 +221,7 @@
                                                                 <rect key="frame" x="167" y="0.0" width="126" height="90"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evS-WD-Rt4">
-                                                                <rect key="frame" x="87" y="22" width="126" height="46.5"/>
+                                                                <rect key="frame" x="87" y="22.5" width="126" height="46.5"/>
                                                                 <string key="text">What is
 Budget Billing?</string>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
@@ -261,7 +261,7 @@ Budget Billing?</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqG-lk-DUF">
-                                                        <rect key="frame" x="93.5" y="245.5" width="188" height="49.5"/>
+                                                        <rect key="frame" x="94" y="245.5" width="188" height="49.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$200.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDe-zM-yPH">
                                                                 <rect key="frame" x="0.0" y="0.0" width="134" height="49.5"/>
@@ -431,6 +431,24 @@ Budget Billing?</string>
                                                     <outlet property="delegate" destination="ea9-OX-qvD" id="qht-zE-M9c"/>
                                                 </connections>
                                             </tableView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VCO-pn-yaV">
+                                                <rect key="frame" x="0.0" y="838" width="375" height="128"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STi-xp-uKC">
+                                                        <rect key="frame" x="30" y="30" width="315" height="68"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="STi-xp-uKC" secondAttribute="bottom" constant="30" id="20R-jd-PxE"/>
+                                                    <constraint firstItem="STi-xp-uKC" firstAttribute="leading" secondItem="VCO-pn-yaV" secondAttribute="leading" constant="30" id="NdZ-mk-2WG"/>
+                                                    <constraint firstItem="STi-xp-uKC" firstAttribute="top" secondItem="VCO-pn-yaV" secondAttribute="top" constant="30" id="UXe-tv-3Kg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="STi-xp-uKC" secondAttribute="trailing" constant="30" id="b9a-x5-Knr"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="zan-Py-Jsh" firstAttribute="leading" secondItem="Bq5-hO-8cE" secondAttribute="leading" priority="999" id="18T-Hc-dI3"/>
@@ -474,10 +492,13 @@ Budget Billing?</string>
                         <outlet property="addressLabel" destination="1AR-tP-Mrr" id="QDr-l4-R7M"/>
                         <outlet property="amountDescriptionLabel" destination="M4h-Cf-jR8" id="sFt-yC-wo5"/>
                         <outlet property="enrollSwitch" destination="acX-dM-gob" id="A2s-oK-cdx"/>
+                        <outlet property="footerLabel" destination="STi-xp-uKC" id="HuG-9w-XQ0"/>
+                        <outlet property="footerView" destination="VCO-pn-yaV" id="Exc-sI-M81"/>
                         <outlet property="gradientView" destination="s7d-Fm-kew" id="mE9-Bx-1tZ"/>
                         <outlet property="monthLabel" destination="WCi-o0-AZv" id="QA1-Yr-5IM"/>
                         <outlet property="paymentAmountLabel" destination="kDe-zM-yPH" id="S9Q-YV-haF"/>
                         <outlet property="reasonForStoppingLabel" destination="whD-Zj-sZ6" id="kwO-jx-Dyv"/>
+                        <outlet property="reasonForStoppingTableView" destination="pXz-ha-Q2l" id="N2b-Ng-b0Y"/>
                         <outlet property="reasonForStoppingTableViewHeightConstraint" destination="Wqk-bA-des" id="efA-bq-DQf"/>
                         <outlet property="scrollView" destination="ePv-bH-pSP" id="JcS-Q5-SAG"/>
                         <outlet property="stackView" destination="Bq5-hO-8cE" id="7zL-1P-gTS"/>
@@ -517,12 +538,21 @@ Budget Billing?</string>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jzN-bq-bvj">
+                                                        <rect key="frame" x="32" y="30" width="53" height="62"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="53" id="Cfd-cI-0Id"/>
+                                                            <constraint firstAttribute="height" constant="62" id="lER-2b-fnh"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="DLe-s8-s1i" secondAttribute="bottom" constant="78" id="Abp-SM-2CF"/>
+                                                    <constraint firstItem="jzN-bq-bvj" firstAttribute="leading" secondItem="6Zu-8F-NCO" secondAttribute="leading" constant="32" id="EOq-rc-zvN"/>
                                                     <constraint firstAttribute="trailing" secondItem="DLe-s8-s1i" secondAttribute="trailing" constant="149" id="Qgb-jX-Dpg"/>
                                                     <constraint firstItem="DLe-s8-s1i" firstAttribute="leading" secondItem="6Zu-8F-NCO" secondAttribute="leading" constant="149" id="b01-3Q-UI8"/>
+                                                    <constraint firstItem="jzN-bq-bvj" firstAttribute="top" secondItem="6Zu-8F-NCO" secondAttribute="top" constant="30" id="c3U-6y-f9t"/>
                                                     <constraint firstItem="DLe-s8-s1i" firstAttribute="top" secondItem="6Zu-8F-NCO" secondAttribute="top" constant="79" id="zOK-fa-iId"/>
                                                 </constraints>
                                             </view>
@@ -560,7 +590,7 @@ Budget Billing?</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is Budget Billing?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gos-Aq-4Ke">
-                                        <rect key="frame" x="85.5" y="32.5" width="205" height="25"/>
+                                        <rect key="frame" x="85" y="32.5" width="205" height="25"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

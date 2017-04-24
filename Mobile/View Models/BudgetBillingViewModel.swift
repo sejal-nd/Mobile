@@ -17,17 +17,26 @@ class BudgetBillingViewModel {
     let initialEnrollment = true
     let currentEnrollment: Variable<Bool>!
     
-    let submitButtonEnabled = Variable(false)
-    let reasonForStoppingViewVisible = Variable(false)
+    //let submitButtonEnabled = Variable(false)
+    
+    let enrolling = Variable(false)
+    let unenrolling = Variable(false)
+    var selectedUnenrollmentReason = Variable(-1)
     
     required init() {
         currentEnrollment = Variable(initialEnrollment)
-        
         currentEnrollment.asObservable().subscribe(onNext: { enrolled in
-            self.submitButtonEnabled.value = enrolled != self.initialEnrollment
-            
-            self.reasonForStoppingViewVisible.value = self.initialEnrollment && !enrolled
+            self.enrolling.value = !self.initialEnrollment && enrolled
+            self.unenrolling.value = self.initialEnrollment && !enrolled
         }).addDisposableTo(disposeBag)
+    }
+    
+    func submitButtonEnabled() -> Observable<Bool> {
+        return Observable.combineLatest(enrolling.asObservable(), unenrolling.asObservable(), selectedUnenrollmentReason.asObservable()) {
+            if $0 { return true }
+            if $1 && $2 != -1 { return true }
+            return false
+        }
     }
     
 }

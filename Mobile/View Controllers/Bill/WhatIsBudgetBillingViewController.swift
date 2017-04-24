@@ -33,6 +33,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         
         navDescriptionLabel.textColor = .outerSpace
         navDescriptionLabel.setLineHeight(lineHeight: 25)
+        //navDescriptionLabel.text = NSLocalizedString(<#T##key: String##String#>, comment: <#T##String#>)
     }
 
     @IBAction func onXPress() {

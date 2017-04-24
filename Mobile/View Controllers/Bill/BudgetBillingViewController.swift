@@ -28,6 +28,10 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var enrollSwitch: Switch!
     
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var footerLabel: UILabel!
+    
+    @IBOutlet weak var reasonForStoppingTableView: UITableView!
     @IBOutlet weak var reasonForStoppingLabel: UILabel!
     @IBOutlet weak var reasonForStoppingTableViewHeightConstraint: NSLayoutConstraint!
     
@@ -44,7 +48,7 @@ class BudgetBillingViewController: UIViewController {
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitButtonEnabled.asDriver().drive(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitButtonEnabled().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         view.backgroundColor = .whiteSmoke
         
@@ -84,9 +88,17 @@ class BudgetBillingViewController: UIViewController {
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
         enrollSwitch.rx.isOn.bindTo(viewModel.currentEnrollment).addDisposableTo(disposeBag)
         
+        footerLabel.textColor = .darkJungleGreen
+        footerLabel.text = String(format: NSLocalizedString("Budget billing option only includes %@ charges. Energy Supply charges are billed by your chosen generation provider.", comment: ""), Environment.sharedInstance.opco)
+        
         reasonForStoppingLabel.textColor = .darkJungleGreen
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
-        
+        reasonForStoppingTableView.isHidden = true
+        viewModel.unenrolling.asObservable().subscribe(onNext: { unenrolling in
+            UIView.animate(withDuration: 0.3, animations: {
+                self.reasonForStoppingTableView.isHidden = !unenrolling
+            })
+        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,6 +172,10 @@ extension BudgetBillingViewController: UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectedUnenrollmentReason.value = indexPath.row
     }
     
 }
