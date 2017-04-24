@@ -95,6 +95,10 @@
 		9A36C1581E9EAE08006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
 		9A36C1591E9EAE1C006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
 		9A36C15A1E9EAE1D006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
+		B535FD0B1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
+		B535FD0C1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
+		B535FD0D1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
+		B535FD0E1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
 		B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
@@ -580,6 +584,7 @@
 		9A36C1501E9EADD8006CAD8D /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
 		9A36C1531E9EADE6006CAD8D /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
+		B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthTokenResponse.swift; path = ../AuthTokenResponse.swift; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
 		B54846821E687CEB008CE1B1 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
@@ -1462,6 +1467,7 @@
 				B54846821E687CEB008CE1B1 /* HttpMethod.swift */,
 				B574BAD81E78360D001E8A44 /* AccountService.swift */,
 				B574BAEA1E785A5F001E8A44 /* OutageService.swift */,
+				B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2197,6 +2203,7 @@
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				E8542FFB1E7AE1740054AC53 /* SegmentedControl.swift in Sources */,
+				B535FD0B1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
@@ -2282,6 +2289,7 @@
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				E8542FFD1E7AE1740054AC53 /* SegmentedControl.swift in Sources */,
+				B535FD0D1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
@@ -2367,6 +2375,7 @@
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				E8542FFC1E7AE1740054AC53 /* SegmentedControl.swift in Sources */,
+				B535FD0C1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
@@ -2396,6 +2405,7 @@
 				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
+				B535FD0E1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */,
 				E8CA07F71E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */,

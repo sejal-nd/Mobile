@@ -14,10 +14,10 @@ struct MockAuthenticationService : AuthenticationService {
     let validUsername = "valid@test.com"
     let validCurrentPassword = "Password1"
     
-    func login(_ username: String, password: String, completion: @escaping (ServiceResult<String>) -> Void) {
+    func login(_ username: String, password: String, completion: @escaping (ServiceResult<ProfileStatus>) -> Void) {
         
         if(username == validUsername) {
-            completion(ServiceResult.Success(""))
+            completion(ServiceResult.Success(ProfileStatus()))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnPwdInvalid.rawValue, serviceMessage: "Invalid credentials")))
         }
