@@ -158,25 +158,25 @@ class OutageViewController: UIViewController {
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
             
             let yourOutageIsLabel = UILabel(frame: CGRect(x: 30, y: 61, width: bigButtonWidth - 60, height: 20))
-            yourOutageIsLabel.font = UIFont(name: "OpenSans", size: 16)
+            yourOutageIsLabel.font = OpenSans.regular.ofSize(16)
             yourOutageIsLabel.textColor = .mediumPersianBlue
             yourOutageIsLabel.textAlignment = .center
             yourOutageIsLabel.text = NSLocalizedString("Your outage is", comment: "")
             
             let reportedLabel = UILabel(frame: CGRect(x: 30, y: 81, width: bigButtonWidth - 60, height: 25))
-            reportedLabel.font = UIFont(name: "OpenSans-Bold", size: 22)
+            reportedLabel.font = OpenSans.bold.ofSize(22)
             reportedLabel.textColor = .mediumPersianBlue
             reportedLabel.textAlignment = .center
             reportedLabel.text = NSLocalizedString("REPORTED", comment: "")
             
             let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
-            estRestorationLabel.font = UIFont(name: "OpenSans", size: 12)
+            estRestorationLabel.font = OpenSans.regular.ofSize(12)
             estRestorationLabel.textColor = .outerSpace
             estRestorationLabel.textAlignment = .center
             estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
-            timeLabel.font = UIFont(name: "OpenSans-Bold", size: 15)
+            timeLabel.font = OpenSans.bold.ofSize(15)
             timeLabel.textColor = .outerSpace
             timeLabel.textAlignment = .center
             timeLabel.adjustsFontSizeToFitWidth = true
@@ -193,25 +193,25 @@ class OutageViewController: UIViewController {
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_out")
             
             let yourPowerIsLabel = UILabel(frame: CGRect(x: 30, y: 62, width: bigButtonWidth - 60, height: 20))
-            yourPowerIsLabel.font = UIFont(name: "OpenSans", size: 16)
+            yourPowerIsLabel.font = OpenSans.regular.ofSize(16)
             yourPowerIsLabel.textColor = .mediumPersianBlue
             yourPowerIsLabel.textAlignment = .center
             yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
             
             let outLabel = UILabel(frame: CGRect(x: 44, y: 82, width: bigButtonWidth - 88, height: 25))
-            outLabel.font = UIFont(name: "OpenSans-Bold", size: 22)
+            outLabel.font = OpenSans.bold.ofSize(22)
             outLabel.textColor = .mediumPersianBlue
             outLabel.textAlignment = .center
             outLabel.text = NSLocalizedString("OUT", comment: "")
             
             let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
-            estRestorationLabel.font = UIFont(name: "OpenSans", size: 12)
+            estRestorationLabel.font = OpenSans.regular.ofSize(12)
             estRestorationLabel.textColor = .outerSpace
             estRestorationLabel.textAlignment = .center
             estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
-            timeLabel.font = UIFont(name: "OpenSans-Bold", size: 15)
+            timeLabel.font = OpenSans.bold.ofSize(15)
             timeLabel.textColor = .outerSpace
             timeLabel.textAlignment = .center
             timeLabel.adjustsFontSizeToFitWidth = true
@@ -252,13 +252,13 @@ class OutageViewController: UIViewController {
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
             
             let yourPowerIsLabel = UILabel(frame: CGRect(x: 40, y: 89, width: bigButtonWidth - 80, height: 20))
-            yourPowerIsLabel.font = UIFont(name: "OpenSans", size: 16)
+            yourPowerIsLabel.font = OpenSans.regular.ofSize(16)
             yourPowerIsLabel.textColor = .mediumPersianBlue
             yourPowerIsLabel.textAlignment = .center
             yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
             
             let onLabel = UILabel(frame: CGRect(x: 40, y: 109, width: bigButtonWidth - 80, height: 25))
-            onLabel.font = UIFont(name: "OpenSans-Bold", size: 22)
+            onLabel.font = OpenSans.bold.ofSize(22)
             onLabel.textColor = .mediumPersianBlue
             onLabel.textAlignment = .center
             onLabel.text = NSLocalizedString("ON", comment: "")
