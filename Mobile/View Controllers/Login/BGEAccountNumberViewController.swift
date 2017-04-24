@@ -12,7 +12,7 @@ import MBProgressHUD
 
 class BGEAccountNumberViewController: UIViewController {
     
-    let viewModel = ForgotUsernameViewModel(authService: MockAuthenticationService())
+    let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
 
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!

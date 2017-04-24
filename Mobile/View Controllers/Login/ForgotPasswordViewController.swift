@@ -20,7 +20,7 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
     
-    let viewModel = ForgotPasswordViewModel(authService: MockAuthenticationService())
+    let viewModel = ForgotPasswordViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
 
