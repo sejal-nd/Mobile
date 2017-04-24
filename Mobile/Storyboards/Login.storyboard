@@ -22,7 +22,7 @@
         <scene sceneID="XPV-ae-tB6">
             <objects>
                 <navigationController navigationBarHidden="YES" id="pTL-u9-WiQ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="16V-d7-W9g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="16V-d7-W9g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -386,6 +386,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="84" height="22"/>
                                                                         <connections>
                                                                             <action selector="onTouchIDPress:" destination="Pib-RC-igc" eventType="touchUpInside" id="icu-aG-nsF"/>
+                                                                            <action selector="onTouchIDTouchCancel:" destination="Pib-RC-igc" eventType="touchDragExit" id="DsG-n3-lp9"/>
                                                                             <action selector="onTouchIDTouchCancel:" destination="Pib-RC-igc" eventType="touchCancel" id="Xdx-x4-IfF"/>
                                                                             <action selector="onTouchIDTouchDown:" destination="Pib-RC-igc" eventType="touchDown" id="yxW-43-IPB"/>
                                                                         </connections>
@@ -558,7 +559,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sli-Tt-vCb" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xPE-hv-B2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xPE-hv-B2n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

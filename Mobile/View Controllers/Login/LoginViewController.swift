@@ -11,14 +11,6 @@ import RxSwift
 import RxCocoa
 import ToastSwiftFramework
 
-// PECO:
-// User_0005084051@test.com / Password1
-// kat@test.com / Password1
-
-// BGE:
-// multprem02 / Password1
-// multprem03 / Abc12345
-
 class LoginViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var opcoLogo: UIImageView!
@@ -212,13 +204,12 @@ class LoginViewController: UIViewController {
     @IBAction func onTouchIDPress(_ sender: UIButton) {
         touchIDImage.alpha = 1.0
         touchIDLabel.alpha = 1.0
-        
+        presentTouchIDPrompt()
     }
     
     @IBAction func onTouchIDTouchDown(_ sender: UIButton) {
         touchIDImage.alpha = 0.5
         touchIDLabel.alpha = 0.5
-        presentTouchIDPrompt()
     }
     
     @IBAction func onTouchIDTouchCancel(_ sender: UIButton) {
