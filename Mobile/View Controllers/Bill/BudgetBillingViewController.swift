@@ -89,7 +89,7 @@ class BudgetBillingViewController: UIViewController {
         enrollSwitch.rx.isOn.bindTo(viewModel.currentEnrollment).addDisposableTo(disposeBag)
         
         footerLabel.textColor = .darkJungleGreen
-        footerLabel.text = String(format: NSLocalizedString("Budget billing option only includes %@ charges. Energy Supply charges are billed by your chosen generation provider.", comment: ""), Environment.sharedInstance.opco)
+        footerLabel.text = String(format: NSLocalizedString("Budget billing option only includes %@ charges. Energy Supply charges are billed by your chosen generation provider.", comment: ""), Environment.sharedInstance.opco.displayString)
         
         reasonForStoppingLabel.textColor = .darkJungleGreen
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
@@ -160,7 +160,7 @@ extension BudgetBillingViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonForStoppingCell", for: indexPath) as! BudgetBillingTableViewCell
         
         if indexPath.row == 0 {
-            cell.label.text = String(format: NSLocalizedString("Closing %@ Account", comment: ""), Environment.sharedInstance.opco)
+            cell.label.text = String(format: NSLocalizedString("Closing %@ Account", comment: ""), Environment.sharedInstance.opco.displayString)
         } else if indexPath.row == 1 {
             cell.label.text = NSLocalizedString("Changing Bank Account", comment: "")
         } else if indexPath.row == 2 {
