@@ -88,50 +88,37 @@ class OutageViewModel {
     }
     
     func getFooterTextViewText() -> String {
-        var string = ""
         switch Environment.sharedInstance.opco {
-            case "BGE":
-                string = NSLocalizedString("To report a gas emergency, please call 1-800-685-0123\nFor downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222", comment: "")
-                break
-            case "ComEd":
-                string = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
-                break
-            case "PECO":
-                string = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
-                break
-            default:
-                break
+            case .bge:
+                return NSLocalizedString("To report a gas emergency, please call 1-800-685-0123\nFor downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222", comment: "")
+            case .comEd:
+                return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
+            case .peco:
+                return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
         }
-        return string
     }
     
     func getGasOnlyMessage() -> String {
-        var string = ""
         switch Environment.sharedInstance.opco {
-        case "BGE":
-            string = NSLocalizedString("This account receives gas service only.  We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency, please call 1-800-685-0123.  For downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222.", comment: "")
-            break
-        case "PECO":
-            string = NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", comment: "")
-            break
+        case .bge:
+            return NSLocalizedString("This account receives gas service only.  We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency, please call 1-800-685-0123.  For downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222.", comment: "")
+        case .peco:
+            return NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", comment: "")
         default:
-            string = NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
-            break
+            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
         }
-        return string
     }
     
     func getAccountNonPayFinaledMessage() -> String {
-        var string = ""
-        if Environment.sharedInstance.opco == "BGE" {
-            string = NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
+        if Environment.sharedInstance.opco == .bge {
+            return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
         } else {
             if currentOutageStatus!.flagFinaled {
-                string = NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
+                return NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
             } else if currentOutageStatus!.flagNoPay {
-                string = NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
+                return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
             }
         }
-        return string
+        return ""
     }
 }

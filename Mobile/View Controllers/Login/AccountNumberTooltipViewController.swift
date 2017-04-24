@@ -19,21 +19,15 @@ class AccountNumberTooltipViewController: DismissableFormSheetViewController {
         titleLabel.text = NSLocalizedString("Where to Look for Your Account Number", comment: "")
         titleLabel.textColor = .darkJungleGreen
         
-        var descriptionText = ""
         switch Environment.sharedInstance.opco {
-        case "BGE":
-            descriptionText = "Your Customer Account Number can be found in the lower right portion of your bill. Please enter 10-digits including leading zeros."
-            break
-        case "ComEd":
-            descriptionText = "Your Account Number is located in the upper right portion of a residential bill and the upper center portion of a commercial bill. Please enter all 10 digits, including leading zeros, but no dashes."
-            break
-        case "PECO":
-            descriptionText = "Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts."
-            break
-        default:
-            break
+        case .bge:
+            descriptionLabel.text = "Your Customer Account Number can be found in the lower right portion of your bill. Please enter 10-digits including leading zeros."
+        case .comEd:
+            descriptionLabel.text = "Your Account Number is located in the upper right portion of a residential bill and the upper center portion of a commercial bill. Please enter all 10 digits, including leading zeros, but no dashes."
+        case .peco:
+            descriptionLabel.text = "Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts."
         }
-        descriptionLabel.text = descriptionText
+        
         descriptionLabel.setLineHeight(lineHeight: 25)
         descriptionLabel.textColor = .outerSpace
     }

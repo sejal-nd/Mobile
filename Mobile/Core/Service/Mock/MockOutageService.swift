@@ -53,7 +53,6 @@ class MockOutageService : OutageService {
                 "ETR": "2017-04-10T03:45:00-04:00"
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
-            break
         case "7003238921":
             let dict: [AnyHashable: Any] = [
                 "flagGasOnly": false,
@@ -66,7 +65,6 @@ class MockOutageService : OutageService {
                 "ETR": "2017-04-10T03:45:00-04:00"
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
-            break
         case "5591032201":
             let dict: [AnyHashable: Any] = [
                 "flagGasOnly": true,
@@ -79,7 +77,6 @@ class MockOutageService : OutageService {
                 "ETR": "2017-04-10T03:45:00-04:00"
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
-            break
         case "5591032201":
             let dict: [AnyHashable: Any] = [
                 "flagGasOnly": false,
@@ -91,7 +88,6 @@ class MockOutageService : OutageService {
                 "flagNoPay": true,
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
-            break
         default:
             let dict: [AnyHashable: Any] = [
                 "flagGasOnly": false,
@@ -103,7 +99,6 @@ class MockOutageService : OutageService {
                 "flagNoPay": false,
                 ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
-            break
         }
         return status
     }

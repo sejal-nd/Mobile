@@ -43,10 +43,8 @@ extension OutageService {
                 case ServiceResult.Success(let outageStatus):
                     observer.onNext(outageStatus)
                     observer.onCompleted()
-                    break
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
-                    break
                 }
 
             })
@@ -61,10 +59,8 @@ extension OutageService {
                 case ServiceResult.Success:
                     observer.onNext()
                     observer.onCompleted()
-                    break
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
-                    break
                 }
             })
             return Disposables.create()

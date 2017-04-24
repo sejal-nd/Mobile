@@ -91,4 +91,8 @@ class LoginViewModel {
         fingerprintService.disableTouchID()
     }
     
+    func isTouchIDEnabled() -> Bool {
+        return fingerprintService.isTouchIDEnabled()
+    }
+    
 }

@@ -69,13 +69,13 @@ class ReportOutageViewController: UIViewController {
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitButtonEnabled().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         // METER PING
-        if Environment.sharedInstance.opco == "ComEd" && viewModel.outageStatus!.meterPingInfo != nil {
+        if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             bg.backgroundColor = .whiteSmoke
@@ -122,19 +122,34 @@ class ReportOutageViewController: UIViewController {
             viewModel.reportFormHidden.value = false
         }
 
-        if opco == "PECO" {
+        if opco == .peco {
             segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: ""), NSLocalizedString("Dim/Flickering", comment: "")]
         } else {
             segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: "")]
         }
 
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number *", comment: "")
-        phoneNumberTextField.textField.keyboardType = .phonePad
+        phoneNumberTextField.textField.autocorrectionType = .no
+        phoneNumberTextField.textField.returnKeyType = opco == .bge ? .done:.next
         phoneNumberTextField.textField.delegate = self
+        phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
+            if self.viewModel.phoneNumber.value.characters.count > 0 {
+                self.viewModel.phoneNumberHasTenDigits().single().subscribe(onNext: { valid in
+                    if !valid {
+                        self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
+        phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+            self.phoneNumberTextField.setError(nil)
+        }).addDisposableTo(disposeBag)
         phoneExtensionTextField.textField.placeholder = NSLocalizedString("Contact Number Ext. (Optional)", comment: "")
-        phoneExtensionTextField.textField.keyboardType = .phonePad
+        phoneExtensionTextField.textField.autocorrectionType = .no
+        phoneExtensionTextField.textField.returnKeyType = .done
+        phoneExtensionTextField.textField.delegate = self
 
-        if opco == "BGE" {
+        if opco == .bge {
             phoneExtensionContainerView.isHidden = true
         }
         
@@ -174,7 +189,7 @@ class ReportOutageViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // METER PING
-        if Environment.sharedInstance.opco == "ComEd" && viewModel.outageStatus!.meterPingInfo != nil {
+        if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
             viewModel.meterPingGetPowerStatus(onPowerVerified: { canPerformVoltageCheck in
                 self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
                 self.meterPingPowerStatusLabel.textColor = .darkJungleGreen
@@ -315,6 +330,27 @@ extension ReportOutageViewController: UITextFieldDelegate {
         
         textField.sendActions(for: .valueChanged) // Send rx events
         
+        return false
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == phoneNumberTextField.textField {
+            if phoneExtensionContainerView.isHidden {
+                if viewModel.submitEnabled.value {
+                    onSubmitPress()
+                } else {
+                    view.endEditing(true)
+                }
+            } else {
+                phoneExtensionTextField.textField.becomeFirstResponder()
+            }
+        } else if textField == phoneExtensionTextField?.textField {
+            if viewModel.submitEnabled.value {
+                onSubmitPress()
+            } else {
+                view.endEditing(true)
+            }
+        }
         return false
     }
 }

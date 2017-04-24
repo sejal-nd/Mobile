@@ -10,7 +10,7 @@ import Foundation
 
 class ContactUsViewModel {
     
-    var target: String
+    var target: OpCo
     var emergencyAttrString = NSMutableAttributedString()
     var label1 = ""
     var label2 = ""
@@ -39,92 +39,72 @@ class ContactUsViewModel {
     
     func setEmergencyAttributedString() {
         switch target {
-        case "BGE":
+        case .bge:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
             let localizedString = String(format: NSLocalizedString("If you see downed power lines or smell natural gas, %@ and then call BGE. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: (localizedString as NSString).range(of: leaveAreaString))
-            break
-        case "PECO":
+        case .peco:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
             let localizedString = String(format: NSLocalizedString("If you see downed power lines or smell natural gas, %@ and then call PECO. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: (localizedString as NSString).range(of: leaveAreaString))
-            break
-        case "ComEd":
+        case .comEd:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
             let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(NSFontAttributeName, value: UIFont(name: "OpenSans-BoldItalic", size: 12)!, range: (localizedString as NSString).range(of: leaveAreaString))
-            break
-        default:
-            emergencyAttrString = NSMutableAttributedString(string: "Could not get text")
-            break
         }
     }
     
     func setLabel() {
         switch target {
-        case "BGE":
+        case .bge:
             label1 = NSLocalizedString("Residential", comment: "")
-            break
-        case "PECO":
-            label1 =  NSLocalizedString("All Customers", comment: "")
-            break
-        case "ComEd":
-            label1 =  NSLocalizedString("Residential", comment: "")
-            break
-        default:
-            label1 =  ""
-            break
+        case .peco:
+            label1 = NSLocalizedString("All Customers", comment: "")
+        case .comEd:
+            label1 = NSLocalizedString("Residential", comment: "")
         }
     }
     
     func setLabel2() {
         switch target {
-        case "BGE":
+        case .bge:
             label2 = NSLocalizedString("Business", comment: "")
-            break
-        case "ComEd":
-            label2 =  NSLocalizedString("Business", comment: "")
-            break
-        default:
+        case .comEd:
+            label2 = NSLocalizedString("Business", comment: "")
+        case .peco:
             label2 =  ""
-            break
         }
     }
     
     func setLabel3() {
         switch target {
-        case "BGE":
+        case .bge:
             label3 = NSLocalizedString("TTY/TTD", comment: "")
-            break
-        case "ComEd":
+        case .comEd:
             label3 =  NSLocalizedString("Spanish", comment: "")
-            break
-        default:
+        case .peco:
             label2 =  ""
-            break
         }
     }
     
     func setSocialMediaURLs() {
         switch target {
-        case "BGE":
+        case .bge:
             facebookURL = "https://www.facebook.com/myBGE"
             twitterURL = "https://twitter.com/mybge"
             youtubeURL = "https://www.youtube.com/user/BaltimoreGasElectric"
             linkedinURL = "https://www.linkedin.com/company/5115"
             flickrURL = "https://www.flickr.com/photos/mybge"
-            break
-        case "PECO":
+        case .peco:
             facebookURL = "https://www.facebook.com/pecoconnect"
             twitterURL = "https://www.twitter.com/pecoconnect"
             youtubeURL = "https://www.youtube.com/pecoconnect"
             linkedinURL = "https://www.linkedin.com/" // TODO: TEMPORARY LINK
             flickrURL = "https://www.flickr.com/pecoconnect"
-            break
-        case "ComEd":
+        case .comEd:
             facebookURL = "https://www.facebook.com/ComEd"
             twitterURL = "https://twitter.com/ComEd"
             youtubeURL = "https://www.youtube.com/user/CommonwealthEdison/ComEd"
@@ -132,32 +112,24 @@ class ContactUsViewModel {
             instagramURL = "https://www.instagram.com/commonwealthedison/"
             pinterestURL = "https://www.pinterest.com/comedil/"
             flickrURL = "https://www.flickr.com/photos/commonwealthedison"
-            break
-        default:
-            break
         }
     }
     
     func setPhoneNumbers() {
         switch target {
-        case "BGE":
+        case .bge:
             phoneNumber1 = "1-800-685-0123"
             phoneNumber2 = "1-800-685-0123"
             phoneNumber3 = "1-800-265-6177"
             phoneNumber4 = "1-800-735-2258"
-            break
-        case "PECO":
+        case .peco:
             phoneNumber1 = "1-800-841-4141"
             phoneNumber2 = "1-800-494-4000"
-            break
-        case "ComEd":
+        case .comEd:
             phoneNumber1 = "1-800-334-7661"
             phoneNumber2 = "1-800-334-7661"
             phoneNumber3 = "1-877-426-6331"
             phoneNumber4 = "1-800-955-8237"
-            break
-        default:
-            break
         }
     }
     

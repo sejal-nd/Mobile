@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class ReportOutageViewModel {
     
@@ -20,36 +21,31 @@ class ReportOutageViewModel {
     var phoneNumber = Variable("")
     var phoneExtension = Variable("")
     var reportFormHidden = Variable(false)
+    let submitEnabled = Variable(false)
     
     required init(outageService: OutageService) {
         self.outageService = outageService
-        if Environment.sharedInstance.opco == "ComEd" {
+        if Environment.sharedInstance.opco == .comEd {
             reportFormHidden.value = true
         }
-    }
-    
-    func submitButtonEnabled() -> Observable<Bool> {
-        return Observable.combineLatest(reportFormHidden.asObservable(), phoneNumber.asObservable()) {
-            return !$0 && $1.characters.count > 0
-        }
+        
+        Observable.combineLatest(self.reportFormHidden.asObservable(), self.phoneNumber.asObservable()) {
+            let digitsOnlyString = self.extractDigitsFrom($1)
+            return !$0 && digitsOnlyString.characters.count == 10
+            }
+            .bindTo(submitEnabled)
+            .addDisposableTo(disposeBag)
     }
     
     func getFooterTextViewText() -> String {
-        var string = ""
         switch Environment.sharedInstance.opco {
-        case "BGE":
-            string = NSLocalizedString("To report a gas emergency, please call 1-800-685-0123\n\nFor downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222", comment: "")
-            break
-        case "ComEd":
-            string = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
-            break
-        case "PECO":
-            string = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
-            break
-        default:
-            break
+        case .bge:
+            return NSLocalizedString("To report a gas emergency, please call 1-800-685-0123\n\nFor downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222", comment: "")
+        case .comEd:
+            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
+        case .peco:
+            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
         }
-        return string
     }
     
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -102,6 +98,13 @@ class ReportOutageViewModel {
                 onError()
             }
         }
+    }
+    
+    func phoneNumberHasTenDigits() -> Observable<Bool> {
+        return phoneNumber.asObservable().map({ text -> Bool in
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.characters.count == 10
+        })
     }
     
     private func extractDigitsFrom(_ string: String) -> String {
