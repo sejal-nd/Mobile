@@ -329,7 +329,7 @@ Paperless eBill?</string>
                                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QEY-D0-0OR">
+                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QEY-D0-0OR" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                                                 <rect key="frame" x="295" y="0.0" width="51" height="31"/>
                                                                             </switch>
                                                                         </subviews>
@@ -353,6 +353,18 @@ Paperless eBill?</string>
                                                                     <constraint firstItem="OF5-EZ-pag" firstAttribute="leading" secondItem="gua-rp-1fw" secondAttribute="leading" constant="17" id="hvZ-UQ-FOe"/>
                                                                 </constraints>
                                                             </view>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DTo-Pb-SsT">
+                                                                <rect key="frame" x="0.0" y="267" width="375" height="0.0"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4m-0V-0iv">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" priority="999" id="3x1-Nb-iZA"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSx-wZ-NZa" userLabel="Bottom View">
@@ -382,7 +394,7 @@ If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in 
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="dIY-h8-nGr" firstAttribute="height" secondItem="ZOc-SI-i5U" secondAttribute="height" id="5ZT-zQ-DFx"/>
                                             <constraint firstItem="ZaH-vb-FEJ" firstAttribute="top" secondItem="UOB-RI-gra" secondAttribute="top" id="JwX-G3-Uy6"/>
@@ -396,6 +408,7 @@ If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in 
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="UOB-RI-gra" secondAttribute="trailing" id="2Qw-LZ-cPo"/>
                                     <constraint firstAttribute="bottom" secondItem="UOB-RI-gra" secondAttribute="bottom" id="Ii2-JX-jmC"/>
@@ -404,7 +417,7 @@ If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in 
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="I8c-HS-yHy" firstAttribute="top" secondItem="VRG-Ou-QoU" secondAttribute="bottom" id="6Sv-8i-2Wx"/>
                             <constraint firstAttribute="trailing" secondItem="VRG-Ou-QoU" secondAttribute="trailing" id="BNY-ph-5CQ"/>
@@ -415,6 +428,7 @@ If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in 
                     </view>
                     <navigationItem key="navigationItem" title="Paperless eBill" id="Qsj-2z-uVD"/>
                     <connections>
+                        <outlet property="accountsStackView" destination="DTo-Pb-SsT" id="u5u-Sl-Cfk"/>
                         <outlet property="detailsLabel" destination="e0H-AS-PYY" id="Zom-Mh-zfq"/>
                         <outlet property="emailLabel" destination="qk2-xq-Q5c" id="YQO-xR-a13"/>
                         <outlet property="enrollAllAccountsSwitch" destination="QEY-D0-0OR" id="WCB-Hf-qCA"/>

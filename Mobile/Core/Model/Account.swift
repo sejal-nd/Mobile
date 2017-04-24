@@ -13,7 +13,7 @@ enum AccountType {
     case Commercial
 }
 
-struct Account: Mappable {
+struct Account: Mappable, Equatable, Hashable {
     let accountType: AccountType
     let accountNumber: String
     let address: String?
@@ -23,6 +23,16 @@ struct Account: Mappable {
         address = map.optionalFrom("address")
         
         accountType = .Residential
+    }
+    
+    // Equatable
+    static func ==(lhs: Account, rhs: Account) -> Bool {
+        return lhs.accountNumber == rhs.accountNumber
+    }
+    
+    // Hashable
+    var hashValue: Int {
+        return accountNumber.hash
     }
 }
 

@@ -23,12 +23,15 @@ class PaperlessEBillViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsView: UIView!
     @IBOutlet weak var enrollAllAccountsSwitch: UISwitch!
+    @IBOutlet weak var accountsStackView: UIStackView!
     
     @IBOutlet weak var detailsLabel: UILabel!
     
+    let viewModel = PaperlessEBillViewModel()
+    
     var accounts:[Account]!
     
-    let disposeBag = DisposeBag()
+    let bag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +46,26 @@ class PaperlessEBillViewController: UIViewController {
         topBackgroundView.layer.shadowRadius = 1
         topBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 2)
         
-        enrollAllAccountsSwitch.onTintColor = .primaryColor
-        
         enrollAllAccountsView.isHidden = accounts.count <= 1
+        
+        viewModel.accountsToEnroll.asObservable()
+            .subscribe(onNext: {
+                print("Updated accounts to enroll", $0)
+            })
+            .addDisposableTo(bag)
+        
+        viewModel.accounts.value = accounts
+        
+        // Just some statuses thrown in for testing.
+        let testStatuses: [EBillEnrollStatus] = [.canEnroll, .canEnroll, .finaled, .ineligible]
+        
+        for (index, account) in viewModel.accounts.value.enumerated() {
+            add(account: account, enrollStatus: testStatuses[index % testStatuses.count])
+        }
+        
+        viewModel.enrollAllAccounts.asDriver()
+            .drive(enrollAllAccountsSwitch.rx.isOn)
+            .addDisposableTo(bag)
     }
     
     override func viewDidLayoutSubviews() {
@@ -73,6 +93,24 @@ class PaperlessEBillViewController: UIViewController {
             NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
+    }
+    
+    func add(account: Account, enrollStatus: EBillEnrollStatus) {
+        let accountView = PaperlessEBillAccountView.create(withAccount: account, enrollStatus: enrollStatus)
+        
+        accountView.isOn.asDriver()
+            .drive(onNext: { [weak self] isOn in
+                guard let viewModel = self?.viewModel else { return }
+                if isOn {
+                    viewModel.accountsToEnroll.value.insert(account)
+                } else {
+                    viewModel.accountsToEnroll.value.remove(account)
+                }
+            })
+            .addDisposableTo(accountView.bag)
+        
+        accountsStackView.addArrangedSubview(accountView)
+        
     }
 
 }
