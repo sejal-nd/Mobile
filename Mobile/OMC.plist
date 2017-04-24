@@ -23,6 +23,13 @@
 					<key>anonymousKey</key>
 					<string>VVNFWEVMT05UUklBTDIwODA5X01PQklMRV9NT0JJTEVfQU5PTllNT1VTX0FQUElEOlZwc2xmbWtvMS40YXpo</string>
 				</dict>
+                <key>Basic</key>
+                <dict>
+                    <key>anonymousKey</key>
+                    <string>VVNFWEVMT05UUklBTDIwODA5X01PQklMRV9NT0JJTEVfQU5PTllNT1VTX0FQUElEOlZwc2xmbWtvMS40YXpo</string>
+                    <key>mobileBackendID</key>
+                    <string>64e3e14e-0cec-4bad-bae7-6fa156c8054e</string>
+                </dict>
 			</dict>
 		</dict>
 	</dict>
