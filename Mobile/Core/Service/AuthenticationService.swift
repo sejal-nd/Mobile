@@ -21,7 +21,7 @@ protocol AuthenticationService {
     ///   - completion: the completion block to execute upon completion. 
     ///     The ServiceResult that is provided will contain the user id on success,
     ///     or the error on failure.
-    func login(_ username: String, password: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
+    func login(_ username: String, password: String, completion: @escaping (_ result: ServiceResult<ProfileStatus>) -> Void)
     
     /// Log out the currently logged in user
     ///
@@ -96,7 +96,7 @@ extension AuthenticationService {
     /// - Returns: An observable to subscribe to.
     func login(_ username: String, password: String) -> Observable<Void> {
         return Observable.create { observer in
-            self.login(username, password: password, completion: { (result: ServiceResult<String>) in
+            self.login(username, password: password, completion: { (result: ServiceResult<ProfileStatus>) in
                 switch (result) {
                 case ServiceResult.Success:
                     observer.onNext()
