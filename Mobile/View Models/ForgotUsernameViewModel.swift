@@ -29,7 +29,8 @@ class ForgotUsernameViewModel {
     func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         
         let identifier = accountNumber.value.characters.count > 0 ? accountNumber.value : identifierNumber.value
-        authService.recoverMaskedUsername(phone: phoneNumber.value, identifier: identifier)
+        let strippedPhone = String(phoneNumber.value.characters.filter { "01234567890.".characters.contains($0) })
+        authService.recoverMaskedUsername(phone: strippedPhone, identifier: identifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { usernames in
                 self.maskedUsernames = usernames
@@ -48,7 +49,8 @@ class ForgotUsernameViewModel {
         let maskedUsername = maskedUsernames[selectedUsernameIndex]
         
         let identifier = accountNumber.value.characters.count > 0 ? accountNumber.value : identifierNumber.value
-        authService.recoverUsername(phone: phoneNumber.value, identifier: identifier, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value)
+        let strippedPhone = String(phoneNumber.value.characters.filter { "01234567890.".characters.contains($0) })
+        authService.recoverUsername(phone: strippedPhone, identifier: identifier, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { username in
                 onSuccess(username)

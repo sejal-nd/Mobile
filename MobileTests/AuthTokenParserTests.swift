@@ -68,7 +68,7 @@ class AuthTokenParserTests: XCTestCase {
             
             switch result {
             case .Success(let value):
-                XCTAssert(value == "token_value")
+                XCTAssert(value.token == "token_value")
             default:
                 XCTFail("Unable to correctly parse a 'success' response value - result should be success-true")
             }

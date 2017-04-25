@@ -20,7 +20,7 @@ class ForgotUsernameViewController: UIViewController {
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField?
     @IBOutlet weak var accountLookupToolButton: UIButton?
     
-    let viewModel = ForgotUsernameViewModel(authService: MockAuthenticationService())
+    let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
 
@@ -119,7 +119,7 @@ class ForgotUsernameViewController: UIViewController {
 
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
+            NSFontAttributeName: OpenSans.bold.ofSize(18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         

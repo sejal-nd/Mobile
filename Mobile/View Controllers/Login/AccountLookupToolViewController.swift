@@ -13,7 +13,7 @@ class AccountLookupToolViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = AccountLookupToolViewModel(authService: MockAuthenticationService())
+    let viewModel = AccountLookupToolViewModel(authService: ServiceFactory.createAuthenticationService())
     
     weak var delegate: AccountLookupToolResultViewControllerDelegate?
     

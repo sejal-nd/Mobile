@@ -58,6 +58,8 @@ class OMCResponseParser : NSObject {
                     return ServiceResult.Success(returnData)
                 } else if let returnData = data[OMCResponseKey.Data.rawValue] as? [[String: Any]] { // Array
                     return ServiceResult.Success(returnData)
+                } else if let returnData = data[OMCResponseKey.Data.rawValue] as? String { //String
+                    return ServiceResult.Success(returnData)
                 } else {
                     return ServiceResult.Success([:])
                 }
