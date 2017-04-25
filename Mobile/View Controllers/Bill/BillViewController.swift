@@ -42,7 +42,7 @@ class BillViewController: UIViewController {
         budgetButtonView.layer.shadowColor = UIColor.black.cgColor
         budgetButtonView.layer.shadowRadius = 3
         budgetButtonView.layer.masksToBounds = false
-        //budgetButtonView.isHidden = true
+        budgetButtonView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +59,7 @@ class BillViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
         if viewModel.currentAccount == nil {
-            //getAccounts()
+            getAccounts()
         }
     }
     
@@ -69,6 +69,8 @@ class BillViewController: UIViewController {
             self.accountScrollerActivityIndicator.isHidden = true
             self.accountScroller.setAccounts(accounts)
             self.accountScroller.isHidden = false
+            
+            // TODO: Eligibility checks - hide buttons if ineligible on PECO/ComEd
             self.paperlessButtonView.isHidden = false
             self.budgetButtonView.isHidden = false
         }, onError: { message in
@@ -88,6 +90,13 @@ class BillViewController: UIViewController {
         let button = sender as! UIButton
         button.superview?.backgroundColor = .white
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.isKind(of: BudgetBillingViewController.self) {
+            let vc = segue.destination as! BudgetBillingViewController
+            vc.delegate = self
+        }
+    }
 
 }
 
@@ -97,4 +106,19 @@ extension BillViewController: AccountScrollerDelegate {
         viewModel.currentAccount = account
     }
     
+}
+
+extension BillViewController: BudgetBillingViewControllerDelegate {
+    
+    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast(NSLocalizedString("Enrolled in Budget Billing", comment: ""), duration: 3.5, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
+    
+    func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast(NSLocalizedString("Unenrolled from Budget Billing", comment: ""), duration: 3.5, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
 }

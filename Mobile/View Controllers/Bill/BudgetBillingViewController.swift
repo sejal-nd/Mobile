@@ -9,12 +9,20 @@
 import RxSwift
 import RxCocoa
 
+protocol BudgetBillingViewControllerDelegate: class {
+    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController)
+    func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController)
+}
+
 class BudgetBillingViewController: UIViewController {
+    
+    weak var delegate: BudgetBillingViewControllerDelegate?
     
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var accountBackgroundView: UIView! // For stretching edge to edge on iPad
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var whatIsBudgetBillingButtonView: UIView!
     @IBOutlet weak var whatIsBudgetBillingLabel: UILabel!
@@ -23,7 +31,6 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var amountDescriptionLabel: UILabel!
     
-    @IBOutlet weak var accountView: UIView!
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var enrollSwitch: Switch!
@@ -33,7 +40,23 @@ class BudgetBillingViewController: UIViewController {
     
     @IBOutlet weak var reasonForStoppingTableView: UITableView!
     @IBOutlet weak var reasonForStoppingLabel: UILabel!
-    @IBOutlet weak var reasonForStoppingTableViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var bgeFooterView: UIView!
+    @IBOutlet var bgeFooterCardViews: [UIView]!
+    @IBOutlet weak var monthlyAmountTitleLabel: UILabel!
+    @IBOutlet weak var monthlyAmountLabel: UILabel!
+    @IBOutlet weak var monthlyAmountDescriptionLabel: UILabel!
+    @IBOutlet weak var lastPaymentDateTitleLabel: UILabel!
+    @IBOutlet weak var lastPaymentDateLabel: UILabel!
+    @IBOutlet weak var payoffBalanceTitleLabel: UILabel!
+    @IBOutlet weak var payoffBalanceLabel: UILabel!
+    @IBOutlet weak var payoffBalanceDescriptionLabel: UILabel!
+    @IBOutlet weak var currentBalanceTitleLabel: UILabel!
+    @IBOutlet weak var currentBalanceLabel: UILabel!
+    @IBOutlet weak var currentBalanceDescriptionLabel: UILabel!
+    @IBOutlet weak var accDifferenceTitleLabel: UILabel!
+    @IBOutlet weak var accDifferenceLabel: UILabel!
+    @IBOutlet weak var accDifferenceDescriptionLabel: UILabel!
     
     var gradientLayer: CAGradientLayer!
     
@@ -79,7 +102,7 @@ class BudgetBillingViewController: UIViewController {
         monthLabel.text = NSLocalizedString("/Month", comment: "")
         
         amountDescriptionLabel.textColor = .outerSpace
-        amountDescriptionLabel.text = NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage. After 12 months, the difference between your budget bill amount and actual use for the previous 12 months will be applied to your bill.", comment: "")
+        amountDescriptionLabel.text = viewModel.getAmountDescriptionText()
         
         // TODO: LOAD REAL DATA HERE
         accountNumberLabel.textColor = .darkJungleGreen
@@ -88,17 +111,67 @@ class BudgetBillingViewController: UIViewController {
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
         enrollSwitch.rx.isOn.bindTo(viewModel.currentEnrollment).addDisposableTo(disposeBag)
         
-        footerLabel.textColor = .darkJungleGreen
-        footerLabel.text = String(format: NSLocalizedString("Budget billing option only includes %@ charges. Energy Supply charges are billed by your chosen generation provider.", comment: ""), Environment.sharedInstance.opco.displayString)
-        
         reasonForStoppingLabel.textColor = .darkJungleGreen
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
         reasonForStoppingTableView.isHidden = true
-        viewModel.unenrolling.asObservable().subscribe(onNext: { unenrolling in
-            UIView.animate(withDuration: 0.3, animations: {
-                self.reasonForStoppingTableView.isHidden = !unenrolling
-            })
-        }).addDisposableTo(disposeBag)
+        if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
+            viewModel.unenrolling.asObservable().subscribe(onNext: { unenrolling in
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.reasonForStoppingTableView.isHidden = !unenrolling
+                })
+            }).addDisposableTo(disposeBag)
+        }
+        
+        // BGE Footer View when user is enrolled
+        if Environment.sharedInstance.opco == OpCo.bge && viewModel.initialEnrollment {
+            for (_, view) in bgeFooterCardViews.enumerated() {
+                view.layer.cornerRadius = 2
+                view.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: 0), radius: 2)
+            }
+            
+            monthlyAmountTitleLabel.textColor = .darkJungleGreen
+            monthlyAmountTitleLabel.text = NSLocalizedString("Monthly Budget Bill Amount", comment: "")
+            monthlyAmountLabel.textColor = .darkJungleGreen
+            monthlyAmountLabel.text = "$200.00"
+            monthlyAmountDescriptionLabel.textColor = .outerSpace
+            monthlyAmountDescriptionLabel.text = NSLocalizedString("Payment received after March 13, 2017 will incur a late charge.\n\nA late payment charge is applied to the unpaid balance of your BGE charges. The charge is up to 1.5% for the first month; additional charges will be assessed on unpaid balances past the first month, not to exceed 5%.", comment: "")
+            
+            lastPaymentDateTitleLabel.textColor = .darkJungleGreen
+            lastPaymentDateTitleLabel.text = NSLocalizedString("Last Payment Date", comment: "")
+            lastPaymentDateLabel.textColor = .darkJungleGreen
+            lastPaymentDateLabel.text = "11/01/2016"
+            
+            payoffBalanceTitleLabel.textColor = .darkJungleGreen
+            payoffBalanceTitleLabel.text = NSLocalizedString("Payoff Balance for BGE Service", comment: "")
+            payoffBalanceLabel.textColor = .darkJungleGreen
+            payoffBalanceLabel.text = "$174.13"
+            payoffBalanceDescriptionLabel.textColor = .outerSpace
+            payoffBalanceDescriptionLabel.text = NSLocalizedString("Total actual-usage charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
+            
+            currentBalanceTitleLabel.textColor = .darkJungleGreen
+            currentBalanceTitleLabel.text = NSLocalizedString("Current Balance for BGE Service", comment: "")
+            currentBalanceLabel.textColor = .darkJungleGreen
+            currentBalanceLabel.text = "$0.00"
+            currentBalanceDescriptionLabel.textColor = .outerSpace
+            currentBalanceDescriptionLabel.text = NSLocalizedString("Total billed charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
+            
+            accDifferenceTitleLabel.textColor = .darkJungleGreen
+            accDifferenceTitleLabel.text = NSLocalizedString("Accumulated Difference for BGE Service", comment: "")
+            accDifferenceLabel.textColor = .darkJungleGreen
+            accDifferenceLabel.text = "$174.13"
+            accDifferenceDescriptionLabel.textColor = .outerSpace
+            accDifferenceDescriptionLabel.text = NSLocalizedString("The difference between your Payoff Balance and your Current Balance for BGE Service.", comment: "")
+        } else {
+            bgeFooterView.isHidden = true
+        }
+        
+        footerLabel.textColor = .darkJungleGreen
+        if let footerText = viewModel.getFooterText() {
+            footerLabel.text = footerText
+        } else {
+            footerView.isHidden = true
+        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,8 +193,14 @@ class BudgetBillingViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         gradientLayer.frame = gradientView.frame
-        accountView.addBottomBorder(color: UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), width: 0.5)
+        accountBackgroundView.addBottomBorder(color: UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), width: 0.5)
     }
+    
+    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        gradientLayer.frame = gradientView.frame
+        accountBackgroundView.addBottomBorder(color: UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), width: 0.5)
+    }
+    
     
     @IBAction func onButtonTouchDown(_ sender: Any) {
         let button = sender as! UIButton
@@ -134,11 +213,41 @@ class BudgetBillingViewController: UIViewController {
     }
     
     func onCancelPress() {
-        navigationController?.popViewController(animated: true)
+        if viewModel.enrolling.value || viewModel.unenrolling.value {
+            let message = viewModel.enrolling.value ? NSLocalizedString("Are you sure you want to exit this screen without completing enrollment?", comment: "") : NSLocalizedString("Are you sure you want to exit this screen without completing unenrollment?", comment: "")
+            let alertVc = UIAlertController(title: NSLocalizedString("Exit Budget Billing", comment: ""), message: message, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default, handler: { _ in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            present(alertVc, animated: true, completion: nil)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     func onSubmitPress() {
-        print("Submit!")
+        if viewModel.enrolling.value {
+            delegate?.budgetBillingViewControllerDidEnroll(self)
+            navigationController?.popViewController(animated: true)
+        } else if viewModel.unenrolling.value {
+            var message = ""
+            if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
+                message = NSLocalizedString("You will see your regular bill amount on your next billing cycle. Any credit balance remaining in your account will be applied to your bill until used, and any negative account balance will become due with your next bill.", comment: "")
+            } else { // BGE
+                // TODO: There are 3 dynamic messages here, we need logic to determine which to use
+                message = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
+//                message = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of $XX.XX beginning with your next bill.", comment: "")
+//                message = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of $XX.XX beginning with your next bill.", comment: "")
+            }
+            let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { _ in
+                self.delegate?.budgetBillingViewControllerDidUnenroll(self)
+                self.navigationController?.popViewController(animated: true)
+            }))
+            present(alertVc, animated: true, completion: nil)
+        }
     }
 
 }
