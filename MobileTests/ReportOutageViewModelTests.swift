@@ -20,7 +20,7 @@ class ReportOutageViewModelTests: XCTestCase {
     
     func testSubmitButtonEnabled() {
         viewModel.phoneNumber.value = "410-123-4567"
-        viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
+        viewModel.submitEnabled.asObservable().single().subscribe(onNext: { enabled in
             if !enabled {
                 XCTFail("Submit button should be enabled")
             }
@@ -29,7 +29,7 @@ class ReportOutageViewModelTests: XCTestCase {
     
     func testSubmitButtonDisabled() {
         viewModel.phoneNumber.value = ""
-        viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
+        viewModel.submitEnabled.asObservable().single().subscribe(onNext: { enabled in
             if enabled {
                 XCTFail("Submit button should be disabled")
             }

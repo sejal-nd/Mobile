@@ -68,13 +68,13 @@ class SecurityQuestionViewController: UIViewController {
         viewModel.submitSecurityQuestionAnswer(onSuccess: { unmaskedUsername in
             hud.hide(animated: true)
             for vc in (self.navigationController?.viewControllers)! {
-                if vc.isKind(of: LoginViewController.self) {
-                    if let vcDelegate = vc as? SecurityQuestionViewControllerDelegate {
-                        self.delegate = vcDelegate
-                        self.delegate?.securityQuestionViewController(self, didUnmaskUsername: unmaskedUsername)
-                        self.navigationController?.popToViewController(vc, animated: true)
-                    }
+                guard let dest = vc as? LoginViewController else {
+                    continue
                 }
+                self.delegate = dest
+                self.delegate?.securityQuestionViewController(self, didUnmaskUsername: unmaskedUsername)
+                self.navigationController?.popToViewController(dest, animated: true)
+                break
             }
         }, onAnswerNoMatch: { inlineErrorMessage in
             hud.hide(animated: true)

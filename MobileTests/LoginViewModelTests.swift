@@ -22,7 +22,7 @@ class LoginViewModelTests: XCTestCase {
         viewModel.username.value = "valid@test.com"
         viewModel.password.value = "password"
         
-        viewModel.performLogin(onSuccess: { 
+        viewModel.performLogin(onSuccess: { _ in 
             asyncExpectation.fulfill()
         }) { (message) in
             print(message)
@@ -40,7 +40,7 @@ class LoginViewModelTests: XCTestCase {
         viewModel.username.value = "invalid@test.com"
         viewModel.password.value = "password"
         
-        viewModel.performLogin(onSuccess: {
+        viewModel.performLogin(onSuccess: {_ in 
             XCTFail("Unexpected success response")
         }) { (message) in
             asyncExpectation.fulfill()
