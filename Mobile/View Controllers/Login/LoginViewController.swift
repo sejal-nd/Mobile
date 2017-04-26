@@ -278,8 +278,7 @@ class LoginViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination.isKind(of: ForgotPasswordViewController.self) {
-            let vc = segue.destination as! ForgotPasswordViewController
+        if let vc = segue.destination as? ForgotPasswordViewController {
             vc.delegate = self
         }
     }
