@@ -25,6 +25,7 @@ class AccountScroller: UIView {
     var singleAccountAddressLabel: UILabel?
 
     var pageViews = [UIView]()
+    let MAX_ACCOUNTS = 3
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,7 +77,7 @@ class AccountScroller: UIView {
         self.accounts = accounts
         var pagedAccounts = accounts
 
-        if self.accounts.count > 1 && self.accounts.count < 3 {
+        if self.accounts.count > 1 && self.accounts.count < MAX_ACCOUNTS {
             pageControl.numberOfPages = pagedAccounts.count
             pageControl.currentPage = 0
         } else {
@@ -85,7 +86,7 @@ class AccountScroller: UIView {
         }
 
         pageViews.removeAll()
-        if self.accounts.count < 3 {
+        if self.accounts.count < MAX_ACCOUNTS {
             for account in pagedAccounts {
                 let pageView = UIView(frame: .zero)
                 pageViews.append(pageView)
@@ -146,7 +147,7 @@ class AccountScroller: UIView {
             
             let caret = #imageLiteral(resourceName: "ic_caret")
             let caretImageView = UIImageView(image: caret)
-            caretImageView.frame = CGRect(x: 200, y:30, width: 8, height: 13)
+            caretImageView.frame = CGRect(x: 235, y:30, width: 8, height: 13)
             
             singleAccountNumberLabel = UILabel(frame: .zero)
             singleAccountNumberLabel!.translatesAutoresizingMaskIntoConstraints = false
@@ -194,17 +195,25 @@ class AccountScroller: UIView {
         }
         
         // Make a button overlay the scrollview if the user has more than 5 accounts.
-        if self.accounts.count > 3 {
+        if self.accounts.count > MAX_ACCOUNTS {
             let pageButton = UIButton(frame: scrollView.frame)
             pageButton.addTarget(self, action: #selector(showAccountList), for: .touchUpInside)
+            pageButton.addTarget(self, action: #selector(showTouch), for: .touchDown)
             addSubview(pageButton)
         }
         
         setNeedsLayout()
     }
     
+    func showTouch(sender: UIButton!) {
+        singleAccountNumberLabel?.alpha = 0.5
+        singleAccountAddressLabel?.alpha = 0.5
+    }
+    
     func showAccountList(sender: UIButton!) {
         delegate?.accountScrollerDidTap()
+        singleAccountNumberLabel?.alpha = 1
+        singleAccountAddressLabel?.alpha = 1
     }
     
     func onPageControlTap(sender: UIPageControl) {

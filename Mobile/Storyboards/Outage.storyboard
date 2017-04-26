@@ -26,56 +26,63 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xAq-g0-pe7">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xAq-g0-pe7">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountTableViewCell" rowHeight="50" id="A4b-qi-G2Y" customClass="AccountTableViewCell" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountTableViewCell" rowHeight="65" id="A4b-qi-G2Y" customClass="AccountTableViewCell" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A4b-qi-G2Y" id="idt-a8-aFn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xpt-xJ-vXP">
-                                                    <rect key="frame" x="8" y="0.0" width="56" height="50"/>
+                                                    <rect key="frame" x="39" y="7" width="43" height="43"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="56" id="YCb-vl-jpT"/>
+                                                        <constraint firstAttribute="width" constant="43" id="CcY-zt-ZQk"/>
+                                                        <constraint firstAttribute="height" constant="43" id="KTI-hM-uSE"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAO-4v-L19">
-                                                    <rect key="frame" x="72" y="8" width="271" height="17"/>
+                                                    <rect key="frame" x="90" y="10" width="42" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Axq-L0-Jf5">
-                                                    <rect key="frame" x="72" y="28" width="271" height="14"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="GhI-4m-9lZ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="90" y="34" width="35.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_outage" translatesAutoresizingMaskIntoConstraints="NO" id="FrR-vc-mhu">
+                                                    <rect key="frame" x="12" y="24" width="19" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="19" id="IHq-Q2-vae"/>
+                                                        <constraint firstAttribute="height" constant="16" id="KAB-WS-clS"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="DAO-4v-L19" firstAttribute="trailing" secondItem="Axq-L0-Jf5" secondAttribute="trailing" id="72T-DP-R00"/>
-                                                <constraint firstItem="Axq-L0-Jf5" firstAttribute="top" secondItem="DAO-4v-L19" secondAttribute="bottom" constant="3" id="Gal-qY-8wS"/>
-                                                <constraint firstItem="Xpt-xJ-vXP" firstAttribute="leading" secondItem="idt-a8-aFn" secondAttribute="leadingMargin" id="Hq1-NT-qcA"/>
-                                                <constraint firstItem="Xpt-xJ-vXP" firstAttribute="top" secondItem="idt-a8-aFn" secondAttribute="top" id="MuT-Ns-7PO"/>
-                                                <constraint firstItem="DAO-4v-L19" firstAttribute="leading" secondItem="Axq-L0-Jf5" secondAttribute="leading" id="VEx-Ac-2Bo"/>
-                                                <constraint firstItem="DAO-4v-L19" firstAttribute="leading" secondItem="Xpt-xJ-vXP" secondAttribute="trailing" constant="8" symbolic="YES" id="XzU-pG-6N2"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="DAO-4v-L19" secondAttribute="trailing" constant="24" id="dI5-sp-OOM"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Axq-L0-Jf5" secondAttribute="bottom" constant="-0.5" id="fRJ-rw-gFz"/>
-                                                <constraint firstItem="DAO-4v-L19" firstAttribute="top" secondItem="idt-a8-aFn" secondAttribute="topMargin" id="fsb-jb-JBO"/>
-                                                <constraint firstItem="Xpt-xJ-vXP" firstAttribute="centerY" secondItem="idt-a8-aFn" secondAttribute="centerY" id="oEH-8n-3fV"/>
+                                                <constraint firstItem="DAO-4v-L19" firstAttribute="leading" secondItem="Xpt-xJ-vXP" secondAttribute="trailing" constant="8" id="L0K-ex-qKR"/>
+                                                <constraint firstItem="Axq-L0-Jf5" firstAttribute="leading" secondItem="Xpt-xJ-vXP" secondAttribute="trailing" constant="8" id="Qtx-4p-1Mr"/>
+                                                <constraint firstItem="FrR-vc-mhu" firstAttribute="top" secondItem="idt-a8-aFn" secondAttribute="top" constant="24" id="WTK-vT-BCD"/>
+                                                <constraint firstItem="Axq-L0-Jf5" firstAttribute="top" secondItem="DAO-4v-L19" secondAttribute="bottom" constant="4" id="b9m-mO-uvG"/>
+                                                <constraint firstItem="FrR-vc-mhu" firstAttribute="leading" secondItem="idt-a8-aFn" secondAttribute="leading" constant="12" id="tPU-zY-Q0H"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="Xpt-xJ-vXP" firstAttribute="leading" secondItem="A4b-qi-G2Y" secondAttribute="leading" constant="39" id="13p-Md-J41"/>
+                                            <constraint firstItem="DAO-4v-L19" firstAttribute="top" secondItem="A4b-qi-G2Y" secondAttribute="top" constant="10" id="iHa-30-ggn"/>
+                                            <constraint firstItem="Xpt-xJ-vXP" firstAttribute="top" secondItem="A4b-qi-G2Y" secondAttribute="top" constant="7" id="w1a-A3-heT"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="accountImageView" destination="Xpt-xJ-vXP" id="mJ5-qF-hk0"/>
+                                            <outlet property="accountImageViewLeadingConstraint" destination="13p-Md-J41" id="Uov-6L-OiR"/>
                                             <outlet property="accountNumber" destination="DAO-4v-L19" id="Ae0-8h-vG1"/>
                                             <outlet property="addressLabel" destination="Axq-L0-Jf5" id="o9c-hp-dDp"/>
+                                            <outlet property="checkMarkImageView" destination="FrR-vc-mhu" id="MeE-p4-BcC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -92,12 +99,11 @@
                     <navigationItem key="navigationItem" title="Accounts" id="aRK-pE-nDY"/>
                     <connections>
                         <outlet property="tableView" destination="xAq-g0-pe7" id="lxw-Lh-T4F"/>
-                        <segue destination="WUY-4d-zPg" kind="show" identifier="accountPickedSegue" id="ndB-In-EbN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sm1-Ir-tjM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2297" y="-836"/>
+            <point key="canvasLocation" x="2296.8000000000002" y="-836.13193403298362"/>
         </scene>
         <!--Outage-->
         <scene sceneID="Vsd-Z1-Jl7">
@@ -728,6 +734,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
     <resources>
         <image name="gasonly_graphic" width="197" height="197"/>
         <image name="ic_check_meterping" width="18" height="14"/>
+        <image name="ic_check_outage" width="19" height="16"/>
         <image name="ic_graycircle" width="30" height="30"/>
     </resources>
 </document>

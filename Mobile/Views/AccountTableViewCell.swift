@@ -13,6 +13,8 @@ class AccountTableViewCell: UITableViewCell {
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var accountNumber: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var checkMarkImageView: UIImageView!
+    @IBOutlet weak var accountImageViewLeadingConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()

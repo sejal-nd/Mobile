@@ -68,13 +68,19 @@ extension AccountListViewController: UITableViewDataSource {
         cell.accountNumber.text = account.accountNumber
         cell.addressLabel.text = account.address
         if account.accountType == .Commercial {
-            cell.imageView?.image = #imageLiteral(resourceName: "ic_commercial")
+            cell.accountImageView.image = #imageLiteral(resourceName: "ic_commercial")
         } else {
-            cell.imageView?.image = #imageLiteral(resourceName: "ic_residential")
+            cell.accountImageView.image = #imageLiteral(resourceName: "ic_residential")
         }
         if account.accountNumber == self.currentAccount?.accountNumber {
             cell.accountNumber.textColor = UIColor.primaryColor
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
+        } else {
+            cell.accountImageViewLeadingConstraint.constant = 16
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
+            cell.checkMarkImageView.isHidden = true
         }
+        
         return cell
     }
     
