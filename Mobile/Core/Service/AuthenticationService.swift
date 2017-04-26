@@ -95,12 +95,12 @@ extension AuthenticationService {
     ///   - username: the username to authenticate with.
     ///   - password: the password to authenticate with.
     /// - Returns: An observable to subscribe to.
-    func login(_ username: String, password: String) -> Observable<Void> {
+    func login(_ username: String, password: String) -> Observable<ProfileStatus> {
         return Observable.create { observer in
             self.login(username, password: password, completion: { (result: ServiceResult<ProfileStatus>) in
                 switch (result) {
-                case ServiceResult.Success:
-                    observer.onNext()
+                case ServiceResult.Success(let profStatus):
+                    observer.onNext(profStatus)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

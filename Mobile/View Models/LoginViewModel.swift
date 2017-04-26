@@ -40,7 +40,7 @@ class LoginViewModel {
         UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.ShouldPromptToEnableTouchID)
     }
     
-    func performLogin(onSuccess: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
+    func performLogin(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String?, String) -> Void) {
         print("Keep me signed in = \(keepMeSignedIn.value)") // TODO: Something with this
         
         if username.value.isEmpty || password.value.isEmpty {
@@ -51,8 +51,8 @@ class LoginViewModel {
         authService.login(username.value, password: password.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
-            .subscribe(onNext: { _ in
-                onSuccess()
+            .subscribe(onNext: { (profileStatus: ProfileStatus) in
+                onSuccess(profileStatus.tempPassword)
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.FnAccountProtected.rawValue {
@@ -76,7 +76,7 @@ class LoginViewModel {
         fingerprintService.setStoredPassword(password: password.value)
     }
     
-    func attemptLoginWithTouchID(onLoad: @escaping () -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
+    func attemptLoginWithTouchID(onLoad: @escaping () -> Void, onSuccess: @escaping (Bool) -> Void, onError: @escaping (String?, String) -> Void) {
         if let username = fingerprintService.getStoredUsername() {
             if let password = fingerprintService.getStoredPassword() {
                 self.username.value = username
