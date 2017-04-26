@@ -75,13 +75,13 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedAccount = viewModel.accountLookupResults[indexPath.row]
         for vc in (self.navigationController?.viewControllers)! {
-            if vc.isKind(of: ForgotUsernameViewController.self) {
-                if let vcDelegate = vc as? AccountLookupToolResultViewControllerDelegate {
-                    self.delegate = vcDelegate
-                    self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
-                    self.navigationController?.popToViewController(vc, animated: true)
-                }
+            guard let dest = vc as? ForgotUsernameViewController else {
+                continue
             }
+            self.delegate = dest
+            self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
+            self.navigationController?.popToViewController(dest, animated: true)
+            break
         }
     }
 }

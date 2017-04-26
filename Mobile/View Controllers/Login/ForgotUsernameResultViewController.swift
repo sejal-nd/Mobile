@@ -80,8 +80,9 @@ class ForgotUsernameResultViewController: UIViewController {
     
     @IBAction func onBackToSignInPress() {
         for vc in (navigationController?.viewControllers)! {
-            if vc.isKind(of: LoginViewController.self) {
-                self.navigationController?.popToViewController(vc, animated: true)
+            if let dest = vc as? LoginViewController {
+                self.navigationController?.popToViewController(dest, animated: true)
+                break
             }
         }
     }
