@@ -46,9 +46,9 @@ class ForgotUsernameViewModel {
     
     func submitSecurityQuestionAnswer(onSuccess: @escaping (String) -> Void, onAnswerNoMatch: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
         let maskedUsername = maskedUsernames[selectedUsernameIndex]
-        
+        let cipher = maskedUsername.cipher
         let identifier = accountNumber.value.characters.count > 0 ? accountNumber.value : identifierNumber.value
-        authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value)
+        authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value, cipher: cipher)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { username in
                 onSuccess(username)

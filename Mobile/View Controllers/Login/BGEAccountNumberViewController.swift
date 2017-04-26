@@ -76,8 +76,7 @@ class BGEAccountNumberViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination.isKind(of: ForgotUsernameResultViewController.self) {
-            let vc = segue.destination as! ForgotUsernameResultViewController
+        if let vc = segue.destination as? ForgotUsernameResultViewController {
             vc.viewModel = viewModel
         }
     }

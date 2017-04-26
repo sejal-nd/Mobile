@@ -350,8 +350,7 @@ class OutageViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination.isKind(of: ReportOutageViewController.self) {
-            let vc = segue.destination as! ReportOutageViewController
+        if let vc = segue.destination as? ReportOutageViewController {
             vc.viewModel.account = viewModel.currentAccount!
             vc.viewModel.outageStatus = viewModel.currentOutageStatus!
             if let phone = viewModel.currentOutageStatus!.contactHomeNumber {

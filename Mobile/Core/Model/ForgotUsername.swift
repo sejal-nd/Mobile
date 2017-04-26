@@ -12,11 +12,17 @@ struct ForgotUsernameMasked: Mappable {
     let email: String?
     let question: String?
     let questionId: Int
+    let cipher: String
     
     init(map: Mapper) throws {
         email = map.optionalFrom("email")
         question = map.optionalFrom("question")
-        
+       
+        do {
+            try cipher = map.from("cipherString")
+        } catch {
+            cipher = ""
+        }
         do {
             try questionId = map.from("question_id")
         } catch {
@@ -31,8 +37,8 @@ struct AccountLookupResult: Mappable {
     let unitNumber: String?
     
     init(map: Mapper) throws {
-        accountNumber = map.optionalFrom("accountNumber")
-        streetNumber = map.optionalFrom("streetNumber")
-        unitNumber = map.optionalFrom("unitNumber")
+        accountNumber = map.optionalFrom("AccountNumber")
+        streetNumber = map.optionalFrom("StreetNumber")
+        unitNumber = map.optionalFrom("ApartmentUnitNumber")
     }
 }
