@@ -436,7 +436,18 @@ If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in 
                             <constraint firstItem="VRG-Ou-QoU" firstAttribute="top" secondItem="MZl-pg-Tcp" secondAttribute="bottom" id="qlJ-9Y-y0B"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Paperless eBill" id="Qsj-2z-uVD"/>
+                    <navigationItem key="navigationItem" title="Paperless eBill" id="Qsj-2z-uVD">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="WRh-Ah-euN">
+                            <connections>
+                                <action selector="cancelAction" destination="BAJ-db-3nG" id="ZHw-Eh-x7F"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="gsv-zV-Ise">
+                            <connections>
+                                <action selector="submitAction:" destination="BAJ-db-3nG" id="7gK-30-fow"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="accountsStackView" destination="DTo-Pb-SsT" id="u5u-Sl-Cfk"/>
                         <outlet property="detailsLabel" destination="e0H-AS-PYY" id="Zom-Mh-zfq"/>
@@ -445,6 +456,7 @@ If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in 
                         <outlet property="enrollAllAccountsView" destination="gua-rp-1fw" id="kxp-L7-ILX"/>
                         <outlet property="gradientBackgroundView" destination="dIY-h8-nGr" id="j87-mg-HuV"/>
                         <outlet property="scrollView" destination="VRG-Ou-QoU" id="4IO-9x-I0Y"/>
+                        <outlet property="submitButton" destination="gsv-zV-Ise" id="AyU-TQ-Qqa"/>
                         <outlet property="topBackgroundView" destination="yW6-Ix-06o" id="4ac-45-bxP"/>
                         <outlet property="whatIsButton" destination="e8P-EI-49a" id="HRy-hq-jjN"/>
                         <outlet property="whatIsButtonView" destination="Yss-cx-KQS" id="x0I-bn-n8b"/>

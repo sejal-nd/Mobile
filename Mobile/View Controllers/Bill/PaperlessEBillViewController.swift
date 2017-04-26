@@ -10,7 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol PaperlessEBillViewControllerDelegate: class {
+    func paperlessEBillViewControllerDidEnroll(_ paperlessEBillViewController: PaperlessEBillViewController)
+    func paperlessEBillViewControllerDidUnenroll(_ paperlessEBillViewController: PaperlessEBillViewController)
+}
+
 class PaperlessEBillViewController: UIViewController {
+    @IBOutlet weak var submitButton: UIBarButtonItem!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     // Background
     @IBOutlet weak var topBackgroundView: UIView!
@@ -27,8 +34,9 @@ class PaperlessEBillViewController: UIViewController {
     
     @IBOutlet weak var detailsLabel: UILabel!
     
-    let viewModel = PaperlessEBillViewModel()
+    lazy var viewModel = PaperlessEBillViewModel()
     
+    weak var delegate: PaperlessEBillViewControllerDelegate?
     var accounts:[Account]!
     
     let bag = DisposeBag()
@@ -63,6 +71,12 @@ class PaperlessEBillViewController: UIViewController {
             .addDisposableTo(bag)
         
         whatIsButtonSetup()
+        
+        detailsLabel.text = viewModel.footerText
+        
+        Driver.combineLatest(viewModel.enrolling.asDriver(), viewModel.unenrolling.asDriver()) { $0 || $1 }
+            .drive(submitButton.rx.isEnabled)
+            .addDisposableTo(bag)
     }
     
     func whatIsButtonSetup() {
@@ -132,5 +146,27 @@ class PaperlessEBillViewController: UIViewController {
         accountsStackView.addArrangedSubview(accountView)
         
     }
+    
+    @IBAction func cancelAction() {
+        if viewModel.enrolling.value || viewModel.unenrolling.value {
+            let message = viewModel.enrolling.value ? NSLocalizedString("Are you sure you want to exit this screen without completing enrollment?", comment: "") : NSLocalizedString("Are you sure you want to exit this screen without completing unenrollment?", comment: "")
+            let alertVc = UIAlertController(title: NSLocalizedString("Exit Paperless eBill", comment: ""), message: message, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default, handler: { _ in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            present(alertVc, animated: true, completion: nil)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
 
+    @IBAction func submitAction(_ sender: Any) {
+        if viewModel.enrolling.value {
+            delegate?.paperlessEBillViewControllerDidEnroll(self)
+        } else if viewModel.unenrolling.value {
+            delegate?.paperlessEBillViewControllerDidUnenroll(self)
+        }
+        navigationController?.popViewController(animated: true)
+    }
 }
