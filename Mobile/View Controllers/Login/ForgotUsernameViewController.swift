@@ -20,7 +20,7 @@ class ForgotUsernameViewController: UIViewController {
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField?
     @IBOutlet weak var accountLookupToolButton: UIButton?
     
-    let viewModel = ForgotUsernameViewModel(authService: MockAuthenticationService())
+    let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
 
@@ -119,7 +119,7 @@ class ForgotUsernameViewController: UIViewController {
 
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
+            NSFontAttributeName: OpenSans.bold.ofSize(18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
@@ -177,16 +177,13 @@ class ForgotUsernameViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         view.endEditing(true)
         
-        if segue.destination.isKind(of: BGEAccountNumberViewController.self) {
-            let vc = segue.destination as! BGEAccountNumberViewController
+        if let vc = segue.destination as? BGEAccountNumberViewController {
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
             vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
-        } else if segue.destination.isKind(of: AccountLookupToolViewController.self) {
-            let vc = segue.destination as! AccountLookupToolViewController
+        } else if let vc = segue.destination as? AccountLookupToolViewController {
             vc.delegate = self
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
-        } else if segue.destination.isKind(of: ForgotUsernameResultViewController.self) {
-            let vc = segue.destination as! ForgotUsernameResultViewController
+        } else if let vc = segue.destination as? ForgotUsernameResultViewController {
             vc.viewModel = viewModel
         }
     }

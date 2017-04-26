@@ -12,7 +12,7 @@ import MBProgressHUD
 
 class BGEAccountNumberViewController: UIViewController {
     
-    let viewModel = ForgotUsernameViewModel(authService: MockAuthenticationService())
+    let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
 
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
@@ -76,8 +76,7 @@ class BGEAccountNumberViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination.isKind(of: ForgotUsernameResultViewController.self) {
-            let vc = segue.destination as! ForgotUsernameResultViewController
+        if let vc = segue.destination as? ForgotUsernameResultViewController {
             vc.viewModel = viewModel
         }
     }

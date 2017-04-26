@@ -48,19 +48,19 @@ class BillViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if viewModel.currentAccount == nil {
-            getAccounts()
-        }
-        
         navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .mediumPersianBlue
-        
+    
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.darkJungleGreen,
-            NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
+            NSFontAttributeName: OpenSans.bold.ofSize(18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
+        
+        if viewModel.currentAccount == nil {
+            getAccounts()
+        }
     }
     
     func getAccounts() {
@@ -69,6 +69,8 @@ class BillViewController: UIViewController {
             self.accountScrollerActivityIndicator.isHidden = true
             self.accountScroller.setAccounts(accounts)
             self.accountScroller.isHidden = false
+            
+            // TODO: Eligibility checks - hide buttons if ineligible on PECO/ComEd
             self.paperlessButtonView.isHidden = false
             self.budgetButtonView.isHidden = false
         }, onError: { message in
@@ -88,11 +90,12 @@ class BillViewController: UIViewController {
         let button = sender as! UIButton
         button.superview?.backgroundColor = .white
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        if let paperlessEBillVC = segue.destination as? PaperlessEBillViewController {
-            paperlessEBillVC.accounts = accountScroller.accounts
+        if let vc = segue.destination as? BudgetBillingViewController {
+            vc.delegate = self
+        } else if let vc = segue.destination as? PaperlessEBillViewController {
+            vc.accounts = accountScroller.accounts
         }
     }
 }
@@ -103,4 +106,19 @@ extension BillViewController: AccountScrollerDelegate {
         viewModel.currentAccount = account
     }
     
+}
+
+extension BillViewController: BudgetBillingViewControllerDelegate {
+    
+    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast(NSLocalizedString("Enrolled in Budget Billing", comment: ""), duration: 3.5, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
+    
+    func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast(NSLocalizedString("Unenrolled from Budget Billing", comment: ""), duration: 3.5, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
 }

@@ -131,6 +131,17 @@
                                                             <constraint firstAttribute="height" constant="60" id="eXo-ZV-J18"/>
                                                         </constraints>
                                                     </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uok-hL-HCJ" userLabel="Eyeball Button">
+                                                        <rect key="frame" x="255" y="30" width="60" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="60" id="oPG-qg-c9a"/>
+                                                            <constraint firstAttribute="height" constant="60" id="xMw-Ns-TpZ"/>
+                                                        </constraints>
+                                                        <state key="normal" image="ic_eyeball"/>
+                                                        <connections>
+                                                            <action selector="onEyeballPress:" destination="9Ug-ji-Hni" eventType="touchUpInside" id="QbR-1X-Ntj"/>
+                                                        </connections>
+                                                    </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLR-ET-G9c" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="120" width="315" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -297,10 +308,12 @@
                                                     <constraint firstAttribute="bottom" secondItem="m0b-5f-05z" secondAttribute="bottom" constant="20" id="4ca-7j-pne"/>
                                                     <constraint firstItem="884-Yk-5tq" firstAttribute="leading" secondItem="v76-Y4-LTO" secondAttribute="leading" id="9Q9-Ca-evF"/>
                                                     <constraint firstAttribute="trailing" secondItem="YLR-ET-G9c" secondAttribute="trailing" id="IP3-MX-UMI"/>
+                                                    <constraint firstItem="Uok-hL-HCJ" firstAttribute="trailing" secondItem="884-Yk-5tq" secondAttribute="trailing" id="N7e-1A-8Nz"/>
                                                     <constraint firstItem="m0b-5f-05z" firstAttribute="leading" secondItem="v76-Y4-LTO" secondAttribute="leading" id="Qaf-2P-kZO"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="RRo-a6-wow"/>
                                                     <constraint firstItem="YLR-ET-G9c" firstAttribute="top" secondItem="884-Yk-5tq" secondAttribute="bottom" constant="30" id="SJ9-Q2-vlr"/>
                                                     <constraint firstAttribute="trailing" secondItem="H5Z-Bc-Efn" secondAttribute="trailing" id="UIl-b5-bd8"/>
+                                                    <constraint firstItem="Uok-hL-HCJ" firstAttribute="centerY" secondItem="884-Yk-5tq" secondAttribute="centerY" id="UaC-n4-fTP"/>
                                                     <constraint firstItem="884-Yk-5tq" firstAttribute="top" secondItem="v76-Y4-LTO" secondAttribute="top" constant="30" id="g5F-Le-e7z"/>
                                                     <constraint firstAttribute="trailing" secondItem="884-Yk-5tq" secondAttribute="trailing" id="jAH-1a-wo7"/>
                                                     <constraint firstItem="YLR-ET-G9c" firstAttribute="leading" secondItem="v76-Y4-LTO" secondAttribute="leading" id="lHU-sY-Pxe"/>
@@ -348,6 +361,7 @@
                         <outlet property="confirmPasswordTextField" destination="m0b-5f-05z" id="yIU-5L-KB2"/>
                         <outlet property="currentPasswordTextField" destination="884-Yk-5tq" id="b5c-Rr-DjV"/>
                         <outlet property="expandingPasswordStrengthContainerView" destination="H5Z-Bc-Efn" id="0is-Fe-RGz"/>
+                        <outlet property="eyeballButton" destination="Uok-hL-HCJ" id="q7g-rs-YT8"/>
                         <outlet property="lowercaseCheck" destination="Xg8-sV-U27" id="sce-zI-mmh"/>
                         <outlet property="newPasswordTextField" destination="YLR-ET-G9c" id="y7d-Bn-MBI"/>
                         <outlet property="numberCheck" destination="blI-aw-jQa" id="Cet-9c-fWn"/>
@@ -406,7 +420,7 @@
             <objects>
                 <navigationController storyboardIdentifier="splitViewMaster" automaticallyAdjustsScrollViewInsets="NO" id="QHx-Oo-GC3" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="XwZ-1G-6SY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XwZ-1G-6SY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -424,7 +438,7 @@
             <objects>
                 <navigationController storyboardIdentifier="splitViewDetail" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Lxd-XU-KqW" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="R3M-3U-YcT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R3M-3U-YcT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -442,7 +456,7 @@
             <objects>
                 <navigationController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="1fe-7y-SPR" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wOj-6K-XNw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wOj-6K-XNw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -458,5 +472,6 @@
     </scenes>
     <resources>
         <image name="ic_check" width="13" height="10"/>
+        <image name="ic_eyeball" width="30" height="16"/>
     </resources>
 </document>

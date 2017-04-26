@@ -21,7 +21,7 @@ class SecurityQuestionViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerTextField: FloatLabelTextField!
     
-    let viewModel = ForgotUsernameViewModel(authService: MockAuthenticationService())
+    let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
 
