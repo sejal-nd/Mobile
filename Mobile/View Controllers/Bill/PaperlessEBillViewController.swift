@@ -35,11 +35,6 @@ class PaperlessEBillViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        whatIsButtonView.layer.shadowColor = UIColor.black.cgColor
-        whatIsButtonView.layer.shadowOpacity = 0.2
-        whatIsButtonView.layer.shadowRadius = 3
-        whatIsButtonView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        whatIsButtonView.layer.cornerRadius = 2
         
         topBackgroundView.layer.shadowColor = UIColor.black.cgColor
         topBackgroundView.layer.shadowOpacity = 0.08
@@ -66,6 +61,31 @@ class PaperlessEBillViewController: UIViewController {
         viewModel.enrollAllAccounts.asDriver()
             .drive(enrollAllAccountsSwitch.rx.isOn)
             .addDisposableTo(bag)
+        
+        whatIsButtonSetup()
+    }
+    
+    func whatIsButtonSetup() {
+        whatIsButtonView.layer.shadowColor = UIColor.black.cgColor
+        whatIsButtonView.layer.shadowOpacity = 0.2
+        whatIsButtonView.layer.shadowRadius = 3
+        whatIsButtonView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        whatIsButtonView.layer.cornerRadius = 2
+        
+        let whatIsButtonSelectedColor = whatIsButton.rx.controlEvent(.touchDown).asDriver()
+            .map { UIColor.whiteButtonHighlight }
+        
+        let whatIsButtonDeselectedColor = Driver.of(whatIsButton.rx.controlEvent(.touchUpInside).asDriver(),
+                                                    whatIsButton.rx.controlEvent(.touchUpOutside).asDriver(),
+                                                    whatIsButton.rx.controlEvent(.touchCancel).asDriver())
+            .merge()
+            .map { UIColor.white }
+        
+        Driver.merge(whatIsButtonSelectedColor, whatIsButtonDeselectedColor)
+            .drive(onNext: { [weak self] color in
+                self?.whatIsButtonView.backgroundColor = color
+            })
+            .addDisposableTo(bag)
     }
     
     override func viewDidLayoutSubviews() {
@@ -90,7 +110,7 @@ class PaperlessEBillViewController: UIViewController {
         
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
+            NSFontAttributeName: OpenSans.bold.ofSize(18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
     }

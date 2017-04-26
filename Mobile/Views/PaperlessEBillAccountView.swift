@@ -51,6 +51,9 @@ class PaperlessEBillAccountView: UIView {
             view.enrollSwitch = nil
         }
         
+        view.accountNumberLabel.text = "\(account.accountNumber)"
+        view.addressLabel.text = account.address ?? ""
+        
         return view
     }
 
