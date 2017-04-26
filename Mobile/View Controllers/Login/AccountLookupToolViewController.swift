@@ -135,8 +135,7 @@ class AccountLookupToolViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination.isKind(of: AccountLookupToolResultViewController.self) {
-            let vc = segue.destination as! AccountLookupToolResultViewController
+        if let vc = segue.destination as? AccountLookupToolResultViewController {
             vc.viewModel = viewModel
         }
     }

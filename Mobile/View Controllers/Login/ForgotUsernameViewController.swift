@@ -177,16 +177,13 @@ class ForgotUsernameViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         view.endEditing(true)
         
-        if segue.destination.isKind(of: BGEAccountNumberViewController.self) {
-            let vc = segue.destination as! BGEAccountNumberViewController
+        if let vc = segue.destination as? BGEAccountNumberViewController {
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
             vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
-        } else if segue.destination.isKind(of: AccountLookupToolViewController.self) {
-            let vc = segue.destination as! AccountLookupToolViewController
+        } else if let vc = segue.destination as? AccountLookupToolViewController {
             vc.delegate = self
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
-        } else if segue.destination.isKind(of: ForgotUsernameResultViewController.self) {
-            let vc = segue.destination as! ForgotUsernameResultViewController
+        } else if let vc = segue.destination as? ForgotUsernameResultViewController {
             vc.viewModel = viewModel
         }
     }

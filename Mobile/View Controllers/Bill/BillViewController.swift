@@ -92,8 +92,7 @@ class BillViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination.isKind(of: BudgetBillingViewController.self) {
-            let vc = segue.destination as! BudgetBillingViewController
+        if let vc = segue.destination as? BudgetBillingViewController {
             vc.delegate = self
         }
     }

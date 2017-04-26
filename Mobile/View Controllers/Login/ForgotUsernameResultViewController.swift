@@ -89,8 +89,7 @@ class ForgotUsernameResultViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination.isKind(of: SecurityQuestionViewController.self) {
-            let vc = segue.destination as! SecurityQuestionViewController
+        if let vc = segue.destination as? SecurityQuestionViewController {
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
             vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
             vc.viewModel.accountNumber.value = viewModel.accountNumber.value

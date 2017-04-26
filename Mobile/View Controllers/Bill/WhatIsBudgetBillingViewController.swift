@@ -57,7 +57,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         card2TitleLabel.textColor = .primaryColorDark
         card2TitleLabel.text = NSLocalizedString("Adjusted throughout the year", comment: "")
         
-        for (_, view) in bulletCollection.enumerated() {
+        for view in bulletCollection {
             view.backgroundColor = .primaryColor
             view.layer.cornerRadius = 3.5
         }

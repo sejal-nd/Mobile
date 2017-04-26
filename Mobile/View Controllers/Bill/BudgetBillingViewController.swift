@@ -124,7 +124,7 @@ class BudgetBillingViewController: UIViewController {
         
         // BGE Footer View when user is enrolled
         if Environment.sharedInstance.opco == OpCo.bge && viewModel.initialEnrollment {
-            for (_, view) in bgeFooterCardViews.enumerated() {
+            for view in bgeFooterCardViews {
                 view.layer.cornerRadius = 2
                 view.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: 0), radius: 2)
             }
