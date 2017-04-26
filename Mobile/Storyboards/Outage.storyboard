@@ -34,7 +34,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A4b-qi-G2Y" id="idt-a8-aFn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xpt-xJ-vXP">
@@ -92,11 +92,12 @@
                     <navigationItem key="navigationItem" title="Accounts" id="aRK-pE-nDY"/>
                     <connections>
                         <outlet property="tableView" destination="xAq-g0-pe7" id="lxw-Lh-T4F"/>
+                        <segue destination="WUY-4d-zPg" kind="show" identifier="accountPickedSegue" id="ndB-In-EbN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sm1-Ir-tjM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2296.8000000000002" y="-536.58170914542734"/>
+            <point key="canvasLocation" x="2297" y="-836"/>
         </scene>
         <!--Outage-->
         <scene sceneID="Vsd-Z1-Jl7">

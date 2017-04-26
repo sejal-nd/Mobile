@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AccountListViewControllerDelegate {
+    func didSelectAccount(currentAccount: Account)
+}
+
 class AccountListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -15,28 +19,13 @@ class AccountListViewController: UIViewController {
     var accounts = [Account]()
     var currentAccount: Account?
     
+    var delegate: AccountListViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -56,6 +45,8 @@ extension AccountListViewController: UITableViewDelegate {
                     currentAccount = account
                 }
             }
+            delegate?.didSelectAccount(currentAccount: currentAccount!)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -85,9 +76,9 @@ extension AccountListViewController: UITableViewDataSource {
             cell.accountNumber.textColor = UIColor.primaryColor
         }
         return cell
-        
     }
     
 }
+
 
 
