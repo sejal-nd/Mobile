@@ -90,6 +90,7 @@ class ForgotPasswordViewController: UIViewController {
             hud.hide(animated: true)
             self.usernameTextField.setError(NSLocalizedString(error, comment: ""))
         }, onError: { errorMessage in
+            hud.hide(animated: true)
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
