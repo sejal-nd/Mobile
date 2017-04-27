@@ -46,16 +46,21 @@
                                                     <constraint firstAttribute="height" constant="64" id="gRo-eA-JBC"/>
                                                 </constraints>
                                             </view>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Lrb-j5-Io8">
-                                                <rect key="frame" x="177" y="22" width="20" height="20"/>
-                                            </activityIndicatorView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2km-BG-0i7">
                                                 <rect key="frame" x="29" y="104" width="316" height="100"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Paperless eBill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XL5-k1-ulK">
-                                                        <rect key="frame" x="78" y="25" width="209" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_billingcalc" translatesAutoresizingMaskIntoConstraints="NO" id="DJY-ff-j2c">
+                                                        <rect key="frame" x="20" y="24" width="37" height="51"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paperless eBill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XL5-k1-ulK">
+                                                        <rect key="frame" x="87" y="28" width="126.5" height="21"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enrolled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elu-RG-M1w">
+                                                        <rect key="frame" x="87" y="53" width="52.5" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -72,9 +77,15 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="elu-RG-M1w" firstAttribute="leading" secondItem="XL5-k1-ulK" secondAttribute="leading" id="3cX-qC-Lqj"/>
+                                                    <constraint firstItem="DJY-ff-j2c" firstAttribute="centerY" secondItem="2km-BG-0i7" secondAttribute="centerY" id="Gcl-58-0Mc"/>
+                                                    <constraint firstItem="DJY-ff-j2c" firstAttribute="leading" secondItem="2km-BG-0i7" secondAttribute="leading" constant="20" id="Lll-Vs-PqG"/>
+                                                    <constraint firstItem="elu-RG-M1w" firstAttribute="top" secondItem="XL5-k1-ulK" secondAttribute="bottom" constant="4" id="W23-SE-Crb"/>
                                                     <constraint firstAttribute="trailing" secondItem="Xo9-xv-TkF" secondAttribute="trailing" id="a0B-Dr-WdF"/>
                                                     <constraint firstAttribute="bottom" secondItem="Xo9-xv-TkF" secondAttribute="bottom" id="a8r-Gu-ufw"/>
+                                                    <constraint firstItem="XL5-k1-ulK" firstAttribute="top" secondItem="DJY-ff-j2c" secondAttribute="top" constant="4" id="aJt-IX-CCv"/>
                                                     <constraint firstItem="Xo9-xv-TkF" firstAttribute="top" secondItem="2km-BG-0i7" secondAttribute="top" id="dCT-mh-TW4"/>
+                                                    <constraint firstItem="XL5-k1-ulK" firstAttribute="leading" secondItem="DJY-ff-j2c" secondAttribute="trailing" constant="30" id="kG7-Ep-eSv"/>
                                                     <constraint firstItem="Xo9-xv-TkF" firstAttribute="leading" secondItem="2km-BG-0i7" secondAttribute="leading" id="kSk-Hy-bul"/>
                                                     <constraint firstAttribute="height" constant="100" id="nUv-N0-YJY"/>
                                                 </constraints>
@@ -82,33 +93,53 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2a-zV-fxn">
                                                 <rect key="frame" x="29" y="224" width="316" height="100"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Budget Billing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zF8-dg-FGc">
-                                                        <rect key="frame" x="78" y="25" width="209" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_billingcalc" translatesAutoresizingMaskIntoConstraints="NO" id="hmy-7u-y4G">
+                                                        <rect key="frame" x="20" y="24" width="37" height="51"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Budget Billing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zF8-dg-FGc">
+                                                        <rect key="frame" x="87" y="28" width="120.5" height="21"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enrolled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xef-TP-wst">
+                                                        <rect key="frame" x="87" y="53" width="52.5" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyX-OP-lRD">
                                                         <rect key="frame" x="0.0" y="0.0" width="316" height="100"/>
                                                         <connections>
+                                                            <action selector="onBudgetBillingButtonPress" destination="DBY-ak-0eF" eventType="touchUpInside" id="AtX-Ph-v6W"/>
                                                             <action selector="onButtonTouchCancel:" destination="DBY-ak-0eF" eventType="touchCancel" id="Ei7-7E-Gs4"/>
                                                             <action selector="onButtonTouchCancel:" destination="DBY-ak-0eF" eventType="touchDragExit" id="soH-8x-hqa"/>
                                                             <action selector="onButtonTouchCancel:" destination="DBY-ak-0eF" eventType="touchUpInside" id="ytg-UX-gu5"/>
                                                             <action selector="onButtonTouchDown:" destination="DBY-ak-0eF" eventType="touchDown" id="tuz-BA-hk9"/>
-                                                            <segue destination="ea9-OX-qvD" kind="show" id="8CP-yy-pu0"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="Xef-TP-wst" firstAttribute="leading" secondItem="zF8-dg-FGc" secondAttribute="leading" id="01l-hZ-0Vx"/>
                                                     <constraint firstAttribute="bottom" secondItem="TyX-OP-lRD" secondAttribute="bottom" id="20y-h1-nOA"/>
                                                     <constraint firstAttribute="height" constant="100" id="5pQ-0f-k3N"/>
+                                                    <constraint firstItem="hmy-7u-y4G" firstAttribute="centerY" secondItem="s2a-zV-fxn" secondAttribute="centerY" id="6Xv-nP-t3p"/>
                                                     <constraint firstAttribute="trailing" secondItem="TyX-OP-lRD" secondAttribute="trailing" id="AEe-Aj-uQG"/>
+                                                    <constraint firstItem="Xef-TP-wst" firstAttribute="top" secondItem="zF8-dg-FGc" secondAttribute="bottom" constant="4" id="Je4-nc-2PK"/>
+                                                    <constraint firstItem="hmy-7u-y4G" firstAttribute="leading" secondItem="s2a-zV-fxn" secondAttribute="leading" constant="20" id="MES-Fv-PJz"/>
                                                     <constraint firstItem="TyX-OP-lRD" firstAttribute="leading" secondItem="s2a-zV-fxn" secondAttribute="leading" id="WOS-AD-iUX"/>
+                                                    <constraint firstItem="zF8-dg-FGc" firstAttribute="leading" secondItem="hmy-7u-y4G" secondAttribute="trailing" constant="30" id="b94-KF-yd8"/>
+                                                    <constraint firstItem="zF8-dg-FGc" firstAttribute="top" secondItem="hmy-7u-y4G" secondAttribute="top" constant="4" id="dgP-5Y-wa8"/>
                                                     <constraint firstItem="TyX-OP-lRD" firstAttribute="top" secondItem="s2a-zV-fxn" secondAttribute="top" id="xNb-08-hz5"/>
                                                 </constraints>
                                             </view>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Lrb-j5-Io8">
+                                                <rect key="frame" x="177" y="22" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UMM-LW-kv9">
+                                                <rect key="frame" x="169" y="283.5" width="37" height="37"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -129,6 +160,8 @@
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="UMM-LW-kv9" firstAttribute="centerY" secondItem="DL5-8p-VuX" secondAttribute="centerY" id="1Pm-fx-Tci"/>
+                                    <constraint firstItem="UMM-LW-kv9" firstAttribute="centerX" secondItem="DL5-8p-VuX" secondAttribute="centerX" id="Hlt-m8-C36"/>
                                     <constraint firstAttribute="trailing" secondItem="mdd-pX-9Nn" secondAttribute="trailing" id="O4v-EV-zFf"/>
                                     <constraint firstItem="mdd-pX-9Nn" firstAttribute="top" secondItem="DL5-8p-VuX" secondAttribute="top" id="agj-Hf-WgS"/>
                                     <constraint firstItem="mdd-pX-9Nn" firstAttribute="centerX" secondItem="DL5-8p-VuX" secondAttribute="centerX" id="feA-Iy-592"/>
@@ -150,9 +183,13 @@
                     <connections>
                         <outlet property="accountScroller" destination="2BY-N0-MzF" id="FFf-WU-bTg"/>
                         <outlet property="accountScrollerActivityIndicator" destination="Lrb-j5-Io8" id="p7Y-si-ufK"/>
+                        <outlet property="billActivityIndicator" destination="UMM-LW-kv9" id="Rav-4L-7q4"/>
+                        <outlet property="budgetBillingEnrollmentLabel" destination="Xef-TP-wst" id="DVZ-ja-L9l"/>
                         <outlet property="budgetButtonView" destination="s2a-zV-fxn" id="TGl-re-IHt"/>
                         <outlet property="paperlessButtonView" destination="2km-BG-0i7" id="TwW-QV-902"/>
+                        <outlet property="paperlessEnrollmentLabel" destination="elu-RG-M1w" id="jf3-9u-gQC"/>
                         <outlet property="scrollView" destination="DL5-8p-VuX" id="abZ-vv-lrL"/>
+                        <segue destination="ea9-OX-qvD" kind="show" identifier="budgetBillingSegue" id="RKp-nP-lqV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Au4-Ec-qCd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -228,7 +265,7 @@
                                                                 <rect key="frame" x="167" y="0.0" width="126" height="90"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evS-WD-Rt4">
-                                                                <rect key="frame" x="87" y="22" width="126" height="46.5"/>
+                                                                <rect key="frame" x="87" y="22.5" width="126" height="46.5"/>
                                                                 <string key="text">What is
 Budget Billing?</string>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
@@ -268,7 +305,7 @@ Budget Billing?</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqG-lk-DUF">
-                                                        <rect key="frame" x="93.5" y="144.5" width="188" height="49.5"/>
+                                                        <rect key="frame" x="94" y="144.5" width="188" height="49.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$200.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDe-zM-yPH">
                                                                 <rect key="frame" x="0.0" y="0.0" width="134" height="49.5"/>
@@ -1113,7 +1150,7 @@ the year</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is Budget Billing?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gos-Aq-4Ke">
-                                        <rect key="frame" x="85.5" y="32.5" width="205" height="25"/>
+                                        <rect key="frame" x="85" y="32.5" width="205" height="25"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
