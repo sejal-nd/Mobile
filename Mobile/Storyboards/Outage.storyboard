@@ -14,27 +14,27 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Accounts-->
+        <!--Advanced Account Picker Scene-->
         <scene sceneID="21V-hc-Lsq">
             <objects>
-                <viewController id="uoI-3d-TDP" customClass="AccountListViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="advancedAccountPicker" id="uoI-3d-TDP" userLabel="Advanced Account Picker Scene" customClass="AdvancedAccountPickerViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5L3-Ab-JFQ"/>
                         <viewControllerLayoutGuide type="bottom" id="TWY-Ec-dJM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1J9-Ag-EvC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xAq-g0-pe7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountTableViewCell" rowHeight="65" id="A4b-qi-G2Y" customClass="AccountTableViewCell" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="65"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountTableViewCell" rowHeight="64" id="A4b-qi-G2Y" userLabel="AdvancedAccountPickerTableViewCell" customClass="AdvancedAccountPickerTableViewCell" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A4b-qi-G2Y" id="idt-a8-aFn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xpt-xJ-vXP">
@@ -51,7 +51,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Axq-L0-Jf5">
-                                                    <rect key="frame" x="90" y="34" width="35.5" height="17"/>
+                                                    <rect key="frame" x="90" y="34" width="41.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -63,11 +63,21 @@
                                                         <constraint firstAttribute="height" constant="16" id="KAB-WS-clS"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVO-ut-r8N">
+                                                    <rect key="frame" x="139.5" y="24" width="216.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="jVO-ut-r8N" firstAttribute="centerY" secondItem="idt-a8-aFn" secondAttribute="centerY" id="0YX-kh-h49"/>
+                                                <constraint firstItem="jVO-ut-r8N" firstAttribute="leading" secondItem="Axq-L0-Jf5" secondAttribute="trailing" constant="8" id="1f2-Fn-fqM"/>
+                                                <constraint firstItem="jVO-ut-r8N" firstAttribute="leading" secondItem="DAO-4v-L19" secondAttribute="trailing" constant="8" id="Bb3-vZ-6x1"/>
                                                 <constraint firstItem="DAO-4v-L19" firstAttribute="leading" secondItem="Xpt-xJ-vXP" secondAttribute="trailing" constant="8" id="L0K-ex-qKR"/>
                                                 <constraint firstItem="Axq-L0-Jf5" firstAttribute="leading" secondItem="Xpt-xJ-vXP" secondAttribute="trailing" constant="8" id="Qtx-4p-1Mr"/>
                                                 <constraint firstItem="FrR-vc-mhu" firstAttribute="top" secondItem="idt-a8-aFn" secondAttribute="top" constant="24" id="WTK-vT-BCD"/>
+                                                <constraint firstAttribute="trailing" secondItem="jVO-ut-r8N" secondAttribute="trailing" constant="19" id="aD6-Oy-HW7"/>
                                                 <constraint firstItem="Axq-L0-Jf5" firstAttribute="top" secondItem="DAO-4v-L19" secondAttribute="bottom" constant="4" id="b9m-mO-uvG"/>
                                                 <constraint firstItem="FrR-vc-mhu" firstAttribute="leading" secondItem="idt-a8-aFn" secondAttribute="leading" constant="12" id="tPU-zY-Q0H"/>
                                             </constraints>
@@ -81,11 +91,16 @@
                                             <outlet property="accountImageView" destination="Xpt-xJ-vXP" id="mJ5-qF-hk0"/>
                                             <outlet property="accountImageViewLeadingConstraint" destination="13p-Md-J41" id="Uov-6L-OiR"/>
                                             <outlet property="accountNumber" destination="DAO-4v-L19" id="Ae0-8h-vG1"/>
+                                            <outlet property="accountStatusLabel" destination="jVO-ut-r8N" id="7fT-JO-4nn"/>
                                             <outlet property="addressLabel" destination="Axq-L0-Jf5" id="o9c-hp-dDp"/>
                                             <outlet property="checkMarkImageView" destination="FrR-vc-mhu" id="MeE-p4-BcC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="uoI-3d-TDP" id="sS0-Z3-NVc"/>
+                                    <outlet property="delegate" destination="uoI-3d-TDP" id="Iea-8y-rVc"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -103,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sm1-Ir-tjM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2296.8000000000002" y="-836.13193403298362"/>
+            <point key="canvasLocation" x="2296.8000000000002" y="-558.17091454272872"/>
         </scene>
         <!--Outage-->
         <scene sceneID="Vsd-Z1-Jl7">
@@ -330,7 +345,9 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                             <constraint firstItem="eoo-sl-0bw" firstAttribute="top" secondItem="UDU-Ch-dvR" secondAttribute="bottom" id="uRc-Zg-g6e"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Outage" id="p64-58-CHY"/>
+                    <navigationItem key="navigationItem" title="Outage" id="p64-58-CHY">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="C4R-fS-frt"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
@@ -351,7 +368,6 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                         <outlet property="scrollView" destination="qSc-mq-7Vd" id="Arq-eX-7Ts"/>
                         <outlet property="viewOutageMapButton" destination="5cM-eu-hDR" id="Jpd-LW-ilQ"/>
                         <segue destination="ZQH-GI-7Fc" kind="show" identifier="reportOutageSegue" id="APc-d5-ZXG"/>
-                        <segue destination="uoI-3d-TDP" kind="show" identifier="advancedAccountSegue" id="WBJ-fb-kdz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9f-N0-ewH" userLabel="First Responder" sceneMemberID="firstResponder"/>

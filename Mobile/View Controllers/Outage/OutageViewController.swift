@@ -56,6 +56,7 @@ class OutageViewController: UIViewController {
         scrollView.insertSubview(refreshControl, at: 0)
 
         accountScroller.delegate = self
+        accountScroller.parentViewController = self
         
         onAnimationView.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
         onAnimationView.loopAnimation = true
@@ -358,12 +359,6 @@ class OutageViewController: UIViewController {
             }
             vc.delegate = self
         }
-        if segue.destination.isKind(of: AccountListViewController.self) {
-            let vc = segue.destination as! AccountListViewController
-            vc.accounts = viewModel.accounts
-            vc.delegate = self
-            vc.currentAccount = viewModel.currentAccount
-        }
     }
  
 }
@@ -372,25 +367,10 @@ extension OutageViewController: AccountScrollerDelegate {
     
     func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account) {
         viewModel.currentAccount = account
-        
+        accountScroller.updateAdvancedPicker(account: account)
         getOutageStatus()
     }
     
-    func accountScrollerDidTap() {
-        performSegue(withIdentifier: "advancedAccountSegue", sender: self)
-    }
-    
-}
-
-extension OutageViewController: AccountListViewControllerDelegate {
-    
-    func didSelectAccount(currentAccount: Account) {
-        viewModel.currentAccount = currentAccount
-        accountScroller.updateSingleAccount(account: viewModel.currentAccount!)
-        getOutageStatus()
-        print("Current account number: " + (viewModel.currentAccount?.accountNumber)!)
-    }
-
 }
 
 extension OutageViewController: ReportOutageViewControllerDelegate {

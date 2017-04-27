@@ -10,22 +10,26 @@ import UIKit
 
 protocol AccountScrollerDelegate: class {
     func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account)
-    func accountScrollerDidTap()
 }
 
 class AccountScroller: UIView {
-
+    
+    let MAX_ACCOUNTS = 5
+    
     weak var delegate: AccountScrollerDelegate?
 
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
 
     var accounts = [Account]()
-    var singleAccountNumberLabel: UILabel?
-    var singleAccountAddressLabel: UILabel?
+    var currentAccount: Account?
+    var parentViewController: UIViewController?
 
     var pageViews = [UIView]()
-    let MAX_ACCOUNTS = 3
+    
+    var advancedAccountNumberLabel: UILabel?
+    var advancedAccountAddressLabel: UILabel?
+    var advancedAccountButton: UIButton?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,6 +64,10 @@ class AccountScroller: UIView {
 
         scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 57)
         pageControl.frame = CGRect(x: frame.size.width / 2 - 80, y: 57, width: 160, height: 7)
+        
+        if let button = advancedAccountButton {
+            button.frame = scrollView.frame
+        }
 
         if pageViews.count > 0 {
             for index in 0..<pageViews.count {
@@ -75,13 +83,16 @@ class AccountScroller: UIView {
 
     func setAccounts(_ accounts: [Account]) {
         self.accounts = accounts
+        if let firstAccount = accounts.first {
+            currentAccount = firstAccount
+        }
         var pagedAccounts = accounts
 
         if self.accounts.count > 1 && self.accounts.count < MAX_ACCOUNTS {
             pageControl.numberOfPages = pagedAccounts.count
             pageControl.currentPage = 0
         } else {
-            pagedAccounts = Array(self.accounts.prefix(5))
+            pagedAccounts = Array(self.accounts.prefix(MAX_ACCOUNTS))
             pageControl.isHidden = true
         }
 
@@ -135,85 +146,91 @@ class AccountScroller: UIView {
                     NSLayoutConstraint(item: accountView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 57),
                     NSLayoutConstraint(item: accountView, attribute: .centerX, relatedBy: .equal, toItem: pageView, attribute: .centerX, multiplier: 1, constant: 0),
                     NSLayoutConstraint(item: accountView, attribute: .centerY, relatedBy: .equal, toItem: pageView, attribute: .centerY, multiplier: 1, constant: 0)
-                    ])
+                ])
                 
             }
         } else {
             let pageView = UIView(frame: .zero)
+            pageView.backgroundColor = .clear
             pageViews.append(pageView)
             let icon = pagedAccounts[0].accountType == .Commercial ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
             let iconImageView = UIImageView(image: icon)
             iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
             
-            let caret = #imageLiteral(resourceName: "ic_caret")
-            let caretImageView = UIImageView(image: caret)
-            caretImageView.frame = CGRect(x: 235, y:30, width: 8, height: 13)
+            advancedAccountNumberLabel = UILabel(frame: .zero)
+            advancedAccountNumberLabel!.translatesAutoresizingMaskIntoConstraints = false
+            advancedAccountNumberLabel!.font = UIFont.systemFont(ofSize: 17)
+            advancedAccountNumberLabel!.textColor = UIColor.darkJungleGreen
+            advancedAccountNumberLabel!.text = pagedAccounts[0].accountNumber
             
-            singleAccountNumberLabel = UILabel(frame: .zero)
-            singleAccountNumberLabel!.translatesAutoresizingMaskIntoConstraints = false
-            singleAccountNumberLabel!.font = UIFont.systemFont(ofSize: 17)
-            singleAccountNumberLabel!.textColor = UIColor.darkJungleGreen
-            singleAccountNumberLabel!.text = pagedAccounts[0].accountNumber
-            
-            singleAccountAddressLabel = UILabel(frame: .zero)
-            singleAccountAddressLabel!.translatesAutoresizingMaskIntoConstraints = false
-            singleAccountAddressLabel!.font = UIFont.systemFont(ofSize: 12)
-            singleAccountAddressLabel!.textColor = UIColor.outerSpace
-            singleAccountAddressLabel!.text = pagedAccounts[0].address
+            advancedAccountAddressLabel = UILabel(frame: .zero)
+            advancedAccountAddressLabel!.translatesAutoresizingMaskIntoConstraints = false
+            advancedAccountAddressLabel!.font = UIFont.systemFont(ofSize: 12)
+            advancedAccountAddressLabel!.textColor = UIColor.outerSpace
+            advancedAccountAddressLabel!.text = pagedAccounts[0].address
             
             let accountView = UIView(frame: .zero)
+            accountView.backgroundColor = .clear
             accountView.translatesAutoresizingMaskIntoConstraints = false
             accountView.addSubview(iconImageView)
-            accountView.addSubview(caretImageView)
-            accountView.addSubview(singleAccountNumberLabel!)
-            accountView.addSubview(singleAccountAddressLabel!)
+            accountView.addSubview(advancedAccountNumberLabel!)
+            accountView.addSubview(advancedAccountAddressLabel!)
             
             pageView.addSubview(accountView)
             scrollView.addSubview(pageView)
             
+            advancedAccountButton = UIButton(frame: scrollView.frame)
+            advancedAccountButton!.addTarget(self, action: #selector(onAdvancedAccountButtonPress), for: .touchUpInside)
+            addSubview(advancedAccountButton!)
+            
+            let caret = #imageLiteral(resourceName: "ic_caret")
+            let caretImageView = UIImageView(image: caret)
+            caretImageView.frame = .zero
+            caretImageView.translatesAutoresizingMaskIntoConstraints = false
+            pageView.addSubview(caretImageView)
+            
             self.addConstraints([
+                // caret
+                NSLayoutConstraint(item: caretImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 8),
+                NSLayoutConstraint(item: caretImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 13),
+                NSLayoutConstraint(item: caretImageView, attribute: .trailing, relatedBy: .equal, toItem: pageView, attribute: .trailing, multiplier: 1, constant: -18),
+                NSLayoutConstraint(item: caretImageView, attribute: .centerY, relatedBy: .equal, toItem: pageView, attribute: .centerY, multiplier: 1, constant: 0),
+                
                 // accountNumberLabel
-                NSLayoutConstraint(item: singleAccountNumberLabel!, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 11),
-                NSLayoutConstraint(item: singleAccountNumberLabel!, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
-                NSLayoutConstraint(item: singleAccountNumberLabel!, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: singleAccountNumberLabel!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
+                NSLayoutConstraint(item: advancedAccountNumberLabel!, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 11),
+                NSLayoutConstraint(item: advancedAccountNumberLabel!, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
+                NSLayoutConstraint(item: advancedAccountNumberLabel!, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: advancedAccountNumberLabel!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
                 
                 // addressLabel
-                NSLayoutConstraint(item: singleAccountAddressLabel!, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 32),
-                NSLayoutConstraint(item: singleAccountAddressLabel!, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
-                NSLayoutConstraint(item: singleAccountAddressLabel!, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: singleAccountAddressLabel!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 14),
+                NSLayoutConstraint(item: advancedAccountAddressLabel!, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 32),
+                NSLayoutConstraint(item: advancedAccountAddressLabel!, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
+                NSLayoutConstraint(item: advancedAccountAddressLabel!, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: advancedAccountAddressLabel!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 14),
                 // TODO: REMOVE THIS CONSTRAINT TO NOT LIMIT ADDRESS LENGTH:
-                NSLayoutConstraint(item: singleAccountAddressLabel!, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 150),
+                NSLayoutConstraint(item: advancedAccountAddressLabel!, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 150),
                 
                 // accountView
                 NSLayoutConstraint(item: accountView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 57),
                 NSLayoutConstraint(item: accountView, attribute: .centerX, relatedBy: .equal, toItem: pageView, attribute: .centerX, multiplier: 1, constant: 0),
                 NSLayoutConstraint(item: accountView, attribute: .centerY, relatedBy: .equal, toItem: pageView, attribute: .centerY, multiplier: 1, constant: 0)
-                ])
+            ])
 
         }
-        
-        // Make a button overlay the scrollview if the user has more than 5 accounts.
-        if self.accounts.count > MAX_ACCOUNTS {
-            let pageButton = UIButton(frame: scrollView.frame)
-            pageButton.addTarget(self, action: #selector(showAccountList), for: .touchUpInside)
-            pageButton.addTarget(self, action: #selector(showTouch), for: .touchDown)
-            addSubview(pageButton)
-        }
-        
+
         setNeedsLayout()
     }
     
-    func showTouch(sender: UIButton!) {
-        singleAccountNumberLabel?.alpha = 0.5
-        singleAccountAddressLabel?.alpha = 0.5
-    }
-    
-    func showAccountList(sender: UIButton!) {
-        delegate?.accountScrollerDidTap()
-        singleAccountNumberLabel?.alpha = 1
-        singleAccountAddressLabel?.alpha = 1
+    func onAdvancedAccountButtonPress() {
+        let storyboard = UIStoryboard(name: "Outage", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "advancedAccountPicker") as? AdvancedAccountPickerViewController {
+            vc.accounts = accounts
+            vc.currentAccount = currentAccount
+            vc.delegate = self
+            if let parentVc = parentViewController {
+                parentVc.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
     
     func onPageControlTap(sender: UIPageControl) {
@@ -221,11 +238,18 @@ class AccountScroller: UIView {
         delegate?.accountScroller(self, didChangeAccount: accounts[pageControl.currentPage])
     }
     
-    func updateSingleAccount(account: Account) {
-        singleAccountNumberLabel?.text = account.accountNumber
-        singleAccountAddressLabel?.text = account.address
+    func updateAdvancedPicker(account: Account) {
+        currentAccount = account
+        advancedAccountNumberLabel?.text = account.accountNumber
+        advancedAccountAddressLabel?.text = account.address
     }
     
+}
+
+extension AccountScroller: AdvancedAccountPickerViewControllerDelegate {
+    func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account) {
+        delegate?.accountScroller(self, didChangeAccount: account)
+    }
 }
 
 extension AccountScroller: UIScrollViewDelegate {

@@ -1,5 +1,5 @@
 //
-//  AccountTableViewCell.swift
+//  AdvancedAccountPickerTableViewCell.swift
 //  Mobile
 //
 //  Created by Wesley Weitzel on 4/24/17.
@@ -8,23 +8,23 @@
 
 import UIKit
 
-class AccountTableViewCell: UITableViewCell {
+class AdvancedAccountPickerTableViewCell: UITableViewCell {
 
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var accountNumber: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var checkMarkImageView: UIImageView!
     @IBOutlet weak var accountImageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var accountStatusLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        accountNumber.textColor = .black
+        addressLabel.textColor = .oldLavender
+        accountStatusLabel.textColor = .oldLavender
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
 
 }
