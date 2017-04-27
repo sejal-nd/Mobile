@@ -51,5 +51,20 @@ extension AccountService {
         }
     }
     
+    func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
+        return Observable.create { observer in
+            self.fetchAccountDetail(account: account, completion: { (result: ServiceResult<AccountDetail>) in
+                switch result {
+                case ServiceResult.Success(let accountDetail):
+                    observer.onNext(accountDetail)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
 }
 
