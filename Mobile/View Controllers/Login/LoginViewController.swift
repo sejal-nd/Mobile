@@ -133,45 +133,52 @@ class LoginViewController: UIViewController {
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
 
         signInButton.setLoading()
-        viewModel.performLogin(onSuccess: {
+        viewModel.performLogin(onSuccess: { (loggedInWithTempPassword: Bool) in
             self.signInButton.setSuccess(animationCompletion: { () in
+                self.navigationController?.view.isUserInteractionEnabled = true
                 
                 // Get the last username that logged in first, and then store the one currently logging in
                 let lastLoggedInUsername: String? = self.viewModel.getStoredUsername()
                 self.viewModel.storeUsername()
                 
-                if self.viewModel.isDeviceTouchIDCompatible() {
-                    if self.viewModel.shouldPromptToEnableTouchID() {
-                        let touchIDAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: NSLocalizedString("Would you like to use Touch ID to sign in from now on?", comment: ""), preferredStyle: .alert)
-                        touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default, handler: { (action) in
+                if loggedInWithTempPassword {
+                    let storyboard = UIStoryboard(name: "More", bundle: nil)
+                    let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword")
+                    (changePwVc as! ChangePasswordViewController).sentFromLogin = true
+                    self.navigationController?.pushViewController(changePwVc, animated: true)
+                } else {
+                    if self.viewModel.isDeviceTouchIDCompatible() {
+                        if self.viewModel.shouldPromptToEnableTouchID() {
+                            let touchIDAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: NSLocalizedString("Would you like to use Touch ID to sign in from now on?", comment: ""), preferredStyle: .alert)
+                            touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default, handler: { (action) in
+                                self.launchMainApp()
+                            }))
+                            touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
+                                self.viewModel.storePasswordInTouchIDKeychain()
+                                self.launchMainApp()
+                            }))
+                            self.present(touchIDAlert, animated: true, completion: nil)
+                            self.viewModel.setShouldPromptToEnableTouchID(false)
+                        } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
+                            let message = String(format: NSLocalizedString("Touch ID settings for %@ will be disabled upon signing in as %@. Would you like to enable Touch ID for %@ at this time?", comment: ""), lastLoggedInUsername!.obfuscate(), self.viewModel.username.value.obfuscate(), self.viewModel.username.value)
+                            
+                            let differentAccountAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: message, preferredStyle: .alert)
+                            differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { (action) in
+                                self.viewModel.disableTouchID()
+                                self.launchMainApp()
+                            }))
+                            differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
+                                self.viewModel.storePasswordInTouchIDKeychain()
+                                self.launchMainApp()
+                            }))
+                            self.present(differentAccountAlert, animated: true, completion: nil)
+                        } else {
                             self.launchMainApp()
-                        }))
-                        touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
-                            self.viewModel.storePasswordInTouchIDKeychain()
-                            self.launchMainApp()
-                        }))
-                        self.present(touchIDAlert, animated: true, completion: nil)
-                        self.viewModel.setShouldPromptToEnableTouchID(false)
-                    } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
-                        let message = String(format: NSLocalizedString("Touch ID settings for %@ will be disabled upon signing in as %@. Would you like to enable Touch ID for %@ at this time?", comment: ""), lastLoggedInUsername!.obfuscate(), self.viewModel.username.value.obfuscate(), self.viewModel.username.value)
-                        
-                        let differentAccountAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: message, preferredStyle: .alert)
-                        differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { (action) in
-                            self.viewModel.disableTouchID()
-                            self.launchMainApp()
-                        }))
-                        differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
-                            self.viewModel.storePasswordInTouchIDKeychain()
-                            self.launchMainApp()
-                        }))
-                        self.present(differentAccountAlert, animated: true, completion: nil)
+                        }
                     } else {
                         self.launchMainApp()
                     }
-                } else {
-                    self.launchMainApp()
                 }
-                
             })
         }, onError: { (title, message) in
             self.navigationController?.view.isUserInteractionEnabled = true
@@ -194,6 +201,10 @@ class LoginViewController: UIViewController {
     @IBAction func onEyeballPress(_ sender: UIButton) {
         if passwordTextField.textField.isSecureTextEntry {
             passwordTextField.textField.isSecureTextEntry = false
+            // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
+            passwordTextField.textField.font = nil
+            passwordTextField.textField.font = UIFont.systemFont(ofSize: 18)
+            // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_active"), for: .normal)
         } else {
             passwordTextField.textField.isSecureTextEntry = true
@@ -236,7 +247,7 @@ class LoginViewController: UIViewController {
             
             self.signInButton.setLoading()
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
-        }, onSuccess: { // fingerprint and subsequent login successful
+        }, onSuccess: { (loggedInWithTempPassword: Bool) in // fingerprint and subsequent login successful
             self.signInButton.setSuccess(animationCompletion: { () in
                 self.navigationController?.view.isUserInteractionEnabled = true
                 self.launchMainApp()
@@ -278,8 +289,7 @@ class LoginViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination.isKind(of: ForgotPasswordViewController.self) {
-            let vc = segue.destination as! ForgotPasswordViewController
+        if let vc = segue.destination as? ForgotPasswordViewController {
             vc.delegate = self
         }
     }

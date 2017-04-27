@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -374,7 +374,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wj3-R8-PEk">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="956.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="947"/>
                                         <subviews>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-bI-z1O">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
@@ -513,7 +513,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 </constraints>
                                             </stackView>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-Bd-NCe">
-                                                <rect key="frame" x="0.0" y="164.5" width="375" height="123"/>
+                                                <rect key="frame" x="0.0" y="164.5" width="375" height="113.5"/>
                                                 <subviews>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Z3B-9b-TVX" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="29" y="32" width="51" height="31"/>
@@ -522,10 +522,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                         </constraints>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="I have checked my circuit breakers or fuse box and I would still like to report an outage." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsO-JP-Q4X">
-                                                        <rect key="frame" x="97" y="24" width="249" height="75"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="75" id="qfs-eM-w4y"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="97" y="24" width="249" height="65.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -533,16 +530,16 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="MsO-JP-Q4X" firstAttribute="top" secondItem="JdA-Bd-NCe" secondAttribute="top" priority="999" constant="24" id="A88-PD-jLC"/>
-                                                    <constraint firstItem="Z3B-9b-TVX" firstAttribute="top" secondItem="JdA-Bd-NCe" secondAttribute="top" constant="32" id="BDS-zb-fTa"/>
+                                                    <constraint firstItem="MsO-JP-Q4X" firstAttribute="top" secondItem="JdA-Bd-NCe" secondAttribute="top" constant="24" id="A88-PD-jLC"/>
                                                     <constraint firstItem="Z3B-9b-TVX" firstAttribute="leading" secondItem="JdA-Bd-NCe" secondAttribute="leading" constant="29" id="M99-r9-r77"/>
                                                     <constraint firstAttribute="trailing" secondItem="MsO-JP-Q4X" secondAttribute="trailing" constant="29" id="lyU-wG-c9c"/>
+                                                    <constraint firstItem="Z3B-9b-TVX" firstAttribute="top" secondItem="MsO-JP-Q4X" secondAttribute="top" constant="8" id="pBw-Na-d8E"/>
                                                     <constraint firstItem="MsO-JP-Q4X" firstAttribute="leading" secondItem="Z3B-9b-TVX" secondAttribute="trailing" constant="19" id="tR8-59-MJo"/>
                                                     <constraint firstAttribute="bottom" secondItem="MsO-JP-Q4X" secondAttribute="bottom" priority="999" constant="24" id="zs1-pp-Xfg"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5lr-vG-MUZ">
-                                                <rect key="frame" x="0.0" y="287.5" width="375" height="363"/>
+                                                <rect key="frame" x="0.0" y="278" width="375" height="363"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4L-Ty-VsC" userLabel="Spacer View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -636,7 +633,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6M8-NZ-rW4" userLabel="Footer Container View">
-                                                <rect key="frame" x="0.0" y="650.5" width="375" height="306"/>
+                                                <rect key="frame" x="0.0" y="641" width="375" height="306"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3B-jb-AXr">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>

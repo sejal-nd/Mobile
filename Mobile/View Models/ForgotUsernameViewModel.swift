@@ -29,7 +29,7 @@ class ForgotUsernameViewModel {
     func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         
         let identifier = accountNumber.value.characters.count > 0 ? accountNumber.value : identifierNumber.value
-        authService.recoverMaskedUsername(phone: phoneNumber.value, identifier: identifier)
+        authService.recoverMaskedUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { usernames in
                 self.maskedUsernames = usernames
@@ -46,9 +46,9 @@ class ForgotUsernameViewModel {
     
     func submitSecurityQuestionAnswer(onSuccess: @escaping (String) -> Void, onAnswerNoMatch: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
         let maskedUsername = maskedUsernames[selectedUsernameIndex]
-        
+        let cipher = maskedUsername.cipher
         let identifier = accountNumber.value.characters.count > 0 ? accountNumber.value : identifierNumber.value
-        authService.recoverUsername(phone: phoneNumber.value, identifier: identifier, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value)
+        authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value, cipher: cipher)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { username in
                 onSuccess(username)

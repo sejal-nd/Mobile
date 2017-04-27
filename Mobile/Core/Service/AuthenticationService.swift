@@ -21,7 +21,7 @@ protocol AuthenticationService {
     ///   - completion: the completion block to execute upon completion. 
     ///     The ServiceResult that is provided will contain the user id on success,
     ///     or the error on failure.
-    func login(_ username: String, password: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
+    func login(_ username: String, password: String, completion: @escaping (_ result: ServiceResult<ProfileStatus>) -> Void)
     
     /// Log out the currently logged in user
     ///
@@ -61,9 +61,10 @@ protocol AuthenticationService {
     ///   - identifier: the identifier (e.g ssn/pin/account#) - varies by opco.
     ///   - questionId: the question id
     ///   - questionResponse: the question response
+    ///   - cipher: the cipher for the username (supplied from masked username)
     ///   - completion: the completion block to execute upon completion. If the
     ///     question/id are correct, the response will contain an unmasked username
-    func recoverUsername(phone: String, identifier: String, questionId: Int, questionResponse: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
+    func recoverUsername(phone: String, identifier: String, questionId: Int, questionResponse: String, cipher: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
     
     /// Look up an account number by phone and id
     ///
@@ -94,12 +95,12 @@ extension AuthenticationService {
     ///   - username: the username to authenticate with.
     ///   - password: the password to authenticate with.
     /// - Returns: An observable to subscribe to.
-    func login(_ username: String, password: String) -> Observable<Void> {
+    func login(_ username: String, password: String) -> Observable<ProfileStatus> {
         return Observable.create { observer in
-            self.login(username, password: password, completion: { (result: ServiceResult<String>) in
+            self.login(username, password: password, completion: { (result: ServiceResult<ProfileStatus>) in
                 switch (result) {
-                case ServiceResult.Success:
-                    observer.onNext()
+                case ServiceResult.Success(let profStatus):
+                    observer.onNext(profStatus)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -182,10 +183,11 @@ extension AuthenticationService {
     ///   - identifier: the identifier (e.g ssn/pin/account#) - varies by opco.
     ///   - questionId: the question id
     ///   - questionResponse: the question response
+    ///   - cipher: the cipher for the username
     /// - Returns: An observable to subscribe to.
-    func recoverUsername(phone: String, identifier: String, questionId: Int, questionResponse: String) -> Observable<String> {
+    func recoverUsername(phone: String, identifier: String, questionId: Int, questionResponse: String, cipher: String) -> Observable<String> {
         return Observable.create { observer in
-            self.recoverUsername(phone: phone, identifier: identifier, questionId: questionId, questionResponse: questionResponse, completion: { (result: ServiceResult<String>) in
+            self.recoverUsername(phone: phone, identifier: identifier, questionId: questionId, questionResponse: questionResponse, cipher: cipher, completion: { (result: ServiceResult<String>) in
                 switch (result) {
                 case ServiceResult.Success(let username):
                     observer.onNext(username)

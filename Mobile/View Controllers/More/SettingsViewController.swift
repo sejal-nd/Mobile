@@ -87,8 +87,7 @@ class SettingsViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination.isKind(of: ChangePasswordViewController.self) {
-            let vc: ChangePasswordViewController = segue.destination as! ChangePasswordViewController
+        if let vc = segue.destination as? ChangePasswordViewController {
             vc.delegate = self
         }
     }

@@ -44,6 +44,9 @@
 
 /* Begin PBXBuildFile section */
 		087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087630E01E72F5D000FA7020 /* BGEUITests.swift */; };
+		826413791EAEAE5E007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
+		8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
+		8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
 		8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
@@ -101,6 +104,10 @@
 		9A36C1581E9EAE08006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
 		9A36C1591E9EAE1C006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
 		9A36C15A1E9EAE1D006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
+		B535FD0B1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
+		B535FD0C1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
+		B535FD0D1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
+		B535FD0E1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
 		B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
@@ -396,6 +403,23 @@
 		E882B7E91EA8FF1700EA3C13 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E71EA8FF1700EA3C13 /* BillViewModel.swift */; };
 		E882B7EA1EA8FF1700EA3C13 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E71EA8FF1700EA3C13 /* BillViewModel.swift */; };
 		E882B7EB1EA8FF1700EA3C13 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E71EA8FF1700EA3C13 /* BillViewModel.swift */; };
+		E882B7ED1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */; };
+		E882B7EE1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */; };
+		E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */; };
+		E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */; };
+		E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */; };
+		E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */; };
+		E882B7F61EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */; };
+		E882B7F71EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */; };
+		E882B7F81EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */; };
+		E882B7F91EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */; };
+		E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
+		E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
+		E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
+		E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
+		E882B8001EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FF1EAA974600EA3C13 /* BudgetBillingTableViewCell.swift */; };
+		E882B8011EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FF1EAA974600EA3C13 /* BudgetBillingTableViewCell.swift */; };
+		E882B8021EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FF1EAA974600EA3C13 /* BudgetBillingTableViewCell.swift */; };
 		E88ECFF11E8D8BA600A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
 		E88ECFF21E8D8BA600A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
 		E88ECFF31E8D8BA600A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
@@ -465,10 +489,10 @@
 		E8CA07EF1E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
 		E8CA07F01E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
 		E8CA07F11E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
-		E8CA07F41E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */; };
-		E8CA07F51E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */; };
-		E8CA07F61E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */; };
-		E8CA07F71E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */; };
+		E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */; };
+		E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */; };
+		E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */; };
+		E8CA07F71E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */; };
 		E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */; };
 		E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
 		E8D2520C1E6DB74600C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
@@ -563,6 +587,7 @@
 		087630DE1E72F5D000FA7020 /* BGEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BGEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		087630E01E72F5D000FA7020 /* BGEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEUITests.swift; sourceTree = "<group>"; };
 		087630E21E72F5D000FA7020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -588,6 +613,7 @@
 		9A36C1501E9EADD8006CAD8D /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
 		9A36C1531E9EADE6006CAD8D /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
+		B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthTokenResponse.swift; path = ../AuthTokenResponse.swift; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
 		B54846821E687CEB008CE1B1 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
@@ -819,6 +845,11 @@
 		E87C32121E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultCell.swift; sourceTree = "<group>"; };
 		E882B7E31EA8009500EA3C13 /* BillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
 		E882B7E71EA8FF1700EA3C13 /* BillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModel.swift; sourceTree = "<group>"; };
+		E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewController.swift; sourceTree = "<group>"; };
+		E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsBudgetBillingViewController.swift; sourceTree = "<group>"; };
+		E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewModel.swift; sourceTree = "<group>"; };
+		E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewAddShadow.swift; sourceTree = "<group>"; };
+		E882B7FF1EAA974600EA3C13 /* BudgetBillingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingTableViewCell.swift; sourceTree = "<group>"; };
 		E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCOutageService.swift; sourceTree = "<group>"; };
 		E89D07A01E609DC900F87F87 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JVFloatLabeledText.framework; path = Carthage/Build/iOS/JVFloatLabeledText.framework; sourceTree = "<group>"; };
@@ -841,7 +872,7 @@
 		E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
 		E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameTableViewCell.swift; sourceTree = "<group>"; };
 		E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestionViewController.swift; sourceTree = "<group>"; };
-		E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableNavigationController.swift; sourceTree = "<group>"; };
+		E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableFormSheetViewController.swift; sourceTree = "<group>"; };
 		E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8D2520B1E6DB74600C90584 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
@@ -1027,7 +1058,7 @@
 			children = (
 				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
 				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
-				E8CA07F31E9D7E1300A1D431 /* DismissableNavigationController.swift */,
+				E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */,
 				8FD5AE821E54EA39003F640D /* Login */,
 				E882B7E21EA7FE6300EA3C13 /* Bill */,
 				E80D2E301E730180002626C9 /* Outage */,
@@ -1052,6 +1083,7 @@
 				E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */,
 				E87C32121E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift */,
 				E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */,
+				E882B7FF1EAA974600EA3C13 /* BudgetBillingTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1097,6 +1129,8 @@
 				E80043551E68CDCB005CF531 /* IndividualBorders.swift */,
 				E80D2E161E721668002626C9 /* ObfuscatedString.swift */,
 				E802AB3E1E85936700981D18 /* LineHeightLabel.swift */,
+				E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */,
+				826413781EAEAE5E007F4615 /* Fonts.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1471,6 +1505,7 @@
 				B54846821E687CEB008CE1B1 /* HttpMethod.swift */,
 				B574BAD81E78360D001E8A44 /* AccountService.swift */,
 				B574BAEA1E785A5F001E8A44 /* OutageService.swift */,
+				B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1564,6 +1599,8 @@
 			isa = PBXGroup;
 			children = (
 				E882B7E31EA8009500EA3C13 /* BillViewController.swift */,
+				E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */,
+				E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -1608,6 +1645,7 @@
 				E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */,
 				E87C32041E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift */,
 				E882B7E71EA8FF1700EA3C13 /* BillViewModel.swift */,
+				E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1776,7 +1814,7 @@
 						ProvisioningStyle = Manual;
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
@@ -2151,6 +2189,7 @@
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				E80D2E171E721668002626C9 /* ObfuscatedString.swift in Sources */,
+				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
 				E8B674D71E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountScroller.swift in Sources */,
@@ -2160,8 +2199,9 @@
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
-				E8CA07F41E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */,
+				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
+				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E81EA8FF1700EA3C13 /* BillViewModel.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
@@ -2175,6 +2215,7 @@
 				E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
+				E882B8001EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E801285B1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
@@ -2198,6 +2239,7 @@
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				E80043511E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				B574BAD41E736596001E8A44 /* Macros.swift in Sources */,
+				E882B7ED1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				E87C32131E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift in Sources */,
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
@@ -2209,9 +2251,12 @@
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				E8542FFB1E7AE1740054AC53 /* SegmentedControl.swift in Sources */,
+				E882B7F61EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */,
+				B535FD0B1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
+				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846871E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2238,6 +2283,7 @@
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E80D2E191E721668002626C9 /* ObfuscatedString.swift in Sources */,
+				8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */,
 				E8B674D91E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountScroller.swift in Sources */,
@@ -2247,8 +2293,9 @@
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
-				E8CA07F61E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */,
+				E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
+				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7EA1EA8FF1700EA3C13 /* BillViewModel.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
@@ -2262,6 +2309,7 @@
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
+				E882B8021EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E801285D1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
@@ -2285,6 +2333,7 @@
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				E80043531E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				B574BAD61E736596001E8A44 /* Macros.swift in Sources */,
+				E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				E87C32151E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift in Sources */,
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
@@ -2296,9 +2345,12 @@
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				E8542FFD1E7AE1740054AC53 /* SegmentedControl.swift in Sources */,
+				E882B7F81EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */,
+				B535FD0D1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
+				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2325,6 +2377,7 @@
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				E80D2E181E721668002626C9 /* ObfuscatedString.swift in Sources */,
+				8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */,
 				E8B674D81E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountScroller.swift in Sources */,
@@ -2334,8 +2387,9 @@
 				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
-				E8CA07F51E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */,
+				E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
+				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E91EA8FF1700EA3C13 /* BillViewModel.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
@@ -2349,6 +2403,7 @@
 				E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
+				E882B8011EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E801285C1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
@@ -2372,6 +2427,7 @@
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				E80043521E675AC4005CF531 /* SecondaryButton.swift in Sources */,
 				B574BAD51E736596001E8A44 /* Macros.swift in Sources */,
+				E882B7EE1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				E87C32141E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift in Sources */,
 				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
@@ -2383,9 +2439,12 @@
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				E8542FFC1E7AE1740054AC53 /* SegmentedControl.swift in Sources */,
+				E882B7F71EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */,
+				B535FD0C1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
+				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2398,6 +2457,7 @@
 				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
+				E882B7F91EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */,
 				E801285E1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -2412,13 +2472,15 @@
 				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
+				B535FD0E1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */,
-				E8CA07F71E9D7E1300A1D431 /* DismissableNavigationController.swift in Sources */,
+				E8CA07F71E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
 				E88ECFF71E8ED6DB00A570D0 /* OMCOutageService.swift in Sources */,
 				E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */,
+				E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				E8B674CB1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,

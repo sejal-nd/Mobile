@@ -20,6 +20,7 @@ private enum ProfileStatusNameValue : String {
     case LockedPassword = "isLockedPassword"
     case Active = "active"
     case Primary = "primary"
+    case TempPassword = "tempPassword"
 }
 
 class AuthTokenParser : NSObject {
@@ -31,7 +32,7 @@ class AuthTokenParser : NSObject {
     ///   - response: the url response.
     ///   - error: an error if once was received.
     /// - Returns: A ServiceResult with either the token on success, or a ServiceError for failure.
-    class func parseAuthTokenResponse(data: Data?, response: URLResponse?, error: Error?) -> ServiceResult<String> {
+    class func parseAuthTokenResponse(data: Data?, response: URLResponse?, error: Error?) -> ServiceResult<AuthTokenResponse> {
         if let responseData = data {
             
             dLog(message: String(data: responseData, encoding: String.Encoding.utf8) ?? "No Response Data")
@@ -63,12 +64,13 @@ class AuthTokenParser : NSObject {
     ///
     /// - Parameter parsedData: The dictionary that was parsed from the response.
     /// - Returns: A successful ServiceResult containing the assertion/token
-    class private func parseSuccess(parsedData: [String:Any]) -> ServiceResult<String> {
+    class private func parseSuccess(parsedData: [String:Any]) -> ServiceResult<AuthTokenResponse> {
         let data: NSDictionary = parsedData["data"] as! NSDictionary
         let assertion: String = data["assertion"] as! String
-    
+        var profileStatus: ProfileStatus = ProfileStatus()
+        
         if let statusData = data["profileStatus"] as? [String:Any] {
-            let profileStatus = parseProfileStatus(profileStatus: statusData)
+            profileStatus = parseProfileStatus(profileStatus: statusData)
             
             if(profileStatus.passwordLocked) {
                 return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
@@ -80,7 +82,7 @@ class AuthTokenParser : NSObject {
             }
         }
         
-        return ServiceResult.Success(assertion)
+        return ServiceResult.Success(AuthTokenResponse(token: assertion, profileStatus: profileStatus))
     }
     
     
@@ -93,6 +95,7 @@ class AuthTokenParser : NSObject {
         var lockedPassword = false;
         var active  = false;
         var primary  = false;
+        var tempPassword = false;
         
         if let status = profileStatus[ProfileStatusKey.Status.rawValue] as? Array<NSDictionary> {
             for item in status {
@@ -104,6 +107,8 @@ class AuthTokenParser : NSObject {
                         active = item[ProfileStatusKey.Value.rawValue] as! Bool
                     case ProfileStatusNameValue.Primary.rawValue:
                         primary = item[ProfileStatusKey.Value.rawValue] as! Bool
+                    case ProfileStatusNameValue.TempPassword.rawValue:
+                        tempPassword = item[ProfileStatusKey.Value.rawValue] as! Bool
                     default:
                         break
                     }
@@ -111,14 +116,14 @@ class AuthTokenParser : NSObject {
             }
         }
         
-        return ProfileStatus(active:active, primary:primary, passwordLocked:lockedPassword)
+        return ProfileStatus(active:active, primary:primary, passwordLocked:lockedPassword, tempPassword: tempPassword)
     }
     
     /// Retreives the error and wrap it in a ServiceResult
     ///
     /// - Parameter parsedData: The dictionary that was parsed from the response.
     /// - Returns: A failure ServiceResult containing the error information.
-    class private func parseError(parsedData: [String:Any]) -> ServiceResult<String> {
+    class private func parseError(parsedData: [String:Any]) -> ServiceResult<AuthTokenResponse> {
         let meta: NSDictionary = parsedData["meta"] as! NSDictionary
         let code = meta[OMCResponseKey.Code.rawValue] as! String
         let description = meta[OMCResponseKey.Description.rawValue] as! String

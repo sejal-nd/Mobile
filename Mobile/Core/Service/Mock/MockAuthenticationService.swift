@@ -14,10 +14,10 @@ struct MockAuthenticationService : AuthenticationService {
     let validUsername = "valid@test.com"
     let validCurrentPassword = "Password1"
     
-    func login(_ username: String, password: String, completion: @escaping (ServiceResult<String>) -> Void) {
+    func login(_ username: String, password: String, completion: @escaping (ServiceResult<ProfileStatus>) -> Void) {
         
         if(username == validUsername) {
-            completion(ServiceResult.Success(""))
+            completion(ServiceResult.Success(ProfileStatus()))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnPwdInvalid.rawValue, serviceMessage: "Invalid credentials")))
         }
@@ -69,7 +69,7 @@ struct MockAuthenticationService : AuthenticationService {
         }
     }
     
-    func recoverUsername(phone: String, identifier: String, questionId: Int, questionResponse: String, completion: @escaping (ServiceResult<String>) -> Void) {
+    func recoverUsername(phone: String, identifier: String, questionId: Int, questionResponse: String, cipher: String, completion: @escaping (ServiceResult<String>) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
             if questionResponse.lowercased() == "exelon" {
                 completion(ServiceResult.Success("username@email.com"))
@@ -93,9 +93,9 @@ struct MockAuthenticationService : AuthenticationService {
                 var accountResults = [AccountLookupResult]()
                 accountResults.append(AccountLookupResult.from(
                     NSDictionary(dictionary: [
-                        "accountNumber": "1234567890",
-                        "streetNumber": "1268",
-                        "unitNumber": "12B"
+                        "AccountNumber": "1234567890",
+                        "StreetNumber": "1268",
+                        "ApartmentUnitNumber": "12B"
                     ])
                 )!)
                 completion(ServiceResult.Success(accountResults))
@@ -103,18 +103,18 @@ struct MockAuthenticationService : AuthenticationService {
                 var accountResults = [AccountLookupResult]()
                 let accounts = [
                     NSDictionary(dictionary: [
-                        "accountNumber": "1234567890",
-                        "streetNumber": "1268",
-                        "unitNumber": "12B"
+                        "AccountNumber": "1234567890",
+                        "StreetNumber": "1268",
+                        "ApartmentUnitNumber": "12B"
                     ]),
                     NSDictionary(dictionary: [
-                        "accountNumber": "9876543219",
-                        "streetNumber": "6789",
-                        "unitNumber": "99A"
+                        "AccountNumber": "9876543219",
+                        "StreetNumber": "6789",
+                        "ApartmentUnitNumber": "99A"
                     ]),
                     NSDictionary(dictionary: [
-                        "accountNumber": "1111111111",
-                        "streetNumber": "999",
+                        "AccountNumber": "1111111111",
+                        "StreetNumber": "999",
                     ])
                 ]
                 for account in accounts {

@@ -19,6 +19,8 @@ class ChangePasswordViewController: UIViewController {
     
     weak var delegate: ChangePasswordViewControllerDelegate?
     
+    var sentFromLogin = false
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var currentPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var newPasswordTextField: FloatLabelTextField!
@@ -53,7 +55,8 @@ class ChangePasswordViewController: UIViewController {
         
         cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDonePress))
-        navigationItem.leftBarButtonItem = cancelButton!
+        navigationItem.leftBarButtonItem = sentFromLogin ? nil : cancelButton!
+        navigationItem.hidesBackButton = sentFromLogin
         navigationItem.rightBarButtonItem = doneButton!
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
@@ -65,7 +68,7 @@ class ChangePasswordViewController: UIViewController {
         passwordRequirementsViewHeightConstraint.constant = 0
         confirmPasswordHeightConstraint.constant = 0
         
-        currentPasswordTextField.textField.placeholder = NSLocalizedString("Current Password", comment: "")
+        currentPasswordTextField.textField.placeholder = sentFromLogin ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
         currentPasswordTextField.textField.isSecureTextEntry = true
         currentPasswordTextField.textField.returnKeyType = .next
         currentPasswordTextField.addSubview(eyeballButton)
@@ -134,6 +137,24 @@ class ChangePasswordViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if sentFromLogin {
+            navigationController?.view.backgroundColor = .primaryColor
+            navigationController?.navigationBar.barTintColor = .primaryColor
+            navigationController?.navigationBar.isTranslucent = false
+            
+            let titleDict: [String: Any] = [
+                NSForegroundColorAttributeName: UIColor.white,
+                NSFontAttributeName: OpenSans.bold.ofSize(18)
+            ]
+            navigationController?.navigationBar.titleTextAttributes = titleDict
+            
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
+    
     func onCancelPress() {
         _ = navigationController?.popViewController(animated: true)
     }
@@ -148,8 +169,13 @@ class ChangePasswordViewController: UIViewController {
         
         viewModel.changePassword(onSuccess: {
             hud.hide(animated: true)
-            self.delegate?.changePasswordViewControllerDidChangePassword(self)
-            _ = self.navigationController?.popViewController(animated: true)
+            if self.sentFromLogin {
+                let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                self.present(viewController!, animated: true, completion: nil)
+            } else {
+                self.delegate?.changePasswordViewControllerDidChangePassword(self)
+                _ = self.navigationController?.popViewController(animated: true)
+            }
         }, onPasswordNoMatch: { _ in
             hud.hide(animated: true)
             self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))
@@ -164,6 +190,10 @@ class ChangePasswordViewController: UIViewController {
     @IBAction func onEyeballPress(_ sender: UIButton) {
         if currentPasswordTextField.textField.isSecureTextEntry {
             currentPasswordTextField.textField.isSecureTextEntry = false
+            // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
+            currentPasswordTextField.textField.font = nil
+            currentPasswordTextField.textField.font = UIFont.systemFont(ofSize: 18)
+            // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_active"), for: .normal)
         } else {
             currentPasswordTextField.textField.isSecureTextEntry = true

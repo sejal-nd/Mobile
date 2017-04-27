@@ -80,8 +80,9 @@ class ForgotUsernameResultViewController: UIViewController {
     
     @IBAction func onBackToSignInPress() {
         for vc in (navigationController?.viewControllers)! {
-            if vc.isKind(of: LoginViewController.self) {
-                self.navigationController?.popToViewController(vc, animated: true)
+            if let dest = vc as? LoginViewController {
+                self.navigationController?.popToViewController(dest, animated: true)
+                break
             }
         }
     }
@@ -89,8 +90,7 @@ class ForgotUsernameResultViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination.isKind(of: SecurityQuestionViewController.self) {
-            let vc = segue.destination as! SecurityQuestionViewController
+        if let vc = segue.destination as? SecurityQuestionViewController {
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
             vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
             vc.viewModel.accountNumber.value = viewModel.accountNumber.value

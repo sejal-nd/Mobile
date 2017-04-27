@@ -12,10 +12,12 @@ struct ProfileStatus {
     let active: Bool
     let primary: Bool
     let passwordLocked: Bool
+    let tempPassword: Bool
     
-    init(active: Bool, primary: Bool, passwordLocked: Bool) {
+    init(active: Bool = false, primary: Bool = false, passwordLocked: Bool = false, tempPassword: Bool = false) {
         self.active = active;
         self.primary = primary
         self.passwordLocked = passwordLocked
+        self.tempPassword = tempPassword
     }
 }

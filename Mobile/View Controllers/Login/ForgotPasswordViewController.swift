@@ -20,7 +20,7 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
     
-    let viewModel = ForgotPasswordViewModel(authService: MockAuthenticationService())
+    let viewModel = ForgotPasswordViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
 
@@ -63,7 +63,7 @@ class ForgotPasswordViewController: UIViewController {
         
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
+            NSFontAttributeName: OpenSans.bold.ofSize(18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
                 
@@ -90,6 +90,7 @@ class ForgotPasswordViewController: UIViewController {
             hud.hide(animated: true)
             self.usernameTextField.setError(NSLocalizedString(error, comment: ""))
         }, onError: { errorMessage in
+            hud.hide(animated: true)
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)

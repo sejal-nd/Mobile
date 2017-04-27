@@ -14,11 +14,15 @@ class TermsPoliciesViewController: UIViewController {
     
     let viewModel = TermsPoliciesViewModel()
     var viewAppeared = false
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        title = NSLocalizedString("Terms and Policies", comment: "")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = NSLocalizedString("Terms and Policies", comment: "")
 
         if UIDevice.current.userInterfaceIdiom == .phone {
             extendedLayoutIncludesOpaqueBars = true
