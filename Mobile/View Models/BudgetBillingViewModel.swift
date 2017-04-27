@@ -12,20 +12,16 @@ class BudgetBillingViewModel {
     
     let disposeBag = DisposeBag()
     
-    var account: Account?
-    
-    let initialEnrollment = true
     let currentEnrollment: Variable<Bool>!
-    
     let enrolling = Variable(false)
     let unenrolling = Variable(false)
-    var selectedUnenrollmentReason = Variable(-1)
+    let selectedUnenrollmentReason = Variable(-1)
     
-    required init() {
+    required init(initialEnrollment: Bool) {
         currentEnrollment = Variable(initialEnrollment)
         currentEnrollment.asObservable().subscribe(onNext: { enrolled in
-            self.enrolling.value = !self.initialEnrollment && enrolled
-            self.unenrolling.value = self.initialEnrollment && !enrolled
+            self.enrolling.value = !initialEnrollment && enrolled
+            self.unenrolling.value = initialEnrollment && !enrolled
         }).addDisposableTo(disposeBag)
     }
     
