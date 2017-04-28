@@ -19,7 +19,7 @@ class PaperlessEBillAccountView: UIView {
     
     let bag = DisposeBag()
     
-    var isOn = Driver<Bool>.empty()
+    var isOn: ControlProperty<Bool>?
     
     static func create(withAccountDetail accountDetail: AccountDetail) -> PaperlessEBillAccountView {
         let view = Bundle.main.loadNibNamed("PaperlessEBillAccountView", owner: nil, options: nil)![0] as! PaperlessEBillAccountView
@@ -38,7 +38,7 @@ class PaperlessEBillAccountView: UIView {
         switch accountDetail.eBillEnrollStatus {
         case .canEnroll:
             enrollSwitch.isOn = false
-            isOn = enrollSwitch.rx.isOn.asDriver()
+            isOn = enrollSwitch.rx.isOn
             imageView.image = #imageLiteral(resourceName: "ic_residential")
             accountNumberLabel.textColor = .darkJungleGreen
             addressLabel.textColor = .trolleyGrey
@@ -46,7 +46,7 @@ class PaperlessEBillAccountView: UIView {
             enrollStatusLabel = nil
         case .canUnenroll:
             enrollSwitch.isOn = true
-            isOn = enrollSwitch.rx.isOn.asDriver()
+            isOn = enrollSwitch.rx.isOn
             imageView.image = #imageLiteral(resourceName: "ic_residential")
             accountNumberLabel.textColor = .darkJungleGreen
             addressLabel.textColor = .trolleyGrey
@@ -67,6 +67,11 @@ class PaperlessEBillAccountView: UIView {
             enrollSwitch.removeFromSuperview()
             enrollSwitch = nil
         }
+    }
+    
+    func toggleSwitch(on: Bool) {
+        enrollSwitch.setOn(on, animated: true)
+        enrollSwitch.sendActions(for: .valueChanged)
     }
 
 }

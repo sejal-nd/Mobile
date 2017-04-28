@@ -69,18 +69,6 @@ class PaperlessEBillViewController: UIViewController {
         
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
         
-        viewModel.accountsToEnroll.asObservable()
-            .subscribe(onNext: {
-                print("Updated accounts to enroll", $0)
-            })
-            .addDisposableTo(bag)
-        
-        viewModel.accountsToUnenroll.asObservable()
-            .subscribe(onNext: {
-                print("Updated accounts to unenroll", $0)
-            })
-            .addDisposableTo(bag)
-        
         self.detailsLoadingActivityIndicator.color = .primaryColor
         viewModel.accountDetails
             .asDriver(onErrorJustReturn: [])
@@ -93,8 +81,7 @@ class PaperlessEBillViewController: UIViewController {
             })
             .addDisposableTo(bag)
         
-        
-        viewModel.enrollAllAccounts.asDriver()
+        viewModel.enrollAllAccounts.asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] in
                 self?.enrollAllAccountsSwitch.setOn($0, animated: true)
             })
@@ -167,9 +154,15 @@ class PaperlessEBillViewController: UIViewController {
     func add(accountDetail: AccountDetail, animated: Bool) {
         let accountView = PaperlessEBillAccountView.create(withAccountDetail: accountDetail)
         
-        accountView.isOn.asDriver()
+        accountView.isOn?.asDriver()
             .drive(onNext: { [weak self] isOn in
                 self?.viewModel.switched(accountDetail: accountDetail, on: isOn)
+            })
+            .addDisposableTo(accountView.bag)
+        
+        enrollAllAccountsSwitch.rx.isOn.asDriver().skip(1)
+            .drive(onNext: {
+                accountView.toggleSwitch(on: $0)
             })
             .addDisposableTo(accountView.bag)
         

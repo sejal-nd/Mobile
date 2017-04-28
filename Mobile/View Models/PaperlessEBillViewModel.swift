@@ -17,59 +17,12 @@ class PaperlessEBillViewModel {
     
     let accountsToEnroll = Variable(Set<String>())
     let accountsToUnenroll = Variable(Set<String>())
-    let accountsIneligible = Variable(Set<String>())
-    let accountsFinaled = Variable(Set<String>())
     
     let enrollStatesChanged = Variable<Bool>(false)
     
-    let enrollAllAccounts = Variable<Bool>(true)
+    var enrollAllAccounts = Observable<Bool>.empty()
     
     let bag = DisposeBag()
-    
-    init(accountService: AccountService, initialAccountDetail initialAccountDetailValue: AccountDetail, accounts accountsValue: [Account]) {
-        self.accountService = accountService
-        self.initialAccountDetail = Variable(initialAccountDetailValue)
-        self.accounts = Variable(accountsValue)
-        
-        Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
-            .drive(enrollStatesChanged)
-            .addDisposableTo(bag)
-        
-        let accountsUpdated = accountDetails.asObservable().share()
-        
-        accountsUpdated
-            .map { accounts -> [String] in
-                accounts
-                    .filter { $0.eBillEnrollStatus == .ineligible }
-                    .map { $0.accountNumber }
-            }
-            .map(Set.init)
-            .bindTo(accountsIneligible)
-            .addDisposableTo(bag)
-        
-        accountsUpdated
-            .map { accounts -> [String] in
-                accounts
-                    .filter { $0.eBillEnrollStatus == .finaled  }
-                    .map { $0.accountNumber }
-            }
-            .map(Set.init)
-            .bindTo(accountsFinaled)
-            .addDisposableTo(bag)
-        
-        
-        Observable.combineLatest(accounts.asObservable(),
-                                 accountsToEnroll.asObservable(),
-                                 accountsToUnenroll.asObservable(),
-                                 accountsIneligible.asObservable(),
-                                 accountsFinaled.asObservable())
-        { allAccounts, accountsToEnroll, accountsToUnenroll, accountsIneligible, accountsFinaled -> Bool in
-            allAccounts.count - accountsToUnenroll.count == [accountsToEnroll, accountsIneligible, accountsFinaled].reduce(0) { $0 + $1.count }
-        }
-            .debug("enrollAllAccounts")
-            .bindTo(enrollAllAccounts)
-            .addDisposableTo(bag)
-    }
     
     var accountDetails: Observable<[AccountDetail]> {
         let accountResults = accounts.value
@@ -82,7 +35,23 @@ class PaperlessEBillViewModel {
         return Observable.combineLatest(accountResults) { $0 }
     }
     
-    
+    init(accountService: AccountService, initialAccountDetail initialAccountDetailValue: AccountDetail, accounts accountsValue: [Account]) {
+        self.accountService = accountService
+        self.initialAccountDetail = Variable(initialAccountDetailValue)
+        self.accounts = Variable(accountsValue)
+        
+        Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
+            .drive(enrollStatesChanged)
+            .addDisposableTo(bag)
+        
+        enrollAllAccounts = Observable.combineLatest(accountDetails.asObservable(),
+                                 accountsToEnroll.asObservable(),
+                                 accountsToUnenroll.asObservable())
+        { allAccountDetails, toEnroll, toUnenroll -> Bool in
+            let enrollableAccounts = allAccountDetails.filter { $0.eBillEnrollStatus == .canEnroll }
+            return toEnroll.count == enrollableAccounts.count && toUnenroll.isEmpty
+        }
+    }
     
     var footerText: String? {
         switch Environment.sharedInstance.opco {
@@ -109,5 +78,9 @@ class PaperlessEBillViewModel {
                 accountsToEnroll.value.remove(accountDetail.accountNumber)
             }
         }
+    }
+    
+    func switchAllAccounts(on: Bool) {
+        
     }
 }
