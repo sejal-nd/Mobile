@@ -36,7 +36,7 @@ struct MockAuthenticationService : AuthenticationService {
         }
     }
     
-    func recoverMaskedUsername(phone: String, identifier: String, completion: @escaping (_ result: ServiceResult<[ForgotUsernameMasked]>) -> Void) {
+    func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?, completion: @escaping (_ result: ServiceResult<[ForgotUsernameMasked]>) -> Void) {
         var maskedUsernames = [ForgotUsernameMasked]()
         let usernames = [
             NSDictionary(dictionary: [
@@ -69,7 +69,7 @@ struct MockAuthenticationService : AuthenticationService {
         }
     }
     
-    func recoverUsername(phone: String, identifier: String, questionId: Int, questionResponse: String, cipher: String, completion: @escaping (ServiceResult<String>) -> Void) {
+    func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String, completion: @escaping (ServiceResult<String>) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
             if questionResponse.lowercased() == "exelon" {
                 completion(ServiceResult.Success("username@email.com"))
