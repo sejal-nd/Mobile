@@ -33,29 +33,37 @@ class PaperlessEBillAccountView: UIView {
         heightConstraint.isActive = true
         
         accountNumberLabel.text = "\(accountDetail.accountNumber)"
-        addressLabel.text = accountDetail.address ?? ""
+        addressLabel.text = accountDetail.address
         
         switch accountDetail.eBillEnrollStatus {
         case .canEnroll:
             enrollSwitch.isOn = false
             isOn = enrollSwitch.rx.isOn.asDriver()
             imageView.image = #imageLiteral(resourceName: "ic_residential")
+            accountNumberLabel.textColor = .darkJungleGreen
+            addressLabel.textColor = .trolleyGrey
             enrollStatusLabel.removeFromSuperview()
             enrollStatusLabel = nil
         case .canUnenroll:
             enrollSwitch.isOn = true
             isOn = enrollSwitch.rx.isOn.asDriver()
             imageView.image = #imageLiteral(resourceName: "ic_residential")
+            accountNumberLabel.textColor = .darkJungleGreen
+            addressLabel.textColor = .trolleyGrey
             enrollStatusLabel.removeFromSuperview()
             enrollStatusLabel = nil
         case .finaled:
             enrollStatusLabel.text = "Finaled"
             imageView.image = #imageLiteral(resourceName: "ic_residential_disabled")
+            accountNumberLabel.textColor = .oldLavender
+            addressLabel.textColor = .oldLavender
             enrollSwitch.removeFromSuperview()
             enrollSwitch = nil
         case .ineligible:
             enrollStatusLabel.text = "Ineligible"
             imageView.image = #imageLiteral(resourceName: "ic_residential_disabled")
+            accountNumberLabel.textColor = .oldLavender
+            addressLabel.textColor = .oldLavender
             enrollSwitch.removeFromSuperview()
             enrollSwitch = nil
         }

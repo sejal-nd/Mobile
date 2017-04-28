@@ -299,38 +299,42 @@ class ReportOutageViewController: UIViewController {
 
 extension ReportOutageViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        
-        let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
-        
-        let decimalString = components.joined(separator: "") as NSString
-        let length = decimalString.length
-        
-        if length > 10 {
+        if textField == phoneNumberTextField.textField {
+            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
+            
+            let decimalString = components.joined(separator: "") as NSString
+            let length = decimalString.length
+            
+            if length > 10 {
+                return false
+            }
+            
+            var index = 0 as Int
+            let formattedString = NSMutableString()
+            
+            if length - index > 3 {
+                let areaCode = decimalString.substring(with: NSMakeRange(index, 3))
+                formattedString.appendFormat("(%@) ", areaCode)
+                index += 3
+            }
+            if length - index > 3 {
+                let prefix = decimalString.substring(with: NSMakeRange(index, 3))
+                formattedString.appendFormat("%@-", prefix)
+                index += 3
+            }
+            
+            let remainder = decimalString.substring(from: index)
+            formattedString.append(remainder)
+            textField.text = formattedString as String
+            
+            textField.sendActions(for: .valueChanged) // Send rx events
+            
             return false
+        } else {
+            return string == string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
         }
         
-        var index = 0 as Int
-        let formattedString = NSMutableString()
-        
-        if length - index > 3 {
-            let areaCode = decimalString.substring(with: NSMakeRange(index, 3))
-            formattedString.appendFormat("(%@) ", areaCode)
-            index += 3
-        }
-        if length - index > 3 {
-            let prefix = decimalString.substring(with: NSMakeRange(index, 3))
-            formattedString.appendFormat("%@-", prefix)
-            index += 3
-        }
-        
-        let remainder = decimalString.substring(from: index)
-        formattedString.append(remainder)
-        textField.text = formattedString as String
-        
-        textField.sendActions(for: .valueChanged) // Send rx events
-        
-        return false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

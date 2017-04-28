@@ -139,6 +139,7 @@ class BillViewController: UIViewController {
             vc.delegate = self
             vc.initialEnrollment = viewModel.currentAccountDetail!.isBudgetBillEnrollment
         } else if let vc = segue.destination as? PaperlessEBillViewController {
+            vc.delegate = self
             vc.accounts = accountScroller.accounts
             vc.initialAccountDetail = viewModel.currentAccountDetail!
         }
@@ -193,6 +194,10 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
             message = NSLocalizedString("Paperless eBill changes saved.", comment: "")
         }
         showDelayedToast(withMessage: message)
+    }
+    
+    func paperlessEBillViewControllerDidChangeStatus(_ paperlessEBillViewController: PaperlessEBillViewController) {
+        showDelayedToast(withMessage: NSLocalizedString("Paperless eBill changes saved.", comment: ""))
     }
 }
 

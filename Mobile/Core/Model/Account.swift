@@ -38,8 +38,9 @@ struct Account: Mappable, Equatable, Hashable {
 
 struct AccountDetail: Mappable {
     let accountNumber: String
-    let emailAddress: String?
     let address: String?
+    
+    let customerInfo: CustomerInfo
     
     let isPasswordProtected: Bool
     
@@ -66,8 +67,8 @@ struct AccountDetail: Mappable {
     
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
-        emailAddress = map.optionalFrom("emailAddress")
         address = map.optionalFrom("address")
+        try customerInfo = map.from("CustomerInfo")
         
         do {
             try isPasswordProtected = map.from("isPasswordProtected")
@@ -98,6 +99,15 @@ struct AccountDetail: Mappable {
         }
         
         status = map.optionalFrom("status")
+    }
+}
+
+struct CustomerInfo: Mappable {
+    
+    let emailAddress: String?
+    
+    init(map: Mapper) throws {
+        emailAddress = map.optionalFrom("emailAddress")
     }
 }
 

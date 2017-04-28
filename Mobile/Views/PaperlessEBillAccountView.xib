@@ -14,6 +14,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="91"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cz4-vC-v0W">
+                    <rect key="frame" x="70" y="90" width="305" height="1"/>
+                    <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="2ru-vL-YdJ"/>
+                    </constraints>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yl3-L6-zHx">
                     <rect key="frame" x="16" y="24.5" width="343" height="43"/>
                     <subviews>
@@ -54,6 +61,9 @@
                 <constraint firstItem="yl3-L6-zHx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="CE6-ua-MiZ"/>
                 <constraint firstItem="yl3-L6-zHx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="FWN-6W-Wmv"/>
                 <constraint firstAttribute="trailing" secondItem="yl3-L6-zHx" secondAttribute="trailing" constant="16" id="KS2-ob-LN9"/>
+                <constraint firstItem="cz4-vC-v0W" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="70" id="Uzn-LZ-GDk"/>
+                <constraint firstAttribute="bottom" secondItem="cz4-vC-v0W" secondAttribute="bottom" id="kDN-p6-62Y"/>
+                <constraint firstAttribute="trailing" secondItem="cz4-vC-v0W" secondAttribute="trailing" id="nUV-i4-9HK"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

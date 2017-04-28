@@ -13,6 +13,7 @@ import RxCocoa
 protocol PaperlessEBillViewControllerDelegate: class {
     func paperlessEBillViewControllerDidEnroll(_ paperlessEBillViewController: PaperlessEBillViewController)
     func paperlessEBillViewControllerDidUnenroll(_ paperlessEBillViewController: PaperlessEBillViewController)
+    func paperlessEBillViewControllerDidChangeStatus(_ paperlessEBillViewController: PaperlessEBillViewController)
 }
 
 class PaperlessEBillViewController: UIViewController {
@@ -30,6 +31,7 @@ class PaperlessEBillViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsView: UIView!
     @IBOutlet weak var enrollAllAccountsSwitch: UISwitch!
+    @IBOutlet weak var allAccountsSeparatorView: UIView!
     @IBOutlet weak var accountsStackView: UIStackView!
     @IBOutlet weak var detailsLoadingActivityView: UIView!
     @IBOutlet weak var detailsLoadingActivityIndicator: UIActivityIndicatorView!
@@ -56,9 +58,16 @@ class PaperlessEBillViewController: UIViewController {
         topBackgroundView.layer.shadowRadius = 1
         topBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 2)
         
+        enrollAllAccountsView.layer.shadowColor = UIColor.black.cgColor
+        enrollAllAccountsView.layer.shadowOpacity = 0.2
+        enrollAllAccountsView.layer.shadowRadius = 2
+        enrollAllAccountsView.layer.shadowOffset = .zero
+        enrollAllAccountsView.layer.cornerRadius = 2
+        
+        enrollAllAccountsView.isHidden = viewModel.accounts.value.count <= 1
         enrollAllAccountsView.isHidden = viewModel.accounts.value.count <= 1
         
-        emailLabel.text = viewModel.initialAccountDetail.value.emailAddress
+        emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
         
         viewModel.accountsToEnroll.asObservable()
             .subscribe(onNext: {
@@ -70,11 +79,6 @@ class PaperlessEBillViewController: UIViewController {
             .subscribe(onNext: {
                 print("Updated accounts to unenroll", $0)
             })
-            .addDisposableTo(bag)
-        
-        enrollAllAccountsSwitch.rx.isOn.asDriver()
-            .map(!)
-            .drive(enrollAllAccountsSwitch.rx.isUserInteractionEnabled)
             .addDisposableTo(bag)
         
         self.detailsLoadingActivityIndicator.color = .primaryColor
@@ -93,7 +97,6 @@ class PaperlessEBillViewController: UIViewController {
         viewModel.enrollAllAccounts.asDriver()
             .drive(onNext: { [weak self] in
                 self?.enrollAllAccountsSwitch.setOn($0, animated: true)
-                self?.enrollAllAccountsSwitch.sendActions(for: .valueChanged)
             })
             .addDisposableTo(bag)
         
@@ -110,7 +113,7 @@ class PaperlessEBillViewController: UIViewController {
         whatIsButtonView.layer.shadowColor = UIColor.black.cgColor
         whatIsButtonView.layer.shadowOpacity = 0.2
         whatIsButtonView.layer.shadowRadius = 3
-        whatIsButtonView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        whatIsButtonView.layer.shadowOffset = .zero
         whatIsButtonView.layer.cornerRadius = 2
         
         let whatIsButtonSelectedColor = whatIsButton.rx.controlEvent(.touchDown).asDriver()
@@ -189,12 +192,17 @@ class PaperlessEBillViewController: UIViewController {
     }
 
     @IBAction func submitAction(_ sender: Any) {
-        if !viewModel.accountsToEnroll.value.isEmpty {
-            delegate?.paperlessEBillViewControllerDidEnroll(self)
+        if viewModel.accounts.value.count > 1 {
+            delegate?.paperlessEBillViewControllerDidChangeStatus(self)
+        } else {
+            if !viewModel.accountsToEnroll.value.isEmpty {
+                delegate?.paperlessEBillViewControllerDidEnroll(self)
+            }
+            if !viewModel.accountsToUnenroll.value.isEmpty {
+                delegate?.paperlessEBillViewControllerDidUnenroll(self)
+            }
         }
-        if !viewModel.accountsToUnenroll.value.isEmpty {
-            delegate?.paperlessEBillViewControllerDidUnenroll(self)
-        }
+        
         navigationController?.popViewController(animated: true)
     }
 }
