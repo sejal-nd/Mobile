@@ -56,7 +56,8 @@ class OutageViewController: UIViewController {
         scrollView.insertSubview(refreshControl, at: 0)
 
         accountScroller.delegate = self
-
+        accountScroller.parentViewController = self
+        
         onAnimationView.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
         onAnimationView.loopAnimation = true
         onAnimationView.contentMode = .scaleAspectFill
@@ -366,7 +367,7 @@ extension OutageViewController: AccountScrollerDelegate {
     
     func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account) {
         viewModel.currentAccount = account
-        
+        accountScroller.updateAdvancedPicker(account: account)
         getOutageStatus()
     }
     
