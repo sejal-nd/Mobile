@@ -10,12 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-enum EBillEnrollStatus {
-    case canEnroll, finaled, ineligible
-}
-
 class PaperlessEBillAccountView: UIView {
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -26,35 +21,44 @@ class PaperlessEBillAccountView: UIView {
     
     var isOn = Driver<Bool>.empty()
     
-    static func create(withAccount account: Account, enrollStatus: EBillEnrollStatus) -> PaperlessEBillAccountView {
+    static func create(withAccountDetail accountDetail: AccountDetail) -> PaperlessEBillAccountView {
         let view = Bundle.main.loadNibNamed("PaperlessEBillAccountView", owner: nil, options: nil)![0] as! PaperlessEBillAccountView
-        
-        let heightConstraint = view.heightAnchor.constraint(equalToConstant: 65)
+        view.bind(withAccountDetail: accountDetail)
+        return view
+    }
+    
+    func bind(withAccountDetail accountDetail: AccountDetail) {
+        let heightConstraint = heightAnchor.constraint(equalToConstant: 65)
         heightConstraint.priority = 999
         heightConstraint.isActive = true
         
-        switch enrollStatus {
+        accountNumberLabel.text = "\(accountDetail.accountNumber)"
+        addressLabel.text = accountDetail.address ?? ""
+        
+        switch accountDetail.eBillEnrollStatus {
         case .canEnroll:
-            view.isOn = view.enrollSwitch.rx.isOn.asDriver()
-            view.imageView.image = #imageLiteral(resourceName: "ic_residential")
-            view.enrollStatusLabel.removeFromSuperview()
-            view.enrollStatusLabel = nil
+            enrollSwitch.isOn = false
+            isOn = enrollSwitch.rx.isOn.asDriver()
+            imageView.image = #imageLiteral(resourceName: "ic_residential")
+            enrollStatusLabel.removeFromSuperview()
+            enrollStatusLabel = nil
+        case .canUnenroll:
+            enrollSwitch.isOn = true
+            isOn = enrollSwitch.rx.isOn.asDriver()
+            imageView.image = #imageLiteral(resourceName: "ic_residential")
+            enrollStatusLabel.removeFromSuperview()
+            enrollStatusLabel = nil
         case .finaled:
-            view.enrollStatusLabel.text = "Finaled"
-            view.imageView.image = #imageLiteral(resourceName: "ic_residential_disabled")
-            view.enrollSwitch.removeFromSuperview()
-            view.enrollSwitch = nil
+            enrollStatusLabel.text = "Finaled"
+            imageView.image = #imageLiteral(resourceName: "ic_residential_disabled")
+            enrollSwitch.removeFromSuperview()
+            enrollSwitch = nil
         case .ineligible:
-            view.enrollStatusLabel.text = "Ineligible"
-            view.imageView.image = #imageLiteral(resourceName: "ic_residential_disabled")
-            view.enrollSwitch.removeFromSuperview()
-            view.enrollSwitch = nil
+            enrollStatusLabel.text = "Ineligible"
+            imageView.image = #imageLiteral(resourceName: "ic_residential_disabled")
+            enrollSwitch.removeFromSuperview()
+            enrollSwitch = nil
         }
-        
-        view.accountNumberLabel.text = "\(account.accountNumber)"
-        view.addressLabel.text = account.address ?? ""
-        
-        return view
     }
 
 }

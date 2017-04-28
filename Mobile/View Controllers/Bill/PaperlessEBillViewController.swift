@@ -31,13 +31,20 @@ class PaperlessEBillViewController: UIViewController {
     @IBOutlet weak var enrollAllAccountsView: UIView!
     @IBOutlet weak var enrollAllAccountsSwitch: UISwitch!
     @IBOutlet weak var accountsStackView: UIStackView!
+    @IBOutlet weak var detailsLoadingActivityView: UIView!
+    @IBOutlet weak var detailsLoadingActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var detailsLabel: UILabel!
     
-    lazy var viewModel = PaperlessEBillViewModel()
+    var initialAccountDetail: AccountDetail!
+    var accounts: [Account]!
+    
+    lazy var viewModel: PaperlessEBillViewModel = {
+        PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(), initialAccountDetail: self.initialAccountDetail, accounts: self.accounts)
+    } ()
     
     weak var delegate: PaperlessEBillViewControllerDelegate?
-    var accounts:[Account]!
+    
     
     let bag = DisposeBag()
 
@@ -49,7 +56,9 @@ class PaperlessEBillViewController: UIViewController {
         topBackgroundView.layer.shadowRadius = 1
         topBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 2)
         
-        enrollAllAccountsView.isHidden = accounts.count <= 1
+        enrollAllAccountsView.isHidden = viewModel.accounts.value.count <= 1
+        
+        emailLabel.text = viewModel.initialAccountDetail.value.emailAddress
         
         viewModel.accountsToEnroll.asObservable()
             .subscribe(onNext: {
@@ -57,24 +66,42 @@ class PaperlessEBillViewController: UIViewController {
             })
             .addDisposableTo(bag)
         
-        viewModel.accounts.value = accounts
+        viewModel.accountsToUnenroll.asObservable()
+            .subscribe(onNext: {
+                print("Updated accounts to unenroll", $0)
+            })
+            .addDisposableTo(bag)
         
-        // Just some statuses thrown in for testing.
-        let testStatuses: [EBillEnrollStatus] = [.canEnroll, .canEnroll, .finaled, .ineligible]
+        enrollAllAccountsSwitch.rx.isOn.asDriver()
+            .map(!)
+            .drive(enrollAllAccountsSwitch.rx.isUserInteractionEnabled)
+            .addDisposableTo(bag)
         
-        for (index, account) in viewModel.accounts.value.enumerated() {
-            add(account: account, enrollStatus: testStatuses[index % testStatuses.count])
-        }
+        self.detailsLoadingActivityIndicator.color = .primaryColor
+        viewModel.accountDetails
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: { [weak self] accountDetails -> () in
+                self?.enrollAllAccountsSwitch.isEnabled = true
+                self?.detailsLoadingActivityView.isHidden = true
+                accountDetails.forEach {
+                    self?.add(accountDetail: $0, animated: true)
+                }
+            })
+            .addDisposableTo(bag)
+        
         
         viewModel.enrollAllAccounts.asDriver()
-            .drive(enrollAllAccountsSwitch.rx.isOn)
+            .drive(onNext: { [weak self] in
+                self?.enrollAllAccountsSwitch.setOn($0, animated: true)
+                self?.enrollAllAccountsSwitch.sendActions(for: .valueChanged)
+            })
             .addDisposableTo(bag)
         
         whatIsButtonSetup()
         
         detailsLabel.text = viewModel.footerText
         
-        Driver.combineLatest(viewModel.enrolling.asDriver(), viewModel.unenrolling.asDriver()) { $0 || $1 }
+        Driver.combineLatest(viewModel.accountsToEnroll.asDriver(), viewModel.accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
             .drive(submitButton.rx.isEnabled)
             .addDisposableTo(bag)
     }
@@ -114,6 +141,11 @@ class PaperlessEBillViewController: UIViewController {
         gradientBackgroundView.layer.addSublayer(gLayer)
     }
     
+    
+    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        gradientLayer.frame = gradientBackgroundView.frame
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -129,27 +161,22 @@ class PaperlessEBillViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = titleDict
     }
     
-    func add(account: Account, enrollStatus: EBillEnrollStatus) {
-        let accountView = PaperlessEBillAccountView.create(withAccount: account, enrollStatus: enrollStatus)
+    func add(accountDetail: AccountDetail, animated: Bool) {
+        let accountView = PaperlessEBillAccountView.create(withAccountDetail: accountDetail)
         
         accountView.isOn.asDriver()
             .drive(onNext: { [weak self] isOn in
-                guard let viewModel = self?.viewModel else { return }
-                if isOn {
-                    viewModel.accountsToEnroll.value.insert(account)
-                } else {
-                    viewModel.accountsToEnroll.value.remove(account)
-                }
+                self?.viewModel.switched(accountDetail: accountDetail, on: isOn)
             })
             .addDisposableTo(accountView.bag)
         
-        accountsStackView.addArrangedSubview(accountView)
+        self.accountsStackView.addArrangedSubview(accountView)
         
     }
     
     @IBAction func cancelAction() {
-        if viewModel.enrolling.value || viewModel.unenrolling.value {
-            let message = viewModel.enrolling.value ? NSLocalizedString("Are you sure you want to exit this screen without completing enrollment?", comment: "") : NSLocalizedString("Are you sure you want to exit this screen without completing unenrollment?", comment: "")
+        if viewModel.enrollStatesChanged.value {
+            let message = !viewModel.accountsToEnroll.value.isEmpty ? NSLocalizedString("Are you sure you want to exit this screen without completing enrollment?", comment: "") : NSLocalizedString("Are you sure you want to exit this screen without completing unenrollment?", comment: "")
             let alertVc = UIAlertController(title: NSLocalizedString("Exit Paperless eBill", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default, handler: { _ in
@@ -162,9 +189,10 @@ class PaperlessEBillViewController: UIViewController {
     }
 
     @IBAction func submitAction(_ sender: Any) {
-        if viewModel.enrolling.value {
+        if !viewModel.accountsToEnroll.value.isEmpty {
             delegate?.paperlessEBillViewControllerDidEnroll(self)
-        } else if viewModel.unenrolling.value {
+        }
+        if !viewModel.accountsToUnenroll.value.isEmpty {
             delegate?.paperlessEBillViewControllerDidUnenroll(self)
         }
         navigationController?.popViewController(animated: true)

@@ -140,6 +140,7 @@ class BillViewController: UIViewController {
             vc.initialEnrollment = viewModel.currentAccountDetail!.isBudgetBillEnrollment
         } else if let vc = segue.destination as? PaperlessEBillViewController {
             vc.accounts = accountScroller.accounts
+            vc.initialAccountDetail = viewModel.currentAccountDetail!
         }
     }
     
