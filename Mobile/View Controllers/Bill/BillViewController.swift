@@ -138,6 +138,7 @@ class BillViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? BudgetBillingViewController {
             vc.delegate = self
+            vc.account = viewModel.currentAccount!
             vc.initialEnrollment = viewModel.currentAccountDetail!.isBudgetBillEnrollment
         }
     }

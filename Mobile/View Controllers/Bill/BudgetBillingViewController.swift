@@ -61,12 +61,13 @@ class BudgetBillingViewController: UIViewController {
     var gradientLayer: CAGradientLayer!
     
     var initialEnrollment: Bool!
+    var account: Account!
     var viewModel: BudgetBillingViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = BudgetBillingViewModel(initialEnrollment: initialEnrollment)
+        viewModel = BudgetBillingViewModel(initialEnrollment: initialEnrollment, billService: ServiceFactory.createBillService())
         
         title = NSLocalizedString("Budget Billing", comment: "")
         
@@ -190,6 +191,16 @@ class BudgetBillingViewController: UIViewController {
             NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        viewModel.getBudgetBillingInfo(forAccount: account, onSuccess: { (budgetBillingInfo: BudgetBillingInfo) in
+//            self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
+//        }, onError: { errMessage in
+//            print("budget billing error: \(errMessage)")
+//        })
     }
     
     override func viewDidLayoutSubviews() {

@@ -12,17 +12,31 @@ class BudgetBillingViewModel {
     
     let disposeBag = DisposeBag()
     
+    private var billService: BillService
+
     let currentEnrollment: Variable<Bool>!
     let enrolling = Variable(false)
     let unenrolling = Variable(false)
     let selectedUnenrollmentReason = Variable(-1)
     
-    required init(initialEnrollment: Bool) {
+    required init(initialEnrollment: Bool, billService: BillService) {
+        self.billService = billService
         currentEnrollment = Variable(initialEnrollment)
         currentEnrollment.asObservable().subscribe(onNext: { enrolled in
             self.enrolling.value = !initialEnrollment && enrolled
             self.unenrolling.value = initialEnrollment && !enrolled
         }).addDisposableTo(disposeBag)
+    }
+    
+    func getBudgetBillingInfo(forAccount account: Account, onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
+        billService.fetchBudgetBillingInfo(account: account)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { billingInfo in
+                onSuccess(billingInfo)
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
     }
     
     func submitButtonEnabled() -> Observable<Bool> {
