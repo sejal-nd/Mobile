@@ -53,7 +53,7 @@ struct AccountDetail: Mappable {
     let status: String?
     
     var eBillEnrollStatus: EBillEnrollStatus {
-        switch (isEBillEnrollment, isEBillEligible, status == "Finaled") {
+        switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "Finaled".lowercased()) {
         case (_, _, true):
             return .finaled
         case (_, false, false):

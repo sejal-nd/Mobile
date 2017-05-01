@@ -53,23 +53,14 @@ class PaperlessEBillViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        topBackgroundView.layer.shadowColor = UIColor.black.cgColor
-        topBackgroundView.layer.shadowOpacity = 0.08
-        topBackgroundView.layer.shadowRadius = 1
-        topBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        
-        enrollAllAccountsView.layer.shadowColor = UIColor.black.cgColor
-        enrollAllAccountsView.layer.shadowOpacity = 0.2
-        enrollAllAccountsView.layer.shadowRadius = 2
-        enrollAllAccountsView.layer.shadowOffset = .zero
-        enrollAllAccountsView.layer.cornerRadius = 2
+        colorAndShadowSetup()
         
         enrollAllAccountsView.isHidden = viewModel.accounts.value.count <= 1
-        enrollAllAccountsView.isHidden = viewModel.accounts.value.count <= 1
         
+        // TODO: Confirm that this is the correct email address to use
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
+        detailsLabel.text = viewModel.footerText
         
-        self.detailsLoadingActivityIndicator.color = .primaryColor
         viewModel.accountDetails
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self] accountDetails -> () in
@@ -87,16 +78,25 @@ class PaperlessEBillViewController: UIViewController {
             })
             .addDisposableTo(bag)
         
-        whatIsButtonSetup()
-        
-        detailsLabel.text = viewModel.footerText
-        
         Driver.combineLatest(viewModel.accountsToEnroll.asDriver(), viewModel.accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
             .drive(submitButton.rx.isEnabled)
             .addDisposableTo(bag)
     }
     
-    func whatIsButtonSetup() {
+    func colorAndShadowSetup() {
+        detailsLoadingActivityIndicator.color = .primaryColor
+        
+        topBackgroundView.layer.shadowColor = UIColor.black.cgColor
+        topBackgroundView.layer.shadowOpacity = 0.08
+        topBackgroundView.layer.shadowRadius = 1
+        topBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        
+        enrollAllAccountsView.layer.shadowColor = UIColor.black.cgColor
+        enrollAllAccountsView.layer.shadowOpacity = 0.2
+        enrollAllAccountsView.layer.shadowRadius = 2
+        enrollAllAccountsView.layer.shadowOffset = .zero
+        enrollAllAccountsView.layer.cornerRadius = 2
+        
         whatIsButtonView.layer.shadowColor = UIColor.black.cgColor
         whatIsButtonView.layer.shadowOpacity = 0.2
         whatIsButtonView.layer.shadowRadius = 3
@@ -106,10 +106,9 @@ class PaperlessEBillViewController: UIViewController {
         let whatIsButtonSelectedColor = whatIsButton.rx.controlEvent(.touchDown).asDriver()
             .map { UIColor.whiteButtonHighlight }
         
-        let whatIsButtonDeselectedColor = Driver.of(whatIsButton.rx.controlEvent(.touchUpInside).asDriver(),
-                                                    whatIsButton.rx.controlEvent(.touchUpOutside).asDriver(),
-                                                    whatIsButton.rx.controlEvent(.touchCancel).asDriver())
-            .merge()
+        let whatIsButtonDeselectedColor = Driver.merge(whatIsButton.rx.controlEvent(.touchUpInside).asDriver(),
+                                                       whatIsButton.rx.controlEvent(.touchUpOutside).asDriver(),
+                                                       whatIsButton.rx.controlEvent(.touchCancel).asDriver())
             .map { UIColor.white }
         
         Driver.merge(whatIsButtonSelectedColor, whatIsButtonDeselectedColor)
@@ -131,8 +130,8 @@ class PaperlessEBillViewController: UIViewController {
         gradientBackgroundView.layer.addSublayer(gLayer)
     }
     
-    
-    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         gradientLayer.frame = gradientBackgroundView.frame
     }
     

@@ -24,25 +24,41 @@ class PaperlessEBillViewModel {
     
     let bag = DisposeBag()
     
-    var accountDetails: Observable<[AccountDetail]> {
-        let accountResults = accounts.value
-            .map { account -> Observable<AccountDetail> in
-                if initialAccountDetail.value.accountNumber == account.accountNumber {
-                    return Observable.just(initialAccountDetail.value)
-                }
-                return accountService.fetchAccountDetail(account: account)
-        }
-        return Observable.combineLatest(accountResults) { $0 }
-    }
+    let accountDetails: Observable<[AccountDetail]>
     
     init(accountService: AccountService, initialAccountDetail initialAccountDetailValue: AccountDetail, accounts accountsValue: [Account]) {
         self.accountService = accountService
         self.initialAccountDetail = Variable(initialAccountDetailValue)
-        self.accounts = Variable(accountsValue)
+        
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            self.accounts = Variable([accountsValue.filter { initialAccountDetailValue.accountNumber == $0.accountNumber }.first!])
+        case .comEd, .peco:
+            self.accounts = Variable(accountsValue)
+        }
         
         Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
             .drive(enrollStatesChanged)
             .addDisposableTo(bag)
+        
+        let accountResults = accounts.value.enumerated()
+            .map { index, account -> Observable<AccountDetail> in
+                if initialAccountDetailValue.accountNumber == account.accountNumber {
+                    return Observable.just(initialAccountDetailValue)
+                }
+                return accountService.fetchAccountDetail(account: account)
+                    .do(onNext: {
+                        dLog(message: "ACCOUNT LOADED: \($0.accountNumber), \(index)")
+                    }, onError: {
+                        dLog(message: "ACCOUNT ERROR: \(account.accountNumber), \(index), ERROR: \($0.localizedDescription)")
+                    })
+        }
+        
+        accountDetails = Observable.from(accountResults)
+            .merge(maxConcurrent: 3)
+            .toArray()
+            .debug("----------TO ARRAY----------")
+            .shareReplay(1)
         
         enrollAllAccounts = Observable.combineLatest(accountDetails.asObservable(),
                                  accountsToEnroll.asObservable(),
@@ -65,22 +81,17 @@ class PaperlessEBillViewModel {
     }
     
     func switched(accountDetail: AccountDetail, on: Bool) {
-        if accountDetail.eBillEnrollStatus == .canUnenroll {
-            if on {
-                accountsToUnenroll.value.remove(accountDetail.accountNumber)
-            } else {
-                accountsToUnenroll.value.insert(accountDetail.accountNumber)
-            }
-        } else {
-            if on {
-                accountsToEnroll.value.insert(accountDetail.accountNumber)
-            } else {
-                accountsToEnroll.value.remove(accountDetail.accountNumber)
-            }
+        switch (accountDetail.eBillEnrollStatus, on) {
+        case (.canUnenroll, true):
+            accountsToUnenroll.value.remove(accountDetail.accountNumber)
+        case (.canUnenroll, false):
+            accountsToUnenroll.value.insert(accountDetail.accountNumber)
+        case (.canEnroll, true):
+            accountsToEnroll.value.insert(accountDetail.accountNumber)
+        case (.canEnroll, false):
+            accountsToEnroll.value.remove(accountDetail.accountNumber)
+        default:
+            break
         }
-    }
-    
-    func switchAllAccounts(on: Bool) {
-        
     }
 }
