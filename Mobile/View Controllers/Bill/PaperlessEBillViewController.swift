@@ -88,7 +88,7 @@ class PaperlessEBillViewController: UIViewController {
         topBackgroundView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0, height: 2), radius: 1)
         enrollAllAccountsView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 2)
         enrollAllAccountsView.layer.cornerRadius = 2
-        enrollAllAccountsView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        whatIsButtonView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         whatIsButtonView.layer.cornerRadius = 2
         
         let whatIsButtonSelectedColor = whatIsButton.rx.controlEvent(.touchDown).asDriver()
