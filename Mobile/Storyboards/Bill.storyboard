@@ -255,7 +255,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yss-cx-KQS">
                                                                         <rect key="frame" x="29" y="14" width="317" height="90"/>
                                                                         <subviews>
-                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="button_dotpattern" translatesAutoresizingMaskIntoConstraints="NO" id="5bv-Uq-nD7">
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="dot_pattern_right" translatesAutoresizingMaskIntoConstraints="NO" id="5bv-Uq-nD7">
                                                                                 <rect key="frame" x="171.5" y="0.0" width="126" height="90"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT4-Mw-pfF">
@@ -1608,7 +1608,6 @@ the year</string>
         </scene>
     </scenes>
     <resources>
-        <image name="button_dotpattern" width="126" height="90"/>
         <image name="dot_pattern_right" width="126" height="90"/>
         <image name="ic_billingcalc" width="37" height="51"/>
         <image name="ic_calendar" width="56" height="55"/>

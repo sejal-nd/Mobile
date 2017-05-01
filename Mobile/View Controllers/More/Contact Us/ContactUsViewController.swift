@@ -29,12 +29,9 @@ class ContactUsViewController: UIViewController {
         
         view.backgroundColor = .primaryColor
         
+        whiteView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         whiteView.layer.cornerRadius = 2
         whiteView.layer.masksToBounds = false
-        whiteView.layer.shadowColor = UIColor.black.cgColor
-        whiteView.layer.shadowOpacity = 0.1
-        whiteView.layer.shadowRadius = 2
-        whiteView.layer.shadowOffset = CGSize(width: 0, height: 0)
         
         emergencyDescriptionLabel.attributedText = contactUsViewModel.emergencyAttrString
         

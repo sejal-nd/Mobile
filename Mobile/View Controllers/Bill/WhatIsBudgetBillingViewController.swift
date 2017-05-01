@@ -41,10 +41,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
 
         xButton.imageView?.tintColor = .primaryColor
         
-        navBar.layer.shadowRadius = 3
-        navBar.layer.shadowColor = UIColor.black.cgColor
-        navBar.layer.shadowOpacity = 0.2
-        navBar.layer.shadowOffset = CGSize(width: 0, height: 1)
+        navBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         navBar.layer.masksToBounds = false
         
         navTitleLabel.textColor = .darkJungleGreen

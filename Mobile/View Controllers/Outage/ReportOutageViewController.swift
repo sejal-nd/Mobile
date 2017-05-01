@@ -79,10 +79,7 @@ class ReportOutageViewController: UIViewController {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             bg.backgroundColor = .whiteSmoke
-            bg.layer.shadowColor = UIColor.black.cgColor
-            bg.layer.shadowOpacity = 0.08
-            bg.layer.shadowRadius = 1.5
-            bg.layer.shadowOffset = CGSize(width: 0, height: 0)
+            bg.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
             bg.layer.masksToBounds = false
             meterPingStackView.addSubview(bg)
             meterPingStackView.sendSubview(toBack: bg)
@@ -154,20 +151,14 @@ class ReportOutageViewController: UIViewController {
         }
         
         footerBackgroundView.backgroundColor = .whiteSmoke
-        footerBackgroundView.layer.shadowColor = UIColor.black.cgColor
-        footerBackgroundView.layer.shadowOpacity = 0.08
-        footerBackgroundView.layer.shadowRadius = 1.5
-        footerBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        footerBackgroundView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
         footerBackgroundView.layer.masksToBounds = false
         
         footerTextView.textContainerInset = UIEdgeInsets(top: 16, left: 29, bottom: 16, right: 29)
         footerTextView.textColor = .darkJungleGreen
         footerTextView.tintColor = .mediumPersianBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
-        footerTextView.layer.shadowColor = UIColor.black.cgColor
-        footerTextView.layer.shadowOpacity = 0.06
-        footerTextView.layer.shadowRadius = 2
-        footerTextView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
         footerTextView.layer.masksToBounds = false
         
         // Data binding
