@@ -59,7 +59,7 @@ class BillViewController: UIViewController {
     
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.darkJungleGreen,
-            NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
+            NSFontAttributeName: OpenSans.bold.ofSize(18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
@@ -139,9 +139,18 @@ class BillViewController: UIViewController {
         if let vc = segue.destination as? BudgetBillingViewController {
             vc.delegate = self
             vc.initialEnrollment = viewModel.currentAccountDetail!.isBudgetBillEnrollment
+        } else if let vc = segue.destination as? PaperlessEBillViewController {
+            vc.delegate = self
+            vc.accounts = accountScroller.accounts
+            vc.initialAccountDetail = viewModel.currentAccountDetail!
         }
     }
-
+    
+    func showDelayedToast(withMessage message: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast(message, duration: 3.5, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
 }
 
 extension BillViewController: AccountScrollerDelegate {
@@ -157,14 +166,41 @@ extension BillViewController: AccountScrollerDelegate {
 extension BillViewController: BudgetBillingViewControllerDelegate {
     
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString("Enrolled in Budget Billing", comment: ""), duration: 3.5, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
-        })
+        showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
     }
     
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString("Unenrolled from Budget Billing", comment: ""), duration: 3.5, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
-        })
+        showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
     }
 }
+
+extension BillViewController: PaperlessEBillViewControllerDelegate {
+    
+    func paperlessEBillViewControllerDidEnroll(_ paperlessEBillViewController: PaperlessEBillViewController) {
+        let message: String
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            message = NSLocalizedString("Enrolled in Paperless eBill.", comment: "")
+        case .peco, .comEd:
+            message = NSLocalizedString("Paperless eBill changes saved.", comment: "")
+        }
+        showDelayedToast(withMessage: message)
+    }
+    
+    func paperlessEBillViewControllerDidUnenroll(_ paperlessEBillViewController: PaperlessEBillViewController) {
+        let message: String
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            message = NSLocalizedString("Unenrolled from Paperless eBill.", comment: "")
+        case .peco, .comEd:
+            message = NSLocalizedString("Paperless eBill changes saved.", comment: "")
+        }
+        showDelayedToast(withMessage: message)
+    }
+    
+    func paperlessEBillViewControllerDidChangeStatus(_ paperlessEBillViewController: PaperlessEBillViewController) {
+        showDelayedToast(withMessage: NSLocalizedString("Paperless eBill changes saved.", comment: ""))
+    }
+}
+
+

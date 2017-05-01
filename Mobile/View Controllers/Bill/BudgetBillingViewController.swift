@@ -187,7 +187,7 @@ class BudgetBillingViewController: UIViewController {
         
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont(name: "OpenSans-Bold", size: 18)!
+            NSFontAttributeName: OpenSans.bold.ofSize(18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
     }

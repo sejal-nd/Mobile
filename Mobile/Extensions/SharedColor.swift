@@ -101,6 +101,13 @@ extension UIColor {
         }
     }
     
+    // Gray text
+    @nonobjc static var trolleyGrey: UIColor {
+        get {
+            return UIColor(red: 125/255, green: 125/255, blue: 125/255, alpha: 1)
+        }
+    }
+    
     convenience init(hex: String, alpha: CGFloat = 1) {
         assert(hex[hex.startIndex] == "#", "Expected hex string of format #RRGGBB")
         
