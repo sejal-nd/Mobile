@@ -211,10 +211,10 @@ class LoginViewController: UIViewController {
             passwordTextField.textField.font = nil
             passwordTextField.textField.font = UIFont.systemFont(ofSize: 18)
             // ------------------------------------------------------------------------------- //
-            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_active"), for: .normal)
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
         } else {
             passwordTextField.textField.isSecureTextEntry = true
-            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
         }
     }
     
