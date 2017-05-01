@@ -17,7 +17,7 @@
         <!--Advanced Account Picker Scene-->
         <scene sceneID="21V-hc-Lsq">
             <objects>
-                <viewController storyboardIdentifier="advancedAccountPicker" id="uoI-3d-TDP" userLabel="Advanced Account Picker Scene" customClass="AdvancedAccountPickerViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="advancedAccountPicker" hidesBottomBarWhenPushed="YES" id="uoI-3d-TDP" userLabel="Advanced Account Picker Scene" customClass="AdvancedAccountPickerViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5L3-Ab-JFQ"/>
                         <viewControllerLayoutGuide type="bottom" id="TWY-Ec-dJM"/>

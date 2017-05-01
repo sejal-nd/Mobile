@@ -75,7 +75,8 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        if indexPath.row == 0 && Environment.sharedInstance.opco == .bge {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewDropDownCell", for: indexPath) as! AdvancedAccountPickerDropDownTableViewCell
             
             let account = accounts[indexPath.row]
