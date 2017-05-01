@@ -49,17 +49,17 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2km-BG-0i7">
                                                 <rect key="frame" x="29" y="104" width="316" height="100"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_paperlessleaf" translatesAutoresizingMaskIntoConstraints="NO" id="DJY-ff-j2c">
-                                                        <rect key="frame" x="20" y="23.5" width="55" height="52"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_paperlessleaf" translatesAutoresizingMaskIntoConstraints="NO" id="DJY-ff-j2c">
+                                                        <rect key="frame" x="16" y="23.5" width="55" height="52"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paperless eBill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XL5-k1-ulK">
-                                                        <rect key="frame" x="105" y="27.5" width="126.5" height="21"/>
+                                                        <rect key="frame" x="88" y="27.5" width="126.5" height="21"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enrolled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elu-RG-M1w">
-                                                        <rect key="frame" x="105" y="52.5" width="52.5" height="17"/>
+                                                        <rect key="frame" x="88" y="52.5" width="52.5" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -79,13 +79,13 @@
                                                 <constraints>
                                                     <constraint firstItem="elu-RG-M1w" firstAttribute="leading" secondItem="XL5-k1-ulK" secondAttribute="leading" id="3cX-qC-Lqj"/>
                                                     <constraint firstItem="DJY-ff-j2c" firstAttribute="centerY" secondItem="2km-BG-0i7" secondAttribute="centerY" id="Gcl-58-0Mc"/>
-                                                    <constraint firstItem="DJY-ff-j2c" firstAttribute="leading" secondItem="2km-BG-0i7" secondAttribute="leading" constant="20" id="Lll-Vs-PqG"/>
+                                                    <constraint firstItem="DJY-ff-j2c" firstAttribute="leading" secondItem="2km-BG-0i7" secondAttribute="leading" constant="16" id="Lll-Vs-PqG"/>
                                                     <constraint firstItem="elu-RG-M1w" firstAttribute="top" secondItem="XL5-k1-ulK" secondAttribute="bottom" constant="4" id="W23-SE-Crb"/>
                                                     <constraint firstAttribute="trailing" secondItem="Xo9-xv-TkF" secondAttribute="trailing" id="a0B-Dr-WdF"/>
                                                     <constraint firstAttribute="bottom" secondItem="Xo9-xv-TkF" secondAttribute="bottom" id="a8r-Gu-ufw"/>
                                                     <constraint firstItem="XL5-k1-ulK" firstAttribute="top" secondItem="DJY-ff-j2c" secondAttribute="top" constant="4" id="aJt-IX-CCv"/>
                                                     <constraint firstItem="Xo9-xv-TkF" firstAttribute="top" secondItem="2km-BG-0i7" secondAttribute="top" id="dCT-mh-TW4"/>
-                                                    <constraint firstItem="XL5-k1-ulK" firstAttribute="leading" secondItem="DJY-ff-j2c" secondAttribute="trailing" constant="30" id="kG7-Ep-eSv"/>
+                                                    <constraint firstItem="XL5-k1-ulK" firstAttribute="leading" secondItem="DJY-ff-j2c" secondAttribute="trailing" constant="17" id="kG7-Ep-eSv"/>
                                                     <constraint firstItem="Xo9-xv-TkF" firstAttribute="leading" secondItem="2km-BG-0i7" secondAttribute="leading" id="kSk-Hy-bul"/>
                                                     <constraint firstAttribute="height" constant="100" id="nUv-N0-YJY"/>
                                                 </constraints>
@@ -256,10 +256,10 @@
                                                                         <rect key="frame" x="29" y="14" width="317" height="90"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="dot_pattern_right" translatesAutoresizingMaskIntoConstraints="NO" id="5bv-Uq-nD7">
-                                                                                <rect key="frame" x="171.5" y="0.0" width="126" height="90"/>
+                                                                                <rect key="frame" x="172" y="0.0" width="126" height="90"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT4-Mw-pfF">
-                                                                                <rect key="frame" x="89.5" y="20.5" width="139" height="49.5"/>
+                                                                                <rect key="frame" x="90" y="21" width="139" height="49.5"/>
                                                                                 <string key="text">What is
 Paperless eBill?</string>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
@@ -267,7 +267,7 @@ Paperless eBill?</string>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_paperlessleaf" translatesAutoresizingMaskIntoConstraints="NO" id="PYw-Rz-PZv">
-                                                                                <rect key="frame" x="10.5" y="19" width="55" height="52"/>
+                                                                                <rect key="frame" x="11" y="19" width="55" height="52"/>
                                                                             </imageView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8P-EI-49a">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="90"/>
@@ -651,7 +651,7 @@ If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in 
                                                                 <rect key="frame" x="167" y="0.0" width="126" height="90"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evS-WD-Rt4">
-                                                                <rect key="frame" x="87" y="22" width="126" height="46.5"/>
+                                                                <rect key="frame" x="87" y="22.5" width="126" height="46.5"/>
                                                                 <string key="text">What is
 Budget Billing?</string>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
@@ -691,7 +691,7 @@ Budget Billing?</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqG-lk-DUF">
-                                                        <rect key="frame" x="94.5" y="144.5" width="188" height="49.5"/>
+                                                        <rect key="frame" x="94" y="144.5" width="188" height="49.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$200.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDe-zM-yPH">
                                                                 <rect key="frame" x="0.0" y="0.0" width="134" height="49.5"/>
@@ -1536,7 +1536,7 @@ the year</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is Budget Billing?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gos-Aq-4Ke">
-                                        <rect key="frame" x="85.5" y="32.5" width="205" height="25"/>
+                                        <rect key="frame" x="86" y="32.5" width="205" height="25"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
