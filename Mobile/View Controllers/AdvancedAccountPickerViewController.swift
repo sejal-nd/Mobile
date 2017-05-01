@@ -33,7 +33,6 @@ class AdvancedAccountPickerViewController: UIViewController {
     
     func showPremises(sender: UIButton) {
         if let cell = tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as? AdvancedAccountPickerDropDownTableViewCell {
-            print("tapped \(cell)")
             if cell.isExpanded == false {
                 cell.viewAddressesLabel.isHidden = true
                 cell.premisesLabel.text = "1215 E Fort Ave\n2109 Spring Garden St\n500 Norris St\n700 12th St NW"
@@ -44,7 +43,6 @@ class AdvancedAccountPickerViewController: UIViewController {
                 cell.premisesLabel.text = nil
                 cell.caretImageView.image? = #imageLiteral(resourceName: "ic_carat_down")
                 cell.isExpanded = false
-                
             }
             
             tableView.beginUpdates()
@@ -119,10 +117,6 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
             }
             return cell
         }
-            
-        
-        
-        
     }
     
 }

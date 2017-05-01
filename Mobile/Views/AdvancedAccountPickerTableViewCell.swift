@@ -24,7 +24,5 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
         addressLabel.textColor = .oldLavender
         accountStatusLabel.textColor = .oldLavender
     }
-
-
-
+    
 }
