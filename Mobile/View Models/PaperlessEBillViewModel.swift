@@ -36,28 +36,36 @@ class PaperlessEBillViewModel {
         case .comEd, .peco:
             self.accounts = Variable(accountsValue)
         }
-        
+    
         Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
             .drive(enrollStatesChanged)
             .addDisposableTo(bag)
         
-        let accountResults = accounts.value.enumerated()
+        let accountResults = accountsValue.enumerated()
             .map { index, account -> Observable<AccountDetail> in
                 if initialAccountDetailValue.accountNumber == account.accountNumber {
                     return Observable.just(initialAccountDetailValue)
                 }
-                return accountService.fetchAccountDetail(account: account)
-                    .do(onNext: {
-                        dLog(message: "ACCOUNT LOADED: \($0.accountNumber), \(index)")
-                    }, onError: {
-                        dLog(message: "ACCOUNT ERROR: \(account.accountNumber), \(index), ERROR: \($0.localizedDescription)")
-                    })
+                return accountService.fetchAccountDetail(account: account).debug("ACCOUNT NUMBER: \(account.accountNumber), INDEX: \(index)")
         }
         
         accountDetails = Observable.from(accountResults)
             .merge(maxConcurrent: 3)
             .toArray()
-            .debug("----------TO ARRAY----------")
+            // Re-sort the returned array of account details to match the original order of the accounts passed in.
+            // This is done in case one request was fired after, but returned before another
+            .map { accountDetails in
+                accountDetails
+                    .map { detail -> (Int, AccountDetail) in
+                        let idx = accountsValue.index { $0.accountNumber == detail.accountNumber }
+                        guard let index = idx else {
+                            return (.max, detail)
+                        }
+                        return  (index, detail)
+                    }
+                    .sorted { $0.0 < $1.0 }
+                    .map { $0.1 }
+            }
             .shareReplay(1)
         
         enrollAllAccounts = Observable.combineLatest(accountDetails.asObservable(),
