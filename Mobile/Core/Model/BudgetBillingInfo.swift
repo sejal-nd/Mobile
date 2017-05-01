@@ -8,6 +8,18 @@
 
 import Mapper
 
+private func extractAvMonthlyBill(object: Any?) throws -> String? {
+    guard let string = object as? String else {
+        throw MapperError.convertibleError(value: object, type: String.self)
+    }
+    
+    if let doubleVal = NumberFormatter().number(from: string)?.doubleValue {
+        return String(format: "$%.02f", locale: Locale.current, arguments: [doubleVal])
+    } else {
+        throw MapperError.convertibleError(value: string, type: Double.self)
+    }
+}
+
 struct BudgetBillingInfo: Mappable {
     let enrolled: Bool
     let averageMonthlyBill: String?
@@ -20,6 +32,7 @@ struct BudgetBillingInfo: Mappable {
             enrolled = false
         }
 
-        averageMonthlyBill = map.optionalFrom("averageMonthlyBill")
+        //averageMonthlyBill = map.optionalFrom("averageMonthlyBill")
+        averageMonthlyBill = map.optionalFrom("averageMonthlyBill", transformation: extractAvMonthlyBill)
     }
 }
