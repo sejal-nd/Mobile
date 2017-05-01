@@ -27,6 +27,7 @@ class BillViewController: UIViewController {
         self.title = NSLocalizedString("Bill", comment: "")
         
         accountScroller.delegate = self
+        accountScroller.parentViewController = self
         accountScroller.isHidden = true
         
         accountScrollerActivityIndicator.color = .mediumPersianBlue
@@ -156,6 +157,7 @@ extension BillViewController: AccountScrollerDelegate {
     
     func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account) {
         viewModel.currentAccount = account
+        accountScroller.updateAdvancedPicker(account: account)
         getAccountDetails()
     }
     

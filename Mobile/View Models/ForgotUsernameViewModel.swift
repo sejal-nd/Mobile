@@ -27,9 +27,9 @@ class ForgotUsernameViewModel {
     }
     
     func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        
-        let identifier = accountNumber.value.characters.count > 0 ? accountNumber.value : identifierNumber.value
-        authService.recoverMaskedUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier)
+        let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
+        let identifier: String? = identifierNumber.value.characters.count > 0 ? identifierNumber.value : nil
+        authService.recoverMaskedUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { usernames in
                 self.maskedUsernames = usernames
@@ -47,8 +47,9 @@ class ForgotUsernameViewModel {
     func submitSecurityQuestionAnswer(onSuccess: @escaping (String) -> Void, onAnswerNoMatch: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
         let maskedUsername = maskedUsernames[selectedUsernameIndex]
         let cipher = maskedUsername.cipher
-        let identifier = accountNumber.value.characters.count > 0 ? accountNumber.value : identifierNumber.value
-        authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value, cipher: cipher)
+        let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
+        let identifier: String? = identifierNumber.value.characters.count > 0 ? identifierNumber.value : nil
+        authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value, cipher: cipher)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { username in
                 onSuccess(username)

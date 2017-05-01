@@ -19,6 +19,7 @@ class OutageViewModel {
     
     var currentAccount: Account?
     var currentOutageStatus: OutageStatus?
+    var accounts: [Account]!
     
     required init(accountService: AccountService, outageService: OutageService) {
         self.accountService = accountService
@@ -35,6 +36,7 @@ class OutageViewModel {
         accountService.fetchAccounts()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { accounts in
+                self.accounts = accounts
                 self.currentAccount = accounts[0]
                 onSuccess(accounts)
             }, onError: { error in
