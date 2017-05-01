@@ -79,10 +79,7 @@ class ReportOutageViewController: UIViewController {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             bg.backgroundColor = .whiteSmoke
-            bg.layer.shadowColor = UIColor.black.cgColor
-            bg.layer.shadowOpacity = 0.08
-            bg.layer.shadowRadius = 1.5
-            bg.layer.shadowOffset = CGSize(width: 0, height: 0)
+            bg.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
             bg.layer.masksToBounds = false
             meterPingStackView.addSubview(bg)
             meterPingStackView.sendSubview(toBack: bg)
@@ -154,20 +151,14 @@ class ReportOutageViewController: UIViewController {
         }
         
         footerBackgroundView.backgroundColor = .whiteSmoke
-        footerBackgroundView.layer.shadowColor = UIColor.black.cgColor
-        footerBackgroundView.layer.shadowOpacity = 0.08
-        footerBackgroundView.layer.shadowRadius = 1.5
-        footerBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        footerBackgroundView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
         footerBackgroundView.layer.masksToBounds = false
         
         footerTextView.textContainerInset = UIEdgeInsets(top: 16, left: 29, bottom: 16, right: 29)
         footerTextView.textColor = .darkJungleGreen
         footerTextView.tintColor = .mediumPersianBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
-        footerTextView.layer.shadowColor = UIColor.black.cgColor
-        footerTextView.layer.shadowOpacity = 0.06
-        footerTextView.layer.shadowRadius = 2
-        footerTextView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
         footerTextView.layer.masksToBounds = false
         
         // Data binding
@@ -299,38 +290,42 @@ class ReportOutageViewController: UIViewController {
 
 extension ReportOutageViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        
-        let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
-        
-        let decimalString = components.joined(separator: "") as NSString
-        let length = decimalString.length
-        
-        if length > 10 {
+        if textField == phoneNumberTextField.textField {
+            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
+            
+            let decimalString = components.joined(separator: "") as NSString
+            let length = decimalString.length
+            
+            if length > 10 {
+                return false
+            }
+            
+            var index = 0 as Int
+            let formattedString = NSMutableString()
+            
+            if length - index > 3 {
+                let areaCode = decimalString.substring(with: NSMakeRange(index, 3))
+                formattedString.appendFormat("(%@) ", areaCode)
+                index += 3
+            }
+            if length - index > 3 {
+                let prefix = decimalString.substring(with: NSMakeRange(index, 3))
+                formattedString.appendFormat("%@-", prefix)
+                index += 3
+            }
+            
+            let remainder = decimalString.substring(from: index)
+            formattedString.append(remainder)
+            textField.text = formattedString as String
+            
+            textField.sendActions(for: .valueChanged) // Send rx events
+            
             return false
+        } else {
+            return string == string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
         }
         
-        var index = 0 as Int
-        let formattedString = NSMutableString()
-        
-        if length - index > 3 {
-            let areaCode = decimalString.substring(with: NSMakeRange(index, 3))
-            formattedString.appendFormat("(%@) ", areaCode)
-            index += 3
-        }
-        if length - index > 3 {
-            let prefix = decimalString.substring(with: NSMakeRange(index, 3))
-            formattedString.appendFormat("%@-", prefix)
-            index += 3
-        }
-        
-        let remainder = decimalString.substring(from: index)
-        formattedString.append(remainder)
-        textField.text = formattedString as String
-        
-        textField.sendActions(for: .valueChanged) // Send rx events
-        
-        return false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

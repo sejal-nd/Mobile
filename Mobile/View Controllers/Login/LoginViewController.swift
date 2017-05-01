@@ -12,6 +12,9 @@ import RxCocoa
 import ToastSwiftFramework
 
 class LoginViewController: UIViewController {
+    
+    let disposeBag = DisposeBag()
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var opcoLogo: UIImageView!
     @IBOutlet weak var loginFormView: UIView!
@@ -30,9 +33,8 @@ class LoginViewController: UIViewController {
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     var passwordAutofilledFromTouchID = false
+    var viewAlreadyAppeared = false
 
-    let disposeBag = DisposeBag()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,10 +48,7 @@ class LoginViewController: UIViewController {
             loginFormViewHeightConstraint.constant = 390
         }
         
-        loginFormView.layer.shadowColor = UIColor.black.cgColor
-        loginFormView.layer.shadowOpacity = 0.15
-        loginFormView.layer.shadowRadius = 4
-        loginFormView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        loginFormView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
         loginFormView.layer.masksToBounds = false
         loginFormView.layer.cornerRadius = 2
         
@@ -119,7 +118,11 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presentTouchIDPrompt()
+        
+        if !viewAlreadyAppeared {
+            viewAlreadyAppeared = true
+            presentTouchIDPrompt()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -205,10 +208,10 @@ class LoginViewController: UIViewController {
             passwordTextField.textField.font = nil
             passwordTextField.textField.font = UIFont.systemFont(ofSize: 18)
             // ------------------------------------------------------------------------------- //
-            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_active"), for: .normal)
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
         } else {
             passwordTextField.textField.isSecureTextEntry = true
-            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
         }
     }
     

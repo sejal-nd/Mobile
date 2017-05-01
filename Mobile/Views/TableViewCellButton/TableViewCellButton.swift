@@ -42,10 +42,7 @@ class TableViewCellButton: UIButton {
         view.isUserInteractionEnabled = false
         addSubview(view)
         
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.2
-        layer.shadowRadius = 3
-        layer.shadowOffset = CGSize(width: 0, height: 0)
+        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         layer.masksToBounds = false
         
         label.textColor = .darkJungleGreen

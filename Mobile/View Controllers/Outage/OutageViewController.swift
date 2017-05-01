@@ -69,10 +69,7 @@ class OutageViewController: UIViewController {
         
         let radius = bigButtonView.bounds.size.width / 2
         bigButtonView.layer.cornerRadius = radius
-        bigButtonView.layer.shadowColor = UIColor.black.cgColor
-        bigButtonView.layer.shadowOpacity = 0.3
-        bigButtonView.layer.shadowOffset = CGSize(width: 0, height: 10)
-        bigButtonView.layer.shadowRadius = 10 // Blur of 20pt
+        bigButtonView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
         bigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
         bigButtonView.layer.masksToBounds = false
         bigButtonView.clipsToBounds = true
