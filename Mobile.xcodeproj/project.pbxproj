@@ -95,6 +95,8 @@
 		9A3161061EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161051EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift */; };
 		9A3161071EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161051EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift */; };
 		9A3161081EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161051EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift */; };
+		9A36462C1EB782820067A990 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E069C1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
+		9A36462D1EB782820067A990 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E069C1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
 		9A36C14C1E9EADB7006CAD8D /* ContactUs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A36C14B1E9EADB7006CAD8D /* ContactUs.xib */; };
 		9A36C14F1E9EADC4006CAD8D /* ContactUs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A36C14D1E9EADC0006CAD8D /* ContactUs.xib */; };
 		9A36C1521E9EADDA006CAD8D /* ContactUs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A36C1501E9EADD8006CAD8D /* ContactUs.xib */; };
@@ -104,6 +106,7 @@
 		9A36C1581E9EAE08006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
 		9A36C1591E9EAE1C006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
 		9A36C15A1E9EAE1D006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
+		9A4E069D1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E069C1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
 		B535FD0B1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
 		B535FD0C1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
 		B535FD0D1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
@@ -613,6 +616,7 @@
 		9A36C1501E9EADD8006CAD8D /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
 		9A36C1531E9EADE6006CAD8D /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
+		9A4E069C1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerDropDownTableViewCell.swift; sourceTree = "<group>"; };
 		B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthTokenResponse.swift; path = ../AuthTokenResponse.swift; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
@@ -1085,6 +1089,7 @@
 				E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */,
 				E882B7FF1EAA974600EA3C13 /* BudgetBillingTableViewCell.swift */,
 				9A3161051EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift */,
+				9A4E069C1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2215,6 +2220,7 @@
 				E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
+				9A4E069D1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				E882B8001EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E801285B1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
@@ -2309,6 +2315,7 @@
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
+				9A36462D1EB782820067A990 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				E882B8021EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E801285D1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
@@ -2403,6 +2410,7 @@
 				E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
+				9A36462C1EB782820067A990 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				E882B8011EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E801285C1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
