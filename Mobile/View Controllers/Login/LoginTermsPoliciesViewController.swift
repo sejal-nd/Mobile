@@ -29,10 +29,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         textView.textContainerInset = UIEdgeInsetsMake(10, 29, 10, 29)
         textView.attributedText = viewModel.attributedTermsString
 
-        agreeView.layer.shadowColor = UIColor.black.cgColor
-        agreeView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        agreeView.layer.shadowOpacity = 0.1
-        agreeView.layer.shadowRadius = 2
+        agreeView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         agreeView.layer.masksToBounds = false
 
         _ = agreeSwitch.rx.isOn.bindTo(continueButton.rx.isEnabled)

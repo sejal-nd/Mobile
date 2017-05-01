@@ -25,10 +25,7 @@ class TableViewCell: UITableViewCell {
 
         contentView.backgroundColor = .clear
         
-        innerContentView.layer.shadowColor = UIColor.black.cgColor
-        innerContentView.layer.shadowOpacity = 0.2
-        innerContentView.layer.shadowRadius = 3
-        innerContentView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         innerContentView.layer.masksToBounds = false
         
         label.textColor = .darkJungleGreen

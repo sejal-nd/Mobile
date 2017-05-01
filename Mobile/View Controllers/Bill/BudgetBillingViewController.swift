@@ -87,11 +87,8 @@ class BudgetBillingViewController: UIViewController {
         gradientLayer.locations = [0.0, 1.0]
         gradientView.layer.addSublayer(gradientLayer)
         
+        whatIsBudgetBillingButtonView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         whatIsBudgetBillingButtonView.layer.cornerRadius = 2
-        whatIsBudgetBillingButtonView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        whatIsBudgetBillingButtonView.layer.shadowOpacity = 0.2
-        whatIsBudgetBillingButtonView.layer.shadowColor = UIColor.black.cgColor
-        whatIsBudgetBillingButtonView.layer.shadowRadius = 3
         whatIsBudgetBillingButtonView.layer.masksToBounds = false
         
         whatIsBudgetBillingLabel.textColor = .darkJungleGreen
@@ -129,7 +126,7 @@ class BudgetBillingViewController: UIViewController {
         if Environment.sharedInstance.opco == OpCo.bge && initialEnrollment {
             for view in bgeFooterCardViews {
                 view.layer.cornerRadius = 2
-                view.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: 0), radius: 2)
+                view.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
             }
             
             monthlyAmountTitleLabel.textColor = .darkJungleGreen

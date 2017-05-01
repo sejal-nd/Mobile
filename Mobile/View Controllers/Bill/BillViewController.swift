@@ -33,19 +33,13 @@ class BillViewController: UIViewController {
         accountScrollerActivityIndicator.color = .mediumPersianBlue
         billActivityIndicator.color = .mediumPersianBlue
         
+        paperlessButtonView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         paperlessButtonView.layer.cornerRadius = 2
-        paperlessButtonView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        paperlessButtonView.layer.shadowOpacity = 0.3
-        paperlessButtonView.layer.shadowColor = UIColor.black.cgColor
-        paperlessButtonView.layer.shadowRadius = 3
         paperlessButtonView.layer.masksToBounds = false
         paperlessButtonView.isHidden = true
         
+        budgetButtonView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         budgetButtonView.layer.cornerRadius = 2
-        budgetButtonView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        budgetButtonView.layer.shadowOpacity = 0.2
-        budgetButtonView.layer.shadowColor = UIColor.black.cgColor
-        budgetButtonView.layer.shadowRadius = 3
         budgetButtonView.layer.masksToBounds = false
         budgetButtonView.isHidden = true
     }
