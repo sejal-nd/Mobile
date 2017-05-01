@@ -32,7 +32,6 @@ struct BudgetBillingInfo: Mappable {
             enrolled = false
         }
 
-        //averageMonthlyBill = map.optionalFrom("averageMonthlyBill")
         averageMonthlyBill = map.optionalFrom("averageMonthlyBill", transformation: extractAvMonthlyBill)
     }
 }
