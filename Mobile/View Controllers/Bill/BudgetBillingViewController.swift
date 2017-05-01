@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 protocol BudgetBillingViewControllerDelegate: class {
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController)
@@ -27,6 +28,8 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var whatIsBudgetBillingButtonView: UIView!
     @IBOutlet weak var whatIsBudgetBillingLabel: UILabel!
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
+    @IBOutlet weak var paymentAmountView: UIView!
+    @IBOutlet weak var paymentAmountActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var amountDescriptionLabel: UILabel!
@@ -61,12 +64,13 @@ class BudgetBillingViewController: UIViewController {
     var gradientLayer: CAGradientLayer!
     
     var initialEnrollment: Bool!
+    var account: Account!
     var viewModel: BudgetBillingViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = BudgetBillingViewModel(initialEnrollment: initialEnrollment)
+        viewModel = BudgetBillingViewModel(initialEnrollment: initialEnrollment, billService: ServiceFactory.createBillService())
         
         title = NSLocalizedString("Budget Billing", comment: "")
         
@@ -97,6 +101,7 @@ class BudgetBillingViewController: UIViewController {
         yourPaymentWouldBeLabel.textColor = .outerSpace
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your payment would be:", comment: "")
         
+        paymentAmountActivityIndicator.color = .mediumPersianBlue
         paymentAmountLabel.textColor = .outerSpace
         monthLabel.textColor = .outerSpace
         monthLabel.text = NSLocalizedString("/Month", comment: "")
@@ -189,6 +194,19 @@ class BudgetBillingViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = titleDict
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel.getBudgetBillingInfo(forAccount: account, onSuccess: { (budgetBillingInfo: BudgetBillingInfo) in
+            self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
+            self.paymentAmountActivityIndicator.isHidden = true
+            self.paymentAmountView.isHidden = false
+        }, onError: { errMessage in
+            self.paymentAmountActivityIndicator.isHidden = true
+            print("budget billing error: \(errMessage)")
+        })
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -228,8 +246,22 @@ class BudgetBillingViewController: UIViewController {
     
     func onSubmitPress() {
         if viewModel.enrolling.value {
-            delegate?.budgetBillingViewControllerDidEnroll(self)
-            navigationController?.popViewController(animated: true)
+            let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
+            hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
+            hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+            hud.contentColor = .white
+            
+            viewModel.enroll(account: account, onSuccess: {
+                hud.hide(animated: true)
+                self.delegate?.budgetBillingViewControllerDidEnroll(self)
+                self.navigationController?.popViewController(animated: true)
+            }, onError: { errMessage in
+                hud.hide(animated: true)
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertVc, animated: true, completion: nil)
+            })
+
         } else if viewModel.unenrolling.value {
             var message = ""
             if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
@@ -243,8 +275,22 @@ class BudgetBillingViewController: UIViewController {
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { _ in
-                self.delegate?.budgetBillingViewControllerDidUnenroll(self)
-                self.navigationController?.popViewController(animated: true)
+                let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
+                hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
+                hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+                hud.contentColor = .white
+                
+                self.viewModel.unenroll(account: self.account, onSuccess: {
+                    hud.hide(animated: true)
+                    self.delegate?.budgetBillingViewControllerDidUnenroll(self)
+                    self.navigationController?.popViewController(animated: true)
+                }, onError: { errMessage in
+                    hud.hide(animated: true)
+                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
+                })
+
             }))
             present(alertVc, animated: true, completion: nil)
         }
@@ -268,17 +314,7 @@ extension BudgetBillingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonForStoppingCell", for: indexPath) as! BudgetBillingTableViewCell
         
-        if indexPath.row == 0 {
-            cell.label.text = String(format: NSLocalizedString("Closing %@ Account", comment: ""), Environment.sharedInstance.opco.displayString)
-        } else if indexPath.row == 1 {
-            cell.label.text = NSLocalizedString("Changing Bank Account", comment: "")
-        } else if indexPath.row == 2 {
-            cell.label.text = NSLocalizedString("Dissatisfied with program", comment: "")
-        } else if indexPath.row == 3 {
-            cell.label.text = NSLocalizedString("Program no longer meets my needs", comment: "")
-        } else if indexPath.row == 4 {
-            cell.label.text = NSLocalizedString("Other", comment: "")
-        }
+        cell.label.text = viewModel.getReasonString(forIndex: indexPath.row)
         
         return cell
     }

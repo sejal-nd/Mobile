@@ -132,6 +132,7 @@ class BillViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? BudgetBillingViewController {
             vc.delegate = self
+            vc.account = viewModel.currentAccount!
             vc.initialEnrollment = viewModel.currentAccountDetail!.isBudgetBillEnrollment
         } else if let vc = segue.destination as? PaperlessEBillViewController {
             vc.delegate = self
@@ -160,10 +161,12 @@ extension BillViewController: AccountScrollerDelegate {
 extension BillViewController: BudgetBillingViewControllerDelegate {
     
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController) {
+        getAccountDetails()
         showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
     }
     
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
+        getAccountDetails()
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
     }
 }

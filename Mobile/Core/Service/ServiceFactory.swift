@@ -35,4 +35,8 @@ class ServiceFactory {
     class func createOutageService() -> OutageService {
         return sharedOutageService
     }
+    
+    class func createBillService() -> BillService {
+        return OMCBillService()
+    }
 }

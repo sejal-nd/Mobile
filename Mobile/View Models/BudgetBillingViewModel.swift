@@ -12,17 +12,53 @@ class BudgetBillingViewModel {
     
     let disposeBag = DisposeBag()
     
+    private var billService: BillService
+
     let currentEnrollment: Variable<Bool>!
     let enrolling = Variable(false)
     let unenrolling = Variable(false)
     let selectedUnenrollmentReason = Variable(-1)
     
-    required init(initialEnrollment: Bool) {
+    required init(initialEnrollment: Bool, billService: BillService) {
+        self.billService = billService
         currentEnrollment = Variable(initialEnrollment)
         currentEnrollment.asObservable().subscribe(onNext: { enrolled in
             self.enrolling.value = !initialEnrollment && enrolled
             self.unenrolling.value = initialEnrollment && !enrolled
         }).addDisposableTo(disposeBag)
+    }
+    
+    func getBudgetBillingInfo(forAccount account: Account, onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
+        billService.fetchBudgetBillingInfo(account: account)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { billingInfo in
+                onSuccess(billingInfo)
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
+    func enroll(account: Account, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        billService.enrollBudgetBilling(account: account)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                onSuccess()
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
+    func unenroll(account: Account, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        billService.unenrollBudgetBilling(account: account, reason: getReasonString(forIndex: selectedUnenrollmentReason.value))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                onSuccess()
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
     }
     
     func submitButtonEnabled() -> Observable<Bool> {
@@ -65,6 +101,21 @@ class BudgetBillingViewModel {
 //            }
             return nil
         }
+    }
+    
+    func getReasonString(forIndex index: Int) -> String {
+        if index == 0 {
+            return String(format: NSLocalizedString("Closing %@ Account", comment: ""), Environment.sharedInstance.opco.displayString)
+        } else if index == 1 {
+            return NSLocalizedString("Changing Bank Account", comment: "")
+        } else if index == 2 {
+            return NSLocalizedString("Dissatisfied with program", comment: "")
+        } else if index == 3 {
+            return NSLocalizedString("Program no longer meets my needs", comment: "")
+        } else if index == 4 {
+            return NSLocalizedString("Other", comment: "")
+        }
+        return "" // Should not happen
     }
     
 }
