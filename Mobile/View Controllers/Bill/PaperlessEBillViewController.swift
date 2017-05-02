@@ -60,6 +60,7 @@ class PaperlessEBillViewController: UIViewController {
         // TODO: Confirm that this is the correct email address to use
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
         detailsLabel.text = viewModel.footerText
+        detailsLabel.setLineHeight(lineHeight: 24)
         
         viewModel.accountDetails
             .asDriver(onErrorJustReturn: [])
