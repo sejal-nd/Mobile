@@ -82,9 +82,9 @@ class PaperlessEBillViewModel {
         case .bge:
             return nil
         case .comEd:
-            return NSLocalizedString("Your enrollment status for paperless ebill will be updated at midnight. If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through PECO.com, you will be automatically unenrolled from MyCheckFree", comment: "")
+            return NSLocalizedString("Your enrollment status for paperless ebill will be updated at midnight. If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through PECO.com, you will be automatically unenrolled from MyCheckFree.", comment: "")
         case .peco:
-            return NSLocalizedString("Your enrollment status for paperless ebill will be updated at midnight. If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through ComEd.com, you will be automatically unenrolled from MyCheckFree", comment: "")
+            return NSLocalizedString("Your enrollment status for paperless ebill will be updated at midnight. If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through ComEd.com, you will be automatically unenrolled from MyCheckFree.", comment: "")
         }
     }
     
