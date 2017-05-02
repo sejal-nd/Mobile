@@ -42,6 +42,8 @@ class BillViewController: UIViewController {
         budgetButtonView.layer.cornerRadius = 2
         budgetButtonView.layer.masksToBounds = false
         budgetButtonView.isHidden = true
+        
+        print("Is commercial user: \(UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser))")
     }
     
     override func viewWillAppear(_ animated: Bool) {

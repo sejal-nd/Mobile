@@ -41,7 +41,7 @@ class AuthTokenParser : NSObject {
                 let parsedData = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
                 
                 if let success = parsedData["success"] as? Bool {
-                    if(success == false) {
+                    if success == false {
                         return self.parseError(parsedData: parsedData)
                     } else {
                         return self.parseSuccess(parsedData: parsedData)
@@ -72,12 +72,13 @@ class AuthTokenParser : NSObject {
         if let statusData = data["profileStatus"] as? [String:Any] {
             profileStatus = parseProfileStatus(profileStatus: statusData)
             
-            if(profileStatus.passwordLocked) {
+            if profileStatus.passwordLocked {
                 return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
             }
         }
         if let profileType = data["profileType"] as? String {
-            if(profileType != "commercial" && profileType != "residential") {
+            UserDefaults.standard.set(profileType == "commercial", forKey: UserDefaultKeys.IsCommercialUser)
+            if profileType != "commercial" && profileType != "residential" {
                 return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
             }
         }
@@ -132,7 +133,7 @@ class AuthTokenParser : NSObject {
             if let statusData = data[ProfileStatusKey.ProfileStatus.rawValue] as? [String:Any] {
                 let profileStatus = parseProfileStatus(profileStatus: statusData)
             
-                if(profileStatus.passwordLocked) {
+                if profileStatus.passwordLocked {
                     return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
                 }
             }
