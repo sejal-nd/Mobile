@@ -20,6 +20,8 @@ class ForgotUsernameViewController: UIViewController {
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField?
     @IBOutlet weak var accountLookupToolButton: UIButton?
     
+    var test = false
+    
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
@@ -127,7 +129,16 @@ class ForgotUsernameViewController: UIViewController {
     }
     
     func onCancelPress() {
-        _ = navigationController?.popViewController(animated: true)
+        //_ = navigationController?.popViewController(animated: true)
+        
+        if !test {
+            phoneNumberTextField.setError("really long error")
+            test = true
+        } else {
+            phoneNumberTextField.setError(nil)
+            test = false
+        }
+        
     }
     
     func onNextPress() {

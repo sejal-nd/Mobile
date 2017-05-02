@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -114,8 +113,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Oo-nS-ebR">
                     <rect key="frame" x="0.0" y="60" width="320" height="20"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dny-ww-tgA">
-                            <rect key="frame" x="14" y="0.0" width="55.5" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dny-ww-tgA">
+                            <rect key="frame" x="14" y="0.0" width="292" height="20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -124,8 +123,8 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="dny-ww-tgA" firstAttribute="top" secondItem="8Oo-nS-ebR" secondAttribute="top" id="AMZ-9v-GPO"/>
+                        <constraint firstAttribute="trailing" secondItem="dny-ww-tgA" secondAttribute="trailing" constant="14" id="Hu2-UY-K1q"/>
                         <constraint firstItem="dny-ww-tgA" firstAttribute="leading" secondItem="8Oo-nS-ebR" secondAttribute="leading" constant="14" id="flW-I3-B5J"/>
-                        <constraint firstAttribute="height" constant="20" id="i0u-Nj-3sJ"/>
                         <constraint firstAttribute="bottom" secondItem="dny-ww-tgA" secondAttribute="bottom" id="j2u-dV-FhZ"/>
                     </constraints>
                 </view>
@@ -134,6 +133,7 @@
             <constraints>
                 <constraint firstItem="8Oo-nS-ebR" firstAttribute="top" secondItem="yWb-Mv-Mh9" secondAttribute="bottom" id="KBG-n3-H0F"/>
                 <constraint firstItem="8Oo-nS-ebR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="UeR-HO-wI5"/>
+                <constraint firstAttribute="bottom" secondItem="8Oo-nS-ebR" secondAttribute="bottom" id="VYp-xv-qKI"/>
                 <constraint firstItem="yWb-Mv-Mh9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="avO-il-6mU"/>
                 <constraint firstAttribute="trailing" secondItem="8Oo-nS-ebR" secondAttribute="trailing" id="d9k-Xe-mr3"/>
                 <constraint firstItem="yWb-Mv-Mh9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="udM-Xc-ahC"/>
