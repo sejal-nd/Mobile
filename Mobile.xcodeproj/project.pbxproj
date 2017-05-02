@@ -50,6 +50,9 @@
 		826413791EAEAE5E007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
+		82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
+		82A18E561EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
+		82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
 		82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
@@ -619,6 +622,7 @@
 		087630E21E72F5D000FA7020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsPaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillCommercialViewController.swift; sourceTree = "<group>"; };
 		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		82D551DC1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewModel.swift; sourceTree = "<group>"; };
 		82D551E01EAE4561001B1796 /* PaperlessEBillAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillAccountView.swift; sourceTree = "<group>"; };
@@ -1648,6 +1652,7 @@
 				E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */,
 				E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */,
 				82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */,
+				82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -2247,6 +2252,7 @@
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
+				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				E8CA07EA1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */,
 				E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E8CA07EF1E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
@@ -2349,6 +2355,7 @@
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
+				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				E8CA07EC1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */,
 				E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E8CA07F11E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
@@ -2451,6 +2458,7 @@
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountScroller.swift in Sources */,
 				E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
+				82A18E561EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				E8CA07EB1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */,
 				E840BD3B1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E8CA07F01E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,

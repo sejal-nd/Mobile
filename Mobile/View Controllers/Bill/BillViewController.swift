@@ -43,7 +43,6 @@ class BillViewController: UIViewController {
         budgetButtonView.layer.masksToBounds = false
         budgetButtonView.isHidden = true
         
-        print("Is commercial user: \(UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser))")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,6 +118,14 @@ class BillViewController: UIViewController {
     @IBAction func onButtonTouchCancel(_ sender: Any) {
         let button = sender as! UIButton
         button.superview?.backgroundColor = .white
+    }
+    
+    @IBAction func onPaperlessEBillPress(_ sender: Any) {
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) {
+            performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: self)
+        } else {
+            performSegue(withIdentifier: "paperlessEBillSegue", sender: self)
+        }
     }
     
     @IBAction func onBudgetBillingButtonPress() {
