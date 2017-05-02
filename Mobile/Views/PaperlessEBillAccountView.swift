@@ -70,6 +70,7 @@ class PaperlessEBillAccountView: UIView {
     }
     
     func toggleSwitch(on: Bool) {
+        guard let _ = isOn else { return }
         enrollSwitch.setOn(on, animated: true)
         enrollSwitch.sendActions(for: .valueChanged)
     }

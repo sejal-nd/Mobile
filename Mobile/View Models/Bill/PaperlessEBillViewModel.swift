@@ -24,8 +24,6 @@ class PaperlessEBillViewModel {
     
     let bag = DisposeBag()
     
-    let accountDetails: Observable<[AccountDetail]>
-    
     init(accountService: AccountService, initialAccountDetail initialAccountDetailValue: AccountDetail, accounts accountsValue: [Account]) {
         self.accountService = accountService
         self.initialAccountDetail = Variable(initialAccountDetailValue)
@@ -41,15 +39,27 @@ class PaperlessEBillViewModel {
             .drive(enrollStatesChanged)
             .addDisposableTo(bag)
         
-        let accountResults = accountsValue.enumerated()
+        enrollAllAccounts = Observable.combineLatest(accountDetails.asObservable(),
+                                                     accountsToEnroll.asObservable(),
+                                                     accountsToUnenroll.asObservable())
+        { allAccountDetails, toEnroll, toUnenroll -> Bool in
+            let enrollableAccounts = allAccountDetails.filter { $0.eBillEnrollStatus == .canEnroll }
+            return toEnroll.count == enrollableAccounts.count && toUnenroll.isEmpty
+        }
+    }
+    
+    lazy var accountDetails: Observable<[AccountDetail]> = {
+        let accounts = self.accounts.value
+        
+        let accountResults = accounts.enumerated()
             .map { index, account -> Observable<AccountDetail> in
-                if initialAccountDetailValue.accountNumber == account.accountNumber {
-                    return Observable.just(initialAccountDetailValue)
+                if self.initialAccountDetail.value.accountNumber == account.accountNumber {
+                    return Observable.just(self.initialAccountDetail.value)
                 }
-                return accountService.fetchAccountDetail(account: account).debug("ACCOUNT NUMBER: \(account.accountNumber), INDEX: \(index)")
+                return self.accountService.fetchAccountDetail(account: account).debug("ACCOUNT NUMBER: \(account.accountNumber), INDEX: \(index)")
         }
         
-        accountDetails = Observable.from(accountResults)
+        return Observable.from(accountResults)
             .merge(maxConcurrent: 3)
             .toArray()
             // Re-sort the returned array of account details to match the original order of the accounts passed in.
@@ -57,7 +67,7 @@ class PaperlessEBillViewModel {
             .map { accountDetails in
                 accountDetails
                     .map { detail -> (Int, AccountDetail) in
-                        let idx = accountsValue.index { $0.accountNumber == detail.accountNumber }
+                        let idx = accounts.index { $0.accountNumber == detail.accountNumber }
                         guard let index = idx else {
                             return (.max, detail)
                         }
@@ -67,15 +77,7 @@ class PaperlessEBillViewModel {
                     .map { $0.1 }
             }
             .shareReplay(1)
-        
-        enrollAllAccounts = Observable.combineLatest(accountDetails.asObservable(),
-                                 accountsToEnroll.asObservable(),
-                                 accountsToUnenroll.asObservable())
-        { allAccountDetails, toEnroll, toUnenroll -> Bool in
-            let enrollableAccounts = allAccountDetails.filter { $0.eBillEnrollStatus == .canEnroll }
-            return toEnroll.count == enrollableAccounts.count && toUnenroll.isEmpty
-        }
-    }
+    }()
     
     var footerText: String? {
         switch Environment.sharedInstance.opco {
