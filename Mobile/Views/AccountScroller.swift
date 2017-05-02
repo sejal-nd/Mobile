@@ -95,6 +95,8 @@ class AccountScroller: UIView {
             pagedAccounts = Array(self.accounts.prefix(MAX_ACCOUNTS))
             pageControl.isHidden = true
         }
+        
+        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
 
         pageViews.removeAll()
         if self.accounts.count < MAX_ACCOUNTS {
@@ -102,7 +104,7 @@ class AccountScroller: UIView {
                 let pageView = UIView(frame: .zero)
                 pageViews.append(pageView)
                 
-                let icon = account.accountType == .Commercial ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
+                let icon = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
                 let iconImageView = UIImageView(image: icon)
                 iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
                 
@@ -153,7 +155,8 @@ class AccountScroller: UIView {
             let pageView = UIView(frame: .zero)
             pageView.backgroundColor = .clear
             pageViews.append(pageView)
-            let icon = pagedAccounts[0].accountType == .Commercial ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
+            
+            let icon = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
             let iconImageView = UIImageView(image: icon)
             iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
             

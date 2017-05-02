@@ -14,15 +14,12 @@ enum AccountType {
 }
 
 struct Account: Mappable, Equatable, Hashable {
-    let accountType: AccountType
     let accountNumber: String
     let address: String?
     
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
         address = map.optionalFrom("address")
-        
-        accountType = .Residential
     }
     
     // Equatable

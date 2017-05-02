@@ -73,50 +73,49 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 && Environment.sharedInstance.opco == .bge {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewDropDownCell", for: indexPath) as! AdvancedAccountPickerDropDownTableViewCell
-            
-            let account = accounts[indexPath.row]
-            
-            cell.accountImageView.image = account.accountType == .Commercial ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
-            cell.accountNumber.text = account.accountNumber
-            cell.addressLabel.text = account.address
-            cell.accountStatusLabel.text = ""
-            cell.viewAddressesButton.tag = indexPath.row
-            cell.viewAddressesButton.addTarget(self, action: #selector(showPremises), for: .touchUpInside)
-            
-            if account.accountNumber == currentAccount?.accountNumber {
-                cell.accountImageViewLeadingConstraint.constant = 39
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                cell.checkMarkImageView.isHidden = false
-            } else {
-                cell.accountImageViewLeadingConstraint.constant = 16
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                cell.checkMarkImageView.isHidden = true
-            }
-            return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AdvancedAccountPickerTableViewCell
+        
+        let account = accounts[indexPath.row]
+        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
+        
+        cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
+        cell.accountNumber.text = account.accountNumber
+        cell.addressLabel.text = account.address
+        cell.accountStatusLabel.text = ""
+        
+        if account.accountNumber == currentAccount?.accountNumber {
+            cell.accountImageViewLeadingConstraint.constant = 39
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
+            cell.checkMarkImageView.isHidden = false
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AdvancedAccountPickerTableViewCell
-            
-            let account = accounts[indexPath.row]
-            
-            cell.accountImageView.image = account.accountType == .Commercial ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
-            cell.accountNumber.text = account.accountNumber
-            cell.addressLabel.text = account.address
-            cell.accountStatusLabel.text = ""
-            
-            if account.accountNumber == currentAccount?.accountNumber {
-                cell.accountImageViewLeadingConstraint.constant = 39
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
-                cell.checkMarkImageView.isHidden = false
-            } else {
-                cell.accountImageViewLeadingConstraint.constant = 16
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
-                cell.checkMarkImageView.isHidden = true
-            }
-            return cell
+            cell.accountImageViewLeadingConstraint.constant = 16
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
+            cell.checkMarkImageView.isHidden = true
         }
+        return cell
+        
+//        // Decision made on 5/2/17 that BGE is unable to display multi-premise addresses
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewDropDownCell", for: indexPath) as! AdvancedAccountPickerDropDownTableViewCell
+//        
+//        let account = accounts[indexPath.row]
+//        
+//        cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
+//        cell.accountNumber.text = account.accountNumber
+//        cell.addressLabel.text = account.address
+//        cell.accountStatusLabel.text = ""
+//        cell.viewAddressesButton.tag = indexPath.row
+//        cell.viewAddressesButton.addTarget(self, action: #selector(showPremises), for: .touchUpInside)
+//        
+//        if account.accountNumber == currentAccount?.accountNumber {
+//            cell.accountImageViewLeadingConstraint.constant = 39
+//            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//            cell.checkMarkImageView.isHidden = false
+//        } else {
+//            cell.accountImageViewLeadingConstraint.constant = 16
+//            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//            cell.checkMarkImageView.isHidden = true
+//        }
+//        return cell
     }
     
 }
