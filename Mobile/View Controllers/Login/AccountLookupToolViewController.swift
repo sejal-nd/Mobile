@@ -179,7 +179,8 @@ extension AccountLookupToolViewController: UITextFieldDelegate {
             
             return false
         } else if textField == identifierTextField?.textField {
-            return newString.characters.count <= 4
+            let characterSet = CharacterSet(charactersIn: string)
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
         }
         
         return true
