@@ -30,6 +30,7 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
     @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet weak var paymentAmountActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var paymentAmountErrorLabel: UILabel!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var amountDescriptionLabel: UILabel!
@@ -202,8 +203,9 @@ class BudgetBillingViewController: UIViewController {
             self.paymentAmountActivityIndicator.isHidden = true
             self.paymentAmountView.isHidden = false
         }, onError: { errMessage in
+            self.paymentAmountErrorLabel.text = NSLocalizedString("Error Loading Budget Billing Data", comment: "")
             self.paymentAmountActivityIndicator.isHidden = true
-            print("budget billing error: \(errMessage)")
+            self.paymentAmountErrorLabel.isHidden = false
         })
     }
     

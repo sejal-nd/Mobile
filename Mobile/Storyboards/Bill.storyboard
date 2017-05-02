@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -29,17 +29,17 @@
                         <viewControllerLayoutGuide type="bottom" id="gE4-MJ-svX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="f8I-LW-4KU">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DL5-8p-VuX">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdd-pX-9Nn" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="319" height="400"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="400"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2BY-N0-MzF" customClass="AccountScroller" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="319" height="64"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="64"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="9ZC-Zi-Byq"/>
@@ -47,7 +47,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2km-BG-0i7">
-                                                <rect key="frame" x="29" y="104" width="261" height="100"/>
+                                                <rect key="frame" x="29" y="104" width="316" height="100"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_paperlessleaf" translatesAutoresizingMaskIntoConstraints="NO" id="DJY-ff-j2c">
                                                         <rect key="frame" x="16" y="23.5" width="55" height="52"/>
@@ -65,7 +65,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xo9-xv-TkF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="261" height="100"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="316" height="100"/>
                                                         <connections>
                                                             <action selector="onButtonTouchCancel:" destination="DBY-ak-0eF" eventType="touchCancel" id="R42-Zh-Fiv"/>
                                                             <action selector="onButtonTouchCancel:" destination="DBY-ak-0eF" eventType="touchUpInside" id="kPy-EP-EWJ"/>
@@ -91,7 +91,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2a-zV-fxn">
-                                                <rect key="frame" x="29" y="224" width="261" height="100"/>
+                                                <rect key="frame" x="29" y="224" width="316" height="100"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_billingcalc" translatesAutoresizingMaskIntoConstraints="NO" id="hmy-7u-y4G">
                                                         <rect key="frame" x="20" y="24" width="37" height="51"/>
@@ -109,7 +109,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyX-OP-lRD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="261" height="100"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="316" height="100"/>
                                                         <connections>
                                                             <action selector="onBudgetBillingButtonPress" destination="DBY-ak-0eF" eventType="touchUpInside" id="AtX-Ph-v6W"/>
                                                             <action selector="onButtonTouchCancel:" destination="DBY-ak-0eF" eventType="touchCancel" id="Ei7-7E-Gs4"/>
@@ -135,10 +135,10 @@
                                                 </constraints>
                                             </view>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Lrb-j5-Io8">
-                                                <rect key="frame" x="149.5" y="22" width="20" height="20"/>
+                                                <rect key="frame" x="177" y="22" width="20" height="20"/>
                                             </activityIndicatorView>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UMM-LW-kv9">
-                                                <rect key="frame" x="141.5" y="233.5" width="37" height="37"/>
+                                                <rect key="frame" x="169" y="283" width="37" height="37"/>
                                             </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -209,11 +209,11 @@
                         <viewControllerLayoutGuide type="bottom" id="AHN-b5-bUu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KhA-vh-bNr">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d9l-20-HV8" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="53" y="24" width="214" height="321.5"/>
+                                <rect key="frame" x="53" y="24" width="269" height="256"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="999" constant="468" id="XvD-r0-pH7"/>
@@ -256,23 +256,23 @@
                         <viewControllerLayoutGuide type="bottom" id="I8c-HS-yHy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9b6-bb-TH1">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRG-Ou-QoU">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UOB-RI-gra" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="610.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="610.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZaH-vb-FEJ" userLabel="BG Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="421.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="421.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yW6-Ix-06o" userLabel="Top View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="421.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="421.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIY-h8-nGr" userLabel="Gradient View">
-                                                                <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </view>
                                                         </subviews>
@@ -286,29 +286,29 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YBl-k7-ozx" userLabel="Content Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="610.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="610.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vBu-OQ-0Av" userLabel="Top Stack">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="421.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="421.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZOc-SI-i5U" userLabel="Header Stack">
-                                                                <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="039-me-h1j" userLabel="padding">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="14"/>
+                                                                        <rect key="frame" x="27.5" y="0.0" width="320" height="14"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="14" id="DdI-Wz-VXF"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yss-cx-KQS">
-                                                                        <rect key="frame" x="29" y="14" width="262" height="90"/>
+                                                                        <rect key="frame" x="29" y="14" width="317" height="90"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="dot_pattern_right" translatesAutoresizingMaskIntoConstraints="NO" id="5bv-Uq-nD7">
-                                                                                <rect key="frame" x="136" y="0.0" width="126" height="90"/>
+                                                                                <rect key="frame" x="171.5" y="0.0" width="126" height="90"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT4-Mw-pfF">
-                                                                                <rect key="frame" x="61.5" y="21" width="139" height="49.5"/>
+                                                                                <rect key="frame" x="89.5" y="20.5" width="139" height="49.5"/>
                                                                                 <string key="text">What is
 Paperless eBill?</string>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
@@ -316,10 +316,10 @@ Paperless eBill?</string>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_paperlessleaf" translatesAutoresizingMaskIntoConstraints="NO" id="PYw-Rz-PZv">
-                                                                                <rect key="frame" x="4" y="19" width="55" height="52"/>
+                                                                                <rect key="frame" x="10.5" y="19" width="55" height="52"/>
                                                                             </imageView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8P-EI-49a">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="262" height="90"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="90"/>
                                                                                 <connections>
                                                                                     <segue destination="Foe-zJ-Pxi" kind="presentation" id="LHa-Xt-j4h"/>
                                                                                 </connections>
@@ -343,33 +343,33 @@ Paperless eBill?</string>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZd-tJ-bmY" userLabel="padding">
-                                                                        <rect key="frame" x="0.0" y="104" width="320" height="26"/>
+                                                                        <rect key="frame" x="27.5" y="104" width="320" height="26"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="26" id="HM2-4a-zLT"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAz-VF-Pwp">
-                                                                        <rect key="frame" x="0.0" y="130" width="320" height="71"/>
+                                                                        <rect key="frame" x="0.0" y="130" width="375" height="71"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ndz-DS-V2s">
-                                                                                <rect key="frame" x="16" y="14" width="288" height="43"/>
+                                                                                <rect key="frame" x="16" y="14" width="343" height="43"/>
                                                                                 <subviews>
                                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_email" translatesAutoresizingMaskIntoConstraints="NO" id="A9W-oH-Hp0">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="43" height="43"/>
                                                                                         <color key="tintColor" red="0.90196078430000004" green="0.25882352939999997" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     </imageView>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="2B0-4P-D3N">
-                                                                                        <rect key="frame" x="51" y="0.0" width="237" height="43"/>
+                                                                                        <rect key="frame" x="51" y="0.0" width="292" height="43"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emails will be sent to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OB9-oV-7EA">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="237" height="21.5"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="292" height="21.5"/>
                                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                                 <color key="textColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="ccorrea@mindgrub.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qk2-xq-Q5c">
-                                                                                                <rect key="frame" x="0.0" y="22.5" width="237" height="20.5"/>
+                                                                                                <rect key="frame" x="0.0" y="22.5" width="292" height="20.5"/>
                                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                 <nil key="highlightedColor"/>
@@ -396,10 +396,10 @@ Paperless eBill?</string>
                                                                 </constraints>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEC-2U-dhq">
-                                                                <rect key="frame" x="0.0" y="201" width="320" height="78.5"/>
+                                                                <rect key="frame" x="0.0" y="201" width="375" height="78.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Your enrollment status for Paperless eBill will be updated at midnight." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfJ-7G-EjH">
-                                                                        <rect key="frame" x="29" y="20" width="262" height="38.5"/>
+                                                                        <rect key="frame" x="29" y="20" width="317" height="38.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -414,19 +414,19 @@ Paperless eBill?</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gua-rp-1fw">
-                                                                <rect key="frame" x="0.0" y="279.5" width="320" height="65"/>
+                                                                <rect key="frame" x="0.0" y="279.5" width="375" height="65"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OF5-EZ-pag">
-                                                                        <rect key="frame" x="17" y="17" width="289" height="31"/>
+                                                                        <rect key="frame" x="17" y="17" width="344" height="31"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Accounts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciL-El-KGI">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="240" height="31"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="295" height="31"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="QEY-D0-0OR" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="240" y="0.0" width="51" height="31"/>
+                                                                                <rect key="frame" x="295" y="0.0" width="51" height="31"/>
                                                                             </switch>
                                                                         </subviews>
                                                                     </stackView>
@@ -440,17 +440,17 @@ Paperless eBill?</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WF4-SH-OgG">
-                                                                <rect key="frame" x="0.0" y="344.5" width="320" height="8"/>
+                                                                <rect key="frame" x="0.0" y="344.5" width="375" height="8"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="8" id="PlX-7S-4a5"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQi-0t-Dzn">
-                                                                <rect key="frame" x="0.0" y="352.5" width="320" height="69"/>
+                                                                <rect key="frame" x="0.0" y="352.5" width="375" height="69"/>
                                                                 <subviews>
                                                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="999" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="j7d-Oq-mHt">
-                                                                        <rect key="frame" x="141.5" y="16" width="37" height="37"/>
+                                                                        <rect key="frame" x="169" y="16" width="37" height="37"/>
                                                                         <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </activityIndicatorView>
                                                                 </subviews>
@@ -462,10 +462,10 @@ Paperless eBill?</string>
                                                                 </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DTo-Pb-SsT">
-                                                                <rect key="frame" x="0.0" y="421.5" width="320" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="421.5" width="375" height="0.0"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4m-0V-0iv">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" priority="999" id="3x1-Nb-iZA"/>
@@ -476,10 +476,10 @@ Paperless eBill?</string>
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSx-wZ-NZa" userLabel="Bottom View">
-                                                        <rect key="frame" x="0.0" y="421.5" width="320" height="189"/>
+                                                        <rect key="frame" x="0.0" y="421.5" width="375" height="189"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0H-AS-PYY">
-                                                                <rect key="frame" x="40" y="29" width="240" height="131"/>
+                                                                <rect key="frame" x="40" y="29" width="295" height="131"/>
                                                                 <string key="text">Your enrollment status for paperless ebill will be updated at midnight.
 
 If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless Billing through PECO.com, you will be automatically unenrolled from MyCheckFree.</string>
@@ -577,11 +577,11 @@ If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in 
                         <viewControllerLayoutGuide type="bottom" id="grW-67-MCZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="oka-Ve-eHJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" verticalHuggingPriority="1000" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ut-wk-y5h">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
@@ -599,16 +599,16 @@ If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in 
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9q-o3-FeM">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NmK-bQ-RvV" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="556.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="513"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="paperless_modal" translatesAutoresizingMaskIntoConstraints="NO" id="TJ4-yj-eSs">
-                                                <rect key="frame" x="16" y="16" width="288" height="317"/>
+                                                <rect key="frame" x="16" y="16" width="343" height="317"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vL-dE-hgB">
-                                                <rect key="frame" x="37" y="340" width="246" height="196.5"/>
+                                                <rect key="frame" x="37" y="340" width="301" height="153"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="999" constant="468" id="zqV-iP-R0M"/>
                                                 </constraints>
@@ -700,7 +700,7 @@ If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in 
                                                                 <rect key="frame" x="167" y="0.0" width="126" height="90"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evS-WD-Rt4">
-                                                                <rect key="frame" x="87" y="22.5" width="126" height="46.5"/>
+                                                                <rect key="frame" x="87" y="22" width="126" height="46.5"/>
                                                                 <string key="text">What is
 Budget Billing?</string>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
@@ -740,7 +740,7 @@ Budget Billing?</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqG-lk-DUF">
-                                                        <rect key="frame" x="94" y="144.5" width="188" height="49.5"/>
+                                                        <rect key="frame" x="93.5" y="144.5" width="188" height="49.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$200.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDe-zM-yPH">
                                                                 <rect key="frame" x="0.0" y="0.0" width="134" height="49.5"/>
@@ -765,8 +765,14 @@ Budget Billing?</string>
                                                             <constraint firstAttribute="trailing" secondItem="WCi-o0-AZv" secondAttribute="trailing" id="n0H-Dz-8do"/>
                                                         </constraints>
                                                     </view>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Loading Budget Billing Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irq-1E-yq2">
+                                                        <rect key="frame" x="81" y="161.5" width="214" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Blv-cP-k2g">
-                                                        <rect key="frame" x="178" y="160" width="20" height="20"/>
+                                                        <rect key="frame" x="177" y="159.5" width="20" height="20"/>
                                                     </activityIndicatorView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4h-Cf-jR8">
                                                         <rect key="frame" x="29" y="208" width="317" height="72"/>
@@ -779,6 +785,7 @@ Budget Billing?</string>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="BRV-PC-ieL" firstAttribute="top" secondItem="PRB-vQ-A2r" secondAttribute="top" constant="16" id="1gd-Ji-Fe9"/>
+                                                    <constraint firstItem="irq-1E-yq2" firstAttribute="centerY" secondItem="tqG-lk-DUF" secondAttribute="centerY" id="8sA-c3-aPF"/>
                                                     <constraint firstItem="Blv-cP-k2g" firstAttribute="centerX" secondItem="tqG-lk-DUF" secondAttribute="centerX" id="Cn5-hQ-h0W"/>
                                                     <constraint firstItem="Blv-cP-k2g" firstAttribute="centerY" secondItem="tqG-lk-DUF" secondAttribute="centerY" id="GNn-9m-hcM"/>
                                                     <constraint firstItem="BRV-PC-ieL" firstAttribute="leading" secondItem="PRB-vQ-A2r" secondAttribute="leading" constant="30" id="HYr-O8-ox5"/>
@@ -788,6 +795,7 @@ Budget Billing?</string>
                                                     <constraint firstItem="pmW-iP-LFe" firstAttribute="top" secondItem="BRV-PC-ieL" secondAttribute="bottom" constant="24" id="ava-sN-b14"/>
                                                     <constraint firstItem="tqG-lk-DUF" firstAttribute="centerX" secondItem="PRB-vQ-A2r" secondAttribute="centerX" id="pQW-D2-wHv"/>
                                                     <constraint firstItem="pmW-iP-LFe" firstAttribute="centerX" secondItem="PRB-vQ-A2r" secondAttribute="centerX" id="rRr-YJ-G7i"/>
+                                                    <constraint firstItem="irq-1E-yq2" firstAttribute="centerX" secondItem="tqG-lk-DUF" secondAttribute="centerX" id="tZf-Tc-V2l"/>
                                                     <constraint firstItem="M4h-Cf-jR8" firstAttribute="top" secondItem="tqG-lk-DUF" secondAttribute="bottom" constant="14" id="vb0-Mz-oUe"/>
                                                     <constraint firstAttribute="trailing" secondItem="M4h-Cf-jR8" secondAttribute="trailing" constant="29" id="wC3-D0-1ao"/>
                                                     <constraint firstItem="M4h-Cf-jR8" firstAttribute="leading" secondItem="PRB-vQ-A2r" secondAttribute="leading" constant="29" id="yuf-Q0-q1J"/>
@@ -1218,6 +1226,7 @@ Budget Billing?</string>
                         <outlet property="monthlyAmountLabel" destination="XGk-nZ-2XN" id="115-Mc-QtM"/>
                         <outlet property="monthlyAmountTitleLabel" destination="GUV-vZ-WAQ" id="5Hj-Zj-TjO"/>
                         <outlet property="paymentAmountActivityIndicator" destination="Blv-cP-k2g" id="jXi-W7-kAB"/>
+                        <outlet property="paymentAmountErrorLabel" destination="irq-1E-yq2" id="RfP-Kb-tuA"/>
                         <outlet property="paymentAmountLabel" destination="kDe-zM-yPH" id="S9Q-YV-haF"/>
                         <outlet property="paymentAmountView" destination="tqG-lk-DUF" id="V48-SR-WsN"/>
                         <outlet property="payoffBalanceDescriptionLabel" destination="Cug-el-hOf" id="w5c-jN-Gjk"/>
@@ -1592,7 +1601,7 @@ the year</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is Budget Billing?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gos-Aq-4Ke">
-                                        <rect key="frame" x="85" y="32.5" width="205" height="25"/>
+                                        <rect key="frame" x="85.5" y="32.5" width="205" height="25"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
