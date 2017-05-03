@@ -24,8 +24,8 @@ class OutageViewController: UIViewController {
     @IBOutlet weak var outerCircleView: UIView!
     @IBOutlet weak var innerCircleView: UIView!
     @IBOutlet weak var bigButtonView: UIView!
-    @IBOutlet weak var reportOutageButton: TableViewCellButton!
-    @IBOutlet weak var viewOutageMapButton: TableViewCellButton!
+    @IBOutlet weak var reportOutageButton: DisclosureButton!
+    @IBOutlet weak var viewOutageMapButton: DisclosureButton!
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
