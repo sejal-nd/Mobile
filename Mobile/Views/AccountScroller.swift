@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AccountScrollerDelegate: class {
-    func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account)
+    func accountScrollerDidChangeAccount(_ accountScroller: AccountScroller)
 }
 
 class AccountScroller: UIView {
@@ -21,8 +21,8 @@ class AccountScroller: UIView {
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
 
-    var accounts = [Account]()
-    var currentAccount: Account?
+    var currentAccount: Account!
+    
     var parentViewController: UIViewController?
 
     var pageViews = [UIView]()
@@ -44,6 +44,8 @@ class AccountScroller: UIView {
     }
 
     func commonInit() {
+        currentAccount = AccountsStore.sharedInstance.accounts[0]
+        
         backgroundColor = .clear
 
         scrollView = UIScrollView(frame: .zero)
@@ -57,6 +59,8 @@ class AccountScroller: UIView {
         pageControl.currentPageIndicatorTintColor = UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
         pageControl.addTarget(self, action: #selector(onPageControlTap(sender:)), for: .valueChanged)
         addSubview(pageControl)
+        
+        setAccounts()
     }
 
     override func layoutSubviews() {
@@ -81,25 +85,23 @@ class AccountScroller: UIView {
 
     }
 
-    func setAccounts(_ accounts: [Account]) {
-        self.accounts = accounts
-        if let firstAccount = accounts.first {
-            currentAccount = firstAccount
-        }
-        var pagedAccounts = accounts
+    private func setAccounts() {
 
-        if self.accounts.count > 1 && self.accounts.count < MAX_ACCOUNTS {
-            pageControl.numberOfPages = pagedAccounts.count
+        let allAccounts: [Account]! = AccountsStore.sharedInstance.accounts
+        var pagedAccounts: [Account]! = allAccounts
+
+        if allAccounts.count > 1 && allAccounts.count < MAX_ACCOUNTS {
+            pageControl.numberOfPages = allAccounts.count
             pageControl.currentPage = 0
         } else {
-            pagedAccounts = Array(self.accounts.prefix(MAX_ACCOUNTS))
+            pagedAccounts = Array(allAccounts.prefix(MAX_ACCOUNTS))
             pageControl.isHidden = true
         }
         
         let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
 
         pageViews.removeAll()
-        if self.accounts.count < MAX_ACCOUNTS {
+        if allAccounts.count < MAX_ACCOUNTS {
             for account in pagedAccounts {
                 let pageView = UIView(frame: .zero)
                 pageViews.append(pageView)
@@ -227,8 +229,6 @@ class AccountScroller: UIView {
     func onAdvancedAccountButtonPress() {
         let storyboard = UIStoryboard(name: "Outage", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "advancedAccountPicker") as? AdvancedAccountPickerViewController {
-            vc.accounts = accounts
-            vc.currentAccount = currentAccount
             vc.delegate = self
             if let parentVc = parentViewController {
                 parentVc.navigationController?.pushViewController(vc, animated: true)
@@ -238,20 +238,41 @@ class AccountScroller: UIView {
     
     func onPageControlTap(sender: UIPageControl) {
         scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: true)
-        delegate?.accountScroller(self, didChangeAccount: accounts[pageControl.currentPage])
+        currentAccount = AccountsStore.sharedInstance.accounts[pageControl.currentPage]
+        AccountsStore.sharedInstance.currentAccount = currentAccount
+        delegate?.accountScrollerDidChangeAccount(self)
     }
     
-    func updateAdvancedPicker(account: Account) {
-        currentAccount = account
-        advancedAccountNumberLabel?.text = account.accountNumber
-        advancedAccountAddressLabel?.text = account.address
+    func updateCurrentAccount() {
+        currentAccount = AccountsStore.sharedInstance.currentAccount
+        
+        if pageViews.count > 0 {
+            for (index, account) in AccountsStore.sharedInstance.accounts.enumerated() {
+                if account == currentAccount {
+                    pageControl.currentPage = index
+                    scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: false)
+                    break
+                }
+            }
+        }
+        
+        // Update advanced account picker
+        advancedAccountNumberLabel?.text = currentAccount.accountNumber
+        advancedAccountAddressLabel?.text = currentAccount.address
     }
     
 }
 
 extension AccountScroller: AdvancedAccountPickerViewControllerDelegate {
     func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account) {
-        delegate?.accountScroller(self, didChangeAccount: account)
+        currentAccount = account
+        AccountsStore.sharedInstance.currentAccount = account
+        
+        // Update advanced account picker
+        advancedAccountNumberLabel?.text = account.accountNumber
+        advancedAccountAddressLabel?.text = account.address
+        
+        delegate?.accountScrollerDidChangeAccount(self)
     }
 }
 
@@ -262,7 +283,9 @@ extension AccountScroller: UIScrollViewDelegate {
 
         if currentPage != pageControl.currentPage {
             pageControl.currentPage = currentPage
-            delegate?.accountScroller(self, didChangeAccount: accounts[currentPage])
+            currentAccount = AccountsStore.sharedInstance.accounts[currentPage]
+            AccountsStore.sharedInstance.currentAccount = currentAccount
+            delegate?.accountScrollerDidChangeAccount(self)
         }
     }
 

@@ -24,15 +24,15 @@ class PaperlessEBillViewModel {
     
     let bag = DisposeBag()
     
-    init(accountService: AccountService, initialAccountDetail initialAccountDetailValue: AccountDetail, accounts accountsValue: [Account]) {
+    init(accountService: AccountService, initialAccountDetail initialAccountDetailValue: AccountDetail) {
         self.accountService = accountService
         self.initialAccountDetail = Variable(initialAccountDetailValue)
         
         switch Environment.sharedInstance.opco {
         case .bge:
-            self.accounts = Variable([accountsValue.filter { initialAccountDetailValue.accountNumber == $0.accountNumber }.first!])
+            self.accounts = Variable([AccountsStore.sharedInstance.accounts.filter { initialAccountDetailValue.accountNumber == $0.accountNumber }.first!])
         case .comEd, .peco:
-            self.accounts = Variable(accountsValue)
+            self.accounts = Variable(AccountsStore.sharedInstance.accounts)
         }
     
         Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }

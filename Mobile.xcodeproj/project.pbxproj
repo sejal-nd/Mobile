@@ -534,6 +534,10 @@
 		E8D252101E6DB7B400C90584 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520D1E6DB78800C90584 /* Lottie.framework */; };
 		E8D252111E6DB82C00C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
 		E8D252121E6DB82C00C90584 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520D1E6DB78800C90584 /* Lottie.framework */; };
+		E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
+		E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
+		E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
+		E8D340941EBA6A8700BA2D42 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		E8EB4D131E784394002587C5 /* TableViewCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EB4D121E784394002587C5 /* TableViewCellButton.swift */; };
 		E8EB4D141E784394002587C5 /* TableViewCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EB4D121E784394002587C5 /* TableViewCellButton.swift */; };
 		E8EB4D151E784394002587C5 /* TableViewCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EB4D121E784394002587C5 /* TableViewCellButton.swift */; };
@@ -920,6 +924,7 @@
 		E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8D2520B1E6DB74600C90584 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
 		E8D2520D1E6DB78800C90584 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
+		E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
 		E8EB4D121E784394002587C5 /* TableViewCellButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellButton.swift; sourceTree = "<group>"; };
 		E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCellButton.xib; sourceTree = "<group>"; };
 		E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDetectorTextView.swift; sourceTree = "<group>"; };
@@ -1535,6 +1540,7 @@
 			children = (
 				B5AC06ED1E52766A00BBA4ED /* Model */,
 				B5AC06E41E5269D700BBA4ED /* Service */,
+				E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -2290,6 +2296,7 @@
 				E8EB4D131E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A11E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
+				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				E8B674C81E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				9A3161061EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */,
@@ -2393,6 +2400,7 @@
 				E8EB4D151E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A31E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
+				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				E8B674CA1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				9A3161081EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */,
@@ -2496,6 +2504,7 @@
 				E8EB4D141E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8FE30A21E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
+				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				E8B674C91E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				9A3161071EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */,
@@ -2564,6 +2573,7 @@
 				E8CA07F71E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
+				E8D340941EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				E88ECFF71E8ED6DB00A570D0 /* OMCOutageService.swift in Sources */,
 				E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */,
 				E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,

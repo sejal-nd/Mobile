@@ -65,7 +65,6 @@ class BudgetBillingViewController: UIViewController {
     var gradientLayer: CAGradientLayer!
     
     var initialEnrollment: Bool!
-    var account: Account!
     var viewModel: BudgetBillingViewModel!
     
     override func viewDidLoad() {
@@ -183,22 +182,15 @@ class BudgetBillingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = false
-        
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        viewModel.getBudgetBillingInfo(forAccount: account, onSuccess: { (budgetBillingInfo: BudgetBillingInfo) in
+        viewModel.getBudgetBillingInfo(onSuccess: { (budgetBillingInfo: BudgetBillingInfo) in
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
             self.paymentAmountActivityIndicator.isHidden = true
             self.paymentAmountView.isHidden = false
@@ -253,7 +245,7 @@ class BudgetBillingViewController: UIViewController {
             hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
             hud.contentColor = .white
             
-            viewModel.enroll(account: account, onSuccess: {
+            viewModel.enroll(onSuccess: {
                 hud.hide(animated: true)
                 self.delegate?.budgetBillingViewControllerDidEnroll(self)
                 self.navigationController?.popViewController(animated: true)
@@ -282,7 +274,7 @@ class BudgetBillingViewController: UIViewController {
                 hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
                 hud.contentColor = .white
                 
-                self.viewModel.unenroll(account: self.account, onSuccess: {
+                self.viewModel.unenroll(onSuccess: {
                     hud.hide(animated: true)
                     self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                     self.navigationController?.popViewController(animated: true)

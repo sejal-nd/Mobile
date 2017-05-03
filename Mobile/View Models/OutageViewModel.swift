@@ -17,9 +17,7 @@ class OutageViewModel {
     
     private var currentGetOutageStatusDisposable: Disposable?
     
-    var currentAccount: Account?
     var currentOutageStatus: OutageStatus?
-    var accounts: [Account]!
     
     required init(accountService: AccountService, outageService: OutageService) {
         self.accountService = accountService
@@ -32,27 +30,14 @@ class OutageViewModel {
         }
     }
     
-    func getAccounts(onSuccess: @escaping ([Account]) -> Void, onError: @escaping (String) -> Void) {
-        accountService.fetchAccounts()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { accounts in
-                self.accounts = accounts
-                self.currentAccount = accounts[0]
-                onSuccess(accounts)
-            }, onError: { error in
-                onError(error.localizedDescription)
-            })
-            .addDisposableTo(disposeBag)
-    }
-    
-    func getOutageStatus(forAccount account: Account, onSuccess: @escaping (OutageStatus) -> Void, onError: @escaping (String) -> Void) {
+    func getOutageStatus(onSuccess: @escaping (OutageStatus) -> Void, onError: @escaping (String) -> Void) {
 
         // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
         if let disposable = currentGetOutageStatusDisposable {
             disposable.dispose()
         }
         
-        currentGetOutageStatusDisposable = outageService.fetchOutageStatus(account: account)
+        currentGetOutageStatusDisposable = outageService.fetchOutageStatus(account: AccountsStore.sharedInstance.currentAccount)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { outageStatus in
                 self.currentOutageStatus = outageStatus
@@ -64,7 +49,7 @@ class OutageViewModel {
     }
     
     func getReportedOutage() -> ReportedOutageResult? {
-        return outageService.outageMap[currentAccount!.accountNumber]
+        return outageService.outageMap[AccountsStore.sharedInstance.currentAccount.accountNumber]
     }
     
     func getEstimatedRestorationDateString() -> String {

@@ -12,7 +12,6 @@ class BillViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var accountScroller: AccountScroller!
-    @IBOutlet weak var accountScrollerActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var paperlessButtonView: UIView!
     @IBOutlet weak var budgetButtonView: UIView!
     @IBOutlet weak var paperlessEnrollmentLabel: UILabel!
@@ -24,13 +23,11 @@ class BillViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("Bill", comment: "")
+        title = NSLocalizedString("Bill", comment: "")
         
         accountScroller.delegate = self
         accountScroller.parentViewController = self
-        accountScroller.isHidden = true
-        
-        accountScrollerActivityIndicator.color = .mediumPersianBlue
+
         billActivityIndicator.color = .mediumPersianBlue
         
         paperlessButtonView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
@@ -48,34 +45,25 @@ class BillViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = .mediumPersianBlue
-    
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
+//        navigationController?.navigationBar.barStyle = .default
+//        navigationController?.navigationBar.barTintColor = .white
+//        navigationController?.navigationBar.tintColor = .mediumPersianBlue
+//    
+//        let titleDict: [String: Any] = [
+//            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
+//            NSFontAttributeName: OpenSans.bold.ofSize(18)
+//        ]
+//        navigationController?.navigationBar.titleTextAttributes = titleDict
         
-        if viewModel.currentAccount == nil {
-            getAccounts()
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        if AccountsStore.sharedInstance.currentAccount != accountScroller.currentAccount {
+            accountScroller.updateCurrentAccount()
+            getAccountDetails()
+        } else if viewModel.currentAccountDetail == nil {
+            getAccountDetails()
         }
-    }
-    
-    func getAccounts() {
-        accountScrollerActivityIndicator.isHidden = false
-        viewModel.getAccounts(onSuccess: { accounts in
-            self.accountScrollerActivityIndicator.isHidden = true
-            self.accountScroller.setAccounts(accounts)
-            self.accountScroller.isHidden = false
-            self.getAccountDetails()
-        }, onError: { message in
-            self.accountScrollerActivityIndicator.isHidden = true
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        })
+        
     }
     
     func getAccountDetails() {
@@ -141,11 +129,9 @@ class BillViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? BudgetBillingViewController {
             vc.delegate = self
-            vc.account = viewModel.currentAccount!
             vc.initialEnrollment = viewModel.currentAccountDetail!.isBudgetBillEnrollment
         } else if let vc = segue.destination as? PaperlessEBillViewController {
             vc.delegate = self
-            vc.accounts = accountScroller.accounts
             vc.initialAccountDetail = viewModel.currentAccountDetail!
         }
     }
@@ -159,9 +145,7 @@ class BillViewController: UIViewController {
 
 extension BillViewController: AccountScrollerDelegate {
     
-    func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account) {
-        viewModel.currentAccount = account
-        accountScroller.updateAdvancedPicker(account: account)
+    func accountScrollerDidChangeAccount(_ accountScroller: AccountScroller) {
         getAccountDetails()
     }
     
