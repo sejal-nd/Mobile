@@ -26,7 +26,7 @@ class AccountLookupToolResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Account Lookup Tool", comment: "")
+        title = NSLocalizedString("Account Lookup", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         navigationItem.leftBarButtonItem = cancelButton
