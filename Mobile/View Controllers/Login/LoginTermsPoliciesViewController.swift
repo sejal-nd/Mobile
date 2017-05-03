@@ -47,6 +47,21 @@ class LoginTermsPoliciesViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.isTranslucent = false
+        
+        let titleDict: [String: Any] = [
+            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
+            NSFontAttributeName: OpenSans.bold.ofSize(18)
+        ]
+        navigationController?.navigationBar.titleTextAttributes = titleDict
+        
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
