@@ -29,6 +29,7 @@ class PaperlessEBillViewController: UIViewController {
     @IBOutlet weak var whatIsButtonView: UIView!
     @IBOutlet weak var whatIsButton: UIButton!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var updateDetailsLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsView: UIView!
     @IBOutlet weak var enrollAllAccountsSwitch: UISwitch!
     @IBOutlet weak var allAccountsSeparatorView: UIView!
@@ -59,6 +60,7 @@ class PaperlessEBillViewController: UIViewController {
         // TODO: Confirm that this is the correct email address to use
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
         detailsLabel.text = viewModel.footerText
+        updateDetailsLabel.setLineHeight(lineHeight: 24)
         
         viewModel.accountDetails
             .asDriver(onErrorJustReturn: [])

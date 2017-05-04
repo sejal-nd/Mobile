@@ -53,18 +53,99 @@
 		82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
 		82A18E561EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
 		82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
+		82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
+		82A18E5D1EB918C900BE9F21 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
+		82A18E5E1EB918C900BE9F21 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
+		82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */; };
+		82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */; };
+		82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */; };
+		82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */; };
+		82A18E631EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */; };
+		82A18E641EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */; };
+		82A18E681EB9191E00BE9F21 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */; };
+		82A18E691EB9191E00BE9F21 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */; };
+		82A18E6A1EB9191E00BE9F21 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */; };
+		82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */; };
+		82A18E6C1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */; };
+		82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */; };
+		82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E901EB919B300BE9F21 /* AccountLookupToolViewModel.swift */; };
+		82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E901EB919B300BE9F21 /* AccountLookupToolViewModel.swift */; };
+		82A18E971EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E901EB919B300BE9F21 /* AccountLookupToolViewModel.swift */; };
+		82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
+		82A18E991EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
+		82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
+		82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
+		82A18E9C1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
+		82A18E9D1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
+		82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
+		82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
+		82A18EA01EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
+		82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E941EB919B300BE9F21 /* LoginViewModel.swift */; };
+		82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E941EB919B300BE9F21 /* LoginViewModel.swift */; };
+		82A18EA31EB919B300BE9F21 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E941EB919B300BE9F21 /* LoginViewModel.swift */; };
+		82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */; };
+		82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */; };
+		82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */; };
+		82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */; };
+		82A18EAB1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */; };
+		82A18EAC1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */; };
+		82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
+		82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
+		82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
+		82A18EB81EBA676700BE9F21 /* AccountScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB31EBA676700BE9F21 /* AccountScroller.swift */; };
+		82A18EB91EBA676700BE9F21 /* AccountScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB31EBA676700BE9F21 /* AccountScroller.swift */; };
+		82A18EBA1EBA676700BE9F21 /* AccountScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB31EBA676700BE9F21 /* AccountScroller.swift */; };
+		82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */; };
+		82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */; };
+		82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */; };
+		82A18EBE1EBA676700BE9F21 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB51EBA676700BE9F21 /* SecondaryButton.swift */; };
+		82A18EBF1EBA676700BE9F21 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB51EBA676700BE9F21 /* SecondaryButton.swift */; };
+		82A18EC01EBA676700BE9F21 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB51EBA676700BE9F21 /* SecondaryButton.swift */; };
+		82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
+		82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
+		82A18EC31EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
+		82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB71EBA676700BE9F21 /* Switch.swift */; };
+		82A18EC51EBA676700BE9F21 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB71EBA676700BE9F21 /* Switch.swift */; };
+		82A18EC61EBA676700BE9F21 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB71EBA676700BE9F21 /* Switch.swift */; };
+		82A18ECC1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */; };
+		82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */; };
+		82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */; };
+		82A18ECF1EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */; };
+		82A18ED01EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */; };
+		82A18ED11EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */; };
+		82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
+		82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
+		82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
+		82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
+		82A18EDB1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
+		82A18EDC1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
+		82A18EDD1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED41EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift */; };
+		82A18EDE1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED41EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift */; };
+		82A18EDF1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED41EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift */; };
+		82A18EE01EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED51EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift */; };
+		82A18EE11EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED51EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift */; };
+		82A18EE21EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED51EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift */; };
+		82A18EE31EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */; };
+		82A18EE41EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */; };
+		82A18EE51EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */; };
+		82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */; };
+		82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */; };
+		82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */; };
+		82A18EF31EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */; };
+		82A18EF41EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */; };
+		82A18EF51EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */; };
+		82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
+		82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
+		82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
+		82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */; };
+		82A18EFD1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */; };
+		82A18EFE1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */; };
+		82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
+		82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
+		82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
-		82D551DD1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551DC1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift */; };
-		82D551DE1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551DC1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift */; };
-		82D551DF1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551DC1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift */; };
-		82D551E11EAE4561001B1796 /* PaperlessEBillAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551E01EAE4561001B1796 /* PaperlessEBillAccountView.swift */; };
-		82D551E21EAE4561001B1796 /* PaperlessEBillAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551E01EAE4561001B1796 /* PaperlessEBillAccountView.swift */; };
-		82D551E31EAE4561001B1796 /* PaperlessEBillAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551E01EAE4561001B1796 /* PaperlessEBillAccountView.swift */; };
-		82D551E51EAE457B001B1796 /* PaperlessEBillAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D551E41EAE457B001B1796 /* PaperlessEBillAccountView.xib */; };
-		82D551E61EAE457B001B1796 /* PaperlessEBillAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D551E41EAE457B001B1796 /* PaperlessEBillAccountView.xib */; };
-		82D551E71EAE457B001B1796 /* PaperlessEBillAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D551E41EAE457B001B1796 /* PaperlessEBillAccountView.xib */; };
 		8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
 		8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
@@ -77,9 +158,6 @@
 		8FD3C2761E525D76005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
 		8FD3C2771E525D80005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
 		8FD3C2781E525D84005FB1BB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AC067C1E5178AB00BBA4ED /* environment.plist */; };
-		8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */; };
-		8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */; };
-		8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */; };
 		8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LandingViewController.swift */; };
 		8FD5AE871E54EA49003F640D /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LandingViewController.swift */; };
 		8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LandingViewController.swift */; };
@@ -110,25 +188,12 @@
 		9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
 		9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
 		9A3161041EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
-		9A3161061EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161051EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift */; };
-		9A3161071EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161051EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift */; };
-		9A3161081EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161051EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift */; };
-		9A36462C1EB782820067A990 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E069C1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
-		9A36462D1EB782820067A990 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E069C1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
 		9A36C14C1E9EADB7006CAD8D /* ContactUs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A36C14B1E9EADB7006CAD8D /* ContactUs.xib */; };
 		9A36C14F1E9EADC4006CAD8D /* ContactUs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A36C14D1E9EADC0006CAD8D /* ContactUs.xib */; };
 		9A36C1521E9EADDA006CAD8D /* ContactUs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A36C1501E9EADD8006CAD8D /* ContactUs.xib */; };
 		9A36C1541E9EADE6006CAD8D /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1531E9EADE6006CAD8D /* ContactUsViewController.swift */; };
 		9A36C1551E9EADEA006CAD8D /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1531E9EADE6006CAD8D /* ContactUsViewController.swift */; };
 		9A36C1561E9EADEB006CAD8D /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1531E9EADE6006CAD8D /* ContactUsViewController.swift */; };
-		9A36C1581E9EAE08006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
-		9A36C1591E9EAE1C006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
-		9A36C15A1E9EAE1D006CAD8D /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */; };
-		9A4E069D1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E069C1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
-		B535FD0B1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
-		B535FD0C1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
-		B535FD0D1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
-		B535FD0E1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */; };
 		B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
@@ -149,7 +214,6 @@
 		B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
 		B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
 		B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
-		B548469B1E709FC8008CE1B1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
 		B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
 		B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
 		B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
@@ -264,21 +328,12 @@
 		B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */; };
 		B5AC07401E52A2ED00BBA4ED /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC073B1E52A2BD00BBA4ED /* Security.framework */; };
 		B5AC07421E52A49900BBA4ED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07411E52A49900BBA4ED /* CoreLocation.framework */; };
-		E80043011E64DED4005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042FF1E64DED4005CF531 /* TableViewCell.swift */; };
-		E80043021E64DED4005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042FF1E64DED4005CF531 /* TableViewCell.swift */; };
-		E80043031E64DED4005CF531 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80042FF1E64DED4005CF531 /* TableViewCell.swift */; };
-		E80043041E64DED4005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80043001E64DED4005CF531 /* TableViewCell.xib */; };
-		E80043051E64DED4005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80043001E64DED4005CF531 /* TableViewCell.xib */; };
-		E80043061E64DED4005CF531 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80043001E64DED4005CF531 /* TableViewCell.xib */; };
 		E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043081E64DEE2005CF531 /* SettingsViewController.swift */; };
 		E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043081E64DEE2005CF531 /* SettingsViewController.swift */; };
 		E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043081E64DEE2005CF531 /* SettingsViewController.swift */; };
-		E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
-		E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
-		E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800430F1E64DF10005CF531 /* SettingsViewModel.swift */; };
 		E80043141E65D126005CF531 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043131E65D126005CF531 /* MBProgressHUD.framework */; };
 		E80043151E65D13A005CF531 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043131E65D126005CF531 /* MBProgressHUD.framework */; };
 		E80043161E65D149005CF531 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043131E65D126005CF531 /* MBProgressHUD.framework */; };
@@ -315,23 +370,16 @@
 		E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
 		E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
 		E80043431E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
-		E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
-		E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
-		E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
 		E80043491E671F0B005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
 		E800434A1E671F36005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
 		E800434B1E671F4F005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
 		E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
 		E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
 		E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
-		E80043511E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
-		E80043521E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
-		E80043531E675AC4005CF531 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043501E675AC4005CF531 /* SecondaryButton.swift */; };
 		E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043551E68CDCB005CF531 /* IndividualBorders.swift */; };
 		E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043551E68CDCB005CF531 /* IndividualBorders.swift */; };
 		E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043551E68CDCB005CF531 /* IndividualBorders.swift */; };
 		E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800435E1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift */; };
-		E80043601E6A117A005CF531 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */; };
 		E80043611E6A11B7005CF531 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		E80043621E6A11C3005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
 		E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
@@ -348,10 +396,6 @@
 		E80043711E6A139B005CF531 /* libIDMMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */; };
 		E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
 		E80043761E6A1701005CF531 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
-		E801285B1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */; };
-		E801285C1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */; };
-		E801285D1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */; };
-		E801285E1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */; };
 		E801BAD51E8C439500550F99 /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* OMCAuthenticationService.swift */; };
 		E801BAD61E8C439500550F99 /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* OMCAuthenticationService.swift */; };
 		E801BAD71E8C439500550F99 /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* OMCAuthenticationService.swift */; };
@@ -383,9 +427,6 @@
 		E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
 		E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */; };
 		E82FA1371EA541D100C2DABC /* ForgotPasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */; };
-		E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
-		E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
-		E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */; };
 		E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
 		E840BD3B1EB3C91D00812DD0 /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
 		E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
@@ -401,9 +442,6 @@
 		E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */; };
 		E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */; };
 		E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */; };
-		E8542FFB1E7AE1740054AC53 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8542FFA1E7AE1740054AC53 /* SegmentedControl.swift */; };
-		E8542FFC1E7AE1740054AC53 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8542FFA1E7AE1740054AC53 /* SegmentedControl.swift */; };
-		E8542FFD1E7AE1740054AC53 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8542FFA1E7AE1740054AC53 /* SegmentedControl.swift */; };
 		E85895771E8AACFF009485E3 /* loading_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = E85895761E8AACFF009485E3 /* loading_blue.json */; };
 		E85895781E8AACFF009485E3 /* loading_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = E85895761E8AACFF009485E3 /* loading_blue.json */; };
 		E85895791E8AACFF009485E3 /* loading_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = E85895761E8AACFF009485E3 /* loading_blue.json */; };
@@ -419,40 +457,22 @@
 		E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
 		E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
 		E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
-		E87C32051E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32041E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift */; };
-		E87C32061E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32041E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift */; };
-		E87C32071E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32041E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift */; };
-		E87C32081E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32041E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift */; };
 		E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */; };
 		E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */; };
 		E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */; };
-		E87C32131E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32121E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift */; };
-		E87C32141E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32121E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift */; };
-		E87C32151E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32121E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift */; };
 		E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E31EA8009500EA3C13 /* BillViewController.swift */; };
 		E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E31EA8009500EA3C13 /* BillViewController.swift */; };
 		E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E31EA8009500EA3C13 /* BillViewController.swift */; };
-		E882B7E81EA8FF1700EA3C13 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E71EA8FF1700EA3C13 /* BillViewModel.swift */; };
-		E882B7E91EA8FF1700EA3C13 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E71EA8FF1700EA3C13 /* BillViewModel.swift */; };
-		E882B7EA1EA8FF1700EA3C13 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E71EA8FF1700EA3C13 /* BillViewModel.swift */; };
-		E882B7EB1EA8FF1700EA3C13 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E71EA8FF1700EA3C13 /* BillViewModel.swift */; };
 		E882B7ED1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */; };
 		E882B7EE1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */; };
 		E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */; };
 		E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */; };
 		E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */; };
 		E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */; };
-		E882B7F61EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */; };
-		E882B7F71EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */; };
-		E882B7F81EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */; };
-		E882B7F91EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */; };
 		E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
 		E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
 		E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
 		E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
-		E882B8001EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FF1EAA974600EA3C13 /* BudgetBillingTableViewCell.swift */; };
-		E882B8011EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FF1EAA974600EA3C13 /* BudgetBillingTableViewCell.swift */; };
-		E882B8021EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FF1EAA974600EA3C13 /* BudgetBillingTableViewCell.swift */; };
 		E88ECFF11E8D8BA600A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
 		E88ECFF21E8D8BA600A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
 		E88ECFF31E8D8BA600A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
@@ -489,17 +509,9 @@
 		E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
 		E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
 		E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */; };
-		E8B674C81E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
-		E8B674C91E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
-		E8B674CA1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
-		E8B674CB1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */; };
 		E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
 		E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
 		E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
-		E8B674D71E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
-		E8B674D81E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
-		E8B674D91E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
-		E8B674DA1E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */; };
 		E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
@@ -516,9 +528,6 @@
 		E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
 		E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
 		E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
-		E8CA07EA1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */; };
-		E8CA07EB1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */; };
-		E8CA07EC1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */; };
 		E8CA07EF1E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
 		E8CA07F01E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
 		E8CA07F11E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */; };
@@ -541,21 +550,9 @@
 		E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */; };
 		E8D340971EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */; };
 		E8D340981EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */; };
-		E8EB4D131E784394002587C5 /* TableViewCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EB4D121E784394002587C5 /* TableViewCellButton.swift */; };
-		E8EB4D141E784394002587C5 /* TableViewCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EB4D121E784394002587C5 /* TableViewCellButton.swift */; };
-		E8EB4D151E784394002587C5 /* TableViewCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EB4D121E784394002587C5 /* TableViewCellButton.swift */; };
-		E8EB4D171E7843A1002587C5 /* TableViewCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */; };
-		E8EB4D181E7843A1002587C5 /* TableViewCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */; };
-		E8EB4D191E7843A1002587C5 /* TableViewCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */; };
 		E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
 		E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
 		E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
-		E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
-		E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
-		E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ECCD561E5E25CD00C9E46F /* Switch.swift */; };
-		E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
-		E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
-		E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */; };
 		E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
@@ -576,10 +573,6 @@
 		E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
 		E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
 		E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
-		E8FE30A11E7859F2009D28B7 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */; };
-		E8FE30A21E7859F2009D28B7 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */; };
-		E8FE30A31E7859F2009D28B7 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */; };
-		E8FE30A41E7859F2009D28B7 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */; };
 		E8FE30B11E787625009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B01E787625009D28B7 /* outage.json */; };
 		E8FE30B61E787632009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B41E78762F009D28B7 /* outage.json */; };
 		E8FE30B71E787635009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B21E78762B009D28B7 /* outage.json */; };
@@ -630,17 +623,43 @@
 		82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsPaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillCommercialViewController.swift; sourceTree = "<group>"; };
+		82A18E591EB918C900BE9F21 /* BillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModel.swift; sourceTree = "<group>"; };
+		82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewModel.swift; sourceTree = "<group>"; };
+		82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewModel.swift; sourceTree = "<group>"; };
+		82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewModel.swift; sourceTree = "<group>"; };
+		82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewModel.swift; sourceTree = "<group>"; };
+		82A18E901EB919B300BE9F21 /* AccountLookupToolViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolViewModel.swift; sourceTree = "<group>"; };
+		82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModel.swift; sourceTree = "<group>"; };
+		82A18E941EB919B300BE9F21 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
+		82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
+		82A18EB31EBA676700BE9F21 /* AccountScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountScroller.swift; sourceTree = "<group>"; };
+		82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		82A18EB51EBA676700BE9F21 /* SecondaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
+		82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		82A18EB71EBA676700BE9F21 /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
+		82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
+		82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultCell.swift; sourceTree = "<group>"; };
+		82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerDropDownTableViewCell.swift; sourceTree = "<group>"; };
+		82A18ED41EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerTableViewCell.swift; sourceTree = "<group>"; };
+		82A18ED51EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingTableViewCell.swift; sourceTree = "<group>"; };
+		82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameTableViewCell.swift; sourceTree = "<group>"; };
+		82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillAccountView.swift; sourceTree = "<group>"; };
+		82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaperlessEBillAccountView.xib; sourceTree = "<group>"; };
+		82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButton.swift; sourceTree = "<group>"; };
+		82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisclosureButton.xib; sourceTree = "<group>"; };
+		82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenResponse.swift; sourceTree = "<group>"; };
 		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
-		82D551DC1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewModel.swift; sourceTree = "<group>"; };
-		82D551E01EAE4561001B1796 /* PaperlessEBillAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillAccountView.swift; sourceTree = "<group>"; };
-		82D551E41EAE457B001B1796 /* PaperlessEBillAccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaperlessEBillAccountView.xib; sourceTree = "<group>"; };
 		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BGE-Info.plist"; sourceTree = "<group>"; };
 		8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
 		8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Info.plist"; sourceTree = "<group>"; };
-		8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		8FD5AE831E54EA49003F640D /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsPoliciesViewController.swift; sourceTree = "<group>"; };
 		8FD5AE851E54EA49003F640D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -653,14 +672,10 @@
 		8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComEdColor.swift; sourceTree = "<group>"; };
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
 		9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerViewController.swift; sourceTree = "<group>"; };
-		9A3161051EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdvancedAccountPickerTableViewCell.swift; path = Mobile/Views/AdvancedAccountPickerTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		9A36C14B1E9EADB7006CAD8D /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
 		9A36C14D1E9EADC0006CAD8D /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
 		9A36C1501E9EADD8006CAD8D /* ContactUs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUs.xib; sourceTree = "<group>"; };
 		9A36C1531E9EADE6006CAD8D /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
-		9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
-		9A4E069C1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerDropDownTableViewCell.swift; sourceTree = "<group>"; };
-		B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthTokenResponse.swift; path = ../AuthTokenResponse.swift; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
 		B54846821E687CEB008CE1B1 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
@@ -844,11 +859,8 @@
 		B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B5AC073B1E52A2BD00BBA4ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		E80042FF1E64DED4005CF531 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		E80043001E64DED4005CF531 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E80043081E64DEE2005CF531 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		E800430F1E64DF10005CF531 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E80043131E65D126005CF531 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
 		E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Carthage/Build/iOS/ToastSwiftFramework.framework; sourceTree = "<group>"; };
 		E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -861,13 +873,10 @@
 		E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
-		E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		E80043481E671F0B005CF531 /* Zxcvbn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zxcvbn.framework; path = Carthage/Build/iOS/Zxcvbn.framework; sourceTree = "<group>"; };
 		E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordStrengthMeterView.swift; sourceTree = "<group>"; };
-		E80043501E675AC4005CF531 /* SecondaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		E80043551E68CDCB005CF531 /* IndividualBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualBorders.swift; sourceTree = "<group>"; };
 		E800435E1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModelTests.swift; sourceTree = "<group>"; };
-		E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewModel.swift; sourceTree = "<group>"; };
 		E801BAD41E8C439500550F99 /* OMCAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCAuthenticationService.swift; sourceTree = "<group>"; };
 		E801BAD81E8C43BB00550F99 /* OMCAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCAccountService.swift; sourceTree = "<group>"; };
 		E801BADC1E8C5A4E00550F99 /* Mapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapper.framework; path = Carthage/Build/iOS/Mapper.framework; sourceTree = "<group>"; };
@@ -879,27 +888,20 @@
 		E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreSplitViewController.swift; sourceTree = "<group>"; };
 		E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModelTests.swift; sourceTree = "<group>"; };
 		E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModelTests.swift; sourceTree = "<group>"; };
-		E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		E840BD391EB3C91D00812DD0 /* BillService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillService.swift; sourceTree = "<group>"; };
 		E840BD3E1EB3CAA100812DD0 /* BudgetBillingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingInfo.swift; sourceTree = "<group>"; };
 		E840BD431EB3D4B300812DD0 /* OMCBillService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCBillService.swift; sourceTree = "<group>"; };
 		E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewController.swift; sourceTree = "<group>"; };
-		E8542FFA1E7AE1740054AC53 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		E85895761E8AACFF009485E3 /* loading_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading_blue.json; sourceTree = "<group>"; };
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
 		E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetJVFloatLabeledTextField.swift; sourceTree = "<group>"; };
 		E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolViewController.swift; sourceTree = "<group>"; };
-		E87C32041E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolViewModel.swift; sourceTree = "<group>"; };
 		E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultViewController.swift; sourceTree = "<group>"; };
-		E87C32121E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultCell.swift; sourceTree = "<group>"; };
 		E882B7E31EA8009500EA3C13 /* BillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
-		E882B7E71EA8FF1700EA3C13 /* BillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModel.swift; sourceTree = "<group>"; };
 		E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewController.swift; sourceTree = "<group>"; };
 		E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsBudgetBillingViewController.swift; sourceTree = "<group>"; };
-		E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewModel.swift; sourceTree = "<group>"; };
 		E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewAddShadow.swift; sourceTree = "<group>"; };
-		E882B7FF1EAA974600EA3C13 /* BudgetBillingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingTableViewCell.swift; sourceTree = "<group>"; };
 		E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCOutageService.swift; sourceTree = "<group>"; };
 		E89D07A01E609DC900F87F87 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JVFloatLabeledText.framework; path = Carthage/Build/iOS/JVFloatLabeledText.framework; sourceTree = "<group>"; };
@@ -913,14 +915,11 @@
 		E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		E8B4F4CE1E5CE21D0031D934 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
-		E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
-		E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModel.swift; sourceTree = "<group>"; };
 		E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAccountNumberViewController.swift; sourceTree = "<group>"; };
 		E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountNumberTooltipViewController.swift; sourceTree = "<group>"; };
 		E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameResultViewController.swift; sourceTree = "<group>"; };
 		E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
-		E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameTableViewCell.swift; sourceTree = "<group>"; };
 		E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestionViewController.swift; sourceTree = "<group>"; };
 		E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableFormSheetViewController.swift; sourceTree = "<group>"; };
 		E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewModelTests.swift; sourceTree = "<group>"; };
@@ -929,11 +928,7 @@
 		E8D2520D1E6DB78800C90584 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
 		E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPickerViewController.swift; sourceTree = "<group>"; };
-		E8EB4D121E784394002587C5 /* TableViewCellButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellButton.swift; sourceTree = "<group>"; };
-		E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCellButton.xib; sourceTree = "<group>"; };
 		E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDetectorTextView.swift; sourceTree = "<group>"; };
-		E8ECCD561E5E25CD00C9E46F /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
-		E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E8EEF7151E566FD8006804D4 /* FingerprintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
 		E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -942,7 +937,6 @@
 		E8EEF7361E57895F006804D4 /* LaunchScreen-ComEd.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-ComEd.storyboard"; sourceTree = "<group>"; };
 		E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-PECO.storyboard"; sourceTree = "<group>"; };
 		E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewController.swift; sourceTree = "<group>"; };
-		E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewModel.swift; sourceTree = "<group>"; };
 		E8FE30B01E787625009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 		E8FE30B21E78762B009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 		E8FE30B41E78762F009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
@@ -1070,6 +1064,108 @@
 			path = BGEUITests;
 			sourceTree = "<group>";
 		};
+		82A18E581EB9186000BE9F21 /* Bill */ = {
+			isa = PBXGroup;
+			children = (
+				82A18E591EB918C900BE9F21 /* BillViewModel.swift */,
+				82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */,
+				82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */,
+			);
+			path = Bill;
+			sourceTree = "<group>";
+		};
+		82A18E651EB918D400BE9F21 /* Outage */ = {
+			isa = PBXGroup;
+			children = (
+				82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */,
+				82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */,
+			);
+			path = Outage;
+			sourceTree = "<group>";
+		};
+		82A18E6E1EB9192500BE9F21 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				82A18E901EB919B300BE9F21 /* AccountLookupToolViewModel.swift */,
+				82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */,
+				82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */,
+				82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */,
+				82A18E941EB919B300BE9F21 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		82A18E6F1EB9192B00BE9F21 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */,
+				82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */,
+				82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+		82A18EB01EBA667900BE9F21 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				82A18EB31EBA676700BE9F21 /* AccountScroller.swift */,
+				82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */,
+				82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */,
+				82A18EB51EBA676700BE9F21 /* SecondaryButton.swift */,
+				82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */,
+				82A18EB71EBA676700BE9F21 /* Switch.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		82A18EB11EBA667F00BE9F21 /* Listable Views */ = {
+			isa = PBXGroup;
+			children = (
+				82A18EC71EBA677300BE9F21 /* PaperlessEBillAccountView */,
+			);
+			path = "Listable Views";
+			sourceTree = "<group>";
+		};
+		82A18EB21EBA668500BE9F21 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */,
+				82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift */,
+				82A18ED41EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift */,
+				82A18ED51EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift */,
+				82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */,
+				82A18EC91EBA681800BE9F21 /* SettingsTableViewCell */,
+			);
+			path = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		82A18EC71EBA677300BE9F21 /* PaperlessEBillAccountView */ = {
+			isa = PBXGroup;
+			children = (
+				82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */,
+				82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */,
+			);
+			path = PaperlessEBillAccountView;
+			sourceTree = "<group>";
+		};
+		82A18EC91EBA681800BE9F21 /* SettingsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */,
+				82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */,
+			);
+			path = SettingsTableViewCell;
+			sourceTree = "<group>";
+		};
+		82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */ = {
+			isa = PBXGroup;
+			children = (
+				82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */,
+				82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */,
+			);
+			path = DisclosureButton;
+			sourceTree = "<group>";
+		};
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,23 +1220,13 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E80042FA1E64DEB3005CF531 /* TableViewCell */,
-				E8EB4D111E784369002587C5 /* TableViewCellButton */,
+				82A18EB01EBA667900BE9F21 /* Controls */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
-				8FD5AE7E1E54EA34003F640D /* PrimaryButton.swift */,
-				E80043501E675AC4005CF531 /* SecondaryButton.swift */,
-				E8ECCD561E5E25CD00C9E46F /* Switch.swift */,
+				82A18EB11EBA667F00BE9F21 /* Listable Views */,
+				82A18EB21EBA668500BE9F21 /* Table View Cells */,
 				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
 				E80D2E261E72FC2C002626C9 /* AccountPicker.swift */,
-				E8542FFA1E7AE1740054AC53 /* SegmentedControl.swift */,
 				E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */,
-				E87C32121E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift */,
-				E8CA07E91E9D476500A1D431 /* ForgotUsernameTableViewCell.swift */,
-				82D551E01EAE4561001B1796 /* PaperlessEBillAccountView.swift */,
-				82D551E41EAE457B001B1796 /* PaperlessEBillAccountView.xib */,
-				E882B7FF1EAA974600EA3C13 /* BudgetBillingTableViewCell.swift */,
-				9A3161051EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift */,
-				9A4E069C1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1557,12 +1643,12 @@
 				E801BAD31E8C436C00550F99 /* OMC */,
 				B5389EA11E53D8640028AF89 /* Parsing */,
 				B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */,
+				82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */,
 				B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */,
 				E8EEF7151E566FD8006804D4 /* FingerprintService.swift */,
 				B574BAD81E78360D001E8A44 /* AccountService.swift */,
 				B574BAEA1E785A5F001E8A44 /* OutageService.swift */,
 				E840BD391EB3C91D00812DD0 /* BillService.swift */,
-				B535FD0A1EAE4D6A0014C5B3 /* AuthTokenResponse.swift */,
 				B5AC06E91E52755800BBA4ED /* ServiceResult.swift */,
 				B54846821E687CEB008CE1B1 /* HttpMethod.swift */,
 			);
@@ -1596,15 +1682,6 @@
 				B55735D71E674089003B9369 /* libOMCSynchronization.a */,
 			);
 			path = OMC;
-			sourceTree = "<group>";
-		};
-		E80042FA1E64DEB3005CF531 /* TableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				E80042FF1E64DED4005CF531 /* TableViewCell.swift */,
-				E80043001E64DED4005CF531 /* TableViewCell.xib */,
-			);
-			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 		E800431B1E65FF4D005CF531 /* Fonts */ = {
@@ -1685,31 +1762,13 @@
 			path = A0SimpleKeychain;
 			sourceTree = "<group>";
 		};
-		E8EB4D111E784369002587C5 /* TableViewCellButton */ = {
-			isa = PBXGroup;
-			children = (
-				E8EB4D121E784394002587C5 /* TableViewCellButton.swift */,
-				E8EB4D161E7843A1002587C5 /* TableViewCellButton.xib */,
-			);
-			path = TableViewCellButton;
-			sourceTree = "<group>";
-		};
 		E8EEF70B1E565BE7006804D4 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				9A36C1571E9EAE08006CAD8D /* ContactUsViewModel.swift */,
-				E8EEF70D1E565CF5006804D4 /* LoginViewModel.swift */,
-				E83EFA361E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift */,
-				E800430F1E64DF10005CF531 /* SettingsViewModel.swift */,
-				E80043441E662C04005CF531 /* ChangePasswordViewModel.swift */,
-				E8FE30A01E7859F2009D28B7 /* OutageViewModel.swift */,
-				E801285A1E7B1FD2000F38A7 /* ReportOutageViewModel.swift */,
-				E8B674C71E96CB1F00BB0788 /* ForgotPasswordViewModel.swift */,
-				E8B674D61E97DB4000BB0788 /* ForgotUsernameViewModel.swift */,
-				E87C32041E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift */,
-				E882B7E71EA8FF1700EA3C13 /* BillViewModel.swift */,
-				82D551DC1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift */,
-				E882B7F51EAA805300EA3C13 /* BudgetBillingViewModel.swift */,
+				82A18E6E1EB9192500BE9F21 /* Login */,
+				82A18E581EB9186000BE9F21 /* Bill */,
+				82A18E651EB918D400BE9F21 /* Outage */,
+				82A18E6F1EB9192B00BE9F21 /* More */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1972,29 +2031,29 @@
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
-				E8EB4D171E7843A1002587C5 /* TableViewCellButton.xib in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
-				E80043041E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				E8FE30B11E787625009D28B7 /* outage.json in Resources */,
 				B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736321E6740A8003B9369 /* INFO.txt in Resources */,
 				B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				82A18ECF1EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895771E8AACFF009485E3 /* loading_blue.json in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
+				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				B55736381E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
-				82D551E51EAE457B001B1796 /* PaperlessEBillAccountView.xib in Resources */,
+				82A18EF31EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
 				9A36C14C1E9EADB7006CAD8D /* ContactUs.xib in Resources */,
 				E8B4F4BB1E5C99E00031D934 /* Bill.storyboard in Resources */,
@@ -2016,29 +2075,29 @@
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736471E6742A6003B9369 /* OMC.plist in Resources */,
-				E8EB4D191E7843A1002587C5 /* TableViewCellButton.xib in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
-				E80043061E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				E8FE30B61E787632009D28B7 /* outage.json in Resources */,
 				B55736401E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736341E6740A8003B9369 /* INFO.txt in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				82A18ED11EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043431E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895791E8AACFF009485E3 /* loading_blue.json in Resources */,
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
+				82A18EFE1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
-				82D551E71EAE457B001B1796 /* PaperlessEBillAccountView.xib in Resources */,
+				82A18EF51EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
 				9A36C1521E9EADDA006CAD8D /* ContactUs.xib in Resources */,
 				E8B4F4BD1E5C99E00031D934 /* Bill.storyboard in Resources */,
@@ -2060,29 +2119,29 @@
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
-				E8EB4D181E7843A1002587C5 /* TableViewCellButton.xib in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
-				E80043051E64DED4005CF531 /* TableViewCell.xib in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				E8FE30B71E787635009D28B7 /* outage.json in Resources */,
 				B557363F1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736331E6740A8003B9369 /* INFO.txt in Resources */,
 				B574BAD01E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				82A18ED01EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432D1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895781E8AACFF009485E3 /* loading_blue.json in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
+				82A18EFD1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				B55736391E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
-				82D551E61EAE457B001B1796 /* PaperlessEBillAccountView.xib in Resources */,
+				82A18EF41EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
 				9A36C14F1E9EADC4006CAD8D /* ContactUs.xib in Resources */,
 				E8B4F4BC1E5C99E00031D934 /* Bill.storyboard in Resources */,
@@ -2241,99 +2300,100 @@
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
-				9A36C1581E9EAE08006CAD8D /* ContactUsViewModel.swift in Sources */,
 				E88ECFF11E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
+				82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
+				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF11E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAEB1E785A5F001E8A44 /* OutageService.swift in Sources */,
+				82A18EBE1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
 				9A36C1541E9EADE6006CAD8D /* ContactUsViewController.swift in Sources */,
+				82A18E681EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
+				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				E801BAD51E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
 				E840BD3F1EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E51E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
-				82D551E11EAE4561001B1796 /* PaperlessEBillAccountView.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
-				E87C32051E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */,
+				82A18EE31EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
+				82A18EE01EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift in Sources */,
+				82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				E80D2E171E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
-				E8B674D71E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
+				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
+				82A18EB81EBA676700BE9F21 /* AccountScroller.swift in Sources */,
+				82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
-				E8CA07EA1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */,
+				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E8CA07EF1E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
+				82A18EDD1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
-				E882B7E81EA8FF1700EA3C13 /* BillViewModel.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
-				E8ECCD571E5E25CD00C9E46F /* Switch.swift in Sources */,
-				E80043101E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
+				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
+				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
+				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */,
+				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
-				E80043451E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
-				9A4E069D1EB39520001917AD /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
-				E882B8001EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */,
+				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
+				82A18ECC1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				82471FBE1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
-				E801285B1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
-				82D551DD1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
-				8FD5AE7F1E54EA34003F640D /* PrimaryButton.swift in Sources */,
-				E80043011E64DED4005CF531 /* TableViewCell.swift in Sources */,
 				E8CA07DD1E9BD0FF00A1D431 /* BGEAccountNumberViewController.swift in Sources */,
 				E8CA07DA1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E840BD441EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
-				E8EB4D131E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
-				E8FE30A11E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
-				E8B674C81E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
-				9A3161061EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */,
+				82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
-				E8EEF70E1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
-				E80043511E675AC4005CF531 /* SecondaryButton.swift in Sources */,
+				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD41E736596001E8A44 /* Macros.swift in Sources */,
 				E882B7ED1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
-				E87C32131E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift in Sources */,
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
+				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
+				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
+				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				E80D2E331E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BAD91E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
-				E8542FFB1E7AE1740054AC53 /* SegmentedControl.swift in Sources */,
-				E882B7F61EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */,
-				B535FD0B1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
+				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
-				E83EFA371E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846871E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
@@ -2346,99 +2406,100 @@
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
-				9A36C15A1E9EAE1D006CAD8D /* ContactUsViewModel.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
+				82A18EAC1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
+				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
+				82A18EC01EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
 				9A36C1561E9EADEB006CAD8D /* ContactUsViewController.swift in Sources */,
+				82A18E6A1EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
+				82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				E801BAD71E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
 				E840BD411EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
-				82D551E31EAE4561001B1796 /* PaperlessEBillAccountView.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */,
-				E87C32071E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */,
+				82A18EE51EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				82A18EE21EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift in Sources */,
+				82A18EA31EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				E80D2E191E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				E8D340981EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */,
-				E8B674D91E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
+				82A18EC61EBA676700BE9F21 /* Switch.swift in Sources */,
+				82A18EBA1EBA676700BE9F21 /* AccountScroller.swift in Sources */,
+				82A18EDC1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
-				E8CA07EC1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */,
+				82A18E641EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E8CA07F11E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
+				82A18EDF1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
-				E882B7EA1EA8FF1700EA3C13 /* BillViewModel.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
-				E8ECCD591E5E25CD00C9E46F /* Switch.swift in Sources */,
-				E80043121E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
+				82A18EC31EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				9A3161041EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
+				82A18EA01EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
+				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
+				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
-				E80043471E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
-				9A36462D1EB782820067A990 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
-				E882B8021EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */,
+				82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
+				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				82471FC01EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
-				E801285D1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
-				82D551DF1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
-				8FD5AE811E54EA34003F640D /* PrimaryButton.swift in Sources */,
-				E80043031E64DED4005CF531 /* TableViewCell.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* BGEAccountNumberViewController.swift in Sources */,
 				E8CA07DC1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E840BD461EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
-				E8EB4D151E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
-				E8FE30A31E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
-				E8B674CA1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
-				9A3161081EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */,
+				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
-				E8EEF7101E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B574BAFF1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
-				E80043531E675AC4005CF531 /* SecondaryButton.swift in Sources */,
+				82A18E5E1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD61E736596001E8A44 /* Macros.swift in Sources */,
 				E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
-				E87C32151E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift in Sources */,
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
+				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
+				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
+				82A18E971EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				E80D2E351E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
-				E8542FFD1E7AE1740054AC53 /* SegmentedControl.swift in Sources */,
-				E882B7F81EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */,
-				B535FD0D1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
+				82A18E9D1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
-				E83EFA391E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
@@ -2451,99 +2512,100 @@
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
-				9A36C1591E9EAE1C006CAD8D /* ContactUsViewModel.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,
+				82A18EAB1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
+				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
+				82A18EBF1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
 				9A36C1551E9EADEA006CAD8D /* ContactUsViewController.swift in Sources */,
+				82A18E691EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
+				82A18E991EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				E801BAD61E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
 				E840BD401EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
-				82D551E21EAE4561001B1796 /* PaperlessEBillAccountView.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
-				E87C32061E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */,
+				82A18EE41EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				82A18EE11EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift in Sources */,
+				82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				E80D2E181E721668002626C9 /* ObfuscatedString.swift in Sources */,
 				E8D340971EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */,
-				E8B674D81E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
+				82A18EC51EBA676700BE9F21 /* Switch.swift in Sources */,
+				82A18EB91EBA676700BE9F21 /* AccountScroller.swift in Sources */,
+				82A18EDB1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E561EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
-				E8CA07EB1E9D476500A1D431 /* ForgotUsernameTableViewCell.swift in Sources */,
+				82A18E631EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E840BD3B1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E8CA07F01E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
 				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
+				82A18EDE1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
-				E882B7E91EA8FF1700EA3C13 /* BillViewModel.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
-				E8ECCD581E5E25CD00C9E46F /* Switch.swift in Sources */,
-				E80043111E64DF10005CF531 /* SettingsViewModel.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
+				82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
+				82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
+				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */,
+				82A18E6C1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
-				E80043461E662C04005CF531 /* ChangePasswordViewModel.swift in Sources */,
-				9A36462C1EB782820067A990 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
-				E882B8011EAA974600EA3C13 /* BudgetBillingTableViewCell.swift in Sources */,
+				82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
+				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				82471FBF1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
-				E801285C1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
-				82D551DE1EAAB7B3001B1796 /* PaperlessEBillViewModel.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
-				8FD5AE801E54EA34003F640D /* PrimaryButton.swift in Sources */,
-				E80043021E64DED4005CF531 /* TableViewCell.swift in Sources */,
 				E8CA07DE1E9BD10000A1D431 /* BGEAccountNumberViewController.swift in Sources */,
 				E8CA07DB1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E840BD451EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
-				E8EB4D141E784394002587C5 /* TableViewCellButton.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
-				E8FE30A21E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
-				E8B674C91E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
-				9A3161071EAE76FD00D4AD7B /* AdvancedAccountPickerTableViewCell.swift in Sources */,
+				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
-				E8EEF70F1E565CF5006804D4 /* LoginViewModel.swift in Sources */,
 				8FD5AE871E54EA49003F640D /* LandingViewController.swift in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				B574BAFE1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
-				E80043521E675AC4005CF531 /* SecondaryButton.swift in Sources */,
+				82A18E5D1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD51E736596001E8A44 /* Macros.swift in Sources */,
 				E882B7EE1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
-				E87C32141E9ED4CF00E5F6FD /* AccountLookupToolResultCell.swift in Sources */,
 				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
+				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
+				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
+				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				E80D2E341E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADA1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
-				E8542FFC1E7AE1740054AC53 /* SegmentedControl.swift in Sources */,
-				E882B7F71EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */,
-				B535FD0C1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
+				82A18E9C1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
-				E83EFA381E5BAAAD00869FE3 /* TermsPoliciesViewModel.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
@@ -2558,23 +2620,18 @@
 				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
-				E882B7F91EAA805300EA3C13 /* BudgetBillingViewModel.swift in Sources */,
-				E801285E1E7B1FD2000F38A7 /* ReportOutageViewModel.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
 				B574BAF41E785AE3001E8A44 /* OutageStatus.swift in Sources */,
-				E882B7EB1EA8FF1700EA3C13 /* BillViewModel.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				E840BD471EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
-				E87C32081E9EB6C100E5F6FD /* AccountLookupToolViewModel.swift in Sources */,
 				E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
 				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
-				B535FD0E1EAE4D6A0014C5B3 /* AuthTokenResponse.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				E840BD421EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */,
@@ -2586,23 +2643,18 @@
 				E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */,
 				E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* ObfuscatedString.swift in Sources */,
-				E8B674CB1E96CB1F00BB0788 /* ForgotPasswordViewModel.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
-				E8FE30A41E7859F2009D28B7 /* OutageViewModel.swift in Sources */,
 				E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */,
 				E82FA1371EA541D100C2DABC /* ForgotPasswordViewModelTests.swift in Sources */,
-				E80043601E6A117A005CF531 /* ChangePasswordViewModel.swift in Sources */,
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
-				E8B674DA1E97DB4000BB0788 /* ForgotUsernameViewModel.swift in Sources */,
 				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
 				B574BADC1E78360D001E8A44 /* AccountService.swift in Sources */,
-				B548469B1E709FC8008CE1B1 /* LoginViewModel.swift in Sources */,
 				B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

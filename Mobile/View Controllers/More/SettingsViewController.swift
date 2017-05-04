@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    var touchIdCell: TableViewCell?
+    var touchIdCell: SettingsTableViewCell?
     var touchIdPasswordRetryCount = 0
     
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController {
         
         self.title = NSLocalizedString("Settings", comment: "")
         
-        let nib = UINib(nibName: "TableViewCell", bundle: nil)
+        let nib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "Cell")
         
         tableView.backgroundColor = .whiteSmoke
@@ -44,7 +44,7 @@ class SettingsViewController: UIViewController {
     
     // MARK: - Touch ID Switch Handling
     
-    func switchObserver(cell: TableViewCell, isOn: Bool) {
+    func switchObserver(cell: SettingsTableViewCell, isOn: Bool) {
         if isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage())
         } else {
@@ -150,7 +150,7 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SettingsTableViewCell
         
         if indexPath.section == 0 {
             cell.configureWith(label: NSLocalizedString("Change Password", comment: ""), carat: true)
@@ -170,7 +170,7 @@ extension SettingsViewController: UITableViewDataSource {
         return cell
     }
     
-    func configureOpcoCell(_ cell: TableViewCell) {
+    func configureOpcoCell(_ cell: SettingsTableViewCell) {
         if Environment.sharedInstance.opco == .bge {
             cell.configureWith(label: NSLocalizedString("Default Account", comment: ""), carat: true)
         } else if Environment.sharedInstance.opco == .peco {

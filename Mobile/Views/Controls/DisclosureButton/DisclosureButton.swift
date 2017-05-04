@@ -1,5 +1,5 @@
 //
-//  TableViewCellButton.swift
+//  DisclosureButton.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 3/14/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewCellButton: UIButton {
+class DisclosureButton: UIButton {
     
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var checkImage: UIImageView!
@@ -35,7 +35,7 @@ class TableViewCellButton: UIButton {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("TableViewCellButton", owner: self, options: nil)
+        Bundle.main.loadNibNamed("DisclosureButton", owner: self, options: nil)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true

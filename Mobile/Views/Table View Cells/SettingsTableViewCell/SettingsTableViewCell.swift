@@ -1,5 +1,5 @@
 //
-//  TableViewCell.swift
+//  SettingsTableViewCell.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 2/27/17.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class TableViewCell: UITableViewCell {
+class SettingsTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var innerContentView: UIView!
     @IBOutlet private weak var label: UILabel!
