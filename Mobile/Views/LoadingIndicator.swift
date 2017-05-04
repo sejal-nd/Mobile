@@ -10,7 +10,7 @@ import Lottie
 
 class LoadingIndicator: UIView {
     
-    private var lottieAnimationView = LOTAnimationView(name: "loading_blue")
+    private var lottieAnimationView = LOTAnimationView(name: "ellipses_loading")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +27,7 @@ class LoadingIndicator: UIView {
     func commonInit() {
         backgroundColor = .clear
         
-        lottieAnimationView!.frame.size = CGSize(width: 37, height: 37)
+        lottieAnimationView!.frame.size = CGSize(width: 60, height: 12)
         lottieAnimationView!.loopAnimation = true
         lottieAnimationView!.play()
         
@@ -35,7 +35,7 @@ class LoadingIndicator: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 37, height: 37)
+        return CGSize(width: 60, height: 12)
     }
     
     override var isHidden: Bool {

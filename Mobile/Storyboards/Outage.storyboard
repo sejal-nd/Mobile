@@ -409,8 +409,8 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                     <constraint firstItem="ZQw-Ul-DsT" firstAttribute="top" secondItem="rwO-5r-SUq" secondAttribute="bottom" constant="14" id="xsP-tc-thr"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="37" translatesAutoresizingMaskIntoConstraints="NO" id="NIt-JI-Lwr" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="169" y="280.5" width="37" height="37"/>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="NIt-JI-Lwr" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="157.5" y="293" width="60" height="12"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ERROR" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lL0-H1-J9Q">

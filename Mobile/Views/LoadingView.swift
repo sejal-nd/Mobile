@@ -19,7 +19,7 @@ class LoadingView: UIView {
     }
     
     private lazy var animationContainer = UIView()
-    private var loadingAnimationView = LOTAnimationView(name: "loading")
+    private var loadingAnimationView = LOTAnimationView(name: "full_screen_loading")
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,7 +28,7 @@ class LoadingView: UIView {
         animationContainer.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         animationContainer.layer.cornerRadius = 3
         
-        loadingAnimationView!.frame.size = CGSize(width: 100, height: 100)
+        loadingAnimationView!.frame.size = CGSize(width: 72, height: 72)
         loadingAnimationView!.loopAnimation = true
         loadingAnimationView!.play()
         

@@ -63,6 +63,7 @@ class BillViewController: AccountPickerViewController {
             scrollView.alwaysBounceVertical = true
         } else {
             if let rc = refreshControl {
+                rc.endRefreshing()
                 rc.removeFromSuperview()
                 refreshControl = nil
             }
@@ -86,6 +87,7 @@ class BillViewController: AccountPickerViewController {
         })
     }
     
+
     func onPullToRefresh() {
         viewModel.getAccountDetails(onSuccess: {
             self.refreshControl?.endRefreshing()

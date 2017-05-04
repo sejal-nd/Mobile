@@ -28,7 +28,7 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var whatIsBudgetBillingLabel: UILabel!
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
     @IBOutlet weak var paymentAmountView: UIView!
-    @IBOutlet weak var paymentAmountActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var paymentAmountLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var paymentAmountErrorLabel: UILabel!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
@@ -100,7 +100,6 @@ class BudgetBillingViewController: UIViewController {
         yourPaymentWouldBeLabel.textColor = .outerSpace
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your payment would be:", comment: "")
         
-        paymentAmountActivityIndicator.color = .mediumPersianBlue
         paymentAmountLabel.textColor = .outerSpace
         monthLabel.textColor = .outerSpace
         monthLabel.text = NSLocalizedString("/Month", comment: "")
@@ -191,11 +190,11 @@ class BudgetBillingViewController: UIViewController {
         
         viewModel.getBudgetBillingInfo(onSuccess: { (budgetBillingInfo: BudgetBillingInfo) in
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
-            self.paymentAmountActivityIndicator.isHidden = true
+            self.paymentAmountLoadingIndicator.isHidden = true
             self.paymentAmountView.isHidden = false
         }, onError: { errMessage in
             self.paymentAmountErrorLabel.text = NSLocalizedString("Error Loading Budget Billing Data", comment: "")
-            self.paymentAmountActivityIndicator.isHidden = true
+            self.paymentAmountLoadingIndicator.isHidden = true
             self.paymentAmountErrorLabel.isHidden = false
         })
     }
