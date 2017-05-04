@@ -6,18 +6,18 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 import Lottie
 import MBProgressHUD
 
-class OutageViewController: UIViewController {
+class OutageViewController: AccountPickerViewController {
+    
+    let disposeBag = DisposeBag()
     
     @IBOutlet weak var gradientBackground: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var accountScroller: AccountScroller!
+    @IBOutlet weak var scrollViewContentView: UIView!
     @IBOutlet weak var accountContentView: UIView!
     @IBOutlet weak var gasOnlyView: UIView!
-    @IBOutlet weak var accountScrollerActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var outageStatusActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var animationView: UIView!
@@ -29,6 +29,12 @@ class OutageViewController: UIViewController {
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
+    // We keep track of this constraint because AutoLayout uses it to calculate the height of the scrollView's content
+    // When the gasOnlyView is hidden, we do not want it's height to impact the scrollView content size (the normal outage
+    // view does not need to scroll on iPhone 7 size), so we use this to toggle active/inactive. Cannot be weak reference
+    // because setting isActive = false would set to nil
+    @IBOutlet var gasOnlyTextViewBottomSpaceConstraint: NSLayoutConstraint!
+
     var gradientLayer: CAGradientLayer!
     
     var onAnimationView = LOTAnimationView(name: "outage")!
@@ -39,7 +45,7 @@ class OutageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Outage", comment: "")
+        title = NSLocalizedString("Outage", comment: "")
 
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientBackground.bounds
@@ -55,8 +61,8 @@ class OutageViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
         scrollView.insertSubview(refreshControl, at: 0)
 
-        accountScroller.delegate = self
-        accountScroller.parentViewController = self
+        accountPicker.delegate = self
+        accountPicker.parentViewController = self
         
         onAnimationView.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
         onAnimationView.loopAnimation = true
@@ -84,19 +90,21 @@ class OutageViewController: UIViewController {
         gasOnlyTextView.tintColor = .mediumPersianBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
         
-        accountScroller.isHidden = true
-        accountContentView.isHidden = true
-        
-        accountScrollerActivityIndicator.color = .mediumPersianBlue
         outageStatusActivityIndicator.color = .mediumPersianBlue
+        
+        accountPickerViewControllerWillAppear.subscribe(onNext: {
+            if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                self.getOutageStatus()
+            } else if self.viewModel.currentOutageStatus == nil {
+                self.getOutageStatus()
+            }
+        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if viewModel.currentAccount == nil {
-            getAccounts()
-        }
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -113,8 +121,15 @@ class OutageViewController: UIViewController {
         errorLabel.isHidden = true
         
         // Show/hide the top level container views
-        gasOnlyView.isHidden = !currentOutageStatus.flagGasOnly
-        accountContentView.isHidden = currentOutageStatus.flagGasOnly
+        if currentOutageStatus.flagGasOnly {
+            gasOnlyTextViewBottomSpaceConstraint.isActive = true
+            gasOnlyView.isHidden = false
+            accountContentView.isHidden = true
+        } else {
+            gasOnlyTextViewBottomSpaceConstraint.isActive = false
+            gasOnlyView.isHidden = true
+            accountContentView.isHidden = false
+        }
         
         // Display either the Lottie animation or draw our own border circles
         let powerIsOn = !currentOutageStatus.activeOutage && viewModel.getReportedOutage() == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled
@@ -267,28 +282,14 @@ class OutageViewController: UIViewController {
         }
     }
     
-    func getAccounts() {
-        accountScrollerActivityIndicator.isHidden = false
-        viewModel.getAccounts(onSuccess: { accounts in
-            self.accountScrollerActivityIndicator.isHidden = true
-            self.accountScroller.setAccounts(accounts)
-            self.accountScroller.isHidden = false
-            self.getOutageStatus()
-        }, onError: { message in
-            self.accountScrollerActivityIndicator.isHidden = true
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        })
-    }
-    
     func getOutageStatus() {
         accountContentView.isHidden = true
+        gasOnlyTextViewBottomSpaceConstraint.isActive = false
         gasOnlyView.isHidden = true
         errorLabel.isHidden = true
         outageStatusActivityIndicator.isHidden = false
         
-        viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { _ in
+        viewModel.getOutageStatus(onSuccess: { _ in
             self.outageStatusActivityIndicator.isHidden = true
             self.updateContent()
         }, onError: { error in
@@ -315,25 +316,21 @@ class OutageViewController: UIViewController {
     
     func onPullToRefresh() {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
-            if self.viewModel.currentAccount == nil {
+            self.viewModel.getOutageStatus(onSuccess: { outageStatus in
                 self.refreshControl.endRefreshing()
-                self.getAccounts()
-            } else {
-                self.viewModel.getOutageStatus(forAccount: self.viewModel.currentAccount!, onSuccess: { outageStatus in
-                    self.refreshControl.endRefreshing()
-                    self.outageStatusActivityIndicator.isHidden = true
-                    self.updateContent()
-                }, onError: { error in
-                    self.refreshControl.endRefreshing()
-                    self.outageStatusActivityIndicator.isHidden = true
-                    self.errorLabel.text = error
-                    self.errorLabel.isHidden = false
-                    
-                    // Hide everything else
-                    self.accountContentView.isHidden = true
-                    self.gasOnlyView.isHidden = true
-                })
-            }
+                self.outageStatusActivityIndicator.isHidden = true
+                self.updateContent()
+            }, onError: { error in
+                self.refreshControl.endRefreshing()
+                self.outageStatusActivityIndicator.isHidden = true
+                self.errorLabel.text = error
+                self.errorLabel.isHidden = false
+                
+                // Hide everything else
+                self.accountContentView.isHidden = true
+                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
+                self.gasOnlyView.isHidden = true
+            })
         })
     }
     
@@ -349,7 +346,6 @@ class OutageViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ReportOutageViewController {
-            vc.viewModel.account = viewModel.currentAccount!
             vc.viewModel.outageStatus = viewModel.currentOutageStatus!
             if let phone = viewModel.currentOutageStatus!.contactHomeNumber {
                 vc.viewModel.phoneNumber.value = phone
@@ -360,11 +356,9 @@ class OutageViewController: UIViewController {
  
 }
 
-extension OutageViewController: AccountScrollerDelegate {
+extension OutageViewController: AccountPickerDelegate {
     
-    func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account) {
-        viewModel.currentAccount = account
-        accountScroller.updateAdvancedPicker(account: account)
+    func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         getOutageStatus()
     }
     

@@ -15,7 +15,6 @@ class ReportOutageViewModel {
     
     private var outageService: OutageService
     
-    var account: Account?
     var outageStatus: OutageStatus?
     var selectedSegmentIndex = Variable(0)
     var phoneNumber = Variable("")
@@ -56,7 +55,7 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.Flickering
         }
 
-        var outageInfo = OutageInfo(account: account!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value))
+        var outageInfo = OutageInfo(account: AccountsStore.sharedInstance.currentAccount, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value))
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }

@@ -28,8 +28,8 @@ class BudgetBillingViewModel {
         }).addDisposableTo(disposeBag)
     }
     
-    func getBudgetBillingInfo(forAccount account: Account, onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
-        billService.fetchBudgetBillingInfo(account: account)
+    func getBudgetBillingInfo(onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
+        billService.fetchBudgetBillingInfo(account: AccountsStore.sharedInstance.currentAccount)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { billingInfo in
                 onSuccess(billingInfo)
@@ -39,8 +39,8 @@ class BudgetBillingViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    func enroll(account: Account, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        billService.enrollBudgetBilling(account: account)
+    func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        billService.enrollBudgetBilling(account: AccountsStore.sharedInstance.currentAccount)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -50,8 +50,8 @@ class BudgetBillingViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    func unenroll(account: Account, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        billService.unenrollBudgetBilling(account: account, reason: getReasonString(forIndex: selectedUnenrollmentReason.value))
+    func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        billService.unenrollBudgetBilling(account: AccountsStore.sharedInstance.currentAccount, reason: getReasonString(forIndex: selectedUnenrollmentReason.value))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()

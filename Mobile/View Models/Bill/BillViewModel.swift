@@ -16,7 +16,6 @@ class BillViewModel {
     
     private var currentGetAccountDetailDisposable: Disposable?
 
-    var currentAccount: Account?
     var currentAccountDetail: AccountDetail?
     
     required init(accountService: AccountService) {
@@ -29,18 +28,6 @@ class BillViewModel {
         }
     }
     
-    func getAccounts(onSuccess: @escaping ([Account]) -> Void, onError: @escaping (String) -> Void) {
-        accountService.fetchAccounts()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { accounts in
-                self.currentAccount = accounts[0]
-                onSuccess(accounts)
-            }, onError: { error in
-                onError(error.localizedDescription)
-            })
-            .addDisposableTo(disposeBag)
-    }
-    
     func getAccountDetails(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         
         // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
@@ -48,12 +35,9 @@ class BillViewModel {
             disposable.dispose()
         }
         
-        currentGetAccountDetailDisposable = accountService.fetchAccountDetail(account: currentAccount!)
+        currentGetAccountDetailDisposable = accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { accountDetail in
-//                print("------------------------------------------------")
-//                print(accountDetail)
-//                print("------------------------------------------------")
                 self.currentAccountDetail = accountDetail
                 onSuccess()
             }, onError: { error in

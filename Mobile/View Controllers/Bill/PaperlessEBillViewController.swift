@@ -40,10 +40,9 @@ class PaperlessEBillViewController: UIViewController {
     @IBOutlet weak var detailsLabel: UILabel!
     
     var initialAccountDetail: AccountDetail!
-    var accounts: [Account]!
     
     lazy var viewModel: PaperlessEBillViewModel = {
-        PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(), initialAccountDetail: self.initialAccountDetail, accounts: self.accounts)
+        PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(), initialAccountDetail: self.initialAccountDetail)
     } ()
     
     weak var delegate: PaperlessEBillViewControllerDelegate?
@@ -128,16 +127,9 @@ class PaperlessEBillViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = false
-        
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar()
+        }
     }
     
     func add(accountDetail: AccountDetail, animated: Bool) {

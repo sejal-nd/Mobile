@@ -8,25 +8,23 @@
 
 import UIKit
 
-protocol AdvancedAccountPickerViewControllerDelegate {
+protocol AdvancedAccountPickerViewControllerDelegate: class {
     func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account)
 }
 
 class AdvancedAccountPickerViewController: UIViewController {
+    
+    weak var delegate: AdvancedAccountPickerViewControllerDelegate?
 
     @IBOutlet weak var tableView: UITableView!
     
-    var accounts = [Account]()
     var expandedStates = [Bool]()
-    var currentAccount: Account?
-    
-    var delegate: AdvancedAccountPickerViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 64
-        for _ in accounts {
+        for _ in AccountsStore.sharedInstance.accounts {
             expandedStates.append(false)
         }
     }
@@ -55,8 +53,7 @@ class AdvancedAccountPickerViewController: UIViewController {
 extension AdvancedAccountPickerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentAccount = accounts[indexPath.row]
-        delegate?.advancedAccountPickerViewController(self, didSelectAccount: currentAccount!)
+        delegate?.advancedAccountPickerViewController(self, didSelectAccount: AccountsStore.sharedInstance.accounts[indexPath.row])
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -69,13 +66,13 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return accounts.count
+        return AccountsStore.sharedInstance.accounts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AdvancedAccountPickerTableViewCell
         
-        let account = accounts[indexPath.row]
+        let account = AccountsStore.sharedInstance.accounts[indexPath.row]
         let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
         
         cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
@@ -83,7 +80,7 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
         cell.addressLabel.text = account.address
         cell.accountStatusLabel.text = ""
         
-        if account.accountNumber == currentAccount?.accountNumber {
+        if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
             cell.accountImageViewLeadingConstraint.constant = 39
             cell.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
             cell.checkMarkImageView.isHidden = false
@@ -97,7 +94,7 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
 //        // Decision made on 5/2/17 that BGE is unable to display multi-premise addresses
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewDropDownCell", for: indexPath) as! AdvancedAccountPickerDropDownTableViewCell
 //        
-//        let account = accounts[indexPath.row]
+//        let account = AccountsStore.sharedInstance.accounts[indexPath.row]
 //        
 //        cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
 //        cell.accountNumber.text = account.accountNumber
@@ -106,7 +103,7 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
 //        cell.viewAddressesButton.tag = indexPath.row
 //        cell.viewAddressesButton.addTarget(self, action: #selector(showPremises), for: .touchUpInside)
 //        
-//        if account.accountNumber == currentAccount?.accountNumber {
+//        if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
 //            cell.accountImageViewLeadingConstraint.constant = 39
 //            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 //            cell.checkMarkImageView.isHidden = false
