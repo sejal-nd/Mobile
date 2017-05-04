@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import MBProgressHUD
 
 class AccountLookupToolViewController: UIViewController {
     
@@ -94,13 +93,9 @@ class AccountLookupToolViewController: UIViewController {
     func onSearchPress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
-        
+        LoadingView.show()
         viewModel.performSearch(onSuccess: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             if self.viewModel.accountLookupResults.count == 1 {
                 let selectedAccount = self.viewModel.accountLookupResults.first!
                 self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
@@ -109,7 +104,7 @@ class AccountLookupToolViewController: UIViewController {
                 self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
             }
         }, onError: { errorMessage in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alertController = UIAlertController(title: NSLocalizedString("Invalid Information", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)

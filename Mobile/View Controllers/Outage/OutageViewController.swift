@@ -8,7 +8,6 @@
 
 import RxSwift
 import Lottie
-import MBProgressHUD
 
 class OutageViewController: AccountPickerViewController {
     
@@ -18,7 +17,7 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var scrollViewContentView: UIView!
     @IBOutlet weak var accountContentView: UIView!
     @IBOutlet weak var gasOnlyView: UIView!
-    @IBOutlet weak var outageStatusActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var outageStatusLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var outerCircleView: UIView!
@@ -89,8 +88,6 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyTextView.textContainerInset = .zero
         gasOnlyTextView.tintColor = .mediumPersianBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
-        
-        outageStatusActivityIndicator.color = .mediumPersianBlue
         
         accountPickerViewControllerWillAppear.subscribe(onNext: {
             if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
@@ -287,13 +284,13 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyTextViewBottomSpaceConstraint.isActive = false
         gasOnlyView.isHidden = true
         errorLabel.isHidden = true
-        outageStatusActivityIndicator.isHidden = false
+        outageStatusLoadingIndicator.isHidden = false
         
         viewModel.getOutageStatus(onSuccess: { _ in
-            self.outageStatusActivityIndicator.isHidden = true
+            self.outageStatusLoadingIndicator.isHidden = true
             self.updateContent()
         }, onError: { error in
-            self.outageStatusActivityIndicator.isHidden = true
+            self.outageStatusLoadingIndicator.isHidden = true
             self.errorLabel.text = error
             self.errorLabel.isHidden = false
         })
@@ -315,14 +312,14 @@ class OutageViewController: AccountPickerViewController {
     }
     
     func onPullToRefresh() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
+        //DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
             self.viewModel.getOutageStatus(onSuccess: { outageStatus in
                 self.refreshControl.endRefreshing()
-                self.outageStatusActivityIndicator.isHidden = true
+                self.outageStatusLoadingIndicator.isHidden = true
                 self.updateContent()
             }, onError: { error in
                 self.refreshControl.endRefreshing()
-                self.outageStatusActivityIndicator.isHidden = true
+                self.outageStatusLoadingIndicator.isHidden = true
                 self.errorLabel.text = error
                 self.errorLabel.isHidden = false
                 
@@ -331,7 +328,7 @@ class OutageViewController: AccountPickerViewController {
                 self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
                 self.gasOnlyView.isHidden = true
             })
-        })
+        //})
     }
     
     @IBAction func onReportOutagePress() {

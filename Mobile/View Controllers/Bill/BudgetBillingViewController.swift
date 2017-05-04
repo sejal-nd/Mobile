@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import MBProgressHUD
 
 protocol BudgetBillingViewControllerDelegate: class {
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController)
@@ -240,17 +239,13 @@ class BudgetBillingViewController: UIViewController {
     
     func onSubmitPress() {
         if viewModel.enrolling.value {
-            let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-            hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-            hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-            hud.contentColor = .white
-            
+            LoadingView.show()
             viewModel.enroll(onSuccess: {
-                hud.hide(animated: true)
+                LoadingView.hide()
                 self.delegate?.budgetBillingViewControllerDidEnroll(self)
                 self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
-                hud.hide(animated: true)
+                LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
@@ -269,17 +264,13 @@ class BudgetBillingViewController: UIViewController {
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { _ in
-                let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-                hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-                hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-                hud.contentColor = .white
-                
+                LoadingView.show()
                 self.viewModel.unenroll(onSuccess: {
-                    hud.hide(animated: true)
+                    LoadingView.hide()
                     self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { errMessage in
-                    hud.hide(animated: true)
+                    LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)
