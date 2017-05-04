@@ -369,7 +369,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                     <constraint firstItem="ETa-nw-YVn" firstAttribute="centerX" secondItem="dc7-ff-3bf" secondAttribute="centerX" id="v7q-X8-7ri"/>
                                                 </constraints>
                                             </view>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0L-QG-hAo">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0L-QG-hAo">
                                                 <rect key="frame" x="0.0" y="64" width="375" height="496.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="rwO-5r-SUq">
@@ -429,13 +429,13 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                             <constraint firstAttribute="trailing" secondItem="H0L-QG-hAo" secondAttribute="trailing" priority="999" id="I2D-Oy-CUP"/>
                                             <constraint firstAttribute="trailing" secondItem="FN2-AG-tRU" secondAttribute="trailing" priority="999" id="LrU-ih-gyC"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="LwI-um-wff"/>
+                                            <constraint firstAttribute="bottom" secondItem="H0L-QG-hAo" secondAttribute="bottom" id="R8U-mL-aiF"/>
                                             <constraint firstItem="FN2-AG-tRU" firstAttribute="top" secondItem="4LE-Ih-Txu" secondAttribute="top" id="TvX-gh-ysz"/>
                                             <constraint firstItem="H0L-QG-hAo" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="Ual-of-aCU"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" priority="999" id="VZ8-yy-E6R"/>
                                             <constraint firstAttribute="bottom" secondItem="0lx-Wl-bvy" secondAttribute="bottom" id="Zdh-53-MLu"/>
                                             <constraint firstItem="FN2-AG-tRU" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="fSe-aZ-Wli"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="fjI-oh-c9e"/>
-                                            <constraint firstAttribute="bottom" secondItem="H0L-QG-hAo" secondAttribute="bottom" id="kVK-Xp-waq"/>
                                             <constraint firstAttribute="trailing" secondItem="0lx-Wl-bvy" secondAttribute="trailing" priority="999" id="pSB-NR-AKC"/>
                                         </constraints>
                                     </view>
@@ -477,6 +477,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                         <outlet property="errorLabel" destination="lL0-H1-J9Q" id="uZU-GT-HuL"/>
                         <outlet property="footerTextView" destination="QN1-1Y-eoZ" id="DtU-Dv-8Uz"/>
                         <outlet property="gasOnlyTextView" destination="nUe-Ah-Ffw" id="sVi-Ap-BSv"/>
+                        <outlet property="gasOnlyTextViewBottomSpaceConstraint" destination="M7F-0j-k6B" id="Tz5-af-RHw"/>
                         <outlet property="gasOnlyView" destination="H0L-QG-hAo" id="gUc-Os-TqR"/>
                         <outlet property="gradientBackground" destination="UDU-Ch-dvR" id="VEL-GO-tuo"/>
                         <outlet property="innerCircleView" destination="h8j-at-hGY" id="JKB-tQ-ujN"/>
@@ -484,6 +485,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                         <outlet property="outerCircleView" destination="ETa-nw-YVn" id="I2e-gh-f0a"/>
                         <outlet property="reportOutageButton" destination="UK3-yj-xRE" id="Mts-dt-8zK"/>
                         <outlet property="scrollView" destination="qSc-mq-7Vd" id="HDB-Yy-L6O"/>
+                        <outlet property="scrollViewContentView" destination="4LE-Ih-Txu" id="Il2-dr-Nbg"/>
                         <outlet property="viewOutageMapButton" destination="5cM-eu-hDR" id="Jpd-LW-ilQ"/>
                         <segue destination="ZQH-GI-7Fc" kind="show" identifier="reportOutageSegue" id="APc-d5-ZXG"/>
                     </connections>

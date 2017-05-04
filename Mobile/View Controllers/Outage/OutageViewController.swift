@@ -15,6 +15,7 @@ class OutageViewController: AccountPickerViewController {
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var gradientBackground: UIView!
+    @IBOutlet weak var scrollViewContentView: UIView!
     @IBOutlet weak var accountContentView: UIView!
     @IBOutlet weak var gasOnlyView: UIView!
     @IBOutlet weak var outageStatusActivityIndicator: UIActivityIndicatorView!
@@ -28,6 +29,12 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
+    // We keep track of this constraint because AutoLayout uses it to calculate the height of the scrollView's content
+    // When the gasOnlyView is hidden, we do not want it's height to impact the scrollView content size (the normal outage
+    // view does not need to scroll on iPhone 7 size), so we use this to toggle active/inactive. Cannot be weak reference
+    // because setting isActive = false would set to nil
+    @IBOutlet var gasOnlyTextViewBottomSpaceConstraint: NSLayoutConstraint!
+
     var gradientLayer: CAGradientLayer!
     
     var onAnimationView = LOTAnimationView(name: "outage")!
@@ -83,8 +90,6 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyTextView.tintColor = .mediumPersianBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
         
-        accountContentView.isHidden = true
-
         outageStatusActivityIndicator.color = .mediumPersianBlue
         
         accountPickerViewControllerWillAppear.subscribe(onNext: {
@@ -116,8 +121,15 @@ class OutageViewController: AccountPickerViewController {
         errorLabel.isHidden = true
         
         // Show/hide the top level container views
-        gasOnlyView.isHidden = !currentOutageStatus.flagGasOnly
-        accountContentView.isHidden = currentOutageStatus.flagGasOnly
+        if currentOutageStatus.flagGasOnly {
+            gasOnlyTextViewBottomSpaceConstraint.isActive = true
+            gasOnlyView.isHidden = false
+            accountContentView.isHidden = true
+        } else {
+            gasOnlyTextViewBottomSpaceConstraint.isActive = false
+            gasOnlyView.isHidden = true
+            accountContentView.isHidden = false
+        }
         
         // Display either the Lottie animation or draw our own border circles
         let powerIsOn = !currentOutageStatus.activeOutage && viewModel.getReportedOutage() == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled
@@ -272,6 +284,7 @@ class OutageViewController: AccountPickerViewController {
     
     func getOutageStatus() {
         accountContentView.isHidden = true
+        gasOnlyTextViewBottomSpaceConstraint.isActive = false
         gasOnlyView.isHidden = true
         errorLabel.isHidden = true
         outageStatusActivityIndicator.isHidden = false
@@ -315,6 +328,7 @@ class OutageViewController: AccountPickerViewController {
                 
                 // Hide everything else
                 self.accountContentView.isHidden = true
+                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
                 self.gasOnlyView.isHidden = true
             })
         })
