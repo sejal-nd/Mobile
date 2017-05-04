@@ -18,6 +18,8 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
     @IBOutlet weak var billActivityIndicator: UIActivityIndicatorView!
     
+    var refreshControl: UIRefreshControl?
+    
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
 
     override func viewDidLoad() {
@@ -55,37 +57,67 @@ class BillViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    func setRefreshControlEnabled(enabled: Bool) {
+        if enabled {
+            refreshControl = UIRefreshControl()
+            refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
+            scrollView.insertSubview(refreshControl!, at: 0)
+            scrollView.alwaysBounceVertical = true
+        } else {
+            if let rc = refreshControl {
+                rc.endRefreshing()
+                rc.removeFromSuperview()
+                refreshControl = nil
+            }
+            scrollView.alwaysBounceVertical = false
+        }
+    }
+    
     func getAccountDetails() {
-        self.paperlessButtonView.isHidden = true
-        self.budgetButtonView.isHidden = true
-        self.billActivityIndicator.isHidden = false
-        
+        paperlessButtonView.isHidden = true
+        budgetButtonView.isHidden = true
+        billActivityIndicator.isHidden = false
+        setRefreshControlEnabled(enabled: false)
         viewModel.getAccountDetails(onSuccess: {
             self.billActivityIndicator.isHidden = true
-            
-            self.paperlessButtonView.isHidden = self.viewModel.currentAccountDetail!.isEBillEligible == false
-            self.budgetButtonView.isHidden = self.viewModel.currentAccountDetail!.isBudgetBillEligible == false && Environment.sharedInstance.opco != .bge
-            
-            if self.viewModel.currentAccountDetail!.isEBillEnrollment {
-                self.paperlessEnrollmentLabel.text = "enrolled"
-                self.paperlessEnrollmentLabel.textColor = .successGreenText
-            } else {
-                self.paperlessEnrollmentLabel.text = "not enrolled"
-                self.paperlessEnrollmentLabel.textColor = .outerSpace
-            }
-            
-            if self.viewModel.currentAccountDetail!.isBudgetBillEnrollment {
-                self.budgetBillingEnrollmentLabel.text = "enrolled"
-                self.budgetBillingEnrollmentLabel.textColor = .successGreenText
-            } else {
-                self.budgetBillingEnrollmentLabel.text = "not enrolled"
-                self.budgetBillingEnrollmentLabel.textColor = .outerSpace
-            }
-            
+            self.setRefreshControlEnabled(enabled: true)
+            self.updateContent()
         }, onError: { errorMessage in
             self.billActivityIndicator.isHidden = true
+            self.setRefreshControlEnabled(enabled: true)
             dLog(message: errorMessage)
         })
+    }
+    
+    func onPullToRefresh() {
+        viewModel.getAccountDetails(onSuccess: {
+            self.refreshControl?.endRefreshing()
+            self.updateContent()
+        }, onError: { errorMessage in
+            self.refreshControl?.endRefreshing()
+            dLog(message: errorMessage)
+        })
+    }
+    
+    func updateContent() {
+        paperlessButtonView.isHidden = viewModel.currentAccountDetail!.isEBillEligible == false
+        budgetButtonView.isHidden = viewModel.currentAccountDetail!.isBudgetBillEligible == false && Environment.sharedInstance.opco != .bge
+        
+        if viewModel.currentAccountDetail!.isEBillEnrollment {
+            paperlessEnrollmentLabel.text = "enrolled"
+            paperlessEnrollmentLabel.textColor = .successGreenText
+        } else {
+            paperlessEnrollmentLabel.text = "not enrolled"
+            paperlessEnrollmentLabel.textColor = .outerSpace
+        }
+        
+        if viewModel.currentAccountDetail!.isBudgetBillEnrollment {
+            budgetBillingEnrollmentLabel.text = "enrolled"
+            budgetBillingEnrollmentLabel.textColor = .successGreenText
+        } else {
+            budgetBillingEnrollmentLabel.text = "not enrolled"
+            budgetBillingEnrollmentLabel.textColor = .outerSpace
+        }
     }
     
     @IBAction func onButtonTouchDown(_ sender: Any) {

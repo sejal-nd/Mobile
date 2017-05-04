@@ -38,7 +38,7 @@ class OutageViewController: AccountPickerViewController {
     var gradientLayer: CAGradientLayer!
     
     var onAnimationView = LOTAnimationView(name: "outage")!
-    var refreshControl: UIRefreshControl!
+    var refreshControl: UIRefreshControl?
     
     let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(), outageService: ServiceFactory.createOutageService())
     
@@ -57,10 +57,6 @@ class OutageViewController: AccountPickerViewController {
         gradientLayer.locations = [0.0, 0.38, 1.0]
         gradientBackground.layer.addSublayer(gradientLayer)
         
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
-        scrollView.insertSubview(refreshControl, at: 0)
-
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -111,6 +107,22 @@ class OutageViewController: AccountPickerViewController {
         super.viewDidLayoutSubviews()
         
         gradientLayer.frame = gradientBackground.frame
+    }
+    
+    func setRefreshControlEnabled(enabled: Bool) {
+        if enabled {
+            refreshControl = UIRefreshControl()
+            refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
+            scrollView.insertSubview(refreshControl!, at: 0)
+            scrollView.alwaysBounceVertical = true
+        } else {
+            if let rc = refreshControl {
+                rc.endRefreshing()
+                rc.removeFromSuperview()
+                refreshControl = nil
+            }
+            scrollView.alwaysBounceVertical = false
+        }
     }
     
     func updateContent() {
@@ -288,12 +300,14 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyView.isHidden = true
         errorLabel.isHidden = true
         outageStatusActivityIndicator.isHidden = false
-        
+        setRefreshControlEnabled(enabled: false)
         viewModel.getOutageStatus(onSuccess: { _ in
             self.outageStatusActivityIndicator.isHidden = true
+            self.setRefreshControlEnabled(enabled: true)
             self.updateContent()
         }, onError: { error in
             self.outageStatusActivityIndicator.isHidden = true
+            self.setRefreshControlEnabled(enabled: true)
             self.errorLabel.text = error
             self.errorLabel.isHidden = false
         })
@@ -315,22 +329,20 @@ class OutageViewController: AccountPickerViewController {
     }
     
     func onPullToRefresh() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
-            self.viewModel.getOutageStatus(onSuccess: { outageStatus in
-                self.refreshControl.endRefreshing()
-                self.outageStatusActivityIndicator.isHidden = true
-                self.updateContent()
-            }, onError: { error in
-                self.refreshControl.endRefreshing()
-                self.outageStatusActivityIndicator.isHidden = true
-                self.errorLabel.text = error
-                self.errorLabel.isHidden = false
-                
-                // Hide everything else
-                self.accountContentView.isHidden = true
-                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
-                self.gasOnlyView.isHidden = true
-            })
+        viewModel.getOutageStatus(onSuccess: { outageStatus in
+            self.refreshControl?.endRefreshing()
+            self.outageStatusActivityIndicator.isHidden = true
+            self.updateContent()
+        }, onError: { error in
+            self.refreshControl?.endRefreshing()
+            self.outageStatusActivityIndicator.isHidden = true
+            self.errorLabel.text = error
+            self.errorLabel.isHidden = false
+            
+            // Hide everything else
+            self.accountContentView.isHidden = true
+            self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
+            self.gasOnlyView.isHidden = true
         })
     }
     
