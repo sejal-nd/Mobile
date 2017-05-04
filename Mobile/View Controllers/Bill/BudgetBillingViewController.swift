@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import MBProgressHUD
 
 protocol BudgetBillingViewControllerDelegate: class {
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController)
@@ -29,7 +28,7 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var whatIsBudgetBillingLabel: UILabel!
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
     @IBOutlet weak var paymentAmountView: UIView!
-    @IBOutlet weak var paymentAmountActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var paymentAmountLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var paymentAmountErrorLabel: UILabel!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
@@ -101,7 +100,6 @@ class BudgetBillingViewController: UIViewController {
         yourPaymentWouldBeLabel.textColor = .outerSpace
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your payment would be:", comment: "")
         
-        paymentAmountActivityIndicator.color = .mediumPersianBlue
         paymentAmountLabel.textColor = .outerSpace
         monthLabel.textColor = .outerSpace
         monthLabel.text = NSLocalizedString("/Month", comment: "")
@@ -192,11 +190,11 @@ class BudgetBillingViewController: UIViewController {
         
         viewModel.getBudgetBillingInfo(onSuccess: { (budgetBillingInfo: BudgetBillingInfo) in
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
-            self.paymentAmountActivityIndicator.isHidden = true
+            self.paymentAmountLoadingIndicator.isHidden = true
             self.paymentAmountView.isHidden = false
         }, onError: { errMessage in
             self.paymentAmountErrorLabel.text = NSLocalizedString("Error Loading Budget Billing Data", comment: "")
-            self.paymentAmountActivityIndicator.isHidden = true
+            self.paymentAmountLoadingIndicator.isHidden = true
             self.paymentAmountErrorLabel.isHidden = false
         })
     }
@@ -240,17 +238,13 @@ class BudgetBillingViewController: UIViewController {
     
     func onSubmitPress() {
         if viewModel.enrolling.value {
-            let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-            hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-            hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-            hud.contentColor = .white
-            
+            LoadingView.show()
             viewModel.enroll(onSuccess: {
-                hud.hide(animated: true)
+                LoadingView.hide()
                 self.delegate?.budgetBillingViewControllerDidEnroll(self)
                 self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
-                hud.hide(animated: true)
+                LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
@@ -269,17 +263,13 @@ class BudgetBillingViewController: UIViewController {
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { _ in
-                let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-                hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-                hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-                hud.contentColor = .white
-                
+                LoadingView.show()
                 self.viewModel.unenroll(onSuccess: {
-                    hud.hide(animated: true)
+                    LoadingView.hide()
                     self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { errMessage in
-                    hud.hide(animated: true)
+                    LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)

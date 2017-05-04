@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import MBProgressHUD
 
 class ForgotUsernameViewController: UIViewController {
     
@@ -133,19 +132,15 @@ class ForgotUsernameViewController: UIViewController {
     func onNextPress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
-        
+        LoadingView.show()
         viewModel.validateAccount(onSuccess: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
         }, onNeedAccountNumber: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { (title, message) in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)

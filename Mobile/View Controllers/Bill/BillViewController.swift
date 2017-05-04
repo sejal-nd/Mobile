@@ -16,7 +16,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var budgetButtonView: UIView!
     @IBOutlet weak var paperlessEnrollmentLabel: UILabel!
     @IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
-    @IBOutlet weak var billActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var billLoadingIndicator: LoadingIndicator!
     
     var refreshControl: UIRefreshControl?
     
@@ -29,8 +29,6 @@ class BillViewController: AccountPickerViewController {
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self
-
-        billActivityIndicator.color = .mediumPersianBlue
         
         paperlessButtonView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         paperlessButtonView.layer.cornerRadius = 2
@@ -76,19 +74,20 @@ class BillViewController: AccountPickerViewController {
     func getAccountDetails() {
         paperlessButtonView.isHidden = true
         budgetButtonView.isHidden = true
-        billActivityIndicator.isHidden = false
+        billLoadingIndicator.isHidden = false
         setRefreshControlEnabled(enabled: false)
         viewModel.getAccountDetails(onSuccess: {
-            self.billActivityIndicator.isHidden = true
+            self.billLoadingIndicator.isHidden = true
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent()
         }, onError: { errorMessage in
-            self.billActivityIndicator.isHidden = true
+            self.billLoadingIndicator.isHidden = true
             self.setRefreshControlEnabled(enabled: true)
             dLog(message: errorMessage)
         })
     }
     
+
     func onPullToRefresh() {
         viewModel.getAccountDetails(onSuccess: {
             self.refreshControl?.endRefreshing()

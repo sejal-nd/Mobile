@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import MBProgressHUD
 
 protocol SecurityQuestionViewControllerDelegate: class {
     func securityQuestionViewController(_ securityQuestionViewController: SecurityQuestionViewController, didUnmaskUsername username: String)
@@ -60,13 +59,9 @@ class SecurityQuestionViewController: UIViewController {
     func onSubmitPress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
-        
+        LoadingView.show()
         viewModel.submitSecurityQuestionAnswer(onSuccess: { unmaskedUsername in
-            hud.hide(animated: true)
+            LoadingView.hide()
             for vc in (self.navigationController?.viewControllers)! {
                 guard let dest = vc as? LoginViewController else {
                     continue
@@ -77,10 +72,10 @@ class SecurityQuestionViewController: UIViewController {
                 break
             }
         }, onAnswerNoMatch: { inlineErrorMessage in
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.answerTextField.setError(inlineErrorMessage)
         }, onError: { errorMessage in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
