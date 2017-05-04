@@ -6,15 +6,15 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 import Lottie
 import MBProgressHUD
 
-class OutageViewController: UIViewController {
+class OutageViewController: AccountPickerViewController {
+    
+    let disposeBag = DisposeBag()
     
     @IBOutlet weak var gradientBackground: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var accountScroller: AccountScroller!
     @IBOutlet weak var accountContentView: UIView!
     @IBOutlet weak var gasOnlyView: UIView!
     @IBOutlet weak var outageStatusActivityIndicator: UIActivityIndicatorView!
@@ -38,7 +38,7 @@ class OutageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Outage", comment: "")
+        title = NSLocalizedString("Outage", comment: "")
 
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientBackground.bounds
@@ -54,8 +54,8 @@ class OutageViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
         scrollView.insertSubview(refreshControl, at: 0)
 
-        accountScroller.delegate = self
-        accountScroller.parentViewController = self
+        accountPicker.delegate = self
+        accountPicker.parentViewController = self
         
         onAnimationView.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
         onAnimationView.loopAnimation = true
@@ -86,19 +86,20 @@ class OutageViewController: UIViewController {
         accountContentView.isHidden = true
 
         outageStatusActivityIndicator.color = .mediumPersianBlue
+        
+        accountPickerViewControllerWillAppear.subscribe(onNext: {
+            if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                self.getOutageStatus()
+            } else if self.viewModel.currentOutageStatus == nil {
+                self.getOutageStatus()
+            }
+        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        if AccountsStore.sharedInstance.currentAccount != accountScroller.currentAccount {
-            accountScroller.updateCurrentAccount()
-            getOutageStatus()
-        } else if viewModel.currentOutageStatus == nil {
-            getOutageStatus()
-        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -341,9 +342,9 @@ class OutageViewController: UIViewController {
  
 }
 
-extension OutageViewController: AccountScrollerDelegate {
+extension OutageViewController: AccountPickerDelegate {
     
-    func accountScrollerDidChangeAccount(_ accountScroller: AccountScroller) {
+    func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         getOutageStatus()
     }
     

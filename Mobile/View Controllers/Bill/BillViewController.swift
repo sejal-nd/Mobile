@@ -6,12 +6,12 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 
-class BillViewController: UIViewController {
+class BillViewController: AccountPickerViewController {
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var accountScroller: AccountScroller!
+    let disposeBag = DisposeBag()
+    
     @IBOutlet weak var paperlessButtonView: UIView!
     @IBOutlet weak var budgetButtonView: UIView!
     @IBOutlet weak var paperlessEnrollmentLabel: UILabel!
@@ -25,8 +25,8 @@ class BillViewController: UIViewController {
 
         title = NSLocalizedString("Bill", comment: "")
         
-        accountScroller.delegate = self
-        accountScroller.parentViewController = self
+        accountPicker.delegate = self
+        accountPicker.parentViewController = self
 
         billActivityIndicator.color = .mediumPersianBlue
         
@@ -40,30 +40,19 @@ class BillViewController: UIViewController {
         budgetButtonView.layer.masksToBounds = false
         budgetButtonView.isHidden = true
         
+        accountPickerViewControllerWillAppear.subscribe(onNext: {
+            if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                self.getAccountDetails()
+            } else if self.viewModel.currentAccountDetail == nil {
+                self.getAccountDetails()
+            }
+        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        navigationController?.navigationBar.barStyle = .default
-//        navigationController?.navigationBar.barTintColor = .white
-//        navigationController?.navigationBar.tintColor = .mediumPersianBlue
-//    
-//        let titleDict: [String: Any] = [
-//            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
-//            NSFontAttributeName: OpenSans.bold.ofSize(18)
-//        ]
-//        navigationController?.navigationBar.titleTextAttributes = titleDict
-        
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        if AccountsStore.sharedInstance.currentAccount != accountScroller.currentAccount {
-            accountScroller.updateCurrentAccount()
-            getAccountDetails()
-        } else if viewModel.currentAccountDetail == nil {
-            getAccountDetails()
-        }
-        
     }
     
     func getAccountDetails() {
@@ -94,6 +83,7 @@ class BillViewController: UIViewController {
             }
             
         }, onError: { errorMessage in
+            self.billActivityIndicator.isHidden = true
             dLog(message: errorMessage)
         })
     }
@@ -143,9 +133,9 @@ class BillViewController: UIViewController {
     }
 }
 
-extension BillViewController: AccountScrollerDelegate {
+extension BillViewController: AccountPickerDelegate {
     
-    func accountScrollerDidChangeAccount(_ accountScroller: AccountScroller) {
+    func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         getAccountDetails()
     }
     

@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol AccountScrollerDelegate: class {
-    func accountScrollerDidChangeAccount(_ accountScroller: AccountScroller)
+protocol AccountPickerDelegate: class {
+    func accountPickerDidChangeAccount(_ accountPicker: AccountPicker)
 }
 
-class AccountScroller: UIView {
+class AccountPicker: UIView {
     
     let MAX_ACCOUNTS = 5
     
-    weak var delegate: AccountScrollerDelegate?
+    weak var delegate: AccountPickerDelegate?
 
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
@@ -240,7 +240,7 @@ class AccountScroller: UIView {
         scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: true)
         currentAccount = AccountsStore.sharedInstance.accounts[pageControl.currentPage]
         AccountsStore.sharedInstance.currentAccount = currentAccount
-        delegate?.accountScrollerDidChangeAccount(self)
+        delegate?.accountPickerDidChangeAccount(self)
     }
     
     func updateCurrentAccount() {
@@ -263,7 +263,7 @@ class AccountScroller: UIView {
     
 }
 
-extension AccountScroller: AdvancedAccountPickerViewControllerDelegate {
+extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
     func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account) {
         currentAccount = account
         AccountsStore.sharedInstance.currentAccount = account
@@ -272,11 +272,11 @@ extension AccountScroller: AdvancedAccountPickerViewControllerDelegate {
         advancedAccountNumberLabel?.text = account.accountNumber
         advancedAccountAddressLabel?.text = account.address
         
-        delegate?.accountScrollerDidChangeAccount(self)
+        delegate?.accountPickerDidChangeAccount(self)
     }
 }
 
-extension AccountScroller: UIScrollViewDelegate {
+extension AccountPicker: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
@@ -285,7 +285,7 @@ extension AccountScroller: UIScrollViewDelegate {
             pageControl.currentPage = currentPage
             currentAccount = AccountsStore.sharedInstance.accounts[currentPage]
             AccountsStore.sharedInstance.currentAccount = currentAccount
-            delegate?.accountScrollerDidChangeAccount(self)
+            delegate?.accountPickerDidChangeAccount(self)
         }
     }
 

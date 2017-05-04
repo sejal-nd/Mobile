@@ -168,7 +168,7 @@
                                                     <rect key="frame" x="0.0" y="62" width="375" height="62.5"/>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_carat_down" translatesAutoresizingMaskIntoConstraints="NO" id="owp-nw-AOB">
-                                                    <rect key="frame" x="354" y="80" width="13" height="8"/>
+                                                    <rect key="frame" x="354" y="79.5" width="13" height="8"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="8" id="AK4-5c-vEk"/>
                                                         <constraint firstAttribute="width" constant="13" id="qG8-I3-Bua"/>
@@ -267,7 +267,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LE-Ih-Txu" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="560.5"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FN2-AG-tRU" customClass="AccountScroller" customModule="BGE" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FN2-AG-tRU" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -471,7 +471,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="accountContentView" destination="0lx-Wl-bvy" id="XUH-hT-UpN"/>
-                        <outlet property="accountScroller" destination="FN2-AG-tRU" id="abQ-kv-CdM"/>
+                        <outlet property="accountPicker" destination="FN2-AG-tRU" id="XPg-rr-uqX"/>
                         <outlet property="animationView" destination="zIa-Td-tAU" id="4Ac-1a-gG3"/>
                         <outlet property="bigButtonView" destination="dc7-ff-3bf" id="tVZ-Gm-tam"/>
                         <outlet property="errorLabel" destination="lL0-H1-J9Q" id="uZU-GT-HuL"/>
@@ -483,7 +483,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                         <outlet property="outageStatusActivityIndicator" destination="nLN-0J-SNE" id="xch-4G-Q6d"/>
                         <outlet property="outerCircleView" destination="ETa-nw-YVn" id="I2e-gh-f0a"/>
                         <outlet property="reportOutageButton" destination="UK3-yj-xRE" id="Mts-dt-8zK"/>
-                        <outlet property="scrollView" destination="qSc-mq-7Vd" id="Arq-eX-7Ts"/>
+                        <outlet property="scrollView" destination="qSc-mq-7Vd" id="HDB-Yy-L6O"/>
                         <outlet property="viewOutageMapButton" destination="5cM-eu-hDR" id="Jpd-LW-ilQ"/>
                         <segue destination="ZQH-GI-7Fc" kind="show" identifier="reportOutageSegue" id="APc-d5-ZXG"/>
                     </connections>
