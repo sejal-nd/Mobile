@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import MBProgressHUD
 
 protocol ForgotPasswordViewControllerDelegate: class {
     func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController)
@@ -77,20 +76,16 @@ class ForgotPasswordViewController: UIViewController {
     func onSubmitPress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
-        
+        LoadingView.show()
         viewModel.submitForgotPassword(onSuccess: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.delegate?.forgotPasswordViewControllerDidSubmit(self)
             _ = self.navigationController?.popViewController(animated: true)
         }, onProfileNotFound: { error in
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.usernameTextField.setError(NSLocalizedString(error, comment: ""))
         }, onError: { errorMessage in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)

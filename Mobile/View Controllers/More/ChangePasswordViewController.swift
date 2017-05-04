@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import MBProgressHUD
 
 protocol ChangePasswordViewControllerDelegate: class {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController)
@@ -162,13 +161,9 @@ class ChangePasswordViewController: UIViewController {
     func onDonePress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
-        
+        LoadingView.show()
         viewModel.changePassword(onSuccess: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             if self.sentFromLogin {
                 let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                 self.present(viewController!, animated: true, completion: nil)
@@ -177,10 +172,10 @@ class ChangePasswordViewController: UIViewController {
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }, onPasswordNoMatch: { _ in
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))
         }, onError: { (error: String) in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
             self.present(alert, animated: true)

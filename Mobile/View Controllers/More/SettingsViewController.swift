@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import MBProgressHUD
 import ToastSwiftFramework
 
 class SettingsViewController: UIViewController {
@@ -63,15 +62,12 @@ class SettingsViewController: UIViewController {
             self.touchIdCell?.setSwitch(on: false)
         }))
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { (action) -> Void in
-            let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-            hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-            hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-            hud.contentColor = .white
+            LoadingView.show()
             self.viewModel.validateCredentials(onSuccess: {
-                hud.hide(animated: true)
+                LoadingView.hide()
                 self.view.makeToast(NSLocalizedString("Touch ID Enabled", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
             }, onError: { (error) in
-                hud.hide(animated: true)
+                LoadingView.hide()
                 self.touchIdPasswordRetryCount += 1
                 if self.touchIdPasswordRetryCount < 3 {
                     self.presentPasswordAlert(message: NSLocalizedString("Error", comment: "") + ": \(error)")

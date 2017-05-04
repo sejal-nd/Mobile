@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Unknown constraint types" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -32,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DL5-8p-VuX">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DL5-8p-VuX">
                                 <rect key="frame" x="0.0" y="20" width="375" height="880"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdd-pX-9Nn" userLabel="Content View">
@@ -348,13 +349,16 @@
                                                     </view>
                                                 </subviews>
                                             </stackView>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UMM-LW-kv9">
-                                                <rect key="frame" x="169" y="421.5" width="37" height="37"/>
-                                            </activityIndicatorView>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Js2-JQ-YOY" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="157" y="441" width="60" height="12"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="KpR-1V-7N1" firstAttribute="leading" secondItem="mdd-pX-9Nn" secondAttribute="leading" id="541-0C-i09"/>
+                                            <constraint firstItem="Js2-JQ-YOY" firstAttribute="centerY" secondItem="mdd-pX-9Nn" secondAttribute="centerY" id="5QT-8Q-cPM"/>
+                                            <constraint firstItem="Js2-JQ-YOY" firstAttribute="centerX" secondItem="mdd-pX-9Nn" secondAttribute="centerX" id="7EU-KF-3ms"/>
                                             <constraint firstAttribute="trailing" secondItem="KpR-1V-7N1" secondAttribute="trailing" id="ZGw-fz-OhP"/>
                                             <constraint firstAttribute="bottom" secondItem="KpR-1V-7N1" secondAttribute="bottom" id="cKh-de-nGb"/>
                                             <constraint firstItem="KpR-1V-7N1" firstAttribute="top" secondItem="mdd-pX-9Nn" secondAttribute="top" id="dua-l3-cwj"/>
@@ -362,11 +366,11 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="UMM-LW-kv9" firstAttribute="centerY" secondItem="DL5-8p-VuX" secondAttribute="centerY" id="1Pm-fx-Tci"/>
-                                    <constraint firstItem="UMM-LW-kv9" firstAttribute="centerX" secondItem="DL5-8p-VuX" secondAttribute="centerX" id="Hlt-m8-C36"/>
+                                    <constraint firstAttribute="centerY" secondItem="DL5-8p-VuX" secondAttribute="centerY" id="Ibv-mg-TlW"/>
                                     <constraint firstAttribute="trailing" secondItem="mdd-pX-9Nn" secondAttribute="trailing" id="O4v-EV-zFf"/>
                                     <constraint firstItem="mdd-pX-9Nn" firstAttribute="top" secondItem="DL5-8p-VuX" secondAttribute="top" id="agj-Hf-WgS"/>
                                     <constraint firstItem="mdd-pX-9Nn" firstAttribute="centerX" secondItem="DL5-8p-VuX" secondAttribute="centerX" id="feA-Iy-592"/>
+                                    <constraint firstAttribute="centerX" secondItem="DL5-8p-VuX" secondAttribute="centerX" id="vme-Cb-Dc7"/>
                                     <constraint firstItem="mdd-pX-9Nn" firstAttribute="leading" secondItem="DL5-8p-VuX" secondAttribute="leading" id="wwh-yL-G60"/>
                                     <constraint firstAttribute="bottom" secondItem="mdd-pX-9Nn" secondAttribute="bottom" id="xJq-pz-Z6S"/>
                                 </constraints>
@@ -387,7 +391,7 @@
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="accountPicker" destination="2BY-N0-MzF" id="r4n-UN-Hed"/>
-                        <outlet property="billActivityIndicator" destination="UMM-LW-kv9" id="Rav-4L-7q4"/>
+                        <outlet property="billLoadingIndicator" destination="Js2-JQ-YOY" id="4b0-nE-yJc"/>
                         <outlet property="budgetBillingEnrollmentLabel" destination="Xef-TP-wst" id="DVZ-ja-L9l"/>
                         <outlet property="budgetButtonView" destination="s2a-zV-fxn" id="TGl-re-IHt"/>
                         <outlet property="paperlessButtonView" destination="2km-BG-0i7" id="TwW-QV-902"/>
@@ -651,16 +655,16 @@ Paperless eBill?</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQi-0t-Dzn">
                                                                 <rect key="frame" x="0.0" y="352.5" width="375" height="69"/>
                                                                 <subviews>
-                                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="999" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="j7d-Oq-mHt">
-                                                                        <rect key="frame" x="169" y="16" width="37" height="37"/>
-                                                                        <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    </activityIndicatorView>
+                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="rvI-4H-AyR" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="157" y="16" width="60" height="37"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="j7d-Oq-mHt" firstAttribute="top" secondItem="NQi-0t-Dzn" secondAttribute="top" priority="999" constant="16" id="7sV-eK-aaE"/>
-                                                                    <constraint firstItem="j7d-Oq-mHt" firstAttribute="centerX" secondItem="NQi-0t-Dzn" secondAttribute="centerX" id="FZT-YF-Fi6"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="j7d-Oq-mHt" secondAttribute="bottom" priority="999" constant="16" id="RBf-gW-hac"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="rvI-4H-AyR" secondAttribute="bottom" priority="999" constant="16" id="Bf2-eX-ljh"/>
+                                                                    <constraint firstItem="rvI-4H-AyR" firstAttribute="top" secondItem="NQi-0t-Dzn" secondAttribute="top" priority="999" constant="16" id="M4u-yT-Qyo"/>
+                                                                    <constraint firstItem="rvI-4H-AyR" firstAttribute="centerX" secondItem="NQi-0t-Dzn" secondAttribute="centerX" id="mjI-dA-MHM"/>
                                                                 </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DTo-Pb-SsT">
@@ -751,8 +755,8 @@ Paperless eBill?</string>
                         <outlet property="accountsStackView" destination="DTo-Pb-SsT" id="u5u-Sl-Cfk"/>
                         <outlet property="allAccountsSeparatorView" destination="WF4-SH-OgG" id="NPI-bV-IgC"/>
                         <outlet property="detailsLabel" destination="e0H-AS-PYY" id="Zom-Mh-zfq"/>
-                        <outlet property="detailsLoadingActivityIndicator" destination="j7d-Oq-mHt" id="yST-S1-RgE"/>
                         <outlet property="detailsLoadingActivityView" destination="NQi-0t-Dzn" id="0nj-gA-iDA"/>
+                        <outlet property="detailsLoadingIndicator" destination="rvI-4H-AyR" id="eqE-QN-ReO"/>
                         <outlet property="emailLabel" destination="qk2-xq-Q5c" id="YQO-xR-a13"/>
                         <outlet property="enrollAllAccountsSwitch" destination="QEY-D0-0OR" id="WCB-Hf-qCA"/>
                         <outlet property="enrollAllAccountsView" destination="gua-rp-1fw" id="kxp-L7-ILX"/>
@@ -941,7 +945,7 @@ Budget Billing?</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqG-lk-DUF">
-                                                        <rect key="frame" x="94.5" y="144.5" width="188" height="49.5"/>
+                                                        <rect key="frame" x="93.5" y="144.5" width="188" height="49.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$200.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDe-zM-yPH">
                                                                 <rect key="frame" x="0.0" y="0.0" width="134" height="49.5"/>
@@ -967,14 +971,15 @@ Budget Billing?</string>
                                                         </constraints>
                                                     </view>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Loading Budget Billing Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irq-1E-yq2">
-                                                        <rect key="frame" x="81" y="161.5" width="214" height="17"/>
+                                                        <rect key="frame" x="80" y="161.5" width="214" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Blv-cP-k2g">
-                                                        <rect key="frame" x="178" y="159.5" width="20" height="20"/>
-                                                    </activityIndicatorView>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="mdi-10-hU7" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="157.5" y="163.5" width="60" height="12"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4h-Cf-jR8">
                                                         <rect key="frame" x="29" y="208" width="317" height="72"/>
                                                         <string key="text">The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage. After 12 months, the difference between your budget bill amount and actual use for the previous 12 months will be applied to your bill.</string>
@@ -986,10 +991,10 @@ Budget Billing?</string>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="BRV-PC-ieL" firstAttribute="top" secondItem="PRB-vQ-A2r" secondAttribute="top" constant="16" id="1gd-Ji-Fe9"/>
+                                                    <constraint firstItem="mdi-10-hU7" firstAttribute="centerX" secondItem="tqG-lk-DUF" secondAttribute="centerX" id="4PH-Qg-pZE"/>
                                                     <constraint firstItem="irq-1E-yq2" firstAttribute="centerY" secondItem="tqG-lk-DUF" secondAttribute="centerY" id="8sA-c3-aPF"/>
-                                                    <constraint firstItem="Blv-cP-k2g" firstAttribute="centerX" secondItem="tqG-lk-DUF" secondAttribute="centerX" id="Cn5-hQ-h0W"/>
-                                                    <constraint firstItem="Blv-cP-k2g" firstAttribute="centerY" secondItem="tqG-lk-DUF" secondAttribute="centerY" id="GNn-9m-hcM"/>
                                                     <constraint firstItem="BRV-PC-ieL" firstAttribute="leading" secondItem="PRB-vQ-A2r" secondAttribute="leading" constant="30" id="HYr-O8-ox5"/>
+                                                    <constraint firstItem="mdi-10-hU7" firstAttribute="centerY" secondItem="tqG-lk-DUF" secondAttribute="centerY" id="J3i-Xf-dlF"/>
                                                     <constraint firstAttribute="bottom" secondItem="M4h-Cf-jR8" secondAttribute="bottom" constant="19" id="ShD-nT-dfa"/>
                                                     <constraint firstAttribute="trailing" secondItem="BRV-PC-ieL" secondAttribute="trailing" constant="30" id="UWu-YC-aBb"/>
                                                     <constraint firstItem="tqG-lk-DUF" firstAttribute="top" secondItem="pmW-iP-LFe" secondAttribute="bottom" id="WN3-Je-Fsl"/>
@@ -1426,9 +1431,9 @@ Budget Billing?</string>
                         <outlet property="monthlyAmountDescriptionLabel" destination="EbB-ZB-Yg5" id="3m9-lg-o86"/>
                         <outlet property="monthlyAmountLabel" destination="XGk-nZ-2XN" id="115-Mc-QtM"/>
                         <outlet property="monthlyAmountTitleLabel" destination="GUV-vZ-WAQ" id="5Hj-Zj-TjO"/>
-                        <outlet property="paymentAmountActivityIndicator" destination="Blv-cP-k2g" id="jXi-W7-kAB"/>
                         <outlet property="paymentAmountErrorLabel" destination="irq-1E-yq2" id="RfP-Kb-tuA"/>
                         <outlet property="paymentAmountLabel" destination="kDe-zM-yPH" id="S9Q-YV-haF"/>
+                        <outlet property="paymentAmountLoadingIndicator" destination="mdi-10-hU7" id="GiL-ux-teJ"/>
                         <outlet property="paymentAmountView" destination="tqG-lk-DUF" id="V48-SR-WsN"/>
                         <outlet property="payoffBalanceDescriptionLabel" destination="Cug-el-hOf" id="w5c-jN-Gjk"/>
                         <outlet property="payoffBalanceLabel" destination="BEI-fV-Bvl" id="AAC-Af-j8D"/>

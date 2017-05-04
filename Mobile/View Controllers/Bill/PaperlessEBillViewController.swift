@@ -35,7 +35,7 @@ class PaperlessEBillViewController: UIViewController {
     @IBOutlet weak var allAccountsSeparatorView: UIView!
     @IBOutlet weak var accountsStackView: UIStackView!
     @IBOutlet weak var detailsLoadingActivityView: UIView!
-    @IBOutlet weak var detailsLoadingActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var detailsLoadingIndicator: LoadingIndicator!
     
     @IBOutlet weak var detailsLabel: UILabel!
     
@@ -85,7 +85,6 @@ class PaperlessEBillViewController: UIViewController {
     }
     
     func colorAndShadowSetup() {
-        detailsLoadingActivityIndicator.color = .primaryColor
         topBackgroundView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0, height: 2), radius: 1)
         enrollAllAccountsView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 2)
         enrollAllAccountsView.layer.cornerRadius = 2

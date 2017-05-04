@@ -8,7 +8,6 @@
 
 import RxSwift
 import Lottie
-import MBProgressHUD
 
 class OutageViewController: AccountPickerViewController {
     
@@ -18,8 +17,11 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var scrollViewContentView: UIView!
     @IBOutlet weak var accountContentView: UIView!
     @IBOutlet weak var gasOnlyView: UIView!
-    @IBOutlet weak var outageStatusActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var loadingAnimationView: UIView!
+    @IBOutlet weak var loadingBigButtonView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var bigButtonShadowView: UIView!
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var outerCircleView: UIView!
     @IBOutlet weak var innerCircleView: UIView!
@@ -37,7 +39,8 @@ class OutageViewController: AccountPickerViewController {
 
     var gradientLayer: CAGradientLayer!
     
-    var onAnimationView = LOTAnimationView(name: "outage")!
+    var onLottieAnimation = LOTAnimationView(name: "outage")!
+    var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")!
     var refreshControl: UIRefreshControl?
     
     let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(), outageService: ServiceFactory.createOutageService())
@@ -60,22 +63,35 @@ class OutageViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        onAnimationView.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
-        onAnimationView.loopAnimation = true
-        onAnimationView.contentMode = .scaleAspectFill
-        animationView.addSubview(onAnimationView)
-        onAnimationView.play()
+        onLottieAnimation.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
+        onLottieAnimation.loopAnimation = true
+        onLottieAnimation.contentMode = .scaleAspectFill
+        animationView.addSubview(onLottieAnimation)
+        onLottieAnimation.play()
+        
+        loadingLottieAnimation.frame = CGRect(x: 0, y: 0, width: loadingAnimationView.frame.size.width, height: loadingAnimationView.frame.size.height)
+        loadingLottieAnimation.loopAnimation = true
+        loadingLottieAnimation.contentMode = .scaleAspectFill
+        loadingAnimationView.addSubview(loadingLottieAnimation)
+        loadingLottieAnimation.play()
         
         outerCircleView.layer.cornerRadius = outerCircleView.bounds.size.width / 2
         innerCircleView.layer.cornerRadius = innerCircleView.bounds.size.width / 2
         
         let radius = bigButtonView.bounds.size.width / 2
         bigButtonView.layer.cornerRadius = radius
-        bigButtonView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
+        bigButtonView.clipsToBounds = true // So text doesn't overflow
+        bigButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
+        
+        bigButtonShadowView.layer.cornerRadius = radius
+        bigButtonShadowView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
         bigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
         bigButtonView.layer.masksToBounds = false
-        bigButtonView.clipsToBounds = true
-        bigButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
+        
+        loadingBigButtonView.layer.cornerRadius = radius
+        loadingBigButtonView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
+        loadingBigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
+        loadingBigButtonView.layer.masksToBounds = false
         
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .darkJungleGreen
@@ -85,8 +101,6 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyTextView.textContainerInset = .zero
         gasOnlyTextView.tintColor = .mediumPersianBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
-        
-        outageStatusActivityIndicator.color = .mediumPersianBlue
         
         accountPickerViewControllerWillAppear.subscribe(onNext: {
             if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
@@ -179,7 +193,7 @@ class OutageViewController: AccountPickerViewController {
         let bigButtonWidth = bigButtonView.frame.size.width
         
         if viewModel.getReportedOutage() != nil {
-            let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 13.5, y: 28, width: 27, height: 29))
+            let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 19, y: 27, width: 38, height: 31))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
             
             let yourOutageIsLabel = UILabel(frame: CGRect(x: 30, y: 61, width: bigButtonWidth - 60, height: 20))
@@ -299,14 +313,14 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyTextViewBottomSpaceConstraint.isActive = false
         gasOnlyView.isHidden = true
         errorLabel.isHidden = true
-        outageStatusActivityIndicator.isHidden = false
+        loadingView.isHidden = false
         setRefreshControlEnabled(enabled: false)
         viewModel.getOutageStatus(onSuccess: { _ in
-            self.outageStatusActivityIndicator.isHidden = true
+            self.loadingView.isHidden = true
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent()
         }, onError: { error in
-            self.outageStatusActivityIndicator.isHidden = true
+            self.loadingView.isHidden = true
             self.setRefreshControlEnabled(enabled: true)
             self.errorLabel.text = error
             self.errorLabel.isHidden = false
@@ -331,11 +345,9 @@ class OutageViewController: AccountPickerViewController {
     func onPullToRefresh() {
         viewModel.getOutageStatus(onSuccess: { outageStatus in
             self.refreshControl?.endRefreshing()
-            self.outageStatusActivityIndicator.isHidden = true
             self.updateContent()
         }, onError: { error in
             self.refreshControl?.endRefreshing()
-            self.outageStatusActivityIndicator.isHidden = true
             self.errorLabel.text = error
             self.errorLabel.isHidden = false
             
