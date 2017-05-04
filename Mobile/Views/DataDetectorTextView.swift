@@ -28,22 +28,16 @@ class DataDetectorTextView: UITextView {
         isEditable = false
         dataDetectorTypes = .phoneNumber
         
-        var mutableGestureRecognizers = [UIGestureRecognizer]()
-        for gestureRecognizer in gestureRecognizers! {
-            if gestureRecognizer.isKind(of: UILongPressGestureRecognizer.self) {
-                let longPressGestureRecognizer = gestureRecognizer as! UILongPressGestureRecognizer
-                if longPressGestureRecognizer.minimumPressDuration < 0.3 {
-                    mutableGestureRecognizers.append(gestureRecognizer)
-                }
+        gestureRecognizers = gestureRecognizers?.flatMap {
+            if let longPressGestureRecognizer = $0 as? UILongPressGestureRecognizer,
+                longPressGestureRecognizer.minimumPressDuration < 0.3 {
+                return longPressGestureRecognizer
+            } else if let tapGestureRecognizer = $0 as? UITapGestureRecognizer,
+                tapGestureRecognizer.numberOfTapsRequired < 2 {
+                return tapGestureRecognizer
             }
-            if gestureRecognizer.isKind(of: UITapGestureRecognizer.self) {
-                let tapGestureRecognizer = gestureRecognizer as! UITapGestureRecognizer
-                if (tapGestureRecognizer.numberOfTapsRequired < 2) {
-                    mutableGestureRecognizers.append(gestureRecognizer)
-                }
-            }
+            return nil
         }
-        gestureRecognizers = mutableGestureRecognizers
     }
 
 }
