@@ -292,6 +292,7 @@ class LoginViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        view.endEditing(true)
         if let vc = segue.destination as? ForgotPasswordViewController {
             vc.delegate = self
         }
