@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         globalStyle.cornerRadius = 17
         globalStyle.messageAlignment = .center
         ToastManager.shared.style = globalStyle
-        ToastManager.shared.duration = 3.0
+        ToastManager.shared.duration = 5.0
     }
     
     func printFonts() {

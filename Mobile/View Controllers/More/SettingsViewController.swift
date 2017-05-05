@@ -65,7 +65,7 @@ class SettingsViewController: UIViewController {
             LoadingView.show()
             self.viewModel.validateCredentials(onSuccess: {
                 LoadingView.hide()
-                self.view.makeToast(NSLocalizedString("Touch ID Enabled", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+                self.view.makeToast(NSLocalizedString("Touch ID Enabled", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
             }, onError: { (error) in
                 LoadingView.hide()
                 self.touchIdPasswordRetryCount += 1
@@ -182,7 +182,7 @@ extension SettingsViewController: ChangePasswordViewControllerDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             // iPad shows tab bar, iPhone does not
             let yPos = UIDevice.current.userInterfaceIdiom == .pad ? self.view.frame.size.height - 89 : self.view.frame.size.height - 40
-            self.view.makeToast(NSLocalizedString("Password successfully changed", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: yPos))
+            self.view.makeToast(NSLocalizedString("Password successfully changed", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: yPos))
         })
     }
     
