@@ -880,7 +880,6 @@
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E80043081E64DEE2005CF531 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		E80043131E65D126005CF531 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
 		E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Carthage/Build/iOS/ToastSwiftFramework.framework; sourceTree = "<group>"; };
 		E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -1198,7 +1197,6 @@
 				E8D2520B1E6DB74600C90584 /* HockeySDK.framework */,
 				E80043481E671F0B005CF531 /* Zxcvbn.framework */,
 				E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */,
-				E80043131E65D126005CF531 /* MBProgressHUD.framework */,
 				E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */,
 				E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */,
 				B5AC07411E52A49900BBA4ED /* CoreLocation.framework */,
