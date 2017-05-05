@@ -42,11 +42,12 @@ class PaperlessEBillViewController: UIViewController {
     var initialAccountDetail: AccountDetail!
     
     lazy var viewModel: PaperlessEBillViewModel = {
-        PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(), initialAccountDetail: self.initialAccountDetail)
+        PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(),
+                                billService: ServiceFactory.createBillService(),
+                                initialAccountDetail: self.initialAccountDetail)
     } ()
     
     weak var delegate: PaperlessEBillViewControllerDelegate?
-    
     
     let bag = DisposeBag()
 
@@ -165,17 +166,29 @@ class PaperlessEBillViewController: UIViewController {
     }
 
     @IBAction func submitAction(_ sender: Any) {
-        if viewModel.accounts.value.count > 1 {
-            delegate?.paperlessEBillViewControllerDidChangeStatus(self)
-        } else {
-            if !viewModel.accountsToEnroll.value.isEmpty {
-                delegate?.paperlessEBillViewControllerDidEnroll(self)
-            }
-            if !viewModel.accountsToUnenroll.value.isEmpty {
-                delegate?.paperlessEBillViewControllerDidUnenroll(self)
-            }
-        }
+//        if viewModel.accounts.value.count > 1 {
+//            delegate?.paperlessEBillViewControllerDidChangeStatus(self)
+//        } else {
+//            if !viewModel.accountsToEnroll.value.isEmpty {
+//                delegate?.paperlessEBillViewControllerDidEnroll(self)
+//            }
+//            if !viewModel.accountsToUnenroll.value.isEmpty {
+//                delegate?.paperlessEBillViewControllerDidUnenroll(self)
+//            }
+//        }
+//        
+//        navigationController?.popViewController(animated: true)
         
-        navigationController?.popViewController(animated: true)
+        LoadingView.show()
+        viewModel.submitChanges(onSuccess: {
+            LoadingView.hide()
+            self.delegate?.paperlessEBillViewControllerDidChangeStatus(self)
+            self.navigationController?.popViewController(animated: true)
+        }, onError: { errMessage in
+            LoadingView.hide()
+            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertVc, animated: true, completion: nil)
+        })
     }
 }

@@ -32,6 +32,21 @@ protocol BillService {
     ///   - reason: The reason the user said they are unenrolling
     ///   - completion: the completion block to execute upon completion.
     func unenrollBudgetBilling(account: Account, reason: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    /// Enroll the user in paperless eBilling
+    ///
+    /// - Parameters:
+    ///   - account: The account number to enroll
+    ///   - email: Email address to send bills to
+    ///   - completion: the completion block to execute upon completion.
+    func enrollPaperlessBilling(accountNumber: String, email: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    /// Unenroll the user in paperless eBilling
+    ///
+    /// - Parameters:
+    ///   - account: The account number to unenroll
+    ///   - completion: the completion block to execute upon completion.
+    func unenrollPaperlessBilling(accountNumber: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
 }
 
 // MARK: - Reactive Extension to BillService
@@ -69,6 +84,36 @@ extension BillService {
     func unenrollBudgetBilling(account: Account, reason: String) -> Observable<Void> {
         return Observable.create { observer in
             self.unenrollBudgetBilling(account: account, reason: reason, completion: { (result: ServiceResult<Void>) in
+                switch (result) {
+                case ServiceResult.Success:
+                    observer.onNext()
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func enrollPaperlessBilling(accountNumber: String, email: String) -> Observable<Void> {
+        return Observable.create { observer in
+            self.enrollPaperlessBilling(accountNumber: accountNumber, email: email, completion: { (result: ServiceResult<Void>) in
+                switch (result) {
+                case ServiceResult.Success:
+                    observer.onNext()
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func unenrollPaperlessBilling(accountNumber: String) -> Observable<Void> {
+        return Observable.create { observer in
+            self.unenrollPaperlessBilling(accountNumber: accountNumber, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
                     observer.onNext()

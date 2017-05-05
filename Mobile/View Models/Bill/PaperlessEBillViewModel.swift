@@ -11,6 +11,7 @@ import RxCocoa
 
 class PaperlessEBillViewModel {
     private var accountService: AccountService
+    private var billService: BillService
     
     let initialAccountDetail: Variable<AccountDetail>
     let accounts: Variable<[Account]>
@@ -24,8 +25,9 @@ class PaperlessEBillViewModel {
     
     let bag = DisposeBag()
     
-    init(accountService: AccountService, initialAccountDetail initialAccountDetailValue: AccountDetail) {
+    init(accountService: AccountService, billService: BillService, initialAccountDetail initialAccountDetailValue: AccountDetail) {
         self.accountService = accountService
+        self.billService = billService
         self.initialAccountDetail = Variable(initialAccountDetailValue)
         
         switch Environment.sharedInstance.opco {
@@ -78,6 +80,26 @@ class PaperlessEBillViewModel {
             }
             .shareReplay(1)
     }()
+    
+    func submitChanges(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        var requestObservables = [Observable<Void>]()
+        for account in accountsToEnroll.value {
+            requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: initialAccountDetail.value.customerInfo.emailAddress!))
+        }
+        for account in accountsToUnenroll.value {
+            requestObservables.append(billService.unenrollPaperlessBilling(accountNumber: account))
+        }
+        
+        Observable.from(requestObservables)
+            .merge(maxConcurrent: 3)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                onSuccess()
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .addDisposableTo(bag)
+    }
     
     var footerText: String? {
         switch Environment.sharedInstance.opco {
