@@ -78,7 +78,18 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
         cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
         cell.accountNumber.text = account.accountNumber
         cell.addressLabel.text = account.address
-        cell.accountStatusLabel.text = ""
+        
+        if account.isFinaled {
+            cell.accountStatusLabel.text = "Finaled"
+        } else if account.isStopped {
+            cell.accountStatusLabel.text = "Stopped"
+        } else if account.isLinked {
+            cell.accountStatusLabel.text = "Linked"
+        } else if account.isDefault {
+            cell.accountStatusLabel.text = "Default"
+        } else {
+            cell.accountStatusLabel.text = ""
+        }
         
         if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
             cell.accountImageViewLeadingConstraint.constant = 39

@@ -14,7 +14,7 @@ protocol AccountPickerDelegate: class {
 
 class AccountPicker: UIView {
     
-    let MAX_ACCOUNTS = 5
+    let MAX_ACCOUNTS = 2
     
     weak var delegate: AccountPickerDelegate?
 

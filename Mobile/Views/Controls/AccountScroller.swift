@@ -14,7 +14,7 @@ protocol AccountScrollerDelegate: class {
 
 class AccountScroller: UIView {
     
-    let MAX_ACCOUNTS = 5
+    let MAX_ACCOUNTS = 2
     
     weak var delegate: AccountScrollerDelegate?
 
@@ -257,11 +257,12 @@ extension AccountScroller: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
-
+        
         if currentPage != pageControl.currentPage {
             pageControl.currentPage = currentPage
             delegate?.accountScroller(self, didChangeAccount: accounts[currentPage])
         }
+        
     }
 
 }

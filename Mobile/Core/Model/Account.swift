@@ -17,9 +17,41 @@ struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
     
+    let status: String?
+    let isLinked: Bool
+    let isDefault: Bool
+    let isFinaled: Bool
+    let isStopped: Bool
+    
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
         address = map.optionalFrom("address")
+        
+        status = map.optionalFrom("status")
+        do {
+            try isLinked = map.from("isLinkedProfile")
+        } catch {
+            isLinked = false
+        }
+        
+        do {
+            try isDefault = map.from("isDefaultProfile")
+        } catch {
+            isDefault = false
+        }
+        
+        do {
+            try isFinaled = map.from("isFinaledFlag")
+        } catch {
+            isFinaled = false
+        }
+        
+        do {
+            try isStopped = map.from("isStoppedFlag")
+        } catch {
+            isStopped = false
+        }
+        
     }
     
     // Equatable
