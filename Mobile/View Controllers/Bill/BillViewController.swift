@@ -107,7 +107,7 @@ class BillViewController: AccountPickerViewController {
             paperlessEnrollmentLabel.textColor = .successGreenText
         } else {
             paperlessEnrollmentLabel.text = "not enrolled"
-            paperlessEnrollmentLabel.textColor = .outerSpace
+            paperlessEnrollmentLabel.textColor = .deepGray
         }
         
         if viewModel.currentAccountDetail!.isBudgetBillEnrollment {
@@ -115,13 +115,13 @@ class BillViewController: AccountPickerViewController {
             budgetBillingEnrollmentLabel.textColor = .successGreenText
         } else {
             budgetBillingEnrollmentLabel.text = "not enrolled"
-            budgetBillingEnrollmentLabel.textColor = .outerSpace
+            budgetBillingEnrollmentLabel.textColor = .deepGray
         }
     }
     
     @IBAction func onButtonTouchDown(_ sender: Any) {
         let button = sender as! UIButton
-        button.superview?.backgroundColor = .whiteButtonHighlight
+        button.superview?.backgroundColor = .softGray
     }
     
     @IBAction func onButtonTouchCancel(_ sender: Any) {

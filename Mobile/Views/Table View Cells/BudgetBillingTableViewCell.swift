@@ -16,7 +16,7 @@ class BudgetBillingTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        label.textColor = .darkJungleGreen
+        label.textColor = .blackText
         radioButtonImageView.image = #imageLiteral(resourceName: "ic_radiobutton_deselected")
         
         selectionStyle = .none

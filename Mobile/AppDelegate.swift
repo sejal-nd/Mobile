@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupToastStyles() {
         var globalStyle = ToastStyle()
-        globalStyle.backgroundColor = UIColor.outerSpace.withAlphaComponent(0.8)
+        globalStyle.backgroundColor = UIColor.deepGray.withAlphaComponent(0.8)
         globalStyle.cornerRadius = 17
         globalStyle.messageAlignment = .center
         ToastManager.shared.style = globalStyle

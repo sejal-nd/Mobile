@@ -33,7 +33,7 @@ class SecurityQuestionViewController: UIViewController {
         navigationItem.rightBarButtonItem = submitButton
         viewModel.securityQuestionAnswerNotEmpty().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        instructionLabel.textColor = .darkJungleGreen
+        instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please answer the security question.", comment: "")
         
         questionLabel.text = viewModel.getSecurityQuestion()

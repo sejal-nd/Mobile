@@ -17,7 +17,7 @@ class AccountNumberTooltipViewController: DismissableFormSheetViewController {
         super.viewDidLoad()
 
         titleLabel.text = NSLocalizedString("Where to Look for Your Account Number", comment: "")
-        titleLabel.textColor = .darkJungleGreen
+        titleLabel.textColor = .blackText
         
         switch Environment.sharedInstance.opco {
         case .bge:
@@ -29,7 +29,7 @@ class AccountNumberTooltipViewController: DismissableFormSheetViewController {
         }
         
         descriptionLabel.setLineHeight(lineHeight: 25)
-        descriptionLabel.textColor = .outerSpace
+        descriptionLabel.textColor = .deepGray
     }
 
     @IBAction func onCloseButtonPress() {

@@ -19,17 +19,9 @@ class AccountLookupToolResultCell: UITableViewCell {
         
         selectionStyle = .none
         
-        let trolleyGreyColor = UIColor(red: 125/255, green: 125/255, blue: 125/255, alpha: 1)
-        
-        accountNumberLabel.textColor = .darkJungleGreen
-        streetNumberLabel.textColor = trolleyGreyColor
-        unitNumberLabel.textColor = trolleyGreyColor
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        accountNumberLabel.textColor = .blackText
+        streetNumberLabel.textColor = .deepGray
+        unitNumberLabel.textColor = .deepGray
     }
 
 }
