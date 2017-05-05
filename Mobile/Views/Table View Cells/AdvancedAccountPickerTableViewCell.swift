@@ -21,8 +21,8 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         accountNumber.textColor = .black
-        addressLabel.textColor = .oldLavender
-        accountStatusLabel.textColor = .oldLavender
+        addressLabel.textColor = .middleGray
+        accountStatusLabel.textColor = .middleGray
     }
     
 }

@@ -16,7 +16,7 @@ class ForgotUsernameTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        label.textColor = .darkJungleGreen
+        label.textColor = .blackText
         checkmarkAccessory.isHidden = true
         
         selectionStyle = .none

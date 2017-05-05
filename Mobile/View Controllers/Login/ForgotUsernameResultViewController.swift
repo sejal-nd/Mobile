@@ -29,7 +29,7 @@ class ForgotUsernameResultViewController: UIViewController {
         
         styleTopTextView()
         
-        selectLabel.textColor = .darkJungleGreen
+        selectLabel.textColor = .blackText
         selectLabel.text = viewModel.maskedUsernames.count > 1 ? NSLocalizedString("Select Username / Email Address:", comment: "") : NSLocalizedString("Username / Email Address:", comment: "")
         
         tableView.separatorInset = .zero
@@ -45,7 +45,7 @@ class ForgotUsernameResultViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
-        backToSignInButton.tintColor = .mediumPersianBlue
+        backToSignInButton.tintColor = .actionBlue
     }
     
     func styleTopTextView() {
@@ -61,7 +61,7 @@ class ForgotUsernameResultViewController: UIViewController {
         attrString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: fullRange)
         
         attrString.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold), range: fullRange)
-        attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.darkJungleGreen, range: fullRange)
+        attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: fullRange)
         
 //        let url = URL(fileURLWithPath: "") // Does not matter
 //        attrString.addAttribute(NSLinkAttributeName, value: url, range: (localizedString as NSString).range(of: signInString))
@@ -70,7 +70,7 @@ class ForgotUsernameResultViewController: UIViewController {
         topTextView.textContainerInset = .zero
         topTextView.textContainer.lineFragmentPadding = 0
         topTextView.attributedText = attrString
-        topTextView.tintColor = .mediumPersianBlue
+        topTextView.tintColor = .actionBlue
         
         // In case the localized string needs to grow the text view:
         topTextView.sizeToFit()

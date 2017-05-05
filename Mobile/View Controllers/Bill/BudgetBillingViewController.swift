@@ -79,12 +79,12 @@ class BudgetBillingViewController: UIViewController {
         navigationItem.rightBarButtonItem = submitButton
         viewModel.submitButtonEnabled().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        view.backgroundColor = .whiteSmoke
+        view.backgroundColor = .softGray
         
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
-            UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1).cgColor,
+            UIColor.softGray.cgColor,
             UIColor.white.cgColor,
         ]
         gradientLayer.locations = [0.0, 1.0]
@@ -94,27 +94,27 @@ class BudgetBillingViewController: UIViewController {
         whatIsBudgetBillingButtonView.layer.cornerRadius = 2
         whatIsBudgetBillingButtonView.layer.masksToBounds = false
         
-        whatIsBudgetBillingLabel.textColor = .darkJungleGreen
+        whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
         
-        yourPaymentWouldBeLabel.textColor = .outerSpace
+        yourPaymentWouldBeLabel.textColor = .deepGray
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your payment would be:", comment: "")
         
-        paymentAmountLabel.textColor = .outerSpace
-        monthLabel.textColor = .outerSpace
+        paymentAmountLabel.textColor = .deepGray
+        monthLabel.textColor = .deepGray
         monthLabel.text = NSLocalizedString("/Month", comment: "")
         
-        amountDescriptionLabel.textColor = .outerSpace
+        amountDescriptionLabel.textColor = .deepGray
         amountDescriptionLabel.text = viewModel.getAmountDescriptionText()
         
         // TODO: LOAD REAL DATA HERE
-        accountNumberLabel.textColor = .darkJungleGreen
-        addressLabel.textColor = .oldLavender
+        accountNumberLabel.textColor = .blackText
+        addressLabel.textColor = .middleGray
         
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
         enrollSwitch.rx.isOn.bindTo(viewModel.currentEnrollment).addDisposableTo(disposeBag)
         
-        reasonForStoppingLabel.textColor = .darkJungleGreen
+        reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
         reasonForStoppingTableView.isHidden = true
         if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
@@ -132,43 +132,43 @@ class BudgetBillingViewController: UIViewController {
                 view.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
             }
             
-            monthlyAmountTitleLabel.textColor = .darkJungleGreen
+            monthlyAmountTitleLabel.textColor = .blackText
             monthlyAmountTitleLabel.text = NSLocalizedString("Monthly Budget Bill Amount", comment: "")
-            monthlyAmountLabel.textColor = .darkJungleGreen
+            monthlyAmountLabel.textColor = .blackText
             monthlyAmountLabel.text = "$200.00"
-            monthlyAmountDescriptionLabel.textColor = .outerSpace
+            monthlyAmountDescriptionLabel.textColor = .deepGray
             monthlyAmountDescriptionLabel.text = NSLocalizedString("Payment received after March 13, 2017 will incur a late charge.\n\nA late payment charge is applied to the unpaid balance of your BGE charges. The charge is up to 1.5% for the first month; additional charges will be assessed on unpaid balances past the first month, not to exceed 5%.", comment: "")
             
-            lastPaymentDateTitleLabel.textColor = .darkJungleGreen
+            lastPaymentDateTitleLabel.textColor = .blackText
             lastPaymentDateTitleLabel.text = NSLocalizedString("Last Payment Date", comment: "")
-            lastPaymentDateLabel.textColor = .darkJungleGreen
+            lastPaymentDateLabel.textColor = .blackText
             lastPaymentDateLabel.text = "11/01/2016"
             
-            payoffBalanceTitleLabel.textColor = .darkJungleGreen
+            payoffBalanceTitleLabel.textColor = .blackText
             payoffBalanceTitleLabel.text = NSLocalizedString("Payoff Balance for BGE Service", comment: "")
-            payoffBalanceLabel.textColor = .darkJungleGreen
+            payoffBalanceLabel.textColor = .blackText
             payoffBalanceLabel.text = "$174.13"
-            payoffBalanceDescriptionLabel.textColor = .outerSpace
+            payoffBalanceDescriptionLabel.textColor = .deepGray
             payoffBalanceDescriptionLabel.text = NSLocalizedString("Total actual-usage charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
             
-            currentBalanceTitleLabel.textColor = .darkJungleGreen
+            currentBalanceTitleLabel.textColor = .blackText
             currentBalanceTitleLabel.text = NSLocalizedString("Current Balance for BGE Service", comment: "")
-            currentBalanceLabel.textColor = .darkJungleGreen
+            currentBalanceLabel.textColor = .blackText
             currentBalanceLabel.text = "$0.00"
-            currentBalanceDescriptionLabel.textColor = .outerSpace
+            currentBalanceDescriptionLabel.textColor = .deepGray
             currentBalanceDescriptionLabel.text = NSLocalizedString("Total billed charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
             
-            accDifferenceTitleLabel.textColor = .darkJungleGreen
+            accDifferenceTitleLabel.textColor = .blackText
             accDifferenceTitleLabel.text = NSLocalizedString("Accumulated Difference for BGE Service", comment: "")
-            accDifferenceLabel.textColor = .darkJungleGreen
+            accDifferenceLabel.textColor = .blackText
             accDifferenceLabel.text = "$174.13"
-            accDifferenceDescriptionLabel.textColor = .outerSpace
+            accDifferenceDescriptionLabel.textColor = .deepGray
             accDifferenceDescriptionLabel.text = NSLocalizedString("The difference between your Payoff Balance and your Current Balance for BGE Service.", comment: "")
         } else {
             bgeFooterView.isHidden = true
         }
         
-        footerLabel.textColor = .darkJungleGreen
+        footerLabel.textColor = .blackText
         if let footerText = viewModel.getFooterText() {
             footerLabel.text = footerText
         } else {
@@ -203,18 +203,18 @@ class BudgetBillingViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         gradientLayer.frame = gradientView.frame
-        accountBackgroundView.addBottomBorder(color: UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), width: 0.5)
+        accountBackgroundView.addBottomBorder(color: .softGray, width: 0.5)
     }
     
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         gradientLayer.frame = gradientView.frame
-        accountBackgroundView.addBottomBorder(color: UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), width: 0.5)
+        accountBackgroundView.addBottomBorder(color: .softGray, width: 0.5)
     }
     
     
     @IBAction func onButtonTouchDown(_ sender: Any) {
         let button = sender as! UIButton
-        button.superview?.backgroundColor = .whiteButtonHighlight
+        button.superview?.backgroundColor = .softGray
     }
     
     @IBAction func onButtonTouchCancel(_ sender: Any) {

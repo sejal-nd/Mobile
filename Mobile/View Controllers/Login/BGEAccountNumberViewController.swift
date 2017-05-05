@@ -27,7 +27,7 @@ class BGEAccountNumberViewController: UIViewController {
         navigationItem.rightBarButtonItem = nextButton
         viewModel.accountNumberHasTenDigits().bindTo(nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        instructionLabel.textColor = .darkJungleGreen
+        instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("The information entered is associated with multiple accounts. Please enter the account number you would like to proceed with.", comment: "")
 
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")

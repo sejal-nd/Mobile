@@ -29,12 +29,12 @@ class MoreViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .mediumPersianBlue
+        navigationController?.navigationBar.tintColor = .actionBlue
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
+            NSForegroundColorAttributeName: UIColor.blackText,
             NSFontAttributeName: OpenSans.bold.ofSize(18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict

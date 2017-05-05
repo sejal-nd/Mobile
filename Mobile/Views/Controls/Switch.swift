@@ -24,7 +24,7 @@ class Switch: UISwitch {
     
     func style() {
         tintColor = UIColor(red: 193/255, green: 193/255, blue: 193/255, alpha: 1) // Border color around the "off" state
-        backgroundColor = .timberwolf
+        backgroundColor = .accentGray
         onTintColor = .primaryColor
         layer.cornerRadius = 16
     }

@@ -54,7 +54,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         
         let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
+            NSForegroundColorAttributeName: UIColor.blackText,
             NSFontAttributeName: OpenSans.bold.ofSize(18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict

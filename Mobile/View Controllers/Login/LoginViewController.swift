@@ -93,8 +93,8 @@ class LoginViewController: UIViewController {
             self.onLoginPress()
         }).addDisposableTo(disposeBag)
         
-        forgotUsernameButton.tintColor = UIColor.mediumPersianBlue
-        forgotPasswordButton.tintColor = UIColor.mediumPersianBlue
+        forgotUsernameButton.tintColor = .actionBlue
+        forgotPasswordButton.tintColor = .actionBlue
     }
     
     deinit {
