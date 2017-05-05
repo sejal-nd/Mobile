@@ -9,8 +9,22 @@
 import RxSwift
 
 class BillViewController: AccountPickerViewController {
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var bottomView: UIView!
     
-    let disposeBag = DisposeBag()
+    @IBOutlet weak var topWarningView: UIView!
+    @IBOutlet weak var topWarningIconView: UIView!
+    @IBOutlet weak var topWarningLabel: UILabel!
+    
+    @IBOutlet weak var totalAmountView: UIView!
+    @IBOutlet weak var totalAmountLabel: UILabel!
+    @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
+    @IBOutlet weak var questionMarkButton: UIButton!
+    
+    @IBOutlet weak var paymentStackView: UIStackView!
+    @IBOutlet weak var needHelpUnderstandingButton: UIButton!
+    
+    @IBOutlet weak var makeAPaymentButton: PrimaryButton!
     
     @IBOutlet weak var paperlessButtonView: UIView!
     @IBOutlet weak var budgetButtonView: UIView!
@@ -21,14 +35,32 @@ class BillViewController: AccountPickerViewController {
     var refreshControl: UIRefreshControl?
     
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
+    
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = NSLocalizedString("Bill", comment: "")
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self
+        
+        view.backgroundColor = .primaryColor
+        scrollView.rx.contentOffset.asDriver()
+            .map { $0.y <= 0 ? UIColor.primaryColor: UIColor.white }
+            .drive(onNext: { self.scrollView.backgroundColor = $0 })
+            .addDisposableTo(disposeBag)
+        
+        topView.backgroundColor = .primaryColor
+        bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -1), radius: 5)
+        
+        topWarningIconView.superview?.bringSubview(toFront: topWarningIconView)
+        topWarningIconView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 6)
+        
+        totalAmountView.superview?.bringSubview(toFront: totalAmountView)
+        totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 2)
+        
+        paymentStackView.isHidden = true
+        needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         
         paperlessButtonView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         paperlessButtonView.layer.cornerRadius = 2
@@ -58,6 +90,7 @@ class BillViewController: AccountPickerViewController {
     func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             refreshControl = UIRefreshControl()
+            refreshControl?.tintColor = .white
             refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
             scrollView.insertSubview(refreshControl!, at: 0)
             scrollView.alwaysBounceVertical = true

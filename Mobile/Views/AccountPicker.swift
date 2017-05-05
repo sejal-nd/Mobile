@@ -31,17 +31,7 @@ class AccountPicker: UIView {
     var advancedAccountAddressLabel: UILabel?
     var advancedAccountButton: UIButton?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        commonInit()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-        commonInit()
-    }
+    @IBInspectable var tintWhite: Bool = false
 
     func commonInit() {
         currentAccount = AccountsStore.sharedInstance.accounts[0]
@@ -84,6 +74,11 @@ class AccountPicker: UIView {
         }
 
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        commonInit()
+    }
 
     private func setAccounts() {
 
@@ -106,7 +101,18 @@ class AccountPicker: UIView {
                 let pageView = UIView(frame: .zero)
                 pageViews.append(pageView)
                 
-                let icon = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
+                let icon: UIImage
+                switch (commercialUser, tintWhite) {
+                case (true, true):
+                    icon = #imageLiteral(resourceName: "ic_commercial_white")
+                case (true, false):
+                    icon = #imageLiteral(resourceName: "ic_commercial")
+                case (false, true):
+                    icon = #imageLiteral(resourceName: "ic_residential_white")
+                case (false, false):
+                    icon = #imageLiteral(resourceName: "ic_residential")
+                }
+                
                 let iconImageView = UIImageView(image: icon)
                 iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
                 
@@ -158,7 +164,18 @@ class AccountPicker: UIView {
             pageView.backgroundColor = .clear
             pageViews.append(pageView)
             
-            let icon = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
+            let icon: UIImage
+            switch (commercialUser, tintWhite) {
+            case (true, true):
+                icon = #imageLiteral(resourceName: "ic_commercial_white")
+            case (true, false):
+                icon = #imageLiteral(resourceName: "ic_commercial")
+            case (false, true):
+                icon = #imageLiteral(resourceName: "ic_residential_white")
+            case (false, false):
+                icon = #imageLiteral(resourceName: "ic_residential")
+            }
+            
             let iconImageView = UIImageView(image: icon)
             iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
             

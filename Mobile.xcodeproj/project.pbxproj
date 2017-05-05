@@ -143,6 +143,13 @@
 		82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
+		82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F031EBD11A000BE9F21 /* ButtonControl.swift */; };
+		82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F031EBD11A000BE9F21 /* ButtonControl.swift */; };
+		82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F031EBD11A000BE9F21 /* ButtonControl.swift */; };
+		82A18F081EBD12D600BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
+		82A18F091EBD12D600BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
+		82A18F0A1EBD12D600BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
+		82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
 		82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
@@ -672,6 +679,8 @@
 		82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButton.swift; sourceTree = "<group>"; };
 		82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisclosureButton.xib; sourceTree = "<group>"; };
 		82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenResponse.swift; sourceTree = "<group>"; };
+		82A18F031EBD11A000BE9F21 /* ButtonControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonControl.swift; sourceTree = "<group>"; };
+		82A18F071EBD12D600BE9F21 /* Control.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
 		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -1132,6 +1141,7 @@
 			isa = PBXGroup;
 			children = (
 				82A18EB31EBA676700BE9F21 /* AccountScroller.swift */,
+				82A18F031EBD11A000BE9F21 /* ButtonControl.swift */,
 				82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */,
 				82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */,
 				82A18EB51EBA676700BE9F21 /* SecondaryButton.swift */,
@@ -1292,6 +1302,7 @@
 		8FDF8C651E550459000B7BD0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				82A18F071EBD12D600BE9F21 /* Control.swift */,
 				8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */,
 				8FDF8C661E550502000B7BD0 /* BGEColor.swift */,
 				8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */,
@@ -2340,6 +2351,7 @@
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF11E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAEB1E785A5F001E8A44 /* OutageService.swift in Sources */,
@@ -2365,6 +2377,7 @@
 				82A18EB81EBA676700BE9F21 /* AccountScroller.swift in Sources */,
 				82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
@@ -2448,6 +2461,7 @@
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAC1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
@@ -2473,6 +2487,7 @@
 				82A18EBA1EBA676700BE9F21 /* AccountScroller.swift in Sources */,
 				82A18EDC1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				82A18F0A1EBD12D600BE9F21 /* Control.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
@@ -2556,6 +2571,7 @@
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAB1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
@@ -2581,6 +2597,7 @@
 				82A18EB91EBA676700BE9F21 /* AccountScroller.swift in Sources */,
 				82A18EDB1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				82A18F091EBD12D600BE9F21 /* Control.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E561EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
@@ -2666,6 +2683,7 @@
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
 				B574BAF41E785AE3001E8A44 /* OutageStatus.swift in Sources */,
+				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				E895E9B11EBB84B4003B38A1 /* OutageViewModel.swift in Sources */,
