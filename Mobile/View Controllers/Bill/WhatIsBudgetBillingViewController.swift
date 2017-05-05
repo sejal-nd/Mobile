@@ -49,9 +49,9 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         
         navDescriptionLabel.textColor = .outerSpace
         
-        card1TitleLabel.textColor = .primaryColorDark
+        card1TitleLabel.textColor = .primaryColorADA
         card1TitleLabel.text = NSLocalizedString("1 consistent bill over 12 months", comment: "")
-        card2TitleLabel.textColor = .primaryColorDark
+        card2TitleLabel.textColor = .primaryColorADA
         card2TitleLabel.text = NSLocalizedString("Adjusted throughout the year", comment: "")
         
         for view in bulletCollection {

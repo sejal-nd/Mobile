@@ -53,8 +53,8 @@ class FloatLabelTextField: UIView {
         
         textField.floatingLabelFont = UIFont.systemFont(ofSize: 11, weight: UIFontWeightSemibold)
         textField.floatingLabelYPadding = 6
-        textField.floatingLabelTextColor = .floatLabelColor
-        textField.floatingLabelActiveTextColor = .floatLabelColor
+        textField.floatingLabelTextColor = .primaryColorDark
+        textField.floatingLabelActiveTextColor = .primaryColorDark
         textField.rx.controlEvent(.editingDidBegin).asObservable().subscribe(onNext: { _ in
             if !self.errorState {
                 self.bottomColorBar.backgroundColor = .primaryColor
@@ -116,9 +116,9 @@ class FloatLabelTextField: UIView {
             }
             
             textField.isShowingAccessory = false
-            textField.floatingLabelTextColor = .floatLabelColor
-            textField.floatingLabelActiveTextColor = .floatLabelColor
-            textField.floatingLabel.textColor = .floatLabelColor
+            textField.floatingLabelTextColor = .primaryColorDark
+            textField.floatingLabelActiveTextColor = .primaryColorDark
+            textField.floatingLabel.textColor = .primaryColorDark
         }
         errorLabel.text = errorMessage
     }
