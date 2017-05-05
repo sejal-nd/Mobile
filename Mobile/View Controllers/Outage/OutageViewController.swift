@@ -54,10 +54,10 @@ class OutageViewController: AccountPickerViewController {
         gradientLayer.frame = gradientBackground.bounds
         gradientLayer.colors = [
             UIColor.white.cgColor,
-            UIColor(red: 246/255, green: 247/255, blue: 248/255, alpha: 1).cgColor,
+            UIColor(red: 244/255, green: 246/255, blue: 247/255, alpha: 1).cgColor,
             UIColor(red: 240/255, green: 242/255, blue: 243/255, alpha: 1).cgColor
         ]
-        gradientLayer.locations = [0.0, 0.38, 1.0]
+        gradientLayer.locations = [0.0, 0.5, 1.0]
         gradientBackground.layer.addSublayer(gradientLayer)
         
         accountPicker.delegate = self
@@ -94,12 +94,12 @@ class OutageViewController: AccountPickerViewController {
         loadingBigButtonView.layer.masksToBounds = false
         
         footerTextView.textContainerInset = .zero
-        footerTextView.textColor = .darkJungleGreen
-        footerTextView.tintColor = .mediumPersianBlue // For the phone numbers
+        footerTextView.textColor = .blackText
+        footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
         
         gasOnlyTextView.textContainerInset = .zero
-        gasOnlyTextView.tintColor = .mediumPersianBlue
+        gasOnlyTextView.tintColor = .actionBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
         
         accountPickerViewControllerWillAppear.subscribe(onNext: {
@@ -164,8 +164,8 @@ class OutageViewController: AccountPickerViewController {
         innerCircleView.isHidden = powerIsOn
         
         if viewModel.getReportedOutage() == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled) {
-            outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1)
-            innerCircleView.backgroundColor = .oldLavender
+            outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1) // Special case color - do not change
+            innerCircleView.backgroundColor = .middleGray
         } else {
             outerCircleView.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.7)
             innerCircleView.backgroundColor = .primaryColor
@@ -198,25 +198,25 @@ class OutageViewController: AccountPickerViewController {
             
             let yourOutageIsLabel = UILabel(frame: CGRect(x: 30, y: 61, width: bigButtonWidth - 60, height: 20))
             yourOutageIsLabel.font = OpenSans.regular.ofSize(16)
-            yourOutageIsLabel.textColor = .mediumPersianBlue
+            yourOutageIsLabel.textColor = .actionBlue
             yourOutageIsLabel.textAlignment = .center
             yourOutageIsLabel.text = NSLocalizedString("Your outage is", comment: "")
             
             let reportedLabel = UILabel(frame: CGRect(x: 30, y: 81, width: bigButtonWidth - 60, height: 25))
             reportedLabel.font = OpenSans.bold.ofSize(22)
-            reportedLabel.textColor = .mediumPersianBlue
+            reportedLabel.textColor = .actionBlue
             reportedLabel.textAlignment = .center
             reportedLabel.text = NSLocalizedString("REPORTED", comment: "")
             
             let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
             estRestorationLabel.font = OpenSans.regular.ofSize(12)
-            estRestorationLabel.textColor = .outerSpace
+            estRestorationLabel.textColor = .deepGray
             estRestorationLabel.textAlignment = .center
             estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
             timeLabel.font = OpenSans.bold.ofSize(15)
-            timeLabel.textColor = .outerSpace
+            timeLabel.textColor = .deepGray
             timeLabel.textAlignment = .center
             timeLabel.adjustsFontSizeToFitWidth = true
             timeLabel.minimumScaleFactor = 0.5
@@ -233,25 +233,25 @@ class OutageViewController: AccountPickerViewController {
             
             let yourPowerIsLabel = UILabel(frame: CGRect(x: 30, y: 62, width: bigButtonWidth - 60, height: 20))
             yourPowerIsLabel.font = OpenSans.regular.ofSize(16)
-            yourPowerIsLabel.textColor = .mediumPersianBlue
+            yourPowerIsLabel.textColor = .actionBlue
             yourPowerIsLabel.textAlignment = .center
             yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
             
             let outLabel = UILabel(frame: CGRect(x: 44, y: 82, width: bigButtonWidth - 88, height: 25))
             outLabel.font = OpenSans.bold.ofSize(22)
-            outLabel.textColor = .mediumPersianBlue
+            outLabel.textColor = .actionBlue
             outLabel.textAlignment = .center
             outLabel.text = NSLocalizedString("OUT", comment: "")
             
             let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
             estRestorationLabel.font = OpenSans.regular.ofSize(12)
-            estRestorationLabel.textColor = .outerSpace
+            estRestorationLabel.textColor = .deepGray
             estRestorationLabel.textAlignment = .center
             estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
             timeLabel.font = OpenSans.bold.ofSize(15)
-            timeLabel.textColor = .outerSpace
+            timeLabel.textColor = .deepGray
             timeLabel.textAlignment = .center
             timeLabel.adjustsFontSizeToFitWidth = true
             timeLabel.minimumScaleFactor = 0.5
@@ -271,7 +271,7 @@ class OutageViewController: AccountPickerViewController {
                 } else { // accountPaid = false
                     payBillLabel.frame = CGRect(x: 23, y: 150, width: bigButtonWidth - 46, height: 19)
                     payBillLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
-                    payBillLabel.textColor = .mediumPersianBlue
+                    payBillLabel.textColor = .actionBlue
                     payBillLabel.textAlignment = .center
                     payBillLabel.text = NSLocalizedString("Pay Bill", comment: "")
                     bigButtonView.addSubview(payBillLabel)
@@ -279,8 +279,8 @@ class OutageViewController: AccountPickerViewController {
             }
             nonPayFinaledTextView.textContainerInset = .zero
             nonPayFinaledTextView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
-            nonPayFinaledTextView.tintColor = .mediumPersianBlue // For the phone numbers
-            nonPayFinaledTextView.textColor = .oldLavender
+            nonPayFinaledTextView.tintColor = .actionBlue // For the phone numbers
+            nonPayFinaledTextView.textColor = .middleGray
             nonPayFinaledTextView.textAlignment = .center
             nonPayFinaledTextView.text = viewModel.getAccountNonPayFinaledMessage()
 
@@ -292,13 +292,13 @@ class OutageViewController: AccountPickerViewController {
             
             let yourPowerIsLabel = UILabel(frame: CGRect(x: 40, y: 89, width: bigButtonWidth - 80, height: 20))
             yourPowerIsLabel.font = OpenSans.regular.ofSize(16)
-            yourPowerIsLabel.textColor = .mediumPersianBlue
+            yourPowerIsLabel.textColor = .actionBlue
             yourPowerIsLabel.textAlignment = .center
             yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
             
             let onLabel = UILabel(frame: CGRect(x: 40, y: 109, width: bigButtonWidth - 80, height: 25))
             onLabel.font = OpenSans.bold.ofSize(22)
-            onLabel.textColor = .mediumPersianBlue
+            onLabel.textColor = .actionBlue
             onLabel.textAlignment = .center
             onLabel.text = NSLocalizedString("ON", comment: "")
             
@@ -391,9 +391,9 @@ extension OutageViewController: AccountPickerDelegate {
 extension OutageViewController: ReportOutageViewControllerDelegate {
     
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
-        self.updateContent()
+        updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString("Your outage report has been received.", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+            self.view.makeToast(NSLocalizedString("Your outage report has been received.", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
     

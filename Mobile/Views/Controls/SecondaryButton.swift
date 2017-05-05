@@ -29,9 +29,9 @@ class SecondaryButton: UIButton {
         layer.masksToBounds = false
         
         titleLabel!.font = UIFont.boldSystemFont(ofSize: 20)
-        setTitleColor(.mediumPersianBlue, for: .normal)
-        setTitleColor(.mediumPersianBlue, for: .highlighted)
-        setTitleColor(.oldLavender, for: .disabled)
+        setTitleColor(.actionBlue, for: .normal)
+        setTitleColor(.actionBlue, for: .highlighted)
+        setTitleColor(.middleGray, for: .disabled)
     }
     
     override func layoutSubviews() {
@@ -50,7 +50,7 @@ class SecondaryButton: UIButton {
         set {
             if newValue {
                 layer.shadowOpacity = 0
-                backgroundColor = .whiteButtonHighlight
+                backgroundColor = .softGray
             }
             else {
                 layer.shadowOpacity = 0.2
@@ -70,7 +70,7 @@ class SecondaryButton: UIButton {
                 backgroundColor = .white
             } else {
                 layer.shadowOpacity = 0
-                backgroundColor = .whiteButtonHighlight
+                backgroundColor = .softGray
             }
             super.isEnabled = newValue
         }

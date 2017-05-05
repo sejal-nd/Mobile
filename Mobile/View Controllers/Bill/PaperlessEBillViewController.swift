@@ -92,7 +92,7 @@ class PaperlessEBillViewController: UIViewController {
         whatIsButtonView.layer.cornerRadius = 2
         
         let whatIsButtonSelectedColor = whatIsButton.rx.controlEvent(.touchDown).asDriver()
-            .map { UIColor.whiteButtonHighlight }
+            .map { UIColor.softGray }
         
         let whatIsButtonDeselectedColor = Driver.merge(whatIsButton.rx.controlEvent(.touchUpInside).asDriver(),
                                                        whatIsButton.rx.controlEvent(.touchUpOutside).asDriver(),
@@ -112,7 +112,7 @@ class PaperlessEBillViewController: UIViewController {
         
         let gLayer = CAGradientLayer()
         gLayer.frame = gradientBackgroundView.frame
-        gLayer.colors = [UIColor.whiteSmoke.cgColor, UIColor.white.cgColor]
+        gLayer.colors = [UIColor.softGray.cgColor, UIColor.white.cgColor]
         
         gradientLayer = gLayer
         gradientBackgroundView.layer.addSublayer(gLayer)

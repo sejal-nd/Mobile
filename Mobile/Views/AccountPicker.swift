@@ -119,13 +119,13 @@ class AccountPicker: UIView {
                 let accountNumberLabel = UILabel(frame: .zero)
                 accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
                 accountNumberLabel.font = UIFont.systemFont(ofSize: 17)
-                accountNumberLabel.textColor = UIColor.darkJungleGreen
+                accountNumberLabel.textColor = .blackText
                 accountNumberLabel.text = account.accountNumber
                 
                 let addressLabel = UILabel(frame: .zero)
                 addressLabel.translatesAutoresizingMaskIntoConstraints = false
                 addressLabel.font = UIFont.systemFont(ofSize: 12)
-                addressLabel.textColor = UIColor.outerSpace
+                addressLabel.textColor = .deepGray
                 addressLabel.text = account.address
                 
                 let accountView = UIView(frame: .zero)
@@ -182,13 +182,13 @@ class AccountPicker: UIView {
             advancedAccountNumberLabel = UILabel(frame: .zero)
             advancedAccountNumberLabel!.translatesAutoresizingMaskIntoConstraints = false
             advancedAccountNumberLabel!.font = UIFont.systemFont(ofSize: 17)
-            advancedAccountNumberLabel!.textColor = UIColor.darkJungleGreen
+            advancedAccountNumberLabel!.textColor = .blackText
             advancedAccountNumberLabel!.text = pagedAccounts[0].accountNumber
             
             advancedAccountAddressLabel = UILabel(frame: .zero)
             advancedAccountAddressLabel!.translatesAutoresizingMaskIntoConstraints = false
             advancedAccountAddressLabel!.font = UIFont.systemFont(ofSize: 12)
-            advancedAccountAddressLabel!.textColor = UIColor.outerSpace
+            advancedAccountAddressLabel!.textColor = .deepGray
             advancedAccountAddressLabel!.text = pagedAccounts[0].address
             
             let accountView = UIView(frame: .zero)

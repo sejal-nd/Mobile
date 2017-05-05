@@ -40,30 +40,30 @@ class PaperlessEBillAccountView: UIView {
             enrollSwitch.isOn = false
             isOn = enrollSwitch.rx.isOn
             imageView.image = #imageLiteral(resourceName: "ic_residential")
-            accountNumberLabel.textColor = .darkJungleGreen
-            addressLabel.textColor = .trolleyGrey
+            accountNumberLabel.textColor = .blackText
+            addressLabel.textColor = .deepGray
             enrollStatusLabel.removeFromSuperview()
             enrollStatusLabel = nil
         case .canUnenroll:
             enrollSwitch.isOn = true
             isOn = enrollSwitch.rx.isOn
             imageView.image = #imageLiteral(resourceName: "ic_residential")
-            accountNumberLabel.textColor = .darkJungleGreen
-            addressLabel.textColor = .trolleyGrey
+            accountNumberLabel.textColor = .blackText
+            addressLabel.textColor = .deepGray
             enrollStatusLabel.removeFromSuperview()
             enrollStatusLabel = nil
         case .finaled:
             enrollStatusLabel.text = "Finaled"
             imageView.image = #imageLiteral(resourceName: "ic_residential_disabled")
-            accountNumberLabel.textColor = .oldLavender
-            addressLabel.textColor = .oldLavender
+            accountNumberLabel.textColor = .middleGray
+            addressLabel.textColor = .middleGray
             enrollSwitch.removeFromSuperview()
             enrollSwitch = nil
         case .ineligible:
             enrollStatusLabel.text = "Ineligible"
             imageView.image = #imageLiteral(resourceName: "ic_residential_disabled")
-            accountNumberLabel.textColor = .oldLavender
-            addressLabel.textColor = .oldLavender
+            accountNumberLabel.textColor = .middleGray
+            addressLabel.textColor = .middleGray
             enrollSwitch.removeFromSuperview()
             enrollSwitch = nil
         }

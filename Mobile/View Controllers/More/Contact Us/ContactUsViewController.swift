@@ -37,16 +37,16 @@ class ContactUsViewController: UIViewController {
         
         emergencyNumberTextView.text = contactUsViewModel.phoneNumber1
         emergencyNumberTextView.textContainerInset = .zero
-        emergencyNumberTextView.tintColor = .mediumPersianBlue // Color of the phone numbers
+        emergencyNumberTextView.tintColor = .actionBlue // Color of the phone numbers
         residentialNumberTextView.text = contactUsViewModel.phoneNumber2
         residentialNumberTextView.textContainerInset = .zero
-        residentialNumberTextView.tintColor = .mediumPersianBlue // Color of the phone numbers
+        residentialNumberTextView.tintColor = .actionBlue // Color of the phone numbers
         businessNumberTextView?.text = contactUsViewModel.phoneNumber3
         businessNumberTextView?.textContainerInset = .zero
-        businessNumberTextView?.tintColor = .mediumPersianBlue // Color of the phone numbers
+        businessNumberTextView?.tintColor = .actionBlue // Color of the phone numbers
         ttyttdNumberTextView?.text = contactUsViewModel.phoneNumber4
         ttyttdNumberTextView?.textContainerInset = .zero
-        ttyttdNumberTextView?.tintColor = .mediumPersianBlue // Color of the phone numbers
+        ttyttdNumberTextView?.tintColor = .actionBlue // Color of the phone numbers
         
         customerServiceLabel.text = NSLocalizedString("Customer Service", comment: "")
         firstLabel.text = contactUsViewModel.label1

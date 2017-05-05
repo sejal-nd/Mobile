@@ -26,7 +26,7 @@ class MainBaseNavigationController: UINavigationController {
     
     func setWhiteNavBar() {
         navigationBar.barTintColor = .white
-        navigationBar.tintColor = .mediumPersianBlue
+        navigationBar.tintColor = .actionBlue
         navigationBar.isTranslucent = false
         
         // Removes the bottom border line:
@@ -34,7 +34,7 @@ class MainBaseNavigationController: UINavigationController {
         //navigationBar.shadowImage = UIImage()
         
         let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
+            NSForegroundColorAttributeName: UIColor.blackText,
             NSFontAttributeName: OpenSans.bold.ofSize(18)
         ]
         navigationBar.titleTextAttributes = titleDict

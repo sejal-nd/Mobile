@@ -28,7 +28,7 @@ class ButtonControl: UIControl {
         let normalStateColor = backgroundColor ?? .clear
         
         let selectedColor = rx.controlEvent(.touchDown).asDriver()
-            .map { UIColor.whiteButtonHighlight }
+            .map { UIColor.softGray }
         
         let deselectedColor = Driver.merge(rx.controlEvent(.touchUpInside).asDriver(),
                                            rx.controlEvent(.touchUpOutside).asDriver(),
