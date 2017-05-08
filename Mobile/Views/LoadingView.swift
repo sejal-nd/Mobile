@@ -26,7 +26,6 @@ class LoadingView: UIView {
         
         animationContainer.frame.size = (UIApplication.shared.keyWindow?.bounds.size)!
         animationContainer.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        animationContainer.layer.cornerRadius = 3
         
         loadingAnimationView!.frame.size = CGSize(width: 72, height: 72)
         loadingAnimationView!.loopAnimation = true
