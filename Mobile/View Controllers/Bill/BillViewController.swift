@@ -21,7 +21,14 @@ class BillViewController: AccountPickerViewController {
     var refreshControl: UIRefreshControl?
     
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
-
+    
+    override var defaultStatusBarStyle: UIStatusBarStyle {
+        get {
+            return .lightContent
+        }
+        set { }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
