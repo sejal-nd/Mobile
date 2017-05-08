@@ -29,6 +29,13 @@ class AdvancedAccountPickerViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setWhiteNavBar()
+        }
+    }
+    
     func showPremises(sender: UIButton) {
         if let cell = tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as? AdvancedAccountPickerDropDownTableViewCell {
             if cell.isExpanded == false {
@@ -54,7 +61,14 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.advancedAccountPickerViewController(self, didSelectAccount: AccountsStore.sharedInstance.accounts[indexPath.row])
+        putCurrentAtFront()
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func putCurrentAtFront() {
+        let index = AccountsStore.sharedInstance.accounts.index(of: AccountsStore.sharedInstance.currentAccount)
+        let currentAccount = AccountsStore.sharedInstance.accounts.remove(at: index!)
+        AccountsStore.sharedInstance.accounts.insert(currentAccount, at: 0)
     }
     
 }
