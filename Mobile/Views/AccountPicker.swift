@@ -230,6 +230,7 @@ class AccountPicker: UIView {
         let storyboard = UIStoryboard(name: "Outage", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "advancedAccountPicker") as? AdvancedAccountPickerViewController {
             vc.delegate = self
+            vc.accounts = AccountsStore.sharedInstance.accounts
             if let parentVc = parentViewController {
                 parentVc.navigationController?.pushViewController(vc, animated: true)
             }

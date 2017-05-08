@@ -19,6 +19,7 @@ class AdvancedAccountPickerViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var expandedStates = [Bool]()
+    var accounts = [Account]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class AdvancedAccountPickerViewController: UIViewController {
         for _ in AccountsStore.sharedInstance.accounts {
             expandedStates.append(false)
         }
+        moveCurrentAccountToFrontOfAccountArray()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +36,12 @@ class AdvancedAccountPickerViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setWhiteNavBar()
         }
+    }
+    
+    func moveCurrentAccountToFrontOfAccountArray() {
+        let index = AccountsStore.sharedInstance.accounts.index(of: AccountsStore.sharedInstance.currentAccount)
+        let currentAccount = accounts.remove(at: index!)
+        accounts.insert(currentAccount, at: 0)
     }
     
     func showPremises(sender: UIButton) {
@@ -61,14 +69,7 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.advancedAccountPickerViewController(self, didSelectAccount: AccountsStore.sharedInstance.accounts[indexPath.row])
-        putCurrentAtFront()
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    func putCurrentAtFront() {
-        let index = AccountsStore.sharedInstance.accounts.index(of: AccountsStore.sharedInstance.currentAccount)
-        let currentAccount = AccountsStore.sharedInstance.accounts.remove(at: index!)
-        AccountsStore.sharedInstance.accounts.insert(currentAccount, at: 0)
     }
     
 }
@@ -86,7 +87,7 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AdvancedAccountPickerTableViewCell
         
-        let account = AccountsStore.sharedInstance.accounts[indexPath.row]
+        let account = accounts[indexPath.row]
         let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
         
         cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
