@@ -147,6 +147,18 @@
 		82A18F091EBD12D600BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
 		82A18F0A1EBD12D600BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
 		82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
+		82A18F0E1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
+		82A18F0F1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
+		82A18F101EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
+		82A18F111EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
+		82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
+		82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
+		82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
+		82A18F161EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
+		82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
@@ -677,6 +689,9 @@
 		82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenResponse.swift; sourceTree = "<group>"; };
 		82A18F031EBD11A000BE9F21 /* ButtonControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonControl.swift; sourceTree = "<group>"; };
 		82A18F071EBD12D600BE9F21 /* Control.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
+		82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingPaymentView.swift; sourceTree = "<group>"; };
+		82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingPaymentView.xib; sourceTree = "<group>"; };
+		82A18F171EC0E83800BE9F21 /* NibViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViews.swift; sourceTree = "<group>"; };
 		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -1148,6 +1163,7 @@
 		82A18EB11EBA667F00BE9F21 /* Listable Views */ = {
 			isa = PBXGroup;
 			children = (
+				82A18F0C1EC0C71D00BE9F21 /* Bill */,
 				82A18EC71EBA677300BE9F21 /* PaperlessEBillAccountView */,
 			);
 			path = "Listable Views";
@@ -1191,6 +1207,15 @@
 				82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */,
 			);
 			path = DisclosureButton;
+			sourceTree = "<group>";
+		};
+		82A18F0C1EC0C71D00BE9F21 /* Bill */ = {
+			isa = PBXGroup;
+			children = (
+				82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */,
+				82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */,
+			);
+			path = Bill;
 			sourceTree = "<group>";
 		};
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
@@ -1247,6 +1272,7 @@
 			isa = PBXGroup;
 			children = (
 				82A18EB01EBA667900BE9F21 /* Controls */,
+				B58B5B571E516A9B0051FD5F /* Configuration */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				82A18EB11EBA667F00BE9F21 /* Listable Views */,
 				82A18EB21EBA668500BE9F21 /* Table View Cells */,
@@ -1305,6 +1331,7 @@
 				E802AB3E1E85936700981D18 /* LineHeightLabel.swift */,
 				E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */,
 				826413781EAEAE5E007F4615 /* Fonts.swift */,
+				82A18F171EC0E83800BE9F21 /* NibViews.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1590,7 +1617,6 @@
 				B5AC06C61E521B2600BBA4ED /* Assets */,
 				8FD3C2671E525023005FB1BB /* Storyboards */,
 				E8EEF7341E578928006804D4 /* Launch Screens */,
-				B58B5B571E516A9B0051FD5F /* Configuration */,
 				8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */,
 				8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */,
 				8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */,
@@ -1623,7 +1649,8 @@
 				B5AC06781E51763200BBA4ED /* Environment.swift */,
 				B574BAD31E736596001E8A44 /* Macros.swift */,
 			);
-			path = Configuration;
+			name = Configuration;
+			path = ../Configuration;
 			sourceTree = "<group>";
 		};
 		B5AC06C61E521B2600BBA4ED /* Assets */ = {
@@ -2098,6 +2125,7 @@
 				E8494F3B1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736411E6740C9003B9369 /* VersionInfo.plist in Resources */,
+				82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2145,6 +2173,7 @@
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
+				82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2192,6 +2221,7 @@
 				E8494F3C1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736421E6740C9003B9369 /* VersionInfo.plist in Resources */,
+				82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2200,6 +2230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				82A18F161EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2408,6 +2439,7 @@
 				E840BD441EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				82A18F0E1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
@@ -2432,6 +2464,7 @@
 				E801BAD91E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
+				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
@@ -2517,6 +2550,7 @@
 				E840BD461EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				82A18F101EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
@@ -2541,6 +2575,7 @@
 				E801BADB1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
+				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
@@ -2626,6 +2661,7 @@
 				E840BD451EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				82A18F0F1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
@@ -2650,6 +2686,7 @@
 				E801BADA1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
+				82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B231EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
@@ -2677,6 +2714,7 @@
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				E895E9B11EBB84B4003B38A1 /* OutageViewModel.swift in Sources */,
+				82A18F111EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				E840BD471EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */,
 				E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */,
@@ -2704,6 +2742,7 @@
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
 				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
+				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,

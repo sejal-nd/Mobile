@@ -32,6 +32,33 @@ class AccountPicker: UIView {
     var advancedAccountButton: UIButton?
     
     @IBInspectable var tintWhite: Bool = false
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        commonInit()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 57)
+        pageControl.frame = CGRect(x: frame.size.width / 2 - 80, y: 57, width: 160, height: 7)
+        
+        if let button = advancedAccountButton {
+            button.frame = scrollView.frame
+        }
+        
+        if pageViews.count > 0 {
+            for index in 0..<pageViews.count {
+                let pageView = pageViews[index]
+                pageView.frame = CGRect(x: CGFloat(index) * frame.size.width, y: 0, width: frame.size.width, height: 57)
+            }
+            
+            scrollView.contentSize = CGSize(width: frame.size.width * CGFloat(pageViews.count), height: 57)
+            scrollView.scrollRectToVisible(pageViews[pageControl.currentPage].frame, animated: false)
+        }
+        
+    }
 
     func commonInit() {
         currentAccount = AccountsStore.sharedInstance.accounts[0]
@@ -51,33 +78,6 @@ class AccountPicker: UIView {
         addSubview(pageControl)
         
         setAccounts()
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 57)
-        pageControl.frame = CGRect(x: frame.size.width / 2 - 80, y: 57, width: 160, height: 7)
-        
-        if let button = advancedAccountButton {
-            button.frame = scrollView.frame
-        }
-
-        if pageViews.count > 0 {
-            for index in 0..<pageViews.count {
-                let pageView = pageViews[index]
-                pageView.frame = CGRect(x: CGFloat(index) * frame.size.width, y: 0, width: frame.size.width, height: 57)
-            }
-            
-            scrollView.contentSize = CGSize(width: frame.size.width * CGFloat(pageViews.count), height: 57)
-            scrollView.scrollRectToVisible(pageViews[pageControl.currentPage].frame, animated: false)
-        }
-
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        commonInit()
     }
 
     private func setAccounts() {
@@ -119,13 +119,13 @@ class AccountPicker: UIView {
                 let accountNumberLabel = UILabel(frame: .zero)
                 accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
                 accountNumberLabel.font = UIFont.systemFont(ofSize: 17)
-                accountNumberLabel.textColor = .blackText
+                accountNumberLabel.textColor = tintWhite ? .white: .blackText
                 accountNumberLabel.text = account.accountNumber
                 
                 let addressLabel = UILabel(frame: .zero)
                 addressLabel.translatesAutoresizingMaskIntoConstraints = false
                 addressLabel.font = UIFont.systemFont(ofSize: 12)
-                addressLabel.textColor = .deepGray
+                addressLabel.textColor = tintWhite ? .white: .deepGray
                 addressLabel.text = account.address
                 
                 let accountView = UIView(frame: .zero)
