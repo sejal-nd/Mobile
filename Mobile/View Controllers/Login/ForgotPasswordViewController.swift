@@ -18,6 +18,7 @@ class ForgotPasswordViewController: UIViewController {
     
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
+    @IBOutlet weak var forgotUsernameButton: UIButton!
     
     let viewModel = ForgotPasswordViewModel(authService: ServiceFactory.createAuthenticationService())
     
@@ -51,6 +52,9 @@ class ForgotPasswordViewController: UIViewController {
         usernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.usernameTextField.setError(nil)
         }).addDisposableTo(disposeBag)
+        
+        forgotUsernameButton.setTitle(NSLocalizedString("Forgot Username?", comment: ""), for: .normal)
+        forgotUsernameButton.setTitleColor(.actionBlue, for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +94,16 @@ class ForgotPasswordViewController: UIViewController {
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         })
+    }
+    
+    @IBAction func onForgotUsernamePress() {
+        for vc in (self.navigationController?.viewControllers)! {
+            guard let loginVC = vc as? LoginViewController else {
+                continue
+            }
+            loginVC.onForgotUsernamePress()
+            break
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
