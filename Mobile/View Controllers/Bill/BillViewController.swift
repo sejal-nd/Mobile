@@ -55,16 +55,16 @@ class BillViewController: AccountPickerViewController {
             .addDisposableTo(disposeBag)
         
         topView.backgroundColor = .primaryColor
-        bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -1), radius: 5)
+        bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
         
         topWarningIconView.superview?.bringSubview(toFront: topWarningIconView)
-        topWarningIconView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 6)
+        topWarningIconView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         
         totalAmountView.superview?.bringSubview(toFront: totalAmountView)
-        totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 2)
+        totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
         
         paymentStackView.isHidden = true
-        needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
         
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         autoPayButton.layer.cornerRadius = 2
