@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class BillViewModel {
     
@@ -16,32 +17,32 @@ class BillViewModel {
     
     private var currentGetAccountDetailDisposable: Disposable?
 
-    var currentAccountDetail: AccountDetail?
+    let fetchAccountDetailSubject = PublishSubject<Void>()
+    let currentAccountDetail = Variable<AccountDetail?>(nil)
+    let fetchingAccountDetail: Driver<Bool>
     
     required init(accountService: AccountService) {
         self.accountService = accountService
+        
+        
+        let fetchingAccountDetailTracker = ActivityTracker()
+        fetchingAccountDetail = fetchingAccountDetailTracker.asDriver()
+        
+        fetchAccountDetailSubject
+            .flatMapLatest {
+                accountService
+                    .fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
+                    .trackActivity(fetchingAccountDetailTracker)
+                    .do(onError: {
+                        dLog(message: $0.localizedDescription)
+                    })
+            }
+            .bindTo(currentAccountDetail)
+            .addDisposableTo(disposeBag)
     }
     
-    deinit {
-        if let disposable = currentGetAccountDetailDisposable {
-            disposable.dispose()
-        }
+    func fetchAccountDetail() {
+        fetchAccountDetailSubject.onNext()
     }
     
-    func getAccountDetails(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        
-        // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
-        if let disposable = currentGetAccountDetailDisposable {
-            disposable.dispose()
-        }
-        
-        currentGetAccountDetailDisposable = accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { accountDetail in
-                self.currentAccountDetail = accountDetail
-                onSuccess()
-            }, onError: { error in
-                onError(error.localizedDescription)
-            })
-    }
 }

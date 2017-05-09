@@ -162,6 +162,10 @@
 		82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
+		82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
+		82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
+		82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
+		82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
 		8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
 		8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
@@ -693,6 +697,7 @@
 		82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingPaymentView.xib; sourceTree = "<group>"; };
 		82A18F171EC0E83800BE9F21 /* NibViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViews.swift; sourceTree = "<group>"; };
 		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
+		82D599411EC2374500DDB380 /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
 		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1807,6 +1812,7 @@
 			isa = PBXGroup;
 			children = (
 				E8B4F4C41E5CE18F0031D934 /* A0SimpleKeychain */,
+				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -2370,6 +2376,7 @@
 			files = (
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
+				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF11E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
@@ -2481,6 +2488,7 @@
 			files = (
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
+				82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
@@ -2592,6 +2600,7 @@
 			files = (
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
+				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,
@@ -2742,6 +2751,7 @@
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
 				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
+				82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,

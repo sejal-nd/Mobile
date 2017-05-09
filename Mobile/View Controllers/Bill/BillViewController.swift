@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class BillViewController: AccountPickerViewController {
     @IBOutlet weak var topView: UIView!
@@ -36,7 +37,14 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
     @IBOutlet weak var billLoadingIndicator: LoadingIndicator!
     
-    var refreshControl: UIRefreshControl?
+    var refreshDisposable: Disposable?
+    var refreshControl: UIRefreshControl? {
+        didSet {
+            refreshDisposable?.dispose()
+            refreshDisposable = refreshControl?.rx.controlEvent(.valueChanged).asDriver()
+                .drive(viewModel.fetchAccountDetailSubject)
+        }
+    }
     
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
     
@@ -83,9 +91,9 @@ class BillViewController: AccountPickerViewController {
         
         accountPickerViewControllerWillAppear.subscribe(onNext: {
             if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-                self.getAccountDetails()
-            } else if self.viewModel.currentAccountDetail == nil {
-                self.getAccountDetails()
+                self.viewModel.fetchAccountDetail()
+            } else if self.viewModel.currentAccountDetail.value == nil {
+                self.viewModel.fetchAccountDetail()
             }
         }).addDisposableTo(disposeBag)
         
@@ -122,12 +130,43 @@ class BillViewController: AccountPickerViewController {
         
         budgetButton.rx.touchUpInside.asDriver()
             .drive(onNext: {
-                if self.viewModel.currentAccountDetail!.isBudgetBillEligible {
+                if self.viewModel.currentAccountDetail.value!.isBudgetBillEligible {
                     self.performSegue(withIdentifier: "budgetBillingSegue", sender: self)
                 } else {
                     let alertVC = UIAlertController(title: NSLocalizedString("Budget Billing", comment: ""), message: NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: ""), preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVC, animated: true, completion: nil)
+                }
+            })
+            .addDisposableTo(disposeBag)
+        
+        viewModel.fetchingAccountDetail
+            .drive(billLoadingIndicator.rx.isAnimating)
+            .addDisposableTo(disposeBag)
+        
+        viewModel.fetchingAccountDetail.asDriver()
+            .filter { !$0 && self.refreshControl?.isRefreshing ?? false }
+            .drive(rx.isRefreshing)
+            .addDisposableTo(disposeBag)
+        
+        viewModel.fetchingAccountDetail.asDriver()
+            .filter { !$0 || ($0 && !(self.refreshControl?.isRefreshing ?? false)) }
+            .map(!)
+            .distinctUntilChanged()
+            .drive(rx.isPullToRefreshEnabled)
+            .addDisposableTo(disposeBag)
+        
+        viewModel.fetchingAccountDetail
+            .filter(!)
+            .drive(onNext: { _ in
+                self.refreshControl?.endRefreshing()
+            })
+            .addDisposableTo(disposeBag)
+        
+        viewModel.currentAccountDetail.asDriver()
+            .drive(onNext: {
+                if let accountDetail = $0 {
+                    self.updateContent(with: accountDetail)
                 }
             })
             .addDisposableTo(disposeBag)
@@ -138,55 +177,11 @@ class BillViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    func setRefreshControlEnabled(enabled: Bool) {
-        if enabled {
-            refreshControl = UIRefreshControl()
-            refreshControl?.tintColor = .white
-            refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
-            scrollView.insertSubview(refreshControl!, at: 0)
-            scrollView.alwaysBounceVertical = true
-        } else {
-            if let rc = refreshControl {
-                rc.endRefreshing()
-                rc.removeFromSuperview()
-                refreshControl = nil
-            }
-            scrollView.alwaysBounceVertical = false
-        }
-    }
-    
-    func getAccountDetails() {
-        paperlessButton.isHidden = true
-        budgetButton.isHidden = true
-        billLoadingIndicator.isHidden = false
-        setRefreshControlEnabled(enabled: false)
-        viewModel.getAccountDetails(onSuccess: {
-            self.billLoadingIndicator.isHidden = true
-            self.setRefreshControlEnabled(enabled: true)
-            self.updateContent()
-        }, onError: { errorMessage in
-            self.billLoadingIndicator.isHidden = true
-            self.setRefreshControlEnabled(enabled: true)
-            dLog(message: errorMessage)
-        })
-    }
-    
-
-    func onPullToRefresh() {
-        viewModel.getAccountDetails(onSuccess: {
-            self.refreshControl?.endRefreshing()
-            self.updateContent()
-        }, onError: { errorMessage in
-            self.refreshControl?.endRefreshing()
-            dLog(message: errorMessage)
-        })
-    }
-    
-    func updateContent() {
-        paperlessButton.isHidden = viewModel.currentAccountDetail!.isEBillEligible == false
-        budgetButton.isHidden = viewModel.currentAccountDetail!.isBudgetBillEligible == false && Environment.sharedInstance.opco != .bge
+    func updateContent(with accountDetail: AccountDetail) {
+        paperlessButton.isHidden = accountDetail.isEBillEligible == false
+        budgetButton.isHidden = accountDetail.isBudgetBillEligible == false && Environment.sharedInstance.opco != .bge
         
-        if viewModel.currentAccountDetail!.isEBillEnrollment {
+        if accountDetail.isEBillEnrollment {
             paperlessEnrollmentLabel.text = "enrolled"
             paperlessEnrollmentLabel.textColor = .successGreenText
         } else {
@@ -194,7 +189,7 @@ class BillViewController: AccountPickerViewController {
             paperlessEnrollmentLabel.textColor = .deepGray
         }
         
-        if viewModel.currentAccountDetail!.isBudgetBillEnrollment {
+        if accountDetail.isBudgetBillEnrollment {
             budgetBillingEnrollmentLabel.text = "enrolled"
             budgetBillingEnrollmentLabel.textColor = .successGreenText
         } else {
@@ -206,10 +201,10 @@ class BillViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? BudgetBillingViewController {
             vc.delegate = self
-            vc.initialEnrollment = viewModel.currentAccountDetail!.isBudgetBillEnrollment
+            vc.initialEnrollment = viewModel.currentAccountDetail.value!.isBudgetBillEnrollment
         } else if let vc = segue.destination as? PaperlessEBillViewController {
             vc.delegate = self
-            vc.initialAccountDetail = viewModel.currentAccountDetail!
+            vc.initialAccountDetail = viewModel.currentAccountDetail.value!
         }
     }
     
@@ -223,7 +218,7 @@ class BillViewController: AccountPickerViewController {
 extension BillViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        getAccountDetails()
+        viewModel.fetchAccountDetail()
     }
     
 }
@@ -231,12 +226,12 @@ extension BillViewController: AccountPickerDelegate {
 extension BillViewController: BudgetBillingViewControllerDelegate {
     
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController) {
-        getAccountDetails()
+        viewModel.fetchAccountDetail()
         showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
     }
     
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
-        getAccountDetails()
+        viewModel.fetchAccountDetail()
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
     }
 }
@@ -270,4 +265,35 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
     }
 }
 
+extension Reactive where Base: BillViewController {
+    
+    var isPullToRefreshEnabled: UIBindingObserver<Base, Bool> {
+        return UIBindingObserver(UIElement: self.base) { vc, refresh in
+            if refresh {
+                guard vc.refreshControl == nil else { return }
+                let refreshControl = UIRefreshControl()
+                vc.refreshControl = refreshControl
+                refreshControl.tintColor = .white
+                vc.scrollView.insertSubview(refreshControl, at: 0)
+                vc.scrollView.alwaysBounceVertical = true
+            } else {
+                vc.refreshControl?.endRefreshing()
+                vc.refreshControl?.removeFromSuperview()
+                vc.refreshControl = nil
+                vc.scrollView.alwaysBounceVertical = false
+            }
+        }
+    }
+    
+    var isRefreshing: UIBindingObserver<Base, Bool> {
+        return UIBindingObserver(UIElement: self.base) { vc, refresh in
+            if refresh {
+                vc.refreshControl?.beginRefreshing()
+            } else {
+                vc.refreshControl?.endRefreshing()
+            }
+        }
+    }
+    
+}
 
