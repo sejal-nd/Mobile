@@ -15,7 +15,7 @@ private func extractDate(object: Any?) throws -> Date? {
     }
     
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     return dateFormatter.date(from: dateString)
 }
 
@@ -112,6 +112,7 @@ struct BillingInfo: Mappable {
     let lastPaymentDate: Date?
     let disconnectNoticeArrears: Int
     let isDisconnectNotice: Bool
+    let billDate: Date?
     
     init(map: Mapper) throws {
         netDueAmount = map.optionalFrom("netDueAmount")
@@ -125,6 +126,7 @@ struct BillingInfo: Mappable {
         lastPaymentDate = map.optionalFrom("lastPaymentDate", transformation: extractDate)
         disconnectNoticeArrears = try map.from("disconnectNoticeArrears") ?? 0
         isDisconnectNotice = try map.from("isDisconnectNotice") ?? false
+        billDate = map.optionalFrom("billDate", transformation: extractDate)
     }
 }
 
