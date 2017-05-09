@@ -102,6 +102,12 @@ class AccountPickerViewController: UIViewController {
         accountPickerViewControllerWillAppear.onNext()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        containerView.frame = CGRect(x: 0, y: scrollView.contentOffset.y <= accountPicker.frame.size.height ? -60 : 0, width: UIScreen.main.bounds.size.width, height: 60)
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return scrollView.contentOffset.y <= accountPicker.frame.size.height ? defaultStatusBarStyle: .default
     }
