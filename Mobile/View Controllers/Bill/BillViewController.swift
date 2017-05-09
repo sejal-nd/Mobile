@@ -9,11 +9,29 @@
 import RxSwift
 
 class BillViewController: AccountPickerViewController {
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var bottomView: UIView!
     
-    let disposeBag = DisposeBag()
+    @IBOutlet weak var topWarningView: UIView!
+    @IBOutlet weak var topWarningIconView: UIView!
+    @IBOutlet weak var topWarningLabel: UILabel!
     
-    @IBOutlet weak var paperlessButtonView: UIView!
-    @IBOutlet weak var budgetButtonView: UIView!
+    @IBOutlet weak var totalAmountView: UIView!
+    @IBOutlet weak var totalAmountLabel: UILabel!
+    @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
+    @IBOutlet weak var questionMarkButton: UIButton!
+    
+    @IBOutlet weak var paymentStackView: UIStackView!
+    @IBOutlet weak var youAreEntitledLabel: UILabel!
+    @IBOutlet weak var needHelpUnderstandingButton: ButtonControl!
+    @IBOutlet weak var viewBillButton: ButtonControl!
+    
+    @IBOutlet weak var makeAPaymentButton: PrimaryButton!
+    
+    @IBOutlet weak var autoPayButton: ButtonControl!
+    @IBOutlet weak var paperlessButton: ButtonControl!
+    @IBOutlet weak var budgetButton: ButtonControl!
+    @IBOutlet weak var autoPayEnrollmentLabel: UILabel!
     @IBOutlet weak var paperlessEnrollmentLabel: UILabel!
     @IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
     @IBOutlet weak var billLoadingIndicator: LoadingIndicator!
@@ -28,24 +46,47 @@ class BillViewController: AccountPickerViewController {
         }
         set { }
     }
-    
+
+    let disposeBag = DisposeBag()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = NSLocalizedString("Bill", comment: "")
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        paperlessButtonView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
-        paperlessButtonView.layer.cornerRadius = 2
-        paperlessButtonView.layer.masksToBounds = false
-        paperlessButtonView.isHidden = true
+        view.backgroundColor = .primaryColor
+        scrollView.rx.contentOffset.asDriver()
+            .map { $0.y <= 0 ? UIColor.primaryColor: UIColor.white }
+            .drive(onNext: { self.scrollView.backgroundColor = $0 })
+            .addDisposableTo(disposeBag)
         
-        budgetButtonView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        budgetButtonView.layer.cornerRadius = 2
-        budgetButtonView.layer.masksToBounds = false
-        budgetButtonView.isHidden = true
+        topView.backgroundColor = .primaryColor
+        bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
+        
+        topWarningIconView.superview?.bringSubview(toFront: topWarningIconView)
+        topWarningIconView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
+        
+        totalAmountView.superview?.bringSubview(toFront: totalAmountView)
+        totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
+        
+        paymentStackView.isHidden = true
+        needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
+        
+        autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
+        autoPayButton.layer.cornerRadius = 2
+        autoPayButton.layer.masksToBounds = false
+//        autoPayButton.isHidden = true
+        
+        paperlessButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
+        paperlessButton.layer.cornerRadius = 2
+        paperlessButton.layer.masksToBounds = false
+        paperlessButton.isHidden = true
+        
+        budgetButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        budgetButton.layer.cornerRadius = 2
+        budgetButton.layer.masksToBounds = false
+        budgetButton.isHidden = true
         
         accountPickerViewControllerWillAppear.subscribe(onNext: {
             if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
@@ -54,17 +95,60 @@ class BillViewController: AccountPickerViewController {
                 self.getAccountDetails()
             }
         }).addDisposableTo(disposeBag)
+        
+        questionMarkButton.rx.tap.asDriver()
+            .drive(onNext: {
+                let alertController = UIAlertController(title: NSLocalizedString("Your Due Date", comment: ""),
+                                                        message: NSLocalizedString("If you recently changed your energy supplier, a portion of your balance may have an earlier due date. Please view your previous bills and corresponding due dates.", comment: ""), preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            })
+            .addDisposableTo(disposeBag)
+        
+        needHelpUnderstandingButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                print("need help tapped")
+            })
+            .addDisposableTo(disposeBag)
+        
+        viewBillButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                print("view bill tapped")
+            })
+            .addDisposableTo(disposeBag)
+        
+        paperlessButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) {
+                    self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: self)
+                } else {
+                    self.performSegue(withIdentifier: "paperlessEBillSegue", sender: self)
+                }
+            })
+            .addDisposableTo(disposeBag)
+        
+        budgetButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                if self.viewModel.currentAccountDetail!.isBudgetBillEligible {
+                    self.performSegue(withIdentifier: "budgetBillingSegue", sender: self)
+                } else {
+                    let alertVC = UIAlertController(title: NSLocalizedString("Budget Billing", comment: ""), message: NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: ""), preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVC, animated: true, completion: nil)
+                }
+            })
+            .addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             refreshControl = UIRefreshControl()
+            refreshControl?.tintColor = .white
             refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
             scrollView.insertSubview(refreshControl!, at: 0)
             scrollView.alwaysBounceVertical = true
@@ -79,8 +163,8 @@ class BillViewController: AccountPickerViewController {
     }
     
     func getAccountDetails() {
-        paperlessButtonView.isHidden = true
-        budgetButtonView.isHidden = true
+        paperlessButton.isHidden = true
+        budgetButton.isHidden = true
         billLoadingIndicator.isHidden = false
         setRefreshControlEnabled(enabled: false)
         viewModel.getAccountDetails(onSuccess: {
@@ -106,8 +190,8 @@ class BillViewController: AccountPickerViewController {
     }
     
     func updateContent() {
-        paperlessButtonView.isHidden = viewModel.currentAccountDetail!.isEBillEligible == false
-        budgetButtonView.isHidden = viewModel.currentAccountDetail!.isBudgetBillEligible == false && Environment.sharedInstance.opco != .bge
+        paperlessButton.isHidden = viewModel.currentAccountDetail!.isEBillEligible == false
+        budgetButton.isHidden = viewModel.currentAccountDetail!.isBudgetBillEligible == false && Environment.sharedInstance.opco != .bge
         
         if viewModel.currentAccountDetail!.isEBillEnrollment {
             paperlessEnrollmentLabel.text = "enrolled"
@@ -123,34 +207,6 @@ class BillViewController: AccountPickerViewController {
         } else {
             budgetBillingEnrollmentLabel.text = "not enrolled"
             budgetBillingEnrollmentLabel.textColor = .deepGray
-        }
-    }
-    
-    @IBAction func onButtonTouchDown(_ sender: Any) {
-        let button = sender as! UIButton
-        button.superview?.backgroundColor = .softGray
-    }
-    
-    @IBAction func onButtonTouchCancel(_ sender: Any) {
-        let button = sender as! UIButton
-        button.superview?.backgroundColor = .white
-    }
-    
-    @IBAction func onPaperlessEBillPress(_ sender: Any) {
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) {
-            performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: self)
-        } else {
-            performSegue(withIdentifier: "paperlessEBillSegue", sender: self)
-        }
-    }
-    
-    @IBAction func onBudgetBillingButtonPress() {
-        if self.viewModel.currentAccountDetail!.isBudgetBillEligible {
-            performSegue(withIdentifier: "budgetBillingSegue", sender: self)
-        } else {
-            let alertVC = UIAlertController(title: NSLocalizedString("Budget Billing", comment: ""), message: NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: ""), preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            present(alertVC, animated: true, completion: nil)
         }
     }
     
