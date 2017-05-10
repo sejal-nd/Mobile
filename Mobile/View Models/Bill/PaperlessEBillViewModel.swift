@@ -81,20 +81,32 @@ class PaperlessEBillViewModel {
             .shareReplay(1)
     }()
     
-    func submitChanges(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func submitChanges(onSuccess: @escaping (PaperlessEBillChangedStatus) -> Void, onError: @escaping (String) -> Void) {
         var requestObservables = [Observable<Void>]()
+        var enrolled = false, unenrolled = false
         for account in accountsToEnroll.value {
+            enrolled = true
             requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: initialAccountDetail.value.customerInfo.emailAddress!))
         }
         for account in accountsToUnenroll.value {
+            unenrolled = true
             requestObservables.append(billService.unenrollPaperlessBilling(accountNumber: account))
+        }
+        
+        var changedStatus: PaperlessEBillChangedStatus
+        if enrolled && unenrolled {
+            changedStatus = PaperlessEBillChangedStatus.Mixed
+        } else if enrolled {
+            changedStatus = PaperlessEBillChangedStatus.Enroll
+        } else { // User cannot submit without enrolling/unenrolling at least 1 account, so it's safe to make this a generic 'else'
+            changedStatus = PaperlessEBillChangedStatus.Unenroll
         }
         
         Observable.from(requestObservables)
             .merge(maxConcurrent: 3)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
-                onSuccess()
+                onSuccess(changedStatus)
             }, onError: { error in
                 onError(error.localizedDescription)
             })

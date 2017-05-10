@@ -10,10 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+enum PaperlessEBillChangedStatus {
+    case Enroll
+    case Unenroll
+    case Mixed
+}
+
 protocol PaperlessEBillViewControllerDelegate: class {
-    func paperlessEBillViewControllerDidEnroll(_ paperlessEBillViewController: PaperlessEBillViewController)
-    func paperlessEBillViewControllerDidUnenroll(_ paperlessEBillViewController: PaperlessEBillViewController)
-    func paperlessEBillViewControllerDidChangeStatus(_ paperlessEBillViewController: PaperlessEBillViewController)
+    func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus)
 }
 
 class PaperlessEBillViewController: UIViewController {
@@ -166,23 +170,10 @@ class PaperlessEBillViewController: UIViewController {
     }
 
     @IBAction func submitAction(_ sender: Any) {
-//        if viewModel.accounts.value.count > 1 {
-//            delegate?.paperlessEBillViewControllerDidChangeStatus(self)
-//        } else {
-//            if !viewModel.accountsToEnroll.value.isEmpty {
-//                delegate?.paperlessEBillViewControllerDidEnroll(self)
-//            }
-//            if !viewModel.accountsToUnenroll.value.isEmpty {
-//                delegate?.paperlessEBillViewControllerDidUnenroll(self)
-//            }
-//        }
-//        
-//        navigationController?.popViewController(animated: true)
-        
         LoadingView.show()
-        viewModel.submitChanges(onSuccess: {
+        viewModel.submitChanges(onSuccess: { changedStatus in
             LoadingView.hide()
-            self.delegate?.paperlessEBillViewControllerDidChangeStatus(self)
+            self.delegate?.paperlessEBillViewController(self, didChangeStatus: changedStatus)
             self.navigationController?.popViewController(animated: true)
         }, onError: { errMessage in
             LoadingView.hide()
