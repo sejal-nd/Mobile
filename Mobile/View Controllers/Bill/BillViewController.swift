@@ -49,9 +49,7 @@ class BillViewController: AccountPickerViewController {
     
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
     
-    override var defaultStatusBarStyle: UIStatusBarStyle {
-        get { return .lightContent }
-    }
+    override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
 
     let disposeBag = DisposeBag()
 

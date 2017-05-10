@@ -15,8 +15,6 @@ class BillViewModel {
     let disposeBag = DisposeBag()
     
     private var accountService: AccountService
-    
-    private var currentGetAccountDetailDisposable: Disposable?
 
     let fetchAccountDetailSubject = PublishSubject<Void>()
     let currentAccountDetail = Variable<AccountDetail?>(nil)
@@ -46,11 +44,11 @@ class BillViewModel {
         fetchAccountDetailSubject.onNext()
     }
     
-    var currentAccountDetailUnwrapped: Driver<AccountDetail> {
-        return currentAccountDetail.asObservable()
+    lazy var currentAccountDetailUnwrapped: Driver<AccountDetail> = {
+        return self.currentAccountDetail.asObservable()
             .unwrap()
             .asDriver(onErrorDriveWith: Driver.empty())
-    }
+    }()
     
     lazy var totalAmountText: Driver<String> = {
         return self.currentAccountDetailUnwrapped
