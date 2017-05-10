@@ -173,6 +173,9 @@
 		82D5994C1EC36B5500DDB380 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
 		82D5994D1EC36B5500DDB380 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
 		82D5994E1EC36B5500DDB380 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
+		82D599511EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
+		82D599521EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
+		82D599531EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
 		8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
 		8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
@@ -707,6 +710,7 @@
 		82D599411EC2374500DDB380 /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
 		82D599461EC356C800DDB380 /* RxSwiftExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftExt.framework; path = Carthage/Build/iOS/RxSwiftExt.framework; sourceTree = "<group>"; };
 		82D5994A1EC36B5500DDB380 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		82D599501EC3A00900DDB380 /* alert_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_icon.json; sourceTree = "<group>"; };
 		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1334,6 +1338,7 @@
 				E8FE30AE1E7875EA009D28B7 /* ComEd */,
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
 				8FD5AE981E54EAB8003F640D /* checkmark.json */,
+				82D599501EC3A00900DDB380 /* alert_icon.json */,
 				8FD5AE991E54EAB8003F640D /* loading.json */,
 				E85895761E8AACFF009485E3 /* loading_blue.json */,
 				E8494F361EBBCB2B0047D6BE /* full_screen_loading.json */,
@@ -2033,7 +2038,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2053,7 +2058,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2147,6 +2152,7 @@
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
+				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -2195,6 +2201,7 @@
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736471E6742A6003B9369 /* OMC.plist in Resources */,
+				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -2243,6 +2250,7 @@
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
+				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,

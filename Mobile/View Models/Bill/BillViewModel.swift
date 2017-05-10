@@ -50,13 +50,13 @@ class BillViewModel {
             .asDriver(onErrorDriveWith: Driver.empty())
     }()
     
+    lazy var shouldHideAlertBanner: Driver<Bool> = {
+        return self.currentAccountDetailUnwrapped.map { _ in false }
+    }()
+    
     lazy var totalAmountText: Driver<String> = {
         return self.currentAccountDetailUnwrapped
             .map { $0.billingInfo.netDueAmount?.currencyString ?? "--" }
-    }()
-    
-    lazy var shouldHidePaperless: Driver<Bool> = {
-        return self.currentAccountDetailUnwrapped.map { !$0.isEBillEligible }
     }()
     
     lazy var shouldHideBudget: Driver<Bool> = {
@@ -65,9 +65,29 @@ class BillViewModel {
         }
     }()
     
-    lazy var paperlessButtonText: Driver<NSAttributedString> = {
+    lazy var shouldHidePaperless: Driver<Bool> = {
+        return self.currentAccountDetailUnwrapped.map { !$0.isEBillEligible }
+    }()
+    
+    lazy var autoPayButtonText: Driver<NSAttributedString> = {
         return self.currentAccountDetailUnwrapped.map { accountDetail in
-            NSAttributedString(string: "enrolled")
+            if accountDetail.isAutoPay || accountDetail.isBGEasy {
+                let text = NSLocalizedString("AutoPay\n", comment: "")
+                let enrolledText = accountDetail.isBGEasy ? NSLocalizedString("enrolled in BGEasy", comment: ""): NSLocalizedString("enrolled", comment: "")
+                let mutableText = NSMutableAttributedString(string: text + enrolledText)
+                mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.ofSize(16), range: NSMakeRange(0, text.characters.count))
+                mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: NSMakeRange(0, text.characters.count))
+                mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.ofSize(14), range: NSMakeRange(text.characters.count, enrolledText.characters.count))
+                mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.successGreenText, range: NSMakeRange(text.characters.count, enrolledText.characters.count))
+                return mutableText
+            } else {
+                let text = NSLocalizedString("Would you like to enroll in ", comment: "")
+                let autoPayText = NSLocalizedString("AutoPay?", comment: "")
+                let mutableText = NSMutableAttributedString(string: text + autoPayText, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
+                mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.ofSize(16), range: NSMakeRange(0, text.characters.count))
+                mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.ofSize(16), range: NSMakeRange(text.characters.count, autoPayText.characters.count))
+                return mutableText
+            }
         }
     }()
     
@@ -77,4 +97,14 @@ class BillViewModel {
         }
     }()
     
+    lazy var paperlessButtonText: Driver<NSAttributedString> = {
+        return self.currentAccountDetailUnwrapped.map { accountDetail in
+            NSAttributedString(string: "enrolled")
+        }
+    }()
+    
 }
+
+
+
+

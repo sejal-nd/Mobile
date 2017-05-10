@@ -89,11 +89,12 @@ class AccountPickerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        accountPickerViewControllerWillAppear.onNext()
+        
         if AccountsStore.sharedInstance.currentAccount != accountPicker.currentAccount {
             accountPicker.updateCurrentAccount()
         }
         
-        accountPickerViewControllerWillAppear.onNext()
     }
     
     override func viewWillLayoutSubviews() {

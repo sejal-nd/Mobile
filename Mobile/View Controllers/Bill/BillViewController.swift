@@ -8,15 +8,17 @@
 
 import RxSwift
 import RxCocoa
+import Lottie
 
 class BillViewController: AccountPickerViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
     
-    @IBOutlet weak var topWarningView: UIView!
-    @IBOutlet weak var topWarningIconView: UIView!
-    @IBOutlet weak var topWarningLabel: UILabel!
+    @IBOutlet weak var alertBannerView: UIView!
+    @IBOutlet weak var alertBannerIconView: UIView!
+    @IBOutlet weak var alertAnimationView: UIView!
+    @IBOutlet weak var alertBannerLabel: UILabel!
     
     @IBOutlet weak var totalAmountView: UIView!
     @IBOutlet weak var totalAmountLabel: UILabel!
@@ -29,6 +31,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var viewBillButton: ButtonControl!
     
     @IBOutlet weak var makeAPaymentButton: PrimaryButton!
+    @IBOutlet weak var makeAPaymentStatusLabel: UILabel!
     
     @IBOutlet weak var autoPayButton: ButtonControl!
     @IBOutlet weak var paperlessButton: ButtonControl!
@@ -46,6 +49,8 @@ class BillViewController: AccountPickerViewController {
                 .drive(viewModel.fetchAccountDetailSubject)
         }
     }
+    
+    var alertLottieAnimation = LOTAnimationView(name: "alert_icon")!
     
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
     
@@ -78,7 +83,16 @@ class BillViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: alertAnimationView.frame.size.width, height: alertAnimationView.frame.size.height)
+        alertLottieAnimation.contentMode = .scaleAspectFill
+        alertAnimationView.addSubview(alertLottieAnimation)
+        alertLottieAnimation.play()
+    }
+    
     func styleViews() {
+        
         view.backgroundColor = .primaryColor
         contentView.backgroundColor = .primaryColor
         
@@ -90,8 +104,8 @@ class BillViewController: AccountPickerViewController {
         topView.backgroundColor = .primaryColor
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
         
-        topWarningIconView.superview?.bringSubview(toFront: topWarningIconView)
-        topWarningIconView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
+        alertBannerIconView.superview?.bringSubview(toFront: alertBannerIconView)
+        alertBannerIconView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         
         totalAmountView.superview?.bringSubview(toFront: totalAmountView)
         totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
@@ -114,6 +128,13 @@ class BillViewController: AccountPickerViewController {
     func bindViews() {
         viewModel.isFetchingAccountDetail
             .filter(!)
+            .drive(onNext: { _ in
+                self.alertLottieAnimation.play()
+            })
+            .addDisposableTo(disposeBag)
+        
+        viewModel.isFetchingAccountDetail
+            .filter(!)
             .drive(rx.isRefreshing)
             .addDisposableTo(disposeBag)
         
@@ -121,24 +142,13 @@ class BillViewController: AccountPickerViewController {
             .filter { !$0 || ($0 && !(self.refreshControl?.isRefreshing ?? false)) }
             .distinctUntilChanged()
         
-        isFetchingWithoutPull
-            .drive(topView.rx.isHidden)
-            .addDisposableTo(disposeBag)
-        
-        isFetchingWithoutPull
-            .drive(bottomView.rx.isHidden)
-            .addDisposableTo(disposeBag)
-        
-        isFetchingWithoutPull
-            .map(!)
-            .drive(rx.isPullToRefreshEnabled)
-            .addDisposableTo(disposeBag)
-        
-        isFetchingWithoutPull
-            .drive(billLoadingIndicator.rx.isAnimating)
-            .addDisposableTo(disposeBag)
+        isFetchingWithoutPull.drive(topView.rx.isHidden).addDisposableTo(disposeBag)
+        isFetchingWithoutPull.drive(bottomView.rx.isHidden).addDisposableTo(disposeBag)
+        isFetchingWithoutPull.map(!).drive(rx.isPullToRefreshEnabled).addDisposableTo(disposeBag)
+        isFetchingWithoutPull.drive(billLoadingIndicator.rx.isAnimating).addDisposableTo(disposeBag)
         
         viewModel.totalAmountText.drive(totalAmountLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
         viewModel.shouldHidePaperless.drive(paperlessButton.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
         viewModel.shouldHideBudget.drive(budgetButton.rx.isHidden).addDisposableTo(disposeBag)

@@ -61,6 +61,9 @@ struct AccountDetail: Mappable {
     
     let status: String?
     
+    let isAutoPay: Bool
+    let isBGEasy: Bool
+    
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
         address = map.optionalFrom("address")
@@ -68,13 +71,16 @@ struct AccountDetail: Mappable {
         try customerInfo = map.from("CustomerInfo")
         try billingInfo = map.from("BillingInfo")
         
-        isPasswordProtected = try map.from("isPasswordProtected") ?? false
-        isBudgetBillEnrollment = try map.from("isBudgetBill") ?? false
-        isBudgetBillEligible = try map.from("isBudgetBillEligible") ?? false
-        isEBillEnrollment = try map.from("isEBillEnrollment") ?? false
-        isEBillEligible = try map.from("isEBillEligible") ?? false
+        isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
+        isBudgetBillEnrollment = map.optionalFrom("isBudgetBill") ?? false
+        isBudgetBillEligible = map.optionalFrom("isBudgetBillEligible") ?? false
+        isEBillEnrollment = map.optionalFrom("isEBillEnrollment") ?? false
+        isEBillEligible = map.optionalFrom("isEBillEligible") ?? false
         
         status = map.optionalFrom("status")
+        
+        isAutoPay = map.optionalFrom("isAutoPay") ?? false
+        isBGEasy = map.optionalFrom("isBGEasy") ?? false
     }
     
     var eBillEnrollStatus: EBillEnrollStatus {
@@ -123,8 +129,8 @@ struct BillingInfo: Mappable {
         amtDpaReinst = map.optionalFrom("amtDpaReinst")
         dueByDate = map.optionalFrom("dueByDate", transformation: extractDate)
         lastPaymentDate = map.optionalFrom("lastPaymentDate", transformation: extractDate)
-        disconnectNoticeArrears = try map.from("disconnectNoticeArrears") ?? 0
-        isDisconnectNotice = try map.from("isDisconnectNotice") ?? false
+        disconnectNoticeArrears = map.optionalFrom("disconnectNoticeArrears") ?? 0
+        isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
     }
 }
 
