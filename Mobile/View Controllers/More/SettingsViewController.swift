@@ -56,7 +56,7 @@ class SettingsViewController: UIViewController {
         pwAlert.addTextField(configurationHandler: { (textField) in
             textField.placeholder = NSLocalizedString("Password", comment: "")
             textField.isSecureTextEntry = true
-            textField.rx.text.orEmpty.bindTo(self.viewModel.password).addDisposableTo(self.disposeBag)
+            textField.rx.text.orEmpty.bind(to: self.viewModel.password).addDisposableTo(self.disposeBag)
         })
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (action) -> Void in
             self.touchIdCell?.setSwitch(on: false)

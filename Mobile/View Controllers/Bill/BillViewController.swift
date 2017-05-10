@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 class BillViewController: AccountPickerViewController {
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
     
@@ -56,7 +57,29 @@ class BillViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
+        accountPickerViewControllerWillAppear.subscribe(onNext: {
+            if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                self.viewModel.fetchAccountDetail()
+            } else if self.viewModel.currentAccountDetail.value == nil {
+                self.viewModel.fetchAccountDetail()
+            }
+        }).addDisposableTo(disposeBag)
+        
+        styleViews()
+        bindViews()
+        bindButtonTaps()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    func styleViews() {
         view.backgroundColor = .primaryColor
+        contentView.backgroundColor = .primaryColor
+        
         scrollView.rx.contentOffset.asDriver()
             .map { $0.y <= 0 ? UIColor.primaryColor: UIColor.white }
             .drive(onNext: { self.scrollView.backgroundColor = $0 })
@@ -71,32 +94,56 @@ class BillViewController: AccountPickerViewController {
         totalAmountView.superview?.bringSubview(toFront: totalAmountView)
         totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
         
-        paymentStackView.isHidden = true
         needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
         
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         autoPayButton.layer.cornerRadius = 2
         autoPayButton.layer.masksToBounds = false
-//        autoPayButton.isHidden = true
         
         paperlessButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         paperlessButton.layer.cornerRadius = 2
         paperlessButton.layer.masksToBounds = false
-        paperlessButton.isHidden = true
         
         budgetButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         budgetButton.layer.cornerRadius = 2
         budgetButton.layer.masksToBounds = false
-        budgetButton.isHidden = true
+    }
+    
+    func bindViews() {
+        viewModel.isFetchingAccountDetail
+            .filter(!)
+            .drive(rx.isRefreshing)
+            .addDisposableTo(disposeBag)
         
-        accountPickerViewControllerWillAppear.subscribe(onNext: {
-            if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-                self.viewModel.fetchAccountDetail()
-            } else if self.viewModel.currentAccountDetail.value == nil {
-                self.viewModel.fetchAccountDetail()
-            }
-        }).addDisposableTo(disposeBag)
+        let isFetchingWithoutPull = viewModel.isFetchingAccountDetail.asDriver()
+            .filter { !$0 || ($0 && !(self.refreshControl?.isRefreshing ?? false)) }
+            .distinctUntilChanged()
         
+        isFetchingWithoutPull
+            .drive(topView.rx.isHidden)
+            .addDisposableTo(disposeBag)
+        
+        isFetchingWithoutPull
+            .drive(bottomView.rx.isHidden)
+            .addDisposableTo(disposeBag)
+        
+        isFetchingWithoutPull
+            .map(!)
+            .drive(rx.isPullToRefreshEnabled)
+            .addDisposableTo(disposeBag)
+        
+        isFetchingWithoutPull
+            .drive(billLoadingIndicator.rx.isAnimating)
+            .addDisposableTo(disposeBag)
+        
+        viewModel.totalAmountText.drive(totalAmountLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.shouldHidePaperless.drive(paperlessButton.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
+        viewModel.shouldHideBudget.drive(budgetButton.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.budgetButtonText.drive(budgetBillingEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
+    }
+    
+    func bindButtonTaps() {
         questionMarkButton.rx.tap.asDriver()
             .drive(onNext: {
                 let alertController = UIAlertController(title: NSLocalizedString("Your Due Date", comment: ""),
@@ -129,8 +176,9 @@ class BillViewController: AccountPickerViewController {
             .addDisposableTo(disposeBag)
         
         budgetButton.rx.touchUpInside.asDriver()
-            .drive(onNext: {
-                if self.viewModel.currentAccountDetail.value!.isBudgetBillEligible {
+            .withLatestFrom(viewModel.currentAccountDetailUnwrapped)
+            .drive(onNext: { accountDetail in
+                if accountDetail.isBudgetBillEligible {
                     self.performSegue(withIdentifier: "budgetBillingSegue", sender: self)
                 } else {
                     let alertVC = UIAlertController(title: NSLocalizedString("Budget Billing", comment: ""), message: NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: ""), preferredStyle: .alert)
@@ -139,63 +187,6 @@ class BillViewController: AccountPickerViewController {
                 }
             })
             .addDisposableTo(disposeBag)
-        
-        viewModel.fetchingAccountDetail
-            .drive(billLoadingIndicator.rx.isAnimating)
-            .addDisposableTo(disposeBag)
-        
-        viewModel.fetchingAccountDetail.asDriver()
-            .filter { !$0 && self.refreshControl?.isRefreshing ?? false }
-            .drive(rx.isRefreshing)
-            .addDisposableTo(disposeBag)
-        
-        viewModel.fetchingAccountDetail.asDriver()
-            .filter { !$0 || ($0 && !(self.refreshControl?.isRefreshing ?? false)) }
-            .map(!)
-            .distinctUntilChanged()
-            .drive(rx.isPullToRefreshEnabled)
-            .addDisposableTo(disposeBag)
-        
-        viewModel.fetchingAccountDetail
-            .filter(!)
-            .drive(onNext: { _ in
-                self.refreshControl?.endRefreshing()
-            })
-            .addDisposableTo(disposeBag)
-        
-        viewModel.currentAccountDetail.asDriver()
-            .drive(onNext: {
-                if let accountDetail = $0 {
-                    self.updateContent(with: accountDetail)
-                }
-            })
-            .addDisposableTo(disposeBag)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    func updateContent(with accountDetail: AccountDetail) {
-        paperlessButton.isHidden = accountDetail.isEBillEligible == false
-        budgetButton.isHidden = accountDetail.isBudgetBillEligible == false && Environment.sharedInstance.opco != .bge
-        
-        if accountDetail.isEBillEnrollment {
-            paperlessEnrollmentLabel.text = "enrolled"
-            paperlessEnrollmentLabel.textColor = .successGreenText
-        } else {
-            paperlessEnrollmentLabel.text = "not enrolled"
-            paperlessEnrollmentLabel.textColor = .deepGray
-        }
-        
-        if accountDetail.isBudgetBillEnrollment {
-            budgetBillingEnrollmentLabel.text = "enrolled"
-            budgetBillingEnrollmentLabel.textColor = .successGreenText
-        } else {
-            budgetBillingEnrollmentLabel.text = "not enrolled"
-            budgetBillingEnrollmentLabel.textColor = .deepGray
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

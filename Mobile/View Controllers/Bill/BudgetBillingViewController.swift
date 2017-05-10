@@ -77,7 +77,7 @@ class BudgetBillingViewController: UIViewController {
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitButtonEnabled().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         view.backgroundColor = .softGray
         
@@ -112,7 +112,7 @@ class BudgetBillingViewController: UIViewController {
         addressLabel.textColor = .middleGray
         
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
-        enrollSwitch.rx.isOn.bindTo(viewModel.currentEnrollment).addDisposableTo(disposeBag)
+        enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).addDisposableTo(disposeBag)
         
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")

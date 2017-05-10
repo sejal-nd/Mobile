@@ -31,7 +31,7 @@ class SecurityQuestionViewController: UIViewController {
         
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.securityQuestionAnswerNotEmpty().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.securityQuestionAnswerNotEmpty().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please answer the security question.", comment: "")
@@ -41,7 +41,7 @@ class SecurityQuestionViewController: UIViewController {
         answerTextField.textField.placeholder = NSLocalizedString("Your Answer*", comment: "")
         answerTextField.textField.autocorrectionType = .no
         answerTextField.textField.returnKeyType = .done
-        answerTextField.textField.rx.text.orEmpty.bindTo(viewModel.securityQuestionAnswer).addDisposableTo(disposeBag)
+        answerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityQuestionAnswer).addDisposableTo(disposeBag)
         answerTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.viewModel.securityQuestionAnswerNotEmpty().single().subscribe(onNext: { notEmpty in
                 if notEmpty {
