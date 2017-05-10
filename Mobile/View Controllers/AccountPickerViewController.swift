@@ -22,7 +22,7 @@ class AccountPickerViewController: UIViewController {
     
     let accountPickerViewControllerWillAppear = PublishSubject<Void>()
     
-    open var defaultStatusBarStyle: UIStatusBarStyle = .default
+    var defaultStatusBarStyle: UIStatusBarStyle { return .default }
     
     override func viewDidLoad() {
         super.viewDidLoad()
