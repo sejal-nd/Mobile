@@ -61,13 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb { // Universal Link
-            if let window = self.window {
-                if let rootNav = window.rootViewController as? UINavigationController {
-                    if let landingVC = rootNav.viewControllers.first as? LandingViewController {
-                        landingVC.restoreUserActivityState(userActivity)
-                    }
-                }
-            }
+            guard let window = self.window else { return false }
+            guard let rootNav = window.rootViewController as? UINavigationController else { return false }
+            guard let landingVC = rootNav.viewControllers.first as? LandingViewController else { return false }
+            landingVC.restoreUserActivityState(userActivity)
             return true
         }
         return false
