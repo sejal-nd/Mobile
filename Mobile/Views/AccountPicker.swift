@@ -72,8 +72,8 @@ class AccountPicker: UIView {
         addSubview(scrollView)
 
         pageControl = UIPageControl(frame: .zero)
-        pageControl.pageIndicatorTintColor = UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 0.5)
-        pageControl.currentPageIndicatorTintColor = UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
+        pageControl.pageIndicatorTintColor = tintWhite ? UIColor.white.withAlphaComponent(0.43) : UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 0.5)
+        pageControl.currentPageIndicatorTintColor = tintWhite ? .white : UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
         pageControl.addTarget(self, action: #selector(onPageControlTap(sender:)), for: .valueChanged)
         addSubview(pageControl)
         
