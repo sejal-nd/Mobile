@@ -126,7 +126,15 @@ class ForgotUsernameViewController: UIViewController {
     }
     
     func onCancelPress() {
-        _ = navigationController?.popViewController(animated: true)
+        // We do this to cover the case where we push ForgotUsernameViewController from ForgotPasswordViewController.
+        // When that happens, we want the cancel action to go straight back to LoginViewController.
+        for vc in (navigationController?.viewControllers)! {
+            guard let loginVC = vc as? LoginViewController else {
+                continue
+            }
+            navigationController?.popToViewController(loginVC, animated: true)
+            break
+        }
     }
     
     func onNextPress() {
