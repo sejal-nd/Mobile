@@ -39,6 +39,21 @@ class LandingViewController: UIViewController {
 //        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
 //        self.present(viewController!, animated: true, completion: nil)
     }
+    
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+        if activity.activityType == NSUserActivityTypeBrowsingWeb { // Universal Link from Reset Password email
+            var loginAlreadyInNavStack = false
+            for vc in (navigationController?.viewControllers)! {
+                if vc.isKind(of: LoginViewController.self) {
+                    loginAlreadyInNavStack = true
+                    break
+                }
+            }
+            if !loginAlreadyInNavStack {
+                performSegue(withIdentifier: "loginSegue", sender: self)
+            }
+        }
+    }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
