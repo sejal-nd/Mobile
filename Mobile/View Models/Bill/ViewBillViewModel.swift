@@ -18,12 +18,13 @@ class ViewBillViewModel {
     var billDate: Date!
     
     var pdfData: Data?
+    var pdfFileUrl: URL?
 
     init(billService: BillService) {
         self.billService = billService
     }
     
-    func downloadBillPDF(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func fetchBillPDFData(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         billService.fetchBillPdf(account: AccountsStore.sharedInstance.currentAccount, billDate: billDate)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { billDataString in
@@ -37,5 +38,18 @@ class ViewBillViewModel {
                 onError(errMessage.localizedDescription)
             })
             .addDisposableTo(disposeBag)
+    }
+    
+    func downloadPDFToTempDirectory(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        let fileURL = try! FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("bill.pdf")
+        do {
+            try pdfData!.write(to: fileURL, options: .atomic)
+        } catch {
+            onError(NSLocalizedString("Failed to save the PDF file", comment: ""))
+            return
+        }
+        
+        pdfFileUrl = fileURL
+        onSuccess()
     }
 }
