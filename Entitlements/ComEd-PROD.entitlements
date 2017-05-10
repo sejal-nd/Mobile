@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:stgd15-secure.peco.com</string>
+		<string>applinks:secure.comed.com</string>
 	</array>
 </dict>
 </plist>
