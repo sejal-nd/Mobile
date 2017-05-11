@@ -45,8 +45,8 @@ class BillViewController: AccountPickerViewController {
     var refreshControl: UIRefreshControl? {
         didSet {
             refreshDisposable?.dispose()
-            refreshDisposable = refreshControl?.rx.controlEvent(.valueChanged).asDriver()
-                .drive(viewModel.fetchAccountDetailSubject)
+            refreshDisposable = refreshControl?.rx.controlEvent(.valueChanged).asObservable()
+				.bind(to: viewModel.fetchAccountDetailSubject)
         }
     }
     
@@ -154,6 +154,8 @@ class BillViewController: AccountPickerViewController {
 	}
 	
 	func bindViewHiding() {
+		viewModel.shouldHideAlertBanner.drive(alertBannerView.rx.isHidden).addDisposableTo(disposeBag)
+		
 		viewModel.shouldHideAutoPay.drive(autoPayButton.rx.isHidden).addDisposableTo(disposeBag)
 		viewModel.shouldHidePaperless.drive(paperlessButton.rx.isHidden).addDisposableTo(disposeBag)
 		viewModel.shouldHideBudget.drive(budgetButton.rx.isHidden).addDisposableTo(disposeBag)
@@ -161,6 +163,7 @@ class BillViewController: AccountPickerViewController {
 	
 	func bindViewContent() {
 		viewModel.totalAmountText.drive(totalAmountLabel.rx.text).addDisposableTo(disposeBag)
+		
 		viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
 		viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
 		viewModel.budgetButtonText.drive(budgetBillingEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)

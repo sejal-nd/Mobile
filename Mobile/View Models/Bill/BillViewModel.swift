@@ -113,6 +113,15 @@ class BillViewModel {
 	
 	// MARK: - View Content
 	
+	lazy var alertBannerText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver()
+			.map {
+				guard let accountDetail = $0 else { return nil }
+				//TODO: Implement Alert Message
+				return NSLocalizedString("", comment: "")
+		}
+	}()
+	
 	lazy var totalAmountText: Driver<String?> = {
 		return self.currentAccountDetail.asDriver()
 			.map {
