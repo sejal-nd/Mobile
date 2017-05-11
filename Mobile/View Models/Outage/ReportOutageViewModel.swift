@@ -32,7 +32,7 @@ class ReportOutageViewModel {
             let digitsOnlyString = self.extractDigitsFrom($1)
             return !$0 && digitsOnlyString.characters.count == 10
             }
-            .bindTo(submitEnabled)
+            .bind(to: submitEnabled)
             .addDisposableTo(disposeBag)
     }
     

@@ -81,5 +81,7 @@ class ViewBillViewController: UIViewController {
         self.documentController = UIDocumentInteractionController(url: self.viewModel.pdfFileUrl!)
         self.documentController!.presentOptionsMenu(from: self.view.frame, in: self.view, animated: true)
     }
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .default }
+    
 }

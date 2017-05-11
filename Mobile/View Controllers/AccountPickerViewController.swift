@@ -18,7 +18,6 @@ class AccountPickerViewController: UIViewController {
     var containerView: UIView!
     var innerView: UIView!
     var accountNumberLabel: UILabel!
-    var isAnimating = false
     
     let accountPickerViewControllerWillAppear = PublishSubject<Void>()
     
@@ -65,28 +64,23 @@ class AccountPickerViewController: UIViewController {
             NSLayoutConstraint(item: accountNumberLabel, attribute: .trailing, relatedBy: .equal, toItem: innerView, attribute: .trailing, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: accountNumberLabel, attribute: .top, relatedBy: .equal, toItem: innerView, attribute: .top, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: accountNumberLabel, attribute: .bottom, relatedBy: .equal, toItem: innerView, attribute: .bottom, multiplier: 1, constant: 0),
-        ])
+            ])
         
         scrollView.rx.contentOffset.asDriver()
             .map { $0.y <= self.accountPicker.frame.size.height }
             .distinctUntilChanged()
             .drive(onNext: { pickerVisible in
-                if !self.isAnimating {
-                    self.accountNumberLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber
-                    self.setNeedsStatusBarAppearanceUpdate()
-                    
-                    // 2 separate animations here so that the icon/text are completely transparent by the time they animate under the status bar
-                    self.isAnimating = true
-                    UIView.animate(withDuration: 0.1, animations: {
-                        self.innerView.alpha = pickerVisible ? 0 : 1
-                    })
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.containerView.frame.origin = CGPoint(x: 0, y: pickerVisible ? -60 : 0)
-                    }, completion: { _ in
-                        self.isAnimating = false
-                    })
-                }
-
+                self.accountNumberLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber
+                self.setNeedsStatusBarAppearanceUpdate()
+                
+                // 2 separate animations here so that the icon/text are completely transparent by the time they animate under the status bar
+                UIView.animate(withDuration: 0.1, animations: {
+                    self.innerView.alpha = pickerVisible ? 0 : 1
+                })
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.containerView.frame.origin = CGPoint(x: 0, y: pickerVisible ? -60 : 0)
+                })
+                
             })
             .addDisposableTo(disposeBag)
         
@@ -95,11 +89,12 @@ class AccountPickerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        accountPickerViewControllerWillAppear.onNext()
+        
         if AccountsStore.sharedInstance.currentAccount != accountPicker.currentAccount {
             accountPicker.updateCurrentAccount()
         }
         
-        accountPickerViewControllerWillAppear.onNext()
     }
     
     override func viewWillLayoutSubviews() {
