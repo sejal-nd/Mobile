@@ -633,11 +633,9 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="DL5-8p-VuX" secondAttribute="centerY" id="Ibv-mg-TlW"/>
                                     <constraint firstAttribute="trailing" secondItem="mdd-pX-9Nn" secondAttribute="trailing" id="O4v-EV-zFf"/>
                                     <constraint firstItem="mdd-pX-9Nn" firstAttribute="top" secondItem="DL5-8p-VuX" secondAttribute="top" id="agj-Hf-WgS"/>
                                     <constraint firstItem="mdd-pX-9Nn" firstAttribute="centerX" secondItem="DL5-8p-VuX" secondAttribute="centerX" id="feA-Iy-592"/>
-                                    <constraint firstAttribute="centerX" secondItem="DL5-8p-VuX" secondAttribute="centerX" id="vme-Cb-Dc7"/>
                                     <constraint firstItem="mdd-pX-9Nn" firstAttribute="leading" secondItem="DL5-8p-VuX" secondAttribute="leading" id="wwh-yL-G60"/>
                                     <constraint firstAttribute="bottom" secondItem="mdd-pX-9Nn" secondAttribute="bottom" id="xJq-pz-Z6S"/>
                                 </constraints>
@@ -1816,7 +1814,8 @@ Budget Billing?</string>
                                                             <constraint firstAttribute="height" constant="62" id="lER-2b-fnh"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 consistent bill over 12 months" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLe-s8-s1i">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 consistent bill
+over 12 months" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLe-s8-s1i">
                                                         <rect key="frame" x="103" y="30" width="181" height="54.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="20"/>
                                                         <nil key="textColor"/>
