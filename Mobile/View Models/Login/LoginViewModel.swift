@@ -48,7 +48,7 @@ class LoginViewModel {
             return;
         }
         
-        authService.login(username.value, password: password.value, stayLoggedIn:true)
+        authService.login(username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { (profileStatus: ProfileStatus) in
