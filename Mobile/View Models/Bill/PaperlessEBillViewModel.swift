@@ -86,7 +86,12 @@ class PaperlessEBillViewModel {
         var enrolled = false, unenrolled = false
         for account in accountsToEnroll.value {
             enrolled = true
-            requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: initialAccountDetail.value.customerInfo.emailAddress!))
+            if let email = initialAccountDetail.value.customerInfo.emailAddress {
+                requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: email))
+            } else {
+                onError(NSLocalizedString("TODO: AccountDetail customer info has no email address", comment: ""))
+                return
+            }
         }
         for account in accountsToUnenroll.value {
             unenrolled = true
