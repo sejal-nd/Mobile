@@ -182,13 +182,13 @@ class AccountPicker: UIView {
             advancedAccountNumberLabel = UILabel(frame: .zero)
             advancedAccountNumberLabel!.translatesAutoresizingMaskIntoConstraints = false
             advancedAccountNumberLabel!.font = UIFont.systemFont(ofSize: 17)
-            advancedAccountNumberLabel!.textColor = .blackText
+            advancedAccountNumberLabel!.textColor = tintWhite ? .white: .blackText
             advancedAccountNumberLabel!.text = pagedAccounts[0].accountNumber
             
             advancedAccountAddressLabel = UILabel(frame: .zero)
             advancedAccountAddressLabel!.translatesAutoresizingMaskIntoConstraints = false
             advancedAccountAddressLabel!.font = UIFont.systemFont(ofSize: 12)
-            advancedAccountAddressLabel!.textColor = .deepGray
+            advancedAccountAddressLabel!.textColor = tintWhite ? .white: .deepGray
             advancedAccountAddressLabel!.text = pagedAccounts[0].address
             
             let accountView = UIView(frame: .zero)
@@ -205,7 +205,7 @@ class AccountPicker: UIView {
             advancedAccountButton!.addTarget(self, action: #selector(onAdvancedAccountButtonPress), for: .touchUpInside)
             addSubview(advancedAccountButton!)
             
-            let caret = #imageLiteral(resourceName: "ic_caret")
+            let caret = tintWhite ? #imageLiteral(resourceName: "ic_caret_white"): #imageLiteral(resourceName: "ic_caret")
             let caretImageView = UIImageView(image: caret)
             caretImageView.frame = .zero
             caretImageView.translatesAutoresizingMaskIntoConstraints = false

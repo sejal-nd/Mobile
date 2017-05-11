@@ -33,7 +33,7 @@ class ForgotPasswordViewController: UIViewController {
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitButtonEnabled().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         instructionLabel.text = viewModel.getInstructionLabelText()
         
@@ -41,7 +41,7 @@ class ForgotPasswordViewController: UIViewController {
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .done
         
-        usernameTextField.textField.rx.text.orEmpty.bindTo(viewModel.username).addDisposableTo(disposeBag)
+        usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).addDisposableTo(disposeBag)
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
                 if enabled {
