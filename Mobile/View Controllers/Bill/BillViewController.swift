@@ -210,7 +210,7 @@ class BillViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? BudgetBillingViewController {
             vc.delegate = self
-            vc.initialEnrollment = viewModel.currentAccountDetail!.isBudgetBillEnrollment
+            vc.accountDetail = viewModel.currentAccountDetail!
         } else if let vc = segue.destination as? PaperlessEBillViewController {
             vc.delegate = self
             vc.initialAccountDetail = viewModel.currentAccountDetail!

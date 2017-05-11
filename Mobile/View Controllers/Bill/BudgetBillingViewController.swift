@@ -63,13 +63,13 @@ class BudgetBillingViewController: UIViewController {
     
     var gradientLayer: CAGradientLayer!
     
-    var initialEnrollment: Bool!
+    var accountDetail: AccountDetail!
     var viewModel: BudgetBillingViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = BudgetBillingViewModel(initialEnrollment: initialEnrollment, billService: ServiceFactory.createBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail, billService: ServiceFactory.createBillService())
         
         title = NSLocalizedString("Budget Billing", comment: "")
         
@@ -127,7 +127,7 @@ class BudgetBillingViewController: UIViewController {
         }
         
         // BGE Footer View when user is enrolled
-        if Environment.sharedInstance.opco == OpCo.bge && initialEnrollment {
+        if Environment.sharedInstance.opco == OpCo.bge && accountDetail.isBudgetBillEnrollment {
             for view in bgeFooterCardViews {
                 view.layer.cornerRadius = 2
                 view.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
