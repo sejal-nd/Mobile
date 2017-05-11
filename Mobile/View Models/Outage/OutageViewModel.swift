@@ -20,7 +20,7 @@ class OutageViewModel {
     var currentOutageStatus: OutageStatus?
     
     required init(accountService: AccountService, outageService: OutageService) {
-        self.accountService = accountService
+        self.accountService = accountServiceø
         self.outageService = outageService
     }
     
