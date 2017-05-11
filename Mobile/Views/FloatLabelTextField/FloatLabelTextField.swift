@@ -38,7 +38,7 @@ class FloatLabelTextField: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("FloatLabelTextField", owner: self, options: nil)
+        Bundle.main.loadNibNamed(FloatLabelTextField.className(), owner: self, options: nil)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true

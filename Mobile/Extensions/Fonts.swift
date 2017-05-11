@@ -43,3 +43,5 @@ extension UIFont {
         self.init(name: fontType.rawValue, size: size)!
     }
 }
+
+

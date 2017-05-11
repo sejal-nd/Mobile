@@ -140,6 +140,25 @@
 		82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
+		82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F031EBD11A000BE9F21 /* ButtonControl.swift */; };
+		82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F031EBD11A000BE9F21 /* ButtonControl.swift */; };
+		82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F031EBD11A000BE9F21 /* ButtonControl.swift */; };
+		82A18F081EBD12D600BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
+		82A18F091EBD12D600BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
+		82A18F0A1EBD12D600BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
+		82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
+		82A18F0E1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
+		82A18F0F1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
+		82A18F101EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
+		82A18F111EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
+		82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
+		82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
+		82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
+		82A18F161EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
+		82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
@@ -402,6 +421,9 @@
 		E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802AB3E1E85936700981D18 /* LineHeightLabel.swift */; };
 		E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802AB3E1E85936700981D18 /* LineHeightLabel.swift */; };
 		E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802AB3E1E85936700981D18 /* LineHeightLabel.swift */; };
+		E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
+		E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
+		E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
 		E80D2E171E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
 		E80D2E181E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
 		E80D2E191E721668002626C9 /* ObfuscatedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* ObfuscatedString.swift */; };
@@ -422,6 +444,13 @@
 		E8127B261EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */; };
 		E8127B271EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */; };
 		E8127B281EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */; };
+		E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFEF1EC24978004FDA7E /* ViewBillViewController.swift */; };
+		E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFEF1EC24978004FDA7E /* ViewBillViewController.swift */; };
+		E81CFFF21EC24978004FDA7E /* ViewBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFEF1EC24978004FDA7E /* ViewBillViewController.swift */; };
+		E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */; };
+		E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */; };
+		E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */; };
+		E81CFFF71EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */; };
 		E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
 		E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
 		E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
@@ -668,6 +697,11 @@
 		82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButton.swift; sourceTree = "<group>"; };
 		82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisclosureButton.xib; sourceTree = "<group>"; };
 		82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenResponse.swift; sourceTree = "<group>"; };
+		82A18F031EBD11A000BE9F21 /* ButtonControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonControl.swift; sourceTree = "<group>"; };
+		82A18F071EBD12D600BE9F21 /* Control.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
+		82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingPaymentView.swift; sourceTree = "<group>"; };
+		82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingPaymentView.xib; sourceTree = "<group>"; };
+		82A18F171EC0E83800BE9F21 /* NibViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViews.swift; sourceTree = "<group>"; };
 		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -895,12 +929,21 @@
 		E801BAD81E8C43BB00550F99 /* OMCAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCAccountService.swift; sourceTree = "<group>"; };
 		E801BADC1E8C5A4E00550F99 /* Mapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapper.framework; path = Carthage/Build/iOS/Mapper.framework; sourceTree = "<group>"; };
 		E802AB3E1E85936700981D18 /* LineHeightLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineHeightLabel.swift; sourceTree = "<group>"; };
+		E8067C901EC3C257004C2724 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		E80D2E161E721668002626C9 /* ObfuscatedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObfuscatedString.swift; sourceTree = "<group>"; };
 		E80D2E261E72FC2C002626C9 /* AccountPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPicker.swift; sourceTree = "<group>"; };
 		E80D2E2B1E72FEC5002626C9 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		E80D2E321E7301B8002626C9 /* OutageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewController.swift; sourceTree = "<group>"; };
 		E8127B211EBB959E0083DDE9 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		E81CFFEC1EC230E9004FDA7E /* PECO-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-STAGE.entitlements"; sourceTree = "<group>"; };
+		E81CFFED1EC230E9004FDA7E /* ComEd-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-STAGE.entitlements"; sourceTree = "<group>"; };
+		E81CFFEE1EC230E9004FDA7E /* BGE-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-STAGE.entitlements"; sourceTree = "<group>"; };
+		E81CFFEF1EC24978004FDA7E /* ViewBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBillViewController.swift; sourceTree = "<group>"; };
+		E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBillViewModel.swift; sourceTree = "<group>"; };
+		E81CFFF81EC3681D004FDA7E /* PECO-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-PROD.entitlements"; sourceTree = "<group>"; };
+		E81CFFF91EC3681D004FDA7E /* ComEd-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-PROD.entitlements"; sourceTree = "<group>"; };
+		E81CFFFA1EC3681D004FDA7E /* BGE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-PROD.entitlements"; sourceTree = "<group>"; };
 		E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreSplitViewController.swift; sourceTree = "<group>"; };
 		E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModelTests.swift; sourceTree = "<group>"; };
 		E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModelTests.swift; sourceTree = "<group>"; };
@@ -1088,6 +1131,7 @@
 				82A18E591EB918C900BE9F21 /* BillViewModel.swift */,
 				82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */,
 				82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */,
+				E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -1126,6 +1170,7 @@
 		82A18EB01EBA667900BE9F21 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				82A18F031EBD11A000BE9F21 /* ButtonControl.swift */,
 				82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */,
 				82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */,
 				82A18EB51EBA676700BE9F21 /* SecondaryButton.swift */,
@@ -1138,6 +1183,7 @@
 		82A18EB11EBA667F00BE9F21 /* Listable Views */ = {
 			isa = PBXGroup;
 			children = (
+				82A18F0C1EC0C71D00BE9F21 /* Bill */,
 				82A18EC71EBA677300BE9F21 /* PaperlessEBillAccountView */,
 			);
 			path = "Listable Views";
@@ -1183,6 +1229,15 @@
 			path = DisclosureButton;
 			sourceTree = "<group>";
 		};
+		82A18F0C1EC0C71D00BE9F21 /* Bill */ = {
+			isa = PBXGroup;
+			children = (
+				82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */,
+				82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */,
+			);
+			path = Bill;
+			sourceTree = "<group>";
+		};
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1220,6 +1275,7 @@
 		8FD5AE7C1E54EA04003F640D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8067C901EC3C257004C2724 /* SplashViewController.swift */,
 				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
 				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
 				E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */,
@@ -1237,6 +1293,7 @@
 			isa = PBXGroup;
 			children = (
 				82A18EB01EBA667900BE9F21 /* Controls */,
+				B58B5B571E516A9B0051FD5F /* Configuration */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				82A18EB11EBA667F00BE9F21 /* Listable Views */,
 				82A18EB21EBA668500BE9F21 /* Table View Cells */,
@@ -1285,6 +1342,7 @@
 		8FDF8C651E550459000B7BD0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				82A18F071EBD12D600BE9F21 /* Control.swift */,
 				8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */,
 				8FDF8C661E550502000B7BD0 /* BGEColor.swift */,
 				8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */,
@@ -1294,6 +1352,7 @@
 				E802AB3E1E85936700981D18 /* LineHeightLabel.swift */,
 				E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */,
 				826413781EAEAE5E007F4615 /* Fonts.swift */,
+				82A18F171EC0E83800BE9F21 /* NibViews.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1543,6 +1602,7 @@
 		B58B5AB81E4E28740051FD5F = {
 			isa = PBXGroup;
 			children = (
+				E81CFFE81EC230B5004FDA7E /* Entitlements */,
 				B58B5AC31E4E28740051FD5F /* Mobile */,
 				B5AC06D61E52238900BBA4ED /* MobileTests */,
 				087630DF1E72F5D000FA7020 /* BGEUITests */,
@@ -1579,7 +1639,6 @@
 				B5AC06C61E521B2600BBA4ED /* Assets */,
 				8FD3C2671E525023005FB1BB /* Storyboards */,
 				E8EEF7341E578928006804D4 /* Launch Screens */,
-				B58B5B571E516A9B0051FD5F /* Configuration */,
 				8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */,
 				8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */,
 				8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */,
@@ -1612,7 +1671,8 @@
 				B5AC06781E51763200BBA4ED /* Environment.swift */,
 				B574BAD31E736596001E8A44 /* Macros.swift */,
 			);
-			path = Configuration;
+			name = Configuration;
+			path = ../Configuration;
 			sourceTree = "<group>";
 		};
 		B5AC06C61E521B2600BBA4ED /* Assets */ = {
@@ -1742,6 +1802,19 @@
 			path = Outage;
 			sourceTree = "<group>";
 		};
+		E81CFFE81EC230B5004FDA7E /* Entitlements */ = {
+			isa = PBXGroup;
+			children = (
+				E81CFFEE1EC230E9004FDA7E /* BGE-STAGE.entitlements */,
+				E81CFFFA1EC3681D004FDA7E /* BGE-PROD.entitlements */,
+				E81CFFED1EC230E9004FDA7E /* ComEd-STAGE.entitlements */,
+				E81CFFF91EC3681D004FDA7E /* ComEd-PROD.entitlements */,
+				E81CFFEC1EC230E9004FDA7E /* PECO-STAGE.entitlements */,
+				E81CFFF81EC3681D004FDA7E /* PECO-PROD.entitlements */,
+			);
+			path = Entitlements;
+			sourceTree = "<group>";
+		};
 		E86334721E5F96980091E6FE /* FloatLabelTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -1761,6 +1834,7 @@
 				E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */,
 				82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */,
 				82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */,
+				E81CFFEF1EC24978004FDA7E /* ViewBillViewController.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -1958,16 +2032,31 @@
 						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 					B58B5B0F1E515BD50051FD5F = {
 						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 					B58B5B201E515C840051FD5F = {
 						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 					B58B5B601E516EEE0051FD5F = {
 						DevelopmentTeam = LTS485TKXA;
@@ -2087,6 +2176,7 @@
 				E8494F3B1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736411E6740C9003B9369 /* VersionInfo.plist in Resources */,
+				82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2134,6 +2224,7 @@
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
+				82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2181,6 +2272,7 @@
 				E8494F3C1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736421E6740C9003B9369 /* VersionInfo.plist in Resources */,
+				82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2189,6 +2281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				82A18F161EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2328,11 +2421,13 @@
 			files = (
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
+				E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF11E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF11E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAEB1E785A5F001E8A44 /* OutageService.swift in Sources */,
@@ -2357,6 +2452,7 @@
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
 				82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
@@ -2380,6 +2476,7 @@
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
+				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */,
@@ -2395,6 +2492,7 @@
 				E840BD441EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				82A18F0E1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
@@ -2414,11 +2512,13 @@
 				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
+				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				E80D2E331E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BAD91E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
+				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
@@ -2435,11 +2535,13 @@
 			files = (
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
+				E81CFFF21EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAC1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
@@ -2464,6 +2566,7 @@
 				82A18EC61EBA676700BE9F21 /* Switch.swift in Sources */,
 				82A18EDC1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				82A18F0A1EBD12D600BE9F21 /* Control.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
@@ -2487,6 +2590,7 @@
 				E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
+				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
@@ -2502,6 +2606,7 @@
 				E840BD461EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				82A18F101EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
@@ -2521,11 +2626,13 @@
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
+				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				82A18E971EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				E80D2E351E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
+				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
@@ -2542,11 +2649,13 @@
 			files = (
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
+				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAB1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
@@ -2571,6 +2680,7 @@
 				82A18EC51EBA676700BE9F21 /* Switch.swift in Sources */,
 				82A18EDB1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				82A18F091EBD12D600BE9F21 /* Control.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E561EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
@@ -2594,6 +2704,7 @@
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
+				E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */,
@@ -2609,6 +2720,7 @@
 				E840BD451EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				82A18F0F1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
@@ -2628,11 +2740,13 @@
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
+				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				E80D2E341E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADA1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
+				82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B231EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
@@ -2656,9 +2770,11 @@
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
 				B574BAF41E785AE3001E8A44 /* OutageStatus.swift in Sources */,
+				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				E895E9B11EBB84B4003B38A1 /* OutageViewModel.swift in Sources */,
+				82A18F111EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				E840BD471EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */,
 				E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */,
@@ -2669,6 +2785,7 @@
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				E840BD421EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */,
+				E81CFFF71EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8CA07F71E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
@@ -2686,6 +2803,7 @@
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
 				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
+				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
@@ -2986,6 +3104,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-PROD.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -3149,6 +3268,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3281,6 +3401,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/PECO-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3314,6 +3435,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/PECO-PROD.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -3361,6 +3483,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ComEd-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3394,6 +3517,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ComEd-PROD.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";

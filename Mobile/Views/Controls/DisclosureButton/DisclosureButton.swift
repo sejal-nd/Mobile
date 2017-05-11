@@ -35,7 +35,7 @@ class DisclosureButton: UIButton {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("DisclosureButton", owner: self, options: nil)
+        Bundle.main.loadNibNamed(DisclosureButton.className(), owner: self, options: nil)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true

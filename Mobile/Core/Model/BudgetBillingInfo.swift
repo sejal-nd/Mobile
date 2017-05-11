@@ -9,14 +9,18 @@
 import Mapper
 
 private func extractAvMonthlyBill(object: Any?) throws -> String? {
-    guard let string = object as? String else {
-        throw MapperError.convertibleError(value: object, type: String.self)
-    }
-    
-    if let doubleVal = NumberFormatter().number(from: string)?.doubleValue {
+    // We're checking for both a double or a string here, because they've changed their web services
+    // here before and I want to protect against that possibility again
+    if let doubleVal = object as? Double {
         return String(format: "$%.02f", locale: Locale.current, arguments: [doubleVal])
+    } else if let stringVal = object as? String {
+        if let doubleVal = NumberFormatter().number(from: stringVal)?.doubleValue {
+            return String(format: "$%.02f", locale: Locale.current, arguments: [doubleVal])
+        } else {
+            throw MapperError.convertibleError(value: stringVal, type: Double.self)
+        }
     } else {
-        throw MapperError.convertibleError(value: string, type: Double.self)
+        throw MapperError.convertibleError(value: object, type: Double.self)
     }
 }
 

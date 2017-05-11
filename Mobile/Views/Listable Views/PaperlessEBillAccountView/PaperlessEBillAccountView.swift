@@ -22,7 +22,7 @@ class PaperlessEBillAccountView: UIView {
     var isOn: ControlProperty<Bool>?
     
     static func create(withAccountDetail accountDetail: AccountDetail) -> PaperlessEBillAccountView {
-        let view = Bundle.main.loadNibNamed("PaperlessEBillAccountView", owner: nil, options: nil)![0] as! PaperlessEBillAccountView
+        let view = Bundle.main.loadViewFromNib() as PaperlessEBillAccountView
         view.bind(withAccountDetail: accountDetail)
         return view
     }

@@ -59,6 +59,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb { // Universal Link
+            guard let window = self.window else { return false }
+            guard let rootNav = window.rootViewController as? UINavigationController else { return false }
+            if rootNav.viewControllers.count > 1 { // Landing view already in the stack
+                guard let landingVC = rootNav.viewControllers[1] as? LandingViewController else { return false }
+                landingVC.restoreUserActivityState(userActivity)
+            } else {
+                guard let splashVC = rootNav.viewControllers[0] as? SplashViewController else { return false }
+                splashVC.restoreUserActivityState(userActivity)
+            }
+
+            return true
+        }
+        return false
+    }
+    
     func setupUserDefaults() {
         UserDefaults.standard.register(defaults: [
             UserDefaultKeys.ShouldPromptToEnableTouchID: true
