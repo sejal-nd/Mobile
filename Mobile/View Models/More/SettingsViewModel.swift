@@ -46,8 +46,7 @@ class SettingsViewModel {
     }
     
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        authService.login(username.value, password: password.value)
-            .observeOn(MainScheduler.instance)
+        authService.validateLogin(username.value, password: password.value).observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { _ in
                 self.fingerprintService.setStoredPassword(password: self.password.value)
