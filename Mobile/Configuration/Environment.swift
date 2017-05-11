@@ -27,6 +27,7 @@ struct Environment  {
     let appName: String
     let opco: OpCo
     let oAuthEndpoint: String
+    let mcsInstanceName: String
     
     private init() {
         let path = Bundle.main.path(forResource: "environment", ofType: "plist")
@@ -36,6 +37,7 @@ struct Environment  {
         appName = dict?["appName"] as! String
         opco = OpCo(rawValue: dict?["opco"] as! String)!
         oAuthEndpoint = dict?["oauthEndpoint"] as! String
+        mcsInstanceName = dict?["mcsInstanceName"] as! String
     }
     
     var opcoDateFormatter: DateFormatter {

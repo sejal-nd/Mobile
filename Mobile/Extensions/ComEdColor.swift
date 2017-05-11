@@ -16,13 +16,14 @@ extension UIColor {
     }
     
     // ADA compliance color
-    @nonobjc static var primaryColorDark: UIColor {
+    @nonobjc static var primaryColorADA: UIColor {
         get {
             return UIColor(red: 166/255, green: 13/255, blue: 52/255, alpha: 1)
         }
     }
     
-    @nonobjc static var floatLabelColor: UIColor {
+    // Specifically for float label text fields
+    @nonobjc static var primaryColorDark: UIColor {
         get {
             return UIColor(red: 120/255, green: 12/255, blue: 39/255, alpha: 1)
         }

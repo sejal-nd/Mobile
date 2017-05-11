@@ -23,7 +23,6 @@ class FloatLabelTextField: UIView {
     var errorState = false
     var textFieldIsFocused = false
     
-    var borderLayers = [CALayer]()
     let disposeBag = DisposeBag()
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +38,7 @@ class FloatLabelTextField: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("FloatLabelTextField", owner: self, options: nil)
+        Bundle.main.loadNibNamed(FloatLabelTextField.className(), owner: self, options: nil)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
@@ -53,8 +52,8 @@ class FloatLabelTextField: UIView {
         
         textField.floatingLabelFont = UIFont.systemFont(ofSize: 11, weight: UIFontWeightSemibold)
         textField.floatingLabelYPadding = 6
-        textField.floatingLabelTextColor = .floatLabelColor
-        textField.floatingLabelActiveTextColor = .floatLabelColor
+        textField.floatingLabelTextColor = .primaryColorDark
+        textField.floatingLabelActiveTextColor = .primaryColorDark
         textField.rx.controlEvent(.editingDidBegin).asObservable().subscribe(onNext: { _ in
             if !self.errorState {
                 self.bottomColorBar.backgroundColor = .primaryColor
@@ -65,7 +64,7 @@ class FloatLabelTextField: UIView {
         textField.rx.controlEvent(.editingDidEnd).asObservable().subscribe(onNext: { _ in
             if !self.errorState {
                 if self.textField.hasText {
-                    self.bottomColorBar.backgroundColor = .timberwolf
+                    self.bottomColorBar.backgroundColor = .accentGray
                     self.bottomColorBar.isHidden = false
                 } else {
                     self.bottomColorBar.isHidden = true
@@ -80,11 +79,11 @@ class FloatLabelTextField: UIView {
     func setDefaultStyles() {
         disabledColorBar.isHidden = true
         
-        view.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.3)
+        view.backgroundColor = UIColor.accentGray.withAlphaComponent(0.3)
         
-        textField.placeholderColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
+        textField.placeholderColor = .deepGray
         textField.setPlaceholder(textField.placeholder, floatingTitle: textField.placeholder) // Needed to update the color
-        textField.textColor = UIColor(red: 35/255, green: 31/255, blue: 32/255, alpha: 1.0)
+        textField.textColor = .blackText
     }
     
     func setError(_ errorMessage: String?) {
@@ -109,16 +108,16 @@ class FloatLabelTextField: UIView {
             if textFieldIsFocused {
                 bottomColorBar.backgroundColor = .primaryColor
             } else {
-                bottomColorBar.backgroundColor = .timberwolf
+                bottomColorBar.backgroundColor = .accentGray
                 if !textField.hasText {
                     bottomColorBar.isHidden = true
                 }
             }
             
             textField.isShowingAccessory = false
-            textField.floatingLabelTextColor = .floatLabelColor
-            textField.floatingLabelActiveTextColor = .floatLabelColor
-            textField.floatingLabel.textColor = .floatLabelColor
+            textField.floatingLabelTextColor = .primaryColorDark
+            textField.floatingLabelActiveTextColor = .primaryColorDark
+            textField.floatingLabel.textColor = .primaryColorDark
         }
         errorLabel.text = errorMessage
     }

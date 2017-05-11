@@ -40,7 +40,7 @@ class SegmentedControl: UIControl {
             views.append(view)
             
             let label = UILabel(frame: .zero)
-            label.textColor = UIColor.mediumPersianBlue
+            label.textColor = UIColor.actionBlue
             label.numberOfLines = 0
             label.textAlignment = .center
             labels.append(label)
@@ -51,7 +51,7 @@ class SegmentedControl: UIControl {
         
         bigBottomBar = UIView(frame: .zero)
         bigBottomBar!.isUserInteractionEnabled = false
-        bigBottomBar!.backgroundColor = .timberwolf
+        bigBottomBar!.backgroundColor = .accentGray
         addSubview(bigBottomBar!)
         
         selectedBar = UIView(frame: .zero)
@@ -73,10 +73,10 @@ class SegmentedControl: UIControl {
                 view.backgroundColor = index == selectedIndex.value ?
                     UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1) :
                     UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
-                view.addTopBorder(color: .timberwolf, width: 1)
-                view.addLeftBorder(color: .timberwolf, width: 1)
+                view.addTopBorder(color: .accentGray, width: 1)
+                view.addLeftBorder(color: .accentGray, width: 1)
                 if index == items.count - 1 {
-                    view.addRightBorder(color: .timberwolf, width: 1)
+                    view.addRightBorder(color: .accentGray, width: 1)
                 }
                 
                 let label = labels[index]

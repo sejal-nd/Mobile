@@ -37,7 +37,7 @@ class ForgotUsernameViewController: UIViewController {
         navigationItem.rightBarButtonItem = nextButton
         viewModel.nextButtonEnabled().bindTo(nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        instructionLabel.textColor = .darkJungleGreen
+        instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
         identifierDescriptionLabel?.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
         
@@ -102,7 +102,7 @@ class ForgotUsernameViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         
         accountLookupToolButton?.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
-        accountLookupToolButton?.setTitleColor(.mediumPersianBlue, for: .normal)
+        accountLookupToolButton?.setTitleColor(.actionBlue, for: .normal)
     }
     
     deinit {
@@ -126,7 +126,15 @@ class ForgotUsernameViewController: UIViewController {
     }
     
     func onCancelPress() {
-        _ = navigationController?.popViewController(animated: true)
+        // We do this to cover the case where we push ForgotUsernameViewController from ForgotPasswordViewController.
+        // When that happens, we want the cancel action to go straight back to LoginViewController.
+        for vc in (navigationController?.viewControllers)! {
+            guard let loginVC = vc as? LoginViewController else {
+                continue
+            }
+            navigationController?.popToViewController(loginVC, animated: true)
+            break
+        }
     }
     
     func onNextPress() {

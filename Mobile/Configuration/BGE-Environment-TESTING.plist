@@ -6,9 +6,11 @@
 	<string>TEST</string>
 	<key>appName</key>
 	<string>BGE_TEST</string>
-    <key>opco</key>
-    <string>BGE</string>
-    <key>oauthEndpoint</key>
-    <string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+	<key>opco</key>
+	<string>BGE</string>
+	<key>oauthEndpoint</key>
+	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+	<key>mcsInstanceName</key>
+	<string>Dev</string>
 </dict>
 </plist>

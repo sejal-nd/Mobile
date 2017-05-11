@@ -10,10 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+enum PaperlessEBillChangedStatus {
+    case Enroll
+    case Unenroll
+    case Mixed
+}
+
 protocol PaperlessEBillViewControllerDelegate: class {
-    func paperlessEBillViewControllerDidEnroll(_ paperlessEBillViewController: PaperlessEBillViewController)
-    func paperlessEBillViewControllerDidUnenroll(_ paperlessEBillViewController: PaperlessEBillViewController)
-    func paperlessEBillViewControllerDidChangeStatus(_ paperlessEBillViewController: PaperlessEBillViewController)
+    func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus)
 }
 
 class PaperlessEBillViewController: UIViewController {
@@ -42,11 +46,12 @@ class PaperlessEBillViewController: UIViewController {
     var initialAccountDetail: AccountDetail!
     
     lazy var viewModel: PaperlessEBillViewModel = {
-        PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(), initialAccountDetail: self.initialAccountDetail)
+        PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(),
+                                billService: ServiceFactory.createBillService(),
+                                initialAccountDetail: self.initialAccountDetail)
     } ()
     
     weak var delegate: PaperlessEBillViewControllerDelegate?
-    
     
     let bag = DisposeBag()
 
@@ -92,7 +97,7 @@ class PaperlessEBillViewController: UIViewController {
         whatIsButtonView.layer.cornerRadius = 2
         
         let whatIsButtonSelectedColor = whatIsButton.rx.controlEvent(.touchDown).asDriver()
-            .map { UIColor.whiteButtonHighlight }
+            .map { UIColor.softGray }
         
         let whatIsButtonDeselectedColor = Driver.merge(whatIsButton.rx.controlEvent(.touchUpInside).asDriver(),
                                                        whatIsButton.rx.controlEvent(.touchUpOutside).asDriver(),
@@ -112,7 +117,7 @@ class PaperlessEBillViewController: UIViewController {
         
         let gLayer = CAGradientLayer()
         gLayer.frame = gradientBackgroundView.frame
-        gLayer.colors = [UIColor.whiteSmoke.cgColor, UIColor.white.cgColor]
+        gLayer.colors = [UIColor.softGray.cgColor, UIColor.white.cgColor]
         
         gradientLayer = gLayer
         gradientBackgroundView.layer.addSublayer(gLayer)
@@ -165,17 +170,16 @@ class PaperlessEBillViewController: UIViewController {
     }
 
     @IBAction func submitAction(_ sender: Any) {
-        if viewModel.accounts.value.count > 1 {
-            delegate?.paperlessEBillViewControllerDidChangeStatus(self)
-        } else {
-            if !viewModel.accountsToEnroll.value.isEmpty {
-                delegate?.paperlessEBillViewControllerDidEnroll(self)
-            }
-            if !viewModel.accountsToUnenroll.value.isEmpty {
-                delegate?.paperlessEBillViewControllerDidUnenroll(self)
-            }
-        }
-        
-        navigationController?.popViewController(animated: true)
+        LoadingView.show()
+        viewModel.submitChanges(onSuccess: { changedStatus in
+            LoadingView.hide()
+            self.delegate?.paperlessEBillViewController(self, didChangeStatus: changedStatus)
+            self.navigationController?.popViewController(animated: true)
+        }, onError: { errMessage in
+            LoadingView.hide()
+            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertVc, animated: true, completion: nil)
+        })
     }
 }

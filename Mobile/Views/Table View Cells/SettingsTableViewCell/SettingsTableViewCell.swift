@@ -28,7 +28,7 @@ class SettingsTableViewCell: UITableViewCell {
         innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         innerContentView.layer.masksToBounds = false
         
-        label.textColor = .darkJungleGreen
+        label.textColor = .blackText
     }
     
     func configureWith(label: String, carat: Bool) {
@@ -59,7 +59,7 @@ class SettingsTableViewCell: UITableViewCell {
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if !highlightDisabled {
             if highlighted {
-                innerContentView.backgroundColor = .whiteButtonHighlight
+                innerContentView.backgroundColor = .softGray
             } else {
                 innerContentView.backgroundColor = .white
             }

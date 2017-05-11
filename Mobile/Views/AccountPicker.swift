@@ -31,16 +31,33 @@ class AccountPicker: UIView {
     var advancedAccountAddressLabel: UILabel?
     var advancedAccountButton: UIButton?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
+    @IBInspectable var tintWhite: Bool = false
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         commonInit()
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-        commonInit()
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 57)
+        pageControl.frame = CGRect(x: frame.size.width / 2 - 80, y: 57, width: 160, height: 7)
+        
+        if let button = advancedAccountButton {
+            button.frame = scrollView.frame
+        }
+        
+        if pageViews.count > 0 {
+            for index in 0..<pageViews.count {
+                let pageView = pageViews[index]
+                pageView.frame = CGRect(x: CGFloat(index) * frame.size.width, y: 0, width: frame.size.width, height: 57)
+            }
+            
+            scrollView.contentSize = CGSize(width: frame.size.width * CGFloat(pageViews.count), height: 57)
+            scrollView.scrollRectToVisible(pageViews[pageControl.currentPage].frame, animated: false)
+        }
+        
     }
 
     func commonInit() {
@@ -55,34 +72,12 @@ class AccountPicker: UIView {
         addSubview(scrollView)
 
         pageControl = UIPageControl(frame: .zero)
-        pageControl.pageIndicatorTintColor = UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 0.5)
-        pageControl.currentPageIndicatorTintColor = UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
+        pageControl.pageIndicatorTintColor = tintWhite ? UIColor.white.withAlphaComponent(0.43) : UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 0.5)
+        pageControl.currentPageIndicatorTintColor = tintWhite ? .white : UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
         pageControl.addTarget(self, action: #selector(onPageControlTap(sender:)), for: .valueChanged)
         addSubview(pageControl)
         
         setAccounts()
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 57)
-        pageControl.frame = CGRect(x: frame.size.width / 2 - 80, y: 57, width: 160, height: 7)
-        
-        if let button = advancedAccountButton {
-            button.frame = scrollView.frame
-        }
-
-        if pageViews.count > 0 {
-            for index in 0..<pageViews.count {
-                let pageView = pageViews[index]
-                pageView.frame = CGRect(x: CGFloat(index) * frame.size.width, y: 0, width: frame.size.width, height: 57)
-            }
-            
-            scrollView.contentSize = CGSize(width: frame.size.width * CGFloat(pageViews.count), height: 57)
-            scrollView.scrollRectToVisible(pageViews[pageControl.currentPage].frame, animated: false)
-        }
-
     }
 
     private func setAccounts() {
@@ -106,20 +101,31 @@ class AccountPicker: UIView {
                 let pageView = UIView(frame: .zero)
                 pageViews.append(pageView)
                 
-                let icon = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
+                let icon: UIImage
+                switch (commercialUser, tintWhite) {
+                case (true, true):
+                    icon = #imageLiteral(resourceName: "ic_commercial_white")
+                case (true, false):
+                    icon = #imageLiteral(resourceName: "ic_commercial")
+                case (false, true):
+                    icon = #imageLiteral(resourceName: "ic_residential_white")
+                case (false, false):
+                    icon = #imageLiteral(resourceName: "ic_residential")
+                }
+                
                 let iconImageView = UIImageView(image: icon)
                 iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
                 
                 let accountNumberLabel = UILabel(frame: .zero)
                 accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
                 accountNumberLabel.font = UIFont.systemFont(ofSize: 17)
-                accountNumberLabel.textColor = UIColor.darkJungleGreen
+                accountNumberLabel.textColor = tintWhite ? .white: .blackText
                 accountNumberLabel.text = account.accountNumber
                 
                 let addressLabel = UILabel(frame: .zero)
                 addressLabel.translatesAutoresizingMaskIntoConstraints = false
                 addressLabel.font = UIFont.systemFont(ofSize: 12)
-                addressLabel.textColor = UIColor.outerSpace
+                addressLabel.textColor = tintWhite ? .white: .deepGray
                 addressLabel.text = account.address
                 
                 let accountView = UIView(frame: .zero)
@@ -158,20 +164,31 @@ class AccountPicker: UIView {
             pageView.backgroundColor = .clear
             pageViews.append(pageView)
             
-            let icon = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
+            let icon: UIImage
+            switch (commercialUser, tintWhite) {
+            case (true, true):
+                icon = #imageLiteral(resourceName: "ic_commercial_white")
+            case (true, false):
+                icon = #imageLiteral(resourceName: "ic_commercial")
+            case (false, true):
+                icon = #imageLiteral(resourceName: "ic_residential_white")
+            case (false, false):
+                icon = #imageLiteral(resourceName: "ic_residential")
+            }
+            
             let iconImageView = UIImageView(image: icon)
             iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
             
             advancedAccountNumberLabel = UILabel(frame: .zero)
             advancedAccountNumberLabel!.translatesAutoresizingMaskIntoConstraints = false
             advancedAccountNumberLabel!.font = UIFont.systemFont(ofSize: 17)
-            advancedAccountNumberLabel!.textColor = UIColor.darkJungleGreen
+            advancedAccountNumberLabel!.textColor = .blackText
             advancedAccountNumberLabel!.text = pagedAccounts[0].accountNumber
             
             advancedAccountAddressLabel = UILabel(frame: .zero)
             advancedAccountAddressLabel!.translatesAutoresizingMaskIntoConstraints = false
             advancedAccountAddressLabel!.font = UIFont.systemFont(ofSize: 12)
-            advancedAccountAddressLabel!.textColor = UIColor.outerSpace
+            advancedAccountAddressLabel!.textColor = .deepGray
             advancedAccountAddressLabel!.text = pagedAccounts[0].address
             
             let accountView = UIView(frame: .zero)

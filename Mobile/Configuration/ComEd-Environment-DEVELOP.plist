@@ -10,5 +10,7 @@
 	<string>ComEd</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+	<key>mcsInstanceName</key>
+	<string>Dev</string>
 </dict>
 </plist>

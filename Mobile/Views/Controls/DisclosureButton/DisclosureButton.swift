@@ -35,7 +35,7 @@ class DisclosureButton: UIButton {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("DisclosureButton", owner: self, options: nil)
+        Bundle.main.loadNibNamed(DisclosureButton.className(), owner: self, options: nil)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
@@ -45,8 +45,8 @@ class DisclosureButton: UIButton {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         layer.masksToBounds = false
         
-        label.textColor = .darkJungleGreen
-        detailLabel.textColor = .oldLavender
+        label.textColor = .blackText
+        detailLabel.textColor = .middleGray
         setDetailLabel(text: "", checkHidden: true)
     }
     
@@ -59,7 +59,7 @@ class DisclosureButton: UIButton {
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-               view.backgroundColor = .whiteButtonHighlight
+               view.backgroundColor = .softGray
             }
             else {
                 view.backgroundColor = .white

@@ -3,12 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>environment</key>
-	<string>PROD</string>
+	<string>DEV</string>
 	<key>appName</key>
-	<string>PECO</string>
+	<string>BGE_DEV</string>
 	<key>opco</key>
-	<string>PECO</string>
+	<string>BGE</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+	<key>mcsInstanceName</key>
+	<string>Dev</string>
 </dict>
 </plist>
