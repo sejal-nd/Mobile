@@ -52,6 +52,8 @@ struct AccountDetail: Mappable {
     let billingInfo: BillingInfo
     
     let isPasswordProtected: Bool
+    let hasElectricSupplier: Bool
+    let isDualBillOption: Bool
     
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
@@ -77,6 +79,8 @@ struct AccountDetail: Mappable {
         isBudgetBillEligible = map.optionalFrom("isBudgetBillEligible") ?? false
         isEBillEnrollment = map.optionalFrom("isEBillEnrollment") ?? false
         isEBillEligible = map.optionalFrom("isEBillEligible") ?? false
+        hasElectricSupplier = map.optionalFrom("hasElectricSupplier") ?? false
+        isDualBillOption = map.optionalFrom("isDualBillOption") ?? false
         
         status = map.optionalFrom("status")
         
