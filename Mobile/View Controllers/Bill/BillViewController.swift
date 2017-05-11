@@ -174,7 +174,7 @@ class BillViewController: AccountPickerViewController {
         
         viewBillButton.rx.touchUpInside.asDriver()
             .drive(onNext: {
-                print("view bill tapped")
+                self.performSegue(withIdentifier: "viewBillSegue", sender: self)
             })
             .addDisposableTo(disposeBag)
         
@@ -210,6 +210,8 @@ class BillViewController: AccountPickerViewController {
         } else if let vc = segue.destination as? PaperlessEBillViewController {
             vc.delegate = self
             vc.initialAccountDetail = viewModel.currentAccountDetail.value!
+        } else if let vc = segue.destination as? ViewBillViewController {
+            vc.viewModel.billDate = viewModel.currentAccountDetail.value!.billingInfo.billDate
         }
     }
     
