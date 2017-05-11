@@ -41,8 +41,6 @@ class LoginViewModel {
     }
     
     func performLogin(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String?, String) -> Void) {
-        print("Keep me signed in = \(keepMeSignedIn.value)") // TODO: Something with this
-        
         if username.value.isEmpty || password.value.isEmpty {
             onError(nil, "Please enter your username and password")
             return;

@@ -102,11 +102,21 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyTextView.tintColor = .actionBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
         
-        accountPickerViewControllerWillAppear.subscribe(onNext: {
-            if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-                self.getOutageStatus()
-            } else if self.viewModel.currentOutageStatus == nil {
-                self.getOutageStatus()
+        accountPickerViewControllerWillAppear.subscribe(onNext: { state in
+            switch(state) {
+            case .loadingAccounts:
+                self.accountContentView.isHidden = true
+                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
+                self.gasOnlyView.isHidden = true
+                self.errorLabel.isHidden = true
+                self.loadingView.isHidden = true
+                self.setRefreshControlEnabled(enabled: false)
+            case .readyToFetchData:
+                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    self.getOutageStatus()
+                } else if self.viewModel.currentOutageStatus == nil {
+                    self.getOutageStatus()
+                }
             }
         }).addDisposableTo(disposeBag)
     }

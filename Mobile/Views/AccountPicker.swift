@@ -20,8 +20,10 @@ class AccountPicker: UIView {
 
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
+    var loadingIndicator: LoadingIndicator!
 
     var currentAccount: Account!
+    private var loadedAccounts = false
     
     var parentViewController: UIViewController?
 
@@ -61,8 +63,6 @@ class AccountPicker: UIView {
     }
 
     func commonInit() {
-        currentAccount = AccountsStore.sharedInstance.accounts[0]
-        
         backgroundColor = .clear
 
         scrollView = UIScrollView(frame: .zero)
@@ -77,12 +77,24 @@ class AccountPicker: UIView {
         pageControl.addTarget(self, action: #selector(onPageControlTap(sender:)), for: .valueChanged)
         addSubview(pageControl)
         
-        setAccounts()
+        loadingIndicator = LoadingIndicator(frame: .zero)
+        loadingIndicator.isHidden = true
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(loadingIndicator)
+        loadingIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+    
+    func setLoading(_ loading: Bool) {
+        loadingIndicator.isHidden = !loading
     }
 
-    private func setAccounts() {
+    func loadAccounts() {
+        if loadedAccounts { return } // Prevent calling this multiple times
+        loadedAccounts = true
 
         let allAccounts: [Account]! = AccountsStore.sharedInstance.accounts
+        currentAccount = allAccounts[0]
         var pagedAccounts: [Account]! = allAccounts
 
         if allAccounts.count > 1 && allAccounts.count < MAX_ACCOUNTS {
