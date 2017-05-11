@@ -28,9 +28,21 @@ struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
     
+    let status: String?
+    let isLinked: Bool
+    let isDefault: Bool
+    let isFinaled: Bool
+    //let isStopped: Bool // Not sure the status of this. Will BGE accounts just send `flagFinaled` or will it be different?
+    
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
         address = map.optionalFrom("address")
+        
+        status = map.optionalFrom("status")
+        isLinked = map.optionalFrom("isLinkedProfile") ?? false
+        isDefault = map.optionalFrom("isDefaultProfile") ?? false
+        isFinaled = map.optionalFrom("flagFinaled") ?? false
+        //isStopped = map.optionalFrom("isStoppedFlag") ?? false
     }
     
     // Equatable
