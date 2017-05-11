@@ -7,6 +7,8 @@
 //
 
 import Lottie
+import RxSwift
+import RxCocoa
 
 class LoadingIndicator: UIView {
     
@@ -47,4 +49,14 @@ class LoadingIndicator: UIView {
             }
         }
     }
+}
+
+extension Reactive where Base: LoadingIndicator {
+    
+    var isAnimating: UIBindingObserver<Base, Bool> {
+        return UIBindingObserver(UIElement: self.base) { loadingIndicator, active in
+            loadingIndicator.isHidden = !active
+        }
+    }
+    
 }

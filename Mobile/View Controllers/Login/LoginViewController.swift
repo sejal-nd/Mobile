@@ -65,8 +65,8 @@ class LoginViewController: UIViewController {
         passwordTextField.textField.isShowingAccessory = true
     
         // Two-way data binding for the username/password fields
-        viewModel.username.asObservable().bindTo(usernameTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
-        viewModel.password.asObservable().bindTo(passwordTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        viewModel.username.asObservable().bind(to: usernameTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        viewModel.password.asObservable().bind(to: passwordTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
         viewModel.password.asObservable().subscribe(onNext: { (password) in
             if self.passwordAutofilledFromTouchID {
                 // The password field was successfully auto-filled from Touch ID, but then the user manually changed it,
@@ -78,13 +78,13 @@ class LoginViewController: UIViewController {
                 self.passwordAutofilledFromTouchID = false
             }
         }).addDisposableTo(disposeBag)
-        usernameTextField.textField.rx.text.orEmpty.bindTo(viewModel.username).addDisposableTo(disposeBag)
-        passwordTextField.textField.rx.text.orEmpty.bindTo(viewModel.password).addDisposableTo(disposeBag)
+        usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).addDisposableTo(disposeBag)
+        passwordTextField.textField.rx.text.orEmpty.bind(to: viewModel.password).addDisposableTo(disposeBag)
         
         // Update the text field appearance in case data binding autofilled text
         usernameTextField.textField.sendActions(for: .editingDidEnd)
         
-        keepMeSignedInSwitch.rx.isOn.bindTo(viewModel.keepMeSignedIn).addDisposableTo(disposeBag)
+        keepMeSignedInSwitch.rx.isOn.bind(to: viewModel.keepMeSignedIn).addDisposableTo(disposeBag)
         
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.passwordTextField.textField.becomeFirstResponder()

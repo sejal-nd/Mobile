@@ -88,8 +88,8 @@ class ReportOutageViewController: UIViewController {
 
             footerContainerView.isHidden = true
             
-            meterPingFuseBoxSwitch.rx.isOn.map(!).bindTo(viewModel.reportFormHidden).addDisposableTo(disposeBag)
-            viewModel.reportFormHidden.asObservable().bindTo(reportFormStackView.rx.isHidden).addDisposableTo(disposeBag)
+            meterPingFuseBoxSwitch.rx.isOn.map(!).bind(to: viewModel.reportFormHidden).addDisposableTo(disposeBag)
+            viewModel.reportFormHidden.asObservable().bind(to: reportFormStackView.rx.isHidden).addDisposableTo(disposeBag)
             viewModel.reportFormHidden.asObservable().subscribe(onNext: { hidden in
                 if hidden {
                     self.reportFormStackView.spacing = 0
@@ -161,14 +161,14 @@ class ReportOutageViewController: UIViewController {
         footerTextView.layer.masksToBounds = false
         
         // Data binding
-        segmentedControl.selectedIndex.asObservable().bindTo(viewModel.selectedSegmentIndex).addDisposableTo(disposeBag)
+        segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).addDisposableTo(disposeBag)
         
-        viewModel.phoneNumber.asObservable().bindTo(phoneNumberTextField.textField.rx.text.orEmpty)
+        viewModel.phoneNumber.asObservable().bind(to: phoneNumberTextField.textField.rx.text.orEmpty)
             .addDisposableTo(disposeBag)
-        phoneNumberTextField.textField.rx.text.orEmpty.bindTo(viewModel.phoneNumber).addDisposableTo(disposeBag)
+        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).addDisposableTo(disposeBag)
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
         
-        phoneExtensionTextField.textField.rx.text.orEmpty.bindTo(viewModel.phoneExtension).addDisposableTo(disposeBag)
+        phoneExtensionTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneExtension).addDisposableTo(disposeBag)
         
         // Format the intial value
         let range = NSMakeRange(0, viewModel.phoneNumber.value.characters.count)

@@ -162,6 +162,20 @@
 		82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
+		82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
+		82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
+		82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
+		82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
+		82D599471EC356C800DDB380 /* RxSwiftExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D599461EC356C800DDB380 /* RxSwiftExt.framework */; };
+		82D599481EC3571700DDB380 /* RxSwiftExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D599461EC356C800DDB380 /* RxSwiftExt.framework */; };
+		82D599491EC3572700DDB380 /* RxSwiftExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D599461EC356C800DDB380 /* RxSwiftExt.framework */; };
+		82D5994B1EC36B5500DDB380 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
+		82D5994C1EC36B5500DDB380 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
+		82D5994D1EC36B5500DDB380 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
+		82D5994E1EC36B5500DDB380 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
+		82D599511EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
+		82D599521EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
+		82D599531EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
 		8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
 		8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
@@ -704,6 +718,10 @@
 		82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingPaymentView.xib; sourceTree = "<group>"; };
 		82A18F171EC0E83800BE9F21 /* NibViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViews.swift; sourceTree = "<group>"; };
 		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
+		82D599411EC2374500DDB380 /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
+		82D599461EC356C800DDB380 /* RxSwiftExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftExt.framework; path = Carthage/Build/iOS/RxSwiftExt.framework; sourceTree = "<group>"; };
+		82D5994A1EC36B5500DDB380 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		82D599501EC3A00900DDB380 /* alert_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_icon.json; sourceTree = "<group>"; };
 		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1003,6 +1021,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82D599471EC356C800DDB380 /* RxSwiftExt.framework in Frameworks */,
 				B5AC07421E52A49900BBA4ED /* CoreLocation.framework in Frameworks */,
 				E8D2520C1E6DB74600C90584 /* HockeySDK.framework in Frameworks */,
 				E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */,
@@ -1030,6 +1049,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82D599481EC3571700DDB380 /* RxSwiftExt.framework in Frameworks */,
 				E8EEF7221E567941006804D4 /* CoreLocation.framework in Frameworks */,
 				E8D252111E6DB82C00C90584 /* HockeySDK.framework in Frameworks */,
 				E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */,
@@ -1057,6 +1077,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82D599491EC3572700DDB380 /* RxSwiftExt.framework in Frameworks */,
 				E8EEF7211E56793B006804D4 /* CoreLocation.framework in Frameworks */,
 				E8D2520F1E6DB7B400C90584 /* HockeySDK.framework in Frameworks */,
 				E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */,
@@ -1226,6 +1247,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82D599461EC356C800DDB380 /* RxSwiftExt.framework */,
 				B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */,
 				E801BADC1E8C5A4E00550F99 /* Mapper.framework */,
 				E8D2520D1E6DB78800C90584 /* Lottie.framework */,
@@ -1278,7 +1300,6 @@
 			isa = PBXGroup;
 			children = (
 				82A18EB01EBA667900BE9F21 /* Controls */,
-				B58B5B571E516A9B0051FD5F /* Configuration */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				82A18EB11EBA667F00BE9F21 /* Listable Views */,
 				82A18EB21EBA668500BE9F21 /* Table View Cells */,
@@ -1316,6 +1337,7 @@
 				E8FE30AE1E7875EA009D28B7 /* ComEd */,
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
 				8FD5AE981E54EAB8003F640D /* checkmark.json */,
+				82D599501EC3A00900DDB380 /* alert_icon.json */,
 				8FD5AE991E54EAB8003F640D /* loading.json */,
 				E85895761E8AACFF009485E3 /* loading_blue.json */,
 				E8494F361EBBCB2B0047D6BE /* full_screen_loading.json */,
@@ -1338,6 +1360,7 @@
 				E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */,
 				826413781EAEAE5E007F4615 /* Fonts.swift */,
 				82A18F171EC0E83800BE9F21 /* NibViews.swift */,
+				82D5994A1EC36B5500DDB380 /* Currency.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1607,6 +1630,7 @@
 				B5AC06C61E521B2600BBA4ED /* Assets */,
 				8FD3C2671E525023005FB1BB /* Storyboards */,
 				E8EEF7341E578928006804D4 /* Launch Screens */,
+				B58B5B571E516A9B0051FD5F /* Configuration */,
 				8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */,
 				8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */,
 				8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */,
@@ -1639,8 +1663,7 @@
 				B5AC06781E51763200BBA4ED /* Environment.swift */,
 				B574BAD31E736596001E8A44 /* Macros.swift */,
 			);
-			name = Configuration;
-			path = ../Configuration;
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		B5AC06C61E521B2600BBA4ED /* Assets */ = {
@@ -1811,6 +1834,7 @@
 			isa = PBXGroup;
 			children = (
 				E8B4F4C41E5CE18F0031D934 /* A0SimpleKeychain */,
+				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -2111,6 +2135,7 @@
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
+				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -2159,6 +2184,7 @@
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736471E6742A6003B9369 /* OMC.plist in Resources */,
+				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -2207,6 +2233,7 @@
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
+				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -2271,6 +2298,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -2294,6 +2322,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -2317,6 +2346,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -2389,6 +2419,7 @@
 			files = (
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
+				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF11E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
@@ -2432,6 +2463,7 @@
 				E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
+				82D5994B1EC36B5500DDB380 /* Currency.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
@@ -2503,6 +2535,7 @@
 			files = (
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
+				82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF21EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
@@ -2546,6 +2579,7 @@
 				E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
+				82D5994D1EC36B5500DDB380 /* Currency.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
@@ -2617,6 +2651,7 @@
 			files = (
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
+				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
@@ -2660,6 +2695,7 @@
 				E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
+				82D5994C1EC36B5500DDB380 /* Currency.swift in Sources */,
 				E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
@@ -2771,9 +2807,11 @@
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
 				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
+				82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
+				82D5994E1EC36B5500DDB380 /* Currency.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
 				E895E9B01EBB849A003B38A1 /* ChangePasswordViewModel.swift in Sources */,

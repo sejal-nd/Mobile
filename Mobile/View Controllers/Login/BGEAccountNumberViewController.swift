@@ -25,7 +25,7 @@ class BGEAccountNumberViewController: UIViewController {
         
         let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
-        viewModel.accountNumberHasTenDigits().bindTo(nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.accountNumberHasTenDigits().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("The information entered is associated with multiple accounts. Please enter the account number you would like to proceed with.", comment: "")
@@ -35,7 +35,7 @@ class BGEAccountNumberViewController: UIViewController {
         accountNumberTextField.textField.returnKeyType = .done
         accountNumberTextField?.textField.delegate = self
         accountNumberTextField.textField.isShowingAccessory = true
-        accountNumberTextField.textField.rx.text.orEmpty.bindTo(viewModel.accountNumber).addDisposableTo(disposeBag)
+        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.accountNumber.value.characters.count > 0 {
                 self.viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in

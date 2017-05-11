@@ -85,9 +85,9 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.setEnabled(false)
         
         // Bind to the view model
-        currentPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.currentPassword).addDisposableTo(disposeBag)
-        newPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.newPassword).addDisposableTo(disposeBag)
-        confirmPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.confirmPassword).addDisposableTo(disposeBag)
+        currentPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.currentPassword).addDisposableTo(disposeBag)
+        newPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).addDisposableTo(disposeBag)
+        confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).addDisposableTo(disposeBag)
         
         currentPasswordTextField.textField.rx.controlEvent(UIControlEvents.editingChanged).subscribe(onNext: { _ in
             // If we displayed an inline error, clear it when user edits the text
@@ -197,11 +197,11 @@ class ChangePasswordViewController: UIViewController {
     }
     
     func setupValidation() {
-        viewModel.characterCountValid().map(!).bindTo(characterCountCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsUppercaseLetter().map(!).bindTo(uppercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsLowercaseLetter().map(!).bindTo(lowercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsNumber().map(!).bindTo(numberCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsSpecialCharacter().map(!).bindTo(specialCharacterCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.characterCountValid().map(!).bind(to: characterCountCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsUppercaseLetter().map(!).bind(to: uppercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsLowercaseLetter().map(!).bind(to: lowercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsNumber().map(!).bind(to: numberCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsSpecialCharacter().map(!).bind(to: specialCharacterCheck.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.everythingValid().subscribe(onNext: { valid in
             self.newPasswordTextField.setValidated(valid)
             self.confirmPasswordTextField.setEnabled(valid)
@@ -229,7 +229,7 @@ class ChangePasswordViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
-        viewModel.doneButtonEnabled().bindTo(doneButton!.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.doneButtonEnabled().bind(to: doneButton!.rx.isEnabled).addDisposableTo(disposeBag)
     }
     
     // MARK: - ScrollView

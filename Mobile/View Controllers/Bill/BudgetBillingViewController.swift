@@ -63,13 +63,13 @@ class BudgetBillingViewController: UIViewController {
     
     var gradientLayer: CAGradientLayer!
     
-    var initialEnrollment: Bool!
+    var accountDetail: AccountDetail!
     var viewModel: BudgetBillingViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = BudgetBillingViewModel(initialEnrollment: initialEnrollment, billService: ServiceFactory.createBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail, billService: ServiceFactory.createBillService())
         
         title = NSLocalizedString("Budget Billing", comment: "")
         
@@ -77,7 +77,7 @@ class BudgetBillingViewController: UIViewController {
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitButtonEnabled().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         view.backgroundColor = .softGray
         
@@ -107,12 +107,13 @@ class BudgetBillingViewController: UIViewController {
         amountDescriptionLabel.textColor = .deepGray
         amountDescriptionLabel.text = viewModel.getAmountDescriptionText()
         
-        // TODO: LOAD REAL DATA HERE
         accountNumberLabel.textColor = .blackText
+        accountNumberLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber
         addressLabel.textColor = .middleGray
+        addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
         
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
-        enrollSwitch.rx.isOn.bindTo(viewModel.currentEnrollment).addDisposableTo(disposeBag)
+        enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).addDisposableTo(disposeBag)
         
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
@@ -126,7 +127,7 @@ class BudgetBillingViewController: UIViewController {
         }
         
         // BGE Footer View when user is enrolled
-        if Environment.sharedInstance.opco == OpCo.bge && initialEnrollment {
+        if Environment.sharedInstance.opco == OpCo.bge && accountDetail.isBudgetBillEnrollment {
             for view in bgeFooterCardViews {
                 view.layer.cornerRadius = 2
                 view.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)

@@ -1,4 +1,5 @@
-github "ReactiveX/RxSwift" "3.3.1"
+github "ReactiveX/RxSwift" "3.4.1"
+github "RxSwiftCommunity/RxSwiftExt" "2.4.1"
 github "airbnb/lottie-ios" "1.5.1"
 github "ashleymills/Reachability.swift" "v3"
 github "bitstadium/HockeySDK-iOS" "4.1.4"
