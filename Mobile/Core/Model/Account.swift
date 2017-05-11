@@ -60,10 +60,11 @@ struct AccountDetail: Mappable {
     let isEBillEligible:Bool
     
     let status: String?
-    
-    let isAutoPay: Bool
-    let isBGEasy: Bool
-    
+	
+	let isAutoPay: Bool
+	let isBGEasy: Bool
+	let isAutoPayEligible: Bool
+	
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
         address = map.optionalFrom("address")
@@ -79,10 +80,11 @@ struct AccountDetail: Mappable {
         
         status = map.optionalFrom("status")
         
-        isAutoPay = map.optionalFrom("isAutoPay") ?? false
-        isBGEasy = map.optionalFrom("isBGEasy") ?? false
+		isAutoPay = map.optionalFrom("isAutoPay") ?? false
+		isBGEasy = map.optionalFrom("isBGEasy") ?? false
+		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
     }
-    
+	
     var eBillEnrollStatus: EBillEnrollStatus {
         switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "Finaled".lowercased()) {
         case (_, _, true):

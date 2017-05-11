@@ -23,11 +23,17 @@ class BillViewModel {
     required init(accountService: AccountService) {
         self.accountService = accountService
         
-        
         let fetchingAccountDetailTracker = ActivityTracker()
         isFetchingAccountDetail = fetchingAccountDetailTracker.asDriver()
-        
-        fetchAccountDetailSubject
+		
+		let sharedFetchAccountDetail = fetchAccountDetailSubject.share()
+		
+		sharedFetchAccountDetail
+			.map { nil }
+			.bind(to: currentAccountDetail)
+			.addDisposableTo(disposeBag)
+		
+        sharedFetchAccountDetail
             .flatMapLatest {
                 accountService
                     .fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
@@ -36,10 +42,10 @@ class BillViewModel {
                         dLog(message: $0.localizedDescription)
                     })
             }
-            .bind(to: currentAccountDetail)
-            .addDisposableTo(disposeBag)
+			.bind(to: currentAccountDetail)
+			.addDisposableTo(disposeBag)
     }
-    
+	
     func fetchAccountDetail() {
         fetchAccountDetailSubject.onNext()
     }
@@ -48,72 +54,132 @@ class BillViewModel {
         return self.currentAccountDetail.asObservable()
             .unwrap()
             .asDriver(onErrorDriveWith: Driver.empty())
-    }()
-    
+	}()
+	
+	
+	// MARK: - Should Hide Views
+	
     lazy var shouldHideAlertBanner: Driver<Bool> = {
-        return self.currentAccountDetailUnwrapped.map { _ in false }
-    }()
-    
-    lazy var totalAmountText: Driver<String> = {
-        return self.currentAccountDetailUnwrapped
-            .map { $0.billingInfo.netDueAmount?.currencyString ?? "--" }
-    }()
-    
-    lazy var shouldHidePaperless: Driver<Bool> = {
-        return self.currentAccountDetailUnwrapped.map { accountDetail in
-            switch accountDetail.eBillEnrollStatus {
-            case .canEnroll, .canUnenroll: return false
-            case .ineligible, .finaled: return true
-            }
-        }
-    }()
-    
-    lazy var shouldHideBudget: Driver<Bool> = {
-        return self.currentAccountDetailUnwrapped.map {
-            !$0.isBudgetBillEligible && !$0.isBudgetBillEnrollment && Environment.sharedInstance.opco != .bge
-        }
-    }()
-    
-    lazy var autoPayButtonText: Driver<NSAttributedString> = {
-        return self.currentAccountDetailUnwrapped.map { accountDetail in
-            if accountDetail.isAutoPay || accountDetail.isBGEasy {
-                let text = NSLocalizedString("AutoPay", comment: "")
-                let enrolledText = accountDetail.isBGEasy ?
-                    NSLocalizedString("enrolled in BGEasy", comment: "") :
-                    NSLocalizedString("enrolled", comment: "")
-                
-                return BillViewModel.isEnrolledText(topText: text, bottomText: enrolledText)
-            } else {
-                return BillViewModel.canEnrollText(boldText: NSLocalizedString("AutoPay?", comment: ""))
-            }
-        }
-    }()
-    
-    lazy var paperlessButtonText: Driver<NSAttributedString?> = {
-        return self.currentAccountDetailUnwrapped.map { accountDetail in
-            switch accountDetail.eBillEnrollStatus {
-            case .canEnroll:
-                return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
-            case .canUnenroll:
-                return BillViewModel.isEnrolledText(topText: NSLocalizedString("Paperless eBill", comment: ""),
-                                                    bottomText: NSLocalizedString("enrolled", comment: ""))
-            case .ineligible, .finaled:
-                return nil
-            }
-        }
-    }()
-    
-    lazy var budgetButtonText: Driver<NSAttributedString?> = {
-        return self.currentAccountDetailUnwrapped.map { accountDetail in
-            if accountDetail.isBudgetBillEnrollment {
-                return BillViewModel.isEnrolledText(topText: NSLocalizedString("Budget Billing", comment: ""),
-                                                    bottomText: NSLocalizedString("enrolled", comment: ""))
-            } else {
-                return BillViewModel.canEnrollText(boldText: NSLocalizedString("Budget Billing?", comment: ""))
-            }
-        }
-    }()
-    
+        return self.currentAccountDetail.asDriver()
+			.map {
+				guard let accountDetail = $0 else { return true }
+				// TODO: Implement logic for this
+				return false
+		}
+	}()
+	
+	lazy var shouldHideNeedHelpUnderstanding: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver()
+			.map {
+				guard let accountDetail = $0 else { return true }
+				// TODO: Add logic for residential users based on forthcoming web service response additions
+				return UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
+		}
+	}()
+	
+	lazy var shouldHideAutoPay: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver()
+			.map {
+				guard let accountDetail = $0 else { return true }
+				return !(accountDetail.isAutoPay || accountDetail.isBGEasy || accountDetail.isAutoPayEligible)
+		}
+	}()
+	
+	lazy var shouldHidePaperless: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver()
+			.map {
+				guard let accountDetail = $0 else { return true }
+				
+				if accountDetail.isEBillEnrollment {
+					return false
+				}
+				
+				switch accountDetail.eBillEnrollStatus {
+				case .canEnroll, .canUnenroll: return false
+				case .ineligible, .finaled: return true
+				}
+		}
+	}()
+	
+	lazy var shouldHideBudget: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver().map {
+			guard let accountDetail = $0 else { return true }
+			return !accountDetail.isBudgetBillEligible &&
+				!accountDetail.isBudgetBillEnrollment &&
+				Environment.sharedInstance.opco != .bge
+		}
+	}()
+	
+	
+	// MARK: - View Content
+	
+	lazy var totalAmountText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver()
+			.map {
+				guard let accountDetail = $0 else { return nil }
+				return accountDetail.billingInfo.netDueAmount?.currencyString ?? "--"
+		}
+	}()
+	
+	lazy var pendingPayments: Driver<[String]> = {
+		return self.currentAccountDetail.asDriver()
+			.map {
+				guard
+					let pendingPaymentAmount = $0?.billingInfo.pendingPaymentAmount
+					else { return [] }
+				
+				return [pendingPaymentAmount].map { $0.currencyString ?? "--" }
+		}
+	}()
+	
+	lazy var autoPayButtonText: Driver<NSAttributedString?> = {
+		return self.currentAccountDetail.asDriver()
+			.map {
+				guard let accountDetail = $0 else { return nil }
+				if accountDetail.isAutoPay || accountDetail.isBGEasy {
+					let text = NSLocalizedString("AutoPay", comment: "")
+					let enrolledText = accountDetail.isBGEasy ?
+						NSLocalizedString("enrolled in BGEasy", comment: "") :
+						NSLocalizedString("enrolled", comment: "")
+					return BillViewModel.isEnrolledText(topText: text, bottomText: enrolledText)
+				} else {
+					return BillViewModel.canEnrollText(boldText: NSLocalizedString("AutoPay?", comment: ""))
+				}
+		}
+	}()
+	
+	lazy var paperlessButtonText: Driver<NSAttributedString?> = {
+		return self.currentAccountDetail.asDriver()
+			.map {
+				guard let accountDetail = $0 else { return nil }
+				switch accountDetail.eBillEnrollStatus {
+				case .canEnroll:
+					return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
+				case .canUnenroll:
+					return BillViewModel.isEnrolledText(topText: NSLocalizedString("Paperless eBill", comment: ""),
+					                                    bottomText: NSLocalizedString("enrolled", comment: ""))
+				case .ineligible, .finaled:
+					return nil
+				}
+		}
+	}()
+	
+	lazy var budgetButtonText: Driver<NSAttributedString?> = {
+		return self.currentAccountDetail.asDriver()
+			.map {
+				guard let accountDetail = $0 else { return nil }
+				if accountDetail.isBudgetBillEnrollment {
+					return BillViewModel.isEnrolledText(topText: NSLocalizedString("Budget Billing", comment: ""),
+					                                    bottomText: NSLocalizedString("enrolled", comment: ""))
+				} else {
+					return BillViewModel.canEnrollText(boldText: NSLocalizedString("Budget Billing?", comment: ""))
+				}
+		}
+	}()
+	
+	
+	// MARK: - Conveniece functions
+	
     private static func isEnrolledText(topText: String, bottomText: String) -> NSAttributedString {
         let mutableText = NSMutableAttributedString(string: topText + "\n" + bottomText)
         let topTextRange = NSMakeRange(0, topText.characters.count)

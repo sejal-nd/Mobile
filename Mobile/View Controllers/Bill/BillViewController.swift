@@ -126,36 +126,46 @@ class BillViewController: AccountPickerViewController {
     }
     
     func bindViews() {
-        viewModel.isFetchingAccountDetail
-            .filter(!)
-            .drive(onNext: { _ in
-                self.alertLottieAnimation.play()
-            })
-            .addDisposableTo(disposeBag)
-        
-        viewModel.isFetchingAccountDetail
-            .filter(!)
-            .drive(rx.isRefreshing)
-            .addDisposableTo(disposeBag)
-        
-        let isFetchingWithoutPull = viewModel.isFetchingAccountDetail.asDriver()
-            .filter { !$0 || ($0 && !(self.refreshControl?.isRefreshing ?? false)) }
-            .distinctUntilChanged()
-        
-        isFetchingWithoutPull.drive(topView.rx.isHidden).addDisposableTo(disposeBag)
-        isFetchingWithoutPull.drive(bottomView.rx.isHidden).addDisposableTo(disposeBag)
-        isFetchingWithoutPull.map(!).drive(rx.isPullToRefreshEnabled).addDisposableTo(disposeBag)
-        isFetchingWithoutPull.drive(billLoadingIndicator.rx.isAnimating).addDisposableTo(disposeBag)
-        
-        viewModel.totalAmountText.drive(totalAmountLabel.rx.text).addDisposableTo(disposeBag)
-        
-        viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
-        viewModel.shouldHidePaperless.drive(paperlessButton.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
-        viewModel.shouldHideBudget.drive(budgetButton.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.budgetButtonText.drive(budgetBillingEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
+		bindLoadingIndicators()
+		bindViewHiding()
+		bindViewContent()
     }
-    
+	
+	func bindLoadingIndicators() {
+		viewModel.isFetchingAccountDetail
+			.filter(!)
+			.drive(onNext: { _ in
+				self.alertLottieAnimation.play()
+			})
+			.addDisposableTo(disposeBag)
+		
+		viewModel.isFetchingAccountDetail
+			.filter(!)
+			.drive(rx.isRefreshing)
+			.addDisposableTo(disposeBag)
+		
+		let isFetchingWithoutPull = viewModel.isFetchingAccountDetail.asDriver()
+			.filter { !$0 || ($0 && !(self.refreshControl?.isRefreshing ?? false)) }
+			.distinctUntilChanged()
+		
+		isFetchingWithoutPull.map(!).drive(rx.isPullToRefreshEnabled).addDisposableTo(disposeBag)
+		isFetchingWithoutPull.drive(billLoadingIndicator.rx.isAnimating).addDisposableTo(disposeBag)
+		
+	}
+	
+	func bindViewHiding() {
+		viewModel.shouldHideAutoPay.drive(autoPayButton.rx.isHidden).addDisposableTo(disposeBag)
+		viewModel.shouldHidePaperless.drive(paperlessButton.rx.isHidden).addDisposableTo(disposeBag)
+		viewModel.shouldHideBudget.drive(budgetButton.rx.isHidden).addDisposableTo(disposeBag)
+	}
+	
+	func bindViewContent() {
+		viewModel.totalAmountText.drive(totalAmountLabel.rx.text).addDisposableTo(disposeBag)
+		viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
+		viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
+		viewModel.budgetButtonText.drive(budgetBillingEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
+	}
+	
     func bindButtonTaps() {
         questionMarkButton.rx.tap.asDriver()
             .drive(onNext: {
