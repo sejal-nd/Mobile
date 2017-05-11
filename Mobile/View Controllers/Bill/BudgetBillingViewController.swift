@@ -107,9 +107,10 @@ class BudgetBillingViewController: UIViewController {
         amountDescriptionLabel.textColor = .deepGray
         amountDescriptionLabel.text = viewModel.getAmountDescriptionText()
         
-        // TODO: LOAD REAL DATA HERE
         accountNumberLabel.textColor = .blackText
+        accountNumberLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber
         addressLabel.textColor = .middleGray
+        addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
         
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
         enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).addDisposableTo(disposeBag)
