@@ -1293,7 +1293,6 @@
 			isa = PBXGroup;
 			children = (
 				82A18EB01EBA667900BE9F21 /* Controls */,
-				B58B5B571E516A9B0051FD5F /* Configuration */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				82A18EB11EBA667F00BE9F21 /* Listable Views */,
 				82A18EB21EBA668500BE9F21 /* Table View Cells */,
@@ -1639,6 +1638,7 @@
 				B5AC06C61E521B2600BBA4ED /* Assets */,
 				8FD3C2671E525023005FB1BB /* Storyboards */,
 				E8EEF7341E578928006804D4 /* Launch Screens */,
+				B58B5B571E516A9B0051FD5F /* Configuration */,
 				8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */,
 				8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */,
 				8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */,
@@ -1671,8 +1671,7 @@
 				B5AC06781E51763200BBA4ED /* Environment.swift */,
 				B574BAD31E736596001E8A44 /* Macros.swift */,
 			);
-			name = Configuration;
-			path = ../Configuration;
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		B5AC06C61E521B2600BBA4ED /* Assets */ = {
