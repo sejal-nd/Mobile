@@ -148,6 +148,7 @@ class BillViewController: AccountPickerViewController {
         isFetchingWithoutPull.drive(billLoadingIndicator.rx.isAnimating).addDisposableTo(disposeBag)
         
         viewModel.totalAmountText.drive(totalAmountLabel.rx.text).addDisposableTo(disposeBag)
+        
         viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
         viewModel.shouldHidePaperless.drive(paperlessButton.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
@@ -178,7 +179,8 @@ class BillViewController: AccountPickerViewController {
             .addDisposableTo(disposeBag)
         
         paperlessButton.rx.touchUpInside.asDriver()
-            .drive(onNext: {
+            .withLatestFrom(viewModel.currentAccountDetailUnwrapped)
+            .drive(onNext: { accountDetail in
                 if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) {
                     self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: self)
                 } else {
@@ -193,7 +195,7 @@ class BillViewController: AccountPickerViewController {
                 if accountDetail.isBudgetBillEligible {
                     self.performSegue(withIdentifier: "budgetBillingSegue", sender: self)
                 } else {
-                    let alertVC = UIAlertController(title: NSLocalizedString("Budget Billing", comment: ""), message: NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: ""), preferredStyle: .alert)
+                    let alertVC = UIAlertController(title: NSLocalizedString("Ineligible for Budget Billing", comment: ""), message: NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: ""), preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVC, animated: true, completion: nil)
                 }

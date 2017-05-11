@@ -59,49 +59,96 @@ class BillViewModel {
             .map { $0.billingInfo.netDueAmount?.currencyString ?? "--" }
     }()
     
-    lazy var shouldHideBudget: Driver<Bool> = {
-        return self.currentAccountDetailUnwrapped.map {
-            !$0.isBudgetBillEligible && Environment.sharedInstance.opco != .bge
+    lazy var shouldHidePaperless: Driver<Bool> = {
+        return self.currentAccountDetailUnwrapped.map { accountDetail in
+            switch accountDetail.eBillEnrollStatus {
+            case .canEnroll, .canUnenroll: return false
+            case .ineligible, .finaled: return true
+            }
         }
     }()
     
-    lazy var shouldHidePaperless: Driver<Bool> = {
-        return self.currentAccountDetailUnwrapped.map { !$0.isEBillEligible }
+    lazy var shouldHideBudget: Driver<Bool> = {
+        return self.currentAccountDetailUnwrapped.map {
+            !$0.isBudgetBillEligible && !$0.isBudgetBillEnrollment && Environment.sharedInstance.opco != .bge
+        }
     }()
     
     lazy var autoPayButtonText: Driver<NSAttributedString> = {
         return self.currentAccountDetailUnwrapped.map { accountDetail in
             if accountDetail.isAutoPay || accountDetail.isBGEasy {
-                let text = NSLocalizedString("AutoPay\n", comment: "")
-                let enrolledText = accountDetail.isBGEasy ? NSLocalizedString("enrolled in BGEasy", comment: ""): NSLocalizedString("enrolled", comment: "")
-                let mutableText = NSMutableAttributedString(string: text + enrolledText)
-                mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.ofSize(16), range: NSMakeRange(0, text.characters.count))
-                mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: NSMakeRange(0, text.characters.count))
-                mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.ofSize(14), range: NSMakeRange(text.characters.count, enrolledText.characters.count))
-                mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.successGreenText, range: NSMakeRange(text.characters.count, enrolledText.characters.count))
-                return mutableText
+                let text = NSLocalizedString("AutoPay", comment: "")
+                let enrolledText = accountDetail.isBGEasy ?
+                    NSLocalizedString("enrolled in BGEasy", comment: "") :
+                    NSLocalizedString("enrolled", comment: "")
+                
+                return BillViewModel.isEnrolledText(topText: text, bottomText: enrolledText)
             } else {
-                let text = NSLocalizedString("Would you like to enroll in ", comment: "")
-                let autoPayText = NSLocalizedString("AutoPay?", comment: "")
-                let mutableText = NSMutableAttributedString(string: text + autoPayText, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
-                mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.ofSize(16), range: NSMakeRange(0, text.characters.count))
-                mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.ofSize(16), range: NSMakeRange(text.characters.count, autoPayText.characters.count))
-                return mutableText
+                return BillViewModel.canEnrollText(boldText: NSLocalizedString("AutoPay?", comment: ""))
             }
         }
     }()
     
-    lazy var budgetButtonText: Driver<NSAttributedString> = {
+    lazy var paperlessButtonText: Driver<NSAttributedString?> = {
         return self.currentAccountDetailUnwrapped.map { accountDetail in
-            NSAttributedString(string: "enrolled")
+            switch accountDetail.eBillEnrollStatus {
+            case .canEnroll:
+                return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
+            case .canUnenroll:
+                return BillViewModel.isEnrolledText(topText: NSLocalizedString("Paperless eBill", comment: ""),
+                                                    bottomText: NSLocalizedString("enrolled", comment: ""))
+            case .ineligible, .finaled:
+                return nil
+            }
         }
     }()
     
-    lazy var paperlessButtonText: Driver<NSAttributedString> = {
+    lazy var budgetButtonText: Driver<NSAttributedString?> = {
         return self.currentAccountDetailUnwrapped.map { accountDetail in
-            NSAttributedString(string: "enrolled")
+            if accountDetail.isBudgetBillEnrollment {
+                return BillViewModel.isEnrolledText(topText: NSLocalizedString("Budget Billing", comment: ""),
+                                                    bottomText: NSLocalizedString("enrolled", comment: ""))
+            } else {
+                return BillViewModel.canEnrollText(boldText: NSLocalizedString("Budget Billing?", comment: ""))
+            }
         }
     }()
+    
+    private static func isEnrolledText(topText: String, bottomText: String) -> NSAttributedString {
+        let mutableText = NSMutableAttributedString(string: topText + "\n" + bottomText)
+        let topTextRange = NSMakeRange(0, topText.characters.count)
+        let bottomTextRange = NSMakeRange(topText.characters.count + 1, bottomText.characters.count)
+        
+        mutableText.addAttribute(NSFontAttributeName,
+                                 value: OpenSans.bold.ofSize(16),
+                                 range: topTextRange)
+        mutableText.addAttribute(NSForegroundColorAttributeName,
+                                 value: UIColor.blackText,
+                                 range: topTextRange)
+        mutableText.addAttribute(NSFontAttributeName,
+                                 value: OpenSans.regular.ofSize(14),
+                                 range: bottomTextRange)
+        mutableText.addAttribute(NSForegroundColorAttributeName,
+                                 value: UIColor.successGreenText,
+                                 range: bottomTextRange)
+        
+        return mutableText
+    }
+    
+    private static func canEnrollText(boldText: String) -> NSAttributedString {
+        let text = NSLocalizedString("Would you like to enroll in ", comment: "")
+        let mutableText = NSMutableAttributedString(string: text + boldText, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
+        
+        mutableText.addAttribute(NSFontAttributeName,
+                                 value: OpenSans.regular.ofSize(16),
+                                 range: NSMakeRange(0, text.characters.count))
+        
+        mutableText.addAttribute(NSFontAttributeName,
+                                 value: OpenSans.bold.ofSize(16),
+                                 range: NSMakeRange(text.characters.count, boldText.characters.count))
+        
+        return mutableText
+    }
     
 }
 
