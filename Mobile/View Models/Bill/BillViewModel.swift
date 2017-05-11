@@ -10,13 +10,17 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
+enum FetchingAccountState {
+	case refresh, switchAccount
+}
+
 class BillViewModel {
     
     let disposeBag = DisposeBag()
     
     private var accountService: AccountService
 
-    let fetchAccountDetailSubject = PublishSubject<Void>()
+    let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let currentAccountDetail = Variable<AccountDetail?>(nil)
     let isFetchingAccountDetail: Driver<Bool>
     
@@ -26,28 +30,26 @@ class BillViewModel {
         let fetchingAccountDetailTracker = ActivityTracker()
         isFetchingAccountDetail = fetchingAccountDetailTracker.asDriver()
 		
-		let sharedFetchAccountDetail = fetchAccountDetailSubject.share()
+		let sharedFetchAccountDetail = fetchAccountDetail.share()
 		
 		sharedFetchAccountDetail
-			.map { nil }
+			.filter { $0 == .refresh }
+			.map { _ in nil }
 			.bind(to: currentAccountDetail)
 			.addDisposableTo(disposeBag)
 		
         sharedFetchAccountDetail
-            .flatMapLatest {
+            .flatMapLatest { _ in
                 accountService
                     .fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
                     .trackActivity(fetchingAccountDetailTracker)
-                    .do(onError: {
-                        dLog(message: $0.localizedDescription)
-                    })
             }
 			.bind(to: currentAccountDetail)
 			.addDisposableTo(disposeBag)
     }
 	
-    func fetchAccountDetail() {
-        fetchAccountDetailSubject.onNext()
+	func fetchAccountDetail(isRefresh: Bool) {
+		fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)
     }
     
     lazy var currentAccountDetailUnwrapped: Driver<AccountDetail> = {
@@ -59,12 +61,16 @@ class BillViewModel {
 	
 	// MARK: - Should Hide Views
 	
-    lazy var shouldHideAlertBanner: Driver<Bool> = {
-        return self.currentAccountDetail.asDriver()
+	lazy var shouldShowLoadingState: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver().map { $0 == nil }
+	}()
+	
+	lazy var shouldHideAlertBanner: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver()
 			.map {
 				guard let accountDetail = $0 else { return true }
 				// TODO: Implement logic for this
-				return false
+				return true
 		}
 	}()
 	

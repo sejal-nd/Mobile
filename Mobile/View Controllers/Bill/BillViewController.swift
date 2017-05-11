@@ -14,6 +14,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
+	@IBOutlet weak var bottomStackView: UIStackView!
     
     @IBOutlet weak var alertBannerView: UIView!
     @IBOutlet weak var alertBannerIconView: UIView!
@@ -25,11 +26,15 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
     @IBOutlet weak var questionMarkButton: UIButton!
     
-    @IBOutlet weak var paymentStackView: UIStackView!
+	@IBOutlet weak var paymentDetailsView: UIView!
+	@IBOutlet weak var paymentStackView: UIStackView!
     @IBOutlet weak var youAreEntitledLabel: UILabel!
     @IBOutlet weak var needHelpUnderstandingButton: ButtonControl!
-    @IBOutlet weak var viewBillButton: ButtonControl!
-    
+	@IBOutlet weak var viewBillButton: ButtonControl!
+	
+	@IBOutlet weak var loadingIndicatorView: UIView!
+	@IBOutlet weak var billLoadingIndicator: LoadingIndicator!
+	
     @IBOutlet weak var makeAPaymentButton: PrimaryButton!
     @IBOutlet weak var makeAPaymentStatusLabel: UILabel!
     
@@ -38,15 +43,15 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var budgetButton: ButtonControl!
     @IBOutlet weak var autoPayEnrollmentLabel: UILabel!
     @IBOutlet weak var paperlessEnrollmentLabel: UILabel!
-    @IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
-    @IBOutlet weak var billLoadingIndicator: LoadingIndicator!
+	@IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl? {
         didSet {
             refreshDisposable?.dispose()
             refreshDisposable = refreshControl?.rx.controlEvent(.valueChanged).asObservable()
-				.bind(to: viewModel.fetchAccountDetailSubject)
+				.map { FetchingAccountState.refresh }
+				.bind(to: viewModel.fetchAccountDetail)
         }
     }
     
@@ -66,9 +71,9 @@ class BillViewController: AccountPickerViewController {
         
         accountPickerViewControllerWillAppear.subscribe(onNext: {
             if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-                self.viewModel.fetchAccountDetail()
+                self.viewModel.fetchAccountDetail(isRefresh: false)
             } else if self.viewModel.currentAccountDetail.value == nil {
-                self.viewModel.fetchAccountDetail()
+                self.viewModel.fetchAccountDetail(isRefresh: false)
             }
         }).addDisposableTo(disposeBag)
         
@@ -97,7 +102,8 @@ class BillViewController: AccountPickerViewController {
         contentView.backgroundColor = .primaryColor
         
         scrollView.rx.contentOffset.asDriver()
-            .map { $0.y <= 0 ? UIColor.primaryColor: UIColor.white }
+            .map { $0.y < 0 ? UIColor.primaryColor: UIColor.white }
+			.distinctUntilChanged()
             .drive(onNext: { self.scrollView.backgroundColor = $0 })
             .addDisposableTo(disposeBag)
         
@@ -134,13 +140,6 @@ class BillViewController: AccountPickerViewController {
 	func bindLoadingIndicators() {
 		viewModel.isFetchingAccountDetail
 			.filter(!)
-			.drive(onNext: { _ in
-				self.alertLottieAnimation.play()
-			})
-			.addDisposableTo(disposeBag)
-		
-		viewModel.isFetchingAccountDetail
-			.filter(!)
 			.drive(rx.isRefreshing)
 			.addDisposableTo(disposeBag)
 		
@@ -150,11 +149,17 @@ class BillViewController: AccountPickerViewController {
 		
 		isFetchingWithoutPull.map(!).drive(rx.isPullToRefreshEnabled).addDisposableTo(disposeBag)
 		isFetchingWithoutPull.drive(billLoadingIndicator.rx.isAnimating).addDisposableTo(disposeBag)
-		
 	}
 	
 	func bindViewHiding() {
 		viewModel.shouldHideAlertBanner.drive(alertBannerView.rx.isHidden).addDisposableTo(disposeBag)
+		
+		// Loading State
+		viewModel.shouldShowLoadingState.map(!).drive(loadingIndicatorView.rx.isHidden).addDisposableTo(disposeBag)
+		viewModel.shouldShowLoadingState.drive(totalAmountView.rx.isHidden).addDisposableTo(disposeBag)
+		viewModel.shouldShowLoadingState.drive(paymentDetailsView.rx.isHidden).addDisposableTo(disposeBag)
+		viewModel.shouldShowLoadingState.drive(bottomStackView.rx.isHidden).addDisposableTo(disposeBag)
+		
 		
 		viewModel.shouldHideAutoPay.drive(autoPayButton.rx.isHidden).addDisposableTo(disposeBag)
 		viewModel.shouldHidePaperless.drive(paperlessButton.rx.isHidden).addDisposableTo(disposeBag)
@@ -162,6 +167,13 @@ class BillViewController: AccountPickerViewController {
 	}
 	
 	func bindViewContent() {
+		viewModel.shouldHideAlertBanner
+			.filter { $0 }
+			.drive(onNext: { _ in
+				self.alertLottieAnimation.play()
+			})
+			.addDisposableTo(disposeBag)
+		
 		viewModel.totalAmountText.drive(totalAmountLabel.rx.text).addDisposableTo(disposeBag)
 		
 		viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
@@ -238,7 +250,7 @@ class BillViewController: AccountPickerViewController {
 extension BillViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        viewModel.fetchAccountDetail()
+        viewModel.fetchAccountDetail(isRefresh: false)
     }
     
 }
@@ -246,19 +258,19 @@ extension BillViewController: AccountPickerDelegate {
 extension BillViewController: BudgetBillingViewControllerDelegate {
     
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController) {
-        viewModel.fetchAccountDetail()
+        viewModel.fetchAccountDetail(isRefresh: false)
         showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
     }
     
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
-        viewModel.fetchAccountDetail()
+        viewModel.fetchAccountDetail(isRefresh: false)
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
     }
 }
 
 extension BillViewController: PaperlessEBillViewControllerDelegate {
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
-        viewModel.fetchAccountDetail()
+        viewModel.fetchAccountDetail(isRefresh: false)
         var toastMessage: String
         switch didChangeStatus {
         case .Enroll:
