@@ -11,6 +11,7 @@ import RxCocoa
 
 class PaperlessEBillViewModel {
     private var accountService: AccountService
+    private var billService: BillService
     
     let initialAccountDetail: Variable<AccountDetail>
     let accounts: Variable<[Account]>
@@ -24,8 +25,9 @@ class PaperlessEBillViewModel {
     
     let bag = DisposeBag()
     
-    init(accountService: AccountService, initialAccountDetail initialAccountDetailValue: AccountDetail) {
+    init(accountService: AccountService, billService: BillService, initialAccountDetail initialAccountDetailValue: AccountDetail) {
         self.accountService = accountService
+        self.billService = billService
         self.initialAccountDetail = Variable(initialAccountDetailValue)
         
         switch Environment.sharedInstance.opco {
@@ -78,6 +80,43 @@ class PaperlessEBillViewModel {
             }
             .shareReplay(1)
     }()
+    
+    func submitChanges(onSuccess: @escaping (PaperlessEBillChangedStatus) -> Void, onError: @escaping (String) -> Void) {
+        var requestObservables = [Observable<Void>]()
+        var enrolled = false, unenrolled = false
+        for account in accountsToEnroll.value {
+            enrolled = true
+            if let email = initialAccountDetail.value.customerInfo.emailAddress {
+                requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: email))
+            } else {
+                onError(NSLocalizedString("TODO: AccountDetail customer info has no email address", comment: ""))
+                return
+            }
+        }
+        for account in accountsToUnenroll.value {
+            unenrolled = true
+            requestObservables.append(billService.unenrollPaperlessBilling(accountNumber: account))
+        }
+        
+        var changedStatus: PaperlessEBillChangedStatus
+        if enrolled && unenrolled {
+            changedStatus = PaperlessEBillChangedStatus.Mixed
+        } else if enrolled {
+            changedStatus = PaperlessEBillChangedStatus.Enroll
+        } else { // User cannot submit without enrolling/unenrolling at least 1 account, so it's safe to make this a generic 'else'
+            changedStatus = PaperlessEBillChangedStatus.Unenroll
+        }
+        
+        Observable.from(requestObservables)
+            .merge(maxConcurrent: 3)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                onSuccess(changedStatus)
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .addDisposableTo(bag)
+    }
     
     var footerText: String? {
         switch Environment.sharedInstance.opco {

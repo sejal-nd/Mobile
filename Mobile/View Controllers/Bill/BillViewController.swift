@@ -248,31 +248,19 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
 }
 
 extension BillViewController: PaperlessEBillViewControllerDelegate {
-    
-    func paperlessEBillViewControllerDidEnroll(_ paperlessEBillViewController: PaperlessEBillViewController) {
-        let message: String
-        switch Environment.sharedInstance.opco {
-        case .bge:
-            message = NSLocalizedString("Enrolled in Paperless eBill.", comment: "")
-        case .peco, .comEd:
-            message = NSLocalizedString("Paperless eBill changes saved.", comment: "")
+        
+    func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
+        getAccountDetails()
+        var toastMessage: String
+        switch didChangeStatus {
+        case .Enroll:
+            toastMessage = NSLocalizedString("Enrolled in Paperless eBill", comment: "")
+        case .Unenroll:
+            toastMessage = NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
+        case .Mixed:
+            toastMessage = NSLocalizedString("Paperless eBill changes saved", comment: "")
         }
-        showDelayedToast(withMessage: message)
-    }
-    
-    func paperlessEBillViewControllerDidUnenroll(_ paperlessEBillViewController: PaperlessEBillViewController) {
-        let message: String
-        switch Environment.sharedInstance.opco {
-        case .bge:
-            message = NSLocalizedString("Unenrolled from Paperless eBill.", comment: "")
-        case .peco, .comEd:
-            message = NSLocalizedString("Paperless eBill changes saved.", comment: "")
-        }
-        showDelayedToast(withMessage: message)
-    }
-    
-    func paperlessEBillViewControllerDidChangeStatus(_ paperlessEBillViewController: PaperlessEBillViewController) {
-        showDelayedToast(withMessage: NSLocalizedString("Paperless eBill changes saved.", comment: ""))
+        showDelayedToast(withMessage: toastMessage)
     }
 }
 
