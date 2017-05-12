@@ -14,7 +14,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
-	@IBOutlet weak var bottomStackView: UIStackView!
+	@IBOutlet weak var bottomStackContainerView: UIView!
     
     @IBOutlet weak var alertBannerView: UIView!
     @IBOutlet weak var alertBannerIconView: UIView!
@@ -93,7 +93,6 @@ class BillViewController: AccountPickerViewController {
         alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: alertAnimationView.frame.size.width, height: alertAnimationView.frame.size.height)
         alertLottieAnimation.contentMode = .scaleAspectFill
         alertAnimationView.addSubview(alertLottieAnimation)
-        alertLottieAnimation.play()
     }
     
     func styleViews() {
@@ -132,34 +131,25 @@ class BillViewController: AccountPickerViewController {
     }
     
     func bindViews() {
-		bindLoadingIndicators()
+		bindLoadingStates()
 		bindViewHiding()
 		bindViewContent()
     }
 	
-	func bindLoadingIndicators() {
-		viewModel.isFetchingAccountDetail
-			.filter(!)
-			.drive(rx.isRefreshing)
-			.addDisposableTo(disposeBag)
-		
-		let isFetchingWithoutPull = viewModel.isFetchingAccountDetail.asDriver()
-			.filter { !$0 || ($0 && !(self.refreshControl?.isRefreshing ?? false)) }
-			.distinctUntilChanged()
-		
-		isFetchingWithoutPull.map(!).drive(rx.isPullToRefreshEnabled).addDisposableTo(disposeBag)
-		isFetchingWithoutPull.drive(billLoadingIndicator.rx.isAnimating).addDisposableTo(disposeBag)
+	func bindLoadingStates() {
+		viewModel.isFetchingAccountDetail.filter(!).drive(rx.isRefreshing).addDisposableTo(disposeBag)
+        
+		viewModel.isFetchingDifferentAccount.map(!).drive(rx.isPullToRefreshEnabled).addDisposableTo(disposeBag)
+        viewModel.isFetchingDifferentAccount.drive(billLoadingIndicator.rx.isAnimating).addDisposableTo(disposeBag)
+        
+        viewModel.isFetchingDifferentAccount.map(!).drive(loadingIndicatorView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetchingDifferentAccount.drive(totalAmountView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetchingDifferentAccount.drive(paymentDetailsView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetchingDifferentAccount.drive(bottomStackContainerView.rx.isHidden).addDisposableTo(disposeBag)
 	}
 	
 	func bindViewHiding() {
 		viewModel.shouldHideAlertBanner.drive(alertBannerView.rx.isHidden).addDisposableTo(disposeBag)
-		
-		// Loading State
-		viewModel.shouldShowLoadingState.map(!).drive(loadingIndicatorView.rx.isHidden).addDisposableTo(disposeBag)
-		viewModel.shouldShowLoadingState.drive(totalAmountView.rx.isHidden).addDisposableTo(disposeBag)
-		viewModel.shouldShowLoadingState.drive(paymentDetailsView.rx.isHidden).addDisposableTo(disposeBag)
-		viewModel.shouldShowLoadingState.drive(bottomStackView.rx.isHidden).addDisposableTo(disposeBag)
-		
 		
 		viewModel.shouldHideAutoPay.drive(autoPayButton.rx.isHidden).addDisposableTo(disposeBag)
 		viewModel.shouldHidePaperless.drive(paperlessButton.rx.isHidden).addDisposableTo(disposeBag)

@@ -33,7 +33,7 @@ class BillViewModel {
 		let sharedFetchAccountDetail = fetchAccountDetail.share()
 		
 		sharedFetchAccountDetail
-			.filter { $0 == .refresh }
+			.filter { $0 != .refresh }
 			.map { _ in nil }
 			.bind(to: currentAccountDetail)
 			.addDisposableTo(disposeBag)
@@ -61,7 +61,7 @@ class BillViewModel {
 	
 	// MARK: - Should Hide Views
 	
-	lazy var shouldShowLoadingState: Driver<Bool> = {
+	lazy var isFetchingDifferentAccount: Driver<Bool> = {
 		return self.currentAccountDetail.asDriver().map { $0 == nil }
 	}()
 	
