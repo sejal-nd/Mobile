@@ -59,20 +59,13 @@ class BillViewModel {
 	}()
 	
 	
-	// MARK: - Show/Hide Views
+	// MARK: - Show/Hide Views -
 	
 	lazy var isFetchingDifferentAccount: Driver<Bool> = {
 		return self.currentAccountDetail.asDriver().map { $0 == nil }
 	}()
     
-    lazy var totalAmountDescriptionText: Driver<String?> = {
-        return self.currentAccountDetail.asDriver().map {
-            let localizedText = NSLocalizedString("Total Amount Due By %@", comment: "")
-            return String(format: localizedText, $0?.billingInfo.dueByDate?.mmDdYyyyString ?? "--")
-        }
-    }()
-    
-    let shouldHideAmountDueTooltip = Driver<Bool>.just(Environment.sharedInstance.opco != .peco)
+    let shouldHideAmountDueTooltip = Environment.sharedInstance.opco != .peco
 	
 	lazy var shouldHideNeedHelpUnderstanding: Driver<Bool> = {
 		return self.currentAccountDetail.asDriver()
@@ -116,8 +109,23 @@ class BillViewModel {
 		}
 	}()
 	
+	lazy var shouldShowRestoreService: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver().map {
+			return $0?.billingInfo.restorationAmount ?? 0 > 0
+		}
+	}()
 	
-	// MARK: - View Content
+	lazy var shouldShowCatchUpAmount: Driver<Bool> = {
+		let showCatchup = self.currentAccountDetail.asDriver().map {
+			return $0?.billingInfo.amtDpaReinst ?? 0 > 0
+		}
+		return Driver.zip(self.shouldShowRestoreService, showCatchup) { !$0 && $1 }
+	}()
+	
+	
+	
+	
+	// MARK: - View Content -
 	
 	lazy var totalAmountText: Driver<String?> = {
 		return self.currentAccountDetail.asDriver()
@@ -125,8 +133,15 @@ class BillViewModel {
 				guard let accountDetail = $0 else { return nil }
 				return accountDetail.billingInfo.netDueAmount?.currencyString ?? "--"
 		}
-    }()
-    
+	}()
+	
+	lazy var totalAmountDescriptionText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			let localizedText = NSLocalizedString("Total Amount Due By %@", comment: "")
+			return String(format: localizedText, $0?.billingInfo.dueByDate?.mmDdYyyyString ?? "--")
+		}
+	}()
+	
     lazy var pendingPayments: Driver<[String]> = {
         return self.currentAccountDetail.asDriver()
             .map {
@@ -136,7 +151,7 @@ class BillViewModel {
     }()
     
     
-    //MARK: - Banner Alert Text
+    //MARK: Banner Alert Text
     
     lazy var alertBannerText: Driver<String?> = {
         return Driver.combineLatest(self.restoreServiceAlertText, self.avoidShutoffDueDateAlertText, self.paymentFailedAlertText) {
@@ -184,10 +199,10 @@ class BillViewModel {
     
     lazy var catchUpDisclaimerText: Driver<String?> = {
         return self.currentAccountDetail.asDriver().map {
-            guard let accountDetail = $0, Environment.sharedInstance.opco == .comEd
+            guard let billingInfo = $0?.billingInfo
                 else { return nil }
             let localizedText = NSLocalizedString("You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
-            return String(format: localizedText, accountDetail.billingInfo.atReinstateFee?.currencyString ?? "--")
+            return String(format: localizedText, billingInfo.atReinstateFee?.currencyString ?? "--")
         }
     }()
     
@@ -247,6 +262,10 @@ class BillViewModel {
 		return self.currentAccountDetail.asDriver()
 			.map {
 				guard let accountDetail = $0 else { return nil }
+				if accountDetail.isEBillEnrollment {
+					return BillViewModel.isEnrolledText(topText: NSLocalizedString("Paperless eBill", comment: ""),
+					                                    bottomText: NSLocalizedString("enrolled", comment: ""))
+				}
 				switch accountDetail.eBillEnrollStatus {
 				case .canEnroll:
 					return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))

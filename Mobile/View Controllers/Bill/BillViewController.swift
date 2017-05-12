@@ -30,7 +30,8 @@ class BillViewController: AccountPickerViewController {
     
 	@IBOutlet weak var paymentDetailsView: UIView!
 	@IBOutlet weak var paymentStackView: UIStackView!
-    @IBOutlet weak var youAreEntitledLabel: UILabel!
+	@IBOutlet weak var youAreEntitledLabel: UILabel!
+	@IBOutlet weak var catchUpDisclaimerView: UIView!
     @IBOutlet weak var needHelpUnderstandingButton: ButtonControl!
 	@IBOutlet weak var viewBillButton: ButtonControl!
 	
@@ -138,10 +139,9 @@ class BillViewController: AccountPickerViewController {
     }
 	
 	func bindLoadingStates() {
-        
         topLoadingIndicatorView.isHidden = true
 		viewModel.isFetchingAccountDetail.filter(!).drive(rx.isRefreshing).addDisposableTo(disposeBag)
-        
+		
 		viewModel.isFetchingDifferentAccount.map(!).drive(rx.isPullToRefreshEnabled).addDisposableTo(disposeBag)
         viewModel.isFetchingDifferentAccount.drive(billLoadingIndicator.rx.isAnimating).addDisposableTo(disposeBag)
         
@@ -153,10 +153,10 @@ class BillViewController: AccountPickerViewController {
 	
 	func bindViewHiding() {
         viewModel.alertBannerText.map { $0 == nil }.drive(alertBannerView.rx.isHidden).addDisposableTo(disposeBag)
+		
+		questionMarkButton.isHidden = viewModel.shouldHideAmountDueTooltip
         
-        viewModel.shouldHideAmountDueTooltip.drive(questionMarkButton.rx.isHidden).addDisposableTo(disposeBag)
-        
-        viewModel.catchUpDisclaimerText.map { $0 == nil }.drive(youAreEntitledLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowCatchUpAmount.map(!).drive(catchUpDisclaimerView.rx.isHidden).addDisposableTo(disposeBag)
         
         viewModel.paymentStatusText.map { $0 == nil }.drive(makeAPaymentStatusLabel.rx.isHidden).addDisposableTo(disposeBag)
 		
@@ -166,9 +166,7 @@ class BillViewController: AccountPickerViewController {
 	}
 	
 	func bindViewContent() {
-		viewModel.alertBannerText
-            .map { $0 == nil }
-			.filter { $0 }
+		viewModel.alertBannerText.filter { $0 != nil }
 			.drive(onNext: { _ in
 				self.alertLottieAnimation.play()
 			})
