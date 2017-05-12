@@ -85,7 +85,7 @@ class AccountPicker: UIView {
         let allAccounts: [Account]! = AccountsStore.sharedInstance.accounts
         var pagedAccounts: [Account]! = allAccounts
 
-        if allAccounts.count > 1 && allAccounts.count < MAX_ACCOUNTS {
+        if allAccounts.count > 1 && allAccounts.count <= MAX_ACCOUNTS {
             pageControl.numberOfPages = allAccounts.count
             pageControl.currentPage = 0
         } else {
@@ -96,7 +96,7 @@ class AccountPicker: UIView {
         let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
 
         pageViews.removeAll()
-        if allAccounts.count < MAX_ACCOUNTS {
+        if allAccounts.count <= MAX_ACCOUNTS {
             for account in pagedAccounts {
                 let pageView = UIView(frame: .zero)
                 pageViews.append(pageView)
