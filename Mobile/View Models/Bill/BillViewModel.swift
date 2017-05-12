@@ -195,17 +195,137 @@ class BillViewModel {
             let localizedText = NSLocalizedString("Your payment of %@ made with $@ failed processing. Please select an alternative payment account", comment: "")
             return nil
         }
-    }()
-    
-    lazy var catchUpDisclaimerText: Driver<String?> = {
-        return self.currentAccountDetail.asDriver().map {
-            guard let billingInfo = $0?.billingInfo
-                else { return nil }
-            let localizedText = NSLocalizedString("You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
-            return String(format: localizedText, billingInfo.atReinstateFee?.currencyString ?? "--")
-        }
-    }()
-    
+	}()
+	
+	// Restore Service
+	lazy var restoreServiceAmountText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			$0?.billingInfo.restorationAmount?.currencyString ?? "--"
+		}
+	}()
+	
+	// Catch Up
+	lazy var catchUpAmountText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			return $0?.billingInfo.amtDpaReinst?.currencyString ?? "--"
+		}
+	}()
+	
+	lazy var catchUpDateText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			return $0?.billingInfo.dueByDate?.mmDdYyyyString ?? ""
+		}
+	}()
+	
+	lazy var catchUpDisclaimerText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			guard let billingInfo = $0?.billingInfo else { return nil }
+			let localizedText = NSLocalizedString("You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
+			return String(format: localizedText, billingInfo.atReinstateFee?.currencyString ?? "--")
+		}
+	}()
+	
+	// Avoid Shutoff
+	var avoidShutoffText: String {
+		switch Environment.sharedInstance.opco {
+		case .bge:
+			return NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
+		case .comEd, .peco:
+			return NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")
+		}
+	}
+	
+	lazy var avoidShutoffAmountText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			$0?.billingInfo.restorationAmount?.currencyString ?? "--"
+		}
+	}()
+	
+	// Past Due
+	lazy var pastDueAmountText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			$0?.billingInfo.pastDueRemaining?.currencyString ?? "--"
+		}
+	}()
+	
+	// Remaining Balance Due
+	var remainingBalanceDueText: String {
+		switch Environment.sharedInstance.opco {
+		case .bge:
+			return NSLocalizedString("Amount Remaining Due", comment: "")
+		case .comEd, .peco:
+			return NSLocalizedString("Remaining Balance Due", comment: "")
+		}
+	}
+	
+	lazy var remainingBalanceDueAmountText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			$0?.billingInfo.remainingBalanceDue?.currencyString ?? "--"
+		}
+	}()
+	
+	lazy var remainingBalanceDueDateText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			guard let dateString = $0?.billingInfo.dueByDate?.mmDdYyyyString else { return nil }
+			let localizedText = NSLocalizedString("Due by %@", comment: "")
+			return String(format: localizedText, dateString)
+		}
+	}()
+	
+	// Remaining Balance Past Due
+	var remainingBalancePastDueText: String {
+		switch Environment.sharedInstance.opco {
+		case .bge:
+			return NSLocalizedString("Amount Remaining Past Due", comment: "")
+		case .comEd, .peco:
+			return NSLocalizedString("Remaining Past Balance Due ", comment: "")
+		}
+	}
+	
+	lazy var remainingBalancePastDueAmountText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			$0?.billingInfo.pastDueRemaining?.currencyString ?? "--"
+		}
+	}()
+	
+	// Bill Issued
+	lazy var billIssuedAmountText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map { _ in
+			//TODO: Implement this
+			nil
+		}
+	}()
+	lazy var billIssuedDateText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map { _ in
+			//TODO: Implement this
+			nil
+		}
+	}()
+	
+	// Payment Received
+	lazy var paymentReceivedAmountText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			$0?.billingInfo.lastPaymentAmount?.currencyString ?? "--"
+		}
+	}()
+	
+	lazy var paymentReceivedDateText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			guard let dateString = $0?.billingInfo.lastPaymentDate?.mmDdYyyyString else { return nil }
+			let localizedText = NSLocalizedString("Payment Date %@", comment: "")
+			return String(format: localizedText, dateString)
+		}
+	}()
+	
+	// Credit
+	lazy var creditAmountText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map { _ in
+			nil
+		}
+	}()
+	
+	
+	
     lazy var paymentStatusText: Driver<String?> = {
         return self.currentAccountDetail.asDriver()
             .map {
