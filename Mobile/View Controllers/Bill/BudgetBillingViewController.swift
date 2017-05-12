@@ -92,7 +92,6 @@ class BudgetBillingViewController: UIViewController {
         
         whatIsBudgetBillingButtonView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         whatIsBudgetBillingButtonView.layer.cornerRadius = 2
-        whatIsBudgetBillingButtonView.layer.masksToBounds = false
         
         whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")

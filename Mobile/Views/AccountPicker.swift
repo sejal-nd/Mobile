@@ -97,122 +97,90 @@ class AccountPicker: UIView {
         currentAccount = allAccounts[0]
         var pagedAccounts: [Account]! = allAccounts
 
-        if allAccounts.count > 1 && allAccounts.count < MAX_ACCOUNTS {
+        if allAccounts.count > 1 && allAccounts.count <= MAX_ACCOUNTS {
             pageControl.numberOfPages = allAccounts.count
             pageControl.currentPage = 0
         } else {
             pagedAccounts = Array(allAccounts.prefix(MAX_ACCOUNTS))
             pageControl.isHidden = true
         }
-        
-        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
 
         pageViews.removeAll()
-        if allAccounts.count < MAX_ACCOUNTS {
+        if allAccounts.count <= MAX_ACCOUNTS {
             for account in pagedAccounts {
-                let pageView = UIView(frame: .zero)
-                pageViews.append(pageView)
-                
-                let icon: UIImage
-                switch (commercialUser, tintWhite) {
-                case (true, true):
-                    icon = #imageLiteral(resourceName: "ic_commercial_white")
-                case (true, false):
-                    icon = #imageLiteral(resourceName: "ic_commercial")
-                case (false, true):
-                    icon = #imageLiteral(resourceName: "ic_residential_white")
-                case (false, false):
-                    icon = #imageLiteral(resourceName: "ic_residential")
-                }
-                
-                let iconImageView = UIImageView(image: icon)
-                iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
-                
-                let accountNumberLabel = UILabel(frame: .zero)
-                accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-                accountNumberLabel.font = UIFont.systemFont(ofSize: 17)
-                accountNumberLabel.textColor = tintWhite ? .white: .blackText
-                accountNumberLabel.text = account.accountNumber
-                
-                let addressLabel = UILabel(frame: .zero)
-                addressLabel.translatesAutoresizingMaskIntoConstraints = false
-                addressLabel.font = UIFont.systemFont(ofSize: 12)
-                addressLabel.textColor = tintWhite ? .white: .deepGray
-                addressLabel.text = account.address
-                
-                let accountView = UIView(frame: .zero)
-                accountView.translatesAutoresizingMaskIntoConstraints = false
-                accountView.addSubview(iconImageView)
-                accountView.addSubview(accountNumberLabel)
-                accountView.addSubview(addressLabel)
-                
-                pageView.addSubview(accountView)
-                scrollView.addSubview(pageView)
-                
-                self.addConstraints([
-                    // accountNumberLabel
-                    NSLayoutConstraint(item: accountNumberLabel, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 11),
-                    NSLayoutConstraint(item: accountNumberLabel, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
-                    NSLayoutConstraint(item: accountNumberLabel, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
-                    NSLayoutConstraint(item: accountNumberLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
-                    
-                    // addressLabel
-                    NSLayoutConstraint(item: addressLabel, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 32),
-                    NSLayoutConstraint(item: addressLabel, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
-                    NSLayoutConstraint(item: addressLabel, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
-                    NSLayoutConstraint(item: addressLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 14),
-                    // TODO: REMOVE THIS CONSTRAINT TO NOT LIMIT ADDRESS LENGTH:
-                    NSLayoutConstraint(item: addressLabel, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 150),
-                    
-                    // accountView
-                    NSLayoutConstraint(item: accountView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 57),
-                    NSLayoutConstraint(item: accountView, attribute: .centerX, relatedBy: .equal, toItem: pageView, attribute: .centerX, multiplier: 1, constant: 0),
-                    NSLayoutConstraint(item: accountView, attribute: .centerY, relatedBy: .equal, toItem: pageView, attribute: .centerY, multiplier: 1, constant: 0)
-                ])
-                
+                addAccountToScrollView(account)
             }
-        } else {
-            let pageView = UIView(frame: .zero)
-            pageView.backgroundColor = .clear
-            pageViews.append(pageView)
+        } else { // Advanced Account Picker
+            addAccountToScrollView(pagedAccounts[0], advancedPicker: true)
+        }
+
+        setNeedsLayout()
+    }
+    
+    private func addAccountToScrollView(_ account: Account, advancedPicker: Bool = false) {
+        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
+        
+        let pageView = UIView(frame: .zero)
+        pageViews.append(pageView)
+        
+        let icon: UIImage
+        switch (commercialUser, tintWhite) {
+        case (true, true):
+            icon = #imageLiteral(resourceName: "ic_commercial_white")
+        case (true, false):
+            icon = #imageLiteral(resourceName: "ic_commercial")
+        case (false, true):
+            icon = #imageLiteral(resourceName: "ic_residential_white")
+        case (false, false):
+            icon = #imageLiteral(resourceName: "ic_residential")
+        }
+        
+        let iconImageView = UIImageView(image: icon)
+        iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
+        
+        let accountNumberLabel = UILabel(frame: .zero)
+        accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        accountNumberLabel.font = UIFont.systemFont(ofSize: 17)
+        accountNumberLabel.textColor = tintWhite ? .white: .blackText
+        accountNumberLabel.text = account.accountNumber
+        
+        let addressLabel = UILabel(frame: .zero)
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        addressLabel.font = UIFont.systemFont(ofSize: 12)
+        addressLabel.textColor = tintWhite ? .white: .deepGray
+        addressLabel.text = account.address ?? NSLocalizedString("Address Unavailable", comment: "")
+        
+        let accountView = UIView(frame: .zero)
+        accountView.translatesAutoresizingMaskIntoConstraints = false
+        accountView.addSubview(iconImageView)
+        accountView.addSubview(accountNumberLabel)
+        accountView.addSubview(addressLabel)
+        
+        pageView.addSubview(accountView)
+        scrollView.addSubview(pageView)
+        
+        self.addConstraints([
+            // accountNumberLabel
+            NSLayoutConstraint(item: accountNumberLabel, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 11),
+            NSLayoutConstraint(item: accountNumberLabel, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
+            NSLayoutConstraint(item: accountNumberLabel, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: accountNumberLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
             
-            let icon: UIImage
-            switch (commercialUser, tintWhite) {
-            case (true, true):
-                icon = #imageLiteral(resourceName: "ic_commercial_white")
-            case (true, false):
-                icon = #imageLiteral(resourceName: "ic_commercial")
-            case (false, true):
-                icon = #imageLiteral(resourceName: "ic_residential_white")
-            case (false, false):
-                icon = #imageLiteral(resourceName: "ic_residential")
-            }
+            // addressLabel
+            NSLayoutConstraint(item: addressLabel, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 32),
+            NSLayoutConstraint(item: addressLabel, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
+            NSLayoutConstraint(item: addressLabel, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: addressLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 14),
+            // REMOVE THIS CONSTRAINT TO NOT LIMIT ADDRESS LENGTH:
+            NSLayoutConstraint(item: addressLabel, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 150),
             
-            let iconImageView = UIImageView(image: icon)
-            iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
-            
-            advancedAccountNumberLabel = UILabel(frame: .zero)
-            advancedAccountNumberLabel!.translatesAutoresizingMaskIntoConstraints = false
-            advancedAccountNumberLabel!.font = UIFont.systemFont(ofSize: 17)
-            advancedAccountNumberLabel!.textColor = tintWhite ? .white: .blackText
-            advancedAccountNumberLabel!.text = pagedAccounts[0].accountNumber
-            
-            advancedAccountAddressLabel = UILabel(frame: .zero)
-            advancedAccountAddressLabel!.translatesAutoresizingMaskIntoConstraints = false
-            advancedAccountAddressLabel!.font = UIFont.systemFont(ofSize: 12)
-            advancedAccountAddressLabel!.textColor = tintWhite ? .white: .deepGray
-            advancedAccountAddressLabel!.text = pagedAccounts[0].address
-            
-            let accountView = UIView(frame: .zero)
-            accountView.backgroundColor = .clear
-            accountView.translatesAutoresizingMaskIntoConstraints = false
-            accountView.addSubview(iconImageView)
-            accountView.addSubview(advancedAccountNumberLabel!)
-            accountView.addSubview(advancedAccountAddressLabel!)
-            
-            pageView.addSubview(accountView)
-            scrollView.addSubview(pageView)
-            
+            // accountView
+            NSLayoutConstraint(item: accountView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 57),
+            NSLayoutConstraint(item: accountView, attribute: .centerX, relatedBy: .equal, toItem: pageView, attribute: .centerX, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: accountView, attribute: .centerY, relatedBy: .equal, toItem: pageView, attribute: .centerY, multiplier: 1, constant: 0)
+        ])
+        
+        if advancedPicker { // Makes area tappable and adds caret icon
             advancedAccountButton = UIButton(frame: scrollView.frame)
             advancedAccountButton!.addTarget(self, action: #selector(onAdvancedAccountButtonPress), for: .touchUpInside)
             addSubview(advancedAccountButton!)
@@ -224,35 +192,12 @@ class AccountPicker: UIView {
             pageView.addSubview(caretImageView)
             
             self.addConstraints([
-                // caret
                 NSLayoutConstraint(item: caretImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 8),
                 NSLayoutConstraint(item: caretImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 13),
                 NSLayoutConstraint(item: caretImageView, attribute: .trailing, relatedBy: .equal, toItem: pageView, attribute: .trailing, multiplier: 1, constant: -18),
-                NSLayoutConstraint(item: caretImageView, attribute: .centerY, relatedBy: .equal, toItem: pageView, attribute: .centerY, multiplier: 1, constant: 0),
-                
-                // accountNumberLabel
-                NSLayoutConstraint(item: advancedAccountNumberLabel!, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 11),
-                NSLayoutConstraint(item: advancedAccountNumberLabel!, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
-                NSLayoutConstraint(item: advancedAccountNumberLabel!, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: advancedAccountNumberLabel!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
-                
-                // addressLabel
-                NSLayoutConstraint(item: advancedAccountAddressLabel!, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 32),
-                NSLayoutConstraint(item: advancedAccountAddressLabel!, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
-                NSLayoutConstraint(item: advancedAccountAddressLabel!, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: advancedAccountAddressLabel!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 14),
-                // TODO: REMOVE THIS CONSTRAINT TO NOT LIMIT ADDRESS LENGTH:
-                NSLayoutConstraint(item: advancedAccountAddressLabel!, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 150),
-                
-                // accountView
-                NSLayoutConstraint(item: accountView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 57),
-                NSLayoutConstraint(item: accountView, attribute: .centerX, relatedBy: .equal, toItem: pageView, attribute: .centerX, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: accountView, attribute: .centerY, relatedBy: .equal, toItem: pageView, attribute: .centerY, multiplier: 1, constant: 0)
+                NSLayoutConstraint(item: caretImageView, attribute: .centerY, relatedBy: .equal, toItem: pageView, attribute: .centerY, multiplier: 1, constant: 0)
             ])
-
         }
-
-        setNeedsLayout()
     }
     
     func onAdvancedAccountButtonPress() {

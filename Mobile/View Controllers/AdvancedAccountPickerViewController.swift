@@ -33,6 +33,7 @@ class AdvancedAccountPickerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+		setNeedsStatusBarAppearanceUpdate()
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setWhiteNavBar()
         }
@@ -92,7 +93,7 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
         
         cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
         cell.accountNumber.text = account.accountNumber
-        cell.addressLabel.text = account.address
+        cell.addressLabel.text = account.address ?? NSLocalizedString("Address Unavailable", comment: "")
 
         if account.isLinked {
             cell.accountStatusLabel.text = "Linked"

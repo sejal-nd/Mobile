@@ -26,7 +26,6 @@ class SettingsTableViewCell: UITableViewCell {
         contentView.backgroundColor = .clear
         
         innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        innerContentView.layer.masksToBounds = false
         
         label.textColor = .blackText
     }

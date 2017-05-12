@@ -44,6 +44,10 @@
 
 /* Begin PBXBuildFile section */
 		087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087630E01E72F5D000FA7020 /* BGEUITests.swift */; };
+		225FF85A1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
+		225FF85B1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
+		225FF85C1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
+		225FF85D1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		82471FBE1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
 		82471FBF1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
 		82471FC01EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
@@ -532,6 +536,7 @@
 		E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* OMCAuthenticationService.swift */; };
 		E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD81E8C43BB00550F99 /* OMCAccountService.swift */; };
 		E88ECFF71E8ED6DB00A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
+		E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89548F41EC646A200730022 /* BGEasyViewController.swift */; };
 		E895E9AC1EBB8464003B38A1 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */; };
 		E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		E895E9AE1EBB8489003B38A1 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
@@ -680,6 +685,7 @@
 		087630DE1E72F5D000FA7020 /* BGEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BGEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		087630E01E72F5D000FA7020 /* BGEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEUITests.swift; sourceTree = "<group>"; };
 		087630E21E72F5D000FA7020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsPaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillCommercialViewController.swift; sourceTree = "<group>"; };
@@ -969,6 +975,7 @@
 		E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsBudgetBillingViewController.swift; sourceTree = "<group>"; };
 		E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewAddShadow.swift; sourceTree = "<group>"; };
 		E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCOutageService.swift; sourceTree = "<group>"; };
+		E89548F41EC646A200730022 /* BGEasyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEasyViewController.swift; sourceTree = "<group>"; };
 		E89D07A01E609DC900F87F87 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JVFloatLabeledText.framework; path = Carthage/Build/iOS/JVFloatLabeledText.framework; sourceTree = "<group>"; };
 		E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBaseNavigationController.swift; sourceTree = "<group>"; };
@@ -1361,6 +1368,7 @@
 				826413781EAEAE5E007F4615 /* Fonts.swift */,
 				82A18F171EC0E83800BE9F21 /* NibViews.swift */,
 				82D5994A1EC36B5500DDB380 /* Currency.swift */,
+				225FF8591EC56B480079010C /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1826,6 +1834,7 @@
 				82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */,
 				82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */,
 				E81CFFEF1EC24978004FDA7E /* ViewBillViewController.swift */,
+				E89548F41EC646A200730022 /* BGEasyViewController.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -2031,7 +2040,7 @@
 						};
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2428,6 +2437,7 @@
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
+				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
 				B574BAF11E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAEB1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				82A18EBE1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
@@ -2521,6 +2531,7 @@
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
+				225FF85A1EC56B480079010C /* Date.swift in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -2637,6 +2648,7 @@
 				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
+				225FF85C1EC56B480079010C /* Date.swift in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				82A18E9D1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -2753,6 +2765,7 @@
 				82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B231EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
+				225FF85B1EC56B480079010C /* Date.swift in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				82A18E9C1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -2814,6 +2827,7 @@
 				82D5994E1EC36B5500DDB380 /* Currency.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
+				225FF85D1EC56B480079010C /* Date.swift in Sources */,
 				E895E9B01EBB849A003B38A1 /* ChangePasswordViewModel.swift in Sources */,
 				B574BADC1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E895E9AE1EBB8489003B38A1 /* ForgotPasswordViewModel.swift in Sources */,
