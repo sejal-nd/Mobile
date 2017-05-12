@@ -12,6 +12,8 @@ import Lottie
 
 class BillViewController: AccountPickerViewController {
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var topLoadingIndicatorView: UIView!
+    @IBOutlet weak var topLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
 	@IBOutlet weak var bottomStackContainerView: UIView!
@@ -65,7 +67,6 @@ class BillViewController: AccountPickerViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -137,6 +138,8 @@ class BillViewController: AccountPickerViewController {
     }
 	
 	func bindLoadingStates() {
+        
+        topLoadingIndicatorView.isHidden = true
 		viewModel.isFetchingAccountDetail.filter(!).drive(rx.isRefreshing).addDisposableTo(disposeBag)
         
 		viewModel.isFetchingDifferentAccount.map(!).drive(rx.isPullToRefreshEnabled).addDisposableTo(disposeBag)
@@ -149,7 +152,13 @@ class BillViewController: AccountPickerViewController {
 	}
 	
 	func bindViewHiding() {
-		viewModel.shouldHideAlertBanner.drive(alertBannerView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.alertBannerText.map { $0 == nil }.drive(alertBannerView.rx.isHidden).addDisposableTo(disposeBag)
+        
+        viewModel.shouldHideAmountDueTooltip.drive(questionMarkButton.rx.isHidden).addDisposableTo(disposeBag)
+        
+        viewModel.catchUpDisclaimerText.map { $0 == nil }.drive(youAreEntitledLabel.rx.isHidden).addDisposableTo(disposeBag)
+        
+        viewModel.paymentStatusText.map { $0 == nil }.drive(makeAPaymentStatusLabel.rx.isHidden).addDisposableTo(disposeBag)
 		
 		viewModel.shouldHideAutoPay.drive(autoPayButton.rx.isHidden).addDisposableTo(disposeBag)
 		viewModel.shouldHidePaperless.drive(paperlessButton.rx.isHidden).addDisposableTo(disposeBag)
@@ -157,14 +166,22 @@ class BillViewController: AccountPickerViewController {
 	}
 	
 	func bindViewContent() {
-		viewModel.shouldHideAlertBanner
+		viewModel.alertBannerText
+            .map { $0 == nil }
 			.filter { $0 }
 			.drive(onNext: { _ in
 				self.alertLottieAnimation.play()
 			})
 			.addDisposableTo(disposeBag)
+        
+        viewModel.alertBannerText.drive(alertBannerLabel.rx.text).addDisposableTo(disposeBag)
 		
 		viewModel.totalAmountText.drive(totalAmountLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.totalAmountDescriptionText.drive(totalAmountDescriptionLabel.rx.text).addDisposableTo(disposeBag)
+        
+        viewModel.catchUpDisclaimerText.drive(youAreEntitledLabel.rx.text).addDisposableTo(disposeBag)
+        
+        viewModel.paymentStatusText.drive(makeAPaymentStatusLabel.rx.text).addDisposableTo(disposeBag)
 		
 		viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)
 		viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).addDisposableTo(disposeBag)

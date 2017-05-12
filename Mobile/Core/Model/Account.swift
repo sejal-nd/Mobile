@@ -78,6 +78,7 @@ struct AccountDetail: Mappable {
 	let isAutoPay: Bool
 	let isBGEasy: Bool
 	let isAutoPayEligible: Bool
+    let isCutOutNonPay: Bool
 	
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
@@ -97,8 +98,9 @@ struct AccountDetail: Mappable {
         status = map.optionalFrom("status")
         
 		isAutoPay = map.optionalFrom("isAutoPay") ?? false
-		isBGEasy = map.optionalFrom("isBGEasy") ?? false
-		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
+        isBGEasy = map.optionalFrom("isBGEasy") ?? false
+        isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
+        isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
     }
 	
     var eBillEnrollStatus: EBillEnrollStatus {
@@ -137,6 +139,8 @@ struct BillingInfo: Mappable {
     let disconnectNoticeArrears: Int
     let isDisconnectNotice: Bool
     let billDate: Date?
+    let scheduledPaymentAmount: Double?
+    let atReinstateFee: Double?
     
     init(map: Mapper) throws {
         netDueAmount = map.optionalFrom("netDueAmount")
@@ -151,6 +155,8 @@ struct BillingInfo: Mappable {
         disconnectNoticeArrears = map.optionalFrom("disconnectNoticeArrears") ?? 0
         isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
         billDate = map.optionalFrom("billDate", transformation: extractDate)
+        scheduledPaymentAmount = map.optionalFrom("scheduledPaymentAmount")
+        atReinstateFee = map.optionalFrom("atReinstateFee")
     }
 }
 
