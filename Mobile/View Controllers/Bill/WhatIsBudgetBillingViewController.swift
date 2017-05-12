@@ -42,7 +42,6 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         xButton.imageView?.tintColor = .primaryColor
         
         navBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-        navBar.layer.masksToBounds = false
         
         navTitleLabel.textColor = .blackText
         navTitleLabel.text = NSLocalizedString("What is Budget Billing?", comment: "")

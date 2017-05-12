@@ -49,7 +49,6 @@ class LoginViewController: UIViewController {
         }
         
         loginFormView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
-        loginFormView.layer.masksToBounds = false
         loginFormView.layer.cornerRadius = 2
         
         keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")

@@ -121,15 +121,12 @@ class BillViewController: AccountPickerViewController {
         
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         autoPayButton.layer.cornerRadius = 2
-        autoPayButton.layer.masksToBounds = false
         
         paperlessButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         paperlessButton.layer.cornerRadius = 2
-        paperlessButton.layer.masksToBounds = false
         
         budgetButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         budgetButton.layer.cornerRadius = 2
-        budgetButton.layer.masksToBounds = false
     }
     
     func bindViews() {
