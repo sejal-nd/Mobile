@@ -206,19 +206,28 @@ class BillViewController: AccountPickerViewController {
             .drive(onNext: {
                 self.performSegue(withIdentifier: "viewBillSegue", sender: self)
             })
-            .addDisposableTo(disposeBag)
-        
-        paperlessButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.currentAccountDetailUnwrapped)
-            .drive(onNext: { accountDetail in
-                if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) {
-                    self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: self)
-                } else {
-                    self.performSegue(withIdentifier: "paperlessEBillSegue", sender: self)
-                }
-            })
-            .addDisposableTo(disposeBag)
-        
+			.addDisposableTo(disposeBag)
+		
+		autoPayButton.rx.touchUpInside.asDriver()
+			.withLatestFrom(viewModel.currentAccountDetailUnwrapped)
+			.drive(onNext: { accountDetail in
+				if Environment.sharedInstance.opco == .bge && accountDetail.isBGEasy {
+					self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+				}
+			})
+			.addDisposableTo(disposeBag)
+		
+		paperlessButton.rx.touchUpInside.asDriver()
+			.withLatestFrom(viewModel.currentAccountDetailUnwrapped)
+			.drive(onNext: { accountDetail in
+				if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) {
+					self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: self)
+				} else {
+					self.performSegue(withIdentifier: "paperlessEBillSegue", sender: self)
+				}
+			})
+			.addDisposableTo(disposeBag)
+		
         budgetButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.currentAccountDetailUnwrapped)
             .drive(onNext: { accountDetail in
@@ -242,7 +251,7 @@ class BillViewController: AccountPickerViewController {
             vc.initialAccountDetail = viewModel.currentAccountDetail.value!
         } else if let vc = segue.destination as? ViewBillViewController {
             vc.viewModel.billDate = viewModel.currentAccountDetail.value!.billingInfo.billDate
-        }
+		}
     }
     
     func showDelayedToast(withMessage message: String) {
