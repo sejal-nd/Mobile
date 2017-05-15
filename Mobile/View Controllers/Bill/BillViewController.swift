@@ -154,7 +154,6 @@ class BillViewController: AccountPickerViewController {
     }
     
     func styleViews() {
-        
         view.backgroundColor = .primaryColor
         contentView.backgroundColor = .primaryColor
         

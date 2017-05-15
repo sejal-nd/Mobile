@@ -50,7 +50,7 @@ class PaperlessEBillViewController: UIViewController {
         PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(),
                                 billService: ServiceFactory.createBillService(),
                                 initialAccountDetail: self.initialAccountDetail)
-    } ()
+    }()
     
     weak var delegate: PaperlessEBillViewControllerDelegate?
     
