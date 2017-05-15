@@ -406,8 +406,6 @@ class BillViewModel {
 		}
 	}()
 	
-	
-	
     lazy var paymentStatusText: Driver<String?> = {
         return self.currentAccountDetail.asDriver()
             .map {
@@ -431,7 +429,13 @@ class BillViewModel {
                     }
                 } else if let pendingPaymentAmount = accountDetail.billingInfo.pendingPaymentAmount, pendingPaymentAmount > 0 {
                     let paymentString = pendingPaymentAmount.currencyString ?? "--"
-                    let localizedText = NSLocalizedString("You have a payment of %@ processing", comment: "")
+					let localizedText: String
+					switch Environment.sharedInstance.opco {
+					case .bge:
+						localizedText = NSLocalizedString("You have a payment of %@ processing", comment: "")
+					case .comEd, .peco:
+						localizedText = NSLocalizedString("You have a pending payment of %@", comment: "")
+					}
                     return String(format: localizedText, paymentString)
                 } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount, lastPaymentAmount > 0 {
                     let paymentString = lastPaymentAmount.currencyString ?? "--"
