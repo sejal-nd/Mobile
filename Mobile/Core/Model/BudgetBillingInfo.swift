@@ -12,10 +12,10 @@ private func extractAvMonthlyBill(object: Any?) throws -> String? {
     // We're checking for both a double or a string here, because they've changed their web services
     // here before and I want to protect against that possibility again
     if let doubleVal = object as? Double {
-        return String(format: "$%.02f", locale: Locale.current, arguments: [doubleVal])
+        return doubleVal.currencyString
     } else if let stringVal = object as? String {
         if let doubleVal = NumberFormatter().number(from: stringVal)?.doubleValue {
-            return String(format: "$%.02f", locale: Locale.current, arguments: [doubleVal])
+            return doubleVal.currencyString
         } else {
             throw MapperError.convertibleError(value: stringVal, type: Double.self)
         }

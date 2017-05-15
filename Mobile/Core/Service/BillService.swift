@@ -40,7 +40,7 @@ protocol BillService {
     ///   - account: The account number to enroll
     ///   - email: Email address to send bills to
     ///   - completion: the completion block to execute upon completion.
-    func enrollPaperlessBilling(accountNumber: String, email: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func enrollPaperlessBilling(accountNumber: String, email: String?, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
     /// Unenroll the user in paperless eBilling
     ///
@@ -105,7 +105,7 @@ extension BillService {
         }
     }
     
-    func enrollPaperlessBilling(accountNumber: String, email: String) -> Observable<Void> {
+    func enrollPaperlessBilling(accountNumber: String, email: String?) -> Observable<Void> {
         return Observable.create { observer in
             self.enrollPaperlessBilling(accountNumber: accountNumber, email: email, completion: { (result: ServiceResult<Void>) in
                 switch (result) {

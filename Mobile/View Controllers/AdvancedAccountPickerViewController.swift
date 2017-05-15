@@ -95,13 +95,13 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
         cell.accountNumber.text = account.accountNumber
         cell.addressLabel.text = account.address ?? NSLocalizedString("Address Unavailable", comment: "")
 
-        if account.isLinked {
-            cell.accountStatusLabel.text = "Linked"
-        } else if account.isDefault {
+        if account.isDefault {
             cell.accountStatusLabel.text = "Default"
         } else if account.isFinaled {
             cell.accountStatusLabel.text = "Finaled"
             cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial_disabled") : #imageLiteral(resourceName: "ic_residential_disabled")
+        } else if account.isLinked {
+            cell.accountStatusLabel.text = "Linked"
         } else {
             cell.accountStatusLabel.text = ""
         }
