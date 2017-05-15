@@ -32,7 +32,8 @@ class PaperlessEBillViewController: UIViewController {
     // Content
     @IBOutlet weak var whatIsButtonView: UIView!
     @IBOutlet weak var whatIsButton: UIButton!
-    @IBOutlet weak var emailLabel: UILabel!
+	@IBOutlet weak var emailLabel: UILabel!
+	@IBOutlet weak var updateDetailsView: UIView!
     @IBOutlet weak var updateDetailsLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsView: UIView!
     @IBOutlet weak var enrollAllAccountsSwitch: UISwitch!
@@ -61,6 +62,7 @@ class PaperlessEBillViewController: UIViewController {
         colorAndShadowSetup()
         
         enrollAllAccountsView.isHidden = viewModel.accounts.value.count <= 1
+		updateDetailsView.isHidden = Environment.sharedInstance.opco == .bge
         
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
         detailsLabel.text = viewModel.footerText
