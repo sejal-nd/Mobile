@@ -104,13 +104,13 @@ struct AccountDetail: Mappable {
     }
 	
     var eBillEnrollStatus: EBillEnrollStatus {
-        switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "Finaled".lowercased()) {
-        case (_, _, true):
+		switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "Finaled".lowercased()) {
+		case (true, _, _):
+			return .canUnenroll
+        case (false, _, true):
             return .finaled
-        case (_, false, false):
+        case (false, false, false):
             return .ineligible
-        case (true, true, false):
-            return .canUnenroll
         case (false, true, false):
             return .canEnroll
         }
@@ -129,13 +129,14 @@ struct CustomerInfo: Mappable {
 struct BillingInfo: Mappable {
     let netDueAmount: Double?
     let pastDueAmount: Double?
-    let lastPaymentAmount: Double?
+	let pastDueRemaining: Double?
+	let lastPaymentAmount: Double?
+	let lastPaymentDate: Date?
     let pendingPaymentAmount: Double?
     let remainingBalanceDue: Double?
     let restorationAmount: Double?
     let amtDpaReinst: Double?
     let dueByDate: Date?
-    let lastPaymentDate: Date?
     let disconnectNoticeArrears: Int
     let isDisconnectNotice: Bool
     let billDate: Date?
@@ -143,15 +144,16 @@ struct BillingInfo: Mappable {
     let atReinstateFee: Double?
     
     init(map: Mapper) throws {
-        netDueAmount = map.optionalFrom("netDueAmount")
-        pastDueAmount = map.optionalFrom("pastDueAmount")
-        lastPaymentAmount = map.optionalFrom("lastPaymentAmount")
+		netDueAmount = map.optionalFrom("netDueAmount")
+		pastDueAmount = map.optionalFrom("pastDueAmount")
+		pastDueRemaining = map.optionalFrom("pastDueRemaining")
+		lastPaymentAmount = map.optionalFrom("lastPaymentAmount")
+		lastPaymentDate = map.optionalFrom("lastPaymentDate", transformation: extractDate)
         pendingPaymentAmount = map.optionalFrom("pendingPaymentAmount")
         remainingBalanceDue = map.optionalFrom("remainingBalanceDue")
         restorationAmount = map.optionalFrom("restorationAmount")
         amtDpaReinst = map.optionalFrom("amtDpaReinst")
         dueByDate = map.optionalFrom("dueByDate", transformation: extractDate)
-        lastPaymentDate = map.optionalFrom("lastPaymentDate", transformation: extractDate)
         disconnectNoticeArrears = map.optionalFrom("disconnectNoticeArrears") ?? 0
         isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
         billDate = map.optionalFrom("billDate", transformation: extractDate)
