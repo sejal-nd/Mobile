@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 class PaperlessEBillViewModel {
     private var accountService: AccountService
@@ -58,7 +59,11 @@ class PaperlessEBillViewModel {
                 if self.initialAccountDetail.value.accountNumber == account.accountNumber {
                     return Observable.just(self.initialAccountDetail.value)
                 }
-                return self.accountService.fetchAccountDetail(account: account).debug("ACCOUNT NUMBER: \(account.accountNumber), INDEX: \(index)")
+                return self.accountService.fetchAccountDetail(account: account)
+                    .map { $0 }
+                    .catchErrorJustReturn(nil)
+                    .unwrap()
+                    .debug("ACCOUNT NUMBER: \(account.accountNumber), INDEX: \(index)")
         }
         
         return Observable.from(accountResults)
@@ -86,16 +91,11 @@ class PaperlessEBillViewModel {
         var enrolled = false, unenrolled = false
         for account in accountsToEnroll.value {
             enrolled = true
-            if let email = initialAccountDetail.value.customerInfo.emailAddress {
-                requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: email))
-            } else {
-                onError(NSLocalizedString("TODO: AccountDetail customer info has no email address", comment: ""))
-                return
-            }
+            requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: initialAccountDetail.value.customerInfo.emailAddress).debug("ACCOUNT NUMBER: \(account), INDEX: \(index)"))
         }
         for account in accountsToUnenroll.value {
             unenrolled = true
-            requestObservables.append(billService.unenrollPaperlessBilling(accountNumber: account))
+            requestObservables.append(billService.unenrollPaperlessBilling(accountNumber: account).debug("ACCOUNT NUMBER: \(account), INDEX: \(index)"))
         }
         
         var changedStatus: PaperlessEBillChangedStatus
@@ -109,8 +109,9 @@ class PaperlessEBillViewModel {
         
         Observable.from(requestObservables)
             .merge(maxConcurrent: 3)
+            .toArray()
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+            .subscribe(onNext: { responseArray in
                 onSuccess(changedStatus)
             }, onError: { error in
                 onError(error.localizedDescription)

@@ -62,7 +62,6 @@ class PaperlessEBillViewController: UIViewController {
         
         enrollAllAccountsView.isHidden = viewModel.accounts.value.count <= 1
         
-        // TODO: Confirm that this is the correct email address to use
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
         detailsLabel.text = viewModel.footerText
         updateDetailsLabel.setLineHeight(lineHeight: 24)
