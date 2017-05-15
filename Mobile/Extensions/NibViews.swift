@@ -9,17 +9,17 @@
 import Foundation
 
 extension NSObject {
-    public class func className() -> String {
+    @nonobjc public class var className: String {
         return NSStringFromClass(self).components(separatedBy: ".").last!
     }
     
-    public func className() -> String {
+    @nonobjc public var className: String {
         return NSStringFromClass(type(of: self)).components(separatedBy: ".").last!
     }
 }
 
 extension Bundle {
     func loadViewFromNib<View: UIView>() -> View {
-        return loadNibNamed(View.className(), owner: nil, options: nil)![0] as! View
+        return loadNibNamed(View.className, owner: nil, options: nil)![0] as! View
     }
 }

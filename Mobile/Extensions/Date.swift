@@ -9,13 +9,13 @@
 import Foundation
 
 extension Date {
-    var mmDdYyyyString: String {
+    @nonobjc var mmDdYyyyString: String {
         return DateFormatter.mmDdYyyyFormatter.string(from: self)
     }
 }
 
 extension DateFormatter {
-    static let mmDdYyyyFormatter: DateFormatter = {
+    @nonobjc static let mmDdYyyyFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         return dateFormatter
