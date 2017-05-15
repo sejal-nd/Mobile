@@ -14,10 +14,6 @@ class BudgetBillingViewModelTests: XCTestCase {
     var viewModel: BudgetBillingViewModel!
     let disposeBag = DisposeBag()
     
-    override func setUp() {
-        //viewModel = BudgetBillingViewModel(accountDetail: <#T##AccountDetail#>, billService: MockBillService())
-    }
-    
     func testSubmitButtonUnenrollingWithNoReason() {
         let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isBudgetBill": true, "CustomerInfo": [:], "BillingInfo": [:]])
         viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())

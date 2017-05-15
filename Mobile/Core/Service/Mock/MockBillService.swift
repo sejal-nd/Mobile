@@ -36,14 +36,22 @@ class MockBillService : BillService {
     }
 
     func enrollPaperlessBilling(accountNumber: String, email: String?, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        
+        if accountNumber == "0000" {
+            completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
+        } else {
+            completion(ServiceResult.Success())
+        }
     }
     
     func unenrollPaperlessBilling(accountNumber: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        
+        if accountNumber == "0000" {
+            completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
+        } else {
+            completion(ServiceResult.Success())
+        }
     }
     
-    func fetchBillPdf(account: Account, billDate: Date, completion: @escaping (_ result: ServiceResult<String>) -> Void) {
+    func fetchBillPdf(accountNumber: String, billDate: Date, completion: @escaping (_ result: ServiceResult<String>) -> Void) {
         
     }
 }
