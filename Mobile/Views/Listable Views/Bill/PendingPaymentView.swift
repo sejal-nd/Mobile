@@ -23,19 +23,15 @@ class PendingPaymentView: UIView {
         return view
     }
     
-    func bind(withAmount amount: Double) {
+    private func bind(withAmount amount: Double) {
         switch Environment.sharedInstance.opco {
         case .bge:
             textLabel.text = NSLocalizedString("Payment Processing", comment: "")
         case .comEd, .peco:
             textLabel.text = NSLocalizedString("Pending Payment", comment: "")
         }
-        
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
-        numberFormatter.groupingSeparator = ","
-        numberFormatter.usesGroupingSeparator = true
-        amountLabel.text = numberFormatter.string(from: NSNumber(value: amount))
+		
+        amountLabel.text = amount.currencyString
     }
 
 }

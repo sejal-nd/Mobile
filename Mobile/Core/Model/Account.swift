@@ -104,13 +104,13 @@ struct AccountDetail: Mappable {
     }
 	
     var eBillEnrollStatus: EBillEnrollStatus {
-        switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "Finaled".lowercased()) {
-        case (_, _, true):
+		switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "Finaled".lowercased()) {
+		case (true, _, _):
+			return .canUnenroll
+        case (false, _, true):
             return .finaled
-        case (_, false, false):
+        case (false, false, false):
             return .ineligible
-        case (true, true, false):
-            return .canUnenroll
         case (false, true, false):
             return .canEnroll
         }

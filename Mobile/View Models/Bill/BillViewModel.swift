@@ -58,54 +58,17 @@ class BillViewModel {
             .asDriver(onErrorDriveWith: Driver.empty())
 	}()
 	
-	
-	// MARK: - Show/Hide Views -
-	
 	lazy var isFetchingDifferentAccount: Driver<Bool> = {
 		return self.currentAccountDetail.asDriver().map { $0 == nil }
 	}()
-    
-    let shouldHideAmountDueTooltip = Environment.sharedInstance.opco != .peco
 	
-	lazy var shouldHideNeedHelpUnderstanding: Driver<Bool> = {
-		return self.currentAccountDetail.asDriver()
-			.map {
-				guard let accountDetail = $0 else { return true }
-				// TODO: Add logic for residential users based on forthcoming web service response additions
-				return UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
-		}
-	}()
 	
-	lazy var shouldHideAutoPay: Driver<Bool> = {
-		return self.currentAccountDetail.asDriver()
-			.map {
-				guard let accountDetail = $0 else { return true }
-				return !(accountDetail.isAutoPay || accountDetail.isBGEasy || accountDetail.isAutoPayEligible)
-		}
-	}()
+	// MARK: - Show/Hide Views -
 	
-	lazy var shouldHidePaperless: Driver<Bool> = {
-		return self.currentAccountDetail.asDriver()
-			.map {
-				guard let accountDetail = $0 else { return true }
-				
-				if accountDetail.isEBillEnrollment {
-					return false
-				}
-				
-				switch accountDetail.eBillEnrollStatus {
-				case .canEnroll, .canUnenroll: return false
-				case .ineligible, .finaled: return true
-				}
-		}
-	}()
-	
-	lazy var shouldHideBudget: Driver<Bool> = {
-		return self.currentAccountDetail.asDriver().map {
-			guard let accountDetail = $0 else { return true }
-			return !accountDetail.isBudgetBillEligible &&
-				!accountDetail.isBudgetBillEnrollment &&
-				Environment.sharedInstance.opco != .bge
+	lazy var shouldShowAlertBanner: Driver<Bool> = {
+		let isCutOutNonPay = self.currentAccountDetail.asDriver().map { $0?.isCutOutNonPay ?? false }
+		return Driver.zip(isCutOutNonPay, self.shouldShowRestoreService, self.shouldShowAvoidShutoff) {
+			return ($0 && $1) || $2
 		}
 	}()
 	
@@ -117,9 +80,121 @@ class BillViewModel {
 	
 	lazy var shouldShowCatchUpAmount: Driver<Bool> = {
 		let showCatchup = self.currentAccountDetail.asDriver().map {
-			return $0?.billingInfo.amtDpaReinst ?? 0 > 0
+			$0?.billingInfo.amtDpaReinst ?? 0 > 0
 		}
 		return Driver.zip(self.shouldShowRestoreService, showCatchup) { !$0 && $1 }
+	}()
+	
+	lazy var shouldShowCatchUpDisclaimer: Driver<Bool> = {
+		return self.shouldShowCatchUpAmount.map {
+			$0 && Environment.sharedInstance.opco == .comEd
+		}
+	}()
+	
+	lazy var shouldShowAvoidShutoff: Driver<Bool> = {
+		let showAvoidShutoff = self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
+			guard let billingInfo = accountDetail?.billingInfo else { return false }
+			return billingInfo.disconnectNoticeArrears > 0 && billingInfo.isDisconnectNotice
+		}
+		return Driver.zip(self.shouldShowCatchUpAmount, showAvoidShutoff) { !$0 && $1 }
+	}()
+	
+	lazy var shouldShowPastDue: Driver<Bool> = {
+		let showPastDue = self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
+			guard let billingInfo = accountDetail?.billingInfo else { return false }
+			return billingInfo.pastDueAmount ?? 0 > 0 && billingInfo.amtDpaReinst ?? 0 == 0
+		}
+		return Driver.zip(self.shouldShowAlertBanner, showPastDue) { !$0 && $1 }
+	}()
+	
+	lazy var shouldShowPendingPayment: Driver<Bool> = {
+		self.currentAccountDetail.asDriver().map {
+			//TODO: Account for web service change when this becomes an array
+			$0?.billingInfo.pendingPaymentAmount ?? 0 > 0
+		}
+	}()
+	
+	lazy var shouldShowRemainingBalanceDue: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
+			guard let billingInfo = accountDetail?.billingInfo else { return false }
+			return billingInfo.pendingPaymentAmount ?? 0 > 0 && billingInfo.remainingBalanceDue ?? 0 > 0
+		}
+	}()
+	
+	lazy var shouldShowRemainingBalancePastDue: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
+			guard let billingInfo = accountDetail?.billingInfo else { return false }
+			return billingInfo.pastDueRemaining ?? 0 > 0
+		}
+	}()
+	
+	lazy var shouldShowBillIssued: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
+			guard let billingInfo = accountDetail?.billingInfo else { return false }
+			//TODO: Bill Issued
+			return false
+		}
+	}()
+	
+	lazy var shouldShowPaymentReceived: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
+			guard let billingInfo = accountDetail?.billingInfo else { return false }
+			return billingInfo.lastPaymentAmount ?? 0 > 0 && billingInfo.netDueAmount ?? 0 == 0
+		}
+	}()
+	
+	lazy var shouldShowCredit: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
+			guard let billingInfo = accountDetail?.billingInfo else { return false }
+			//TODO: Credit
+			return false
+		}
+	}()
+	
+	
+	let shouldShowAmountDueTooltip = Environment.sharedInstance.opco != .peco
+	
+	lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver()
+			.map {
+				guard let accountDetail = $0 else { return false }
+				// TODO: Add logic for residential users based on forthcoming web service response additions
+				return !UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
+		}
+	}()
+	
+	lazy var shouldEnableMakeAPaymentButton: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver().map {
+				$0?.billingInfo.netDueAmount ?? 0 > 0 || Environment.sharedInstance.opco == .bge
+		}
+	}()
+	
+	
+	lazy var shouldShowAutoPay: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver()
+			.map {
+				guard let accountDetail = $0 else { return false }
+				return accountDetail.isAutoPay || accountDetail.isBGEasy || accountDetail.isAutoPayEligible
+		}
+	}()
+	
+	lazy var shouldShowPaperless: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver().map {
+			guard let accountDetail = $0 else { return false }
+			switch accountDetail.eBillEnrollStatus {
+			case .canEnroll, .canUnenroll: return true
+			case .ineligible, .finaled: return false
+			}
+		}
+	}()
+	
+	lazy var shouldShowBudget: Driver<Bool> = {
+		return self.currentAccountDetail.asDriver().map {
+			guard let accountDetail = $0 else { return false }
+			return accountDetail.isBudgetBillEligible ||
+				accountDetail.isBudgetBillEnrollment ||
+				Environment.sharedInstance.opco == .bge
+		}
 	}()
 	
 	
@@ -141,14 +216,6 @@ class BillViewModel {
 			return String(format: localizedText, $0?.billingInfo.dueByDate?.mmDdYyyyString ?? "--")
 		}
 	}()
-	
-    lazy var pendingPayments: Driver<[String]> = {
-        return self.currentAccountDetail.asDriver()
-            .map {
-                guard let pendingPaymentAmount = $0?.billingInfo.pendingPaymentAmount else { return [] }
-                return [pendingPaymentAmount].map { $0.currencyString ?? "--" }
-        }
-    }()
     
     
     //MARK: Banner Alert Text
@@ -244,7 +311,14 @@ class BillViewModel {
 	// Past Due
 	lazy var pastDueAmountText: Driver<String?> = {
 		return self.currentAccountDetail.asDriver().map {
-			$0?.billingInfo.pastDueRemaining?.currencyString ?? "--"
+			$0?.billingInfo.pastDueAmount?.currencyString ?? "--"
+		}
+	}()
+	
+	// Pending Payments
+	lazy var pendingPaymentAmounts: Driver<[Double]> = {
+		return self.currentAccountDetail.asDriver().map {
+			[$0?.billingInfo.pendingPaymentAmount].flatMap { $0 }
 		}
 	}()
 	
@@ -291,13 +365,13 @@ class BillViewModel {
 	// Bill Issued
 	lazy var billIssuedAmountText: Driver<String?> = {
 		return self.currentAccountDetail.asDriver().map { _ in
-			//TODO: Implement this
+			//TODO: Bill Issued
 			nil
 		}
 	}()
 	lazy var billIssuedDateText: Driver<String?> = {
 		return self.currentAccountDetail.asDriver().map { _ in
-			//TODO: Implement this
+			//TODO: Bill Issued
 			nil
 		}
 	}()
@@ -320,6 +394,7 @@ class BillViewModel {
 	// Credit
 	lazy var creditAmountText: Driver<String?> = {
 		return self.currentAccountDetail.asDriver().map { _ in
+			//TODO: Credit
 			nil
 		}
 	}()
