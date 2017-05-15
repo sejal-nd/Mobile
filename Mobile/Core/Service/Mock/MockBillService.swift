@@ -10,20 +10,32 @@ import Foundation
 
 class MockBillService : BillService {
 
-    func fetchBudgetBillingInfo(account: Account, completion: @escaping (_ result: ServiceResult<BudgetBillingInfo>) -> Void) {
-        let info = BudgetBillingInfo.from(["enrolled": true, "averageMonthlyBill": 120])!
-        completion(ServiceResult.Success(info))
+    func fetchBudgetBillingInfo(accountNumber: String, completion: @escaping (_ result: ServiceResult<BudgetBillingInfo>) -> Void) {
+        if accountNumber == "0000" {
+            completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
+        } else {
+            let info = BudgetBillingInfo.from(["enrolled": true, "averageMonthlyBill": 120])!
+            completion(ServiceResult.Success(info))
+        }
     }
 
-    func enrollBudgetBilling(account: Account, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        
+    func enrollBudgetBilling(accountNumber: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
+        if accountNumber == "0000" {
+            completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
+        } else {
+            completion(ServiceResult.Success())
+        }
     }
     
-    func unenrollBudgetBilling(account: Account, reason: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        
+    func unenrollBudgetBilling(accountNumber: String, reason: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
+        if accountNumber == "0000" {
+            completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
+        } else {
+            completion(ServiceResult.Success())
+        }
     }
 
-    func enrollPaperlessBilling(accountNumber: String, email: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
+    func enrollPaperlessBilling(accountNumber: String, email: String?, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
         
     }
     

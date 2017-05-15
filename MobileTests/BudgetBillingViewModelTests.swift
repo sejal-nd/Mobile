@@ -63,5 +63,66 @@ class BudgetBillingViewModelTests: XCTestCase {
             }
         }).addDisposableTo(disposeBag)
     }
+    
+    func testGetBudgetBillingInfoSuccess() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:]])
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel.getBudgetBillingInfo(onSuccess: { info in
+            // Pass
+        }, onError: { errMessage in
+            XCTFail("Fetching budget billing info should succeed")
+        })
+    }
+    
+    func testGetBudgetBillingInfoFailure() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0000", "CustomerInfo": [:], "BillingInfo": [:]])
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel.getBudgetBillingInfo(onSuccess: { info in
+            XCTFail("Fetching budget billing info should fail")
+        }, onError: { errMessage in
+            // Pass
+        })
+    }
+    
+    func testEnrollSuccess() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:]])
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel.enroll(onSuccess: { 
+            // Pass
+        }, onError: { errMessage in
+            XCTFail("Enrollment should succeed")
+        })
+    }
+    
+    func testEnrollFailure() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0000", "CustomerInfo": [:], "BillingInfo": [:]])
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel.enroll(onSuccess: {
+            XCTFail("Enrollment should fail")
+        }, onError: { errMessage in
+            // Pass
+        })
+    }
+    
+    func testUnenrollSuccess() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:]])
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel.selectedUnenrollmentReason.value = 1
+        viewModel.unenroll(onSuccess: {
+            // Pass
+        }, onError: { errMessage in
+            XCTFail("Enrollment should succeed")
+        })
+    }
+    
+    func testUnenrollFailure() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0000", "CustomerInfo": [:], "BillingInfo": [:]])
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel.unenroll(onSuccess: {
+            XCTFail("Enrollment should fail")
+        }, onError: { errMessage in
+            // Pass
+        })
+    }
 
 }

@@ -33,7 +33,7 @@ class BudgetBillingViewModel {
     }
     
     func getBudgetBillingInfo(onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
-        billService.fetchBudgetBillingInfo(account: AccountsStore.sharedInstance.currentAccount)
+        billService.fetchBudgetBillingInfo(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { billingInfo in
                 onSuccess(billingInfo)
@@ -44,7 +44,7 @@ class BudgetBillingViewModel {
     }
     
     func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        billService.enrollBudgetBilling(account: AccountsStore.sharedInstance.currentAccount)
+        billService.enrollBudgetBilling(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -55,7 +55,7 @@ class BudgetBillingViewModel {
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        billService.unenrollBudgetBilling(account: AccountsStore.sharedInstance.currentAccount, reason: getReasonString(forIndex: selectedUnenrollmentReason.value))
+        billService.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: getReasonString(forIndex: selectedUnenrollmentReason.value))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
