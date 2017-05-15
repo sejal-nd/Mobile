@@ -296,7 +296,7 @@ class BillViewModel {
 	
 	lazy var avoidShutoffAmountText: Driver<String?> = {
 		return self.currentAccountDetail.asDriver().map {
-			$0?.billingInfo.restorationAmount?.currencyString ?? "--"
+			$0?.billingInfo.pastDueAmount?.currencyString ?? "--"
 		}
 	}()
 	
