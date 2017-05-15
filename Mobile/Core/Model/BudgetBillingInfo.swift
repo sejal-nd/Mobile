@@ -29,13 +29,7 @@ struct BudgetBillingInfo: Mappable {
     let averageMonthlyBill: String?
     
     init(map: Mapper) throws {
-
-        do {
-            try enrolled = map.from("enrolled")
-        } catch {
-            enrolled = false
-        }
-
+        enrolled = map.optionalFrom("enrolled") ?? false
         averageMonthlyBill = map.optionalFrom("averageMonthlyBill", transformation: extractAvMonthlyBill)
     }
 }
