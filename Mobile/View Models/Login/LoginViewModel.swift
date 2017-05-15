@@ -41,14 +41,12 @@ class LoginViewModel {
     }
     
     func performLogin(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String?, String) -> Void) {
-        print("Keep me signed in = \(keepMeSignedIn.value)") // TODO: Something with this
-        
         if username.value.isEmpty || password.value.isEmpty {
             onError(nil, "Please enter your username and password")
             return;
         }
         
-        authService.login(username.value, password: password.value)
+        authService.login(username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { (profileStatus: ProfileStatus) in

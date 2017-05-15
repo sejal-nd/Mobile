@@ -31,7 +31,6 @@ class ContactUsViewController: UIViewController {
         
         whiteView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         whiteView.layer.cornerRadius = 2
-        whiteView.layer.masksToBounds = false
         
         emergencyDescriptionLabel.attributedText = contactUsViewModel.emergencyAttrString
         

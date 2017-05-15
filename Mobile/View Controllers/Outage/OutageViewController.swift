@@ -86,12 +86,10 @@ class OutageViewController: AccountPickerViewController {
         bigButtonShadowView.layer.cornerRadius = radius
         bigButtonShadowView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
         bigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
-        bigButtonView.layer.masksToBounds = false
         
         loadingBigButtonView.layer.cornerRadius = radius
         loadingBigButtonView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
         loadingBigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
-        loadingBigButtonView.layer.masksToBounds = false
         
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
@@ -102,11 +100,21 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyTextView.tintColor = .actionBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
         
-        accountPickerViewControllerWillAppear.subscribe(onNext: {
-            if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-                self.getOutageStatus()
-            } else if self.viewModel.currentOutageStatus == nil {
-                self.getOutageStatus()
+        accountPickerViewControllerWillAppear.subscribe(onNext: { state in
+            switch(state) {
+            case .loadingAccounts:
+                self.accountContentView.isHidden = true
+                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
+                self.gasOnlyView.isHidden = true
+                self.errorLabel.isHidden = true
+                self.loadingView.isHidden = true
+                self.setRefreshControlEnabled(enabled: false)
+            case .readyToFetchData:
+                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    self.getOutageStatus()
+                } else if self.viewModel.currentOutageStatus == nil {
+                    self.getOutageStatus()
+                }
             }
         }).addDisposableTo(disposeBag)
     }

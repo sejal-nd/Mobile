@@ -30,7 +30,6 @@ class LoginTermsPoliciesViewController: UIViewController {
         textView.attributedText = viewModel.attributedTermsString
 
         agreeView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        agreeView.layer.masksToBounds = false
 
         _ = agreeSwitch.rx.isOn.bind(to: continueButton.rx.isEnabled)
         continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)

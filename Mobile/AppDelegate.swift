@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupToastStyles()
         //printFonts()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigation), name: NSNotification.Name(rawValue: "DidReceiveInvalidAuthTokenNotification"), object: nil)
+   
         return true
     }
 
@@ -89,6 +91,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         globalStyle.messageAlignment = .center
         ToastManager.shared.style = globalStyle
         ToastManager.shared.duration = 5.0
+    }
+    
+    func resetNavigation() {
+        let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let rootVC = loginStoryboard.instantiateInitialViewController()
+        self.window?.rootViewController = rootVC
     }
     
     func printFonts() {

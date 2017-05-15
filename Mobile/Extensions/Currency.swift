@@ -9,7 +9,7 @@
 import Foundation
 
 extension NumberFormatter {
-    static let currencyFormatter: NumberFormatter = {
+    @nonobjc static let currencyFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
         numberFormatter.groupingSeparator = ","
@@ -19,7 +19,7 @@ extension NumberFormatter {
 }
 
 extension Double {
-    var currencyString: String? {
+    @nonobjc var currencyString: String? {
         return NumberFormatter.currencyFormatter.string(from: NSNumber(value: self))
     }
 }

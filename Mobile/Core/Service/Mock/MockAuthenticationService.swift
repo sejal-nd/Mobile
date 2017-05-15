@@ -14,7 +14,7 @@ struct MockAuthenticationService : AuthenticationService {
     let validUsername = "valid@test.com"
     let validCurrentPassword = "Password1"
     
-    func login(_ username: String, password: String, completion: @escaping (ServiceResult<ProfileStatus>) -> Void) {
+    func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (ServiceResult<ProfileStatus>) -> Void) {
         
         if(username == validUsername) {
             completion(ServiceResult.Success(ProfileStatus()))
@@ -22,6 +22,14 @@ struct MockAuthenticationService : AuthenticationService {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnPwdInvalid.rawValue, serviceMessage: "Invalid credentials")))
         }
         
+    }
+    
+    func validateLogin(_ username: String, password: String, completion: @escaping (ServiceResult<Void>) -> Void) {
+        
+    }
+    
+    func isAuthenticated() -> Bool {
+        return false;
     }
     
     func logout(completion: @escaping (ServiceResult<Void>) -> Void) {
@@ -34,6 +42,10 @@ struct MockAuthenticationService : AuthenticationService {
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
         }
+    }
+    
+    func refreshAuthorization(completion: @escaping (ServiceResult<Void>) -> Void) {
+        
     }
     
     func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?, completion: @escaping (_ result: ServiceResult<[ForgotUsernameMasked]>) -> Void) {

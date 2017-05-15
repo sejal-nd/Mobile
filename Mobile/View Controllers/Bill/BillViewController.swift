@@ -120,11 +120,17 @@ class BillViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        accountPickerViewControllerWillAppear.subscribe(onNext: {
-            if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-                self.viewModel.fetchAccountDetail(isRefresh: false)
-            } else if self.viewModel.currentAccountDetail.value == nil {
-                self.viewModel.fetchAccountDetail(isRefresh: false)
+        accountPickerViewControllerWillAppear.subscribe(onNext: { state in
+            switch(state) {
+            case .loadingAccounts:
+                // Sam, do your custom loading here
+                break
+            case .readyToFetchData:
+                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    self.viewModel.fetchAccountDetail(isRefresh: false)
+                } else if self.viewModel.currentAccountDetail.value == nil {
+                    self.viewModel.fetchAccountDetail(isRefresh: false)
+                }
             }
         }).addDisposableTo(bag)
         
@@ -170,15 +176,12 @@ class BillViewController: AccountPickerViewController {
         
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         autoPayButton.layer.cornerRadius = 2
-        autoPayButton.layer.masksToBounds = false
         
         paperlessButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         paperlessButton.layer.cornerRadius = 2
-        paperlessButton.layer.masksToBounds = false
         
         budgetButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         budgetButton.layer.cornerRadius = 2
-        budgetButton.layer.masksToBounds = false
     }
     
     func bindViews() {

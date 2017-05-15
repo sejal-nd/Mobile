@@ -79,7 +79,6 @@ class ReportOutageViewController: UIViewController {
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             bg.backgroundColor = .softGray
             bg.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
-            bg.layer.masksToBounds = false
             meterPingStackView.addSubview(bg)
             meterPingStackView.sendSubview(toBack: bg)
             
@@ -151,14 +150,12 @@ class ReportOutageViewController: UIViewController {
         
         footerBackgroundView.backgroundColor = .softGray
         footerBackgroundView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
-        footerBackgroundView.layer.masksToBounds = false
         
         footerTextView.textContainerInset = UIEdgeInsets(top: 16, left: 29, bottom: 16, right: 29)
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
         footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
-        footerTextView.layer.masksToBounds = false
         
         // Data binding
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).addDisposableTo(disposeBag)
