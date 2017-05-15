@@ -71,11 +71,17 @@ class BillViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        accountPickerViewControllerWillAppear.subscribe(onNext: {
-            if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-                self.viewModel.fetchAccountDetail(isRefresh: false)
-            } else if self.viewModel.currentAccountDetail.value == nil {
-                self.viewModel.fetchAccountDetail(isRefresh: false)
+        accountPickerViewControllerWillAppear.subscribe(onNext: { state in
+            switch(state) {
+            case .loadingAccounts:
+                // Sam, do your custom loading here
+                break
+            case .readyToFetchData:
+                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    self.viewModel.fetchAccountDetail(isRefresh: false)
+                } else if self.viewModel.currentAccountDetail.value == nil {
+                    self.viewModel.fetchAccountDetail(isRefresh: false)
+                }
             }
         }).addDisposableTo(disposeBag)
         

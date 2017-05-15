@@ -19,9 +19,30 @@ protocol AuthenticationService {
     ///   - username: the username to authenticate with.
     ///   - password: the password to authenticate with.
     ///   - completion: the completion block to execute upon completion. 
-    ///     The ServiceResult that is provided will contain the user id on success,
+    ///     The ServiceResult that is provided will contain the ProfileStatus on success,
     ///     or the error on failure.
-    func login(_ username: String, password: String, completion: @escaping (_ result: ServiceResult<ProfileStatus>) -> Void)
+    func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (_ result: ServiceResult<ProfileStatus>) -> Void)
+    
+    
+    /// Validate login credentials
+    ///
+    /// - Parameters:
+    ///   - username: the suername to authenticate with.
+    ///   - password: the password to authenticate with.
+    ///   - completion: the completion block to execute upon completion.
+    ///     The ServiceResult that is provided will contain the ProfileStatus on success,
+    ///     or the error on failure.
+    func validateLogin(_ username: String, password: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    
+    /// Check if the application is authenticated
+    func isAuthenticated() -> Bool
+    
+    
+    /// Attempt to refresh the authorization token.
+    ///
+    /// - Parameter completion: the completion block to execute upon completion.
+    func refreshAuthorization(completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
     /// Log out the currently logged in user
     ///
@@ -95,12 +116,28 @@ extension AuthenticationService {
     ///   - username: the username to authenticate with.
     ///   - password: the password to authenticate with.
     /// - Returns: An observable to subscribe to.
-    func login(_ username: String, password: String) -> Observable<ProfileStatus> {
+    func login(_ username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus> {
         return Observable.create { observer in
-            self.login(username, password: password, completion: { (result: ServiceResult<ProfileStatus>) in
+            self.login(username, password: password, stayLoggedIn: stayLoggedIn, completion: { (result: ServiceResult<ProfileStatus>) in
                 switch (result) {
                 case ServiceResult.Success(let profStatus):
                     observer.onNext(profStatus)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            
+            return Disposables.create()
+        }
+    }
+    
+    func validateLogin(_ username: String, password: String) -> Observable<Void> {
+        return Observable.create { observer in
+            self.validateLogin(username, password: password, completion: { (result: ServiceResult<Void>) in
+                switch (result) {
+                case ServiceResult.Success():
+                    observer.onNext()
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

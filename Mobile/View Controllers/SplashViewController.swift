@@ -21,12 +21,25 @@ class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        // TODO - Keep me logged in check
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            if !self.performingDeepLink { // Deep link cold-launched the app, so let our logic below handle it
-                self.performSegue(withIdentifier: "landingSegue", sender: self)
-            }
-        })
+        if ServiceFactory.createAuthenticationService().isAuthenticated() {
+            ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { (result: ServiceResult<Void>) in
+                switch (result) {
+                case .Success:
+                    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                    self.present(viewController!, animated: true, completion: nil)
+                case .Failure:
+                    self.performSegue(withIdentifier: "landingSegue", sender: self)
+                }
+            })
+
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                if !self.performingDeepLink { // Deep link cold-launched the app, so let our logic below handle it
+                    self.performSegue(withIdentifier: "landingSegue", sender: self)
+                }
+            })
+        }
+        
     }
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {

@@ -248,6 +248,11 @@
 		B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
 		B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
 		B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
+		B54A4B721EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */; };
+		B54A4B731EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */; };
+		B54A4B741EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */; };
+		B54A4B751EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */; };
+		B54A4B761EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */; };
 		B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
 		B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
 		B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
@@ -277,9 +282,6 @@
 		B55736321E6740A8003B9369 /* INFO.txt in Resources */ = {isa = PBXBuildFile; fileRef = B55735EB1E6740A8003B9369 /* INFO.txt */; };
 		B55736331E6740A8003B9369 /* INFO.txt in Resources */ = {isa = PBXBuildFile; fileRef = B55735EB1E6740A8003B9369 /* INFO.txt */; };
 		B55736341E6740A8003B9369 /* INFO.txt in Resources */ = {isa = PBXBuildFile; fileRef = B55735EB1E6740A8003B9369 /* INFO.txt */; };
-		B55736351E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */; };
-		B55736361E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */; };
-		B55736371E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */; };
 		B55736381E6740A8003B9369 /* OMLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B55736141E6740A8003B9369 /* OMLocalizable.strings */; };
 		B55736391E6740A8003B9369 /* OMLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B55736141E6740A8003B9369 /* OMLocalizable.strings */; };
 		B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B55736141E6740A8003B9369 /* OMLocalizable.strings */; };
@@ -424,7 +426,6 @@
 		E800436E1E6A133F005CF531 /* libOMCNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D51E674089003B9369 /* libOMCNotifications.a */; };
 		E800436F1E6A1341005CF531 /* libOMCStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D61E674089003B9369 /* libOMCStorage.a */; };
 		E80043701E6A1343005CF531 /* libOMCSynchronization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D71E674089003B9369 /* libOMCSynchronization.a */; };
-		E80043711E6A139B005CF531 /* libIDMMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */; };
 		E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
 		E80043761E6A1701005CF531 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
 		E801BAD51E8C439500550F99 /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* OMCAuthenticationService.swift */; };
@@ -756,6 +757,7 @@
 		B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseParserTests.swift; sourceTree = "<group>"; };
 		B548468F1E6F4446008CE1B1 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
+		B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIDMMobileSDKv2Library.a; sourceTree = "<group>"; };
 		B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCApi.swift; sourceTree = "<group>"; };
 		B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		B55735971E67406D003B9369 /* OMCAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCAnalytics.h; sourceTree = "<group>"; };
@@ -819,43 +821,6 @@
 		B55735D61E674089003B9369 /* libOMCStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOMCStorage.a; sourceTree = "<group>"; };
 		B55735D71E674089003B9369 /* libOMCSynchronization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOMCSynchronization.a; sourceTree = "<group>"; };
 		B55735EB1E6740A8003B9369 /* INFO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = INFO.txt; sourceTree = "<group>"; };
-		B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIDMMobileSDK.a; sourceTree = "<group>"; };
-		B55735EE1E6740A8003B9369 /* IDMMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMMobileSDK.h; sourceTree = "<group>"; };
-		B55735EF1E6740A8003B9369 /* NSData+OMBase32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+OMBase32.h"; sourceTree = "<group>"; };
-		B55735F01E6740A8003B9369 /* NSData+OMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+OMBase64.h"; sourceTree = "<group>"; };
-		B55735F11E6740A8003B9369 /* NSDictionary+OMJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+OMJSON.h"; sourceTree = "<group>"; };
-		B55735F21E6740A8003B9369 /* OAMMSSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAMMSSDK.h; sourceTree = "<group>"; };
-		B55735F31E6740A8003B9369 /* OMADFMobileSecurityConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMADFMobileSecurityConfiguration.h; sourceTree = "<group>"; };
-		B55735F41E6740A8003B9369 /* OMAsyncOpHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAsyncOpHandle.h; sourceTree = "<group>"; };
-		B55735F51E6740A8003B9369 /* OMAuthenticationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAuthenticationContext.h; sourceTree = "<group>"; };
-		B55735F61E6740A8003B9369 /* OMAuthenticationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAuthenticationRequest.h; sourceTree = "<group>"; };
-		B55735F71E6740A8003B9369 /* OMAuthProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAuthProgressView.h; sourceTree = "<group>"; };
-		B55735F81E6740A8003B9369 /* OMAuthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAuthView.h; sourceTree = "<group>"; };
-		B55735F91E6740A8003B9369 /* OMCertInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCertInfo.h; sourceTree = "<group>"; };
-		B55735FA1E6740A8003B9369 /* OMCertService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCertService.h; sourceTree = "<group>"; };
-		B55735FB1E6740A8003B9369 /* OMCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCredential.h; sourceTree = "<group>"; };
-		B55735FC1E6740A8003B9369 /* OMCredentialStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCredentialStore.h; sourceTree = "<group>"; };
-		B55735FD1E6740A8003B9369 /* OMCredentialStoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCredentialStoreService.h; sourceTree = "<group>"; };
-		B55735FE1E6740A8003B9369 /* OMCryptoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMCryptoService.h; sourceTree = "<group>"; };
-		B55735FF1E6740A8003B9369 /* OMDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMDefinitions.h; sourceTree = "<group>"; };
-		B55736001E6740A8003B9369 /* OMEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMEntity.h; sourceTree = "<group>"; };
-		B55736011E6740A8003B9369 /* OMEntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMEntityManager.h; sourceTree = "<group>"; };
-		B55736021E6740A8003B9369 /* OMErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMErrorCodes.h; sourceTree = "<group>"; };
-		B55736031E6740A8003B9369 /* OMHTTPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMHTTPService.h; sourceTree = "<group>"; };
-		B55736041E6740A8003B9369 /* OMIdentityProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMIdentityProvider.h; sourceTree = "<group>"; };
-		B55736051E6740A8003B9369 /* OMMobileSecurityConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMobileSecurityConfiguration.h; sourceTree = "<group>"; };
-		B55736061E6740A8003B9369 /* OMMobileSecurityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMobileSecurityService.h; sourceTree = "<group>"; };
-		B55736071E6740A8003B9369 /* OMMutableCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMMutableCredential.h; sourceTree = "<group>"; };
-		B55736081E6740A8003B9369 /* OMObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMObject.h; sourceTree = "<group>"; };
-		B55736091E6740A8003B9369 /* OMOICMobileSecurityConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMOICMobileSecurityConfiguration.h; sourceTree = "<group>"; };
-		B557360A1E6740A8003B9369 /* OMOTPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMOTPService.h; sourceTree = "<group>"; };
-		B557360B1E6740A8003B9369 /* OMRESTRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMRESTRequest.h; sourceTree = "<group>"; };
-		B557360C1E6740A8003B9369 /* OMRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMRole.h; sourceTree = "<group>"; };
-		B557360D1E6740A8003B9369 /* OMRoleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMRoleManager.h; sourceTree = "<group>"; };
-		B557360E1E6740A8003B9369 /* OMToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMToken.h; sourceTree = "<group>"; };
-		B557360F1E6740A8003B9369 /* OMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMUser.h; sourceTree = "<group>"; };
-		B55736101E6740A8003B9369 /* OMUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMUserManager.h; sourceTree = "<group>"; };
-		B55736111E6740A8003B9369 /* OMUserRoleProfileService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMUserRoleProfileService.h; sourceTree = "<group>"; };
 		B55736151E6740A8003B9369 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
 		B55736161E6740A8003B9369 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
 		B55736171E6740A8003B9369 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/OMLocalizable.strings; sourceTree = "<group>"; };
@@ -932,6 +897,25 @@
 		B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B5AC073B1E52A2BD00BBA4ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B5EB9EDD1EC3EB390049B586 /* IDMMobileSDKv2Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDMMobileSDKv2Library.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/IDMMobileSDKv2Library.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EDE1EC3EB430049B586 /* NSData+OMBase32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSData+OMBase32.h"; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/NSData+OMBase32.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EDF1EC3EB430049B586 /* NSData+OMBase64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSData+OMBase64.h"; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/NSData+OMBase64.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EE01EC3EB430049B586 /* OMAuthenticationChallenge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMAuthenticationChallenge.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMAuthenticationChallenge.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EE11EC3EB430049B586 /* OMAuthenticationContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMAuthenticationContext.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMAuthenticationContext.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EE21EC3EB430049B586 /* OMAuthenticationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMAuthenticationDelegate.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMAuthenticationDelegate.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EE31EC3EB430049B586 /* OMAuthenticationRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMAuthenticationRequest.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMAuthenticationRequest.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EE41EC3EB430049B586 /* OMCertInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMCertInfo.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMCertInfo.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EE51EC3EB430049B586 /* OMCertService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMCertService.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMCertService.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EE61EC3EB430049B586 /* OMCredential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMCredential.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMCredential.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EE71EC3EB430049B586 /* OMCredentialStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMCredentialStore.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMCredentialStore.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EE81EC3EB430049B586 /* OMCryptoService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMCryptoService.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMCryptoService.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EE91EC3EB430049B586 /* OMDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMDefinitions.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMDefinitions.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EEA1EC3EB430049B586 /* OMErrorCodes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMErrorCodes.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMErrorCodes.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EEB1EC3EB430049B586 /* OMMobileSecurityConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMMobileSecurityConfiguration.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMMobileSecurityConfiguration.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EEC1EC3EB430049B586 /* OMMobileSecurityService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMMobileSecurityService.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMMobileSecurityService.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EED1EC3EB430049B586 /* OMObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMObject.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMObject.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EEE1EC3EB430049B586 /* OMOTPService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMOTPService.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMOTPService.h"; sourceTree = SOURCE_ROOT; };
+		B5EB9EEF1EC3EB430049B586 /* OMToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMToken.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMToken.h"; sourceTree = SOURCE_ROOT; };
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E80043081E64DEE2005CF531 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Carthage/Build/iOS/ToastSwiftFramework.framework; sourceTree = "<group>"; };
@@ -1036,6 +1020,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B54A4B761EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1047,7 +1032,6 @@
 				B5AC07421E52A49900BBA4ED /* CoreLocation.framework in Frameworks */,
 				E8D2520C1E6DB74600C90584 /* HockeySDK.framework in Frameworks */,
 				E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */,
-				B55736351E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
 				B55735D81E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
 				B55735DB1E674089003B9369 /* libOMCCore.a in Frameworks */,
 				B55735DE1E674089003B9369 /* libOMCLocation.a in Frameworks */,
@@ -1062,6 +1046,7 @@
 				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
 				B5AC073C1E52A2BD00BBA4ED /* Security.framework in Frameworks */,
 				B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B54A4B721EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */,
 				E80043181E65DFE4005CF531 /* ToastSwiftFramework.framework in Frameworks */,
 				E80043491E671F0B005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
@@ -1075,7 +1060,6 @@
 				E8EEF7221E567941006804D4 /* CoreLocation.framework in Frameworks */,
 				E8D252111E6DB82C00C90584 /* HockeySDK.framework in Frameworks */,
 				E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */,
-				B55736371E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
 				B55735DA1E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
 				B55735DD1E674089003B9369 /* libOMCCore.a in Frameworks */,
 				B55735E01E674089003B9369 /* libOMCLocation.a in Frameworks */,
@@ -1090,6 +1074,7 @@
 				8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */,
 				B5AC07401E52A2ED00BBA4ED /* Security.framework in Frameworks */,
 				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B54A4B741EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */,
 				E800431A1E65E016005CF531 /* ToastSwiftFramework.framework in Frameworks */,
 				E800434B1E671F4F005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
@@ -1103,7 +1088,6 @@
 				E8EEF7211E56793B006804D4 /* CoreLocation.framework in Frameworks */,
 				E8D2520F1E6DB7B400C90584 /* HockeySDK.framework in Frameworks */,
 				E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */,
-				B55736361E6740A8003B9369 /* libIDMMobileSDK.a in Frameworks */,
 				B55735D91E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
 				B55735DC1E674089003B9369 /* libOMCCore.a in Frameworks */,
 				B55735DF1E674089003B9369 /* libOMCLocation.a in Frameworks */,
@@ -1118,6 +1102,7 @@
 				8FD3C2601E524548005FB1BB /* RxSwift.framework in Frameworks */,
 				B5AC073E1E52A2E000BBA4ED /* Security.framework in Frameworks */,
 				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B54A4B731EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */,
 				E80043191E65E004005CF531 /* ToastSwiftFramework.framework in Frameworks */,
 				E800434A1E671F36005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
@@ -1132,10 +1117,10 @@
 				E80043761E6A1701005CF531 /* RxCocoa.framework in Frameworks */,
 				E800436E1E6A133F005CF531 /* libOMCNotifications.a in Frameworks */,
 				B54F0FFE1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
-				E80043711E6A139B005CF531 /* libIDMMobileSDK.a in Frameworks */,
 				E800436D1E6A133D005CF531 /* libOMCLocation.a in Frameworks */,
 				E800436F1E6A1341005CF531 /* libOMCStorage.a in Frameworks */,
 				E800436C1E6A1339005CF531 /* libOMCAnalytics.a in Frameworks */,
+				B54A4B751EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */,
 				E80043701E6A1343005CF531 /* libOMCSynchronization.a in Frameworks */,
 				E800436A1E6A12A3005CF531 /* libOMCCore.a in Frameworks */,
 			);
@@ -1555,7 +1540,7 @@
 			isa = PBXGroup;
 			children = (
 				B55735EB1E6740A8003B9369 /* INFO.txt */,
-				B55735EC1E6740A8003B9369 /* libIDMMobileSDK.a */,
+				B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */,
 				B55735ED1E6740A8003B9369 /* PublicHeaders */,
 				B55736121E6740A8003B9369 /* PublicResources */,
 			);
@@ -1565,42 +1550,25 @@
 		B55735ED1E6740A8003B9369 /* PublicHeaders */ = {
 			isa = PBXGroup;
 			children = (
-				B55735EE1E6740A8003B9369 /* IDMMobileSDK.h */,
-				B55735EF1E6740A8003B9369 /* NSData+OMBase32.h */,
-				B55735F01E6740A8003B9369 /* NSData+OMBase64.h */,
-				B55735F11E6740A8003B9369 /* NSDictionary+OMJSON.h */,
-				B55735F21E6740A8003B9369 /* OAMMSSDK.h */,
-				B55735F31E6740A8003B9369 /* OMADFMobileSecurityConfiguration.h */,
-				B55735F41E6740A8003B9369 /* OMAsyncOpHandle.h */,
-				B55735F51E6740A8003B9369 /* OMAuthenticationContext.h */,
-				B55735F61E6740A8003B9369 /* OMAuthenticationRequest.h */,
-				B55735F71E6740A8003B9369 /* OMAuthProgressView.h */,
-				B55735F81E6740A8003B9369 /* OMAuthView.h */,
-				B55735F91E6740A8003B9369 /* OMCertInfo.h */,
-				B55735FA1E6740A8003B9369 /* OMCertService.h */,
-				B55735FB1E6740A8003B9369 /* OMCredential.h */,
-				B55735FC1E6740A8003B9369 /* OMCredentialStore.h */,
-				B55735FD1E6740A8003B9369 /* OMCredentialStoreService.h */,
-				B55735FE1E6740A8003B9369 /* OMCryptoService.h */,
-				B55735FF1E6740A8003B9369 /* OMDefinitions.h */,
-				B55736001E6740A8003B9369 /* OMEntity.h */,
-				B55736011E6740A8003B9369 /* OMEntityManager.h */,
-				B55736021E6740A8003B9369 /* OMErrorCodes.h */,
-				B55736031E6740A8003B9369 /* OMHTTPService.h */,
-				B55736041E6740A8003B9369 /* OMIdentityProvider.h */,
-				B55736051E6740A8003B9369 /* OMMobileSecurityConfiguration.h */,
-				B55736061E6740A8003B9369 /* OMMobileSecurityService.h */,
-				B55736071E6740A8003B9369 /* OMMutableCredential.h */,
-				B55736081E6740A8003B9369 /* OMObject.h */,
-				B55736091E6740A8003B9369 /* OMOICMobileSecurityConfiguration.h */,
-				B557360A1E6740A8003B9369 /* OMOTPService.h */,
-				B557360B1E6740A8003B9369 /* OMRESTRequest.h */,
-				B557360C1E6740A8003B9369 /* OMRole.h */,
-				B557360D1E6740A8003B9369 /* OMRoleManager.h */,
-				B557360E1E6740A8003B9369 /* OMToken.h */,
-				B557360F1E6740A8003B9369 /* OMUser.h */,
-				B55736101E6740A8003B9369 /* OMUserManager.h */,
-				B55736111E6740A8003B9369 /* OMUserRoleProfileService.h */,
+				B5EB9EDD1EC3EB390049B586 /* IDMMobileSDKv2Library.h */,
+				B5EB9EDE1EC3EB430049B586 /* NSData+OMBase32.h */,
+				B5EB9EDF1EC3EB430049B586 /* NSData+OMBase64.h */,
+				B5EB9EE01EC3EB430049B586 /* OMAuthenticationChallenge.h */,
+				B5EB9EE11EC3EB430049B586 /* OMAuthenticationContext.h */,
+				B5EB9EE21EC3EB430049B586 /* OMAuthenticationDelegate.h */,
+				B5EB9EE31EC3EB430049B586 /* OMAuthenticationRequest.h */,
+				B5EB9EE41EC3EB430049B586 /* OMCertInfo.h */,
+				B5EB9EE51EC3EB430049B586 /* OMCertService.h */,
+				B5EB9EE61EC3EB430049B586 /* OMCredential.h */,
+				B5EB9EE71EC3EB430049B586 /* OMCredentialStore.h */,
+				B5EB9EE81EC3EB430049B586 /* OMCryptoService.h */,
+				B5EB9EE91EC3EB430049B586 /* OMDefinitions.h */,
+				B5EB9EEA1EC3EB430049B586 /* OMErrorCodes.h */,
+				B5EB9EEB1EC3EB430049B586 /* OMMobileSecurityConfiguration.h */,
+				B5EB9EEC1EC3EB430049B586 /* OMMobileSecurityService.h */,
+				B5EB9EED1EC3EB430049B586 /* OMObject.h */,
+				B5EB9EEE1EC3EB430049B586 /* OMOTPService.h */,
+				B5EB9EEF1EC3EB430049B586 /* OMToken.h */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
