@@ -225,9 +225,16 @@ class BillViewModel {
                     billingInfo.isDisconnectNotice) else {
                         return nil
             }
-			
-			let localizedText = NSLocalizedString("Payment due to avoid shutoff is %@ due immediately.", comment: "")
-			return String(format: localizedText, amountText)
+            
+            switch Environment.sharedInstance.opco {
+            case .bge:
+                guard let dateText = billingInfo.dueByDate?.mmDdYyyyString else { return nil }
+                let localizedText = NSLocalizedString("Payment due to avoid shutoff is %@ due by %@.", comment: "")
+                return String(format: localizedText, amountText, dateText)
+            case .comEd, .peco:
+                let localizedText = NSLocalizedString("Payment due to avoid shutoff is %@ due immediately.", comment: "")
+                return String(format: localizedText, amountText)
+            }
         }
     }()
     
