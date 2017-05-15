@@ -181,6 +181,9 @@ class AccountPicker: UIView {
         ])
         
         if advancedPicker { // Makes area tappable and adds caret icon
+            advancedAccountNumberLabel = accountNumberLabel
+            advancedAccountAddressLabel = addressLabel
+            
             advancedAccountButton = UIButton(frame: scrollView.frame)
             advancedAccountButton!.addTarget(self, action: #selector(onAdvancedAccountButtonPress), for: .touchUpInside)
             addSubview(advancedAccountButton!)
