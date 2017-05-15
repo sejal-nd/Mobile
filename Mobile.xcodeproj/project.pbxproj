@@ -646,6 +646,8 @@
 		E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
 		E8F51EEA1ECA40870080AB3E /* PaperlessEBillViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */; };
 		E8F51EEB1ECA40AF0080AB3E /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */; };
+		E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */; };
+		E8F51EEE1ECA51790080AB3E /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
 		E8FE30B11E787625009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B01E787625009D28B7 /* outage.json */; };
 		E8FE30B61E787632009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B41E78762F009D28B7 /* outage.json */; };
 		E8FE30B71E787635009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B21E78762B009D28B7 /* outage.json */; };
@@ -1021,6 +1023,7 @@
 		E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewModelTests.swift; sourceTree = "<group>"; };
 		E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockBillService.swift; sourceTree = "<group>"; };
 		E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewModelTests.swift; sourceTree = "<group>"; };
+		E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModelTests.swift; sourceTree = "<group>"; };
 		E8FE30B01E787625009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 		E8FE30B21E78762B009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 		E8FE30B41E78762F009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
@@ -1715,6 +1718,7 @@
 				E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */,
 				E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */,
 				E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */,
+				E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */,
 			);
 			path = MobileTests;
 			sourceTree = "<group>";
@@ -2841,6 +2845,7 @@
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
+				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
 				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
 				82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
@@ -2853,6 +2858,7 @@
 				E895E9B01EBB849A003B38A1 /* ChangePasswordViewModel.swift in Sources */,
 				B574BADC1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E895E9AE1EBB8489003B38A1 /* ForgotPasswordViewModel.swift in Sources */,
+				E8F51EEE1ECA51790080AB3E /* BillViewModel.swift in Sources */,
 				E895E9AC1EBB8464003B38A1 /* ReportOutageViewModel.swift in Sources */,
 				B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */,
 			);
