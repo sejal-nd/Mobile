@@ -151,15 +151,12 @@ class BillViewModel {
 		}
 	}()
 	
-	
-	let shouldShowAmountDueTooltip = Environment.sharedInstance.opco != .peco
+	let shouldShowAmountDueTooltip = Environment.sharedInstance.opco == .peco
 	
 	lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = {
-		return self.currentAccountDetail.asDriver()
-			.map {
-				guard let accountDetail = $0 else { return false }
-				// TODO: Add logic for residential users based on forthcoming web service response additions
-				return !UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
+		return self.currentAccountDetail.asDriver().map {
+			guard let isAMICustomer = $0?.isAMICustomer else { return false }
+			return !UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && !isAMICustomer
 		}
 	}()
 	
@@ -221,7 +218,7 @@ class BillViewModel {
     //MARK: Banner Alert Text
     
     lazy var alertBannerText: Driver<String?> = {
-        return Driver.combineLatest(self.restoreServiceAlertText, self.avoidShutoffDueDateAlertText, self.paymentFailedAlertText) {
+        return Driver.combineLatest(self.restoreServiceAlertText, self.avoidShutoffAlertText, self.paymentFailedAlertText) {
             $0 ?? $1 ?? $2
         }
     }()
@@ -237,21 +234,18 @@ class BillViewModel {
         }
     }()
     
-    lazy var avoidShutoffDueDateAlertText: Driver<String?> = {
+    lazy var avoidShutoffAlertText: Driver<String?> = {
         return self.currentAccountDetail.asDriver().map {
             guard let billingInfo = $0?.billingInfo,
+				let amountText = billingInfo.pastDueAmount?.currencyString,
                 (!(billingInfo.restorationAmount ?? 0 > 0 && billingInfo.amtDpaReinst ?? 0 > 0) &&
                     billingInfo.disconnectNoticeArrears > 0 &&
                     billingInfo.isDisconnectNotice) else {
                         return nil
             }
-            if Environment.sharedInstance.opco == .bge {
-                let localizedText = NSLocalizedString("Due by %@", comment: "")
-                let dueByDateString = billingInfo.dueByDate?.mmDdYyyyString ?? "--"
-                return String(format: localizedText, dueByDateString)
-            } else {
-                return NSLocalizedString("Due Immediately", comment: "")
-            }
+			
+			let localizedText = NSLocalizedString("Payment due to avoid shutoff is %@ due immediately.", comment: "")
+			return String(format: localizedText, amountText)
         }
     }()
     
@@ -305,6 +299,19 @@ class BillViewModel {
 	lazy var avoidShutoffAmountText: Driver<String?> = {
 		return self.currentAccountDetail.asDriver().map {
 			$0?.billingInfo.restorationAmount?.currencyString ?? "--"
+		}
+	}()
+	
+	lazy var avoidShutoffDueDateText: Driver<String?> = {
+		return self.currentAccountDetail.asDriver().map {
+			guard let billingInfo = $0?.billingInfo else { return nil }
+			if Environment.sharedInstance.opco == .bge {
+				let localizedText = NSLocalizedString("Due by %@", comment: "")
+				let dueByDateString = billingInfo.dueByDate?.mmDdYyyyString ?? "--"
+				return String(format: localizedText, dueByDateString)
+			} else {
+				return NSLocalizedString("Due Immediately", comment: "")
+			}
 		}
 	}()
 	

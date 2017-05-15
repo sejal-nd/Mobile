@@ -253,7 +253,7 @@ class BillViewController: AccountPickerViewController {
 		viewModel.catchUpDisclaimerText.drive(catchUpDisclaimerLabel.rx.text).addDisposableTo(bag)
 		avoidShutoffLabel.text = viewModel.avoidShutoffText
 		viewModel.avoidShutoffAmountText.drive(avoidShutoffAmountLabel.rx.text).addDisposableTo(bag)
-		viewModel.avoidShutoffDueDateAlertText.drive(avoidShutoffDateLabel.rx.text).addDisposableTo(bag)
+		viewModel.avoidShutoffDueDateText.drive(avoidShutoffDateLabel.rx.text).addDisposableTo(bag)
 		viewModel.pastDueAmountText.drive(pastDueAmountLabel.rx.text).addDisposableTo(bag)
 		
 		viewModel.pendingPaymentAmounts

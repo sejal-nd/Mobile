@@ -80,6 +80,8 @@ struct AccountDetail: Mappable {
 	let isAutoPayEligible: Bool
     let isCutOutNonPay: Bool
 	
+	let isAMICustomer: Bool
+	
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
         address = map.optionalFrom("address")
@@ -99,8 +101,10 @@ struct AccountDetail: Mappable {
         
 		isAutoPay = map.optionalFrom("isAutoPay") ?? false
         isBGEasy = map.optionalFrom("isBGEasy") ?? false
-        isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
-        isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
+		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+		
+		isAMICustomer = map.optionalFrom("isAMICustomer") ?? false
     }
 	
     var eBillEnrollStatus: EBillEnrollStatus {
