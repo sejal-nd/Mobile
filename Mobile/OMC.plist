@@ -31,6 +31,8 @@
 					<string>QTQ1MzU3Nl9FWEVMT05FVU1PQklMRUFQUFNUQUdFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WXV0LmY0cHE3bmllcm8=</string>
 				</dict>
 			</dict>
+			<key>networkConnectionTimeout</key>
+			<integer>60</integer>
 		</dict>
 		<key>Dev</key>
 		<dict>
@@ -59,6 +61,8 @@
 					<string>QTQ1MzU3Nl9FWEVMT05FVU1PQklMRUFQUERFVl9NT0JJTEVfQU5PTllNT1VTX0FQUElEOko3b3JkaWNfeWFscDZ1</string>
 				</dict>
 			</dict>
+			<key>networkConnectionTimeout</key>
+			<integer>60</integer>
 		</dict>
 	</dict>
 	<key>logLevel</key>
