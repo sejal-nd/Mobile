@@ -253,18 +253,14 @@ class BillViewController: AccountPickerViewController {
 		viewModel.pastDueAmountText.drive(pastDueAmountLabel.rx.text).addDisposableTo(bag)
 		
 		viewModel.pendingPaymentAmounts
-			.map {
-				$0.map { PendingPaymentView.create(withAmount: $0) }
-			}
+			.map { $0.map { PendingPaymentView.create(withAmount: $0) } }
 			.drive(onNext: { pendingPaymentViews in
 				self.paymentStackView.arrangedSubviews.forEach {
 					self.paymentStackView.removeArrangedSubview($0)
 					$0.removeFromSuperview()
 				}
 				
-				pendingPaymentViews.forEach {
-					self.paymentStackView.addArrangedSubview($0)
-				}
+				pendingPaymentViews.forEach { self.paymentStackView.addArrangedSubview($0) }
 			})
 			.addDisposableTo(bag)
 		
