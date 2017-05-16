@@ -307,7 +307,13 @@ class BillViewController: AccountPickerViewController {
         
         viewBillButton.rx.touchUpInside.asDriver()
             .drive(onNext: {
-                self.performSegue(withIdentifier: "viewBillSegue", sender: self)
+                if Environment.sharedInstance.opco == .comEd && self.viewModel.currentAccountDetail.value!.hasElectricSupplier && self.viewModel.currentAccountDetail.value!.isSingleBillOption {
+                    let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVC, animated: true, completion: nil)
+                } else {
+                    self.performSegue(withIdentifier: "viewBillSegue", sender: self)
+                }
             })
 			.addDisposableTo(bag)
 		
