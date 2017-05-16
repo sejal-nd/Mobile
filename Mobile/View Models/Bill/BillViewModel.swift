@@ -195,7 +195,7 @@ class BillViewModel {
         switch Environment.sharedInstance.opco {
         case .bge:
             guard let dateText = billingInfo.dueByDate?.mmDdYyyyString else { return nil }
-            let localizedText = NSLocalizedString("Payment due to avoid shutoff is %@ due by %@.", comment: "")
+            let localizedText = NSLocalizedString("Payment due to avoid service interruption is %@ due by %@.", comment: "")
             return String(format: localizedText, amountText, dateText)
         case .comEd, .peco:
             let localizedText = NSLocalizedString("Payment due to avoid shutoff is %@ due immediately.", comment: "")
@@ -366,13 +366,19 @@ class BillViewModel {
                 localizedText = NSLocalizedString("You have a pending payment of %@", comment: "")
             }
             return String(format: localizedText, paymentString)
-        } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount, lastPaymentAmount > 0 {
+        } else {
+            let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount ?? 0
+            guard lastPaymentAmount > 0 else { return nil }
+            
+            guard let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate,
+                let billDate = accountDetail.billingInfo.billDate,
+                lastPaymentDate >= billDate
+                else { return nil }
+            
             let paymentString = lastPaymentAmount.currencyString ?? "--"
             let dueByDateString = accountDetail.billingInfo.lastPaymentDate?.mmDdYyyyString ?? "--"
             let localizedText = NSLocalizedString("Thank you for %@ payment on %@", comment: "")
             return String(format: localizedText, paymentString, dueByDateString)
-        } else {
-            return nil
         }
     }
     
