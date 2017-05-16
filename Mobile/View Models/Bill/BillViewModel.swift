@@ -230,11 +230,12 @@ class BillViewModel {
     
     //MARK: - Catch Up
     lazy var catchUpAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
-        return $0?.billingInfo.amtDpaReinst?.currencyString ?? "--"
+        $0?.billingInfo.amtDpaReinst?.currencyString ?? "--"
     }
     
     lazy var catchUpDateText: Driver<String?> = self.currentAccountDetail.asDriver().map {
-        return $0?.billingInfo.dueByDate?.mmDdYyyyString ?? ""
+        let localizedText = NSLocalizedString("Due by %@", comment: "")
+        return String(format: localizedText, $0?.billingInfo.dueByDate?.mmDdYyyyString ?? "")
     }
     
     lazy var catchUpDisclaimerText: Driver<String?> = self.currentAccountDetail.asDriver().map {
