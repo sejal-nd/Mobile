@@ -10,6 +10,12 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
+enum PaperlessEBillChangedStatus {
+    case Enroll
+    case Unenroll
+    case Mixed
+}
+
 class PaperlessEBillViewModel {
     private var accountService: AccountService
     private var billService: BillService
