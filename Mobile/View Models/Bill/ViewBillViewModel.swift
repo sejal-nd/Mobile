@@ -25,7 +25,7 @@ class ViewBillViewModel {
     }
     
     func fetchBillPDFData(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        billService.fetchBillPdf(account: AccountsStore.sharedInstance.currentAccount, billDate: billDate)
+        billService.fetchBillPdf(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, billDate: billDate)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { billDataString in
                 if let pdfData = Data(base64Encoded: billDataString, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) {

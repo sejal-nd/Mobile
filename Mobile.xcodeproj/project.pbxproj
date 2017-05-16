@@ -638,8 +638,18 @@
 		E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
 		E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
 		E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
-		E8F51EF11ECA5C040080AB3E /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
-		E8F51EF51ECA5C130080AB3E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
+		E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */; };
+		E8F51EE31EC9F7F90080AB3E /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */; };
+		E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
+		E8F51EE61EC9F8560080AB3E /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
+		E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
+		E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
+		E8F51EEA1ECA40870080AB3E /* PaperlessEBillViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */; };
+		E8F51EEB1ECA40AF0080AB3E /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */; };
+		E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */; };
+		E8F51EEE1ECA51790080AB3E /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
+		E8F51EEF1ECA5AE40080AB3E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
+		E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		E8FE30B11E787625009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B01E787625009D28B7 /* outage.json */; };
 		E8FE30B61E787632009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B41E78762F009D28B7 /* outage.json */; };
 		E8FE30B71E787635009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B21E78762B009D28B7 /* outage.json */; };
@@ -1012,6 +1022,10 @@
 		E8EEF7361E57895F006804D4 /* LaunchScreen-ComEd.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-ComEd.storyboard"; sourceTree = "<group>"; };
 		E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-PECO.storyboard"; sourceTree = "<group>"; };
 		E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewController.swift; sourceTree = "<group>"; };
+		E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewModelTests.swift; sourceTree = "<group>"; };
+		E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockBillService.swift; sourceTree = "<group>"; };
+		E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewModelTests.swift; sourceTree = "<group>"; };
+		E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModelTests.swift; sourceTree = "<group>"; };
 		E8FE30B01E787625009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 		E8FE30B21E78762B009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 		E8FE30B41E78762F009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
@@ -1425,6 +1439,7 @@
 				B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */,
 				B574BADE1E7837A6001E8A44 /* MockAccountService.swift */,
 				B574BAF61E786473001E8A44 /* MockOutageService.swift */,
+				E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -1703,6 +1718,9 @@
 				E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */,
 				E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */,
 				E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */,
+				E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */,
+				E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */,
+				E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */,
 			);
 			path = MobileTests;
 			sourceTree = "<group>";
@@ -2458,6 +2476,7 @@
 				82A18EE01EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift in Sources */,
 				82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				E80D2E171E721668002626C9 /* ObfuscatedString.swift in Sources */,
+				E8F51EE61EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
@@ -2614,6 +2633,7 @@
 				82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				82471FC01EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */,
+				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* BGEAccountNumberViewController.swift in Sources */,
@@ -2731,6 +2751,7 @@
 				82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				82471FBF1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */,
+				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				E8CA07DE1E9BD10000A1D431 /* BGEAccountNumberViewController.swift in Sources */,
@@ -2782,11 +2803,15 @@
 			files = (
 				E840BD3D1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
+				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
 				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
+				E8F51EEB1ECA40AF0080AB3E /* PaperlessEBillViewModel.swift in Sources */,
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
+				E8F51EEF1ECA5AE40080AB3E /* Fonts.swift in Sources */,
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
+				E8F51EE31EC9F7F90080AB3E /* BudgetBillingViewModel.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
 				B574BAF41E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
@@ -2796,15 +2821,16 @@
 				82A18F111EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				E840BD471EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */,
-				E8F51EF51ECA5C130080AB3E /* Fonts.swift in Sources */,
 				E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
-				E8F51EF11ECA5C040080AB3E /* SharedColor.swift in Sources */,
 				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
+				E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
+				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
 				E840BD421EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
+				E8F51EEA1ECA40870080AB3E /* PaperlessEBillViewModelTests.swift in Sources */,
 				E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */,
 				E81CFFF71EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8CA07F71E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
@@ -2823,6 +2849,7 @@
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
+				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
 				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
 				82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
@@ -2835,6 +2862,7 @@
 				E895E9B01EBB849A003B38A1 /* ChangePasswordViewModel.swift in Sources */,
 				B574BADC1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E895E9AE1EBB8489003B38A1 /* ForgotPasswordViewModel.swift in Sources */,
+				E8F51EEE1ECA51790080AB3E /* BillViewModel.swift in Sources */,
 				E895E9AC1EBB8464003B38A1 /* ReportOutageViewModel.swift in Sources */,
 				B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */,
 			);

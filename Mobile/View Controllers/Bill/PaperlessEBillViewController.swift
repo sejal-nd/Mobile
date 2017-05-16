@@ -10,12 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-enum PaperlessEBillChangedStatus {
-    case Enroll
-    case Unenroll
-    case Mixed
-}
-
 protocol PaperlessEBillViewControllerDelegate: class {
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus)
 }
