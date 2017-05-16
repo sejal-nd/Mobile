@@ -148,7 +148,7 @@ class AccountPicker: UIView {
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.font = UIFont.systemFont(ofSize: 12)
         addressLabel.textColor = tintWhite ? .white: .deepGray
-        addressLabel.text = account.address ?? NSLocalizedString("Address Unavailable", comment: "")
+        addressLabel.text = account.address
         
         let accountView = UIView(frame: .zero)
         accountView.translatesAutoresizingMaskIntoConstraints = false

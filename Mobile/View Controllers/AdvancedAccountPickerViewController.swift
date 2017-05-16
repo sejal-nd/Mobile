@@ -92,7 +92,7 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
         
         cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
         cell.accountNumber.text = account.accountNumber
-        cell.addressLabel.text = account.address ?? NSLocalizedString("Address Unavailable", comment: "")
+        cell.addressLabel.text = account.address
 
         if account.isDefault {
             cell.accountStatusLabel.text = "Default"
