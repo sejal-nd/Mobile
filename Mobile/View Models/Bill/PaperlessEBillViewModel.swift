@@ -66,6 +66,7 @@ class PaperlessEBillViewModel {
                     return Observable.just(self.initialAccountDetail.value)
                 }
                 return self.accountService.fetchAccountDetail(account: account)
+                    .retry(2)
                     .map { $0 }
                     .catchErrorJustReturn(nil)
                     .unwrap()

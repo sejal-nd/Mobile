@@ -42,6 +42,7 @@ class BillViewModel {
             .flatMapLatest { _ in
                 accountService
                     .fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
+                    .retry(2)
                     .trackActivity(fetchingAccountDetailTracker)
             }
 			.bind(to: currentAccountDetail)
