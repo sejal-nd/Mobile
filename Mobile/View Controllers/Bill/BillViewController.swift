@@ -146,16 +146,6 @@ class BillViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if alertLottieAnimation.superview != alertAnimationView {
-            print("lottie reset")
-            alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: alertAnimationView.frame.size.width, height: alertAnimationView.frame.size.height)
-            alertLottieAnimation.contentMode = .scaleAspectFill
-            alertAnimationView.addSubview(alertLottieAnimation)
-        }
-    }
-    
     func styleViews() {
         view.backgroundColor = .primaryColor
         contentView.backgroundColor = .primaryColor
@@ -210,7 +200,6 @@ class BillViewController: AccountPickerViewController {
         viewModel.shouldShowAlertBanner.map(!).drive(alertBannerView.rx.isHidden).addDisposableTo(bag)
         viewModel.shouldShowAlertBanner.filter { $0 }
             .drive(onNext: { _ in
-                print("play")
                 self.alertLottieAnimation.removeFromSuperview()
                 self.alertLottieAnimation = LOTAnimationView(name: "alert_icon")!
                 self.alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: self.alertAnimationView.frame.size.width, height: self.alertAnimationView.frame.size.height)

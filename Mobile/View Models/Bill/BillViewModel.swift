@@ -122,10 +122,11 @@ class BillViewModel {
 	}()
 	
 	lazy var shouldShowRemainingBalancePastDue: Driver<Bool> = {
-		return self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
+		let showRemainingPastDue = self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
 			guard let billingInfo = accountDetail?.billingInfo else { return false }
 			return billingInfo.pastDueRemaining ?? 0 > 0
 		}
+        return Driver.zip(showRemainingPastDue, self.shouldShowPastDue) { $0 && $1 }
 	}()
 	
 	lazy var shouldShowBillIssued: Driver<Bool> = {
