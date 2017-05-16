@@ -101,10 +101,11 @@ class LoginViewController: UIViewController {
             wrap.addSubview(self.passwordTextField.textField)
         }).addDisposableTo(disposeBag)
         passwordTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            let wrap = self.passwordTextField.textField.superview as! UIScrollView
-            self.passwordTextField.textField.frame = CGRect(x: wrap.frame.origin.x, y: wrap.frame.origin.y, width: wrap.frame.size.width, height: wrap.frame.size.height)
-            wrap.superview?.addSubview(self.passwordTextField.textField)
-            wrap.removeFromSuperview()
+            if let wrap = self.passwordTextField.textField.superview as? UIScrollView {
+                self.passwordTextField.textField.frame = CGRect(x: wrap.frame.origin.x, y: wrap.frame.origin.y, width: wrap.frame.size.width, height: wrap.frame.size.height)
+                wrap.superview?.addSubview(self.passwordTextField.textField)
+                wrap.removeFromSuperview()
+            }
         }).addDisposableTo(disposeBag)
         
         forgotUsernameButton.tintColor = .actionBlue
