@@ -148,9 +148,12 @@ class BillViewController: AccountPickerViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: alertAnimationView.frame.size.width, height: alertAnimationView.frame.size.height)
-        alertLottieAnimation.contentMode = .scaleAspectFill
-        alertAnimationView.addSubview(alertLottieAnimation)
+        if alertLottieAnimation.superview != alertAnimationView {
+            print("lottie reset")
+            alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: alertAnimationView.frame.size.width, height: alertAnimationView.frame.size.height)
+            alertLottieAnimation.contentMode = .scaleAspectFill
+            alertAnimationView.addSubview(alertLottieAnimation)
+        }
     }
     
     func styleViews() {
@@ -205,6 +208,17 @@ class BillViewController: AccountPickerViewController {
 	
 	func bindViewHiding() {
         viewModel.shouldShowAlertBanner.map(!).drive(alertBannerView.rx.isHidden).addDisposableTo(bag)
+        viewModel.shouldShowAlertBanner.filter { $0 }
+            .drive(onNext: { _ in
+                print("play")
+                self.alertLottieAnimation.removeFromSuperview()
+                self.alertLottieAnimation = LOTAnimationView(name: "alert_icon")!
+                self.alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: self.alertAnimationView.frame.size.width, height: self.alertAnimationView.frame.size.height)
+                self.alertLottieAnimation.contentMode = .scaleAspectFill
+                self.alertAnimationView.addSubview(self.alertLottieAnimation)
+                self.alertLottieAnimation.play()
+            })
+            .addDisposableTo(bag)
 		
 		questionMarkButton.isHidden = !viewModel.shouldShowAmountDueTooltip
 		
@@ -235,12 +249,6 @@ class BillViewController: AccountPickerViewController {
 	}
 	
 	func bindViewContent() {
-		viewModel.alertBannerText.filter { $0 != nil }
-			.drive(onNext: { _ in
-				self.alertLottieAnimation.play()
-			})
-			.addDisposableTo(bag)
-        
         viewModel.alertBannerText.drive(alertBannerLabel.rx.text).addDisposableTo(bag)
 		
 		viewModel.totalAmountText.drive(totalAmountLabel.rx.text).addDisposableTo(bag)
