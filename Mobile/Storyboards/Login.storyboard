@@ -22,7 +22,7 @@
         <scene sceneID="Qff-1Z-8Qt">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RbL-iO-8ib" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hjm-LC-WA0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hjm-LC-WA0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -118,12 +118,12 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNV-D6-Tjj">
-                                        <rect key="frame" x="0.0" y="223" width="138.5" height="1"/>
+                                        <rect key="frame" x="0.0" y="223" width="139.5" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRy-eH-SXJ">
-                                        <rect key="frame" x="146.5" y="213" width="24" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="146.5" y="213" width="25" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -158,9 +158,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="oHs-4V-Y7S" firstAttribute="leading" secondItem="VNV-D6-Tjj" secondAttribute="leading" id="7VV-Ug-GrA"/>
+                                    <constraint firstItem="MF0-BA-DVg" firstAttribute="leading" secondItem="cRy-eH-SXJ" secondAttribute="trailing" constant="7" id="AcC-MF-pL5"/>
                                     <constraint firstItem="VNV-D6-Tjj" firstAttribute="bottom" secondItem="MF0-BA-DVg" secondAttribute="bottom" id="CV3-Zq-aTi"/>
                                     <constraint firstItem="oHs-4V-Y7S" firstAttribute="centerX" secondItem="cRy-eH-SXJ" secondAttribute="centerX" id="G0O-or-LGd"/>
                                     <constraint firstItem="cRy-eH-SXJ" firstAttribute="top" secondItem="oHs-4V-Y7S" secondAttribute="bottom" constant="21" id="I17-Fl-8HO"/>
+                                    <constraint firstItem="cRy-eH-SXJ" firstAttribute="leading" secondItem="VNV-D6-Tjj" secondAttribute="trailing" constant="7" id="I5r-5B-EKe"/>
                                     <constraint firstAttribute="trailing" secondItem="MF0-BA-DVg" secondAttribute="trailing" id="Nzw-gQ-QTw"/>
                                     <constraint firstAttribute="height" constant="460" id="QTT-hw-Ktu"/>
                                     <constraint firstItem="oRl-ty-kRc" firstAttribute="top" secondItem="cn2-ei-69X" secondAttribute="top" id="TZR-8p-218"/>
@@ -170,10 +172,8 @@
                                     <constraint firstItem="SSH-Ni-ZZW" firstAttribute="top" secondItem="Mtv-0B-6Rn" secondAttribute="bottom" constant="32" id="YSi-4d-21i"/>
                                     <constraint firstItem="VNV-D6-Tjj" firstAttribute="centerY" secondItem="cRy-eH-SXJ" secondAttribute="centerY" id="Zoo-1f-QGD"/>
                                     <constraint firstItem="Mtv-0B-6Rn" firstAttribute="centerX" secondItem="SSH-Ni-ZZW" secondAttribute="centerX" id="byP-1D-0QK"/>
-                                    <constraint firstItem="MF0-BA-DVg" firstAttribute="leading" secondItem="cRy-eH-SXJ" secondAttribute="leading" constant="32" id="dBu-Lz-9jj"/>
                                     <constraint firstItem="oHs-4V-Y7S" firstAttribute="leading" secondItem="cn2-ei-69X" secondAttribute="leading" id="g6L-D0-1Vh"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="gL3-d8-8Nh"/>
-                                    <constraint firstItem="VNV-D6-Tjj" firstAttribute="trailing" secondItem="cRy-eH-SXJ" secondAttribute="trailing" constant="-32" id="jFI-1R-iRN"/>
                                     <constraint firstItem="Mtv-0B-6Rn" firstAttribute="top" secondItem="cRy-eH-SXJ" secondAttribute="bottom" constant="21" id="nN2-zm-Sdw"/>
                                     <constraint firstItem="VNV-D6-Tjj" firstAttribute="top" secondItem="oHs-4V-Y7S" secondAttribute="bottom" constant="31" id="pbU-Va-HrC"/>
                                     <constraint firstItem="Mtv-0B-6Rn" firstAttribute="leading" secondItem="VNV-D6-Tjj" secondAttribute="leading" id="rCB-51-IAL"/>
@@ -623,7 +623,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sli-Tt-vCb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xPE-hv-B2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xPE-hv-B2n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1394,7 +1394,7 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Me-i6-eET">
-                                                                            <rect key="frame" x="0.0" y="15" width="291" height="22"/>
+                                                                            <rect key="frame" x="0.0" y="16.5" width="291" height="19"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
