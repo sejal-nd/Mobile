@@ -176,6 +176,8 @@ class BillViewController: AccountPickerViewController {
         budgetButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         budgetButton.layer.cornerRadius = 2
         
+        alertBannerLabel.font = OpenSans.italic.of(style: .subheadline)
+        totalAmountDescriptionLabel.font = OpenSans.regular.of(style: .footnote)
         makeAPaymentStatusLabel.font = OpenSans.italic.of(style: .subheadline)
     }
     
