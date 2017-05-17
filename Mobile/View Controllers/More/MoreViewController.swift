@@ -35,7 +35,7 @@ class MoreViewController: UIViewController {
         
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.blackText,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
