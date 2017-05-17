@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import MBProgressHUD
 
 protocol ChangePasswordViewControllerDelegate: class {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController)
@@ -86,9 +85,9 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.setEnabled(false)
         
         // Bind to the view model
-        currentPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.currentPassword).addDisposableTo(disposeBag)
-        newPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.newPassword).addDisposableTo(disposeBag)
-        confirmPasswordTextField.textField.rx.text.orEmpty.bindTo(viewModel.confirmPassword).addDisposableTo(disposeBag)
+        currentPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.currentPassword).addDisposableTo(disposeBag)
+        newPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).addDisposableTo(disposeBag)
+        confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).addDisposableTo(disposeBag)
         
         currentPasswordTextField.textField.rx.controlEvent(UIControlEvents.editingChanged).subscribe(onNext: { _ in
             // If we displayed an inline error, clear it when user edits the text
@@ -162,13 +161,9 @@ class ChangePasswordViewController: UIViewController {
     func onDonePress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
-        
+        LoadingView.show()
         viewModel.changePassword(onSuccess: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             if self.sentFromLogin {
                 let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                 self.present(viewController!, animated: true, completion: nil)
@@ -177,10 +172,10 @@ class ChangePasswordViewController: UIViewController {
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }, onPasswordNoMatch: { _ in
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))
         }, onError: { (error: String) in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
             self.present(alert, animated: true)
@@ -202,11 +197,11 @@ class ChangePasswordViewController: UIViewController {
     }
     
     func setupValidation() {
-        viewModel.characterCountValid().map(!).bindTo(characterCountCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsUppercaseLetter().map(!).bindTo(uppercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsLowercaseLetter().map(!).bindTo(lowercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsNumber().map(!).bindTo(numberCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsSpecialCharacter().map(!).bindTo(specialCharacterCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.characterCountValid().map(!).bind(to: characterCountCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsUppercaseLetter().map(!).bind(to: uppercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsLowercaseLetter().map(!).bind(to: lowercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsNumber().map(!).bind(to: numberCheck.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.containsSpecialCharacter().map(!).bind(to: specialCharacterCheck.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.everythingValid().subscribe(onNext: { valid in
             self.newPasswordTextField.setValidated(valid)
             self.confirmPasswordTextField.setEnabled(valid)
@@ -234,7 +229,7 @@ class ChangePasswordViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
-        viewModel.doneButtonEnabled().bindTo(doneButton!.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.doneButtonEnabled().bind(to: doneButton!.rx.isEnabled).addDisposableTo(disposeBag)
     }
     
     // MARK: - ScrollView

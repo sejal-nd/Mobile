@@ -39,19 +39,18 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         
         view.backgroundColor = .primaryColor
 
-        xButton.imageView?.tintColor = .primaryColor
+        xButton.imageView?.tintColor = .actionBlue
         
         navBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-        navBar.layer.masksToBounds = false
         
-        navTitleLabel.textColor = .darkJungleGreen
+        navTitleLabel.textColor = .blackText
         navTitleLabel.text = NSLocalizedString("What is Budget Billing?", comment: "")
         
-        navDescriptionLabel.textColor = .outerSpace
+        navDescriptionLabel.textColor = .deepGray
         
-        card1TitleLabel.textColor = .primaryColorDark
+        card1TitleLabel.textColor = .primaryColorADA
         card1TitleLabel.text = NSLocalizedString("1 consistent bill over 12 months", comment: "")
-        card2TitleLabel.textColor = .primaryColorDark
+        card2TitleLabel.textColor = .primaryColorADA
         card2TitleLabel.text = NSLocalizedString("Adjusted throughout the year", comment: "")
         
         for view in bulletCollection {
@@ -59,14 +58,14 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
             view.layer.cornerRadius = 3.5
         }
         
-        card1Bullet1Label.textColor = .outerSpace
-        card1Bullet2Label.textColor = .outerSpace
-        card1Bullet3Label.textColor = .outerSpace
-        card2Bullet1Label.textColor = .outerSpace
-        card2Bullet2Label.textColor = .outerSpace
-        card2Bullet3Label.textColor = .outerSpace
-        card2Bullet4Label.textColor = .outerSpace
-        card2Bullet5Label.textColor = .outerSpace
+        card1Bullet1Label.textColor = .deepGray
+        card1Bullet2Label.textColor = .deepGray
+        card1Bullet3Label.textColor = .deepGray
+        card2Bullet1Label.textColor = .deepGray
+        card2Bullet2Label.textColor = .deepGray
+        card2Bullet3Label.textColor = .deepGray
+        card2Bullet4Label.textColor = .deepGray
+        card2Bullet5Label.textColor = .deepGray
         
         // Those are ComEd only
         card2Bullet4View.isHidden = true

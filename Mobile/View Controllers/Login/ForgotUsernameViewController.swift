@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import MBProgressHUD
 
 class ForgotUsernameViewController: UIViewController {
     
@@ -38,9 +37,9 @@ class ForgotUsernameViewController: UIViewController {
         let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = nextButton
-        viewModel.nextButtonEnabled().bindTo(nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        instructionLabel.textColor = .darkJungleGreen
+        instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
         identifierDescriptionLabel?.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
         
@@ -48,7 +47,7 @@ class ForgotUsernameViewController: UIViewController {
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.textField.returnKeyType = .next
         phoneNumberTextField.textField.delegate = self
-        phoneNumberTextField.textField.rx.text.orEmpty.bindTo(viewModel.phoneNumber).addDisposableTo(disposeBag)
+        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).addDisposableTo(disposeBag)
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.phoneNumber.value.characters.count > 0 {
                 self.viewModel.phoneNumberHasTenDigits().single().subscribe(onNext: { valid in
@@ -66,7 +65,7 @@ class ForgotUsernameViewController: UIViewController {
         identifierTextField?.textField.autocorrectionType = .no
         identifierTextField?.textField.returnKeyType = .done
         identifierTextField?.textField.delegate = self
-        identifierTextField?.textField.rx.text.orEmpty.bindTo(viewModel.identifierNumber).addDisposableTo(disposeBag)
+        identifierTextField?.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).addDisposableTo(disposeBag)
         identifierTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.identifierNumber.value.characters.count > 0 {
                 self.viewModel.identifierHasFourDigits().single().subscribe(onNext: { valid in
@@ -90,7 +89,7 @@ class ForgotUsernameViewController: UIViewController {
         accountNumberTextField?.textField.returnKeyType = .done
         accountNumberTextField?.textField.delegate = self
         accountNumberTextField?.textField.isShowingAccessory = true
-        accountNumberTextField?.textField.rx.text.orEmpty.bindTo(viewModel.accountNumber).addDisposableTo(disposeBag)
+        accountNumberTextField?.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
         accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.accountNumber.value.characters.count > 0 {
                 self.viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
@@ -105,7 +104,7 @@ class ForgotUsernameViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         
         accountLookupToolButton?.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
-        accountLookupToolButton?.setTitleColor(.mediumPersianBlue, for: .normal)
+        accountLookupToolButton?.setTitleColor(.actionBlue, for: .normal)
     }
     
     deinit {
@@ -129,34 +128,29 @@ class ForgotUsernameViewController: UIViewController {
     }
     
     func onCancelPress() {
-        //_ = navigationController?.popViewController(animated: true)
-        
-        if !test {
-            phoneNumberTextField.setError("really long error")
-            test = true
-        } else {
-            phoneNumberTextField.setError(nil)
-            test = false
+        // We do this to cover the case where we push ForgotUsernameViewController from ForgotPasswordViewController.
+        // When that happens, we want the cancel action to go straight back to LoginViewController.
+        for vc in (navigationController?.viewControllers)! {
+            guard let loginVC = vc as? LoginViewController else {
+                continue
+            }
+            navigationController?.popToViewController(loginVC, animated: true)
+            break
         }
-        
     }
     
     func onNextPress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
-        
+        LoadingView.show()
         viewModel.validateAccount(onSuccess: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
         }, onNeedAccountNumber: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { (title, message) in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)

@@ -30,9 +30,8 @@ class LoginTermsPoliciesViewController: UIViewController {
         textView.attributedText = viewModel.attributedTermsString
 
         agreeView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        agreeView.layer.masksToBounds = false
 
-        _ = agreeSwitch.rx.isOn.bindTo(continueButton.rx.isEnabled)
+        _ = agreeSwitch.rx.isOn.bind(to: continueButton.rx.isEnabled)
         continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)
         
         agreeLabel.text = viewModel.agreeLabelText;
@@ -45,6 +44,21 @@ class LoginTermsPoliciesViewController: UIViewController {
         if !viewAppeared {
             textView.setContentOffset(.zero, animated: false)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.isTranslucent = false
+        
+        let titleDict: [String: Any] = [
+            NSForegroundColorAttributeName: UIColor.blackText,
+            NSFontAttributeName: OpenSans.bold.ofSize(18)
+        ]
+        navigationController?.navigationBar.titleTextAttributes = titleDict
+        
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewDidAppear(_ animated: Bool) {

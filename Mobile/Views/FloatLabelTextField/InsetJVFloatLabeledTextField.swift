@@ -52,9 +52,9 @@ class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
             layer.removeFromSuperlayer()
         }
         
-        borderLayers.append(addTopBorder(color: .timberwolf, width: 0.5))
-        borderLayers.append(addRightBorder(color: .timberwolf, width: 0.5))
-        borderLayers.append(addBottomBorder(color: .timberwolf, width: 0.5))
+        borderLayers.append(addTopBorder(color: .accentGray, width: 0.5))
+        borderLayers.append(addRightBorder(color: .accentGray, width: 0.5))
+        borderLayers.append(addBottomBorder(color: .accentGray, width: 0.5))
     }
     
 }

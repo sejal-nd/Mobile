@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import MBProgressHUD
 
 class BGEAccountNumberViewController: UIViewController {
     
@@ -26,9 +25,9 @@ class BGEAccountNumberViewController: UIViewController {
         
         let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
-        viewModel.accountNumberHasTenDigits().bindTo(nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.accountNumberHasTenDigits().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        instructionLabel.textColor = .darkJungleGreen
+        instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("The information entered is associated with multiple accounts. Please enter the account number you would like to proceed with.", comment: "")
 
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
@@ -36,7 +35,7 @@ class BGEAccountNumberViewController: UIViewController {
         accountNumberTextField.textField.returnKeyType = .done
         accountNumberTextField?.textField.delegate = self
         accountNumberTextField.textField.isShowingAccessory = true
-        accountNumberTextField.textField.rx.text.orEmpty.bindTo(viewModel.accountNumber).addDisposableTo(disposeBag)
+        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.accountNumber.value.characters.count > 0 {
                 self.viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
@@ -54,19 +53,15 @@ class BGEAccountNumberViewController: UIViewController {
     func onNextPress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
-        
+        LoadingView.show()
         viewModel.validateAccount(onSuccess: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
         }, onNeedAccountNumber: {
             // wont happen?
-            hud.hide(animated: true)
+            LoadingView.hide()
         }, onError: { title, message in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)

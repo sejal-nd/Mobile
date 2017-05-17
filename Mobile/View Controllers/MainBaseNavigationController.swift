@@ -15,27 +15,51 @@ class MainBaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationBar.barTintColor = .white
-        navigationBar.tintColor = .mediumPersianBlue
-        navigationBar.isTranslucent = false
-        
-//        // Removes the bottom border line:
-//        navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        navigationBar.shadowImage = UIImage()
-
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.darkJungleGreen,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
-        ]
-        navigationBar.titleTextAttributes = titleDict
-        
-        setNeedsStatusBarAppearanceUpdate()
+        setWhiteNavBar()
         
         if storyboardName != nil {
             let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
             let rootViewController = storyboard.instantiateInitialViewController()
             setViewControllers([rootViewController!], animated: false)
         }
+    }
+    
+    func setWhiteNavBar() {
+        navigationBar.barStyle = .default
+        navigationBar.barTintColor = .white
+        navigationBar.tintColor = .actionBlue
+        navigationBar.isTranslucent = false
+        
+        // Removes the bottom border line:
+        //navigationBar.setBackgroundImage(UIImage(), for: .default)
+        //navigationBar.shadowImage = UIImage()
+        
+        let titleDict: [String: Any] = [
+            NSForegroundColorAttributeName: UIColor.blackText,
+            NSFontAttributeName: OpenSans.bold.ofSize(18)
+        ]
+        navigationBar.titleTextAttributes = titleDict
+        
+        setNeedsStatusBarAppearanceUpdate()
+        
+        setNavigationBarHidden(false, animated: true)
+    }
+    
+    func setColoredNavBar() {
+        navigationBar.barStyle = .black
+        navigationBar.barTintColor = .primaryColor
+        navigationBar.tintColor = .white
+        navigationBar.isTranslucent = false
+        
+        let titleDict: [String: Any] = [
+            NSForegroundColorAttributeName: UIColor.white,
+            NSFontAttributeName: OpenSans.bold.ofSize(18)
+        ]
+        navigationBar.titleTextAttributes = titleDict
+        
+        setNeedsStatusBarAppearanceUpdate()
+        
+        setNavigationBarHidden(false, animated: true)
     }
     
 }

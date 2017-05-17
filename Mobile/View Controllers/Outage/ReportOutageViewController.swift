@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import MBProgressHUD
 import Lottie
 
 protocol ReportOutageViewControllerDelegate: class {
@@ -78,9 +77,8 @@ class ReportOutageViewController: UIViewController {
         if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            bg.backgroundColor = .whiteSmoke
+            bg.backgroundColor = .softGray
             bg.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
-            bg.layer.masksToBounds = false
             meterPingStackView.addSubview(bg)
             meterPingStackView.sendSubview(toBack: bg)
             
@@ -89,8 +87,8 @@ class ReportOutageViewController: UIViewController {
 
             footerContainerView.isHidden = true
             
-            meterPingFuseBoxSwitch.rx.isOn.map(!).bindTo(viewModel.reportFormHidden).addDisposableTo(disposeBag)
-            viewModel.reportFormHidden.asObservable().bindTo(reportFormStackView.rx.isHidden).addDisposableTo(disposeBag)
+            meterPingFuseBoxSwitch.rx.isOn.map(!).bind(to: viewModel.reportFormHidden).addDisposableTo(disposeBag)
+            viewModel.reportFormHidden.asObservable().bind(to: reportFormStackView.rx.isHidden).addDisposableTo(disposeBag)
             viewModel.reportFormHidden.asObservable().subscribe(onNext: { hidden in
                 if hidden {
                     self.reportFormStackView.spacing = 0
@@ -102,11 +100,11 @@ class ReportOutageViewController: UIViewController {
             
             viewModel.reportFormHidden.value = true
 
-            meterPingCurrentStatusLabel.textColor = .darkJungleGreen
-            meterPingPowerStatusLabel.textColor = .oldLavender
-            meterPingVoltageStatusLabel.textColor = .oldLavender
-            meterPingResultLabel.textColor = .outerSpace
-            meterPingFuseBoxLabel.textColor = .oldLavender
+            meterPingCurrentStatusLabel.textColor = .blackText
+            meterPingPowerStatusLabel.textColor = .middleGray
+            meterPingVoltageStatusLabel.textColor = .middleGray
+            meterPingResultLabel.textColor = .deepGray
+            meterPingFuseBoxLabel.textColor = .middleGray
             meterPingFuseBoxLabel.setLineHeight(lineHeight: 25)
             
             let lottieAnimation = LOTAnimationView(name: "loading_blue")!
@@ -150,30 +148,36 @@ class ReportOutageViewController: UIViewController {
             phoneExtensionContainerView.isHidden = true
         }
         
-        footerBackgroundView.backgroundColor = .whiteSmoke
+        footerBackgroundView.backgroundColor = .softGray
         footerBackgroundView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
-        footerBackgroundView.layer.masksToBounds = false
         
         footerTextView.textContainerInset = UIEdgeInsets(top: 16, left: 29, bottom: 16, right: 29)
-        footerTextView.textColor = .darkJungleGreen
-        footerTextView.tintColor = .mediumPersianBlue // For the phone numbers
+        footerTextView.textColor = .blackText
+        footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
         footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
-        footerTextView.layer.masksToBounds = false
         
         // Data binding
-        segmentedControl.selectedIndex.asObservable().bindTo(viewModel.selectedSegmentIndex).addDisposableTo(disposeBag)
+        segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).addDisposableTo(disposeBag)
         
-        viewModel.phoneNumber.asObservable().bindTo(phoneNumberTextField.textField.rx.text.orEmpty)
+        viewModel.phoneNumber.asObservable().bind(to: phoneNumberTextField.textField.rx.text.orEmpty)
             .addDisposableTo(disposeBag)
-        phoneNumberTextField.textField.rx.text.orEmpty.bindTo(viewModel.phoneNumber).addDisposableTo(disposeBag)
+        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).addDisposableTo(disposeBag)
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
         
-        phoneExtensionTextField.textField.rx.text.orEmpty.bindTo(viewModel.phoneExtension).addDisposableTo(disposeBag)
+        phoneExtensionTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneExtension).addDisposableTo(disposeBag)
         
         // Format the intial value
         let range = NSMakeRange(0, viewModel.phoneNumber.value.characters.count)
         _ = textField(phoneNumberTextField.textField, shouldChangeCharactersIn: range, replacementString: viewModel.phoneNumber.value)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setWhiteNavBar()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -183,7 +187,7 @@ class ReportOutageViewController: UIViewController {
         if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
             viewModel.meterPingGetPowerStatus(onPowerVerified: { canPerformVoltageCheck in
                 self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
-                self.meterPingPowerStatusLabel.textColor = .darkJungleGreen
+                self.meterPingPowerStatusLabel.textColor = .blackText
                 
                 if !canPerformVoltageCheck { // POWER STATUS SUCCESS BUT NO VOLTAGE CHECK
                     self.meterPingCurrentStatusLoadingView.isHidden = true
@@ -203,7 +207,7 @@ class ReportOutageViewController: UIViewController {
                         self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                         
                         self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
-                        self.meterPingVoltageStatusLabel.textColor = .darkJungleGreen
+                        self.meterPingVoltageStatusLabel.textColor = .blackText
                         
                         self.meterPingFuseBoxView.isHidden = false
                         self.footerContainerView.isHidden = false
@@ -214,7 +218,7 @@ class ReportOutageViewController: UIViewController {
                         self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                         
                         self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
-                        self.meterPingVoltageStatusLabel.textColor = .darkJungleGreen
+                        self.meterPingVoltageStatusLabel.textColor = .blackText
                         
                         self.meterPingResultLabel.isHidden = false
                         self.meterPingResultLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
@@ -232,7 +236,7 @@ class ReportOutageViewController: UIViewController {
                 self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                 
                 self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
-                self.meterPingPowerStatusLabel.textColor = .darkJungleGreen
+                self.meterPingPowerStatusLabel.textColor = .blackText
                 
                 self.meterPingResultLabel.isHidden = false
                 self.meterPingResultLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
@@ -255,16 +259,13 @@ class ReportOutageViewController: UIViewController {
     func onSubmitPress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
+        LoadingView.show()
         viewModel.reportOutage(onSuccess: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.delegate?.reportOutageViewControllerDidReportOutage(self)
             _ = self.navigationController?.popViewController(animated: true)
         }) { errorMessage in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)

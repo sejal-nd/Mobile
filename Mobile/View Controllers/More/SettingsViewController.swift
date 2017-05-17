@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import MBProgressHUD
 import ToastSwiftFramework
 
 class SettingsViewController: UIViewController {
@@ -19,7 +18,7 @@ class SettingsViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    var touchIdCell: TableViewCell?
+    var touchIdCell: SettingsTableViewCell?
     var touchIdPasswordRetryCount = 0
     
     override func viewDidLoad() {
@@ -27,10 +26,10 @@ class SettingsViewController: UIViewController {
         
         self.title = NSLocalizedString("Settings", comment: "")
         
-        let nib = UINib(nibName: "TableViewCell", bundle: nil)
+        let nib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "Cell")
         
-        tableView.backgroundColor = .whiteSmoke
+        tableView.backgroundColor = .softGray
         tableView.contentInset = UIEdgeInsetsMake(30, 0, 30, 0)
     }
     
@@ -44,7 +43,7 @@ class SettingsViewController: UIViewController {
     
     // MARK: - Touch ID Switch Handling
     
-    func switchObserver(cell: TableViewCell, isOn: Bool) {
+    func switchObserver(cell: SettingsTableViewCell, isOn: Bool) {
         if isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage())
         } else {
@@ -57,21 +56,18 @@ class SettingsViewController: UIViewController {
         pwAlert.addTextField(configurationHandler: { (textField) in
             textField.placeholder = NSLocalizedString("Password", comment: "")
             textField.isSecureTextEntry = true
-            textField.rx.text.orEmpty.bindTo(self.viewModel.password).addDisposableTo(self.disposeBag)
+            textField.rx.text.orEmpty.bind(to: self.viewModel.password).addDisposableTo(self.disposeBag)
         })
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (action) -> Void in
             self.touchIdCell?.setSwitch(on: false)
         }))
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { (action) -> Void in
-            let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-            hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-            hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-            hud.contentColor = .white
+            LoadingView.show()
             self.viewModel.validateCredentials(onSuccess: {
-                hud.hide(animated: true)
-                self.view.makeToast(NSLocalizedString("Touch ID Enabled", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+                LoadingView.hide()
+                self.view.makeToast(NSLocalizedString("Touch ID Enabled", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
             }, onError: { (error) in
-                hud.hide(animated: true)
+                LoadingView.hide()
                 self.touchIdPasswordRetryCount += 1
                 if self.touchIdPasswordRetryCount < 3 {
                     self.presentPasswordAlert(message: NSLocalizedString("Error", comment: "") + ": \(error)")
@@ -150,7 +146,7 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SettingsTableViewCell
         
         if indexPath.section == 0 {
             cell.configureWith(label: NSLocalizedString("Change Password", comment: ""), carat: true)
@@ -170,7 +166,7 @@ extension SettingsViewController: UITableViewDataSource {
         return cell
     }
     
-    func configureOpcoCell(_ cell: TableViewCell) {
+    func configureOpcoCell(_ cell: SettingsTableViewCell) {
         if Environment.sharedInstance.opco == .bge {
             cell.configureWith(label: NSLocalizedString("Default Account", comment: ""), carat: true)
         } else if Environment.sharedInstance.opco == .peco {
@@ -186,7 +182,7 @@ extension SettingsViewController: ChangePasswordViewControllerDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             // iPad shows tab bar, iPhone does not
             let yPos = UIDevice.current.userInterfaceIdiom == .pad ? self.view.frame.size.height - 89 : self.view.frame.size.height - 40
-            self.view.makeToast(NSLocalizedString("Password successfully changed", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: yPos))
+            self.view.makeToast(NSLocalizedString("Password successfully changed", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: yPos))
         })
     }
     

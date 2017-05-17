@@ -38,7 +38,7 @@ class PasswordStrengthMeterView: UIView {
     
     func commonInit() {
         backgroundColor = .clear
-        layer.borderColor = UIColor.timberwolf.cgColor
+        layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
 
         addSubview(colorSubview)

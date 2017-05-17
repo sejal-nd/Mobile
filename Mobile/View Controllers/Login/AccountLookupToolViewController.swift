@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import MBProgressHUD
 
 class AccountLookupToolViewController: UIViewController {
     
@@ -28,13 +27,13 @@ class AccountLookupToolViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
 
-        title = NSLocalizedString("Account Lookup Tool", comment: "")
+        title = NSLocalizedString("Account Lookup", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         let searchButton = UIBarButtonItem(title: NSLocalizedString("Search", comment: ""), style: .done, target: self, action: #selector(onSearchPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = searchButton
-        viewModel.searchButtonEnabled().bindTo(searchButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.searchButtonEnabled().bind(to: searchButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, or Business Tax ID", comment: "")
         
@@ -42,9 +41,9 @@ class AccountLookupToolViewController: UIViewController {
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.textField.returnKeyType = .next
         phoneNumberTextField.textField.delegate = self
-        viewModel.phoneNumber.asObservable().bindTo(phoneNumberTextField.textField.rx.text.orEmpty)
+        viewModel.phoneNumber.asObservable().bind(to: phoneNumberTextField.textField.rx.text.orEmpty)
             .addDisposableTo(disposeBag)
-        phoneNumberTextField.textField.rx.text.orEmpty.bindTo(viewModel.phoneNumber).addDisposableTo(disposeBag)
+        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).addDisposableTo(disposeBag)
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.phoneNumber.value.characters.count > 0 {
                 self.viewModel.phoneNumberHasTenDigits().single().subscribe(onNext: { valid in
@@ -63,7 +62,7 @@ class AccountLookupToolViewController: UIViewController {
         identifierTextField.textField.autocorrectionType = .no
         identifierTextField.textField.returnKeyType = .done
         identifierTextField.textField.delegate = self
-        identifierTextField.textField.rx.text.orEmpty.bindTo(viewModel.identifierNumber).addDisposableTo(disposeBag)
+        identifierTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).addDisposableTo(disposeBag)
         identifierTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.identifierNumber.value.characters.count > 0 {
                 self.viewModel.identifierHasFourDigits().single().subscribe(onNext: { valid in
@@ -94,13 +93,9 @@ class AccountLookupToolViewController: UIViewController {
     func onSearchPress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
-        
+        LoadingView.show()
         viewModel.performSearch(onSuccess: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             if self.viewModel.accountLookupResults.count == 1 {
                 let selectedAccount = self.viewModel.accountLookupResults.first!
                 self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
@@ -109,7 +104,7 @@ class AccountLookupToolViewController: UIViewController {
                 self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
             }
         }, onError: { errorMessage in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alertController = UIAlertController(title: NSLocalizedString("Invalid Information", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)

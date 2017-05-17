@@ -6,7 +6,18 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+
 import Mapper
+
+private func extractDate(object: Any?) throws -> Date? {
+    guard let dateString = object as? String else {
+        throw MapperError.convertibleError(value: object, type: Date.self)
+    }
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+    return dateFormatter.date(from: dateString)
+}
 
 enum AccountType {
     case Residential
@@ -17,9 +28,21 @@ struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
     
+    let status: String?
+    let isLinked: Bool
+    let isDefault: Bool
+    let isFinaled: Bool
+    //let isStopped: Bool // Not sure the status of this. Will BGE accounts just send `flagFinaled` or will it be different?
+    
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
         address = map.optionalFrom("address")
+        
+        status = map.optionalFrom("status")
+        isLinked = map.optionalFrom("isLinkedProfile") ?? false
+        isDefault = map.optionalFrom("isDefaultProfile") ?? false
+        isFinaled = map.optionalFrom("flagFinaled") ?? false
+        //isStopped = map.optionalFrom("isStoppedFlag") ?? false
     }
     
     // Equatable
@@ -38,8 +61,12 @@ struct AccountDetail: Mappable {
     let address: String?
     
     let customerInfo: CustomerInfo
+    let billingInfo: BillingInfo
     
     let isPasswordProtected: Bool
+    let hasElectricSupplier: Bool
+    let isSingleBillOption: Bool
+    let isDualBillOption: Bool
     
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
@@ -48,54 +75,51 @@ struct AccountDetail: Mappable {
     let isEBillEligible:Bool
     
     let status: String?
-    
-    var eBillEnrollStatus: EBillEnrollStatus {
-        switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "Finaled".lowercased()) {
-        case (_, _, true):
-            return .finaled
-        case (_, false, false):
-            return .ineligible
-        case (true, true, false):
-            return .canUnenroll
-        case (false, true, false):
-            return .canEnroll
-        }
-    }
-    
+	
+	let isAutoPay: Bool
+	let isBGEasy: Bool
+	let isAutoPayEligible: Bool
+    let isCutOutNonPay: Bool
+	
+	let isAMICustomer: Bool
+	
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
         address = map.optionalFrom("address")
+        
         try customerInfo = map.from("CustomerInfo")
+        try billingInfo = map.from("BillingInfo")
         
-        do {
-            try isPasswordProtected = map.from("isPasswordProtected")
-        } catch {
-            isPasswordProtected = false
-        }
-        
-        do {
-            try isBudgetBillEnrollment = map.from("isBudgetBill")
-        } catch {
-            isBudgetBillEnrollment = false
-        }
-        do {
-            try isBudgetBillEligible = map.from("isBudgetBillEligible")
-        } catch {
-            isBudgetBillEligible = false
-        }
-        
-        do {
-            try isEBillEnrollment = map.from("isEBillEnrollment")
-        } catch {
-            isEBillEnrollment = false
-        }
-        do {
-            try isEBillEligible = map.from("isEBillEligible")
-        } catch {
-            isEBillEligible = false
-        }
+        isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
+        isBudgetBillEnrollment = map.optionalFrom("isBudgetBill") ?? false
+        isBudgetBillEligible = map.optionalFrom("isBudgetBillEligible") ?? false
+        isEBillEnrollment = map.optionalFrom("isEBillEnrollment") ?? false
+        isEBillEligible = map.optionalFrom("isEBillEligible") ?? false
+        hasElectricSupplier = map.optionalFrom("hasElectricSupplier") ?? false
+        isSingleBillOption = map.optionalFrom("isSingleBillOption") ?? false
+        isDualBillOption = map.optionalFrom("isDualBillOption") ?? false
         
         status = map.optionalFrom("status")
+        
+		isAutoPay = map.optionalFrom("isAutoPay") ?? false
+        isBGEasy = map.optionalFrom("isBGEasy") ?? false
+		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
+		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+		
+		isAMICustomer = map.optionalFrom("isAMICustomer") ?? false
+    }
+	
+    var eBillEnrollStatus: EBillEnrollStatus {
+		switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "Finaled".lowercased()) {
+		case (true, _, _):
+			return .canUnenroll
+        case (false, _, true):
+            return .finaled
+        case (false, false, false):
+            return .ineligible
+        case (false, true, false):
+            return .canEnroll
+        }
     }
 }
 
@@ -105,6 +129,42 @@ struct CustomerInfo: Mappable {
     
     init(map: Mapper) throws {
         emailAddress = map.optionalFrom("emailAddress")
+    }
+}
+
+struct BillingInfo: Mappable {
+    let netDueAmount: Double?
+    let pastDueAmount: Double?
+	let pastDueRemaining: Double?
+	let lastPaymentAmount: Double?
+	let lastPaymentDate: Date?
+    let pendingPaymentAmount: Double?
+    let remainingBalanceDue: Double?
+    let restorationAmount: Double?
+    let amtDpaReinst: Double?
+    let dueByDate: Date?
+    let disconnectNoticeArrears: Int
+    let isDisconnectNotice: Bool
+    let billDate: Date?
+    let scheduledPaymentAmount: Double?
+    let atReinstateFee: Double?
+    
+    init(map: Mapper) throws {
+		netDueAmount = map.optionalFrom("netDueAmount")
+		pastDueAmount = map.optionalFrom("pastDueAmount")
+		pastDueRemaining = map.optionalFrom("pastDueRemaining")
+		lastPaymentAmount = map.optionalFrom("lastPaymentAmount")
+		lastPaymentDate = map.optionalFrom("lastPaymentDate", transformation: extractDate)
+        pendingPaymentAmount = map.optionalFrom("pendingPaymentAmount")
+        remainingBalanceDue = map.optionalFrom("remainingBalanceDue")
+        restorationAmount = map.optionalFrom("restorationAmount")
+        amtDpaReinst = map.optionalFrom("amtDpaReinst")
+        dueByDate = map.optionalFrom("dueByDate", transformation: extractDate)
+        disconnectNoticeArrears = map.optionalFrom("disconnectNoticeArrears") ?? 0
+        isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
+        billDate = map.optionalFrom("billDate", transformation: extractDate)
+        scheduledPaymentAmount = map.optionalFrom("scheduledPaymentAmount")
+        atReinstateFee = map.optionalFrom("atReinstateFee")
     }
 }
 

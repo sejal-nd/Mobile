@@ -49,7 +49,6 @@ class LoginViewController: UIViewController {
         }
         
         loginFormView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
-        loginFormView.layer.masksToBounds = false
         loginFormView.layer.cornerRadius = 2
         
         keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
@@ -65,8 +64,8 @@ class LoginViewController: UIViewController {
         passwordTextField.textField.isShowingAccessory = true
     
         // Two-way data binding for the username/password fields
-        viewModel.username.asObservable().bindTo(usernameTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
-        viewModel.password.asObservable().bindTo(passwordTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        viewModel.username.asObservable().bind(to: usernameTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        viewModel.password.asObservable().bind(to: passwordTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
         viewModel.password.asObservable().subscribe(onNext: { (password) in
             if self.passwordAutofilledFromTouchID {
                 // The password field was successfully auto-filled from Touch ID, but then the user manually changed it,
@@ -78,13 +77,13 @@ class LoginViewController: UIViewController {
                 self.passwordAutofilledFromTouchID = false
             }
         }).addDisposableTo(disposeBag)
-        usernameTextField.textField.rx.text.orEmpty.bindTo(viewModel.username).addDisposableTo(disposeBag)
-        passwordTextField.textField.rx.text.orEmpty.bindTo(viewModel.password).addDisposableTo(disposeBag)
+        usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).addDisposableTo(disposeBag)
+        passwordTextField.textField.rx.text.orEmpty.bind(to: viewModel.password).addDisposableTo(disposeBag)
         
         // Update the text field appearance in case data binding autofilled text
         usernameTextField.textField.sendActions(for: .editingDidEnd)
         
-        keepMeSignedInSwitch.rx.isOn.bindTo(viewModel.keepMeSignedIn).addDisposableTo(disposeBag)
+        keepMeSignedInSwitch.rx.isOn.bind(to: viewModel.keepMeSignedIn).addDisposableTo(disposeBag)
         
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.passwordTextField.textField.becomeFirstResponder()
@@ -93,8 +92,24 @@ class LoginViewController: UIViewController {
             self.onLoginPress()
         }).addDisposableTo(disposeBag)
         
-        forgotUsernameButton.tintColor = UIColor.mediumPersianBlue
-        forgotPasswordButton.tintColor = UIColor.mediumPersianBlue
+        // This hack (on editingDidBegin/editingDidEnd) prevents the automatic scrolling that happens when the password field is
+        // selected on a 4" phone. We want that disabled because of our custom logic in keyboardWillShow.
+        passwordTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+            let wrap = UIScrollView(frame: self.passwordTextField.textField.frame)
+            self.passwordTextField.textField.superview?.addSubview(wrap)
+            self.passwordTextField.textField.frame = CGRect(x: 0, y: 0, width: self.passwordTextField.textField.frame.size.width, height: self.passwordTextField.textField.frame.size.height)
+            wrap.addSubview(self.passwordTextField.textField)
+        }).addDisposableTo(disposeBag)
+        passwordTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
+            if let wrap = self.passwordTextField.textField.superview as? UIScrollView {
+                self.passwordTextField.textField.frame = CGRect(x: wrap.frame.origin.x, y: wrap.frame.origin.y, width: wrap.frame.size.width, height: wrap.frame.size.height)
+                wrap.superview?.addSubview(self.passwordTextField.textField)
+                wrap.removeFromSuperview()
+            }
+        }).addDisposableTo(disposeBag)
+        
+        forgotUsernameButton.tintColor = .actionBlue
+        forgotPasswordButton.tintColor = .actionBlue
     }
     
     deinit {
@@ -292,6 +307,7 @@ class LoginViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        view.endEditing(true)
         if let vc = segue.destination as? ForgotPasswordViewController {
             vc.delegate = self
         }
@@ -315,7 +331,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
             toastStyle.verticalPadding = 10
             toastStyle.horizontalPadding = 44
             toastStyle.cornerRadius = 30
-            self.view.makeToast(NSLocalizedString("An email has been sent with a\ntemporary password", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50), style: toastStyle)
+            self.view.makeToast(NSLocalizedString("An email has been sent with a\ntemporary password", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50), style: toastStyle)
         })
     }
 }

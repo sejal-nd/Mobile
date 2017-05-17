@@ -11,9 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol PaperlessEBillViewControllerDelegate: class {
-    func paperlessEBillViewControllerDidEnroll(_ paperlessEBillViewController: PaperlessEBillViewController)
-    func paperlessEBillViewControllerDidUnenroll(_ paperlessEBillViewController: PaperlessEBillViewController)
-    func paperlessEBillViewControllerDidChangeStatus(_ paperlessEBillViewController: PaperlessEBillViewController)
+    func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus)
 }
 
 class PaperlessEBillViewController: UIViewController {
@@ -28,25 +26,27 @@ class PaperlessEBillViewController: UIViewController {
     // Content
     @IBOutlet weak var whatIsButtonView: UIView!
     @IBOutlet weak var whatIsButton: UIButton!
-    @IBOutlet weak var emailLabel: UILabel!
+	@IBOutlet weak var emailLabel: UILabel!
+	@IBOutlet weak var updateDetailsView: UIView!
+    @IBOutlet weak var updateDetailsLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsView: UIView!
     @IBOutlet weak var enrollAllAccountsSwitch: UISwitch!
     @IBOutlet weak var allAccountsSeparatorView: UIView!
     @IBOutlet weak var accountsStackView: UIStackView!
     @IBOutlet weak var detailsLoadingActivityView: UIView!
-    @IBOutlet weak var detailsLoadingActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var detailsLoadingIndicator: LoadingIndicator!
     
     @IBOutlet weak var detailsLabel: UILabel!
     
     var initialAccountDetail: AccountDetail!
-    var accounts: [Account]!
     
     lazy var viewModel: PaperlessEBillViewModel = {
-        PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(), initialAccountDetail: self.initialAccountDetail, accounts: self.accounts)
-    } ()
+        PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(),
+                                billService: ServiceFactory.createBillService(),
+                                initialAccountDetail: self.initialAccountDetail)
+    }()
     
     weak var delegate: PaperlessEBillViewControllerDelegate?
-    
     
     let bag = DisposeBag()
 
@@ -56,10 +56,11 @@ class PaperlessEBillViewController: UIViewController {
         colorAndShadowSetup()
         
         enrollAllAccountsView.isHidden = viewModel.accounts.value.count <= 1
+		updateDetailsView.isHidden = Environment.sharedInstance.opco == .bge
         
-        // TODO: Confirm that this is the correct email address to use
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
         detailsLabel.text = viewModel.footerText
+        updateDetailsLabel.setLineHeight(lineHeight: 24)
         
         viewModel.accountDetails
             .asDriver(onErrorJustReturn: [])
@@ -84,7 +85,6 @@ class PaperlessEBillViewController: UIViewController {
     }
     
     func colorAndShadowSetup() {
-        detailsLoadingActivityIndicator.color = .primaryColor
         topBackgroundView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0, height: 2), radius: 1)
         enrollAllAccountsView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 2)
         enrollAllAccountsView.layer.cornerRadius = 2
@@ -92,7 +92,7 @@ class PaperlessEBillViewController: UIViewController {
         whatIsButtonView.layer.cornerRadius = 2
         
         let whatIsButtonSelectedColor = whatIsButton.rx.controlEvent(.touchDown).asDriver()
-            .map { UIColor.whiteButtonHighlight }
+            .map { UIColor.softGray }
         
         let whatIsButtonDeselectedColor = Driver.merge(whatIsButton.rx.controlEvent(.touchUpInside).asDriver(),
                                                        whatIsButton.rx.controlEvent(.touchUpOutside).asDriver(),
@@ -112,7 +112,7 @@ class PaperlessEBillViewController: UIViewController {
         
         let gLayer = CAGradientLayer()
         gLayer.frame = gradientBackgroundView.frame
-        gLayer.colors = [UIColor.whiteSmoke.cgColor, UIColor.white.cgColor]
+        gLayer.colors = [UIColor.softGray.cgColor, UIColor.white.cgColor]
         
         gradientLayer = gLayer
         gradientBackgroundView.layer.addSublayer(gLayer)
@@ -126,16 +126,9 @@ class PaperlessEBillViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = false
-        
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar()
+        }
     }
     
     func add(accountDetail: AccountDetail, animated: Bool) {
@@ -172,17 +165,16 @@ class PaperlessEBillViewController: UIViewController {
     }
 
     @IBAction func submitAction(_ sender: Any) {
-        if viewModel.accounts.value.count > 1 {
-            delegate?.paperlessEBillViewControllerDidChangeStatus(self)
-        } else {
-            if !viewModel.accountsToEnroll.value.isEmpty {
-                delegate?.paperlessEBillViewControllerDidEnroll(self)
-            }
-            if !viewModel.accountsToUnenroll.value.isEmpty {
-                delegate?.paperlessEBillViewControllerDidUnenroll(self)
-            }
-        }
-        
-        navigationController?.popViewController(animated: true)
+        LoadingView.show()
+        viewModel.submitChanges(onSuccess: { changedStatus in
+            LoadingView.hide()
+            self.delegate?.paperlessEBillViewController(self, didChangeStatus: changedStatus)
+            self.navigationController?.popViewController(animated: true)
+        }, onError: { errMessage in
+            LoadingView.hide()
+            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertVc, animated: true, completion: nil)
+        })
     }
 }

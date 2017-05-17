@@ -31,7 +31,7 @@ class PaperlessEBillCommercialViewController: UIViewController {
         
         guard let url = url else { return }
         let attributedText = NSMutableAttributedString(string: allText, attributes: [NSFontAttributeName: OpenSans.regular.ofSize(16),
-                                                                                     NSForegroundColorAttributeName: UIColor.darkJungleGreen])
+                                                                                     NSForegroundColorAttributeName: UIColor.blackText])
         attributedText.addAttribute(NSLinkAttributeName, value: url, range: (allText as NSString).range(of: hereText))
         textView.attributedText = attributedText
     }

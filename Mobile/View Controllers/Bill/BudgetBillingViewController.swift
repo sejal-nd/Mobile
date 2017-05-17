@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import MBProgressHUD
 
 protocol BudgetBillingViewControllerDelegate: class {
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController)
@@ -29,7 +28,8 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var whatIsBudgetBillingLabel: UILabel!
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
     @IBOutlet weak var paymentAmountView: UIView!
-    @IBOutlet weak var paymentAmountActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var paymentAmountLoadingIndicator: LoadingIndicator!
+    @IBOutlet weak var paymentAmountErrorLabel: UILabel!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var amountDescriptionLabel: UILabel!
@@ -63,14 +63,13 @@ class BudgetBillingViewController: UIViewController {
     
     var gradientLayer: CAGradientLayer!
     
-    var initialEnrollment: Bool!
-    var account: Account!
+    var accountDetail: AccountDetail!
     var viewModel: BudgetBillingViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = BudgetBillingViewModel(initialEnrollment: initialEnrollment, billService: ServiceFactory.createBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail, billService: ServiceFactory.createBillService())
         
         title = NSLocalizedString("Budget Billing", comment: "")
         
@@ -78,14 +77,14 @@ class BudgetBillingViewController: UIViewController {
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitButtonEnabled().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        view.backgroundColor = .whiteSmoke
+        view.backgroundColor = .softGray
         
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
-            UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1).cgColor,
+            UIColor.softGray.cgColor,
             UIColor.white.cgColor,
         ]
         gradientLayer.locations = [0.0, 1.0]
@@ -93,30 +92,29 @@ class BudgetBillingViewController: UIViewController {
         
         whatIsBudgetBillingButtonView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         whatIsBudgetBillingButtonView.layer.cornerRadius = 2
-        whatIsBudgetBillingButtonView.layer.masksToBounds = false
         
-        whatIsBudgetBillingLabel.textColor = .darkJungleGreen
+        whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
         
-        yourPaymentWouldBeLabel.textColor = .outerSpace
+        yourPaymentWouldBeLabel.textColor = .deepGray
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your payment would be:", comment: "")
         
-        paymentAmountActivityIndicator.color = .mediumPersianBlue
-        paymentAmountLabel.textColor = .outerSpace
-        monthLabel.textColor = .outerSpace
+        paymentAmountLabel.textColor = .deepGray
+        monthLabel.textColor = .deepGray
         monthLabel.text = NSLocalizedString("/Month", comment: "")
         
-        amountDescriptionLabel.textColor = .outerSpace
+        amountDescriptionLabel.textColor = .deepGray
         amountDescriptionLabel.text = viewModel.getAmountDescriptionText()
         
-        // TODO: LOAD REAL DATA HERE
-        accountNumberLabel.textColor = .darkJungleGreen
-        addressLabel.textColor = .oldLavender
+        accountNumberLabel.textColor = .blackText
+        accountNumberLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber
+        addressLabel.textColor = .middleGray
+        addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
         
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
-        enrollSwitch.rx.isOn.bindTo(viewModel.currentEnrollment).addDisposableTo(disposeBag)
+        enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).addDisposableTo(disposeBag)
         
-        reasonForStoppingLabel.textColor = .darkJungleGreen
+        reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
         reasonForStoppingTableView.isHidden = true
         if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
@@ -128,49 +126,49 @@ class BudgetBillingViewController: UIViewController {
         }
         
         // BGE Footer View when user is enrolled
-        if Environment.sharedInstance.opco == OpCo.bge && initialEnrollment {
+        if Environment.sharedInstance.opco == OpCo.bge && accountDetail.isBudgetBillEnrollment {
             for view in bgeFooterCardViews {
                 view.layer.cornerRadius = 2
                 view.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
             }
             
-            monthlyAmountTitleLabel.textColor = .darkJungleGreen
+            monthlyAmountTitleLabel.textColor = .blackText
             monthlyAmountTitleLabel.text = NSLocalizedString("Monthly Budget Bill Amount", comment: "")
-            monthlyAmountLabel.textColor = .darkJungleGreen
+            monthlyAmountLabel.textColor = .blackText
             monthlyAmountLabel.text = "$200.00"
-            monthlyAmountDescriptionLabel.textColor = .outerSpace
+            monthlyAmountDescriptionLabel.textColor = .deepGray
             monthlyAmountDescriptionLabel.text = NSLocalizedString("Payment received after March 13, 2017 will incur a late charge.\n\nA late payment charge is applied to the unpaid balance of your BGE charges. The charge is up to 1.5% for the first month; additional charges will be assessed on unpaid balances past the first month, not to exceed 5%.", comment: "")
             
-            lastPaymentDateTitleLabel.textColor = .darkJungleGreen
+            lastPaymentDateTitleLabel.textColor = .blackText
             lastPaymentDateTitleLabel.text = NSLocalizedString("Last Payment Date", comment: "")
-            lastPaymentDateLabel.textColor = .darkJungleGreen
+            lastPaymentDateLabel.textColor = .blackText
             lastPaymentDateLabel.text = "11/01/2016"
             
-            payoffBalanceTitleLabel.textColor = .darkJungleGreen
+            payoffBalanceTitleLabel.textColor = .blackText
             payoffBalanceTitleLabel.text = NSLocalizedString("Payoff Balance for BGE Service", comment: "")
-            payoffBalanceLabel.textColor = .darkJungleGreen
+            payoffBalanceLabel.textColor = .blackText
             payoffBalanceLabel.text = "$174.13"
-            payoffBalanceDescriptionLabel.textColor = .outerSpace
+            payoffBalanceDescriptionLabel.textColor = .deepGray
             payoffBalanceDescriptionLabel.text = NSLocalizedString("Total actual-usage charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
             
-            currentBalanceTitleLabel.textColor = .darkJungleGreen
+            currentBalanceTitleLabel.textColor = .blackText
             currentBalanceTitleLabel.text = NSLocalizedString("Current Balance for BGE Service", comment: "")
-            currentBalanceLabel.textColor = .darkJungleGreen
+            currentBalanceLabel.textColor = .blackText
             currentBalanceLabel.text = "$0.00"
-            currentBalanceDescriptionLabel.textColor = .outerSpace
+            currentBalanceDescriptionLabel.textColor = .deepGray
             currentBalanceDescriptionLabel.text = NSLocalizedString("Total billed charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
             
-            accDifferenceTitleLabel.textColor = .darkJungleGreen
+            accDifferenceTitleLabel.textColor = .blackText
             accDifferenceTitleLabel.text = NSLocalizedString("Accumulated Difference for BGE Service", comment: "")
-            accDifferenceLabel.textColor = .darkJungleGreen
+            accDifferenceLabel.textColor = .blackText
             accDifferenceLabel.text = "$174.13"
-            accDifferenceDescriptionLabel.textColor = .outerSpace
+            accDifferenceDescriptionLabel.textColor = .deepGray
             accDifferenceDescriptionLabel.text = NSLocalizedString("The difference between your Payoff Balance and your Current Balance for BGE Service.", comment: "")
         } else {
             bgeFooterView.isHidden = true
         }
         
-        footerLabel.textColor = .darkJungleGreen
+        footerLabel.textColor = .blackText
         if let footerText = viewModel.getFooterText() {
             footerLabel.text = footerText
         } else {
@@ -182,28 +180,22 @@ class BudgetBillingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = false
-        
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        viewModel.getBudgetBillingInfo(forAccount: account, onSuccess: { (budgetBillingInfo: BudgetBillingInfo) in
+        viewModel.getBudgetBillingInfo(onSuccess: { (budgetBillingInfo: BudgetBillingInfo) in
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
-            self.paymentAmountActivityIndicator.isHidden = true
+            self.paymentAmountLoadingIndicator.isHidden = true
             self.paymentAmountView.isHidden = false
         }, onError: { errMessage in
-            self.paymentAmountActivityIndicator.isHidden = true
-            print("budget billing error: \(errMessage)")
+            self.paymentAmountErrorLabel.text = NSLocalizedString("Error Loading Budget Billing Data", comment: "")
+            self.paymentAmountLoadingIndicator.isHidden = true
+            self.paymentAmountErrorLabel.isHidden = false
         })
     }
     
@@ -211,18 +203,18 @@ class BudgetBillingViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         gradientLayer.frame = gradientView.frame
-        accountBackgroundView.addBottomBorder(color: UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), width: 0.5)
+        accountBackgroundView.addBottomBorder(color: .softGray, width: 0.5)
     }
     
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         gradientLayer.frame = gradientView.frame
-        accountBackgroundView.addBottomBorder(color: UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), width: 0.5)
+        accountBackgroundView.addBottomBorder(color: .softGray, width: 0.5)
     }
     
     
     @IBAction func onButtonTouchDown(_ sender: Any) {
         let button = sender as! UIButton
-        button.superview?.backgroundColor = .whiteButtonHighlight
+        button.superview?.backgroundColor = .softGray
     }
     
     @IBAction func onButtonTouchCancel(_ sender: Any) {
@@ -246,17 +238,13 @@ class BudgetBillingViewController: UIViewController {
     
     func onSubmitPress() {
         if viewModel.enrolling.value {
-            let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-            hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-            hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-            hud.contentColor = .white
-            
-            viewModel.enroll(account: account, onSuccess: {
-                hud.hide(animated: true)
+            LoadingView.show()
+            viewModel.enroll(onSuccess: {
+                LoadingView.hide()
                 self.delegate?.budgetBillingViewControllerDidEnroll(self)
                 self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
-                hud.hide(animated: true)
+                LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
@@ -275,17 +263,13 @@ class BudgetBillingViewController: UIViewController {
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { _ in
-                let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-                hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-                hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-                hud.contentColor = .white
-                
-                self.viewModel.unenroll(account: self.account, onSuccess: {
-                    hud.hide(animated: true)
+                LoadingView.show()
+                self.viewModel.unenroll(onSuccess: {
+                    LoadingView.hide()
                     self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { errMessage in
-                    hud.hide(animated: true)
+                    LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)

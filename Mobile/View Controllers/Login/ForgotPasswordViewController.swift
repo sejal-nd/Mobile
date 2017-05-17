@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import MBProgressHUD
 
 protocol ForgotPasswordViewControllerDelegate: class {
     func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController)
@@ -19,6 +18,7 @@ class ForgotPasswordViewController: UIViewController {
     
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
+    @IBOutlet weak var forgotUsernameButton: UIButton!
     
     let viewModel = ForgotPasswordViewModel(authService: ServiceFactory.createAuthenticationService())
     
@@ -33,7 +33,7 @@ class ForgotPasswordViewController: UIViewController {
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitButtonEnabled().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         instructionLabel.text = viewModel.getInstructionLabelText()
         
@@ -41,7 +41,7 @@ class ForgotPasswordViewController: UIViewController {
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .done
         
-        usernameTextField.textField.rx.text.orEmpty.bindTo(viewModel.username).addDisposableTo(disposeBag)
+        usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).addDisposableTo(disposeBag)
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
                 if enabled {
@@ -52,6 +52,9 @@ class ForgotPasswordViewController: UIViewController {
         usernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.usernameTextField.setError(nil)
         }).addDisposableTo(disposeBag)
+        
+        forgotUsernameButton.setTitle(NSLocalizedString("Forgot Username?", comment: ""), for: .normal)
+        forgotUsernameButton.setTitleColor(.actionBlue, for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,24 +80,30 @@ class ForgotPasswordViewController: UIViewController {
     func onSubmitPress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
-        
+        LoadingView.show()
         viewModel.submitForgotPassword(onSuccess: {
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.delegate?.forgotPasswordViewControllerDidSubmit(self)
             _ = self.navigationController?.popViewController(animated: true)
         }, onProfileNotFound: { error in
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.usernameTextField.setError(NSLocalizedString(error, comment: ""))
         }, onError: { errorMessage in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         })
+    }
+    
+    @IBAction func onForgotUsernamePress() {
+        for vc in (self.navigationController?.viewControllers)! {
+            guard let loginVC = vc as? LoginViewController else {
+                continue
+            }
+            loginVC.onForgotUsernamePress()
+            break
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

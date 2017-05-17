@@ -10,5 +10,7 @@
 	<string>PECO</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+	<key>mcsInstanceName</key>
+	<string>Staging</string>
 </dict>
 </plist>

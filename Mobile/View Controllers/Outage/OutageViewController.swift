@@ -6,103 +6,145 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 import Lottie
-import MBProgressHUD
 
-class OutageViewController: UIViewController {
+class OutageViewController: AccountPickerViewController {
+    
+    let disposeBag = DisposeBag()
     
     @IBOutlet weak var gradientBackground: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var accountScroller: AccountScroller!
+    @IBOutlet weak var scrollViewContentView: UIView!
     @IBOutlet weak var accountContentView: UIView!
     @IBOutlet weak var gasOnlyView: UIView!
-    @IBOutlet weak var accountScrollerActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var outageStatusActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var loadingAnimationView: UIView!
+    @IBOutlet weak var loadingBigButtonView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var bigButtonShadowView: UIView!
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var outerCircleView: UIView!
     @IBOutlet weak var innerCircleView: UIView!
     @IBOutlet weak var bigButtonView: UIView!
-    @IBOutlet weak var reportOutageButton: TableViewCellButton!
-    @IBOutlet weak var viewOutageMapButton: TableViewCellButton!
+    @IBOutlet weak var reportOutageButton: DisclosureButton!
+    @IBOutlet weak var viewOutageMapButton: DisclosureButton!
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
+    // We keep track of this constraint because AutoLayout uses it to calculate the height of the scrollView's content
+    // When the gasOnlyView is hidden, we do not want it's height to impact the scrollView content size (the normal outage
+    // view does not need to scroll on iPhone 7 size), so we use this to toggle active/inactive. Cannot be weak reference
+    // because setting isActive = false would set to nil
+    @IBOutlet var gasOnlyTextViewBottomSpaceConstraint: NSLayoutConstraint!
+
     var gradientLayer: CAGradientLayer!
     
-    var onAnimationView = LOTAnimationView(name: "outage")!
-    var refreshControl: UIRefreshControl!
+    var onLottieAnimation = LOTAnimationView(name: "outage")!
+    var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")!
+    var refreshControl: UIRefreshControl?
     
     let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(), outageService: ServiceFactory.createOutageService())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Outage", comment: "")
+        title = NSLocalizedString("Outage", comment: "")
 
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientBackground.bounds
         gradientLayer.colors = [
             UIColor.white.cgColor,
-            UIColor(red: 246/255, green: 247/255, blue: 248/255, alpha: 1).cgColor,
+            UIColor(red: 244/255, green: 246/255, blue: 247/255, alpha: 1).cgColor,
             UIColor(red: 240/255, green: 242/255, blue: 243/255, alpha: 1).cgColor
         ]
-        gradientLayer.locations = [0.0, 0.38, 1.0]
+        gradientLayer.locations = [0.0, 0.5, 1.0]
         gradientBackground.layer.addSublayer(gradientLayer)
         
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
-        scrollView.insertSubview(refreshControl, at: 0)
-
-        accountScroller.delegate = self
-        accountScroller.parentViewController = self
+        accountPicker.delegate = self
+        accountPicker.parentViewController = self
         
-        onAnimationView.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
-        onAnimationView.loopAnimation = true
-        onAnimationView.contentMode = .scaleAspectFill
-        animationView.addSubview(onAnimationView)
-        onAnimationView.play()
+        onLottieAnimation.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
+        onLottieAnimation.loopAnimation = true
+        onLottieAnimation.contentMode = .scaleAspectFill
+        animationView.addSubview(onLottieAnimation)
+        onLottieAnimation.play()
+        
+        loadingLottieAnimation.frame = CGRect(x: 0, y: 0, width: loadingAnimationView.frame.size.width, height: loadingAnimationView.frame.size.height)
+        loadingLottieAnimation.loopAnimation = true
+        loadingLottieAnimation.contentMode = .scaleAspectFill
+        loadingAnimationView.addSubview(loadingLottieAnimation)
+        loadingLottieAnimation.play()
         
         outerCircleView.layer.cornerRadius = outerCircleView.bounds.size.width / 2
         innerCircleView.layer.cornerRadius = innerCircleView.bounds.size.width / 2
         
         let radius = bigButtonView.bounds.size.width / 2
         bigButtonView.layer.cornerRadius = radius
-        bigButtonView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
-        bigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
-        bigButtonView.layer.masksToBounds = false
-        bigButtonView.clipsToBounds = true
+        bigButtonView.clipsToBounds = true // So text doesn't overflow
         bigButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
         
+        bigButtonShadowView.layer.cornerRadius = radius
+        bigButtonShadowView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
+        bigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
+        
+        loadingBigButtonView.layer.cornerRadius = radius
+        loadingBigButtonView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
+        loadingBigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
+        
         footerTextView.textContainerInset = .zero
-        footerTextView.textColor = .darkJungleGreen
-        footerTextView.tintColor = .mediumPersianBlue // For the phone numbers
+        footerTextView.textColor = .blackText
+        footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
         
         gasOnlyTextView.textContainerInset = .zero
-        gasOnlyTextView.tintColor = .mediumPersianBlue
+        gasOnlyTextView.tintColor = .actionBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
         
-        accountScroller.isHidden = true
-        accountContentView.isHidden = true
-        
-        accountScrollerActivityIndicator.color = .mediumPersianBlue
-        outageStatusActivityIndicator.color = .mediumPersianBlue
+        accountPickerViewControllerWillAppear.subscribe(onNext: { state in
+            switch(state) {
+            case .loadingAccounts:
+                self.accountContentView.isHidden = true
+                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
+                self.gasOnlyView.isHidden = true
+                self.errorLabel.isHidden = true
+                self.loadingView.isHidden = true
+                self.setRefreshControlEnabled(enabled: false)
+            case .readyToFetchData:
+                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    self.getOutageStatus()
+                } else if self.viewModel.currentOutageStatus == nil {
+                    self.getOutageStatus()
+                }
+            }
+        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if viewModel.currentAccount == nil {
-            getAccounts()
-        }
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         gradientLayer.frame = gradientBackground.frame
+    }
+    
+    func setRefreshControlEnabled(enabled: Bool) {
+        if enabled {
+            refreshControl = UIRefreshControl()
+            refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
+            scrollView.insertSubview(refreshControl!, at: 0)
+            scrollView.alwaysBounceVertical = true
+        } else {
+            if let rc = refreshControl {
+                rc.endRefreshing()
+                rc.removeFromSuperview()
+                refreshControl = nil
+            }
+            scrollView.alwaysBounceVertical = false
+        }
     }
     
     func updateContent() {
@@ -113,8 +155,15 @@ class OutageViewController: UIViewController {
         errorLabel.isHidden = true
         
         // Show/hide the top level container views
-        gasOnlyView.isHidden = !currentOutageStatus.flagGasOnly
-        accountContentView.isHidden = currentOutageStatus.flagGasOnly
+        if currentOutageStatus.flagGasOnly {
+            gasOnlyTextViewBottomSpaceConstraint.isActive = true
+            gasOnlyView.isHidden = false
+            accountContentView.isHidden = true
+        } else {
+            gasOnlyTextViewBottomSpaceConstraint.isActive = false
+            gasOnlyView.isHidden = true
+            accountContentView.isHidden = false
+        }
         
         // Display either the Lottie animation or draw our own border circles
         let powerIsOn = !currentOutageStatus.activeOutage && viewModel.getReportedOutage() == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled
@@ -123,8 +172,8 @@ class OutageViewController: UIViewController {
         innerCircleView.isHidden = powerIsOn
         
         if viewModel.getReportedOutage() == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled) {
-            outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1)
-            innerCircleView.backgroundColor = .oldLavender
+            outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1) // Special case color - do not change
+            innerCircleView.backgroundColor = .middleGray
         } else {
             outerCircleView.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.7)
             innerCircleView.backgroundColor = .primaryColor
@@ -152,30 +201,30 @@ class OutageViewController: UIViewController {
         let bigButtonWidth = bigButtonView.frame.size.width
         
         if viewModel.getReportedOutage() != nil {
-            let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 13.5, y: 28, width: 27, height: 29))
+            let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 19, y: 27, width: 38, height: 31))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
             
             let yourOutageIsLabel = UILabel(frame: CGRect(x: 30, y: 61, width: bigButtonWidth - 60, height: 20))
             yourOutageIsLabel.font = OpenSans.regular.ofSize(16)
-            yourOutageIsLabel.textColor = .mediumPersianBlue
+            yourOutageIsLabel.textColor = .actionBlue
             yourOutageIsLabel.textAlignment = .center
             yourOutageIsLabel.text = NSLocalizedString("Your outage is", comment: "")
             
             let reportedLabel = UILabel(frame: CGRect(x: 30, y: 81, width: bigButtonWidth - 60, height: 25))
             reportedLabel.font = OpenSans.bold.ofSize(22)
-            reportedLabel.textColor = .mediumPersianBlue
+            reportedLabel.textColor = .actionBlue
             reportedLabel.textAlignment = .center
             reportedLabel.text = NSLocalizedString("REPORTED", comment: "")
             
             let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
             estRestorationLabel.font = OpenSans.regular.ofSize(12)
-            estRestorationLabel.textColor = .outerSpace
+            estRestorationLabel.textColor = .deepGray
             estRestorationLabel.textAlignment = .center
             estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
             timeLabel.font = OpenSans.bold.ofSize(15)
-            timeLabel.textColor = .outerSpace
+            timeLabel.textColor = .deepGray
             timeLabel.textAlignment = .center
             timeLabel.adjustsFontSizeToFitWidth = true
             timeLabel.minimumScaleFactor = 0.5
@@ -192,25 +241,25 @@ class OutageViewController: UIViewController {
             
             let yourPowerIsLabel = UILabel(frame: CGRect(x: 30, y: 62, width: bigButtonWidth - 60, height: 20))
             yourPowerIsLabel.font = OpenSans.regular.ofSize(16)
-            yourPowerIsLabel.textColor = .mediumPersianBlue
+            yourPowerIsLabel.textColor = .actionBlue
             yourPowerIsLabel.textAlignment = .center
             yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
             
             let outLabel = UILabel(frame: CGRect(x: 44, y: 82, width: bigButtonWidth - 88, height: 25))
             outLabel.font = OpenSans.bold.ofSize(22)
-            outLabel.textColor = .mediumPersianBlue
+            outLabel.textColor = .actionBlue
             outLabel.textAlignment = .center
             outLabel.text = NSLocalizedString("OUT", comment: "")
             
             let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
             estRestorationLabel.font = OpenSans.regular.ofSize(12)
-            estRestorationLabel.textColor = .outerSpace
+            estRestorationLabel.textColor = .deepGray
             estRestorationLabel.textAlignment = .center
             estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
             timeLabel.font = OpenSans.bold.ofSize(15)
-            timeLabel.textColor = .outerSpace
+            timeLabel.textColor = .deepGray
             timeLabel.textAlignment = .center
             timeLabel.adjustsFontSizeToFitWidth = true
             timeLabel.minimumScaleFactor = 0.5
@@ -230,7 +279,7 @@ class OutageViewController: UIViewController {
                 } else { // accountPaid = false
                     payBillLabel.frame = CGRect(x: 23, y: 150, width: bigButtonWidth - 46, height: 19)
                     payBillLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
-                    payBillLabel.textColor = .mediumPersianBlue
+                    payBillLabel.textColor = .actionBlue
                     payBillLabel.textAlignment = .center
                     payBillLabel.text = NSLocalizedString("Pay Bill", comment: "")
                     bigButtonView.addSubview(payBillLabel)
@@ -238,8 +287,8 @@ class OutageViewController: UIViewController {
             }
             nonPayFinaledTextView.textContainerInset = .zero
             nonPayFinaledTextView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
-            nonPayFinaledTextView.tintColor = .mediumPersianBlue // For the phone numbers
-            nonPayFinaledTextView.textColor = .oldLavender
+            nonPayFinaledTextView.tintColor = .actionBlue // For the phone numbers
+            nonPayFinaledTextView.textColor = .middleGray
             nonPayFinaledTextView.textAlignment = .center
             nonPayFinaledTextView.text = viewModel.getAccountNonPayFinaledMessage()
 
@@ -251,13 +300,13 @@ class OutageViewController: UIViewController {
             
             let yourPowerIsLabel = UILabel(frame: CGRect(x: 40, y: 89, width: bigButtonWidth - 80, height: 20))
             yourPowerIsLabel.font = OpenSans.regular.ofSize(16)
-            yourPowerIsLabel.textColor = .mediumPersianBlue
+            yourPowerIsLabel.textColor = .actionBlue
             yourPowerIsLabel.textAlignment = .center
             yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
             
             let onLabel = UILabel(frame: CGRect(x: 40, y: 109, width: bigButtonWidth - 80, height: 25))
             onLabel.font = OpenSans.bold.ofSize(22)
-            onLabel.textColor = .mediumPersianBlue
+            onLabel.textColor = .actionBlue
             onLabel.textAlignment = .center
             onLabel.text = NSLocalizedString("ON", comment: "")
             
@@ -267,32 +316,20 @@ class OutageViewController: UIViewController {
         }
     }
     
-    func getAccounts() {
-        accountScrollerActivityIndicator.isHidden = false
-        viewModel.getAccounts(onSuccess: { accounts in
-            self.accountScrollerActivityIndicator.isHidden = true
-            self.accountScroller.setAccounts(accounts)
-            self.accountScroller.isHidden = false
-            self.getOutageStatus()
-        }, onError: { message in
-            self.accountScrollerActivityIndicator.isHidden = true
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        })
-    }
-    
     func getOutageStatus() {
         accountContentView.isHidden = true
+        gasOnlyTextViewBottomSpaceConstraint.isActive = false
         gasOnlyView.isHidden = true
         errorLabel.isHidden = true
-        outageStatusActivityIndicator.isHidden = false
-        
-        viewModel.getOutageStatus(forAccount: viewModel.currentAccount!, onSuccess: { _ in
-            self.outageStatusActivityIndicator.isHidden = true
+        loadingView.isHidden = false
+        setRefreshControlEnabled(enabled: false)
+        viewModel.getOutageStatus(onSuccess: { _ in
+            self.loadingView.isHidden = true
+            self.setRefreshControlEnabled(enabled: true)
             self.updateContent()
         }, onError: { error in
-            self.outageStatusActivityIndicator.isHidden = true
+            self.loadingView.isHidden = true
+            self.setRefreshControlEnabled(enabled: true)
             self.errorLabel.text = error
             self.errorLabel.isHidden = false
         })
@@ -314,26 +351,18 @@ class OutageViewController: UIViewController {
     }
     
     func onPullToRefresh() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: {
-            if self.viewModel.currentAccount == nil {
-                self.refreshControl.endRefreshing()
-                self.getAccounts()
-            } else {
-                self.viewModel.getOutageStatus(forAccount: self.viewModel.currentAccount!, onSuccess: { outageStatus in
-                    self.refreshControl.endRefreshing()
-                    self.outageStatusActivityIndicator.isHidden = true
-                    self.updateContent()
-                }, onError: { error in
-                    self.refreshControl.endRefreshing()
-                    self.outageStatusActivityIndicator.isHidden = true
-                    self.errorLabel.text = error
-                    self.errorLabel.isHidden = false
-                    
-                    // Hide everything else
-                    self.accountContentView.isHidden = true
-                    self.gasOnlyView.isHidden = true
-                })
-            }
+        viewModel.getOutageStatus(onSuccess: { outageStatus in
+            self.refreshControl?.endRefreshing()
+            self.updateContent()
+        }, onError: { error in
+            self.refreshControl?.endRefreshing()
+            self.errorLabel.text = error
+            self.errorLabel.isHidden = false
+            
+            // Hide everything else
+            self.accountContentView.isHidden = true
+            self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
+            self.gasOnlyView.isHidden = true
         })
     }
     
@@ -349,7 +378,6 @@ class OutageViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ReportOutageViewController {
-            vc.viewModel.account = viewModel.currentAccount!
             vc.viewModel.outageStatus = viewModel.currentOutageStatus!
             if let phone = viewModel.currentOutageStatus!.contactHomeNumber {
                 vc.viewModel.phoneNumber.value = phone
@@ -360,11 +388,9 @@ class OutageViewController: UIViewController {
  
 }
 
-extension OutageViewController: AccountScrollerDelegate {
+extension OutageViewController: AccountPickerDelegate {
     
-    func accountScroller(_ accountScroller: AccountScroller, didChangeAccount account: Account) {
-        viewModel.currentAccount = account
-        accountScroller.updateAdvancedPicker(account: account)
+    func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         getOutageStatus()
     }
     
@@ -373,9 +399,9 @@ extension OutageViewController: AccountScrollerDelegate {
 extension OutageViewController: ReportOutageViewControllerDelegate {
     
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
-        self.updateContent()
+        updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString("Your outage report has been received.", comment: ""), duration: 3.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+            self.view.makeToast(NSLocalizedString("Your outage report has been received.", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
     

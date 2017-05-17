@@ -26,19 +26,19 @@ class AccountLookupToolResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Account Lookup Tool", comment: "")
+        title = NSLocalizedString("Account Lookup", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         navigationItem.leftBarButtonItem = cancelButton
 
-        instructionLabel.textColor = .darkJungleGreen
+        instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please select your account:", comment: "")
         
-        accountNumberHeaderLabel.textColor = .oldLavender
+        accountNumberHeaderLabel.textColor = .middleGray
         accountNumberHeaderLabel.text = NSLocalizedString("Account Number", comment: "")
-        streetNumberHeaderLabel.textColor = .oldLavender
+        streetNumberHeaderLabel.textColor = .middleGray
         streetNumberHeaderLabel.text = NSLocalizedString("Street Number", comment: "")
-        unitNumberHeaderLabel.textColor = .oldLavender
+        unitNumberHeaderLabel.textColor = .middleGray
         unitNumberHeaderLabel.text = NSLocalizedString("Unit Number", comment: "")
         
         firstSeparatorView.backgroundColor = tableView.separatorColor

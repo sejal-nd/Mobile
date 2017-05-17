@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import MBProgressHUD
 
 protocol SecurityQuestionViewControllerDelegate: class {
     func securityQuestionViewController(_ securityQuestionViewController: SecurityQuestionViewController, didUnmaskUsername username: String)
@@ -32,9 +31,9 @@ class SecurityQuestionViewController: UIViewController {
         
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.securityQuestionAnswerNotEmpty().bindTo(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.securityQuestionAnswerNotEmpty().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        instructionLabel.textColor = .darkJungleGreen
+        instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please answer the security question.", comment: "")
         
         questionLabel.text = viewModel.getSecurityQuestion()
@@ -42,7 +41,7 @@ class SecurityQuestionViewController: UIViewController {
         answerTextField.textField.placeholder = NSLocalizedString("Your Answer*", comment: "")
         answerTextField.textField.autocorrectionType = .no
         answerTextField.textField.returnKeyType = .done
-        answerTextField.textField.rx.text.orEmpty.bindTo(viewModel.securityQuestionAnswer).addDisposableTo(disposeBag)
+        answerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityQuestionAnswer).addDisposableTo(disposeBag)
         answerTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.viewModel.securityQuestionAnswerNotEmpty().single().subscribe(onNext: { notEmpty in
                 if notEmpty {
@@ -60,13 +59,9 @@ class SecurityQuestionViewController: UIViewController {
     func onSubmitPress() {
         view.endEditing(true)
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
-        hud.bezelView.style = MBProgressHUDBackgroundStyle.solidColor
-        hud.bezelView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hud.contentColor = .white
-        
+        LoadingView.show()
         viewModel.submitSecurityQuestionAnswer(onSuccess: { unmaskedUsername in
-            hud.hide(animated: true)
+            LoadingView.hide()
             for vc in (self.navigationController?.viewControllers)! {
                 guard let dest = vc as? LoginViewController else {
                     continue
@@ -77,10 +72,10 @@ class SecurityQuestionViewController: UIViewController {
                 break
             }
         }, onAnswerNoMatch: { inlineErrorMessage in
-            hud.hide(animated: true)
+            LoadingView.hide()
             self.answerTextField.setError(inlineErrorMessage)
         }, onError: { errorMessage in
-            hud.hide(animated: true)
+            LoadingView.hide()
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)

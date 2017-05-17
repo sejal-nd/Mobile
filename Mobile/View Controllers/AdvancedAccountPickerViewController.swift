@@ -8,26 +8,39 @@
 
 import UIKit
 
-protocol AdvancedAccountPickerViewControllerDelegate {
+protocol AdvancedAccountPickerViewControllerDelegate: class {
     func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account)
 }
 
 class AdvancedAccountPickerViewController: UIViewController {
+    
+    weak var delegate: AdvancedAccountPickerViewControllerDelegate?
 
     @IBOutlet weak var tableView: UITableView!
     
-    var accounts = [Account]()
     var expandedStates = [Bool]()
-    var currentAccount: Account?
-    
-    var delegate: AdvancedAccountPickerViewControllerDelegate?
+    var accounts: [Account]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 64
+        
+        // Make the currently selected account the first item in list
+        let index = AccountsStore.sharedInstance.accounts.index(of: AccountsStore.sharedInstance.currentAccount)
+        let currentAccount = accounts.remove(at: index!)
+        accounts.insert(currentAccount, at: 0)
+        
         for _ in accounts {
             expandedStates.append(false)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setWhiteNavBar()
         }
     }
     
@@ -55,8 +68,7 @@ class AdvancedAccountPickerViewController: UIViewController {
 extension AdvancedAccountPickerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentAccount = accounts[indexPath.row]
-        delegate?.advancedAccountPickerViewController(self, didSelectAccount: currentAccount!)
+        delegate?.advancedAccountPickerViewController(self, didSelectAccount: accounts[indexPath.row])
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -81,9 +93,19 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
         cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
         cell.accountNumber.text = account.accountNumber
         cell.addressLabel.text = account.address
-        cell.accountStatusLabel.text = ""
+
+        if account.isDefault {
+            cell.accountStatusLabel.text = "Default"
+        } else if account.isFinaled {
+            cell.accountStatusLabel.text = "Finaled"
+            cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial_disabled") : #imageLiteral(resourceName: "ic_residential_disabled")
+        } else if account.isLinked {
+            cell.accountStatusLabel.text = "Linked"
+        } else {
+            cell.accountStatusLabel.text = ""
+        }
         
-        if account.accountNumber == currentAccount?.accountNumber {
+        if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
             cell.accountImageViewLeadingConstraint.constant = 39
             cell.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
             cell.checkMarkImageView.isHidden = false
@@ -106,7 +128,7 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
 //        cell.viewAddressesButton.tag = indexPath.row
 //        cell.viewAddressesButton.addTarget(self, action: #selector(showPremises), for: .touchUpInside)
 //        
-//        if account.accountNumber == currentAccount?.accountNumber {
+//        if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
 //            cell.accountImageViewLeadingConstraint.constant = 39
 //            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 //            cell.checkMarkImageView.isHidden = false
