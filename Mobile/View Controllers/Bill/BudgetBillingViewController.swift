@@ -108,6 +108,7 @@ class BudgetBillingViewController: UIViewController {
         
         accountNumberLabel.textColor = .blackText
         accountNumberLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber
+        accountNumberLabel.font = SystemFont.medium.of(textStyle: .title1)
         addressLabel.textColor = .middleGray
         addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
         

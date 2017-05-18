@@ -40,6 +40,8 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var numberCheck: UIImageView!
     @IBOutlet weak var specialCharacterCheck: UIImageView!
     
+    @IBOutlet var passwordRequirementLabels: [UILabel]!
+    
     let disposeBag = DisposeBag()
     
     let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard, authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
@@ -83,6 +85,10 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         confirmPasswordTextField.setEnabled(false)
+        
+        for label in passwordRequirementLabels {
+            label.font = SystemFont.regular.of(textStyle: .headline)
+        }
         
         // Bind to the view model
         currentPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.currentPassword).addDisposableTo(disposeBag)
