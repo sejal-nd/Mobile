@@ -42,7 +42,7 @@ class SettingsViewModel {
     }
     
     func getConfirmPasswordMessage() -> String {
-        return "Enter the password for \(username.value.obfuscate()) to enable Touch ID"
+        return String(format: NSLocalizedString("Enter the password for %@ to enable Touch ID", comment: ""), username.value)
     }
     
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
