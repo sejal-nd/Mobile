@@ -65,7 +65,7 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LookupToolResultCell", for: indexPath) as! AccountLookupToolResultCell
         
         let account = viewModel.accountLookupResults[indexPath.row]
-        cell.accountNumberLabel.text = account.accountNumber?.obfuscateAllButLast4Digits()
+        cell.accountNumberLabel.text = account.accountNumber?.maskAllButLast4Digits()
         cell.streetNumberLabel.text = account.streetNumber
         cell.unitNumberLabel.text = account.unitNumber
         

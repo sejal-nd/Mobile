@@ -1,5 +1,5 @@
 //
-//  ObfuscatedString.swift
+//  MaskedString.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 3/9/17.
@@ -9,7 +9,7 @@
 import UIKit
 
 extension String {
-    func obfuscate() -> String {
+    func mask() -> String {
         if self.characters.count < 6 {
             return self
         }
@@ -17,7 +17,7 @@ extension String {
         return self.replacingCharacters(in: startIndex..<self.endIndex, with: "**********")
     }
     
-    func obfuscateAllButLast4Digits() -> String {
+    func maskAllButLast4Digits() -> String {
         let endIndex = self.index(self.endIndex, offsetBy: -4)
         return self.replacingCharacters(in: self.startIndex..<endIndex, with: "****")
     }
