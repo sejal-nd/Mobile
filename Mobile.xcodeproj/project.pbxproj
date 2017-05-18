@@ -511,6 +511,9 @@
 		E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
 		E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
 		E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
+		E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8551ECDEF6800CA63BF /* WalletViewController.swift */; };
+		E876A8571ECDEF6800CA63BF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8551ECDEF6800CA63BF /* WalletViewController.swift */; };
+		E876A8581ECDEF6800CA63BF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8551ECDEF6800CA63BF /* WalletViewController.swift */; };
 		E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
 		E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
 		E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
@@ -980,6 +983,7 @@
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
 		E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetJVFloatLabeledTextField.swift; sourceTree = "<group>"; };
+		E876A8551ECDEF6800CA63BF /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolViewController.swift; sourceTree = "<group>"; };
 		E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultViewController.swift; sourceTree = "<group>"; };
 		E882B7E31EA8009500EA3C13 /* BillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
@@ -1844,9 +1848,18 @@
 			path = FloatLabelTextField;
 			sourceTree = "<group>";
 		};
+		E876A8541ECDEF3E00CA63BF /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				E876A8551ECDEF6800CA63BF /* WalletViewController.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
 		E882B7E21EA7FE6300EA3C13 /* Bill */ = {
 			isa = PBXGroup;
 			children = (
+				E876A8541ECDEF3E00CA63BF /* Wallet */,
 				E882B7E31EA8009500EA3C13 /* BillViewController.swift */,
 				82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */,
 				E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */,
@@ -2070,7 +2083,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2491,6 +2504,7 @@
 				E8CA07EF1E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				82A18EDD1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
+				E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
@@ -2658,6 +2672,7 @@
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
+				E876A8581ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
@@ -2776,6 +2791,7 @@
 				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
+				E876A8571ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
