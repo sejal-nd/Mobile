@@ -19,8 +19,6 @@ class ForgotUsernameViewController: UIViewController {
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField?
     @IBOutlet weak var accountLookupToolButton: UIButton?
     
-    var test = false
-    
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
