@@ -30,7 +30,7 @@ class PrimaryButton: UIButton {
     func commonInit() {
         backgroundColor = .ctaBlue
 
-        titleLabel!.font = SystemFont.bold.of(style: .title1)
+        titleLabel!.font = SystemFont.bold.of(textStyle: .title1)
         setTitleColor(.white, for: .normal)
         setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .highlighted)
         setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .disabled)

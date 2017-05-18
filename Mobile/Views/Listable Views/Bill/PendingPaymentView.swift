@@ -31,8 +31,9 @@ class PendingPaymentView: UIView {
             textLabel.text = NSLocalizedString("Pending Payment", comment: "")
         }
 		
-		textLabel.font = OpenSans.italic.of(size: 14)
+		textLabel.font = OpenSans.italic.of(textStyle: .subheadline)
         amountLabel.text = amount.currencyString
+        amountLabel.font = OpenSans.semiboldItalic.of(textStyle: .headline)
     }
 
 }

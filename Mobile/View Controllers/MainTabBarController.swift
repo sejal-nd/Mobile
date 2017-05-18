@@ -10,8 +10,8 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    let normalTitleFont = UIFont.systemFont(ofSize: 10)
-    let selectedTitleFont = UIFont.boldSystemFont(ofSize: 10)
+    let normalTitleFont = SystemFont.regular.of(size: 10)
+    let selectedTitleFont = SystemFont.bold.of(size: 10)
     
     let normalTitleColor = UIColor.middleGray
     let selectedTitleColor = UIColor.primaryColorADA
@@ -40,9 +40,9 @@ class MainTabBarController: UITabBarController {
     func setButtonStates (itemTag: Int) {
         for tab in tabBar.items! {
             if tab.tag == itemTag {
-                tab.setTitleTextAttributes([NSFontAttributeName: selectedTitleFont, NSForegroundColorAttributeName: selectedTitleColor], for: UIControlState.normal)
+                tab.setTitleTextAttributes([NSFontAttributeName: selectedTitleFont, NSForegroundColorAttributeName: selectedTitleColor], for: .normal)
             } else {
-                tab.setTitleTextAttributes([NSFontAttributeName: normalTitleFont, NSForegroundColorAttributeName: normalTitleColor], for: UIControlState.normal)
+                tab.setTitleTextAttributes([NSFontAttributeName: normalTitleFont, NSForegroundColorAttributeName: normalTitleColor], for: .normal)
             }
         }
     }

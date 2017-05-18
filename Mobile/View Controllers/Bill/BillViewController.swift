@@ -32,11 +32,14 @@ class BillViewController: AccountPickerViewController {
 	
 	// Restore Service
 	@IBOutlet weak var restoreServiceView: UIView!
+    @IBOutlet weak var restoreServiceLabel: UILabel!
 	@IBOutlet weak var restoreServiceAmountLabel: UILabel!
+    @IBOutlet weak var restoreServiceDateLabel: UILabel!
 	
 	// Catch Up
-	@IBOutlet weak var catchUpView: UIView!
-	@IBOutlet weak var catchUpAmountLabel: UILabel!
+    @IBOutlet weak var catchUpView: UIView!
+    @IBOutlet weak var catchUpLabel: UILabel!
+    @IBOutlet weak var catchUpAmountLabel: UILabel!
 	@IBOutlet weak var catchUpDateLabel: UILabel!
 	
 	// Catch Up Disclaimer
@@ -50,8 +53,10 @@ class BillViewController: AccountPickerViewController {
 	@IBOutlet weak var avoidShutoffDateLabel: UILabel!
 	
 	// Past Due
-	@IBOutlet weak var pastDueView: UIView!
-	@IBOutlet weak var pastDueAmountLabel: UILabel!
+    @IBOutlet weak var pastDueView: UIView!
+    @IBOutlet weak var pastDueLabel: UILabel!
+    @IBOutlet weak var pastDueAmountLabel: UILabel!
+    @IBOutlet weak var pastDueDateLabel: UILabel!
 	
 	// Payments
 	@IBOutlet weak var paymentStackView: UIStackView!
@@ -64,21 +69,25 @@ class BillViewController: AccountPickerViewController {
 	
 	// Remaining Balance Past Due
 	@IBOutlet weak var remainingBalancePastDueView: UIView!
-	@IBOutlet weak var remainingBalancePastDueLabel: UILabel!
-	@IBOutlet weak var remainingBalancePastDueAmountLabel: UILabel!
+    @IBOutlet weak var remainingBalancePastDueLabel: UILabel!
+    @IBOutlet weak var remainingBalancePastDueAmountLabel: UILabel!
+    @IBOutlet weak var remainingBalancePastDueDateLabel: UILabel!
 	
 	// Bill Issued
-	@IBOutlet weak var billIssuedView: UIView!
-	@IBOutlet weak var billIssuedAmountLabel: UILabel!
+    @IBOutlet weak var billIssuedView: UIView!
+    @IBOutlet weak var billIssuedLabel: UILabel!
+    @IBOutlet weak var billIssuedAmountLabel: UILabel!
 	@IBOutlet weak var billIssuedDateLabel: UILabel!
 	
-	// Payment Received
-	@IBOutlet weak var paymentReceivedView: UIView!
+    // Payment Received
+    @IBOutlet weak var paymentReceivedView: UIView!
+    @IBOutlet weak var paymentReceivedLabel: UILabel!
 	@IBOutlet weak var paymentReceivedAmountLabel: UILabel!
 	@IBOutlet weak var paymentReceivedDateLabel: UILabel!
 	
 	// Credit
 	@IBOutlet weak var creditView: UIView!
+    @IBOutlet weak var creditLabel: UILabel!
 	@IBOutlet weak var creditAmountLabel: UILabel!
 	
     @IBOutlet weak var needHelpUnderstandingButton: ButtonControl!
@@ -89,6 +98,7 @@ class BillViewController: AccountPickerViewController {
 	
     @IBOutlet weak var makeAPaymentButton: PrimaryButton!
 	@IBOutlet weak var billPaidView: UIView!
+    @IBOutlet weak var billPaidLabel: UILabel!
     @IBOutlet weak var makeAPaymentStatusLabel: UILabel!
     
     @IBOutlet weak var autoPayButton: ButtonControl!
@@ -167,6 +177,8 @@ class BillViewController: AccountPickerViewController {
         
         needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
         
+        billPaidView.layer.cornerRadius = 2
+        
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         autoPayButton.layer.cornerRadius = 2
         
@@ -176,9 +188,47 @@ class BillViewController: AccountPickerViewController {
         budgetButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         budgetButton.layer.cornerRadius = 2
         
-        alertBannerLabel.font = OpenSans.italic.of(style: .subheadline)
-        totalAmountDescriptionLabel.font = OpenSans.regular.of(style: .footnote)
-        makeAPaymentStatusLabel.font = OpenSans.italic.of(style: .subheadline)
+        // Set Fonts
+        alertBannerLabel.font = OpenSans.italic.of(textStyle: .subheadline)
+        totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        restoreServiceLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        restoreServiceAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        restoreServiceDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        catchUpLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        catchUpAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        catchUpDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        avoidShutoffLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        avoidShutoffAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        avoidShutoffDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        pastDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        pastDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        pastDueDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        remainingBalanceDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        remainingBalanceDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        remainingBalanceDueDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        remainingBalancePastDueLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        remainingBalancePastDueAmountLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        remainingBalancePastDueDateLabel.font = OpenSans.regular.of(textStyle: .caption2)
+        
+        billIssuedLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        billIssuedAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        billIssuedDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        paymentReceivedLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        paymentReceivedAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        paymentReceivedDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        creditLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        creditAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        
+        billPaidLabel.font = SystemFont.bold.of(textStyle: .title1)
+        makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .subheadline)
     }
     
     func bindViews() {

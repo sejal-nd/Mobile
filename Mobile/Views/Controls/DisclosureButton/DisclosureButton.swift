@@ -24,13 +24,11 @@ class DisclosureButton: UIButton {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         commonInit()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         commonInit()
     }
     
@@ -45,6 +43,7 @@ class DisclosureButton: UIButton {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         layer.masksToBounds = false
         
+        label.font = SystemFont.medium.of(textStyle: .title1)
         label.textColor = .blackText
         detailLabel.textColor = .middleGray
         setDetailLabel(text: "", checkHidden: true)

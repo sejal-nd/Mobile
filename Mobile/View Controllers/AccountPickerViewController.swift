@@ -46,7 +46,7 @@ class AccountPickerViewController: UIViewController {
         iconView.translatesAutoresizingMaskIntoConstraints = false
         accountNumberLabel = UILabel(frame: .zero)
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        accountNumberLabel.font = UIFont.systemFont(ofSize: 14)
+        accountNumberLabel.font = SystemFont.regular.of(size: 14)
         accountNumberLabel.textColor = .deepGray
         accountNumberLabel.numberOfLines = 1
         

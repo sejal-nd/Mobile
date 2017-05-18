@@ -278,7 +278,7 @@ class OutageViewController: AccountPickerViewController {
                     nonPayFinaledTextView.frame = CGRect(x: 14, y: 68, width: bigButtonWidth - 28, height: 84)
                 } else { // accountPaid = false
                     payBillLabel.frame = CGRect(x: 23, y: 150, width: bigButtonWidth - 46, height: 19)
-                    payBillLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
+                    payBillLabel.font = SystemFont.semibold.of(size: 16)
                     payBillLabel.textColor = .actionBlue
                     payBillLabel.textAlignment = .center
                     payBillLabel.text = NSLocalizedString("Pay Bill", comment: "")
@@ -286,7 +286,7 @@ class OutageViewController: AccountPickerViewController {
                 }
             }
             nonPayFinaledTextView.textContainerInset = .zero
-            nonPayFinaledTextView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
+            nonPayFinaledTextView.font = SystemFont.light.of(size: 14)
             nonPayFinaledTextView.tintColor = .actionBlue // For the phone numbers
             nonPayFinaledTextView.textColor = .middleGray
             nonPayFinaledTextView.textAlignment = .center

@@ -60,7 +60,7 @@ class ForgotUsernameResultViewController: UIViewController {
         paragraphStyle.minimumLineHeight = 24 // Line height
         attrString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: fullRange)
         
-        attrString.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold), range: fullRange)
+        attrString.addAttribute(NSFontAttributeName, value: SystemFont.semibold.of(size: 16), range: fullRange)
         attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: fullRange)
         
 //        let url = URL(fileURLWithPath: "") // Does not matter

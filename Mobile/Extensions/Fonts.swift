@@ -43,8 +43,6 @@ enum SystemFont: FontType {
     
     func of(size: CGFloat) -> UIFont {
         switch self {
-        case .bold:
-            return .boldSystemFont(ofSize: size)
         case .italic:
             return .italicSystemFont(ofSize: size)
         default:
@@ -52,17 +50,14 @@ enum SystemFont: FontType {
         }
     }
     
-    func of(style: UIFontTextStyle) -> UIFont {
-        let size = UIFont.sizeTable[style]![UIApplication.shared.preferredContentSizeCategory]!
+    func of(textStyle: UIFontTextStyle) -> UIFont {
+        let size = UIFont.preferredSize(forTextStyle: textStyle)
         switch self {
-        case .bold:
-            return .boldSystemFont(ofSize: size)
         case .italic:
             return .italicSystemFont(ofSize: size)
         default:
             return .systemFont(ofSize: size, weight: weight)
         }
-        
     }
 }
 
@@ -70,7 +65,7 @@ enum SystemFont: FontType {
 
 protocol FontType {
     func of(size: CGFloat) -> UIFont
-    func of(style: UIFontTextStyle) -> UIFont
+    func of(textStyle: UIFontTextStyle) -> UIFont
 }
 
 extension FontType where Self: RawRepresentable, Self.RawValue == String {
@@ -85,17 +80,35 @@ extension FontType where Self: RawRepresentable, Self.RawValue == String {
         return font
     }
     
-    func of(style: UIFontTextStyle) -> UIFont {
-        let preferred = UIFont.preferredFont(forTextStyle: style).pointSize
-        return UIFont(name: self.rawValue, size: preferred)!
+    func of(textStyle: UIFontTextStyle) -> UIFont {
+        let size = UIFont.preferredSize(forTextStyle: textStyle)
+        return UIFont(name: self.rawValue, size: size)!
     }
 }
 
 //MARK: - Size Table
 
 extension UIFont {
-    @nonobjc static var sizeTable: [UIFontTextStyle : [UIContentSizeCategory : CGFloat]] = {
-        return [
+    
+    static func preferredSize(forTextStyle textStyle: UIFontTextStyle) -> CGFloat {
+        let category = UIApplication.shared.preferredContentSizeCategory
+        
+        #if DEBUG
+            guard let size = sizeTable[textStyle]?[category] else {
+                fatalError("Font size not specified for style \"\(textStyle)\" and category \"\(category)\"")
+            }
+            return size
+        #else
+            // If the provided style isn't in the table, just use .body
+            let categoryDict = sizeTable[textStyle] ?? sizeTable[.body]!
+            // If the provided category isn't in the table, just use .large
+            let size = categoryDict[category] ?? categoryDict[.large]!
+            return size
+        #endif
+    }
+    
+    @nonobjc private static var sizeTable: [UIFontTextStyle : [UIContentSizeCategory : CGFloat]] = {
+        [
             .title1: [
                 .accessibilityExtraExtraExtraLarge: 23,
                 .accessibilityExtraExtraLarge: 23,
