@@ -320,14 +320,14 @@
                                                                 <rect key="frame" x="22" y="30" width="285" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="60" id="ggv-qT-0bF"/>
+                                                                    <constraint firstAttribute="height" priority="999" constant="60" id="ggv-qT-0bF"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1I-Rs-9TH" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="22" y="120" width="285" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="60" id="8bf-2q-YaL"/>
+                                                                    <constraint firstAttribute="height" priority="999" constant="60" id="8bf-2q-YaL"/>
                                                                 </constraints>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTS-dq-wrq" userLabel="Eyeball Button">
@@ -1402,7 +1402,7 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Me-i6-eET">
-                                                                            <rect key="frame" x="0.0" y="16.5" width="291" height="19"/>
+                                                                            <rect key="frame" x="0.0" y="15" width="291" height="22"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
