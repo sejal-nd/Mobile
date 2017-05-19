@@ -17,10 +17,17 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var creditCardButtonLabel: UILabel!
     @IBOutlet weak var bankButton: ButtonControl!
     @IBOutlet weak var bankButtonLabel: UILabel!
-    @IBOutlet weak var bottomLabel: UILabel!
+    @IBOutlet weak var footerLabel: UILabel!
     
     // Non-empty state stuff
+    @IBOutlet weak var nonEmptyStateView: UIView!
     @IBOutlet weak var tableView: UIScrollView!
+    @IBOutlet weak var addPaymentAccountBottomBar: UIView!
+    @IBOutlet weak var addPaymentAccountLabel: UILabel!
+    @IBOutlet weak var miniCreditCardButton: ButtonControl!
+    @IBOutlet weak var miniBankButton: ButtonControl!
+    
+    let viewModel = WalletViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +35,8 @@ class WalletViewController: UIViewController {
         title = NSLocalizedString("My Wallet", comment: "")
         view.backgroundColor = .softGray
         
+        
+        // Empty state stuff
         choosePaymentAccountLabel.textColor = .blackText
         choosePaymentAccountLabel.text = NSLocalizedString("Choose a payment account:", comment: "")
         
@@ -41,21 +50,63 @@ class WalletViewController: UIViewController {
         bankButtonLabel.textColor = .blackText
         bankButtonLabel.text = NSLocalizedString("Bank Account", comment: "")
         
-        bottomLabel.textColor = .blackText
-        switch Environment.sharedInstance.opco {
-        case .comEd, .peco:
-            bottomLabel.text = NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
-        case .bge:
-            bottomLabel.text = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Small business customers cannot use VISA. Bank account verification may take up to 3 business days, at which point we will notify you via email of its activatio", comment: "")
-        }
+        footerLabel.textColor = .blackText
+        footerLabel.text = viewModel.footerLabelText
+        
+        // Non-empty state stuff
+        tableView.backgroundColor = .primaryColor
+        tableView.contentInset = UIEdgeInsetsMake(15, 0, 15, 0)
+        
+        addPaymentAccountBottomBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
+        addPaymentAccountLabel.textColor = .deepGray
+        addPaymentAccountLabel.text = NSLocalizedString("Add Payment Account", comment: "")
+        miniCreditCardButton.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 3)
+        miniCreditCardButton.layer.cornerRadius = 8
+        miniBankButton.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 3)
+        miniBankButton.layer.cornerRadius = 8
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
+            navController.setColoredNavBar(hidesBottomBorder: true)
         }
     }
 
+}
+
+extension WalletViewController: UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 14
+    }
+}
+
+extension WalletViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WalletCell", for: indexPath) as! WalletTableViewCell
+        
+        //cell.gradientLayer.frame = cell.gradientView.frame
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    }
+    
 }
