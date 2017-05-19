@@ -178,7 +178,7 @@ class LoginViewController: UIViewController {
                             self.present(touchIDAlert, animated: true, completion: nil)
                             self.viewModel.setShouldPromptToEnableTouchID(false)
                         } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
-                            let message = String(format: NSLocalizedString("Touch ID settings for %@ will be disabled upon signing in as %@. Would you like to enable Touch ID for %@ at this time?", comment: ""), lastLoggedInUsername!.obfuscate(), self.viewModel.username.value.obfuscate(), self.viewModel.username.value)
+                            let message = String(format: NSLocalizedString("Touch ID settings for %@ will be disabled upon signing in as %@. Would you like to enable Touch ID for %@ at this time?", comment: ""), lastLoggedInUsername!, self.viewModel.username.value, self.viewModel.username.value)
                             
                             let differentAccountAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: message, preferredStyle: .alert)
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { (action) in
