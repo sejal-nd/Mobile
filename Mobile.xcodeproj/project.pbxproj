@@ -521,9 +521,6 @@
 		E876A8601ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */; };
 		E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */; };
 		E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */; };
-		E876A8641ECF5A7E00CA63BF /* CornerRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8631ECF5A7E00CA63BF /* CornerRadiusView.swift */; };
-		E876A8651ECF5A7E00CA63BF /* CornerRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8631ECF5A7E00CA63BF /* CornerRadiusView.swift */; };
-		E876A8661ECF5A7E00CA63BF /* CornerRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8631ECF5A7E00CA63BF /* CornerRadiusView.swift */; };
 		E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
 		E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
 		E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
@@ -996,7 +993,6 @@
 		E876A8551ECDEF6800CA63BF /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
-		E876A8631ECF5A7E00CA63BF /* CornerRadiusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerRadiusView.swift; sourceTree = "<group>"; };
 		E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolViewController.swift; sourceTree = "<group>"; };
 		E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultViewController.swift; sourceTree = "<group>"; };
 		E882B7E31EA8009500EA3C13 /* BillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
@@ -1397,7 +1393,6 @@
 				8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */,
 				8FDF8C681E550545000B7BD0 /* PecoColor.swift */,
 				E80043551E68CDCB005CF531 /* IndividualBorders.swift */,
-				E876A8631ECF5A7E00CA63BF /* CornerRadiusView.swift */,
 				E80D2E161E721668002626C9 /* MaskedString.swift */,
 				E802AB3E1E85936700981D18 /* LineHeightLabel.swift */,
 				E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */,
@@ -2107,7 +2102,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2576,7 +2571,6 @@
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD41E736596001E8A44 /* Macros.swift in Sources */,
-				E876A8641ECF5A7E00CA63BF /* CornerRadiusView.swift in Sources */,
 				E882B7ED1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
@@ -2646,7 +2640,6 @@
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				82A18E641EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
-				E876A8661ECF5A7E00CA63BF /* CornerRadiusView.swift in Sources */,
 				E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E8CA07F11E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
@@ -2768,7 +2761,6 @@
 				E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E561EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				82A18E631EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
-				E876A8651ECF5A7E00CA63BF /* CornerRadiusView.swift in Sources */,
 				E840BD3B1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E8CA07F01E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
 				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,

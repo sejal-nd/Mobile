@@ -17,15 +17,16 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var creditCardButtonLabel: UILabel!
     @IBOutlet weak var bankButton: ButtonControl!
     @IBOutlet weak var bankButtonLabel: UILabel!
-    @IBOutlet weak var footerLabel: UILabel!
+    @IBOutlet weak var emptyStateFooter: UILabel!
     
     // Non-empty state stuff
     @IBOutlet weak var nonEmptyStateView: UIView!
-    @IBOutlet weak var tableView: UIScrollView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addPaymentAccountBottomBar: UIView!
     @IBOutlet weak var addPaymentAccountLabel: UILabel!
     @IBOutlet weak var miniCreditCardButton: ButtonControl!
     @IBOutlet weak var miniBankButton: ButtonControl!
+    @IBOutlet weak var tableViewFooter: UILabel!
     
     let viewModel = WalletViewModel()
 
@@ -34,7 +35,6 @@ class WalletViewController: UIViewController {
 
         title = NSLocalizedString("My Wallet", comment: "")
         view.backgroundColor = .softGray
-        
         
         // Empty state stuff
         choosePaymentAccountLabel.textColor = .blackText
@@ -50,20 +50,23 @@ class WalletViewController: UIViewController {
         bankButtonLabel.textColor = .blackText
         bankButtonLabel.text = NSLocalizedString("Bank Account", comment: "")
         
-        footerLabel.textColor = .blackText
-        footerLabel.text = viewModel.footerLabelText
+        emptyStateFooter.textColor = .blackText
+        emptyStateFooter.text = viewModel.footerLabelText
         
         // Non-empty state stuff
         tableView.backgroundColor = .primaryColor
         tableView.contentInset = UIEdgeInsetsMake(15, 0, 15, 0)
+        tableView.indicatorStyle = .white
         
         addPaymentAccountBottomBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         addPaymentAccountLabel.textColor = .deepGray
         addPaymentAccountLabel.text = NSLocalizedString("Add Payment Account", comment: "")
-        miniCreditCardButton.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 3)
+        miniCreditCardButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniCreditCardButton.layer.cornerRadius = 8
-        miniBankButton.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 3)
+        miniBankButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniBankButton.layer.cornerRadius = 8
+        
+        tableViewFooter.text = viewModel.footerLabelText
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +74,23 @@ class WalletViewController: UIViewController {
         
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar(hidesBottomBorder: true)
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Dynamic sizing for the table footer view
+        if let footerView = tableView.tableFooterView {
+            let height = footerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            var footerFrame = footerView.frame
+            
+            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
+            if height != footerFrame.size.height {
+                footerFrame.size.height = height
+                footerView.frame = footerFrame
+                tableView.tableFooterView = footerView
+            }
         }
     }
 
@@ -93,6 +113,9 @@ extension WalletViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 14
     }
+    
+    
+
 }
 
 extension WalletViewController: UITableViewDataSource {
@@ -100,13 +123,28 @@ extension WalletViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WalletCell", for: indexPath) as! WalletTableViewCell
         
-        //cell.gradientLayer.frame = cell.gradientView.frame
+        switch indexPath.section {
+        case 0:
+            cell.accountImageView.image = #imageLiteral(resourceName: "ic_bofa")
+            cell.bottomBarLabel.text = "No Fee Applied"
+            cell.oneTouchPayView.isHidden = false
+        case 1:
+            cell.accountImageView.image = #imageLiteral(resourceName: "ic_visa")
+            cell.bottomBarLabel.text = "$2.35 Convenience Fee"
+            cell.oneTouchPayView.isHidden = true
+        case 2:
+            cell.accountImageView.image = #imageLiteral(resourceName: "ic_mastercard")
+            cell.bottomBarLabel.text = "$2.35 Convenience Fee"
+            cell.oneTouchPayView.isHidden = true
+        default:
+            break
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        print("selected row \(indexPath.section)")
     }
     
 }
