@@ -48,6 +48,14 @@
 		225FF85B1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85C1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85D1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
+		54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06931ECF7809004A1FDA /* RegistrationService.swift */; };
+		54AE06951ECF7809004A1FDA /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06931ECF7809004A1FDA /* RegistrationService.swift */; };
+		54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06931ECF7809004A1FDA /* RegistrationService.swift */; };
+		54AE06971ECF7809004A1FDA /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06931ECF7809004A1FDA /* RegistrationService.swift */; };
+		54AE06991ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */; };
+		54AE069A1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */; };
+		54AE069B1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */; };
+		54AE069C1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */; };
 		54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		54EDD2D61ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		54EDD2D71ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
@@ -710,6 +718,8 @@
 		087630E01E72F5D000FA7020 /* BGEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEUITests.swift; sourceTree = "<group>"; };
 		087630E21E72F5D000FA7020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		54AE06931ECF7809004A1FDA /* RegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCRegistrationService.swift; sourceTree = "<group>"; };
 		54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
 		54EDD2D91ECE236000CAB8A6 /* WalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCWalletService.swift; sourceTree = "<group>"; };
@@ -1764,6 +1774,7 @@
 				B574BAEA1E785A5F001E8A44 /* OutageService.swift */,
 				E840BD391EB3C91D00812DD0 /* BillService.swift */,
 				54EDD2D91ECE236000CAB8A6 /* WalletService.swift */,
+				54AE06931ECF7809004A1FDA /* RegistrationService.swift */,
 				B5AC06E91E52755800BBA4ED /* ServiceResult.swift */,
 				B54846821E687CEB008CE1B1 /* HttpMethod.swift */,
 			);
@@ -1826,6 +1837,7 @@
 				E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */,
 				E840BD431EB3D4B300812DD0 /* OMCBillService.swift */,
 				54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */,
+				54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */,
 			);
 			path = OMC;
 			sourceTree = "<group>";
@@ -2464,6 +2476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
@@ -2515,6 +2528,7 @@
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				82D5994B1EC36B5500DDB380 /* Currency.swift in Sources */,
 				54EDD2DF1ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
+				54AE06991ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
@@ -2656,6 +2670,7 @@
 				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				82471FC01EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */,
 				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
+				54AE069B1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
@@ -2682,6 +2697,7 @@
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
+				54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
@@ -2777,6 +2793,7 @@
 				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				82471FBF1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
+				54AE069A1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				54EDD2DB1ECE236000CAB8A6 /* WalletService.swift in Sources */,
@@ -2803,6 +2820,7 @@
 				E863346C1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
+				54AE06951ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
@@ -2829,6 +2847,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E840BD3D1EB3C91D00812DD0 /* BillService.swift in Sources */,
+				54AE069C1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
 				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
@@ -2880,6 +2899,7 @@
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
+				54AE06971ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
 				82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,

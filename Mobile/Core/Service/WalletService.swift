@@ -12,10 +12,17 @@ protocol WalletService {
     /// Fetch wallet items detailed information.
     ///
     /// - Parameters:
-    ///   - completion: the block to execute upon completion, the ServiceResult
+	///		- auth_session_token
+	///		- biller_id
+	///		- payment_category_type
+	///		- wallet_item_id
+    ///   	- completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain the AccountDetails on success, or a ServiceError on failure.
 
-    func fetchWalletItems(completion: @escaping (_ result: ServiceResult<[WalletItem]>) -> Void)
+	func fetchWalletItems(_ billerID: String,
+	                      paymentCategoryType: PaymentCategoryType,
+	                      walletItemID: String,
+	                      completion: @escaping (_ result: ServiceResult<[WalletItem]>) -> Void)
     
     /// Create wallet payment method (Comed/PECO/BGE) information.
     ///
@@ -37,10 +44,11 @@ protocol WalletService {
 	/// Update wallet payment method (Comed/PECO/BGE) information.
 	///
 	/// - Parameters:
-	///   - accountNumber
-	///   - walletItemID
-	///   - maskedWalletItemAccountNumber
 	///	  - paymentCategoryType
+	///   - walletItemID
+	///	  - routingNumber
+	///   - accountNumber
+	///   - maskedWalletItemAccountNumber
 	///   - completion: the block to execute upon completion, the ServiceResult
 	///     that is provided will contain nothing on success, or a ServiceError on failure.
 	
@@ -56,8 +64,8 @@ protocol WalletService {
 	/// Delete wallet payment method (Comed/PECO) information.
 	///
 	/// - Parameters:
-	///		- accountNumber
-	///		- maskedWalletItemAccountNumber
+	///		- accountNumber *
+	///		- maskedWalletItemAccountNumber *
 	///		- paymentCategoryType
 	///		- walletItemID
 	///		- billerID
@@ -67,7 +75,6 @@ protocol WalletService {
 	                         walletItemID: String,
 	                         billerID: String,
 	                         completion: @escaping (_ result: ServiceResult<Void>) -> Void)
-	
 }
 
 
@@ -76,9 +83,16 @@ protocol WalletService {
 extension WalletService {
 	
 	// Fetch for all three
-    func fetchWalletItems() -> Observable<[WalletItem]> {
+	func fetchWalletItems(_ billerID: String,
+	                      paymentCategoryType: PaymentCategoryType,
+	                      walletItemID: String) -> Observable<[WalletItem]> {
+		//
         return Observable.create { observer in
-            self.fetchWalletItems { (result: ServiceResult<[WalletItem]>) in
+			self.fetchWalletItems(billerID,
+			                      paymentCategoryType: paymentCategoryType,
+			                      walletItemID: walletItemID,
+			                      completion: { (result: ServiceResult<[WalletItem]>) in
+				//
                 switch result {
                 case ServiceResult.Success(let walletItem):
                     observer.onNext(walletItem)
@@ -86,8 +100,8 @@ extension WalletService {
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
                 }
-            }
-            
+			})
+		
             return Disposables.create()
         }
     }

@@ -122,7 +122,16 @@ extension MoreViewController: UITableViewDelegate {
 			//
 			.observeOn(MainScheduler.instance)
 			.subscribe(onNext: {_ in
-				walletService.fetchWalletItems().observeOn(MainScheduler.instance).subscribe(onNext: { (walletItemArray) in
+				// NOTE: dummy stuff need to figure this out
+				let billerID = ""
+				let paymentCategoryType = PaymentCategoryType.Check
+				let walletItemID = ""
+				
+				walletService
+					.fetchWalletItems(billerID, paymentCategoryType: paymentCategoryType, walletItemID: walletItemID)
+					.observeOn(MainScheduler.instance)
+					.subscribe(onNext: { (walletItemArray) in
+					//
 					if walletItemArray.count > 0 {
 						let walletItem = walletItemArray.last
 						
