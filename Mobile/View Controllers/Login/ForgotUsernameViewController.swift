@@ -38,7 +38,9 @@ class ForgotUsernameViewController: UIViewController {
         viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         instructionLabel.textColor = .blackText
+        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
         instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
+        identifierDescriptionLabel?.font = SystemFont.regular.of(textStyle: .subheadline)
         identifierDescriptionLabel?.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
         
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")

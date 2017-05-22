@@ -18,6 +18,7 @@ class ForgotUsernameTableViewCell: UITableViewCell {
         
         label.textColor = .blackText
         checkmarkAccessory.isHidden = true
+        label.font = OpenSans.regular.of(textStyle: .headline)
         
         selectionStyle = .none
     }

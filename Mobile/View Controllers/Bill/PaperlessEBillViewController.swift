@@ -59,7 +59,10 @@ class PaperlessEBillViewController: UIViewController {
 		updateDetailsView.isHidden = Environment.sharedInstance.opco == .bge
         
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
+        
+        detailsLabel.font = OpenSans.regular.of(textStyle: .footnote)
         detailsLabel.text = viewModel.footerText
+        
         updateDetailsLabel.setLineHeight(lineHeight: 24)
         
         viewModel.accountDetails

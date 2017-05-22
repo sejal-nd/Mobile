@@ -33,12 +33,18 @@ class AccountLookupToolResultViewController: UIViewController {
 
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please select your account:", comment: "")
+        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
         accountNumberHeaderLabel.textColor = .middleGray
+        accountNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
         accountNumberHeaderLabel.text = NSLocalizedString("Account Number", comment: "")
+        
         streetNumberHeaderLabel.textColor = .middleGray
+        streetNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
         streetNumberHeaderLabel.text = NSLocalizedString("Street Number", comment: "")
+        
         unitNumberHeaderLabel.textColor = .middleGray
+        unitNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
         unitNumberHeaderLabel.text = NSLocalizedString("Unit Number", comment: "")
         
         firstSeparatorView.backgroundColor = tableView.separatorColor
@@ -68,6 +74,7 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
         cell.accountNumberLabel.text = account.accountNumber?.maskAllButLast4Digits()
         cell.streetNumberLabel.text = account.streetNumber
         cell.unitNumberLabel.text = account.unitNumber
+        
         
         return cell
     }

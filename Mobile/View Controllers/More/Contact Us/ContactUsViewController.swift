@@ -6,21 +6,36 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-class ContactUsViewController: UIViewController {
+import RxSwift
+import RxCocoa
 
-    @IBOutlet weak var whiteView: UIView!
-    @IBOutlet weak var emergencyNumberTextView: DataDetectorTextView!
-    @IBOutlet weak var residentialNumberTextView: DataDetectorTextView!
-    @IBOutlet weak var businessNumberTextView: DataDetectorTextView?
-    @IBOutlet weak var ttyttdNumberTextView: DataDetectorTextView?
-    @IBOutlet weak var emergencyDescriptionLabel: UILabel!
+class ContactUsViewController: UIViewController {
+    
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var firstLabel: UILabel!
-    @IBOutlet weak var secondLabel: UILabel?
-    @IBOutlet weak var thirdLabel: UILabel?
+    @IBOutlet weak var cardView: UIView!
+    
+    @IBOutlet weak var emergencyNumberTextView: DataDetectorTextView!
+    @IBOutlet weak var emergencyDescriptionLabel: UILabel!
+    
     @IBOutlet weak var customerServiceLabel: UILabel!
     
+    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var firstNumberTextView: DataDetectorTextView!
+    @IBOutlet weak var firstNumberSeparator: UIView!
+    @IBOutlet weak var secondStack: UIStackView!
+    @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var secondNumberTextView: DataDetectorTextView!
+    @IBOutlet weak var secondNumberSeparator: UIView!
+    @IBOutlet weak var thirdStack: UIStackView!
+    @IBOutlet weak var thirdLabel: UILabel!
+    @IBOutlet weak var thirdNumberTextView: DataDetectorTextView!
+    
+    @IBOutlet weak var socialMediaButtonStack: UIStackView!
+    @IBOutlet weak var firstButtonRow: UIStackView!
+    
     let contactUsViewModel = ContactUsViewModel()
+    
+    let bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,33 +44,62 @@ class ContactUsViewController: UIViewController {
         
         view.backgroundColor = .primaryColor
         
-        whiteView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        whiteView.layer.cornerRadius = 2
+        cardView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        cardView.layer.cornerRadius = 2
         
+        emergencyDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         emergencyDescriptionLabel.attributedText = contactUsViewModel.emergencyAttrString
         
         emergencyNumberTextView.text = contactUsViewModel.phoneNumber1
         emergencyNumberTextView.textContainerInset = .zero
         emergencyNumberTextView.tintColor = .actionBlue // Color of the phone numbers
-        residentialNumberTextView.text = contactUsViewModel.phoneNumber2
-        residentialNumberTextView.textContainerInset = .zero
-        residentialNumberTextView.tintColor = .actionBlue // Color of the phone numbers
-        businessNumberTextView?.text = contactUsViewModel.phoneNumber3
-        businessNumberTextView?.textContainerInset = .zero
-        businessNumberTextView?.tintColor = .actionBlue // Color of the phone numbers
-        ttyttdNumberTextView?.text = contactUsViewModel.phoneNumber4
-        ttyttdNumberTextView?.textContainerInset = .zero
-        ttyttdNumberTextView?.tintColor = .actionBlue // Color of the phone numbers
+        firstNumberTextView.text = contactUsViewModel.phoneNumber2
+        firstNumberTextView.textContainerInset = .zero
+        firstNumberTextView.tintColor = .actionBlue // Color of the phone numbers
+        secondNumberTextView?.text = contactUsViewModel.phoneNumber3
+        secondNumberTextView?.textContainerInset = .zero
+        secondNumberTextView?.tintColor = .actionBlue // Color of the phone numbers
+        thirdNumberTextView?.text = contactUsViewModel.phoneNumber4
+        thirdNumberTextView?.textContainerInset = .zero
+        thirdNumberTextView?.tintColor = .actionBlue // Color of the phone numbers
         
         customerServiceLabel.text = NSLocalizedString("Customer Service", comment: "")
+        
+        firstLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        secondLabel?.font = OpenSans.regular.of(textStyle: .subheadline)
+        thirdLabel?.font = OpenSans.regular.of(textStyle: .subheadline)
+        
         firstLabel.text = contactUsViewModel.label1
         secondLabel?.text = contactUsViewModel.label2
         thirdLabel?.text = contactUsViewModel.label3
         
-        extendedLayoutIncludesOpaqueBars = true
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            break
+        case .comEd:
+            break
+        case .peco:
+            secondStack.isHidden = true
+            thirdStack.isHidden = true
+        }
         
-        automaticallyAdjustsScrollViewInsets = false
-     
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            extendedLayoutIncludesOpaqueBars = true
+        }
+        
+        let openUrl: (String) -> Void = { UIApplication.shared.openURL(URL(string: $0)!) }
+        
+        let buttonInfoList: [(url: String, image: UIImage)] = [(contactUsViewModel.facebookURL, #imageLiteral(resourceName: "ic_facebook"))]
+        
+        for (url, image) in buttonInfoList.prefix(5) {
+            let facebookButton = UIButton(type: .custom)
+            facebookButton.setImage(image, for: .normal)
+            facebookButton.rx.tap.asDriver()
+                .drive(onNext: { openUrl(url) })
+                .addDisposableTo(bag)
+            firstButtonRow.addArrangedSubview(facebookButton)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,17 +137,10 @@ class ContactUsViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
     @IBAction func facebookButtonTapped(_ sender: UIButton) {
-        UIApplication.shared.openURL(NSURL(string: contactUsViewModel.facebookURL)! as URL)
+        UIApplication.shared.openURL(URL(string: contactUsViewModel.facebookURL)!)
     }
 
     @IBAction func twitterButtonTapped(_ sender: UIButton) {

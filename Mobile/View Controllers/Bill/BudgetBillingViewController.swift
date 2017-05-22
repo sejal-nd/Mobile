@@ -110,12 +110,14 @@ class BudgetBillingViewController: UIViewController {
         accountNumberLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber
         accountNumberLabel.font = SystemFont.medium.of(textStyle: .title1)
         addressLabel.textColor = .middleGray
+        addressLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
         
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
         enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).addDisposableTo(disposeBag)
         
         reasonForStoppingLabel.textColor = .blackText
+        reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
         reasonForStoppingTableView.isHidden = true
         if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {

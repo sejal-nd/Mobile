@@ -26,13 +26,11 @@ class FloatLabelTextField: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         commonInit()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         commonInit()
     }
     
@@ -47,8 +45,10 @@ class FloatLabelTextField: UIView {
         bottomColorBar.isHidden = true
         
         errorLabel.textColor = .errorRed
+        errorLabel.font = SystemFont.regular.of(textStyle: .footnote)
         errorLabel.text = nil
         
+        textField.font = SystemFont.regular.of(textStyle: .title2)
         textField.floatingLabelFont = SystemFont.semibold.of(size: 11)
         textField.floatingLabelYPadding = 6
         textField.floatingLabelTextColor = .primaryColorDark

@@ -110,6 +110,8 @@ class LoginViewController: UIViewController {
         
         forgotUsernameButton.tintColor = .actionBlue
         forgotPasswordButton.tintColor = .actionBlue
+        
+        touchIDLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
     }
     
     deinit {
