@@ -23,6 +23,7 @@ class BillViewModel {
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let currentAccountDetail = Variable<AccountDetail?>(nil)
     let isFetchingAccountDetail: Driver<Bool>
+    let accountDetailErrorMessage: Driver<String>
     
     required init(accountService: AccountService) {
         self.accountService = accountService
@@ -38,15 +39,21 @@ class BillViewModel {
 			.bind(to: currentAccountDetail)
 			.addDisposableTo(disposeBag)
 		
-        sharedFetchAccountDetail
+        let fetchAccountDetailResult = sharedFetchAccountDetail
             .flatMapLatest { _ in
-                accountService
-                    .fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
-                    .retry(2)
+                accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
                     .trackActivity(fetchingAccountDetailTracker)
+                    .materialize()
             }
+            .shareReplay(1)
+            
+        fetchAccountDetailResult.elements()
 			.bind(to: currentAccountDetail)
 			.addDisposableTo(disposeBag)
+        
+        accountDetailErrorMessage = fetchAccountDetailResult.errors()
+            .map { $0.localizedDescription }
+            .asDriver(onErrorJustReturn: "")
     }
 	
 	func fetchAccountDetail(isRefresh: Bool) {

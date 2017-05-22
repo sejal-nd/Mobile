@@ -334,6 +334,14 @@ class BillViewController: AccountPickerViewController {
 		viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).addDisposableTo(bag)
 		viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).addDisposableTo(bag)
 		viewModel.budgetButtonText.drive(budgetBillingEnrollmentLabel.rx.attributedText).addDisposableTo(bag)
+        
+        viewModel.accountDetailErrorMessage
+            .drive(onNext: { errorMessage in
+                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            })
+            .addDisposableTo(bag)
 	}
 	
     func bindButtonTaps() {
