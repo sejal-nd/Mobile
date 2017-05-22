@@ -128,7 +128,8 @@
                                                         <rect key="frame" x="0.0" y="30" width="315" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="60" id="eXo-ZV-J18"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="IaI-Bt-Mmv"/>
+                                                            <constraint firstAttribute="height" priority="250" constant="60" id="eXo-ZV-J18"/>
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uok-hL-HCJ" userLabel="Eyeball Button">
@@ -146,7 +147,8 @@
                                                         <rect key="frame" x="0.0" y="120" width="315" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="60" id="qhj-s1-1hW"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="fMl-Rs-kbW"/>
+                                                            <constraint firstAttribute="height" priority="250" constant="60" id="qhj-s1-1hW"/>
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5Z-Bc-Efn">
@@ -304,7 +306,8 @@
                                                         <rect key="frame" x="0.0" y="494" width="315" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="60" id="32l-cG-AKQ"/>
+                                                            <constraint firstAttribute="height" priority="250" constant="60" id="32l-cG-AKQ"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="B3P-lk-L5Y"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -332,9 +335,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="v76-Y4-LTO" firstAttribute="centerX" secondItem="kES-Fi-P4P" secondAttribute="centerX" id="4E3-eb-Ypa"/>
-                                            <constraint firstAttribute="height" priority="500" constant="636" id="B8e-73-MSz"/>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="636" id="H9M-ET-LVN"/>
-                                            <constraint firstItem="v76-Y4-LTO" firstAttribute="leading" secondItem="kES-Fi-P4P" secondAttribute="leading" priority="750" constant="999" id="KTd-k3-C59"/>
+                                            <constraint firstItem="v76-Y4-LTO" firstAttribute="leading" secondItem="kES-Fi-P4P" secondAttribute="leading" priority="999" constant="30" id="KTd-k3-C59"/>
                                             <constraint firstAttribute="trailing" secondItem="v76-Y4-LTO" secondAttribute="trailing" priority="999" constant="30" id="Pyi-4t-8g7"/>
                                             <constraint firstAttribute="bottom" secondItem="v76-Y4-LTO" secondAttribute="bottom" id="qer-0k-T9U"/>
                                             <constraint firstItem="v76-Y4-LTO" firstAttribute="top" secondItem="kES-Fi-P4P" secondAttribute="top" id="wh9-h7-r03"/>
@@ -431,7 +432,7 @@
             <objects>
                 <navigationController storyboardIdentifier="splitViewMaster" automaticallyAdjustsScrollViewInsets="NO" id="QHx-Oo-GC3" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="XwZ-1G-6SY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XwZ-1G-6SY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -449,7 +450,7 @@
             <objects>
                 <navigationController storyboardIdentifier="splitViewDetail" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Lxd-XU-KqW" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="R3M-3U-YcT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R3M-3U-YcT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -467,7 +468,7 @@
             <objects>
                 <navigationController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="1fe-7y-SPR" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wOj-6K-XNw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wOj-6K-XNw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

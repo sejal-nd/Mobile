@@ -14,7 +14,6 @@ class FloatLabelTextField: UIView {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var textField: InsetJVFloatLabeledTextField!
     @IBOutlet weak var checkAccessoryImageView: UIImageView!
-    @IBOutlet weak var errorAccessoryImageView: UIImageView!
     @IBOutlet weak var leftColorBar: UIView!
     @IBOutlet weak var bottomColorBar: UIView!
     @IBOutlet weak var errorLabel: UILabel!
@@ -86,11 +85,10 @@ class FloatLabelTextField: UIView {
         textField.textColor = .blackText
     }
     
-    func setError(_ errorMessage: String?) {
-        if errorMessage != nil {
+    func setError(_ error: String?) {
+        if let errorMessage = error {
             errorState = true
             checkAccessoryImageView.isHidden = true
-            errorAccessoryImageView.isHidden = false
 
             leftColorBar.backgroundColor = .errorRed
             bottomColorBar.backgroundColor = .errorRed
@@ -100,9 +98,10 @@ class FloatLabelTextField: UIView {
             textField.floatingLabelTextColor = .errorRed
             textField.floatingLabelActiveTextColor = .errorRed
             textField.floatingLabel.textColor = .errorRed
+            
+            errorLabel.text = String(format: NSLocalizedString("Error: %@", comment: ""), errorMessage)
         } else {
             errorState = false
-            errorAccessoryImageView.isHidden = true
             
             leftColorBar.backgroundColor = .primaryColor
             if textFieldIsFocused {
@@ -118,8 +117,9 @@ class FloatLabelTextField: UIView {
             textField.floatingLabelTextColor = .primaryColorDark
             textField.floatingLabelActiveTextColor = .primaryColorDark
             textField.floatingLabel.textColor = .primaryColorDark
+            
+            errorLabel.text = nil
         }
-        errorLabel.text = errorMessage
     }
     
     func setEnabled(_ enabled: Bool) {
