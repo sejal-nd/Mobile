@@ -58,7 +58,7 @@ class WalletViewController: UIViewController {
         creditCardButtonLabel.textColor = .blackText
         creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
         creditCardFeeLabel.textColor = .deepGray
-        creditCardFeeLabel.text = NSLocalizedString("A $2.35 convenience fee will be applied\nto your payments.", comment: "")
+        creditCardFeeLabel.text = viewModel.emptyStateCreditFeeLabelText
         
         emptyStateFooter.textColor = .blackText
         emptyStateFooter.text = viewModel.footerLabelText
@@ -115,6 +115,14 @@ class WalletViewController: UIViewController {
         
         viewModel.shouldShowEmptyState.map(!).drive(emptyStateScrollView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowWallet.drive(onNext: { shouldShow in
+            if shouldShow {
+                self.tableView.reloadData()
+            }
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.bankAccountLimitReached.map(!).drive(miniBankButton.rx.isEnabled).addDisposableTo(disposeBag)
     }
 
 }
@@ -150,22 +158,8 @@ extension WalletViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WalletCell", for: indexPath) as! WalletTableViewCell
         
-        switch indexPath.section {
-        case 0:
-            cell.accountImageView.image = #imageLiteral(resourceName: "ic_bofa")
-            cell.bottomBarLabel.text = "No Fee Applied"
-            cell.oneTouchPayView.isHidden = false
-        case 1:
-            cell.accountImageView.image = #imageLiteral(resourceName: "ic_visa")
-            cell.bottomBarLabel.text = "$2.35 Convenience Fee"
-            cell.oneTouchPayView.isHidden = true
-        case 2:
-            cell.accountImageView.image = #imageLiteral(resourceName: "ic_mastercard")
-            cell.bottomBarLabel.text = "$2.35 Convenience Fee"
-            cell.oneTouchPayView.isHidden = true
-        default:
-            break
-        }
+        let walletItem = viewModel.walletItems.value![indexPath.section]
+        cell.bindToWalletItem(walletItem)
         
         return cell
     }

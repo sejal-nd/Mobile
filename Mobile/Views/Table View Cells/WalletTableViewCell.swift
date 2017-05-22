@@ -69,4 +69,67 @@ class WalletTableViewCell: UITableViewCell {
         // disable highlight
     }
     
+    func bindToWalletItem(_ walletItem: WalletItem) {
+        
+        // Nickname
+        if let nickname = walletItem.nickName {
+            if Environment.sharedInstance.opco == .bge {
+                if let bankAccountType = walletItem.bankAccountType {
+                    nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
+                } else {
+                    nicknameLabel.text = nickname.uppercased()
+                }
+            } else {
+                nicknameLabel.text = nickname.uppercased()
+            }
+        } else {
+            if Environment.sharedInstance.opco == .bge {
+                if let bankAccountType = walletItem.bankAccountType {
+                    nicknameLabel.text = bankAccountType.rawValue.uppercased()
+                }
+            } else {
+                nicknameLabel.text = ""
+            }
+        }
+
+        
+        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
+            accountNumberLabel.text = "**** \(last4Digits)"
+        } else {
+            accountNumberLabel.text = ""
+        }
+        
+        bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
+        switch Environment.sharedInstance.opco {
+        case .comEd, .peco:
+            if walletItem.paymentCategoryType == .credit {
+                bottomBarLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
+                if let paymentMethodType = walletItem.paymentMethodType {
+                    switch paymentMethodType {
+                    case .visa:
+                        accountImageView.image = #imageLiteral(resourceName: "ic_visa")
+                    case .mastercard:
+                        accountImageView.image = #imageLiteral(resourceName: "ic_mastercard")
+                    default:
+                        accountImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
+                    }
+                }
+            } else if walletItem.paymentCategoryType == .check {
+                accountImageView.image = #imageLiteral(resourceName: "opco_bank")
+            }
+        case .bge:
+            accountImageView.image = #imageLiteral(resourceName: "opco_bank")
+            
+            bottomBarLabel.textColor = .successGreenText
+            bottomBarLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
+            
+            // if credit card:
+            // bottomBarLabel.text = NSLocalizedString("Fees: $1.50 Residential | 2.4% Business", comment: "")
+        }
+        
+        // TODO: Make this work
+        oneTouchPayView.isHidden = true
+        
+    }
+    
 }

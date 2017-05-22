@@ -57,14 +57,46 @@ class WalletViewModel {
         }
     }()
     
-//    lazy var shouldShowWallet: Driver<Bool> = {
-//        let noWalletItems = self.walletItems.asDriver().map{ walletItems -> Bool in
-//            return walletItems?.count == 0
-//        }
-//        return Driver.combineLatest(self.isFetchingWalletItems, noWalletItems) {
-//            return !$0 && $1
-//        }
-//    }()
+    lazy var creditCardLimitReached: Driver<Bool> = self.walletItems.asDriver().map {
+        if Environment.sharedInstance.opco == .bge { return false } // No limit for BGE
+        
+        guard let walletItems = $0 else { return false }
+        var creditCount = 0
+        for item in walletItems {
+            if let paymentCategoryType = item.paymentCategoryType {
+                if paymentCategoryType == .credit {
+                    creditCount += 1
+                    if creditCount == 3 { break }
+                }
+            }
+        }
+        return creditCount >= 3
+    }
+    
+    lazy var bankAccountLimitReached: Driver<Bool> = self.walletItems.asDriver().map {
+        if Environment.sharedInstance.opco == .bge { return false } // No limit for BGE
+        
+        guard let walletItems = $0 else { return false }
+        var bankCount = 0
+        for item in walletItems {
+            if let paymentCategoryType = item.paymentCategoryType {
+                if paymentCategoryType == .check {
+                    bankCount += 1
+                    if bankCount == 3 { break }
+                }
+            }
+        }
+        return bankCount >= 3
+    }
+    
+    var emptyStateCreditFeeLabelText: String {
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            return NSLocalizedString("A convenience fee will be applied to your payments. Residential accounts: $2.35.\nBusiness accounts: 2.4%", comment: "")
+        case .comEd, .peco:
+            return NSLocalizedString("A $2.35 convenience fee will be applied\nto your payments.", comment: "")
+        }
+    }
     
     var footerLabelText: String {
         switch Environment.sharedInstance.opco {
