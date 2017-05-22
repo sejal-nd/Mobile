@@ -36,28 +36,28 @@ import Mapper
 
 // All
 enum WalletItemStatusType: String {
-    case Registered = "Registered"
-    case Validated = "Validated"
+    case registered = "Registered"
+    case validated = "Validated"
 }
 
 // Comed/PECO
 enum PaymentCategoryType: String {
-    case Check = "Check"
-    case Credit = "Credit"
+    case check = "Check"
+    case credit = "Credit"
 }
 
 // Comed/PECO
 enum PaymentMethodType: String {
-    case ACH = "ACH"
-    case VISA = "VISA"
-    case MASTERCARD = "MASTERCARD"
-    case AMERICANEXPRESS = "AMERICANEXPRESS"
+    case ach = "ACH"
+    case visa = "VISA"
+    case mastercard = "MASTERCARD"
+    case americanexpress = "AMERICANEXPRESS"
 }
 
 // BGE
 enum BankAccountType: String {
-    case Checking = "checking"
-    case Savings = "savings"
+    case checking = "checking"
+    case savings = "savings"
 }
 
 
