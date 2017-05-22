@@ -30,7 +30,7 @@ class OMCResponseParser : NSObject {
         //2. We have no error, and the data is not parsable.
         //3. We have no error, and do NOT have data to parse (unexpected type).
         //4. We have an error.
-       
+        
         if data != nil {
             if let d = data as? [String: Any] {
                 result = parseData(data: d) //1.
@@ -42,7 +42,7 @@ class OMCResponseParser : NSObject {
         } else {
             result = ServiceResult.Failure(ServiceError())
         }
-    
+        
         return result
     }
     
@@ -58,8 +58,8 @@ class OMCResponseParser : NSObject {
                     return ServiceResult.Success(returnData)
                 } else if let returnData = data[OMCResponseKey.Data.rawValue] as? [[String: Any]] { // Array of Dictionaries
                     return ServiceResult.Success(returnData)
-				} else if let returnData = data[OMCResponseKey.Data.rawValue] as? [String] { // Array of Strings
-					return ServiceResult.Success(returnData)
+                } else if let returnData = data[OMCResponseKey.Data.rawValue] as? [String] { // Array of Strings
+                    return ServiceResult.Success(returnData)
                 } else if let returnData = data[OMCResponseKey.Data.rawValue] as? String { //String
                     return ServiceResult.Success(returnData)
                 } else {
@@ -80,7 +80,7 @@ class OMCResponseParser : NSObject {
     /// Function to interpret the 'meta' value of a response as an Error.
     /// The meta should include a code, and optionally a description.
     ///
-    /// - Parameter meta: the meta dictionary to parse. Must contain a code to properly 
+    /// - Parameter meta: the meta dictionary to parse. Must contain a code to properly
     ///
     /// - Returns: the ServiceError
     private static func parseMetaError(meta: [String:Any]) -> ServiceError {

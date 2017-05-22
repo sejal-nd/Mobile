@@ -84,8 +84,7 @@ extension MoreViewController: UITableViewDelegate {
         }
         
         if indexPath.row == 0 {
-			performSegue(withIdentifier: "settingsSegue", sender: self)
-
+            performSegue(withIdentifier: "settingsSegue", sender: self)
         } else if indexPath.row == 1 {
             let contactUs = ContactUsViewController(nibName: "ContactUs", bundle: nil)
             self.splitViewController?.showDetailViewController(contactUs, sender: self)
@@ -101,6 +100,7 @@ extension MoreViewController: UITableViewDelegate {
             onSignOutPress()
         }
     }
+    
 }
 
 extension MoreViewController: UITableViewDataSource {

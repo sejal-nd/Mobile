@@ -12,22 +12,22 @@ import Mapper
 /* WalletItem:: (Comed/PECO)
  
  "walletItemID": "2487071",
- "walletExternalID": "226734", 
+ "walletExternalID": "226734",
  "maskedWalletItemAccountNumber": "6789",
- "nickName": "6789", 
+ "nickName": "6789",
  "walletItemStatusType": "Registered",
- "paymentCategoryType": "Check", 
+ "paymentCategoryType": "Check",
  "paymentMethodType": "ACH"
-
+ 
  */
 
 /* WalletItem:: (BGE)
  
- "walletItemID": "dbk:15xNk4+rK4T7UZiO2eFzxM9STu81LqRqd133rgVkC58=", 
+ "walletItemID": "dbk:15xNk4+rK4T7UZiO2eFzxM9STu81LqRqd133rgVkC58=",
  "nickName": "from POSTMAN",
  "maskedWalletItemAccountNumber": "0987",
  "walletItemStatusType": "pnd_active",
- "bankAccountType": "checking", 
+ "bankAccountType": "checking",
  "flagnocViewed": "true",
  "bankAccountNumber": "876543210987",
  "bankAccountName": "test account"
@@ -86,7 +86,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         nickName = map.optionalFrom("nickName")
         
         walletItemStatusType = map.optionalFrom("walletItemStatusType")
-
+        
         // Comed/PECO
         paymentCategoryType = map.optionalFrom("paymentCategoryType")
         paymentMethodType = map.optionalFrom("paymentMethodType")
