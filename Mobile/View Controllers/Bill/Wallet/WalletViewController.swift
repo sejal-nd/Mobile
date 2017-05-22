@@ -6,17 +6,23 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 
 class WalletViewController: UIViewController {
+    
+    let disposeBag = DisposeBag()
+    
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
     // Empty state stuff
     @IBOutlet weak var emptyStateScrollView: UIScrollView!
     @IBOutlet weak var choosePaymentAccountLabel: UILabel!
-    @IBOutlet weak var creditCardButton: ButtonControl!
-    @IBOutlet weak var creditCardButtonLabel: UILabel!
     @IBOutlet weak var bankButton: ButtonControl!
     @IBOutlet weak var bankButtonLabel: UILabel!
+    @IBOutlet weak var bankFeeLabel: UILabel!
+    @IBOutlet weak var creditCardButton: ButtonControl!
+    @IBOutlet weak var creditCardButtonLabel: UILabel!
+    @IBOutlet weak var creditCardFeeLabel: UILabel!
     @IBOutlet weak var emptyStateFooter: UILabel!
     
     // Non-empty state stuff
@@ -28,7 +34,7 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var miniBankButton: ButtonControl!
     @IBOutlet weak var tableViewFooter: UILabel!
     
-    let viewModel = WalletViewModel()
+    let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,15 +46,19 @@ class WalletViewController: UIViewController {
         choosePaymentAccountLabel.textColor = .blackText
         choosePaymentAccountLabel.text = NSLocalizedString("Choose a payment account:", comment: "")
         
-        creditCardButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
-        creditCardButton.layer.cornerRadius = 10
-        creditCardButtonLabel.textColor = .blackText
-        creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
-        
         bankButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         bankButton.layer.cornerRadius = 10
         bankButtonLabel.textColor = .blackText
         bankButtonLabel.text = NSLocalizedString("Bank Account", comment: "")
+        bankFeeLabel.textColor = .deepGray
+        bankFeeLabel.text = NSLocalizedString("No fees applied to your payments.", comment: "")
+        
+        creditCardButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
+        creditCardButton.layer.cornerRadius = 10
+        creditCardButtonLabel.textColor = .blackText
+        creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
+        creditCardFeeLabel.textColor = .deepGray
+        creditCardFeeLabel.text = NSLocalizedString("A $2.35 convenience fee will be applied\nto your payments.", comment: "")
         
         emptyStateFooter.textColor = .blackText
         emptyStateFooter.text = viewModel.footerLabelText
@@ -67,6 +77,10 @@ class WalletViewController: UIViewController {
         miniBankButton.layer.cornerRadius = 8
         
         tableViewFooter.text = viewModel.footerLabelText
+        
+        emptyStateScrollView.isHidden = true
+        nonEmptyStateView.isHidden = true
+        setupBinding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +89,8 @@ class WalletViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar(hidesBottomBorder: true)
         }
+        
+        viewModel.fetchWalletItems.onNext() // Fetch the items!
     }
     
     override func viewDidLayoutSubviews() {
@@ -93,17 +109,30 @@ class WalletViewController: UIViewController {
             }
         }
     }
+    
+    func setupBinding() {
+        viewModel.isFetchingWalletItems.map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
+        
+        viewModel.shouldShowEmptyState.map(!).drive(emptyStateScrollView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).addDisposableTo(disposeBag)
+    }
 
 }
 
 extension WalletViewController: UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        if let walletItems = viewModel.walletItems.value {
+            return walletItems.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if viewModel.walletItems.value != nil {
+            return 1
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -114,8 +143,6 @@ extension WalletViewController: UITableViewDelegate {
         return 14
     }
     
-    
-
 }
 
 extension WalletViewController: UITableViewDataSource {

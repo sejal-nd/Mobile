@@ -6,11 +6,65 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import RxSwift
+import RxCocoa
+
 class WalletViewModel {
+    
+    let disposeBag = DisposeBag()
+    
+    let walletService: WalletService!
+    
+    let fetchWalletItems = PublishSubject<Void>()
+    let walletItems = Variable<[WalletItem]?>(nil)
+    let isFetchingWalletItems: Driver<Bool>
 
-    required init() {
-
+    required init(walletService: WalletService) {
+        self.walletService = walletService
+        
+        let fetchingWalletItemsTracker = ActivityTracker()
+        isFetchingWalletItems = fetchingWalletItemsTracker.asDriver()
+        
+        fetchWalletItems
+            .flatMapLatest { _ in
+                walletService
+                    .fetchWalletItems()
+                    .trackActivity(fetchingWalletItemsTracker)
+            }
+            .bind(to: walletItems)
+            .addDisposableTo(disposeBag)
+        
+        
     }
+    
+    lazy var shouldShowEmptyState: Driver<Bool> = {
+        let noWalletItems = self.walletItems.asDriver().map{ walletItems -> Bool in
+            guard let walletItems = walletItems else { return false }
+            return walletItems.count == 0
+        }
+        return Driver.combineLatest(self.isFetchingWalletItems, noWalletItems) {
+            return !$0 && $1
+        }
+    }()
+    
+    lazy var shouldShowWallet: Driver<Bool> = {
+        let walletNotEmpty = self.walletItems.asDriver().map{ walletItems -> Bool in
+            guard let walletItems = walletItems else { return false }
+            return walletItems.count > 0
+        }
+        return Driver.combineLatest(self.isFetchingWalletItems, walletNotEmpty) {
+            return !$0 && $1
+        }
+    }()
+    
+//    lazy var shouldShowWallet: Driver<Bool> = {
+//        let noWalletItems = self.walletItems.asDriver().map{ walletItems -> Bool in
+//            return walletItems?.count == 0
+//        }
+//        return Driver.combineLatest(self.isFetchingWalletItems, noWalletItems) {
+//            return !$0 && $1
+//        }
+//    }()
     
     var footerLabelText: String {
         switch Environment.sharedInstance.opco {
