@@ -84,8 +84,7 @@ extension MoreViewController: UITableViewDelegate {
         }
         
         if indexPath.row == 0 {
-            performSegue(withIdentifier: "settingsSegue", sender: self)
-//			walletTestingFunction()
+			performSegue(withIdentifier: "settingsSegue", sender: self)
         } else if indexPath.row == 1 {
             let contactUs = ContactUsViewController(nibName: "ContactUs", bundle: nil)
             self.splitViewController?.showDetailViewController(contactUs, sender: self)
@@ -101,61 +100,6 @@ extension MoreViewController: UITableViewDelegate {
             onSignOutPress()
         }
     }
-	
-	func walletTestingFunction() {
-		let walletService = ServiceFactory.createWalletService()
-		
-		// BofA routing number (MD): 052001633
-		let accountNum: String = AccountsStore.sharedInstance.currentAccount.accountNumber
-		let index = accountNum.index(accountNum.startIndex, offsetBy: accountNum.characters.count - 4)
-		let maskedNum = accountNum.substring(from: index)
-		
-		print("account: \(accountNum)")
-		print("masked: \(maskedNum)")
-		
-		walletService.createWalletPaymentMethod(PaymentCategoryType.Check,
-		                                        routingNumber: "052001633",
-		                                        accountNickName: "Greg's Account",
-		                                        bankAccountType: BankAccountType.Checking,
-		                                        bankAccountNumber: "1234567890",
-		                                        bankAccountName: "B of A")
-			//
-			.observeOn(MainScheduler.instance)
-			.subscribe(onNext: {_ in
-				// NOTE: dummy stuff need to figure this out
-				let billerID = ""
-				let paymentCategoryType = PaymentCategoryType.Check
-				let walletItemID = ""
-				
-				walletService
-					.fetchWalletItems(billerID, paymentCategoryType: paymentCategoryType, walletItemID: walletItemID)
-					.observeOn(MainScheduler.instance)
-					.subscribe(onNext: { (walletItemArray) in
-					//
-					if walletItemArray.count > 0 {
-						let walletItem = walletItemArray.last
-						
-						let status = walletItem?.walletItemStatusType?.rawValue ?? "none"
-						
-						print()
-						print("!!! status: \(status)")
-					}
-					
-					print()
-					for item in walletItemArray {
-						print("///")
-						print(item)
-						print("///")
-					}
-				}, onError: { error in
-					print()
-					print("error in retrieving wallet items")
-				}).addDisposableTo(self.disposeBag)
-			}, onError: { error in
-				print()
-				print("error in adding account")
-			}).addDisposableTo(disposeBag)
-	}
 }
 
 extension MoreViewController: UITableViewDataSource {

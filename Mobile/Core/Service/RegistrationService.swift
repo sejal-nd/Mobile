@@ -61,7 +61,7 @@ protocol RegistrationService {
 	func validateAccountInformation(_ identifier: String,
 	                                phone: String,
 	                                accountNum: String,
-	                                completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+	                                completion: @escaping (_ result: ServiceResult<[String: Any]>) -> Void)
 	
 	/*
 	opco		String   The OpCo for the request.
@@ -177,16 +177,16 @@ extension RegistrationService {
 	}
 	
 	//
-	func validateAccountInformation(_ identifier: String, phone: String, accountNum: String) -> Observable<Void> {
+	func validateAccountInformation(_ identifier: String, phone: String, accountNum: String) -> Observable<[String: Any]> {
 		return Observable.create { observer in
 			self.validateAccountInformation(identifier,
 			                                phone: phone,
 			                                accountNum: accountNum,
-			                                completion: { (result: ServiceResult<Void>) in
+			                                completion: { (result: ServiceResult<[String: Any]>) in
 				//
 				switch (result) {
-				case ServiceResult.Success:
-					observer.onNext()
+				case ServiceResult.Success(let response):
+					observer.onNext(response)
 					observer.onCompleted()
 					
 				case ServiceResult.Failure(let err):
