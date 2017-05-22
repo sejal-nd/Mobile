@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 import Lottie
 
 class BillViewController: AccountPickerViewController {
@@ -241,17 +242,17 @@ class BillViewController: AccountPickerViewController {
         topLoadingIndicatorView.isHidden = true
 		viewModel.isFetchingAccountDetail.filter(!).drive(rx.isRefreshing).addDisposableTo(bag)
 		
-		viewModel.isFetchingDifferentAccount.map(!).drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
+		viewModel.isFetchingDifferentAccount.not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
         viewModel.isFetchingDifferentAccount.drive(billLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
         
-        viewModel.isFetchingDifferentAccount.map(!).drive(loadingIndicatorView.rx.isHidden).addDisposableTo(bag)
+        viewModel.isFetchingDifferentAccount.not().drive(loadingIndicatorView.rx.isHidden).addDisposableTo(bag)
         viewModel.isFetchingDifferentAccount.drive(totalAmountView.rx.isHidden).addDisposableTo(bag)
         viewModel.isFetchingDifferentAccount.drive(paymentDetailsView.rx.isHidden).addDisposableTo(bag)
         viewModel.isFetchingDifferentAccount.drive(bottomStackContainerView.rx.isHidden).addDisposableTo(bag)
 	}
 	
 	func bindViewHiding() {
-        viewModel.shouldShowAlertBanner.map(!).drive(alertBannerView.rx.isHidden).addDisposableTo(bag)
+        viewModel.shouldShowAlertBanner.not().drive(alertBannerView.rx.isHidden).addDisposableTo(bag)
         viewModel.shouldShowAlertBanner.filter { $0 }
             .drive(onNext: { _ in
                 self.alertLottieAnimation.removeFromSuperview()
@@ -265,30 +266,30 @@ class BillViewController: AccountPickerViewController {
 		
 		questionMarkButton.isHidden = !viewModel.shouldShowAmountDueTooltip
 		
-		viewModel.shouldShowRestoreService.map(!).drive(restoreServiceView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowCatchUpAmount.map(!).drive(catchUpView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowCatchUpDisclaimer.map(!).drive(catchUpDisclaimerView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowAvoidShutoff.map(!).drive(avoidShutoffView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowPastDue.map(!).drive(pastDueView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowRestoreService.not().drive(restoreServiceView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowCatchUpAmount.not().drive(catchUpView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowAvoidShutoff.not().drive(avoidShutoffView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowPastDue.not().drive(pastDueView.rx.isHidden).addDisposableTo(bag)
 		
-		viewModel.shouldShowPendingPayment.map(!).drive(paymentStackView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowPendingPayment.not().drive(paymentStackView.rx.isHidden).addDisposableTo(bag)
 		
-		viewModel.shouldShowPendingPayment.map(!).drive(paymentStackView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowRemainingBalanceDue.map(!).drive(remainingBalanceDueView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowRemainingBalancePastDue.map(!).drive(remainingBalancePastDueView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowBillIssued.map(!).drive(billIssuedView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowPaymentReceived.map(!).drive(paymentReceivedView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowCredit.map(!).drive(creditView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowPendingPayment.not().drive(paymentStackView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowRemainingBalancePastDue.not().drive(remainingBalancePastDueView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowBillIssued.not().drive(billIssuedView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowPaymentReceived.not().drive(paymentReceivedView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowCredit.not().drive(creditView.rx.isHidden).addDisposableTo(bag)
 		
-		viewModel.shouldShowNeedHelpUnderstanding.map(!).drive(needHelpUnderstandingButton.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowNeedHelpUnderstanding.not().drive(needHelpUnderstandingButton.rx.isHidden).addDisposableTo(bag)
 		
-		viewModel.shouldEnableMakeAPaymentButton.map(!).drive(makeAPaymentButton.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldEnableMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).addDisposableTo(bag)
 		viewModel.shouldEnableMakeAPaymentButton.drive(billPaidView.rx.isHidden).addDisposableTo(bag)
         viewModel.paymentStatusText.map { $0 == nil }.drive(makeAPaymentStatusLabel.rx.isHidden).addDisposableTo(bag)
 		
-		viewModel.shouldShowAutoPay.map(!).drive(autoPayButton.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowPaperless.map(!).drive(paperlessButton.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowBudget.map(!).drive(budgetButton.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowAutoPay.not().drive(autoPayButton.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowPaperless.not().drive(paperlessButton.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowBudget.not().drive(budgetButton.rx.isHidden).addDisposableTo(bag)
 	}
 	
 	func bindViewContent() {
