@@ -25,7 +25,7 @@ class TermsPoliciesViewModel {
             let attrString = NSMutableAttributedString(string: termsString)
             let range = NSMakeRange(0, attrString.length)
             attrString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: range)
-            attrString.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 16), range: range)
+            attrString.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(textStyle: .body), range: range)
             attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: range)
             return NSAttributedString(attributedString: attrString)
         }

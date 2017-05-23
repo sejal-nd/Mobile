@@ -45,6 +45,7 @@ class DisclosureButton: UIButton {
         
         label.font = SystemFont.medium.of(textStyle: .title1)
         label.textColor = .blackText
+        detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         detailLabel.textColor = .middleGray
         setDetailLabel(text: "", checkHidden: true)
     }

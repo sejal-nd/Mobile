@@ -186,7 +186,7 @@ class ChangePasswordViewController: UIViewController {
             currentPasswordTextField.textField.isSecureTextEntry = false
             // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
             currentPasswordTextField.textField.font = nil
-            currentPasswordTextField.textField.font = SystemFont.regular.of(size: 18)
+            currentPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
         } else {

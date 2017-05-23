@@ -91,11 +91,13 @@ class OutageViewController: AccountPickerViewController {
         loadingBigButtonView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
         loadingBigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
         
+        footerTextView.font = SystemFont.regular.of(textStyle: .headline)
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
         
+        gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
         gasOnlyTextView.tintColor = .actionBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
@@ -216,11 +218,11 @@ class OutageViewController: AccountPickerViewController {
             reportedLabel.textAlignment = .center
             reportedLabel.text = NSLocalizedString("REPORTED", comment: "")
             
-            let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
-            estRestorationLabel.font = OpenSans.regular.of(size: 12)
-            estRestorationLabel.textColor = .deepGray
-            estRestorationLabel.textAlignment = .center
-            estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
+            let restRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
+            restRestorationLabel.font = OpenSans.regular.of(size: 12)
+            restRestorationLabel.textColor = .deepGray
+            restRestorationLabel.textAlignment = .center
+            restRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
             timeLabel.font = OpenSans.bold.of(size: 15)
@@ -233,7 +235,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourOutageIsLabel)
             bigButtonView.addSubview(reportedLabel)
-            bigButtonView.addSubview(estRestorationLabel)
+            bigButtonView.addSubview(restRestorationLabel)
             bigButtonView.addSubview(timeLabel)
         } else if currentOutageStatus.activeOutage {
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 11, y: 31, width: 22, height: 28))
@@ -251,11 +253,11 @@ class OutageViewController: AccountPickerViewController {
             outLabel.textAlignment = .center
             outLabel.text = NSLocalizedString("OUT", comment: "")
             
-            let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
-            estRestorationLabel.font = OpenSans.regular.of(size: 12)
-            estRestorationLabel.textColor = .deepGray
-            estRestorationLabel.textAlignment = .center
-            estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
+            let restRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
+            restRestorationLabel.font = OpenSans.regular.of(size: 12)
+            restRestorationLabel.textColor = .deepGray
+            restRestorationLabel.textAlignment = .center
+            restRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
             timeLabel.font = OpenSans.bold.of(size: 15)
@@ -268,7 +270,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourPowerIsLabel)
             bigButtonView.addSubview(outLabel)
-            bigButtonView.addSubview(estRestorationLabel)
+            bigButtonView.addSubview(restRestorationLabel)
             bigButtonView.addSubview(timeLabel)
         } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay {
             let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 14, y: 38, width: bigButtonWidth - 28, height: 120))

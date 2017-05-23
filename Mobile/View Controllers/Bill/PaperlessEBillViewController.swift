@@ -26,10 +26,12 @@ class PaperlessEBillViewController: UIViewController {
     // Content
     @IBOutlet weak var whatIsButtonView: UIView!
     @IBOutlet weak var whatIsButton: UIButton!
+    @IBOutlet weak var emailsWillBeSentToLabel: UILabel!
 	@IBOutlet weak var emailLabel: UILabel!
 	@IBOutlet weak var updateDetailsView: UIView!
     @IBOutlet weak var updateDetailsLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsView: UIView!
+    @IBOutlet weak var allAccountsLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsSwitch: UISwitch!
     @IBOutlet weak var allAccountsSeparatorView: UIView!
     @IBOutlet weak var accountsStackView: UIStackView!
@@ -58,11 +60,15 @@ class PaperlessEBillViewController: UIViewController {
         enrollAllAccountsView.isHidden = viewModel.accounts.value.count <= 1
 		updateDetailsView.isHidden = Environment.sharedInstance.opco == .bge
         
+        emailsWillBeSentToLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
+        
+        allAccountsLabel.font = SystemFont.medium.of(textStyle: .title1)
         
         detailsLabel.font = OpenSans.regular.of(textStyle: .footnote)
         detailsLabel.text = viewModel.footerText
         
+        updateDetailsLabel.font = SystemFont.regular.of(textStyle: .headline)
         updateDetailsLabel.setLineHeight(lineHeight: 24)
         
         viewModel.accountDetails

@@ -10,8 +10,8 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    let normalTitleFont = SystemFont.regular.of(size: 10)
-    let selectedTitleFont = SystemFont.bold.of(size: 10)
+    let normalTitleFont = SystemFont.regular.of(textStyle: .caption2)
+    let selectedTitleFont = SystemFont.bold.of(textStyle: .caption2)
     
     let normalTitleColor = UIColor.middleGray
     let selectedTitleColor = UIColor.primaryColorADA

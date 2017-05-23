@@ -93,6 +93,7 @@ class BillViewController: AccountPickerViewController {
 	
     @IBOutlet weak var needHelpUnderstandingButton: ButtonControl!
 	@IBOutlet weak var viewBillButton: ButtonControl!
+    @IBOutlet weak var viewBillLabel: UILabel!
 	
 	@IBOutlet weak var loadingIndicatorView: UIView!
 	@IBOutlet weak var billLoadingIndicator: LoadingIndicator!
@@ -201,6 +202,8 @@ class BillViewController: AccountPickerViewController {
         catchUpAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
         catchUpDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
+        catchUpDisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
         avoidShutoffLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         avoidShutoffAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
         avoidShutoffDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -227,6 +230,8 @@ class BillViewController: AccountPickerViewController {
         
         creditLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         creditAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        
+        viewBillLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
         billPaidLabel.font = SystemFont.bold.of(textStyle: .title1)
         makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .subheadline)

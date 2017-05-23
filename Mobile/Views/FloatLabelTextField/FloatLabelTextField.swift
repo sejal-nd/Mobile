@@ -49,7 +49,7 @@ class FloatLabelTextField: UIView {
         errorLabel.text = nil
         
         textField.font = SystemFont.regular.of(textStyle: .title2)
-        textField.floatingLabelFont = SystemFont.semibold.of(size: 11)
+        textField.floatingLabelFont = SystemFont.semibold.of(textStyle: .caption1)
         textField.floatingLabelYPadding = 6
         textField.floatingLabelTextColor = .primaryColorDark
         textField.floatingLabelActiveTextColor = .primaryColorDark

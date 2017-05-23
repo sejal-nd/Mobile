@@ -28,7 +28,7 @@ class SecondaryButton: UIButton {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         layer.masksToBounds = false
         
-        titleLabel!.font = SystemFont.bold.of(size: 20)
+        titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
         setTitleColor(.actionBlue, for: .normal)
         setTitleColor(.actionBlue, for: .highlighted)
         setTitleColor(.middleGray, for: .disabled)

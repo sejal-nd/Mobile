@@ -44,7 +44,9 @@ class ReportOutageViewController: UIViewController {
     // Report Form
     @IBOutlet weak var reportFormStackView: UIStackView!
     @IBOutlet weak var areYourLightsOutView: UIView!
+    @IBOutlet weak var areYourLightsOutLabel: UILabel!
     @IBOutlet weak var segmentedControl: SegmentedControl!
+    @IBOutlet weak var howCanWeContactYouLabel: UILabel!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneExtensionContainerView: UIView!
     @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
@@ -100,10 +102,15 @@ class ReportOutageViewController: UIViewController {
             
             viewModel.reportFormHidden.value = true
 
+            meterPingCurrentStatusLabel.font = SystemFont.medium.of(textStyle: .headline)
             meterPingCurrentStatusLabel.textColor = .blackText
+            meterPingPowerStatusLabel.font = SystemFont.medium.of(textStyle: .title1)
             meterPingPowerStatusLabel.textColor = .middleGray
+            meterPingVoltageStatusLabel.font = SystemFont.medium.of(textStyle: .title1)
             meterPingVoltageStatusLabel.textColor = .middleGray
+            meterPingResultLabel.font = SystemFont.regular.of(textStyle: .body)
             meterPingResultLabel.textColor = .deepGray
+            meterPingFuseBoxLabel.font = OpenSans.regular.of(textStyle: .headline)
             meterPingFuseBoxLabel.textColor = .middleGray
             meterPingFuseBoxLabel.setLineHeight(lineHeight: 25)
             
@@ -122,6 +129,9 @@ class ReportOutageViewController: UIViewController {
         } else {
             segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: "")]
         }
+        
+        areYourLightsOutLabel.font = SystemFont.regular.of(textStyle: .headline)
+        howCanWeContactYouLabel.font = SystemFont.regular.of(textStyle: .headline)
 
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number *", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
@@ -152,6 +162,7 @@ class ReportOutageViewController: UIViewController {
         footerBackgroundView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
         
         footerTextView.textContainerInset = UIEdgeInsets(top: 16, left: 29, bottom: 16, right: 29)
+        footerTextView.font = OpenSans.regular.of(textStyle: .footnote)
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
