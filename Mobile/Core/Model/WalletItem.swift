@@ -65,7 +65,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let walletItemID: String?
     let walletExternalID: String?
     let maskedWalletItemAccountNumber: String?
-    let nickName: String?
+    var nickName: String?
     let walletItemStatusType: WalletItemStatusType?
     let paymentCategoryType: PaymentCategoryType?
     let paymentMethodType: PaymentMethodType?
@@ -84,6 +84,11 @@ struct WalletItem: Mappable, Equatable, Hashable {
         maskedWalletItemAccountNumber = map.optionalFrom("maskedWalletItemAccountNumber")
         
         nickName = map.optionalFrom("nickName")
+        if let nickname = nickName {
+            if nickname.isEmpty { // prevent empty strings
+                nickName = nil
+            }
+        }
         
         walletItemStatusType = map.optionalFrom("walletItemStatusType")
         

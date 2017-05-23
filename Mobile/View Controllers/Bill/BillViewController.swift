@@ -91,6 +91,8 @@ class BillViewController: AccountPickerViewController {
 	@IBOutlet weak var billPaidView: UIView!
     @IBOutlet weak var makeAPaymentStatusLabel: UILabel!
     
+    @IBOutlet weak var walletButton: DisclosureButton!
+    
     @IBOutlet weak var autoPayButton: ButtonControl!
     @IBOutlet weak var paperlessButton: ButtonControl!
     @IBOutlet weak var budgetButton: ButtonControl!
@@ -318,6 +320,12 @@ class BillViewController: AccountPickerViewController {
 				}
 			})
 			.addDisposableTo(bag)
+        
+        walletButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                self.performSegue(withIdentifier: "walletSegue", sender: self)
+            })
+            .addDisposableTo(bag)
 		
 		paperlessButton.rx.touchUpInside.asDriver()
 			.withLatestFrom(viewModel.currentAccountDetailUnwrapped)
