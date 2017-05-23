@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class WalletViewController: UIViewController {
     
@@ -80,7 +81,11 @@ class WalletViewController: UIViewController {
         
         emptyStateScrollView.isHidden = true
         nonEmptyStateView.isHidden = true
+        
         setupBinding()
+        setupButtonTaps()
+        
+        viewModel.fetchWalletItems.onNext() // Fetch the items!
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,8 +94,6 @@ class WalletViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar(hidesBottomBorder: true)
         }
-        
-        viewModel.fetchWalletItems.onNext() // Fetch the items!
     }
     
     override func viewDidLayoutSubviews() {
@@ -123,6 +126,12 @@ class WalletViewController: UIViewController {
         
         viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).addDisposableTo(disposeBag)
         viewModel.bankAccountLimitReached.map(!).drive(miniBankButton.rx.isEnabled).addDisposableTo(disposeBag)
+    }
+    
+    func setupButtonTaps() {
+        Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver()).drive(onNext: {
+            self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
+        }).addDisposableTo(disposeBag)
     }
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -81,7 +81,7 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="0Za-Yu-rt6"/>
+                        <constraint firstAttribute="height" priority="999" constant="60" id="0Za-Yu-rt6"/>
                         <constraint firstAttribute="bottom" secondItem="2Qi-jJ-670" secondAttribute="bottom" id="9bq-rg-vVT"/>
                         <constraint firstAttribute="bottom" secondItem="HJi-q8-qVh" secondAttribute="bottom" id="9f7-Tp-g6I"/>
                         <constraint firstItem="TnQ-GT-WNf" firstAttribute="leading" secondItem="2Qi-jJ-670" secondAttribute="trailing" id="EMl-Dw-Zdw"/>
@@ -112,10 +112,10 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="dny-ww-tgA" firstAttribute="top" secondItem="8Oo-nS-ebR" secondAttribute="top" constant="4" id="AMZ-9v-GPO"/>
+                        <constraint firstItem="dny-ww-tgA" firstAttribute="top" secondItem="8Oo-nS-ebR" secondAttribute="top" priority="999" constant="4" id="AMZ-9v-GPO"/>
                         <constraint firstAttribute="trailing" secondItem="dny-ww-tgA" secondAttribute="trailing" constant="14" id="Hu2-UY-K1q"/>
                         <constraint firstItem="dny-ww-tgA" firstAttribute="leading" secondItem="8Oo-nS-ebR" secondAttribute="leading" constant="14" id="flW-I3-B5J"/>
-                        <constraint firstAttribute="bottom" secondItem="dny-ww-tgA" secondAttribute="bottom" id="j2u-dV-FhZ"/>
+                        <constraint firstAttribute="bottom" secondItem="dny-ww-tgA" secondAttribute="bottom" priority="999" id="j2u-dV-FhZ"/>
                     </constraints>
                 </view>
             </subviews>

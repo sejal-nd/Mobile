@@ -493,6 +493,15 @@
 		E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
 		E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
 		E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
+		E827D2311ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
+		E827D2321ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
+		E827D2331ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
+		E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = E827D2371ED490A0004DA1D6 /* InfoModal.xib */; };
+		E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = E827D2371ED490A0004DA1D6 /* InfoModal.xib */; };
+		E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = E827D2371ED490A0004DA1D6 /* InfoModal.xib */; };
+		E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */; };
+		E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */; };
+		E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */; };
 		E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */; };
 		E82FA1371EA541D100C2DABC /* ForgotPasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */; };
 		E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
@@ -1000,6 +1009,9 @@
 		E81CFFF91EC3681D004FDA7E /* ComEd-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-PROD.entitlements"; sourceTree = "<group>"; };
 		E81CFFFA1EC3681D004FDA7E /* BGE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-PROD.entitlements"; sourceTree = "<group>"; };
 		E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreSplitViewController.swift; sourceTree = "<group>"; };
+		E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBankAccountViewController.swift; sourceTree = "<group>"; };
+		E827D2371ED490A0004DA1D6 /* InfoModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoModal.xib; sourceTree = "<group>"; };
+		E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoModalViewController.swift; sourceTree = "<group>"; };
 		E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModelTests.swift; sourceTree = "<group>"; };
 		E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModelTests.swift; sourceTree = "<group>"; };
 		E840BD391EB3C91D00812DD0 /* BillService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillService.swift; sourceTree = "<group>"; };
@@ -1355,6 +1367,7 @@
 				E882B7E21EA7FE6300EA3C13 /* Bill */,
 				E80D2E301E730180002626C9 /* Outage */,
 				E8EEF7271E577781006804D4 /* More */,
+				E827D2361ED49072004DA1D6 /* Info Modal */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -1879,6 +1892,15 @@
 			path = Entitlements;
 			sourceTree = "<group>";
 		};
+		E827D2361ED49072004DA1D6 /* Info Modal */ = {
+			isa = PBXGroup;
+			children = (
+				E827D2371ED490A0004DA1D6 /* InfoModal.xib */,
+				E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */,
+			);
+			path = "Info Modal";
+			sourceTree = "<group>";
+		};
 		E86334721E5F96980091E6FE /* FloatLabelTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -1893,6 +1915,7 @@
 			isa = PBXGroup;
 			children = (
 				E876A8551ECDEF6800CA63BF /* WalletViewController.swift */,
+				E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -2246,6 +2269,7 @@
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
+				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				B55736381E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
@@ -2295,6 +2319,7 @@
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
+				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
@@ -2344,6 +2369,7 @@
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
+				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				B55736391E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
@@ -2566,6 +2592,7 @@
 				54AE06991ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
+				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
@@ -2615,6 +2642,7 @@
 				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
+				E827D2311ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
 				E80D2E331E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BAD91E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
@@ -2641,6 +2669,7 @@
 				E81CFFF21EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
+				E827D2331ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAC1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
@@ -2726,6 +2755,7 @@
 				B574BAFF1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
+				E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				82A18E5E1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD61E736596001E8A44 /* Macros.swift in Sources */,
@@ -2767,6 +2797,7 @@
 				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
+				E827D2321ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAB1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
@@ -2852,6 +2883,7 @@
 				B574BAFE1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
+				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				82A18E5D1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD51E736596001E8A44 /* Macros.swift in Sources */,
