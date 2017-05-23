@@ -30,7 +30,7 @@ class PrimaryButton: UIButton {
     func commonInit() {
         backgroundColor = .ctaBlue
 
-        titleLabel!.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel!.font = SystemFont.bold.of(textStyle: .title1)
         setTitleColor(.white, for: .normal)
         setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .highlighted)
         setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .disabled)
@@ -46,31 +46,18 @@ class PrimaryButton: UIButton {
     }
     
     override var isHighlighted: Bool {
-        get {
-            return super.isHighlighted
-        }
-        set {
-            if newValue {
+        didSet {
+            if isHighlighted {
                 backgroundColor = UIColor(red: 0/255, green: 38/255, blue: 88/255, alpha: 1) // Special case color - do not change
-            }
-            else {
+            } else {
                 backgroundColor = .ctaBlue
             }
-            super.isHighlighted = newValue
         }
     }
     
     override var isEnabled: Bool {
-        get {
-            return super.isEnabled
-        }
-        set {
-            if newValue {
-                backgroundColor = .ctaBlue
-            } else {
-                backgroundColor = .middleGray
-            }
-            super.isEnabled = newValue
+        didSet {
+            backgroundColor = isEnabled ? .ctaBlue: .middleGray
         }
     }
     

@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 import Lottie
 
 class BillViewController: AccountPickerViewController {
@@ -32,11 +33,14 @@ class BillViewController: AccountPickerViewController {
 	
 	// Restore Service
 	@IBOutlet weak var restoreServiceView: UIView!
+    @IBOutlet weak var restoreServiceLabel: UILabel!
 	@IBOutlet weak var restoreServiceAmountLabel: UILabel!
+    @IBOutlet weak var restoreServiceDateLabel: UILabel!
 	
 	// Catch Up
-	@IBOutlet weak var catchUpView: UIView!
-	@IBOutlet weak var catchUpAmountLabel: UILabel!
+    @IBOutlet weak var catchUpView: UIView!
+    @IBOutlet weak var catchUpLabel: UILabel!
+    @IBOutlet weak var catchUpAmountLabel: UILabel!
 	@IBOutlet weak var catchUpDateLabel: UILabel!
 	
 	// Catch Up Disclaimer
@@ -50,8 +54,10 @@ class BillViewController: AccountPickerViewController {
 	@IBOutlet weak var avoidShutoffDateLabel: UILabel!
 	
 	// Past Due
-	@IBOutlet weak var pastDueView: UIView!
-	@IBOutlet weak var pastDueAmountLabel: UILabel!
+    @IBOutlet weak var pastDueView: UIView!
+    @IBOutlet weak var pastDueLabel: UILabel!
+    @IBOutlet weak var pastDueAmountLabel: UILabel!
+    @IBOutlet weak var pastDueDateLabel: UILabel!
 	
 	// Payments
 	@IBOutlet weak var paymentStackView: UIStackView!
@@ -64,31 +70,37 @@ class BillViewController: AccountPickerViewController {
 	
 	// Remaining Balance Past Due
 	@IBOutlet weak var remainingBalancePastDueView: UIView!
-	@IBOutlet weak var remainingBalancePastDueLabel: UILabel!
-	@IBOutlet weak var remainingBalancePastDueAmountLabel: UILabel!
+    @IBOutlet weak var remainingBalancePastDueLabel: UILabel!
+    @IBOutlet weak var remainingBalancePastDueAmountLabel: UILabel!
+    @IBOutlet weak var remainingBalancePastDueDateLabel: UILabel!
 	
 	// Bill Issued
-	@IBOutlet weak var billIssuedView: UIView!
-	@IBOutlet weak var billIssuedAmountLabel: UILabel!
+    @IBOutlet weak var billIssuedView: UIView!
+    @IBOutlet weak var billIssuedLabel: UILabel!
+    @IBOutlet weak var billIssuedAmountLabel: UILabel!
 	@IBOutlet weak var billIssuedDateLabel: UILabel!
 	
-	// Payment Received
-	@IBOutlet weak var paymentReceivedView: UIView!
+    // Payment Received
+    @IBOutlet weak var paymentReceivedView: UIView!
+    @IBOutlet weak var paymentReceivedLabel: UILabel!
 	@IBOutlet weak var paymentReceivedAmountLabel: UILabel!
 	@IBOutlet weak var paymentReceivedDateLabel: UILabel!
 	
 	// Credit
 	@IBOutlet weak var creditView: UIView!
+    @IBOutlet weak var creditLabel: UILabel!
 	@IBOutlet weak var creditAmountLabel: UILabel!
 	
     @IBOutlet weak var needHelpUnderstandingButton: ButtonControl!
 	@IBOutlet weak var viewBillButton: ButtonControl!
+    @IBOutlet weak var viewBillLabel: UILabel!
 	
 	@IBOutlet weak var loadingIndicatorView: UIView!
 	@IBOutlet weak var billLoadingIndicator: LoadingIndicator!
 	
     @IBOutlet weak var makeAPaymentButton: PrimaryButton!
 	@IBOutlet weak var billPaidView: UIView!
+    @IBOutlet weak var billPaidLabel: UILabel!
     @IBOutlet weak var makeAPaymentStatusLabel: UILabel!
     
     @IBOutlet weak var walletButton: DisclosureButton!
@@ -169,6 +181,8 @@ class BillViewController: AccountPickerViewController {
         
         needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
         
+        billPaidView.layer.cornerRadius = 2
+        
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         autoPayButton.layer.cornerRadius = 2
         
@@ -177,6 +191,52 @@ class BillViewController: AccountPickerViewController {
         
         budgetButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         budgetButton.layer.cornerRadius = 2
+        
+        // Set Fonts
+        alertBannerLabel.font = OpenSans.italic.of(textStyle: .subheadline)
+        totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        restoreServiceLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        restoreServiceAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        restoreServiceDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        catchUpLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        catchUpAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        catchUpDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        catchUpDisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        avoidShutoffLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        avoidShutoffAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        avoidShutoffDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        pastDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        pastDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        pastDueDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        remainingBalanceDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        remainingBalanceDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        remainingBalanceDueDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        remainingBalancePastDueLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        remainingBalancePastDueAmountLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        remainingBalancePastDueDateLabel.font = OpenSans.regular.of(textStyle: .caption2)
+        
+        billIssuedLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        billIssuedAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        billIssuedDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        paymentReceivedLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        paymentReceivedAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        paymentReceivedDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        creditLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        creditAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        
+        viewBillLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        
+        billPaidLabel.font = SystemFont.bold.of(textStyle: .title1)
+        makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .subheadline)
     }
     
     func bindViews() {
@@ -189,17 +249,17 @@ class BillViewController: AccountPickerViewController {
         topLoadingIndicatorView.isHidden = true
 		viewModel.isFetchingAccountDetail.filter(!).drive(rx.isRefreshing).addDisposableTo(bag)
 		
-		viewModel.isFetchingDifferentAccount.map(!).drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
+		viewModel.isFetchingDifferentAccount.not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
         viewModel.isFetchingDifferentAccount.drive(billLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
         
-        viewModel.isFetchingDifferentAccount.map(!).drive(loadingIndicatorView.rx.isHidden).addDisposableTo(bag)
+        viewModel.isFetchingDifferentAccount.not().drive(loadingIndicatorView.rx.isHidden).addDisposableTo(bag)
         viewModel.isFetchingDifferentAccount.drive(totalAmountView.rx.isHidden).addDisposableTo(bag)
         viewModel.isFetchingDifferentAccount.drive(paymentDetailsView.rx.isHidden).addDisposableTo(bag)
         viewModel.isFetchingDifferentAccount.drive(bottomStackContainerView.rx.isHidden).addDisposableTo(bag)
 	}
 	
 	func bindViewHiding() {
-        viewModel.shouldShowAlertBanner.map(!).drive(alertBannerView.rx.isHidden).addDisposableTo(bag)
+        viewModel.shouldShowAlertBanner.not().drive(alertBannerView.rx.isHidden).addDisposableTo(bag)
         viewModel.shouldShowAlertBanner.filter { $0 }
             .drive(onNext: { _ in
                 self.alertLottieAnimation.removeFromSuperview()
@@ -213,30 +273,30 @@ class BillViewController: AccountPickerViewController {
 		
 		questionMarkButton.isHidden = !viewModel.shouldShowAmountDueTooltip
 		
-		viewModel.shouldShowRestoreService.map(!).drive(restoreServiceView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowCatchUpAmount.map(!).drive(catchUpView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowCatchUpDisclaimer.map(!).drive(catchUpDisclaimerView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowAvoidShutoff.map(!).drive(avoidShutoffView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowPastDue.map(!).drive(pastDueView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowRestoreService.not().drive(restoreServiceView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowCatchUpAmount.not().drive(catchUpView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowAvoidShutoff.not().drive(avoidShutoffView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowPastDue.not().drive(pastDueView.rx.isHidden).addDisposableTo(bag)
 		
-		viewModel.shouldShowPendingPayment.map(!).drive(paymentStackView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowPendingPayment.not().drive(paymentStackView.rx.isHidden).addDisposableTo(bag)
 		
-		viewModel.shouldShowPendingPayment.map(!).drive(paymentStackView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowRemainingBalanceDue.map(!).drive(remainingBalanceDueView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowRemainingBalancePastDue.map(!).drive(remainingBalancePastDueView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowBillIssued.map(!).drive(billIssuedView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowPaymentReceived.map(!).drive(paymentReceivedView.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowCredit.map(!).drive(creditView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowPendingPayment.not().drive(paymentStackView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowRemainingBalancePastDue.not().drive(remainingBalancePastDueView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowBillIssued.not().drive(billIssuedView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowPaymentReceived.not().drive(paymentReceivedView.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowCredit.not().drive(creditView.rx.isHidden).addDisposableTo(bag)
 		
-		viewModel.shouldShowNeedHelpUnderstanding.map(!).drive(needHelpUnderstandingButton.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowNeedHelpUnderstanding.not().drive(needHelpUnderstandingButton.rx.isHidden).addDisposableTo(bag)
 		
-		viewModel.shouldEnableMakeAPaymentButton.map(!).drive(makeAPaymentButton.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldEnableMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).addDisposableTo(bag)
 		viewModel.shouldEnableMakeAPaymentButton.drive(billPaidView.rx.isHidden).addDisposableTo(bag)
         viewModel.paymentStatusText.map { $0 == nil }.drive(makeAPaymentStatusLabel.rx.isHidden).addDisposableTo(bag)
 		
-		viewModel.shouldShowAutoPay.map(!).drive(autoPayButton.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowPaperless.map(!).drive(paperlessButton.rx.isHidden).addDisposableTo(bag)
-		viewModel.shouldShowBudget.map(!).drive(budgetButton.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowAutoPay.not().drive(autoPayButton.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowPaperless.not().drive(paperlessButton.rx.isHidden).addDisposableTo(bag)
+		viewModel.shouldShowBudget.not().drive(budgetButton.rx.isHidden).addDisposableTo(bag)
 	}
 	
 	func bindViewContent() {
@@ -282,6 +342,14 @@ class BillViewController: AccountPickerViewController {
 		viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).addDisposableTo(bag)
 		viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).addDisposableTo(bag)
 		viewModel.budgetButtonText.drive(budgetBillingEnrollmentLabel.rx.attributedText).addDisposableTo(bag)
+        
+        viewModel.accountDetailErrorMessage
+            .drive(onNext: { errorMessage in
+                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            })
+            .addDisposableTo(bag)
 	}
 	
     func bindButtonTaps() {

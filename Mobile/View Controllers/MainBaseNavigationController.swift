@@ -36,7 +36,7 @@ class MainBaseNavigationController: UINavigationController {
         
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.blackText,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
         ]
         navigationBar.titleTextAttributes = titleDict
         
@@ -61,7 +61,7 @@ class MainBaseNavigationController: UINavigationController {
         
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
         ]
         navigationBar.titleTextAttributes = titleDict
         
