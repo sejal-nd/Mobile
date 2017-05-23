@@ -48,6 +48,11 @@
 		225FF85B1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85C1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85D1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
+		54AE06AA1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
+		54AE06AB1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
+		54AE06AC1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
+		54AE06AD1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
+		54AE06AE1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
 		82471FBE1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
 		82471FBF1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
 		82471FC01EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
@@ -698,6 +703,7 @@
 		087630E01E72F5D000FA7020 /* BGEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEUITests.swift; sourceTree = "<group>"; };
 		087630E21E72F5D000FA7020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsPaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillCommercialViewController.swift; sourceTree = "<group>"; };
@@ -1341,6 +1347,7 @@
 				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
 				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
 				8FD5AE851E54EA49003F640D /* LoginViewController.swift */,
+				54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */,
 				E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */,
 				E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */,
 				E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */,
@@ -2434,6 +2441,7 @@
 				B574BAF51E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAEF1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				B574BAFB1E786473001E8A44 /* MockOutageService.swift in Sources */,
+				54AE06AE1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */,
 				087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */,
 				B574BB011E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B574BB021E79BF38001E8A44 /* Account.swift in Sources */,
@@ -2455,6 +2463,7 @@
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				54AE06AA1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
@@ -2639,6 +2648,7 @@
 				E8CA07DF1E9BD10100A1D431 /* BGEAccountNumberViewController.swift in Sources */,
 				E8CA07DC1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E840BD461EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
+				54AE06AC1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				82A18F101EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
@@ -2757,6 +2767,7 @@
 				E8CA07DE1E9BD10000A1D431 /* BGEAccountNumberViewController.swift in Sources */,
 				E8CA07DB1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E840BD451EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
+				54AE06AB1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				82A18F0F1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
@@ -2805,6 +2816,7 @@
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
 				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
+				54AE06AD1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */,
 				E8F51EEB1ECA40AF0080AB3E /* PaperlessEBillViewModel.swift in Sources */,
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
