@@ -82,7 +82,14 @@ extension FontType where Self: RawRepresentable, Self.RawValue == String {
     
     func of(textStyle: UIFontTextStyle) -> UIFont {
         let size = UIFont.preferredSize(forTextStyle: textStyle)
-        return UIFont(name: self.rawValue, size: size)!
+        guard let font = UIFont(name: rawValue, size: size) else {
+            #if DEBUG
+                fatalError("Font \"\(rawValue)\" not found.")
+            #else
+                return .systemFont(ofSize: size)
+            #endif
+        }
+        return font
     }
 }
 
