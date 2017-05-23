@@ -140,13 +140,13 @@ class AccountPicker: UIView {
         
         let accountNumberLabel = UILabel(frame: .zero)
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        accountNumberLabel.font = UIFont.systemFont(ofSize: 17)
+        accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
         accountNumberLabel.textColor = tintWhite ? .white: .blackText
         accountNumberLabel.text = account.accountNumber
         
         let addressLabel = UILabel(frame: .zero)
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
-        addressLabel.font = UIFont.systemFont(ofSize: 12)
+        addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
         addressLabel.textColor = tintWhite ? .white: .deepGray
         addressLabel.text = account.address
         

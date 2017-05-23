@@ -22,6 +22,10 @@ class AccountLookupToolResultCell: UITableViewCell {
         accountNumberLabel.textColor = .blackText
         streetNumberLabel.textColor = .deepGray
         unitNumberLabel.textColor = .deepGray
+        
+        accountNumberLabel.font = SystemFont.medium.of(textStyle: .headline)
+        streetNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
+        unitNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
     }
 
 }

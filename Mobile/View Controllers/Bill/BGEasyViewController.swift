@@ -31,6 +31,7 @@ class BGEasyViewController: DismissableFormSheetViewController {
         titleLabel.text = NSLocalizedString("BGEasy Customer", comment: "")
         titleLabel.setLineHeight(lineHeight: 25)
         
+        descriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
         descriptionLabel.textColor = .deepGray
         descriptionLabel.text = NSLocalizedString("You are currently enrolled in BGEasy, our legacy automatic payment system.", comment: "")
 

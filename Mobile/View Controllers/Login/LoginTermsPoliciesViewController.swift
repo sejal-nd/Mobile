@@ -34,6 +34,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         _ = agreeSwitch.rx.isOn.bind(to: continueButton.rx.isEnabled)
         continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)
         
+        agreeLabel.font = SystemFont.regular.of(textStyle: .headline)
         agreeLabel.text = viewModel.agreeLabelText;
     }
     
@@ -54,7 +55,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.blackText,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         

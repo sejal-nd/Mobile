@@ -25,13 +25,10 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var newPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
     
-    @IBOutlet weak var expandingPasswordStrengthContainerView: UIView!
+    @IBOutlet weak var passwordStrengthView: UIView!
     @IBOutlet weak var passwordStrengthMeterView: PasswordStrengthMeterView!
     @IBOutlet weak var passwordStrengthLabel: UILabel!
     @IBOutlet weak var eyeballButton: UIButton!
-    
-    @IBOutlet weak var passwordRequirementsViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var confirmPasswordHeightConstraint: NSLayoutConstraint!
     
     // Check ImageViews
     @IBOutlet weak var characterCountCheck: UIImageView!
@@ -39,6 +36,8 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var lowercaseCheck: UIImageView!
     @IBOutlet weak var numberCheck: UIImageView!
     @IBOutlet weak var specialCharacterCheck: UIImageView!
+    
+    @IBOutlet var passwordRequirementLabels: [UILabel]!
     
     let disposeBag = DisposeBag()
     
@@ -63,9 +62,8 @@ class ChangePasswordViewController: UIViewController {
         
         setupValidation()
         
-        expandingPasswordStrengthContainerView.isHidden = true
-        passwordRequirementsViewHeightConstraint.constant = 0
-        confirmPasswordHeightConstraint.constant = 0
+        passwordStrengthView.isHidden = true
+        confirmPasswordTextField.setEnabled(false)
         
         currentPasswordTextField.textField.placeholder = sentFromLogin ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
         currentPasswordTextField.textField.isSecureTextEntry = true
@@ -84,6 +82,10 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.textField.delegate = self
         confirmPasswordTextField.setEnabled(false)
         
+        for label in passwordRequirementLabels {
+            label.font = SystemFont.regular.of(textStyle: .headline)
+        }
+        
         // Bind to the view model
         currentPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.currentPassword).addDisposableTo(disposeBag)
         newPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).addDisposableTo(disposeBag)
@@ -96,19 +98,18 @@ class ChangePasswordViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
-        currentPasswordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            self.newPasswordTextField.textField.becomeFirstResponder()
-        }).addDisposableTo(disposeBag)
+        currentPasswordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
+            .drive(onNext: { _ in
+                self.newPasswordTextField.textField.becomeFirstResponder()
+            }).addDisposableTo(disposeBag)
         
-        newPasswordTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-            self.expandingPasswordStrengthContainerView.isHidden = false
-            self.view.layoutIfNeeded()
-            UIView.animate(withDuration: 0.5, animations: {
-                self.passwordRequirementsViewHeightConstraint.constant = 254
-                self.confirmPasswordHeightConstraint.constant = 30
-                self.view.layoutIfNeeded()
-            })
-        }).addDisposableTo(disposeBag)
+        newPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
+            .drive(onNext: { _ in
+                UIView.animate(withDuration: 0.5) {
+                    self.passwordStrengthView.isHidden = false
+                }
+            }).addDisposableTo(disposeBag)
+        
         newPasswordTextField.textField.rx.text.orEmpty.subscribe(onNext: { text in
             let score = self.viewModel.getPasswordScore()
             self.passwordStrengthMeterView.setScore(score)
@@ -120,16 +121,14 @@ class ChangePasswordViewController: UIViewController {
                 self.passwordStrengthLabel.text = NSLocalizedString("Strong", comment: "")
             }
         }).addDisposableTo(disposeBag)
-        newPasswordTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            self.view.layoutIfNeeded()
-            UIView.animate(withDuration: 0.5, animations: {
-                self.passwordRequirementsViewHeightConstraint.constant = 0
-                self.confirmPasswordHeightConstraint.constant = 0
+        newPasswordTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .drive(onNext: { _ in
                 self.view.layoutIfNeeded()
-            }, completion: { _ in
-                self.expandingPasswordStrengthContainerView.isHidden = true
-            })
-        }).addDisposableTo(disposeBag)
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.passwordStrengthView.isHidden = true
+                    self.view.layoutIfNeeded()
+                })
+            }).addDisposableTo(disposeBag)
     }
     
     deinit {
@@ -146,7 +145,7 @@ class ChangePasswordViewController: UIViewController {
             
             let titleDict: [String: Any] = [
                 NSForegroundColorAttributeName: UIColor.white,
-                NSFontAttributeName: OpenSans.bold.ofSize(18)
+                NSFontAttributeName: OpenSans.bold.of(size: 18)
             ]
             navigationController?.navigationBar.titleTextAttributes = titleDict
             
@@ -187,7 +186,7 @@ class ChangePasswordViewController: UIViewController {
             currentPasswordTextField.textField.isSecureTextEntry = false
             // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
             currentPasswordTextField.textField.font = nil
-            currentPasswordTextField.textField.font = UIFont.systemFont(ofSize: 18)
+            currentPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
         } else {
@@ -197,11 +196,13 @@ class ChangePasswordViewController: UIViewController {
     }
     
     func setupValidation() {
-        viewModel.characterCountValid().map(!).bind(to: characterCountCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsUppercaseLetter().map(!).bind(to: uppercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsLowercaseLetter().map(!).bind(to: lowercaseCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsNumber().map(!).bind(to: numberCheck.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.containsSpecialCharacter().map(!).bind(to: specialCharacterCheck.rx.isHidden).addDisposableTo(disposeBag)
+        let checkImageOrNil: (Bool) -> UIImage? = { $0 ? #imageLiteral(resourceName: "ic_check"): nil }
+        
+        viewModel.characterCountValid().map(checkImageOrNil).bind(to: characterCountCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsUppercaseLetter().map(checkImageOrNil).bind(to: uppercaseCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsLowercaseLetter().map(checkImageOrNil).bind(to: lowercaseCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).addDisposableTo(disposeBag)
         viewModel.everythingValid().subscribe(onNext: { valid in
             self.newPasswordTextField.setValidated(valid)
             self.confirmPasswordTextField.setEnabled(valid)

@@ -30,6 +30,7 @@ class AccountNumberTooltipViewController: DismissableFormSheetViewController {
         
         descriptionLabel.setLineHeight(lineHeight: 25)
         descriptionLabel.textColor = .deepGray
+        descriptionLabel.font = OpenSans.regular.of(textStyle: .body)
     }
 
     @IBAction func onCloseButtonPress() {

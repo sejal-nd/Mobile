@@ -47,6 +47,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         navTitleLabel.text = NSLocalizedString("What is Budget Billing?", comment: "")
         
         navDescriptionLabel.textColor = .deepGray
+        navDescriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         card1TitleLabel.textColor = .primaryColorADA
         card1TitleLabel.text = NSLocalizedString("1 consistent bill over 12 months", comment: "")
@@ -66,6 +67,15 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         card2Bullet3Label.textColor = .deepGray
         card2Bullet4Label.textColor = .deepGray
         card2Bullet5Label.textColor = .deepGray
+        
+        card1Bullet1Label.font = OpenSans.regular.of(textStyle: .body)
+        card1Bullet2Label.font = OpenSans.regular.of(textStyle: .body)
+        card1Bullet3Label.font = OpenSans.regular.of(textStyle: .body)
+        card2Bullet1Label.font = OpenSans.regular.of(textStyle: .body)
+        card2Bullet2Label.font = OpenSans.regular.of(textStyle: .body)
+        card2Bullet3Label.font = OpenSans.regular.of(textStyle: .body)
+        card2Bullet4Label.font = OpenSans.regular.of(textStyle: .body)
+        card2Bullet5Label.font = OpenSans.regular.of(textStyle: .body)
         
         // Those are ComEd only
         card2Bullet4View.isHidden = true
