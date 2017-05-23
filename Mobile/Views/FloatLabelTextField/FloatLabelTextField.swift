@@ -94,7 +94,6 @@ class FloatLabelTextField: UIView {
             bottomColorBar.backgroundColor = .errorRed
             bottomColorBar.isHidden = false
             
-            textField.isShowingAccessory = true
             textField.floatingLabelTextColor = .errorRed
             textField.floatingLabelActiveTextColor = .errorRed
             textField.floatingLabel.textColor = .errorRed
@@ -113,7 +112,6 @@ class FloatLabelTextField: UIView {
                 }
             }
             
-            textField.isShowingAccessory = false
             textField.floatingLabelTextColor = .primaryColorDark
             textField.floatingLabelActiveTextColor = .primaryColorDark
             textField.floatingLabel.textColor = .primaryColorDark

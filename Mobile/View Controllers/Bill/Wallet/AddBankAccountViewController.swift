@@ -6,7 +6,8 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
+import RxCocoa
 
 class AddBankAccountViewController: UIViewController {
     
@@ -18,7 +19,10 @@ class AddBankAccountViewController: UIViewController {
     // Confirm account number
     // Nickname (Optional for ComEd/PECO, required for BGE)
     // One touch pay toggle
+    
+    let disposeBag = DisposeBag()
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControl!
     @IBOutlet weak var accountHolderNameTextField: FloatLabelTextField!
@@ -31,17 +35,22 @@ class AddBankAccountViewController: UIViewController {
     @IBOutlet weak var oneTouchPayDescriptionLabel: UILabel!
     @IBOutlet weak var oneTouchPaySwitch: Switch!
     @IBOutlet weak var oneTouchPayLabel: UILabel!
+    
+    let viewModel = AddBankAccountViewModel(walletService: ServiceFactory.createWalletService())
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
         title = NSLocalizedString("Add Bank Account", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
         navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = nextButton
-        //viewModel.searchButtonEnabled().bind(to: nextButton).addDisposableTo(disposeBag)
+        navigationItem.rightBarButtonItem = saveButton
+        viewModel.saveButtonIsEnabledComEdPECO().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
 
         checkingSavingsSegmentedControl.items = [NSLocalizedString("Checking", comment: ""), NSLocalizedString("Savings", comment: "")]
         
@@ -63,14 +72,45 @@ class AddBankAccountViewController: UIViewController {
             accountHolderNameTextField.isHidden = true
             confirmRoutingNumberTextField.isHidden = true
         }
+        
+        bindViewModel()
+        bindValidation()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onNextPress() {
-        print("NEXT")
+    func onSavePress() {
+        print("SAVE")
+    }
+    
+    func bindViewModel() {
+        checkingSavingsSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).addDisposableTo(disposeBag)
+        accountHolderNameTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountHolderName).addDisposableTo(disposeBag)
+        routingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.routingNumber).addDisposableTo(disposeBag)
+        confirmRoutingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmRoutingNumber).addDisposableTo(disposeBag)
+        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
+        confirmAccountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmAccountNumber).addDisposableTo(disposeBag)
+        nicknameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nickname).addDisposableTo(disposeBag)
+        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
+        
+        viewModel.confirmRoutingNumberIsEnabled.drive(onNext: { enabled in
+            self.confirmRoutingNumberTextField.setEnabled(enabled)
+        }).addDisposableTo(disposeBag)
+        viewModel.confirmAccountNumberIsEnabled.drive(onNext: { enabled in
+            self.confirmAccountNumberTextField.setEnabled(enabled)
+        }).addDisposableTo(disposeBag)
+    }
+    
+    func bindValidation() {
+        viewModel.nicknameIsValid().subscribe(onNext: { valid in
+            self.nicknameTextField.setError(valid ? nil : NSLocalizedString("Can only contain letters, numbers, and spaces", comment: ""))
+        }).addDisposableTo(disposeBag)
     }
     
     @IBAction func onRoutingNumberQuestionMarkPress() {
@@ -83,6 +123,22 @@ class AddBankAccountViewController: UIViewController {
         let infoModal = InfoModalViewController(title: NSLocalizedString("Account Number", comment: ""), image: #imageLiteral(resourceName: "account_number_info"), description: NSLocalizedString("This number is used to identify your bank account. You can find your checking account number on the bottom of your paper check following the routing number.", comment: ""))
         navigationController?.modalPresentationStyle = .formSheet
         navigationController?.present(infoModal, animated: true, completion: nil)
+    }
+    
+    // MARK: - ScrollView
+    
+    func keyboardWillShow(notification: Notification) {
+        let userInfo = notification.userInfo!
+        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        scrollView.contentInset = insets
+        scrollView.scrollIndicatorInsets = insets
+    }
+    
+    func keyboardWillHide(notification: Notification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
     }
 
 }
