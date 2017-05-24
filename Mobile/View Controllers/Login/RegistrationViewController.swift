@@ -39,7 +39,7 @@ class RegistrationViewController: UIViewController {
         
         populateHelperLabels()
         
-        prepareForTextFieldInput()
+        prepareTextFieldsForInput()
         
     }
     
@@ -52,6 +52,7 @@ class RegistrationViewController: UIViewController {
     func setupNavigationButtons() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = nextButton
     }
@@ -62,28 +63,35 @@ class RegistrationViewController: UIViewController {
         identifierDescriptionLabel?.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
     }
     
-    func prepareForTextFieldInput() {
+    func prepareTextFieldsForInput() {
         //
-        accountNumberTextField?.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
-        accountNumberTextField?.textField.autocorrectionType = .no
-        accountNumberTextField?.textField.returnKeyType = .next
-        accountNumberTextField?.textField.delegate = self
-        accountNumberTextField?.textField.isShowingAccessory = true
-        accountNumberTextField?.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
-        
-        accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            if self.viewModel.accountNumber.value.characters.count > 0 {
-                self.viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
-                    }
-                }).addDisposableTo(self.disposeBag)
-            }
-        }).addDisposableTo(disposeBag)
-        
-        accountNumberTextField?.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-            self.accountNumberTextField?.setError(nil)
-        }).addDisposableTo(disposeBag)
+        let opCo = Environment.sharedInstance.opco
+
+        // if opco is not BGE, then format it and ready it for usage; else hide it.
+        if opCo != .bge {
+            accountNumberTextField?.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
+            accountNumberTextField?.textField.autocorrectionType = .no
+            accountNumberTextField?.textField.returnKeyType = .next
+            accountNumberTextField?.textField.delegate = self
+            accountNumberTextField?.textField.isShowingAccessory = true
+            accountNumberTextField?.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
+            
+            accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
+                if self.viewModel.accountNumber.value.characters.count > 0 {
+                    self.viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
+                        if !valid {
+                            self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
+                        }
+                    }).addDisposableTo(self.disposeBag)
+                }
+            }).addDisposableTo(disposeBag)
+            
+            accountNumberTextField?.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+                self.accountNumberTextField?.setError(nil)
+            }).addDisposableTo(disposeBag)
+        } else {
+            accountNumberTextField?.isHidden = true
+        }
         
         //
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
@@ -177,7 +185,7 @@ class RegistrationViewController: UIViewController {
     func onCancelPress() {
         // We do this to cover the case where we push RegistrationViewController from LandingViewController.
         // When that happens, we want the cancel action to go straight back to LandingViewController.
-        dismiss(animated: true, completion: nil)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     func onNextPress() {

@@ -140,7 +140,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="umy-8w-615" kind="show" id="4Qk-3b-AEe"/>
+                                            <segue destination="Q28-wT-zJI" kind="show" id="IiK-Y0-Nj2"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSH-Ni-ZZW">
@@ -577,42 +577,54 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E25-yt-ykx" userLabel="Tablet View">
                                                 <rect key="frame" x="29" y="0.0" width="317" height="532"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vl8-ds-vfP">
-                                                        <rect key="frame" x="0.0" y="30" width="317" height="214"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="vl8-ds-vfP">
+                                                        <rect key="frame" x="0.0" y="30" width="317" height="338"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please help us validate your account." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QSq-pr-8ng">
-                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="19.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="19"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="up1-WX-CmR" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="19.5" width="317" height="60"/>
+                                                                <rect key="frame" x="0.0" y="49" width="317" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="250" constant="60" id="EbK-kp-j6I"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LY5-w0-mDC" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="79.5" width="317" height="60"/>
+                                                                <rect key="frame" x="0.0" y="139" width="317" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" priority="250" constant="60" id="S39-b2-l7f"/>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="emT-Ir-soq"/>
+                                                                    <constraint firstAttribute="height" priority="250" constant="60" id="emT-Ir-soq"/>
                                                                 </constraints>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Last 4 Digits of blah blah blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1d-Jm-Tb4">
-                                                                <rect key="frame" x="0.0" y="139.5" width="317" height="14.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOB-CH-293" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="154" width="317" height="60"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cet-Z4-l5D" userLabel="SS Num Content View">
+                                                                <rect key="frame" x="0.0" y="229" width="317" height="109"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Last 4 Digits of blah blah blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1d-Jm-Tb4">
+                                                                        <rect key="frame" x="0.0" y="8" width="322" height="14.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOB-CH-293" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="32.5" width="317" height="60"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" priority="250" constant="60" id="fQm-g5-JUM"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="aT5-Ul-B6P"/>
-                                                                    <constraint firstAttribute="height" priority="250" constant="60" id="fQm-g5-JUM"/>
+                                                                    <constraint firstItem="KOB-CH-293" firstAttribute="leading" secondItem="M1d-Jm-Tb4" secondAttribute="leading" id="9za-hP-HzW"/>
+                                                                    <constraint firstItem="M1d-Jm-Tb4" firstAttribute="top" secondItem="cet-Z4-l5D" secondAttribute="top" constant="8" id="F9h-fg-PEa"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="M1d-Jm-Tb4" secondAttribute="trailing" constant="-5" id="LzA-84-wJo"/>
+                                                                    <constraint firstItem="KOB-CH-293" firstAttribute="top" secondItem="M1d-Jm-Tb4" secondAttribute="bottom" constant="10" id="NBQ-rL-cpz"/>
+                                                                    <constraint firstItem="M1d-Jm-Tb4" firstAttribute="leading" secondItem="cet-Z4-l5D" secondAttribute="leading" id="QdV-cF-4Wp"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="KOB-CH-293" secondAttribute="trailing" id="c95-Hb-xbc"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -621,6 +633,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="532" id="1zg-ce-QBc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vl8-ds-vfP" secondAttribute="bottom" constant="164" id="3fd-bd-ExZ"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="dwo-OL-wwh"/>
                                                     <constraint firstAttribute="trailing" secondItem="vl8-ds-vfP" secondAttribute="trailing" id="eMb-dV-mo3"/>
                                                     <constraint firstItem="vl8-ds-vfP" firstAttribute="top" secondItem="E25-yt-ykx" secondAttribute="top" constant="30" id="f91-MW-gY0"/>
@@ -669,7 +682,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bpQ-Tv-b4I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1720.8" y="1611.5442278860571"/>
+            <point key="canvasLocation" x="1721" y="887"/>
         </scene>
         <!--Forgot Password-->
         <scene sceneID="wts-se-pTN">
@@ -1710,24 +1723,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9xl-m3-uCQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5073.913043478261" y="89.673913043478265"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Ta4-kc-woM">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="umy-8w-615" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cSX-xh-qHI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Q28-wT-zJI" kind="relationship" relationship="rootViewController" id="1ho-w7-x9K"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="X8v-bj-0wl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1721" y="887"/>
         </scene>
     </scenes>
     <resources>

@@ -140,12 +140,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
     @IBAction func onLoginPress() {
         view.endEditing(true)
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
