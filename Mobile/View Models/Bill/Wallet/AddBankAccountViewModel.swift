@@ -29,18 +29,32 @@ class AddBankAccountViewModel {
     }
     
     func saveButtonIsEnabled() -> Observable<Bool> {
-//        if Environment.sharedInstance.opco == .bge {
-//            
-//        } else {
+        if Environment.sharedInstance.opco == .bge {
+            return Observable.combineLatest(accountHolderNameHasText(), routingNumberIsValid(), confirmRoutingNumberMatches(), accountNumberHasText(), confirmAccountNumberMatches(), nicknameHasText(), nicknameIsValid()) {
+                return $0 && $1 && $2 && $3 && $4 && $5 && $6
+            }
+        } else {
             return Observable.combineLatest(routingNumberIsValid(), accountNumberHasText(), confirmAccountNumberMatches(), nicknameIsValid()) {
                 return $0 && $1 && $2 && $3
             }
-        //}
+        }
+    }
+    
+    func accountHolderNameHasText() -> Observable<Bool> {
+        return accountHolderName.asObservable().map {
+            return !$0.isEmpty
+        }
     }
     
     func routingNumberIsValid() -> Observable<Bool> {
         return routingNumber.asObservable().map {
             return $0.characters.count == 9
+        }
+    }
+    
+    func confirmRoutingNumberMatches() -> Observable<Bool> {
+        return Observable.combineLatest(routingNumber.asObservable(), confirmRoutingNumber.asObservable()) {
+            return $0 == $1
         }
     }
     
@@ -62,6 +76,12 @@ class AddBankAccountViewModel {
     
     lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumber.asDriver().map {
         return !$0.isEmpty
+    }
+    
+    func nicknameHasText() -> Observable<Bool> {
+        return nickname.asObservable().map {
+            return !$0.isEmpty
+        }
     }
     
     func nicknameIsValid() -> Observable<Bool> {

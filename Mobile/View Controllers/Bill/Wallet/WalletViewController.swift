@@ -45,24 +45,30 @@ class WalletViewController: UIViewController {
         
         // Empty state stuff
         choosePaymentAccountLabel.textColor = .blackText
+        choosePaymentAccountLabel.font = OpenSans.regular.of(textStyle: .headline)
         choosePaymentAccountLabel.text = NSLocalizedString("Choose a payment account:", comment: "")
         
         bankButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         bankButton.layer.cornerRadius = 10
         bankButtonLabel.textColor = .blackText
+        bankButtonLabel.font = OpenSans.semibold.of(textStyle: .headline)
         bankButtonLabel.text = NSLocalizedString("Bank Account", comment: "")
         bankFeeLabel.textColor = .deepGray
         bankFeeLabel.text = NSLocalizedString("No fees applied to your payments.", comment: "")
+        bankFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         creditCardButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         creditCardButton.layer.cornerRadius = 10
         creditCardButtonLabel.textColor = .blackText
+        creditCardButtonLabel.font = OpenSans.semibold.of(textStyle: .headline)
         creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
         creditCardFeeLabel.textColor = .deepGray
         creditCardFeeLabel.text = viewModel.emptyStateCreditFeeLabelText
+        creditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         emptyStateFooter.textColor = .blackText
         emptyStateFooter.text = viewModel.footerLabelText
+        emptyStateFooter.font = SystemFont.regular.of(textStyle: .footnote)
         
         // Non-empty state stuff
         tableView.backgroundColor = .primaryColor

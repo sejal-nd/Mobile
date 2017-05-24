@@ -61,6 +61,9 @@ class AddBankAccountViewController: UIViewController {
         checkingSavingsSegmentedControl.items = [NSLocalizedString("Checking", comment: ""), NSLocalizedString("Savings", comment: "")]
         
         accountHolderNameTextField.textField.placeholder = NSLocalizedString("Bank Account Holder Name*", comment: "")
+        accountHolderNameTextField.textField.delegate = self
+        accountHolderNameTextField.textField.returnKeyType = .next
+        
         routingNumberTextField.textField.placeholder = NSLocalizedString("Routing Number*", comment: "")
         routingNumberTextField.textField.delegate = self
         routingNumberTextField.textField.returnKeyType = .next
@@ -79,6 +82,19 @@ class AddBankAccountViewController: UIViewController {
         
         confirmRoutingNumberTextField.textField.placeholder = NSLocalizedString("Confirm Routing Number*", comment: "")
         confirmRoutingNumberTextField.textField.delegate = self
+        confirmRoutingNumberTextField.textField.returnKeyType = .next
+        viewModel.confirmRoutingNumberMatches().subscribe(onNext: { matches in
+            if !self.viewModel.confirmRoutingNumber.value.isEmpty {
+                if matches {
+                    self.confirmRoutingNumberTextField.setValidated(true)
+                } else {
+                    self.confirmRoutingNumberTextField.setError(NSLocalizedString("Routing numbers do not match", comment: ""))
+                }
+            } else {
+                self.confirmRoutingNumberTextField.setValidated(false)
+                self.confirmRoutingNumberTextField.setError(nil)
+            }
+        }).addDisposableTo(disposeBag)
         
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.delegate = self
@@ -205,12 +221,28 @@ extension AddBankAccountViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if Environment.sharedInstance.opco == .bge {
-            
+            if textField == accountHolderNameTextField.textField {
+                routingNumberTextField.textField.becomeFirstResponder()
+            } else if textField == routingNumberTextField.textField {
+                if confirmRoutingNumberTextField.isUserInteractionEnabled {
+                    confirmRoutingNumberTextField.textField.becomeFirstResponder()
+                }
+            } else if textField == confirmRoutingNumberTextField.textField {
+                accountNumberTextField.textField.becomeFirstResponder()
+            } else if textField == accountNumberTextField.textField {
+                if confirmAccountNumberTextField.isUserInteractionEnabled {
+                    confirmAccountNumberTextField.textField.becomeFirstResponder()
+                }
+            } else if textField == confirmAccountNumberTextField.textField {
+                nicknameTextField.textField.becomeFirstResponder()
+            }
         } else {
             if textField == routingNumberTextField.textField {
                 accountNumberTextField.textField.becomeFirstResponder()
             } else if textField == accountNumberTextField.textField {
-                confirmAccountNumberTextField.textField.becomeFirstResponder()
+                if confirmAccountNumberTextField.isUserInteractionEnabled {
+                    confirmAccountNumberTextField.textField.becomeFirstResponder()
+                }
             } else if textField == confirmAccountNumberTextField.textField {
                 nicknameTextField.textField.becomeFirstResponder()
             }
