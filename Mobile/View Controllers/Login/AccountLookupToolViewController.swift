@@ -35,6 +35,7 @@ class AccountLookupToolViewController: UIViewController {
         navigationItem.rightBarButtonItem = searchButton
         viewModel.searchButtonEnabled().bind(to: searchButton.rx.isEnabled).addDisposableTo(disposeBag)
         
+        identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, or Business Tax ID", comment: "")
         
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")

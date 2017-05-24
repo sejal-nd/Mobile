@@ -21,6 +21,13 @@ class PaperlessEBillAccountView: UIView {
     
     var isOn: ControlProperty<Bool>?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        accountNumberLabel.font = SystemFont.medium.of(textStyle: .title1)
+        addressLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        enrollStatusLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+    }
+    
     static func create(withAccountDetail accountDetail: AccountDetail) -> PaperlessEBillAccountView {
         let view = Bundle.main.loadViewFromNib() as PaperlessEBillAccountView
         view.bind(withAccountDetail: accountDetail)

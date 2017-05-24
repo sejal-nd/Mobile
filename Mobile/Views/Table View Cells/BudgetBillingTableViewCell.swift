@@ -16,7 +16,10 @@ class BudgetBillingTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.textColor = .blackText
+        label.font = SystemFont.regular.of(textStyle: .headline)
         radioButtonImageView.image = #imageLiteral(resourceName: "ic_radiobutton_deselected")
         
         selectionStyle = .none

@@ -38,7 +38,9 @@ class ForgotUsernameViewController: UIViewController {
         viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         instructionLabel.textColor = .blackText
+        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
         instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
+        identifierDescriptionLabel?.font = SystemFont.regular.of(textStyle: .subheadline)
         identifierDescriptionLabel?.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
         
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
@@ -103,6 +105,7 @@ class ForgotUsernameViewController: UIViewController {
         
         accountLookupToolButton?.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
         accountLookupToolButton?.setTitleColor(.actionBlue, for: .normal)
+        accountLookupToolButton?.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
     }
     
     deinit {
@@ -118,7 +121,7 @@ class ForgotUsernameViewController: UIViewController {
 
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         

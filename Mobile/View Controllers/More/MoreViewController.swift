@@ -35,7 +35,7 @@ class MoreViewController: UIViewController {
         
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.blackText,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
@@ -86,8 +86,7 @@ extension MoreViewController: UITableViewDelegate {
         if indexPath.row == 0 {
             performSegue(withIdentifier: "settingsSegue", sender: self)
         } else if indexPath.row == 1 {
-            let contactUs = ContactUsViewController(nibName: "ContactUs", bundle: nil)
-            self.splitViewController?.showDetailViewController(contactUs, sender: self)
+            performSegue(withIdentifier: "contactUsSegue", sender: self)
 //            if UIDevice.current.userInterfaceIdiom == .phone {
 //                self.navigationController?.pushViewController(contactUs, animated: true)
 //            } else {

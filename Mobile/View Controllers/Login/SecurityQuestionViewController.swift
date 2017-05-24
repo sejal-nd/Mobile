@@ -36,6 +36,7 @@ class SecurityQuestionViewController: UIViewController {
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please answer the security question.", comment: "")
         
+        questionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         questionLabel.text = viewModel.getSecurityQuestion()
         
         answerTextField.textField.placeholder = NSLocalizedString("Your Answer*", comment: "")
