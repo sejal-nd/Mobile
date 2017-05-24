@@ -132,6 +132,10 @@ class WalletViewController: UIViewController {
         Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver()).drive(onNext: {
             self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
         }).addDisposableTo(disposeBag)
+        
+        Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver()).drive(onNext: {
+            self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
+        }).addDisposableTo(disposeBag)
     }
 
 }
