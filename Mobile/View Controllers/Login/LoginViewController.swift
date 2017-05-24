@@ -96,21 +96,22 @@ class LoginViewController: UIViewController {
             self.onLoginPress()
         }).addDisposableTo(disposeBag)
         
-        // This hack (on editingDidBegin/editingDidEnd) prevents the automatic scrolling that happens when the password field is
-        // selected on a 4" phone. We want that disabled because of our custom logic in keyboardWillShow.
-        passwordTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-            let wrap = UIScrollView(frame: self.passwordTextField.textField.frame)
-            self.passwordTextField.textField.superview?.addSubview(wrap)
-            self.passwordTextField.textField.frame = CGRect(x: 0, y: 0, width: self.passwordTextField.textField.frame.size.width, height: self.passwordTextField.textField.frame.size.height)
-            wrap.addSubview(self.passwordTextField.textField)
-        }).addDisposableTo(disposeBag)
-        passwordTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            if let wrap = self.passwordTextField.textField.superview as? UIScrollView {
-                self.passwordTextField.textField.frame = CGRect(x: wrap.frame.origin.x, y: wrap.frame.origin.y, width: wrap.frame.size.width, height: wrap.frame.size.height)
-                wrap.superview?.addSubview(self.passwordTextField.textField)
-                wrap.removeFromSuperview()
-            }
-        }).addDisposableTo(disposeBag)
+//        // This hack (on editingDidBegin/editingDidEnd) prevents the automatic scrolling that happens when the password field is
+//        // selected on a 4" phone. We want that disabled because of our custom logic in keyboardWillShow.
+//        // MMS: REMOVED ON 5/24 because was breaking text field bottom bar appearence
+//        passwordTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+//            let wrap = UIScrollView(frame: self.passwordTextField.textField.frame)
+//            self.passwordTextField.textField.superview?.addSubview(wrap)
+//            self.passwordTextField.textField.frame = CGRect(x: 0, y: 0, width: self.passwordTextField.textField.frame.size.width, height: self.passwordTextField.textField.frame.size.height)
+//            wrap.addSubview(self.passwordTextField.textField)
+//        }).addDisposableTo(disposeBag)
+//        passwordTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
+//            if let wrap = self.passwordTextField.textField.superview as? UIScrollView {
+//                self.passwordTextField.textField.frame = CGRect(x: wrap.frame.origin.x, y: wrap.frame.origin.y, width: wrap.frame.size.width, height: wrap.frame.size.height)
+//                wrap.superview?.addSubview(self.passwordTextField.textField)
+//                wrap.removeFromSuperview()
+//            }
+//        }).addDisposableTo(disposeBag)
         
         forgotLabel.font = SystemFont.semibold.of(textStyle: .title1)
         forgotUsernameButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)

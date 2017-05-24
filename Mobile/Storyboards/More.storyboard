@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -465,7 +465,7 @@
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="IaI-Bt-Mmv"/>
                                                                     <constraint firstAttribute="height" priority="250" constant="60" id="eXo-ZV-J18"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Uok-hL-HCJ" secondAttribute="trailing" id="h7J-Vx-n6N"/>
-                                                                    <constraint firstItem="Uok-hL-HCJ" firstAttribute="centerY" secondItem="884-Yk-5tq" secondAttribute="centerY" id="oaW-VG-qnm"/>
+                                                                    <constraint firstItem="Uok-hL-HCJ" firstAttribute="top" secondItem="884-Yk-5tq" secondAttribute="top" id="iWe-zV-DkB"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLR-ET-G9c" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
@@ -755,7 +755,7 @@
             <objects>
                 <navigationController storyboardIdentifier="splitViewMaster" automaticallyAdjustsScrollViewInsets="NO" id="QHx-Oo-GC3" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="XwZ-1G-6SY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XwZ-1G-6SY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -773,7 +773,7 @@
             <objects>
                 <navigationController storyboardIdentifier="splitViewDetail" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Lxd-XU-KqW" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="R3M-3U-YcT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R3M-3U-YcT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -791,7 +791,7 @@
             <objects>
                 <navigationController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="1fe-7y-SPR" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wOj-6K-XNw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wOj-6K-XNw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
