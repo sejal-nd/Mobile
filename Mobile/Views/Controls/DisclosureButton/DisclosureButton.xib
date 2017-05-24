@@ -30,29 +30,26 @@
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="u4r-eK-FJj">
-                    <rect key="frame" x="16" y="11" width="259" height="38"/>
+                    <rect key="frame" x="16" y="10.5" width="259" height="39"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_outage" translatesAutoresizingMaskIntoConstraints="NO" id="wgW-sA-4SD">
-                            <rect key="frame" x="0.0" y="11" width="19" height="16"/>
+                            <rect key="frame" x="0.0" y="11.5" width="19" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="19" id="9uV-vL-ZM0"/>
                                 <constraint firstAttribute="height" priority="999" constant="16" id="bWb-RE-IFF"/>
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="sik-2v-qbl">
-                            <rect key="frame" x="33" y="0.0" width="226" height="38"/>
+                            <rect key="frame" x="33" y="0.0" width="226" height="39"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the button label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgK-Xb-vxA">
-                                    <rect key="frame" x="0.0" y="0.0" width="226" height="20.5"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" priority="999" constant="20.5" id="HXe-zz-yfg"/>
-                                    </constraints>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="This is the button label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgK-Xb-vxA">
+                                    <rect key="frame" x="0.0" y="0.0" width="226" height="21.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the detail label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-I6-Jhg">
-                                    <rect key="frame" x="0.0" y="23.5" width="226" height="14.5"/>
+                                    <rect key="frame" x="0.0" y="24.5" width="226" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -74,8 +71,6 @@
                 <constraint firstItem="u4r-eK-FJj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" priority="999" id="7Ms-l8-OeZ"/>
                 <constraint firstItem="u4r-eK-FJj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="C16-39-AvB"/>
                 <constraint firstAttribute="trailing" secondItem="KsY-Hs-M3n" secondAttribute="trailing" constant="18" id="LWP-dx-GFt"/>
-                <constraint firstAttribute="bottom" secondItem="u4r-eK-FJj" secondAttribute="bottom" priority="999" constant="11" id="Y29-Uh-WX7"/>
-                <constraint firstItem="u4r-eK-FJj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="999" constant="11" id="YUx-h5-uXT"/>
                 <constraint firstItem="KsY-Hs-M3n" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" priority="999" id="a1U-qr-fdk"/>
                 <constraint firstItem="KsY-Hs-M3n" firstAttribute="leading" secondItem="u4r-eK-FJj" secondAttribute="trailing" constant="16" id="e67-S0-DNe"/>
             </constraints>

@@ -30,13 +30,13 @@ class MainBaseNavigationController: UINavigationController {
         navigationBar.tintColor = .actionBlue
         navigationBar.isTranslucent = false
         
-        // Removes the bottom border line:
-        //navigationBar.setBackgroundImage(UIImage(), for: .default)
-        //navigationBar.shadowImage = UIImage()
+        // Re-add the bottom border line (in case it was removed on another screen)
+        navigationBar.setBackgroundImage(nil, for: .default)
+        navigationBar.shadowImage = nil
         
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.blackText,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
         ]
         navigationBar.titleTextAttributes = titleDict
         
@@ -45,15 +45,23 @@ class MainBaseNavigationController: UINavigationController {
         setNavigationBarHidden(false, animated: true)
     }
     
-    func setColoredNavBar() {
+    func setColoredNavBar(hidesBottomBorder: Bool = false) {
         navigationBar.barStyle = .black
         navigationBar.barTintColor = .primaryColor
         navigationBar.tintColor = .white
         navigationBar.isTranslucent = false
         
+        if hidesBottomBorder {
+            navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationBar.shadowImage = UIImage()
+        } else {
+            navigationBar.setBackgroundImage(nil, for: .default)
+            navigationBar.shadowImage = nil
+        }
+        
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
         ]
         navigationBar.titleTextAttributes = titleDict
         

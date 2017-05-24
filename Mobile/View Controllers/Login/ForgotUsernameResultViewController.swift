@@ -31,6 +31,7 @@ class ForgotUsernameResultViewController: UIViewController {
         
         selectLabel.textColor = .blackText
         selectLabel.text = viewModel.maskedUsernames.count > 1 ? NSLocalizedString("Select Username / Email Address:", comment: "") : NSLocalizedString("Username / Email Address:", comment: "")
+        selectLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         
         tableView.separatorInset = .zero
         tableViewHeightConstraint.constant = CGFloat(53 * viewModel.maskedUsernames.count) - 1
@@ -46,6 +47,7 @@ class ForgotUsernameResultViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         
         backToSignInButton.tintColor = .actionBlue
+        backToSignInButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
     }
     
     func styleTopTextView() {
@@ -60,7 +62,7 @@ class ForgotUsernameResultViewController: UIViewController {
         paragraphStyle.minimumLineHeight = 24 // Line height
         attrString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: fullRange)
         
-        attrString.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold), range: fullRange)
+        attrString.addAttribute(NSFontAttributeName, value: SystemFont.semibold.of(textStyle: .subheadline), range: fullRange)
         attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: fullRange)
         
 //        let url = URL(fileURLWithPath: "") // Does not matter

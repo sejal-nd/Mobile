@@ -23,6 +23,9 @@ class LandingViewController: UIViewController {
         registerButton.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
         skipForNowButon.setTitle(NSLocalizedString("SKIP FOR NOW", comment: ""), for: .normal)
         
+        orLabel.font = SystemFont.regular.of(textStyle: .headline)
+        skipForNowButon.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
+        
         view.backgroundColor = .primaryColor
     }
     

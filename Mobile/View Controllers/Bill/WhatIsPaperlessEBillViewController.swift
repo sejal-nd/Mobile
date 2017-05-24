@@ -22,6 +22,7 @@ class WhatIsPaperlessEBillViewController: UIViewController {
             infoLabel.text = NSLocalizedString("Eliminate your paper bill and receive an email notification when your bill is ready to view online.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  Your preference will be updated with your next month’s bill.", comment: "")
         }
         
+        infoLabel.font = OpenSans.regular.of(textStyle: .body)
         infoLabel.setLineHeight(lineHeight: 25)
     }
     

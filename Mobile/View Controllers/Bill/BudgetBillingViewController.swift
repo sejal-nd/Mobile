@@ -96,6 +96,7 @@ class BudgetBillingViewController: UIViewController {
         whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
         
+        yourPaymentWouldBeLabel.font = SystemFont.medium.of(textStyle: .footnote)
         yourPaymentWouldBeLabel.textColor = .deepGray
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your payment would be:", comment: "")
         
@@ -103,18 +104,22 @@ class BudgetBillingViewController: UIViewController {
         monthLabel.textColor = .deepGray
         monthLabel.text = NSLocalizedString("/Month", comment: "")
         
+        amountDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
         amountDescriptionLabel.textColor = .deepGray
         amountDescriptionLabel.text = viewModel.getAmountDescriptionText()
         
         accountNumberLabel.textColor = .blackText
         accountNumberLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber
+        accountNumberLabel.font = SystemFont.medium.of(textStyle: .title1)
         addressLabel.textColor = .middleGray
+        addressLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
         
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
         enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).addDisposableTo(disposeBag)
         
         reasonForStoppingLabel.textColor = .blackText
+        reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
         reasonForStoppingTableView.isHidden = true
         if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
@@ -132,10 +137,12 @@ class BudgetBillingViewController: UIViewController {
                 view.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
             }
             
+            monthlyAmountTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
             monthlyAmountTitleLabel.textColor = .blackText
             monthlyAmountTitleLabel.text = NSLocalizedString("Monthly Budget Bill Amount", comment: "")
             monthlyAmountLabel.textColor = .blackText
             monthlyAmountLabel.text = "$200.00"
+            monthlyAmountDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
             monthlyAmountDescriptionLabel.textColor = .deepGray
             monthlyAmountDescriptionLabel.text = NSLocalizedString("Payment received after March 13, 2017 will incur a late charge.\n\nA late payment charge is applied to the unpaid balance of your BGE charges. The charge is up to 1.5% for the first month; additional charges will be assessed on unpaid balances past the first month, not to exceed 5%.", comment: "")
             

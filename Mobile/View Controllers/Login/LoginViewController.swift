@@ -23,8 +23,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var keepMeSignedInSwitch: Switch!
     @IBOutlet weak var keepMeSignedInLabel: UILabel!
     @IBOutlet weak var signInButton: PrimaryButton!
+    @IBOutlet weak var forgotLabel: UILabel!
     @IBOutlet weak var forgotUsernameButton: UIButton!
+    @IBOutlet weak var orLabel: UILabel!
     @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var questionMarkLabel: UILabel!
     @IBOutlet weak var eyeballButton: UIButton!
     @IBOutlet weak var touchIDImage: UIImageView!
     @IBOutlet weak var touchIDLabel: UILabel!
@@ -51,6 +54,7 @@ class LoginViewController: UIViewController {
         loginFormView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
         loginFormView.layer.cornerRadius = 2
         
+        keepMeSignedInLabel.font = SystemFont.regular.of(textStyle: .headline)
         keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
         
         usernameTextField.textField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
@@ -108,8 +112,16 @@ class LoginViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
+        forgotLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        forgotUsernameButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        orLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        forgotPasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        questionMarkLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        
         forgotUsernameButton.tintColor = .actionBlue
         forgotPasswordButton.tintColor = .actionBlue
+        
+        touchIDLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
     }
     
     deinit {
@@ -215,7 +227,7 @@ class LoginViewController: UIViewController {
             passwordTextField.textField.isSecureTextEntry = false
             // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
             passwordTextField.textField.font = nil
-            passwordTextField.textField.font = UIFont.systemFont(ofSize: 18)
+            passwordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
         } else {

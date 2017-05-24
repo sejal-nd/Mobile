@@ -91,11 +91,13 @@ class OutageViewController: AccountPickerViewController {
         loadingBigButtonView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
         loadingBigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
         
+        footerTextView.font = SystemFont.regular.of(textStyle: .headline)
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
         
+        gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
         gasOnlyTextView.tintColor = .actionBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
@@ -205,25 +207,25 @@ class OutageViewController: AccountPickerViewController {
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
             
             let yourOutageIsLabel = UILabel(frame: CGRect(x: 30, y: 61, width: bigButtonWidth - 60, height: 20))
-            yourOutageIsLabel.font = OpenSans.regular.ofSize(16)
+            yourOutageIsLabel.font = OpenSans.regular.of(size: 16)
             yourOutageIsLabel.textColor = .actionBlue
             yourOutageIsLabel.textAlignment = .center
             yourOutageIsLabel.text = NSLocalizedString("Your outage is", comment: "")
             
             let reportedLabel = UILabel(frame: CGRect(x: 30, y: 81, width: bigButtonWidth - 60, height: 25))
-            reportedLabel.font = OpenSans.bold.ofSize(22)
+            reportedLabel.font = OpenSans.bold.of(size: 22)
             reportedLabel.textColor = .actionBlue
             reportedLabel.textAlignment = .center
             reportedLabel.text = NSLocalizedString("REPORTED", comment: "")
             
-            let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
-            estRestorationLabel.font = OpenSans.regular.ofSize(12)
-            estRestorationLabel.textColor = .deepGray
-            estRestorationLabel.textAlignment = .center
-            estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
+            let restRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
+            restRestorationLabel.font = OpenSans.regular.of(size: 12)
+            restRestorationLabel.textColor = .deepGray
+            restRestorationLabel.textAlignment = .center
+            restRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
-            timeLabel.font = OpenSans.bold.ofSize(15)
+            timeLabel.font = OpenSans.bold.of(size: 15)
             timeLabel.textColor = .deepGray
             timeLabel.textAlignment = .center
             timeLabel.adjustsFontSizeToFitWidth = true
@@ -233,32 +235,32 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourOutageIsLabel)
             bigButtonView.addSubview(reportedLabel)
-            bigButtonView.addSubview(estRestorationLabel)
+            bigButtonView.addSubview(restRestorationLabel)
             bigButtonView.addSubview(timeLabel)
         } else if currentOutageStatus.activeOutage {
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 11, y: 31, width: 22, height: 28))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_out")
             
             let yourPowerIsLabel = UILabel(frame: CGRect(x: 30, y: 62, width: bigButtonWidth - 60, height: 20))
-            yourPowerIsLabel.font = OpenSans.regular.ofSize(16)
+            yourPowerIsLabel.font = OpenSans.regular.of(size: 16)
             yourPowerIsLabel.textColor = .actionBlue
             yourPowerIsLabel.textAlignment = .center
             yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
             
             let outLabel = UILabel(frame: CGRect(x: 44, y: 82, width: bigButtonWidth - 88, height: 25))
-            outLabel.font = OpenSans.bold.ofSize(22)
+            outLabel.font = OpenSans.bold.of(size: 22)
             outLabel.textColor = .actionBlue
             outLabel.textAlignment = .center
             outLabel.text = NSLocalizedString("OUT", comment: "")
             
-            let estRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
-            estRestorationLabel.font = OpenSans.regular.ofSize(12)
-            estRestorationLabel.textColor = .deepGray
-            estRestorationLabel.textAlignment = .center
-            estRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
+            let restRestorationLabel = UILabel(frame: CGRect(x: 30, y: 117, width: bigButtonWidth - 60, height: 14))
+            restRestorationLabel.font = OpenSans.regular.of(size: 12)
+            restRestorationLabel.textColor = .deepGray
+            restRestorationLabel.textAlignment = .center
+            restRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
             
             let timeLabel = UILabel(frame: CGRect(x: 22, y: 134, width: bigButtonWidth - 44, height: 20))
-            timeLabel.font = OpenSans.bold.ofSize(15)
+            timeLabel.font = OpenSans.bold.of(size: 15)
             timeLabel.textColor = .deepGray
             timeLabel.textAlignment = .center
             timeLabel.adjustsFontSizeToFitWidth = true
@@ -268,7 +270,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourPowerIsLabel)
             bigButtonView.addSubview(outLabel)
-            bigButtonView.addSubview(estRestorationLabel)
+            bigButtonView.addSubview(restRestorationLabel)
             bigButtonView.addSubview(timeLabel)
         } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay {
             let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 14, y: 38, width: bigButtonWidth - 28, height: 120))
@@ -278,7 +280,7 @@ class OutageViewController: AccountPickerViewController {
                     nonPayFinaledTextView.frame = CGRect(x: 14, y: 68, width: bigButtonWidth - 28, height: 84)
                 } else { // accountPaid = false
                     payBillLabel.frame = CGRect(x: 23, y: 150, width: bigButtonWidth - 46, height: 19)
-                    payBillLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
+                    payBillLabel.font = SystemFont.semibold.of(size: 16)
                     payBillLabel.textColor = .actionBlue
                     payBillLabel.textAlignment = .center
                     payBillLabel.text = NSLocalizedString("Pay Bill", comment: "")
@@ -286,7 +288,7 @@ class OutageViewController: AccountPickerViewController {
                 }
             }
             nonPayFinaledTextView.textContainerInset = .zero
-            nonPayFinaledTextView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)
+            nonPayFinaledTextView.font = SystemFont.light.of(size: 14)
             nonPayFinaledTextView.tintColor = .actionBlue // For the phone numbers
             nonPayFinaledTextView.textColor = .middleGray
             nonPayFinaledTextView.textAlignment = .center
@@ -299,13 +301,13 @@ class OutageViewController: AccountPickerViewController {
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
             
             let yourPowerIsLabel = UILabel(frame: CGRect(x: 40, y: 89, width: bigButtonWidth - 80, height: 20))
-            yourPowerIsLabel.font = OpenSans.regular.ofSize(16)
+            yourPowerIsLabel.font = OpenSans.regular.of(size: 16)
             yourPowerIsLabel.textColor = .actionBlue
             yourPowerIsLabel.textAlignment = .center
             yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
             
             let onLabel = UILabel(frame: CGRect(x: 40, y: 109, width: bigButtonWidth - 80, height: 25))
-            onLabel.font = OpenSans.bold.ofSize(22)
+            onLabel.font = OpenSans.bold.of(size: 22)
             onLabel.textColor = .actionBlue
             onLabel.textAlignment = .center
             onLabel.text = NSLocalizedString("ON", comment: "")

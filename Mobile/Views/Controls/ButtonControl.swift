@@ -41,5 +41,11 @@ class ButtonControl: UIControl {
             })
             .addDisposableTo(bag)
     }
+    
+    override var isEnabled: Bool {
+        didSet {
+            alpha = isEnabled ? 1 : 0.33
+        }
+    }
 
 }

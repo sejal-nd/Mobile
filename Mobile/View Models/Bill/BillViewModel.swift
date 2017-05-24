@@ -23,6 +23,7 @@ class BillViewModel {
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let currentAccountDetail = Variable<AccountDetail?>(nil)
     let isFetchingAccountDetail: Driver<Bool>
+    let accountDetailErrorMessage: Driver<String>
     
     required init(accountService: AccountService) {
         self.accountService = accountService
@@ -38,15 +39,22 @@ class BillViewModel {
 			.bind(to: currentAccountDetail)
 			.addDisposableTo(disposeBag)
 		
-        sharedFetchAccountDetail
+        let fetchAccountDetailResult = sharedFetchAccountDetail
             .flatMapLatest { _ in
-                accountService
-                    .fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
-                    .retry(2)
+                accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
+                    .retry(.exponentialDelayed(maxCount: 2, initial: 2.0, multiplier: 1.5))
                     .trackActivity(fetchingAccountDetailTracker)
+                    .materialize()
             }
+            .shareReplay(1)
+            
+        fetchAccountDetailResult.elements()
 			.bind(to: currentAccountDetail)
 			.addDisposableTo(disposeBag)
+        
+        accountDetailErrorMessage = fetchAccountDetailResult.errors()
+            .map { $0.localizedDescription }
+            .asDriver(onErrorJustReturn: "")
     }
 	
 	func fetchAccountDetail(isRefresh: Bool) {
@@ -434,9 +442,9 @@ class BillViewModel {
         let topTextRange = NSMakeRange(0, topText.characters.count)
         let bottomTextRange = NSMakeRange(topText.characters.count + 1, bottomText.characters.count)
         
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.ofSize(16), range: topTextRange)
+        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 16), range: topTextRange)
         mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: topTextRange)
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.ofSize(14), range: bottomTextRange)
+        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 14), range: bottomTextRange)
         mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.successGreenText, range: bottomTextRange)
         
         return mutableText
@@ -446,8 +454,8 @@ class BillViewModel {
         let text = NSLocalizedString("Would you like to enroll in ", comment: "")
         let mutableText = NSMutableAttributedString(string: text + boldText, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
         
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.ofSize(16), range: NSMakeRange(0, text.characters.count))
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.ofSize(16), range: NSMakeRange(text.characters.count, boldText.characters.count))
+        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 16), range: NSMakeRange(0, text.characters.count))
+        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 16), range: NSMakeRange(text.characters.count, boldText.characters.count))
         
         return mutableText
     }
