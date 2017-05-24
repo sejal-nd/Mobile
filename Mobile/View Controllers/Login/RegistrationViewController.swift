@@ -40,7 +40,6 @@ class RegistrationViewController: UIViewController {
         populateHelperLabels()
         
         prepareTextFieldsForInput()
-        
     }
     
     /// Helpers
@@ -52,6 +51,7 @@ class RegistrationViewController: UIViewController {
     func setupNavigationButtons() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
 
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = nextButton
@@ -60,7 +60,11 @@ class RegistrationViewController: UIViewController {
     func populateHelperLabels() {
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
-        identifierDescriptionLabel?.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
+        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        
+        identifierDescriptionLabel?.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN",
+                                                             comment: "")
+        identifierDescriptionLabel?.font = SystemFont.regular.of(textStyle: .subheadline)
     }
     
     func prepareTextFieldsForInput() {
@@ -158,7 +162,7 @@ class RegistrationViewController: UIViewController {
       
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.ofSize(18)
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
@@ -192,18 +196,20 @@ class RegistrationViewController: UIViewController {
         view.endEditing(true)
         
         LoadingView.show()
+        
 //        viewModel.validateAccount(onSuccess: {
 //            LoadingView.hide()
-//            self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
-//        }, onNeedAccountNumber: {
-//            LoadingView.hide()
-//            self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
+//            self.performSegue(withIdentifier: "createUsernamePasswordSegue", sender: self)
 //        }, onError: { (title, message) in
 //            LoadingView.hide()
 //            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 //            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+//            
 //            self.present(alertController, animated: true, completion: nil)
 //        })
+        
+        LoadingView.hide()
+        self.performSegue(withIdentifier: "createUsernamePasswordSegue", sender: self)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -232,11 +238,9 @@ class RegistrationViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         view.endEditing(true)
         
-        if let vc = segue.destination as? BGEAccountNumberViewController {
-            vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
-            vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
-        } else if let vc = segue.destination as? ForgotUsernameResultViewController {
-            //vc.viewModel = viewModel
+        if let vc = segue.destination as? CreateAccountViewController {
+//            vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
+//            vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
         }
     }
 }

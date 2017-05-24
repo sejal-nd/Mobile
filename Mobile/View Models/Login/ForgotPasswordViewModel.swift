@@ -42,5 +42,5 @@ class ForgotPasswordViewModel {
         return username.asObservable().map({ text -> Bool in
             return text.characters.count > 0
         })
-    }
+    }    
 }
