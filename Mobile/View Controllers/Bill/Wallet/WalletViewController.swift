@@ -45,24 +45,30 @@ class WalletViewController: UIViewController {
         
         // Empty state stuff
         choosePaymentAccountLabel.textColor = .blackText
+        choosePaymentAccountLabel.font = OpenSans.regular.of(textStyle: .headline)
         choosePaymentAccountLabel.text = NSLocalizedString("Choose a payment account:", comment: "")
         
         bankButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         bankButton.layer.cornerRadius = 10
         bankButtonLabel.textColor = .blackText
+        bankButtonLabel.font = OpenSans.semibold.of(textStyle: .headline)
         bankButtonLabel.text = NSLocalizedString("Bank Account", comment: "")
         bankFeeLabel.textColor = .deepGray
         bankFeeLabel.text = NSLocalizedString("No fees applied to your payments.", comment: "")
+        bankFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         creditCardButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         creditCardButton.layer.cornerRadius = 10
         creditCardButtonLabel.textColor = .blackText
+        creditCardButtonLabel.font = OpenSans.semibold.of(textStyle: .headline)
         creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
         creditCardFeeLabel.textColor = .deepGray
         creditCardFeeLabel.text = viewModel.emptyStateCreditFeeLabelText
+        creditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         emptyStateFooter.textColor = .blackText
         emptyStateFooter.text = viewModel.footerLabelText
+        emptyStateFooter.font = SystemFont.regular.of(textStyle: .footnote)
         
         // Non-empty state stuff
         tableView.backgroundColor = .primaryColor
@@ -137,6 +143,12 @@ class WalletViewController: UIViewController {
             self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
         }).addDisposableTo(disposeBag)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? AddBankAccountViewController {
+            vc.delegate = self
+        }
+    }
 
 }
 
@@ -179,6 +191,17 @@ extension WalletViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected row \(indexPath.section)")
+    }
+    
+}
+
+extension WalletViewController: AddBankAccountViewControllerDelegate {
+    
+    func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.viewModel.fetchWalletItems.onNext()
+            self.view.makeToast(NSLocalizedString("Your bank account has been saved.", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
     }
     
 }
