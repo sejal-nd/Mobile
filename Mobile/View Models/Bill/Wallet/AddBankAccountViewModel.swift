@@ -28,10 +28,14 @@ class AddBankAccountViewModel {
         self.walletService = walletService
     }
     
-    func saveButtonIsEnabledComEdPECO() -> Observable<Bool> {
-        return Observable.combineLatest(routingNumberIsValid(), accountNumberHasText(), confirmAccountNumberMatches(), nicknameIsValid()) {
-            return $0 && $1 && $2 && $3
-        }
+    func saveButtonIsEnabled() -> Observable<Bool> {
+//        if Environment.sharedInstance.opco == .bge {
+//            
+//        } else {
+            return Observable.combineLatest(routingNumberIsValid(), accountNumberHasText(), confirmAccountNumberMatches(), nicknameIsValid()) {
+                return $0 && $1 && $2 && $3
+            }
+        //}
     }
     
     func routingNumberIsValid() -> Observable<Bool> {
@@ -65,6 +69,12 @@ class AddBankAccountViewModel {
             var trimString = $0.components(separatedBy: CharacterSet.whitespaces).joined(separator: "")
             trimString = trimString.components(separatedBy: CharacterSet.alphanumerics).joined(separator: "")
             return trimString.isEmpty
+        }
+    }
+    
+    func addBankAccount(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            onSuccess()
         }
     }
 

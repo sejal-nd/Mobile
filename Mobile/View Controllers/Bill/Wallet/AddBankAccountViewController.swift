@@ -9,6 +9,10 @@
 import RxSwift
 import RxCocoa
 
+protocol AddBankAccountViewControllerDelegate: class {
+    func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController)
+}
+
 class AddBankAccountViewController: UIViewController {
     
     // Checking/Savings Segmented Control (BGE ONLY)
@@ -21,6 +25,8 @@ class AddBankAccountViewController: UIViewController {
     // One touch pay toggle
     
     let disposeBag = DisposeBag()
+    
+    weak var delegate: AddBankAccountViewControllerDelegate?
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
@@ -50,15 +56,50 @@ class AddBankAccountViewController: UIViewController {
         let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
-        viewModel.saveButtonIsEnabledComEdPECO().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
 
         checkingSavingsSegmentedControl.items = [NSLocalizedString("Checking", comment: ""), NSLocalizedString("Savings", comment: "")]
         
         accountHolderNameTextField.textField.placeholder = NSLocalizedString("Bank Account Holder Name*", comment: "")
         routingNumberTextField.textField.placeholder = NSLocalizedString("Routing Number*", comment: "")
+        routingNumberTextField.textField.delegate = self
+        routingNumberTextField.textField.returnKeyType = .next
+        routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            if !self.viewModel.routingNumber.value.isEmpty {
+                self.viewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
+                    if !valid {
+                        self.routingNumberTextField.setError(NSLocalizedString("Must be 9 digits", comment: ""))
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
+        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.routingNumberTextField.setError(nil)
+        }).addDisposableTo(disposeBag)
+        
         confirmRoutingNumberTextField.textField.placeholder = NSLocalizedString("Confirm Routing Number*", comment: "")
+        confirmRoutingNumberTextField.textField.delegate = self
+        
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
+        accountNumberTextField.textField.delegate = self
+        accountNumberTextField.textField.returnKeyType = .next
+        
         confirmAccountNumberTextField.textField.placeholder = NSLocalizedString("Confirm Account Number*", comment: "")
+        confirmAccountNumberTextField.textField.delegate = self
+        confirmAccountNumberTextField.textField.returnKeyType = .next
+        viewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
+            if !self.viewModel.confirmAccountNumber.value.isEmpty {
+                if matches {
+                    self.confirmAccountNumberTextField.setValidated(true)
+                } else {
+                    self.confirmAccountNumberTextField.setError(NSLocalizedString("Account numbers do not match", comment: ""))
+                }
+            } else {
+                self.confirmAccountNumberTextField.setValidated(false)
+                self.confirmAccountNumberTextField.setError(nil)
+            }
+        }).addDisposableTo(disposeBag)
+        
         nicknameTextField.textField.placeholder = Environment.sharedInstance.opco == .bge ? NSLocalizedString("Nickname*", comment: "") : NSLocalizedString("Nickname (Optional)", comment: "")
 
         oneTouchPayDescriptionLabel.textColor = .blackText
@@ -86,7 +127,17 @@ class AddBankAccountViewController: UIViewController {
     }
     
     func onSavePress() {
-        print("SAVE")
+        view.endEditing(true)
+        
+        LoadingView.show()
+        viewModel.addBankAccount(onSuccess: {
+            LoadingView.hide()
+            self.delegate?.addBankAccountViewControllerDidAddAccount(self)
+            _ = self.navigationController?.popViewController(animated: true)
+        }, onError: { errMessage in
+            LoadingView.hide()
+            print(errMessage)
+        })
     }
     
     func bindViewModel() {
@@ -141,4 +192,29 @@ class AddBankAccountViewController: UIViewController {
         scrollView.scrollIndicatorInsets = .zero
     }
 
+}
+
+extension AddBankAccountViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        if textField == routingNumberTextField.textField || textField == confirmRoutingNumberTextField.textField {
+            return newString.characters.count <= 9
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if Environment.sharedInstance.opco == .bge {
+            
+        } else {
+            if textField == routingNumberTextField.textField {
+                accountNumberTextField.textField.becomeFirstResponder()
+            } else if textField == accountNumberTextField.textField {
+                confirmAccountNumberTextField.textField.becomeFirstResponder()
+            } else if textField == confirmAccountNumberTextField.textField {
+                nicknameTextField.textField.becomeFirstResponder()
+            }
+        }
+        return false
+    }
 }

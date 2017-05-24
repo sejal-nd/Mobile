@@ -682,7 +682,7 @@ to your payments.</string>
                         <rect key="frame" x="0.0" y="64" width="375" height="936"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="VVW-ye-NTR">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVW-ye-NTR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="R6Z-tr-REg">
@@ -731,10 +731,11 @@ to your payments.</string>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="fGp-tZ-IvK" secondAttribute="bottom" id="9kH-y8-vpl"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="AaG-T3-dJM"/>
                                                     <constraint firstItem="ELy-wo-iuq" firstAttribute="trailing" secondItem="fGp-tZ-IvK" secondAttribute="trailing" id="CKQ-7b-cMR"/>
                                                     <constraint firstItem="fGp-tZ-IvK" firstAttribute="leading" secondItem="dg0-Oj-QvG" secondAttribute="leading" id="Hq8-lf-CZZ"/>
                                                     <constraint firstAttribute="trailing" secondItem="fGp-tZ-IvK" secondAttribute="trailing" id="KgX-c6-sCn"/>
-                                                    <constraint firstAttribute="height" priority="999" constant="60" id="lDY-QA-pYV"/>
+                                                    <constraint firstAttribute="height" priority="750" constant="60" id="lDY-QA-pYV"/>
                                                     <constraint firstItem="fGp-tZ-IvK" firstAttribute="top" secondItem="dg0-Oj-QvG" secondAttribute="top" id="oHh-Fd-l0T"/>
                                                     <constraint firstItem="ELy-wo-iuq" firstAttribute="centerY" secondItem="dg0-Oj-QvG" secondAttribute="centerY" id="too-PH-WAx"/>
                                                 </constraints>
@@ -743,7 +744,8 @@ to your payments.</string>
                                                 <rect key="frame" x="29" y="307" width="317" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="999" constant="60" id="6eC-5d-pHj"/>
+                                                    <constraint firstAttribute="height" priority="750" constant="60" id="6eC-5d-pHj"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="OXy-hh-UhC"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TQJ-As-xIu" userLabel="Account Number View">
@@ -780,7 +782,8 @@ to your payments.</string>
                                                 <rect key="frame" x="29" y="487" width="317" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="999" constant="60" id="95T-hg-MWd"/>
+                                                    <constraint firstAttribute="height" priority="750" constant="60" id="95T-hg-MWd"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="kIQ-ve-QCS"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfo-5f-o2i" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">

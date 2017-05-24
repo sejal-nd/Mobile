@@ -133,6 +133,12 @@ class WalletViewController: UIViewController {
             self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
         }).addDisposableTo(disposeBag)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? AddBankAccountViewController {
+            vc.delegate = self
+        }
+    }
 
 }
 
@@ -175,6 +181,17 @@ extension WalletViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected row \(indexPath.section)")
+    }
+    
+}
+
+extension WalletViewController: AddBankAccountViewControllerDelegate {
+    
+    func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.viewModel.fetchWalletItems.onNext()
+            self.view.makeToast(NSLocalizedString("Your bank account has been saved.", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
     }
     
 }
