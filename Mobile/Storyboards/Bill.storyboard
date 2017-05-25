@@ -392,6 +392,9 @@ to your payments.</string>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9k-BJ-o0v">
                                                     <rect key="frame" x="30" y="15" width="315" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="yJw-JL-eQQ"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -399,10 +402,11 @@ to your payments.</string>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="q9k-BJ-o0v" firstAttribute="centerX" secondItem="lOi-Cr-Fgj" secondAttribute="centerX" id="bgz-C2-xmw"/>
                                                 <constraint firstItem="q9k-BJ-o0v" firstAttribute="top" secondItem="lOi-Cr-Fgj" secondAttribute="top" constant="15" id="jfH-OU-Uup"/>
-                                                <constraint firstAttribute="trailing" secondItem="q9k-BJ-o0v" secondAttribute="trailing" constant="30" id="nj0-qz-8xL"/>
+                                                <constraint firstAttribute="trailing" secondItem="q9k-BJ-o0v" secondAttribute="trailing" priority="999" constant="30" id="nj0-qz-8xL"/>
                                                 <constraint firstAttribute="bottom" secondItem="q9k-BJ-o0v" secondAttribute="bottom" id="qGK-vr-mCa"/>
-                                                <constraint firstItem="q9k-BJ-o0v" firstAttribute="leading" secondItem="lOi-Cr-Fgj" secondAttribute="leading" constant="30" id="uRt-uP-OOR"/>
+                                                <constraint firstItem="q9k-BJ-o0v" firstAttribute="leading" secondItem="lOi-Cr-Fgj" secondAttribute="leading" priority="999" constant="30" id="uRt-uP-OOR"/>
                                             </constraints>
                                         </view>
                                         <prototypes>
@@ -516,6 +520,7 @@ to your payments.</string>
                                                                 <constraint firstItem="dGz-6G-bp2" firstAttribute="leading" secondItem="AaL-cJ-LUs" secondAttribute="leading" id="OzP-ir-IGi"/>
                                                                 <constraint firstItem="EfM-bm-Ghz" firstAttribute="top" secondItem="Jbw-qX-tNN" secondAttribute="bottom" id="RAF-6m-zII"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Jbw-qX-tNN" secondAttribute="trailing" id="Ylm-Se-BJi"/>
+                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="b8A-Z6-V72"/>
                                                                 <constraint firstItem="dGz-6G-bp2" firstAttribute="top" secondItem="Jbw-qX-tNN" secondAttribute="bottom" id="cUg-GO-jiJ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="EfM-bm-Ghz" secondAttribute="trailing" id="keq-qw-Wre"/>
                                                                 <constraint firstAttribute="bottom" secondItem="EfM-bm-Ghz" secondAttribute="bottom" id="urV-i3-VSD"/>
@@ -524,9 +529,10 @@ to your payments.</string>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="AaL-cJ-LUs" firstAttribute="centerX" secondItem="3zb-Ek-rx7" secondAttribute="centerX" id="Nzp-r3-ihO"/>
                                                         <constraint firstItem="AaL-cJ-LUs" firstAttribute="top" secondItem="3zb-Ek-rx7" secondAttribute="top" id="aAT-D2-Z56"/>
-                                                        <constraint firstAttribute="trailing" secondItem="AaL-cJ-LUs" secondAttribute="trailing" constant="17" id="bkR-L5-mCf"/>
-                                                        <constraint firstItem="AaL-cJ-LUs" firstAttribute="leading" secondItem="3zb-Ek-rx7" secondAttribute="leading" constant="17" id="mlQ-TH-0Z8"/>
+                                                        <constraint firstAttribute="trailing" secondItem="AaL-cJ-LUs" secondAttribute="trailing" priority="999" constant="17" id="bkR-L5-mCf"/>
+                                                        <constraint firstItem="AaL-cJ-LUs" firstAttribute="leading" secondItem="3zb-Ek-rx7" secondAttribute="leading" priority="999" constant="17" id="mlQ-TH-0Z8"/>
                                                         <constraint firstAttribute="bottom" secondItem="AaL-cJ-LUs" secondAttribute="bottom" id="xZk-BB-e0p"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -617,6 +623,7 @@ to your payments.</string>
                                     <constraint firstItem="SEL-7L-ltE" firstAttribute="leading" secondItem="Z3n-k2-ng8" secondAttribute="leading" id="BQL-H7-9x7"/>
                                     <constraint firstAttribute="bottom" secondItem="sKT-zs-dHH" secondAttribute="bottom" id="DPg-qa-tPM"/>
                                     <constraint firstAttribute="trailing" secondItem="sKT-zs-dHH" secondAttribute="trailing" id="JIa-VO-XI7"/>
+                                    <constraint firstItem="SEL-7L-ltE" firstAttribute="centerX" secondItem="Z3n-k2-ng8" secondAttribute="centerX" id="Q8l-2u-83n"/>
                                     <constraint firstItem="SEL-7L-ltE" firstAttribute="top" secondItem="Z3n-k2-ng8" secondAttribute="top" id="Vzb-bf-oe0"/>
                                     <constraint firstAttribute="trailing" secondItem="SEL-7L-ltE" secondAttribute="trailing" id="dO2-no-egj"/>
                                     <constraint firstItem="sKT-zs-dHH" firstAttribute="top" secondItem="SEL-7L-ltE" secondAttribute="bottom" id="je1-1I-YGI"/>
