@@ -71,9 +71,6 @@
 		54EDD2E01ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
 		54EDD2E11ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
 		54EDD2E21ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
-		82471FBE1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
-		82471FBF1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
-		82471FC01EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
 		826413791EAEAE5E007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
@@ -650,9 +647,6 @@
 		E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
-		E8CA07DA1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
-		E8CA07DB1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
-		E8CA07DC1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */; };
 		E8CA07DD1E9BD0FF00A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
 		E8CA07DE1E9BD10000A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
 		E8CA07DF1E9BD10100A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
@@ -774,7 +768,6 @@
 		54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
 		54EDD2D91ECE236000CAB8A6 /* WalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCWalletService.swift; sourceTree = "<group>"; };
-		82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsPaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillCommercialViewController.swift; sourceTree = "<group>"; };
 		82A18E591EB918C900BE9F21 /* BillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModel.swift; sourceTree = "<group>"; };
@@ -1099,7 +1092,6 @@
 		E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
 		E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAccountNumberViewController.swift; sourceTree = "<group>"; };
-		E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountNumberTooltipViewController.swift; sourceTree = "<group>"; };
 		E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameResultViewController.swift; sourceTree = "<group>"; };
 		E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
 		E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestionViewController.swift; sourceTree = "<group>"; };
@@ -1474,7 +1466,6 @@
 				E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */,
 				E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */,
 				E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */,
-				E8CA07D91E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift */,
 				E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */,
 				E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */,
 				E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */,
@@ -1979,7 +1970,6 @@
 				82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */,
 				E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */,
 				E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */,
-				82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */,
 				82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */,
 				E81CFFEF1EC24978004FDA7E /* ViewBillViewController.swift */,
 				E89548F41EC646A200730022 /* BGEasyViewController.swift */,
@@ -2672,11 +2662,9 @@
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				82A18ECC1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
-				82471FBE1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				E8CA07DD1E9BD0FF00A1D431 /* BGEAccountNumberViewController.swift in Sources */,
-				E8CA07DA1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E840BD441EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
@@ -2797,14 +2785,12 @@
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
-				82471FC01EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */,
 				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* BGEAccountNumberViewController.swift in Sources */,
-				E8CA07DC1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E840BD461EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
@@ -2928,14 +2914,12 @@
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
-				82471FBF1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				54EDD2DB1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				E8CA07DE1E9BD10000A1D431 /* BGEAccountNumberViewController.swift in Sources */,
-				E8CA07DB1E9BCCF800A1D431 /* AccountNumberTooltipViewController.swift in Sources */,
 				E840BD451EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,

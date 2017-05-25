@@ -68,7 +68,6 @@ class ChangePasswordViewController: UIViewController {
         currentPasswordTextField.textField.placeholder = sentFromLogin ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
         currentPasswordTextField.textField.isSecureTextEntry = true
         currentPasswordTextField.textField.returnKeyType = .next
-        currentPasswordTextField.addSubview(eyeballButton)
         currentPasswordTextField.textField.isShowingAccessory = true
         
         newPasswordTextField.textField.placeholder = NSLocalizedString("New Password", comment: "")
