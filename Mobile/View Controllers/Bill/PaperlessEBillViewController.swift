@@ -100,7 +100,6 @@ class PaperlessEBillViewController: UIViewController {
                 description = NSLocalizedString("Eliminate your paper bill and receive an email notification when your bill is ready to view online.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  Your preference will be updated with your next month’s bill.", comment: "")
             }
             let infoModal = InfoModalViewController(title: NSLocalizedString("Paperless eBill", comment: ""), image: #imageLiteral(resourceName: "paperless_modal"), description: description)
-            self.navigationController?.modalPresentationStyle = .formSheet
             self.navigationController?.present(infoModal, animated: true, completion: nil)
         }).addDisposableTo(bag)
     }

@@ -604,8 +604,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="DZp-0Y-Qko" secondAttribute="trailing" priority="999" constant="28" id="27f-x0-lAw"/>
+                            <constraint firstItem="uva-Q7-VQ7" firstAttribute="centerX" secondItem="4RO-DX-ZPx" secondAttribute="centerX" id="6O2-gO-Ter"/>
                             <constraint firstAttribute="trailing" secondItem="uva-Q7-VQ7" secondAttribute="trailing" priority="999" constant="28" id="HRW-eY-0SI"/>
                             <constraint firstItem="DZp-0Y-Qko" firstAttribute="leading" secondItem="4RO-DX-ZPx" secondAttribute="leading" priority="999" constant="28" id="QgL-ih-qAM"/>
+                            <constraint firstItem="DZp-0Y-Qko" firstAttribute="centerX" secondItem="4RO-DX-ZPx" secondAttribute="centerX" id="WH3-jR-HcZ"/>
                             <constraint firstItem="DZp-0Y-Qko" firstAttribute="top" secondItem="uva-Q7-VQ7" secondAttribute="bottom" constant="15" id="bbg-Je-Wxc"/>
                             <constraint firstItem="uva-Q7-VQ7" firstAttribute="leading" secondItem="4RO-DX-ZPx" secondAttribute="leading" priority="999" constant="28" id="k29-Ik-GMb"/>
                             <constraint firstItem="uva-Q7-VQ7" firstAttribute="top" secondItem="GWP-04-89w" secondAttribute="bottom" constant="30" id="nC3-QD-uVm"/>
@@ -1492,6 +1494,6 @@
         <image name="img_logo_white" width="251" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6eI-mv-PAf"/>
+        <segue reference="m8m-Zs-f6g"/>
     </inferredMetricsTieBreakers>
 </document>

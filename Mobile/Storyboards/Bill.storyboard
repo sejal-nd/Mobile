@@ -375,8 +375,8 @@ to your payments.</string>
                                 <constraints>
                                     <constraint firstItem="cMF-lf-Tek" firstAttribute="top" secondItem="Op7-oX-H5y" secondAttribute="top" id="Iig-M0-hPU"/>
                                     <constraint firstItem="cMF-lf-Tek" firstAttribute="centerX" secondItem="Op7-oX-H5y" secondAttribute="centerX" id="RZg-ZY-j6N"/>
-                                    <constraint firstAttribute="trailing" secondItem="cMF-lf-Tek" secondAttribute="trailing" id="Soj-HH-CLg"/>
-                                    <constraint firstItem="cMF-lf-Tek" firstAttribute="leading" secondItem="Op7-oX-H5y" secondAttribute="leading" id="i8m-qP-S0n"/>
+                                    <constraint firstAttribute="trailing" secondItem="cMF-lf-Tek" secondAttribute="trailing" priority="999" id="Soj-HH-CLg"/>
+                                    <constraint firstItem="cMF-lf-Tek" firstAttribute="leading" secondItem="Op7-oX-H5y" secondAttribute="leading" priority="999" id="i8m-qP-S0n"/>
                                     <constraint firstAttribute="bottom" secondItem="cMF-lf-Tek" secondAttribute="bottom" id="lP9-qm-yNh"/>
                                 </constraints>
                             </scrollView>
@@ -960,7 +960,7 @@ to your payments.</string>
                                                                                         <rect key="frame" x="0.0" y="0.0" width="48" height="62.5"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fe-xL-vCG" userLabel="Alert Animation View">
-                                                                                                <rect key="frame" x="12" y="18.5" width="26" height="26"/>
+                                                                                                <rect key="frame" x="12" y="19" width="26" height="26"/>
                                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="width" constant="26" id="hRk-gG-vgB"/>
@@ -1014,7 +1014,7 @@ to your payments.</string>
                                                                                         <rect key="frame" x="0.0" y="0.0" width="337" height="144"/>
                                                                                         <subviews>
                                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gR4-Z3-SoN">
-                                                                                                <rect key="frame" x="68.5" y="37" width="201.5" height="71.5"/>
+                                                                                                <rect key="frame" x="68" y="36.5" width="201.5" height="71.5"/>
                                                                                                 <subviews>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$###.##" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYN-lO-iaJ">
                                                                                                         <rect key="frame" x="27.5" y="0.0" width="147" height="49.5"/>
@@ -1705,7 +1705,7 @@ to your payments.</string>
                                                                                                         <rect key="frame" x="30" y="20.5" width="43" height="49"/>
                                                                                                     </imageView>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="997" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="Would you like to enroll in AutoPay?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7m-1B-WyC">
-                                                                                                        <rect key="frame" x="93" y="20.5" width="207" height="49.5"/>
+                                                                                                        <rect key="frame" x="93" y="21" width="207" height="49.5"/>
                                                                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                                                         <color key="textColor" red="0.1019607843" green="0.090196078430000007" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                         <nil key="highlightedColor"/>

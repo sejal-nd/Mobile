@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InfoModalViewController: UIViewController {
+class InfoModalViewController: DismissableFormSheetViewController {
     
     @IBOutlet weak var navBarView: UIView!
     @IBOutlet weak var xButton: UIButton!
@@ -20,8 +20,11 @@ class InfoModalViewController: UIViewController {
     private var image: UIImage!
     private var infoDescription: String!
     
+    
     init(title: String, image img: UIImage, description: String) {
         super.init(nibName: "InfoModal", bundle: nil)
+        
+        modalPresentationStyle = .formSheet // For iPad
         
         navTitle = title
         image = img
@@ -34,6 +37,8 @@ class InfoModalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         navBarView.translatesAutoresizingMaskIntoConstraints = false
         navBarView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
