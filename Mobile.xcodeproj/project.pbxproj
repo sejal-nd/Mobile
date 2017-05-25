@@ -484,6 +484,10 @@
 		E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */; };
 		E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */; };
 		E81CFFF71EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */; };
+		E81F38131ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */; };
+		E81F38141ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */; };
+		E81F38151ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */; };
+		E81F38161ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */; };
 		E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
 		E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
 		E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
@@ -1029,6 +1033,7 @@
 		E81CFFF81EC3681D004FDA7E /* PECO-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-PROD.entitlements"; sourceTree = "<group>"; };
 		E81CFFF91EC3681D004FDA7E /* ComEd-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-PROD.entitlements"; sourceTree = "<group>"; };
 		E81CFFFA1EC3681D004FDA7E /* BGE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-PROD.entitlements"; sourceTree = "<group>"; };
+		E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCreditCardViewModel.swift; sourceTree = "<group>"; };
 		E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreSplitViewController.swift; sourceTree = "<group>"; };
 		E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBankAccountViewController.swift; sourceTree = "<group>"; };
 		E827D2371ED490A0004DA1D6 /* InfoModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoModal.xib; sourceTree = "<group>"; };
@@ -1958,6 +1963,7 @@
 			children = (
 				E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */,
 				E887C9D31ED4CDDE002433A3 /* AddBankAccountViewModel.swift */,
+				E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -2641,6 +2647,7 @@
 				54AE06991ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
+				E81F38131ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -2740,6 +2747,7 @@
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */,
 				82A18EE51EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
+				E81F38151ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				82A18EE21EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift in Sources */,
@@ -2869,6 +2877,7 @@
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
 				82A18EE41EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
+				E81F38141ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				82A18EE11EBA684F00BE9F21 /* BudgetBillingTableViewCell.swift in Sources */,
@@ -2989,6 +2998,7 @@
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
 				B574BAF41E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
+				E81F38161ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
 				54EDD2DD1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,

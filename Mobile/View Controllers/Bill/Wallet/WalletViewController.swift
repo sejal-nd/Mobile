@@ -147,6 +147,8 @@ class WalletViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AddBankAccountViewController {
             vc.delegate = self
+        } else if let vc = segue.destination as? AddCreditCardViewController {
+            vc.delegate = self
         }
     }
 
@@ -204,4 +206,14 @@ extension WalletViewController: AddBankAccountViewControllerDelegate {
         })
     }
     
+}
+
+extension WalletViewController: AddCreditCardViewControllerDelegate {
+    
+    func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.viewModel.fetchWalletItems.onNext()
+            self.view.makeToast(NSLocalizedString("Your card has been saved.", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
 }
