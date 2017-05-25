@@ -10,10 +10,11 @@ import UIKit
 
 class InfoModalViewController: UIViewController {
     
-    @IBOutlet weak var navBar: UINavigationBar!
-    @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var navBarView: UIView!
+    @IBOutlet weak var xButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     private var navTitle: String!
     private var image: UIImage!
@@ -34,15 +35,20 @@ class InfoModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        navBarView.translatesAutoresizingMaskIntoConstraints = false
+        navBarView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
         
-        navItem.title = navTitle
+        xButton.tintColor = .actionBlue
+        
+        titleLabel.textColor = .blackText
+        titleLabel.text = navTitle
         
         imageView.image = image
 
-        label.textColor = .blackText
-        label.setLineHeight(lineHeight: 25)
-        label.text = infoDescription
+        descriptionLabel.font = OpenSans.regular.of(textStyle: .body)
+        descriptionLabel.textColor = .deepGray
+        descriptionLabel.setLineHeight(lineHeight: 25)
+        descriptionLabel.text = infoDescription
     }
     
     @IBAction func xAction(_ sender: Any) {

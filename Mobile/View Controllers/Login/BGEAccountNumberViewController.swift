@@ -68,6 +68,12 @@ class BGEAccountNumberViewController: UIViewController {
         })
     }
     
+    @IBAction func onAccountNumberTooltipPress() {
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Where to Look for Your Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: NSLocalizedString("Your Customer Account Number can be found in the lower right portion of your bill. Please enter 10-digits including leading zeros.", comment: ""))
+        self.navigationController?.modalPresentationStyle = .formSheet
+        self.navigationController?.present(infoModal, animated: true, completion: nil)
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
