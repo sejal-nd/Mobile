@@ -1636,6 +1636,7 @@
         <image name="img_logo_white" width="251" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="m8m-Zs-f6g"/>
         <segue reference="6eI-mv-PAf"/>
         <segue reference="5IE-JS-td4"/>
     </inferredMetricsTieBreakers>
