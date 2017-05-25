@@ -36,6 +36,8 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var tableViewFooter: UILabel!
     
     let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService())
+    
+    var selectedWalletItem: WalletItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,6 +145,8 @@ class WalletViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AddBankAccountViewController {
             vc.delegate = self
+        } else if let vc = segue.destination as? EditBankAccountViewController {
+            vc.selectedWalletItem = self.selectedWalletItem
         }
     }
 
@@ -187,6 +191,10 @@ extension WalletViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected row \(indexPath.section)")
+
+        selectedWalletItem = viewModel.walletItems.value![indexPath.section]
+        
+        self.performSegue(withIdentifier: "editWalletItemSegue", sender: self)
     }
     
 }
