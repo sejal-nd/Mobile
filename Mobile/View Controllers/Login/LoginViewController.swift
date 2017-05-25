@@ -64,7 +64,6 @@ class LoginViewController: UIViewController {
         passwordTextField.textField.placeholder = NSLocalizedString("Password", comment: "")
         passwordTextField.textField.isSecureTextEntry = true
         passwordTextField.textField.returnKeyType = .done
-        passwordTextField.addSubview(eyeballButton)
         passwordTextField.textField.isShowingAccessory = true
     
         // Two-way data binding for the username/password fields
