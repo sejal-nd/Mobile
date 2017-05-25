@@ -938,6 +938,13 @@ to your payments.</string>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="lRv-qq-Hd8"/>
                                                         </constraints>
                                                     </view>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3VY-HW-Xhy">
+                                                        <rect key="frame" x="17" y="25" width="30" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="30" id="2Vd-jP-UA0"/>
+                                                            <constraint firstAttribute="height" constant="25" id="9JJ-aY-CaS"/>
+                                                        </constraints>
+                                                    </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9U-Su-JYP">
                                                         <rect key="frame" x="272" y="8" width="1" height="44"/>
                                                         <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
@@ -961,10 +968,12 @@ to your payments.</string>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="3VY-HW-Xhy" firstAttribute="top" secondItem="l7e-xT-FXh" secondAttribute="top" constant="25" id="07d-9z-v7l"/>
                                                     <constraint firstItem="ea0-s1-fhF" firstAttribute="trailing" secondItem="fnl-Ob-c2L" secondAttribute="trailing" id="DHC-sa-i2U"/>
                                                     <constraint firstItem="ea0-s1-fhF" firstAttribute="top" secondItem="fnl-Ob-c2L" secondAttribute="top" constant="8" id="JC3-N8-Zb4"/>
                                                     <constraint firstItem="e9U-Su-JYP" firstAttribute="centerY" secondItem="ea0-s1-fhF" secondAttribute="centerY" id="M0F-5V-Xc1"/>
                                                     <constraint firstItem="fnl-Ob-c2L" firstAttribute="leading" secondItem="l7e-xT-FXh" secondAttribute="leading" id="MlZ-TZ-ixD"/>
+                                                    <constraint firstItem="3VY-HW-Xhy" firstAttribute="leading" secondItem="l7e-xT-FXh" secondAttribute="leading" constant="17" id="ROc-gF-qh6"/>
                                                     <constraint firstAttribute="bottom" secondItem="fnl-Ob-c2L" secondAttribute="bottom" id="Vkf-Y6-06X"/>
                                                     <constraint firstItem="ea0-s1-fhF" firstAttribute="leading" secondItem="e9U-Su-JYP" secondAttribute="trailing" id="iQP-Iy-tB2"/>
                                                     <constraint firstAttribute="trailing" secondItem="fnl-Ob-c2L" secondAttribute="trailing" id="pZT-6A-2fT"/>
@@ -1146,6 +1155,7 @@ to your payments.</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
+                        <outlet property="cardLogoImageView" destination="3VY-HW-Xhy" id="Auy-Pr-hXG"/>
                         <outlet property="cardNumberTextField" destination="fnl-Ob-c2L" id="pzn-z8-G6P"/>
                         <outlet property="cvvTextField" destination="33g-Me-ln4" id="5cs-N7-Nn5"/>
                         <outlet property="cvvTooltipButton" destination="AE1-yH-f9B" id="PYX-A6-Dyw"/>

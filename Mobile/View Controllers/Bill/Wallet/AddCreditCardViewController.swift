@@ -29,6 +29,7 @@ class AddCreditCardViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var nameOnCardTextField: FloatLabelTextField!
     @IBOutlet weak var cardNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var cardLogoImageView: UIImageView!
     @IBOutlet weak var expDateLabel: UILabel!
     @IBOutlet weak var expMonthTextField: FloatLabelTextField!
     @IBOutlet weak var expYearTextField: FloatLabelTextField!
@@ -151,6 +152,16 @@ class AddCreditCardViewController: UIViewController {
     }
     
     func bindValidation() {
+        viewModel.cardNumber.asObservable().subscribe(onNext: { _ in
+            if let cardIcon = self.viewModel.getCardIcon() {
+                self.cardLogoImageView.image = cardIcon
+                self.cardNumberTextField.textField.isShowingLeftAccessory = true
+            } else {
+                self.cardLogoImageView.image = nil
+                self.cardNumberTextField.textField.isShowingLeftAccessory = false
+            }
+        }).addDisposableTo(disposeBag)
+        
         expMonthTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.expMonth.value.isEmpty {
                 self.viewModel.expMonthIsValidMonth().single().subscribe(onNext: { valid in
