@@ -91,6 +91,17 @@ class PaperlessEBillViewController: UIViewController {
         Driver.combineLatest(viewModel.accountsToEnroll.asDriver(), viewModel.accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
             .drive(submitButton.rx.isEnabled)
             .addDisposableTo(bag)
+        
+        whatIsButton.rx.tap.asDriver().drive(onNext: {
+            let description: String
+            if Environment.sharedInstance.opco == .bge {
+                description = NSLocalizedString("Eliminate your paper bill.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  You will receive bill ready email notifications regardless of preference.  Your preference will be updated with your next month’s bill.", comment: "")
+            } else {
+                description = NSLocalizedString("Eliminate your paper bill and receive an email notification when your bill is ready to view online.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  Your preference will be updated with your next month’s bill.", comment: "")
+            }
+            let infoModal = InfoModalViewController(title: NSLocalizedString("Paperless eBill", comment: ""), image: #imageLiteral(resourceName: "paperless_modal"), description: description)
+            self.navigationController?.present(infoModal, animated: true, completion: nil)
+        }).addDisposableTo(bag)
     }
     
     func colorAndShadowSetup() {
