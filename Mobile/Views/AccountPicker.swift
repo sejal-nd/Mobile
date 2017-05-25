@@ -209,7 +209,12 @@ class AccountPicker: UIView {
             vc.delegate = self
             vc.accounts = AccountsStore.sharedInstance.accounts
             if let parentVc = parentViewController {
-                parentVc.navigationController?.pushViewController(vc, animated: true)
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    vc.modalPresentationStyle = .formSheet
+                    parentVc.present(vc, animated: true, completion: nil)
+                } else {
+                    parentVc.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         }
     }

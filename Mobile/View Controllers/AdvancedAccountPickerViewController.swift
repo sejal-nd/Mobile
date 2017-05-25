@@ -12,7 +12,7 @@ protocol AdvancedAccountPickerViewControllerDelegate: class {
     func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account)
 }
 
-class AdvancedAccountPickerViewController: UIViewController {
+class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
     
     weak var delegate: AdvancedAccountPickerViewControllerDelegate?
 
@@ -69,7 +69,11 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.advancedAccountPickerViewController(self, didSelectAccount: accounts[indexPath.row])
-        self.navigationController?.popViewController(animated: true)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            dismiss(animated: true, completion: nil)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
 }
