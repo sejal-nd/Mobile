@@ -339,11 +339,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
     
     func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            var toastStyle = ToastManager.shared.style
-            toastStyle.verticalPadding = 10
-            toastStyle.horizontalPadding = 44
-            toastStyle.cornerRadius = 30
-            self.view.makeToast(NSLocalizedString("An email has been sent with a\ntemporary password", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50), style: toastStyle)
+            self.view.makeToast(NSLocalizedString("Temporary password sent to your email.", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50))
         })
     }
 }

@@ -117,9 +117,13 @@ class WalletTableViewCell: UITableViewCell {
                         accountImageView.image = #imageLiteral(resourceName: "ic_visa")
                     case .mastercard:
                         accountImageView.image = #imageLiteral(resourceName: "ic_mastercard")
-                    default:
-                        accountImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
+                    case .discover:
+                        accountImageView.image = #imageLiteral(resourceName: "ic_discover")
+                    case .americanexpress:
+                        accountImageView.image = #imageLiteral(resourceName: "ic_amex")
                     }
+                } else {
+                    accountImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
                 }
             } else if walletItem.paymentCategoryType == .check {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")

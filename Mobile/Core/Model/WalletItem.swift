@@ -48,10 +48,10 @@ enum PaymentCategoryType: String {
 
 // Comed/PECO
 enum PaymentMethodType: String {
-    case ach = "ACH"
     case visa = "VISA"
     case mastercard = "MASTERCARD"
     case americanexpress = "AMERICANEXPRESS"
+    case discover = "DISCOVER"
 }
 
 // BGE
