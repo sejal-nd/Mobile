@@ -23,11 +23,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var keepMeSignedInSwitch: Switch!
     @IBOutlet weak var keepMeSignedInLabel: UILabel!
     @IBOutlet weak var signInButton: PrimaryButton!
-    @IBOutlet weak var forgotLabel: UILabel!
     @IBOutlet weak var forgotUsernameButton: UIButton!
-    @IBOutlet weak var orLabel: UILabel!
     @IBOutlet weak var forgotPasswordButton: UIButton!
-    @IBOutlet weak var questionMarkLabel: UILabel!
     @IBOutlet weak var eyeballButton: UIButton!
     @IBOutlet weak var touchIDImage: UIImageView!
     @IBOutlet weak var touchIDLabel: UILabel!
@@ -111,12 +108,6 @@ class LoginViewController: UIViewController {
 //                wrap.removeFromSuperview()
 //            }
 //        }).addDisposableTo(disposeBag)
-        
-        forgotLabel.font = SystemFont.semibold.of(textStyle: .title1)
-        forgotUsernameButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
-        orLabel.font = SystemFont.semibold.of(textStyle: .title1)
-        forgotPasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
-        questionMarkLabel.font = SystemFont.semibold.of(textStyle: .title1)
         
         forgotUsernameButton.tintColor = .actionBlue
         forgotPasswordButton.tintColor = .actionBlue

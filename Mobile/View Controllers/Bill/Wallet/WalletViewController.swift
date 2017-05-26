@@ -78,12 +78,18 @@ class WalletViewController: UIViewController {
         addPaymentAccountBottomBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         addPaymentAccountLabel.textColor = .deepGray
         addPaymentAccountLabel.text = NSLocalizedString("Add Payment Account", comment: "")
+        addPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
         miniCreditCardButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniCreditCardButton.layer.cornerRadius = 8
+        miniCreditCardButton.isAccessibilityElement = true
+        miniCreditCardButton.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
         miniBankButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniBankButton.layer.cornerRadius = 8
+        miniBankButton.isAccessibilityElement = true
+        miniBankButton.accessibilityLabel = NSLocalizedString("Bank account", comment: "")
         
         tableViewFooter.text = viewModel.footerLabelText
+        tableViewFooter.font = SystemFont.regular.of(textStyle: .footnote)
         
         emptyStateScrollView.isHidden = true
         nonEmptyStateView.isHidden = true

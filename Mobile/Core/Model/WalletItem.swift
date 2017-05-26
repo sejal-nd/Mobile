@@ -34,10 +34,21 @@ import Mapper
  
  */
 
-// All
 enum WalletItemStatusType: String {
+    case suspended = "Suspended"
+    case expired = "Expired"
     case registered = "Registered"
     case validated = "Validated"
+    case deleted = "Deleted"
+}
+
+enum WalletItemStatusTypeBGE: String {
+    case pndActive = "pnd_active"
+    case pndWait = "pnd_wait"
+    case active = "active"
+    case cancel = "cancel"
+    case bad_active = "bad_active"
+    case deleted = "deleted"
 }
 
 // Comed/PECO
@@ -67,6 +78,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
     let walletItemStatusType: WalletItemStatusType?
+    let walletItemStatusTypeBGE: WalletItemStatusTypeBGE?
     let paymentCategoryType: PaymentCategoryType?
     let paymentMethodType: PaymentMethodType?
     
@@ -90,7 +102,13 @@ struct WalletItem: Mappable, Equatable, Hashable {
             }
         }
         
-        walletItemStatusType = map.optionalFrom("walletItemStatusType")
+        if Environment.sharedInstance.opco == .bge {
+            walletItemStatusTypeBGE = map.optionalFrom("walletItemStatusType")
+            walletItemStatusType = nil
+        } else {
+            walletItemStatusTypeBGE = nil
+            walletItemStatusType = map.optionalFrom("walletItemStatusType")
+        }
         
         // Comed/PECO
         paymentCategoryType = map.optionalFrom("paymentCategoryType")
