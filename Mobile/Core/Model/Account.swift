@@ -126,9 +126,15 @@ struct AccountDetail: Mappable {
 struct CustomerInfo: Mappable {
     
     let emailAddress: String?
+    let number: String?
+    let firstName: String?
+    let nameCompressed: String?
     
     init(map: Mapper) throws {
         emailAddress = map.optionalFrom("emailAddress")
+        number = map.optionalFrom("number")
+        firstName = map.optionalFrom("firstName")
+        nameCompressed = map.optionalFrom("nameCompressed")
     }
 }
 

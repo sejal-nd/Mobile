@@ -321,6 +321,18 @@
 		B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
+		B56DD4981ED84E6000F0198B /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
+		B56DD4991ED84E6000F0198B /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
+		B56DD49A1ED84E6000F0198B /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
+		B56DD49B1ED84E6000F0198B /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
+		B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
+		B56DD49E1ED87AD800F0198B /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
+		B56DD49F1ED87AD800F0198B /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
+		B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
+		B56DD4A21ED87AE200F0198B /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4A11ED87AE200F0198B /* CreditCard.swift */; };
+		B56DD4A31ED87AE200F0198B /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4A11ED87AE200F0198B /* CreditCard.swift */; };
+		B56DD4A41ED87AE200F0198B /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4A11ED87AE200F0198B /* CreditCard.swift */; };
+		B56DD4A51ED87AE200F0198B /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4A11ED87AE200F0198B /* CreditCard.swift */; };
 		B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
 		B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
 		B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
@@ -948,6 +960,9 @@
 		B557363D1E6740C9003B9369 /* VersionInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = VersionInfo.plist; sourceTree = "<group>"; };
 		B55736441E6742A6003B9369 /* OMC.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OMC.plist; sourceTree = "<group>"; };
 		B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
+		B56DD4971ED84E6000F0198B /* FiservApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservApi.swift; sourceTree = "<group>"; };
+		B56DD49C1ED87AD800F0198B /* BankAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
+		B56DD4A11ED87AE200F0198B /* CreditCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
 		B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileStatus.swift; sourceTree = "<group>"; };
 		B574BACE1E7360F4001E8A44 /* ErrorMessages.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = ErrorMessages.strings; sourceTree = "<group>"; };
 		B574BAD31E736596001E8A44 /* Macros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Macros.swift; sourceTree = "<group>"; };
@@ -1719,6 +1734,14 @@
 			path = SyncStore.momd;
 			sourceTree = "<group>";
 		};
+		B56DD4961ED84E2400F0198B /* Fiserv */ = {
+			isa = PBXGroup;
+			children = (
+				B56DD4971ED84E6000F0198B /* FiservApi.swift */,
+			);
+			path = Fiserv;
+			sourceTree = "<group>";
+		};
 		B58B5AB81E4E28740051FD5F = {
 			isa = PBXGroup;
 			children = (
@@ -1842,6 +1865,7 @@
 		B5AC06E41E5269D700BBA4ED /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				B56DD4961ED84E2400F0198B /* Fiserv */,
 				B54846921E6F4FD7008CE1B1 /* Mock */,
 				E801BAD31E8C436C00550F99 /* OMC */,
 				B5389EA11E53D8640028AF89 /* Parsing */,
@@ -1870,6 +1894,8 @@
 				E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */,
 				E840BD3E1EB3CAA100812DD0 /* BudgetBillingInfo.swift */,
 				54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */,
+				B56DD49C1ED87AD800F0198B /* BankAccount.swift */,
+				B56DD4A11ED87AE200F0198B /* CreditCard.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2685,6 +2711,7 @@
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
+				B56DD4981ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82A18ECC1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
@@ -2697,9 +2724,11 @@
 				82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
+				B56DD4A21ED87AE200F0198B /* CreditCard.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
+				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
@@ -2749,6 +2778,7 @@
 				E827D2331ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAC1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
+				B56DD49A1ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
@@ -2773,6 +2803,7 @@
 				82A18EA31EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				E80D2E191E721668002626C9 /* MaskedString.swift in Sources */,
 				E8D340981EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
+				B56DD49F1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */,
 				82A18EC61EBA676700BE9F21 /* Switch.swift in Sources */,
 				82A18EDC1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
@@ -2864,6 +2895,7 @@
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				82A18E9D1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
+				B56DD4A41ED87AE200F0198B /* CreditCard.swift in Sources */,
 				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
@@ -2882,6 +2914,7 @@
 				E827D2321ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAB1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
+				B56DD4991ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
@@ -2906,6 +2939,7 @@
 				82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				E80D2E181E721668002626C9 /* MaskedString.swift in Sources */,
 				E8D340971EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
+				B56DD49E1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */,
 				82A18EC51EBA676700BE9F21 /* Switch.swift in Sources */,
 				82A18EDB1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
@@ -2997,6 +3031,7 @@
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				82A18E9C1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
+				B56DD4A31ED87AE200F0198B /* CreditCard.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
@@ -3037,6 +3072,7 @@
 				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
+				B56DD4A51ED87AE200F0198B /* CreditCard.swift in Sources */,
 				E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
@@ -3059,6 +3095,7 @@
 				E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */,
 				E82FA1371EA541D100C2DABC /* ForgotPasswordViewModelTests.swift in Sources */,
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,
+				B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
@@ -3069,6 +3106,7 @@
 				E887C9D71ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
+				B56DD49B1ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82D5994E1EC36B5500DDB380 /* Currency.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
