@@ -91,6 +91,26 @@ struct FiservApi {
                                     "LastName" : lastName,
                                     "SecurityCode" : securityCode,
                                     "ZipCode" : postalCode] as [String : Any]
+        
+        do {
+            let jsonData: NSData = try JSONSerialization.data(withJSONObject: params) as NSData
+            
+            let payload = String.init(data: jsonData as Data, encoding: String.Encoding.utf8)?.replacingOccurrences(of: "\\", with: "")
+            
+            let content = "action=OD_InsertWalletItem&payload=" + payload!
+            let encodedContent = content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+            
+            dLog(message: "\n")
+            dLog(message: payload ?? "")
+            dLog(message: "\n")
+            
+            let encodedBody = encodedContent.data(using:String.Encoding.utf8, allowLossyConversion: false)
+            post(encodedBody: encodedBody!, completion: completion)
+            
+        }catch let err as NSError {
+            dLog(message: err.localizedDescription)
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+        }
     }
     
     func createBaseParameters(token: String, customerNumber: String, oneTimeUse: Bool) -> [String:Any] {
