@@ -12,6 +12,10 @@ import RxCocoa
 
 class ButtonControl: UIControl {
     
+    var shouldFadeSubviews = true
+    
+    var backgroundColorOnPress = UIColor.clear
+
     let bag = DisposeBag()
     
     override init(frame: CGRect) {
@@ -27,17 +31,18 @@ class ButtonControl: UIControl {
     func commonInit() {
         let normalStateColor = backgroundColor ?? .clear
         
-        let selectedColor = rx.controlEvent(.touchDown).asDriver()
-            .map { UIColor.softGray }
+        let selected = rx.controlEvent(.touchDown).asDriver()
+            .map { true }
         
-        let deselectedColor = Driver.merge(rx.controlEvent(.touchUpInside).asDriver(),
+        let deselected = Driver.merge(rx.controlEvent(.touchUpInside).asDriver(),
                                            rx.controlEvent(.touchUpOutside).asDriver(),
                                            rx.controlEvent(.touchCancel).asDriver())
-            .map { normalStateColor }
+            .map { false }
         
-        Driver.merge(selectedColor, deselectedColor)
-            .drive(onNext: { [weak self] color in
-                self?.backgroundColor = color
+        Driver.merge(selected, deselected)
+            .drive(onNext: { [weak self] selected in
+                self?.backgroundColor = selected ? self?.backgroundColorOnPress: normalStateColor
+                self?.fadeSubviews(fadeAmount: selected ? 0.5: 1, animationDuration: 0.0)
             })
             .addDisposableTo(bag)
     }
@@ -48,4 +53,20 @@ class ButtonControl: UIControl {
         }
     }
 
+    
+}
+
+extension UIView {
+    func fadeSubviews(fadeAmount amount: CGFloat, animationDuration: TimeInterval, excludedViews: [UIView] = [UIView]()) {
+        let subviews = self.subviews + self.subviews.flatMap { $0.subviews }
+        UIView.animate(withDuration: animationDuration, animations: {
+            subviews.filter { !excludedViews.contains($0) }.forEach { subview in
+                if !(subview is UIStackView) {
+                    subview.alpha = amount
+                } else {
+                    subview.fadeSubviews(fadeAmount: amount, animationDuration: animationDuration)
+                }
+            }
+        })
+    }
 }

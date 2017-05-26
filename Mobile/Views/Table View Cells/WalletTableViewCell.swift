@@ -42,14 +42,18 @@ class WalletTableViewCell: UITableViewCell {
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
         accountNumberLabel.textColor = .blackText
+        accountNumberLabel.font = OpenSans.regular.of(textStyle: .title1)
         oneTouchPayLabel.textColor = .blackText
+        oneTouchPayLabel.font = OpenSans.regular.of(textStyle: .footnote)
         nicknameLabel.textColor = .blackText
+        nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         bottomBarLabel.textColor = .blackText
+        bottomBarLabel.font = OpenSans.regular.of(textStyle: .footnote)
     }
         
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
@@ -117,9 +121,13 @@ class WalletTableViewCell: UITableViewCell {
                         accountImageView.image = #imageLiteral(resourceName: "ic_visa")
                     case .mastercard:
                         accountImageView.image = #imageLiteral(resourceName: "ic_mastercard")
-                    default:
-                        accountImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
+                    case .discover:
+                        accountImageView.image = #imageLiteral(resourceName: "ic_discover")
+                    case .americanexpress:
+                        accountImageView.image = #imageLiteral(resourceName: "ic_amex")
                     }
+                } else {
+                    accountImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
                 }
             } else if walletItem.paymentCategoryType == .check {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
