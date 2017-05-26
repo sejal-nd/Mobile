@@ -147,6 +147,7 @@ class WalletViewController: UIViewController {
             vc.delegate = self
         } else if let vc = segue.destination as? EditBankAccountViewController {
             vc.selectedWalletItem = self.selectedWalletItem
+            vc.delegate = self
         }
     }
 
@@ -199,12 +200,19 @@ extension WalletViewController: UITableViewDataSource {
     
 }
 
-extension WalletViewController: AddBankAccountViewControllerDelegate {
+extension WalletViewController: AddBankAccountViewControllerDelegate, EditBankAccountViewControllerDelegate {
     
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.viewModel.fetchWalletItems.onNext()
             self.view.makeToast(NSLocalizedString("Your bank account has been saved.", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
+    
+    func editBankAccountViewControllerDidAddAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.viewModel.fetchWalletItems.onNext()
+            self.view.makeToast(NSLocalizedString(message, comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
     

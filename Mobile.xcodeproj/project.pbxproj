@@ -51,6 +51,10 @@
 		22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
 		22EBDCCE1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
 		22EBDCCF1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
+		548288DF1ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
+		548288E01ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
+		548288E11ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
+		548288E21ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
 		54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06931ECF7809004A1FDA /* RegistrationService.swift */; };
 		54AE06951ECF7809004A1FDA /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06931ECF7809004A1FDA /* RegistrationService.swift */; };
 		54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06931ECF7809004A1FDA /* RegistrationService.swift */; };
@@ -80,9 +84,6 @@
 		54EDD2E01ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
 		54EDD2E11ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
 		54EDD2E21ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
-		82471FBE1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
-		82471FBF1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
-		82471FC01EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
 		826413791EAEAE5E007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
@@ -745,6 +746,7 @@
 		087630E21E72F5D000FA7020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewModel.swift; sourceTree = "<group>"; };
 		54AE06931ECF7809004A1FDA /* RegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCRegistrationService.swift; sourceTree = "<group>"; };
 		54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -752,7 +754,6 @@
 		54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
 		54EDD2D91ECE236000CAB8A6 /* WalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCWalletService.swift; sourceTree = "<group>"; };
-		82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsPaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillCommercialViewController.swift; sourceTree = "<group>"; };
 		82A18E591EB918C900BE9F21 /* BillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModel.swift; sourceTree = "<group>"; };
@@ -1897,6 +1898,7 @@
 			children = (
 				E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */,
 				E887C9D31ED4CDDE002433A3 /* AddBankAccountViewModel.swift */,
+				548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -2624,6 +2626,7 @@
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
+				548288DF1ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846871E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
@@ -2678,6 +2681,7 @@
 				82A18E641EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E8CA07F11E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
+				548288E11ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				82A18EDF1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
@@ -2807,6 +2811,7 @@
 				82A18E631EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E840BD3B1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E8CA07F01E9D60BF00A1D431 /* SecurityQuestionViewController.swift in Sources */,
+				548288E01ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
 				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				82A18EDE1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
@@ -2934,6 +2939,7 @@
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
 				E8D340941EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				548288E21ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
 				54AE06BE1ED72808004A1FDA /* EditBankAccountViewController.swift in Sources */,
 				E88ECFF71E8ED6DB00A570D0 /* OMCOutageService.swift in Sources */,
 				E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */,

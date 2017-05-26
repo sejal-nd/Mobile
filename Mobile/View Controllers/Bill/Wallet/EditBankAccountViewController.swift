@@ -7,39 +7,125 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
+protocol EditBankAccountViewControllerDelegate: class {
+    func editBankAccountViewControllerDidAddAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String)
+}
 
 class EditBankAccountViewController: UIViewController {
     
+    let disposeBag = DisposeBag()
+    
+    weak var delegate: EditBankAccountViewControllerDelegate?
+    
     var selectedWalletItem: WalletItem?
 
-    @IBOutlet weak var walletItemDetailsView: UIView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var innerContentView: UIView!
+    @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var bottomBarView: UIView!
+    
     @IBOutlet weak var bankImageView: UIImageView!
     @IBOutlet weak var accountIDLabel: UILabel!
-    @IBOutlet weak var oneTouchPayConfirmationLabel: UILabel!
+
+    @IBOutlet weak var oneTouchPayView: UIView!
+    @IBOutlet weak var oneTouchPayLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
     @IBOutlet weak var oneTouchPaySwitch: Switch!
     
-    @IBOutlet weak var deleteAccountLabel: UILabel!
-    @IBOutlet weak var deleteAccountButton: UIButton!
+    @IBOutlet weak var deleteAccountButton: ButtonControl!
+    @IBOutlet weak var deleteBankAccountLabel: UILabel!
     
     @IBOutlet weak var walletItemBGView: UIView!
+    
+    var isOneTouch = false
+
+    var gradientLayer = CAGradientLayer()
+    
+    var viewModel = EditBankAccountViewModel(walletService: ServiceFactory.createWalletService())
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        contentView.backgroundColor = .clear
+        
         bindWalletItemToViewElements()
         
-        //walletItemBGView.backgroundColor = UIColor.primaryColor
+        buildGradientAndBackgrounds()
         
         title = NSLocalizedString("Edit Bank Account", comment: "")
         
+		buildNavigationButtons()
+        
+        deleteBankAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
+        deleteBankAccountLabel.textColor = UIColor(colorLiteralRed:0/255.0, green: 98/255.0, blue: 154/255.0, alpha: 1)
+    }
+    
+    func buildGradientAndBackgrounds() {
+        walletItemBGView.backgroundColor = UIColor.primaryColor
+        
+        innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        innerContentView.layer.cornerRadius = 5
+        
+        gradientView.layer.cornerRadius = 5
+        gradientLayer.frame = gradientView.bounds
+        gradientLayer.colors = [
+            UIColor.white.cgColor,
+            UIColor(red: 238/255, green: 242/255, blue: 248/255, alpha: 1).cgColor
+        ]
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
+        
+        gradientView.layer.masksToBounds = true
+
+        accountIDLabel.textColor = .blackText
+        oneTouchPayLabel.textColor = .blackText
+        nicknameLabel.textColor = .blackText
+        
+        bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        
+        bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        
+        convenienceFeeLabel.textColor = .blackText
+    }
+    
+    func buildNavigationButtons() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
-        deleteAccountButton.setImage(imageFrom(systemItem: .trash), for: .normal) // UIBarButtonSystemItemTrash, UIControlStateNormal
+        contentView.layoutIfNeeded() // Needed for frames to be correct
+        
+        // Round only the top corners
+        gradientLayer.frame = gradientView.frame
+        
+        let gradientPath = UIBezierPath(roundedRect:gradientLayer.bounds,
+                                        byRoundingCorners:[.topLeft, .topRight],
+                                        cornerRadii: CGSize(width: 5, height:  5))
+        
+        let gradientMaskLayer = CAShapeLayer()
+
+        gradientMaskLayer.path = gradientPath.cgPath
+        gradientLayer.mask = gradientMaskLayer
+        
+        // Round only the bottom corners
+        let bottomBarPath = UIBezierPath(roundedRect:bottomBarView.bounds,
+                                         byRoundingCorners:[.bottomLeft, .bottomRight],
+                                         cornerRadii: CGSize(width: 5, height:  5))
+        
+        let bottomBarMaskLayer = CAShapeLayer()
+        bottomBarMaskLayer.path = bottomBarPath.cgPath
+        bottomBarView.layer.mask = bottomBarMaskLayer
+        
+        gradientView.layer.masksToBounds = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -51,8 +137,11 @@ class EditBankAccountViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    ///
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////
     func bindWalletItemToViewElements() {
+        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.isOneTouch).addDisposableTo(disposeBag)
+
         if let walletItem = selectedWalletItem {
             // Nickname
             let opco = Environment.sharedInstance.opco
@@ -115,10 +204,19 @@ class EditBankAccountViewController: UIViewController {
         }
         
         // TODO: Make this work
-        oneTouchPayConfirmationLabel.isHidden = true
+        oneTouchPayView.isHidden = !isOneTouch
     }
     
     @IBAction func toggleOneTouch(_ sender: Any) {
+        isOneTouch = !isOneTouch
+
+        oneTouchPayView.isHidden = !isOneTouch
+        
+        // update preferences
+    }
+    
+    @IBAction func onDeletePress(_ sender: Any) {
+        deleteBankAccount()
     }
     
     ///
@@ -140,30 +238,17 @@ class EditBankAccountViewController: UIViewController {
         view.endEditing(true)
         
         LoadingView.show()
-//        viewModel.validateAccount(onSuccess: {
-//            LoadingView.hide()
-//            self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
-//        }, onNeedAccountNumber: {
-//            LoadingView.hide()
-//            self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
-//        }, onError: { (title, message) in
-//            LoadingView.hide()
-//            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-//            self.present(alertController, animated: true, completion: nil)
-//        })
         
-        for vc in (navigationController?.viewControllers)! {
-            guard let walletVC = vc as? WalletViewController else {
-                continue
-            }
-            
+        viewModel.editBankAccount(onSuccess: {
             LoadingView.hide()
-
-            navigationController?.popToViewController(walletVC, animated: true)
+            self.delegate?.editBankAccountViewControllerDidAddAccount(self, message: "Changes saved.")
             
-            break
-        }
+            _ = self.navigationController?.popViewController(animated: true)
+        }, onError: { errMessage in
+            LoadingView.hide()
+            
+            print(errMessage)
+        })
     }
 
     func imageFrom(systemItem: UIBarButtonSystemItem)-> UIImage? {
@@ -183,23 +268,8 @@ class EditBankAccountViewController: UIViewController {
         return nil
     }
     
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    @IBAction func deleteBankAccountTextButton(_ sender: Any) {
-        deleteBankAccount()
-    }
-    
-    @IBAction func deleteBankAccountImageButton(_ sender: Any) {
-        deleteBankAccount()
-    }
-    
+    ///
     func deleteBankAccount() {
         var messageString = NSLocalizedString("Are you sure you want to delete this Bank Account? Note: If you proceed, all payments scheduled for today's date will still be processed. Pending payments for future dates using this account will be cancelled and you will need to reschedule your payment with another bank account.", comment: "")
         
@@ -211,9 +281,22 @@ class EditBankAccountViewController: UIViewController {
         
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .default, handler: { _ in
-            self.navigationController?.popViewController(animated: true)
+            LoadingView.show()
+            
+            self.viewModel.editBankAccount(onSuccess: {
+                LoadingView.hide()
+                self.delegate?.editBankAccountViewControllerDidAddAccount(self, message: "Bank Account deleted.")
+                
+                _ = self.navigationController?.popViewController(animated: true)
+            }, onError: { errMessage in
+                LoadingView.hide()
+                
+                print(errMessage)
+            })
         }))
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    
 }
