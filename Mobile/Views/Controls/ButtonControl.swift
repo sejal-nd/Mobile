@@ -52,7 +52,7 @@ class ButtonControl: UIControl {
     
     override var isEnabled: Bool {
         didSet {
-            fadeSubviews(fadeAmount: isEnabled ? 1: 0.33, animationDuration: 0.0)
+            alpha = isEnabled ? 1 : 0.33
         }
     }
 
