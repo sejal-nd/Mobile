@@ -26,6 +26,7 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var whatIsBudgetBillingButtonView: UIView!
     @IBOutlet weak var whatIsBudgetBillingLabel: UILabel!
+    @IBOutlet weak var yourPaymentWouldBeView: UIView!
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
     @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet weak var paymentAmountLoadingIndicator: LoadingIndicator!
@@ -96,6 +97,8 @@ class BudgetBillingViewController: UIViewController {
         whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
         
+
+        
         yourPaymentWouldBeLabel.font = SystemFont.medium.of(textStyle: .footnote)
         yourPaymentWouldBeLabel.textColor = .deepGray
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your payment would be:", comment: "")
@@ -106,7 +109,12 @@ class BudgetBillingViewController: UIViewController {
         
         amountDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
         amountDescriptionLabel.textColor = .deepGray
-        amountDescriptionLabel.text = viewModel.getAmountDescriptionText()
+        if accountDetail.isBudgetBillEnrollment {
+            yourPaymentWouldBeView.isHidden = true
+            amountDescriptionLabel.text = NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly budget billing payment is adjusted periodically based on your actual usage.", comment: "")
+        } else {
+            amountDescriptionLabel.text = viewModel.getAmountDescriptionText()
+        }
         
         accountNumberLabel.textColor = .blackText
         accountNumberLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber

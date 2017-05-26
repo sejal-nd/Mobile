@@ -13,27 +13,33 @@ class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
     
     var borderLayers = [CALayer]()
     var isShowingAccessory = false
+    var isShowingLeftAccessory = false
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        if isShowingAccessory {
-            if hasText {
-                return CGRect(x: 8, y: 7, width: bounds.size.width - 51, height: bounds.size.height)
-            }
-            return CGRect(x: 8, y: 0, width: bounds.size.width - 51, height: bounds.size.height)
-        } else {
-            if hasText {
-                return CGRect(x: 8, y: 7, width: bounds.size.width - 16, height: bounds.size.height)
-            }
-            return CGRect(x: 8, y: 0, width: bounds.size.width - 16, height: bounds.size.height)
-        }
+        return getRect(forBounds: bounds)
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        if isShowingAccessory {
+        return getRect(forBounds: bounds)
+    }
+    
+    func getRect(forBounds bounds: CGRect) -> CGRect {
+        floatingLabelXPadding = isShowingLeftAccessory ? -51 : 0
+        if isShowingAccessory && !isShowingLeftAccessory {
             if hasText {
                 return CGRect(x: 8, y: 7, width: bounds.size.width - 51, height: bounds.size.height)
             }
             return CGRect(x: 8, y: 0, width: bounds.size.width - 51, height: bounds.size.height)
+        } else if isShowingLeftAccessory && !isShowingAccessory {
+            if hasText {
+                return CGRect(x: 59, y: 7, width: bounds.size.width - 51, height: bounds.size.height)
+            }
+            return CGRect(x: 59, y: 0, width: bounds.size.width - 51, height: bounds.size.height)
+        } else if isShowingAccessory && isShowingLeftAccessory {
+            if hasText {
+                return CGRect(x: 59, y: 7, width: bounds.size.width - 102, height: bounds.size.height)
+            }
+            return CGRect(x: 59, y: 0, width: bounds.size.width - 102, height: bounds.size.height)
         } else {
             if hasText {
                 return CGRect(x: 8, y: 7, width: bounds.size.width - 16, height: bounds.size.height)

@@ -80,12 +80,18 @@ class WalletViewController: UIViewController {
         addPaymentAccountBottomBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         addPaymentAccountLabel.textColor = .deepGray
         addPaymentAccountLabel.text = NSLocalizedString("Add Payment Account", comment: "")
+        addPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
         miniCreditCardButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniCreditCardButton.layer.cornerRadius = 8
+        miniCreditCardButton.isAccessibilityElement = true
+        miniCreditCardButton.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
         miniBankButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniBankButton.layer.cornerRadius = 8
+        miniBankButton.isAccessibilityElement = true
+        miniBankButton.accessibilityLabel = NSLocalizedString("Bank account", comment: "")
         
         tableViewFooter.text = viewModel.footerLabelText
+        tableViewFooter.font = SystemFont.regular.of(textStyle: .footnote)
         
         emptyStateScrollView.isHidden = true
         nonEmptyStateView.isHidden = true
@@ -140,14 +146,19 @@ class WalletViewController: UIViewController {
         Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver()).drive(onNext: {
             self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
         }).addDisposableTo(disposeBag)
+        
+        Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver()).drive(onNext: {
+            self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
+        }).addDisposableTo(disposeBag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AddBankAccountViewController {
             vc.delegate = self
+        } else if let vc = segue.destination as? AddCreditCardViewController {
+            vc.delegate = self
         } else if let vc = segue.destination as? EditBankAccountViewController {
             vc.selectedWalletItem = self.selectedWalletItem
-            vc.delegate = self
         }
     }
 
@@ -200,14 +211,18 @@ extension WalletViewController: UITableViewDataSource {
     
 }
 
-extension WalletViewController: AddBankAccountViewControllerDelegate, EditBankAccountViewControllerDelegate {
+extension WalletViewController: AddBankAccountViewControllerDelegate {
     
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.viewModel.fetchWalletItems.onNext()
-            self.view.makeToast(NSLocalizedString("Your bank account has been saved.", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+            self.view.makeToast(NSLocalizedString("Bank account added.", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
+    
+}
+
+extension WalletViewController: EditBankAccountViewControllerDelegate {
     
     func editBankAccountViewControllerDidAddAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
@@ -216,4 +231,14 @@ extension WalletViewController: AddBankAccountViewControllerDelegate, EditBankAc
         })
     }
     
+}
+
+extension WalletViewController: AddCreditCardViewControllerDelegate {
+    
+    func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.viewModel.fetchWalletItems.onNext()
+            self.view.makeToast(NSLocalizedString("Card added.", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
 }

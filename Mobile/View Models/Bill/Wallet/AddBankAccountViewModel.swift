@@ -30,12 +30,12 @@ class AddBankAccountViewModel {
     
     func saveButtonIsEnabled() -> Observable<Bool> {
         if Environment.sharedInstance.opco == .bge {
-            return Observable.combineLatest(accountHolderNameHasText(), routingNumberIsValid(), confirmRoutingNumberMatches(), accountNumberHasText(), confirmAccountNumberMatches(), nicknameHasText(), nicknameIsValid()) {
-                return $0 && $1 && $2 && $3 && $4 && $5 && $6
+            return Observable.combineLatest([accountHolderNameHasText(), routingNumberIsValid(), confirmRoutingNumberMatches(), accountNumberHasText(), accountNumberIsValid(), confirmAccountNumberMatches(), nicknameHasText(), nicknameIsValid()]) {
+                return !$0.contains(false)
             }
         } else {
-            return Observable.combineLatest(routingNumberIsValid(), accountNumberHasText(), confirmAccountNumberMatches(), nicknameIsValid()) {
-                return $0 && $1 && $2 && $3
+            return Observable.combineLatest([routingNumberIsValid(), accountNumberHasText(), accountNumberIsValid(), confirmAccountNumberMatches(), nicknameIsValid()]) {
+                return !$0.contains(false)
             }
         }
     }
@@ -61,6 +61,12 @@ class AddBankAccountViewModel {
     func accountNumberHasText() -> Observable<Bool> {
         return accountNumber.asObservable().map {
             return !$0.isEmpty
+        }
+    }
+    
+    func accountNumberIsValid() -> Observable<Bool> {
+        return accountNumber.asObservable().map {
+            return $0.characters.count >= 8 && $0.characters.count <= 17
         }
     }
     
