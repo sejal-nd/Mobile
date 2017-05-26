@@ -9,6 +9,33 @@
 import Foundation
 
 struct FiservApi {
+    
+    func post(encodedBody: Data, completion: @escaping (_ result: ServiceResult<Void>) -> Swift.Void) {
+        var urlRequest  = URLRequest(url: URL(string: "https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile/Process")!)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = encodedBody
+        
+        URLSession.shared.dataTask(with: urlRequest, completionHandler: { (dat:Data?, resp: URLResponse?, err: Error?) in
+            print(String.init(data: dat!, encoding: String.Encoding.utf8) ?? "")
+            
+            do {
+                let parse = try JSONSerialization.jsonObject(with: dat!, options: JSONSerialization.ReadingOptions.allowFragments)  as? [String: Any]
+                if(parse?["ResponseCode"] as? Int == 0) {
+                    completion(ServiceResult.Success())
+                } else {
+                    let message = self.mapError(message: (parse?["StatusMessage"] as? String)!, transactionType: "")
+                    completion(ServiceResult.Failure(ServiceError(serviceCode: "Fiserv", serviceMessage: message)))
+                }
+            }
+            catch let err as NSError {
+                print(err)
+            }
+            
+        }).resume()
+        
+    }
+    
     func addBankAccount(bankAccountNumber: String,
                         routingNumber: String,
                         customerNumber: String,
@@ -17,69 +44,32 @@ struct FiservApi {
                         token: String,
                         completion: @escaping (_ result: ServiceResult<Void>) -> Swift.Void) {
         
-        let opCo = Environment.sharedInstance.opco
-        
-        
-        
-        let deviceProfile = ["UserAgentString" : "MobileApp"]
-        let checking = ["RoutingNumber" : routingNumber,
-                        "CheckAccountNumber" : bankAccountNumber,
-                        "FirstName" : firstName,
-                        "LastName" : lastName,
-                        "CheckType" : 1] as [String : Any]
-        
-        let time = Int(NSDate().timeIntervalSince1970)
-        
-        let data = ["MessageId":"insertWalletCheck",
-        "RequestTimestamp":"/Date(" + String(time) + ")/",
-        "AppId":"FiservProxy",
-        "ProcessingRegionCode":2,
-        "BillerId":"\(opCo.rawValue)Registered",
-        "ConsumerId":customerNumber,
-        "AuthSessToken":token,
-        "DeviceProfile":deviceProfile,
-        "WalletExternalID":customerNumber,
-        "OneTimeUse":false,
-        "CheckingDetail":checking,
-        "IsDefaultFundingSource":false] as [String : Any]
+        var params = createBaseParameters(token: token, customerNumber: customerNumber, oneTimeUse: false)
+        params["MessageId"] = "insertWalletCheck"
+        params["CheckingDetail"] = ["RoutingNumber" : routingNumber,
+                                    "CheckAccountNumber" : bankAccountNumber,
+                                    "FirstName" : firstName,
+                                    "LastName" : lastName,
+                                    "CheckType" : 1] as [String : Any]
         
         do {
-            let jsonData: NSData = try JSONSerialization.data(withJSONObject: data) as NSData
+            let jsonData: NSData = try JSONSerialization.data(withJSONObject: params) as NSData
             
             let payload = String.init(data: jsonData as Data, encoding: String.Encoding.utf8)?.replacingOccurrences(of: "\\", with: "")
             
             let content = "action=OD_InsertWalletItem&payload=" + payload!
             let encodedContent = content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
             
-            print("\n")
-            print(payload ?? "p")
-            print("\n")
+            dLog(message: "\n")
+            dLog(message: payload ?? "")
+            dLog(message: "\n")
             
-            var r  = URLRequest(url: URL(string: "https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile/Process")!)
-            r.httpMethod = "POST"
-            r.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            let d = encodedContent.data(using:String.Encoding.utf8, allowLossyConversion: false)
-            r.httpBody = d
+            let encodedBody = encodedContent.data(using:String.Encoding.utf8, allowLossyConversion: false)
+            post(encodedBody: encodedBody!, completion: completion)
             
-            URLSession.shared.dataTask(with: r, completionHandler: { (dat:Data?, resp: URLResponse?, err: Error?) in
-                print(String.init(data: dat!, encoding: String.Encoding.utf8) ?? "")
-                
-                do {
-                    let parse = try JSONSerialization.jsonObject(with: dat!, options: JSONSerialization.ReadingOptions.allowFragments)  as? [String: Any]
-                    if(parse?["ResponseCode"] as? Int == 0) {
-                        completion(ServiceResult.Success())
-                    } else {
-                        let message = self.mapError(message: (parse?["StatusMessage"] as? String)!, transactionType: "")
-                        completion(ServiceResult.Failure(ServiceError(serviceCode: "Fiserv", serviceMessage: message)))
-                    }
-                }
-                catch let err as NSError {
-                    print(err)
-                }
-                
-            }).resume()
         }catch let err as NSError {
-            print(err)
+            dLog(message: err.localizedDescription)
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
         }
     }
     
@@ -91,8 +81,16 @@ struct FiservApi {
                         lastName: String,
                         postalCode: String,
                         token: String,
+                        customerNumber: String,
                         completion: @escaping (_ result: ServiceResult<Void>) -> Swift.Void) {
-        
+        var params = createBaseParameters(token: token, customerNumber: customerNumber, oneTimeUse: false)
+        params["MessageId"] = "insertWalletCard"
+        params["CardDetail"] = ["CardNumber" : cardNumber,
+                                    "ExpirationDate" : "/Date(" + expirationMonth + "/" + expirationYear + ")/",
+                                    "FirstName" : firstName,
+                                    "LastName" : lastName,
+                                    "SecurityCode" : securityCode,
+                                    "ZipCode" : postalCode] as [String : Any]
     }
     
     func createBaseParameters(token: String, customerNumber: String, oneTimeUse: Bool) -> [String:Any] {
@@ -100,17 +98,16 @@ struct FiservApi {
         let opCo = Environment.sharedInstance.opco
         let time = Int(NSDate().timeIntervalSince1970)
         
-        return ["MessageId":"insertWalletCheck",
-                    "RequestTimestamp":"/Date(" + String(time) + ")/",
-                    "AppId":"FiservProxy",
-                    "ProcessingRegionCode":2,
-                    "BillerId":"\(opCo.rawValue)Registered",
-            "ConsumerId":customerNumber,
-            "AuthSessToken":token,
-            "DeviceProfile":["UserAgentString" : "MobileApp"],
-            "WalletExternalID":customerNumber,
-            "OneTimeUse":oneTimeUse,
-            "IsDefaultFundingSource":false] as [String : Any]
+        return ["RequestTimestamp":"/Date(" + String(time) + ")/",
+                "AppId":"FiservProxy",
+                "ProcessingRegionCode":2,
+                "BillerId":"\(opCo.rawValue)Registered",
+                "ConsumerId":customerNumber,
+                "AuthSessToken":token,
+                "DeviceProfile":["UserAgentString" : "MobileApp"],
+                "WalletExternalID":customerNumber,
+                "OneTimeUse":oneTimeUse,
+                "IsDefaultFundingSource":false] as [String : Any]
     }
     
     func mapError(message: String, transactionType: String) -> String {
