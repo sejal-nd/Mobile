@@ -36,6 +36,8 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var tableViewFooter: UILabel!
     
     let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService())
+    
+    var selectedWalletItem: WalletItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,6 +157,8 @@ class WalletViewController: UIViewController {
             vc.delegate = self
         } else if let vc = segue.destination as? AddCreditCardViewController {
             vc.delegate = self
+        } else if let vc = segue.destination as? EditBankAccountViewController {
+            vc.selectedWalletItem = self.selectedWalletItem
         }
     }
 
@@ -199,6 +203,10 @@ extension WalletViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected row \(indexPath.section)")
+
+        selectedWalletItem = viewModel.walletItems.value![indexPath.section]
+        
+        self.performSegue(withIdentifier: "editWalletItemSegue", sender: self)
     }
     
 }
@@ -209,6 +217,17 @@ extension WalletViewController: AddBankAccountViewControllerDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.viewModel.fetchWalletItems.onNext()
             self.view.makeToast(NSLocalizedString("Bank account added.", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
+    
+}
+
+extension WalletViewController: EditBankAccountViewControllerDelegate {
+    
+    func editBankAccountViewControllerDidAddAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.viewModel.fetchWalletItems.onNext()
+            self.view.makeToast(NSLocalizedString(message, comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
     
