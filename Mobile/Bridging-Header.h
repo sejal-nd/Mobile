@@ -35,4 +35,6 @@
 
 #import "A0SimpleKeychain.h"
 
+#import "CardIO.h"
+
 #endif /* EXBridgingHeader_h */

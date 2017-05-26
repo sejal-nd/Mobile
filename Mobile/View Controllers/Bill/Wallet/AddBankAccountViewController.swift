@@ -29,7 +29,6 @@ class AddBankAccountViewController: UIViewController {
     weak var delegate: AddBankAccountViewControllerDelegate?
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControl!
     @IBOutlet weak var accountHolderNameTextField: FloatLabelTextField!
     @IBOutlet weak var routingNumberTextField: FloatLabelTextField!
@@ -37,7 +36,6 @@ class AddBankAccountViewController: UIViewController {
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var nicknameTextField: FloatLabelTextField!
-    @IBOutlet weak var oneTouchPayView: UIView!
     @IBOutlet weak var oneTouchPayDescriptionLabel: UILabel!
     @IBOutlet weak var oneTouchPaySwitch: Switch!
     @IBOutlet weak var oneTouchPayLabel: UILabel!
@@ -67,56 +65,22 @@ class AddBankAccountViewController: UIViewController {
         routingNumberTextField.textField.placeholder = NSLocalizedString("Routing Number*", comment: "")
         routingNumberTextField.textField.delegate = self
         routingNumberTextField.textField.returnKeyType = .next
-        routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.routingNumber.value.isEmpty {
-                self.viewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.routingNumberTextField.setError(NSLocalizedString("Must be 9 digits", comment: ""))
-                    }
-                }).addDisposableTo(self.disposeBag)
-            }
-        }).addDisposableTo(disposeBag)
-        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.routingNumberTextField.setError(nil)
-        }).addDisposableTo(disposeBag)
         
         confirmRoutingNumberTextField.textField.placeholder = NSLocalizedString("Confirm Routing Number*", comment: "")
         confirmRoutingNumberTextField.textField.delegate = self
         confirmRoutingNumberTextField.textField.returnKeyType = .next
-        viewModel.confirmRoutingNumberMatches().subscribe(onNext: { matches in
-            if !self.viewModel.confirmRoutingNumber.value.isEmpty {
-                if matches {
-                    self.confirmRoutingNumberTextField.setValidated(true)
-                } else {
-                    self.confirmRoutingNumberTextField.setError(NSLocalizedString("Routing numbers do not match", comment: ""))
-                }
-            } else {
-                self.confirmRoutingNumberTextField.setValidated(false)
-                self.confirmRoutingNumberTextField.setError(nil)
-            }
-        }).addDisposableTo(disposeBag)
         
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.delegate = self
         accountNumberTextField.textField.returnKeyType = .next
+        accountNumberTextField.textField.isShowingAccessory = true
         
         confirmAccountNumberTextField.textField.placeholder = NSLocalizedString("Confirm Account Number*", comment: "")
         confirmAccountNumberTextField.textField.delegate = self
         confirmAccountNumberTextField.textField.returnKeyType = .next
-        viewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
-            if !self.viewModel.confirmAccountNumber.value.isEmpty {
-                if matches {
-                    self.confirmAccountNumberTextField.setValidated(true)
-                } else {
-                    self.confirmAccountNumberTextField.setError(NSLocalizedString("Account numbers do not match", comment: ""))
-                }
-            } else {
-                self.confirmAccountNumberTextField.setValidated(false)
-                self.confirmAccountNumberTextField.setError(nil)
-            }
-        }).addDisposableTo(disposeBag)
         
         nicknameTextField.textField.placeholder = Environment.sharedInstance.opco == .bge ? NSLocalizedString("Nickname*", comment: "") : NSLocalizedString("Nickname (Optional)", comment: "")
+        nicknameTextField.textField.autocorrectionType = .no
 
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -175,6 +139,45 @@ class AddBankAccountViewController: UIViewController {
     }
     
     func bindValidation() {
+        routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            if !self.viewModel.routingNumber.value.isEmpty {
+                self.viewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
+                    if !valid {
+                        self.routingNumberTextField.setError(NSLocalizedString("Must be 9 digits", comment: ""))
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
+        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.routingNumberTextField.setError(nil)
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.confirmRoutingNumberMatches().subscribe(onNext: { matches in
+            if !self.viewModel.confirmRoutingNumber.value.isEmpty {
+                if matches {
+                    self.confirmRoutingNumberTextField.setValidated(true)
+                } else {
+                    self.confirmRoutingNumberTextField.setError(NSLocalizedString("Routing numbers do not match", comment: ""))
+                }
+            } else {
+                self.confirmRoutingNumberTextField.setValidated(false)
+                self.confirmRoutingNumberTextField.setError(nil)
+            }
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
+            if !self.viewModel.confirmAccountNumber.value.isEmpty {
+                if matches {
+                    self.confirmAccountNumberTextField.setValidated(true)
+                } else {
+                    self.confirmAccountNumberTextField.setError(NSLocalizedString("Account numbers do not match", comment: ""))
+                }
+            } else {
+                self.confirmAccountNumberTextField.setValidated(false)
+                self.confirmAccountNumberTextField.setError(nil)
+            }
+        }).addDisposableTo(disposeBag)
+        
         viewModel.nicknameIsValid().subscribe(onNext: { valid in
             self.nicknameTextField.setError(valid ? nil : NSLocalizedString("Can only contain letters, numbers, and spaces", comment: ""))
         }).addDisposableTo(disposeBag)
@@ -211,8 +214,11 @@ class AddBankAccountViewController: UIViewController {
 extension AddBankAccountViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let characterSet = CharacterSet(charactersIn: string)
         if textField == routingNumberTextField.textField || textField == confirmRoutingNumberTextField.textField {
-            return newString.characters.count <= 9
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
+        } else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet)
         }
         return true
     }
