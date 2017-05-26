@@ -66,12 +66,9 @@
 		54AE06AA1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
 		54AE06AB1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
 		54AE06AC1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
-		54AE06AD1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
-		54AE06AE1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
 		54AE06BB1ED72808004A1FDA /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06BA1ED72808004A1FDA /* EditBankAccountViewController.swift */; };
 		54AE06BC1ED72808004A1FDA /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06BA1ED72808004A1FDA /* EditBankAccountViewController.swift */; };
 		54AE06BD1ED72808004A1FDA /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06BA1ED72808004A1FDA /* EditBankAccountViewController.swift */; };
-		54AE06BE1ED72808004A1FDA /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06BA1ED72808004A1FDA /* EditBankAccountViewController.swift */; };
 		54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		54EDD2D61ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		54EDD2D71ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
@@ -2597,7 +2594,6 @@
 				B574BAF51E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAEF1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				B574BAFB1E786473001E8A44 /* MockOutageService.swift in Sources */,
-				54AE06AE1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */,
 				087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */,
 				B574BB011E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B574BB021E79BF38001E8A44 /* Account.swift in Sources */,
@@ -3016,7 +3012,6 @@
 				E876A85E1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
 				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
-				54AE06AD1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */,
 				E8F51EEB1ECA40AF0080AB3E /* PaperlessEBillViewModel.swift in Sources */,
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
@@ -3054,7 +3049,6 @@
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
 				E8D340941EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				548288E21ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
-				54AE06BE1ED72808004A1FDA /* EditBankAccountViewController.swift in Sources */,
 				E88ECFF71E8ED6DB00A570D0 /* OMCOutageService.swift in Sources */,
 				E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */,
 				E895E9B21EBB84B7003B38A1 /* LoginViewModel.swift in Sources */,

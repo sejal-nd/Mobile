@@ -20,6 +20,7 @@ class ReportOutageViewModelTests: XCTestCase {
     
     func testSubmitButtonEnabled() {
         viewModel.phoneNumber.value = "410-123-4567"
+        viewModel.reportFormHidden.value = false
         viewModel.submitEnabled.asObservable().single().subscribe(onNext: { enabled in
             if !enabled {
                 XCTFail("Submit button should be enabled")
