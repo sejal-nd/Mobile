@@ -691,22 +691,17 @@ to your payments.</string>
                         <rect key="frame" x="0.0" y="64" width="375" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ps6-Q1-mb4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="orB-G0-xaO" userLabel="Content View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="150.5"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ps6-Q1-mb4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="218"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5g-uz-zEf" userLabel="Inner Content View">
-                                        <rect key="frame" x="17" y="0.0" width="341" height="130.5"/>
+                                        <rect key="frame" x="35" y="14" width="305" height="165"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHx-3h-LVX" userLabel="Gradient View">
-                                                <rect key="frame" x="0.0" y="0.0" width="341" height="100"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="305" height="134"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Yp-V4-KiZ">
-                                                        <rect key="frame" x="9" y="29" width="84" height="42"/>
+                                                        <rect key="frame" x="9" y="46" width="84" height="42"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="42" id="JUP-pn-Oap"/>
@@ -714,21 +709,21 @@ to your payments.</string>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NICKNAME" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8C-bV-bBz">
-                                                        <rect key="frame" x="110" y="14" width="203" height="16.5"/>
+                                                        <rect key="frame" x="110" y="14" width="167" height="16.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBE-zu-hub">
-                                                        <rect key="frame" x="110" y="38" width="86" height="25"/>
+                                                        <rect key="frame" x="110" y="55" width="86" height="25"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0KP-Dw-YvI">
-                                                        <rect key="frame" x="110" y="68" width="99" height="15"/>
+                                                        <rect key="frame" x="110" y="85" width="99" height="15"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_one_touch_pay_check" translatesAutoresizingMaskIntoConstraints="NO" id="GJj-hp-dv3">
                                                                 <rect key="frame" x="0.0" y="3" width="11" height="9"/>
@@ -755,7 +750,6 @@ to your payments.</string>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="oBE-zu-hub" firstAttribute="centerY" secondItem="zHx-3h-LVX" secondAttribute="centerY" id="3mY-w6-SBY"/>
-                                                    <constraint firstAttribute="height" constant="100" id="Gb9-Cb-rut"/>
                                                     <constraint firstItem="E8C-bV-bBz" firstAttribute="top" secondItem="zHx-3h-LVX" secondAttribute="top" constant="14" id="I5v-Ri-sCM"/>
                                                     <constraint firstAttribute="trailing" secondItem="E8C-bV-bBz" secondAttribute="trailing" constant="28" id="PPu-ul-uh3"/>
                                                     <constraint firstItem="oBE-zu-hub" firstAttribute="leading" secondItem="4Yp-V4-KiZ" secondAttribute="trailing" constant="17" id="Y6e-MY-Me4"/>
@@ -767,14 +761,14 @@ to your payments.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MKg-14-tNj">
-                                                <rect key="frame" x="0.0" y="100" width="341" height="10.5"/>
+                                                <rect key="frame" x="0.0" y="134" width="305" height="11"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qc9-EH-Bv0">
-                                                <rect key="frame" x="0.0" y="100" width="341" height="30.5"/>
+                                                <rect key="frame" x="0.0" y="134" width="305" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.35 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myo-7Z-efd">
-                                                        <rect key="frame" x="106.5" y="7" width="128.5" height="16.5"/>
+                                                        <rect key="frame" x="88.5" y="7" width="128.5" height="17"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                         <nil key="textColor"/>
@@ -786,6 +780,7 @@ to your payments.</string>
                                                     <constraint firstItem="myo-7Z-efd" firstAttribute="top" secondItem="Qc9-EH-Bv0" secondAttribute="top" constant="7" id="79z-qv-suv"/>
                                                     <constraint firstItem="myo-7Z-efd" firstAttribute="centerY" secondItem="Qc9-EH-Bv0" secondAttribute="centerY" id="N7P-uV-Tvu"/>
                                                     <constraint firstItem="myo-7Z-efd" firstAttribute="centerX" secondItem="Qc9-EH-Bv0" secondAttribute="centerX" id="RvU-Z2-pPf"/>
+                                                    <constraint firstAttribute="height" constant="31" id="Yco-Wq-Gyn"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -794,11 +789,12 @@ to your payments.</string>
                                             <constraint firstAttribute="trailing" secondItem="zHx-3h-LVX" secondAttribute="trailing" id="Bci-CO-WJC"/>
                                             <constraint firstItem="MKg-14-tNj" firstAttribute="top" secondItem="zHx-3h-LVX" secondAttribute="bottom" id="CgV-IE-B51"/>
                                             <constraint firstItem="zHx-3h-LVX" firstAttribute="top" secondItem="v5g-uz-zEf" secondAttribute="top" id="Oh2-Ul-pfr"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="375" id="QTE-7k-0GP"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="QTE-7k-0GP"/>
                                             <constraint firstItem="MKg-14-tNj" firstAttribute="leading" secondItem="v5g-uz-zEf" secondAttribute="leading" id="VNh-QU-ULV"/>
                                             <constraint firstItem="Qc9-EH-Bv0" firstAttribute="leading" secondItem="v5g-uz-zEf" secondAttribute="leading" id="Z3o-or-2a1"/>
                                             <constraint firstAttribute="bottom" secondItem="Qc9-EH-Bv0" secondAttribute="bottom" id="aJq-YS-UtV"/>
                                             <constraint firstAttribute="trailing" secondItem="Qc9-EH-Bv0" secondAttribute="trailing" id="c8M-QI-EiX"/>
+                                            <constraint firstAttribute="height" constant="165" id="dYz-64-tcN"/>
                                             <constraint firstAttribute="trailing" secondItem="MKg-14-tNj" secondAttribute="trailing" id="lD0-gF-i7c"/>
                                             <constraint firstItem="Qc9-EH-Bv0" firstAttribute="top" secondItem="MKg-14-tNj" secondAttribute="top" id="mZM-lv-y2H"/>
                                             <constraint firstAttribute="bottom" secondItem="MKg-14-tNj" secondAttribute="bottom" constant="20" id="qXu-6O-OVM"/>
@@ -808,29 +804,30 @@ to your payments.</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="v5g-uz-zEf" firstAttribute="top" secondItem="orB-G0-xaO" secondAttribute="top" id="byC-Ln-JJE"/>
-                                    <constraint firstItem="v5g-uz-zEf" firstAttribute="leading" secondItem="orB-G0-xaO" secondAttribute="leading" constant="17" id="p9V-BA-FSX"/>
-                                    <constraint firstAttribute="trailing" secondItem="v5g-uz-zEf" secondAttribute="trailing" constant="17" id="stI-wF-hdU"/>
-                                    <constraint firstItem="v5g-uz-zEf" firstAttribute="bottom" secondItem="orB-G0-xaO" secondAttribute="bottomMargin" constant="-12" id="ty4-aU-ENW"/>
+                                    <constraint firstItem="v5g-uz-zEf" firstAttribute="centerX" secondItem="Ps6-Q1-mb4" secondAttribute="centerX" id="5By-vd-VjU"/>
+                                    <constraint firstAttribute="trailing" secondItem="v5g-uz-zEf" secondAttribute="trailing" priority="999" constant="35" id="FhK-se-UmD"/>
+                                    <constraint firstItem="v5g-uz-zEf" firstAttribute="leading" secondItem="Ps6-Q1-mb4" secondAttribute="leading" priority="999" constant="35" id="Ube-ws-GoI"/>
+                                    <constraint firstItem="v5g-uz-zEf" firstAttribute="top" secondItem="Ps6-Q1-mb4" secondAttribute="top" constant="14" id="rFQ-xy-QjQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="v5g-uz-zEf" secondAttribute="bottom" constant="39" id="rsy-Zu-OZX"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1h-x9-ne9">
-                                <rect key="frame" x="29" y="167.5" width="317" height="85"/>
+                                <rect key="frame" x="29" y="218" width="317" height="121"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysp-6P-t1m">
-                                        <rect key="frame" x="0.0" y="2" width="317" height="33"/>
+                                        <rect key="frame" x="0.0" y="21" width="317" height="33"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZIv-l9-Z8n" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="43" width="51" height="31"/>
+                                        <rect key="frame" x="0.0" y="79" width="51" height="31"/>
                                         <connections>
                                             <action selector="toggleOneTouch:" destination="qOZ-en-NNR" eventType="valueChanged" id="L6J-CY-h6M"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One Touch Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX8-CE-1pO">
-                                        <rect key="frame" x="61" y="49" width="109" height="19"/>
+                                        <rect key="frame" x="61" y="85" width="109" height="19"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -838,12 +835,11 @@ to your payments.</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="ysp-6P-t1m" firstAttribute="top" secondItem="Q1h-x9-ne9" secondAttribute="top" constant="2" id="Aam-in-cyx"/>
+                                    <constraint firstItem="ysp-6P-t1m" firstAttribute="top" secondItem="Q1h-x9-ne9" secondAttribute="top" constant="21" id="Aam-in-cyx"/>
                                     <constraint firstItem="lX8-CE-1pO" firstAttribute="centerY" secondItem="ZIv-l9-Z8n" secondAttribute="centerY" id="DmP-Hr-WSS"/>
-                                    <constraint firstItem="ZIv-l9-Z8n" firstAttribute="top" secondItem="ysp-6P-t1m" secondAttribute="bottom" constant="8" id="G7h-cr-boo"/>
+                                    <constraint firstItem="ZIv-l9-Z8n" firstAttribute="top" secondItem="ysp-6P-t1m" secondAttribute="bottom" constant="25" id="G7h-cr-boo"/>
                                     <constraint firstAttribute="trailing" secondItem="ysp-6P-t1m" secondAttribute="trailing" id="Pv8-BV-NUV"/>
                                     <constraint firstAttribute="bottom" secondItem="ZIv-l9-Z8n" secondAttribute="bottom" constant="11" id="ZGR-wW-HDl"/>
-                                    <constraint firstItem="ZIv-l9-Z8n" firstAttribute="top" secondItem="ysp-6P-t1m" secondAttribute="bottom" priority="999" constant="8" id="l6p-bA-DiT"/>
                                     <constraint firstItem="lX8-CE-1pO" firstAttribute="leading" secondItem="ZIv-l9-Z8n" secondAttribute="trailing" constant="12" id="mXf-60-fsX"/>
                                     <constraint firstItem="ysp-6P-t1m" firstAttribute="leading" secondItem="Q1h-x9-ne9" secondAttribute="leading" id="qlH-tN-kH6"/>
                                     <constraint firstItem="ZIv-l9-Z8n" firstAttribute="leading" secondItem="Q1h-x9-ne9" secondAttribute="leading" id="xLH-hp-i2s"/>
@@ -876,23 +872,22 @@ to your payments.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="orB-G0-xaO" firstAttribute="leading" secondItem="BPj-3j-Zmc" secondAttribute="leadingMargin" constant="-16" id="4fM-6q-8OK"/>
+                            <constraint firstItem="Ps6-Q1-mb4" firstAttribute="leading" secondItem="BPj-3j-Zmc" secondAttribute="leading" id="1TW-aA-tQy"/>
+                            <constraint firstItem="Ps6-Q1-mb4" firstAttribute="top" secondItem="71j-qJ-8Au" secondAttribute="bottom" id="3A6-6x-g1F"/>
                             <constraint firstItem="Bhn-x7-8T4" firstAttribute="top" secondItem="smw-wh-Sc2" secondAttribute="bottom" constant="20" id="FUJ-CA-ReE"/>
                             <constraint firstItem="Q1h-x9-ne9" firstAttribute="leading" secondItem="BPj-3j-Zmc" secondAttribute="leadingMargin" constant="13" id="IGI-jB-80i"/>
+                            <constraint firstItem="Q1h-x9-ne9" firstAttribute="top" secondItem="Ps6-Q1-mb4" secondAttribute="bottom" id="KeU-qd-6Fg"/>
+                            <constraint firstAttribute="trailing" secondItem="Ps6-Q1-mb4" secondAttribute="trailing" id="PO7-NP-TpF"/>
                             <constraint firstItem="Q1h-x9-ne9" firstAttribute="centerX" secondItem="BPj-3j-Zmc" secondAttribute="centerX" id="QG2-sI-kCI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="orB-G0-xaO" secondAttribute="trailing" constant="-16" id="QHG-hX-lvK"/>
-                            <constraint firstItem="orB-G0-xaO" firstAttribute="top" secondItem="71j-qJ-8Au" secondAttribute="bottom" id="SL3-d0-N1Q"/>
-                            <constraint firstItem="Q1h-x9-ne9" firstAttribute="top" secondItem="orB-G0-xaO" secondAttribute="bottom" constant="17" id="aGe-0S-PJl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Q1h-x9-ne9" secondAttribute="trailing" constant="13" id="hyH-Ah-9Jz"/>
                             <constraint firstItem="smw-wh-Sc2" firstAttribute="centerX" secondItem="BPj-3j-Zmc" secondAttribute="centerX" id="oYh-Qf-1AB"/>
-                            <constraint firstItem="orB-G0-xaO" firstAttribute="centerX" secondItem="BPj-3j-Zmc" secondAttribute="centerX" id="rOd-7d-0BB"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="accountIDLabel" destination="oBE-zu-hub" id="VTV-pv-v2B"/>
                         <outlet property="bankImageView" destination="4Yp-V4-KiZ" id="Kw8-En-swU"/>
+                        <outlet property="bottomBarShadowView" destination="MKg-14-tNj" id="EeT-Jn-k3S"/>
                         <outlet property="bottomBarView" destination="Qc9-EH-Bv0" id="0Tk-PZ-yLy"/>
-                        <outlet property="contentView" destination="orB-G0-xaO" id="vFl-1L-QMf"/>
                         <outlet property="convenienceFeeLabel" destination="myo-7Z-efd" id="2Cj-iG-9cs"/>
                         <outlet property="deleteAccountButton" destination="smw-wh-Sc2" id="uoF-6T-xKY"/>
                         <outlet property="deleteBankAccountLabel" destination="NhQ-9o-rTN" id="TDB-oH-n1f"/>

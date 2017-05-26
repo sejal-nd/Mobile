@@ -22,10 +22,10 @@ class EditBankAccountViewController: UIViewController {
     
     var selectedWalletItem: WalletItem?
 
-    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var innerContentView: UIView!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var bottomBarView: UIView!
+    @IBOutlet weak var bottomBarShadowView: UIView!
     
     @IBOutlet weak var bankImageView: UIImageView!
     @IBOutlet weak var accountIDLabel: UILabel!
@@ -50,9 +50,7 @@ class EditBankAccountViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        contentView.backgroundColor = .clear
-        
+    
         bindWalletItemToViewElements()
         
         buildGradientAndBackgrounds()
@@ -66,12 +64,12 @@ class EditBankAccountViewController: UIViewController {
     }
     
     func buildGradientAndBackgrounds() {
-        walletItemBGView.backgroundColor = UIColor.primaryColor
+        walletItemBGView.backgroundColor = .primaryColor
         
         innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        innerContentView.layer.cornerRadius = 5
+        innerContentView.layer.cornerRadius = 15
         
-        gradientView.layer.cornerRadius = 5
+        gradientView.layer.cornerRadius = 15
         gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
             UIColor.white.cgColor,
@@ -79,14 +77,11 @@ class EditBankAccountViewController: UIViewController {
         ]
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
-        gradientView.layer.masksToBounds = true
-
         accountIDLabel.textColor = .blackText
         oneTouchPayLabel.textColor = .blackText
         nicknameLabel.textColor = .blackText
         
-        bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        
+        bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         convenienceFeeLabel.textColor = .blackText
@@ -102,30 +97,25 @@ class EditBankAccountViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        contentView.layoutIfNeeded() // Needed for frames to be correct
+        innerContentView.layoutIfNeeded()
         
         // Round only the top corners
         gradientLayer.frame = gradientView.frame
         
         let gradientPath = UIBezierPath(roundedRect:gradientLayer.bounds,
                                         byRoundingCorners:[.topLeft, .topRight],
-                                        cornerRadii: CGSize(width: 5, height:  5))
-        
+                                        cornerRadii: CGSize(width: 15, height:  15))
         let gradientMaskLayer = CAShapeLayer()
-
         gradientMaskLayer.path = gradientPath.cgPath
         gradientLayer.mask = gradientMaskLayer
         
         // Round only the bottom corners
         let bottomBarPath = UIBezierPath(roundedRect:bottomBarView.bounds,
                                          byRoundingCorners:[.bottomLeft, .bottomRight],
-                                         cornerRadii: CGSize(width: 5, height:  5))
-        
+                                         cornerRadii: CGSize(width: 15, height:  15))
         let bottomBarMaskLayer = CAShapeLayer()
         bottomBarMaskLayer.path = bottomBarPath.cgPath
         bottomBarView.layer.mask = bottomBarMaskLayer
-        
-        gradientView.layer.masksToBounds = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
