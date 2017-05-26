@@ -12,8 +12,8 @@ import RxCocoa
 
 class ButtonControl: UIControl {
     
-    var shouldFadeSubviewsOnPress = false
-    var backgroundColorOnPress: UIColor?
+    @IBInspectable var shouldFadeSubviewsOnPress: Bool = false
+    @IBInspectable var backgroundColorOnPress: UIColor?
 
     let bag = DisposeBag()
     

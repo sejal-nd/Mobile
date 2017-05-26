@@ -180,23 +180,17 @@ class BillViewController: AccountPickerViewController {
         totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
         
         needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
-        needHelpUnderstandingButton.backgroundColorOnPress = .softGray
-        
-        viewBillButton.shouldFadeSubviewsOnPress = true
         
         billPaidView.layer.cornerRadius = 2
         
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         autoPayButton.layer.cornerRadius = 2
-        autoPayButton.backgroundColorOnPress = .softGray
         
         paperlessButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         paperlessButton.layer.cornerRadius = 2
-        paperlessButton.backgroundColorOnPress = .softGray
         
         budgetButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         budgetButton.layer.cornerRadius = 2
-        budgetButton.backgroundColorOnPress = .softGray
         
         // Set Fonts
         alertBannerLabel.font = OpenSans.italic.of(textStyle: .subheadline)

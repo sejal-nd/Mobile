@@ -52,7 +52,6 @@ class WalletViewController: UIViewController {
         
         bankButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         bankButton.layer.cornerRadius = 10
-        bankButton.backgroundColorOnPress = .softGray
         bankButtonLabel.textColor = .blackText
         bankButtonLabel.font = OpenSans.semibold.of(textStyle: .headline)
         bankButtonLabel.text = NSLocalizedString("Bank Account", comment: "")
@@ -62,7 +61,6 @@ class WalletViewController: UIViewController {
         
         creditCardButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         creditCardButton.layer.cornerRadius = 10
-        creditCardButton.backgroundColorOnPress = .softGray
         creditCardButtonLabel.textColor = .blackText
         creditCardButtonLabel.font = OpenSans.semibold.of(textStyle: .headline)
         creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
@@ -87,12 +85,10 @@ class WalletViewController: UIViewController {
         miniCreditCardButton.layer.cornerRadius = 8
         miniCreditCardButton.isAccessibilityElement = true
         miniCreditCardButton.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
-        miniCreditCardButton.backgroundColorOnPress = .softGray
         miniBankButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniBankButton.layer.cornerRadius = 8
         miniBankButton.isAccessibilityElement = true
         miniBankButton.accessibilityLabel = NSLocalizedString("Bank account", comment: "")
-        miniBankButton.backgroundColorOnPress = .softGray
         
         tableViewFooter.text = viewModel.footerLabelText
         tableViewFooter.font = SystemFont.regular.of(textStyle: .footnote)
