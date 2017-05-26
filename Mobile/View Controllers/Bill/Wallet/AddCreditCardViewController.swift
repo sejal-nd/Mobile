@@ -69,6 +69,7 @@ class AddCreditCardViewController: UIViewController {
         cardNumberTextField.textField.placeholder = NSLocalizedString("Card Number*", comment: "")
         cardNumberTextField.textField.delegate = self
         cardNumberTextField.textField.returnKeyType = .next
+        cardNumberTextField.textField.isShowingAccessory = true
         
         expDateLabel.font = OpenSans.semibold.of(textStyle: .headline)
         expDateLabel.textColor = .blackText

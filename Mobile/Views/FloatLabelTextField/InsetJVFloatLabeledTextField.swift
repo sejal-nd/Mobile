@@ -24,6 +24,7 @@ class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
     }
     
     func getRect(forBounds bounds: CGRect) -> CGRect {
+        floatingLabelXPadding = isShowingLeftAccessory ? -51 : 0
         if isShowingAccessory && !isShowingLeftAccessory {
             if hasText {
                 return CGRect(x: 8, y: 7, width: bounds.size.width - 51, height: bounds.size.height)
