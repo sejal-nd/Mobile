@@ -54,8 +54,7 @@ struct FiservApi {
             print("\n")
             print(payload ?? "p")
             print("\n")
-            print(encodedContent)
-            print("\n")
+            
             var r  = URLRequest(url: URL(string: "https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile/Process")!)
             r.httpMethod = "POST"
             r.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -101,8 +100,7 @@ struct FiservApi {
         let opCo = Environment.sharedInstance.opco
         let time = Int(NSDate().timeIntervalSince1970)
         
-    
-        return = ["MessageId":"insertWalletCheck",
+        return ["MessageId":"insertWalletCheck",
                     "RequestTimestamp":"/Date(" + String(time) + ")/",
                     "AppId":"FiservProxy",
                     "ProcessingRegionCode":2,

@@ -17,7 +17,7 @@ struct CreditCard {
     var expirationYear : String
     var postalCode : String
     var nickname : String
-    var onTimeUse : Bool
+    var oneTimeUse : Bool
     
     init(cardNumber: String,
          securityCode: String,
@@ -32,9 +32,10 @@ struct CreditCard {
         self.securityCode = securityCode
         self.firstName = firstName
         self.lastName = lastName
+        self.expirationMonth = expirationMonth
         self.expirationYear = expirationYear
         self.postalCode = postalCode
         self.nickname = nickname
-        self.oneTimeUse = oneTimeUse
+        self.oneTimeUse = oneTimeUse!
     }
 }
