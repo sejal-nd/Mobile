@@ -294,7 +294,7 @@ extension AddCreditCardViewController: UITextFieldDelegate {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
         if textField == cardNumberTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 16
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 19
         } else if textField == expMonthTextField.textField {
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 2
         } else if textField == expYearTextField.textField {

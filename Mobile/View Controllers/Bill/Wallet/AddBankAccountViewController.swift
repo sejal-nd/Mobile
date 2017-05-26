@@ -65,10 +65,12 @@ class AddBankAccountViewController: UIViewController {
         routingNumberTextField.textField.placeholder = NSLocalizedString("Routing Number*", comment: "")
         routingNumberTextField.textField.delegate = self
         routingNumberTextField.textField.returnKeyType = .next
+        routingNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         confirmRoutingNumberTextField.textField.placeholder = NSLocalizedString("Confirm Routing Number*", comment: "")
         confirmRoutingNumberTextField.textField.delegate = self
         confirmRoutingNumberTextField.textField.returnKeyType = .next
+        confirmRoutingNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.delegate = self
@@ -165,6 +167,19 @@ class AddBankAccountViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
+        accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            if !self.viewModel.accountNumber.value.isEmpty {
+                self.viewModel.accountNumberIsValid().single().subscribe(onNext: { valid in
+                    if !valid {
+                        self.accountNumberTextField.setError(NSLocalizedString("Must be between 8-17 digits", comment: ""))
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
+        accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.accountNumberTextField.setError(nil)
+        }).addDisposableTo(disposeBag)
+        
         viewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
             if !self.viewModel.confirmAccountNumber.value.isEmpty {
                 if matches {
@@ -221,6 +236,14 @@ extension AddBankAccountViewController: UITextFieldDelegate {
             return CharacterSet.decimalDigits.isSuperset(of: characterSet)
         }
         return true
+    }
+    
+    func textFieldDidChange(_ textField: UITextField) {
+        if textField == routingNumberTextField.textField || textField == confirmRoutingNumberTextField.textField {
+            if textField.text?.characters.count == 9 {
+                accountNumberTextField.textField.becomeFirstResponder()
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
