@@ -231,7 +231,7 @@ class EditBankAccountViewController: UIViewController {
         
         viewModel.editBankAccount(onSuccess: {
             LoadingView.hide()
-            self.delegate?.editBankAccountViewControllerDidAddAccount(self, message: "Changes saved.")
+            self.delegate?.editBankAccountViewControllerDidAddAccount(self, message: "Changes saved")
             
             _ = self.navigationController?.popViewController(animated: true)
         }, onError: { errMessage in
@@ -275,7 +275,7 @@ class EditBankAccountViewController: UIViewController {
             
             self.viewModel.editBankAccount(onSuccess: {
                 LoadingView.hide()
-                self.delegate?.editBankAccountViewControllerDidAddAccount(self, message: "Bank Account deleted.")
+                self.delegate?.editBankAccountViewControllerDidAddAccount(self, message: "Bank account deleted")
                 
                 _ = self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
