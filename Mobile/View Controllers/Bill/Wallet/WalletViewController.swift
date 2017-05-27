@@ -159,9 +159,14 @@ class WalletViewController: UIViewController {
             vc.delegate = self
         } else if let vc = segue.destination as? EditBankAccountViewController {
             vc.selectedWalletItem = self.selectedWalletItem
+            
+            vc.delegate = self
+        } else if let vc = segue.destination as? EditCreditCardViewController {
+            vc.selectedWalletItem = self.selectedWalletItem
+
+            vc.delegate = self
         }
     }
-
 }
 
 extension WalletViewController: UITableViewDelegate {
@@ -204,9 +209,9 @@ extension WalletViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedWalletItem = viewModel.walletItems.value![indexPath.section]
         if selectedWalletItem?.paymentCategoryType == .credit {
-            
+            self.performSegue(withIdentifier: "editCreditCardSegue", sender: self)
         } else {
-            self.performSegue(withIdentifier: "editWalletItemSegue", sender: self)
+            self.performSegue(withIdentifier: "editBankAccountSegue", sender: self)
         }
     }
     
@@ -242,4 +247,15 @@ extension WalletViewController: AddCreditCardViewControllerDelegate {
             self.view.makeToast(NSLocalizedString("Card added", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
+}
+
+extension WalletViewController: EditCreditCardViewControllerDelegate {
+    
+    func editCreditCardViewControllerDidEditAccount(_ editCreditCardViewController: EditCreditCardViewController, message: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.viewModel.fetchWalletItems.onNext()
+            self.view.makeToast(NSLocalizedString(message, comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
+    
 }
