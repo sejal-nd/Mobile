@@ -193,6 +193,9 @@
 		82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		82BE057F1ED8D14D00BC06EE /* FadeSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */; };
+		82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */; };
+		82BE05811ED8D14D00BC06EE /* FadeSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */; };
 		82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
 		82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
@@ -837,6 +840,7 @@
 		82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingPaymentView.swift; sourceTree = "<group>"; };
 		82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingPaymentView.xib; sourceTree = "<group>"; };
 		82A18F171EC0E83800BE9F21 /* NibViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViews.swift; sourceTree = "<group>"; };
+		82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeSubviews.swift; sourceTree = "<group>"; };
 		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		82D599411EC2374500DDB380 /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
 		82D599461EC356C800DDB380 /* RxSwiftExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftExt.framework; path = Carthage/Build/iOS/RxSwiftExt.framework; sourceTree = "<group>"; };
@@ -1544,6 +1548,7 @@
 				82A18F171EC0E83800BE9F21 /* NibViews.swift */,
 				82D5994A1EC36B5500DDB380 /* Currency.swift */,
 				225FF8591EC56B480079010C /* Date.swift */,
+				82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2732,6 +2737,7 @@
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				B56DD4A21ED87AE200F0198B /* CreditCard.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */,
+				82BE057F1ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
@@ -2884,6 +2890,7 @@
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				E876A8581ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
+				82BE05811ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
@@ -3021,6 +3028,7 @@
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				E876A8571ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
+				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				54AE06951ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,

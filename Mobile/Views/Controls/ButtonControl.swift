@@ -12,9 +12,8 @@ import RxCocoa
 
 class ButtonControl: UIControl {
     
-    var shouldFadeSubviews = true
-    
-    var backgroundColorOnPress = UIColor.clear
+    @IBInspectable var shouldFadeSubviewsOnPress: Bool = false
+    @IBInspectable var backgroundColorOnPress: UIColor?
 
     let bag = DisposeBag()
     
@@ -29,22 +28,26 @@ class ButtonControl: UIControl {
     }
     
     func commonInit() {
-        let normalStateColor = backgroundColor ?? .clear
+        let normalStateColor = backgroundColor
         
-        let selected = rx.controlEvent(.touchDown).asDriver()
-            .map { true }
+        let pressed = rx.controlEvent(.touchDown).asDriver().map { true }
         
-        let deselected = Driver.merge(rx.controlEvent(.touchUpInside).asDriver(),
+        let notPressed = Driver.merge(rx.controlEvent(.touchUpInside).asDriver(),
                                            rx.controlEvent(.touchUpOutside).asDriver(),
-                                           rx.controlEvent(.touchCancel).asDriver())
-            .map { false }
+                                           rx.controlEvent(.touchCancel).asDriver()).map { false }
         
-        Driver.merge(selected, deselected)
-            .drive(onNext: { [weak self] selected in
-                self?.backgroundColor = selected ? self?.backgroundColorOnPress: normalStateColor
-                self?.fadeSubviews(fadeAmount: selected ? 0.5: 1, animationDuration: 0.0)
+        Driver.merge(pressed, notPressed)
+            .startWith(false)
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] pressed in
+                guard let strongSelf = self else { return }
+                strongSelf.backgroundColor = pressed ? strongSelf.backgroundColorOnPress: normalStateColor
+                if strongSelf.shouldFadeSubviewsOnPress {
+                    strongSelf.fadeSubviews(fadeAmount: pressed ? 0.5: 1, animationDuration: 0.1)
+                }
             })
             .addDisposableTo(bag)
+        
     }
     
     override var isEnabled: Bool {
@@ -53,20 +56,4 @@ class ButtonControl: UIControl {
         }
     }
 
-    
-}
-
-extension UIView {
-    func fadeSubviews(fadeAmount amount: CGFloat, animationDuration: TimeInterval, excludedViews: [UIView] = [UIView]()) {
-        let subviews = self.subviews + self.subviews.flatMap { $0.subviews }
-        UIView.animate(withDuration: animationDuration, animations: {
-            subviews.filter { !excludedViews.contains($0) }.forEach { subview in
-                if !(subview is UIStackView) {
-                    subview.alpha = amount
-                } else {
-                    subview.fadeSubviews(fadeAmount: amount, animationDuration: animationDuration)
-                }
-            }
-        })
-    }
 }
