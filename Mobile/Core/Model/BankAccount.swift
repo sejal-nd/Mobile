@@ -9,8 +9,8 @@
 import Foundation
 
 struct BankAccount {
-    var bankAccountNumber: String?
-    var routingNumber: String?
+    var bankAccountNumber: String
+    var routingNumber: String
     var accountNickname: String?
     var accountType : String?
     var accountName : String?
