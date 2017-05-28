@@ -12,5 +12,7 @@
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
 	<string>Staging</string>
+	<key>fiservUrl</key>
+	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile/Process</string>
 </dict>
 </plist>

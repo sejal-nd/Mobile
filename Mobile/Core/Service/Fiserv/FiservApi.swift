@@ -8,164 +8,268 @@
 
 import Foundation
 
+private enum ResponseKey : String {
+    case ResponseCode = "ResponseCode"
+    case StatusMessage = "StatusMessage"
+    case WalletItemId = "WalletItemID"
+}
+
+private enum MessageId : String {
+    case InsertCheck = "insertWalletCheck"
+    case InsertCredit = "insertWalletCard"
+    case updateCredit = "updateWalletCard"
+}
+
+private enum Action : String {
+    case Insert = "OD_InsertWalletItem"
+    case Update = "OD_UpdateWalletItem"
+}
+
+private enum Parameter : String {
+    case MessageId = "MessageId"
+    case WalletItemId = "WalletItemID"
+    case RequestTimestamp = "RequestTimestamp"
+    case AppId = "AppId"
+    case ProcessingRegionCode = "ProcessingRegionCode"
+    case BillerId = "BillerId"
+    case ConsumerId = "ConsumerId"
+    case SessionToken = "AuthSessToken"
+    case DeviceProfile = "DeviceProfile"
+    case UserAgentString = "UserAgentString"
+    case WalletExternalId = "WalletExternalID"
+    case OneTimeUse = "OneTimeUse"
+    case IsDefaultFunding = "IsDefaultFundingSource"
+    case NickName = "NickName"
+    
+    case CheckingDetail = "CheckingDetail"
+    case CardDetail = "CardDetail"
+
+    case CardNumber = "CardNumber"
+    case ExpirationDate = "ExpirationDate"
+    case SecurityCode = "SecurityCode"
+    case PostalCode = "ZipCode"
+    
+    case RoutingNumber = "RoutingNumber"
+    case CheckAccountNumber = "CheckAccountNumber"
+    case FirstName = "FirstName"
+    case LastName = "LastName"
+    case CheckType = "CheckType"
+}
+
+struct WalletItemResult {
+    let responseCode : Int
+    let statusMessage : String
+    let walletItemId : String
+}
+
 struct FiservApi {
+    
     func addBankAccount(bankAccountNumber: String,
                         routingNumber: String,
-                        customerNumber: String,
-                        firstName: String,
-                        lastName: String,
+                        firstName: String?,
+                        lastName: String?,
+                        nickname: String?,
                         token: String,
-                        completion: @escaping (_ result: ServiceResult<Void>) -> Swift.Void) {
+                        customerNumber: String,
+                        completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Swift.Void) {
         
-        let opCo = Environment.sharedInstance.opco
+        var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: false)
         
-        
-        
-        let deviceProfile = ["UserAgentString" : "MobileApp"]
-        let checking = ["RoutingNumber" : routingNumber,
-                        "CheckAccountNumber" : bankAccountNumber,
-                        "FirstName" : firstName,
-                        "LastName" : lastName,
-                        "CheckType" : 1] as [String : Any]
-        
-        let time = Int(NSDate().timeIntervalSince1970)
-        
-        let data = ["MessageId":"insertWalletCheck",
-        "RequestTimestamp":"/Date(" + String(time) + ")/",
-        "AppId":"FiservProxy",
-        "ProcessingRegionCode":2,
-        "BillerId":"\(opCo.rawValue)Registered",
-        "ConsumerId":customerNumber,
-        "AuthSessToken":token,
-        "DeviceProfile":deviceProfile,
-        "WalletExternalID":customerNumber,
-        "OneTimeUse":false,
-        "CheckingDetail":checking,
-        "IsDefaultFundingSource":false] as [String : Any]
+        params[Parameter.MessageId.rawValue] = MessageId.InsertCheck.rawValue
+        params[Parameter.CheckingDetail.rawValue] = createBankAccountDetailDictionary(accountNumber: bankAccountNumber,
+                                                                     routingNumber: routingNumber,
+                                                                     firstName: firstName,
+                                                                     lastName: lastName)
         
         do {
-            let jsonData: NSData = try JSONSerialization.data(withJSONObject: data) as NSData
+            let encodedBody = try encodePayload(params, action: Action.Insert.rawValue)
+            post(body: encodedBody, completion: completion)
             
-            let payload = String.init(data: jsonData as Data, encoding: String.Encoding.utf8)?.replacingOccurrences(of: "\\", with: "")
-            
-            let content = "action=OD_InsertWalletItem&payload=" + payload!
-            let encodedContent = content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-            
-            print("\n")
-            print(payload ?? "p")
-            print("\n")
-            
-            var r  = URLRequest(url: URL(string: "https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile/Process")!)
-            r.httpMethod = "POST"
-            r.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            let d = encodedContent.data(using:String.Encoding.utf8, allowLossyConversion: false)
-            r.httpBody = d
-            
-            URLSession.shared.dataTask(with: r, completionHandler: { (dat:Data?, resp: URLResponse?, err: Error?) in
-                print(String.init(data: dat!, encoding: String.Encoding.utf8) ?? "")
-                
-                do {
-                    let parse = try JSONSerialization.jsonObject(with: dat!, options: JSONSerialization.ReadingOptions.allowFragments)  as? [String: Any]
-                    if(parse?["ResponseCode"] as? Int == 0) {
-                        completion(ServiceResult.Success())
-                    } else {
-                        let message = self.mapError(message: (parse?["StatusMessage"] as? String)!, transactionType: "")
-                        completion(ServiceResult.Failure(ServiceError(serviceCode: "Fiserv", serviceMessage: message)))
-                    }
-                }
-                catch let err as NSError {
-                    print(err)
-                }
-                
-            }).resume()
         }catch let err as NSError {
-            print(err)
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
         }
     }
     
     func addCreditCard(cardNumber: String,
-                        expirationMonth: String,
-                        expirationYear: String,
-                        securityCode: String,
-                        firstName: String,
-                        lastName: String,
-                        postalCode: String,
-                        token: String,
-                        completion: @escaping (_ result: ServiceResult<Void>) -> Swift.Void) {
+                       expirationMonth: String,
+                       expirationYear: String,
+                       securityCode: String,
+                       postalCode: String,
+                       nickname: String?,
+                       token: String,
+                       customerNumber: String,
+                       completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Swift.Void) {
         
+        
+        var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: false)
+        params[Parameter.MessageId.rawValue] = MessageId.InsertCredit.rawValue
+        params[Parameter.CardDetail.rawValue] = createCardDetailDictionary(cardNumber: cardNumber,
+                                                          expirationMonth: expirationMonth,
+                                                          expirationYear: expirationYear,
+                                                          securityCode: securityCode,
+                                                          postalCode: postalCode)
+        
+        do {
+            let encodedBody = try encodePayload(params, action: Action.Insert.rawValue)
+            post(body: encodedBody, completion: completion)
+            
+        }catch let err as NSError {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+        }
     }
     
-    func createBaseParameters(token: String, customerNumber: String, oneTimeUse: Bool) -> [String:Any] {
+    func updateCreditCard(walletItemID: String,
+                          expirationMonth: String,
+                          expirationYear: String,
+                          securityCode: String,
+                          postalCode: String,
+                          nickname: String?,
+                          token: String,
+                          customerNumber: String,
+                          completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Swift.Void) {
+        var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: false)
+        
+        let expiration = "" + expirationMonth + expirationYear.substring(from: expirationYear.index(expirationYear.startIndex, offsetBy: 2))
+        let cardDetail = [Parameter.ExpirationDate.rawValue : expiration,
+                          Parameter.SecurityCode.rawValue : securityCode,
+                          Parameter.PostalCode.rawValue : postalCode]
+        
+        params[Parameter.MessageId.rawValue] = MessageId.updateCredit.rawValue
+        params[Parameter.CardDetail.rawValue] = cardDetail
+        params[Parameter.WalletItemId.rawValue] = walletItemID
+        
+        do {
+            let encodedBody = try encodePayload(params, action: Action.Update.rawValue)
+            post(body: encodedBody, completion: completion)
+            
+        }catch let err as NSError {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+        }
+    }
+    
+    private func createCardDetailDictionary(cardNumber: String?,
+                                            expirationMonth: String,
+                                            expirationYear: String,
+                                            securityCode: String?,
+                                            postalCode: String?) -> [String:Any] {
+        let expiration = expirationMonth + expirationYear.substring(from: expirationYear.index(expirationYear.startIndex, offsetBy: 2))
+        var details = [Parameter.ExpirationDate.rawValue : expiration] as [String: Any]
+        
+        if(!(cardNumber ?? "").isEmpty) {
+            details[Parameter.CardNumber.rawValue] = cardNumber
+        }
+        if(!(securityCode ?? "").isEmpty) {
+            details[Parameter.SecurityCode.rawValue] = securityCode
+        }
+        if(!(postalCode ?? "").isEmpty) {
+            details[Parameter.PostalCode.rawValue] = postalCode
+        }
+        
+        return details
+    }
+    
+    private func createBankAccountDetailDictionary(accountNumber: String,
+                                                   routingNumber : String,
+                                                   firstName : String?,
+                                                   lastName : String?) -> [String:Any] {
+        var details = [Parameter.RoutingNumber.rawValue : routingNumber,
+                       Parameter.CheckAccountNumber.rawValue : accountNumber,
+                       Parameter.CheckType.rawValue : 1] as [String : Any]
+        
+        if(!(firstName ?? "").isEmpty) {
+            details[Parameter.FirstName.rawValue] = firstName
+        }
+        if(!(lastName ?? "").isEmpty) {
+            details[Parameter.LastName.rawValue] = lastName
+        }
+        
+        return details
+    }
+    
+    private func encodePayload(_ payloadParameters : [String : Any], action: String) throws -> Data {
+        let jsonData: NSData = try JSONSerialization.data(withJSONObject: payloadParameters) as NSData
+        
+        let payload = String.init(data: jsonData as Data, encoding: String.Encoding.utf8)?.replacingOccurrences(of: "\\", with: "")
+        
+        let content = "action=" + action + "&payload=" + payload!
+        let encodedContent = content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        
+        dLog(message: payload ?? "Empty Payload")
+        
+        return encodedContent.data(using:String.Encoding.utf8)!
+    }
+    
+    private func createBaseParameters(token: String, customerNumber: String, nickname: String?, oneTimeUse: Bool) -> [String:Any] {
         
         let opCo = Environment.sharedInstance.opco
         let time = Int(NSDate().timeIntervalSince1970)
+        let billerId = "\(opCo.rawValue)Registered"
         
-        return ["MessageId":"insertWalletCheck",
-                    "RequestTimestamp":"/Date(" + String(time) + ")/",
-                    "AppId":"FiservProxy",
-                    "ProcessingRegionCode":2,
-                    "BillerId":"\(opCo.rawValue)Registered",
-            "ConsumerId":customerNumber,
-            "AuthSessToken":token,
-            "DeviceProfile":["UserAgentString" : "MobileApp"],
-            "WalletExternalID":customerNumber,
-            "OneTimeUse":oneTimeUse,
-            "IsDefaultFundingSource":false] as [String : Any]
+        var params = [Parameter.RequestTimestamp.rawValue:"/Date(" + String(time) + ")/",
+                      Parameter.AppId.rawValue:"FiservProxy",
+                      Parameter.ProcessingRegionCode.rawValue:2,
+                      Parameter.BillerId.rawValue:billerId,
+                      Parameter.ConsumerId.rawValue:customerNumber,
+                      Parameter.SessionToken.rawValue:token,
+                      Parameter.DeviceProfile.rawValue:[Parameter.UserAgentString.rawValue : "MobileApp"],
+                      Parameter.WalletExternalId.rawValue:customerNumber,
+                      Parameter.OneTimeUse.rawValue:oneTimeUse,
+                      Parameter.IsDefaultFunding.rawValue:false] as [String : Any]
+        
+        if(!(nickname ?? "").isEmpty) {
+            params[Parameter.NickName.rawValue] = nickname
+        }
+        
+        return params
     }
     
-    func mapError(message: String, transactionType: String) -> String {
-        //Pulled From JS - TODO cleanup
-        let walletStatus = message.lowercased()
-        var status: String
-        
-        if (walletStatus.range(of: "ach account exist already") != nil) {
-            status = "The information entered was not accepted. Please verify and re-enter your new payment account information.";
-        } else if (walletStatus.range(of: "card exist already") != nil) {
-            status = "The information entered was not accepted. Please verify and re-enter your new payment account information.";
-        } else if (walletStatus.range(of: "not valid card account") != nil) {
-            status = "The information entered was not accepted. Please verify and re-enter " +
-            "your new payment account information.";
-        } else if (walletStatus.range(of: "inthe-0001") != nil) {
-            status = "We're sorry, we are unable to process your request at this time. Please" +
-            " try again later.";
-        } else if (walletStatus.range(of: "inval-0019") != nil) {
-            if (transactionType == "makePayment") {
-                status = "We're sorry, we are unable to process your request as the wallet item already exists. Please login to make a payment."; //SIR112221 //fiservResponse.statusMessage;
+    private func post(body: Data, completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Swift.Void) {
+        let urlRequest = createFiservRequest(with: body, method: "POST")
+        execute(request: urlRequest, completion: completion)
+    }
+    
+    private func execute(request: URLRequest, completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Swift.Void) {
+        URLSession.shared.dataTask(with:request, completionHandler: { (data:Data?, resp: URLResponse?, err: Error?) in
+            if let error = err {
+                let serviceError = ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: error)
+                completion(ServiceResult.Failure(serviceError))
+                
             } else {
-                status = "Cannot save this wallet item as it already exists!"; //SIR112221
+                let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
+                dLog(message: responseString)
+                
+                do {
+                    let resultDictionary = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
+                    let responseValue = self.parseResponse(with: resultDictionary!)
+                    
+                    if(responseValue.responseCode == 0) {
+                        completion(ServiceResult.Success(responseValue))
+                    } else {
+                        let serviceError = ServiceError(serviceCode: "Fiserv", serviceMessage:responseValue.statusMessage)
+                        completion(ServiceResult.Failure(serviceError))
+                    }
+                }
+                catch let error as NSError {
+                    let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
+                    completion(ServiceResult.Failure(serviceError))
+                }
             }
-        }//Start: SIR112221
-        else if (walletStatus.range(of: "inval-0001") != nil || walletStatus.range(of: "inval-0020") != nil
-            || walletStatus.range(of: "inval-0021") != nil || walletStatus.range(of: "pyact-0001") != nil ||
-            walletStatus.range(of: "pyact-0008") != nil) {
-            status = "We're sorry, we are unable to process your request due to incorrect data being entered. Please try again.";
-        } else if (walletStatus.range(of: "inval-0016") != nil || walletStatus.range(of: "inval-0025") != nil) {
-            status = "We're sorry, we are unable to process your request as you have reached the maximum number of payments permitted.";
-        } else if (walletStatus.range(of: "inval-0017") != nil || walletStatus.range(of: "inval-0026") != nil) {
-            status = "We're sorry, we are unable to process your request.";// Please contact
-            // our Customer Care Center at " + phoneNumber + " for more information. (Hours of operation: " + officeHours + ")";
-        } else if (walletStatus.range(of: "inval-0018") != nil) {
-            status = "We're sorry, we are unable to process your request. Please contact your financial institution for further information.";
-        } else if (walletStatus.range(of: "inval-0022") != nil || walletStatus.range(of: "secur-0002") != nil) {
-            status = "We're sorry, we are unable to process your request at this time as your request timed out. Please try again later.";
-            //fiservResponse.refreshWallet = true;
-        } else if (walletStatus.range(of: "inval-0024") != nil) {
-            status = "We're sorry, we are unable to process your request as it's a duplicate payment.";
-        } else if (walletStatus.range(of: "mpymt-0009") != nil) {
-            status = "We're sorry, we are unable to process your request. The credit card you selected has been declined. Please select another card. If you have questions about why your credit card was declined, please contact the credit card issuer.";
-        } else if (walletStatus.range(of: "mpymt-0011") != nil) {
-            status = "We're sorry, we can't schedule this payment on the selected date because it exceeds the number of payments permitted.";
-        }
-            //End: SIR112221
-            // same card number but different info (zip, cvv2, etc)
-            //    else if (walletStatus.indexOf('success') > -1 && responseCode.indexOf('businessruleviolation') > -1) {
-            //      response.mStatus = 'The information entered was not accepted. Please verify and re-enter your new payment account information.';
-            //    }
-        else {
-            status = message
-            //fiservResponse.message = fiservResponse.statusMessage;
-        }
-        
-        return status
+        }).resume()
+    }
+    
+    private func createFiservRequest(with body: Data, method: String) -> URLRequest {
+        var urlRequest  = URLRequest(url: URL(string: Environment.sharedInstance.fiservUrl)!)
+        urlRequest.httpMethod = method
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = body
+        return urlRequest
+    }
+    
+    private func parseResponse(with value: [String:Any]) -> WalletItemResult {
+        let code = value[ResponseKey.ResponseCode.rawValue] as? Int
+        let statusMessage = value[ResponseKey.StatusMessage.rawValue] as? String
+        let sanitizedStatusMessage = FiservMessageSanitizer.sanitizeErrorMessage(message:statusMessage ?? "", transactionType: "")
+        let walletItemId = ""
+        return WalletItemResult(responseCode:code ?? -1, statusMessage:sanitizedStatusMessage, walletItemId:walletItemId)
     }
 }

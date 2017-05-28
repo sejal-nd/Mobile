@@ -48,7 +48,7 @@ protocol WalletService {
                           expirationYear: String,
                           securityCode: String,
                           postalCode: String,
-                          nickname: String,
+                          nickname: String?,
                           completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
     
@@ -59,11 +59,14 @@ protocol WalletService {
     ///   - bankAccountNumber: the new bank account number
     ///   - routingNumber: the routing number
     ///   - accountType: the account type
+    ///   - nickname: the account nickname
+    ///   - accountName; the account name
     func updateBankAccount(_ walletItemID: String,
                            bankAccountNumber: String,
                            routingNumber: String,
                            accountType: BankAccountType,
-                           nickname: String,
+                           nickname: String?,
+                           accountName: String?,
                            completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
     /// Delete wallet payment method (Comed/PECO) information.
@@ -166,7 +169,8 @@ extension WalletService {
                            bankAccountNumber: String,
                            routingNumber: String,
                            accountType: BankAccountType,
-                           nickname: String) -> Observable<Void> {
+                           nickname: String,
+                           accountName: String) -> Observable<Void> {
         
         return Observable.create { observer in
             self.updateBankAccount(walletItemID,
@@ -174,6 +178,7 @@ extension WalletService {
                                   routingNumber: routingNumber,
                                   accountType: accountType,
                                   nickname: nickname,
+                                  accountName: accountName,
                                   completion: { (result: ServiceResult<Void>) in
                                     //
                                     switch (result) {
