@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol EditBankAccountViewControllerDelegate: class {
-    func editBankAccountViewControllerDidAddAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String)
+    func editBankAccountViewControllerDidEditAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String)
 }
 
 class EditBankAccountViewController: UIViewController {
@@ -231,7 +231,7 @@ class EditBankAccountViewController: UIViewController {
         
         viewModel.editBankAccount(onSuccess: {
             LoadingView.hide()
-            self.delegate?.editBankAccountViewControllerDidAddAccount(self, message: "Changes saved")
+            self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: "Changes saved")
             
             _ = self.navigationController?.popViewController(animated: true)
         }, onError: { errMessage in
@@ -275,7 +275,7 @@ class EditBankAccountViewController: UIViewController {
             
             self.viewModel.editBankAccount(onSuccess: {
                 LoadingView.hide()
-                self.delegate?.editBankAccountViewControllerDidAddAccount(self, message: "Bank account deleted")
+                self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: "Bank account deleted")
                 
                 _ = self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
