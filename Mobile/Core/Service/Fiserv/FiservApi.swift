@@ -86,7 +86,6 @@ struct FiservApi {
             post(body: encodedBody, completion: completion)
             
         }catch let err as NSError {
-            dLog(message: err.localizedDescription)
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
         }
     }
@@ -115,7 +114,6 @@ struct FiservApi {
             post(body: encodedBody, completion: completion)
             
         }catch let err as NSError {
-            dLog(message: err.localizedDescription)
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
         }
     }
@@ -145,7 +143,6 @@ struct FiservApi {
             post(body: encodedBody, completion: completion)
             
         }catch let err as NSError {
-            dLog(message: err.localizedDescription)
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
         }
     }
