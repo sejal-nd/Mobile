@@ -18,7 +18,7 @@ struct BankAccount {
     
     init(bankAccountNumber: String,
          routingNumber: String,
-         accountNickname: String,
+         accountNickname: String?,
          accountType: String?=nil,
          accountName: String?=nil,
          oneTimeUse: Bool?=false) {
