@@ -14,13 +14,18 @@ class WalletViewModel {
     let disposeBag = DisposeBag()
     
     let walletService: WalletService!
+    let oneTouchPayService: OneTouchPayService!
+    
+    var accountDetail: AccountDetail! // Passed from BillViewController
+    var oneTouchPayDictionary: [String: WalletItem]?
     
     let fetchWalletItems = PublishSubject<Void>()
     let walletItems = Variable<[WalletItem]?>(nil)
     let isFetchingWalletItems: Driver<Bool>
-
-    required init(walletService: WalletService) {
+    
+    required init(walletService: WalletService, oneTouchPayService: OneTouchPayService) {
         self.walletService = walletService
+        self.oneTouchPayService = oneTouchPayService
         
         let fetchingWalletItemsTracker = ActivityTracker()
         isFetchingWalletItems = fetchingWalletItemsTracker.asDriver()
@@ -34,6 +39,10 @@ class WalletViewModel {
             .bind(to: walletItems)
             .addDisposableTo(disposeBag)
         
+        walletItems.asObservable().subscribe(onNext: { _ in
+            print("FETCHED ONE TOUCH PAY DICT")
+            self.oneTouchPayDictionary = self.oneTouchPayService.getOneTouchPayDictionary()
+        }).addDisposableTo(disposeBag)
         
     }
     

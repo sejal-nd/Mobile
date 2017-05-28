@@ -429,7 +429,9 @@ class BillViewController: AccountPickerViewController {
             vc.initialAccountDetail = viewModel.currentAccountDetail.value!
         } else if let vc = segue.destination as? ViewBillViewController {
             vc.viewModel.billDate = viewModel.currentAccountDetail.value!.billingInfo.billDate
-		}
+        } else if let vc = segue.destination as? WalletViewController {
+            vc.viewModel.accountDetail = viewModel.currentAccountDetail.value!
+        }
     }
     
     func showDelayedToast(withMessage message: String) {

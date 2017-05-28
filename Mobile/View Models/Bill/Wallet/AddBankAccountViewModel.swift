@@ -15,6 +15,8 @@ class AddBankAccountViewModel {
     
     let walletService: WalletService!
     
+    var accountDetail: AccountDetail! // Passed from WalletViewController
+    
     let selectedSegmentIndex = Variable(0)
     let accountHolderName = Variable("")
     let routingNumber = Variable("")
@@ -23,7 +25,7 @@ class AddBankAccountViewModel {
     let confirmAccountNumber = Variable("")
     let nickname = Variable("")
     let oneTouchPay = Variable(false)
-
+    
     required init(walletService: WalletService) {
         self.walletService = walletService
     }
