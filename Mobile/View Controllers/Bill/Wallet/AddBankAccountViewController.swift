@@ -36,6 +36,7 @@ class AddBankAccountViewController: UIViewController {
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var nicknameTextField: FloatLabelTextField!
+    @IBOutlet weak var oneTouchPayView: UIView!
     @IBOutlet weak var oneTouchPayDescriptionLabel: UILabel!
     @IBOutlet weak var oneTouchPaySwitch: Switch!
     @IBOutlet weak var oneTouchPayLabel: UILabel!
@@ -90,7 +91,9 @@ class AddBankAccountViewController: UIViewController {
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         
-        if Environment.sharedInstance.opco != .bge { // BGE only fields should be removed on ComEd/PECO
+        if Environment.sharedInstance.opco == .bge {
+            oneTouchPayView.isHidden = true // Cannot do One Touch Pay on BGE until the endpoint returns walletItemID
+        } else { // BGE only fields should be removed on ComEd/PECO
             checkingSavingsSegmentedControl.isHidden = true
             accountHolderNameTextField.isHidden = true
             confirmRoutingNumberTextField.isHidden = true
@@ -273,7 +276,15 @@ extension AddBankAccountViewController: UITextFieldDelegate {
     }
     
     func textFieldDidChange(_ textField: UITextField) {
-        if textField == routingNumberTextField.textField || textField == confirmRoutingNumberTextField.textField {
+        if textField == routingNumberTextField.textField {
+            if textField.text?.characters.count == 9 {
+                if Environment.sharedInstance.opco == .bge {
+                     confirmRoutingNumberTextField.textField.becomeFirstResponder()
+                } else {
+                    accountNumberTextField.textField.becomeFirstResponder()
+                }
+            }
+        } else if textField == confirmRoutingNumberTextField.textField {
             if textField.text?.characters.count == 9 {
                 accountNumberTextField.textField.becomeFirstResponder()
             }

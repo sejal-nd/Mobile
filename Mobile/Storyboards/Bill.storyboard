@@ -1148,6 +1148,7 @@ to your payments.</string>
                         <outlet property="oneTouchPayDescriptionLabel" destination="R2L-4y-4K1" id="rgZ-cP-2Mu"/>
                         <outlet property="oneTouchPayLabel" destination="RLh-IH-u7i" id="0VZ-hx-mA2"/>
                         <outlet property="oneTouchPaySwitch" destination="pX0-K6-4v4" id="QCu-ky-P7B"/>
+                        <outlet property="oneTouchPayView" destination="vTk-dc-pav" id="xtZ-Mz-uC8"/>
                         <outlet property="routingNumberTextField" destination="fGp-tZ-IvK" id="z3x-fN-mar"/>
                         <outlet property="scrollView" destination="VVW-ye-NTR" id="kVI-tQ-920"/>
                     </connections>
@@ -1430,6 +1431,7 @@ to your payments.</string>
                         <outlet property="oneTouchPayDescriptionLabel" destination="cKj-ia-IN8" id="lvd-8K-8e7"/>
                         <outlet property="oneTouchPayLabel" destination="YhA-cO-0Sh" id="RaI-Iz-u7t"/>
                         <outlet property="oneTouchPaySwitch" destination="sz6-Uu-ljH" id="tU1-mx-ep0"/>
+                        <outlet property="oneTouchPayView" destination="1nr-gR-xJk" id="Nie-Tz-gwB"/>
                         <outlet property="scrollView" destination="ATW-BG-xuM" id="D59-mT-mbB"/>
                         <outlet property="zipCodeTextField" destination="cd1-5X-0uq" id="O4W-p4-j36"/>
                     </connections>

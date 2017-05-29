@@ -37,6 +37,7 @@ class AddCreditCardViewController: UIViewController {
     @IBOutlet weak var cvvTooltipButton: UIButton!
     @IBOutlet weak var zipCodeTextField: FloatLabelTextField!
     @IBOutlet weak var nicknameTextField: FloatLabelTextField!
+    @IBOutlet weak var oneTouchPayView: UIView!
     @IBOutlet weak var oneTouchPayDescriptionLabel: UILabel!
     @IBOutlet weak var oneTouchPaySwitch: Switch!
     @IBOutlet weak var oneTouchPayLabel: UILabel!
@@ -111,7 +112,9 @@ class AddCreditCardViewController: UIViewController {
             footnoteLabel.text = NSLocalizedString("We accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
         }
         
-        if Environment.sharedInstance.opco != .bge { // BGE only fields should be removed on ComEd/PECO
+        if Environment.sharedInstance.opco == .bge {
+            oneTouchPayView.isHidden = true // Cannot do One Touch Pay on BGE until the endpoint returns walletItemID
+        } else { // BGE only fields should be removed on ComEd/PECO
             nameOnCardTextField.isHidden = true
         }
         
@@ -129,6 +132,13 @@ class AddCreditCardViewController: UIViewController {
     
     func onSavePress() {
         view.endEditing(true)
+        
+        if Environment.sharedInstance.opco == .bge {
+            let alertVc = UIAlertController(title: "Not Implemented", message: "Add credit card is not yet implemented for BGE.", preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertVc, animated: true, completion: nil)
+            return
+        }
         
         LoadingView.show()
         viewModel.addCreditCard(onSuccess: {
