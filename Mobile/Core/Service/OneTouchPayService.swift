@@ -31,10 +31,13 @@ class OneTouchPayService {
         return nil
     }
     
-    func setOneTouchPayItem(_ item: WalletItem, forCustomerNumber number: String?) {
+    func setOneTouchPayItem(walletItemID: String, maskedWalletItemAccountNumber: String, forCustomerNumber number: String?) {
         if let customerNumber = number {
             var oneTouchPayDictionary = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.OneTouchPayDictionary)!
-            oneTouchPayDictionary[customerNumber] = ["walletItemID": item.walletItemID!]
+            oneTouchPayDictionary[customerNumber] = [
+                "walletItemID": walletItemID,
+                "maskedWalletItemAccountNumber": maskedWalletItemAccountNumber
+            ]
             UserDefaults.standard.set(oneTouchPayDictionary, forKey: UserDefaultKeys.OneTouchPayDictionary)
         } else {
             dLog(message: "ERROR: Could not set One Touch Pay item because customer number is nil")

@@ -111,6 +111,8 @@ class EditCreditCardViewController: UIViewController {
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         convenienceFeeLabel.textColor = .blackText
+        
+        oneTouchPayCardView.isHidden = true
     }
     
     func buildNavigationButtons() {
@@ -150,7 +152,6 @@ class EditCreditCardViewController: UIViewController {
         
         deleteCardLabel.font = SystemFont.regular.of(textStyle: .headline)
         deleteCardLabel.textColor = .actionBlue
-        
         
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)

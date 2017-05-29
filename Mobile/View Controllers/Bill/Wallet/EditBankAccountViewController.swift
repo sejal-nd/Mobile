@@ -92,6 +92,8 @@ class EditBankAccountViewController: UIViewController {
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         convenienceFeeLabel.textColor = .blackText
+        
+        oneTouchPayCardView.isHidden = true
     }
     
     func buildNavigationButtons() {

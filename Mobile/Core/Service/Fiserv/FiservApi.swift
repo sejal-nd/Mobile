@@ -269,7 +269,11 @@ struct FiservApi {
         let code = value[ResponseKey.ResponseCode.rawValue] as? Int
         let statusMessage = value[ResponseKey.StatusMessage.rawValue] as? String
         let sanitizedStatusMessage = FiservMessageSanitizer.sanitizeErrorMessage(message:statusMessage ?? "", transactionType: "")
-        let walletItemId = ""
-        return WalletItemResult(responseCode:code ?? -1, statusMessage:sanitizedStatusMessage, walletItemId:walletItemId)
+        
+        var walletItemIdString = ""
+        if let walletItemId = value[ResponseKey.WalletItemId.rawValue] as? Int {
+            walletItemIdString = String(walletItemId)
+        }
+        return WalletItemResult(responseCode:code ?? -1, statusMessage:sanitizedStatusMessage, walletItemId: walletItemIdString)
     }
 }
