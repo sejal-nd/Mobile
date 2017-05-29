@@ -21,6 +21,8 @@ class EditCreditCardViewModel {
     let zipCode = Variable("")
     let oneTouchPay = Variable(false)
     
+    var walletItem: WalletItem! // Passed from WalletViewController
+    
     required init(walletService: WalletService) {
         self.walletService = walletService
     }
@@ -85,5 +87,16 @@ class EditCreditCardViewModel {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
             onSuccess()
         }
+    }
+    
+    func deleteCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        walletService.deletePaymentMethod(walletItem)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
     }
 }

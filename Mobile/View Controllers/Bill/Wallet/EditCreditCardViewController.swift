@@ -20,8 +20,6 @@ class EditCreditCardViewController: UIViewController {
     
     weak var delegate: EditCreditCardViewControllerDelegate?
     
-    var selectedWalletItem: WalletItem?
-    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     
@@ -203,59 +201,37 @@ class EditCreditCardViewController: UIViewController {
     /////////////////////////////////////////////////////////////////////////////////////////////////
     func bindWalletItemToViewElements() {
         
-        if let walletItem = selectedWalletItem {
-            // Nickname
-            let opco = Environment.sharedInstance.opco
-            
-            if let nickname = walletItem.nickName {
-                if opco == .bge {
-                    if let bankAccountType = walletItem.bankAccountType {
-                        nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
-                    } else {
-                        nicknameLabel.text = nickname.uppercased()
-                    }
-                } else {
-                    nicknameLabel.text = nickname.uppercased()
-                }
-            } else {
-                if opco == .bge {
-                    if let bankAccountType = walletItem.bankAccountType {
-                        nicknameLabel.text = bankAccountType.rawValue.uppercased()
-                    }
-                } else {
-                    nicknameLabel.text = ""
-                }
-            }
-            
-            if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-                accountIDLabel.text = "**** \(last4Digits)"
-            } else {
-                accountIDLabel.text = ""
-            }
-            
-            convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
-            convenienceFeeLabel.textColor = .blackText
-            switch opco {
-            case .comEd, .peco:
-                if walletItem.paymentCategoryType == .credit {
-                    convenienceFeeLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
-                    if let paymentMethodType = walletItem.paymentMethodType {
-                        switch paymentMethodType {
-                        case .visa:
-                            bankImageView.image = #imageLiteral(resourceName: "ic_visa")
-                        case .mastercard:
-                            bankImageView.image = #imageLiteral(resourceName: "ic_mastercard")
-                        default:
-                            bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
-                        }
-                    }
-                    
-                }
-                
-            case .bge:
-                bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
-            }
+        let opco = Environment.sharedInstance.opco
+        
+        let walletItem = viewModel.walletItem!
+        
+        nicknameLabel.text = walletItem.nickName != nil ? walletItem.nickName!.uppercased() : ""
+        
+        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
+            accountIDLabel.text = "**** \(last4Digits)"
+        } else {
+            accountIDLabel.text = ""
         }
+        
+        convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
+        convenienceFeeLabel.textColor = .blackText
+        switch opco {
+        case .comEd, .peco:
+            convenienceFeeLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
+            if let paymentMethodType = walletItem.paymentMethodType {
+                switch paymentMethodType {
+                case .visa:
+                    bankImageView.image = #imageLiteral(resourceName: "ic_visa")
+                case .mastercard:
+                    bankImageView.image = #imageLiteral(resourceName: "ic_mastercard")
+                default:
+                    bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
+                }
+            }
+        case .bge:
+            bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
+        }
+        
 
     }
     
@@ -391,33 +367,28 @@ class EditCreditCardViewController: UIViewController {
             _ = self.navigationController?.popViewController(animated: true)
         }, onError: { errMessage in
             LoadingView.hide()
-            
-            print(errMessage)
+            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertVc, animated: true, completion: nil)
         })
     }
 
     
     ///
     func deleteCreditCard() {
-//        if Environment.sharedInstance.opco == .bge {
-//            messageString = NSLocalizedString("Deleting this payment account will also delete all the pending payments associated with this payment account. Please click 'Delete' to delete this payment account.", comment: "")
-//        }
-        
-        let alertController = UIAlertController(title: NSLocalizedString("Delete Bank Account", comment: ""), message: NSLocalizedString("Are you sure you want to delete this card?", comment: ""), preferredStyle: .alert)
-        
+        let alertController = UIAlertController(title: NSLocalizedString("Delete Card", comment: ""), message: NSLocalizedString("Are you sure you want to delete this card?", comment: ""), preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { _ in
             LoadingView.show()
-            
-            self.viewModel.editCreditCard(onSuccess: {
+            self.viewModel.deleteCreditCard(onSuccess: {
                 LoadingView.hide()
                 self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: "Credit Card deleted")
-                
                 _ = self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
                 LoadingView.hide()
-                
-                print(errMessage)
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertVc, animated: true, completion: nil)
             })
         }))
         
@@ -453,15 +424,6 @@ extension EditCreditCardViewController: UITextFieldDelegate {
             }
         }
     }
-    
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        if textField == nameOnCardTextField.textField {
-//            cardNumberTextField.textField.becomeFirstResponder()
-//        } else if textField == cardNumberTextField.textField {
-//            expMonthTextField.textField.becomeFirstResponder()
-//        }
-//        return false
-//    }
     
 }
 
