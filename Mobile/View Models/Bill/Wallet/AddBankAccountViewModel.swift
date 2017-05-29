@@ -103,7 +103,7 @@ class AddBankAccountViewModel {
     func addBankAccount(onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
         var accountType: String?
         if Environment.sharedInstance.opco == .bge {
-            accountType = selectedSegmentIndex.value == 0 ? "Checking" : "Savings"
+            accountType = selectedSegmentIndex.value == 0 ? "checking" : "saving"
         }
         let accountName: String? = self.accountHolderName.value.isEmpty ? nil : self.accountHolderName.value
         let nickname: String? = self.nickname.value.isEmpty ? nil : self.nickname.value
