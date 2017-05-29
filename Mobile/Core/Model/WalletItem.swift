@@ -68,7 +68,7 @@ enum PaymentMethodType: String {
 // BGE
 enum BankAccountType: String {
     case checking = "checking"
-    case savings = "savings"
+    case savings = "saving"
 }
 
 

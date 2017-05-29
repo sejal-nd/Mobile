@@ -15,6 +15,8 @@ class AddCreditCardViewModel {
     
     let walletService: WalletService!
     
+    var accountDetail: AccountDetail! // Passed from WalletViewController
+    
     let nameOnCard = Variable("")
     let cardNumber = Variable("")
     let expMonth = Variable("")
@@ -140,9 +142,19 @@ class AddCreditCardViewModel {
         }
     }
     
-    func addCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func addCreditCard(onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
         
         let card = CreditCard(cardNumber: cardNumber.value, securityCode: cvv.value, firstName: "", lastName: "", expirationMonth: expMonth.value, expirationYear: expYear.value, postalCode: zipCode.value, nickname: nickname.value)
+        
+        walletService
+            .addCreditCard(card, forCustomerNumber: accountDetail.customerInfo.number!)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { walletItemResult in
+                onSuccess(walletItemResult)
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
         
 //        walletService.addCreditCard(card, completion: { (result: ServiceResult<Void>) in
 //            switch(result) {

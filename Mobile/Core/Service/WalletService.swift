@@ -36,7 +36,7 @@ protocol WalletService {
     ///   - completion: the bock to execute upon completion
     func addCreditCard(_ creditCard: CreditCard,
                        forCustomerNumber: String,
-                       completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+                       completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Void)
     
     
     /// Update a credit card in the users wallet.
@@ -124,12 +124,12 @@ extension WalletService {
         }
     }
 
-    func addCreditCard(_ creditCard: CreditCard, forCustomerNumber customerNumber: String) -> Observable<Void> {
+    func addCreditCard(_ creditCard: CreditCard, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
         return Observable.create { observer in
-            self.addCreditCard(creditCard, forCustomerNumber: customerNumber, completion: { (result: ServiceResult<Void>) in
+            self.addCreditCard(creditCard, forCustomerNumber: customerNumber, completion: { (result: ServiceResult<WalletItemResult>) in
                 switch(result) {
-                case ServiceResult.Success:
-                    observer.onNext()
+                case ServiceResult.Success(let walletItemResult):
+                    observer.onNext(walletItemResult)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

@@ -154,9 +154,10 @@ class WalletViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AddBankAccountViewController {
-            vc.delegate = self
             vc.viewModel.accountDetail = viewModel.accountDetail
+            vc.delegate = self
         } else if let vc = segue.destination as? AddCreditCardViewController {
+            vc.viewModel.accountDetail = viewModel.accountDetail
             vc.delegate = self
         } else if let vc = segue.destination as? EditBankAccountViewController {
             vc.viewModel.walletItem = self.selectedWalletItem

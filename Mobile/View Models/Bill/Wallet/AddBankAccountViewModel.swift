@@ -109,11 +109,16 @@ class AddBankAccountViewModel {
         let nickname: String? = self.nickname.value.isEmpty ? nil : self.nickname.value
         
         let bankAccount = BankAccount(bankAccountNumber: accountNumber.value, routingNumber: routingNumber.value, accountNickname: nickname, accountType: accountType, accountName: accountName, oneTimeUse: false)
-        walletService.addBankAccount(bankAccount, forCustomerNumber: accountDetail.customerInfo.number!).observeOn(MainScheduler.instance).subscribe(onNext: { walletItemResult in
-            onSuccess(walletItemResult)
-        }, onError: { err in
-            onError(err.localizedDescription)
-        }).addDisposableTo(disposeBag)
+        
+        walletService
+            .addBankAccount(bankAccount, forCustomerNumber: accountDetail.customerInfo.number!)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { walletItemResult in
+                onSuccess(walletItemResult)
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
     }
 
 }

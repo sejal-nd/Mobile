@@ -140,15 +140,47 @@ class AddCreditCardViewController: UIViewController {
             return
         }
         
-        LoadingView.show()
-        viewModel.addCreditCard(onSuccess: {
-            LoadingView.hide()
-            self.delegate?.addCreditCardViewControllerDidAddAccount(self)
-            _ = self.navigationController?.popViewController(animated: true)
-        }, onError: { errMessage in
-            LoadingView.hide()
-            print(errMessage)
-        })
+        let oneTouchPayService = ServiceFactory.createOneTouchPayService()
+        let customerNumber = viewModel.accountDetail.customerInfo.number
+        
+        var shouldShowOneTouchPayWarning = false
+        if viewModel.oneTouchPay.value {
+            if oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
+                shouldShowOneTouchPayWarning = true
+            }
+        }
+        
+        let addCreditCard = { (setAsOneTouchPay: Bool) in
+            LoadingView.show()
+            self.viewModel.addCreditCard(onSuccess: { walletItemResult in
+                if setAsOneTouchPay {
+                    let accountNumber = self.viewModel.cardNumber.value
+                    let last4 = accountNumber.substring(from: accountNumber.index(accountNumber.endIndex, offsetBy: -4))
+                    oneTouchPayService.setOneTouchPayItem(walletItemID: walletItemResult.walletItemId, maskedWalletItemAccountNumber: last4, forCustomerNumber: customerNumber)
+                }
+                
+                LoadingView.hide()
+                self.delegate?.addCreditCardViewControllerDidAddAccount(self)
+                _ = self.navigationController?.popViewController(animated: true)
+            }, onError: { errMessage in
+                LoadingView.hide()
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertVc, animated: true, completion: nil)
+            })
+        }
+        
+        if shouldShowOneTouchPayWarning {
+            let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
+                addCreditCard(true)
+            }))
+            present(alertVc, animated: true, completion: nil)
+        } else {
+            addCreditCard(viewModel.oneTouchPay.value)
+        }
+        
     }
     
     func bindViewModel() {
