@@ -146,7 +146,7 @@ extension WalletService {
                           expirationYear: String,
                           securityCode: String,
                           postalCode: String,
-                          nickname: String) -> Observable<Void> {
+                          nickname: String?) -> Observable<Void> {
     
         return Observable.create { observer in
             self.updateCreditCard(walletItemID,

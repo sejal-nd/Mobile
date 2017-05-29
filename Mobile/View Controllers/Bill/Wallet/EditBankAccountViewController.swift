@@ -60,7 +60,7 @@ class EditBankAccountViewController: UIViewController {
         oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        oneTouchPayDescriptionLabel.text = NSLocalizedString("Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default.", comment: "")
+        oneTouchPayDescriptionLabel.text = oneTouchPayService.getOneTouchPayDisplayString(forCustomerNumber: viewModel.accountDetail.customerInfo.number)
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         nicknameLabel.textColor = .blackText
@@ -210,7 +210,7 @@ class EditBankAccountViewController: UIViewController {
         
         let saveBankAccountChanges = { (oneTouchPay: Bool) in
             if oneTouchPay {
-                self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, forCustomerNumber: customerNumber)
+                self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, paymentCategoryType: .check, forCustomerNumber: customerNumber)
             } else {
                 self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
             }
@@ -246,6 +246,10 @@ class EditBankAccountViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { _ in
             LoadingView.show()
             self.viewModel.deleteBankAccount(onSuccess: {
+                let customerNumber = self.viewModel.accountDetail.customerInfo.number
+                if self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) == self.viewModel.walletItem {
+                    self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
+                }
                 LoadingView.hide()
                 self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Bank account deleted", comment: ""))
                 _ = self.navigationController?.popViewController(animated: true)

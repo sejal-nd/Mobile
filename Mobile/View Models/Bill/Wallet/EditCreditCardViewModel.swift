@@ -19,6 +19,8 @@ class EditCreditCardViewModel {
     let expYear = Variable("")
     let cvv = Variable("")
     let zipCode = Variable("")
+    
+    var oneTouchPayInitialValue = Variable(false)
     let oneTouchPay = Variable(false)
     
     var accountDetail: AccountDetail! // Passed from WalletViewController
@@ -30,8 +32,11 @@ class EditCreditCardViewModel {
     
     func saveButtonIsEnabled() -> Observable<Bool> {
         if Environment.sharedInstance.opco == .bge {
-            return Observable.combineLatest([expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits()]) {
-                return !$0.contains(false)
+//            return Observable.combineLatest([expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits()]) {
+//                return !$0.contains(false)
+//            }
+            return Observable.combineLatest(oneTouchPayInitialValue.asObservable(), oneTouchPay.asObservable()) {
+                return $0 != $1
             }
         } else {
             return Observable.combineLatest([expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits()]) {
@@ -85,9 +90,14 @@ class EditCreditCardViewModel {
     }
     
     func editCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            onSuccess()
-        }
+        walletService.updateCreditCard(walletItem.walletItemID!, customerNumber: accountDetail.customerInfo.number!, expirationMonth: expMonth.value, expirationYear: expYear.value, securityCode: cvv.value, postalCode: zipCode.value, nickname: nil)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
     }
     
     func deleteCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {

@@ -31,12 +31,13 @@ class OneTouchPayService {
         return nil
     }
     
-    func setOneTouchPayItem(walletItemID: String, maskedWalletItemAccountNumber: String, forCustomerNumber number: String?) {
+    func setOneTouchPayItem(walletItemID: String, maskedWalletItemAccountNumber: String, paymentCategoryType: PaymentCategoryType, forCustomerNumber number: String?) {
         if let customerNumber = number {
             var oneTouchPayDictionary = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.OneTouchPayDictionary)!
             oneTouchPayDictionary[customerNumber] = [
                 "walletItemID": walletItemID,
-                "maskedWalletItemAccountNumber": maskedWalletItemAccountNumber
+                "maskedWalletItemAccountNumber": maskedWalletItemAccountNumber,
+                "paymentCategoryType": paymentCategoryType.rawValue
             ]
             UserDefaults.standard.set(oneTouchPayDictionary, forKey: UserDefaultKeys.OneTouchPayDictionary)
         } else {
@@ -52,6 +53,22 @@ class OneTouchPayService {
         } else {
             dLog(message: "ERROR: Could not delete One Touch Pay item because customer number is nil")
         }
+    }
+    
+    func getOneTouchPayDisplayString(forCustomerNumber number: String?) -> String {
+        if let customerNumber = number {
+            if let oneTouchPayItem = self.oneTouchPayItem(forCustomerNumber: customerNumber) {
+                switch oneTouchPayItem.paymentCategoryType! {
+                case .check:
+                    return String(format: NSLocalizedString("You are currently using bank account %@ for One Touch Pay.", comment: ""), "**** \(oneTouchPayItem.maskedWalletItemAccountNumber!)")
+                case .credit:
+                    return String(format: NSLocalizedString("You are currently using card %@ for One Touch Pay.", comment: ""), "**** \(oneTouchPayItem.maskedWalletItemAccountNumber!)")
+                }
+            }
+        } else {
+            dLog(message: "ERROR: Could not get One Touch Pay display string because customer number is nil")
+        }
+        return NSLocalizedString("Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default.", comment: "")
     }
 
 }

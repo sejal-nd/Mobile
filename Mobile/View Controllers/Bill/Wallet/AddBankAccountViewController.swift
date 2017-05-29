@@ -42,6 +42,8 @@ class AddBankAccountViewController: UIViewController {
     @IBOutlet weak var oneTouchPayLabel: UILabel!
     
     let viewModel = AddBankAccountViewModel(walletService: ServiceFactory.createWalletService())
+    
+    let oneTouchPayService = ServiceFactory.createOneTouchPayService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +89,7 @@ class AddBankAccountViewController: UIViewController {
 
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        oneTouchPayDescriptionLabel.text = NSLocalizedString("Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default.", comment: "")
+        oneTouchPayDescriptionLabel.text = oneTouchPayService.getOneTouchPayDisplayString(forCustomerNumber: viewModel.accountDetail.customerInfo.number)
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         
@@ -116,7 +118,7 @@ class AddBankAccountViewController: UIViewController {
     func onSavePress() {
         view.endEditing(true)
         
-        let oneTouchPayService = ServiceFactory.createOneTouchPayService()
+        
         let customerNumber = viewModel.accountDetail.customerInfo.number
         
         var shouldShowOneTouchPayWarning = false
@@ -132,7 +134,7 @@ class AddBankAccountViewController: UIViewController {
                 if setAsOneTouchPay {
                     let accountNumber = self.viewModel.accountNumber.value
                     let last4 = accountNumber.substring(from: accountNumber.index(accountNumber.endIndex, offsetBy: -4))
-                    oneTouchPayService.setOneTouchPayItem(walletItemID: walletItemResult.walletItemId, maskedWalletItemAccountNumber: last4, forCustomerNumber: customerNumber)
+                    self.oneTouchPayService.setOneTouchPayItem(walletItemID: walletItemResult.walletItemId, maskedWalletItemAccountNumber: last4, paymentCategoryType: .check, forCustomerNumber: customerNumber)
                 }
                 
                 LoadingView.hide()
