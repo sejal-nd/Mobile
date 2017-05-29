@@ -29,20 +29,20 @@ class EditBankAccountViewController: UIViewController {
     
     @IBOutlet weak var bankImageView: UIImageView!
     @IBOutlet weak var accountIDLabel: UILabel!
-
-    @IBOutlet weak var oneTouchPayView: UIView!
-    @IBOutlet weak var oneTouchPayLabel: UILabel!
+    @IBOutlet weak var oneTouchPayCardView: UIView!
+    @IBOutlet weak var oneTouchPayCardLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
+    @IBOutlet weak var oneTouchPayDescriptionLabel: UILabel!
     @IBOutlet weak var oneTouchPaySwitch: Switch!
-    
+    @IBOutlet weak var oneTouchPayLabel: UILabel!
+
     @IBOutlet weak var deleteAccountButton: ButtonControl!
     @IBOutlet weak var deleteBankAccountLabel: UILabel!
     
     @IBOutlet weak var walletItemBGView: UIView!
-    
-    var isOneTouch = false
+
 
     var gradientLayer = CAGradientLayer()
     
@@ -51,16 +51,27 @@ class EditBankAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        bindWalletItemToViewElements()
         
+        buildNavigationButtons()
         buildGradientAndBackgrounds()
         
         title = NSLocalizedString("Edit Bank Account", comment: "")
         
-		buildNavigationButtons()
+        accountIDLabel.textColor = .blackText
+        oneTouchPayCardLabel.textColor = .blackText
+        oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
+        oneTouchPayDescriptionLabel.textColor = .blackText
+        oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        oneTouchPayDescriptionLabel.text = NSLocalizedString("Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default.", comment: "")
+        oneTouchPayLabel.textColor = .blackText
+        oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
+        nicknameLabel.textColor = .blackText
+
         
         deleteBankAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
-        deleteBankAccountLabel.textColor = UIColor(colorLiteralRed:0/255.0, green: 98/255.0, blue: 154/255.0, alpha: 1)
+        deleteBankAccountLabel.textColor = .actionBlue
+        
+        bindWalletItemToViewElements()
     }
     
     func buildGradientAndBackgrounds() {
@@ -77,9 +88,7 @@ class EditBankAccountViewController: UIViewController {
         ]
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
-        accountIDLabel.textColor = .blackText
-        oneTouchPayLabel.textColor = .blackText
-        nicknameLabel.textColor = .blackText
+
         
         bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
@@ -118,19 +127,10 @@ class EditBankAccountViewController: UIViewController {
         bottomBarView.layer.mask = bottomBarMaskLayer
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-	}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
     func bindWalletItemToViewElements() {
-        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.isOneTouch).addDisposableTo(disposeBag)
+        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
 
         if let walletItem = selectedWalletItem {
             // Nickname
@@ -192,18 +192,9 @@ class EditBankAccountViewController: UIViewController {
                 // bottomBarLabel.text = NSLocalizedString("Fees: $1.50 Residential | 2.4% Business", comment: "")
             }
         }
-        
-        // TODO: Make this work
-        oneTouchPayView.isHidden = !isOneTouch
-    }
-    
-    @IBAction func toggleOneTouch(_ sender: Any) {
-        isOneTouch = !isOneTouch
 
-        oneTouchPayView.isHidden = !isOneTouch
-        
-        // update preferences
     }
+
     
     @IBAction func onDeletePress(_ sender: Any) {
         deleteBankAccount()
@@ -240,24 +231,6 @@ class EditBankAccountViewController: UIViewController {
             print(errMessage)
         })
     }
-
-    func imageFrom(systemItem: UIBarButtonSystemItem)-> UIImage? {
-        let tempItem = UIBarButtonItem(barButtonSystemItem: systemItem, target: nil, action: nil)
-        
-        // add to toolbar and render it
-        UIToolbar().setItems([tempItem], animated: false)
-        
-        // got image from real uibutton
-        let itemView = tempItem.value(forKey: "view") as! UIView
-        for view in itemView.subviews {
-            if let button = view as? UIButton, let imageView = button.imageView {
-                return imageView.image
-            }
-        }
-        
-        return nil
-    }
-    
 
     ///
     func deleteBankAccount() {

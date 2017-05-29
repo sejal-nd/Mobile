@@ -9,8 +9,8 @@
 import Foundation
 
 struct BankAccount {
-    var bankAccountNumber: String?
-    var routingNumber: String?
+    var bankAccountNumber: String
+    var routingNumber: String
     var accountNickname: String?
     var accountType : String?
     var accountName : String?
@@ -18,7 +18,7 @@ struct BankAccount {
     
     init(bankAccountNumber: String,
          routingNumber: String,
-         accountNickname: String,
+         accountNickname: String?,
          accountType: String?=nil,
          accountName: String?=nil,
          oneTimeUse: Bool?=false) {

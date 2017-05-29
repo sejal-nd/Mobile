@@ -80,7 +80,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupUserDefaults() {
         UserDefaults.standard.register(defaults: [
-            UserDefaultKeys.ShouldPromptToEnableTouchID: true
+            UserDefaultKeys.ShouldPromptToEnableTouchID: true,
+            UserDefaultKeys.OneTouchPayDictionary: [String: NSDictionary]()
         ])
     }
     

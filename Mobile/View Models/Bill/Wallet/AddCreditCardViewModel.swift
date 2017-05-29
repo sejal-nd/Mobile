@@ -141,8 +141,17 @@ class AddCreditCardViewModel {
     }
     
     func addCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            onSuccess()
-        }
+        
+        let card = CreditCard(cardNumber: cardNumber.value, securityCode: cvv.value, firstName: "", lastName: "", expirationMonth: expMonth.value, expirationYear: expYear.value, postalCode: zipCode.value, nickname: nickname.value)
+        
+//        walletService.addCreditCard(card, completion: { (result: ServiceResult<Void>) in
+//            switch(result) {
+//            case .Success:
+//                break
+//            case .Failure(let err):
+//                dLog(message: "\n" + err.localizedDescription)
+//                break
+//            }
+//        })
     }
 }

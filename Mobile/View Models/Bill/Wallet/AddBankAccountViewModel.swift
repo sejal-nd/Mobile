@@ -15,6 +15,8 @@ class AddBankAccountViewModel {
     
     let walletService: WalletService!
     
+    var accountDetail: AccountDetail! // Passed from WalletViewController
+    
     let selectedSegmentIndex = Variable(0)
     let accountHolderName = Variable("")
     let routingNumber = Variable("")
@@ -23,7 +25,7 @@ class AddBankAccountViewModel {
     let confirmAccountNumber = Variable("")
     let nickname = Variable("")
     let oneTouchPay = Variable(false)
-
+    
     required init(walletService: WalletService) {
         self.walletService = walletService
     }
@@ -99,9 +101,19 @@ class AddBankAccountViewModel {
     }
     
     func addBankAccount(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            onSuccess()
+        var accountType: String?
+        if Environment.sharedInstance.opco == .bge {
+            accountType = selectedSegmentIndex.value == 0 ? "Checking" : "Savings"
         }
+        let accountName: String? = self.accountHolderName.value.isEmpty ? nil : self.accountHolderName.value
+        let nickname: String? = self.nickname.value.isEmpty ? nil : self.nickname.value
+        
+        let bankAccount = BankAccount(bankAccountNumber: accountNumber.value, routingNumber: routingNumber.value, accountNickname: nickname, accountType: accountType, accountName: accountName, oneTimeUse: false)
+        walletService.addBankAccount(bankAccount, forCustomerNumber: accountDetail.customerInfo.number!).observeOn(MainScheduler.instance).subscribe(onNext: { _ in
+            onSuccess()
+        }, onError: { err in
+            onError(err.localizedDescription)
+        }).addDisposableTo(disposeBag)
     }
 
 }

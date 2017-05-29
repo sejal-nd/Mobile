@@ -35,13 +35,13 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var miniBankButton: ButtonControl!
     @IBOutlet weak var tableViewFooter: UILabel!
     
-    let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService())
+    let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService(), oneTouchPayService: ServiceFactory.createOneTouchPayService())
     
     var selectedWalletItem: WalletItem?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = NSLocalizedString("My Wallet", comment: "")
         view.backgroundColor = .softGray
         
@@ -155,6 +155,7 @@ class WalletViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AddBankAccountViewController {
             vc.delegate = self
+            vc.viewModel.accountDetail = viewModel.accountDetail
         } else if let vc = segue.destination as? AddCreditCardViewController {
             vc.delegate = self
         } else if let vc = segue.destination as? EditBankAccountViewController {
@@ -167,6 +168,7 @@ class WalletViewController: UIViewController {
             vc.delegate = self
         }
     }
+    
 }
 
 extension WalletViewController: UITableViewDelegate {
@@ -203,6 +205,15 @@ extension WalletViewController: UITableViewDataSource {
         let walletItem = viewModel.walletItems.value![indexPath.section]
         cell.bindToWalletItem(walletItem)
         
+        cell.oneTouchPayView.isHidden = true
+        if let customerNumber = viewModel.accountDetail.customerInfo.number {
+            if let oneTouchPayItem = viewModel.oneTouchPayDictionary![customerNumber] {
+                if oneTouchPayItem.walletItemID == walletItem.walletItemID {
+                    cell.oneTouchPayView.isHidden = false
+                }
+            }
+        }
+        
         return cell
     }
     
@@ -220,8 +231,8 @@ extension WalletViewController: UITableViewDataSource {
 extension WalletViewController: AddBankAccountViewControllerDelegate {
     
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
+        self.viewModel.fetchWalletItems.onNext()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.viewModel.fetchWalletItems.onNext()
             self.view.makeToast(NSLocalizedString("Bank account added", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
@@ -232,7 +243,6 @@ extension WalletViewController: EditBankAccountViewControllerDelegate {
     
     func editBankAccountViewControllerDidEditAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.viewModel.fetchWalletItems.onNext()
             self.view.makeToast(NSLocalizedString(message, comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
@@ -242,8 +252,8 @@ extension WalletViewController: EditBankAccountViewControllerDelegate {
 extension WalletViewController: AddCreditCardViewControllerDelegate {
     
     func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
+        self.viewModel.fetchWalletItems.onNext()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.viewModel.fetchWalletItems.onNext()
             self.view.makeToast(NSLocalizedString("Card added", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }

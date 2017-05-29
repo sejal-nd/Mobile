@@ -23,6 +23,7 @@ class EditCreditCardViewController: UIViewController {
     var selectedWalletItem: WalletItem?
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var innerContentView: UIView!
     @IBOutlet weak var gradientView: UIView!
@@ -31,11 +32,8 @@ class EditCreditCardViewController: UIViewController {
     
     @IBOutlet weak var bankImageView: UIImageView!
     @IBOutlet weak var accountIDLabel: UILabel!
-    
-    @IBOutlet weak var oneTouchPayView: UIView!
-    @IBOutlet weak var oneTouchPayLabel: UILabel!
-    @IBOutlet weak var oneTouchPaySwitch: Switch!
-    
+    @IBOutlet weak var oneTouchPayCardView: UIView!
+    @IBOutlet weak var oneTouchPayCardLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
@@ -45,14 +43,13 @@ class EditCreditCardViewController: UIViewController {
     @IBOutlet weak var cvvTextField: FloatLabelTextField!
     @IBOutlet weak var cvvTooltipButton: UIButton!
     @IBOutlet weak var zipCodeTextField: FloatLabelTextField!
+    @IBOutlet weak var oneTouchPayDescriptionLabel: UILabel!
+    @IBOutlet weak var oneTouchPaySwitch: Switch!
+    @IBOutlet weak var oneTouchPayLabel: UILabel!
 
-    @IBOutlet weak var deleteAccountButton: ButtonControl!
-    @IBOutlet weak var deleteBankAccountLabel: UILabel!
+    @IBOutlet weak var deleteCardLabel: UILabel!
     
     @IBOutlet weak var walletItemBGView: UIView!
-    @IBOutlet weak var oneTouchPayControllerView: UIView!
-    
-    var isOneTouch = false
     
     var gradientLayer = CAGradientLayer()
     
@@ -64,6 +61,13 @@ class EditCreditCardViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
+        // Put white background on stack view
+        let bg = UIView(frame: stackView.bounds)
+        bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        bg.backgroundColor = .white
+        stackView.addSubview(bg)
+        stackView.sendSubview(toBack: bg)
+        
         bindWalletItemToViewElements()
         
         buildGradientAndBackgrounds()
@@ -73,8 +77,6 @@ class EditCreditCardViewController: UIViewController {
         buildNavigationButtons()
         
         buildCCUpdateFields()
-
-        oneTouchPayView.isHidden = false
         
         bindViewModel()
         bindValidation()
@@ -83,6 +85,12 @@ class EditCreditCardViewController: UIViewController {
     }
     
     func buildGradientAndBackgrounds() {
+        scrollView.rx.contentOffset.asDriver()
+            .map { $0.y < 0 ? UIColor.primaryColor: UIColor.white }
+            .distinctUntilChanged()
+            .drive(onNext: { self.scrollView.backgroundColor = $0 })
+            .addDisposableTo(disposeBag)
+        
         walletItemBGView.backgroundColor = .primaryColor
         
         innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
@@ -97,7 +105,8 @@ class EditCreditCardViewController: UIViewController {
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
         accountIDLabel.textColor = .blackText
-        oneTouchPayLabel.textColor = .blackText
+        oneTouchPayCardLabel.textColor = .blackText
+        oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         nicknameLabel.textColor = .blackText
         
         bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
@@ -141,28 +150,24 @@ class EditCreditCardViewController: UIViewController {
         zipCodeTextField.textField.delegate = self
         zipCodeTextField.textField.keyboardType = .numberPad
         
-        deleteBankAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
-        deleteBankAccountLabel.textColor = UIColor(colorLiteralRed:0/255.0, green: 98/255.0, blue: 154/255.0, alpha: 1)
+        deleteCardLabel.font = SystemFont.regular.of(textStyle: .headline)
+        deleteCardLabel.textColor = .actionBlue
         
-        scrollView.rx.contentOffset.asDriver()
-            .map { $0.y < 0 ? UIColor.primaryColor: UIColor.white }
-            .distinctUntilChanged()
-            .drive(onNext: { self.scrollView.backgroundColor = $0 })
-            .addDisposableTo(disposeBag)
         
-        oneTouchPayLabel.textColor = .blackText
-        oneTouchPayLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        oneTouchPayLabel.text = NSLocalizedString("Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default.", comment: "")
+        oneTouchPayDescriptionLabel.textColor = .blackText
+        oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        oneTouchPayDescriptionLabel.text = NSLocalizedString("Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default.", comment: "")
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         
-        if Environment.sharedInstance.opco == .bge { // Remove exp date, etc., if BGE for this version. Added w V2.
-            expDateLabel.isHidden = true
-            expMonthTextField.isHidden = true
-            expYearTextField.isHidden = true
-            cvvTooltipButton.isHidden = true
-            zipCodeTextField.isHidden = true
-        }
+        
+//        if Environment.sharedInstance.opco == .bge { // Remove exp date, etc., if BGE for this version. Added w V2.
+//            expDateLabel.isHidden = true
+//            expMonthTextField.isHidden = true
+//            expYearTextField.isHidden = true
+//            cvvTooltipButton.isHidden = true
+//            zipCodeTextField.isHidden = true
+//        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -197,7 +202,6 @@ class EditCreditCardViewController: UIViewController {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
     func bindWalletItemToViewElements() {
-        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.isOneTouch).addDisposableTo(disposeBag)
         
         if let walletItem = selectedWalletItem {
             // Nickname
@@ -230,6 +234,7 @@ class EditCreditCardViewController: UIViewController {
             }
             
             convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
+            convenienceFeeLabel.textColor = .blackText
             switch opco {
             case .comEd, .peco:
                 if walletItem.paymentCategoryType == .credit {
@@ -245,23 +250,13 @@ class EditCreditCardViewController: UIViewController {
                         }
                     }
                     
-                } else if walletItem.paymentCategoryType == .check {
-                    bankImageView.image = #imageLiteral(resourceName: "opco_bank")
                 }
                 
             case .bge:
-                bankImageView.image = #imageLiteral(resourceName: "opco_bank")
-                
-                convenienceFeeLabel.textColor = .successGreenText
-                convenienceFeeLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
-                
-                // if credit card:
-                // bottomBarLabel.text = NSLocalizedString("Fees: $1.50 Residential | 2.4% Business", comment: "")
+                bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
             }
         }
-        
-        // TODO: Make this work
-        oneTouchPayView.isHidden = !isOneTouch
+
     }
     
     func bindViewModel() {
@@ -269,6 +264,7 @@ class EditCreditCardViewController: UIViewController {
         expYearTextField.textField.rx.text.orEmpty.bind(to: viewModel.expYear).addDisposableTo(disposeBag)
         cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).addDisposableTo(disposeBag)
         zipCodeTextField.textField.rx.text.orEmpty.bind(to: viewModel.zipCode).addDisposableTo(disposeBag)
+        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
     }
     
     func bindValidation() {
@@ -354,15 +350,15 @@ class EditCreditCardViewController: UIViewController {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
+    
+    // MARK: - Actions
 
     
-    @IBAction func toggleOneTouch(_ sender: Any) {
-        isOneTouch = !isOneTouch
-        
-        oneTouchPayView.isHidden = !isOneTouch
-        
-        // update preferences
+    @IBAction func onCVVTooltipPress() {
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""), image: #imageLiteral(resourceName: "cvv_info"), description: NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: ""))
+        navigationController?.present(infoModal, animated: true, completion: nil)
     }
+
     
     @IBAction func onDeletePress(_ sender: Any) {
         deleteCreditCard()
@@ -403,16 +399,14 @@ class EditCreditCardViewController: UIViewController {
     
     ///
     func deleteCreditCard() {
-        var messageString = NSLocalizedString("Are you sure you want to delete this card?", comment: "")
-        
 //        if Environment.sharedInstance.opco == .bge {
 //            messageString = NSLocalizedString("Deleting this payment account will also delete all the pending payments associated with this payment account. Please click 'Delete' to delete this payment account.", comment: "")
 //        }
         
-        let alertController = UIAlertController(title: NSLocalizedString("Delete Bank Account", comment: ""), message: messageString, preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("Delete Bank Account", comment: ""), message: NSLocalizedString("Are you sure you want to delete this card?", comment: ""), preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .default, handler: { _ in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { _ in
             LoadingView.show()
             
             self.viewModel.editCreditCard(onSuccess: {

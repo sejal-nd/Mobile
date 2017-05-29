@@ -15,9 +15,7 @@ class EditBankAccountViewModel {
     
     let walletService: WalletService!
     
-    var isOneTouch = Variable(false)
-    
-    var isDeleted = Variable(false)
+    var oneTouchPay = Variable(false)
     
     required init(walletService: WalletService) {
         self.walletService = walletService

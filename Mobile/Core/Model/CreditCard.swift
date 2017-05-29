@@ -11,22 +11,22 @@ import Foundation
 struct CreditCard {
     var cardNumber : String
     var securityCode : String
-    var firstName : String
-    var lastName : String
+    var firstName : String?
+    var lastName : String?
     var expirationMonth : String
     var expirationYear : String
     var postalCode : String
-    var nickname : String
-    var oneTimeUse : Bool
+    var nickname : String?
+    var oneTimeUse : Bool?
     
     init(cardNumber: String,
          securityCode: String,
-         firstName: String,
-         lastName: String,
+         firstName: String?=nil,
+         lastName: String?=nil,
          expirationMonth: String,
          expirationYear: String,
          postalCode: String,
-         nickname: String,
+         nickname: String?=nil,
          oneTimeUse: Bool?=false) {
         self.cardNumber = cardNumber
         self.securityCode = securityCode

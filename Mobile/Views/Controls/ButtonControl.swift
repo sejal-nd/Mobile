@@ -33,8 +33,9 @@ class ButtonControl: UIControl {
         let pressed = rx.controlEvent(.touchDown).asDriver().map { true }
         
         let notPressed = Driver.merge(rx.controlEvent(.touchUpInside).asDriver(),
-                                           rx.controlEvent(.touchUpOutside).asDriver(),
-                                           rx.controlEvent(.touchCancel).asDriver()).map { false }
+                                      rx.controlEvent(.touchUpOutside).asDriver(),
+                                      rx.controlEvent(.touchDragExit).asDriver(),
+                                      rx.controlEvent(.touchCancel).asDriver()).map { false }
         
         Driver.merge(pressed, notPressed)
             .startWith(false)
