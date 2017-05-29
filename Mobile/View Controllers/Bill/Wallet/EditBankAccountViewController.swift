@@ -41,15 +41,15 @@ class EditBankAccountViewController: UIViewController {
     
     @IBOutlet weak var walletItemBGView: UIView!
 
-
     var gradientLayer = CAGradientLayer()
     
     var viewModel = EditBankAccountViewModel(walletService: ServiceFactory.createWalletService())
+    
+    let oneTouchPayService = ServiceFactory.createOneTouchPayService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
         buildNavigationButtons()
         buildGradientAndBackgrounds()
         
@@ -101,6 +101,7 @@ class EditBankAccountViewController: UIViewController {
         let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
+        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
     }
     
     override func viewDidLayoutSubviews() {
@@ -130,8 +131,6 @@ class EditBankAccountViewController: UIViewController {
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
     func bindWalletItemToViewElements() {
-        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
-        
         let walletItem = viewModel.walletItem!
 
         // Nickname
@@ -176,6 +175,15 @@ class EditBankAccountViewController: UIViewController {
             convenienceFeeLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
         }
         
+        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
+        
+        let oneTouchPayWalletItem = oneTouchPayService.oneTouchPayItem(forCustomerNumber: viewModel.accountDetail.customerInfo.number)
+        if (oneTouchPayWalletItem == viewModel.walletItem) {
+            viewModel.oneTouchPayInitialValue.value = true
+            oneTouchPaySwitch.isOn = true
+            oneTouchPaySwitch.sendActions(for: .valueChanged)
+        }
+        
     }
 
     
@@ -185,34 +193,43 @@ class EditBankAccountViewController: UIViewController {
     
     ///
     func onCancelPress() {
-        // We do this to cover the case where we push ForgotUsernameViewController from ForgotPasswordViewController.
-        // When that happens, we want the cancel action to go straight back to LoginViewController.
-        for vc in (navigationController?.viewControllers)! {
-            guard let walletVC = vc as? WalletViewController else {
-                continue
-            }
-            
-            navigationController?.popToViewController(walletVC, animated: true)
-            
-            break
-        }
+        navigationController?.popViewController(animated: true)
     }
     
     func onSavePress() {
         view.endEditing(true)
         
-        LoadingView.show()
+        let customerNumber = viewModel.accountDetail.customerInfo.number
         
-        viewModel.editBankAccount(onSuccess: {
-            LoadingView.hide()
-            self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: "Changes saved")
+        var shouldShowOneTouchPayWarning = false
+        if viewModel.oneTouchPay.value {
+            if oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
+                shouldShowOneTouchPayWarning = true
+            }
+        }
+        
+        let saveBankAccountChanges = { (oneTouchPay: Bool) in
+            if oneTouchPay {
+                self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, forCustomerNumber: customerNumber)
+            } else {
+                self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
+            }
+            
+            self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
             _ = self.navigationController?.popViewController(animated: true)
-        }, onError: { errMessage in
-            LoadingView.hide()
-            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alertVc, animated: true, completion: nil)
-        })
+        }
+        
+        if shouldShowOneTouchPayWarning {
+            let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
+                saveBankAccountChanges(true)
+            }))
+            present(alertVc, animated: true, completion: nil)
+        } else {
+            saveBankAccountChanges(viewModel.oneTouchPay.value)
+        }
+
     }
 
     ///
@@ -230,7 +247,7 @@ class EditBankAccountViewController: UIViewController {
             LoadingView.show()
             self.viewModel.deleteBankAccount(onSuccess: {
                 LoadingView.hide()
-                self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: "Bank account deleted")
+                self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Bank account deleted", comment: ""))
                 _ = self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
                 LoadingView.hide()

@@ -160,9 +160,11 @@ class WalletViewController: UIViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail
             vc.delegate = self
         } else if let vc = segue.destination as? EditBankAccountViewController {
+            vc.viewModel.accountDetail = viewModel.accountDetail
             vc.viewModel.walletItem = self.selectedWalletItem
             vc.delegate = self
         } else if let vc = segue.destination as? EditCreditCardViewController {
+            vc.viewModel.accountDetail = viewModel.accountDetail
             vc.viewModel.walletItem = self.selectedWalletItem
             vc.delegate = self
         }

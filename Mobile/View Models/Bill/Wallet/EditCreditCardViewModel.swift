@@ -21,6 +21,7 @@ class EditCreditCardViewModel {
     let zipCode = Variable("")
     let oneTouchPay = Variable(false)
     
+    var accountDetail: AccountDetail! // Passed from WalletViewController
     var walletItem: WalletItem! // Passed from WalletViewController
     
     required init(walletService: WalletService) {

@@ -43,5 +43,15 @@ class OneTouchPayService {
             dLog(message: "ERROR: Could not set One Touch Pay item because customer number is nil")
         }
     }
+    
+    func deleteTouchPayItem(forCustomerNumber number: String?) {
+        if let customerNumber = number {
+            var oneTouchPayDictionary = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.OneTouchPayDictionary)!
+            oneTouchPayDictionary.removeValue(forKey: customerNumber)
+            UserDefaults.standard.set(oneTouchPayDictionary, forKey: UserDefaultKeys.OneTouchPayDictionary)
+        } else {
+            dLog(message: "ERROR: Could not delete One Touch Pay item because customer number is nil")
+        }
+    }
 
 }

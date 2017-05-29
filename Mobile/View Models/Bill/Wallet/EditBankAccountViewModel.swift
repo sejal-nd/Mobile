@@ -15,21 +15,22 @@ class EditBankAccountViewModel {
     
     let walletService: WalletService!
     
+    var oneTouchPayInitialValue = Variable(false)
     var oneTouchPay = Variable(false)
     
+    var accountDetail: AccountDetail! // Passed from WalletViewController
     var walletItem: WalletItem! // Passed from WalletViewController
     
     required init(walletService: WalletService) {
         self.walletService = walletService
     }
-
     
-    func editBankAccount(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            onSuccess()
+    func saveButtonIsEnabled() -> Observable<Bool> {
+        return Observable.combineLatest(oneTouchPayInitialValue.asObservable(), oneTouchPay.asObservable()) {
+            return $0 != $1
         }
     }
-    
+
     func deleteBankAccount(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         walletService.deletePaymentMethod(walletItem)
             .observeOn(MainScheduler.instance)

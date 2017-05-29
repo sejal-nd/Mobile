@@ -343,17 +343,7 @@ class EditCreditCardViewController: UIViewController {
     
     ///
     func onCancelPress() {
-        // We do this to cover the case where we push ForgotUsernameViewController from ForgotPasswordViewController.
-        // When that happens, we want the cancel action to go straight back to LoginViewController.
-        for vc in (navigationController?.viewControllers)! {
-            guard let walletVC = vc as? WalletViewController else {
-                continue
-            }
-            
-            navigationController?.popToViewController(walletVC, animated: true)
-            
-            break
-        }
+        navigationController?.popViewController(animated: true)
     }
     
     func onSavePress() {
@@ -383,7 +373,7 @@ class EditCreditCardViewController: UIViewController {
             LoadingView.show()
             self.viewModel.deleteCreditCard(onSuccess: {
                 LoadingView.hide()
-                self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: "Credit Card deleted")
+                self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Credit Card deleted", comment: ""))
                 _ = self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
                 LoadingView.hide()
