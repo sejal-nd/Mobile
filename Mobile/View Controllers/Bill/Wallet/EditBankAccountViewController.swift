@@ -171,8 +171,26 @@ class EditBankAccountViewController: UIViewController {
         case .bge:
             bankImageView.image = #imageLiteral(resourceName: "opco_bank")
             
-            convenienceFeeLabel.textColor = .successGreenText
-            convenienceFeeLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
+            switch walletItem.walletItemStatusTypeBGE! {
+            case .pndWait, .pndActive:
+                convenienceFeeLabel.font = OpenSans.italic.of(textStyle: .footnote)
+                convenienceFeeLabel.textColor = .deepGray
+                convenienceFeeLabel.text = NSLocalizedString("Verification Status: Pending", comment: "")
+            case .cancel:
+                convenienceFeeLabel.font = OpenSans.italic.of(textStyle: .footnote)
+                convenienceFeeLabel.textColor = .deepGray
+                convenienceFeeLabel.text = NSLocalizedString("Verification Status: Cancelled", comment: "")
+            case .bad_active:
+                convenienceFeeLabel.font = OpenSans.italic.of(textStyle: .footnote)
+                convenienceFeeLabel.textColor = .deepGray
+                convenienceFeeLabel.text = NSLocalizedString("Verification Status: Failed", comment: "")
+            case .deleted:
+                break
+            case .active:
+                convenienceFeeLabel.textColor = .successGreenText
+                convenienceFeeLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
+            }
+
         }
         
         oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
