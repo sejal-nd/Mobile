@@ -75,7 +75,7 @@ protocol WalletService {
                            accountName: String?,
                            completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
-    /// Delete wallet payment method (Comed/PECO) information.
+    /// Delete wallet payment method.
     ///
     /// - Parameters:
     ///		- walletItemID

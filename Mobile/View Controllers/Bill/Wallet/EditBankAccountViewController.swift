@@ -20,8 +20,6 @@ class EditBankAccountViewController: UIViewController {
     
     weak var delegate: EditBankAccountViewControllerDelegate?
     
-    var selectedWalletItem: WalletItem?
-
     @IBOutlet weak var innerContentView: UIView!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var bottomBarView: UIView!
@@ -131,68 +129,51 @@ class EditBankAccountViewController: UIViewController {
     /////////////////////////////////////////////////////////////////////////////////////////////////
     func bindWalletItemToViewElements() {
         oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
+        
+        let walletItem = viewModel.walletItem!
 
-        if let walletItem = selectedWalletItem {
-            // Nickname
-            let opco = Environment.sharedInstance.opco
-            
-            if let nickname = walletItem.nickName {
-                if opco == .bge {
-                    if let bankAccountType = walletItem.bankAccountType {
-                        nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
-                    } else {
-                        nicknameLabel.text = nickname.uppercased()
-                    }
+        // Nickname
+        let opco = Environment.sharedInstance.opco
+        
+        if let nickname = walletItem.nickName {
+            if opco == .bge {
+                if let bankAccountType = walletItem.bankAccountType {
+                    nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
                 } else {
                     nicknameLabel.text = nickname.uppercased()
                 }
             } else {
-                if opco == .bge {
-                    if let bankAccountType = walletItem.bankAccountType {
-                        nicknameLabel.text = bankAccountType.rawValue.uppercased()
-                    }
-                } else {
-                    nicknameLabel.text = ""
-                }
+                nicknameLabel.text = nickname.uppercased()
             }
-            
-            if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-                accountIDLabel.text = "**** \(last4Digits)"
+        } else {
+            if opco == .bge {
+                if let bankAccountType = walletItem.bankAccountType {
+                    nicknameLabel.text = bankAccountType.rawValue.uppercased()
+                }
             } else {
-                accountIDLabel.text = ""
-            }
-            
-            convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
-            switch opco {
-            case .comEd, .peco:
-                if walletItem.paymentCategoryType == .credit {
-                    convenienceFeeLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
-                    if let paymentMethodType = walletItem.paymentMethodType {
-                        switch paymentMethodType {
-                        case .visa:
-                            bankImageView.image = #imageLiteral(resourceName: "ic_visa")
-                        case .mastercard:
-                            bankImageView.image = #imageLiteral(resourceName: "ic_mastercard")
-                        default:
-                            bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
-                        }
-                    }
-                    
-                } else if walletItem.paymentCategoryType == .check {
-                    bankImageView.image = #imageLiteral(resourceName: "opco_bank")
-                }
-                
-            case .bge:
-                bankImageView.image = #imageLiteral(resourceName: "opco_bank")
-                
-                convenienceFeeLabel.textColor = .successGreenText
-                convenienceFeeLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
-                
-                // if credit card:
-                // bottomBarLabel.text = NSLocalizedString("Fees: $1.50 Residential | 2.4% Business", comment: "")
+                nicknameLabel.text = ""
             }
         }
+        
+        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
+            accountIDLabel.text = "**** \(last4Digits)"
+        } else {
+            accountIDLabel.text = ""
+        }
+        
+        convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
+        switch opco {
+        case .comEd, .peco:
 
+            bankImageView.image = #imageLiteral(resourceName: "opco_bank")
+            
+        case .bge:
+            bankImageView.image = #imageLiteral(resourceName: "opco_bank")
+            
+            convenienceFeeLabel.textColor = .successGreenText
+            convenienceFeeLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
+        }
+        
     }
 
     
@@ -223,12 +204,12 @@ class EditBankAccountViewController: UIViewController {
         viewModel.editBankAccount(onSuccess: {
             LoadingView.hide()
             self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: "Changes saved")
-            
             _ = self.navigationController?.popViewController(animated: true)
         }, onError: { errMessage in
             LoadingView.hide()
-            
-            print(errMessage)
+            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertVc, animated: true, completion: nil)
         })
     }
 
@@ -243,21 +224,19 @@ class EditBankAccountViewController: UIViewController {
         let alertController = UIAlertController(title: NSLocalizedString("Delete Bank Account", comment: ""), message: messageString, preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .default, handler: { _ in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { _ in
             LoadingView.show()
-            
-            self.viewModel.editBankAccount(onSuccess: {
+            self.viewModel.deleteBankAccount(onSuccess: {
                 LoadingView.hide()
                 self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: "Bank account deleted")
-                
                 _ = self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
                 LoadingView.hide()
-                
-                print(errMessage)
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertVc, animated: true, completion: nil)
             })
         }))
-        
         present(alertController, animated: true, completion: nil)
     }
     

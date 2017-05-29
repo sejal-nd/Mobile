@@ -17,6 +17,8 @@ class EditBankAccountViewModel {
     
     var oneTouchPay = Variable(false)
     
+    var walletItem: WalletItem! // Passed from WalletViewController
+    
     required init(walletService: WalletService) {
         self.walletService = walletService
     }
@@ -26,5 +28,16 @@ class EditBankAccountViewModel {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
             onSuccess()
         }
+    }
+    
+    func deleteBankAccount(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        walletService.deletePaymentMethod(walletItem)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
     }
 }

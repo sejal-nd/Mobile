@@ -40,7 +40,6 @@ class WalletViewModel {
             .addDisposableTo(disposeBag)
         
         walletItems.asObservable().subscribe(onNext: { _ in
-            print("FETCHED ONE TOUCH PAY DICT")
             self.oneTouchPayDictionary = self.oneTouchPayService.getOneTouchPayDictionary()
         }).addDisposableTo(disposeBag)
         
