@@ -147,7 +147,7 @@ class WalletTableViewCell: UITableViewCell {
             case .bad_active:
                 bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
                 bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Stastus: Failed", comment: "")
+                bottomBarLabel.text = NSLocalizedString("Verification Status: Failed", comment: "")
             case .deleted:
                 break
             case .active:

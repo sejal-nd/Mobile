@@ -57,7 +57,6 @@ class WalletViewController: UIViewController {
         bankButtonLabel.text = NSLocalizedString("Bank Account", comment: "")
         bankFeeLabel.textColor = .deepGray
         bankFeeLabel.text = NSLocalizedString("No fees applied to your payments.", comment: "")
-        bankFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         creditCardButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         creditCardButton.layer.cornerRadius = 10
@@ -66,7 +65,6 @@ class WalletViewController: UIViewController {
         creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
         creditCardFeeLabel.textColor = .deepGray
         creditCardFeeLabel.text = viewModel.emptyStateCreditFeeLabelText
-        creditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         emptyStateFooter.textColor = .blackText
         emptyStateFooter.text = viewModel.footerLabelText

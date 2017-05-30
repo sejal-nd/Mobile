@@ -126,6 +126,7 @@ extension MoreViewController: UITableViewDataSource {
             label = NSLocalizedString("Sign Out", comment: "")
         }
         cell.textLabel?.text = label
+        cell.textLabel?.font = SystemFont.regular.of(textStyle: .headline)
         
         return cell
     }
