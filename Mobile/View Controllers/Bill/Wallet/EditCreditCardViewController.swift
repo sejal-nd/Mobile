@@ -113,8 +113,6 @@ class EditCreditCardViewController: UIViewController {
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         convenienceFeeLabel.textColor = .blackText
-        
-        oneTouchPayCardView.isHidden = true
     }
     
     func buildNavigationButtons() {
@@ -132,23 +130,23 @@ class EditCreditCardViewController: UIViewController {
         expDateLabel.textColor = .blackText
         expDateLabel.text = NSLocalizedString("Expiration Date", comment: "")
         
-        expMonthTextField.textField.placeholder = NSLocalizedString("MM*", comment: "")
+        expMonthTextField.textField.placeholder = NSLocalizedString("MM", comment: "")
         expMonthTextField.textField.delegate = self
         expMonthTextField.textField.keyboardType = .numberPad
         expMonthTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        expYearTextField.textField.placeholder = NSLocalizedString("YYYY*", comment: "")
+        expYearTextField.textField.placeholder = NSLocalizedString("YYYY", comment: "")
         expYearTextField.textField.delegate = self
         expYearTextField.textField.keyboardType = .numberPad
         expYearTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        cvvTextField.textField.placeholder = NSLocalizedString("CVV*", comment: "")
+        cvvTextField.textField.placeholder = NSLocalizedString("CVV", comment: "")
         cvvTextField.textField.delegate = self
         cvvTextField.textField.keyboardType = .numberPad
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        zipCodeTextField.textField.placeholder = NSLocalizedString("Zip Code*", comment: "")
+        zipCodeTextField.textField.placeholder = NSLocalizedString("Zip Code", comment: "")
         zipCodeTextField.textField.delegate = self
         zipCodeTextField.textField.keyboardType = .numberPad
         
@@ -245,8 +243,10 @@ class EditCreditCardViewController: UIViewController {
 
         oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
         
+        oneTouchPayCardView.isHidden = true
         let oneTouchPayWalletItem = oneTouchPayService.oneTouchPayItem(forCustomerNumber: viewModel.accountDetail.customerInfo.number)
         if (oneTouchPayWalletItem == viewModel.walletItem) {
+            oneTouchPayCardView.isHidden = false
             viewModel.oneTouchPayInitialValue.value = true
             oneTouchPaySwitch.isOn = true
             oneTouchPaySwitch.sendActions(for: .valueChanged)
@@ -358,60 +358,89 @@ class EditCreditCardViewController: UIViewController {
     func onSavePress() {
         view.endEditing(true)
         
-        let oneTouchPayService = ServiceFactory.createOneTouchPayService()
         let customerNumber = viewModel.accountDetail.customerInfo.number
         
-        var shouldShowOneTouchPayWarning = false
-        if viewModel.oneTouchPay.value {
-            if oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
-                shouldShowOneTouchPayWarning = true
-            }
-        }
-        
-        let editCreditCard = { (oneTouchPay: Bool) in
-            
-            let editOneTouchPay = {
-                if oneTouchPay {
-                    self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, paymentCategoryType: .credit, forCustomerNumber: customerNumber)
+        viewModel.webServicesDataChanged().single().subscribe(onNext: { changed in
+            if changed {
+                var shouldShowOneTouchPayWarning = false
+                if self.viewModel.oneTouchPay.value {
+                    if self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
+                        shouldShowOneTouchPayWarning = true
+                    }
+                }
+                
+                let editCreditCard = { (oneTouchPay: Bool) in
+                    
+                    let editOneTouchPay = {
+                        if oneTouchPay {
+                            self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, paymentCategoryType: .credit, forCustomerNumber: customerNumber)
+                        } else {
+                            self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
+                        }
+                    }
+                    
+                    
+                    if Environment.sharedInstance.opco == .bge {
+                        editOneTouchPay()
+                        self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
+                        _ = self.navigationController?.popViewController(animated: true)
+                    } else {
+                        LoadingView.show()
+                        self.viewModel.editCreditCard(onSuccess: {
+                            editOneTouchPay()
+                            
+                            LoadingView.hide()
+                            self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
+                            _ = self.navigationController?.popViewController(animated: true)
+                        }, onError: { errMessage in
+                            LoadingView.hide()
+                            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                            self.present(alertVc, animated: true, completion: nil)
+                        })
+                    }
+                    
+                }
+                
+                if shouldShowOneTouchPayWarning {
+                    let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
+                        editCreditCard(true)
+                    }))
+                    self.present(alertVc, animated: true, completion: nil)
                 } else {
-                    self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
+                    editCreditCard(self.viewModel.oneTouchPay.value)
+                }
+            } else {
+                
+                let toggleOneTouchPay = {
+                    if self.viewModel.oneTouchPay.value {
+                        self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, paymentCategoryType: .credit, forCustomerNumber: customerNumber)
+                        self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
+                        _ = self.navigationController?.popViewController(animated: true)
+                    } else {
+                        self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
+                        self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
+                        _ = self.navigationController?.popViewController(animated: true)
+                    }
+                }
+                if self.viewModel.oneTouchPay.value {
+                    if self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
+                        let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
+                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
+                            toggleOneTouchPay()
+                        }))
+                        self.present(alertVc, animated: true, completion: nil)
+                    } else {
+                        toggleOneTouchPay()
+                    }
+                } else {
+                    toggleOneTouchPay()
                 }
             }
-            
-
-            if Environment.sharedInstance.opco == .bge {
-                editOneTouchPay()
-                self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
-                _ = self.navigationController?.popViewController(animated: true)
-            } else {
-                LoadingView.show()
-                self.viewModel.editCreditCard(onSuccess: {
-                    editOneTouchPay()
-                    
-                    LoadingView.hide()
-                    self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
-                    _ = self.navigationController?.popViewController(animated: true)
-                }, onError: { errMessage in
-                    LoadingView.hide()
-                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertVc, animated: true, completion: nil)
-                })
-            }
-
-        }
-        
-        if shouldShowOneTouchPayWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
-                editCreditCard(true)
-            }))
-            present(alertVc, animated: true, completion: nil)
-        } else {
-            editCreditCard(viewModel.oneTouchPay.value)
-        }
-
+        }).addDisposableTo(disposeBag)
     }
 
     

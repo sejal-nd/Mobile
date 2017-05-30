@@ -92,8 +92,6 @@ class EditBankAccountViewController: UIViewController {
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         convenienceFeeLabel.textColor = .blackText
-        
-        oneTouchPayCardView.isHidden = true
     }
     
     func buildNavigationButtons() {
@@ -195,8 +193,10 @@ class EditBankAccountViewController: UIViewController {
         
         oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
         
+        oneTouchPayCardView.isHidden = true
         let oneTouchPayWalletItem = oneTouchPayService.oneTouchPayItem(forCustomerNumber: viewModel.accountDetail.customerInfo.number)
         if (oneTouchPayWalletItem == viewModel.walletItem) {
+            oneTouchPayCardView.isHidden = false
             viewModel.oneTouchPayInitialValue.value = true
             oneTouchPaySwitch.isOn = true
             oneTouchPaySwitch.sendActions(for: .valueChanged)

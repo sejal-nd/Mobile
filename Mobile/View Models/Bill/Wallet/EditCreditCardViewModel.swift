@@ -39,9 +39,15 @@ class EditCreditCardViewModel {
                 return $0 != $1
             }
         } else {
-            return Observable.combineLatest([expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits()]) {
-                return !$0.contains(false)
+            return Observable.combineLatest(webServicesDataChanged(), oneTouchPayInitialValue.asObservable(), oneTouchPay.asObservable()) {
+                return $0 || ($1 != $2)
             }
+        }
+    }
+    
+    func webServicesDataChanged() -> Observable<Bool> {
+        return Observable.combineLatest(expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits()) {
+            return ($0 && $1 && $2 && $3) || $4 || $5
         }
     }
     
@@ -90,7 +96,7 @@ class EditCreditCardViewModel {
     }
     
     func editCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        walletService.updateCreditCard(walletItem.walletItemID!, customerNumber: accountDetail.customerInfo.number!, expirationMonth: expMonth.value, expirationYear: expYear.value, securityCode: cvv.value, postalCode: zipCode.value, nickname: nil)
+        walletService.updateCreditCard(walletItem.walletItemID!, customerNumber: accountDetail.customerInfo.number!, expirationMonth: expMonth.value.isEmpty ? nil : expMonth.value, expirationYear: expYear.value.isEmpty ? nil : expYear.value, securityCode: cvv.value.isEmpty ? nil : cvv.value, postalCode: zipCode.value.isEmpty ? nil : zipCode.value, nickname: nil)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

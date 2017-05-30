@@ -50,10 +50,10 @@ protocol WalletService {
     ///   - postalCode: the postal code to set
     func updateCreditCard(_ walletItemID: String,
                           customerNumber: String,
-                          expirationMonth: String,
-                          expirationYear: String,
-                          securityCode: String,
-                          postalCode: String,
+                          expirationMonth: String?,
+                          expirationYear: String?,
+                          securityCode: String?,
+                          postalCode: String?,
                           nickname: String?,
                           completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
@@ -142,10 +142,10 @@ extension WalletService {
     
     func updateCreditCard(_ walletItemID: String,
                           customerNumber: String,
-                          expirationMonth: String,
-                          expirationYear: String,
-                          securityCode: String,
-                          postalCode: String,
+                          expirationMonth: String?,
+                          expirationYear: String?,
+                          securityCode: String?,
+                          postalCode: String?,
                           nickname: String?) -> Observable<Void> {
     
         return Observable.create { observer in

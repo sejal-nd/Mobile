@@ -119,20 +119,31 @@ struct FiservApi {
     }
     
     func updateCreditCard(walletItemID: String,
-                          expirationMonth: String,
-                          expirationYear: String,
-                          securityCode: String,
-                          postalCode: String,
+                          expirationMonth: String?,
+                          expirationYear: String?,
+                          securityCode: String?,
+                          postalCode: String?,
                           nickname: String?,
                           token: String,
                           customerNumber: String,
                           completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Swift.Void) {
         var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: false)
         
-        let expiration = "" + expirationMonth + expirationYear.substring(from: expirationYear.index(expirationYear.startIndex, offsetBy: 2))
-        let cardDetail = [Parameter.ExpirationDate.rawValue : expiration,
-                          Parameter.SecurityCode.rawValue : securityCode,
-                          Parameter.PostalCode.rawValue : postalCode]
+        var cardDetail = [String: String]()
+        if let expMonth = expirationMonth, let expYear = expirationYear {
+            let expiration = "" + expMonth + expYear.substring(from: expYear.index(expYear.startIndex, offsetBy: 2))
+            cardDetail[Parameter.ExpirationDate.rawValue] = expiration
+        }
+        if let cvv = securityCode {
+            cardDetail[Parameter.SecurityCode.rawValue] = cvv
+        }
+        if let zipCode = postalCode {
+            cardDetail[Parameter.PostalCode.rawValue] = zipCode
+        }
+        
+//        let cardDetail = [Parameter.ExpirationDate.rawValue : expiration,
+//                          Parameter.SecurityCode.rawValue : securityCode,
+//                          Parameter.PostalCode.rawValue : postalCode]
         
         params[Parameter.MessageId.rawValue] = MessageId.updateCredit.rawValue
         params[Parameter.CardDetail.rawValue] = cardDetail
