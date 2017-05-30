@@ -141,15 +141,15 @@ class CreateAccountViewController: UIViewController {
     }
 
     @IBAction func onEyeballPress(_ sender: UIButton) {
-        if currentPasswordTextField.textField.isSecureTextEntry {
-            currentPasswordTextField.textField.isSecureTextEntry = false
+        if createPasswordTextField.textField.isSecureTextEntry {
+            createPasswordTextField.textField.isSecureTextEntry = false
             // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
-            currentPasswordTextField.textField.font = nil
-            currentPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+            createPasswordTextField.textField.font = nil
+            createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
         } else {
-            currentPasswordTextField.textField.isSecureTextEntry = true
+            createPasswordTextField.textField.isSecureTextEntry = true
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
         }
     }
@@ -218,3 +218,75 @@ class CreateAccountViewController: UIViewController {
         scrollView.scrollIndicatorInsets = .zero
     }
 }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+extension CreateAccountViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        if textField == phoneNumberTextField.textField {
+            let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
+            
+            let decimalString = components.joined(separator: "") as NSString
+            let length = decimalString.length
+            
+            if length > 10 {
+                return false
+            }
+            
+            var index = 0 as Int
+            let formattedString = NSMutableString()
+            
+            if length - index > 3 {
+                let areaCode = decimalString.substring(with: NSMakeRange(index, 3))
+                formattedString.appendFormat("(%@) ", areaCode)
+                index += 3
+            }
+            if length - index > 3 {
+                let prefix = decimalString.substring(with: NSMakeRange(index, 3))
+                formattedString.appendFormat("%@-", prefix)
+                index += 3
+            }
+            
+            let remainder = decimalString.substring(from: index)
+            formattedString.append(remainder)
+            textField.text = formattedString as String
+            
+            textField.sendActions(for: .valueChanged) // Send rx events
+            
+            return false
+        } else if textField == ssNumberNumberTextField?.textField {
+            return newString.characters.count <= 4
+        } else if textField == accountNumberTextField?.textField {
+            let characterSet = CharacterSet(charactersIn: string)
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 10
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == phoneNumberTextField.textField {
+            if let idTextField = ssNumberNumberTextField {
+                idTextField.textField.becomeFirstResponder()
+            } else {
+                accountNumberTextField?.textField.becomeFirstResponder()
+            }
+            
+        } else if textField == ssNumberNumberTextField?.textField || textField == accountNumberTextField?.textField {
+            viewModel.nextButtonEnabled().single().subscribe(onNext: { enabled in
+                if enabled {
+                    self.onNextPress()
+                } else {
+                    self.view.endEditing(true)
+                }
+            }).addDisposableTo(disposeBag)
+        }
+        
+        return false
+    }
+}
+
+

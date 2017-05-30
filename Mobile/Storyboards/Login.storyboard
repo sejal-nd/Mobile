@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RbL-iO-8ib">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RbL-iO-8ib">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -605,6 +605,9 @@
                                                                             <constraint firstAttribute="width" constant="51" id="mQU-uc-P7n"/>
                                                                         </constraints>
                                                                         <state key="normal" image="ic_question"/>
+                                                                        <connections>
+                                                                            <action selector="onAccountNumberTooltipPress" destination="Q28-wT-zJI" eventType="touchUpInside" id="pQc-es-cWZ"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2064,6 +2067,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5IE-JS-td4"/>
-        <segue reference="JKs-yE-NBJ"/>
+        <segue reference="6eI-mv-PAf"/>
     </inferredMetricsTieBreakers>
 </document>
