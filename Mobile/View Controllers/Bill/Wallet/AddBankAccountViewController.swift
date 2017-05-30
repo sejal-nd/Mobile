@@ -130,7 +130,12 @@ class AddBankAccountViewController: UIViewController {
         
         let addBankAccount = { (setAsOneTouchPay: Bool) in
             LoadingView.show()
-            self.viewModel.addBankAccount(onSuccess: { walletItemResult in
+            self.viewModel.addBankAccount(onDuplicate: { message in
+                LoadingView.hide()
+                let alertVc = UIAlertController(title: NSLocalizedString("Duplicate Bank Account", comment: ""), message: message, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertVc, animated: true, completion: nil)
+            }, onSuccess: { walletItemResult in
                 if setAsOneTouchPay {
                     let accountNumber = self.viewModel.accountNumber.value
                     let last4 = accountNumber.substring(from: accountNumber.index(accountNumber.endIndex, offsetBy: -4))
