@@ -427,7 +427,7 @@ class EditCreditCardViewController: UIViewController {
                     self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
                 }
                 LoadingView.hide()
-                self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Credit Card deleted", comment: ""))
+                self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Card deleted", comment: ""))
                 _ = self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
                 LoadingView.hide()
