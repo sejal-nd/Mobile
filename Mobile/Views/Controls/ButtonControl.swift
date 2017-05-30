@@ -12,6 +12,9 @@ import RxCocoa
 
 class ButtonControl: UIControl {
     
+    @IBInspectable var shouldFadeSubviewsOnPress: Bool = false
+    @IBInspectable var backgroundColorOnPress: UIColor?
+
     let bag = DisposeBag()
     
     override init(frame: CGRect) {
@@ -25,21 +28,27 @@ class ButtonControl: UIControl {
     }
     
     func commonInit() {
-        let normalStateColor = backgroundColor ?? .clear
+        let normalStateColor = backgroundColor
         
-        let selectedColor = rx.controlEvent(.touchDown).asDriver()
-            .map { UIColor.softGray }
+        let pressed = rx.controlEvent(.touchDown).asDriver().map { true }
         
-        let deselectedColor = Driver.merge(rx.controlEvent(.touchUpInside).asDriver(),
-                                           rx.controlEvent(.touchUpOutside).asDriver(),
-                                           rx.controlEvent(.touchCancel).asDriver())
-            .map { normalStateColor }
+        let notPressed = Driver.merge(rx.controlEvent(.touchUpInside).asDriver(),
+                                      rx.controlEvent(.touchUpOutside).asDriver(),
+                                      rx.controlEvent(.touchDragExit).asDriver(),
+                                      rx.controlEvent(.touchCancel).asDriver()).map { false }
         
-        Driver.merge(selectedColor, deselectedColor)
-            .drive(onNext: { [weak self] color in
-                self?.backgroundColor = color
+        Driver.merge(pressed, notPressed)
+            .startWith(false)
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] pressed in
+                guard let strongSelf = self else { return }
+                strongSelf.backgroundColor = pressed ? strongSelf.backgroundColorOnPress: normalStateColor
+                if strongSelf.shouldFadeSubviewsOnPress {
+                    strongSelf.fadeSubviews(fadeAmount: pressed ? 0.5: 1, animationDuration: 0.1)
+                }
             })
             .addDisposableTo(bag)
+        
     }
     
     override var isEnabled: Bool {

@@ -17,56 +17,71 @@ protocol WalletService {
     
     func fetchWalletItems(completion: @escaping (_ result: ServiceResult<[WalletItem]>) -> Void)
     
-    /// Create wallet payment method (Comed/PECO/BGE) information.
+    /// Add a bank account to the users wallet.
     ///
     /// - Parameters:
-    ///   - accountNumber
-    ///   - maskedWalletItem
-    ///   - paymentCategory
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain nothing on success, or a ServiceError on failure.
+    ///   - bankAccount: the account to add
+    ///   - customerNumber: the user's accountDetail.CustomerInfo.number
+    ///   - completiong: the block to execute upon completion
+    func addBankAccount(_ bankAccount : BankAccount,
+                        forCustomerNumber: String,
+                        completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Void)
     
-    func createWalletPaymentMethod(_ paymentCategory: PaymentCategoryType,
-                                   routingNumber: String,
-                                   accountNickName: String,
-                                   bankAccountType: BankAccountType,
-                                   bankAccountNumber: String,
-                                   bankAccountName: String,
-                                   completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
-    /// Update wallet payment method (Comed/PECO/BGE) information.
+    /// Add a credit card to the users wallet.
     ///
     /// - Parameters:
-    ///	  - paymentCategoryType
-    ///   - walletItemID
-    ///	  - routingNumber
-    ///   - accountNumber
-    ///   - maskedWalletItemAccountNumber
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain nothing on success, or a ServiceError on failure.
+    ///   - creditCard: the card to add
+    ///   - customerNumber: the user's accountDetail.CustomerInfo.number
+    ///   - completion: the bock to execute upon completion
+    func addCreditCard(_ creditCard: CreditCard,
+                       forCustomerNumber: String,
+                       completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Void)
     
-    func updateWalletPaymentMethod(_ paymentCategoryType: PaymentCategoryType,
-                                   walletItemID: String,
-                                   routingNumber: String,
-                                   accountNickName: String,
-                                   bankAccountType: BankAccountType,
-                                   bankAccountNumber: String,
-                                   bankAccountName: String,
-                                   completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
-    /// Delete wallet payment method (Comed/PECO) information.
+    /// Update a credit card in the users wallet.
     ///
     /// - Parameters:
-    ///		- accountNumber *
-    ///		- maskedWalletItemAccountNumber *
-    ///		- paymentCategoryType
+    ///   - walletItemId: the wallet item id to update
+    ///   - customerNumber: the user's accountDetail.CustomerInfo.number
+    ///   - expirationMonth: the expiration month to set
+    ///   - expirationYear: the expiration year to set
+    ///   - securityCode: the security code to set
+    ///   - postalCode: the postal code to set
+    func updateCreditCard(_ walletItemID: String,
+                          customerNumber: String,
+                          expirationMonth: String?,
+                          expirationYear: String?,
+                          securityCode: String?,
+                          postalCode: String?,
+                          nickname: String?,
+                          completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    
+    /// Update a bank account in the users wallet.
+    ///
+    /// - Parameters:
+    ///   - walletItemID: the wallet item id to update
+    ///   - bankAccountNumber: the new bank account number
+    ///   - routingNumber: the routing number
+    ///   - accountType: the account type
+    ///   - nickname: the account nickname
+    ///   - accountName; the account name
+    func updateBankAccount(_ walletItemID: String,
+                           bankAccountNumber: String,
+                           routingNumber: String,
+                           accountType: BankAccountType,
+                           nickname: String?,
+                           accountName: String?,
+                           completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    /// Delete wallet payment method.
+    ///
+    /// - Parameters:
     ///		- walletItemID
-    ///		- billerID
     ///		- completion: the block to execute upon completion, the ServiceResult
     ///       that is provided will contain nothing on success, or a ServiceError on failure.
-    func deletePaymentMethod(_ paymentCategoryType: PaymentCategoryType,
-                             walletItemID: String,
-                             billerID: String,
+    func deletePaymentMethod(_ walletItem : WalletItem,
                              completion: @escaping (_ result: ServiceResult<Void>) -> Void)
 }
 
@@ -77,7 +92,6 @@ extension WalletService {
     
     // Fetch for all three
     func fetchWalletItems() -> Observable<[WalletItem]> {
-        //
         return Observable.create { observer in
             self.fetchWalletItems(completion: { (result: ServiceResult<[WalletItem]>) in
                 //
@@ -94,28 +108,28 @@ extension WalletService {
         }
     }
     
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-    // Create Wallet for Comed/PECO/BGE
-    func createWalletPaymentMethod(_ paymentCategory: PaymentCategoryType,
-                                   routingNumber: String,
-                                   accountNickName: String,
-                                   bankAccountType: BankAccountType,
-                                   bankAccountNumber: String,
-                                   bankAccountName: String) -> Observable<Void> {
-        //
+    func addBankAccount(_ bankAccount: BankAccount, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
         return Observable.create { observer in
-            self.createWalletPaymentMethod(paymentCategory,
-                                           routingNumber: routingNumber,
-                                           accountNickName: accountNickName,
-                                           bankAccountType: bankAccountType,
-                                           bankAccountNumber: bankAccountNumber,
-                                           bankAccountName: bankAccountName,
-                                           completion: { (result: ServiceResult<Void>) in
-                //
-                switch (result) {
-                case ServiceResult.Success:
-                    observer.onNext()
+            self.addBankAccount(bankAccount, forCustomerNumber: customerNumber, completion: { (result: ServiceResult<WalletItemResult>) in
+                switch(result) {
+                case ServiceResult.Success(let walletItemResult):
+                    observer.onNext(walletItemResult)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            
+            return Disposables.create()
+        }
+    }
+
+    func addCreditCard(_ creditCard: CreditCard, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
+        return Observable.create { observer in
+            self.addCreditCard(creditCard, forCustomerNumber: customerNumber, completion: { (result: ServiceResult<WalletItemResult>) in
+                switch(result) {
+                case ServiceResult.Success(let walletItemResult):
+                    observer.onNext(walletItemResult)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -126,54 +140,74 @@ extension WalletService {
         }
     }
     
+    func updateCreditCard(_ walletItemID: String,
+                          customerNumber: String,
+                          expirationMonth: String?,
+                          expirationYear: String?,
+                          securityCode: String?,
+                          postalCode: String?,
+                          nickname: String?) -> Observable<Void> {
     
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-    // Update Wallet for Comed/PECO
-    func updateWalletPaymentMethod(_ paymentCategoryType: PaymentCategoryType,
-                                   walletItemID: String,
-                                   routingNumber: String,
-                                   accountNickName: String,
-                                   bankAccountType: BankAccountType,
-                                   bankAccountNumber: String,
-                                   bankAccountName: String) -> Observable<Void> {
-        //
         return Observable.create { observer in
-            self.updateWalletPaymentMethod(paymentCategoryType,
-                                           walletItemID: walletItemID,
-                                           routingNumber: routingNumber,
-                                           accountNickName: accountNickName,
-                                           bankAccountType: bankAccountType,
-                                           bankAccountNumber: bankAccountNumber,
-                                           bankAccountName: bankAccountName,
-                                           completion: { (result: ServiceResult<Void>) in
-                //
-                switch (result) {
-                case ServiceResult.Success:
-                    observer.onNext()
-                    observer.onCompleted()
-                    
-                case ServiceResult.Failure(let err):
-                    observer.onError(err)
-                }
+            self.updateCreditCard(walletItemID,
+                                  customerNumber: customerNumber,
+                                  expirationMonth: expirationMonth,
+                                  expirationYear: expirationYear,
+                                  securityCode: securityCode,
+                                  postalCode: postalCode,
+                                  nickname: nickname,
+                                  completion: { (result: ServiceResult<Void>) in
+                                    //
+                                    switch (result) {
+                                    case ServiceResult.Success:
+                                        observer.onNext()
+                                        observer.onCompleted()
+                                            
+                                    case ServiceResult.Failure(let err):
+                                        observer.onError(err)
+                                    }
             })
             
             return Disposables.create()
         }
     }
-    
+
+    func updateBankAccount(_ walletItemID: String,
+                           bankAccountNumber: String,
+                           routingNumber: String,
+                           accountType: BankAccountType,
+                           nickname: String,
+                           accountName: String) -> Observable<Void> {
+        
+        return Observable.create { observer in
+            self.updateBankAccount(walletItemID,
+                                  bankAccountNumber: bankAccountNumber,
+                                  routingNumber: routingNumber,
+                                  accountType: accountType,
+                                  nickname: nickname,
+                                  accountName: accountName,
+                                  completion: { (result: ServiceResult<Void>) in
+                                    //
+                                    switch (result) {
+                                    case ServiceResult.Success:
+                                        observer.onNext()
+                                        observer.onCompleted()
+                                        
+                                    case ServiceResult.Failure(let err):
+                                        observer.onError(err)
+                                    }
+            })
+            
+            return Disposables.create()
+        }
+    }
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
     // Delete Wallet for Comed/PECO
-    func deletePaymentMethod(_ paymentCategoryType: PaymentCategoryType,
-                             walletItemID: String,
-                             billerID: String) -> Observable<Void> {
-        //
+    func deletePaymentMethod(_ walletItem : WalletItem) -> Observable<Void> {
         return Observable.create { observer in
-            self.deletePaymentMethod(paymentCategoryType,
-                                     walletItemID: walletItemID,
-                                     billerID: billerID,
+            self.deletePaymentMethod(walletItem,
                                      completion: { (result: ServiceResult<Void>) in
-                //
                 switch (result) {
                 case ServiceResult.Success:
                     observer.onNext()

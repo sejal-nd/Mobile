@@ -52,8 +52,9 @@ class DisclosureButton: UIButton {
     
     func setDetailLabel(text: String, checkHidden: Bool) {
         detailLabel.text = text
-        detailLabel.isHidden = text.characters.count == 0
+        detailLabel.isHidden = text.isEmpty
         checkImage.isHidden = checkHidden
+        label.font = SystemFont.medium.of(textStyle: (text.isEmpty ? .title1: .headline))
     }
     
     override var isHighlighted: Bool {

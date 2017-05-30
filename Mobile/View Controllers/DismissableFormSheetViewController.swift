@@ -15,7 +15,7 @@ class DismissableFormSheetViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if tapOutsideRecognizer == nil {
+        if tapOutsideRecognizer == nil && UIDevice.current.userInterfaceIdiom == .pad {
             tapOutsideRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapBehind))
             tapOutsideRecognizer.numberOfTapsRequired = 1
             tapOutsideRecognizer.cancelsTouchesInView = false

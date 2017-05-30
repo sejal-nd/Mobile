@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -168,7 +168,7 @@
                                                     <rect key="frame" x="0.0" y="62" width="375" height="62.5"/>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_carat_down" translatesAutoresizingMaskIntoConstraints="NO" id="owp-nw-AOB">
-                                                    <rect key="frame" x="354" y="79.5" width="13" height="8"/>
+                                                    <rect key="frame" x="354" y="80" width="13" height="8"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="8" id="AK4-5c-vEk"/>
                                                         <constraint firstAttribute="width" constant="13" id="qG8-I3-Bua"/>
@@ -559,7 +559,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zz7-Yi-MtH">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wj3-R8-PEk">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wj3-R8-PEk">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="947"/>
                                         <subviews>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-bI-z1O">
@@ -615,6 +615,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                             <constraint firstItem="afw-hD-sE0" firstAttribute="centerY" secondItem="dFa-Qw-aDA" secondAttribute="centerY" id="1RE-sQ-uhd"/>
                                                             <constraint firstItem="afw-hD-sE0" firstAttribute="leading" secondItem="Zzw-9g-k7M" secondAttribute="trailing" id="2U3-sY-ve7"/>
                                                             <constraint firstItem="Zzw-9g-k7M" firstAttribute="leading" secondItem="dFa-Qw-aDA" secondAttribute="leading" id="4Ek-gN-dRN"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="QzP-bQ-k1o"/>
                                                             <constraint firstItem="Zzw-9g-k7M" firstAttribute="top" secondItem="dFa-Qw-aDA" secondAttribute="top" id="VuV-87-cdy"/>
                                                             <constraint firstAttribute="bottom" secondItem="Zzw-9g-k7M" secondAttribute="bottom" id="WPE-iD-nEy"/>
                                                             <constraint firstAttribute="height" priority="999" constant="49" id="a4i-Ax-Fyi"/>
@@ -642,6 +643,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                         <constraints>
                                                             <constraint firstItem="cb8-Vg-S1A" firstAttribute="leading" secondItem="ZTg-SF-6yF" secondAttribute="trailing" constant="16" id="99t-Ux-nJ2"/>
                                                             <constraint firstItem="ZTg-SF-6yF" firstAttribute="leading" secondItem="nKm-Ee-71t" secondAttribute="leading" id="I2D-3P-GDG"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="M3H-wY-6jY"/>
                                                             <constraint firstItem="ZTg-SF-6yF" firstAttribute="centerY" secondItem="nKm-Ee-71t" secondAttribute="centerY" id="jtH-UI-krf"/>
                                                             <constraint firstAttribute="height" priority="999" constant="30" id="o2N-HS-cAI"/>
                                                             <constraint firstItem="cb8-Vg-S1A" firstAttribute="centerY" secondItem="nKm-Ee-71t" secondAttribute="centerY" id="wSa-lf-auj"/>
@@ -668,6 +670,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                         <constraints>
                                                             <constraint firstItem="wIB-MD-rE5" firstAttribute="centerY" secondItem="U2N-zO-4eI" secondAttribute="centerY" id="0Jl-Bk-cq9"/>
                                                             <constraint firstItem="kDu-NL-o8r" firstAttribute="leading" secondItem="U2N-zO-4eI" secondAttribute="leading" id="DGR-0c-Ooi"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="fys-HF-RTa"/>
                                                             <constraint firstAttribute="height" priority="999" constant="30" id="hFm-MN-nwU"/>
                                                             <constraint firstItem="kDu-NL-o8r" firstAttribute="centerY" secondItem="U2N-zO-4eI" secondAttribute="centerY" id="tMq-ZU-Qt6"/>
                                                             <constraint firstItem="wIB-MD-rE5" firstAttribute="leading" secondItem="kDu-NL-o8r" secondAttribute="trailing" constant="16" id="uh5-DZ-ucV"/>
@@ -675,6 +678,9 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                     </view>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Problems Found. Please tap &quot;Submit&quot; to report an outage." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AG-9d-VBi">
                                                         <rect key="frame" x="29" y="116" width="317" height="38.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="f6s-a5-fkD"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -689,13 +695,17 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="dFa-Qw-aDA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i9X-bI-z1O" secondAttribute="leading" constant="29" id="5nA-2w-o2H"/>
-                                                    <constraint firstItem="nKm-Ee-71t" firstAttribute="leading" secondItem="i9X-bI-z1O" secondAttribute="leading" constant="29" id="6Sh-gG-QKC"/>
-                                                    <constraint firstAttribute="trailing" secondItem="nKm-Ee-71t" secondAttribute="trailing" constant="29" id="Ab6-ew-TAq"/>
+                                                    <constraint firstItem="nKm-Ee-71t" firstAttribute="leading" secondItem="i9X-bI-z1O" secondAttribute="leading" priority="999" constant="29" id="6Sh-gG-QKC"/>
+                                                    <constraint firstItem="nKm-Ee-71t" firstAttribute="centerX" secondItem="i9X-bI-z1O" secondAttribute="centerX" id="AW3-c1-J57"/>
+                                                    <constraint firstAttribute="trailing" secondItem="nKm-Ee-71t" secondAttribute="trailing" priority="999" constant="29" id="Ab6-ew-TAq"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dFa-Qw-aDA" secondAttribute="trailing" constant="29" id="G7O-Ct-MA2"/>
-                                                    <constraint firstAttribute="trailing" secondItem="U2N-zO-4eI" secondAttribute="trailing" constant="29" id="Y1S-lq-d7g"/>
-                                                    <constraint firstItem="U2N-zO-4eI" firstAttribute="leading" secondItem="i9X-bI-z1O" secondAttribute="leading" constant="29" id="Zip-ea-FGH"/>
-                                                    <constraint firstAttribute="trailing" secondItem="9AG-9d-VBi" secondAttribute="trailing" constant="29" id="eKO-Xz-blZ"/>
-                                                    <constraint firstItem="9AG-9d-VBi" firstAttribute="leading" secondItem="i9X-bI-z1O" secondAttribute="leading" constant="29" id="tsK-ai-gne"/>
+                                                    <constraint firstItem="U2N-zO-4eI" firstAttribute="centerX" secondItem="i9X-bI-z1O" secondAttribute="centerX" id="WgS-sP-XUe"/>
+                                                    <constraint firstAttribute="trailing" secondItem="U2N-zO-4eI" secondAttribute="trailing" priority="999" constant="29" id="Y1S-lq-d7g"/>
+                                                    <constraint firstItem="U2N-zO-4eI" firstAttribute="leading" secondItem="i9X-bI-z1O" secondAttribute="leading" priority="999" constant="29" id="Zip-ea-FGH"/>
+                                                    <constraint firstAttribute="trailing" secondItem="9AG-9d-VBi" secondAttribute="trailing" priority="999" constant="29" id="eKO-Xz-blZ"/>
+                                                    <constraint firstItem="9AG-9d-VBi" firstAttribute="leading" secondItem="i9X-bI-z1O" secondAttribute="leading" priority="999" constant="29" id="tsK-ai-gne"/>
+                                                    <constraint firstItem="9AG-9d-VBi" firstAttribute="centerX" secondItem="i9X-bI-z1O" secondAttribute="centerX" id="uDW-Fd-Bf6"/>
+                                                    <constraint firstItem="dFa-Qw-aDA" firstAttribute="centerX" secondItem="i9X-bI-z1O" secondAttribute="centerX" id="xkp-fF-K9w"/>
                                                 </constraints>
                                             </stackView>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-Bd-NCe">
@@ -717,6 +727,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="MsO-JP-Q4X" firstAttribute="top" secondItem="JdA-Bd-NCe" secondAttribute="top" priority="999" constant="24" id="A88-PD-jLC"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="CPG-Yh-Tz7"/>
                                                     <constraint firstItem="Z3B-9b-TVX" firstAttribute="leading" secondItem="JdA-Bd-NCe" secondAttribute="leading" constant="29" id="M99-r9-r77"/>
                                                     <constraint firstAttribute="trailing" secondItem="MsO-JP-Q4X" secondAttribute="trailing" constant="29" id="lyU-wG-c9c"/>
                                                     <constraint firstItem="Z3B-9b-TVX" firstAttribute="top" secondItem="MsO-JP-Q4X" secondAttribute="top" constant="8" id="pBw-Na-d8E"/>
@@ -819,6 +830,9 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                         </constraints>
                                                     </view>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="JaJ-F5-WPy"/>
+                                                </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6M8-NZ-rW4" userLabel="Footer Container View">
                                                 <rect key="frame" x="0.0" y="641" width="375" height="306"/>
@@ -842,6 +856,7 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                             </textView>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="IEn-FM-Kds"/>
                                                             <constraint firstAttribute="bottom" secondItem="doS-PF-4Ay" secondAttribute="bottom" priority="999" constant="33" id="NF1-lR-ga1"/>
                                                             <constraint firstAttribute="trailing" secondItem="doS-PF-4Ay" secondAttribute="trailing" constant="29" id="Rdq-Gg-ajh"/>
                                                             <constraint firstItem="doS-PF-4Ay" firstAttribute="top" secondItem="Muq-JA-cLX" secondAttribute="top" priority="999" constant="20" id="WFK-jp-0KI"/>
@@ -853,14 +868,27 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                 <constraints>
                                                     <constraint firstItem="z3B-jb-AXr" firstAttribute="top" secondItem="Muq-JA-cLX" secondAttribute="top" id="BdI-la-mbV"/>
                                                     <constraint firstAttribute="bottom" secondItem="Muq-JA-cLX" secondAttribute="bottom" id="Llo-nh-wYW"/>
-                                                    <constraint firstItem="Muq-JA-cLX" firstAttribute="leading" secondItem="6M8-NZ-rW4" secondAttribute="leading" id="M3u-sB-Gge"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Muq-JA-cLX" secondAttribute="trailing" id="Zyu-bx-U4c"/>
+                                                    <constraint firstItem="Muq-JA-cLX" firstAttribute="leading" secondItem="6M8-NZ-rW4" secondAttribute="leading" priority="999" id="M3u-sB-Gge"/>
+                                                    <constraint firstItem="Muq-JA-cLX" firstAttribute="centerX" secondItem="6M8-NZ-rW4" secondAttribute="centerX" id="RGx-jk-FDh"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Muq-JA-cLX" secondAttribute="trailing" priority="999" id="Zyu-bx-U4c"/>
                                                     <constraint firstAttribute="trailing" secondItem="z3B-jb-AXr" secondAttribute="trailing" id="jLk-F5-V7F"/>
                                                     <constraint firstItem="Muq-JA-cLX" firstAttribute="top" secondItem="6M8-NZ-rW4" secondAttribute="top" id="qab-cm-6aA"/>
                                                     <constraint firstItem="z3B-jb-AXr" firstAttribute="leading" secondItem="6M8-NZ-rW4" secondAttribute="leading" id="yqX-DK-3Il"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="JdA-Bd-NCe" firstAttribute="centerX" secondItem="Wj3-R8-PEk" secondAttribute="centerX" id="E3g-Ip-0Mx"/>
+                                            <constraint firstAttribute="trailing" secondItem="i9X-bI-z1O" secondAttribute="trailing" id="FqJ-sB-gPh"/>
+                                            <constraint firstAttribute="trailing" secondItem="6M8-NZ-rW4" secondAttribute="trailing" id="MCg-hf-26I"/>
+                                            <constraint firstItem="5lr-vG-MUZ" firstAttribute="centerX" secondItem="Wj3-R8-PEk" secondAttribute="centerX" id="Rqt-Yc-dUd"/>
+                                            <constraint firstItem="JdA-Bd-NCe" firstAttribute="leading" secondItem="Wj3-R8-PEk" secondAttribute="leading" priority="999" id="Rwb-15-wxt"/>
+                                            <constraint firstItem="i9X-bI-z1O" firstAttribute="leading" secondItem="Wj3-R8-PEk" secondAttribute="leading" id="VpE-O6-mAu"/>
+                                            <constraint firstAttribute="trailing" secondItem="JdA-Bd-NCe" secondAttribute="trailing" priority="999" id="fqP-c3-mPH"/>
+                                            <constraint firstItem="6M8-NZ-rW4" firstAttribute="leading" secondItem="Wj3-R8-PEk" secondAttribute="leading" id="qwK-e9-4eb"/>
+                                            <constraint firstItem="5lr-vG-MUZ" firstAttribute="leading" secondItem="Wj3-R8-PEk" secondAttribute="leading" priority="999" id="yWZ-RH-s4m"/>
+                                            <constraint firstAttribute="trailing" secondItem="5lr-vG-MUZ" secondAttribute="trailing" priority="999" id="zS5-fX-lVk"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>

@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class WalletViewController: UIViewController {
     
@@ -34,21 +35,25 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var miniBankButton: ButtonControl!
     @IBOutlet weak var tableViewFooter: UILabel!
     
-    let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService())
-
+    let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService(), oneTouchPayService: ServiceFactory.createOneTouchPayService())
+    
+    var selectedWalletItem: WalletItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = NSLocalizedString("My Wallet", comment: "")
         view.backgroundColor = .softGray
         
         // Empty state stuff
         choosePaymentAccountLabel.textColor = .blackText
+        choosePaymentAccountLabel.font = OpenSans.regular.of(textStyle: .headline)
         choosePaymentAccountLabel.text = NSLocalizedString("Choose a payment account:", comment: "")
         
         bankButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         bankButton.layer.cornerRadius = 10
         bankButtonLabel.textColor = .blackText
+        bankButtonLabel.font = OpenSans.semibold.of(textStyle: .headline)
         bankButtonLabel.text = NSLocalizedString("Bank Account", comment: "")
         bankFeeLabel.textColor = .deepGray
         bankFeeLabel.text = NSLocalizedString("No fees applied to your payments.", comment: "")
@@ -56,12 +61,14 @@ class WalletViewController: UIViewController {
         creditCardButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         creditCardButton.layer.cornerRadius = 10
         creditCardButtonLabel.textColor = .blackText
+        creditCardButtonLabel.font = OpenSans.semibold.of(textStyle: .headline)
         creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
         creditCardFeeLabel.textColor = .deepGray
         creditCardFeeLabel.text = viewModel.emptyStateCreditFeeLabelText
         
         emptyStateFooter.textColor = .blackText
         emptyStateFooter.text = viewModel.footerLabelText
+        emptyStateFooter.font = SystemFont.regular.of(textStyle: .footnote)
         
         // Non-empty state stuff
         tableView.backgroundColor = .primaryColor
@@ -71,16 +78,26 @@ class WalletViewController: UIViewController {
         addPaymentAccountBottomBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         addPaymentAccountLabel.textColor = .deepGray
         addPaymentAccountLabel.text = NSLocalizedString("Add Payment Account", comment: "")
+        addPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
         miniCreditCardButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniCreditCardButton.layer.cornerRadius = 8
+        miniCreditCardButton.isAccessibilityElement = true
+        miniCreditCardButton.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
         miniBankButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniBankButton.layer.cornerRadius = 8
+        miniBankButton.isAccessibilityElement = true
+        miniBankButton.accessibilityLabel = NSLocalizedString("Bank account", comment: "")
         
         tableViewFooter.text = viewModel.footerLabelText
+        tableViewFooter.font = SystemFont.regular.of(textStyle: .footnote)
         
         emptyStateScrollView.isHidden = true
         nonEmptyStateView.isHidden = true
+        
         setupBinding()
+        setupButtonTaps()
+        
+        viewModel.fetchWalletItems.onNext() // Fetch the items!
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,8 +106,6 @@ class WalletViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar(hidesBottomBorder: true)
         }
-        
-        viewModel.fetchWalletItems.onNext() // Fetch the items!
     }
     
     override func viewDidLayoutSubviews() {
@@ -124,7 +139,35 @@ class WalletViewController: UIViewController {
         viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).addDisposableTo(disposeBag)
         viewModel.bankAccountLimitReached.map(!).drive(miniBankButton.rx.isEnabled).addDisposableTo(disposeBag)
     }
-
+    
+    func setupButtonTaps() {
+        Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver()).drive(onNext: {
+            self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
+        }).addDisposableTo(disposeBag)
+        
+        Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver()).drive(onNext: {
+            self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
+        }).addDisposableTo(disposeBag)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? AddBankAccountViewController {
+            vc.viewModel.accountDetail = viewModel.accountDetail
+            vc.delegate = self
+        } else if let vc = segue.destination as? AddCreditCardViewController {
+            vc.viewModel.accountDetail = viewModel.accountDetail
+            vc.delegate = self
+        } else if let vc = segue.destination as? EditBankAccountViewController {
+            vc.viewModel.accountDetail = viewModel.accountDetail
+            vc.viewModel.walletItem = self.selectedWalletItem
+            vc.delegate = self
+        } else if let vc = segue.destination as? EditCreditCardViewController {
+            vc.viewModel.accountDetail = viewModel.accountDetail
+            vc.viewModel.walletItem = self.selectedWalletItem
+            vc.delegate = self
+        }
+    }
+    
 }
 
 extension WalletViewController: UITableViewDelegate {
@@ -161,11 +204,68 @@ extension WalletViewController: UITableViewDataSource {
         let walletItem = viewModel.walletItems.value![indexPath.section]
         cell.bindToWalletItem(walletItem)
         
+        cell.oneTouchPayView.isHidden = true
+        if let customerNumber = viewModel.accountDetail.customerInfo.number {
+            if let oneTouchPayItem = viewModel.oneTouchPayDictionary![customerNumber] {
+                if oneTouchPayItem.walletItemID == walletItem.walletItemID {
+                    cell.oneTouchPayView.isHidden = false
+                }
+            }
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected row \(indexPath.section)")
+        selectedWalletItem = viewModel.walletItems.value![indexPath.section]
+        if selectedWalletItem?.paymentCategoryType == .credit {
+            self.performSegue(withIdentifier: "editCreditCardSegue", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "editBankAccountSegue", sender: self)
+        }
+    }
+    
+}
+
+extension WalletViewController: AddBankAccountViewControllerDelegate {
+    
+    func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
+        self.viewModel.fetchWalletItems.onNext()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast(NSLocalizedString("Bank account added", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
+    
+}
+
+extension WalletViewController: EditBankAccountViewControllerDelegate {
+    
+    func editBankAccountViewControllerDidEditAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String) {
+        self.viewModel.fetchWalletItems.onNext()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast(NSLocalizedString(message, comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
+    
+}
+
+extension WalletViewController: AddCreditCardViewControllerDelegate {
+    
+    func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
+        self.viewModel.fetchWalletItems.onNext()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast(NSLocalizedString("Card added", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
+    }
+}
+
+extension WalletViewController: EditCreditCardViewControllerDelegate {
+    
+    func editCreditCardViewControllerDidEditAccount(_ editCreditCardViewController: EditCreditCardViewController, message: String) {
+        self.viewModel.fetchWalletItems.onNext()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast(NSLocalizedString(message, comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+        })
     }
     
 }

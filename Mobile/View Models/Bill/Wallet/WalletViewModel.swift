@@ -14,13 +14,18 @@ class WalletViewModel {
     let disposeBag = DisposeBag()
     
     let walletService: WalletService!
+    let oneTouchPayService: OneTouchPayService!
+    
+    var accountDetail: AccountDetail! // Passed from BillViewController
+    var oneTouchPayDictionary: [String: WalletItem]?
     
     let fetchWalletItems = PublishSubject<Void>()
     let walletItems = Variable<[WalletItem]?>(nil)
     let isFetchingWalletItems: Driver<Bool>
-
-    required init(walletService: WalletService) {
+    
+    required init(walletService: WalletService, oneTouchPayService: OneTouchPayService) {
         self.walletService = walletService
+        self.oneTouchPayService = oneTouchPayService
         
         let fetchingWalletItemsTracker = ActivityTracker()
         isFetchingWalletItems = fetchingWalletItemsTracker.asDriver()
@@ -34,6 +39,9 @@ class WalletViewModel {
             .bind(to: walletItems)
             .addDisposableTo(disposeBag)
         
+        walletItems.asObservable().subscribe(onNext: { _ in
+            self.oneTouchPayDictionary = self.oneTouchPayService.getOneTouchPayDictionary()
+        }).addDisposableTo(disposeBag)
         
     }
     
@@ -92,7 +100,7 @@ class WalletViewModel {
     var emptyStateCreditFeeLabelText: String {
         switch Environment.sharedInstance.opco {
         case .bge:
-            return NSLocalizedString("A convenience fee will be applied to your payments. Residential accounts: $2.35.\nBusiness accounts: 2.4%", comment: "")
+            return NSLocalizedString("A convenience fee will be applied to your payments. Residential accounts: $1.50.\nBusiness accounts: 2.4%", comment: "")
         case .comEd, .peco:
             return NSLocalizedString("A $2.35 convenience fee will be applied\nto your payments.", comment: "")
         }
@@ -103,7 +111,7 @@ class WalletViewModel {
         case .bge:
             return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Small business customers cannot use VISA.\n\nBank account verification may take up to three business days. Once activated, we will notify you via email and you may then enroll in AutoPay or begin scheduling payments for free.", comment: "")
         case .comEd, .peco:
-            return NSLocalizedString("We accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
+            return NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
         }
     }
 }

@@ -12,10 +12,12 @@ import RxSwift
 
 class FloatLabelTextField: UIView {
     @IBOutlet weak var view: UIView!
+    @IBOutlet weak var textFieldView: UIView!
     @IBOutlet weak var textField: InsetJVFloatLabeledTextField!
     @IBOutlet weak var checkAccessoryImageView: UIImageView!
     @IBOutlet weak var leftColorBar: UIView!
     @IBOutlet weak var bottomColorBar: UIView!
+    @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var disabledColorBar: UIView!
     
@@ -47,6 +49,7 @@ class FloatLabelTextField: UIView {
         errorLabel.textColor = .errorRed
         errorLabel.font = SystemFont.regular.of(textStyle: .footnote)
         errorLabel.text = nil
+        errorView.isHidden = true
         
         textField.font = SystemFont.regular.of(textStyle: .title2)
         textField.floatingLabelFont = SystemFont.semibold.of(textStyle: .caption1)
@@ -78,7 +81,7 @@ class FloatLabelTextField: UIView {
     func setDefaultStyles() {
         disabledColorBar.isHidden = true
         
-        view.backgroundColor = UIColor.accentGray.withAlphaComponent(0.3)
+        textFieldView.backgroundColor = UIColor.accentGray.withAlphaComponent(0.3)
         
         textField.placeholderColor = .deepGray
         textField.setPlaceholder(textField.placeholder, floatingTitle: textField.placeholder) // Needed to update the color
@@ -94,12 +97,12 @@ class FloatLabelTextField: UIView {
             bottomColorBar.backgroundColor = .errorRed
             bottomColorBar.isHidden = false
             
-            textField.isShowingAccessory = true
             textField.floatingLabelTextColor = .errorRed
             textField.floatingLabelActiveTextColor = .errorRed
             textField.floatingLabel.textColor = .errorRed
             
             errorLabel.text = String(format: NSLocalizedString("Error: %@", comment: ""), errorMessage)
+            errorView.isHidden = false
         } else {
             errorState = false
             
@@ -113,12 +116,12 @@ class FloatLabelTextField: UIView {
                 }
             }
             
-            textField.isShowingAccessory = false
             textField.floatingLabelTextColor = .primaryColorDark
             textField.floatingLabelActiveTextColor = .primaryColorDark
             textField.floatingLabel.textColor = .primaryColorDark
             
             errorLabel.text = nil
+            errorView.isHidden = true
         }
     }
     
@@ -135,7 +138,7 @@ class FloatLabelTextField: UIView {
             setValidated(false)
             
             disabledColorBar.isHidden = false
-            view.backgroundColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 0.08)
+            textFieldView.backgroundColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 0.08)
             textField.placeholderColor = UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1) 
             textField.setPlaceholder(textField.placeholder, floatingTitle: textField.placeholder) // Needed to update the color
         }

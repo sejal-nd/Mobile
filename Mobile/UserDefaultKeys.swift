@@ -18,4 +18,6 @@ struct UserDefaultKeys {
     
     // Detect Commerical User - TEMPORARY
     static let IsCommercialUser = "kIsCommercialUser"
+    
+    static let OneTouchPayDictionary = "kOneTouchPayDictionary"
 }
