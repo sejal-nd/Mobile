@@ -136,7 +136,11 @@ class WalletTableViewCell: UITableViewCell {
             accountImageView.image = #imageLiteral(resourceName: "opco_bank")
             
             switch walletItem.walletItemStatusTypeBGE! {
-            case .pndWait, .pndActive:
+            case .pndWait:
+                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
+                bottomBarLabel.textColor = .deepGray
+                bottomBarLabel.text = NSLocalizedString("Verification Status: Processing", comment: "")
+            case .pndActive:
                 bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
                 bottomBarLabel.textColor = .deepGray
                 bottomBarLabel.text = NSLocalizedString("Verification Status: Pending", comment: "")

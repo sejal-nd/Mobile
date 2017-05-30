@@ -30,7 +30,7 @@ class EditBankAccountViewController: UIViewController {
     @IBOutlet weak var oneTouchPayCardView: UIView!
     @IBOutlet weak var oneTouchPayCardLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
-    @IBOutlet weak var convenienceFeeLabel: UILabel!
+    @IBOutlet weak var bottomBarLabel: UILabel!
     
     @IBOutlet weak var oneTouchPayDescriptionLabel: UILabel!
     @IBOutlet weak var oneTouchPaySwitch: Switch!
@@ -91,7 +91,7 @@ class EditBankAccountViewController: UIViewController {
         bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
-        convenienceFeeLabel.textColor = .blackText
+        bottomBarLabel.textColor = .blackText
     }
     
     func buildNavigationButtons() {
@@ -160,33 +160,35 @@ class EditBankAccountViewController: UIViewController {
             accountIDLabel.text = ""
         }
         
-        convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
+        bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         switch opco {
         case .comEd, .peco:
-
             bankImageView.image = #imageLiteral(resourceName: "opco_bank")
-            
         case .bge:
             bankImageView.image = #imageLiteral(resourceName: "opco_bank")
             
             switch walletItem.walletItemStatusTypeBGE! {
-            case .pndWait, .pndActive:
-                convenienceFeeLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                convenienceFeeLabel.textColor = .deepGray
-                convenienceFeeLabel.text = NSLocalizedString("Verification Status: Pending", comment: "")
+            case .pndWait:
+                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
+                bottomBarLabel.textColor = .deepGray
+                bottomBarLabel.text = NSLocalizedString("Verification Status: Processing", comment: "")
+            case .pndActive:
+                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
+                bottomBarLabel.textColor = .deepGray
+                bottomBarLabel.text = NSLocalizedString("Verification Status: Pending", comment: "")
             case .cancel:
-                convenienceFeeLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                convenienceFeeLabel.textColor = .deepGray
-                convenienceFeeLabel.text = NSLocalizedString("Verification Status: Cancelled", comment: "")
+                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
+                bottomBarLabel.textColor = .deepGray
+                bottomBarLabel.text = NSLocalizedString("Verification Status: Cancelled", comment: "")
             case .bad_active:
-                convenienceFeeLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                convenienceFeeLabel.textColor = .deepGray
-                convenienceFeeLabel.text = NSLocalizedString("Verification Status: Failed", comment: "")
+                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
+                bottomBarLabel.textColor = .deepGray
+                bottomBarLabel.text = NSLocalizedString("Verification Status: Failed", comment: "")
             case .deleted:
                 break
             case .active:
-                convenienceFeeLabel.textColor = .successGreenText
-                convenienceFeeLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
+                bottomBarLabel.textColor = .successGreenText
+                bottomBarLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
             }
 
         }

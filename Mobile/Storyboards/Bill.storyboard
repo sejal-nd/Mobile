@@ -510,7 +510,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.35 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGx-aL-ACF">
-                                                                            <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
+                                                                            <rect key="frame" x="107" y="7.5" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -792,8 +792,8 @@ to your payments.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qc9-EH-Bv0">
                                                 <rect key="frame" x="0.0" y="134" width="305" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.35 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myo-7Z-efd">
-                                                        <rect key="frame" x="88.5" y="7" width="128.5" height="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Status: Active" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myo-7Z-efd">
+                                                        <rect key="frame" x="82.5" y="7" width="141" height="17"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                         <nil key="textColor"/>
@@ -918,9 +918,9 @@ to your payments.</string>
                     <connections>
                         <outlet property="accountIDLabel" destination="oBE-zu-hub" id="VTV-pv-v2B"/>
                         <outlet property="bankImageView" destination="4Yp-V4-KiZ" id="Kw8-En-swU"/>
+                        <outlet property="bottomBarLabel" destination="myo-7Z-efd" id="cma-Ws-lGy"/>
                         <outlet property="bottomBarShadowView" destination="MKg-14-tNj" id="EeT-Jn-k3S"/>
                         <outlet property="bottomBarView" destination="Qc9-EH-Bv0" id="0Tk-PZ-yLy"/>
-                        <outlet property="convenienceFeeLabel" destination="myo-7Z-efd" id="2Cj-iG-9cs"/>
                         <outlet property="deleteAccountButton" destination="fXZ-It-ZoO" id="5Ov-Y5-E84"/>
                         <outlet property="deleteBankAccountLabel" destination="7vb-RU-DQO" id="7Lz-gP-Pw2"/>
                         <outlet property="gradientView" destination="zHx-3h-LVX" id="PhW-gm-Lom"/>
