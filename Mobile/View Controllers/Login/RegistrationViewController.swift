@@ -17,11 +17,13 @@ class RegistrationViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var registrationFormView: UIView!
+
+    @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var ssNumberNumberTextField: FloatLabelTextField!
-    @IBOutlet weak var eyeballButton: UIButton!
-    @IBOutlet weak var instructionLabel: UILabel!
+
+    @IBOutlet weak var questionMarkButton: UIButton!
     @IBOutlet weak var identifierDescriptionLabel: UILabel?
 
     let viewModel = RegistrationViewModel()
