@@ -26,7 +26,7 @@ class RegistrationViewModel {
     
     func validateAccount(onSuccess: @escaping () -> Void, onMultipleAccounts: @escaping() -> Void, onError: @escaping (String, String) -> Void) {
         let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
-        let identifier: String? = identifierNumber.value.characters.count > 0 ? identifierNumber.value : nil
+        let identifier: String = identifierNumber.value
         
         let registrationService = ServiceFactory.createRegistrationService()
         

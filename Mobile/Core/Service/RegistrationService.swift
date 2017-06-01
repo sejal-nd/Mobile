@@ -58,7 +58,7 @@ protocol RegistrationService {
      phone			String	Account phone number
      account_num	String	Account number to register (BGE optional)
      */
-    func validateAccountInformation(_ identifier: String?,
+    func validateAccountInformation(_ identifier: String,
                                     phone: String,
                                     accountNum: String?,
                                     completion: @escaping (_ result: ServiceResult<[String: Any]>) -> Void)
@@ -177,7 +177,7 @@ extension RegistrationService {
     }
     
     //
-    func validateAccountInformation(_ identifier: String?, phone: String, accountNum: String?) -> Observable<[String: Any]> {
+    func validateAccountInformation(_ identifier: String, phone: String, accountNum: String?) -> Observable<[String: Any]> {
         return Observable.create { observer in
             self.validateAccountInformation(identifier,
                                             phone: phone,
