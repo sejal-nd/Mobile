@@ -54,6 +54,9 @@
 		54036BAD1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
 		54036BAE1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
 		54036BAF1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
+		54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
+		54618B271EE0606800119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
+		54618B281EE0606800119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
 		548288DF1ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
 		548288E01ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
 		548288E11ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
@@ -72,8 +75,6 @@
 		54AE06AA1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
 		54AE06AB1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
 		54AE06AC1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
-		54AE06AD1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
-		54AE06AE1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
 		54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
 		54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
 		54AE06B21ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
@@ -83,6 +84,7 @@
 		54AE06B71ED60236004A1FDA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */; };
 		54AE06B81ED60236004A1FDA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */; };
 		54AE06B91ED60236004A1FDA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */; };
+		54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54B31A6D1EE065E20002E657 /* Bill.storyboard */; };
 		54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		54EDD2D61ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		54EDD2D71ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
@@ -95,9 +97,6 @@
 		54EDD2E01ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
 		54EDD2E11ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
 		54EDD2E21ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
-		82471FBE1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
-		82471FBF1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
-		82471FC01EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */; };
 		826413791EAEAE5E007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
@@ -680,9 +679,6 @@
 		E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B61E5C99A00031D934 /* Outage.storyboard */; };
 		E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B61E5C99A00031D934 /* Outage.storyboard */; };
 		E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B61E5C99A00031D934 /* Outage.storyboard */; };
-		E8B4F4BB1E5C99E00031D934 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BA1E5C99E00031D934 /* Bill.storyboard */; };
-		E8B4F4BC1E5C99E00031D934 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BA1E5C99E00031D934 /* Bill.storyboard */; };
-		E8B4F4BD1E5C99E00031D934 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BA1E5C99E00031D934 /* Bill.storyboard */; };
 		E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BE1E5C9A200031D934 /* Home.storyboard */; };
 		E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BE1E5C9A200031D934 /* Home.storyboard */; };
 		E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4BE1E5C9A200031D934 /* Home.storyboard */; };
@@ -819,6 +815,7 @@
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCreditCardViewController.swift; sourceTree = "<group>"; };
+		54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewController.swift; sourceTree = "<group>"; };
 		548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewModel.swift; sourceTree = "<group>"; };
 		54930DC71EDB40B000912AF1 /* EditCreditCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCreditCardViewModel.swift; sourceTree = "<group>"; };
 		54AE06931ECF7809004A1FDA /* RegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
@@ -826,10 +823,10 @@
 		54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		54B31A6D1EE065E20002E657 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
 		54EDD2D91ECE236000CAB8A6 /* WalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCWalletService.swift; sourceTree = "<group>"; };
-		82471FBD1EB11C77005F128A /* WhatIsPaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsPaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillCommercialViewController.swift; sourceTree = "<group>"; };
 		82A18E591EB918C900BE9F21 /* BillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModel.swift; sourceTree = "<group>"; };
@@ -1152,7 +1149,6 @@
 		E8B4F4AE1E5C957A0031D934 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		E8B4F4B21E5C99380031D934 /* Alerts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
 		E8B4F4B61E5C99A00031D934 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
-		E8B4F4BA1E5C99E00031D934 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		E8B4F4BE1E5C9A200031D934 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		E8B4F4C91E5CE1BA0031D934 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
@@ -1481,12 +1477,12 @@
 		8FD3C2671E525023005FB1BB /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				54B31A6D1EE065E20002E657 /* Bill.storyboard */,
 				8FD5AE8F1E54EA53003F640D /* Login.storyboard */,
 				8FD3C2681E5250AF005FB1BB /* Main.storyboard */,
 				E8B4F4AE1E5C957A0031D934 /* More.storyboard */,
 				E8B4F4B21E5C99380031D934 /* Alerts.storyboard */,
 				E8B4F4B61E5C99A00031D934 /* Outage.storyboard */,
-				E8B4F4BA1E5C99E00031D934 /* Bill.storyboard */,
 				E8B4F4BE1E5C9A200031D934 /* Home.storyboard */,
 			);
 			path = Storyboards;
@@ -2034,7 +2030,7 @@
 			children = (
 				E876A8551ECDEF6800CA63BF /* WalletViewController.swift */,
 				E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */,
-				54AE06BA1ED72808004A1FDA /* EditBankAccountViewController.swift */,
+				54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */,
 				E887C9D81ED5CBDB002433A3 /* AddCreditCardViewController.swift */,
 				54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */,
 			);
@@ -2279,7 +2275,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2299,7 +2295,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2420,7 +2416,6 @@
 				E8494F3F1EBBCB3A0047D6BE /* outage_loading.json in Resources */,
 				82A18EF31EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
-				E8B4F4BB1E5C99E00031D934 /* Bill.storyboard in Resources */,
 				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E8494F381EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
@@ -2428,6 +2423,7 @@
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736411E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
+				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2469,7 +2465,6 @@
 				E8494F431EBBCB4C0047D6BE /* outage_loading.json in Resources */,
 				82A18EF51EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
-				E8B4F4BD1E5C99E00031D934 /* Bill.storyboard in Resources */,
 				E80043371E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433D1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E8494F3A1EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
@@ -2518,7 +2513,6 @@
 				E8494F411EBBCB430047D6BE /* outage_loading.json in Resources */,
 				82A18EF41EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
-				E8B4F4BC1E5C99E00031D934 /* Bill.storyboard in Resources */,
 				E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
@@ -2755,6 +2749,7 @@
 				82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */,
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
+				54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				B56DD4981ED84E6000F0198B /* FiservApi.swift in Sources */,
@@ -2805,7 +2800,6 @@
 				E887C9D41ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
-				54AE06BB1ED72808004A1FDA /* EditBankAccountViewController.swift in Sources */,
 				225FF85A1EC56B480079010C /* Date.swift in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
@@ -2833,6 +2827,7 @@
 				B56DD49A1ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
+				54618B281EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
@@ -2916,7 +2911,6 @@
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
-				54AE06BD1ED72808004A1FDA /* EditBankAccountViewController.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
 				E887C9F41ED5D367002433A3 /* CardIO.m in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
@@ -2976,6 +2970,7 @@
 				B56DD4991ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
+				54618B271EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
@@ -3059,7 +3054,6 @@
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
-				54AE06BC1ED72808004A1FDA /* EditBankAccountViewController.swift in Sources */,
 				8FD5AE871E54EA49003F640D /* LandingViewController.swift in Sources */,
 				E887C9F31ED5D367002433A3 /* CardIO.m in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,

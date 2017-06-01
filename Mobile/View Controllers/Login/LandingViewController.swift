@@ -53,10 +53,6 @@ class LandingViewController: UIViewController {
         performSegue(withIdentifier: "loginSegue", sender: self)
     }
     
-    @IBAction func onRegisterPress(_ sender: Any) {
-        performSegue(withIdentifier: "loadRegisterSegue", sender: self)
-    }
-    
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         if activity.activityType == NSUserActivityTypeBrowsingWeb { // Universal Link from Reset Password email
             var loginAlreadyInNavStack = false

@@ -20,11 +20,11 @@ class RegistrationViewModel {
     var confirmUsername = Variable("")
     var newPassword = Variable("")
     var confirmPassword = Variable("")
-
+    
     required init() {
     }
     
-    func validateAccount(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+    func validateAccount(onSuccess: @escaping () -> Void, onMultipleAccounts: @escaping() -> Void, onError: @escaping (String, String) -> Void) {
         let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
         let identifier: String? = identifierNumber.value.characters.count > 0 ? identifierNumber.value : nil
         
@@ -39,6 +39,10 @@ class RegistrationViewModel {
                 
                 if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue {
                     onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
+                } else if serviceError.serviceCode == ServiceErrorCode.FnAccountMultiple.rawValue {
+                    onMultipleAccounts()
+                } else if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
+                    onError(NSLocalizedString("Profile Exists", comment: ""), error.localizedDescription)
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
@@ -104,8 +108,10 @@ class RegistrationViewModel {
     	}
     }
     
-    func usernameMatches() -> Bool {
-        return self.username.value == self.confirmUsername.value
+    func usernameMatches() -> Observable<Bool> {
+        return username.asObservable().map { text -> Bool in
+            return text == self.confirmUsername.value
+        }
     }
     
     func newPasswordHasText() -> Observable<Bool> {
@@ -164,17 +170,17 @@ class RegistrationViewModel {
     }
     
     func everythingValid() -> Observable<Bool> {
-        return Observable.combineLatest(newUsernameHasText(),
-                                        usernameMatches(),
-                                        characterCountValid(),
+        return Observable.combineLatest(characterCountValid(),
                                         containsUppercaseLetter(),
                                         containsLowercaseLetter(),
                                         containsNumber(),
                                         containsSpecialCharacter(),
-                                        passwordMatchesUsername()) {
+                                        passwordMatchesUsername(),
+                                        newUsernameHasText(),
+                                        usernameMatches()) {
                                             //
-            if $2 && !$7 { // Valid character and password != username
-                let otherArray = [$0, $1, $2, $3, $4, $6].filter{ $0 }
+            if $0 && !$5 { // Valid character and password != username
+                let otherArray = [$1, $2, $3, $4, $6, $7].filter{ $0 }
                 
                 if otherArray.count >= 6 {
                     return true

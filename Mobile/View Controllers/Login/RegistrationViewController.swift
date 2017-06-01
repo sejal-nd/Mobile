@@ -81,6 +81,8 @@ class RegistrationViewController: UIViewController {
             accountNumberTextField?.textField.delegate = self
             accountNumberTextField?.textField.isShowingAccessory = true
             accountNumberTextField?.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
+            accountNumberTextField?.textField.font = SystemFont.regular.of(textStyle: .title2)
+            accountNumberTextField?.view.addSubview(questionMarkButton)
             
             accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
                 if self.viewModel.accountNumber.value.characters.count > 0 {
@@ -105,6 +107,7 @@ class RegistrationViewController: UIViewController {
         phoneNumberTextField.textField.returnKeyType = .next
         phoneNumberTextField.textField.delegate = self
         phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).addDisposableTo(disposeBag)
+        phoneNumberTextField?.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.phoneNumber.value.characters.count > 0 {
@@ -126,6 +129,7 @@ class RegistrationViewController: UIViewController {
         ssNumberNumberTextField?.textField.returnKeyType = .done
         ssNumberNumberTextField?.textField.delegate = self
         ssNumberNumberTextField?.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).addDisposableTo(disposeBag)
+        ssNumberNumberTextField?.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         ssNumberNumberTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.identifierNumber.value.characters.count > 0 {
@@ -178,16 +182,6 @@ class RegistrationViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     func onCancelPress() {
         // We do this to cover the case where we push RegistrationViewController from LandingViewController.
         // When that happens, we want the cancel action to go straight back to LandingViewController.
@@ -199,19 +193,22 @@ class RegistrationViewController: UIViewController {
         
         LoadingView.show()
         
-//        viewModel.validateAccount(onSuccess: {
-//            LoadingView.hide()
-//            self.performSegue(withIdentifier: "createUsernamePasswordSegue", sender: self)
-//        }, onError: { (title, message) in
-//            LoadingView.hide()
-//            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-//            
-//            self.present(alertController, animated: true, completion: nil)
-//        })
-        
-        LoadingView.hide()
-        self.performSegue(withIdentifier: "createUsernamePasswordSegue", sender: self)
+        viewModel.validateAccount(onSuccess: {
+            LoadingView.hide()
+            
+            self.performSegue(withIdentifier: "createUsernamePasswordSegue", sender: self)
+        }, onMultipleAccounts:  {
+            LoadingView.hide()
+
+            self.performSegue(withIdentifier: "loadChooseAccountSegue", sender: self)
+        }, onError: { (title, message) in
+            LoadingView.hide()
+            
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        })
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

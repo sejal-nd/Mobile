@@ -41,6 +41,8 @@ class CreateAccountViewController: UIViewController {
     
     var viewModel = RegistrationViewModel()
     
+    var nextButton = UIBarButtonItem()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,8 +64,8 @@ class CreateAccountViewController: UIViewController {
     }
     
     func setupNavigationButtons() {
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .back, target: self, action: #selector(onCancelPress))
-        let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .done, target: self, action: #selector(onBackPress))
+        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         navigationItem.leftBarButtonItem = cancelButton
@@ -111,11 +113,11 @@ class CreateAccountViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func onCancelPress() {
+    func onBackPress() {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func onDonePress() {
+    func onNextPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -163,16 +165,16 @@ class CreateAccountViewController: UIViewController {
         viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).addDisposableTo(disposeBag)
         viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).addDisposableTo(disposeBag)
         viewModel.everythingValid().subscribe(onNext: { valid in
-            self.newPasswordTextField.setValidated(valid)
+            self.createPasswordTextField.setValidated(valid)
             self.confirmPasswordTextField.setEnabled(valid)
         }).addDisposableTo(disposeBag)
         
         // Password cannot match username
         viewModel.passwordMatchesUsername().subscribe(onNext: { matches in
             if matches {
-                self.newPasswordTextField.setError(NSLocalizedString("Password cannot match username", comment: ""))
+                self.createPasswordTextField.setError(NSLocalizedString("Password cannot match username", comment: ""))
             } else {
-                self.newPasswordTextField.setError(nil)
+                self.createPasswordTextField.setError(nil)
             }
         }).addDisposableTo(disposeBag)
         
@@ -189,7 +191,7 @@ class CreateAccountViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
-        viewModel.doneButtonEnabled().bind(to: doneButton!.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.doneButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
     }
 
     /*
@@ -224,58 +226,57 @@ class CreateAccountViewController: UIViewController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 extension CreateAccountViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        
-        if textField == phoneNumberTextField.textField {
-            let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
-            
-            let decimalString = components.joined(separator: "") as NSString
-            let length = decimalString.length
-            
-            if length > 10 {
-                return false
-            }
-            
-            var index = 0 as Int
-            let formattedString = NSMutableString()
-            
-            if length - index > 3 {
-                let areaCode = decimalString.substring(with: NSMakeRange(index, 3))
-                formattedString.appendFormat("(%@) ", areaCode)
-                index += 3
-            }
-            if length - index > 3 {
-                let prefix = decimalString.substring(with: NSMakeRange(index, 3))
-                formattedString.appendFormat("%@-", prefix)
-                index += 3
-            }
-            
-            let remainder = decimalString.substring(from: index)
-            formattedString.append(remainder)
-            textField.text = formattedString as String
-            
-            textField.sendActions(for: .valueChanged) // Send rx events
-            
-            return false
-        } else if textField == ssNumberNumberTextField?.textField {
-            return newString.characters.count <= 4
-        } else if textField == accountNumberTextField?.textField {
-            let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 10
-        }
+//        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+//        
+//        if textField == phoneNumberTextField.textField {
+//            let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
+//            
+//            let decimalString = components.joined(separator: "") as NSString
+//            let length = decimalString.length
+//            
+//            if length > 10 {
+//                return false
+//            }
+//            
+//            var index = 0 as Int
+//            let formattedString = NSMutableString()
+//            
+//            if length - index > 3 {
+//                let areaCode = decimalString.substring(with: NSMakeRange(index, 3))
+//                formattedString.appendFormat("(%@) ", areaCode)
+//                index += 3
+//            }
+//            if length - index > 3 {
+//                let prefix = decimalString.substring(with: NSMakeRange(index, 3))
+//                formattedString.appendFormat("%@-", prefix)
+//                index += 3
+//            }
+//            
+//            let remainder = decimalString.substring(from: index)
+//            formattedString.append(remainder)
+//            textField.text = formattedString as String
+//            
+//            textField.sendActions(for: .valueChanged) // Send rx events
+//            
+//            return false
+//        } else if textField == ssNumberNumberTextField?.textField {
+//            return newString.characters.count <= 4
+//        } else if textField == accountNumberTextField?.textField {
+//            let characterSet = CharacterSet(charactersIn: string)
+//            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 10
+//        }
         
         return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == phoneNumberTextField.textField {
-            if let idTextField = ssNumberNumberTextField {
-                idTextField.textField.becomeFirstResponder()
-            } else {
-                accountNumberTextField?.textField.becomeFirstResponder()
-            }
-            
-        } else if textField == ssNumberNumberTextField?.textField || textField == accountNumberTextField?.textField {
+        if textField == createUsernameTextField.textField {
+            confirmUsernameTextField.becomeFirstResponder()
+        } else if textField == confirmUsernameTextField.textField {
+            createPasswordTextField.becomeFirstResponder()
+        } else if textField == createPasswordTextField.textField {
+            confirmPasswordTextField.becomeFirstResponder()
+        } else if textField == confirmPasswordTextField.textField {
             viewModel.nextButtonEnabled().single().subscribe(onNext: { enabled in
                 if enabled {
                     self.onNextPress()
