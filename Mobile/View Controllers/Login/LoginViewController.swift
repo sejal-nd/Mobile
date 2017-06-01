@@ -132,6 +132,12 @@ class LoginViewController: UIViewController {
         setNeedsStatusBarAppearanceUpdate()
         
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        
+        // Reset the view for when user pops back from ChangePasswordViewController
+        self.signInButton.reset()
+        self.passwordTextField.textField.text = ""
+        self.passwordTextField.textField.sendActions(for: .editingChanged)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -158,8 +164,9 @@ class LoginViewController: UIViewController {
                 
                 if loggedInWithTempPassword {
                     let storyboard = UIStoryboard(name: "More", bundle: nil)
-                    let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword")
-                    (changePwVc as! ChangePasswordViewController).sentFromLogin = true
+                    let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
+                    changePwVc.delegate = self
+                    changePwVc.sentFromLogin = true
                     self.navigationController?.pushViewController(changePwVc, animated: true)
                 } else {
                     if self.viewModel.isDeviceTouchIDCompatible() {
@@ -249,7 +256,7 @@ class LoginViewController: UIViewController {
     }
     
     func showErrorAlertWith(title: String?, message: String) {
-        signInButton.setFailure()
+        signInButton.reset()
         let errorAlert = UIAlertController(title: title != nil ? title : NSLocalizedString("Sign In Error", comment: ""), message: message, preferredStyle: .alert)
         errorAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.present(errorAlert, animated: true, completion: nil)
@@ -333,5 +340,14 @@ extension LoginViewController: SecurityQuestionViewControllerDelegate {
     
     func securityQuestionViewController(_ securityQuestionViewController: SecurityQuestionViewController, didUnmaskUsername username: String) {
         self.viewModel.username.value = username
+    }
+}
+
+extension LoginViewController: ChangePasswordViewControllerDelegate {
+    
+    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.makeToast(NSLocalizedString("Password changed", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50))
+        })
     }
 }

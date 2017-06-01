@@ -792,8 +792,8 @@ to your payments.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qc9-EH-Bv0">
                                                 <rect key="frame" x="0.0" y="134" width="305" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.35 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myo-7Z-efd">
-                                                        <rect key="frame" x="88.5" y="7" width="128.5" height="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Status: Active" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myo-7Z-efd">
+                                                        <rect key="frame" x="82.5" y="7" width="141" height="17"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                         <nil key="textColor"/>
@@ -918,9 +918,9 @@ to your payments.</string>
                     <connections>
                         <outlet property="accountIDLabel" destination="oBE-zu-hub" id="VTV-pv-v2B"/>
                         <outlet property="bankImageView" destination="4Yp-V4-KiZ" id="Kw8-En-swU"/>
+                        <outlet property="bottomBarLabel" destination="myo-7Z-efd" id="cma-Ws-lGy"/>
                         <outlet property="bottomBarShadowView" destination="MKg-14-tNj" id="EeT-Jn-k3S"/>
                         <outlet property="bottomBarView" destination="Qc9-EH-Bv0" id="0Tk-PZ-yLy"/>
-                        <outlet property="convenienceFeeLabel" destination="myo-7Z-efd" id="2Cj-iG-9cs"/>
                         <outlet property="deleteAccountButton" destination="fXZ-It-ZoO" id="5Ov-Y5-E84"/>
                         <outlet property="deleteBankAccountLabel" destination="7vb-RU-DQO" id="7Lz-gP-Pw2"/>
                         <outlet property="gradientView" destination="zHx-3h-LVX" id="PhW-gm-Lom"/>
@@ -1567,7 +1567,7 @@ to your payments.</string>
                                                                                                 <rect key="frame" x="68.5" y="37" width="201.5" height="71.5"/>
                                                                                                 <subviews>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$###.##" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYN-lO-iaJ">
-                                                                                                        <rect key="frame" x="27" y="0.0" width="147" height="49.5"/>
+                                                                                                        <rect key="frame" x="27.5" y="0.0" width="147" height="49.5"/>
                                                                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="36"/>
                                                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                         <nil key="highlightedColor"/>
@@ -1576,7 +1576,7 @@ to your payments.</string>
                                                                                                         <rect key="frame" x="0.0" y="49.5" width="201.5" height="22"/>
                                                                                                         <subviews>
                                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Amount Due By ##/##/##" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2f6-hb-PDT">
-                                                                                                                <rect key="frame" x="0.0" y="2.5" width="176.5" height="16.5"/>
+                                                                                                                <rect key="frame" x="0.0" y="3" width="176.5" height="16.5"/>
                                                                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                                 <nil key="highlightedColor"/>
@@ -2036,7 +2036,7 @@ to your payments.</string>
                                                                                                                         <rect key="frame" x="0.0" y="17" width="21" height="19"/>
                                                                                                                     </imageView>
                                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need help understanding your bill?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wb-7e-w4G">
-                                                                                                                        <rect key="frame" x="32" y="26.5" width="237" height="0.0"/>
+                                                                                                                        <rect key="frame" x="32" y="17" width="237" height="19.5"/>
                                                                                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="14"/>
                                                                                                                         <color key="textColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                                         <nil key="highlightedColor"/>
@@ -2491,7 +2491,7 @@ to your payments.</string>
                         <outlet property="viewBillLabel" destination="KDI-g1-XOv" id="Dei-uD-hjw"/>
                         <outlet property="walletButton" destination="7s0-Ev-Iqt" id="kXp-iO-lAj"/>
                         <segue destination="ea9-OX-qvD" kind="show" identifier="budgetBillingSegue" id="RKp-nP-lqV"/>
-                        <segue destination="EyO-6F-Bx4" kind="show" identifier="paperlessEBillCommercialSegue" id="tTd-3W-qZu"/>
+                        <segue destination="EyO-6F-Bx4" kind="presentation" identifier="paperlessEBillCommercialSegue" modalPresentationStyle="formSheet" id="tTd-3W-qZu"/>
                         <segue destination="BAJ-db-3nG" kind="show" identifier="paperlessEBillSegue" id="8IW-tf-gsM"/>
                         <segue destination="LoQ-Uh-PUl" kind="show" identifier="viewBillSegue" id="jAa-oL-qHI"/>
                         <segue destination="VY7-IV-VDc" kind="presentation" identifier="viewBGEasySegue" modalPresentationStyle="formSheet" id="i8z-J5-Vom"/>
@@ -2502,36 +2502,136 @@ to your payments.</string>
             </objects>
             <point key="canvasLocation" x="1392.8" y="-1079.4602698650676"/>
         </scene>
-        <!--Paperless eBill-->
+        <!--Paperless eBill Commercial Modal-->
         <scene sceneID="DzK-iM-OMq">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="EyO-6F-Bx4" customClass="PaperlessEBillCommercialViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="EyO-6F-Bx4" userLabel="Paperless eBill Commercial Modal" customClass="PaperlessEBillCommercialViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rII-zd-Qyx"/>
                         <viewControllerLayoutGuide type="bottom" id="AHN-b5-bUu"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KhA-vh-bNr">
+                    <view key="view" contentMode="scaleToFill" id="DPz-xO-lBZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d9l-20-HV8" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="53" y="44" width="269" height="256"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjl-Sl-xgY" userLabel="Nav Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hu6-Ru-8UL">
+                                        <rect key="frame" x="9" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="6Nh-4g-VCT"/>
+                                            <constraint firstAttribute="height" constant="44" id="T18-ag-Bc7"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Button" image="ic_close"/>
+                                        <connections>
+                                            <action selector="cancelPressed:" destination="EyO-6F-Bx4" eventType="touchUpInside" id="19v-9s-4gI"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6r-9T-f0g">
+                                        <rect key="frame" x="61" y="10" width="261" height="26"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" priority="999" constant="468" id="XvD-r0-pH7"/>
+                                    <constraint firstItem="A6r-9T-f0g" firstAttribute="top" secondItem="hu6-Ru-8UL" secondAttribute="top" constant="10" id="F3L-of-8As"/>
+                                    <constraint firstItem="A6r-9T-f0g" firstAttribute="leading" secondItem="hu6-Ru-8UL" secondAttribute="trailing" constant="8" id="Mvy-Xs-Amh"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="SJf-15-Gj6"/>
+                                    <constraint firstItem="hu6-Ru-8UL" firstAttribute="top" secondItem="vjl-Sl-xgY" secondAttribute="top" id="bgA-e1-Z96"/>
+                                    <constraint firstAttribute="trailing" secondItem="A6r-9T-f0g" secondAttribute="trailing" constant="53" id="hrr-sz-oTG"/>
+                                    <constraint firstItem="hu6-Ru-8UL" firstAttribute="leading" secondItem="vjl-Sl-xgY" secondAttribute="leading" constant="9" id="mSY-4I-CPD"/>
+                                    <constraint firstAttribute="bottom" secondItem="A6r-9T-f0g" secondAttribute="bottom" constant="8" id="ppD-05-uri"/>
                                 </constraints>
-                                <string key="text">Eliminate your paper bill and receive an email notification when your bill is ready to view online.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  Your preference will be updated with your next month’s bill.  Business customers can create an online account and enroll in Paperless eBill here.</string>
-                                <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zjg-J8-fXD">
+                                <rect key="frame" x="0.0" y="44" width="375" height="706"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcW-KI-fjx" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="474"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uyE-Xg-xK8" userLabel="Tablet View">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="474"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="paperless_modal" translatesAutoresizingMaskIntoConstraints="NO" id="Nv2-xm-qJd">
+                                                        <rect key="frame" x="23" y="16" width="329" height="317"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="This will be a little description of the information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iu8-Zg-Uzb">
+                                                        <rect key="frame" x="37" y="349" width="301" height="44"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                                        <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbw-0W-mB1" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="37" y="423" width="301" height="21"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Button Label Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xG-7g-tih">
+                                                                <rect key="frame" x="0.0" y="0.0" width="301" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="3xG-7g-tih" secondAttribute="trailing" id="36X-oa-qdE"/>
+                                                            <constraint firstAttribute="bottom" secondItem="3xG-7g-tih" secondAttribute="bottom" id="WKi-hx-VQd"/>
+                                                            <constraint firstItem="3xG-7g-tih" firstAttribute="leading" secondItem="zbw-0W-mB1" secondAttribute="leading" id="qKw-yQ-cAo"/>
+                                                            <constraint firstItem="3xG-7g-tih" firstAttribute="top" secondItem="zbw-0W-mB1" secondAttribute="top" id="yvy-PT-ZYr"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="onLinkPress" destination="EyO-6F-Bx4" eventType="touchUpInside" id="eiR-Kw-Fev"/>
+                                                        </connections>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="zbw-0W-mB1" firstAttribute="top" secondItem="iu8-Zg-Uzb" secondAttribute="bottom" constant="30" id="0EP-SA-iaU"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Nv2-xm-qJd" secondAttribute="trailing" constant="23" id="Gi6-nc-R2m"/>
+                                                    <constraint firstItem="Nv2-xm-qJd" firstAttribute="top" secondItem="uyE-Xg-xK8" secondAttribute="top" constant="16" id="Gis-d7-XMA"/>
+                                                    <constraint firstItem="Nv2-xm-qJd" firstAttribute="leading" secondItem="uyE-Xg-xK8" secondAttribute="leading" constant="23" id="Meo-mC-AuF"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zbw-0W-mB1" secondAttribute="trailing" constant="37" id="Q8W-oD-6sR"/>
+                                                    <constraint firstItem="iu8-Zg-Uzb" firstAttribute="top" secondItem="Nv2-xm-qJd" secondAttribute="bottom" constant="16" id="WWT-N5-Tl2"/>
+                                                    <constraint firstItem="zbw-0W-mB1" firstAttribute="leading" secondItem="uyE-Xg-xK8" secondAttribute="leading" constant="37" id="b9N-17-7vX"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="bLH-xN-dFL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iu8-Zg-Uzb" secondAttribute="trailing" constant="37" id="djA-ep-HwA"/>
+                                                    <constraint firstItem="iu8-Zg-Uzb" firstAttribute="leading" secondItem="uyE-Xg-xK8" secondAttribute="leading" constant="37" id="gfH-HY-F3e"/>
+                                                    <constraint firstItem="iu8-Zg-Uzb" firstAttribute="centerX" secondItem="uyE-Xg-xK8" secondAttribute="centerX" id="q4X-N9-Q85"/>
+                                                    <constraint firstAttribute="bottom" secondItem="zbw-0W-mB1" secondAttribute="bottom" constant="30" id="u9A-Ms-D6K"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="uyE-Xg-xK8" secondAttribute="trailing" priority="999" id="HBO-8d-fTj"/>
+                                            <constraint firstItem="uyE-Xg-xK8" firstAttribute="top" secondItem="kcW-KI-fjx" secondAttribute="top" id="JPm-bk-FZ9"/>
+                                            <constraint firstAttribute="bottom" secondItem="uyE-Xg-xK8" secondAttribute="bottom" id="Kfn-FA-31h"/>
+                                            <constraint firstItem="uyE-Xg-xK8" firstAttribute="centerX" secondItem="kcW-KI-fjx" secondAttribute="centerX" id="SkI-g8-h0F"/>
+                                            <constraint firstItem="uyE-Xg-xK8" firstAttribute="leading" secondItem="kcW-KI-fjx" secondAttribute="leading" priority="999" id="q3P-ei-eBD"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="kcW-KI-fjx" secondAttribute="bottom" id="DMy-aH-ntr"/>
+                                    <constraint firstItem="kcW-KI-fjx" firstAttribute="top" secondItem="Zjg-J8-fXD" secondAttribute="top" id="W69-cU-3y6"/>
+                                    <constraint firstItem="kcW-KI-fjx" firstAttribute="leading" secondItem="Zjg-J8-fXD" secondAttribute="leading" id="bSo-Ye-kFg"/>
+                                    <constraint firstItem="kcW-KI-fjx" firstAttribute="centerX" secondItem="Zjg-J8-fXD" secondAttribute="centerX" id="kbh-jO-gqi"/>
+                                    <constraint firstAttribute="trailing" secondItem="kcW-KI-fjx" secondAttribute="trailing" id="yVd-gJ-6Fj"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="d9l-20-HV8" secondAttribute="trailing" constant="37" id="12Z-60-KRP"/>
-                            <constraint firstItem="d9l-20-HV8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KhA-vh-bNr" secondAttribute="leadingMargin" constant="37" id="EOt-zm-I7Z"/>
-                            <constraint firstItem="d9l-20-HV8" firstAttribute="centerX" secondItem="KhA-vh-bNr" secondAttribute="centerX" id="m9L-f2-LJq"/>
-                            <constraint firstItem="d9l-20-HV8" firstAttribute="top" secondItem="rII-zd-Qyx" secondAttribute="bottom" constant="24" id="rVb-1s-pCS"/>
+                            <constraint firstItem="Zjg-J8-fXD" firstAttribute="top" secondItem="vjl-Sl-xgY" secondAttribute="bottom" id="Cnc-L0-f7z"/>
+                            <constraint firstItem="vjl-Sl-xgY" firstAttribute="leading" secondItem="DPz-xO-lBZ" secondAttribute="leading" id="Itq-GU-wOO"/>
+                            <constraint firstAttribute="trailing" secondItem="Zjg-J8-fXD" secondAttribute="trailing" id="Iw0-Yw-coT"/>
+                            <constraint firstItem="Zjg-J8-fXD" firstAttribute="leading" secondItem="DPz-xO-lBZ" secondAttribute="leading" id="ViL-Zu-azk"/>
+                            <constraint firstAttribute="trailing" secondItem="vjl-Sl-xgY" secondAttribute="trailing" id="ddY-5c-e8Q"/>
+                            <constraint firstAttribute="bottom" secondItem="Zjg-J8-fXD" secondAttribute="bottom" id="klr-6f-2gg"/>
+                            <constraint firstItem="vjl-Sl-xgY" firstAttribute="top" secondItem="rII-zd-Qyx" secondAttribute="bottom" id="vRU-ie-32h"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Paperless eBill" id="jTH-kd-CmW">
@@ -2544,12 +2644,16 @@ to your payments.</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="750"/>
                     <connections>
-                        <outlet property="textView" destination="d9l-20-HV8" id="d7P-rZ-c7g"/>
+                        <outlet property="buttonLabel" destination="3xG-7g-tih" id="C5s-1H-jWt"/>
+                        <outlet property="descriptionLabel" destination="iu8-Zg-Uzb" id="YCc-LT-oW3"/>
+                        <outlet property="linkButton" destination="zbw-0W-mB1" id="Rli-nc-dJr"/>
+                        <outlet property="titleLabel" destination="A6r-9T-f0g" id="PLi-53-a7h"/>
+                        <outlet property="xButton" destination="hu6-Ru-8UL" id="dBE-Jy-YDZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p4v-Lw-2q1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="-2202"/>
+            <point key="canvasLocation" x="3287.1999999999998" y="-2202.0989505247376"/>
         </scene>
         <!--Paperless eBill-->
         <scene sceneID="Psv-up-Yrs">
@@ -2996,7 +3100,7 @@ Budget Billing?</string>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="mdi-10-hU7" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="96.5" y="33.5" width="60" height="12"/>
+                                                                        <rect key="frame" x="97.5" y="33.5" width="60" height="12"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                 </subviews>
@@ -4377,5 +4481,6 @@ the year</string>
         <image name="ic_question" width="17" height="17"/>
         <image name="ic_radiobutton_deselected" width="24" height="24"/>
         <image name="ic_residential" width="43" height="43"/>
+        <image name="paperless_modal" width="330" height="317"/>
     </resources>
 </document>

@@ -8,8 +8,12 @@
 
 import UIKit
 
-class PaperlessEBillCommercialViewController: UIViewController {
-    @IBOutlet weak var textView: UITextView!
+class PaperlessEBillCommercialViewController: DismissableFormSheetViewController {
+    @IBOutlet weak var xButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var linkButton: ButtonControl!
+    @IBOutlet weak var buttonLabel: UILabel!
     
     private var url: URL? {
         switch Environment.sharedInstance.opco {
@@ -24,19 +28,31 @@ class PaperlessEBillCommercialViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let text = NSLocalizedString("Eliminate your paper bill and receive an email notification when your bill is ready to view online.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  Your preference will be updated with your next month’s bill.  Business customers can create an online account and enroll in Paperless eBill %@.", comment: "")
-        let hereText = NSLocalizedString("here", comment: "")
-        let allText = String(format: text, hereText)
         
-        guard let url = url else { return }
-        let attributedText = NSMutableAttributedString(string: allText, attributes: [NSFontAttributeName: OpenSans.regular.of(textStyle: .body),
-                                                                                     NSForegroundColorAttributeName: UIColor.blackText])
-        attributedText.addAttribute(NSLinkAttributeName, value: url, range: (allText as NSString).range(of: hereText))
-        textView.attributedText = attributedText
+        xButton.tintColor = .actionBlue
+        
+        titleLabel.textColor = .blackText
+        titleLabel.text = NSLocalizedString("Paperless eBill", comment: "")
+        
+        descriptionLabel.font = OpenSans.regular.of(textStyle: .body)
+        descriptionLabel.textColor = .deepGray
+        descriptionLabel.setLineHeight(lineHeight: 25)
+        descriptionLabel.text = NSLocalizedString("Eliminate your paper bill and receive an email notification when your bill is ready to view online. Your online bill is identical to your current paper bill and is available to view, download, or print at any time. Your preference will be updated with your next month’s bill.", comment: "")
+        
+        linkButton.shouldFadeSubviewsOnPress = true
+        buttonLabel.font = OpenSans.semibold.of(textStyle: .body)
+        buttonLabel.setLineHeight(lineHeight: 25)
+        buttonLabel.textColor = .actionBlue
+        buttonLabel.text = NSLocalizedString("Business customers can create an online account and enroll in Paperless eBill here.", comment: "")
     }
 
     @IBAction func cancelPressed(_ sender: Any) {
-        _ = navigationController?.popViewController(animated: true)
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func onLinkPress() {
+        if let micrositeUrl = url {
+            UIApplication.shared.openURL(micrositeUrl)
+        }
     }
 }
