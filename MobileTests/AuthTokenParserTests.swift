@@ -22,7 +22,17 @@ class AuthTokenParserTests: XCTestCase {
     
     let validSucessResponse: [String:Any] = [
         "success" : true,
+        "data":["assertion":"token_value", "profileType": "residential"]
+    ]
+    
+    let noProfileTypeResponse: [String: Any] = [
+        "success" : true,
         "data":["assertion":"token_value"]
+    ]
+    
+    let invalidProfileTypeResponse: [String: Any] = [
+        "success" : true,
+        "data":["assertion":"token_value", "profileType": "wrong"]
     ]
     
     func testInvalidSuccessKey() {
@@ -71,6 +81,42 @@ class AuthTokenParserTests: XCTestCase {
                 XCTAssert(value.token == "token_value")
             default:
                 XCTFail("Unable to correctly parse a 'success' response value - result should be success-true")
+            }
+            
+            print(NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) ?? "No Response Data")
+        } catch let err as NSError {
+            XCTFail("Unable to parse " + err.localizedDescription)
+        }
+    }
+    
+    func testNoProfileType() {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: noProfileTypeResponse)
+            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
+            
+            switch result {
+            case .Success:
+                XCTFail("Users with no profileType should not be able to log in")
+            default:
+                break
+            }
+            
+            print(NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) ?? "No Response Data")
+        } catch let err as NSError {
+            XCTFail("Unable to parse " + err.localizedDescription)
+        }
+    }
+    
+    func testInvalidProfileType() {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: invalidProfileTypeResponse)
+            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
+            
+            switch result {
+            case .Success:
+                XCTFail("Users with profileType not equal to \"residential\" or \"commercial\" should not be able to log in")
+            default:
+                break
             }
             
             print(NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) ?? "No Response Data")
