@@ -27,6 +27,7 @@ enum ServiceErrorCode : String {
     case FnUnknown = "FN-UNKNOWN"
     case TcAcctInvalid = "TC-ACCT-INVALID"
     case TcUserInvalid = "TC-USER-INVALID"
+    case TcUnknown = "TC-UNKNOWN"
     case FnProfBadSecurity = "FN-PROF-BADSECURITY" // Forgot Username - security question answered incorrectly
     case FnProfNotFound = "FN-PROF-NOTFOUND" // Forgot Username/Password - profile not found
     case FnAccountNotFound = "FN-ACCT-NOTFOUND" // Forgot Username/Password - account not found
