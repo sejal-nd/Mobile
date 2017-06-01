@@ -398,7 +398,7 @@ class BillViewController: AccountPickerViewController {
 		paperlessButton.rx.touchUpInside.asDriver()
 			.withLatestFrom(viewModel.currentAccountDetailUnwrapped)
 			.drive(onNext: { accountDetail in
-				if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) {
+                if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge {
 					self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: self)
 				} else {
 					self.performSegue(withIdentifier: "paperlessEBillSegue", sender: self)

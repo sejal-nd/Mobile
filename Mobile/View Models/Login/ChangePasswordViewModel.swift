@@ -114,7 +114,7 @@ class ChangePasswordViewModel {
         }
     }
     
-    func changePassword(onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func changePassword(sentFromLogin: Bool, onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
         authService.changePassword(currentPassword.value, newPassword: newPassword.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
@@ -122,7 +122,16 @@ class ChangePasswordViewModel {
                 if self.fingerprintService.isTouchIDEnabled() { // Store the new password in the keychain
                     self.fingerprintService.setStoredPassword(password: self.newPassword.value)
                 }
-                onSuccess()
+                
+                if sentFromLogin {
+                    self.authService.logout().subscribe(onNext: {
+                        onSuccess()
+                    }, onError: { (error) in
+                        onError(error.localizedDescription)
+                    }).addDisposableTo(self.disposeBag)
+                } else {
+                    onSuccess()
+                }
             }, onError: { (error: Error) in
                 let serviceError = error as! ServiceError
                 

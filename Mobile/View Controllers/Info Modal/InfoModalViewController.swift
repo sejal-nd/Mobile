@@ -38,8 +38,6 @@ class InfoModalViewController: DismissableFormSheetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         navBarView.translatesAutoresizingMaskIntoConstraints = false
         navBarView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
         

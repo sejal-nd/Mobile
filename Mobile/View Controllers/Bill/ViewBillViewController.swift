@@ -47,7 +47,7 @@ class ViewBillViewController: UIViewController {
                 let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.onSharePress))
                 self.navigationItem.rightBarButtonItem = shareButton
             }).addDisposableTo(self.disposeBag)
-            self.webView.load(self.viewModel.pdfData!, mimeType: "application/pdf", textEncodingName: "utf-8", baseURL: NSURL() as URL)
+            self.webView.load(self.viewModel.pdfData!, mimeType: "application/pdf", textEncodingName: "utf-8", baseURL: URL(string: "https://www.google.com")!)
         }, onError: { errMessage in
             self.loadingIndicator.isHidden = true
             let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
