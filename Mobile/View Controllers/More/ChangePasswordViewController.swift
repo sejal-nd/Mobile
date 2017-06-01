@@ -160,15 +160,10 @@ class ChangePasswordViewController: UIViewController {
         view.endEditing(true)
         
         LoadingView.show()
-        viewModel.changePassword(onSuccess: {
+        viewModel.changePassword(sentFromLogin: sentFromLogin, onSuccess: {
             LoadingView.hide()
-            if self.sentFromLogin {
-                let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-                self.present(viewController!, animated: true, completion: nil)
-            } else {
-                self.delegate?.changePasswordViewControllerDidChangePassword(self)
-                _ = self.navigationController?.popViewController(animated: true)
-            }
+            self.delegate?.changePasswordViewControllerDidChangePassword(self)
+            _ = self.navigationController?.popViewController(animated: true)
         }, onPasswordNoMatch: { _ in
             LoadingView.hide()
             self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))

@@ -66,9 +66,8 @@ class MoreViewController: UIViewController {
     func logout(action: UIAlertAction) {
         let authService = ServiceFactory.createAuthenticationService()
         authService.logout().subscribe(onNext: { (success) in
-            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-            let rootVC = loginStoryboard.instantiateInitialViewController()
-            UIApplication.shared.keyWindow?.rootViewController = rootVC
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.resetNavigation()
         }, onError: { (error) in
             print("Logout Error: \(error)")
         }).addDisposableTo(disposeBag)

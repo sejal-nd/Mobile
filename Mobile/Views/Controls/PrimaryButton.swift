@@ -11,9 +11,9 @@ import Lottie
 
 class PrimaryButton: UIButton {
     
-    var loadingAnimationView = LOTAnimationView(name: "loading")
-    var checkmarkAnimationView = LOTAnimationView(name: "checkmark")
-    var restoreTitle = ""
+    var loadingAnimationView = LOTAnimationView(name: "loading")!
+    var checkmarkAnimationView = LOTAnimationView(name: "checkmark")!
+    var restoreTitle: String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,7 +30,7 @@ class PrimaryButton: UIButton {
     func commonInit() {
         backgroundColor = .ctaBlue
 
-        titleLabel!.font = SystemFont.bold.of(textStyle: .title1)
+        titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
         setTitleColor(.white, for: .normal)
         setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .highlighted)
         setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .disabled)
@@ -68,30 +68,33 @@ class PrimaryButton: UIButton {
         let animationWidth = frame.size.height - 16
         let animationRect = CGRect(x: (frame.size.width / 2) - (animationWidth / 2), y: 8, width: animationWidth, height: animationWidth)
         
-        loadingAnimationView!.frame = animationRect
-        loadingAnimationView!.loopAnimation = true
-        addSubview(loadingAnimationView!)
-        loadingAnimationView!.play()
+        loadingAnimationView.frame = animationRect
+        loadingAnimationView.loopAnimation = true
+        addSubview(loadingAnimationView)
+        loadingAnimationView.play()
     }
     
     func setSuccess(animationCompletion: @escaping (Void) -> Void) {
         setTitle("", for: .normal)
         
-        loadingAnimationView!.removeFromSuperview()
+        loadingAnimationView.removeFromSuperview()
         
         let animationWidth = frame.size.height - 24
         let animationRect = CGRect(x: (frame.size.width / 2) - (animationWidth / 2), y: 10, width: animationWidth, height: animationWidth)
         
-        checkmarkAnimationView!.frame = animationRect
-        addSubview(checkmarkAnimationView!)
-        checkmarkAnimationView!.play(completion: { (finished) in
+        checkmarkAnimationView.frame = animationRect
+        addSubview(checkmarkAnimationView)
+        checkmarkAnimationView.play(completion: { (finished) in
             animationCompletion()
         })
     }
     
-    func setFailure() {
-        loadingAnimationView!.removeFromSuperview()
+    func reset() {
+        loadingAnimationView.removeFromSuperview()
+        checkmarkAnimationView.removeFromSuperview()
         
-        setTitle(restoreTitle, for: .normal)
+        if let title = restoreTitle {
+            setTitle(title, for: .normal)
+        }
     }
 }
