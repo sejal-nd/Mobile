@@ -248,7 +248,7 @@ class ChangePasswordTests: XCTestCase {
         let asyncExpectation = expectation(description: "testChangePasswordCurrentPasswordIncorrect")
         
         viewModel.currentPassword.value = "abcd1234"
-        viewModel.changePassword(onSuccess: { 
+        viewModel.changePassword(sentFromLogin: false, onSuccess: {
             XCTFail("Unexpected success response")
         }, onPasswordNoMatch: {
             asyncExpectation.fulfill()
@@ -265,7 +265,7 @@ class ChangePasswordTests: XCTestCase {
         let asyncExpectation = expectation(description: "testChangePasswordSuccess")
         
         viewModel.currentPassword.value = "Password1"
-        viewModel.changePassword(onSuccess: {
+        viewModel.changePassword(sentFromLogin: false, onSuccess: {
             asyncExpectation.fulfill()
         }, onPasswordNoMatch: {
             XCTFail("Unexpected PasswordNoMatch response")
