@@ -11,7 +11,9 @@ import UIKit
 extension UIColor {
     @nonobjc static var primaryColor: UIColor {
         get {
-            return UIColor(red: 102/255, green: 179/255, blue: 96/255, alpha: 1)
+            // Updated 6/1/2017: BGE primaryColor now IS the ADA compliance color. Keeping \
+            // primaryColorADA below for compatibility with other OpCos
+            return UIColor(red: 61/255, green: 132/255, blue: 48/255, alpha: 1)
         }
     }
     
