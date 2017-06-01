@@ -33,6 +33,8 @@ enum ServiceErrorCode : String {
     case FnAccountNotFound = "FN-ACCT-NOTFOUND" // Forgot Username/Password - account not found
     case FnAccountProtected = "FN-ACCT-PROTECTED" // Login - Password protected accounts can't login to app
     case DupPaymentAccount = "DUPLICATE_PAYMENT_ACCOUNT" // Wallet - user tries to add duplicate payment method
+    case FnAccountMultiple = "FN-ACCT-MULTIPLE" // Registration
+    case FnProfileExists = "FN-PROF-EXISTS"
 }
 
 // MARK: - ServiceError
