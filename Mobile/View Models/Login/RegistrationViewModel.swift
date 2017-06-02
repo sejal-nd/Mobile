@@ -10,6 +10,8 @@ import RxSwift
 import Zxcvbn
 
 class RegistrationViewModel {
+    let MAXUSERNAMECHARS = 255
+    
     let disposeBag = DisposeBag()
     
     let phoneNumber = Variable("")
@@ -42,6 +44,27 @@ class RegistrationViewModel {
                 } else if serviceError.serviceCode == ServiceErrorCode.FnAccountMultiple.rawValue {
                     onMultipleAccounts()
                 } else if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
+                    onError(NSLocalizedString("Profile Exists", comment: ""), error.localizedDescription)
+                } else {
+                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                }
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
+    func verifyUniqueUsername(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+        let username: String = self.username.value
+        
+        let registrationService = ServiceFactory.createRegistrationService()
+        
+        registrationService.checkForDuplicateAccount(username)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { error in
+                let serviceError = error as! ServiceError
+                
+                if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
                     onError(NSLocalizedString("Profile Exists", comment: ""), error.localizedDescription)
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
@@ -108,6 +131,24 @@ class RegistrationViewModel {
     	}
     }
     
+    func newUsernameIsValid() -> Observable<Bool> {
+        return username.asObservable().map { text -> Bool in
+            let components = text.components(separatedBy: "@")
+            
+            if components.count != 2 {
+                return false
+            }
+            
+            let urlComponents = components[1].components(separatedBy: ".")
+            
+            if urlComponents.count < 2 {
+                return false
+            }
+            
+            return true
+        }
+    }
+    
     func usernameMatches() -> Observable<Bool> {
         return username.asObservable().map { text -> Bool in
             return text == self.confirmUsername.value
@@ -121,38 +162,44 @@ class RegistrationViewModel {
     }
     
     func characterCountValid() -> Observable<Bool> {
-        return confirmPassword.asObservable()
+        return newPassword.asObservable()
             .map{ text -> String in
                 return text.components(separatedBy: .whitespacesAndNewlines).joined()
             }
             .map{ text -> Bool in
                 return text.characters.count >= 8 && text.characters.count <= 16
-        }
+            }
+    }
+    
+    func usernameMax255Characters() -> Observable<Bool> {
+        return username.asObservable().map({ text -> Bool in
+            return text.characters.count == self.MAXUSERNAMECHARS
+        })
     }
     
     func containsUppercaseLetter() -> Observable<Bool> {
-        return confirmPassword.asObservable().map({ text -> Bool in
+        return newPassword.asObservable().map({ text -> Bool in
             let regex = try! NSRegularExpression(pattern: ".*[A-Z].*", options: NSRegularExpression.Options.useUnixLineSeparators)
             return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
         })
     }
     
     func containsLowercaseLetter() -> Observable<Bool> {
-        return confirmPassword.asObservable().map({ text -> Bool in
+        return newPassword.asObservable().map({ text -> Bool in
             let regex = try! NSRegularExpression(pattern: ".*[a-z].*", options: NSRegularExpression.Options.useUnixLineSeparators)
             return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
         })
     }
     
     func containsNumber() -> Observable<Bool> {
-        return confirmPassword.asObservable().map({ text -> Bool in
+        return newPassword.asObservable().map({ text -> Bool in
             let regex = try! NSRegularExpression(pattern: ".*[0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
             return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
         })
     }
     
     func containsSpecialCharacter() -> Observable<Bool> {
-        return confirmPassword.asObservable()
+        return newPassword.asObservable()
             .map{ text -> String in
                 return text.components(separatedBy: .whitespacesAndNewlines).joined()
             }
@@ -163,44 +210,37 @@ class RegistrationViewModel {
     }
     
     func passwordMatchesUsername() -> Observable<Bool> {
-        return confirmPassword.asObservable().map({ text -> Bool in
+        return newPassword.asObservable().map({ text -> Bool in
             let username = self.username.value
-            return text.lowercased() == username.lowercased()
+            return (text.lowercased() == username.lowercased()) && text.characters.count > 0
         })
     }
     
     func everythingValid() -> Observable<Bool> {
-        return Observable.combineLatest(characterCountValid(),
+        return Observable.combineLatest([passwordMatchesUsername(),
+                                        characterCountValid(),
                                         containsUppercaseLetter(),
                                         containsLowercaseLetter(),
                                         containsNumber(),
                                         containsSpecialCharacter(),
-                                        passwordMatchesUsername(),
                                         newUsernameHasText(),
-                                        usernameMatches()) {
-                                            //
-            if $0 && !$5 { // Valid character and password != username
-                let otherArray = [$1, $2, $3, $4, $6, $7].filter{ $0 }
-                
-                if otherArray.count >= 6 {
-                    return true
-                }
-            }
-                                            
-            return false
+                                        usernameMatches(),
+                                        newUsernameIsValid()]) { array in
+            //
+            return !array[0] && !array[1...8].contains(false)
         }
     }
     
     func getPasswordScore() -> Int32 {
         var score: Int32 = -1
-        if confirmPassword.value.characters.count > 0 {
-            score = DBZxcvbn().passwordStrength(confirmPassword.value).score
+        if newPassword.value.characters.count > 0 {
+            score = DBZxcvbn().passwordStrength(newPassword.value).score
         }
         return score
     }
     
     func confirmPasswordMatches() -> Observable<Bool> {
-        return Observable.combineLatest(confirmPassword.asObservable(), confirmPassword.asObservable()) {
+        return Observable.combineLatest(confirmPassword.asObservable(), newPassword.asObservable()) {
             return $0 == $1
         }
     }

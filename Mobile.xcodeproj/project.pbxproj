@@ -82,9 +82,12 @@
 		54AE06B51ED60236004A1FDA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */; };
 		54AE06B61ED60236004A1FDA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */; };
 		54AE06B71ED60236004A1FDA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */; };
-		54AE06B81ED60236004A1FDA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */; };
-		54AE06B91ED60236004A1FDA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */; };
 		54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54B31A6D1EE065E20002E657 /* Bill.storyboard */; };
+		54B31A701EE0B8670002E657 /* BGEAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */; };
+		54B31A711EE0B8670002E657 /* BGEAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */; };
+		54B31A721EE0B8670002E657 /* BGEAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */; };
+		54B31A731EE1D4B30002E657 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54B31A6D1EE065E20002E657 /* Bill.storyboard */; };
+		54B31A741EE1D4B40002E657 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54B31A6D1EE065E20002E657 /* Bill.storyboard */; };
 		54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		54EDD2D61ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		54EDD2D71ECDE78800CAB8A6 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
@@ -824,6 +827,7 @@
 		54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		54B31A6D1EE065E20002E657 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
+		54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAccountViewController.swift; sourceTree = "<group>"; };
 		54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
 		54EDD2D91ECE236000CAB8A6 /* WalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCWalletService.swift; sourceTree = "<group>"; };
@@ -1528,8 +1532,6 @@
 				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
 				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
 				8FD5AE851E54EA49003F640D /* LoginViewController.swift */,
-				54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */,
-				54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */,
 				E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */,
 				E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */,
 				E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */,
@@ -1537,6 +1539,9 @@
 				E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */,
 				E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */,
 				E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */,
+				54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */,
+				54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */,
+				54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2285,7 +2290,7 @@
 						};
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2472,6 +2477,7 @@
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
+				54B31A741EE1D4B40002E657 /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2520,6 +2526,7 @@
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736421E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
+				54B31A731EE1D4B30002E657 /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2657,7 +2664,6 @@
 				B574BAF51E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B5053DBB1ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				B574BAEF1E785A5F001E8A44 /* OutageService.swift in Sources */,
-				54AE06B91ED60236004A1FDA /* CreateAccountViewController.swift in Sources */,
 				B574BAFB1E786473001E8A44 /* MockOutageService.swift in Sources */,
 				087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */,
 				B574BB011E787655001E8A44 /* OutageInfo.swift in Sources */,
@@ -2750,6 +2756,7 @@
 				E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */,
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */,
+				54B31A701EE0B8670002E657 /* BGEAccountViewController.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				B56DD4981ED84E6000F0198B /* FiservApi.swift in Sources */,
@@ -2889,6 +2896,7 @@
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				54B31A721EE0B8670002E657 /* BGEAccountViewController.swift in Sources */,
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
 				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
@@ -3032,6 +3040,7 @@
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				54B31A711EE0B8670002E657 /* BGEAccountViewController.swift in Sources */,
 				82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */,
 				82A18E6C1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
@@ -3142,7 +3151,6 @@
 				E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */,
 				E8C3AC041EDA0A0E0004F705 /* OneTouchPayService.swift in Sources */,
 				E81CFFF71EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
-				54AE06B81ED60236004A1FDA /* CreateAccountViewController.swift in Sources */,
 				E8CA07F71E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
