@@ -1529,6 +1529,7 @@
 		8FD5AE821E54EA39003F640D /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				E8B8A9F41EE2132D0002328C /* Registration */,
 				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
 				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
 				8FD5AE851E54EA49003F640D /* LoginViewController.swift */,
@@ -1538,10 +1539,6 @@
 				E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */,
 				E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */,
 				E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */,
-				E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */,
-				54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */,
-				54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */,
-				54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2105,6 +2102,17 @@
 				E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */,
 			);
 			path = A0SimpleKeychain;
+			sourceTree = "<group>";
+		};
+		E8B8A9F41EE2132D0002328C /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				E8CA07EE1E9D60BF00A1D431 /* SecurityQuestionViewController.swift */,
+				54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */,
+				54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */,
+				54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */,
+			);
+			path = Registration;
 			sourceTree = "<group>";
 		};
 		E8EEF70B1E565BE7006804D4 /* View Models */ = {
