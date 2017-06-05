@@ -231,8 +231,14 @@ class BillViewModel {
     }
     
     lazy var totalAmountDescriptionText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+        guard let billingInfo = $0?.billingInfo else { return nil }
+        
+        if billingInfo.pastDueAmount == billingInfo.netDueAmount { // Confluence Billing 11.10
+            return NSLocalizedString("Total Amount Due Immediately", comment: "")
+        }
+        
         let localizedText = NSLocalizedString("Total Amount Due By %@", comment: "")
-        return String(format: localizedText, $0?.billingInfo.dueByDate?.mmDdYyyyString ?? "--")
+        return String(format: localizedText, billingInfo.dueByDate?.mmDdYyyyString ?? "--")
     }
     
     //MARK: - Restore Service
