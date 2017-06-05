@@ -28,6 +28,7 @@ class CreateAccountViewController: UIViewController {
     
     @IBOutlet var passwordRequirementLabels: [UILabel]!
 
+    @IBOutlet weak var eyeballButton: UIButton!
     @IBOutlet weak var passwordStrengthLabel: UILabel!
     @IBOutlet weak var passwordStrengthView: UIView!
     @IBOutlet weak var passwordStrengthMeterView: PasswordStrengthMeterView!
@@ -89,6 +90,20 @@ class CreateAccountViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    @IBAction func onEyeballPress(_ sender: UIButton) {
+        if createPasswordTextField.textField.isSecureTextEntry {
+            createPasswordTextField.textField.isSecureTextEntry = false
+            // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
+            createPasswordTextField.textField.font = nil
+            createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+            // ------------------------------------------------------------------------------- //
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
+        } else {
+            createPasswordTextField.textField.isSecureTextEntry = true
+            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
+        }
+    }
+    
     func onBackPress() {
         _ = navigationController?.popViewController(animated: true)
     }
@@ -144,6 +159,15 @@ class CreateAccountViewController: UIViewController {
                     if !self.createUsernameTextField.isFirstResponder {
                         self.createUsernameTextField.setError(NSLocalizedString("Username must be a valid email address (xx@xxx.xxx)", comment: ""))
                     }
+                }
+            }).addDisposableTo(disposeBag)
+        
+        viewModel.usernameMatches().asDriver(onErrorJustReturn: false)
+            .drive(onNext: { valid in
+                self.confirmUsernameTextField.setValidated(valid)
+
+                if !valid {
+                    self.confirmUsernameTextField.setError(NSLocalizedString("Username does not match", comment: ""))
                 }
             }).addDisposableTo(disposeBag)
         
@@ -210,6 +234,7 @@ class CreateAccountViewController: UIViewController {
         createPasswordTextField.textField.isSecureTextEntry = true
         createPasswordTextField.textField.returnKeyType = .done
         createPasswordTextField.textField.delegate = self
+        createPasswordTextField.addSubview(eyeballButton)
         
         confirmPasswordTextField.textField.placeholder = NSLocalizedString("Confirm Password*", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true

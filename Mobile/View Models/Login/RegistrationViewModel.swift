@@ -26,6 +26,8 @@ class RegistrationViewModel {
     required init() {
     }
     
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////
     func validateAccount(onSuccess: @escaping () -> Void, onMultipleAccounts: @escaping() -> Void, onError: @escaping (String, String) -> Void) {
         let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
         let identifier: String = identifierNumber.value
@@ -73,6 +75,8 @@ class RegistrationViewModel {
             .addDisposableTo(disposeBag)
     }
 
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
     func nextButtonEnabled() -> Observable<Bool> {
         if Environment.sharedInstance.opco == .bge {
             return Observable.combineLatest(phoneNumberHasTenDigits(),
@@ -125,6 +129,7 @@ class RegistrationViewModel {
     
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////
     func newUsernameHasText() -> Observable<Bool> {
         return username.asObservable().map{ text -> Bool in
             return text.characters.count > 0
@@ -150,8 +155,8 @@ class RegistrationViewModel {
     }
     
     func usernameMatches() -> Observable<Bool> {
-        return username.asObservable().map { text -> Bool in
-            return text == self.confirmUsername.value
+        return confirmUsername.asObservable().map { text -> Bool in
+            return (text == self.username.value) && text.characters.count > 0
         }
     }
     
