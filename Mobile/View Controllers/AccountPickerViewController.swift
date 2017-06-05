@@ -44,6 +44,7 @@ class AccountPickerViewController: UIViewController {
         innerView.translatesAutoresizingMaskIntoConstraints = false
         let iconView = UIImageView(image: commercialUser ? #imageLiteral(resourceName: "ic_commercial_mini") : #imageLiteral(resourceName: "ic_residential_mini"))
         iconView.translatesAutoresizingMaskIntoConstraints = false
+        
         accountNumberLabel = UILabel(frame: .zero)
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)

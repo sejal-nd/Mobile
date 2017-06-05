@@ -1431,6 +1431,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="accountNumberTextField" destination="6ZH-i2-kyN" id="Wyj-rX-rg2"/>
+                        <outlet property="accountNumberTooltipButton" destination="axA-vV-3UF" id="krN-mF-AWx"/>
                         <outlet property="instructionLabel" destination="jA6-cN-5xc" id="aBV-kn-pBm"/>
                         <segue destination="F1v-ea-6RO" kind="show" identifier="forgotUsernameResultSegue" id="m8m-Zs-f6g"/>
                     </connections>
@@ -1691,7 +1692,7 @@
         <image name="img_logo_white" width="251" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6eI-mv-PAf"/>
-        <segue reference="EdY-ch-JHc"/>
+        <segue reference="JKs-yE-NBJ"/>
+        <segue reference="bbv-lh-msx"/>
     </inferredMetricsTieBreakers>
 </document>

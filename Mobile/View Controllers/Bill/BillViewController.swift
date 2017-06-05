@@ -272,6 +272,7 @@ class BillViewController: AccountPickerViewController {
             .addDisposableTo(bag)
 		
 		questionMarkButton.isHidden = !viewModel.shouldShowAmountDueTooltip
+        questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
 		
 		viewModel.shouldShowRestoreService.not().drive(restoreServiceView.rx.isHidden).addDisposableTo(bag)
 		viewModel.shouldShowCatchUpAmount.not().drive(catchUpView.rx.isHidden).addDisposableTo(bag)

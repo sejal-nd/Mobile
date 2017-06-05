@@ -15,6 +15,7 @@ class BGEAccountNumberViewController: UIViewController {
 
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var accountNumberTooltipButton: UIButton!
     
     let disposeBag = DisposeBag()
     
@@ -48,6 +49,8 @@ class BGEAccountNumberViewController: UIViewController {
         accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.accountNumberTextField.setError(nil)
         }).addDisposableTo(disposeBag)
+        
+        accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
     }
     
     func onNextPress() {
