@@ -160,6 +160,10 @@ class BillViewModel {
     
     lazy var shouldShowPaperless: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return false }
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
+            return true
+        }
+        
         switch accountDetail.eBillEnrollStatus {
         case .canEnroll, .canUnenroll: return true
         case .ineligible, .finaled: return false
@@ -409,6 +413,10 @@ class BillViewModel {
     
     lazy var paperlessButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return nil }
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
+            return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
+        }
+        
         if accountDetail.isEBillEnrollment {
             return BillViewModel.isEnrolledText(topText: NSLocalizedString("Paperless eBill", comment: ""),
                                                 bottomText: NSLocalizedString("enrolled", comment: ""))
