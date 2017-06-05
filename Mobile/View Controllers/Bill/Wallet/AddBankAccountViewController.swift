@@ -201,7 +201,7 @@ class AddBankAccountViewController: UIViewController {
         viewModel.confirmRoutingNumberMatches().subscribe(onNext: { matches in
             if !self.viewModel.confirmRoutingNumber.value.isEmpty {
                 if matches {
-                    self.confirmRoutingNumberTextField.setValidated(true)
+                    self.confirmRoutingNumberTextField.setValidated(true, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 } else {
                     self.confirmRoutingNumberTextField.setError(NSLocalizedString("Routing numbers do not match", comment: ""))
                 }
@@ -227,7 +227,7 @@ class AddBankAccountViewController: UIViewController {
         viewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
             if !self.viewModel.confirmAccountNumber.value.isEmpty {
                 if matches {
-                    self.confirmAccountNumberTextField.setValidated(true)
+                    self.confirmAccountNumberTextField.setValidated(true, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 } else {
                     self.confirmAccountNumberTextField.setError(NSLocalizedString("Account numbers do not match", comment: ""))
                 }

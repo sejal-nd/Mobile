@@ -93,8 +93,9 @@ class ContactUsViewController: UIViewController {
     func socialMediaButtonsSetup() {
         // create buttons
         var buttons: [UIView] = contactUsViewModel.buttonInfoList
-            .map { (urlString, image) -> UIButton in
+            .map { (urlString, image, accessibilityLabel) -> UIButton in
                 let button = UIButton(type: .custom)
+                button.accessibilityLabel = accessibilityLabel
                 button.setImage(image, for: .normal)
                 button.rx.tap.asDriver()
                     .drive(onNext: {

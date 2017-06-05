@@ -154,29 +154,36 @@ class BudgetBillingViewController: UIViewController {
             monthlyAmountDescriptionLabel.textColor = .deepGray
             monthlyAmountDescriptionLabel.text = NSLocalizedString("Payment received after March 13, 2017 will incur a late charge.\n\nA late payment charge is applied to the unpaid balance of your BGE charges. The charge is up to 1.5% for the first month; additional charges will be assessed on unpaid balances past the first month, not to exceed 5%.", comment: "")
             
+            lastPaymentDateTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
             lastPaymentDateTitleLabel.textColor = .blackText
             lastPaymentDateTitleLabel.text = NSLocalizedString("Last Payment Date", comment: "")
             lastPaymentDateLabel.textColor = .blackText
             lastPaymentDateLabel.text = "11/01/2016"
             
+            payoffBalanceTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
             payoffBalanceTitleLabel.textColor = .blackText
             payoffBalanceTitleLabel.text = NSLocalizedString("Payoff Balance for BGE Service", comment: "")
             payoffBalanceLabel.textColor = .blackText
             payoffBalanceLabel.text = "$174.13"
+            payoffBalanceDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
             payoffBalanceDescriptionLabel.textColor = .deepGray
             payoffBalanceDescriptionLabel.text = NSLocalizedString("Total actual-usage charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
             
+            currentBalanceTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
             currentBalanceTitleLabel.textColor = .blackText
             currentBalanceTitleLabel.text = NSLocalizedString("Current Balance for BGE Service", comment: "")
             currentBalanceLabel.textColor = .blackText
             currentBalanceLabel.text = "$0.00"
+            currentBalanceDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
             currentBalanceDescriptionLabel.textColor = .deepGray
             currentBalanceDescriptionLabel.text = NSLocalizedString("Total billed charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
             
+            accDifferenceTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
             accDifferenceTitleLabel.textColor = .blackText
             accDifferenceTitleLabel.text = NSLocalizedString("Accumulated Difference for BGE Service", comment: "")
             accDifferenceLabel.textColor = .blackText
             accDifferenceLabel.text = "$174.13"
+            accDifferenceDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
             accDifferenceDescriptionLabel.textColor = .deepGray
             accDifferenceDescriptionLabel.text = NSLocalizedString("The difference between your Payoff Balance and your Current Balance for BGE Service.", comment: "")
         } else {
@@ -219,6 +226,19 @@ class BudgetBillingViewController: UIViewController {
         
         gradientLayer.frame = gradientView.frame
         accountBackgroundView.addBottomBorder(color: .softGray, width: 0.5)
+        
+        // Dynamic sizing for the table header view
+        if let headerView = reasonForStoppingTableView.tableHeaderView {
+            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+            
+            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
+            if height != headerFrame.size.height {
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                reasonForStoppingTableView.tableHeaderView = headerView
+            }
+        }
     }
     
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {

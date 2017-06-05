@@ -111,10 +111,15 @@ class SegmentedControl: UIControl {
                 break
             }
         }
-
-        if calculatedIndex != nil {
-            selectedIndex.value = calculatedIndex!
+        
+        if let index = calculatedIndex {
+            selectedIndex.value = index
             sendActions(for: .valueChanged)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                let label = self.items![index]
+                let a11yString = String(format: NSLocalizedString("Selected %@ button, %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, a11yString)
+            })
         }
         
         setNeedsLayout()

@@ -267,6 +267,8 @@ class BillViewController: AccountPickerViewController {
                 self.alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: self.alertAnimationView.frame.size.width, height: self.alertAnimationView.frame.size.height)
                 self.alertLottieAnimation.contentMode = .scaleAspectFill
                 self.alertAnimationView.addSubview(self.alertLottieAnimation)
+                self.alertAnimationView.isAccessibilityElement = true
+                self.alertAnimationView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
                 self.alertLottieAnimation.play()
             })
             .addDisposableTo(bag)

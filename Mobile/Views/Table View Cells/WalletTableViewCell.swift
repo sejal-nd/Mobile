@@ -113,27 +113,36 @@ class WalletTableViewCell: UITableViewCell {
         bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         switch Environment.sharedInstance.opco {
         case .comEd, .peco:
+            accountImageView.isAccessibilityElement = true
             if walletItem.paymentCategoryType == .credit {
                 bottomBarLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
                 if let paymentMethodType = walletItem.paymentMethodType {
                     switch paymentMethodType {
                     case .visa:
                         accountImageView.image = #imageLiteral(resourceName: "ic_visa")
+                        accountImageView.accessibilityLabel = NSLocalizedString("Visa card", comment: "")
                     case .mastercard:
                         accountImageView.image = #imageLiteral(resourceName: "ic_mastercard")
+                        accountImageView.accessibilityLabel = NSLocalizedString("Master card", comment: "")
                     case .discover:
                         accountImageView.image = #imageLiteral(resourceName: "ic_discover")
+                        accountImageView.accessibilityLabel = NSLocalizedString("Discover card", comment: "")
                     case .americanexpress:
                         accountImageView.image = #imageLiteral(resourceName: "ic_amex")
+                        accountImageView.accessibilityLabel = NSLocalizedString("American Express card", comment: "")
                     }
                 } else {
                     accountImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
+                    accountImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
                 }
             } else if walletItem.paymentCategoryType == .check {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
+                accountImageView.accessibilityLabel = NSLocalizedString("Bank account", comment: "")
             }
         case .bge:
             accountImageView.image = #imageLiteral(resourceName: "opco_bank")
+            accountImageView.isAccessibilityElement = true
+            accountImageView.accessibilityLabel = NSLocalizedString("Bank account", comment: "")
             
             switch walletItem.walletItemStatusTypeBGE! {
             case .pndWait:
