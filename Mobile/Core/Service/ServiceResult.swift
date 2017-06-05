@@ -31,6 +31,7 @@ enum ServiceErrorCode : String {
     case FnProfBadSecurity = "FN-PROF-BADSECURITY" // Forgot Username - security question answered incorrectly
     case FnProfNotFound = "FN-PROF-NOTFOUND" // Forgot Username/Password - profile not found
     case FnAccountNotFound = "FN-ACCT-NOTFOUND" // Forgot Username/Password - account not found
+    case FnNotFound = "FN-NOT-FOUND" // Account lookup tool not found
     case FnAccountProtected = "FN-ACCT-PROTECTED" // Login - Password protected accounts can't login to app
     case DupPaymentAccount = "DUPLICATE_PAYMENT_ACCOUNT" // Wallet - user tries to add duplicate payment method
     case FnAccountMultiple = "FN-ACCT-MULTIPLE" // Registration

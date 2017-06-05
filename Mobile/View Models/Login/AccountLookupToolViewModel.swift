@@ -22,15 +22,20 @@ class AccountLookupToolViewModel {
         self.authService = authService
     }
     
-    func performSearch(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func performSearch(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         authService.lookupAccount(phone: phoneNumber.value, identifier: identifierNumber.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { accounts in
                 self.accountLookupResults = accounts
                 onSuccess()
-            }, onError: { error in
-                onError(error.localizedDescription)
+            }, onError: { (error: Error) in
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.FnNotFound.rawValue {
+                    onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
+                } else {
+                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                }
             }).addDisposableTo(disposeBag)
     }
     
