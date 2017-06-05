@@ -144,13 +144,18 @@ class FloatLabelTextField: UIView {
         }
     }
     
-    func setValidated(_ validated: Bool) {
+    func setValidated(_ validated: Bool, accessibilityLabel: String? = nil) {
         if validated {
             setError(nil)
             checkAccessoryImageView.isHidden = false
+            checkAccessoryImageView.isAccessibilityElement = true
+            if let label = accessibilityLabel {
+                checkAccessoryImageView.accessibilityLabel = label
+            }
             textField.isShowingAccessory = true
         } else {
             checkAccessoryImageView.isHidden = true
+            checkAccessoryImageView.isAccessibilityElement = false
             textField.isShowingAccessory = false
         }
     }

@@ -32,6 +32,7 @@ class ChangePasswordViewController: UIViewController {
     
     // Check ImageViews
     @IBOutlet weak var characterCountCheck: UIImageView!
+    @IBOutlet weak var mustAlsoContainLabel: UILabel!
     @IBOutlet weak var uppercaseCheck: UIImageView!
     @IBOutlet weak var lowercaseCheck: UIImageView!
     @IBOutlet weak var numberCheck: UIImageView!
@@ -63,6 +64,7 @@ class ChangePasswordViewController: UIViewController {
         setupValidation()
         
         passwordStrengthView.isHidden = true
+        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .footnote)
         confirmPasswordTextField.setEnabled(false)
         
         currentPasswordTextField.textField.placeholder = sentFromLogin ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
@@ -81,6 +83,7 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.textField.delegate = self
         confirmPasswordTextField.setEnabled(false)
         
+        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .headline)
         for label in passwordRequirementLabels {
             label.font = SystemFont.regular.of(textStyle: .headline)
         }
@@ -114,10 +117,13 @@ class ChangePasswordViewController: UIViewController {
             self.passwordStrengthMeterView.setScore(score)
             if score < 2 {
                 self.passwordStrengthLabel.text = NSLocalizedString("Weak", comment: "")
+                self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength weak", comment: "")
             } else if score < 4 {
                 self.passwordStrengthLabel.text = NSLocalizedString("Medium", comment: "")
+                self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength medium", comment: "")
             } else {
                 self.passwordStrengthLabel.text = NSLocalizedString("Strong", comment: "")
+                self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength strong", comment: "")
             }
         }).addDisposableTo(disposeBag)
         newPasswordTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
@@ -183,9 +189,11 @@ class ChangePasswordViewController: UIViewController {
             currentPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
+            eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
         } else {
             currentPasswordTextField.textField.isSecureTextEntry = true
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
+            eyeballButton.accessibilityLabel = NSLocalizedString("Hide password", comment: "")
         }
     }
     
@@ -193,12 +201,32 @@ class ChangePasswordViewController: UIViewController {
         let checkImageOrNil: (Bool) -> UIImage? = { $0 ? #imageLiteral(resourceName: "ic_check"): nil }
         
         viewModel.characterCountValid().map(checkImageOrNil).bind(to: characterCountCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.characterCountValid().subscribe(onNext: { valid in
+            self.characterCountCheck.isAccessibilityElement = valid
+            self.characterCountCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).addDisposableTo(disposeBag)
         viewModel.containsUppercaseLetter().map(checkImageOrNil).bind(to: uppercaseCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsUppercaseLetter().subscribe(onNext: { valid in
+            self.uppercaseCheck.isAccessibilityElement = valid
+            self.uppercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).addDisposableTo(disposeBag)
         viewModel.containsLowercaseLetter().map(checkImageOrNil).bind(to: lowercaseCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsLowercaseLetter().subscribe(onNext: { valid in
+            self.lowercaseCheck.isAccessibilityElement = valid
+            self.lowercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).addDisposableTo(disposeBag)
         viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsNumber().subscribe(onNext: { valid in
+            self.numberCheck.isAccessibilityElement = valid
+            self.numberCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).addDisposableTo(disposeBag)
         viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsSpecialCharacter().subscribe(onNext: { valid in
+            self.specialCharacterCheck.isAccessibilityElement = valid
+            self.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).addDisposableTo(disposeBag)
         viewModel.everythingValid().subscribe(onNext: { valid in
-            self.newPasswordTextField.setValidated(valid)
+            self.newPasswordTextField.setValidated(valid, accessibilityLabel: valid ? NSLocalizedString("Minimum password criteria met", comment: "") : nil)
             self.confirmPasswordTextField.setEnabled(valid)
         }).addDisposableTo(disposeBag)
         
@@ -214,7 +242,7 @@ class ChangePasswordViewController: UIViewController {
         viewModel.confirmPasswordMatches().subscribe(onNext: { matches in
             if self.confirmPasswordTextField.textField.hasText {
                 if matches {
-                    self.confirmPasswordTextField.setValidated(matches)
+                    self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 } else {
                     self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
                 }

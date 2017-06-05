@@ -267,11 +267,14 @@ class BillViewController: AccountPickerViewController {
                 self.alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: self.alertAnimationView.frame.size.width, height: self.alertAnimationView.frame.size.height)
                 self.alertLottieAnimation.contentMode = .scaleAspectFill
                 self.alertAnimationView.addSubview(self.alertLottieAnimation)
+                self.alertAnimationView.isAccessibilityElement = true
+                self.alertAnimationView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
                 self.alertLottieAnimation.play()
             })
             .addDisposableTo(bag)
 		
 		questionMarkButton.isHidden = !viewModel.shouldShowAmountDueTooltip
+        questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
 		
 		viewModel.shouldShowRestoreService.not().drive(restoreServiceView.rx.isHidden).addDisposableTo(bag)
 		viewModel.shouldShowCatchUpAmount.not().drive(catchUpView.rx.isHidden).addDisposableTo(bag)

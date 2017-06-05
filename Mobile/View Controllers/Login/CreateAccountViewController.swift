@@ -165,7 +165,7 @@ class CreateAccountViewController: UIViewController {
         viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).addDisposableTo(disposeBag)
         viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).addDisposableTo(disposeBag)
         viewModel.everythingValid().subscribe(onNext: { valid in
-            self.createPasswordTextField.setValidated(valid)
+            self.createPasswordTextField.setValidated(valid, accessibilityLabel: valid ? NSLocalizedString("Minimum password criteria met", comment: "") : nil)
             self.confirmPasswordTextField.setEnabled(valid)
         }).addDisposableTo(disposeBag)
         
@@ -181,7 +181,7 @@ class CreateAccountViewController: UIViewController {
         viewModel.confirmPasswordMatches().subscribe(onNext: { matches in
             if self.confirmPasswordTextField.textField.hasText {
                 if matches {
-                    self.confirmPasswordTextField.setValidated(matches)
+                    self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 } else {
                     self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
                 }

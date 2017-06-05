@@ -95,16 +95,22 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
         let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
         
         cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
+        cell.accountImageView.isAccessibilityElement = true
+        cell.accountImageView.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial account", comment: "") : NSLocalizedString("Residential account", comment: "")
         cell.accountNumber.text = account.accountNumber
+        cell.accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
         cell.addressLabel.text = account.address
-
+        if let address = account.address {
+            cell.addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
+        }
+        
         if account.isDefault {
-            cell.accountStatusLabel.text = "Default"
+            cell.accountStatusLabel.text = NSLocalizedString("Default", comment: "")
         } else if account.isFinaled {
-            cell.accountStatusLabel.text = "Finaled"
+            cell.accountStatusLabel.text = NSLocalizedString("Finaled", comment: "")
             cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial_disabled") : #imageLiteral(resourceName: "ic_residential_disabled")
         } else if account.isLinked {
-            cell.accountStatusLabel.text = "Linked"
+            cell.accountStatusLabel.text = NSLocalizedString("Linked", comment: "")
         } else {
             cell.accountStatusLabel.text = ""
         }
@@ -113,10 +119,13 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
             cell.accountImageViewLeadingConstraint.constant = 39
             cell.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
             cell.checkMarkImageView.isHidden = false
+            cell.checkMarkImageView.isAccessibilityElement = true
+            cell.checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
         } else {
             cell.accountImageViewLeadingConstraint.constant = 16
             cell.separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
             cell.checkMarkImageView.isHidden = true
+            cell.checkMarkImageView.isAccessibilityElement = false
         }
         return cell
         

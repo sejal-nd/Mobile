@@ -106,6 +106,7 @@ class ForgotUsernameViewController: UIViewController {
         accountLookupToolButton?.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
         accountLookupToolButton?.setTitleColor(.actionBlue, for: .normal)
         accountLookupToolButton?.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        accountLookupToolButton?.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
     }
     
     deinit {

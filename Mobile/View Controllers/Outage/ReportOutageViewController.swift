@@ -104,10 +104,17 @@ class ReportOutageViewController: UIViewController {
 
             meterPingCurrentStatusLabel.font = SystemFont.medium.of(textStyle: .headline)
             meterPingCurrentStatusLabel.textColor = .blackText
+            
+            meterPingPowerStatusImageView.isAccessibilityElement = true
+            meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Waiting for", comment: "")
             meterPingPowerStatusLabel.font = SystemFont.medium.of(textStyle: .title1)
             meterPingPowerStatusLabel.textColor = .middleGray
+            
+            meterPingVoltageStatusImageView.isAccessibilityElement = true
+            meterPingVoltageStatusImageView.accessibilityLabel = NSLocalizedString("Waiting for", comment: "")
             meterPingVoltageStatusLabel.font = SystemFont.medium.of(textStyle: .title1)
             meterPingVoltageStatusLabel.textColor = .middleGray
+            
             meterPingResultLabel.font = SystemFont.regular.of(textStyle: .body)
             meterPingResultLabel.textColor = .deepGray
             meterPingFuseBoxLabel.font = OpenSans.regular.of(textStyle: .headline)
@@ -198,6 +205,7 @@ class ReportOutageViewController: UIViewController {
         if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
             viewModel.meterPingGetPowerStatus(onPowerVerified: { canPerformVoltageCheck in
                 self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
+                self.meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Successful", comment: "")
                 self.meterPingPowerStatusLabel.textColor = .blackText
                 
                 if !canPerformVoltageCheck { // POWER STATUS SUCCESS BUT NO VOLTAGE CHECK
@@ -218,6 +226,7 @@ class ReportOutageViewController: UIViewController {
                         self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                         
                         self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
+                        self.meterPingVoltageStatusImageView.accessibilityLabel = NSLocalizedString("Successful", comment: "")
                         self.meterPingVoltageStatusLabel.textColor = .blackText
                         
                         self.meterPingFuseBoxView.isHidden = false
@@ -229,6 +238,7 @@ class ReportOutageViewController: UIViewController {
                         self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                         
                         self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
+                        self.meterPingVoltageStatusImageView.accessibilityLabel = NSLocalizedString("Failed", comment: "")
                         self.meterPingVoltageStatusLabel.textColor = .blackText
                         
                         self.meterPingResultLabel.isHidden = false
@@ -247,6 +257,7 @@ class ReportOutageViewController: UIViewController {
                 self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                 
                 self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
+                self.meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Failed", comment: "")
                 self.meterPingPowerStatusLabel.textColor = .blackText
                 
                 self.meterPingResultLabel.isHidden = false
