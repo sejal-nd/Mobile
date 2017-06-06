@@ -8,7 +8,7 @@
 
 import Mapper
 
-private func extractAvMonthlyBill(object: Any?) throws -> String? {
+private func extractDollarAmountString(object: Any?) throws -> String? {
     // We're checking for both a double or a string here, because they've changed their web services
     // here before and I want to protect against that possibility again
     if let doubleVal = object as? Double {
@@ -25,11 +25,15 @@ private func extractAvMonthlyBill(object: Any?) throws -> String? {
 }
 
 struct BudgetBillingInfo: Mappable {
-    let enrolled: Bool
     let averageMonthlyBill: String?
+    let budgetBillDifference: String? // Only used for BGE Footer View
+    let budgetBillBalance: String? // Only used for BGE Footer View
+    let budgetBillPayoff: String? // Only used for BGE Footer View
     
     init(map: Mapper) throws {
-        enrolled = map.optionalFrom("enrolled") ?? false
-        averageMonthlyBill = map.optionalFrom("averageMonthlyBill", transformation: extractAvMonthlyBill)
+        averageMonthlyBill = map.optionalFrom("averageMonthlyBill", transformation: extractDollarAmountString)
+        budgetBillDifference = map.optionalFrom("budgetBillDifference", transformation: extractDollarAmountString)
+        budgetBillBalance = map.optionalFrom("budgetBillBalance", transformation: extractDollarAmountString)
+        budgetBillPayoff = map.optionalFrom("budgetBillPayoff", transformation: extractDollarAmountString)
     }
 }
