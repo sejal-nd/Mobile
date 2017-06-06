@@ -13,6 +13,6 @@
 	<key>mcsInstanceName</key>
 	<string>Staging</string>
 	<key>fiservUrl</key>
-	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile/Process</string>
+	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
 </dict>
 </plist>

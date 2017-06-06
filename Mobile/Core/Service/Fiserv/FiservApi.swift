@@ -12,6 +12,8 @@ private enum ResponseKey : String {
     case ResponseCode = "ResponseCode"
     case StatusMessage = "StatusMessage"
     case WalletItemId = "WalletItemID"
+    case GUID = "GUID"
+    case Hash = "Hash"
 }
 
 private enum MessageId : String {
@@ -81,13 +83,17 @@ struct FiservApi {
                                                                      firstName: firstName,
                                                                      lastName: lastName)
         
-        do {
-            let encodedBody = try encodePayload(params, action: Action.Insert.rawValue)
-            post(body: encodedBody, completion: completion)
-            
-        }catch let err as NSError {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
-        }
+        getTokens(onSuccess: { (unique, guid, hashResult) in
+            do {
+                let encodedBody = try self.encodePayload(params, action: Action.Insert.rawValue, unique: unique, guid: guid, hashResult: hashResult)
+                self.post(body: encodedBody, completion: completion)
+            } catch let err as NSError {
+                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+            }
+        }, onError: {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue)))
+        })
+    
     }
     
     func addCreditCard(cardNumber: String,
@@ -109,13 +115,16 @@ struct FiservApi {
                                                           securityCode: securityCode,
                                                           postalCode: postalCode)
         
-        do {
-            let encodedBody = try encodePayload(params, action: Action.Insert.rawValue)
-            post(body: encodedBody, completion: completion)
-            
-        }catch let err as NSError {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
-        }
+        getTokens(onSuccess: { (unique, guid, hashResult) in
+            do {
+                let encodedBody = try self.encodePayload(params, action: Action.Insert.rawValue, unique: unique, guid: guid, hashResult: hashResult)
+                self.post(body: encodedBody, completion: completion)
+            } catch let err as NSError {
+                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+            }
+        }, onError: {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue)))
+        })
     }
     
     func updateCreditCard(walletItemID: String,
@@ -141,21 +150,47 @@ struct FiservApi {
             cardDetail[Parameter.PostalCode.rawValue] = zipCode
         }
         
-//        let cardDetail = [Parameter.ExpirationDate.rawValue : expiration,
-//                          Parameter.SecurityCode.rawValue : securityCode,
-//                          Parameter.PostalCode.rawValue : postalCode]
-        
         params[Parameter.MessageId.rawValue] = MessageId.updateCredit.rawValue
         params[Parameter.CardDetail.rawValue] = cardDetail
         params[Parameter.WalletItemId.rawValue] = walletItemID
         
-        do {
-            let encodedBody = try encodePayload(params, action: Action.Update.rawValue)
-            post(body: encodedBody, completion: completion)
-            
-        }catch let err as NSError {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
-        }
+        getTokens(onSuccess: { (unique, guid, hashResult) in
+            do {
+                let encodedBody = try self.encodePayload(params, action: Action.Insert.rawValue, unique: unique, guid: guid, hashResult: hashResult)
+                self.post(body: encodedBody, completion: completion)
+            } catch let err as NSError {
+                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+            }
+        }, onError: {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue)))
+        })
+    }
+    
+    private func getTokens(onSuccess: @escaping (_ unique: String, _ guid: String, _ hashResult: String) -> Void, onError: @escaping () -> Void) {
+        let guidString = UUID().uuidString
+
+        let urlRequest = createFiservRequest(with: nil, method: "GET", guid: guidString)
+        URLSession.shared.dataTask(with:urlRequest, completionHandler: { (data:Data?, resp: URLResponse?, err: Error?) in
+            if err != nil {
+                onError()
+            } else {
+                let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
+                dLog(message: responseString)
+                
+                do {
+                    let resultDictionary = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
+                    
+                    if let GUID = resultDictionary?[ResponseKey.GUID.rawValue] as? String, let Hash = resultDictionary?[ResponseKey.Hash.rawValue] as? String {
+                        onSuccess(guidString, GUID, Hash)
+                    } else {
+                        onError()
+                    }
+                }
+                catch {
+                    onError()
+                }
+            }
+        }).resume()
     }
     
     private func createCardDetailDictionary(cardNumber: String?,
@@ -197,15 +232,18 @@ struct FiservApi {
         return details
     }
     
-    private func encodePayload(_ payloadParameters : [String : Any], action: String) throws -> Data {
+    private func encodePayload(_ payloadParameters : [String : Any], action: String, unique: String, guid: String, hashResult: String) throws -> Data {
         let jsonData: NSData = try JSONSerialization.data(withJSONObject: payloadParameters) as NSData
         
         let payload = String.init(data: jsonData as Data, encoding: String.Encoding.utf8)?.replacingOccurrences(of: "\\", with: "")
         
-        let content = "action=" + action + "&payload=" + payload!
-        let encodedContent = content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        // NOTE: Whether or not we encode the new tokens portion does not seem to have an effect
+        let content = "action=\(action)&payload=\(payload!)"
+        //let content = "action=\(action)&payload=\(payload!)&unique=\(unique)&guid=\(guid)&hashResult=\(hashResult)"
+        var encodedContent = content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        encodedContent += "&unique=\(unique)&guid=\(guid)&hashResult=\(hashResult)"
         
-        dLog(message: payload ?? "Empty Payload")
+        dLog(message: encodedContent)
         
         return encodedContent.data(using:String.Encoding.utf8)!
     }
@@ -268,11 +306,14 @@ struct FiservApi {
         }).resume()
     }
     
-    private func createFiservRequest(with body: Data, method: String) -> URLRequest {
-        var urlRequest  = URLRequest(url: URL(string: Environment.sharedInstance.fiservUrl)!)
+    private func createFiservRequest(with body: Data?, method: String, guid: String? = nil) -> URLRequest {
+        let endpoint = guid != nil ? "FiservJsonMessenger?v=\(guid!)" : "Process"
+        var urlRequest = URLRequest(url: URL(string: "\(Environment.sharedInstance.fiservUrl)/\(endpoint)")!)
         urlRequest.httpMethod = method
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        urlRequest.httpBody = body
+        if let body = body {
+            urlRequest.httpBody = body
+        }
         return urlRequest
     }
     
