@@ -70,7 +70,7 @@ struct AccountDetail: Mappable {
     
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
-    let budgetBillMessage: String
+    let budgetBillMessage: String?
     
     let isEBillEnrollment: Bool
     let isEBillEligible:Bool
@@ -94,7 +94,7 @@ struct AccountDetail: Mappable {
         isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
         isBudgetBillEnrollment = map.optionalFrom("isBudgetBill") ?? false
         isBudgetBillEligible = map.optionalFrom("isBudgetBillEligible") ?? false
-        try budgetBillMessage = map.from("budgetBillMessage")
+        budgetBillMessage = map.optionalFrom("budgetBillMessage")
         isEBillEnrollment = map.optionalFrom("isEBillEnrollment") ?? false
         isEBillEligible = map.optionalFrom("isEBillEligible") ?? false
         hasElectricSupplier = map.optionalFrom("hasElectricSupplier") ?? false
