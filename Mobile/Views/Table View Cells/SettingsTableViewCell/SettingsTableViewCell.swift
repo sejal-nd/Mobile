@@ -28,6 +28,7 @@ class SettingsTableViewCell: UITableViewCell {
         innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         
         label.textColor = .blackText
+        label.font = SystemFont.medium.of(textStyle: .title1)
     }
     
     func configureWith(label: String, carat: Bool) {

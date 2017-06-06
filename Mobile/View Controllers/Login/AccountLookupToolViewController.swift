@@ -104,9 +104,9 @@ class AccountLookupToolViewController: UIViewController {
             } else {
                 self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
             }
-        }, onError: { errorMessage in
+        }, onError: { title, message in
             LoadingView.hide()
-            let alertController = UIAlertController(title: NSLocalizedString("Invalid Information", comment: ""), message: errorMessage, preferredStyle: .alert)
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         })

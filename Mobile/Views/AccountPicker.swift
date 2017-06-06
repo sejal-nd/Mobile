@@ -124,31 +124,42 @@ class AccountPicker: UIView {
         pageViews.append(pageView)
         
         let icon: UIImage
+        let a11yDescription: String
         switch (commercialUser, tintWhite) {
         case (true, true):
             icon = #imageLiteral(resourceName: "ic_commercial_white")
+            a11yDescription = NSLocalizedString("Commercial account", comment: "")
         case (true, false):
             icon = #imageLiteral(resourceName: "ic_commercial")
+            a11yDescription = NSLocalizedString("Commercial account", comment: "")
         case (false, true):
             icon = #imageLiteral(resourceName: "ic_residential_white")
+            a11yDescription = NSLocalizedString("Residential account", comment: "")
         case (false, false):
             icon = #imageLiteral(resourceName: "ic_residential")
+            a11yDescription = NSLocalizedString("Residential account", comment: "")
         }
         
         let iconImageView = UIImageView(image: icon)
         iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
+        iconImageView.isAccessibilityElement = true
+        iconImageView.accessibilityLabel = a11yDescription
         
         let accountNumberLabel = UILabel(frame: .zero)
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
         accountNumberLabel.textColor = tintWhite ? .white: .blackText
         accountNumberLabel.text = account.accountNumber
+        accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
         
         let addressLabel = UILabel(frame: .zero)
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
         addressLabel.textColor = tintWhite ? .white: .deepGray
         addressLabel.text = account.address
+        if let address = account.address {
+            accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
+        }
         
         let accountView = UIView(frame: .zero)
         accountView.translatesAutoresizingMaskIntoConstraints = false

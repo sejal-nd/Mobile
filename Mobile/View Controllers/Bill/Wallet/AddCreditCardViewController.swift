@@ -29,6 +29,7 @@ class AddCreditCardViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var nameOnCardTextField: FloatLabelTextField!
     @IBOutlet weak var cardNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var cardIOButton: UIButton!
     @IBOutlet weak var cardLogoImageView: UIImageView!
     @IBOutlet weak var expDateLabel: UILabel!
     @IBOutlet weak var expMonthTextField: FloatLabelTextField!
@@ -73,6 +74,7 @@ class AddCreditCardViewController: UIViewController {
         cardNumberTextField.textField.delegate = self
         cardNumberTextField.textField.returnKeyType = .next
         cardNumberTextField.textField.isShowingAccessory = true
+        cardIOButton.accessibilityLabel = NSLocalizedString("Take a photo to scan credit card number", comment: "")
         
         expDateLabel.font = OpenSans.semibold.of(textStyle: .headline)
         expDateLabel.textColor = .blackText

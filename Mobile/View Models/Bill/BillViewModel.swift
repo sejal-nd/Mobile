@@ -160,6 +160,10 @@ class BillViewModel {
     
     lazy var shouldShowPaperless: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return false }
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
+            return true
+        }
+        
         switch accountDetail.eBillEnrollStatus {
         case .canEnroll, .canUnenroll: return true
         case .ineligible, .finaled: return false
@@ -223,12 +227,27 @@ class BillViewModel {
     
     lazy var totalAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let netDueAmount = $0?.billingInfo.netDueAmount else { return nil }
+        if Environment.sharedInstance.opco == .bge { // BGE should display the negative value if there is a credit
+            return netDueAmount.currencyString ?? "--"
+        }
         return max(netDueAmount, 0).currencyString ?? "--"
     }
     
     lazy var totalAmountDescriptionText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+        guard let billingInfo = $0?.billingInfo else { return nil }
+        
+        if billingInfo.pastDueAmount == billingInfo.netDueAmount { // Confluence Billing 11.10
+            return NSLocalizedString("Total Amount Due Immediately", comment: "")
+        } else if Environment.sharedInstance.opco == .bge {
+            if let netDueAmount = billingInfo.netDueAmount {
+                if netDueAmount < 0 {
+                    return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
+                }
+            }
+        }
+        
         let localizedText = NSLocalizedString("Total Amount Due By %@", comment: "")
-        return String(format: localizedText, $0?.billingInfo.dueByDate?.mmDdYyyyString ?? "--")
+        return String(format: localizedText, billingInfo.dueByDate?.mmDdYyyyString ?? "--")
     }
     
     //MARK: - Restore Service
@@ -409,6 +428,10 @@ class BillViewModel {
     
     lazy var paperlessButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return nil }
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
+            return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
+        }
+        
         if accountDetail.isEBillEnrollment {
             return BillViewModel.isEnrolledText(topText: NSLocalizedString("Paperless eBill", comment: ""),
                                                 bottomText: NSLocalizedString("enrolled", comment: ""))

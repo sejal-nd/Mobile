@@ -14,6 +14,7 @@
 "FN-PROF-BADSECURITY" = "The security answer does not match our records.";
 "FN-PROF-NOTFOUND" = "Incorrect username/email address. Please try again.";
 "FN-ACCT-NOTFOUND" = "The information entered does not match our records. Please try again.";
+"FN-NOT-FOUND" = "The information entered does not match our records. Please try again.";
 "FN-ACCT-PROTECTED" = "Your account is password protected and cannot be accessed through this app.";
 "DUPLICATE_PAYMENT_ACCOUNT" = "A payment account saved in your Wallet matches this payment account.";
 "TC-UNKNOWN" = "We’re sorry, we could not process your request at this time. Please try again later or contact our Customer Care Center for assistance.";
