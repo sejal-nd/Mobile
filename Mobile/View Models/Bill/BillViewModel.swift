@@ -227,6 +227,9 @@ class BillViewModel {
     
     lazy var totalAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let netDueAmount = $0?.billingInfo.netDueAmount else { return nil }
+        if Environment.sharedInstance.opco == .bge { // BGE should display the negative value if there is a credit
+            return netDueAmount.currencyString ?? "--"
+        }
         return max(netDueAmount, 0).currencyString ?? "--"
     }
     
@@ -235,6 +238,12 @@ class BillViewModel {
         
         if billingInfo.pastDueAmount == billingInfo.netDueAmount { // Confluence Billing 11.10
             return NSLocalizedString("Total Amount Due Immediately", comment: "")
+        } else if Environment.sharedInstance.opco == .bge {
+            if let netDueAmount = billingInfo.netDueAmount {
+                if netDueAmount < 0 {
+                    return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
+                }
+            }
         }
         
         let localizedText = NSLocalizedString("Total Amount Due By %@", comment: "")
