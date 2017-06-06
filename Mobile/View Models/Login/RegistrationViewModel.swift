@@ -22,6 +22,8 @@ class RegistrationViewModel {
     var confirmUsername = Variable("")
     var newPassword = Variable("")
     var confirmPassword = Variable("")
+    var primaryProfile = false
+    
     
     required init() {
     }
@@ -232,7 +234,16 @@ class RegistrationViewModel {
                                         usernameMatches(),
                                         newUsernameIsValid()]) { array in
             //
-            return !array[0] && !array[1...8].contains(false)
+                                            
+            if !array[0] && array[1] && array[6] && array[7] && array[8] {
+                let otherArray = array[2...5].filter{ $0 }
+                
+                if otherArray.count >= 3 {
+                    return true
+                }
+            }
+                                            
+            return false
         }
     }
     

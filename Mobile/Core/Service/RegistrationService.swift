@@ -118,15 +118,15 @@ extension RegistrationService {
                                   isPrimary: isPrimary,
                                   isEnrollEBill: isEnrollEBill,
                                   completion: { (result: ServiceResult<Void>) in
-                                    //
-                                    switch (result) {
-                                    case ServiceResult.Success:
-                                        observer.onNext()
-                                        observer.onCompleted()
-                                        
-                                    case ServiceResult.Failure(let err):
-                                        observer.onError(err)
-                                    }
+                //
+                switch (result) {
+                case ServiceResult.Success:
+                    observer.onNext()
+                    observer.onCompleted()
+                    
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
             })
             
             return Disposables.create()
@@ -139,15 +139,15 @@ extension RegistrationService {
         return Observable.create { observer in
             self.checkForDuplicateAccount(username,
                                           completion: { (result: ServiceResult<Void>) in
-                                            //
-                                            switch (result) {
-                                            case ServiceResult.Success:
-                                                observer.onNext()
-                                                observer.onCompleted()
-                                                
-                                            case ServiceResult.Failure(let err):
-                                                observer.onError(err)
-                                            }
+                //
+                switch (result) {
+                case ServiceResult.Success:
+                    observer.onNext()
+                    observer.onCompleted()
+                    
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
             })
             
             return Disposables.create()

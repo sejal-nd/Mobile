@@ -39,6 +39,9 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var numberCheck: UIImageView!
     @IBOutlet weak var specialCharacterCheck: UIImageView!
     
+    @IBOutlet weak var primaryProfileSwitch: UIView!
+    @IBOutlet weak var primaryProfileLabel: UILabel!
+    
     var viewModel = RegistrationViewModel()
     
     var nextButton = UIBarButtonItem()
@@ -93,15 +96,23 @@ class CreateAccountViewController: UIViewController {
     @IBAction func onEyeballPress(_ sender: UIButton) {
         if createPasswordTextField.textField.isSecureTextEntry {
             createPasswordTextField.textField.isSecureTextEntry = false
+            
             // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
             createPasswordTextField.textField.font = nil
             createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             // ------------------------------------------------------------------------------- //
+            
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
+            eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
         } else {
             createPasswordTextField.textField.isSecureTextEntry = true
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
+            eyeballButton.accessibilityLabel = NSLocalizedString("Hide password", comment: "")
         }
+    }
+    
+    @IBAction func primaryProfileSwitchToggled(_ sender: Any) {
+        viewModel.primaryProfile = !viewModel.primaryProfile
     }
     
     func onBackPress() {
@@ -126,20 +137,6 @@ class CreateAccountViewController: UIViewController {
             
             self.present(alertController, animated: true, completion: nil)
         })
-        
-//        viewModel.changePassword(onSuccess: {
-//            LoadingView.hide()
-//            if self.sentFromLogin {
-//                let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-//                self.present(viewController!, animated: true, completion: nil)
-//            } else {
-//                self.delegate?.changePasswordViewControllerDidChangePassword(self)
-//                _ = self.navigationController?.popViewController(animated: true)
-//            }
-//        }, onPasswordNoMatch: { _ in
-//            LoadingView.hide()
-//            self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))
-//        }, onError: { (error: String) in
     }
 
     func setupValidation() {
@@ -150,30 +147,14 @@ class CreateAccountViewController: UIViewController {
         viewModel.containsLowercaseLetter().map(checkImageOrNil).bind(to: lowercaseCheck.rx.image).addDisposableTo(disposeBag)
         viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).addDisposableTo(disposeBag)
         viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).addDisposableTo(disposeBag)
-
-        viewModel.newUsernameIsValid().skip(1).asDriver(onErrorJustReturn: false)
-            .drive(onNext: { valid in
-                if valid {
-                    self.confirmUsernameTextField.setEnabled(valid)
-                } else {
-                    if !self.createUsernameTextField.isFirstResponder {
-                        self.createUsernameTextField.setError(NSLocalizedString("Username must be a valid email address (xx@xxx.xxx)", comment: ""))
-                    }
-                }
-            }).addDisposableTo(disposeBag)
         
-        viewModel.usernameMatches().asDriver(onErrorJustReturn: false)
+        viewModel.newUsernameIsValid().asDriver(onErrorJustReturn: false)
             .drive(onNext: { valid in
-                self.confirmUsernameTextField.setValidated(valid)
-
-                if !valid {
-                    self.confirmUsernameTextField.setError(NSLocalizedString("Username does not match", comment: ""))
-                }
+                self.confirmUsernameTextField.setEnabled(valid)
             }).addDisposableTo(disposeBag)
         
         viewModel.everythingValid().asDriver(onErrorJustReturn: false)
             .drive(onNext: { valid in
-                self.createPasswordTextField.setValidated(valid)
                 self.confirmPasswordTextField.setEnabled(valid)
             }).addDisposableTo(disposeBag)
         
@@ -202,15 +183,6 @@ class CreateAccountViewController: UIViewController {
                 }
             }).addDisposableTo(disposeBag)
         
-//        viewModel.usernameMax255Characters().asDriver(onErrorJustReturn: false)
-//            .drive(onNext: { isOverMax in
-//                if isOverMax {
-//                    let text = viewModel.username.substring(to:254)
-//                    
-//                    viewModel.username = text
-//                }
-//            })
-        
         viewModel.doneButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
     }
 
@@ -223,23 +195,49 @@ class CreateAccountViewController: UIViewController {
         createUsernameTextField.textField.delegate = self
         createUsernameTextField.textField.isShowingAccessory = true
         createUsernameTextField.setError(nil)
-        createUsernameTextField.becomeFirstResponder()
+        createUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+        
+        createUsernameTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
+            if self.viewModel.username.value.characters.count > 0 {
+                self.viewModel.newUsernameIsValid().single().subscribe(onNext: { valid in
+                    if !valid {
+                        self.createUsernameTextField.setError(NSLocalizedString("Username must be a valid email address (xx@xxx.xxx)", comment: ""))
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
         
         confirmUsernameTextField.textField.placeholder = NSLocalizedString("Confirm Username/Email Address*", comment: "")
         confirmUsernameTextField.textField.returnKeyType = .next
         confirmUsernameTextField.textField.delegate = self
         confirmUsernameTextField.setEnabled(false)
+        confirmUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+        
+        confirmUsernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+            if self.viewModel.username.value.characters.count > 0 {
+                self.viewModel.usernameMatches().subscribe(onNext: { valid in
+                    self.confirmUsernameTextField.setValidated(valid)
+                    
+                    if !valid {
+                        self.confirmUsernameTextField.setError(NSLocalizedString("Username does not match", comment: ""))
+                    } else {
+                        self.confirmUsernameTextField.setError(nil)
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
         
         createPasswordTextField.textField.placeholder = NSLocalizedString("Password*", comment: "")
         createPasswordTextField.textField.isSecureTextEntry = true
         createPasswordTextField.textField.returnKeyType = .done
         createPasswordTextField.textField.delegate = self
-        createPasswordTextField.addSubview(eyeballButton)
+        createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         confirmPasswordTextField.textField.placeholder = NSLocalizedString("Confirm Password*", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
+        confirmPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         // Bind to the view model
         createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).addDisposableTo(disposeBag)
@@ -292,6 +290,14 @@ class CreateAccountViewController: UIViewController {
                     self.view.layoutIfNeeded()
                 })
             }).addDisposableTo(disposeBag)
+        
+        let opCo = Environment.sharedInstance.opco
+        
+        if opCo == .bge {
+            primaryProfileSwitch.isHidden = true
+        }
+        
+        primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
     }
     
     /*
@@ -328,7 +334,7 @@ extension CreateAccountViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         
-        if textField == createUsernameTextField?.textField || textField == confirmUsernameTextField?.textField {
+        if textField == createUsernameTextField.textField || textField == confirmUsernameTextField?.textField {
             return newString.characters.count <= viewModel.MAXUSERNAMECHARS
         }
         

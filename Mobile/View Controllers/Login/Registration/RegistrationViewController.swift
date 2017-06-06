@@ -19,6 +19,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var registrationFormView: UIView!
 
     @IBOutlet weak var instructionLabel: UILabel!
+    @IBOutlet weak var accountNumberView: UIView!
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var ssNumberNumberTextField: FloatLabelTextField!
@@ -75,14 +76,14 @@ class RegistrationViewController: UIViewController {
 
         // if opco is not BGE, then format it and ready it for usage; else hide it.
         if opCo != .bge {
-            accountNumberTextField?.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
-            accountNumberTextField?.textField.autocorrectionType = .no
-            accountNumberTextField?.textField.returnKeyType = .next
-            accountNumberTextField?.textField.delegate = self
-            accountNumberTextField?.textField.isShowingAccessory = true
-            accountNumberTextField?.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
-            accountNumberTextField?.textField.font = SystemFont.regular.of(textStyle: .title2)
-            accountNumberTextField?.view.addSubview(questionMarkButton)
+            accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
+            accountNumberTextField.textField.autocorrectionType = .no
+            accountNumberTextField.textField.returnKeyType = .next
+            accountNumberTextField.textField.delegate = self
+            accountNumberTextField.textField.isShowingAccessory = true
+            accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
+            accountNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+            questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
             
             accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
                 if self.viewModel.accountNumber.value.characters.count > 0 {
@@ -98,7 +99,7 @@ class RegistrationViewController: UIViewController {
                 self.accountNumberTextField?.setError(nil)
             }).addDisposableTo(disposeBag)
         } else {
-            accountNumberTextField?.isHidden = true
+            accountNumberView.isHidden = true
         }
         
         //
@@ -107,7 +108,7 @@ class RegistrationViewController: UIViewController {
         phoneNumberTextField.textField.returnKeyType = .next
         phoneNumberTextField.textField.delegate = self
         phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).addDisposableTo(disposeBag)
-        phoneNumberTextField?.textField.font = SystemFont.regular.of(textStyle: .title2)
+        phoneNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.phoneNumber.value.characters.count > 0 {
@@ -124,29 +125,29 @@ class RegistrationViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         
         //
-        ssNumberNumberTextField?.textField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
-        ssNumberNumberTextField?.textField.autocorrectionType = .no
-        ssNumberNumberTextField?.textField.returnKeyType = .done
-        ssNumberNumberTextField?.textField.delegate = self
-        ssNumberNumberTextField?.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).addDisposableTo(disposeBag)
-        ssNumberNumberTextField?.textField.font = SystemFont.regular.of(textStyle: .title2)
+        ssNumberNumberTextField.textField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
+        ssNumberNumberTextField.textField.autocorrectionType = .no
+        ssNumberNumberTextField.textField.returnKeyType = .done
+        ssNumberNumberTextField.textField.delegate = self
+        ssNumberNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).addDisposableTo(disposeBag)
+        ssNumberNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
-        ssNumberNumberTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
+        ssNumberNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.identifierNumber.value.characters.count > 0 {
                 self.viewModel.identifierHasFourDigits().single().subscribe(onNext: { valid in
                     if !valid {
-                        self.ssNumberNumberTextField?.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
+                        self.ssNumberNumberTextField.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
                     }
                 }).addDisposableTo(self.disposeBag)
                 self.viewModel.identifierIsNumeric().single().subscribe(onNext: { numeric in
                     if !numeric {
-                        self.ssNumberNumberTextField?.setError(NSLocalizedString("This number must be numeric.", comment: ""))
+                        self.ssNumberNumberTextField.setError(NSLocalizedString("This number must be numeric.", comment: ""))
                     }
                 }).addDisposableTo(self.disposeBag)
             }
         }).addDisposableTo(disposeBag)
         
-        ssNumberNumberTextField?.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+        ssNumberNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.ssNumberNumberTextField?.setError(nil)
         }).addDisposableTo(disposeBag)
     }
@@ -238,8 +239,9 @@ class RegistrationViewController: UIViewController {
         view.endEditing(true)
         
         if let vc = segue.destination as? CreateAccountViewController {
-//            vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
-//            vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
+            vc.viewModel = viewModel
+        } else if let vc = segue.destination as? BGEAccountViewController {
+            vc.viewModel = viewModel
         }
     }
     
