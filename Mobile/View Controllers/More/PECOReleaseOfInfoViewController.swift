@@ -8,7 +8,13 @@
 
 import RxSwift
 
+protocol PECOReleaseOfInfoViewControllerDelegate: class {
+    func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController)
+}
+
 class PECOReleaseOfInfoViewController: UIViewController {
+    
+    weak var delegate: PECOReleaseOfInfoViewControllerDelegate?
     
     let disposeBag = DisposeBag()
     
@@ -57,6 +63,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 LoadingView.hide()
+                self.delegate?.pecoReleaseOfInfoViewControllerDidUpdate(self)
                 self.navigationController?.popViewController(animated: true)
             }, onError: { error in
                 LoadingView.hide()

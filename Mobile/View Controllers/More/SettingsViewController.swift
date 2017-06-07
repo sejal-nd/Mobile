@@ -85,6 +85,8 @@ class SettingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ChangePasswordViewController {
             vc.delegate = self
+        } else if let vc = segue.destination as? PECOReleaseOfInfoViewController {
+            vc.delegate = self
         }
     }
 
@@ -183,6 +185,18 @@ extension SettingsViewController: ChangePasswordViewControllerDelegate {
             // iPad shows tab bar, iPhone does not
             let yPos = UIDevice.current.userInterfaceIdiom == .pad ? self.view.frame.size.height - 89 : self.view.frame.size.height - 40
             self.view.makeToast(NSLocalizedString("Password successfully changed", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: yPos))
+        })
+    }
+    
+}
+
+extension SettingsViewController: PECOReleaseOfInfoViewControllerDelegate {
+    
+    func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            // iPad shows tab bar, iPhone does not
+            let yPos = UIDevice.current.userInterfaceIdiom == .pad ? self.view.frame.size.height - 89 : self.view.frame.size.height - 40
+            self.view.makeToast(NSLocalizedString("Release of information updated", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: yPos))
         })
     }
     
