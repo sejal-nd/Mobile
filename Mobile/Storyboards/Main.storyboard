@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a7N-G9-44d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a7N-G9-44d">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -119,10 +119,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_nav_alerts" width="29" height="32"/>
-        <image name="ic_nav_bill" width="19" height="32"/>
-        <image name="ic_nav_home" width="32" height="31"/>
-        <image name="ic_nav_more" width="30" height="6"/>
-        <image name="ic_nav_outage" width="34" height="34"/>
+        <image name="ic_nav_alerts" width="26" height="26"/>
+        <image name="ic_nav_bill" width="26" height="26"/>
+        <image name="ic_nav_home" width="26" height="26"/>
+        <image name="ic_nav_more" width="26" height="26"/>
+        <image name="ic_nav_outage" width="26" height="26"/>
     </resources>
 </document>

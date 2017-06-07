@@ -110,7 +110,7 @@ extension SettingsViewController: UITableViewDelegate {
         if Environment.sharedInstance.opco == .bge {
             print("Default account")
         } else if Environment.sharedInstance.opco == .peco {
-            print("Release of info")
+            performSegue(withIdentifier: "releaseOfInfoSegue", sender: self)
         }
     }
     
