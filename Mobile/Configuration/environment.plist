@@ -5,9 +5,9 @@
 	<key>environment</key>
 	<string>DEV</string>
 	<key>appName</key>
-	<string>BGE_DEV</string>
+	<string>ComEd_DEV</string>
 	<key>opco</key>
-	<string>BGE</string>
+	<string>ComEd</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
