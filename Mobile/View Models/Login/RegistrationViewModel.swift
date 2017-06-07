@@ -18,11 +18,21 @@ class RegistrationViewModel {
     let identifierNumber = Variable("")
     let accountNumber = Variable("")
     
-    var username = Variable("")
-    var confirmUsername = Variable("")
-    var newPassword = Variable("")
-    var confirmPassword = Variable("")
+    let username = Variable("")
+    let confirmUsername = Variable("")
+    let newPassword = Variable("")
+    let confirmPassword = Variable("")
     var primaryProfile = false
+    
+    let securityQuestion1 = Variable("")
+    let securityAnswer1 = Variable("")
+    
+    let securityQuestion2 = Variable("")
+    let securityAnswer2 = Variable("")
+    
+    let securityQuestion3 = Variable("")
+    let securityAnswer3 = Variable("")
+    var paperlessEbill = false
     
     
     required init() {
@@ -264,6 +274,63 @@ class RegistrationViewModel {
     func doneButtonEnabled() -> Observable<Bool> {
         return Observable.combineLatest(everythingValid(), confirmPasswordMatches(), newPasswordHasText()) {
             return $0 && $1 && $2
+        }
+    }
+    
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    func question1Selected() -> Observable<Bool> {
+        return securityQuestion1.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+
+    func question2Selected() -> Observable<Bool> {
+        return securityQuestion2.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    func question3Selected() -> Observable<Bool> {
+        return securityQuestion3.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    
+    func question1Answered() -> Observable<Bool> {
+        return securityAnswer1.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    
+    func question2Answered() -> Observable<Bool> {
+        return securityAnswer2.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    
+    func question3Answered() -> Observable<Bool> {
+        return securityAnswer3.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    
+    func allQuestionsAnswered() -> Observable<Bool> {
+        var inArray = [question1Selected(),
+                     question1Answered(),
+                     question2Selected(),
+                     question2Answered()]
+        
+        var count = 4
+        
+        if Environment.sharedInstance.opco != .bge {
+            inArray.append(question3Selected())
+            inArray.append(question3Answered())
+            
+            count = 6
+        }
+        
+        return Observable.combineLatest(inArray) { outArray in
+            return outArray.count == count
         }
     }
 }

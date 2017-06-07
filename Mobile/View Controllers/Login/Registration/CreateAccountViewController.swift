@@ -124,19 +124,23 @@ class CreateAccountViewController: UIViewController {
         
         LoadingView.show()
         
-        viewModel.verifyUniqueUsername(onSuccess: {
-            LoadingView.hide()
-            
-            self.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
+        LoadingView.hide()
+        
+        self.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
 
-        }, onError: { (title, message) in
-            LoadingView.hide()
-            
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            
-            self.present(alertController, animated: true, completion: nil)
-        })
+//        viewModel.verifyUniqueUsername(onSuccess: {
+//            LoadingView.hide()
+//            
+//            self.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
+//
+//        }, onError: { (title, message) in
+//            LoadingView.hide()
+//            
+//            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+//            
+//            self.present(alertController, animated: true, completion: nil)
+//        })
     }
 
     func setupValidation() {
