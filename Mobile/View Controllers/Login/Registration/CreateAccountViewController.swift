@@ -69,11 +69,9 @@ class CreateAccountViewController: UIViewController {
     }
     
     func setupNavigationButtons() {
-        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .done, target: self, action: #selector(onBackPress))
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = nextButton
     }
     
@@ -115,9 +113,6 @@ class CreateAccountViewController: UIViewController {
         viewModel.primaryProfile = !viewModel.primaryProfile
     }
     
-    func onBackPress() {
-        _ = navigationController?.popViewController(animated: true)
-    }
     
     func onNextPress() {
         view.endEditing(true)

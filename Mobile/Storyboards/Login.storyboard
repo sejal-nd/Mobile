@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RbL-iO-8ib">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RbL-iO-8ib">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,7 +19,7 @@
         <scene sceneID="Qff-1Z-8Qt">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RbL-iO-8ib" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hjm-LC-WA0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hjm-LC-WA0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -632,7 +632,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sli-Tt-vCb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xPE-hv-B2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xPE-hv-B2n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -795,6 +795,9 @@
                             <constraint firstItem="A5U-SA-SJ5" firstAttribute="leading" secondItem="HW6-hU-nOi" secondAttribute="leading" id="Yyn-Bh-Ouy"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="JEo-Uu-l4o">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="hdX-cO-Xhm"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="accountNumberTextField" destination="u3K-xy-VDi" id="Bh1-dR-cVf"/>
                         <outlet property="accountNumberView" destination="CSl-pN-s9X" id="GiY-83-m2u"/>
@@ -877,6 +880,9 @@
                             <constraint firstItem="CO2-QY-vKu" firstAttribute="leading" secondItem="xW1-YR-KGz" secondAttribute="leadingMargin" constant="29" id="tjl-Uq-dIG"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Dxj-bj-ogt">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="EL8-Bv-W4O"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="accountNumberHelpButton" destination="zdg-V7-E2y" id="3RZ-O5-QnO"/>
                         <outlet property="accountNumberTextField" destination="uhO-LR-ZR8" id="0vU-EN-iMH"/>
@@ -1539,7 +1545,7 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Me-i6-eET">
-                                                                            <rect key="frame" x="0.0" y="15" width="291" height="22"/>
+                                                                            <rect key="frame" x="0.0" y="16.5" width="291" height="19"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -1871,11 +1877,14 @@
                                                                                                         <rect key="frame" x="28" y="0.0" width="287" height="30"/>
                                                                                                         <subviews>
                                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1m7-ND-6TV" userLabel="Horizontal Rule">
-                                                                                                                <rect key="frame" x="0.0" y="0.0" width="287" height="4"/>
+                                                                                                                <rect key="frame" x="0.0" y="0.0" width="287" height="1"/>
                                                                                                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                                                <constraints>
+                                                                                                                    <constraint firstAttribute="height" constant="1" id="vzR-vU-4Wp"/>
+                                                                                                                </constraints>
                                                                                                             </view>
                                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Must also contain at least 3 of the following:" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gM1-Qg-oBt">
-                                                                                                                <rect key="frame" x="0.0" y="10" width="287" height="20"/>
+                                                                                                                <rect key="frame" x="0.0" y="7" width="287" height="23"/>
                                                                                                                 <constraints>
                                                                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="iZ9-oS-eNC"/>
                                                                                                                 </constraints>
@@ -1986,7 +1995,6 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="bottom" secondItem="FNp-KW-cAL" secondAttribute="bottom" id="4kg-l5-hlh"/>
                                                                     <constraint firstItem="FNp-KW-cAL" firstAttribute="leading" secondItem="BBX-9w-DNg" secondAttribute="leading" id="9AZ-ov-YNP"/>
                                                                     <constraint firstItem="FNp-KW-cAL" firstAttribute="top" secondItem="BBX-9w-DNg" secondAttribute="top" id="mpg-f4-w3l"/>
                                                                     <constraint firstAttribute="bottom" secondItem="FNp-KW-cAL" secondAttribute="bottom" priority="500" id="oaR-pF-VSE"/>
