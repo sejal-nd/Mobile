@@ -596,6 +596,8 @@
 		E873DA781EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E873DA741EE8699600020D1B /* RadioSelectionTableViewCell.xib */; };
 		E873DA791EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E873DA741EE8699600020D1B /* RadioSelectionTableViewCell.xib */; };
 		E873DA7A1EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E873DA741EE8699600020D1B /* RadioSelectionTableViewCell.xib */; };
+		E873DA7B1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */; };
+		E873DA7C1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */; };
 		E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8551ECDEF6800CA63BF /* WalletViewController.swift */; };
 		E876A8571ECDEF6800CA63BF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8551ECDEF6800CA63BF /* WalletViewController.swift */; };
 		E876A8581ECDEF6800CA63BF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8551ECDEF6800CA63BF /* WalletViewController.swift */; };
@@ -2749,6 +2751,7 @@
 				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
 				54AE06B51ED60236004A1FDA /* CreateAccountViewController.swift in Sources */,
+				E873DA7C1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
@@ -3068,6 +3071,7 @@
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
+				E873DA7B1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				E8C3AC021EDA09B50004F705 /* OneTouchPayService.swift in Sources */,
