@@ -125,10 +125,12 @@ class BudgetBillingViewController: UIViewController {
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
         enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).addDisposableTo(disposeBag)
         
+        
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
         reasonForStoppingTableView.isHidden = true
+        reasonForStoppingTableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReasonForStoppingCell")
         if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
             viewModel.unenrolling.asObservable().subscribe(onNext: { unenrolling in
                 UIView.animate(withDuration: 0.3, animations: {
@@ -338,7 +340,7 @@ extension BudgetBillingViewController: UITableViewDelegate {
 extension BudgetBillingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonForStoppingCell", for: indexPath) as! BudgetBillingTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonForStoppingCell", for: indexPath) as! RadioSelectionTableViewCell
         
         cell.label.text = viewModel.getReasonString(forIndex: indexPath.row)
         

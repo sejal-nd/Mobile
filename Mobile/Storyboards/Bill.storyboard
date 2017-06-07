@@ -3214,54 +3214,6 @@ Budget Billing?</string>
                                                         <constraint firstItem="whD-Zj-sZ6" firstAttribute="top" secondItem="Ngg-eG-9wz" secondAttribute="top" constant="21" id="jFd-d5-jA1"/>
                                                     </constraints>
                                                 </view>
-                                                <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReasonForStoppingCell" rowHeight="53" id="qed-EV-85x" customClass="BudgetBillingTableViewCell" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="72" width="375" height="53"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qed-EV-85x" id="miW-WX-ttv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_radiobutton_deselected" translatesAutoresizingMaskIntoConstraints="NO" id="BIe-Eq-bP4">
-                                                                    <rect key="frame" x="21" y="14.5" width="24" height="24"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="24" id="PbF-VU-wFs"/>
-                                                                        <constraint firstAttribute="width" constant="24" id="j7s-qb-FX8"/>
-                                                                    </constraints>
-                                                                </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APY-Te-LaM">
-                                                                    <rect key="frame" x="55" y="17" width="307" height="19.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asY-rL-X01">
-                                                                    <rect key="frame" x="55" y="52" width="307" height="1"/>
-                                                                    <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="1" id="8H2-iX-QyR"/>
-                                                                    </constraints>
-                                                                </view>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="asY-rL-X01" secondAttribute="trailing" constant="13" id="2wC-cW-Wv2"/>
-                                                                <constraint firstItem="BIe-Eq-bP4" firstAttribute="leading" secondItem="miW-WX-ttv" secondAttribute="leading" constant="21" id="3D8-Oq-9HM"/>
-                                                                <constraint firstAttribute="trailing" secondItem="APY-Te-LaM" secondAttribute="trailing" constant="13" id="8UA-Kv-5qI"/>
-                                                                <constraint firstItem="asY-rL-X01" firstAttribute="leading" secondItem="BIe-Eq-bP4" secondAttribute="trailing" constant="10" id="A88-4L-M1S"/>
-                                                                <constraint firstItem="BIe-Eq-bP4" firstAttribute="centerY" secondItem="miW-WX-ttv" secondAttribute="centerY" id="DBZ-K7-dZg"/>
-                                                                <constraint firstItem="APY-Te-LaM" firstAttribute="centerY" secondItem="miW-WX-ttv" secondAttribute="centerY" id="Qum-Nv-a59"/>
-                                                                <constraint firstAttribute="bottom" secondItem="asY-rL-X01" secondAttribute="bottom" id="jtB-FR-5Sx"/>
-                                                                <constraint firstItem="APY-Te-LaM" firstAttribute="leading" secondItem="BIe-Eq-bP4" secondAttribute="trailing" constant="10" id="zaF-tB-LZ5"/>
-                                                            </constraints>
-                                                        </tableViewCellContentView>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <connections>
-                                                            <outlet property="label" destination="APY-Te-LaM" id="9Ii-gY-qpL"/>
-                                                            <outlet property="radioButtonImageView" destination="BIe-Eq-bP4" id="51f-xU-0mn"/>
-                                                        </connections>
-                                                    </tableViewCell>
-                                                </prototypes>
                                                 <connections>
                                                     <outlet property="dataSource" destination="ea9-OX-qvD" id="oCU-8h-Qok"/>
                                                     <outlet property="delegate" destination="ea9-OX-qvD" id="qht-zE-M9c"/>
@@ -4467,7 +4419,6 @@ the year</string>
         <image name="ic_paperlessleaf" width="55" height="52"/>
         <image name="ic_pdf" width="18" height="20"/>
         <image name="ic_question" width="17" height="17"/>
-        <image name="ic_radiobutton_deselected" width="24" height="24"/>
         <image name="ic_residential" width="43" height="43"/>
         <image name="paperless_modal" width="330" height="317"/>
     </resources>

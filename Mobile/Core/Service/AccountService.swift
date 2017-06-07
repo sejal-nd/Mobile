@@ -29,8 +29,16 @@ protocol AccountService {
     /// - Parameters:
     ///   - account: the account to fetch
     ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain the AccountDetails on success, or a ServiceErro on failure.
+    ///     that is provided will contain the AccountDetails on success, or a ServiceError on failure.
     func fetchAccountDetail(account: Account, completion: @escaping (_ result: ServiceResult<AccountDetail>) -> Void)
+    
+    
+    /// Updates the Release of Information in preferences for the specified account (PECO ONLY)
+    ///
+    /// - Parameters:
+    ///   - account: the account to update
+    ///   - completion: the block to execute upon completion
+    func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
 }
 
 // MARK: - Reactive Extension to AccountService
@@ -57,6 +65,21 @@ extension AccountService {
                 switch result {
                 case ServiceResult.Success(let accountDetail):
                     observer.onNext(accountDetail)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void> {
+        return Observable.create { observer in
+            self.updatePECOReleaseOfInfoPreference(account: account, selectedIndex: selectedIndex, completion: { (result: ServiceResult<Void>) in
+                switch result {
+                case ServiceResult.Success:
+                    observer.onNext()
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

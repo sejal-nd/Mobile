@@ -1,26 +1,33 @@
 //
-//  BudgetBillingTableViewCell.swift
+//  RadioSelectionTableViewCell.swift
 //  Mobile
 //
-//  Created by Marc Shilling on 4/21/17.
+//  Created by Marc Shilling on 6/7/17.
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
 
-class BudgetBillingTableViewCell: UITableViewCell {
+class RadioSelectionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var radioButtonImageView: UIImageView!
+    @IBOutlet weak var dividerLine: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        
+        radioButtonImageView.image = #imageLiteral(resourceName: "ic_radiobutton_deselected")
         
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textColor = .blackText
         label.font = SystemFont.regular.of(textStyle: .headline)
-        radioButtonImageView.image = #imageLiteral(resourceName: "ic_radiobutton_deselected")
+        
+        dividerLine.backgroundColor = .accentGray
         
         selectionStyle = .none
     }
@@ -30,5 +37,5 @@ class BudgetBillingTableViewCell: UITableViewCell {
         
         radioButtonImageView.image = selected ? #imageLiteral(resourceName: "ic_radiobutton_selected") : #imageLiteral(resourceName: "ic_radiobutton_deselected")
     }
-
+    
 }
