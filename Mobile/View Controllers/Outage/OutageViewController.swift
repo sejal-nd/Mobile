@@ -328,7 +328,7 @@ class OutageViewController: AccountPickerViewController {
         errorLabel.isHidden = true
         loadingView.isHidden = false
         setRefreshControlEnabled(enabled: false)
-        viewModel.getOutageStatus(onSuccess: { _ in
+        viewModel.getOutageStatus(onSuccess: {
             self.loadingView.isHidden = true
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent()
@@ -344,8 +344,7 @@ class OutageViewController: AccountPickerViewController {
     
     func onBigButtonTap() {
         if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != .bge  {
-            // TEMPORARILY DISABLED
-            //tabBarController?.selectedIndex = 1 // Jump to Bill tab
+            tabBarController?.selectedIndex = 1 // Jump to Bill tab
         } else {
             if let message = viewModel.currentOutageStatus!.outageDescription {
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -356,7 +355,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     func onPullToRefresh() {
-        viewModel.getOutageStatus(onSuccess: { outageStatus in
+        viewModel.getOutageStatus(onSuccess: {
             self.refreshControl?.endRefreshing()
             self.updateContent()
         }, onError: { error in
