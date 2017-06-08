@@ -88,6 +88,7 @@ class SegmentedControl: UIControl {
                 }
                 label.frame.size = CGSize(width: view.bounds.size.width, height: view.bounds.size.height)
                 label.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)
+                label.accessibilityLabel = String(format: NSLocalizedString("Segmented control, %@ option, %@ of %@", comment: ""), item, String(index + 1), String(self.items!.count))
             }
             
             bigBottomBar!.frame = CGRect(x: 0, y: frame.height - 6, width: frame.width, height: 6)
@@ -117,7 +118,7 @@ class SegmentedControl: UIControl {
             sendActions(for: .valueChanged)
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 let label = self.items![index]
-                let a11yString = String(format: NSLocalizedString("Selected %@ button, %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
+                let a11yString = String(format: NSLocalizedString("Selected %@ option, %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, a11yString)
             })
         }

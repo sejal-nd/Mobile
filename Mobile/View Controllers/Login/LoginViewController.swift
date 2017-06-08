@@ -62,6 +62,8 @@ class LoginViewController: UIViewController {
         passwordTextField.textField.isSecureTextEntry = true
         passwordTextField.textField.returnKeyType = .done
         passwordTextField.textField.isShowingAccessory = true
+        
+        eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
     
         // Two-way data binding for the username/password fields
         viewModel.username.asObservable().bind(to: usernameTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
@@ -113,6 +115,7 @@ class LoginViewController: UIViewController {
         forgotPasswordButton.tintColor = .actionBlue
         
         touchIDLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        touchIDLabel.isAccessibilityElement = false // The button itself will read "Touch ID"
     }
     
     deinit {
@@ -230,11 +233,11 @@ class LoginViewController: UIViewController {
             passwordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
-            eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
+            eyeballButton.accessibilityLabel = NSLocalizedString("Show password activated", comment: "")
         } else {
             passwordTextField.textField.isSecureTextEntry = true
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
-            eyeballButton.accessibilityLabel = NSLocalizedString("Hide password", comment: "")
+            eyeballButton.accessibilityLabel = NSLocalizedString("Hide password activated", comment: "")
         }
     }
     
