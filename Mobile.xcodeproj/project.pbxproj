@@ -667,6 +667,10 @@
 		E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* OMCAuthenticationService.swift */; };
 		E88ECFF61E8ED6D900A570D0 /* OMCAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD81E8C43BB00550F99 /* OMCAccountService.swift */; };
 		E88ECFF71E8ED6DB00A570D0 /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
+		E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
+		E89496371EE9E04000B76F8C /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
+		E89496381EE9E04000B76F8C /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
+		E89496391EE9E04000B76F8C /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
 		E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89548F41EC646A200730022 /* BGEasyViewController.swift */; };
 		E895E9AC1EBB8464003B38A1 /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */; };
 		E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
@@ -1160,6 +1164,7 @@
 		E887C9FB1ED5D3F9002433A3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		E887C9FD1ED5D400002433A3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCOutageService.swift; sourceTree = "<group>"; };
+		E89496351EE9E04000B76F8C /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		E89548F41EC646A200730022 /* BGEasyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEasyViewController.swift; sourceTree = "<group>"; };
 		E89D07A01E609DC900F87F87 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JVFloatLabeledText.framework; path = Carthage/Build/iOS/JVFloatLabeledText.framework; sourceTree = "<group>"; };
@@ -1824,6 +1829,7 @@
 			children = (
 				B58B5AC41E4E28740051FD5F /* AppDelegate.swift */,
 				E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */,
+				E89496351EE9E04000B76F8C /* NotificationNames.swift */,
 				B5AC06F21E52A18700BBA4ED /* OMC */,
 				B5AC06E21E522E7A00BBA4ED /* Core */,
 				8FDF8C651E550459000B7BD0 /* Extensions */,
@@ -2333,7 +2339,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2836,6 +2842,7 @@
 				54DF4BC81EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift in Sources */,
 				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				54930DC81EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
+				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				E827D2311ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
@@ -2999,6 +3006,7 @@
 				82A18E9D1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A41ED87AE200F0198B /* CreditCard.swift in Sources */,
+				E89496381EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
@@ -3145,6 +3153,7 @@
 				82A18E9C1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A31ED87AE200F0198B /* CreditCard.swift in Sources */,
+				E89496371EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 			);
@@ -3231,6 +3240,7 @@
 				B574BADC1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E895E9AE1EBB8489003B38A1 /* ForgotPasswordViewModel.swift in Sources */,
 				E8F51EEE1ECA51790080AB3E /* BillViewModel.swift in Sources */,
+				E89496391EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E895E9AC1EBB8464003B38A1 /* ReportOutageViewModel.swift in Sources */,
 				B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */,
 			);

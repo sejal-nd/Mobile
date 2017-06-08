@@ -36,6 +36,8 @@ class SplashViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 if !self.performingDeepLink { // Deep link cold-launched the app, so let our logic below handle it
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
+                } else {
+                    self.performingDeepLink = false // Reset state
                 }
             })
         }
@@ -48,7 +50,7 @@ class SplashViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
             let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-            navigationController?.setViewControllers([self, landingVC, loginVC], animated: true)
+            navigationController?.setViewControllers([self, landingVC, loginVC], animated: false)
         }
     }
     
