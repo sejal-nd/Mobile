@@ -373,7 +373,8 @@ class EditCreditCardViewController: UIViewController {
             if changed {
                 var shouldShowOneTouchPayWarning = false
                 if self.viewModel.oneTouchPay.value {
-                    if self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
+                    let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber)
+                    if otpItem != nil && otpItem != self.viewModel.walletItem {
                         shouldShowOneTouchPayWarning = true
                     }
                 }

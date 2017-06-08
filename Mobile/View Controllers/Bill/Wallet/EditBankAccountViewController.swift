@@ -225,7 +225,8 @@ class EditBankAccountViewController: UIViewController {
         
         var shouldShowOneTouchPayWarning = false
         if viewModel.oneTouchPay.value {
-            if oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
+            let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber)
+            if otpItem != nil && otpItem != self.viewModel.walletItem {
                 shouldShowOneTouchPayWarning = true
             }
         }
