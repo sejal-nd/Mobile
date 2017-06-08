@@ -95,9 +95,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func resetNavigation() {
-        let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let rootVC = loginStoryboard.instantiateInitialViewController()
-        self.window?.rootViewController = rootVC
+        if let rootNav = window?.rootViewController as? UINavigationController {
+            rootNav.popToRootViewController(animated: false) // Pop back to splash screen so user does not briefly see the sign in screen
+        }
+        window?.rootViewController?.dismiss(animated: false, completion: { // Dismiss the "Main" app that was presented modally
+            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let rootVC = loginStoryboard.instantiateInitialViewController()
+            self.window?.rootViewController = rootVC
+        })
     }
     
     func printFonts() {
