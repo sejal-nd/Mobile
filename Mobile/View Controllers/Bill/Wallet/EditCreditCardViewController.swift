@@ -222,11 +222,20 @@ class EditCreditCardViewController: UIViewController {
                 switch paymentMethodType {
                 case .visa:
                     bankImageView.image = #imageLiteral(resourceName: "ic_visa")
+                    bankImageView.accessibilityLabel = NSLocalizedString("Visa card", comment: "")
                 case .mastercard:
                     bankImageView.image = #imageLiteral(resourceName: "ic_mastercard")
-                default:
-                    bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
+                    bankImageView.accessibilityLabel = NSLocalizedString("Master card", comment: "")
+                case .discover:
+                    bankImageView.image = #imageLiteral(resourceName: "ic_discover")
+                    bankImageView.accessibilityLabel = NSLocalizedString("Discover card", comment: "")
+                case .americanexpress:
+                    bankImageView.image = #imageLiteral(resourceName: "ic_amex")
+                    bankImageView.accessibilityLabel = NSLocalizedString("American Express card", comment: "")
                 }
+            } else {
+                bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
+                bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
             }
         case .bge:
             bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
