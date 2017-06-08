@@ -423,7 +423,6 @@ class EditCreditCardViewController: UIViewController {
                     editCreditCard(self.viewModel.oneTouchPay.value)
                 }
             } else {
-                
                 let toggleOneTouchPay = {
                     if self.viewModel.oneTouchPay.value {
                         self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, paymentCategoryType: .credit, forCustomerNumber: customerNumber)
@@ -436,7 +435,8 @@ class EditCreditCardViewController: UIViewController {
                     }
                 }
                 if self.viewModel.oneTouchPay.value {
-                    if self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
+                    let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber)
+                    if otpItem != nil && otpItem != self.viewModel.walletItem {
                         let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
                         alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
                         alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
