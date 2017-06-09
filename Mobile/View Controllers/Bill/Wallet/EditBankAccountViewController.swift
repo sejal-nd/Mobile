@@ -223,10 +223,16 @@ class EditBankAccountViewController: UIViewController {
         
         let customerNumber = viewModel.accountDetail.customerInfo.number
         
-        var shouldShowOneTouchPayWarning = false
-        if viewModel.oneTouchPay.value {
-            if oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
-                shouldShowOneTouchPayWarning = true
+        var shouldShowOneTouchPayReplaceWarning = false
+        var shouldShowOneTouchPayDisableWarning = false
+        let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber)
+        if self.viewModel.oneTouchPay.value {
+            if otpItem != nil && otpItem != self.viewModel.walletItem {
+                shouldShowOneTouchPayReplaceWarning = true
+            }
+        } else {
+            if otpItem == self.viewModel.walletItem {
+                shouldShowOneTouchPayDisableWarning = true
             }
         }
         
@@ -241,13 +247,20 @@ class EditBankAccountViewController: UIViewController {
             _ = self.navigationController?.popViewController(animated: true)
         }
         
-        if shouldShowOneTouchPayWarning {
+        if shouldShowOneTouchPayReplaceWarning {
             let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
                 saveBankAccountChanges(true)
             }))
             present(alertVc, animated: true, completion: nil)
+        } else if shouldShowOneTouchPayDisableWarning {
+            let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to turn off One Touch Pay? You will no longer be able to pay from the home screen, and your payment will no longer be set as default.", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
+                saveBankAccountChanges(false)
+            }))
+            self.present(alertVc, animated: true, completion: nil)
         } else {
             saveBankAccountChanges(viewModel.oneTouchPay.value)
         }

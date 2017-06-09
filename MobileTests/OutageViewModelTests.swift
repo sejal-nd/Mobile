@@ -21,7 +21,7 @@ class OutageViewModelTests: XCTestCase {
         
         AccountsStore.sharedInstance.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
         
-        viewModel.getOutageStatus(onSuccess: { (status: OutageStatus) in
+        viewModel.getOutageStatus(onSuccess: {
             asyncExpectation.fulfill()
         }, onError: { error in
             XCTFail("Unexpected failure response")

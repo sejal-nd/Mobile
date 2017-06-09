@@ -15,18 +15,9 @@ enum ServiceErrorCode : String {
     case NoNetworkConnection = "ERR-NO-NETWORK-CONNECTION"
     case InvalidProfileType = "INVALID-PROFILE-TYPE"
     case Parsing = "Parsing"
-    case TCNotImplemented = "TC-NOTIMPL"
-    case FNFailLogin = "FN-FAIL-LOGIN"
-    case TCFailLogin = "TC_FAIL-LOGIN"
-    case TCGrantInvalid = "TC-GRANT-INVALID"
     case FNPwdNoMatch = "FN-PWD-NOMATCH"
-    case FnPwdStrength = "FN-PWD-STRENGTH"
     case FnPwdInvalid = "FN-PWD-INVALID"
-    case FnAcctLocked = "FN-ACCT-LOCKED"
     case FnAcctLockedLogin = "FN-ACCT-LOCKED-LOGIN"
-    case FnUnknown = "FN-UNKNOWN"
-    case TcAcctInvalid = "TC-ACCT-INVALID"
-    case TcUserInvalid = "TC-USER-INVALID"
     case TcUnknown = "TC-UNKNOWN"
     case FnProfBadSecurity = "FN-PROF-BADSECURITY" // Forgot Username - security question answered incorrectly
     case FnProfNotFound = "FN-PROF-NOTFOUND" // Forgot Username/Password - profile not found
@@ -36,6 +27,8 @@ enum ServiceErrorCode : String {
     case DupPaymentAccount = "DUPLICATE_PAYMENT_ACCOUNT" // Wallet - user tries to add duplicate payment method
     case FnAccountMultiple = "FN-ACCT-MULTIPLE" // Registration
     case FnProfileExists = "FN-PROF-EXISTS"
+    case FnAccountFinaled = "FN-ACCOUNT-FINALED" // Loading outage status for finaled account
+    case FnAccountNoPay = "FN-ACCOUNT-NOPAY" // Loading outage status for no-pay account
 }
 
 // MARK: - ServiceError

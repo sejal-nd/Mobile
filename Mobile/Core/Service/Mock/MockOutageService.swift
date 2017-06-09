@@ -113,7 +113,7 @@ class MockOutageService : OutageService {
                 completion(ServiceResult.Success())
             }
         } else {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.TcAcctInvalid.rawValue, serviceMessage: "Invalid Account")))
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, serviceMessage: "Invalid Account")))
         }
     }
 }

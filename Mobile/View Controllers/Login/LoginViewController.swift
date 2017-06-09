@@ -40,6 +40,7 @@ class LoginViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(verifyAccountNotificationReceived), name: NSNotification.Name.DidTapAccountVerificationDeepLink, object: nil)
         
         view.backgroundColor = .primaryColor
         
@@ -62,6 +63,8 @@ class LoginViewController: UIViewController {
         passwordTextField.textField.isSecureTextEntry = true
         passwordTextField.textField.returnKeyType = .done
         passwordTextField.textField.isShowingAccessory = true
+        
+        eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
     
         // Two-way data binding for the username/password fields
         viewModel.username.asObservable().bind(to: usernameTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
@@ -113,6 +116,7 @@ class LoginViewController: UIViewController {
         forgotPasswordButton.tintColor = .actionBlue
         
         touchIDLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        touchIDLabel.isAccessibilityElement = false // The button itself will read "Touch ID"
     }
     
     deinit {
@@ -145,7 +149,10 @@ class LoginViewController: UIViewController {
         
         if !viewAlreadyAppeared {
             viewAlreadyAppeared = true
-            presentTouchIDPrompt()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+                // This delay is necessary to prevent deep link complications -- do not remove
+                self.presentTouchIDPrompt()
+            })
         }
     }
     
@@ -230,11 +237,11 @@ class LoginViewController: UIViewController {
             passwordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
-            eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
+            eyeballButton.accessibilityLabel = NSLocalizedString("Show password activated", comment: "")
         } else {
             passwordTextField.textField.isSecureTextEntry = true
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
-            eyeballButton.accessibilityLabel = NSLocalizedString("Hide password", comment: "")
+            eyeballButton.accessibilityLabel = NSLocalizedString("Hide password activated", comment: "")
         }
     }
     
@@ -283,6 +290,19 @@ class LoginViewController: UIViewController {
             self.navigationController?.view.isUserInteractionEnabled = true
             self.showErrorAlertWith(title: title, message: message + "\n\n" + NSLocalizedString("If you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
         })
+    }
+    
+    func verifyAccountNotificationReceived(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let guid = userInfo["guid"] as? String {
+                print(guid)
+                LoadingView.show()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                    LoadingView.hide()
+                    self.view.makeToast(NSLocalizedString("Thank you for verifying your account", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50))
+                })
+            }
+        }
     }
     
     // MARK: - Keyboard

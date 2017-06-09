@@ -46,6 +46,7 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var reasonForStoppingLabel: UILabel!
     
     @IBOutlet weak var bgeFooterView: UIView!
+    @IBOutlet weak var bgeFooterLoadingView: UIView!
     @IBOutlet var bgeFooterCardViews: [UIView]!
     @IBOutlet weak var monthlyAmountTitleLabel: UILabel!
     @IBOutlet weak var monthlyAmountLabel: UILabel!
@@ -97,8 +98,6 @@ class BudgetBillingViewController: UIViewController {
         whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
         
-
-        
         yourPaymentWouldBeLabel.font = SystemFont.medium.of(textStyle: .footnote)
         yourPaymentWouldBeLabel.textColor = .deepGray
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your payment would be:", comment: "")
@@ -126,10 +125,12 @@ class BudgetBillingViewController: UIViewController {
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
         enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).addDisposableTo(disposeBag)
         
+        
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
         reasonForStoppingTableView.isHidden = true
+        reasonForStoppingTableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReasonForStoppingCell")
         if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
             viewModel.unenrolling.asObservable().subscribe(onNext: { unenrolling in
                 UIView.animate(withDuration: 0.3, animations: {
@@ -139,7 +140,10 @@ class BudgetBillingViewController: UIViewController {
         }
         
         // BGE Footer View when user is enrolled
-        if Environment.sharedInstance.opco == OpCo.bge && accountDetail.isBudgetBillEnrollment {
+        bgeFooterView.isHidden = true // Will be unhidden when the web services call completes
+        if Environment.sharedInstance.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
+            bgeFooterLoadingView.isHidden = false
+            
             for view in bgeFooterCardViews {
                 view.layer.cornerRadius = 2
                 view.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
@@ -149,7 +153,6 @@ class BudgetBillingViewController: UIViewController {
             monthlyAmountTitleLabel.textColor = .blackText
             monthlyAmountTitleLabel.text = NSLocalizedString("Monthly Budget Bill Amount", comment: "")
             monthlyAmountLabel.textColor = .blackText
-            monthlyAmountLabel.text = "$200.00"
             monthlyAmountDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
             monthlyAmountDescriptionLabel.textColor = .deepGray
             monthlyAmountDescriptionLabel.text = NSLocalizedString("Payment received after March 13, 2017 will incur a late charge.\n\nA late payment charge is applied to the unpaid balance of your BGE charges. The charge is up to 1.5% for the first month; additional charges will be assessed on unpaid balances past the first month, not to exceed 5%.", comment: "")
@@ -158,13 +161,11 @@ class BudgetBillingViewController: UIViewController {
             lastPaymentDateTitleLabel.textColor = .blackText
             lastPaymentDateTitleLabel.text = NSLocalizedString("Last Payment Date", comment: "")
             lastPaymentDateLabel.textColor = .blackText
-            lastPaymentDateLabel.text = "11/01/2016"
             
             payoffBalanceTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
             payoffBalanceTitleLabel.textColor = .blackText
             payoffBalanceTitleLabel.text = NSLocalizedString("Payoff Balance for BGE Service", comment: "")
             payoffBalanceLabel.textColor = .blackText
-            payoffBalanceLabel.text = "$174.13"
             payoffBalanceDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
             payoffBalanceDescriptionLabel.textColor = .deepGray
             payoffBalanceDescriptionLabel.text = NSLocalizedString("Total actual-usage charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
@@ -173,7 +174,6 @@ class BudgetBillingViewController: UIViewController {
             currentBalanceTitleLabel.textColor = .blackText
             currentBalanceTitleLabel.text = NSLocalizedString("Current Balance for BGE Service", comment: "")
             currentBalanceLabel.textColor = .blackText
-            currentBalanceLabel.text = "$0.00"
             currentBalanceDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
             currentBalanceDescriptionLabel.textColor = .deepGray
             currentBalanceDescriptionLabel.text = NSLocalizedString("Total billed charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
@@ -182,14 +182,11 @@ class BudgetBillingViewController: UIViewController {
             accDifferenceTitleLabel.textColor = .blackText
             accDifferenceTitleLabel.text = NSLocalizedString("Accumulated Difference for BGE Service", comment: "")
             accDifferenceLabel.textColor = .blackText
-            accDifferenceLabel.text = "$174.13"
             accDifferenceDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
             accDifferenceDescriptionLabel.textColor = .deepGray
             accDifferenceDescriptionLabel.text = NSLocalizedString("The difference between your Payoff Balance and your Current Balance for BGE Service.", comment: "")
-        } else {
-            bgeFooterView.isHidden = true
         }
-        
+
         footerLabel.textColor = .blackText
         if let footerText = viewModel.getFooterText() {
             footerLabel.text = footerText
@@ -214,10 +211,22 @@ class BudgetBillingViewController: UIViewController {
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
             self.paymentAmountLoadingIndicator.isHidden = true
             self.paymentAmountView.isHidden = false
+            
+            if Environment.sharedInstance.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
+                self.monthlyAmountLabel.text = budgetBillingInfo.averageMonthlyBill
+                self.lastPaymentDateLabel.text = self.accountDetail.billingInfo.lastPaymentDate?.mmDdYyyyString
+                self.payoffBalanceLabel.text = budgetBillingInfo.budgetBillPayoff
+                self.currentBalanceLabel.text = budgetBillingInfo.budgetBillBalance
+                self.accDifferenceLabel.text = budgetBillingInfo.budgetBillDifference
+                self.bgeFooterLoadingView.isHidden = true
+                self.bgeFooterView.isHidden = false
+            }
+            
         }, onError: { errMessage in
             self.paymentAmountErrorLabel.text = NSLocalizedString("Error Loading Budget Billing Data", comment: "")
             self.paymentAmountLoadingIndicator.isHidden = true
             self.paymentAmountErrorLabel.isHidden = false
+            self.bgeFooterLoadingView.isHidden = true
         })
     }
     
@@ -331,7 +340,7 @@ extension BudgetBillingViewController: UITableViewDelegate {
 extension BudgetBillingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonForStoppingCell", for: indexPath) as! BudgetBillingTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonForStoppingCell", for: indexPath) as! RadioSelectionTableViewCell
         
         cell.label.text = viewModel.getReasonString(forIndex: indexPath.row)
         

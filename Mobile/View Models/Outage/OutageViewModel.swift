@@ -18,7 +18,7 @@ class OutageViewModel {
     private var currentGetOutageStatusDisposable: Disposable?
     
     var currentOutageStatus: OutageStatus?
-    
+
     required init(accountService: AccountService, outageService: OutageService) {
         self.accountService = accountService
         self.outageService = outageService
@@ -30,7 +30,7 @@ class OutageViewModel {
         }
     }
     
-    func getOutageStatus(onSuccess: @escaping (OutageStatus) -> Void, onError: @escaping (String) -> Void) {
+    func getOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
 
         // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
         if let disposable = currentGetOutageStatusDisposable {
@@ -41,10 +41,19 @@ class OutageViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { outageStatus in
                 self.currentOutageStatus = outageStatus
-                onSuccess(outageStatus)
+                onSuccess()
             }, onError: { error in
-                self.currentOutageStatus = nil
-                onError(error.localizedDescription)
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.FnAccountFinaled.rawValue {
+                    self.currentOutageStatus = OutageStatus.from(["flagFinaled": true])
+                    onSuccess()
+                } else if serviceError.serviceCode == ServiceErrorCode.FnAccountNoPay.rawValue {
+                    self.currentOutageStatus = OutageStatus.from(["flagNoPay": true])
+                    onSuccess()
+                } else {
+                    self.currentOutageStatus = nil
+                    onError(error.localizedDescription)
+                }
             })
     }
     

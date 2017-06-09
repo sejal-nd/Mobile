@@ -20,4 +20,6 @@ struct UserDefaultKeys {
     static let IsCommercialUser = "kIsCommercialUser"
     
     static let OneTouchPayDictionary = "kOneTouchPayDictionary"
+    
+    static let InMainApp = "kInMainApp" // Is the user in the "Main" area of the app (past-login). Set to true in MainTabBarController
 }

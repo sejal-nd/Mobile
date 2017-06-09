@@ -83,6 +83,8 @@ struct AccountDetail: Mappable {
     let isCutOutNonPay: Bool
 	
 	let isAMICustomer: Bool
+    
+    let releaseOfInformation: String?
 	
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
@@ -109,6 +111,8 @@ struct AccountDetail: Mappable {
 		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
 		
 		isAMICustomer = map.optionalFrom("isAMICustomer") ?? false
+        
+        releaseOfInformation = map.optionalFrom("releaseOfInformation")
     }
 	
     var eBillEnrollStatus: EBillEnrollStatus {

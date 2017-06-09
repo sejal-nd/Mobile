@@ -61,7 +61,7 @@ class OneTouchPayService {
                 switch oneTouchPayItem.paymentCategoryType! {
                 case .check:
                     return String(format: NSLocalizedString("You are currently using bank account %@ for One Touch Pay.", comment: ""), "**** \(oneTouchPayItem.maskedWalletItemAccountNumber!)")
-                case .credit:
+                case .credit, .debit:
                     return String(format: NSLocalizedString("You are currently using card %@ for One Touch Pay.", comment: ""), "**** \(oneTouchPayItem.maskedWalletItemAccountNumber!)")
                 }
             }

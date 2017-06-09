@@ -55,6 +55,7 @@ enum WalletItemStatusTypeBGE: String {
 enum PaymentCategoryType: String {
     case check = "Check"
     case credit = "Credit"
+    case debit = "Debit"
 }
 
 // Comed/PECO
