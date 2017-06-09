@@ -237,11 +237,9 @@ struct FiservApi {
         
         let payload = String.init(data: jsonData as Data, encoding: String.Encoding.utf8)?.replacingOccurrences(of: "\\", with: "")
         
-        // NOTE: Whether or not we encode the new tokens portion does not seem to have an effect
-        let content = "action=\(action)&payload=\(payload!)"
-        //let content = "action=\(action)&payload=\(payload!)&unique=\(unique)&guid=\(guid)&hashResult=\(hashResult)"
+        let content = "action=\(action)&payload=\(payload!)&unique=\(unique)&guid=\(guid)&hashResult=\(hashResult)"
         var encodedContent = content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        encodedContent += "&unique=\(unique)&guid=\(guid)&hashResult=\(hashResult)"
+        encodedContent = encodedContent.replacingOccurrences(of: "+", with: "%2B") // "+" signs were being turned into spaces on Fiserv's end
         
         dLog(message: encodedContent)
         
