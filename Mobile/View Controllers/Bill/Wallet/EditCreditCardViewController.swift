@@ -222,11 +222,20 @@ class EditCreditCardViewController: UIViewController {
                 switch paymentMethodType {
                 case .visa:
                     bankImageView.image = #imageLiteral(resourceName: "ic_visa")
+                    bankImageView.accessibilityLabel = NSLocalizedString("Visa card", comment: "")
                 case .mastercard:
                     bankImageView.image = #imageLiteral(resourceName: "ic_mastercard")
-                default:
-                    bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
+                    bankImageView.accessibilityLabel = NSLocalizedString("Master card", comment: "")
+                case .discover:
+                    bankImageView.image = #imageLiteral(resourceName: "ic_discover")
+                    bankImageView.accessibilityLabel = NSLocalizedString("Discover card", comment: "")
+                case .americanexpress:
+                    bankImageView.image = #imageLiteral(resourceName: "ic_amex")
+                    bankImageView.accessibilityLabel = NSLocalizedString("American Express card", comment: "")
                 }
+            } else {
+                bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
+                bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
             }
         case .bge:
             bankImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
@@ -360,14 +369,21 @@ class EditCreditCardViewController: UIViewController {
         
         let customerNumber = viewModel.accountDetail.customerInfo.number
         
+        var shouldShowOneTouchPayReplaceWarning = false
+        var shouldShowOneTouchPayDisableWarning = false
+        let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber)
+        if self.viewModel.oneTouchPay.value {
+            if otpItem != nil && otpItem != self.viewModel.walletItem {
+                shouldShowOneTouchPayReplaceWarning = true
+            }
+        } else {
+            if otpItem == self.viewModel.walletItem {
+                shouldShowOneTouchPayDisableWarning = true
+            }
+        }
+        
         viewModel.webServicesDataChanged().single().subscribe(onNext: { changed in
             if changed {
-                var shouldShowOneTouchPayWarning = false
-                if self.viewModel.oneTouchPay.value {
-                    if self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
-                        shouldShowOneTouchPayWarning = true
-                    }
-                }
                 
                 let editCreditCard = { (oneTouchPay: Bool) in
                     
@@ -378,7 +394,6 @@ class EditCreditCardViewController: UIViewController {
                             self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
                         }
                     }
-                    
                     
                     if Environment.sharedInstance.opco == .bge {
                         editOneTouchPay()
@@ -402,18 +417,24 @@ class EditCreditCardViewController: UIViewController {
                     
                 }
                 
-                if shouldShowOneTouchPayWarning {
+                if shouldShowOneTouchPayReplaceWarning {
                     let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
                         editCreditCard(true)
                     }))
                     self.present(alertVc, animated: true, completion: nil)
+                } else if shouldShowOneTouchPayDisableWarning {
+                    let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to turn off One Touch Pay? You will no longer be able to pay from the home screen, and your payment will no longer be set as default.", comment: ""), preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
+                        editCreditCard(false)
+                    }))
+                    self.present(alertVc, animated: true, completion: nil)
                 } else {
                     editCreditCard(self.viewModel.oneTouchPay.value)
                 }
             } else {
-                
                 let toggleOneTouchPay = {
                     if self.viewModel.oneTouchPay.value {
                         self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, paymentCategoryType: .credit, forCustomerNumber: customerNumber)
@@ -425,17 +446,21 @@ class EditCreditCardViewController: UIViewController {
                         _ = self.navigationController?.popViewController(animated: true)
                     }
                 }
-                if self.viewModel.oneTouchPay.value {
-                    if self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
-                        let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
-                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
-                            toggleOneTouchPay()
-                        }))
-                        self.present(alertVc, animated: true, completion: nil)
-                    } else {
+                
+                if shouldShowOneTouchPayReplaceWarning {
+                    let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
                         toggleOneTouchPay()
-                    }
+                    }))
+                    self.present(alertVc, animated: true, completion: nil)
+                } else if shouldShowOneTouchPayDisableWarning {
+                    let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to turn off One Touch Pay? You will no longer be able to pay from the home screen, and your payment will no longer be set as default.", comment: ""), preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
+                        toggleOneTouchPay()
+                    }))
+                    self.present(alertVc, animated: true, completion: nil)
                 } else {
                     toggleOneTouchPay()
                 }

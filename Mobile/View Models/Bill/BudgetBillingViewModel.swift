@@ -89,6 +89,8 @@ class BudgetBillingViewModel {
     }
     
     func getFooterText() -> String? {
+        print("yo")
+        print(accountDetail.budgetBillMessage ?? "NO")
         switch Environment.sharedInstance.opco {
         case .bge:
             return NSLocalizedString("Budget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
@@ -100,10 +102,12 @@ class BudgetBillingViewModel {
         case .peco:
             if accountDetail.hasElectricSupplier && accountDetail.isDualBillOption {
                 return NSLocalizedString("Budget billing option only includes PECO charges. Energy Supply charges are billed by your chosen generation provider.", comment: "")
+            } else if let budgetBillMessage = accountDetail.budgetBillMessage {
+                if budgetBillMessage.contains("Your account has not yet been open for a year") {
+                    return NSLocalizedString("PECO bases the monthly budget billing amount on your average bill over the past 12 months. Your account has not yet been open for a year. Therefore, your monthly budget billing amount is an estimate that takes into account the usage of the previous resident at your address and/or the average usage in your area. Be aware that your usage may differ from the previous resident. This may result in future changes to your budget billing amount.", comment: "")
+
+                }
             }
-//            else if user has less than 12 months of usage history {
-//                return NSLocalizedString("PECO bases the monthly budget billing amount on your average bill over the past 12 months. Your account has not yet been open for a year. Therefore, your monthly budget billing amount is an estimate that takes into account the usage of the previous resident at your address and/or the average usage in your area. Be aware that your usage may differ from the previous resident. This may result in future changes to your budget billing amount.", comment: "")
-//            }
             return nil
         }
     }

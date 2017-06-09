@@ -114,7 +114,7 @@ class WalletTableViewCell: UITableViewCell {
         switch Environment.sharedInstance.opco {
         case .comEd, .peco:
             accountImageView.isAccessibilityElement = true
-            if walletItem.paymentCategoryType == .credit {
+            if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
                 bottomBarLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
                 if let paymentMethodType = walletItem.paymentMethodType {
                     switch paymentMethodType {
