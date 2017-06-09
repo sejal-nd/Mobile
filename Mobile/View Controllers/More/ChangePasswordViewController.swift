@@ -77,6 +77,8 @@ class ChangePasswordViewController: UIViewController {
         newPasswordTextField.textField.returnKeyType = .next
         newPasswordTextField.textField.delegate = self
         
+        eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
+        
         confirmPasswordTextField.textField.placeholder = NSLocalizedString("Confirm Password", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.returnKeyType = .done
@@ -189,11 +191,11 @@ class ChangePasswordViewController: UIViewController {
             currentPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
-            eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
+            eyeballButton.accessibilityLabel = NSLocalizedString("Show password activated", comment: "")
         } else {
             currentPasswordTextField.textField.isSecureTextEntry = true
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
-            eyeballButton.accessibilityLabel = NSLocalizedString("Hide password", comment: "")
+            eyeballButton.accessibilityLabel = NSLocalizedString("Hide password activated", comment: "")
         }
     }
     

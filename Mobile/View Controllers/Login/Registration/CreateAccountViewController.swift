@@ -101,11 +101,11 @@ class CreateAccountViewController: UIViewController {
             // ------------------------------------------------------------------------------- //
             
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
-            eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
+            eyeballButton.accessibilityLabel = NSLocalizedString("Show password activated", comment: "")
         } else {
             createPasswordTextField.textField.isSecureTextEntry = true
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
-            eyeballButton.accessibilityLabel = NSLocalizedString("Hide password", comment: "")
+            eyeballButton.accessibilityLabel = NSLocalizedString("Hide password activated", comment: "")
         }
     }
     
@@ -227,6 +227,8 @@ class CreateAccountViewController: UIViewController {
         createPasswordTextField.textField.returnKeyType = .done
         createPasswordTextField.textField.delegate = self
         createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+        
+        eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
         
         confirmPasswordTextField.textField.placeholder = NSLocalizedString("Confirm Password*", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true

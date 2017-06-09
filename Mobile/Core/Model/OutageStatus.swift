@@ -42,46 +42,15 @@ struct OutageStatus: Mappable {
     var etr: Date?
     
     init(map: Mapper) throws {
-        do {
-            try flagGasOnly = map.from("flagGasOnly")
-        } catch {
-            flagGasOnly = false
-        }
-        
+        flagGasOnly = map.optionalFrom("flagGasOnly") ?? false
         contactHomeNumber = map.optionalFrom("contactHomeNumber")
         outageDescription = map.optionalFrom("outageReported")
-        
-        do {
-            try activeOutage = map.from("status", transformation: extractOutageStatus)
-        } catch {
-            activeOutage = false
-        }
-        
-        do {
-            try smartMeterStatus = map.from("smartMeterStatus")
-        } catch {
-            smartMeterStatus = false
-        }
-        
-        do {
-            try flagFinaled = map.from("flagFinaled")
-        } catch {
-            flagFinaled = false
-        }
-        
-        do {
-            try flagNoPay = map.from("flagNoPay")
-        } catch {
-            flagNoPay = false
-        }
-        
+        activeOutage = map.optionalFrom("status", transformation: extractOutageStatus) ?? false
+        smartMeterStatus = map.optionalFrom("smartMeterStatus") ?? false
+        flagFinaled = map.optionalFrom("flagFinaled") ?? false
+        flagNoPay = map.optionalFrom("flagNoPay") ?? false
         meterPingInfo = map.optionalFrom("meterInfo")
-        
-        do {
-            try etr = map.from("ETR", transformation: extractDate)
-        } catch {
-            etr = nil
-        }
+        etr = map.optionalFrom("ETR", transformation: extractDate)
     }
     
 }
@@ -93,24 +62,9 @@ struct MeterPingInfo: Mappable {
     let voltageReads: String?
     
     init(map: Mapper) throws {
-        do {
-            try preCheckSuccess = map.from("preCheckSuccess")
-        } catch {
-            preCheckSuccess = false
-        }
-        
-        do {
-            try pingResult = map.from("pingResult")
-        } catch {
-            pingResult = false
-        }
-        
-        do {
-            try voltageResult = map.from("voltageResult")
-        } catch {
-            voltageResult = false
-        }
-
+        preCheckSuccess = map.optionalFrom("preCheckSuccess") ?? false
+        pingResult = map.optionalFrom("pingResult") ?? false
+        voltageResult = map.optionalFrom("voltageResult") ?? false
         voltageReads = map.optionalFrom("voltageReads")
     }
 }

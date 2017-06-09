@@ -19,6 +19,8 @@ class MainTabBarController: UITabBarController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.InMainApp)
+        
         tabBar.barTintColor = .white
         tabBar.tintColor = .primaryColor
         tabBar.isTranslucent = false

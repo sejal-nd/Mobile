@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupToastStyles()
         //printFonts()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigation), name: NSNotification.Name(rawValue: "DidReceiveInvalidAuthTokenNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigation), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
    
         return true
     }
@@ -62,20 +62,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb { // Universal Link
-            guard let window = self.window else { return false }
-            guard let rootNav = window.rootViewController as? UINavigationController else { return false }
-            if rootNav.viewControllers.count > 1 { // Landing view already in the stack
-                guard let landingVC = rootNav.viewControllers[1] as? LandingViewController else { return false }
-                landingVC.restoreUserActivityState(userActivity)
-            } else {
-                guard let splashVC = rootNav.viewControllers[0] as? SplashViewController else { return false }
-                splashVC.restoreUserActivityState(userActivity)
-            }
-
-            return true
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+                return false
         }
-        return false
+        
+        var guid: String?
+        if let queryString = components.query {
+            if queryString.contains("guid=") {
+                let splitArray = queryString.components(separatedBy: "=")
+                guid = splitArray[1]
+            }
+        }
+        
+        // For now, no deep links require being logged in. So if the user is already in the app, don't do anything special
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
+            return false
+        }
+        
+        guard let window = self.window else { return false }
+        guard let rootNav = window.rootViewController as? UINavigationController else { return false }
+        if rootNav.viewControllers.count > 1 { // Already past the splash screen
+            resetNavigation(sendToLogin: true)
+        } else { // Cold boot
+            guard let splashVC = rootNav.viewControllers[0] as? SplashViewController else { return false }
+            splashVC.restoreUserActivityState(userActivity)
+        }
+        
+        if let guid = guid {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                // Need delay here for the notification to be properly received by LoginViewController
+                NotificationCenter.default.post(name: NSNotification.Name.DidTapAccountVerificationDeepLink, object: self, userInfo: ["guid": guid])
+            })
+        }
+
+        return true
     }
     
     func setupUserDefaults() {
@@ -83,6 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaultKeys.ShouldPromptToEnableTouchID: true,
             UserDefaultKeys.OneTouchPayDictionary: [String: NSDictionary]()
         ])
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
     }
     
     func setupToastStyles() {
@@ -94,10 +117,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ToastManager.shared.duration = 5.0
     }
     
-    func resetNavigation() {
-        let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let rootVC = loginStoryboard.instantiateInitialViewController()
-        self.window?.rootViewController = rootVC
+    func resetNavigation(sendToLogin: Bool = false) {
+        if let rootNav = window?.rootViewController as? UINavigationController {
+            if sendToLogin {
+                let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+                let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+                let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
+                rootNav.setViewControllers([landing, login], animated: false)
+            } else {
+                rootNav.popToRootViewController(animated: false)
+            }
+        }
+        window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app if it was presented modally
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
     }
     
     func printFonts() {

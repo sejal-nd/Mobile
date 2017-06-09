@@ -415,7 +415,13 @@ class BillViewController: AccountPickerViewController {
                 if accountDetail.isBudgetBillEligible {
                     self.performSegue(withIdentifier: "budgetBillingSegue", sender: self)
                 } else {
-                    let alertVC = UIAlertController(title: NSLocalizedString("Ineligible for Budget Billing", comment: ""), message: NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: ""), preferredStyle: .alert)
+                    var message = NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: "")
+                    if let budgetBillMessage = accountDetail.budgetBillMessage {
+                        if budgetBillMessage.contains("Your account has not yet been open for a year") {
+                            message = NSLocalizedString("There is insufficient billing history to calculate your Budget Billing amount at this location. If you would like your Budget Billing amount to be manually calculated, please contact BGE customer service at myhomerep@bge.com.", comment: "")
+                        }
+                    }
+                    let alertVC = UIAlertController(title: NSLocalizedString("Ineligible for Budget Billing", comment: ""), message: message, preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVC, animated: true, completion: nil)
                 }

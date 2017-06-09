@@ -82,6 +82,8 @@ class OutageViewController: AccountPickerViewController {
         bigButtonView.layer.cornerRadius = radius
         bigButtonView.clipsToBounds = true // So text doesn't overflow
         bigButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
+        bigButtonView.isAccessibilityElement = true
+        bigButtonView.accessibilityLabel = NSLocalizedString("Outage status button", comment: "")
         
         bigButtonShadowView.layer.cornerRadius = radius
         bigButtonShadowView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
@@ -96,6 +98,7 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
+        footerTextView.accessibilityLabel = viewModel.getFooterTextViewText()
         
         gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
@@ -325,7 +328,7 @@ class OutageViewController: AccountPickerViewController {
         errorLabel.isHidden = true
         loadingView.isHidden = false
         setRefreshControlEnabled(enabled: false)
-        viewModel.getOutageStatus(onSuccess: { _ in
+        viewModel.getOutageStatus(onSuccess: {
             self.loadingView.isHidden = true
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent()
@@ -341,8 +344,7 @@ class OutageViewController: AccountPickerViewController {
     
     func onBigButtonTap() {
         if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != .bge  {
-            // TEMPORARILY DISABLED
-            //tabBarController?.selectedIndex = 1 // Jump to Bill tab
+            tabBarController?.selectedIndex = 1 // Jump to Bill tab
         } else {
             if let message = viewModel.currentOutageStatus!.outageDescription {
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -353,7 +355,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     func onPullToRefresh() {
-        viewModel.getOutageStatus(onSuccess: { outageStatus in
+        viewModel.getOutageStatus(onSuccess: {
             self.refreshControl?.endRefreshing()
             self.updateContent()
         }, onError: { error in

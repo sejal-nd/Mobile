@@ -26,4 +26,8 @@ struct MockAccountService : AccountService {
         let accountDetail = AccountDetail.from(["accountNumber": account.accountNumber, "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])!
         completion(ServiceResult.Success(accountDetail))
     }
+    
+    func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int, completion: @escaping (ServiceResult<Void>) -> Void) {
+        completion(ServiceResult.Success())
+    }
 }
