@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 import Zxcvbn
 
 class RegistrationViewModel {
@@ -22,7 +23,7 @@ class RegistrationViewModel {
     let confirmUsername = Variable("")
     let newPassword = Variable("")
     let confirmPassword = Variable("")
-    var primaryProfile = false
+    var primaryProfile = Variable<Bool>(false)
     
     let securityQuestion1 = Variable("")
     let securityAnswer1 = Variable("")
@@ -32,10 +33,28 @@ class RegistrationViewModel {
     
     let securityQuestion3 = Variable("")
     let securityAnswer3 = Variable("")
-    var paperlessEbill = false
+    var paperlessEbill = Variable<Bool>(true)
     
+    let loadSecurityQuestionsData = PublishSubject<Void>()
     
-    required init() {
+    var securityQuestions = Variable<[SecurityQuestion]>([])
+    
+    var accounts = Variable<[AccountLookupResult]>([])
+    
+    var registrationService: RegistrationService
+    
+    required init(registrationService: RegistrationService) {
+        self.registrationService = registrationService
+
+        loadSecurityQuestions.elements().map {
+            $0.map(SecurityQuestion.init)
+            }
+            .bind(to:securityQuestions)
+            .addDisposableTo(disposeBag)
+        
+//        loadAccounts.elements()
+//            .bind(to: accounts)
+//            .addDisposableTo(disposeBag)
     }
     
     
@@ -43,8 +62,6 @@ class RegistrationViewModel {
     func validateAccount(onSuccess: @escaping () -> Void, onMultipleAccounts: @escaping() -> Void, onError: @escaping (String, String) -> Void) {
         let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
         let identifier: String = identifierNumber.value
-        
-        let registrationService = ServiceFactory.createRegistrationService()
         
         registrationService.validateAccountInformation(identifier, phone: extractDigitsFrom(phoneNumber.value), accountNum: acctNum)
         	.observeOn(MainScheduler.instance)
@@ -69,8 +86,6 @@ class RegistrationViewModel {
     func verifyUniqueUsername(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let username: String = self.username.value
         
-        let registrationService = ServiceFactory.createRegistrationService()
-        
         registrationService.checkForDuplicateAccount(username)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
@@ -86,9 +101,37 @@ class RegistrationViewModel {
             })
             .addDisposableTo(disposeBag)
     }
+    
+    lazy var loadSecurityQuestions: Observable<Event<[String]>> = self.loadSecurityQuestionsData
+        .flatMapLatest {
+            self.registrationService.loadSecretQuestions().materialize()
+        }
+        .share()
+    
+    
+    lazy var loadAccounts: Observable<Event<[AccountLookupResult]>> = self.loadSecurityQuestionsData
+        .flatMapLatest {
+            ServiceFactory.createAuthenticationService()
+                .lookupAccount(phone: self.phoneNumber.value, identifier: self.identifierNumber.value)
+                .materialize()
+        }
+        .share()
+    
+    lazy var securityQuestionsDataFinishedLoading: Driver<Void> = Observable.zip(self.loadSecurityQuestions.elements(),
+                                                                                 self.loadAccounts.elements())
+                                                                                    .map({ _ in () })
+                                                                                    .asDriver(onErrorJustReturn: ())
 
+//    lazy var loadAccountsError: Driver<String> = self.loadAccounts.errors()
+//                    .map { $0.localizedDescription }
+//                    .asDriver(onErrorJustReturn: "")
+    
+    lazy var loadSecurityQuestionsError: Driver<String> = self.loadSecurityQuestions.errors()
+                    .map { $0.localizedDescription }
+                    .asDriver(onErrorJustReturn: "")
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
+
     func nextButtonEnabled() -> Observable<Bool> {
         if Environment.sharedInstance.opco == .bge {
             return Observable.combineLatest(phoneNumberHasTenDigits(),
@@ -159,6 +202,8 @@ class RegistrationViewModel {
             let urlComponents = components[1].components(separatedBy: ".")
             
             if urlComponents.count < 2 {
+                return false
+            } else if urlComponents[0].characters.count == 0 || urlComponents[1].characters.count == 0 {
                 return false
             }
             

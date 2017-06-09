@@ -39,10 +39,11 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var numberCheck: UIImageView!
     @IBOutlet weak var specialCharacterCheck: UIImageView!
     
-    @IBOutlet weak var primaryProfileSwitch: UIView!
+    @IBOutlet weak var primaryProfileSwitchView: UIView!
     @IBOutlet weak var primaryProfileLabel: UILabel!
+    @IBOutlet weak var primaryProfileSwitch: Switch!
     
-    var viewModel = RegistrationViewModel()
+    var viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
     
     var nextButton = UIBarButtonItem()
     
@@ -110,7 +111,7 @@ class CreateAccountViewController: UIViewController {
     }
     
     @IBAction func primaryProfileSwitchToggled(_ sender: Any) {
-        viewModel.primaryProfile = !viewModel.primaryProfile
+        viewModel.primaryProfile.value = !viewModel.primaryProfile.value
     }
     
     
@@ -119,23 +120,23 @@ class CreateAccountViewController: UIViewController {
         
         LoadingView.show()
         
-        LoadingView.hide()
-        
-        self.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
+//        LoadingView.hide()
+//        
+//        self.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
 
-//        viewModel.verifyUniqueUsername(onSuccess: {
-//            LoadingView.hide()
-//            
-//            self.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
-//
-//        }, onError: { (title, message) in
-//            LoadingView.hide()
-//            
-//            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-//            
-//            self.present(alertController, animated: true, completion: nil)
-//        })
+        viewModel.verifyUniqueUsername(onSuccess: {
+            LoadingView.hide()
+            
+            self.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
+
+        }, onError: { (title, message) in
+            LoadingView.hide()
+            
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        })
     }
 
     func setupValidation() {
@@ -293,22 +294,22 @@ class CreateAccountViewController: UIViewController {
         let opCo = Environment.sharedInstance.opco
         
         if opCo == .bge {
-            primaryProfileSwitch.isHidden = true
+            primaryProfileSwitchView.isHidden = true
         }
         
         primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
+        primaryProfileSwitch.rx.isOn.bind(to: viewModel.primaryProfile).addDisposableTo(disposeBag)
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let vc = segue.destination as? SelectSecurityQuestionsViewController {
+            vc.viewModel = viewModel
+        }
     }
-    */
-
+ 
     // MARK: - ScrollView
     
     func keyboardWillShow(notification: Notification) {
