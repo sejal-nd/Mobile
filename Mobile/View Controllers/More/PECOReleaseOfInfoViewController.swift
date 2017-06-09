@@ -118,9 +118,9 @@ extension PECOReleaseOfInfoViewController: UITableViewDataSource {
         case 0:
             cell.label.text = NSLocalizedString("Do Not Release My Information", comment: "")
         case 1:
-            cell.label.text = NSLocalizedString("Release my Address and Energy\nUsage Profile", comment: "")
+            cell.label.text = NSLocalizedString("Release My Address and Energy\nUsage Profile", comment: "")
         case 2:
-            cell.label.text = NSLocalizedString("Release my Address Only", comment: "")
+            cell.label.text = NSLocalizedString("Release My Address Only", comment: "")
         default:
             break
         }
