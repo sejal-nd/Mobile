@@ -43,7 +43,6 @@ class SelectSecurityQuestionsViewController: UIViewController {
     @IBOutlet weak var accountListInstructionsLabel: UILabel!
     @IBOutlet weak var accountListHeaderView: UIView!
     
-    
     var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
     
     
@@ -104,12 +103,10 @@ class SelectSecurityQuestionsViewController: UIViewController {
     }
     
     func setupNavigationButtons() {
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         
-        viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.allQuestionsAnswered().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = nextButton
     }
     
@@ -218,29 +215,27 @@ class SelectSecurityQuestionsViewController: UIViewController {
                 
                 self.question3AnswerTextField.setEnabled(valid)
             }).addDisposableTo(disposeBag)
-        
-    }
+
+        // Bind to the view model
+        question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer1).addDisposableTo(disposeBag)
+        question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer2).addDisposableTo(disposeBag)
+        question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer3).addDisposableTo(disposeBag)
+}
     
     func displayAccountListing() {
         enrollIneBillSwitch.rx.isOn.bind(to: viewModel.paperlessEbill).addDisposableTo(disposeBag)
 
         accountListView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
-        accountListHeaderView.isHidden = true
+//        accountListHeaderView.isHidden = true
     }
 
     func loadTestQuestions() {
-        question1ContentLabel.text = "What is your favorite color, when the sky is blue and the grass is green?"
-        question1ContentLabel.isHidden = false
-        question1AnswerTextField.setEnabled(true)
+        viewModel.securityQuestion1.value = "What is your favorite color, when the sky is blue and the grass is green?"
 
-        question2ContentLabel.text = "What is your favorite color, when the sky is blue and the grass is green?"
-        question2ContentLabel.isHidden = false
-        question2AnswerTextField.setEnabled(true)
+        viewModel.securityQuestion2.value = "What is your favorite color, when the sky is blue and the grass is green?"
 
-        question3ContentLabel.text = "What is your favorite color, when the sky is blue and the grass is green?"
-        question3ContentLabel.isHidden = false
-        question3AnswerTextField.setEnabled(true)
+        viewModel.securityQuestion3.value = "What is your favorite color, when the sky is blue and the grass is green?"
 }
     
     
@@ -298,7 +293,6 @@ class SelectSecurityQuestionsViewController: UIViewController {
         scrollView.scrollIndicatorInsets = .zero
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -306,7 +300,6 @@ class SelectSecurityQuestionsViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
     
     /////////////////////////////////////////////////////////////////////////////////////////////////

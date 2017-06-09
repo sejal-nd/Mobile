@@ -23,6 +23,7 @@ class RegistrationViewModel {
     let confirmUsername = Variable("")
     let newPassword = Variable("")
     let confirmPassword = Variable("")
+    
     var primaryProfile = Variable<Bool>(false)
     
     let securityQuestion1 = Variable("")
@@ -33,6 +34,7 @@ class RegistrationViewModel {
     
     let securityQuestion3 = Variable("")
     let securityAnswer3 = Variable("")
+    
     var paperlessEbill = Variable<Bool>(true)
     
     let loadSecurityQuestionsData = PublishSubject<Void>()
@@ -375,7 +377,9 @@ class RegistrationViewModel {
         }
         
         return Observable.combineLatest(inArray) { outArray in
-            return outArray.count == count
+            let otherArray = outArray[0...(count-1)].filter{ $0 }
+            
+            return otherArray.count == count
         }
     }
 }

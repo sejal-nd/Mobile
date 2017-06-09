@@ -214,7 +214,7 @@ class CreateAccountViewController: UIViewController {
         confirmUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         confirmUsernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-            if self.viewModel.username.value.characters.count > 0 {
+            if self.viewModel.confirmUsername.value.characters.count > 0 {
                 self.viewModel.usernameMatches().subscribe(onNext: { valid in
                     self.confirmUsernameTextField.setValidated(valid)
                     
