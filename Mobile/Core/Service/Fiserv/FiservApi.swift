@@ -241,8 +241,6 @@ struct FiservApi {
         var encodedContent = content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         encodedContent = encodedContent.replacingOccurrences(of: "+", with: "%2B") // "+" signs were being turned into spaces on Fiserv's end
         
-        dLog(message: encodedContent)
-        
         return encodedContent.data(using:String.Encoding.utf8)!
     }
     
