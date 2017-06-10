@@ -28,7 +28,6 @@ class CreateAccountViewController: UIViewController {
     
     @IBOutlet var passwordRequirementLabels: [UILabel]!
 
-    @IBOutlet weak var eyeballButton: UIButton!
     @IBOutlet weak var passwordStrengthLabel: UILabel!
     @IBOutlet weak var passwordStrengthView: UIView!
     @IBOutlet weak var passwordStrengthMeterView: PasswordStrengthMeterView!
@@ -92,24 +91,6 @@ class CreateAccountViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    @IBAction func onEyeballPress(_ sender: UIButton) {
-        if createPasswordTextField.textField.isSecureTextEntry {
-            createPasswordTextField.textField.isSecureTextEntry = false
-            
-            // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
-            createPasswordTextField.textField.font = nil
-            createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-            // ------------------------------------------------------------------------------- //
-            
-            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
-            eyeballButton.accessibilityLabel = NSLocalizedString("Show password activated", comment: "")
-        } else {
-            createPasswordTextField.textField.isSecureTextEntry = true
-            eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
-            eyeballButton.accessibilityLabel = NSLocalizedString("Hide password activated", comment: "")
-        }
-    }
-    
     @IBAction func primaryProfileSwitchToggled(_ sender: Any) {
         viewModel.primaryProfile.value = !viewModel.primaryProfile.value
     }
@@ -120,10 +101,6 @@ class CreateAccountViewController: UIViewController {
         
         LoadingView.show()
         
-//        LoadingView.hide()
-//        
-//        self.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
-
         viewModel.verifyUniqueUsername(onSuccess: {
             LoadingView.hide()
             
@@ -213,27 +190,39 @@ class CreateAccountViewController: UIViewController {
         confirmUsernameTextField.setEnabled(false)
         confirmUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
-        confirmUsernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+        self.viewModel.usernameMatches().subscribe(onNext: { valid in
             if self.viewModel.confirmUsername.value.characters.count > 0 {
-                self.viewModel.usernameMatches().subscribe(onNext: { valid in
-                    self.confirmUsernameTextField.setValidated(valid)
-                    
-                    if !valid {
-                        self.confirmUsernameTextField.setError(NSLocalizedString("Username does not match", comment: ""))
-                    } else {
-                        self.confirmUsernameTextField.setError(nil)
-                    }
-                }).addDisposableTo(self.disposeBag)
+                self.confirmUsernameTextField.setValidated(valid)
+                
+                if !valid {
+                    self.confirmUsernameTextField.setError(NSLocalizedString("Username does not match", comment: ""))
+                } else {
+                    self.confirmUsernameTextField.setError(nil)
+                }
+            } else {
+                self.confirmUsernameTextField .setError(nil)
             }
-        }).addDisposableTo(disposeBag)
+        }).addDisposableTo(self.disposeBag)
+
+//        confirmUsernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+//            if self.viewModel.confirmUsername.value.characters.count > 0 {
+//                self.viewModel.usernameMatches().subscribe(onNext: { valid in
+//                    self.confirmUsernameTextField.setValidated(valid)
+//                    
+//                    if !valid {
+//                        self.confirmUsernameTextField.setError(NSLocalizedString("Username does not match", comment: ""))
+//                    } else {
+//                        self.confirmUsernameTextField.setError(nil)
+//                    }
+//                }).addDisposableTo(self.disposeBag)
+//            }
+//        }).addDisposableTo(disposeBag)
         
         createPasswordTextField.textField.placeholder = NSLocalizedString("Password*", comment: "")
         createPasswordTextField.textField.isSecureTextEntry = true
         createPasswordTextField.textField.returnKeyType = .done
         createPasswordTextField.textField.delegate = self
         createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        
-        eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
         
         confirmPasswordTextField.textField.placeholder = NSLocalizedString("Confirm Password*", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true

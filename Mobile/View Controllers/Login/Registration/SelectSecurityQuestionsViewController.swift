@@ -75,6 +75,16 @@ class SelectSecurityQuestionsViewController: UIViewController {
         
         prepareTextFieldsForInput()
         
+        createTestAccounts()
+        
+        viewModel.paperlessEbill.value = true
+        
+        if viewModel.accounts.value.count > 1 {
+            displayAccountListing()
+        }
+    }
+    
+    func createTestAccounts() {
         var account1: AccountLookupResult
         var account2: AccountLookupResult
         
@@ -83,7 +93,7 @@ class SelectSecurityQuestionsViewController: UIViewController {
         
         let map1 = Mapper(JSON: acct1 as NSDictionary)
         let map2 = Mapper(JSON: acct2 as NSDictionary)
-
+        
         do {
             try account1 = AccountLookupResult(map: map1)
             try account2 = AccountLookupResult(map: map2)
@@ -94,10 +104,6 @@ class SelectSecurityQuestionsViewController: UIViewController {
             viewModel.accounts.value.append(account2)
         } catch {
             
-        }
-        
-        if viewModel.accounts.value.count > 1 {
-            displayAccountListing()
         }
     }
     
@@ -272,8 +278,6 @@ class SelectSecurityQuestionsViewController: UIViewController {
     }
     
     func displayAccountListing() {
-        enrollIneBillSwitch.rx.isOn.bind(to: viewModel.paperlessEbill).addDisposableTo(disposeBag)
-
         accountListView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         var accountDetailViews = [AccountDetailsView]()
@@ -286,6 +290,8 @@ class SelectSecurityQuestionsViewController: UIViewController {
         for detailView in accountDetailViews {
             self.accountDataStackView.addArrangedSubview(detailView)
         }
+        
+        enrollIneBillSwitch.rx.isOn.bind(to: viewModel.paperlessEbill).addDisposableTo(disposeBag)
     }
     
     func onCancelPress() {

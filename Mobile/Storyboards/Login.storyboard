@@ -1752,13 +1752,13 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="822"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rW4-cP-ELi" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="795"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="795.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQ4-ZK-Lyk" userLabel="Tablet View">
-                                                <rect key="frame" x="30" y="0.0" width="315" height="795"/>
+                                                <rect key="frame" x="30" y="0.0" width="315" height="795.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ect-2U-ZVW">
-                                                        <rect key="frame" x="0.0" y="30" width="315" height="735"/>
+                                                        <rect key="frame" x="0.0" y="30" width="315" height="735.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please create your sign in credentials." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0g-Bl-e8v">
                                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="19.5"/>
@@ -1787,41 +1787,27 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="60"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Y6q-ZU-5UL"/>
+                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="BjV-Cu-6AG"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6qy-6P-g5t" userLabel="Eyeball Button">
-                                                                        <rect key="frame" x="264" y="4" width="51" height="51"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="51" id="Ax8-Wb-Fsb"/>
-                                                                            <constraint firstAttribute="height" constant="51" id="iFF-dG-708"/>
-                                                                        </constraints>
-                                                                        <state key="normal" image="ic_eyeball_disabled"/>
-                                                                        <connections>
-                                                                            <action selector="onEyeballPress:" destination="OB4-E6-Bvv" eventType="touchUpInside" id="QCW-ks-sf0"/>
-                                                                            <action selector="onEyeballPress:" destination="Pib-RC-igc" eventType="touchUpInside" id="btb-pm-gdc"/>
-                                                                        </connections>
-                                                                    </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="6qy-6P-g5t" firstAttribute="trailing" secondItem="kbS-fU-Zq2" secondAttribute="trailing" id="A4j-qQ-8Ta"/>
-                                                                    <constraint firstItem="kbS-fU-Zq2" firstAttribute="top" secondItem="9HU-Jb-jYP" secondAttribute="top" id="NN6-AV-lHv"/>
-                                                                    <constraint firstItem="6qy-6P-g5t" firstAttribute="top" secondItem="9HU-Jb-jYP" secondAttribute="top" constant="4.5" id="NTC-3l-q8d"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="6qy-6P-g5t" secondAttribute="trailing" id="Wr9-ZZ-B3H"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="kbS-fU-Zq2" secondAttribute="bottom" id="JtW-xv-iEa"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="kbS-fU-Zq2" secondAttribute="trailing" id="QmP-bC-RZz"/>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Vvy-1d-S23"/>
                                                                     <constraint firstItem="kbS-fU-Zq2" firstAttribute="leading" secondItem="9HU-Jb-jYP" secondAttribute="leading" id="nnV-0V-tWT"/>
-                                                                    <constraint firstItem="6qy-6P-g5t" firstAttribute="centerY" secondItem="kbS-fU-Zq2" secondAttribute="centerY" id="uag-LD-mIi"/>
-                                                                    <constraint firstItem="6qy-6P-g5t" firstAttribute="centerY" secondItem="9HU-Jb-jYP" secondAttribute="centerY" id="vKX-Z3-fVL"/>
+                                                                    <constraint firstItem="kbS-fU-Zq2" firstAttribute="top" secondItem="9HU-Jb-jYP" secondAttribute="top" id="vcA-YD-DpB"/>
                                                                 </constraints>
                                                             </view>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBX-9w-DNg">
-                                                                <rect key="frame" x="0.0" y="319.5" width="315" height="245.5"/>
+                                                                <rect key="frame" x="0.0" y="319.5" width="315" height="246"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="FNp-KW-cAL">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="315" height="245.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="315" height="246"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="LK2-33-F3U">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="315" height="23.5"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="315" height="24"/>
                                                                                 <subviews>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQj-sB-lyb" customClass="PasswordStrengthMeterView" customModule="BGE" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="8"/>
@@ -1831,7 +1817,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Strong" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFQ-8R-m9s">
-                                                                                        <rect key="frame" x="0.0" y="9" width="315" height="14.5"/>
+                                                                                        <rect key="frame" x="0.0" y="9" width="315" height="15"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="14.5" id="9rB-L7-69q"/>
                                                                                         </constraints>
@@ -1842,7 +1828,7 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" distribution="equalSpacing" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="f3T-15-j9G">
-                                                                                <rect key="frame" x="0.0" y="55.5" width="315" height="190"/>
+                                                                                <rect key="frame" x="0.0" y="56" width="315" height="190"/>
                                                                                 <subviews>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" distribution="equalSpacing" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="cPR-I6-6Xb">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="46"/>
@@ -1999,14 +1985,14 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pFM-ab-DUq" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="595" width="315" height="60"/>
+                                                                <rect key="frame" x="0.0" y="595.5" width="315" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="oGY-Gv-tOj"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0w2-JN-dRG" userLabel="Primary Profile View">
-                                                                <rect key="frame" x="0.0" y="685" width="315" height="50"/>
+                                                                <rect key="frame" x="0.0" y="685.5" width="315" height="50"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Set as Primary Profile for this Account" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adt-fu-ill">
                                                                         <rect key="frame" x="61" y="-1" width="278" height="52"/>
@@ -2015,7 +2001,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Pxt-eV-Un8" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="9.5" width="51" height="31"/>
+                                                                        <rect key="frame" x="0.0" y="10" width="51" height="31"/>
                                                                         <connections>
                                                                             <action selector="primaryProfileSwitchToggled:" destination="OB4-E6-Bvv" eventType="valueChanged" id="EJc-H1-O0L"/>
                                                                         </connections>
@@ -2032,6 +2018,12 @@
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="9HU-Jb-jYP" secondAttribute="trailing" id="MWJ-qo-syW"/>
+                                                            <constraint firstAttribute="trailing" secondItem="BBX-9w-DNg" secondAttribute="trailing" id="TDA-Ej-tdY"/>
+                                                            <constraint firstItem="9HU-Jb-jYP" firstAttribute="leading" secondItem="ect-2U-ZVW" secondAttribute="leading" id="tgC-KC-app"/>
+                                                            <constraint firstItem="BBX-9w-DNg" firstAttribute="leading" secondItem="ect-2U-ZVW" secondAttribute="leading" id="vYb-JZ-5SU"/>
+                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2079,7 +2071,6 @@
                         <outlet property="confirmUsernameTextField" destination="d1o-GW-dbz" id="eBM-at-Bdv"/>
                         <outlet property="createPasswordTextField" destination="kbS-fU-Zq2" id="k3A-XG-6vy"/>
                         <outlet property="createUsernameTextField" destination="IOk-EL-M4W" id="TIt-rH-jgw"/>
-                        <outlet property="eyeballButton" destination="6qy-6P-g5t" id="IP4-bG-VXR"/>
                         <outlet property="instructionLabel" destination="z0g-Bl-e8v" id="hcI-FZ-8c0"/>
                         <outlet property="lowercaseCheck" destination="HKE-fe-dDq" id="Ol9-LF-Umo"/>
                         <outlet property="numberCheck" destination="zY6-FT-cX1" id="gKy-iF-8AP"/>
@@ -2330,7 +2321,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qi8-h0-f4g" customClass="Switch" customModule="BGE" customModuleProvider="target">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qi8-h0-f4g" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="5" width="51" height="31"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="31" id="e0h-22-Xf6"/>
