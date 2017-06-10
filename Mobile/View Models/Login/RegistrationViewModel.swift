@@ -40,6 +40,8 @@ class RegistrationViewModel {
     let loadSecurityQuestionsData = PublishSubject<Void>()
     
     var securityQuestions = Variable<[SecurityQuestion]>([])
+    var selectedQuestion = ""
+    var selectedQuestionRow: Int!
     
     var accounts = Variable<[AccountLookupResult]>([])
     
@@ -111,18 +113,18 @@ class RegistrationViewModel {
         .share()
     
     
-    lazy var loadAccounts: Observable<Event<[AccountLookupResult]>> = self.loadSecurityQuestionsData
-        .flatMapLatest {
-            ServiceFactory.createAuthenticationService()
-                .lookupAccount(phone: self.phoneNumber.value, identifier: self.identifierNumber.value)
-                .materialize()
-        }
-        .share()
+//    lazy var loadAccounts: Observable<Event<[AccountLookupResult]>> = self.loadSecurityQuestionsData
+//        .flatMapLatest {
+//            ServiceFactory.createAuthenticationService()
+//                .lookupAccount(phone: self.phoneNumber.value, identifier: self.identifierNumber.value)
+//                .materialize()
+//        }
+//        .share()
     
-    lazy var securityQuestionsDataFinishedLoading: Driver<Void> = Observable.zip(self.loadSecurityQuestions.elements(),
-                                                                                 self.loadAccounts.elements())
-                                                                                    .map({ _ in () })
-                                                                                    .asDriver(onErrorJustReturn: ())
+//    lazy var securityQuestionsDataFinishedLoading: Driver<Void> = Observable.zip(self.loadSecurityQuestions.elements(),
+//                                                                                 self.loadAccounts.elements())
+//                                                                                    .map({ _ in () })
+//                                                                                    .asDriver(onErrorJustReturn: ())
 
 //    lazy var loadAccountsError: Driver<String> = self.loadAccounts.errors()
 //                    .map { $0.localizedDescription }
@@ -377,7 +379,7 @@ class RegistrationViewModel {
         }
         
         return Observable.combineLatest(inArray) { outArray in
-            let otherArray = outArray[0...(count-1)].filter{ $0 }
+            let otherArray = outArray[0..<count].filter{ $0 }
             
             return otherArray.count == count
         }

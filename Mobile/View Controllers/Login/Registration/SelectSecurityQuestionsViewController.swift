@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ToastSwiftFramework
+import Mapper
 
 
 class SelectSecurityQuestionsViewController: UIViewController {
@@ -43,13 +44,20 @@ class SelectSecurityQuestionsViewController: UIViewController {
     @IBOutlet weak var accountListInstructionsLabel: UILabel!
     @IBOutlet weak var accountListHeaderView: UIView!
     
+    @IBOutlet weak var accountNumColHeaderLabel: UILabel!
+    @IBOutlet weak var streetNumColHeaderLabel: UILabel!
+    @IBOutlet weak var unitNumColHeaderLabel: UILabel!
+    
+    
+    @IBOutlet weak var accountDataStackView: UIStackView!
+    
     var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        loadSecurityQuestionsAndAccounts()
+        loadSecurityQuestionsAndAccounts()
         
         setupNavigationButtons()
 
@@ -59,39 +67,62 @@ class SelectSecurityQuestionsViewController: UIViewController {
         
         populateHelperLabels()
         
+        populateAccountListingLabels()
+        
         setupValidation()
         
         prepareQuestions()
         
         prepareTextFieldsForInput()
         
-        displayAccountListing()
+        var account1: AccountLookupResult
+        var account2: AccountLookupResult
         
-        loadTestQuestions()
+        let acct1 = ["AccountNumber": "0123", "StreetNumber": "456", "ApartmentUnitNumber": "789"]
+        let acct2 = ["AccountNumber": "3210", "StreetNumber": "654", "ApartmentUnitNumber": "987"]
+        
+        let map1 = Mapper(JSON: acct1 as NSDictionary)
+        let map2 = Mapper(JSON: acct2 as NSDictionary)
+
+        do {
+            try account1 = AccountLookupResult(map: map1)
+            try account2 = AccountLookupResult(map: map2)
+            
+            viewModel.accounts.value.removeAll()
+            
+            viewModel.accounts.value.append(account1)
+            viewModel.accounts.value.append(account2)
+        } catch {
+            
+        }
+        
+        if viewModel.accounts.value.count > 1 {
+            displayAccountListing()
+        }
     }
     
     func loadSecurityQuestionsAndAccounts() {
         LoadingView.show()
         
-        Driver.merge(viewModel.loadSecurityQuestionsError/*, viewModel.loadAccountsError*/)
-            .drive(onNext: { errorMessage in
-                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .default) { _ in
-                    LoadingView.show()
-                    
-                    self.viewModel.loadSecurityQuestionsData.onNext(())
-                })
-                
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
-                
-                self.present(alert, animated: true, completion: nil)
-            })
-            .addDisposableTo(disposeBag)
-        
-        viewModel.securityQuestionsDataFinishedLoading.drive(onNext: {
-            LoadingView.hide()
-        })
-        .addDisposableTo(disposeBag)
+//        Driver.merge(viewModel.loadSecurityQuestionsError/*, viewModel.loadAccountsError*/)
+//            .drive(onNext: { errorMessage in
+//                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .default) { _ in
+//                    LoadingView.show()
+//                    
+//                    self.viewModel.loadSecurityQuestionsData.onNext(())
+//                })
+//                
+//                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
+//                
+//                self.present(alert, animated: true, completion: nil)
+//            })
+//            .addDisposableTo(disposeBag)
+//        
+//        viewModel.securityQuestionsDataFinishedLoading.drive(onNext: {
+//            LoadingView.hide()
+//        })
+//        .addDisposableTo(disposeBag)
 
         viewModel.loadSecurityQuestionsData.onNext(())
     }
@@ -118,6 +149,24 @@ class SelectSecurityQuestionsViewController: UIViewController {
         eBillSwitchInstructions.textColor = .blackText
         eBillSwitchInstructions.text = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
         eBillSwitchInstructions.font = SystemFont.regular.of(textStyle: .headline)
+    }
+    
+    func populateAccountListingLabels() {
+        accountListInstructionsLabel.textColor = .blackText
+        accountListInstructionsLabel.text = NSLocalizedString("The following accounts will be enrolled for Paperless eBill.", comment:"")
+        accountListInstructionsLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        
+        accountNumColHeaderLabel.textColor = .blackText
+        accountNumColHeaderLabel.text = NSLocalizedString("Account #", comment: "")
+        accountNumColHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        
+        streetNumColHeaderLabel.textColor = .blackText
+        streetNumColHeaderLabel.text = NSLocalizedString("Street #", comment: "")
+        streetNumColHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        
+        unitNumColHeaderLabel.textColor = .blackText
+        unitNumColHeaderLabel.text = NSLocalizedString("Unit #", comment: "")
+        unitNumColHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
     }
     
     func prepareQuestions() {
@@ -220,24 +269,24 @@ class SelectSecurityQuestionsViewController: UIViewController {
         question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer1).addDisposableTo(disposeBag)
         question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer2).addDisposableTo(disposeBag)
         question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer3).addDisposableTo(disposeBag)
-}
+    }
     
     func displayAccountListing() {
         enrollIneBillSwitch.rx.isOn.bind(to: viewModel.paperlessEbill).addDisposableTo(disposeBag)
 
         accountListView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
-//        accountListHeaderView.isHidden = true
+        var accountDetailViews = [AccountDetailsView]()
+        
+        for account in viewModel.accounts.value {
+            let detail = AccountDetailsView.create(withAccount: account)
+            accountDetailViews.append(detail)
+        }
+        
+        for detailView in accountDetailViews {
+            self.accountDataStackView.addArrangedSubview(detailView)
+        }
     }
-
-    func loadTestQuestions() {
-        viewModel.securityQuestion1.value = "What is your favorite color, when the sky is blue and the grass is green?"
-
-        viewModel.securityQuestion2.value = "What is your favorite color, when the sky is blue and the grass is green?"
-
-        viewModel.securityQuestion3.value = "What is your favorite color, when the sky is blue and the grass is green?"
-}
-    
     
     func onCancelPress() {
         // We do this to cover the case where we push RegistrationViewController from LandingViewController.
@@ -297,22 +346,31 @@ class SelectSecurityQuestionsViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let vc = segue.destination as? SecurityQuestionListViewController {
+            vc.viewModel = viewModel
+        }
     }
 
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
     func question1Tapped() {
-        //loadSecretQuestionListSegue
+        viewModel.selectedQuestionRow = 1
+        viewModel.selectedQuestion = viewModel.securityQuestion1.value
+        
         self.performSegue(withIdentifier: "loadSecretQuestionListSegue", sender: self)
     }
 
     func question2Tapped() {
+        viewModel.selectedQuestionRow = 2
+        viewModel.selectedQuestion = viewModel.securityQuestion2.value
+
         self.performSegue(withIdentifier: "loadSecretQuestionListSegue", sender: self)
     }
 
     func question3Tapped() {
+        viewModel.selectedQuestionRow = 3
+        viewModel.selectedQuestion = viewModel.securityQuestion3.value
+
         self.performSegue(withIdentifier: "loadSecretQuestionListSegue", sender: self)
     }
 }
