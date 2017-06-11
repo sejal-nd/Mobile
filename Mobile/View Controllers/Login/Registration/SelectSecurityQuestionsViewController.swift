@@ -303,24 +303,27 @@ class SelectSecurityQuestionsViewController: UIViewController {
     func onNextPress() {
         view.endEditing(true)
         
-        LoadingView.show()
+//        LoadingView.show()
         
-        viewModel.validateAccount(onSuccess: {
-            LoadingView.hide()
-            
-            self.performSegue(withIdentifier: "createUsernamePasswordSegue", sender: self)
-        }, onMultipleAccounts:  {
-            LoadingView.hide()
-            
-            self.performSegue(withIdentifier: "loadChooseAccountSegue", sender: self)
-        }, onError: { (title, message) in
-            LoadingView.hide()
-            
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            
-            self.present(alertController, animated: true, completion: nil)
-        })
+//        LoadingView.hide()
+        
+        self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
+//        viewModel.validateAccount(onSuccess: {
+//            LoadingView.hide()
+//            
+//            self.performSegue(withIdentifier: "createUsernamePasswordSegue", sender: self)
+//        }, onMultipleAccounts:  {
+//            LoadingView.hide()
+//            
+//            self.performSegue(withIdentifier: "loadChooseAccountSegue", sender: self)
+//        }, onError: { (title, message) in
+//            LoadingView.hide()
+//            
+//            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+//            
+//            self.present(alertController, animated: true, completion: nil)
+//        })
     }
     
     @IBAction func enrollIneBillToggle(_ sender: Any) {

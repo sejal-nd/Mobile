@@ -61,6 +61,9 @@
 		548288E01ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
 		548288E11ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
 		548288E21ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
+		5492E01F1EECC3230088A725 /* RegistrationConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */; };
+		5492E0201EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */; };
+		5492E0211EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */; };
 		54930DC81EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54930DC71EDB40B000912AF1 /* EditCreditCardViewModel.swift */; };
 		54930DC91EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54930DC71EDB40B000912AF1 /* EditCreditCardViewModel.swift */; };
 		54930DCA1EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54930DC71EDB40B000912AF1 /* EditCreditCardViewModel.swift */; };
@@ -847,6 +850,7 @@
 		54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCreditCardViewController.swift; sourceTree = "<group>"; };
 		54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewController.swift; sourceTree = "<group>"; };
 		548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewModel.swift; sourceTree = "<group>"; };
+		5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationConfirmationViewController.swift; sourceTree = "<group>"; };
 		54930DC71EDB40B000912AF1 /* EditCreditCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCreditCardViewModel.swift; sourceTree = "<group>"; };
 		54AE06931ECF7809004A1FDA /* RegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCRegistrationService.swift; sourceTree = "<group>"; };
@@ -2169,6 +2173,7 @@
 				54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */,
 				54DF4BC71EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift */,
 				54DF4BD41EE895CF008CF7AD /* SecurityQuestionListViewController.swift */,
+				5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -2367,7 +2372,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2832,6 +2837,7 @@
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */,
+				5492E01F1EECC3230088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */,
 				54B31A701EE0B8670002E657 /* BGEAccountViewController.swift in Sources */,
@@ -2945,6 +2951,7 @@
 				82A18EDC1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				82A18F0A1EBD12D600BE9F21 /* Control.swift in Sources */,
+				5492E0211EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				E887C9DB1ED5CBDB002433A3 /* AddCreditCardViewController.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
@@ -3095,6 +3102,7 @@
 				82A18EC51EBA676700BE9F21 /* Switch.swift in Sources */,
 				82A18EDB1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				5492E0201EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18F091EBD12D600BE9F21 /* Control.swift in Sources */,
 				E887C9DA1ED5CBDB002433A3 /* AddCreditCardViewController.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountPicker.swift in Sources */,
