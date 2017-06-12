@@ -1755,13 +1755,13 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="822"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rW4-cP-ELi" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="795.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="797.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQ4-ZK-Lyk" userLabel="Tablet View">
-                                                <rect key="frame" x="30" y="0.0" width="315" height="795.5"/>
+                                                <rect key="frame" x="30" y="0.0" width="315" height="797.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ect-2U-ZVW">
-                                                        <rect key="frame" x="0.0" y="30" width="315" height="735.5"/>
+                                                        <rect key="frame" x="0.0" y="30" width="315" height="737.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please create your sign in credentials." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0g-Bl-e8v">
                                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="19.5"/>
@@ -1995,29 +1995,29 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0w2-JN-dRG" userLabel="Primary Profile View">
-                                                                <rect key="frame" x="0.0" y="685.5" width="315" height="50"/>
+                                                                <rect key="frame" x="0.0" y="685.5" width="315" height="52"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Set as Primary Profile for this Account" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adt-fu-ill">
-                                                                        <rect key="frame" x="61" y="-1" width="278" height="52"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Pxt-eV-Un8" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="10" width="51" height="31"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                                         <connections>
                                                                             <action selector="primaryProfileSwitchToggled:" destination="OB4-E6-Bvv" eventType="valueChanged" id="EJc-H1-O0L"/>
                                                                         </connections>
                                                                     </switch>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Set as Primary Profile for this Account" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adt-fu-ill">
+                                                                        <rect key="frame" x="61" y="0.0" width="254" height="52"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="adt-fu-ill" firstAttribute="centerY" secondItem="0w2-JN-dRG" secondAttribute="centerY" id="3uJ-bY-V6P"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="adt-fu-ill" secondAttribute="trailing" constant="-24" id="AFn-82-tNX"/>
+                                                                    <constraint firstItem="Pxt-eV-Un8" firstAttribute="top" secondItem="0w2-JN-dRG" secondAttribute="top" id="2ME-ii-JD6"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="adt-fu-ill" secondAttribute="trailing" id="AFn-82-tNX"/>
                                                                     <constraint firstItem="Pxt-eV-Un8" firstAttribute="leading" secondItem="0w2-JN-dRG" secondAttribute="leading" id="BCC-uX-vv4"/>
-                                                                    <constraint firstItem="adt-fu-ill" firstAttribute="top" secondItem="0w2-JN-dRG" secondAttribute="top" constant="-1" id="BmV-7c-cNF"/>
                                                                     <constraint firstItem="adt-fu-ill" firstAttribute="leading" secondItem="Pxt-eV-Un8" secondAttribute="trailing" constant="12" id="DOU-3k-iHZ"/>
-                                                                    <constraint firstItem="Pxt-eV-Un8" firstAttribute="centerY" secondItem="0w2-JN-dRG" secondAttribute="centerY" id="yKs-hg-0B3"/>
+                                                                    <constraint firstItem="adt-fu-ill" firstAttribute="top" secondItem="Pxt-eV-Un8" secondAttribute="top" id="jfx-Yf-Sjz"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="adt-fu-ill" secondAttribute="bottom" id="nsK-tD-EgD"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
