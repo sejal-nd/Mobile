@@ -98,7 +98,7 @@ class RegistrationViewModel {
                 let serviceError = error as! ServiceError
                 
                 if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
-                    onError(NSLocalizedString("Profile Exists", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("Email already exists", comment: ""), NSLocalizedString("Please select a different email to login to view your account", comment: ""))
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
