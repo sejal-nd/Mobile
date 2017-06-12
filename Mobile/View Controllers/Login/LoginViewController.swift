@@ -161,9 +161,9 @@ class LoginViewController: UIViewController {
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
 
         signInButton.setLoading()
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
+        //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
         viewModel.performLogin(onSuccess: { (loggedInWithTempPassword: Bool) in
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
             self.signInButton.setSuccess(animationCompletion: { () in
                 self.navigationController?.view.isUserInteractionEnabled = true
                 
@@ -281,7 +281,7 @@ class LoginViewController: UIViewController {
             self.signInButton.setLoading()
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
         }, onSuccess: { (loggedInWithTempPassword: Bool) in // fingerprint and subsequent login successful
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
             self.signInButton.setSuccess(animationCompletion: { () in
                 self.navigationController?.view.isUserInteractionEnabled = true
                 self.launchMainApp()
