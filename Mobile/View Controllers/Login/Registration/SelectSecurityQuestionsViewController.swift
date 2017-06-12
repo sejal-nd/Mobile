@@ -57,6 +57,9 @@ class SelectSecurityQuestionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
         loadSecurityQuestionsAndAccounts()
         
         setupNavigationButtons()
@@ -82,6 +85,10 @@ class SelectSecurityQuestionsViewController: UIViewController {
         if viewModel.accounts.value.count > 1 {
             displayAccountListing()
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func createTestAccounts() {
@@ -131,12 +138,6 @@ class SelectSecurityQuestionsViewController: UIViewController {
 //        .addDisposableTo(disposeBag)
 
         viewModel.loadSecurityQuestionsData.onNext(())
-    }
-
-    /// Helpers
-    func setupNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func setupNavigationButtons() {

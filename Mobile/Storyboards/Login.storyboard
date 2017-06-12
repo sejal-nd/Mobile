@@ -2066,6 +2066,9 @@
                             <constraint firstItem="RVx-hH-Cos" firstAttribute="bottom" secondItem="NXg-wX-6DT" secondAttribute="top" id="wIp-uw-MEi"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="5oy-tE-YgN">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="vhT-if-8UL"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="842"/>
                     <connections>
@@ -2111,7 +2114,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t6x-Zw-vOd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1050"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="960"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgk-TP-ego" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1121.5"/>
@@ -2450,7 +2453,7 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="lgk-TP-ego" secondAttribute="bottom" constant="87.5" id="2w9-PO-agw"/>
+                                    <constraint firstAttribute="bottom" secondItem="lgk-TP-ego" secondAttribute="bottom" id="2w9-PO-agw"/>
                                     <constraint firstAttribute="trailing" secondItem="lgk-TP-ego" secondAttribute="trailing" id="7mB-VA-6IW"/>
                                     <constraint firstItem="lgk-TP-ego" firstAttribute="centerX" secondItem="t6x-Zw-vOd" secondAttribute="centerX" id="gGA-LR-G8O"/>
                                     <constraint firstItem="lgk-TP-ego" firstAttribute="top" secondItem="t6x-Zw-vOd" secondAttribute="top" id="gSC-MW-qFE"/>
@@ -2463,9 +2466,12 @@
                             <constraint firstItem="t6x-Zw-vOd" firstAttribute="top" secondItem="ZRx-gb-TYy" secondAttribute="top" id="AVL-V2-lEx"/>
                             <constraint firstAttribute="trailing" secondItem="t6x-Zw-vOd" secondAttribute="trailing" id="L4G-km-F85"/>
                             <constraint firstItem="t6x-Zw-vOd" firstAttribute="leading" secondItem="ZRx-gb-TYy" secondAttribute="leading" id="dSC-CA-qox"/>
-                            <constraint firstItem="t6x-Zw-vOd" firstAttribute="bottom" secondItem="B5F-Gj-NEG" secondAttribute="top" constant="90" id="sUB-Lg-3IP"/>
+                            <constraint firstItem="t6x-Zw-vOd" firstAttribute="bottom" secondItem="B5F-Gj-NEG" secondAttribute="top" id="sUB-Lg-3IP"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="hLp-Zn-4W9">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="3XR-Id-0kA"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="960"/>
                     <connections>
@@ -2497,9 +2503,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQD-Fi-2MH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationItem id="IEy-Uj-zrh">
-                    <barButtonItem key="backBarButtonItem" title="Back" id="Qxl-XN-pcu"/>
-                </navigationItem>
             </objects>
             <point key="canvasLocation" x="1822" y="1697"/>
         </scene>
