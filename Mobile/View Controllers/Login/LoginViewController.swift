@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var touchIDView: UIView!
     @IBOutlet weak var loginFormViewHeightConstraint: NSLayoutConstraint!
     
-    var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
+    var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService(), registrationService: ServiceFactory.createRegistrationService())
     var passwordAutofilledFromTouchID = false
     var viewAlreadyAppeared = false
 
@@ -295,11 +295,15 @@ class LoginViewController: UIViewController {
     func verifyAccountNotificationReceived(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let guid = userInfo["guid"] as? String {
-                print(guid)
                 LoadingView.show()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                viewModel.validateRegistration(guid: guid, onSuccess: {
                     LoadingView.hide()
                     self.view.makeToast(NSLocalizedString("Thank you for verifying your account", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50))
+                }, onError: { errMessage in
+                    LoadingView.hide()
+                    let alertVc = UIAlertController(title: NSLocalizedString("Could Not Verify Account", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
                 })
             }
         }

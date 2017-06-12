@@ -65,7 +65,7 @@ protocol RegistrationService {
     
     /*
      opco		String   The OpCo for the request.
-     username	String   Username to check for uniqueness
+     username	String   Registered username
      */
     func resendConfirmationEmail(_ username: String,
                                  completion: @escaping (_ result: ServiceResult<Void>) -> Void)

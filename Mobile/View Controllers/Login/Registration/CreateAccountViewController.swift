@@ -210,7 +210,7 @@ class CreateAccountViewController: UIViewController {
 
         createPasswordTextField.textField.placeholder = NSLocalizedString("Password*", comment: "")
         createPasswordTextField.textField.isSecureTextEntry = true
-        createPasswordTextField.textField.returnKeyType = .done
+        createPasswordTextField.textField.returnKeyType = .next
         createPasswordTextField.textField.delegate = self
         createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
@@ -333,21 +333,18 @@ extension CreateAccountViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == createUsernameTextField.textField {
             if confirmUsernameTextField.isUserInteractionEnabled {
-                confirmUsernameTextField.becomeFirstResponder()
+                confirmUsernameTextField.textField.becomeFirstResponder()
             } else {
-                createPasswordTextField.becomeFirstResponder()
+                createPasswordTextField.textField.becomeFirstResponder()
             }
-            
         } else if textField == confirmUsernameTextField.textField {
-            createPasswordTextField.becomeFirstResponder()
-        
+            createPasswordTextField.textField.becomeFirstResponder()
         } else if textField == createPasswordTextField.textField {
             if confirmPasswordTextField.isUserInteractionEnabled {
-                confirmPasswordTextField.becomeFirstResponder()
+                confirmPasswordTextField.textField.becomeFirstResponder()
             } else {
-                createUsernameTextField.becomeFirstResponder()
+                createUsernameTextField.textField.becomeFirstResponder()
             }
-
         } else if textField == confirmPasswordTextField.textField {
             viewModel.nextButtonEnabled().single().subscribe(onNext: { enabled in
                 if enabled {
