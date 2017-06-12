@@ -217,26 +217,23 @@ class SelectSecurityQuestionsViewController: UIViewController {
         question1AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 1*", comment: "")
         question1AnswerTextField.textField.autocorrectionType = .no
         question1AnswerTextField.textField.returnKeyType = .next
-//        question1AnswerTextField.textField.delegate = self
         question1AnswerTextField.textField.isShowingAccessory = true
         question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
         question1AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         question1AnswerTextField.setEnabled(false)
         
-        question2AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 1*", comment: "")
+        question2AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 2*", comment: "")
         question2AnswerTextField.textField.autocorrectionType = .no
         question2AnswerTextField.textField.returnKeyType = .next
-//        question2AnswerTextField.textField.delegate = self
         question2AnswerTextField.textField.isShowingAccessory = true
         question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
         question2AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         question2AnswerTextField.setEnabled(false)
 
         if Environment.sharedInstance.opco != .bge {
-            question3AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 1*", comment: "")
+            question3AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 3*", comment: "")
             question3AnswerTextField.textField.autocorrectionType = .no
             question3AnswerTextField.textField.returnKeyType = .next
-//            question3AnswerTextField.textField.delegate = self
             question3AnswerTextField.textField.isShowingAccessory = true
             question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
             question3AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
