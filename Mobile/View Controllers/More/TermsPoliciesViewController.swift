@@ -24,10 +24,6 @@ class TermsPoliciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            extendedLayoutIncludesOpaqueBars = true
-        }
-
         textView.textContainerInset = UIEdgeInsetsMake(10, 29, 10, 29)
         textView.attributedText = viewModel.attributedTermsString
     }
@@ -38,14 +34,6 @@ class TermsPoliciesViewController: UIViewController {
         // Content was appearing already scrolled initially so this fixes it
         if !viewAppeared {
             textView.setContentOffset(.zero, animated: false)
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            tabBarController?.tabBar.isHidden = true
         }
     }
     

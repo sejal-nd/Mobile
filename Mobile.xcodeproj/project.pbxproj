@@ -553,9 +553,6 @@
 		E81F38141ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */; };
 		E81F38151ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */; };
 		E81F38161ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */; };
-		E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
-		E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
-		E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */; };
 		E827D2311ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
 		E827D2321ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
 		E827D2331ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
@@ -1134,7 +1131,6 @@
 		E81CFFF91EC3681D004FDA7E /* ComEd-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-PROD.entitlements"; sourceTree = "<group>"; };
 		E81CFFFA1EC3681D004FDA7E /* BGE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-PROD.entitlements"; sourceTree = "<group>"; };
 		E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCreditCardViewModel.swift; sourceTree = "<group>"; };
-		E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreSplitViewController.swift; sourceTree = "<group>"; };
 		E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBankAccountViewController.swift; sourceTree = "<group>"; };
 		E827D2371ED490A0004DA1D6 /* InfoModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoModal.xib; sourceTree = "<group>"; };
 		E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoModalViewController.swift; sourceTree = "<group>"; };
@@ -2192,9 +2188,8 @@
 		E8EEF7271E577781006804D4 /* More */ = {
 			isa = PBXGroup;
 			children = (
-				22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */,
-				E81F86BE1E8B071A000B1BAD /* MoreSplitViewController.swift */,
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
+				22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */,
 				E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */,
 				E80043081E64DEE2005CF531 /* SettingsViewController.swift */,
 				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
@@ -2809,7 +2804,6 @@
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				82A18EDD1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
-				E81F86BF1E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
@@ -2963,7 +2957,6 @@
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				54DF4BCE1EE84D32008CF7AD /* SecurityQuestionViewController.swift in Sources */,
 				82A18EDF1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
-				E81F86C11E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				82D5994D1EC36B5500DDB380 /* Currency.swift in Sources */,
@@ -3115,7 +3108,6 @@
 				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				54DF4BCD1EE84D32008CF7AD /* SecurityQuestionViewController.swift in Sources */,
 				82A18EDE1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
-				E81F86C01E8B071A000B1BAD /* MoreSplitViewController.swift in Sources */,
 				B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				82D5994C1EC36B5500DDB380 /* Currency.swift in Sources */,

@@ -26,18 +26,19 @@ class SettingsViewController: UIViewController {
         
         self.title = NSLocalizedString("Settings", comment: "")
         
+        view.backgroundColor = .softGray
+        
         let nib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "Cell")
-        
-        tableView.backgroundColor = .softGray
         tableView.contentInset = UIEdgeInsetsMake(30, 0, 30, 0)
+        tableView.backgroundColor = .clear
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            tabBarController?.tabBar.isHidden = true
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setWhiteNavBar()
         }
     }
     
@@ -172,7 +173,7 @@ extension SettingsViewController: UITableViewDataSource {
         if Environment.sharedInstance.opco == .bge {
             cell.configureWith(label: NSLocalizedString("Default Account", comment: ""), carat: true)
         } else if Environment.sharedInstance.opco == .peco {
-            cell.configureWith(label: NSLocalizedString("Release of Information", comment: ""), carat: true)
+            cell.configureWith(label: NSLocalizedString("Release of Info", comment: ""), carat: true)
         }
     }
     
@@ -182,9 +183,7 @@ extension SettingsViewController: ChangePasswordViewControllerDelegate {
     
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            // iPad shows tab bar, iPhone does not
-            let yPos = UIDevice.current.userInterfaceIdiom == .pad ? self.view.frame.size.height - 89 : self.view.frame.size.height - 40
-            self.view.makeToast(NSLocalizedString("Password successfully changed", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: yPos))
+            self.view.makeToast(NSLocalizedString("Password successfully changed", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
     
@@ -194,9 +193,7 @@ extension SettingsViewController: PECOReleaseOfInfoViewControllerDelegate {
     
     func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            // iPad shows tab bar, iPhone does not
-            let yPos = UIDevice.current.userInterfaceIdiom == .pad ? self.view.frame.size.height - 89 : self.view.frame.size.height - 40
-            self.view.makeToast(NSLocalizedString("Release of information updated", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: yPos))
+            self.view.makeToast(NSLocalizedString("Release of information updated", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
         })
     }
     
