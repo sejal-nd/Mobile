@@ -13,7 +13,7 @@ class LoginViewModelTests: XCTestCase {
     var viewModel: LoginViewModel!
     
     override func setUp() {
-        viewModel = LoginViewModel(authService: MockAuthenticationService(), fingerprintService: FingerprintService())
+        viewModel = LoginViewModel(authService: MockAuthenticationService(), fingerprintService: FingerprintService(), registrationService: OMCRegistrationService())
     }
     
     func testSuccessfulLogin() {
