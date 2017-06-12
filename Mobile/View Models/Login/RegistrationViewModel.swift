@@ -75,11 +75,11 @@ class RegistrationViewModel {
                 let serviceError = error as! ServiceError
                 
                 if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue {
-                    onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("Invalid Information", comment: ""), NSLocalizedString("Invalid Information - The information entered does not match our records. Please try again.", comment: ""))
                 } else if serviceError.serviceCode == ServiceErrorCode.FnAccountMultiple.rawValue {
                     onMultipleAccounts()
                 } else if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
-                    onError(NSLocalizedString("Profile Exists", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("Profile Exists", comment: ""), NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: ""))
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }

@@ -77,7 +77,7 @@ class CreateAccountViewController: UIViewController {
     
     func populateHelperLabels() {
         instructionLabel.textColor = .blackText
-        instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
+        instructionLabel.text = NSLocalizedString("Please create your sign in credentials", comment: "")
         instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
     }
     
@@ -167,7 +167,7 @@ class CreateAccountViewController: UIViewController {
         //
         passwordStrengthView.isHidden = true
         
-        createUsernameTextField.textField.placeholder = NSLocalizedString("Username/Email Address*", comment: "")
+        createUsernameTextField.textField.placeholder = NSLocalizedString("Email Address*", comment: "")
         createUsernameTextField.textField.returnKeyType = .next
         createUsernameTextField.textField.delegate = self
         createUsernameTextField.textField.isShowingAccessory = true
@@ -184,7 +184,7 @@ class CreateAccountViewController: UIViewController {
             }
         }).addDisposableTo(disposeBag)
         
-        confirmUsernameTextField.textField.placeholder = NSLocalizedString("Confirm Username/Email Address*", comment: "")
+        confirmUsernameTextField.textField.placeholder = NSLocalizedString("Confirm Email Address*", comment: "")
         confirmUsernameTextField.textField.returnKeyType = .next
         confirmUsernameTextField.textField.delegate = self
         confirmUsernameTextField.setEnabled(false)
@@ -199,7 +199,7 @@ class CreateAccountViewController: UIViewController {
                 self.confirmUsernameTextField.setValidated(valid)
                 
                 if !valid {
-                    self.confirmUsernameTextField.setError(NSLocalizedString("Username does not match", comment: ""))
+                    self.confirmUsernameTextField.setError(NSLocalizedString("Email address does not match", comment: ""))
                 } else {
                     self.confirmUsernameTextField.setError(nil)
                 }
