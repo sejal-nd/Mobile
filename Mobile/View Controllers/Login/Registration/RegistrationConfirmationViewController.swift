@@ -16,7 +16,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
     
-    var registeredUsername: String? // TODO - Pass this from the previous screen's prepareForSegue
+    var registeredUsername: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +65,6 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
     }
     
     @IBAction func onResendEmailPress() {
-        registeredUsername = "mardun@test.com"
         if let username = registeredUsername {
             let registrationService = ServiceFactory.createRegistrationService()
             

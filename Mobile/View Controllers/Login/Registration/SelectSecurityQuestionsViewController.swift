@@ -357,6 +357,8 @@ class SelectSecurityQuestionsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? SecurityQuestionListViewController {
             vc.viewModel = viewModel
+        } else if let vc = segue.destination as? RegistrationConfirmationViewController {
+            vc.registeredUsername = viewModel.username.value
         }
     }
 
