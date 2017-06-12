@@ -190,6 +190,10 @@ class CreateAccountViewController: UIViewController {
         confirmUsernameTextField.setEnabled(false)
         confirmUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
+        self.viewModel.newPasswordIsValid().subscribe(onNext: { valid in
+            self.createPasswordTextField.setValidated(valid)
+        }).addDisposableTo(disposeBag)
+        
         self.viewModel.usernameMatches().subscribe(onNext: { valid in
             if self.viewModel.confirmUsername.value.characters.count > 0 {
                 self.confirmUsernameTextField.setValidated(valid)
@@ -204,20 +208,6 @@ class CreateAccountViewController: UIViewController {
             }
         }).addDisposableTo(self.disposeBag)
 
-//        confirmUsernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-//            if self.viewModel.confirmUsername.value.characters.count > 0 {
-//                self.viewModel.usernameMatches().subscribe(onNext: { valid in
-//                    self.confirmUsernameTextField.setValidated(valid)
-//                    
-//                    if !valid {
-//                        self.confirmUsernameTextField.setError(NSLocalizedString("Username does not match", comment: ""))
-//                    } else {
-//                        self.confirmUsernameTextField.setError(nil)
-//                    }
-//                }).addDisposableTo(self.disposeBag)
-//            }
-//        }).addDisposableTo(disposeBag)
-        
         createPasswordTextField.textField.placeholder = NSLocalizedString("Password*", comment: "")
         createPasswordTextField.textField.isSecureTextEntry = true
         createPasswordTextField.textField.returnKeyType = .done

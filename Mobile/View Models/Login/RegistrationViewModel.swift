@@ -282,6 +282,25 @@ class RegistrationViewModel {
         })
     }
     
+    func newPasswordIsValid() -> Observable<Bool> {
+        return Observable.combineLatest([characterCountValid(),
+                                        containsLowercaseLetter(),
+                                        containsUppercaseLetter(),
+                                        containsNumber(),
+                                        containsSpecialCharacter()]) { array in
+            //
+            if array[0] {
+                let otherArray = array[1...4].filter{ $0 }
+                
+                if otherArray.count >= 3 {
+                    return true
+                }
+            }
+            
+            return false
+        }
+    }
+    
     func everythingValid() -> Observable<Bool> {
         return Observable.combineLatest([passwordMatchesUsername(),
                                         characterCountValid(),
