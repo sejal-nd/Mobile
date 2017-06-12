@@ -68,6 +68,8 @@ class BudgetBillingViewController: UIViewController {
     var accountDetail: AccountDetail!
     var viewModel: BudgetBillingViewModel!
     
+    var bgeDynamicUnenrollMessage: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -155,7 +157,7 @@ class BudgetBillingViewController: UIViewController {
             monthlyAmountLabel.textColor = .blackText
             monthlyAmountDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
             monthlyAmountDescriptionLabel.textColor = .deepGray
-            monthlyAmountDescriptionLabel.text = NSLocalizedString("Payment received after March 13, 2017 will incur a late charge.\n\nA late payment charge is applied to the unpaid balance of your BGE charges. The charge is up to 1.5% for the first month; additional charges will be assessed on unpaid balances past the first month, not to exceed 5%.", comment: "")
+            monthlyAmountDescriptionLabel.text = NSLocalizedString("The amount that you are billed for BGE gas and/or electric service each month. This charge appears on the first page of your bill under Charges/Adjustments this period.", comment: "")
             
             lastPaymentDateTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
             lastPaymentDateTitleLabel.textColor = .blackText
@@ -220,6 +222,17 @@ class BudgetBillingViewController: UIViewController {
                 self.accDifferenceLabel.text = budgetBillingInfo.budgetBillDifference
                 self.bgeFooterLoadingView.isHidden = true
                 self.bgeFooterView.isHidden = false
+                
+                if let budgetBillDifference = budgetBillingInfo.budgetBillDifference {
+                    if budgetBillingInfo.budgetBillDifferenceDecimal < 0 {
+                        self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
+                    } else if budgetBillingInfo.budgetBillDifferenceDecimal > 0 {
+                        self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
+                    } else {
+                        self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
+                    }
+                }
+                
             }
             
         }, onError: { errMessage in
@@ -299,10 +312,7 @@ class BudgetBillingViewController: UIViewController {
             if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
                 message = NSLocalizedString("You will see your regular bill amount on your next billing cycle. Any credit balance remaining in your account will be applied to your bill until used, and any negative account balance will become due with your next bill.", comment: "")
             } else { // BGE
-                // TODO: There are 3 dynamic messages here, we need logic to determine which to use
-                message = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
-//                message = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of $XX.XX beginning with your next bill.", comment: "")
-//                message = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of $XX.XX beginning with your next bill.", comment: "")
+                message = bgeDynamicUnenrollMessage ?? ""
             }
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))

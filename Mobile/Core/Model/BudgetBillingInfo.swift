@@ -27,6 +27,7 @@ private func extractDollarAmountString(object: Any?) throws -> String? {
 struct BudgetBillingInfo: Mappable {
     let averageMonthlyBill: String?
     let budgetBillDifference: String? // Only used for BGE Footer View
+    let budgetBillDifferenceDecimal: Double
     let budgetBillBalance: String? // Only used for BGE Footer View
     let budgetBillPayoff: String? // Only used for BGE Footer View
     
@@ -35,5 +36,11 @@ struct BudgetBillingInfo: Mappable {
         budgetBillDifference = map.optionalFrom("budgetBillDifference", transformation: extractDollarAmountString)
         budgetBillBalance = map.optionalFrom("budgetBillBalance", transformation: extractDollarAmountString)
         budgetBillPayoff = map.optionalFrom("budgetBillPayoff", transformation: extractDollarAmountString)
+        
+        do {
+            try budgetBillDifferenceDecimal = map.from("budgetBillDifference")
+        } catch {
+            budgetBillDifferenceDecimal = 0
+        }
     }
 }
