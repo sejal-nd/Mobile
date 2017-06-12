@@ -17,43 +17,8 @@ class MoreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.title = NSLocalizedString("More", comment: "")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        tabBarController?.tabBar.isHidden = false
-        
-        //navigationController?.navigationBar.barStyle = .black // Needed for white status bar
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .actionBlue
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.blackText,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
-        
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            if let splitView = splitViewController as? MoreSplitViewController {
-                splitView.setStatusBarStyle(style: .default)
-            }
-            splitViewController?.setNeedsStatusBarAppearanceUpdate()
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            let firstIndex = IndexPath(row: 0, section: 0)
-            tableView.selectRow(at: firstIndex, animated: false, scrollPosition: .none)
-        }
     }
     
     func onSignOutPress() {
@@ -78,23 +43,15 @@ class MoreViewController: UIViewController {
 extension MoreViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            tableView.deselectRow(at: indexPath, animated: false)
-        }
+        tableView.deselectRow(at: indexPath, animated: false)
         
         if indexPath.row == 0 {
             performSegue(withIdentifier: "settingsSegue", sender: self)
         } else if indexPath.row == 1 {
             performSegue(withIdentifier: "contactUsSegue", sender: self)
-//            if UIDevice.current.userInterfaceIdiom == .phone {
-//                self.navigationController?.pushViewController(contactUs, animated: true)
-//            } else {
-//                self.navigationController?.showDetailViewController(contactUs, sender: self)
-//            }
         } else if indexPath.row == 2 {
             performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
         } else if indexPath.row == 3 {
-            tableView.deselectRow(at: indexPath, animated: false)
             onSignOutPress()
         }
     }

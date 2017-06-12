@@ -42,13 +42,24 @@ class ContactUsViewController: UIViewController {
         cardView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         cardView.layer.cornerRadius = 2
         
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            extendedLayoutIncludesOpaqueBars = true
-        }
-        
         emergencySetup()
         customerServiceSetup()
         socialMediaButtonsSetup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar(hidesBottomBorder: true)
+        }
+    }
+    
+    // Had to do this for smoother transition (rather than in viewWillAppear of MoreViewController)
+    override func willMove(toParentViewController parent: UIViewController?) {
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setWhiteNavBar()
+        }
     }
     
     func emergencySetup() {
@@ -137,44 +148,6 @@ class ContactUsViewController: UIViewController {
         socialMediaButtonsStack.leadingAnchor.constraint(equalTo: containerStack.leadingAnchor, constant: 22).isActive = true
         socialMediaButtonsStack.trailingAnchor.constraint(equalTo: containerStack.trailingAnchor, constant: -22).isActive = true
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            tabBarController?.tabBar.isHidden = true
-        }
-        
-        if UIDevice.current.userInterfaceIdiom == .phone,
-            let splitView = splitViewController as? MoreSplitViewController {
-            splitView.setStatusBarStyle(style: .lightContent)
-        }
-        splitViewController?.setNeedsStatusBarAppearanceUpdate()
-        
-        guard let navController = navigationController else { return }
-        
-        navController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navController.navigationBar.shadowImage = UIImage()
-        navController.navigationBar.backgroundColor = .clear
-        navController.navigationBar.tintColor = .white
-        navController.navigationBar.isTranslucent = true
-        
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
-        ]
-        navController.navigationBar.titleTextAttributes = titleDict
-        
-        navController.setNavigationBarHidden(false, animated: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
 }
 

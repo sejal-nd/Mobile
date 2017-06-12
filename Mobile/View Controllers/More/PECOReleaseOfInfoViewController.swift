@@ -29,18 +29,15 @@ class PECOReleaseOfInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = NSLocalizedString("Release of Info", comment: "")
         
-        if UIScreen.main.bounds.width < 375 {
-            title = NSLocalizedString("Release of Info", comment: "")
-        } else {
-            title = NSLocalizedString("Release of Information", comment: "")
-        }
-        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         
         accountInfoView.backgroundColor = .softGray
-        accountInfoView.addBottomBorder(color: .accentGray, width: 1)
         accountInfoLabel.textColor = .deepGray
         
         let currentAccount = AccountsStore.sharedInstance.currentAccount!
@@ -54,7 +51,21 @@ class PECOReleaseOfInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar()
+        }
+        
         fetchCurrentSelection()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        accountInfoView.addBottomBorder(color: .accentGray, width: 1)
+    }
+    
+    func onCancelPress() {
+        navigationController?.popViewController(animated: true)
     }
     
     func onSubmitPress() {

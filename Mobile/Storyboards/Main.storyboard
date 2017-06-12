@@ -24,7 +24,7 @@
                         <segue destination="4hR-iJ-D1w" kind="relationship" relationship="viewControllers" id="MtQ-f3-P1j"/>
                         <segue destination="bdC-Bo-rcI" kind="relationship" relationship="viewControllers" id="QJc-5g-EqX"/>
                         <segue destination="coO-LU-Nds" kind="relationship" relationship="viewControllers" id="8pZ-Og-zwx"/>
-                        <segue destination="08Q-qM-ulu" kind="relationship" relationship="viewControllers" id="MVM-Pj-j6k"/>
+                        <segue destination="uQF-ze-ffY" kind="relationship" relationship="viewControllers" id="C2S-Qc-mDn"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7RC-VI-RmW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -69,16 +69,6 @@
             </objects>
             <point key="canvasLocation" x="-223" y="-2179"/>
         </scene>
-        <!--More-->
-        <scene sceneID="DAP-ku-9RW">
-            <objects>
-                <splitViewController extendedLayoutIncludesOpaqueBars="YES" id="08Q-qM-ulu" customClass="MoreSplitViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" id="i3y-VM-b15"/>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xT5-ZD-67C" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1937" y="-2179"/>
-        </scene>
         <!--Alerts-->
         <scene sceneID="xkn-nT-BRd">
             <objects>
@@ -97,6 +87,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nff-bq-7wq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1217" y="-2179"/>
+        </scene>
+        <!--More-->
+        <scene sceneID="DmR-1M-Rt9">
+            <objects>
+                <navigationController id="uQF-ze-ffY" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" id="0Wk-9T-mXr"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sm4-4A-KSA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="More"/>
+                    </userDefinedRuntimeAttributes>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Byj-Bf-b8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1930" y="-2179"/>
         </scene>
         <!--Outage-->
         <scene sceneID="hUx-td-Zrv">
