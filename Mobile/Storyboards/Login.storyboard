@@ -2347,7 +2347,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFW-6U-4Nj" userLabel="Account List View">
                                                                 <rect key="frame" x="0.0" y="709" width="317" height="352.5"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lM1-iK-G3B">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lM1-iK-G3B">
                                                                         <rect key="frame" x="0.0" y="15" width="317" height="337.5"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="0eC-VR-ePc" userLabel="Header Stack View">
@@ -2359,7 +2359,7 @@
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FOx-vq-LR7" userLabel="Column Label Stack View">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FOx-vq-LR7" userLabel="Column Label Stack View">
                                                                                         <rect key="frame" x="15" y="66" width="287" height="20.5"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Account #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EiX-I2-QoZ">
@@ -2385,15 +2385,16 @@
                                                                                 </subviews>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="trailing" secondItem="0lp-db-lAO" secondAttribute="trailing" constant="15" id="Fyj-dr-t0u"/>
+                                                                                    <constraint firstItem="FOx-vq-LR7" firstAttribute="leading" secondItem="0eC-VR-ePc" secondAttribute="leading" constant="15" id="oYB-pg-7pA"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="FOx-vq-LR7" secondAttribute="trailing" constant="15" id="zJn-EC-OuC"/>
                                                                                 </constraints>
                                                                             </stackView>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6FJ-mB-1e4" userLabel="Account Data Stack View">
-                                                                                <rect key="frame" x="15" y="98.5" width="287" height="239"/>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6FJ-mB-1e4" userLabel="Account Data Stack View">
+                                                                                <rect key="frame" x="0.0" y="98.5" width="317" height="239"/>
                                                                             </stackView>
                                                                         </subviews>
                                                                         <constraints>
-                                                                            <constraint firstItem="6FJ-mB-1e4" firstAttribute="leading" secondItem="lM1-iK-G3B" secondAttribute="leading" constant="15" id="dfY-Tg-Bdm"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="6FJ-mB-1e4" secondAttribute="trailing" id="2he-VI-6iM"/>
                                                                             <constraint firstItem="0eC-VR-ePc" firstAttribute="leading" secondItem="lM1-iK-G3B" secondAttribute="leading" id="lZK-Sz-Hcp"/>
                                                                             <constraint firstAttribute="trailing" secondItem="0eC-VR-ePc" secondAttribute="trailing" id="zuX-H3-fRO"/>
                                                                         </constraints>
