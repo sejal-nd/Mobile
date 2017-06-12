@@ -100,18 +100,16 @@ class CreateAccountViewController: UIViewController {
         view.endEditing(true)
         
         LoadingView.show()
-        
         viewModel.verifyUniqueUsername(onSuccess: {
             LoadingView.hide()
-            
             self.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
-
+        }, onEmailAlreadyExists: {
+            LoadingView.hide()
+            self.createUsernameTextField.setError(NSLocalizedString("Email already exists. Please select a different email to login to view your account.", comment: ""))
         }, onError: { (title, message) in
             LoadingView.hide()
-            
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            
             self.present(alertController, animated: true, completion: nil)
         })
     }
@@ -174,6 +172,11 @@ class CreateAccountViewController: UIViewController {
         createUsernameTextField.setError(nil)
         createUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
+        createUsernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+            if self.createUsernameTextField.errorState {
+                self.createUsernameTextField.setError(nil)
+            }
+        }).addDisposableTo(disposeBag)
         createUsernameTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.username.value.characters.count > 0 {
                 self.viewModel.newUsernameIsValid().single().subscribe(onNext: { valid in

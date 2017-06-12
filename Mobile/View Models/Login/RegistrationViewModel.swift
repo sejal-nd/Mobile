@@ -87,7 +87,7 @@ class RegistrationViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    func verifyUniqueUsername(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+    func verifyUniqueUsername(onSuccess: @escaping () -> Void, onEmailAlreadyExists: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let username: String = self.username.value
         
         registrationService.checkForDuplicateAccount(username)
@@ -98,7 +98,7 @@ class RegistrationViewModel {
                 let serviceError = error as! ServiceError
                 
                 if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
-                    onError(NSLocalizedString("Email already exists", comment: ""), NSLocalizedString("Please select a different email to login to view your account", comment: ""))
+                    onEmailAlreadyExists()
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
