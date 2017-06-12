@@ -323,6 +323,14 @@ class CreateAccountViewController: UIViewController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 extension CreateAccountViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.characters.count == 0 { // Allow backspace
+            return true
+        }
+        
+        if string.trimmingCharacters(in: .whitespacesAndNewlines).characters.count == 0 {
+            return false
+        }
+
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         
         if textField == createUsernameTextField.textField || textField == confirmUsernameTextField?.textField {
