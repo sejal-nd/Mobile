@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 import Zxcvbn
 
 class RegistrationViewModel {
@@ -18,14 +19,46 @@ class RegistrationViewModel {
     let identifierNumber = Variable("")
     let accountNumber = Variable("")
     
-    var username = Variable("")
-    var confirmUsername = Variable("")
-    var newPassword = Variable("")
-    var confirmPassword = Variable("")
-    var primaryProfile = false
+    let username = Variable("")
+    let confirmUsername = Variable("")
+    let newPassword = Variable("")
+    let confirmPassword = Variable("")
     
+    var primaryProfile = Variable<Bool>(false)
     
-    required init() {
+    let securityQuestion1 = Variable("")
+    let securityAnswer1 = Variable("")
+    
+    let securityQuestion2 = Variable("")
+    let securityAnswer2 = Variable("")
+    
+    let securityQuestion3 = Variable("")
+    let securityAnswer3 = Variable("")
+    
+    var paperlessEbill = Variable<Bool>(true)
+    
+    let loadSecurityQuestionsData = PublishSubject<Void>()
+    
+    var securityQuestions = Variable<[SecurityQuestion]>([])
+    var selectedQuestion = ""
+    var selectedQuestionRow: Int!
+    
+    var accounts = Variable<[AccountLookupResult]>([])
+    
+    var registrationService: RegistrationService
+    
+    required init(registrationService: RegistrationService) {
+        self.registrationService = registrationService
+
+        loadSecurityQuestions.elements().map {
+            $0.map(SecurityQuestion.init)
+            }
+            .bind(to:securityQuestions)
+            .addDisposableTo(disposeBag)
+        
+//        loadAccounts.elements()
+//            .bind(to: accounts)
+//            .addDisposableTo(disposeBag)
     }
     
     
@@ -33,8 +66,6 @@ class RegistrationViewModel {
     func validateAccount(onSuccess: @escaping () -> Void, onMultipleAccounts: @escaping() -> Void, onError: @escaping (String, String) -> Void) {
         let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
         let identifier: String = identifierNumber.value
-        
-        let registrationService = ServiceFactory.createRegistrationService()
         
         registrationService.validateAccountInformation(identifier, phone: extractDigitsFrom(phoneNumber.value), accountNum: acctNum)
         	.observeOn(MainScheduler.instance)
@@ -44,11 +75,11 @@ class RegistrationViewModel {
                 let serviceError = error as! ServiceError
                 
                 if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue {
-                    onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("Invalid Information", comment: ""), NSLocalizedString("Invalid Information - The information entered does not match our records. Please try again.", comment: ""))
                 } else if serviceError.serviceCode == ServiceErrorCode.FnAccountMultiple.rawValue {
                     onMultipleAccounts()
                 } else if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
-                    onError(NSLocalizedString("Profile Exists", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("Profile Exists", comment: ""), NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: ""))
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
@@ -58,8 +89,6 @@ class RegistrationViewModel {
     
     func verifyUniqueUsername(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let username: String = self.username.value
-        
-        let registrationService = ServiceFactory.createRegistrationService()
         
         registrationService.checkForDuplicateAccount(username)
             .observeOn(MainScheduler.instance)
@@ -76,9 +105,37 @@ class RegistrationViewModel {
             })
             .addDisposableTo(disposeBag)
     }
+    
+    lazy var loadSecurityQuestions: Observable<Event<[String]>> = self.loadSecurityQuestionsData
+        .flatMapLatest {
+            self.registrationService.loadSecretQuestions().materialize()
+        }
+        .share()
+    
+    
+//    lazy var loadAccounts: Observable<Event<[AccountLookupResult]>> = self.loadSecurityQuestionsData
+//        .flatMapLatest {
+//            ServiceFactory.createAuthenticationService()
+//                .lookupAccount(phone: self.phoneNumber.value, identifier: self.identifierNumber.value)
+//                .materialize()
+//        }
+//        .share()
+    
+//    lazy var securityQuestionsDataFinishedLoading: Driver<Void> = Observable.zip(self.loadSecurityQuestions.elements(),
+//                                                                                 self.loadAccounts.elements())
+//                                                                                    .map({ _ in () })
+//                                                                                    .asDriver(onErrorJustReturn: ())
 
+//    lazy var loadAccountsError: Driver<String> = self.loadAccounts.errors()
+//                    .map { $0.localizedDescription }
+//                    .asDriver(onErrorJustReturn: "")
+    
+    lazy var loadSecurityQuestionsError: Driver<String> = self.loadSecurityQuestions.errors()
+                    .map { $0.localizedDescription }
+                    .asDriver(onErrorJustReturn: "")
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
+
     func nextButtonEnabled() -> Observable<Bool> {
         if Environment.sharedInstance.opco == .bge {
             return Observable.combineLatest(phoneNumberHasTenDigits(),
@@ -149,6 +206,8 @@ class RegistrationViewModel {
             let urlComponents = components[1].components(separatedBy: ".")
             
             if urlComponents.count < 2 {
+                return false
+            } else if urlComponents[0].characters.count == 0 || urlComponents[1].characters.count == 0 {
                 return false
             }
             
@@ -223,6 +282,25 @@ class RegistrationViewModel {
         })
     }
     
+    func newPasswordIsValid() -> Observable<Bool> {
+        return Observable.combineLatest([characterCountValid(),
+                                        containsLowercaseLetter(),
+                                        containsUppercaseLetter(),
+                                        containsNumber(),
+                                        containsSpecialCharacter()]) { array in
+            //
+            if array[0] {
+                let otherArray = array[1...4].filter{ $0 }
+                
+                if otherArray.count >= 3 {
+                    return true
+                }
+            }
+            
+            return false
+        }
+    }
+    
     func everythingValid() -> Observable<Bool> {
         return Observable.combineLatest([passwordMatchesUsername(),
                                         characterCountValid(),
@@ -264,6 +342,65 @@ class RegistrationViewModel {
     func doneButtonEnabled() -> Observable<Bool> {
         return Observable.combineLatest(everythingValid(), confirmPasswordMatches(), newPasswordHasText()) {
             return $0 && $1 && $2
+        }
+    }
+    
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    func question1Selected() -> Observable<Bool> {
+        return securityQuestion1.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+
+    func question2Selected() -> Observable<Bool> {
+        return securityQuestion2.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    func question3Selected() -> Observable<Bool> {
+        return securityQuestion3.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    
+    func question1Answered() -> Observable<Bool> {
+        return securityAnswer1.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    
+    func question2Answered() -> Observable<Bool> {
+        return securityAnswer2.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    
+    func question3Answered() -> Observable<Bool> {
+        return securityAnswer3.asObservable().map ({ text -> Bool in
+            return text.characters.count > 0
+        })
+    }
+    
+    func allQuestionsAnswered() -> Observable<Bool> {
+        var inArray = [question1Selected(),
+                     question1Answered(),
+                     question2Selected(),
+                     question2Answered()]
+        
+        var count = 4
+        
+        if Environment.sharedInstance.opco != .bge {
+            inArray.append(question3Selected())
+            inArray.append(question3Answered())
+            
+            count = 6
+        }
+        
+        return Observable.combineLatest(inArray) { outArray in
+            let otherArray = outArray[0..<count].filter{ $0 }
+            
+            return otherArray.count == count
         }
     }
 }

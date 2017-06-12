@@ -27,7 +27,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var questionMarkButton: UIButton!
     @IBOutlet weak var identifierDescriptionLabel: UILabel?
 
-    let viewModel = RegistrationViewModel()
+    let viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
 
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,15 @@ class RegistrationViewController: UIViewController {
         instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
         instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
-        identifierDescriptionLabel?.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN",
+        var identifierString = "Last 4 Digits of primary account holder’s Social Security Number"
+        
+        if Environment.sharedInstance.opco == .bge {
+            identifierString.append(", Business Tax ID, or BGE Pin")
+        } else {
+            identifierString.append(" or Business Tax ID.")
+        }
+        
+        identifierDescriptionLabel?.text = NSLocalizedString(identifierString,
                                                              comment: "")
         identifierDescriptionLabel?.font = SystemFont.regular.of(textStyle: .subheadline)
     }
@@ -125,7 +133,15 @@ class RegistrationViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         
         //
-        ssNumberNumberTextField.textField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
+        var ssString = "SSN/Business Tax ID"
+        
+        if Environment.sharedInstance.opco == .bge {
+            ssString.append("/BGE Pin*")
+        } else {
+            ssString.append("*")
+        }
+        
+        ssNumberNumberTextField.textField.placeholder = NSLocalizedString(ssString, comment: "")
         ssNumberNumberTextField.textField.autocorrectionType = .no
         ssNumberNumberTextField.textField.returnKeyType = .done
         ssNumberNumberTextField.textField.delegate = self

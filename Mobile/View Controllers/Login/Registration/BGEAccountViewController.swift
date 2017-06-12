@@ -19,7 +19,7 @@ class BGEAccountViewController: UIViewController {
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var questionMarkButton: UIButton!
 
-    var viewModel = RegistrationViewModel()
+    var viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
     override func viewDidLoad() {
