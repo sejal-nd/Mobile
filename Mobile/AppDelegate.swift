@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupToastStyles()
         //printFonts()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigation), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
    
         return true
     }
@@ -117,7 +117,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ToastManager.shared.duration = 5.0
     }
     
+    func resetNavigationOnAuthTokenExpire() {
+        resetNavigation(sendToLogin: false)
+        
+        let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("Your session has expired. Please sign in again.", comment: ""), preferredStyle: .alert)
+        alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+        self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+    }
+    
     func resetNavigation(sendToLogin: Bool = false) {
+        LoadingView.hide() // Just in case we left one stranded
+        
         if let rootNav = window?.rootViewController as? UINavigationController {
             if sendToLogin {
                 let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
@@ -128,10 +138,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 rootNav.popToRootViewController(animated: false)
             }
         }
-        window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app if it was presented modally
+        
+        window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app (or the registration confirmation modal)
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
     }
-    
+        
     func printFonts() {
         for familyName in UIFont.familyNames {
             print("------------------------------")
