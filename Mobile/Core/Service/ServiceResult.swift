@@ -29,6 +29,9 @@ enum ServiceErrorCode : String {
     case FnProfileExists = "FN-PROF-EXISTS"
     case FnAccountFinaled = "FN-ACCOUNT-FINALED" // Loading outage status for finaled account
     case FnAccountNoPay = "FN-ACCOUNT-NOPAY" // Loading outage status for no-pay account
+    case FnCustomerNotFound = "FN-CUST-NOTFOUND"
+    case FnUserInvalid = "FN-USER-INVALID"
+    case FnUserExists = "FN-USER-EXISTS"
 }
 
 // MARK: - ServiceError

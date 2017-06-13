@@ -89,6 +89,7 @@ class SecurityQuestionListViewController: UITableViewController {
                     previouslySelectedQuestion == question.securityQuestion {
                     //
                     question.selected = false
+                    viewModel.selectedQuestionChanged.value = true
                 }
             }
         }

@@ -42,7 +42,7 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var primaryProfileLabel: UILabel!
     @IBOutlet weak var primaryProfileSwitch: Switch!
     
-    var viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
+    var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
     
     var nextButton = UIBarButtonItem()
     
@@ -125,7 +125,7 @@ class CreateAccountViewController: UIViewController {
         viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).addDisposableTo(disposeBag)
         viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).addDisposableTo(disposeBag)
         
-        viewModel.newUsernameIsValid().asDriver(onErrorJustReturn: false)
+        viewModel.newUsernameIsValidBool().asDriver(onErrorJustReturn: false)
             .drive(onNext: { valid in
                 self.confirmUsernameTextField.setEnabled(valid)
             }).addDisposableTo(disposeBag)
@@ -174,21 +174,42 @@ class CreateAccountViewController: UIViewController {
         createUsernameTextField.setError(nil)
         createUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
-        createUsernameTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            if self.viewModel.username.value.characters.count > 0 {
-                self.viewModel.newUsernameIsValid().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.createUsernameTextField.setError(NSLocalizedString("Username must be a valid email address (xx@xxx.xxx)", comment: ""))
-                    }
-                }).addDisposableTo(self.disposeBag)
-            }
-        }).addDisposableTo(disposeBag)
+//        self.viewModel.usernameMaxCharacters().subscribe(onNext: { isMaxed in
+//            if isMaxed {
+//                self.createUsernameTextField.setError(NSLocalizedString("Maximum of 255 characters allowed", comment: ""))
+//            } else {
+//                self.createUsernameTextField.setError(nil)
+//            }
+//        }).addDisposableTo(self.disposeBag)
+//        
+        self.viewModel.newUsernameIsValid().subscribe(onNext: { errorMessage in
+            self.createUsernameTextField.setError(errorMessage)
+        }).addDisposableTo(self.disposeBag)
+        
+//        createUsernameTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
+//            if self.viewModel.username.value.characters.count > 0 {
+//                self.viewModel.newUsernameIsValid().single().subscribe(onNext: { valid in
+//                    if !valid {
+//                        self.createUsernameTextField.setError(NSLocalizedString("Invalid email address", comment: ""))
+//                    }
+//                }).addDisposableTo(self.disposeBag)
+//            }
+//        }).addDisposableTo(disposeBag)
         
         confirmUsernameTextField.textField.placeholder = NSLocalizedString("Confirm Email Address*", comment: "")
         confirmUsernameTextField.textField.returnKeyType = .next
         confirmUsernameTextField.textField.delegate = self
         confirmUsernameTextField.setEnabled(false)
         confirmUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+        
+//        self.viewModel.confirmUsernameMaxCharacters().asDriver(onErrorJustReturn: false)
+//            .drive(onNext: { isMaxed in
+//                if isMaxed {
+//                    self.confirmUsernameTextField.setError(NSLocalizedString("Maximum of 255 characters allowed", comment: ""))
+//                } else {
+//                    self.confirmUsernameTextField.setError(nil)
+//                }
+//            }).addDisposableTo(disposeBag)
         
         self.viewModel.newPasswordIsValid().subscribe(onNext: { valid in
             self.createPasswordTextField.setValidated(valid)
@@ -204,7 +225,7 @@ class CreateAccountViewController: UIViewController {
                     self.confirmUsernameTextField.setError(nil)
                 }
             } else {
-                self.confirmUsernameTextField .setError(nil)
+                self.confirmUsernameTextField.setError(nil)
             }
         }).addDisposableTo(self.disposeBag)
 
@@ -227,7 +248,7 @@ class CreateAccountViewController: UIViewController {
         createPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).addDisposableTo(disposeBag)
         confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).addDisposableTo(disposeBag)
         
-        createUsernameTextField.textField.rx.controlEvent(UIControlEvents.editingChanged).asDriver()
+        createUsernameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { _ in
                 // If we displayed an inline error, clear it when user edits the text
                 if self.createUsernameTextField.errorState {
@@ -321,11 +342,11 @@ extension CreateAccountViewController: UITextFieldDelegate {
             return false
         }
 
-        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        
-        if textField == createUsernameTextField.textField || textField == confirmUsernameTextField?.textField {
-            return newString.characters.count <= viewModel.MAXUSERNAMECHARS
-        }
+//        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+//        
+//        if textField == createUsernameTextField.textField || textField == confirmUsernameTextField?.textField {
+//            return newString.characters.count <= viewModel.MAXUSERNAMECHARS + 10
+//        }
         
         return true
     }

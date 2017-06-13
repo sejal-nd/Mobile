@@ -27,7 +27,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var questionMarkButton: UIButton!
     @IBOutlet weak var identifierDescriptionLabel: UILabel?
 
-    let viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
+    let viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService(), authenticationService: ServiceFactory.createAuthenticationService())
 
     
     /////////////////////////////////////////////////////////////////////////////////////////////////

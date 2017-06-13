@@ -17,6 +17,8 @@ class SelectSecurityQuestionsViewController: UIViewController {
 
     let disposeBag = DisposeBag()
     
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var instructionLabel: UILabel!
@@ -48,10 +50,11 @@ class SelectSecurityQuestionsViewController: UIViewController {
     @IBOutlet weak var streetNumColHeaderLabel: UILabel!
     @IBOutlet weak var unitNumColHeaderLabel: UILabel!
     
-    
     @IBOutlet weak var accountDataStackView: UIStackView!
     
     var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
+    
+    var errorMessageLoaded = false
     
     
     override func viewDidLoad() {
@@ -75,46 +78,73 @@ class SelectSecurityQuestionsViewController: UIViewController {
         
         prepareTextFieldsForInput()
         
-        createTestAccounts()
+//        createTestAccounts()
         
         viewModel.paperlessEbill.value = true
         
-        if viewModel.accounts.value.count > 1 {
-            displayAccountListing()
-        }
+//        if viewModel.accounts.value.count > 1 {
+//            displayAccountListing()
+//        }
     }
     
-    func createTestAccounts() {
-        var account1: AccountLookupResult
-        var account2: AccountLookupResult
-        
-        let acct1 = ["AccountNumber": "0123", "StreetNumber": "456", "ApartmentUnitNumber": "789"]
-        let acct2 = ["AccountNumber": "3210", "StreetNumber": "654", "ApartmentUnitNumber": "987"]
-        
-        let map1 = Mapper(JSON: acct1 as NSDictionary)
-        let map2 = Mapper(JSON: acct2 as NSDictionary)
-        
-        do {
-            try account1 = AccountLookupResult(map: map1)
-            try account2 = AccountLookupResult(map: map2)
-            
-            viewModel.accounts.value.removeAll()
-            
-            viewModel.accounts.value.append(account1)
-            viewModel.accounts.value.append(account2)
-        } catch {
-            
-        }
-    }
+//    func createTestAccounts() {
+//        var account1: AccountLookupResult
+//        var account2: AccountLookupResult
+//        
+//        let acct1 = ["AccountNumber": "0123", "StreetNumber": "456", "ApartmentUnitNumber": "789"]
+//        let acct2 = ["AccountNumber": "3210", "StreetNumber": "654", "ApartmentUnitNumber": "987"]
+//        
+//        let map1 = Mapper(JSON: acct1 as NSDictionary)
+//        let map2 = Mapper(JSON: acct2 as NSDictionary)
+//        
+//        do {
+//            try account1 = AccountLookupResult(map: map1)
+//            try account2 = AccountLookupResult(map: map2)
+//            
+//            viewModel.accounts.value.removeAll()
+//            
+//            viewModel.accounts.value.append(account1)
+//            viewModel.accounts.value.append(account2)
+//        } catch {
+//            
+//        }
+//    }
     
     func loadSecurityQuestionsAndAccounts() {
-        LoadingView.show()
+        loadingIndicator.isHidden = false
+        scrollView.isHidden = true
         
-//        Driver.merge(viewModel.loadSecurityQuestionsError/*, viewModel.loadAccountsError*/)
+        var messages = ""
+        var title = ""
+        
+        errorMessageLoaded = false
+        
+        viewModel.loadSecurityQuestions(onSuccess: { _ in
+            
+            self.viewModel.loadAccounts(onSuccess: { _ in
+                self.toggleAccountListing(self.viewModel.accounts.value.count > 1)
+                
+                self.scrollView.isHidden = false
+                self.loadingIndicator.isHidden = true
+            }, onError: { (accountsTitle, accountsMessage) in
+                title = accountsTitle
+                messages = accountsMessage
+                
+                self.loadErrorMessage(title, message: messages)
+            })
+            
+        }, onError: { (securityTitle, securityMessage) in
+            title = securityTitle
+            messages += securityMessage
+            
+            self.loadErrorMessage(title, message: messages)
+        })
+        
+        
+//        Driver.merge(viewModel.loadSecurityQuestionsError, viewModel.loadAccountsError)
 //            .drive(onNext: { errorMessage in
 //                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
 //                alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .default) { _ in
-//                    LoadingView.show()
 //                    
 //                    self.viewModel.loadSecurityQuestionsData.onNext(())
 //                })
@@ -126,11 +156,37 @@ class SelectSecurityQuestionsViewController: UIViewController {
 //            .addDisposableTo(disposeBag)
 //        
 //        viewModel.securityQuestionsDataFinishedLoading.drive(onNext: {
-//            LoadingView.hide()
+//            self.scrollView.isHidden = false
+//            self.loadingIndicator.isHidden = true
+//            
+//            if self.viewModel.accounts.value.count > 1 {
+//                self.displayAccountListing()
+//            } else {
+//                self.hideAccountListing()
+//            }
 //        })
 //        .addDisposableTo(disposeBag)
-
-        viewModel.loadSecurityQuestionsData.onNext(())
+//                
+//        self.viewModel.loadSecurityQuestionsData.onNext(())
+    }
+    
+    func loadErrorMessage(_ title: String, message: String) {
+        if errorMessageLoaded {
+            return
+        }
+        
+        errorMessageLoaded = true
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .default) { _ in
+            self.loadSecurityQuestionsAndAccounts()
+        })
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
+        
+        self.present(alert, animated: true, completion: nil)
+        
     }
 
     /// Helpers
@@ -275,9 +331,27 @@ class SelectSecurityQuestionsViewController: UIViewController {
         question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer1).addDisposableTo(disposeBag)
         question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer2).addDisposableTo(disposeBag)
         question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer3).addDisposableTo(disposeBag)
+        
+        viewModel.securityQuestionChanged().asDriver(onErrorJustReturn: false)
+            .drive(onNext: { valid in
+                switch (self.viewModel.selectedQuestionRow) {
+                case 1:
+                    self.question1AnswerTextField.textField.text = ""
+                    
+                case 2:
+                    self.question2AnswerTextField.textField.text = ""
+                    
+                case 3:
+                    self.question3AnswerTextField.textField.text = ""
+                    
+                default:
+                    break
+                }
+            }).addDisposableTo(disposeBag)
     }
     
     func displayAccountListing() {
+        accountListView.isHidden = false
         accountListView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         var accountDetailViews = [AccountDetailsView]()
@@ -294,6 +368,10 @@ class SelectSecurityQuestionsViewController: UIViewController {
         enrollIneBillSwitch.rx.isOn.bind(to: viewModel.paperlessEbill).addDisposableTo(disposeBag)
     }
     
+    func toggleAccountListing(_ isVisible: Bool) {
+        accountListView.isHidden = !isVisible
+    }
+    
     func onCancelPress() {
         // We do this to cover the case where we push RegistrationViewController from LandingViewController.
         // When that happens, we want the cancel action to go straight back to LandingViewController.
@@ -303,31 +381,26 @@ class SelectSecurityQuestionsViewController: UIViewController {
     func onNextPress() {
         view.endEditing(true)
         
-//        LoadingView.show()
+        LoadingView.show()
         
-//        LoadingView.hide()
-        
-        self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
-//        viewModel.validateAccount(onSuccess: {
-//            LoadingView.hide()
-//            
-//            self.performSegue(withIdentifier: "createUsernamePasswordSegue", sender: self)
-//        }, onMultipleAccounts:  {
-//            LoadingView.hide()
-//            
-//            self.performSegue(withIdentifier: "loadChooseAccountSegue", sender: self)
-//        }, onError: { (title, message) in
-//            LoadingView.hide()
-//            
-//            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-//            
-//            self.present(alertController, animated: true, completion: nil)
-//        })
+        viewModel.registerUser(onSuccess: {
+            LoadingView.hide()
+            
+            self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
+        }, onError: { (title, message) in
+            LoadingView.hide()
+            
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+
+            self.present(alertController, animated: true, completion: nil)
+        })
     }
     
     @IBAction func enrollIneBillToggle(_ sender: Any) {
         viewModel.paperlessEbill.value = !viewModel.paperlessEbill.value
+        
+        toggleAccountListing(viewModel.paperlessEbill.value)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -363,23 +436,23 @@ class SelectSecurityQuestionsViewController: UIViewController {
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
     func question1Tapped() {
-        viewModel.selectedQuestionRow = 1
-        viewModel.selectedQuestion = viewModel.securityQuestion1.value
-        
-        self.performSegue(withIdentifier: "loadSecretQuestionListSegue", sender: self)
+        loadSecetQuestionList(forRow: 1, question: viewModel.securityQuestion1.value)
     }
 
     func question2Tapped() {
-        viewModel.selectedQuestionRow = 2
-        viewModel.selectedQuestion = viewModel.securityQuestion2.value
-
-        self.performSegue(withIdentifier: "loadSecretQuestionListSegue", sender: self)
+        loadSecetQuestionList(forRow: 2, question: viewModel.securityQuestion2.value)
     }
 
     func question3Tapped() {
-        viewModel.selectedQuestionRow = 3
-        viewModel.selectedQuestion = viewModel.securityQuestion3.value
-
+        loadSecetQuestionList(forRow: 3, question: viewModel.securityQuestion3.value)
+    }
+    
+    func loadSecetQuestionList(forRow row: Int, question: String) {
+        viewModel.selectedQuestionRow = row
+        viewModel.selectedQuestion = question
+        viewModel.selectedQuestionChanged.value = false
+        
         self.performSegue(withIdentifier: "loadSecretQuestionListSegue", sender: self)
+        
     }
 }

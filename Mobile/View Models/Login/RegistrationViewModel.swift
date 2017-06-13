@@ -41,21 +41,24 @@ class RegistrationViewModel {
     
     var securityQuestions = Variable<[SecurityQuestion]>([])
     var selectedQuestion = ""
-    var selectedQuestionRow: Int!
+    var selectedQuestionRow = 0
+    var selectedQuestionChanged = Variable<Bool>(false)
     
     var accounts = Variable<[AccountLookupResult]>([])
     
     var registrationService: RegistrationService
+    var authenticationService: AuthenticationService
     
-    required init(registrationService: RegistrationService) {
+    required init(registrationService: RegistrationService, authenticationService: AuthenticationService) {
         self.registrationService = registrationService
+        self.authenticationService = authenticationService
 
-        loadSecurityQuestions.elements().map {
-            $0.map(SecurityQuestion.init)
-            }
-            .bind(to:securityQuestions)
-            .addDisposableTo(disposeBag)
-        
+//        loadSecurityQuestions.elements().map {
+//            $0.map(SecurityQuestion.init)
+//            }
+//            .bind(to:securityQuestions)
+//            .addDisposableTo(disposeBag)
+//        
 //        loadAccounts.elements()
 //            .bind(to: accounts)
 //            .addDisposableTo(disposeBag)
@@ -98,7 +101,7 @@ class RegistrationViewModel {
                 let serviceError = error as! ServiceError
                 
                 if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
-                    onError(NSLocalizedString("Profile Exists", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("Profile Exists", comment: ""), NSLocalizedString("Email already exists. Please select a different email to login to view your account.", comment: ""))
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
@@ -106,33 +109,134 @@ class RegistrationViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    lazy var loadSecurityQuestions: Observable<Event<[String]>> = self.loadSecurityQuestionsData
-        .flatMapLatest {
-            self.registrationService.loadSecretQuestions().materialize()
-        }
-        .share()
+    func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+        let username: String = self.username.value
+        let password: String = self.newPassword.value
+        let id: String = self.identifierNumber.value
+        let phone: String = extractDigitsFrom(phoneNumber.value)
+        let question1: String = securityQuestion1.value
+        let answer1: String = securityAnswer1.value
+        let question2: String = securityQuestion2.value
+        let answer2: String = securityAnswer2.value
+        let question3: String = securityQuestion3.value
+        let answer3: String = securityAnswer3.value
+        let primary: Bool = primaryProfile.value
+        let enrollEbill: Bool = paperlessEbill.value
+        
+        registrationService.createNewAccount(username,
+                                             password: password,
+                                             identifier: id,
+                                             phone: phone,
+                                             question1: question1,
+                                             answer1: answer1,
+                                             question2: question2,
+                                             answer2: answer2,
+                                             question3: question3,
+                                             answer3: answer3,
+                                             isPrimary: primary,
+                                             isEnrollEBill: enrollEbill)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { error in
+                let serviceError = error as! ServiceError
+                
+                switch (serviceError.serviceCode) {
+                case ServiceErrorCode.FnAccountMultiple.rawValue:
+                    onError(NSLocalizedString("Multiple Accounts", comment: ""), error.localizedDescription)
+                    
+                case ServiceErrorCode.FnCustomerNotFound.rawValue:
+                    onError(NSLocalizedString("Customer Not Found", comment: ""), error.localizedDescription)
+                    
+                case ServiceErrorCode.FnUserInvalid.rawValue:
+                    onError(NSLocalizedString("User Invalid", comment: ""), error.localizedDescription)
+                    
+                case ServiceErrorCode.FnUserExists.rawValue:
+                    onError(NSLocalizedString("User Exists", comment: ""), error.localizedDescription)
+                    
+                case ServiceErrorCode.FnProfileExists.rawValue:
+                    onError(NSLocalizedString("Profile Exists", comment: ""), error.localizedDescription)
+                    
+                case ServiceErrorCode.TcUnknown.rawValue:
+                    fallthrough
+                    
+                default:
+                    onError(NSLocalizedString("Unknown Error", comment: ""), error.localizedDescription)
+                }
+            })
+            .addDisposableTo(disposeBag)
+    }
     
+    func loadSecurityQuestions(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+        self.registrationService.loadSecretQuestions()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { array in
+                self.securityQuestions = Variable<[SecurityQuestion]>([])
+                
+                for question in array {
+                    let securityQuestion = SecurityQuestion(question: question)
+                    
+                    self.securityQuestions.value.append(securityQuestion)
+                }
+                
+                onSuccess()
+            }, onError: { error in
+                onError(NSLocalizedString("Unknown Error", comment: ""), error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+    }
     
+    func loadAccounts(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+        self.authenticationService.lookupAccount(phone: self.extractDigitsFrom(self.phoneNumber.value) as String, identifier: self.identifierNumber.value as String)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { array in
+                self.accounts.value = array as [AccountLookupResult]
+                
+                onSuccess()
+            }, onError: { error in
+                let serviceError = error as! ServiceError
+                
+                switch (serviceError.serviceCode) {
+                case ServiceErrorCode.FnNotFound.rawValue:
+                    onError(NSLocalizedString("No Account Found", comment: ""), error.localizedDescription)
+                    
+                case ServiceErrorCode.TcUnknown.rawValue:
+                    fallthrough
+                    
+                default:
+                    onError(NSLocalizedString("Unknown Error", comment: ""), error.localizedDescription)
+                }
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
+//    lazy var loadSecurityQuestions: Observable<Event<[String]>> = self.loadSecurityQuestionsData
+//        .flatMapLatest {
+//            self.registrationService.loadSecretQuestions().debug("security").materialize()
+//        }
+//        .shareReplay(1)
+//    
+//    
 //    lazy var loadAccounts: Observable<Event<[AccountLookupResult]>> = self.loadSecurityQuestionsData
 //        .flatMapLatest {
-//            ServiceFactory.createAuthenticationService()
-//                .lookupAccount(phone: self.phoneNumber.value, identifier: self.identifierNumber.value)
+//            self.authenticationService
+//                .lookupAccount(phone: self.extractDigitsFrom(self.phoneNumber.value) as String, identifier: self.identifierNumber.value as String).debug("accounts")
 //                .materialize()
 //        }
-//        .share()
-    
+//        .shareReplay(1)
+//    
 //    lazy var securityQuestionsDataFinishedLoading: Driver<Void> = Observable.zip(self.loadSecurityQuestions.elements(),
 //                                                                                 self.loadAccounts.elements())
 //                                                                                    .map({ _ in () })
 //                                                                                    .asDriver(onErrorJustReturn: ())
-
+//
 //    lazy var loadAccountsError: Driver<String> = self.loadAccounts.errors()
 //                    .map { $0.localizedDescription }
 //                    .asDriver(onErrorJustReturn: "")
-    
-    lazy var loadSecurityQuestionsError: Driver<String> = self.loadSecurityQuestions.errors()
-                    .map { $0.localizedDescription }
-                    .asDriver(onErrorJustReturn: "")
+//    
+//    lazy var loadSecurityQuestionsError: Driver<String> = self.loadSecurityQuestions.errors()
+//                    .map { $0.localizedDescription }
+//                    .asDriver(onErrorJustReturn: "")
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -195,8 +299,12 @@ class RegistrationViewModel {
     	}
     }
     
-    func newUsernameIsValid() -> Observable<Bool> {
+    func newUsernameIsValidBool() -> Observable<Bool> {
         return username.asObservable().map { text -> Bool in
+            if text.characters.count > self.MAXUSERNAMECHARS {
+                return false
+            }
+            
             let components = text.components(separatedBy: "@")
             
             if components.count != 2 {
@@ -212,6 +320,32 @@ class RegistrationViewModel {
             }
             
             return true
+        }
+    }
+    
+    func newUsernameIsValid() -> Observable<String?> {
+        return username.asObservable().map { text -> String? in
+            if text.characters.count > 0 {
+                if text.characters.count > self.MAXUSERNAMECHARS {
+                    return "Maximum of 255 characters allowed"
+                }
+                
+                let components = text.components(separatedBy: "@")
+                
+                if components.count != 2 {
+                    return "Invalid email address"
+                }
+                
+                let urlComponents = components[1].components(separatedBy: ".")
+                
+                if urlComponents.count < 2 {
+                    return "Invalid email address"
+                } else if urlComponents[0].characters.count == 0 || urlComponents[1].characters.count == 0 {
+                    return "Invalid email address"
+                }
+            }
+            
+            return nil
         }
     }
     
@@ -237,9 +371,9 @@ class RegistrationViewModel {
             }
     }
     
-    func usernameMax255Characters() -> Observable<Bool> {
+    func usernameMaxCharacters() -> Observable<Bool> {
         return username.asObservable().map({ text -> Bool in
-            return text.characters.count == self.MAXUSERNAMECHARS
+            return text.characters.count > self.MAXUSERNAMECHARS
         })
     }
     
@@ -310,7 +444,7 @@ class RegistrationViewModel {
                                         containsSpecialCharacter(),
                                         newUsernameHasText(),
                                         usernameMatches(),
-                                        newUsernameIsValid()]) { array in
+                                        newUsernameIsValidBool()]) { array in
             //
                                             
             if !array[0] && array[1] && array[6] && array[7] && array[8] {
@@ -379,6 +513,12 @@ class RegistrationViewModel {
     func question3Answered() -> Observable<Bool> {
         return securityAnswer3.asObservable().map ({ text -> Bool in
             return text.characters.count > 0
+        })
+    }
+    
+    func securityQuestionChanged() -> Observable<Bool> {
+        return selectedQuestionChanged.asObservable().map ({ value -> Bool in
+            return value
         })
     }
     

@@ -22,7 +22,7 @@
         <scene sceneID="Qff-1Z-8Qt">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RbL-iO-8ib" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hjm-LC-WA0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hjm-LC-WA0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -635,7 +635,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sli-Tt-vCb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xPE-hv-B2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xPE-hv-B2n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1548,7 +1548,7 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Me-i6-eET">
-                                                                            <rect key="frame" x="0.0" y="16.5" width="291" height="19"/>
+                                                                            <rect key="frame" x="0.0" y="15" width="291" height="22"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -2457,12 +2457,18 @@
                                     <constraint firstItem="lgk-TP-ego" firstAttribute="leading" secondItem="t6x-Zw-vOd" secondAttribute="leading" id="mPi-1G-tYV"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Vrb-vV-DRS" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="157" y="40" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="t6x-Zw-vOd" firstAttribute="top" secondItem="ZRx-gb-TYy" secondAttribute="top" id="AVL-V2-lEx"/>
+                            <constraint firstItem="Vrb-vV-DRS" firstAttribute="top" secondItem="lur-rh-KxM" secondAttribute="bottom" constant="20" id="BpF-Ef-JZ8"/>
                             <constraint firstAttribute="trailing" secondItem="t6x-Zw-vOd" secondAttribute="trailing" id="L4G-km-F85"/>
                             <constraint firstItem="t6x-Zw-vOd" firstAttribute="leading" secondItem="ZRx-gb-TYy" secondAttribute="leading" id="dSC-CA-qox"/>
+                            <constraint firstItem="Vrb-vV-DRS" firstAttribute="centerX" secondItem="ZRx-gb-TYy" secondAttribute="centerX" id="p2E-4G-sRm"/>
                             <constraint firstItem="t6x-Zw-vOd" firstAttribute="bottom" secondItem="B5F-Gj-NEG" secondAttribute="top" constant="90" id="sUB-Lg-3IP"/>
                         </constraints>
                     </view>
@@ -2477,6 +2483,7 @@
                         <outlet property="eBillSwitchInstructions" destination="wch-xm-nwd" id="qfh-aw-rmR"/>
                         <outlet property="enrollIneBillSwitch" destination="Qi8-h0-f4g" id="vy0-1s-HPY"/>
                         <outlet property="instructionLabel" destination="H7V-UA-c4Y" id="vDL-9a-Lk6"/>
+                        <outlet property="loadingIndicator" destination="Vrb-vV-DRS" id="gJL-bi-9Nk"/>
                         <outlet property="question1AnswerTextField" destination="SmR-Dv-6Aa" id="bnp-6M-0lK"/>
                         <outlet property="question1ContentLabel" destination="RdW-go-UpS" id="iTR-IB-lbL"/>
                         <outlet property="question1Label" destination="sWc-Lo-mW2" id="1OE-tJ-ThM"/>
@@ -2583,22 +2590,22 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uca-EY-U9e" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="203.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSL-w0-3zh" userLabel="Tablet View">
-                                                <rect key="frame" x="29.5" y="0.0" width="317" height="203.5"/>
+                                                <rect key="frame" x="29.5" y="0.0" width="317" height="210"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="img_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="cIh-fu-Toz">
                                                         <rect key="frame" x="0.0" y="10" width="317" height="16"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="This will be a little description of the information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGO-py-Dmb">
-                                                        <rect key="frame" x="0.0" y="36" width="317" height="37.5"/>
+                                                        <rect key="frame" x="0.0" y="36" width="317" height="44"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKQ-HE-SDA" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="113.5" width="317" height="60"/>
+                                                        <rect key="frame" x="0.0" y="120" width="317" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="s0P-Xe-fHy"/>
                                                         </constraints>
