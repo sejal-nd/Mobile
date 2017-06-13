@@ -67,7 +67,7 @@ class SelectSecurityQuestionsViewController: UIViewController {
         
         setupNavigationButtons()
 
-        title = NSLocalizedString("Security Questions", comment: "")
+        title = NSLocalizedString("Register", comment: "")
         
         setupNavigationButtons()
         
@@ -113,10 +113,15 @@ class SelectSecurityQuestionsViewController: UIViewController {
                 self.scrollView.isHidden = false
                 self.loadingIndicator.isHidden = true
             }, onError: { (accountsTitle, accountsMessage) in
-                title = accountsTitle
-                messages = accountsMessage
+//                title = accountsTitle
+//                messages = accountsMessage
+//                
+//                self.loadErrorMessage(title, message: messages)
                 
-                self.loadErrorMessage(title, message: messages)
+                // MMS - I'm ignoring this error for now - TODO, fix it
+                self.scrollView.isHidden = false
+                self.loadingIndicator.isHidden = true
+                self.toggleAccountListing(false)
             })
             
         }, onError: { (securityTitle, securityMessage) in
@@ -165,14 +170,12 @@ class SelectSecurityQuestionsViewController: UIViewController {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .default) { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default) { _ in
             self.loadSecurityQuestionsAndAccounts()
         })
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
-        
         self.present(alert, animated: true, completion: nil)
-        
     }
     
     func setupNavigationButtons() {
@@ -244,8 +247,7 @@ class SelectSecurityQuestionsViewController: UIViewController {
             question3ViewWrapper.isUserInteractionEnabled = true
             question3ViewWrapper.addGestureRecognizer(tap3)
         } else {
-            question3Label.isHidden = true
-            question3ContentLabel.isHidden = true
+            question3ViewWrapper.isHidden = true
         }
 }
     

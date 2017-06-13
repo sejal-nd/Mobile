@@ -70,8 +70,6 @@ class CreateAccountViewController: UIViewController {
     
     func setupNavigationButtons() {
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
-        viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
-        
         navigationItem.rightBarButtonItem = nextButton
     }
     
@@ -94,7 +92,6 @@ class CreateAccountViewController: UIViewController {
     @IBAction func primaryProfileSwitchToggled(_ sender: Any) {
         viewModel.primaryProfile.value = !viewModel.primaryProfile.value
     }
-    
     
     func onNextPress() {
         view.endEditing(true)

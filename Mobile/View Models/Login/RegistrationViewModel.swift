@@ -240,6 +240,7 @@ class RegistrationViewModel {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
+    // THIS IS FOR THE NEXT BUTTON ON THE FIRST STEP (VALIDATE ACCOUNT)
     func nextButtonEnabled() -> Observable<Bool> {
         if Environment.sharedInstance.opco == .bge {
             return Observable.combineLatest(phoneNumberHasTenDigits(),
@@ -473,6 +474,7 @@ class RegistrationViewModel {
         }
     }
     
+    // THIS IS FOR THE NEXT BUTTON ON THE SECOND STEP (CREATE SIGN IN CREDENTIALS)
     func doneButtonEnabled() -> Observable<Bool> {
         return Observable.combineLatest(everythingValid(), confirmPasswordMatches(), newPasswordHasText()) {
             return $0 && $1 && $2
