@@ -22,7 +22,7 @@
         <scene sceneID="Qff-1Z-8Qt">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RbL-iO-8ib" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hjm-LC-WA0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hjm-LC-WA0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -635,7 +635,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sli-Tt-vCb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xPE-hv-B2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xPE-hv-B2n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1549,7 +1549,7 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Me-i6-eET">
-                                                                            <rect key="frame" x="0.0" y="15" width="291" height="22"/>
+                                                                            <rect key="frame" x="0.0" y="16.5" width="291" height="19"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -2409,7 +2409,7 @@
                                                                     <constraint firstAttribute="trailing" secondItem="lM1-iK-G3B" secondAttribute="trailing" id="5fb-Ec-3MV"/>
                                                                     <constraint firstItem="lM1-iK-G3B" firstAttribute="leading" secondItem="xFW-6U-4Nj" secondAttribute="leading" id="Lb1-oH-iYz"/>
                                                                     <constraint firstAttribute="bottom" secondItem="lM1-iK-G3B" secondAttribute="bottom" id="WPQ-dA-dkQ"/>
-                                                                    <constraint firstItem="lM1-iK-G3B" firstAttribute="top" secondItem="xFW-6U-4Nj" secondAttribute="top" constant="15" id="cfE-MU-2jZ"/>
+                                                                    <constraint firstItem="lM1-iK-G3B" firstAttribute="top" secondItem="xFW-6U-4Nj" secondAttribute="top" priority="999" constant="15" id="cfE-MU-2jZ"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
