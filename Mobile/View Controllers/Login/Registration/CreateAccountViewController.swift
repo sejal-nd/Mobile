@@ -100,18 +100,16 @@ class CreateAccountViewController: UIViewController {
         view.endEditing(true)
         
         LoadingView.show()
-        
         viewModel.verifyUniqueUsername(onSuccess: {
             LoadingView.hide()
-            
             self.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
-
+        }, onEmailAlreadyExists: {
+            LoadingView.hide()
+            self.createUsernameTextField.setError(NSLocalizedString("Email already exists. Please select a different email to login to view your account.", comment: ""))
         }, onError: { (title, message) in
             LoadingView.hide()
-            
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            
             self.present(alertController, animated: true, completion: nil)
         })
     }
@@ -174,43 +172,22 @@ class CreateAccountViewController: UIViewController {
         createUsernameTextField.setError(nil)
         createUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
-//        self.viewModel.usernameMaxCharacters().subscribe(onNext: { isMaxed in
-//            if isMaxed {
-//                self.createUsernameTextField.setError(NSLocalizedString("Maximum of 255 characters allowed", comment: ""))
-//            } else {
-//                self.createUsernameTextField.setError(nil)
-//            }
-//        }).addDisposableTo(self.disposeBag)
-//        
         self.viewModel.newUsernameIsValid().subscribe(onNext: { errorMessage in
             self.createUsernameTextField.setError(errorMessage)
         }).addDisposableTo(self.disposeBag)
         
-//        createUsernameTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-//            if self.viewModel.username.value.characters.count > 0 {
-//                self.viewModel.newUsernameIsValid().single().subscribe(onNext: { valid in
-//                    if !valid {
-//                        self.createUsernameTextField.setError(NSLocalizedString("Invalid email address", comment: ""))
-//                    }
-//                }).addDisposableTo(self.disposeBag)
-//            }
-//        }).addDisposableTo(disposeBag)
+        createUsernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
+            if self.createUsernameTextField.errorState {
+                self.createUsernameTextField.setError(nil)
+            }
+        }).addDisposableTo(disposeBag)
         
         confirmUsernameTextField.textField.placeholder = NSLocalizedString("Confirm Email Address*", comment: "")
         confirmUsernameTextField.textField.returnKeyType = .next
         confirmUsernameTextField.textField.delegate = self
         confirmUsernameTextField.setEnabled(false)
         confirmUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        
-//        self.viewModel.confirmUsernameMaxCharacters().asDriver(onErrorJustReturn: false)
-//            .drive(onNext: { isMaxed in
-//                if isMaxed {
-//                    self.confirmUsernameTextField.setError(NSLocalizedString("Maximum of 255 characters allowed", comment: ""))
-//                } else {
-//                    self.confirmUsernameTextField.setError(nil)
-//                }
-//            }).addDisposableTo(disposeBag)
-        
+                
         self.viewModel.newPasswordIsValid().subscribe(onNext: { valid in
             self.createPasswordTextField.setValidated(valid)
         }).addDisposableTo(disposeBag)
@@ -231,7 +208,7 @@ class CreateAccountViewController: UIViewController {
 
         createPasswordTextField.textField.placeholder = NSLocalizedString("Password*", comment: "")
         createPasswordTextField.textField.isSecureTextEntry = true
-        createPasswordTextField.textField.returnKeyType = .done
+        createPasswordTextField.textField.returnKeyType = .next
         createPasswordTextField.textField.delegate = self
         createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
@@ -354,21 +331,18 @@ extension CreateAccountViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == createUsernameTextField.textField {
             if confirmUsernameTextField.isUserInteractionEnabled {
-                confirmUsernameTextField.becomeFirstResponder()
+                confirmUsernameTextField.textField.becomeFirstResponder()
             } else {
-                createPasswordTextField.becomeFirstResponder()
+                createPasswordTextField.textField.becomeFirstResponder()
             }
-            
         } else if textField == confirmUsernameTextField.textField {
-            createPasswordTextField.becomeFirstResponder()
-        
+            createPasswordTextField.textField.becomeFirstResponder()
         } else if textField == createPasswordTextField.textField {
             if confirmPasswordTextField.isUserInteractionEnabled {
-                confirmPasswordTextField.becomeFirstResponder()
+                confirmPasswordTextField.textField.becomeFirstResponder()
             } else {
-                createUsernameTextField.becomeFirstResponder()
+                createUsernameTextField.textField.becomeFirstResponder()
             }
-
         } else if textField == confirmPasswordTextField.textField {
             viewModel.nextButtonEnabled().single().subscribe(onNext: { enabled in
                 if enabled {

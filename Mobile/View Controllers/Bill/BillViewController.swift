@@ -103,6 +103,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var billPaidLabel: UILabel!
     @IBOutlet weak var makeAPaymentStatusLabel: UILabel!
     
+    @IBOutlet weak var activityButton: DisclosureButton!
     @IBOutlet weak var walletButton: DisclosureButton!
     
     @IBOutlet weak var autoPayButton: ButtonControl!
@@ -152,7 +153,7 @@ class BillViewController: AccountPickerViewController {
         styleViews()
         bindViews()
         bindButtonTaps()
-        
+        configureAccessibility()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -274,7 +275,6 @@ class BillViewController: AccountPickerViewController {
             .addDisposableTo(bag)
 		
 		questionMarkButton.isHidden = !viewModel.shouldShowAmountDueTooltip
-        questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
 		
 		viewModel.shouldShowRestoreService.not().drive(restoreServiceView.rx.isHidden).addDisposableTo(bag)
 		viewModel.shouldShowCatchUpAmount.not().drive(catchUpView.rx.isHidden).addDisposableTo(bag)
@@ -427,6 +427,31 @@ class BillViewController: AccountPickerViewController {
                 }
             })
             .addDisposableTo(bag)
+    }
+    
+    func configureAccessibility() {
+        questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
+        
+        needHelpUnderstandingButton.isAccessibilityElement = true
+        needHelpUnderstandingButton.accessibilityLabel = NSLocalizedString("Need help understanding your bill? Button", comment: "")
+        
+        viewBillButton.isAccessibilityElement = true
+        viewBillButton.accessibilityLabel = NSLocalizedString("View bill, button", comment: "")
+        
+        activityButton.isAccessibilityElement = true
+        activityButton.accessibilityLabel = NSLocalizedString("Activity", comment: "")
+        
+        walletButton.isAccessibilityElement = true
+        walletButton.accessibilityLabel = NSLocalizedString("My Wallet", comment: "")
+        
+        autoPayButton.isAccessibilityElement = true
+        autoPayButton.accessibilityLabel = NSLocalizedString("AutoPay, button", comment: "")
+        
+        paperlessButton.isAccessibilityElement = true
+        paperlessButton.accessibilityLabel = NSLocalizedString("Paperless e-Bill, button", comment: "")
+        
+        budgetButton.isAccessibilityElement = true
+        budgetButton.accessibilityLabel = NSLocalizedString("Budget Billing, button", comment: "")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

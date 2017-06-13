@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupToastStyles()
         //printFonts()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigation), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
    
         return true
     }
@@ -83,11 +83,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard let window = self.window else { return false }
         guard let rootNav = window.rootViewController as? UINavigationController else { return false }
-        if rootNav.viewControllers.count > 1 { // Already past the splash screen
+        if let topMostVC = rootNav.viewControllers.last as? SplashViewController {
+            topMostVC.restoreUserActivityState(userActivity)
+        } else {
             resetNavigation(sendToLogin: true)
-        } else { // Cold boot
-            guard let splashVC = rootNav.viewControllers[0] as? SplashViewController else { return false }
-            splashVC.restoreUserActivityState(userActivity)
         }
         
         if let guid = guid {
@@ -117,21 +116,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ToastManager.shared.duration = 5.0
     }
     
-    func resetNavigation(sendToLogin: Bool = false) {
-        if let rootNav = window?.rootViewController as? UINavigationController {
-            if sendToLogin {
-                let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-                let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
-                let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
-                rootNav.setViewControllers([landing, login], animated: false)
-            } else {
-                rootNav.popToRootViewController(animated: false)
-            }
-        }
-        window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app if it was presented modally
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
+    func resetNavigationOnAuthTokenExpire() {
+        resetNavigation(sendToLogin: false)
+        
+        let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("Your session has expired. Please sign in again.", comment: ""), preferredStyle: .alert)
+        alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+        self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
     }
     
+    func resetNavigation(sendToLogin: Bool = false) {
+        LoadingView.hide() // Just in case we left one stranded
+        
+        if let rootNav = window?.rootViewController as? UINavigationController {
+            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+            let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
+            let vcArray = sendToLogin ? [landing, login] : [landing]
+            rootNav.setViewControllers(vcArray, animated: false)
+        }
+        
+        window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app (or the registration confirmation modal)
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
+    }
+        
     func printFonts() {
         for familyName in UIFont.familyNames {
             print("------------------------------")

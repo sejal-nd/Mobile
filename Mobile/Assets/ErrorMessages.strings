@@ -12,7 +12,7 @@
 "FN-NOT-FOUND" = "Account not found.";
 "ERR-NO-NETWORK-CONNECTION" = "No network available, please try again later.";
 "FN-PROF-BADSECURITY" = "The security answer does not match our records.";
-"FN-PROF-NOTFOUND" = "Incorrect username/email address. Please try again.";
+"FN-PROF-NOTFOUND" = "The information entered does not match our records. Please try again.";
 "FN-ACCT-NOTFOUND" = "The information entered does not match our records. Please try again.";
 "FN-NOT-FOUND" = "The information entered does not match our records. Please try again.";
 "FN-ACCT-PROTECTED" = "Your account is password protected and cannot be accessed through this app.";

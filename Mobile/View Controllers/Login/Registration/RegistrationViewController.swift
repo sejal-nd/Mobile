@@ -326,13 +326,10 @@ extension RegistrationViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == phoneNumberTextField.textField {
-            if let idTextField = ssNumberNumberTextField {
-                idTextField.textField.becomeFirstResponder()
-            } else {
-                accountNumberTextField?.textField.becomeFirstResponder()
-            }
-            
+        if textField == accountNumberTextField.textField {
+            phoneNumberTextField.textField.becomeFirstResponder()
+        } else if textField == phoneNumberTextField.textField {
+            ssNumberNumberTextField.textField.becomeFirstResponder()
         } else if textField == ssNumberNumberTextField?.textField || textField == accountNumberTextField?.textField {
             viewModel.nextButtonEnabled().single().subscribe(onNext: { enabled in
                 if enabled {
@@ -342,7 +339,7 @@ extension RegistrationViewController: UITextFieldDelegate {
                 }
             }).addDisposableTo(disposeBag)
         }
-        
         return false
     }
+
 }

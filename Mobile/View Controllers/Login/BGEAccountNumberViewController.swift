@@ -60,8 +60,7 @@ class BGEAccountNumberViewController: UIViewController {
         viewModel.validateAccount(onSuccess: {
             LoadingView.hide()
             self.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
-        }, onNeedAccountNumber: {
-            // wont happen?
+        }, onNeedAccountNumber: { // Should not happen here
             LoadingView.hide()
         }, onError: { title, message in
             LoadingView.hide()

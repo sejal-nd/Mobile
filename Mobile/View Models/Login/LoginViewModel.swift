@@ -18,10 +18,12 @@ class LoginViewModel {
     
     private var authService: AuthenticationService
     private var fingerprintService: FingerprintService
+    private var registrationService: RegistrationService
     
-    init(authService: AuthenticationService, fingerprintService: FingerprintService) {
+    init(authService: AuthenticationService, fingerprintService: FingerprintService, registrationService: RegistrationService) {
         self.authService = authService
         self.fingerprintService = fingerprintService
+        self.registrationService = registrationService
         
         if let username = fingerprintService.getStoredUsername() {
             self.username.value = username
@@ -91,6 +93,16 @@ class LoginViewModel {
     
     func isTouchIDEnabled() -> Bool {
         return fingerprintService.isTouchIDEnabled()
+    }
+    
+    func validateRegistration(guid: String, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        registrationService.validateConfirmationEmail(guid)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            }).addDisposableTo(disposeBag)
     }
     
 }

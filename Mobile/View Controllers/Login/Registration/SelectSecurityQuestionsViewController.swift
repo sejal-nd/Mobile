@@ -60,6 +60,9 @@ class SelectSecurityQuestionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
         loadSecurityQuestionsAndAccounts()
         
         setupNavigationButtons()
@@ -87,28 +90,11 @@ class SelectSecurityQuestionsViewController: UIViewController {
 //        }
     }
     
-//    func createTestAccounts() {
-//        var account1: AccountLookupResult
-//        var account2: AccountLookupResult
-//        
-//        let acct1 = ["AccountNumber": "0123", "StreetNumber": "456", "ApartmentUnitNumber": "789"]
-//        let acct2 = ["AccountNumber": "3210", "StreetNumber": "654", "ApartmentUnitNumber": "987"]
-//        
-//        let map1 = Mapper(JSON: acct1 as NSDictionary)
-//        let map2 = Mapper(JSON: acct2 as NSDictionary)
-//        
-//        do {
-//            try account1 = AccountLookupResult(map: map1)
-//            try account2 = AccountLookupResult(map: map2)
-//            
-//            viewModel.accounts.value.removeAll()
-//            
-//            viewModel.accounts.value.append(account1)
-//            viewModel.accounts.value.append(account2)
-//        } catch {
-//            
-//        }
-//    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+
     
     func loadSecurityQuestionsAndAccounts() {
         loadingIndicator.isHidden = false
@@ -187,12 +173,6 @@ class SelectSecurityQuestionsViewController: UIViewController {
         
         self.present(alert, animated: true, completion: nil)
         
-    }
-
-    /// Helpers
-    func setupNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func setupNavigationButtons() {
@@ -273,26 +253,23 @@ class SelectSecurityQuestionsViewController: UIViewController {
         question1AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 1*", comment: "")
         question1AnswerTextField.textField.autocorrectionType = .no
         question1AnswerTextField.textField.returnKeyType = .next
-//        question1AnswerTextField.textField.delegate = self
         question1AnswerTextField.textField.isShowingAccessory = true
         question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
         question1AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         question1AnswerTextField.setEnabled(false)
         
-        question2AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 1*", comment: "")
+        question2AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 2*", comment: "")
         question2AnswerTextField.textField.autocorrectionType = .no
         question2AnswerTextField.textField.returnKeyType = .next
-//        question2AnswerTextField.textField.delegate = self
         question2AnswerTextField.textField.isShowingAccessory = true
         question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
         question2AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         question2AnswerTextField.setEnabled(false)
 
         if Environment.sharedInstance.opco != .bge {
-            question3AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 1*", comment: "")
+            question3AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 3*", comment: "")
             question3AnswerTextField.textField.autocorrectionType = .no
             question3AnswerTextField.textField.returnKeyType = .next
-//            question3AnswerTextField.textField.delegate = self
             question3AnswerTextField.textField.isShowingAccessory = true
             question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
             question3AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
@@ -381,20 +358,22 @@ class SelectSecurityQuestionsViewController: UIViewController {
     func onNextPress() {
         view.endEditing(true)
         
-        LoadingView.show()
+        self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
         
-        viewModel.registerUser(onSuccess: {
-            LoadingView.hide()
-            
-            self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
-        }, onError: { (title, message) in
-            LoadingView.hide()
-            
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-
-            self.present(alertController, animated: true, completion: nil)
-        })
+//        LoadingView.show()
+//        
+//        viewModel.registerUser(onSuccess: {
+//            LoadingView.hide()
+//            
+//            self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
+//        }, onError: { (title, message) in
+//            LoadingView.hide()
+//            
+//            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+//
+//            self.present(alertController, animated: true, completion: nil)
+//        })
     }
     
     @IBAction func enrollIneBillToggle(_ sender: Any) {
@@ -430,6 +409,8 @@ class SelectSecurityQuestionsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? SecurityQuestionListViewController {
             vc.viewModel = viewModel
+        } else if let vc = segue.destination as? RegistrationConfirmationViewController {
+            vc.registeredUsername = viewModel.username.value
         }
     }
 

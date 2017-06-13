@@ -78,7 +78,7 @@ class RegistrationViewModel {
                 let serviceError = error as! ServiceError
                 
                 if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue {
-                    onError(NSLocalizedString("Invalid Information", comment: ""), NSLocalizedString("Invalid Information - The information entered does not match our records. Please try again.", comment: ""))
+                    onError(NSLocalizedString("Invalid Information", comment: ""), NSLocalizedString("The information entered does not match our records. Please try again.", comment: ""))
                 } else if serviceError.serviceCode == ServiceErrorCode.FnAccountMultiple.rawValue {
                     onMultipleAccounts()
                 } else if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
@@ -90,7 +90,7 @@ class RegistrationViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    func verifyUniqueUsername(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+    func verifyUniqueUsername(onSuccess: @escaping () -> Void, onEmailAlreadyExists: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let username: String = self.username.value
         
         registrationService.checkForDuplicateAccount(username)
@@ -101,7 +101,7 @@ class RegistrationViewModel {
                 let serviceError = error as! ServiceError
                 
                 if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
-                    onError(NSLocalizedString("Profile Exists", comment: ""), NSLocalizedString("Email already exists. Please select a different email to login to view your account.", comment: ""))
+                    onEmailAlreadyExists()
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }

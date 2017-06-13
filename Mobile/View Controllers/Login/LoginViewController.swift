@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var touchIDView: UIView!
     @IBOutlet weak var loginFormViewHeightConstraint: NSLayoutConstraint!
     
-    var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
+    var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService(), registrationService: ServiceFactory.createRegistrationService())
     var passwordAutofilledFromTouchID = false
     var viewAlreadyAppeared = false
 
@@ -119,8 +119,10 @@ class LoginViewController: UIViewController {
         touchIDLabel.isAccessibilityElement = false // The button itself will read "Touch ID"
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self) // Important for deep linking, do not remove
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -161,9 +163,9 @@ class LoginViewController: UIViewController {
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
 
         signInButton.setLoading()
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
+        //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
         viewModel.performLogin(onSuccess: { (loggedInWithTempPassword: Bool) in
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
             self.signInButton.setSuccess(animationCompletion: { () in
                 self.navigationController?.view.isUserInteractionEnabled = true
                 
@@ -281,7 +283,7 @@ class LoginViewController: UIViewController {
             self.signInButton.setLoading()
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
         }, onSuccess: { (loggedInWithTempPassword: Bool) in // fingerprint and subsequent login successful
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
             self.signInButton.setSuccess(animationCompletion: { () in
                 self.navigationController?.view.isUserInteractionEnabled = true
                 self.launchMainApp()
@@ -295,11 +297,15 @@ class LoginViewController: UIViewController {
     func verifyAccountNotificationReceived(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let guid = userInfo["guid"] as? String {
-                print(guid)
                 LoadingView.show()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                viewModel.validateRegistration(guid: guid, onSuccess: {
                     LoadingView.hide()
                     self.view.makeToast(NSLocalizedString("Thank you for verifying your account", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50))
+                }, onError: { errMessage in
+                    LoadingView.hide()
+                    let alertVc = UIAlertController(title: NSLocalizedString("Could Not Verify Account", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
                 })
             }
         }

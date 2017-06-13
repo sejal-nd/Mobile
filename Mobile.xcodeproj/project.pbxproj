@@ -700,6 +700,7 @@
 		E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
 		E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
 		E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
+		E8AD93911EEF2AFB00882444 /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
 		E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
 		E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
 		E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
@@ -3263,6 +3264,7 @@
 				B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
+				E8AD93911EEF2AFB00882444 /* SecurityQuestion.swift in Sources */,
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
 				54AE06971ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
