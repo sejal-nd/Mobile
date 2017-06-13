@@ -119,8 +119,10 @@ class LoginViewController: UIViewController {
         touchIDLabel.isAccessibilityElement = false // The button itself will read "Touch ID"
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self) // Important for deep linking, do not remove
     }
     
     override func viewWillAppear(_ animated: Bool) {

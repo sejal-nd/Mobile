@@ -50,7 +50,7 @@ class SplashViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
             let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-            navigationController?.setViewControllers([self, landingVC, loginVC], animated: false)
+            navigationController?.setViewControllers([landingVC, loginVC], animated: false)
         }
     }
     
