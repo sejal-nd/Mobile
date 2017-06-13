@@ -25,7 +25,7 @@ class BGEAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Register BGE", comment: "")
+        title = NSLocalizedString("Register", comment: "")
         
         setupNavigationButtons()
         
@@ -36,18 +36,15 @@ class BGEAccountViewController: UIViewController {
 
     /// Helpers
     func setupNavigationButtons() {
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         viewModel.accountNumberHasTenDigits().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
-        
-        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = nextButton
     }
 
     func populateHelperLabels() {
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("The information entered is associated with multiple accounts. Please enter the account number for which you would like to proceed.", comment: "")
-        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
     }
     
     func prepareTextFieldsForInput() {
@@ -97,17 +94,6 @@ class BGEAccountViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func onCancelPress() {
-        // We do this to cover the case where we push RegistrationViewController from LandingViewController.
-        // When that happens, we want the cancel action to go straight back to LandingViewController.
-        _ = navigationController?.popViewController(animated: true)
-    }
     
     func onNextPress() {
         view.endEditing(true)
@@ -117,7 +103,7 @@ class BGEAccountViewController: UIViewController {
         viewModel.validateAccount(onSuccess: {
             LoadingView.hide()
             
-            self.performSegue(withIdentifier: "createUsernamePasswordSegue", sender: self)
+            self.performSegue(withIdentifier: "createUsernamePasswordFromBGESegue", sender: self)
             
         }, onMultipleAccounts:  { // should never happen
             LoadingView.hide()
