@@ -55,7 +55,7 @@ class SelectSecurityQuestionsViewController: UIViewController {
     var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
     
     var errorMessageLoaded = false
-    
+    var loadAccountsError = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,6 +119,7 @@ class SelectSecurityQuestionsViewController: UIViewController {
 //                self.loadErrorMessage(title, message: messages)
                 
                 // MMS - I'm ignoring this error for now - TODO, fix it
+                self.loadAccountsError = true
                 self.scrollView.isHidden = false
                 self.loadingIndicator.isHidden = true
                 self.toggleAccountListing(false)
@@ -381,7 +382,7 @@ class SelectSecurityQuestionsViewController: UIViewController {
     @IBAction func enrollIneBillToggle(_ sender: Any) {
         viewModel.paperlessEbill.value = !viewModel.paperlessEbill.value
         
-        toggleAccountListing(viewModel.paperlessEbill.value)
+        toggleAccountListing(viewModel.paperlessEbill.value && self.viewModel.accounts.value.count > 1)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
