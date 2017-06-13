@@ -25,10 +25,11 @@ enum ServiceErrorCode : String {
     case FnNotFound = "FN-NOT-FOUND" // Account lookup tool not found
     case FnAccountProtected = "FN-ACCT-PROTECTED" // Login - Password protected accounts can't login to app
     case DupPaymentAccount = "DUPLICATE_PAYMENT_ACCOUNT" // Wallet - user tries to add duplicate payment method
-    case FnAccountMultiple = "FN-ACCT-MULTIPLE" // Registration
+    case FnAccountMultiple = "FN-ACCT-MULTIPLE" // Registration scenario for BGE with multiple account numbers
     case FnProfileExists = "FN-PROF-EXISTS"
     case FnAccountFinaled = "FN-ACCOUNT-FINALED" // Loading outage status for finaled account
     case FnAccountNoPay = "FN-ACCOUNT-NOPAY" // Loading outage status for no-pay account
+    case FnMultiAccountFound = "FN-MULTI-ACCT-FOUND" // Forgot Username scenario for BGE with multiple account numbers
 }
 
 // MARK: - ServiceError
