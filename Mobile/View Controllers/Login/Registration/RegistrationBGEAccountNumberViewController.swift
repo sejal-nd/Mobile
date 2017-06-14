@@ -1,5 +1,5 @@
 //
-//  BGEAccountViewController.swift
+//  RegistrationBGEAccountNumberViewController.swift
 //  Mobile
 //
 //  Created by MG-MC-GHill on 6/1/17.
@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import ToastSwiftFramework
 
-class BGEAccountViewController: UIViewController {
+class RegistrationBGEAccountNumberViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
@@ -103,7 +103,7 @@ class BGEAccountViewController: UIViewController {
         viewModel.validateAccount(onSuccess: {
             LoadingView.hide()
             
-            self.performSegue(withIdentifier: "createUsernamePasswordFromBGESegue", sender: self)
+            self.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
             
         }, onMultipleAccounts:  { // should never happen
             LoadingView.hide()
@@ -128,9 +128,7 @@ class BGEAccountViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         view.endEditing(true)
         
-        if let vc = segue.destination as? CreateAccountViewController {
-            vc.viewModel = viewModel
-        } else if let vc = segue.destination as? BGEAccountViewController {
+        if let vc = segue.destination as? RegistrationCreateCredentialsViewController {
             vc.viewModel = viewModel
         }
     }
@@ -154,7 +152,7 @@ class BGEAccountViewController: UIViewController {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-extension BGEAccountViewController: UITextFieldDelegate {
+extension RegistrationBGEAccountNumberViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         

@@ -1,5 +1,5 @@
 //
-//  RegistrationViewController.swift
+//  RegistrationValidateAccountViewController.swift
 //  Mobile
 //
 //  Created by MG-MC-GHill on 5/22/17.
@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import ToastSwiftFramework
 
-class RegistrationViewController: UIViewController {
+class RegistrationValidateAccountViewController: UIViewController {
 
     let disposeBag = DisposeBag()
     
@@ -213,11 +213,11 @@ class RegistrationViewController: UIViewController {
         viewModel.validateAccount(onSuccess: {
             LoadingView.hide()
             
-            self.performSegue(withIdentifier: "createUsernamePasswordSegue", sender: self)
+            self.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
         }, onMultipleAccounts:  {
             LoadingView.hide()
 
-            self.performSegue(withIdentifier: "loadChooseAccountSegue", sender: self)
+            self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { (title, message) in
             LoadingView.hide()
             
@@ -254,9 +254,9 @@ class RegistrationViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         view.endEditing(true)
         
-        if let vc = segue.destination as? CreateAccountViewController {
+        if let vc = segue.destination as? RegistrationCreateCredentialsViewController {
             vc.viewModel = viewModel
-        } else if let vc = segue.destination as? BGEAccountViewController {
+        } else if let vc = segue.destination as? RegistrationBGEAccountNumberViewController {
             vc.viewModel = viewModel
         }
     }
@@ -280,7 +280,7 @@ class RegistrationViewController: UIViewController {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-extension RegistrationViewController: UITextFieldDelegate {
+extension RegistrationValidateAccountViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         

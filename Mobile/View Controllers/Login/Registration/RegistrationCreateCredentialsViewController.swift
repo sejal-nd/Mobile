@@ -1,5 +1,5 @@
 //
-//  CreateAccountViewController.swift
+//  RegistrationCreateCredentialsViewController.swift
 //  Mobile
 //
 //  Created by MG-MC-GHill on 5/24/17.
@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import ToastSwiftFramework
 
-class CreateAccountViewController: UIViewController {
+class RegistrationCreateCredentialsViewController: UIViewController {
 
     let disposeBag = DisposeBag()
 
@@ -281,7 +281,7 @@ class CreateAccountViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? SelectSecurityQuestionsViewController {
+        if let vc = segue.destination as? RegistrationSecurityQuestionsViewController {
             vc.viewModel = viewModel
         }
     }
@@ -306,7 +306,7 @@ class CreateAccountViewController: UIViewController {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-extension CreateAccountViewController: UITextFieldDelegate {
+extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.characters.count == 0 { // Allow backspace
             return true

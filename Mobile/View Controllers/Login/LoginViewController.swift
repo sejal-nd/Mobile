@@ -367,9 +367,9 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
     }
 }
 
-extension LoginViewController: SecurityQuestionViewControllerDelegate {
+extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDelegate {
     
-    func securityQuestionViewController(_ securityQuestionViewController: SecurityQuestionViewController, didUnmaskUsername username: String) {
+    func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String) {
         self.viewModel.username.value = username
     }
 }

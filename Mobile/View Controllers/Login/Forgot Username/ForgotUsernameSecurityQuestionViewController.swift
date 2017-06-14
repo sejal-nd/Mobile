@@ -1,5 +1,5 @@
 //
-//  SecurityQuestionViewController.swift
+//  ForgotUsernameSecurityQuestionViewController.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 4/11/17.
@@ -8,13 +8,13 @@
 
 import RxSwift
 
-protocol SecurityQuestionViewControllerDelegate: class {
-    func securityQuestionViewController(_ securityQuestionViewController: SecurityQuestionViewController, didUnmaskUsername username: String)
+protocol ForgotUsernameSecurityQuestionViewControllerDelegate: class {
+    func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String)
 }
 
-class SecurityQuestionViewController: UIViewController {
+class ForgotUsernameSecurityQuestionViewController: UIViewController {
     
-    weak var delegate: SecurityQuestionViewControllerDelegate?
+    weak var delegate: ForgotUsernameSecurityQuestionViewControllerDelegate?
     
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
@@ -68,7 +68,7 @@ class SecurityQuestionViewController: UIViewController {
                     continue
                 }
                 self.delegate = dest
-                self.delegate?.securityQuestionViewController(self, didUnmaskUsername: unmaskedUsername)
+                self.delegate?.forgotUsernameSecurityQuestionViewController(self, didUnmaskUsername: unmaskedUsername)
                 self.navigationController?.popToViewController(dest, animated: true)
                 break
             }
