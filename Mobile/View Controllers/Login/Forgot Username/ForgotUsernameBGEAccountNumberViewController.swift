@@ -1,5 +1,5 @@
 //
-//  BGEAccountNumberViewController.swift
+//  ForgotUsernameBGEAccountNumberViewController.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 4/7/17.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class BGEAccountNumberViewController: UIViewController {
+class ForgotUsernameBGEAccountNumberViewController: UIViewController {
     
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
 
@@ -85,7 +85,7 @@ class BGEAccountNumberViewController: UIViewController {
     
 }
 
-extension BGEAccountNumberViewController: UITextFieldDelegate {
+extension ForgotUsernameBGEAccountNumberViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)

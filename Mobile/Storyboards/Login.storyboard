@@ -146,7 +146,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="7qO-w4-Syv" kind="show" identifier="loadRegisterSegue" id="fSV-Yq-hH6"/>
+                                            <segue destination="7qO-w4-Syv" kind="show" identifier="registrationSegue" id="fSV-Yq-hH6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSH-Ni-ZZW">
@@ -628,7 +628,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukF-Ys-QTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2548" y="851"/>
+            <point key="canvasLocation" x="3372" y="851"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="d2e-hw-Oo9">
@@ -648,10 +648,10 @@
             </objects>
             <point key="canvasLocation" x="199" y="851"/>
         </scene>
-        <!--Registration View Controller-->
+        <!--Registration Validate Account View Controller-->
         <scene sceneID="pxW-i5-QKT">
             <objects>
-                <viewController id="7qO-w4-Syv" customClass="RegistrationViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7qO-w4-Syv" customClass="RegistrationValidateAccountViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fpy-Ne-YaU"/>
                         <viewControllerLayoutGuide type="bottom" id="kwY-CG-2rK"/>
@@ -664,13 +664,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giY-o0-uA7" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="410.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="391"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Tq-cp-max" userLabel="Tablet View">
-                                                <rect key="frame" x="29" y="0.0" width="317" height="410.5"/>
+                                                <rect key="frame" x="29" y="0.0" width="317" height="391"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="tBo-sa-Xpr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="410.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="391"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MrG-58-amZ" userLabel="Spacer View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="0.0"/>
@@ -680,13 +680,13 @@
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please help us validate your account." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXD-mb-iOS">
-                                                                <rect key="frame" x="0.0" y="30" width="317" height="19.5"/>
+                                                                <rect key="frame" x="0.0" y="30" width="317" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSl-pN-s9X">
-                                                                <rect key="frame" x="0.0" y="79.5" width="317" height="60"/>
+                                                                <rect key="frame" x="0.0" y="60" width="317" height="60"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3K-xy-VDi" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
@@ -719,14 +719,14 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mkI-kI-4kO" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="169.5" width="317" height="69"/>
+                                                                <rect key="frame" x="0.0" y="150" width="317" height="69"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="zxz-Ch-UPD"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwA-oc-H4s">
-                                                                <rect key="frame" x="0.0" y="268.5" width="317" height="142"/>
+                                                                <rect key="frame" x="0.0" y="249" width="317" height="142"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p0U-80-j0E" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="24.5" width="317" height="117.5"/>
@@ -811,18 +811,18 @@
                         <outlet property="registrationFormView" destination="giY-o0-uA7" id="PMX-5J-phF"/>
                         <outlet property="scrollView" destination="A5U-SA-SJ5" id="QTX-jK-xcr"/>
                         <outlet property="ssNumberNumberTextField" destination="p0U-80-j0E" id="J2o-gD-qGj"/>
-                        <segue destination="Y17-A0-L8c" kind="show" identifier="loadChooseAccountSegue" id="i6k-qg-f70"/>
-                        <segue destination="OB4-E6-Bvv" kind="show" identifier="createUsernamePasswordSegue" id="He9-IH-khb"/>
+                        <segue destination="Y17-A0-L8c" kind="show" identifier="bgeAccountNumberSegue" id="i6k-qg-f70"/>
+                        <segue destination="OB4-E6-Bvv" kind="show" identifier="createCredentialsSegue" id="He9-IH-khb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bQ-Ac-bos" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="850.52473763118451"/>
         </scene>
-        <!--Account View Controller-->
+        <!--RegistrationBGE Account Number View Controller-->
         <scene sceneID="Ebq-A6-6CT">
             <objects>
-                <viewController id="Y17-A0-L8c" customClass="BGEAccountViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y17-A0-L8c" customClass="RegistrationBGEAccountNumberViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GVG-89-JgR"/>
                         <viewControllerLayoutGuide type="bottom" id="9dg-SU-h8x"/>
@@ -892,12 +892,12 @@
                         <outlet property="accountNumberTextField" destination="uhO-LR-ZR8" id="0vU-EN-iMH"/>
                         <outlet property="instructionLabel" destination="uO3-lH-MQo" id="iAY-Zv-0t1"/>
                         <outlet property="questionMarkButton" destination="zdg-V7-E2y" id="EWz-rc-r4v"/>
-                        <segue destination="OB4-E6-Bvv" kind="show" identifier="createUsernamePasswordFromBGESegue" id="GYT-tJ-2IP"/>
+                        <segue destination="OB4-E6-Bvv" kind="show" identifier="createCredentialsSegue" id="GYT-tJ-2IP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKi-cA-6tr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1760" y="851"/>
+            <point key="canvasLocation" x="1886" y="851"/>
         </scene>
         <!--Account Lookup Tool View Controller-->
         <scene sceneID="6VS-rO-B5F">
@@ -1023,13 +1023,13 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select your account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0D-Sh-5Fz">
-                                            <rect key="frame" x="29" y="30" width="356" height="19.5"/>
+                                            <rect key="frame" x="29" y="30" width="262" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="B4H-nC-YFO">
-                                            <rect key="frame" x="29" y="72.5" width="356" height="26.5"/>
+                                            <rect key="frame" x="29" y="72.5" width="262" height="26.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGz-Ej-1Nz">
                                                     <rect key="frame" x="0.0" y="0.0" width="95.5" height="26.5"/>
@@ -1038,13 +1038,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TD9-56-bcf">
-                                                    <rect key="frame" x="148" y="0.0" width="83.5" height="26.5"/>
+                                                    <rect key="frame" x="101" y="0.0" width="83.5" height="26.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unit Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUn-2h-Fpq">
-                                                    <rect key="frame" x="284" y="0.0" width="72" height="26.5"/>
+                                                    <rect key="frame" x="190" y="0.0" width="72" height="26.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1052,7 +1052,7 @@
                                             </subviews>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2wj-QD-Xze">
-                                            <rect key="frame" x="29" y="106" width="385" height="1"/>
+                                            <rect key="frame" x="29" y="106" width="291" height="1"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="0.5" id="nqp-L0-dYk"/>
@@ -1087,7 +1087,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="47Y-du-x1o">
-                                                    <rect key="frame" x="29" y="0.0" width="356" height="63"/>
+                                                    <rect key="frame" x="29" y="0.0" width="262" height="63"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FF9-D4-PMv">
                                                             <rect key="frame" x="0.0" y="0.0" width="96" height="63"/>
@@ -1099,7 +1099,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aI-Pw-ylV">
-                                                            <rect key="frame" x="148.5" y="0.0" width="83" height="63"/>
+                                                            <rect key="frame" x="101.5" y="0.0" width="83" height="63"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="83.5" id="OuU-8z-uq3"/>
                                                             </constraints>
@@ -1108,7 +1108,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAa-f7-rj5">
-                                                            <rect key="frame" x="284" y="0.0" width="72" height="63"/>
+                                                            <rect key="frame" x="190" y="0.0" width="72" height="63"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="72" id="v7s-Jf-Xsd"/>
                                                             </constraints>
@@ -1410,7 +1410,7 @@
         <!--BGE Account Number-->
         <scene sceneID="2Q9-e3-PU7">
             <objects>
-                <viewController id="mMA-KZ-eGK" userLabel="BGE Account Number" customClass="BGEAccountNumberViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mMA-KZ-eGK" userLabel="BGE Account Number" customClass="ForgotUsernameBGEAccountNumberViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SD2-o7-Pu8"/>
                         <viewControllerLayoutGuide type="bottom" id="hwd-Td-cXv"/>
@@ -1495,7 +1495,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O6F-pA-lzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3372" y="90"/>
+            <point key="canvasLocation" x="3372" y="89"/>
         </scene>
         <!--Forgot Username Result-->
         <scene sceneID="7FK-pn-z41">
@@ -1549,13 +1549,13 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Me-i6-eET">
-                                                                            <rect key="frame" x="0.0" y="15" width="330" height="22"/>
+                                                                            <rect key="frame" x="0.0" y="15" width="236" height="22"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="KZj-Xg-uda">
-                                                                            <rect key="frame" x="338" y="21" width="13" height="10"/>
+                                                                            <rect key="frame" x="244" y="21" width="13" height="10"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="13" id="IVg-8P-CDN"/>
                                                                                 <constraint firstAttribute="height" constant="10" id="MDI-m1-wp1"/>
@@ -1668,12 +1668,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8lV-XJ-BCD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4237.68115942029" y="89.673913043478265"/>
+            <point key="canvasLocation" x="4238" y="90"/>
         </scene>
-        <!--Security Question View Controller-->
+        <!--Forgot Username Security Question View Controller-->
         <scene sceneID="pQh-HS-Oir">
             <objects>
-                <viewController id="NE7-qa-4w2" customClass="SecurityQuestionViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NE7-qa-4w2" customClass="ForgotUsernameSecurityQuestionViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kCO-WE-Crr"/>
                         <viewControllerLayoutGuide type="bottom" id="EWv-iF-HOz"/>
@@ -1740,10 +1740,10 @@
             </objects>
             <point key="canvasLocation" x="5073.913043478261" y="89.673913043478265"/>
         </scene>
-        <!--Create Account View Controller-->
+        <!--Registration Create Credentials View Controller-->
         <scene sceneID="I86-ff-whQ">
             <objects>
-                <viewController storyboardIdentifier="changePassword" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="OB4-E6-Bvv" customClass="CreateAccountViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="changePassword" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="OB4-E6-Bvv" customClass="RegistrationCreateCredentialsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bXc-Zd-ARe"/>
                         <viewControllerLayoutGuide type="bottom" id="NXg-wX-6DT"/>
@@ -2102,10 +2102,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="1697"/>
         </scene>
-        <!--Select Security Questions View Controller-->
+        <!--Registration Security Questions View Controller-->
         <scene sceneID="E1c-S0-6h8">
             <objects>
-                <viewController id="Hic-7z-hAf" customClass="SelectSecurityQuestionsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Hic-7z-hAf" customClass="RegistrationSecurityQuestionsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lur-rh-KxM"/>
                         <viewControllerLayoutGuide type="bottom" id="B5F-Gj-NEG"/>
@@ -2512,12 +2512,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQD-Fi-2MH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="1697"/>
+            <point key="canvasLocation" x="1921" y="1697"/>
         </scene>
-        <!--Security Question List View Controller-->
+        <!--Registration Security Question List View Controller-->
         <scene sceneID="W3J-oo-OLp">
             <objects>
-                <tableViewController id="7TP-CE-r1L" customClass="SecurityQuestionListViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="7TP-CE-r1L" customClass="RegistrationSecurityQuestionListViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="KT7-NZ-D7U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2543,7 +2543,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZbG-kg-7iQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2548" y="1697"/>
+            <point key="canvasLocation" x="2750" y="1697"/>
         </scene>
         <!--Registration Confirmation View Controller-->
         <scene sceneID="QVm-bo-QtK">
@@ -2674,7 +2674,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i8W-g4-AU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1823" y="2596"/>
+            <point key="canvasLocation" x="1921" y="2585"/>
         </scene>
     </scenes>
     <resources>
@@ -2688,7 +2688,7 @@
         <image name="img_logo_white" width="251" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GYT-tJ-2IP"/>
+        <segue reference="He9-IH-khb"/>
         <segue reference="m8m-Zs-f6g"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -75,32 +75,32 @@
 		54AE069A1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */; };
 		54AE069B1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */; };
 		54AE069C1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */; };
-		54AE06AA1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
-		54AE06AB1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
-		54AE06AC1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */; };
+		54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */; };
+		54AE06AB1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */; };
+		54AE06AC1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */; };
 		54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
 		54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
 		54AE06B21ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
 		54AE06B31ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
-		54AE06B51ED60236004A1FDA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */; };
-		54AE06B61ED60236004A1FDA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */; };
-		54AE06B71ED60236004A1FDA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */; };
+		54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */; };
+		54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */; };
+		54AE06B71ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */; };
 		54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54B31A6D1EE065E20002E657 /* Bill.storyboard */; };
-		54B31A701EE0B8670002E657 /* BGEAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */; };
-		54B31A711EE0B8670002E657 /* BGEAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */; };
-		54B31A721EE0B8670002E657 /* BGEAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */; };
-		54DF4BC81EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift */; };
-		54DF4BC91EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift */; };
-		54DF4BCA1EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift */; };
-		54DF4BCC1EE848F3008CF7AD /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BCB1EE848F3008CF7AD /* SecurityQuestionViewController.swift */; };
-		54DF4BCD1EE84D32008CF7AD /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BCB1EE848F3008CF7AD /* SecurityQuestionViewController.swift */; };
-		54DF4BCE1EE84D32008CF7AD /* SecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BCB1EE848F3008CF7AD /* SecurityQuestionViewController.swift */; };
+		54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */; };
+		54B31A711EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */; };
+		54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */; };
+		54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
+		54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
+		54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
+		54DF4BCC1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */; };
+		54DF4BCD1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */; };
+		54DF4BCE1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */; };
 		54DF4BD11EE88D67008CF7AD /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
 		54DF4BD21EE88D67008CF7AD /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
 		54DF4BD31EE88D67008CF7AD /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
-		54DF4BD51EE895CF008CF7AD /* SecurityQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD41EE895CF008CF7AD /* SecurityQuestionListViewController.swift */; };
-		54DF4BD61EE895CF008CF7AD /* SecurityQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD41EE895CF008CF7AD /* SecurityQuestionListViewController.swift */; };
-		54DF4BD71EE895CF008CF7AD /* SecurityQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD41EE895CF008CF7AD /* SecurityQuestionListViewController.swift */; };
+		54DF4BD51EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */; };
+		54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */; };
+		54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */; };
 		54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */; };
 		54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */; };
 		54DF4BDC1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */; };
@@ -732,9 +732,9 @@
 		E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
-		E8CA07DD1E9BD0FF00A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
-		E8CA07DE1E9BD10000A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
-		E8CA07DF1E9BD10100A1D431 /* BGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */; };
+		E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
+		E8CA07DE1E9BD10000A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
+		E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
 		E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */; };
 		E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */; };
 		E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */; };
@@ -852,15 +852,15 @@
 		54930DC71EDB40B000912AF1 /* EditCreditCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCreditCardViewModel.swift; sourceTree = "<group>"; };
 		54AE06931ECF7809004A1FDA /* RegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCRegistrationService.swift; sourceTree = "<group>"; };
-		54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationValidateAccountViewController.swift; sourceTree = "<group>"; };
 		54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
-		54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationCreateCredentialsViewController.swift; sourceTree = "<group>"; };
 		54B31A6D1EE065E20002E657 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
-		54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAccountViewController.swift; sourceTree = "<group>"; };
-		54DF4BC71EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSecurityQuestionsViewController.swift; sourceTree = "<group>"; };
-		54DF4BCB1EE848F3008CF7AD /* SecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestionViewController.swift; sourceTree = "<group>"; };
+		54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
+		54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionsViewController.swift; sourceTree = "<group>"; };
+		54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameSecurityQuestionViewController.swift; sourceTree = "<group>"; };
 		54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestion.swift; sourceTree = "<group>"; };
-		54DF4BD41EE895CF008CF7AD /* SecurityQuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestionListViewController.swift; sourceTree = "<group>"; };
+		54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionListViewController.swift; sourceTree = "<group>"; };
 		54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountDetailsView.swift; path = Registration/AccountDetailsView.swift; sourceTree = "<group>"; };
 		54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountDetailsView.xib; path = Registration/AccountDetailsView.xib; sourceTree = "<group>"; };
 		54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
@@ -1196,7 +1196,7 @@
 		E8B4F4CE1E5CE21D0031D934 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
-		E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAccountNumberViewController.swift; sourceTree = "<group>"; };
+		E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
 		E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchPayService.swift; sourceTree = "<group>"; };
 		E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameResultViewController.swift; sourceTree = "<group>"; };
 		E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
@@ -1575,14 +1575,11 @@
 		8FD5AE821E54EA39003F640D /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				E891885E1EF1DA6B00987922 /* Forgot Username */,
 				E8B8A9F41EE2132D0002328C /* Registration */,
 				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
 				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
 				8FD5AE851E54EA49003F640D /* LoginViewController.swift */,
-				E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */,
-				E8B674DB1E981B1300BB0788 /* BGEAccountNumberViewController.swift */,
-				E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */,
-				54DF4BCB1EE848F3008CF7AD /* SecurityQuestionViewController.swift */,
 				E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */,
 				E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */,
 				E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */,
@@ -2143,6 +2140,17 @@
 			path = CardIO;
 			sourceTree = "<group>";
 		};
+		E891885E1EF1DA6B00987922 /* Forgot Username */ = {
+			isa = PBXGroup;
+			children = (
+				E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */,
+				E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */,
+				E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */,
+				54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */,
+			);
+			path = "Forgot Username";
+			sourceTree = "<group>";
+		};
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -2165,11 +2173,11 @@
 		E8B8A9F41EE2132D0002328C /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				54AE06A91ED362B0004A1FDA /* RegistrationViewController.swift */,
-				54B31A6F1EE0B8670002E657 /* BGEAccountViewController.swift */,
-				54AE06B41ED60236004A1FDA /* CreateAccountViewController.swift */,
-				54DF4BC71EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift */,
-				54DF4BD41EE895CF008CF7AD /* SecurityQuestionListViewController.swift */,
+				54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */,
+				54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */,
+				54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */,
+				54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */,
+				54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */,
 				5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */,
 			);
 			path = Registration;
@@ -2348,7 +2356,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2763,7 +2771,7 @@
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
-				54AE06AA1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */,
+				54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
@@ -2783,20 +2791,20 @@
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
-				54DF4BD51EE895CF008CF7AD /* SecurityQuestionListViewController.swift in Sources */,
+				54DF4BD51EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				E80D2E171E721668002626C9 /* MaskedString.swift in Sources */,
 				E8F51EE61EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
-				54AE06B51ED60236004A1FDA /* CreateAccountViewController.swift in Sources */,
+				54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				E873DA7C1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E876A8601ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
-				54DF4BCC1EE848F3008CF7AD /* SecurityQuestionViewController.swift in Sources */,
+				54DF4BCC1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
@@ -2835,7 +2843,7 @@
 				5492E01F1EECC3230088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */,
-				54B31A701EE0B8670002E657 /* BGEAccountViewController.swift in Sources */,
+				54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				B56DD4981ED84E6000F0198B /* FiservApi.swift in Sources */,
@@ -2843,7 +2851,7 @@
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				54036BAD1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
-				E8CA07DD1E9BD0FF00A1D431 /* BGEAccountNumberViewController.swift in Sources */,
+				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD441EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				54DF4BD11EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
@@ -2874,7 +2882,7 @@
 				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				E8C3AC011EDA09B50004F705 /* OneTouchPayService.swift in Sources */,
-				54DF4BC81EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift in Sources */,
+				54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				54930DC81EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
 				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
@@ -2916,7 +2924,7 @@
 				B56DD49A1ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
-				54DF4BCA1EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift in Sources */,
+				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				54618B281EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
@@ -2956,7 +2964,7 @@
 				E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				548288E11ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
-				54DF4BCE1EE84D32008CF7AD /* SecurityQuestionViewController.swift in Sources */,
+				54DF4BCE1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				82A18EDF1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
@@ -2981,7 +2989,7 @@
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
-				54B31A721EE0B8670002E657 /* BGEAccountViewController.swift in Sources */,
+				54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
 				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
@@ -2992,12 +3000,12 @@
 				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
-				54DF4BD71EE895CF008CF7AD /* SecurityQuestionListViewController.swift in Sources */,
+				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
-				E8CA07DF1E9BD10100A1D431 /* BGEAccountNumberViewController.swift in Sources */,
+				E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD461EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
-				54AE06AC1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */,
+				54AE06AC1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				54EDD2E11ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
@@ -3030,7 +3038,7 @@
 				B5053DB91ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				E876A85D1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E971EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
-				54AE06B71ED60236004A1FDA /* CreateAccountViewController.swift in Sources */,
+				54AE06B71ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				E80D2E351E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
@@ -3066,7 +3074,7 @@
 				B56DD4991ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
-				54DF4BC91EE63C53008CF7AD /* SelectSecurityQuestionsViewController.swift in Sources */,
+				54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				54618B271EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
@@ -3107,7 +3115,7 @@
 				E840BD3B1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				548288E01ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
 				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
-				54DF4BCD1EE84D32008CF7AD /* SecurityQuestionViewController.swift in Sources */,
+				54DF4BCD1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				82A18EDE1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
@@ -3131,7 +3139,7 @@
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
-				54B31A711EE0B8670002E657 /* BGEAccountViewController.swift in Sources */,
+				54B31A711EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */,
 				82A18E6C1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
@@ -3142,12 +3150,12 @@
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
-				54DF4BD61EE895CF008CF7AD /* SecurityQuestionListViewController.swift in Sources */,
+				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				54EDD2DB1ECE236000CAB8A6 /* WalletService.swift in Sources */,
-				E8CA07DE1E9BD10000A1D431 /* BGEAccountNumberViewController.swift in Sources */,
+				E8CA07DE1E9BD10000A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD451EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
-				54AE06AB1ED362B0004A1FDA /* RegistrationViewController.swift in Sources */,
+				54AE06AB1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				54EDD2E01ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
@@ -3180,7 +3188,7 @@
 				B5053DB81ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
-				54AE06B61ED60236004A1FDA /* CreateAccountViewController.swift in Sources */,
+				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				E80D2E341E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BADA1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,

@@ -13,7 +13,7 @@ import ToastSwiftFramework
 import Mapper
 
 
-class SelectSecurityQuestionsViewController: UIViewController {
+class RegistrationSecurityQuestionsViewController: UIViewController {
 
     let disposeBag = DisposeBag()
     
@@ -410,7 +410,7 @@ class SelectSecurityQuestionsViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? SecurityQuestionListViewController {
+        if let vc = segue.destination as? RegistrationSecurityQuestionListViewController {
             vc.viewModel = viewModel
         } else if let vc = segue.destination as? RegistrationConfirmationViewController {
             vc.registeredUsername = viewModel.username.value
