@@ -156,7 +156,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aEt-rB-XKk">
                                                                         <rect key="frame" x="12" y="0.0" width="293" height="19.5"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YK3-Vb-Ho9">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Customer Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YK3-Vb-Ho9">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="185.5" height="19.5"/>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -471,7 +471,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="dvR-dm-UwW" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="134" width="60" height="12"/>
+                                <rect key="frame" x="157.5" y="384.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -480,10 +480,10 @@
                             <constraint firstAttribute="trailing" secondItem="RG6-dl-PMp" secondAttribute="trailing" id="FtO-iQ-ue3"/>
                             <constraint firstItem="ieR-AG-WNl" firstAttribute="leading" secondItem="OzL-b3-scW" secondAttribute="leading" priority="999" id="OU7-yJ-yrr"/>
                             <constraint firstItem="ieR-AG-WNl" firstAttribute="centerX" secondItem="OzL-b3-scW" secondAttribute="centerX" id="bCA-xg-bXr"/>
-                            <constraint firstItem="dvR-dm-UwW" firstAttribute="top" secondItem="RG6-dl-PMp" secondAttribute="bottom" constant="20" id="dcY-Gt-VbJ"/>
+                            <constraint firstItem="dvR-dm-UwW" firstAttribute="centerX" secondItem="ieR-AG-WNl" secondAttribute="centerX" id="fCj-Ra-utR"/>
+                            <constraint firstItem="dvR-dm-UwW" firstAttribute="centerY" secondItem="ieR-AG-WNl" secondAttribute="centerY" id="goH-e5-wXx"/>
                             <constraint firstAttribute="trailing" secondItem="ieR-AG-WNl" secondAttribute="trailing" priority="999" id="h0p-VO-kQK"/>
                             <constraint firstItem="RG6-dl-PMp" firstAttribute="top" secondItem="mQA-tr-8uJ" secondAttribute="bottom" id="h8T-ga-O9H"/>
-                            <constraint firstItem="dvR-dm-UwW" firstAttribute="centerX" secondItem="OzL-b3-scW" secondAttribute="centerX" id="kOQ-It-679"/>
                             <constraint firstItem="ieR-AG-WNl" firstAttribute="top" secondItem="RG6-dl-PMp" secondAttribute="bottom" id="lI5-GX-t5s"/>
                             <constraint firstItem="TR7-Ua-IPf" firstAttribute="top" secondItem="ieR-AG-WNl" secondAttribute="bottom" id="tKi-ac-xgy"/>
                             <constraint firstItem="RG6-dl-PMp" firstAttribute="leading" secondItem="OzL-b3-scW" secondAttribute="leading" id="x9x-DM-jf1"/>
