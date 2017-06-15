@@ -4,36 +4,6 @@
 <dict>
 	<key>mobileBackends</key>
 	<dict>
-		<key>Staging</key>
-		<dict>
-			<key>default</key>
-			<false/>
-			<key>baseURL</key>
-			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
-			<key>appKey</key>
-			<string>ef7078b3-38f5-4583-a369-9013f9129524</string>
-			<key>authorization</key>
-			<dict>
-				<key>authenticationType</key>
-				<string>SSOTokenExchange</string>
-				<key>SSOTokenExchange</key>
-				<dict>
-					<key>mobileBackendID</key>
-					<string>38a3da9e-8fd5-4625-9ce5-639e0e9d8d03</string>
-					<key>anonymousKey</key>
-					<string>QTQ1MzU3Nl9FWEVMT05FVU1PQklMRUFQUFNUQUdFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WXV0LmY0cHE3bmllcm8=</string>
-				</dict>
-				<key>Basic</key>
-				<dict>
-					<key>mobileBackendID</key>
-					<string>38a3da9e-8fd5-4625-9ce5-639e0e9d8d03</string>
-					<key>anonymousKey</key>
-					<string>QTQ1MzU3Nl9FWEVMT05FVU1PQklMRUFQUFNUQUdFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WXV0LmY0cHE3bmllcm8=</string>
-				</dict>
-			</dict>
-			<key>networkConnectionTimeout</key>
-			<integer>60</integer>
-		</dict>
 		<key>Dev</key>
 		<dict>
 			<key>default</key>
@@ -59,6 +29,66 @@
 					<string>2b69703f-83b5-4ee2-95b6-316d90bb2838</string>
 					<key>anonymousKey</key>
 					<string>QTQ1MzU3Nl9FWEVMT05FVU1PQklMRUFQUERFVl9NT0JJTEVfQU5PTllNT1VTX0FQUElEOko3b3JkaWNfeWFscDZ1</string>
+				</dict>
+			</dict>
+			<key>networkConnectionTimeout</key>
+			<integer>60</integer>
+		</dict>
+		<key>Testing</key>
+		<dict>
+			<key>default</key>
+			<false/>
+			<key>baseURL</key>
+			<string>https://exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>appKey</key>
+			<string>9cffc381-5e88-475f-a8d4-10b89321676a</string>
+			<key>authorization</key>
+			<dict>
+				<key>authenticationType</key>
+				<string>SSOTokenExchange</string>
+				<key>SSOTokenExchange</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>7ebd1165-aae4-452f-8f7b-6c6cbdd93667</string>
+					<key>anonymousKey</key>
+					<string>QTQ1MzU3Nl9FWEVMT05FVU1PQklMRUFQUFNUQUdFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WXV0LmY0cHE3bmllcm8=</string>
+				</dict>
+				<key>Basic</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>7ebd1165-aae4-452f-8f7b-6c6cbdd93667</string>
+					<key>anonymousKey</key>
+					<string>QTQ1MzU3Nl9FWEVMT05FVU1PQklMRUFQUFNUQUdFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WXV0LmY0cHE3bmllcm8=</string>
+				</dict>
+			</dict>
+			<key>networkConnectionTimeout</key>
+			<integer>60</integer>
+		</dict>
+		<key>Staging</key>
+		<dict>
+			<key>default</key>
+			<false/>
+			<key>baseURL</key>
+			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>appKey</key>
+			<string>ef7078b3-38f5-4583-a369-9013f9129524</string>
+			<key>authorization</key>
+			<dict>
+				<key>authenticationType</key>
+				<string>SSOTokenExchange</string>
+				<key>SSOTokenExchange</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>38a3da9e-8fd5-4625-9ce5-639e0e9d8d03</string>
+					<key>anonymousKey</key>
+					<string>QTQ1MzU3Nl9FWEVMT05FVU1PQklMRUFQUFNUQUdFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WXV0LmY0cHE3bmllcm8=</string>
+				</dict>
+				<key>Basic</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>38a3da9e-8fd5-4625-9ce5-639e0e9d8d03</string>
+					<key>anonymousKey</key>
+					<string>QTQ1MzU3Nl9FWEVMT05FVU1PQklMRUFQUFNUQUdFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WXV0LmY0cHE3bmllcm8=</string>
 				</dict>
 			</dict>
 			<key>networkConnectionTimeout</key>
