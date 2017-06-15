@@ -308,7 +308,7 @@ class LoginViewController: UIViewController {
                 LoadingView.show()
                 viewModel.validateRegistration(guid: guid, onSuccess: {
                     LoadingView.hide()
-                    self.view.makeToast(NSLocalizedString("Thank you for verifying your account", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50))
+                    self.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
                 }, onError: { errMessage in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Could Not Verify Account", comment: ""), message: errMessage, preferredStyle: .alert)
@@ -370,7 +370,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
     
     func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString("Temporary password sent to your email", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50))
+            self.view.showToast(NSLocalizedString("Temporary password sent to your email", comment: ""))
         })
     }
 }
@@ -386,7 +386,7 @@ extension LoginViewController: ChangePasswordViewControllerDelegate {
     
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString("Password changed", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50))
+            self.view.showToast(NSLocalizedString("Password changed", comment: ""))
         })
     }
 }

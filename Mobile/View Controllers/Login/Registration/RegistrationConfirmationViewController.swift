@@ -73,7 +73,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: {
                     LoadingView.hide()
-                    self.view.makeToast(NSLocalizedString("Verification email sent", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 50))
+                    self.view.showToast(NSLocalizedString("Verification email sent", comment: ""))                    
                 }, onError: { err in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: err.localizedDescription, preferredStyle: .alert)
