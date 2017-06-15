@@ -96,6 +96,7 @@ class BudgetBillingViewController: UIViewController {
 
         whatIsBudgetBillingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         whatIsBudgetBillingButton.layer.cornerRadius = 2
+        whatIsBudgetBillingButton.backgroundColorOnPress = .softGray
         whatIsBudgetBillingButton.rx.touchUpInside.asDriver().drive(onNext: {
             self.performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
         }).addDisposableTo(disposeBag)

@@ -91,6 +91,7 @@ class PaperlessEBillViewController: UIViewController {
             .drive(submitButton.rx.isEnabled)
             .addDisposableTo(bag)
         
+        whatIsButton.backgroundColorOnPress = .softGray
         whatIsButton.rx.touchUpInside.asDriver().drive(onNext: {
             let description: String
             if Environment.sharedInstance.opco == .bge {
