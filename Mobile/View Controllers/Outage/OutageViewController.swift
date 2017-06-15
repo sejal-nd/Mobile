@@ -83,7 +83,8 @@ class OutageViewController: AccountPickerViewController {
         bigButtonView.clipsToBounds = true // So text doesn't overflow
         bigButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
         bigButtonView.isAccessibilityElement = true
-        bigButtonView.accessibilityLabel = NSLocalizedString("Outage status button", comment: "")
+        bigButtonView.accessibilityLabel = NSLocalizedString("Outage status", comment: "")
+        bigButtonView.accessibilityTraits = UIAccessibilityTraitButton
         
         bigButtonShadowView.layer.cornerRadius = radius
         bigButtonShadowView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt

@@ -431,27 +431,13 @@ class BillViewController: AccountPickerViewController {
     
     func configureAccessibility() {
         questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-        
-        needHelpUnderstandingButton.isAccessibilityElement = true
-        needHelpUnderstandingButton.accessibilityLabel = NSLocalizedString("Need help understanding your bill? Button", comment: "")
-        
-        viewBillButton.isAccessibilityElement = true
-        viewBillButton.accessibilityLabel = NSLocalizedString("View bill, button", comment: "")
-        
-        activityButton.isAccessibilityElement = true
+        needHelpUnderstandingButton.accessibilityLabel = NSLocalizedString("Need help understanding your bill?", comment: "")
+        viewBillButton.accessibilityLabel = NSLocalizedString("View bill", comment: "")
         activityButton.accessibilityLabel = NSLocalizedString("Activity", comment: "")
-        
-        walletButton.isAccessibilityElement = true
         walletButton.accessibilityLabel = NSLocalizedString("My Wallet", comment: "")
-        
-        autoPayButton.isAccessibilityElement = true
-        autoPayButton.accessibilityLabel = NSLocalizedString("AutoPay, button", comment: "")
-        
-        paperlessButton.isAccessibilityElement = true
-        paperlessButton.accessibilityLabel = NSLocalizedString("Paperless e-Bill, button", comment: "")
-        
-        budgetButton.isAccessibilityElement = true
-        budgetButton.accessibilityLabel = NSLocalizedString("Budget Billing, button", comment: "")
+        autoPayButton.accessibilityLabel = NSLocalizedString("AutoPay", comment: "")
+        paperlessButton.accessibilityLabel = NSLocalizedString("Paperless e-Bill", comment: "")
+        budgetButton.accessibilityLabel = NSLocalizedString("Budget Billing", comment: "")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

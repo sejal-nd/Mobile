@@ -24,8 +24,7 @@ class PaperlessEBillViewController: UIViewController {
     private var gradientLayer: CALayer = CAGradientLayer()
     
     // Content
-    @IBOutlet weak var whatIsButtonView: UIView!
-    @IBOutlet weak var whatIsButton: UIButton!
+    @IBOutlet weak var whatIsButton: ButtonControl!
     @IBOutlet weak var emailsWillBeSentToLabel: UILabel!
 	@IBOutlet weak var emailLabel: UILabel!
 	@IBOutlet weak var updateDetailsView: UIView!
@@ -92,7 +91,7 @@ class PaperlessEBillViewController: UIViewController {
             .drive(submitButton.rx.isEnabled)
             .addDisposableTo(bag)
         
-        whatIsButton.rx.tap.asDriver().drive(onNext: {
+        whatIsButton.rx.touchUpInside.asDriver().drive(onNext: {
             let description: String
             if Environment.sharedInstance.opco == .bge {
                 description = NSLocalizedString("Eliminate your paper bill.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  You will receive bill ready email notifications regardless of preference.  Your preference will be updated with your next month’s bill.", comment: "")
@@ -102,28 +101,16 @@ class PaperlessEBillViewController: UIViewController {
             let infoModal = InfoModalViewController(title: NSLocalizedString("Paperless eBill", comment: ""), image: #imageLiteral(resourceName: "paperless_modal"), description: description)
             self.navigationController?.present(infoModal, animated: true, completion: nil)
         }).addDisposableTo(bag)
+        whatIsButton.accessibilityLabel = NSLocalizedString("What is Paperless e-bill", comment: "")
     }
     
     func colorAndShadowSetup() {
         topBackgroundView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0, height: 2), radius: 1)
         enrollAllAccountsView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 2)
         enrollAllAccountsView.layer.cornerRadius = 2
-        whatIsButtonView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        whatIsButtonView.layer.cornerRadius = 2
         
-        let whatIsButtonSelectedColor = whatIsButton.rx.controlEvent(.touchDown).asDriver()
-            .map { UIColor.softGray }
-        
-        let whatIsButtonDeselectedColor = Driver.merge(whatIsButton.rx.controlEvent(.touchUpInside).asDriver(),
-                                                       whatIsButton.rx.controlEvent(.touchUpOutside).asDriver(),
-                                                       whatIsButton.rx.controlEvent(.touchCancel).asDriver())
-            .map { UIColor.white }
-        
-        Driver.merge(whatIsButtonSelectedColor, whatIsButtonDeselectedColor)
-            .drive(onNext: { [weak self] color in
-                self?.whatIsButtonView.backgroundColor = color
-            })
-            .addDisposableTo(bag)
+        whatIsButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        whatIsButton.layer.cornerRadius = 2
     }
     
     override func viewDidLayoutSubviews() {

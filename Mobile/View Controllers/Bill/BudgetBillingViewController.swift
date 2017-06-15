@@ -24,7 +24,7 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var accountBackgroundView: UIView! // For stretching edge to edge on iPad
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var whatIsBudgetBillingButtonView: UIView!
+    @IBOutlet weak var whatIsBudgetBillingButton: ButtonControl!
     @IBOutlet weak var whatIsBudgetBillingLabel: UILabel!
     @IBOutlet weak var yourPaymentWouldBeView: UIView!
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
@@ -93,9 +93,13 @@ class BudgetBillingViewController: UIViewController {
         ]
         gradientLayer.locations = [0.0, 1.0]
         gradientView.layer.addSublayer(gradientLayer)
-        
-        whatIsBudgetBillingButtonView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        whatIsBudgetBillingButtonView.layer.cornerRadius = 2
+
+        whatIsBudgetBillingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        whatIsBudgetBillingButton.layer.cornerRadius = 2
+        whatIsBudgetBillingButton.rx.touchUpInside.asDriver().drive(onNext: {
+            self.performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
+        }).addDisposableTo(disposeBag)
+        whatIsBudgetBillingButton.accessibilityLabel = NSLocalizedString("What is budget billing?", comment: "")
         
         whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
@@ -126,7 +130,6 @@ class BudgetBillingViewController: UIViewController {
         
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
         enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).addDisposableTo(disposeBag)
-        
         
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
@@ -267,18 +270,7 @@ class BudgetBillingViewController: UIViewController {
         gradientLayer.frame = gradientView.frame
         accountBackgroundView.addBottomBorder(color: .softGray, width: 0.5)
     }
-    
-    
-    @IBAction func onButtonTouchDown(_ sender: Any) {
-        let button = sender as! UIButton
-        button.superview?.backgroundColor = .softGray
-    }
-    
-    @IBAction func onButtonTouchCancel(_ sender: Any) {
-        let button = sender as! UIButton
-        button.superview?.backgroundColor = .white
-    }
-    
+        
     func onCancelPress() {
         if viewModel.enrolling.value || viewModel.unenrolling.value {
             let message = viewModel.enrolling.value ? NSLocalizedString("Are you sure you want to exit this screen without completing enrollment?", comment: "") : NSLocalizedString("Are you sure you want to exit this screen without completing unenrollment?", comment: "")
