@@ -78,7 +78,7 @@ class PaperlessEBillAccountView: UIView {
             enrollSwitch.removeFromSuperview()
             enrollSwitch = nil
         }
-        
+        imageView.isAccessibilityElement = true
         imageView.accessibilityLabel = NSLocalizedString("Residential account", comment: "")
     }
     

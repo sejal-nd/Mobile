@@ -99,7 +99,6 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
-        footerTextView.accessibilityLabel = viewModel.getFooterTextViewText()
         
         gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
@@ -188,8 +187,10 @@ class OutageViewController: AccountPickerViewController {
         // Update the Report Outage button
         if viewModel.getReportedOutage() != nil {
             reportOutageButton.setDetailLabel(text: viewModel.getOutageReportedDateString(), checkHidden: false)
+            reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.getOutageReportedDateString())
         } else {
             reportOutageButton.setDetailLabel(text: "", checkHidden: true)
+            reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
         }
         
         // Disable bottom buttons if account is finaled or not paid

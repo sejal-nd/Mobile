@@ -163,9 +163,13 @@ class LoginViewController: UIViewController {
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
 
         signInButton.setLoading()
-        //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
+        })
+        
         viewModel.performLogin(onSuccess: { (loggedInWithTempPassword: Bool) in
-            //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
             self.signInButton.setSuccess(animationCompletion: { () in
                 self.navigationController?.view.isUserInteractionEnabled = true
                 
@@ -277,13 +281,17 @@ class LoginViewController: UIViewController {
     
     func presentTouchIDPrompt() {
         viewModel.attemptLoginWithTouchID(onLoad: { // fingerprint was successful
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
+            })
+            
             self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
             self.passwordAutofilledFromTouchID = true // be sure to set this to true after the above line because will send an rx event on the text observer
             
             self.signInButton.setLoading()
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
         }, onSuccess: { (loggedInWithTempPassword: Bool) in // fingerprint and subsequent login successful
-            //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
             self.signInButton.setSuccess(animationCompletion: { () in
                 self.navigationController?.view.isUserInteractionEnabled = true
                 self.launchMainApp()
