@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setupUserDefaults()
         setupToastStyles()
+        setupAppearance()
         //printFonts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
@@ -114,6 +115,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         globalStyle.messageAlignment = .center
         ToastManager.shared.style = globalStyle
         ToastManager.shared.duration = 5.0
+    }
+    
+    func setupAppearance() {
+        PDTSimpleCalendarViewCell.appearance().textDefaultFont = SystemFont.regular.of(size: 19)
+        PDTSimpleCalendarViewCell.appearance().textDefaultColor = .blackText
+        PDTSimpleCalendarViewCell.appearance().textTodayColor = .blackText
+        PDTSimpleCalendarViewCell.appearance().textDisabledColor = UIColor.blackText.withAlphaComponent(0.3)
+        PDTSimpleCalendarViewCell.appearance().circleTodayColor = .clear
+        PDTSimpleCalendarViewCell.appearance().circleSelectedColor = .actionBlue
     }
     
     func resetNavigationOnAuthTokenExpire() {

@@ -1255,13 +1255,25 @@ to your payments.</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IeU-af-tFo">
+                                <rect key="frame" x="156.5" y="490" width="62" height="30"/>
+                                <state key="normal" title="Calendar"/>
+                                <connections>
+                                    <action selector="onCalendarPress" destination="K4v-kg-55U" eventType="touchUpInside" id="uTp-pQ-NNI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="HAn-Zd-aZO" firstAttribute="top" secondItem="IeU-af-tFo" secondAttribute="bottom" constant="80" id="513-6x-bzn"/>
                             <constraint firstItem="VLe-xS-cw2" firstAttribute="centerX" secondItem="IGm-Kg-8L6" secondAttribute="centerX" id="LYm-0j-VYD"/>
+                            <constraint firstItem="IeU-af-tFo" firstAttribute="centerX" secondItem="IGm-Kg-8L6" secondAttribute="centerX" id="Pmh-Rw-Kl7"/>
                             <constraint firstItem="VLe-xS-cw2" firstAttribute="centerY" secondItem="IGm-Kg-8L6" secondAttribute="centerY" id="Vz0-d3-KD9"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="1Ta-7t-oPR">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="FJm-LP-MX7"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZL-ht-UMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
