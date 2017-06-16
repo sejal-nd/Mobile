@@ -18,8 +18,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    @IBOutlet weak var accountInfoView: UIView!
-    @IBOutlet weak var accountInfoLabel: UILabel!
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
@@ -37,12 +36,6 @@ class PECOReleaseOfInfoViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         
-        accountInfoView.backgroundColor = .softGray
-        accountInfoLabel.textColor = .deepGray
-        
-        let currentAccount = AccountsStore.sharedInstance.currentAccount!
-        accountInfoLabel.text = "ACCOUNT \(currentAccount.accountNumber)\n\(currentAccount.address ?? "")"
-        
         tableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReleaseOfInfoCell")
         tableView.estimatedRowHeight = 51
         tableView.isHidden = true
@@ -56,12 +49,6 @@ class PECOReleaseOfInfoViewController: UIViewController {
         }
         
         fetchCurrentSelection()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        accountInfoView.addBottomBorder(color: .accentGray, width: 1)
     }
     
     func onCancelPress() {
@@ -86,21 +73,37 @@ class PECOReleaseOfInfoViewController: UIViewController {
     }
     
     func fetchCurrentSelection() {
-        accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount!)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { accountDetail in
-                if let selectedRelease = accountDetail.releaseOfInformation {
-                    if let releaseOfInfoInt = Int(selectedRelease) {
-                        let indexPath = IndexPath(row: releaseOfInfoInt - 1, section: 0)
-                        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        let fetchReleaseOfInfo = {
+            self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount!)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { accountDetail in
+                    if let selectedRelease = accountDetail.releaseOfInformation {
+                        if let releaseOfInfoInt = Int(selectedRelease) {
+                            let indexPath = IndexPath(row: releaseOfInfoInt - 1, section: 0)
+                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                        }
                     }
-                }
-                self.loadingIndicator.isHidden = true
-                self.tableView.isHidden = false
-            }, onError: { error in
-                print(error.localizedDescription)
-            })
-            .addDisposableTo(disposeBag)
+                    self.loadingIndicator.isHidden = true
+                    self.tableView.isHidden = false
+                }, onError: { error in
+                    print(error.localizedDescription)
+                })
+                .addDisposableTo(self.disposeBag)
+        }
+        
+        if AccountsStore.sharedInstance.currentAccount == nil {
+            accountService.fetchAccounts()
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { _ in
+                    self.accountInfoBar.update()
+                    fetchReleaseOfInfo()
+                }, onError: { error in
+                    print(error.localizedDescription)
+                })
+                .addDisposableTo(disposeBag)
+        } else {
+            fetchReleaseOfInfo()
+        }
     }
     
 }
