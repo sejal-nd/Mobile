@@ -729,6 +729,9 @@
 		E8C3AC021EDA09B50004F705 /* OneTouchPayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */; };
 		E8C3AC031EDA09B50004F705 /* OneTouchPayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */; };
 		E8C3AC041EDA0A0E0004F705 /* OneTouchPayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */; };
+		E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
+		E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
+		E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
 		E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
@@ -1198,6 +1201,7 @@
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
 		E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
 		E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchPayService.swift; sourceTree = "<group>"; };
+		E8C453181EF4154000F5C781 /* AccountInfoBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoBar.swift; sourceTree = "<group>"; };
 		E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameResultViewController.swift; sourceTree = "<group>"; };
 		E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
 		E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableFormSheetViewController.swift; sourceTree = "<group>"; };
@@ -1568,6 +1572,7 @@
 				E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */,
 				E8127B211EBB959E0083DDE9 /* LoadingView.swift */,
 				E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */,
+				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2785,6 +2790,7 @@
 				E8CA07E51E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
 				82A18EE31EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
@@ -2941,6 +2947,7 @@
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */,
 				82A18EE51EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
+				E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				E81F38151ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
@@ -3091,6 +3098,7 @@
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
 				82A18EE41EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
+				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				E81F38141ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				E873DA761EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
