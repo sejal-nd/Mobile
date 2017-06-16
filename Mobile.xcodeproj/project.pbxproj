@@ -732,6 +732,21 @@
 		E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
 		E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
 		E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
+		E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */; };
+		E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */; };
+		E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */; };
+		E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */; };
+		E8C453241EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */; };
+		E8C453251EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */; };
+		E8C453271EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */; };
+		E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */; };
+		E8C453291EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */; };
+		E8C4532B1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532A1EF435F700F5C781 /* MiniWalletViewController.swift */; };
+		E8C4532C1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532A1EF435F700F5C781 /* MiniWalletViewController.swift */; };
+		E8C4532D1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532A1EF435F700F5C781 /* MiniWalletViewController.swift */; };
+		E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */; };
+		E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */; };
+		E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */; };
 		E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
@@ -1202,6 +1217,11 @@
 		E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
 		E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchPayService.swift; sourceTree = "<group>"; };
 		E8C453181EF4154000F5C781 /* AccountInfoBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoBar.swift; sourceTree = "<group>"; };
+		E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewController.swift; sourceTree = "<group>"; };
+		E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewController.swift; sourceTree = "<group>"; };
+		E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPaySettingsViewController.swift; sourceTree = "<group>"; };
+		E8C4532A1EF435F700F5C781 /* MiniWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniWalletViewController.swift; sourceTree = "<group>"; };
+		E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayChangeBankViewController.swift; sourceTree = "<group>"; };
 		E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameResultViewController.swift; sourceTree = "<group>"; };
 		E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
 		E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableFormSheetViewController.swift; sourceTree = "<group>"; };
@@ -1388,6 +1408,7 @@
 		82A18E581EB9186000BE9F21 /* Bill */ = {
 			isa = PBXGroup;
 			children = (
+				E8C4531D1EF42E8200F5C781 /* AutoPay */,
 				E876A8591ECF372600CA63BF /* Wallet */,
 				82A18E591EB918C900BE9F21 /* BillViewModel.swift */,
 				82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */,
@@ -2091,6 +2112,7 @@
 			isa = PBXGroup;
 			children = (
 				E876A8551ECDEF6800CA63BF /* WalletViewController.swift */,
+				E8C4532A1EF435F700F5C781 /* MiniWalletViewController.swift */,
 				E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */,
 				54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */,
 				E887C9D81ED5CBDB002433A3 /* AddCreditCardViewController.swift */,
@@ -2114,6 +2136,7 @@
 		E882B7E21EA7FE6300EA3C13 /* Bill */ = {
 			isa = PBXGroup;
 			children = (
+				E8C4531C1EF42E7800F5C781 /* AutoPay */,
 				E876A8541ECDEF3E00CA63BF /* Wallet */,
 				E882B7E31EA8009500EA3C13 /* BillViewController.swift */,
 				82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */,
@@ -2186,6 +2209,24 @@
 				5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		E8C4531C1EF42E7800F5C781 /* AutoPay */ = {
+			isa = PBXGroup;
+			children = (
+				E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */,
+				E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */,
+				E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */,
+				E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */,
+			);
+			path = AutoPay;
+			sourceTree = "<group>";
+		};
+		E8C4531D1EF42E8200F5C781 /* AutoPay */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AutoPay;
 			sourceTree = "<group>";
 		};
 		E8EEF70B1E565BE7006804D4 /* View Models */ = {
@@ -2767,13 +2808,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
+				E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
+				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF11E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
+				E8C4532B1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */,
 				82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
@@ -2902,10 +2946,12 @@
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E887C9D41ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				225FF85A1EC56B480079010C /* Date.swift in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
+				E8C453271EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				548288DF1ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -2932,6 +2978,7 @@
 				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				54618B281EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
+				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
@@ -2943,6 +2990,7 @@
 				E801BAD71E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
 				E840BD411EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */,
+				E8C4532D1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */,
@@ -3012,6 +3060,7 @@
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD461EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
+				E8C453251EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				54AE06AC1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
@@ -3037,11 +3086,13 @@
 				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				E876A8581ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				82BE05811ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
+				E8C453291EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
+				E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				B5053DB91ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				E876A85D1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E971EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
@@ -3083,6 +3134,7 @@
 				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				54618B271EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
+				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
@@ -3094,6 +3146,7 @@
 				E801BAD61E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
 				E840BD401EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */,
+				E8C4532C1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
@@ -3163,6 +3216,7 @@
 				54EDD2DB1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				E8CA07DE1E9BD10000A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD451EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
+				E8C453241EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				54AE06AB1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
@@ -3188,11 +3242,13 @@
 				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				E876A8571ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
+				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				54AE06951ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
+				E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				B5053DB81ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
