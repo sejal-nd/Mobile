@@ -750,6 +750,9 @@
 		E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */; };
 		E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */; };
 		E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */; };
+		E8C453331EF454B200F5C781 /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */; };
+		E8C453341EF454E400F5C781 /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */; };
+		E8C453351EF4550200F5C781 /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */; };
 		E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
@@ -1226,6 +1229,7 @@
 		E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPaySettingsViewController.swift; sourceTree = "<group>"; };
 		E8C4532A1EF435F700F5C781 /* MiniWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniWalletViewController.swift; sourceTree = "<group>"; };
 		E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayChangeBankViewController.swift; sourceTree = "<group>"; };
+		E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDTSimpleCalendar.framework; path = Carthage/Build/iOS/PDTSimpleCalendar.framework; sourceTree = "<group>"; };
 		E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameResultViewController.swift; sourceTree = "<group>"; };
 		E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
 		E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableFormSheetViewController.swift; sourceTree = "<group>"; };
@@ -1284,6 +1288,7 @@
 				E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D2520E1E6DB78800C90584 /* Lottie.framework in Frameworks */,
 				E801BADD1E8C5A4E00550F99 /* Mapper.framework in Frameworks */,
+				E8C453331EF454B200F5C781 /* PDTSimpleCalendar.framework in Frameworks */,
 				B54F0FFB1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E887C9E91ED5D367002433A3 /* libopencv_imgproc.a in Frameworks */,
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
@@ -1320,6 +1325,7 @@
 				E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D252121E6DB82C00C90584 /* Lottie.framework in Frameworks */,
 				E801BADF1E8C5A8A00550F99 /* Mapper.framework in Frameworks */,
+				E8C453351EF4550200F5C781 /* PDTSimpleCalendar.framework in Frameworks */,
 				B54F0FFD1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E887C9EB1ED5D367002433A3 /* libopencv_imgproc.a in Frameworks */,
 				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
@@ -1356,6 +1362,7 @@
 				E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D252101E6DB7B400C90584 /* Lottie.framework in Frameworks */,
 				E801BADE1E8C5A7300550F99 /* Mapper.framework in Frameworks */,
+				E8C453341EF454E400F5C781 /* PDTSimpleCalendar.framework in Frameworks */,
 				B54F0FFC1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E887C9EA1ED5D367002433A3 /* libopencv_imgproc.a in Frameworks */,
 				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
@@ -1530,6 +1537,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */,
 				E887C9FD1ED5D400002433A3 /* MobileCoreServices.framework */,
 				E887C9FB1ED5D3F9002433A3 /* CoreMedia.framework */,
 				E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */,
@@ -2693,6 +2701,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -2717,6 +2726,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -2741,6 +2751,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
