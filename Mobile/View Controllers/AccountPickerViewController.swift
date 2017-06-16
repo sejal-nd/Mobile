@@ -44,6 +44,8 @@ class AccountPickerViewController: UIViewController {
         innerView.translatesAutoresizingMaskIntoConstraints = false
         let iconView = UIImageView(image: commercialUser ? #imageLiteral(resourceName: "ic_commercial_mini") : #imageLiteral(resourceName: "ic_residential_mini"))
         iconView.translatesAutoresizingMaskIntoConstraints = false
+        iconView.isAccessibilityElement = true
+        iconView.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial account", comment: "") : NSLocalizedString("Residential account", comment: "")
         
         accountNumberLabel = UILabel(frame: .zero)
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false

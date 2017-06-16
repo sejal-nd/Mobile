@@ -40,7 +40,11 @@ class PaperlessEBillAccountView: UIView {
         heightConstraint.isActive = true
         
         accountNumberLabel.text = "\(accountDetail.accountNumber)"
-        addressLabel.text = accountDetail.address
+        accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountDetail.accountNumber)
+        if let address = accountDetail.address {
+            addressLabel.text = address
+            addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
+        }
         
         switch accountDetail.eBillEnrollStatus {
         case .canEnroll:
@@ -74,6 +78,8 @@ class PaperlessEBillAccountView: UIView {
             enrollSwitch.removeFromSuperview()
             enrollSwitch = nil
         }
+        imageView.isAccessibilityElement = true
+        imageView.accessibilityLabel = NSLocalizedString("Residential account", comment: "")
     }
     
     func toggleSwitch(on: Bool) {

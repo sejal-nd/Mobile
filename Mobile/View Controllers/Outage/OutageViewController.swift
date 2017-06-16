@@ -83,7 +83,8 @@ class OutageViewController: AccountPickerViewController {
         bigButtonView.clipsToBounds = true // So text doesn't overflow
         bigButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
         bigButtonView.isAccessibilityElement = true
-        bigButtonView.accessibilityLabel = NSLocalizedString("Outage status button", comment: "")
+        bigButtonView.accessibilityLabel = NSLocalizedString("Outage status", comment: "")
+        bigButtonView.accessibilityTraits = UIAccessibilityTraitButton
         
         bigButtonShadowView.layer.cornerRadius = radius
         bigButtonShadowView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
@@ -98,7 +99,6 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
-        footerTextView.accessibilityLabel = viewModel.getFooterTextViewText()
         
         gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
@@ -187,8 +187,10 @@ class OutageViewController: AccountPickerViewController {
         // Update the Report Outage button
         if viewModel.getReportedOutage() != nil {
             reportOutageButton.setDetailLabel(text: viewModel.getOutageReportedDateString(), checkHidden: false)
+            reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.getOutageReportedDateString())
         } else {
             reportOutageButton.setDetailLabel(text: "", checkHidden: true)
+            reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
         }
         
         // Disable bottom buttons if account is finaled or not paid
@@ -405,7 +407,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
         updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString("Your outage report has been received", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+            self.view.showToast(NSLocalizedString("Your outage report has been received", comment: ""))
         })
     }
     
