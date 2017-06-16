@@ -82,6 +82,7 @@ class AccountPickerViewController: UIViewController {
             .drive(onNext: { pickerVisible in
                 if let currentAccount = AccountsStore.sharedInstance.currentAccount { // Don't show if accounts not loaded
                     self.accountNumberLabel.text = currentAccount.accountNumber
+                    self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), currentAccount.accountNumber)
                     self.setNeedsStatusBarAppearanceUpdate()
                     
                     // 2 separate animations here so that the icon/text are completely transparent by the time they animate under the status bar

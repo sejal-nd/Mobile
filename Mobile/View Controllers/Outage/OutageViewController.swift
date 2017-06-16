@@ -83,7 +83,6 @@ class OutageViewController: AccountPickerViewController {
         bigButtonView.clipsToBounds = true // So text doesn't overflow
         bigButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
         bigButtonView.isAccessibilityElement = true
-        bigButtonView.accessibilityLabel = NSLocalizedString("Outage status", comment: "")
         bigButtonView.accessibilityTraits = UIAccessibilityTraitButton
         
         bigButtonShadowView.layer.cornerRadius = radius
@@ -242,6 +241,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(reportedLabel)
             bigButtonView.addSubview(restRestorationLabel)
             bigButtonView.addSubview(timeLabel)
+            bigButtonView.accessibilityLabel = NSLocalizedString("Your outage is reported. Estimated restoration \(viewModel.getEstimatedRestorationDateString()). Outage status", comment: "")
         } else if currentOutageStatus.activeOutage {
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 11, y: 31, width: 22, height: 28))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_out")
@@ -277,6 +277,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(outLabel)
             bigButtonView.addSubview(restRestorationLabel)
             bigButtonView.addSubview(timeLabel)
+            bigButtonView.accessibilityLabel = NSLocalizedString("Your power is out. Estimated restoration \(viewModel.getEstimatedRestorationDateString()). Outage status", comment: "")
         } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay {
             let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 14, y: 38, width: bigButtonWidth - 28, height: 120))
             let payBillLabel = UILabel(frame: .zero)
@@ -301,6 +302,7 @@ class OutageViewController: AccountPickerViewController {
 
             bigButtonView.addSubview(nonPayFinaledTextView)
             bigButtonView.bringSubview(toFront: payBillLabel)
+            bigButtonView.accessibilityLabel = NSLocalizedString("\(viewModel.getAccountNonPayFinaledMessage()) Outage status", comment: "")
         } else { // Power is on
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 15, y: 49, width: 30, height: 38))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
@@ -320,6 +322,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourPowerIsLabel)
             bigButtonView.addSubview(onLabel)
+            bigButtonView.accessibilityLabel = NSLocalizedString("Your power is on. Outage status", comment: "")
         }
     }
     
