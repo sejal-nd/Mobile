@@ -386,9 +386,15 @@ class BillViewController: AccountPickerViewController {
 		autoPayButton.rx.touchUpInside.asDriver()
 			.withLatestFrom(viewModel.currentAccountDetailUnwrapped)
 			.drive(onNext: { accountDetail in
-				if Environment.sharedInstance.opco == .bge && accountDetail.isBGEasy {
-					self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
-				}
+				if Environment.sharedInstance.opco == .bge {
+                    if accountDetail.isBGEasy {
+                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                    } else {
+                        self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
+                    }
+                } else {
+                    self.performSegue(withIdentifier: "autoPaySegue", sender: self)
+                }
 			})
 			.addDisposableTo(bag)
         
