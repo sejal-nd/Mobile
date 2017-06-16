@@ -35,8 +35,8 @@ protocol RegistrationService {
                           answer2: String,
                           question3: String,
                           answer3: String,
-                          isPrimary: Bool,
-                          isEnrollEBill: Bool,
+                          isPrimary: String,
+                          isEnrollEBill: String,
                           completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
     /*
@@ -101,8 +101,8 @@ extension RegistrationService {
                           answer2: String,
                           question3: String,
                           answer3: String,
-                          isPrimary: Bool,
-                          isEnrollEBill: Bool) -> Observable<Void> {
+                          isPrimary: String,
+                          isEnrollEBill: String) -> Observable<Void> {
         //
         return Observable.create { observer in
             self.createNewAccount(username,

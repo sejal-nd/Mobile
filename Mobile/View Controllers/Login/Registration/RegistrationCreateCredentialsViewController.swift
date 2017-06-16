@@ -341,7 +341,7 @@ extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
                 createUsernameTextField.textField.becomeFirstResponder()
             }
         } else if textField == confirmPasswordTextField.textField {
-            viewModel.nextButtonEnabled().single().subscribe(onNext: { enabled in
+            viewModel.doneButtonEnabled().single().subscribe(onNext: { enabled in
                 if enabled {
                     self.onNextPress()
                 } else {

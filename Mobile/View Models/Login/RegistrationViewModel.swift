@@ -120,8 +120,8 @@ class RegistrationViewModel {
         let answer2: String = securityAnswer2.value
         let question3: String = securityQuestion3.value
         let answer3: String = securityAnswer3.value
-        let primary: Bool = primaryProfile.value
-        let enrollEbill: Bool = paperlessEbill.value
+        let primary: String = primaryProfile.value ? "true" : "false"
+        let enrollEbill: String = paperlessEbill.value ? "true" : "false"
         
         registrationService.createNewAccount(username,
                                              password: password,
