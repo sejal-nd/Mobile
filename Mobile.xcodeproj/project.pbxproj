@@ -729,6 +729,9 @@
 		E8C3AC021EDA09B50004F705 /* OneTouchPayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */; };
 		E8C3AC031EDA09B50004F705 /* OneTouchPayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */; };
 		E8C3AC041EDA0A0E0004F705 /* OneTouchPayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */; };
+		E8C453151EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
+		E8C453161EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
+		E8C453171EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
 		E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
 		E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
 		E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
@@ -1219,6 +1222,7 @@
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
 		E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
 		E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchPayService.swift; sourceTree = "<group>"; };
+		E8C453141EF3293600F5C781 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		E8C453181EF4154000F5C781 /* AccountInfoBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoBar.swift; sourceTree = "<group>"; };
 		E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewController.swift; sourceTree = "<group>"; };
 		E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewController.swift; sourceTree = "<group>"; };
@@ -1654,6 +1658,7 @@
 				82D5994A1EC36B5500DDB380 /* Currency.swift */,
 				225FF8591EC56B480079010C /* Date.swift */,
 				82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */,
+				E8C453141EF3293600F5C781 /* ToastView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2871,6 +2876,7 @@
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */,
+				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				82A18EDD1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
@@ -2992,6 +2998,7 @@
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
+				E8C453171EF3293600F5C781 /* ToastView.swift in Sources */,
 				E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				82A18EC01EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
@@ -3148,6 +3155,7 @@
 				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
+				E8C453161EF3293600F5C781 /* ToastView.swift in Sources */,
 				E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				82A18EBF1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,

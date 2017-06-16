@@ -2909,7 +2909,7 @@ to your payments.</string>
                                                                             <constraint firstAttribute="height" constant="14" id="DdI-Wz-VXF"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yss-cx-KQS">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yss-cx-KQS" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="29" y="14" width="317" height="90"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="dot_pattern_right" translatesAutoresizingMaskIntoConstraints="NO" id="5bv-Uq-nD7">
@@ -2926,22 +2926,15 @@ Paperless eBill?</string>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_paperlessleaf" translatesAutoresizingMaskIntoConstraints="NO" id="PYw-Rz-PZv">
                                                                                 <rect key="frame" x="10" y="19" width="55" height="52"/>
                                                                             </imageView>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8P-EI-49a">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="90"/>
-                                                                            </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
                                                                             <constraint firstItem="GT4-Mw-pfF" firstAttribute="leading" secondItem="PYw-Rz-PZv" secondAttribute="trailing" priority="999" constant="24" id="7Gj-dt-igh"/>
                                                                             <constraint firstAttribute="bottom" secondItem="5bv-Uq-nD7" secondAttribute="bottom" id="9pc-Ea-7jf"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="e8P-EI-49a" secondAttribute="trailing" id="JVP-PK-meJ"/>
                                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5bv-Uq-nD7" secondAttribute="trailing" id="MUy-Aq-oYN"/>
                                                                             <constraint firstItem="GT4-Mw-pfF" firstAttribute="centerY" secondItem="Yss-cx-KQS" secondAttribute="centerY" id="UvF-qq-oiI"/>
-                                                                            <constraint firstItem="e8P-EI-49a" firstAttribute="top" secondItem="Yss-cx-KQS" secondAttribute="top" id="Z1B-nn-WqW"/>
                                                                             <constraint firstItem="5bv-Uq-nD7" firstAttribute="top" secondItem="Yss-cx-KQS" secondAttribute="top" id="cCM-BR-Zlv"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="e8P-EI-49a" secondAttribute="bottom" id="jJI-7c-ggG"/>
                                                                             <constraint firstItem="PYw-Rz-PZv" firstAttribute="centerY" secondItem="Yss-cx-KQS" secondAttribute="centerY" id="q4N-Qb-V0n"/>
-                                                                            <constraint firstItem="e8P-EI-49a" firstAttribute="leading" secondItem="Yss-cx-KQS" secondAttribute="leading" id="rAC-wD-2Qv"/>
                                                                             <constraint firstItem="GT4-Mw-pfF" firstAttribute="centerX" secondItem="Yss-cx-KQS" secondAttribute="centerX" id="uz9-wj-xhH"/>
                                                                             <constraint firstItem="PYw-Rz-PZv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yss-cx-KQS" secondAttribute="leading" constant="4" id="xp5-TU-IOU"/>
                                                                             <constraint firstItem="5bv-Uq-nD7" firstAttribute="leading" secondItem="GT4-Mw-pfF" secondAttribute="trailing" priority="749" constant="-57" id="yqo-QS-ynM"/>
@@ -3169,8 +3162,7 @@ Paperless eBill?</string>
                         <outlet property="topBackgroundView" destination="yW6-Ix-06o" id="4ac-45-bxP"/>
                         <outlet property="updateDetailsLabel" destination="PfJ-7G-EjH" id="0rK-AS-30l"/>
                         <outlet property="updateDetailsView" destination="lEC-2U-dhq" id="J5Q-12-NK1"/>
-                        <outlet property="whatIsButton" destination="e8P-EI-49a" id="HRy-hq-jjN"/>
-                        <outlet property="whatIsButtonView" destination="Yss-cx-KQS" id="x0I-bn-n8b"/>
+                        <outlet property="whatIsButton" destination="Yss-cx-KQS" id="yWE-lX-hHc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JjB-hP-UiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3206,7 +3198,7 @@ Paperless eBill?</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRB-vQ-A2r">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="292"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRV-PC-ieL">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRV-PC-ieL" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="30" y="16" width="315" height="90"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_billingcalc" translatesAutoresizingMaskIntoConstraints="NO" id="7nW-pZ-a2S">
@@ -3223,16 +3215,6 @@ Budget Billing?</string>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnC-Me-4Jm">
-                                                                <rect key="frame" x="0.0" y="0.0" width="315" height="90"/>
-                                                                <connections>
-                                                                    <action selector="onButtonTouchCancel:" destination="ea9-OX-qvD" eventType="touchUpInside" id="VEf-L3-L3N"/>
-                                                                    <action selector="onButtonTouchCancel:" destination="ea9-OX-qvD" eventType="touchDragExit" id="dP1-An-p73"/>
-                                                                    <action selector="onButtonTouchCancel:" destination="ea9-OX-qvD" eventType="touchCancel" id="zQc-ZB-bM2"/>
-                                                                    <action selector="onButtonTouchDown:" destination="ea9-OX-qvD" eventType="touchDown" id="tJR-Sy-qXI"/>
-                                                                    <segue destination="LY9-7N-Sv1" kind="presentation" modalPresentationStyle="formSheet" id="1Dh-tu-FJ1"/>
-                                                                </connections>
-                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -3240,12 +3222,8 @@ Budget Billing?</string>
                                                             <constraint firstAttribute="trailing" secondItem="U2a-nx-l5A" secondAttribute="trailing" constant="22" id="0Wy-w3-L9r"/>
                                                             <constraint firstItem="7nW-pZ-a2S" firstAttribute="centerY" secondItem="BRV-PC-ieL" secondAttribute="centerY" id="40Q-kr-Xua"/>
                                                             <constraint firstItem="evS-WD-Rt4" firstAttribute="centerY" secondItem="BRV-PC-ieL" secondAttribute="centerY" id="7F4-nK-aLx"/>
-                                                            <constraint firstItem="BnC-Me-4Jm" firstAttribute="leading" secondItem="BRV-PC-ieL" secondAttribute="leading" id="9Ps-3i-FTY"/>
                                                             <constraint firstItem="evS-WD-Rt4" firstAttribute="leading" secondItem="7nW-pZ-a2S" secondAttribute="trailing" constant="30" id="FFK-Sc-eNs"/>
-                                                            <constraint firstAttribute="bottom" secondItem="BnC-Me-4Jm" secondAttribute="bottom" id="FLm-rM-sbL"/>
-                                                            <constraint firstItem="BnC-Me-4Jm" firstAttribute="top" secondItem="BRV-PC-ieL" secondAttribute="top" id="HK0-PE-hZS"/>
                                                             <constraint firstAttribute="height" constant="90" id="Otg-On-ugw"/>
-                                                            <constraint firstAttribute="trailing" secondItem="BnC-Me-4Jm" secondAttribute="trailing" id="g1y-0H-gmz"/>
                                                             <constraint firstItem="U2a-nx-l5A" firstAttribute="centerY" secondItem="BRV-PC-ieL" secondAttribute="centerY" id="jTR-eR-V7L"/>
                                                         </constraints>
                                                     </view>
@@ -3747,7 +3725,7 @@ Budget Billing?</string>
                         <outlet property="reasonForStoppingTableView" destination="pXz-ha-Q2l" id="N2b-Ng-b0Y"/>
                         <outlet property="scrollView" destination="ePv-bH-pSP" id="JcS-Q5-SAG"/>
                         <outlet property="stackView" destination="Bq5-hO-8cE" id="7zL-1P-gTS"/>
-                        <outlet property="whatIsBudgetBillingButtonView" destination="BRV-PC-ieL" id="tPM-cB-hNW"/>
+                        <outlet property="whatIsBudgetBillingButton" destination="BRV-PC-ieL" id="CJB-jR-Mzb"/>
                         <outlet property="whatIsBudgetBillingLabel" destination="evS-WD-Rt4" id="Kkx-hD-1fm"/>
                         <outlet property="yourPaymentWouldBeLabel" destination="pmW-iP-LFe" id="LI3-i1-t6h"/>
                         <outlet property="yourPaymentWouldBeView" destination="WAf-CE-mvW" id="wUb-c1-RJU"/>
@@ -3756,6 +3734,7 @@ Budget Billing?</string>
                         <outletCollection property="bgeFooterCardViews" destination="AiM-EU-tVe" collectionClass="NSMutableArray" id="eP9-3n-3nu"/>
                         <outletCollection property="bgeFooterCardViews" destination="yqD-cI-JWR" collectionClass="NSMutableArray" id="UXi-iA-lD7"/>
                         <outletCollection property="bgeFooterCardViews" destination="D5X-hh-sw2" collectionClass="NSMutableArray" id="15T-6L-SDX"/>
+                        <segue destination="LY9-7N-Sv1" kind="presentation" identifier="whatIsBudgetBillingSegue" modalPresentationStyle="formSheet" id="8TS-2C-kaD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2c-0C-jUg" userLabel="First Responder" sceneMemberID="firstResponder"/>

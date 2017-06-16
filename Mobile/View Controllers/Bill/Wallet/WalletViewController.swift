@@ -232,7 +232,7 @@ extension WalletViewController: AddBankAccountViewControllerDelegate {
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
         self.viewModel.fetchWalletItems.onNext()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString("Bank account added", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+            self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
         })
     }
     
@@ -243,7 +243,7 @@ extension WalletViewController: EditBankAccountViewControllerDelegate {
     func editBankAccountViewControllerDidEditAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String) {
         self.viewModel.fetchWalletItems.onNext()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString(message, comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+            self.view.showToast(message)
         })
     }
     
@@ -254,7 +254,7 @@ extension WalletViewController: AddCreditCardViewControllerDelegate {
     func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
         self.viewModel.fetchWalletItems.onNext()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString("Card added", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+            self.view.showToast(NSLocalizedString("Card added", comment: ""))
         })
     }
 }
@@ -264,7 +264,7 @@ extension WalletViewController: EditCreditCardViewControllerDelegate {
     func editCreditCardViewControllerDidEditAccount(_ editCreditCardViewController: EditCreditCardViewController, message: String) {
         self.viewModel.fetchWalletItems.onNext()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString(message, comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+            self.view.showToast(message)
         })
     }
     

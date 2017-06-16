@@ -49,6 +49,8 @@ class ButtonControl: UIControl {
             })
             .addDisposableTo(bag)
         
+        isAccessibilityElement = true
+        accessibilityTraits = UIAccessibilityTraitButton
     }
     
     override var isEnabled: Bool {

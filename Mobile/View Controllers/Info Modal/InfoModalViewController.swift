@@ -42,6 +42,7 @@ class InfoModalViewController: DismissableFormSheetViewController {
         navBarView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
         
         xButton.tintColor = .actionBlue
+        xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         
         titleLabel.textColor = .blackText
         titleLabel.text = navTitle

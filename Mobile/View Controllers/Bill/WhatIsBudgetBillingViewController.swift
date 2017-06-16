@@ -40,6 +40,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         view.backgroundColor = .primaryColor
 
         xButton.imageView?.tintColor = .actionBlue
+        xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         
         navBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         

@@ -16,6 +16,7 @@ class SegmentedControl: UIControl {
     
     private var views = [UIView]()
     private var labels = [UILabel]()
+    private var buttons = [UIButton]()
     private var bigBottomBar: UIView?
     private var selectedBar: UIView?
 
@@ -34,7 +35,7 @@ class SegmentedControl: UIControl {
     func commonInit() {
         clipsToBounds = true
         
-        for _ in 0...2 {
+        for i in 0...2 {
             let view = UIView(frame: .zero)
             view.isUserInteractionEnabled = false
             views.append(view)
@@ -43,10 +44,17 @@ class SegmentedControl: UIControl {
             label.textColor = UIColor.actionBlue
             label.numberOfLines = 0
             label.textAlignment = .center
+            label.isAccessibilityElement = false
             labels.append(label)
+            
+            let button = UIButton(frame: .zero)
+            button.tag = i
+            button.addTarget(self, action: #selector(onButtonTap), for: .touchUpInside)
+            buttons.append(button)
             
             view.addSubview(label)
             addSubview(view)
+            addSubview(button)
         }
         
         bigBottomBar = UIView(frame: .zero)
@@ -88,7 +96,11 @@ class SegmentedControl: UIControl {
                 }
                 label.frame.size = CGSize(width: view.bounds.size.width, height: view.bounds.size.height)
                 label.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)
-                label.accessibilityLabel = String(format: NSLocalizedString("Segmented control, %@ option, %@ of %@", comment: ""), item, String(index + 1), String(self.items!.count))
+                
+                let button = buttons[index]
+                button.accessibilityLabel = String(format: NSLocalizedString("Segmented control, %@ option, %@ of %@", comment: ""), item, String(index + 1), String(self.items!.count))
+                button.accessibilityTraits = UIAccessibilityTraitNone
+                button.frame = view.frame
             }
             
             bigBottomBar!.frame = CGRect(x: 0, y: frame.height - 6, width: frame.width, height: 6)
@@ -98,34 +110,18 @@ class SegmentedControl: UIControl {
         }
     }
     
-    
-    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+    func onButtonTap(sender: UIButton) {
+        let index = sender.tag
         
-        let location = touch.location(in: self)
-        
-        let itemWidth = frame.width / CGFloat(items!.count)
-        
-        var calculatedIndex : Int?
-        for i in 1...items!.count {
-            if location.x < itemWidth * CGFloat(i) {
-                calculatedIndex = i - 1
-                break
-            }
-        }
-        
-        if let index = calculatedIndex {
-            selectedIndex.value = index
-            sendActions(for: .valueChanged)
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                let label = self.items![index]
-                let a11yString = String(format: NSLocalizedString("Selected %@ option, %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, a11yString)
-            })
-        }
+        selectedIndex.value = index
+        sendActions(for: .valueChanged)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            let label = self.items![index]
+            let a11yString = String(format: NSLocalizedString("Selected %@ option, %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, a11yString)
+        })
         
         setNeedsLayout()
-        
-        return false
     }
-
+    
 }
