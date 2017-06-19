@@ -1610,6 +1610,7 @@
 				E8127B211EBB959E0083DDE9 /* LoadingView.swift */,
 				E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */,
 				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
+				E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1663,7 +1664,6 @@
 				225FF8591EC56B480079010C /* Date.swift */,
 				82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */,
 				E8C453141EF3293600F5C781 /* ToastView.swift */,
-				E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
