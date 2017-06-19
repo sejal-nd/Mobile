@@ -42,7 +42,7 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
-    @IBOutlet weak var reasonForStoppingTableView: UITableView!
+    @IBOutlet weak var reasonForStoppingTableView: IntrinsicHeightTableView!
     @IBOutlet weak var reasonForStoppingLabel: UILabel!
     
     @IBOutlet weak var bgeFooterView: UIView!
@@ -135,8 +135,9 @@ class BudgetBillingViewController: UIViewController {
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
-        reasonForStoppingTableView.isHidden = true
         reasonForStoppingTableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReasonForStoppingCell")
+        reasonForStoppingTableView.estimatedRowHeight = 51
+        reasonForStoppingTableView.isHidden = true
         if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
             viewModel.unenrolling.asObservable().subscribe(onNext: { unenrolling in
                 UIView.animate(withDuration: 0.3, animations: {
@@ -337,6 +338,10 @@ extension BudgetBillingViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }
 
