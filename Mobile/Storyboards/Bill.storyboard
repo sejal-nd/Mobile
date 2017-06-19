@@ -540,7 +540,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.35 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGx-aL-ACF">
-                                                                            <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
+                                                                            <rect key="frame" x="107" y="7.5" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -1171,6 +1171,7 @@ to your payments.</string>
                     <connections>
                         <outlet property="accountHolderNameTextField" destination="3sK-bE-CV2" id="1g5-pd-fgw"/>
                         <outlet property="accountNumberTextField" destination="EJG-ex-bcr" id="Dto-aM-rwq"/>
+                        <outlet property="accountNumberTooltipButton" destination="6as-MX-CZJ" id="pkh-zN-p7n"/>
                         <outlet property="checkingSavingsSegmentedControl" destination="1gs-8U-wqn" id="AEY-Eh-s8d"/>
                         <outlet property="confirmAccountNumberTextField" destination="TZ2-wj-dCo" id="9Kn-2E-0XS"/>
                         <outlet property="confirmRoutingNumberTextField" destination="89l-Oq-UPq" id="iar-cK-6XA"/>
@@ -1180,6 +1181,7 @@ to your payments.</string>
                         <outlet property="oneTouchPaySwitch" destination="pX0-K6-4v4" id="QCu-ky-P7B"/>
                         <outlet property="oneTouchPayView" destination="vTk-dc-pav" id="xtZ-Mz-uC8"/>
                         <outlet property="routingNumberTextField" destination="fGp-tZ-IvK" id="z3x-fN-mar"/>
+                        <outlet property="routingNumberTooltipButton" destination="ELy-wo-iuq" id="sAJ-mp-4ej"/>
                         <outlet property="scrollView" destination="VVW-ye-NTR" id="kVI-tQ-920"/>
                     </connections>
                 </viewController>
@@ -4548,6 +4550,7 @@ the year</string>
                         <outlet property="convenienceFeeLabel" destination="OP4-aK-gll" id="DUc-Uy-1iB"/>
                         <outlet property="cvvTextField" destination="oIS-aP-WNR" id="S8V-ER-zbs"/>
                         <outlet property="cvvTooltipButton" destination="GGN-vq-zw9" id="VF5-9J-1d9"/>
+                        <outlet property="deleteCardButton" destination="EzV-GF-2Dv" id="mY4-Nz-29o"/>
                         <outlet property="deleteCardLabel" destination="Zdb-tH-Ylo" id="wN0-dL-4eT"/>
                         <outlet property="expDateLabel" destination="CdG-Sf-GC5" id="Nr7-Kb-U3K"/>
                         <outlet property="expMonthTextField" destination="nKw-NR-RU1" id="A6T-p8-db1"/>

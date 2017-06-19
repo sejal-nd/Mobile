@@ -82,67 +82,39 @@ class WalletTableViewCell: UITableViewCell {
     
     func bindToWalletItem(_ walletItem: WalletItem) {
         
-        // Nickname
-        if let nickname = walletItem.nickName {
-            if Environment.sharedInstance.opco == .bge {
-                if let bankAccountType = walletItem.bankAccountType {
-                    nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
-                } else {
-                    nicknameLabel.text = nickname.uppercased()
-                }
-            } else {
-                nicknameLabel.text = nickname.uppercased()
-            }
-        } else {
-            if Environment.sharedInstance.opco == .bge {
-                if let bankAccountType = walletItem.bankAccountType {
-                    nicknameLabel.text = bankAccountType.rawValue.uppercased()
-                }
-            } else {
-                nicknameLabel.text = ""
-            }
-        }
-
-        
-        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-            accountNumberLabel.text = "**** \(last4Digits)"
-        } else {
-            accountNumberLabel.text = ""
-        }
+        var a11yLabel = ""
         
         bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         switch Environment.sharedInstance.opco {
         case .comEd, .peco:
-            accountImageView.isAccessibilityElement = true
             if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
                 bottomBarLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
                 if let paymentMethodType = walletItem.paymentMethodType {
                     switch paymentMethodType {
                     case .visa:
                         accountImageView.image = #imageLiteral(resourceName: "ic_visa")
-                        accountImageView.accessibilityLabel = NSLocalizedString("Visa card", comment: "")
+                        a11yLabel = NSLocalizedString("Visa card", comment: "")
                     case .mastercard:
                         accountImageView.image = #imageLiteral(resourceName: "ic_mastercard")
-                        accountImageView.accessibilityLabel = NSLocalizedString("Master card", comment: "")
+                        a11yLabel = NSLocalizedString("Master card", comment: "")
                     case .discover:
                         accountImageView.image = #imageLiteral(resourceName: "ic_discover")
-                        accountImageView.accessibilityLabel = NSLocalizedString("Discover card", comment: "")
+                        a11yLabel = NSLocalizedString("Discover card", comment: "")
                     case .americanexpress:
                         accountImageView.image = #imageLiteral(resourceName: "ic_amex")
-                        accountImageView.accessibilityLabel = NSLocalizedString("American Express card", comment: "")
+                        a11yLabel = NSLocalizedString("American Express card", comment: "")
                     }
                 } else {
                     accountImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
-                    accountImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
+                    a11yLabel =  NSLocalizedString("Credit card", comment: "")
                 }
             } else if walletItem.paymentCategoryType == .check {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                accountImageView.accessibilityLabel = NSLocalizedString("Bank account", comment: "")
+                a11yLabel =  NSLocalizedString("Bank account", comment: "")
             }
         case .bge:
             accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-            accountImageView.isAccessibilityElement = true
-            accountImageView.accessibilityLabel = NSLocalizedString("Bank account", comment: "")
+            a11yLabel = NSLocalizedString("Bank account", comment: "")
             
             switch walletItem.walletItemStatusTypeBGE! {
             case .pndWait:
@@ -173,9 +145,45 @@ class WalletTableViewCell: UITableViewCell {
             // bottomBarLabel.text = NSLocalizedString("Fees: $1.50 Residential | 2.4% Business", comment: "")
         }
         
-        // TODO: Make this work
-        oneTouchPayView.isHidden = true
+        // Nickname
+        if let nickname = walletItem.nickName {
+            if Environment.sharedInstance.opco == .bge {
+                if let bankAccountType = walletItem.bankAccountType {
+                    nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
+                } else {
+                    nicknameLabel.text = nickname.uppercased()
+                }
+            } else {
+                nicknameLabel.text = nickname.uppercased()
+            }
+        } else {
+            if Environment.sharedInstance.opco == .bge {
+                if let bankAccountType = walletItem.bankAccountType {
+                    nicknameLabel.text = bankAccountType.rawValue.uppercased()
+                }
+            } else {
+                nicknameLabel.text = ""
+            }
+        }
         
+        if let nicknameText = nicknameLabel.text {
+            if !nicknameText.isEmpty {
+                a11yLabel += ", \(nicknameText)"
+            }
+        }
+        
+        
+        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
+            accountNumberLabel.text = "**** \(last4Digits)"
+            a11yLabel += String(format: NSLocalizedString(", Account number ending in %@", comment: ""), last4Digits)
+        } else {
+            accountNumberLabel.text = ""
+        }
+        
+        oneTouchPayView.isHidden = true // Calculated in cellForRowAtIndexPath
+        
+        accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"
+        accessibilityTraits = UIAccessibilityTraitButton
     }
     
 }

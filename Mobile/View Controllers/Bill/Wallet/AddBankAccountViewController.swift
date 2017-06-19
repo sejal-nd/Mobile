@@ -32,8 +32,10 @@ class AddBankAccountViewController: UIViewController {
     @IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControl!
     @IBOutlet weak var accountHolderNameTextField: FloatLabelTextField!
     @IBOutlet weak var routingNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var routingNumberTooltipButton: UIButton!
     @IBOutlet weak var confirmRoutingNumberTextField: FloatLabelTextField!
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var accountNumberTooltipButton: UIButton!
     @IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var nicknameTextField: FloatLabelTextField!
     @IBOutlet weak var oneTouchPayView: UIView!
@@ -69,6 +71,7 @@ class AddBankAccountViewController: UIViewController {
         routingNumberTextField.textField.delegate = self
         routingNumberTextField.textField.returnKeyType = .next
         routingNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        routingNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         confirmRoutingNumberTextField.textField.placeholder = NSLocalizedString("Confirm Routing Number*", comment: "")
         confirmRoutingNumberTextField.textField.delegate = self
@@ -79,6 +82,7 @@ class AddBankAccountViewController: UIViewController {
         accountNumberTextField.textField.delegate = self
         accountNumberTextField.textField.returnKeyType = .next
         accountNumberTextField.textField.isShowingAccessory = true
+        accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         confirmAccountNumberTextField.textField.placeholder = NSLocalizedString("Confirm Account Number*", comment: "")
         confirmAccountNumberTextField.textField.delegate = self

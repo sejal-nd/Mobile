@@ -45,6 +45,7 @@ class EditCreditCardViewController: UIViewController {
     @IBOutlet weak var oneTouchPaySwitch: Switch!
     @IBOutlet weak var oneTouchPayLabel: UILabel!
 
+    @IBOutlet weak var deleteCardButton: ButtonControl!
     @IBOutlet weak var deleteCardLabel: UILabel!
     
     @IBOutlet weak var walletItemBGView: UIView!
@@ -150,6 +151,7 @@ class EditCreditCardViewController: UIViewController {
         zipCodeTextField.textField.delegate = self
         zipCodeTextField.textField.keyboardType = .numberPad
         
+        deleteCardButton.accessibilityLabel = NSLocalizedString("Delete card", comment: "")
         deleteCardLabel.font = SystemFont.regular.of(textStyle: .headline)
         deleteCardLabel.textColor = .actionBlue
         
@@ -209,6 +211,7 @@ class EditCreditCardViewController: UIViewController {
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
             accountIDLabel.text = "**** \(last4Digits)"
+            accountIDLabel.accessibilityLabel = String(format: NSLocalizedString(", Account number ending in %@", comment: ""), last4Digits)
         } else {
             accountIDLabel.text = ""
         }

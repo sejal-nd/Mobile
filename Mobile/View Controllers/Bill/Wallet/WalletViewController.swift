@@ -209,6 +209,8 @@ extension WalletViewController: UITableViewDataSource {
             if let oneTouchPayItem = viewModel.oneTouchPayDictionary![customerNumber] {
                 if oneTouchPayItem.walletItemID == walletItem.walletItemID {
                     cell.oneTouchPayView.isHidden = false
+                    let a11yLabel = cell.accessibilityLabel!
+                    cell.accessibilityLabel = a11yLabel + ", One Touch Pay account"
                 }
             }
         }
