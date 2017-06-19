@@ -54,6 +54,22 @@
 		54036BAD1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
 		54036BAE1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
 		54036BAF1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
+		540B94981EF4775A00F08325 /* RadioSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540B94971EF4775A00F08325 /* RadioSelectionView.xib */; };
+		540B94991EF4775A00F08325 /* RadioSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540B94971EF4775A00F08325 /* RadioSelectionView.xib */; };
+		540B949A1EF4775A00F08325 /* RadioSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540B94971EF4775A00F08325 /* RadioSelectionView.xib */; };
+		540B949C1EF4778300F08325 /* RadioSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B949B1EF4778300F08325 /* RadioSelectionView.swift */; };
+		545784A21EF823A300C58E63 /* RadioSelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784A11EF823A300C58E63 /* RadioSelectControl.swift */; };
+		545784A31EF823A300C58E63 /* RadioSelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784A11EF823A300C58E63 /* RadioSelectControl.swift */; };
+		545784A41EF823A300C58E63 /* RadioSelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784A11EF823A300C58E63 /* RadioSelectControl.swift */; };
+		545784A61EF8586300C58E63 /* AutoPaySettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784A51EF8586300C58E63 /* AutoPaySettingsViewModel.swift */; };
+		545784A71EF8586300C58E63 /* AutoPaySettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784A51EF8586300C58E63 /* AutoPaySettingsViewModel.swift */; };
+		545784A81EF8586300C58E63 /* AutoPaySettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784A51EF8586300C58E63 /* AutoPaySettingsViewModel.swift */; };
+		545784AA1EF8753200C58E63 /* DateDisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784A91EF8753200C58E63 /* DateDisclosureButton.swift */; };
+		545784AB1EF8753200C58E63 /* DateDisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784A91EF8753200C58E63 /* DateDisclosureButton.swift */; };
+		545784AC1EF8753200C58E63 /* DateDisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784A91EF8753200C58E63 /* DateDisclosureButton.swift */; };
+		545784AE1EF8755000C58E63 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */; };
+		545784AF1EF8755000C58E63 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */; };
+		545784B01EF8755000C58E63 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */; };
 		54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
 		54618B271EE0606800119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
 		54618B281EE0606800119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
@@ -864,6 +880,12 @@
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCreditCardViewController.swift; sourceTree = "<group>"; };
+		540B94971EF4775A00F08325 /* RadioSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RadioSelectionView.xib; path = AutoPay/RadioSelectionView.xib; sourceTree = "<group>"; };
+		540B949B1EF4778300F08325 /* RadioSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioSelectionView.swift; path = AutoPay/RadioSelectionView.swift; sourceTree = "<group>"; };
+		545784A11EF823A300C58E63 /* RadioSelectControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectControl.swift; sourceTree = "<group>"; };
+		545784A51EF8586300C58E63 /* AutoPaySettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoPaySettingsViewModel.swift; path = "Mobile/Views/Listable Views/AutoPay/AutoPaySettingsViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		545784A91EF8753200C58E63 /* DateDisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisclosureButton.swift; sourceTree = "<group>"; };
+		545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateDisclosureButton.xib; sourceTree = "<group>"; };
 		54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewController.swift; sourceTree = "<group>"; };
 		548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewModel.swift; sourceTree = "<group>"; };
 		5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationConfirmationViewController.swift; sourceTree = "<group>"; };
@@ -1396,6 +1418,15 @@
 			path = BGEUITests;
 			sourceTree = "<group>";
 		};
+		540B94961EF476E700F08325 /* AutoPay */ = {
+			isa = PBXGroup;
+			children = (
+				540B949B1EF4778300F08325 /* RadioSelectionView.swift */,
+				540B94971EF4775A00F08325 /* RadioSelectionView.xib */,
+			);
+			name = AutoPay;
+			sourceTree = "<group>";
+		};
 		54DF4BD81EE9CB39008CF7AD /* Registration */ = {
 			isa = PBXGroup;
 			children = (
@@ -1459,6 +1490,8 @@
 				82A18EB51EBA676700BE9F21 /* SecondaryButton.swift */,
 				82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */,
 				82A18EB71EBA676700BE9F21 /* Switch.swift */,
+				545784A91EF8753200C58E63 /* DateDisclosureButton.swift */,
+				545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -1466,6 +1499,7 @@
 		82A18EB11EBA667F00BE9F21 /* Listable Views */ = {
 			isa = PBXGroup;
 			children = (
+				540B94961EF476E700F08325 /* AutoPay */,
 				54DF4BD81EE9CB39008CF7AD /* Registration */,
 				82A18F0C1EC0C71D00BE9F21 /* Bill */,
 				82A18EC71EBA677300BE9F21 /* PaperlessEBillAccountView */,
@@ -1594,6 +1628,7 @@
 				E8127B211EBB959E0083DDE9 /* LoadingView.swift */,
 				E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */,
 				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
+				545784A11EF823A300C58E63 /* RadioSelectControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2225,6 +2260,7 @@
 		E8C4531D1EF42E8200F5C781 /* AutoPay */ = {
 			isa = PBXGroup;
 			children = (
+				545784A51EF8586300C58E63 /* AutoPaySettingsViewModel.swift */,
 			);
 			path = AutoPay;
 			sourceTree = "<group>";
@@ -2514,12 +2550,14 @@
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
+				540B94981EF4775A00F08325 /* RadioSelectionView.xib in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
+				545784AE1EF8755000C58E63 /* DateDisclosureButton.xib in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				E8FE30B11E787625009D28B7 /* outage.json in Resources */,
@@ -2570,6 +2608,7 @@
 				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
+				545784B01EF8755000C58E63 /* DateDisclosureButton.xib in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
@@ -2591,6 +2630,7 @@
 				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
+				540B949A1EF4775A00F08325 /* RadioSelectionView.xib in Resources */,
 				E8494F431EBBCB4C0047D6BE /* outage_loading.json in Resources */,
 				82A18EF51EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
@@ -2622,6 +2662,7 @@
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
+				545784AF1EF8755000C58E63 /* DateDisclosureButton.xib in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
@@ -2643,6 +2684,7 @@
 				B55736391E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
+				540B94991EF4775A00F08325 /* RadioSelectionView.xib in Resources */,
 				E8494F411EBBCB430047D6BE /* outage_loading.json in Resources */,
 				82A18EF41EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
@@ -2915,6 +2957,7 @@
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				B56DD4A21ED87AE200F0198B /* CreditCard.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */,
+				540B949C1EF4778300F08325 /* RadioSelectionView.swift in Sources */,
 				82BE057F1ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
@@ -2931,6 +2974,7 @@
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
+				545784A61EF8586300C58E63 /* AutoPaySettingsViewModel.swift in Sources */,
 				E8C3AC011EDA09B50004F705 /* OneTouchPayService.swift in Sources */,
 				54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
@@ -2944,6 +2988,7 @@
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
+				545784A21EF823A300C58E63 /* RadioSelectControl.swift in Sources */,
 				E887C9D41ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
@@ -2954,6 +2999,7 @@
 				E8C453271EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				548288DF1ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
+				545784AA1EF8753200C58E63 /* DateDisclosureButton.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846871E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
@@ -2992,6 +3038,7 @@
 				E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E8C4532D1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
+				545784AC1EF8753200C58E63 /* DateDisclosureButton.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */,
 				82A18EE51EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
@@ -3032,6 +3079,7 @@
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				E873DA651EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				82A18EC31EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
+				545784A41EF823A300C58E63 /* RadioSelectControl.swift in Sources */,
 				9A3161041EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				E8C3AC031EDA09B50004F705 /* OneTouchPayService.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
@@ -3052,6 +3100,7 @@
 				82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDC1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
+				545784A81EF8586300C58E63 /* AutoPaySettingsViewModel.swift in Sources */,
 				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
@@ -3148,6 +3197,7 @@
 				E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E8C4532C1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
+				545784AB1EF8753200C58E63 /* DateDisclosureButton.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
 				82A18EE41EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
@@ -3188,6 +3238,7 @@
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				E873DA7B1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
+				545784A31EF823A300C58E63 /* RadioSelectControl.swift in Sources */,
 				9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				E8C3AC021EDA09B50004F705 /* OneTouchPayService.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
@@ -3208,6 +3259,7 @@
 				82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
+				545784A71EF8586300C58E63 /* AutoPaySettingsViewModel.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
