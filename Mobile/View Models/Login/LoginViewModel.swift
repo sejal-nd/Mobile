@@ -42,7 +42,7 @@ class LoginViewModel {
         UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.ShouldPromptToEnableTouchID)
     }
     
-    func performLogin(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String?, String) -> Void) {
+    func performLogin(onSuccess: @escaping (Bool) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
         if username.value.isEmpty || password.value.isEmpty {
             onError(nil, "Please enter your username and password")
             return;
@@ -57,6 +57,8 @@ class LoginViewModel {
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.FnAccountProtected.rawValue {
                     onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
+                } else if serviceError.serviceCode == ServiceErrorCode.FnAcctNotActivated.rawValue {
+                    onRegistrationNotComplete()
                 } else {
                     onError(nil, error.localizedDescription)
                 }
@@ -82,7 +84,7 @@ class LoginViewModel {
                 self.username.value = username
                 self.password.value = password
                 onLoad()
-                performLogin(onSuccess: onSuccess, onError: onError)
+                performLogin(onSuccess: onSuccess, onRegistrationNotComplete: {}, onError: onError)
             }
         }
     }
@@ -103,6 +105,17 @@ class LoginViewModel {
             }, onError: { err in
                 onError(err.localizedDescription)
             }).addDisposableTo(disposeBag)
+    }
+    
+    func resendValidationEmail(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        registrationService.resendConfirmationEmail(username.value)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
     }
     
 }
