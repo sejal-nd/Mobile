@@ -38,6 +38,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     @IBOutlet weak var question3ContentLabel: UILabel!
     @IBOutlet weak var question3AnswerTextField: FloatLabelTextField!
     
+    @IBOutlet weak var eBillSwitchView: UIView!
     @IBOutlet weak var enrollIneBillSwitch: Switch!
     @IBOutlet weak var eBillSwitchInstructions: UILabel!
     
@@ -134,6 +135,18 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         viewModel.loadSecurityQuestions(onSuccess: { _ in
             
             self.viewModel.loadAccounts(onSuccess: { _ in
+                let opco = Environment.sharedInstance.opco
+                
+                if (opco == .peco || opco == .comEd) && self.viewModel.accountType.value == "commercial" {
+                    self.scrollView.isHidden = false
+                    self.loadingIndicator.isHidden = true
+                    
+                    self.toggleAccountListing(false)
+                    self.eBillSwitchView.isHidden = true
+
+                    return
+                }
+                
 //                self.createTestAccounts()
                 
                 self.buildAccountListing()

@@ -2414,11 +2414,11 @@
                                                             </view>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="EW3-6x-xcj" firstAttribute="leading" secondItem="z7e-zj-tcN" secondAttribute="leading" id="7tX-Dt-Mlu"/>
+                                                            <constraint firstItem="EW3-6x-xcj" firstAttribute="leading" secondItem="z7e-zj-tcN" secondAttribute="leading" priority="999" id="7tX-Dt-Mlu"/>
                                                             <constraint firstAttribute="trailing" secondItem="S6c-ST-P1s" secondAttribute="trailing" id="DxV-hF-kpn"/>
                                                             <constraint firstAttribute="trailing" secondItem="sq0-Wh-DsD" secondAttribute="trailing" id="MEP-eR-Bnq"/>
                                                             <constraint firstItem="U0M-V5-mra" firstAttribute="leading" secondItem="z7e-zj-tcN" secondAttribute="leading" id="PI5-Vm-Lhm"/>
-                                                            <constraint firstAttribute="trailing" secondItem="EW3-6x-xcj" secondAttribute="trailing" id="Pr5-Jd-NoE"/>
+                                                            <constraint firstAttribute="trailing" secondItem="EW3-6x-xcj" secondAttribute="trailing" priority="999" id="Pr5-Jd-NoE"/>
                                                             <constraint firstAttribute="trailing" secondItem="SmR-Dv-6Aa" secondAttribute="trailing" id="QwI-Ly-5es"/>
                                                             <constraint firstItem="sq0-Wh-DsD" firstAttribute="leading" secondItem="z7e-zj-tcN" secondAttribute="leading" id="T53-5M-1Tc"/>
                                                             <constraint firstItem="xFW-6U-4Nj" firstAttribute="leading" secondItem="z7e-zj-tcN" secondAttribute="leading" id="Ysf-eG-Zd3"/>
@@ -2488,6 +2488,7 @@
                         <outlet property="accountListView" destination="xFW-6U-4Nj" id="oHY-TS-bwh"/>
                         <outlet property="accountNumColHeaderLabel" destination="EiX-I2-QoZ" id="J2p-Yb-ifF"/>
                         <outlet property="eBillSwitchInstructions" destination="wch-xm-nwd" id="qfh-aw-rmR"/>
+                        <outlet property="eBillSwitchView" destination="EW3-6x-xcj" id="f8G-Ee-TJo"/>
                         <outlet property="enrollIneBillSwitch" destination="Qi8-h0-f4g" id="vy0-1s-HPY"/>
                         <outlet property="instructionLabel" destination="H7V-UA-c4Y" id="vDL-9a-Lk6"/>
                         <outlet property="loadingIndicator" destination="Vrb-vV-DRS" id="gJL-bi-9Nk"/>
