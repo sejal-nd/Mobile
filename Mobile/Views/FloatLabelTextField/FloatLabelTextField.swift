@@ -128,12 +128,14 @@ class FloatLabelTextField: UIView {
     func setEnabled(_ enabled: Bool) {
         if enabled {
             isUserInteractionEnabled = true
+            textField.isEnabled = true
             setDefaultStyles()
         } else {
             isUserInteractionEnabled = false
             
             textField.text = ""
             textField.sendActions(for: UIControlEvents.valueChanged)
+            textField.isEnabled = false
             setError(nil)
             setValidated(false)
             

@@ -27,6 +27,7 @@ class DataDetectorTextView: UITextView {
     func commonInit() {
         isEditable = false
         dataDetectorTypes = .phoneNumber
+        accessibilityTraits = UIAccessibilityTraitStaticText
         
         gestureRecognizers = gestureRecognizers?.flatMap {
             if let longPressGestureRecognizer = $0 as? UILongPressGestureRecognizer,
