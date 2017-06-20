@@ -22,8 +22,14 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var learnMoreButton: ButtonControl!
     @IBOutlet weak var learnMoreButtonLabel: UILabel!
     
+    @IBOutlet weak var enrollmentSwitchView: UIView!
+    @IBOutlet weak var enrollmentSwitch: Switch!
+    
+    @IBOutlet weak var expirationLabel: UILabel!
+    
     @IBOutlet weak var selectBankAccountLabel: UILabel!
     
+    @IBOutlet weak var enrolledPaymentAccountLabel: UILabel!
     @IBOutlet weak var bankAccountButton: ButtonControl!
     
     override func viewDidLoad() {
@@ -52,9 +58,16 @@ class BGEAutoPayViewController: UIViewController {
         attrString.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 18), range: (attrString.string as NSString).range(of: autoPayString))
         learnMoreButtonLabel.attributedText = attrString
         
+        expirationLabel.textColor = .blackText
+        expirationLabel.text = "Enrollment expired due to AutoPay settings - you set enrollment to expire on TODO."
+        
         selectBankAccountLabel.textColor = .blackText
         selectBankAccountLabel.font = OpenSans.semibold.of(textStyle: .headline)
         selectBankAccountLabel.text = NSLocalizedString("Select a bank account to enroll in AutoPay.", comment: "")
+        
+        enrolledPaymentAccountLabel.textColor = .deepGray
+        enrolledPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        enrolledPaymentAccountLabel.text = NSLocalizedString("AutoPay Payment Account:", comment: "")
         
         bankAccountButton.backgroundColorOnPress = .softGray
         bankAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
