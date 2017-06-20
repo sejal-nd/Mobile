@@ -217,6 +217,19 @@ class LoginViewController: UIViewController {
                     }
                 }
             })
+        }, onRegistrationNotComplete: {
+            let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVC.addAction(UIAlertAction(title: NSLocalizedString("Resend", comment: ""), style: .default, handler: { (action) in
+                LoadingView.show()
+                self.viewModel.resendValidationEmail(onSuccess: { 
+                    LoadingView.hide()
+                    self.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
+                }, onError: { errMessage in
+                    LoadingView.hide()
+                    self.showErrorAlertWith(title: NSLocalizedString("Error", comment: ""), message: errMessage)
+                })
+            }))
         }, onError: { (title, message) in
             self.navigationController?.view.isUserInteractionEnabled = true
             self.showErrorAlertWith(title: title, message: message)

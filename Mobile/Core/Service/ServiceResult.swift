@@ -17,7 +17,8 @@ enum ServiceErrorCode : String {
     case Parsing = "Parsing"
     case FNPwdNoMatch = "FN-PWD-NOMATCH"
     case FnPwdInvalid = "FN-PWD-INVALID"
-    case FnAcctLockedLogin = "FN-ACCT-LOCKED-LOGIN"
+    case FnAcctLockedLogin = "FN-ACCT-LOCKED-LOGIN" // Login - attempted to login with password protected account. We throw this error, not from web services
+    case FnAcctNotActivated = "FN-ACCT-NOT-ACTIVATED" // Login - attempted to login before verifying email from registration. We throw this error, not from web services
     case TcUnknown = "TC-UNKNOWN"
     case FnProfBadSecurity = "FN-PROF-BADSECURITY" // Forgot Username - security question answered incorrectly
     case FnProfNotFound = "FN-PROF-NOTFOUND" // Forgot Username/Password - profile not found
