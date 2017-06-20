@@ -269,7 +269,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         let opCo = Environment.sharedInstance.opco
         
-        if opCo == .bge {
+        if opCo == .bge || viewModel.accountType.value == "residential" {
             primaryProfileSwitchView.isHidden = true
         }
         

@@ -65,11 +65,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         title = NSLocalizedString("AutoPay Settings", comment: "")
         
-        loadSettings()
-        
-        buildNavigationButtons()
-        
-        buildStackViews()
+//        loadSettings()
+//        
+//        buildNavigationButtons()
+//        
+//        buildStackViews()
     }
     
     func loadSettings() {
