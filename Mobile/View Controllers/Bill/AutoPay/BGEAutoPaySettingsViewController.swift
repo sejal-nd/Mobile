@@ -401,9 +401,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     func onDateButtonSelected() {
         let calendarVC = PDTSimpleCalendarViewController()
+        
         calendarVC.delegate = self
         calendarVC.title = NSLocalizedString("Select Date", comment: "")
         calendarVC.lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Date())
+        
         navigationController?.pushViewController(calendarVC, animated: true)
     }
     
@@ -498,6 +500,8 @@ extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
         print("Selected date ", date)
         selectedUntilDate = date
+        
+        viewModel.autoPayUntilDate.va
     }
 }
 
