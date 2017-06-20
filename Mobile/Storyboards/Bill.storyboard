@@ -541,7 +541,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.35 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGx-aL-ACF">
-                                                                            <rect key="frame" x="107" y="7.5" width="128.5" height="16.5"/>
+                                                                            <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -1324,6 +1324,10 @@ to your payments.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWt-gL-goW">
+                                <rect key="frame" x="0.0" y="70" width="375" height="450"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ig9-dg-eaf">
                                 <rect key="frame" x="0.0" y="20" width="375" height="880"/>
                                 <subviews>
@@ -1340,10 +1344,6 @@ to your payments.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1U-SY-HYl">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="649"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWt-gL-goW">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="450"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="xsh-ka-7me">
                                                         <rect key="frame" x="29" y="15" width="317" height="604"/>
                                                         <subviews>
@@ -1472,16 +1472,14 @@ AutoPay</string>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="bWt-gL-goW" firstAttribute="leading" secondItem="O1U-SY-HYl" secondAttribute="leading" id="17l-Zo-vh0"/>
-                                                    <constraint firstAttribute="trailing" secondItem="bWt-gL-goW" secondAttribute="trailing" id="5g2-io-JPG"/>
                                                     <constraint firstItem="xsh-ka-7me" firstAttribute="top" secondItem="O1U-SY-HYl" secondAttribute="top" constant="15" id="CwU-VC-TqV"/>
                                                     <constraint firstAttribute="trailing" secondItem="xsh-ka-7me" secondAttribute="trailing" constant="29" id="H2O-Rm-Tby"/>
                                                     <constraint firstItem="xsh-ka-7me" firstAttribute="leading" secondItem="O1U-SY-HYl" secondAttribute="leading" constant="29" id="IyB-7h-LMt"/>
-                                                    <constraint firstItem="bWt-gL-goW" firstAttribute="top" secondItem="O1U-SY-HYl" secondAttribute="top" id="ecJ-zn-lqU"/>
                                                     <constraint firstAttribute="bottom" secondItem="xsh-ka-7me" secondAttribute="bottom" constant="30" id="j64-6g-mEt"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="O1U-SY-HYl" secondAttribute="bottom" id="8ww-vp-F65"/>
                                             <constraint firstAttribute="trailing" secondItem="O1U-SY-HYl" secondAttribute="trailing" id="A87-Da-KiM"/>
@@ -1514,10 +1512,13 @@ AutoPay</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ig9-dg-eaf" firstAttribute="leading" secondItem="N6O-j1-G4v" secondAttribute="leading" id="1DC-7i-Hgd"/>
+                            <constraint firstAttribute="trailing" secondItem="bWt-gL-goW" secondAttribute="trailing" id="Abn-WB-Elt"/>
                             <constraint firstItem="O1U-SY-HYl" firstAttribute="width" secondItem="N6O-j1-G4v" secondAttribute="width" id="Ghx-mI-tKe"/>
-                            <constraint firstItem="bWt-gL-goW" firstAttribute="height" secondItem="N6O-j1-G4v" secondAttribute="height" multiplier="0.5" id="MYD-Ki-Sa2"/>
                             <constraint firstAttribute="trailing" secondItem="ig9-dg-eaf" secondAttribute="trailing" id="Rru-l5-VZY"/>
                             <constraint firstItem="Akc-pJ-7px" firstAttribute="top" secondItem="ig9-dg-eaf" secondAttribute="bottom" id="XnE-6Q-FEv"/>
+                            <constraint firstItem="bWt-gL-goW" firstAttribute="height" secondItem="N6O-j1-G4v" secondAttribute="height" multiplier="0.5" id="aol-uV-n1E"/>
+                            <constraint firstItem="bWt-gL-goW" firstAttribute="top" secondItem="jBY-zf-3vH" secondAttribute="bottom" id="jOu-Uo-WTG"/>
+                            <constraint firstItem="bWt-gL-goW" firstAttribute="leading" secondItem="N6O-j1-G4v" secondAttribute="leading" id="xS0-y6-vN4"/>
                             <constraint firstItem="ig9-dg-eaf" firstAttribute="top" secondItem="6OU-yP-fst" secondAttribute="bottom" id="zug-NG-kg9"/>
                         </constraints>
                     </view>
@@ -1528,7 +1529,10 @@ AutoPay</string>
                         <outlet property="accountNumberTooltipButton" destination="iaU-et-wFw" id="BMY-pN-NbR"/>
                         <outlet property="checkingSavingsSegmentedControl" destination="x2L-9J-bhx" id="ac8-bM-xbX"/>
                         <outlet property="confirmAccountNumberTextField" destination="8xt-kr-xeQ" id="U0D-5w-Vl8"/>
+                        <outlet property="footerLabel" destination="uvA-CK-Snq" id="8ue-C7-pCK"/>
                         <outlet property="gradientView" destination="bWt-gL-goW" id="pIA-AK-IwD"/>
+                        <outlet property="learnMoreButton" destination="y3s-Va-Abk" id="zXV-lm-eS0"/>
+                        <outlet property="learnMoreLabel" destination="Tyj-ZX-wjI" id="k4m-Ft-Gdv"/>
                         <outlet property="nameTextField" destination="fCV-3d-Sr6" id="8eX-LM-JcB"/>
                         <outlet property="routingNumberTextField" destination="oKS-gy-R8o" id="b0V-B3-XZH"/>
                         <outlet property="routingNumberTooltipButton" destination="LUi-Bh-s0R" id="0hq-ja-rFs"/>

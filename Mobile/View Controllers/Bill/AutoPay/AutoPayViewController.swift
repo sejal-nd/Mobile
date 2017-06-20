@@ -15,6 +15,8 @@ class AutoPayViewController: UIViewController {
     @IBOutlet weak var gradientView: UIView!
     var gradientLayer = CAGradientLayer()
     
+    @IBOutlet weak var learnMoreButton: ButtonControl!
+    @IBOutlet weak var learnMoreLabel: UILabel!
     @IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControl!
     @IBOutlet weak var nameTextField: FloatLabelTextField!
     @IBOutlet weak var routingNumberTextField: FloatLabelTextField!
@@ -22,8 +24,12 @@ class AutoPayViewController: UIViewController {
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     @IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var footerLabel: UILabel!
     
     let bag = DisposeBag()
+    
+    var accountDetail: AccountDetail!
+    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withAccountDetail: self.accountDetail) }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +41,30 @@ class AutoPayViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         
+        learnMoreButton.addShadow(color: .black, opacity: 0.12, offset: .zero, radius: 3)
+        let learnMoreString = NSLocalizedString("Learn more about ", comment: "")
+        let autoPayString = NSLocalizedString("AutoPay", comment: "")
+        let learnMoreAboutAutoPayString = learnMoreString + "\n" + autoPayString
+        let learnMoreAboutAutoPayAttrString = NSMutableAttributedString(string: learnMoreAboutAutoPayString, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
+        
+        learnMoreAboutAutoPayAttrString.addAttribute(NSFontAttributeName,
+                                                     value: OpenSans.regular.of(size: 18),
+                                                     range: NSMakeRange(0, learnMoreString.characters.count))
+        
+        learnMoreAboutAutoPayAttrString.addAttribute(NSFontAttributeName,
+                                                     value: OpenSans.bold.of(size: 18),
+                                                     range: NSMakeRange(learnMoreString.characters.count + 1, autoPayString.characters.count))
+        
+        learnMoreLabel.attributedText = learnMoreAboutAutoPayAttrString
+        
         checkingSavingsSegmentedControl.items = [NSLocalizedString("Checking", comment: ""), NSLocalizedString("Savings", comment: "")]
+        
+        checkingSavingsSegmentedControl.selectedIndex.asObservable()
+            .map { selectedIndex -> BankAccountType in
+                selectedIndex == 0 ? .checking: .savings
+            }
+            .bind(to: viewModel.bankAccountType)
+            .addDisposableTo(bag)
         
         nameTextField.textField.placeholder = NSLocalizedString("Name on Account*", comment: "")
         nameTextField.textField.delegate = self
@@ -55,14 +84,11 @@ class AutoPayViewController: UIViewController {
         
         confirmAccountNumberTextField.textField.placeholder = NSLocalizedString("Confirm Account Number*", comment: "")
         confirmAccountNumberTextField.textField.delegate = self
-        confirmAccountNumberTextField.textField.returnKeyType = .next
         
-        scrollView.rx.contentOffset.asDriver()
-            .map { $0.y <= 0 }
-            .distinctUntilChanged()
-            .map { $0 ? UIColor.softGray:UIColor.white }
-            .drive(onNext: { [weak self] color in self?.view.backgroundColor = color })
-            .addDisposableTo(bag)
+        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        footerLabel.setLineHeight(lineHeight: 16)
+        viewModel.footerText.drive(footerLabel.rx.text).addDisposableTo(bag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +104,7 @@ class AutoPayViewController: UIViewController {
         gradientLayer.removeFromSuperlayer()
         
         let gLayer = CAGradientLayer()
-        gLayer.frame = gradientView.frame
+        gLayer.frame = gradientView.bounds
         gLayer.colors = [UIColor.softGray.cgColor, UIColor.white.cgColor]
         
         gradientLayer = gLayer
@@ -87,7 +113,7 @@ class AutoPayViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        gradientLayer.frame = gradientView.frame
+        gradientLayer.frame = gradientView.bounds
     }
     
     func onCancelPress() {
