@@ -79,6 +79,13 @@ class BGEAutoPayViewController: UIViewController {
         bankAccountButton.backgroundColorOnPress = .softGray
         bankAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
         
+        bankAccountButtonSelectLabel.font = SystemFont.medium.of(textStyle: .title1)
+        bankAccountButtonSelectLabel.textColor = .blackText
+        bankAccountButtonSelectLabel.text = NSLocalizedString("Select Bank Account", comment: "")
+        
+        bankAccountButtonAccountNumberLabel.isHidden = true
+        bankAccountButtonNicknameLabel.isHidden = true
+        
         stickyBottomView.backgroundColor = .softGray
         stickyBottomLabel.textColor = .blackText
         stickyBottomLabel.text = NSLocalizedString("Your recurring payment will apply to the next BGE bill you receive. You will need to submit a payment for your current BGE bill if you have not already done so.", comment: "")
