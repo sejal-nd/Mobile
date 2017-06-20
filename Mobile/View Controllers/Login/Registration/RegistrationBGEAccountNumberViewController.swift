@@ -165,6 +165,12 @@ extension RegistrationBGEAccountNumberViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { enabled in
+            if enabled {
+                self.onNextPress()
+            }
+        }).addDisposableTo(disposeBag)
+
         return true
     }
 }

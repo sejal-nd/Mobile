@@ -18,7 +18,7 @@ private enum ProfileStatusKey : String {
 
 private enum ProfileStatusNameValue : String {
     case LockedPassword = "isLockedPassword"
-    case Active = "active"
+    case Inactive = "inactive"
     case Primary = "primary"
     case TempPassword = "tempPassword"
 }
@@ -74,6 +74,8 @@ class AuthTokenParser : NSObject {
             
             if profileStatus.passwordLocked {
                 return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
+            } else if profileStatus.inactive {
+                return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctNotActivated.rawValue))
             }
         }
         
@@ -96,7 +98,7 @@ class AuthTokenParser : NSObject {
     class private func parseProfileStatus(profileStatus: [String:Any]) -> ProfileStatus {
         
         var lockedPassword = false;
-        var active  = false;
+        var inactive  = true;
         var primary  = false;
         var tempPassword = false;
         
@@ -106,8 +108,8 @@ class AuthTokenParser : NSObject {
                     switch name {
                     case ProfileStatusNameValue.LockedPassword.rawValue:
                         lockedPassword = item[ProfileStatusKey.Value.rawValue] as! Bool
-                    case ProfileStatusNameValue.Active.rawValue:
-                        active = item[ProfileStatusKey.Value.rawValue] as! Bool
+                    case ProfileStatusNameValue.Inactive.rawValue:
+                        inactive = item[ProfileStatusKey.Value.rawValue] as! Bool
                     case ProfileStatusNameValue.Primary.rawValue:
                         primary = item[ProfileStatusKey.Value.rawValue] as! Bool
                     case ProfileStatusNameValue.TempPassword.rawValue:
@@ -119,7 +121,7 @@ class AuthTokenParser : NSObject {
             }
         }
         
-        return ProfileStatus(active:active, primary:primary, passwordLocked:lockedPassword, tempPassword: tempPassword)
+        return ProfileStatus(inactive:inactive, primary:primary, passwordLocked:lockedPassword, tempPassword: tempPassword)
     }
     
     /// Retreives the error and wrap it in a ServiceResult
@@ -137,6 +139,8 @@ class AuthTokenParser : NSObject {
             
                 if profileStatus.passwordLocked {
                     return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
+                } else if profileStatus.inactive {
+                    return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctNotActivated.rawValue))
                 }
             }
         }

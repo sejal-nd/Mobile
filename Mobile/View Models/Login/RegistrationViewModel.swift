@@ -24,6 +24,8 @@ class RegistrationViewModel {
     let newPassword = Variable("")
     let confirmPassword = Variable("")
     
+    var accountType = Variable("")
+    
     var primaryProfile = Variable<Bool>(false)
     
     let securityQuestion1 = Variable("")
@@ -72,7 +74,10 @@ class RegistrationViewModel {
         
         registrationService.validateAccountInformation(identifier, phone: extractDigitsFrom(phoneNumber.value), accountNum: acctNum)
         	.observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { data in
+                let types = data["type"] as! [String]
+                self.accountType.value = types[0]
+                
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
@@ -120,8 +125,8 @@ class RegistrationViewModel {
         let answer2: String = securityAnswer2.value
         let question3: String = securityQuestion3.value
         let answer3: String = securityAnswer3.value
-        let primary: Bool = primaryProfile.value
-        let enrollEbill: Bool = paperlessEbill.value
+        let primary: String = primaryProfile.value ? "true" : "false"
+        let enrollEbill: String = paperlessEbill.value ? "true" : "false"
         
         registrationService.createNewAccount(username,
                                              password: password,
