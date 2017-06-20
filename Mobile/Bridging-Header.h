@@ -37,4 +37,6 @@
 
 #import "CardIO.h"
 
+#import <PDTSimpleCalendar/PDTSimpleCalendar.h>
+
 #endif /* EXBridgingHeader_h */

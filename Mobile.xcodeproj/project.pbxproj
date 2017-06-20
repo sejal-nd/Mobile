@@ -745,6 +745,9 @@
 		E8C3AC021EDA09B50004F705 /* OneTouchPayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */; };
 		E8C3AC031EDA09B50004F705 /* OneTouchPayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */; };
 		E8C3AC041EDA0A0E0004F705 /* OneTouchPayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */; };
+		E8C453151EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
+		E8C453161EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
+		E8C453171EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
 		E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
 		E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
 		E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
@@ -763,6 +766,9 @@
 		E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */; };
 		E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */; };
 		E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */; };
+		E8C453331EF454B200F5C781 /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */; };
+		E8C453341EF454E400F5C781 /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */; };
+		E8C453351EF4550200F5C781 /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */; };
 		E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
@@ -795,6 +801,9 @@
 		E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */; };
 		E8D340971EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */; };
 		E8D340981EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */; };
+		E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
+		E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
+		E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
 		E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
 		E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
 		E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
@@ -1238,12 +1247,14 @@
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
 		E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
 		E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchPayService.swift; sourceTree = "<group>"; };
+		E8C453141EF3293600F5C781 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		E8C453181EF4154000F5C781 /* AccountInfoBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoBar.swift; sourceTree = "<group>"; };
 		E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewController.swift; sourceTree = "<group>"; };
 		E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewController.swift; sourceTree = "<group>"; };
 		E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPaySettingsViewController.swift; sourceTree = "<group>"; };
 		E8C4532A1EF435F700F5C781 /* MiniWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniWalletViewController.swift; sourceTree = "<group>"; };
 		E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayChangeBankViewController.swift; sourceTree = "<group>"; };
+		E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDTSimpleCalendar.framework; path = Carthage/Build/iOS/PDTSimpleCalendar.framework; sourceTree = "<group>"; };
 		E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameResultViewController.swift; sourceTree = "<group>"; };
 		E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
 		E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableFormSheetViewController.swift; sourceTree = "<group>"; };
@@ -1253,6 +1264,7 @@
 		E8D2520D1E6DB78800C90584 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
 		E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPickerViewController.swift; sourceTree = "<group>"; };
+		E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntrinsicHeightTableView.swift; sourceTree = "<group>"; };
 		E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDetectorTextView.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E8EEF7151E566FD8006804D4 /* FingerprintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
@@ -1302,6 +1314,7 @@
 				E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D2520E1E6DB78800C90584 /* Lottie.framework in Frameworks */,
 				E801BADD1E8C5A4E00550F99 /* Mapper.framework in Frameworks */,
+				E8C453331EF454B200F5C781 /* PDTSimpleCalendar.framework in Frameworks */,
 				B54F0FFB1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E887C9E91ED5D367002433A3 /* libopencv_imgproc.a in Frameworks */,
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
@@ -1338,6 +1351,7 @@
 				E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D252121E6DB82C00C90584 /* Lottie.framework in Frameworks */,
 				E801BADF1E8C5A8A00550F99 /* Mapper.framework in Frameworks */,
+				E8C453351EF4550200F5C781 /* PDTSimpleCalendar.framework in Frameworks */,
 				B54F0FFD1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E887C9EB1ED5D367002433A3 /* libopencv_imgproc.a in Frameworks */,
 				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
@@ -1374,6 +1388,7 @@
 				E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D252101E6DB7B400C90584 /* Lottie.framework in Frameworks */,
 				E801BADE1E8C5A7300550F99 /* Mapper.framework in Frameworks */,
+				E8C453341EF454E400F5C781 /* PDTSimpleCalendar.framework in Frameworks */,
 				B54F0FFC1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E887C9EA1ED5D367002433A3 /* libopencv_imgproc.a in Frameworks */,
 				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
@@ -1560,6 +1575,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */,
 				E887C9FD1ED5D400002433A3 /* MobileCoreServices.framework */,
 				E887C9FB1ED5D3F9002433A3 /* CoreMedia.framework */,
 				E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */,
@@ -1681,6 +1697,7 @@
 				82D5994A1EC36B5500DDB380 /* Currency.swift */,
 				225FF8591EC56B480079010C /* Date.swift */,
 				82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */,
+				E8C453141EF3293600F5C781 /* ToastView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2730,6 +2747,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -2754,6 +2772,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -2778,6 +2797,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -2902,6 +2922,7 @@
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */,
+				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				82A18EDD1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
@@ -2928,6 +2949,7 @@
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
+				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
@@ -3027,6 +3049,7 @@
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
+				E8C453171EF3293600F5C781 /* ToastView.swift in Sources */,
 				E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				82A18EC01EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
@@ -3043,6 +3066,7 @@
 				E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */,
 				82A18EE51EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
 				E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
+				E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E81F38151ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
@@ -3186,6 +3210,7 @@
 				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
+				E8C453161EF3293600F5C781 /* ToastView.swift in Sources */,
 				E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				82A18EBF1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
@@ -3202,6 +3227,7 @@
 				E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
 				82A18EE41EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
 				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
+				E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E81F38141ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				E873DA761EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,

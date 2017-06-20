@@ -158,7 +158,7 @@ class AccountPicker: UIView {
         addressLabel.textColor = tintWhite ? .white: .deepGray
         addressLabel.text = account.address
         if let address = account.address {
-            accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
+            addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
         }
         
         let accountView = UIView(frame: .zero)

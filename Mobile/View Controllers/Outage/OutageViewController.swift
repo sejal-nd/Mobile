@@ -83,7 +83,7 @@ class OutageViewController: AccountPickerViewController {
         bigButtonView.clipsToBounds = true // So text doesn't overflow
         bigButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
         bigButtonView.isAccessibilityElement = true
-        bigButtonView.accessibilityLabel = NSLocalizedString("Outage status button", comment: "")
+        bigButtonView.accessibilityTraits = UIAccessibilityTraitButton
         
         bigButtonShadowView.layer.cornerRadius = radius
         bigButtonShadowView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
@@ -98,7 +98,6 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
-        footerTextView.accessibilityLabel = viewModel.getFooterTextViewText()
         
         gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
@@ -187,8 +186,10 @@ class OutageViewController: AccountPickerViewController {
         // Update the Report Outage button
         if viewModel.getReportedOutage() != nil {
             reportOutageButton.setDetailLabel(text: viewModel.getOutageReportedDateString(), checkHidden: false)
+            reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.getOutageReportedDateString())
         } else {
             reportOutageButton.setDetailLabel(text: "", checkHidden: true)
+            reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
         }
         
         // Disable bottom buttons if account is finaled or not paid
@@ -240,6 +241,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(reportedLabel)
             bigButtonView.addSubview(restRestorationLabel)
             bigButtonView.addSubview(timeLabel)
+            bigButtonView.accessibilityLabel = NSLocalizedString("Your outage is reported. Estimated restoration \(viewModel.getEstimatedRestorationDateString()). Outage status", comment: "")
         } else if currentOutageStatus.activeOutage {
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 11, y: 31, width: 22, height: 28))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_out")
@@ -275,6 +277,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(outLabel)
             bigButtonView.addSubview(restRestorationLabel)
             bigButtonView.addSubview(timeLabel)
+            bigButtonView.accessibilityLabel = NSLocalizedString("Your power is out. Estimated restoration \(viewModel.getEstimatedRestorationDateString()). Outage status", comment: "")
         } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay {
             let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 14, y: 38, width: bigButtonWidth - 28, height: 120))
             let payBillLabel = UILabel(frame: .zero)
@@ -299,6 +302,7 @@ class OutageViewController: AccountPickerViewController {
 
             bigButtonView.addSubview(nonPayFinaledTextView)
             bigButtonView.bringSubview(toFront: payBillLabel)
+            bigButtonView.accessibilityLabel = NSLocalizedString("\(viewModel.getAccountNonPayFinaledMessage()) Outage status", comment: "")
         } else { // Power is on
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 15, y: 49, width: 30, height: 38))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
@@ -318,6 +322,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourPowerIsLabel)
             bigButtonView.addSubview(onLabel)
+            bigButtonView.accessibilityLabel = NSLocalizedString("Your power is on. Outage status", comment: "")
         }
     }
     
@@ -405,7 +410,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
         updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.makeToast(NSLocalizedString("Your outage report has been received", comment: ""), duration: 5.0, position: CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 40))
+            self.view.showToast(NSLocalizedString("Your outage report has been received", comment: ""))
         })
     }
     

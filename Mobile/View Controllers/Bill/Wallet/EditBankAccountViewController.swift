@@ -65,7 +65,7 @@ class EditBankAccountViewController: UIViewController {
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         nicknameLabel.textColor = .blackText
 
-        
+        deleteAccountButton.accessibilityLabel = NSLocalizedString("Delete bank account", comment: "")
         deleteBankAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
         deleteBankAccountLabel.textColor = .actionBlue
         
@@ -156,6 +156,7 @@ class EditBankAccountViewController: UIViewController {
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
             accountIDLabel.text = "**** \(last4Digits)"
+            accountIDLabel.accessibilityLabel = String(format: NSLocalizedString(", Account number ending in %@", comment: ""), last4Digits)
         } else {
             accountIDLabel.text = ""
         }
