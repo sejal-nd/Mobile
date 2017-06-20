@@ -7,7 +7,7 @@
 	<key>appName</key>
 	<string>BGE_DEV</string>
 	<key>opco</key>
-	<string>PECO</string>
+	<string>BGE</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>

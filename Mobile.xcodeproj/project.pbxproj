@@ -1644,6 +1644,7 @@
 				E8127B211EBB959E0083DDE9 /* LoadingView.swift */,
 				E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */,
 				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
+				E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */,
 				545784A11EF823A300C58E63 /* RadioSelectControl.swift */,
 			);
 			path = Views;
