@@ -249,6 +249,17 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onEyeballPress(_ sender: UIButton) {
+//        //TEST CODE - REMOVE BEFORE PUSHING
+//        LoadingView.show()
+//        viewModel.validateRegistration(guid: "900819c1-a34a-4f5d-a524-37e7cb9483d2", onSuccess: {
+//            LoadingView.hide()
+//            self.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
+//        }, onError: { errMessage in
+//            LoadingView.hide()
+//            let alertVc = UIAlertController(title: NSLocalizedString("Could Not Verify Account", comment: ""), message: errMessage, preferredStyle: .alert)
+//            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+//            self.present(alertVc, animated: true, completion: nil)
+//        })
         if passwordTextField.textField.isSecureTextEntry {
             passwordTextField.textField.isSecureTextEntry = false
             // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
