@@ -31,6 +31,13 @@ class BGEAutoPayViewController: UIViewController {
     
     @IBOutlet weak var enrolledPaymentAccountLabel: UILabel!
     @IBOutlet weak var bankAccountButton: ButtonControl!
+    @IBOutlet weak var bankAccountButtonIcon: UIImageView!
+    @IBOutlet weak var bankAccountButtonSelectLabel: UILabel!
+    @IBOutlet weak var bankAccountButtonAccountNumberLabel: UILabel!
+    @IBOutlet weak var bankAccountButtonNicknameLabel: UILabel!
+    
+    @IBOutlet weak var settingsButton: ButtonControl!
+    @IBOutlet weak var settingsButtonLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +82,9 @@ class BGEAutoPayViewController: UIViewController {
         stickyBottomView.backgroundColor = .softGray
         stickyBottomLabel.textColor = .blackText
         stickyBottomLabel.text = NSLocalizedString("Your recurring payment will apply to the next BGE bill you receive. You will need to submit a payment for your current BGE bill if you have not already done so.", comment: "")
+        
+        settingsButtonLabel.textColor = .actionBlue
+        settingsButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,6 +122,10 @@ class BGEAutoPayViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         let miniWalletVC = storyboard.instantiateViewController(withIdentifier: "miniWallet")
         navigationController?.pushViewController(miniWalletVC, animated: true)
+    }
+    
+    @IBAction func onSettingsPress() {
+        performSegue(withIdentifier: "bgeAutoPaySettingsSegue", sender: self)
     }
 
 }
