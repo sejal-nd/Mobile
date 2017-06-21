@@ -156,7 +156,8 @@ class BGEAutoPayViewController: UIViewController {
 
     @IBAction func onSelectBankAccountPress() {
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
-        let miniWalletVC = storyboard.instantiateViewController(withIdentifier: "miniWallet")
+        let miniWalletVC = storyboard.instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
+        miniWalletVC.tableHeaderLabelText = NSLocalizedString("Select a bank account to enroll in AutoPay.", comment: "")
         navigationController?.pushViewController(miniWalletVC, animated: true)
     }
     
