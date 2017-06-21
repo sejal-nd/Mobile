@@ -70,6 +70,12 @@
 		545784AE1EF8755000C58E63 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */; };
 		545784AF1EF8755000C58E63 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */; };
 		545784B01EF8755000C58E63 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */; };
+		545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */; };
+		545784B31EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */; };
+		545784B41EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */; };
+		545784B61EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784B51EF9A9D200C58E63 /* SeparatorLineView.xib */; };
+		545784B71EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784B51EF9A9D200C58E63 /* SeparatorLineView.xib */; };
+		545784B81EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784B51EF9A9D200C58E63 /* SeparatorLineView.xib */; };
 		54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
 		54618B271EE0606800119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
 		54618B281EE0606800119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
@@ -895,6 +901,8 @@
 		545784A51EF8586300C58E63 /* AutoPaySettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoPaySettingsViewModel.swift; path = "Mobile/Views/Listable Views/AutoPay/AutoPaySettingsViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		545784A91EF8753200C58E63 /* DateDisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisclosureButton.swift; sourceTree = "<group>"; };
 		545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateDisclosureButton.xib; sourceTree = "<group>"; };
+		545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLineView.swift; sourceTree = "<group>"; };
+		545784B51EF9A9D200C58E63 /* SeparatorLineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeparatorLineView.xib; sourceTree = "<group>"; };
 		54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewController.swift; sourceTree = "<group>"; };
 		548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewModel.swift; sourceTree = "<group>"; };
 		5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationConfirmationViewController.swift; sourceTree = "<group>"; };
@@ -1507,6 +1515,8 @@
 				82A18EB71EBA676700BE9F21 /* Switch.swift */,
 				545784A91EF8753200C58E63 /* DateDisclosureButton.swift */,
 				545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */,
+				545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */,
+				545784B51EF9A9D200C58E63 /* SeparatorLineView.xib */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -2606,6 +2616,7 @@
 				E8494F3B1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 				54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
+				545784B61EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */,
 				B55736411E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
@@ -2626,6 +2637,7 @@
 				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
+				545784B81EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */,
 				545784B01EF8755000C58E63 /* DateDisclosureButton.xib in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
@@ -2680,6 +2692,7 @@
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
+				545784B71EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */,
 				545784AF1EF8755000C58E63 /* DateDisclosureButton.xib in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
@@ -2965,6 +2978,7 @@
 				82A18ECC1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
+				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				54036BAD1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
 				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD441EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
@@ -3147,6 +3161,7 @@
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
 				E887C9F41ED5D367002433A3 /* CardIO.m in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
+				545784B41EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFF1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
@@ -3308,6 +3323,7 @@
 				8FD5AE871E54EA49003F640D /* LandingViewController.swift in Sources */,
 				E887C9F31ED5D367002433A3 /* CardIO.m in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
+				545784B31EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFE1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,

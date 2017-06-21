@@ -58,6 +58,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
     let untilDateDetailsLabel = UILabel(frame: .zero)
     var untilDateHairline = UIView(frame: .zero)
     
+    let now = Calendar.current.startOfDay(for: Date())
+    let lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Calendar.current.startOfDay(for: Date()))
+
     var viewModel = AutoPaySettingsViewModel()
 
     override func viewDidLoad() {
@@ -65,11 +68,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         title = NSLocalizedString("AutoPay Settings", comment: "")
         
-//        loadSettings()
-//        
-//        buildNavigationButtons()
-//        
-//        buildStackViews()
+        loadSettings()
+        
+        buildNavigationButtons()
+        
+        buildStackViews()
     }
     
     func loadSettings() {
@@ -180,11 +183,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
 }
     
     func createHairline() -> UIView {
-        let separator = UIView()
+        let separator = SeparatorLineView()
         
         separator.translatesAutoresizingMaskIntoConstraints = false
         separator.addConstraint(separator.heightAnchor.constraint(equalToConstant: 1.0))
-        separator.backgroundColor = .black
+        separator.backgroundColor = .accentGray
         
         return separator
     }
@@ -404,7 +407,12 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         calendarVC.delegate = self
         calendarVC.title = NSLocalizedString("Select Date", comment: "")
-        calendarVC.lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Date())
+        calendarVC.firstDate = now
+        calendarVC.lastDate = lastDate
+        
+        var selectedDate = viewModel.autoPayUntilDate.value.mmDdYyyyDate
+        
+        calendarVC.selectedDate = selectedDate
         
         navigationController?.pushViewController(calendarVC, animated: true)
     }
@@ -492,16 +500,26 @@ extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
     }
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        return date >= Calendar.current.startOfDay(for: Date())
+        if let selectedDate = date {
+            return true// selectedDate >= now && selectedDate <= lastDate
+        } else {
+            return false
+        }
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
         print("Selected date ", date)
         selectedUntilDate = date
         
-        viewModel.autoPayUntilDate.va
+        if let selectedUntilDate = selectedUntilDate {
+            viewModel.autoPayUntilDate.value = selectedUntilDate.mmDdYyyyString
+            untilDateButton.selectedDateLabel.text = selectedUntilDate.mmDdYyyyString
+        }
     }
 }
 

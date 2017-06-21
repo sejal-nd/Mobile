@@ -21,3 +21,10 @@ extension DateFormatter {
         return dateFormatter
     }()
 }
+
+// gsh - added extension to convert a Date into a String
+extension String {
+    @nonobjc var mmDdYyyyDate: Date {
+        return DateFormatter.mmDdYyyyFormatter.date(from: self)!
+    }
+}
