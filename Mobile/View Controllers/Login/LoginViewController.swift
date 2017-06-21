@@ -218,7 +218,7 @@ class LoginViewController: UIViewController {
                 }
             })
         }, onRegistrationNotComplete: {
-            self.navigationController?.view.isUserInteractionEnabled = false
+            self.navigationController?.view.isUserInteractionEnabled = true
             self.signInButton.reset()
             let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -254,12 +254,12 @@ class LoginViewController: UIViewController {
     @IBAction func onEyeballPress(_ sender: UIButton) {
 //        //TEST CODE - REMOVE BEFORE PUSHING
 //        LoadingView.show()
-//        viewModel.validateRegistration(guid: "d4a3d228-ccac-4bd4-ab8c-243671ccd16c", onSuccess: {
+//        viewModel.validateRegistration(guid: "6a5bed06-3ac4-4686-ba0d-dd317ea4b0fb", onSuccess: {
 //            LoadingView.hide()
 //            self.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
-//        }, onError: { errMessage in
+//        }, onError: { title, message in
 //            LoadingView.hide()
-//            let alertVc = UIAlertController(title: NSLocalizedString("Could Not Verify Account", comment: ""), message: errMessage, preferredStyle: .alert)
+//            let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
 //            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
 //            self.present(alertVc, animated: true, completion: nil)
 //        })
@@ -336,9 +336,9 @@ class LoginViewController: UIViewController {
                 viewModel.validateRegistration(guid: guid, onSuccess: {
                     LoadingView.hide()
                     self.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
-                }, onError: { errMessage in
+                }, onError: { title, message in
                     LoadingView.hide()
-                    let alertVc = UIAlertController(title: NSLocalizedString("Could Not Verify Account", comment: ""), message: errMessage, preferredStyle: .alert)
+                    let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)
                 })
