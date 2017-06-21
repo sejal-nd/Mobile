@@ -218,7 +218,7 @@ class LoginViewController: UIViewController {
                 }
             })
         }, onRegistrationNotComplete: {
-            self.navigationController?.view.isUserInteractionEnabled = false
+            self.navigationController?.view.isUserInteractionEnabled = true
             self.signInButton.reset()
             let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
