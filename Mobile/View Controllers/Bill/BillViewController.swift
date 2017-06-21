@@ -389,14 +389,12 @@ class BillViewController: AccountPickerViewController {
 				if Environment.sharedInstance.opco == .bge {
                     if accountDetail.isBGEasy {
                         self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                    } else {
+                        self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
                     }
-//                    else {
-//                        self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
-//                    }
+                } else {
+                    self.performSegue(withIdentifier: "autoPaySegue", sender: self)
                 }
-//                else {
-//                    self.performSegue(withIdentifier: "autoPaySegue", sender: self)
-//                }
 			})
 			.addDisposableTo(bag)
         
