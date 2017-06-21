@@ -51,22 +51,46 @@ class AutoPayViewModel {
         .distinctUntilChanged()
     
     lazy var accountNumberIsValid: Driver<Bool> = self.accountNumber.asDriver()
-        .map { $0.characters.count >= 8 && $0.characters.count <= 17 }
+        .map { 8...17 ~= $0.characters.count }
         .distinctUntilChanged()
     
     lazy var confirmAccountNumberMatches: Driver<Bool> = Driver.combineLatest(self.accountNumber.asDriver(),
-                                                            self.confirmAccountNumber.asDriver())
+                                                                              self.confirmAccountNumber.asDriver())
         .map(==)
         .distinctUntilChanged()
     
     lazy var canSubmit: Driver<Bool> = Driver.combineLatest([self.nameOnAccountHasText,
                                                              self.routingNumberIsValid,
                                                              self.accountNumberHasText,
-                                                             self.accountNumberIsValid])
+                                                             self.accountNumberIsValid,
+                                                             self.confirmAccountNumberMatches])
         .map { !$0.contains(false) }
         .distinctUntilChanged()
     
+    lazy var nameOnAccountErrorText: Driver<String?> = self.nameOnAccountIsValid.asDriver()
+        .distinctUntilChanged()
+        .map { $0 ? nil: NSLocalizedString("Can only contain letters, numbers, and spaces", comment: "") }
+    
+    lazy var routingNumberErrorText: Driver<String?> = self.routingNumber.asDriver()
+        .map { $0.characters.count == 9 || $0.isEmpty }
+        .distinctUntilChanged()
+        .map { $0 ? nil: NSLocalizedString("Must be 9 digits", comment: "") }
+    
+    lazy var accountNumberErrorText: Driver<String?> = self.accountNumber.asDriver()
+        .map { 8...17 ~= $0.characters.count }
+        .distinctUntilChanged()
+        .map { $0 ? nil: NSLocalizedString("Must be between 8-17 digits", comment: "") }
+    
+    lazy var confirmAccountNumberErrorText: Driver<String?> = Driver.combineLatest(self.confirmAccountNumber.asDriver().map { $0.isEmpty },
+                                                                                   self.confirmAccountNumberMatches)
+        .map { $0 || $1 }
+        .distinctUntilChanged()
+        .map { $0 ? nil: NSLocalizedString("Account numbers do not match", comment: "") }
+    
+    lazy var confirmAccountNumberIsValid: Driver<Bool> = self.confirmAccountNumberErrorText.map { $0 == nil }
+    
     lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumberHasText
+    
     
     lazy var footerText: Driver<String> = self.enrollmentStatus.asDriver().map { enrollmentStatus in
         switch (Environment.sharedInstance.opco, enrollmentStatus) {

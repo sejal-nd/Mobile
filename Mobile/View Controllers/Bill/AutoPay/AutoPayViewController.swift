@@ -89,6 +89,20 @@ class AutoPayViewController: UIViewController {
         footerLabel.setLineHeight(lineHeight: 16)
         viewModel.footerText.drive(footerLabel.rx.text).addDisposableTo(bag)
         
+        nameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nameOnAccount).addDisposableTo(bag)
+        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(bag)
+        routingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.routingNumber).addDisposableTo(bag)
+        confirmAccountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmAccountNumber).addDisposableTo(bag)
+        bindValidation()
+        viewModel.canSubmit.drive(submitButton.rx.isEnabled).addDisposableTo(bag)
+        
+        routingNumberTooltipButton.rx.tap.asDriver()
+            .drive(onNext: onRoutingNumberQuestionMarkPress)
+            .addDisposableTo(bag)
+        
+        accountNumberTooltipButton.rx.tap.asDriver()
+            .drive(onNext: onAccountNumberQuestionMarkPress)
+            .addDisposableTo(bag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,6 +136,79 @@ class AutoPayViewController: UIViewController {
     
     func onSubmitPress() {
         print("Submit")
+    }
+    
+    func bindValidation() {
+        
+        // Name on Account
+        viewModel.nameOnAccountErrorText
+            .drive(onNext: { [weak self] errorText in
+                self?.nameTextField.setError(errorText)
+            })
+            .addDisposableTo(bag)
+        
+        // Routing Numbe
+        let routingNumberErrorTextFocused: Driver<String?> = routingNumberTextField.textField.rx
+            .controlEvent(.editingDidBegin).asDriver()
+            .map{ nil }
+        
+        let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
+            .controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(viewModel.routingNumberErrorText)
+
+        Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
+            .distinctUntilChanged(==)
+            .drive(onNext: { [weak self] errorText in
+                self?.routingNumberTextField.setError(errorText)
+            })
+            .addDisposableTo(bag)
+        
+        // Account Number
+        let accountNumberErrorTextFocused: Driver<String?> = accountNumberTextField.textField.rx
+            .controlEvent(.editingDidBegin).asDriver()
+            .map{ nil }
+        
+        let accountNumberErrorTextUnfocused: Driver<String?> = accountNumberTextField.textField.rx
+            .controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(viewModel.accountNumberErrorText)
+        
+        Driver.merge(accountNumberErrorTextFocused, accountNumberErrorTextUnfocused)
+            .distinctUntilChanged(==)
+            .drive(onNext: { [weak self] errorText in
+                self?.accountNumberTextField.setError(errorText)
+            })
+            .addDisposableTo(bag)
+        
+        // Confirm Account Number
+        viewModel.confirmAccountNumberErrorText
+            .drive(onNext: { [weak self] errorText in
+                self?.confirmAccountNumberTextField.setError(errorText)
+            })
+            .addDisposableTo(bag)
+        
+        viewModel.confirmAccountNumberIsValid
+            .drive(onNext: { [weak self] validated in
+                self?.confirmAccountNumberTextField.setValidated(validated, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
+            })
+            .addDisposableTo(bag)
+        
+        viewModel.confirmAccountNumberIsEnabled
+            .drive(onNext: { [weak self] enabled in
+                self?.confirmAccountNumberTextField.setEnabled(enabled)
+            })
+            .addDisposableTo(bag)
+        
+    }
+    
+    
+    func onRoutingNumberQuestionMarkPress() {
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Routing Number", comment: ""), image: #imageLiteral(resourceName: "routing_number_info"), description: NSLocalizedString("This number is used to identify your banking institution. You can find your bank’s nine-digit routing number on the bottom of your paper check.", comment: ""))
+        navigationController?.present(infoModal, animated: true, completion: nil)
+    }
+    
+    func onAccountNumberQuestionMarkPress() {
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Account Number", comment: ""), image: #imageLiteral(resourceName: "account_number_info"), description: NSLocalizedString("This number is used to identify your bank account. You can find your checking account number on the bottom of your paper check following the routing number.", comment: ""))
+        navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
 }
