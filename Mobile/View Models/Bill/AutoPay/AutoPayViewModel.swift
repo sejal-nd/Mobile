@@ -19,11 +19,54 @@ class AutoPayViewModel {
     }
     
     let enrollmentStatus: Variable<EnrollmentStatus>
+    
     let bankAccountType = Variable<BankAccountType>(.checking)
+    let nameOnAccount = Variable("")
+    let routingNumber = Variable("")
+    let accountNumber = Variable("")
+    let confirmAccountNumber = Variable("")
     
     required init(withAccountDetail accountDetail: AccountDetail) {
         enrollmentStatus = Variable(accountDetail.isAutoPay ? .isEnrolled:.enrolling)
     }
+    
+    lazy var nameOnAccountHasText: Driver<Bool> = self.nameOnAccount.asDriver()
+        .map { !$0.isEmpty }
+        .distinctUntilChanged()
+    
+    lazy var nameOnAccountIsValid: Driver<Bool> = self.nameOnAccount.asDriver()
+        .map {
+            var trimString = $0.components(separatedBy: CharacterSet.whitespaces).joined(separator: "")
+            trimString = trimString.components(separatedBy: CharacterSet.alphanumerics).joined(separator: "")
+            return trimString.isEmpty
+        }
+        .distinctUntilChanged()
+    
+    lazy var routingNumberIsValid: Driver<Bool> = self.routingNumber.asDriver()
+        .map { $0.characters.count == 9 }
+        .distinctUntilChanged()
+    
+    lazy var accountNumberHasText: Driver<Bool> = self.accountNumber.asDriver()
+        .map { !$0.isEmpty }
+        .distinctUntilChanged()
+    
+    lazy var accountNumberIsValid: Driver<Bool> = self.accountNumber.asDriver()
+        .map { $0.characters.count >= 8 && $0.characters.count <= 17 }
+        .distinctUntilChanged()
+    
+    lazy var confirmAccountNumberMatches: Driver<Bool> = Driver.combineLatest(self.accountNumber.asDriver(),
+                                                            self.confirmAccountNumber.asDriver())
+        .map(==)
+        .distinctUntilChanged()
+    
+    lazy var canSubmit: Driver<Bool> = Driver.combineLatest([self.nameOnAccountHasText,
+                                                             self.routingNumberIsValid,
+                                                             self.accountNumberHasText,
+                                                             self.accountNumberIsValid])
+        .map { !$0.contains(false) }
+        .distinctUntilChanged()
+    
+    lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumberHasText
     
     lazy var footerText: Driver<String> = self.enrollmentStatus.asDriver().map { enrollmentStatus in
         switch (Environment.sharedInstance.opco, enrollmentStatus) {
