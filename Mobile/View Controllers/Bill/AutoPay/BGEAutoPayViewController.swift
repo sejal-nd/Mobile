@@ -39,6 +39,8 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var settingsButton: ButtonControl!
     @IBOutlet weak var settingsButtonLabel: UILabel!
     
+    var initialEnrollment = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -83,8 +85,8 @@ class BGEAutoPayViewController: UIViewController {
         bankAccountButtonSelectLabel.textColor = .blackText
         bankAccountButtonSelectLabel.text = NSLocalizedString("Select Bank Account", comment: "")
         
-        bankAccountButtonAccountNumberLabel.isHidden = true
-        bankAccountButtonNicknameLabel.isHidden = true
+        bankAccountButtonAccountNumberLabel.textColor = .blackText
+        bankAccountButtonNicknameLabel.textColor = .middleGray
         
         stickyBottomView.backgroundColor = .softGray
         stickyBottomLabel.textColor = .blackText
@@ -99,6 +101,22 @@ class BGEAutoPayViewController: UIViewController {
         
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
+        }
+        
+        if initialEnrollment {
+            bankAccountButtonSelectLabel.isHidden = true
+            stickyBottomViewHeightConstraint.constant = 0
+            expirationLabel.isHidden = true
+            selectBankAccountLabel.isHidden = true
+            
+            bankAccountButtonAccountNumberLabel.text = "**** 4321"
+            bankAccountButtonNicknameLabel.text = "SP Checking"
+        } else {
+            bankAccountButtonAccountNumberLabel.isHidden = true
+            bankAccountButtonNicknameLabel.isHidden = true
+            enrollmentSwitchView.isHidden = true
+            expirationLabel.isHidden = true
+            enrolledPaymentAccountLabel.isHidden = true
         }
     }
     
