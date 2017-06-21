@@ -218,6 +218,7 @@ class LoginViewController: UIViewController {
                 }
             })
         }, onRegistrationNotComplete: {
+            self.signInButton.reset()
             let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Resend", comment: ""), style: .default, handler: { (action) in
@@ -230,6 +231,7 @@ class LoginViewController: UIViewController {
                     self.showErrorAlertWith(title: NSLocalizedString("Error", comment: ""), message: errMessage)
                 })
             }))
+            self.present(alertVC, animated: true, completion: nil)
         }, onError: { (title, message) in
             self.navigationController?.view.isUserInteractionEnabled = true
             self.showErrorAlertWith(title: title, message: message)
@@ -249,6 +251,17 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onEyeballPress(_ sender: UIButton) {
+//        //TEST CODE - REMOVE BEFORE PUSHING
+//        LoadingView.show()
+//        viewModel.validateRegistration(guid: "b8acdd8c-b8a7-4402-995e-a90398fc67e7", onSuccess: {
+//            LoadingView.hide()
+//            self.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
+//        }, onError: { errMessage in
+//            LoadingView.hide()
+//            let alertVc = UIAlertController(title: NSLocalizedString("Could Not Verify Account", comment: ""), message: errMessage, preferredStyle: .alert)
+//            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+//            self.present(alertVc, animated: true, completion: nil)
+//        })
         if passwordTextField.textField.isSecureTextEntry {
             passwordTextField.textField.isSecureTextEntry = false
             // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //

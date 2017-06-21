@@ -66,7 +66,6 @@ class AuthTokenParser : NSObject {
     /// - Returns: A successful ServiceResult containing the assertion/token
     class private func parseSuccess(parsedData: [String:Any]) -> ServiceResult<AuthTokenResponse> {
         let data: NSDictionary = parsedData["data"] as! NSDictionary
-        let assertion: String = data["assertion"] as! String
         var profileStatus: ProfileStatus = ProfileStatus()
         
         if let statusData = data["profileStatus"] as? [String:Any] {
@@ -82,12 +81,18 @@ class AuthTokenParser : NSObject {
         guard let profileType = data["profileType"] as? String else {
            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
         }
+        
         UserDefaults.standard.set(profileType == "commercial", forKey: UserDefaultKeys.IsCommercialUser)
         if profileType != "commercial" && profileType != "residential" {
             return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
         }
         
-        return ServiceResult.Success(AuthTokenResponse(token: assertion, profileStatus: profileStatus))
+        if let assertion = data["assertion"] as? String {
+            return ServiceResult.Success(AuthTokenResponse(token: assertion, profileStatus: profileStatus))
+        } else {
+            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue))
+        }
+        
     }
     
     
@@ -98,8 +103,8 @@ class AuthTokenParser : NSObject {
     class private func parseProfileStatus(profileStatus: [String:Any]) -> ProfileStatus {
         
         var lockedPassword = false;
-        var inactive  = true;
-        var primary  = false;
+        var inactive = false;
+        var primary = false;
         var tempPassword = false;
         
         if let status = profileStatus[ProfileStatusKey.Status.rawValue] as? Array<NSDictionary> {
