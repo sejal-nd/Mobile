@@ -218,6 +218,7 @@ class LoginViewController: UIViewController {
                 }
             })
         }, onRegistrationNotComplete: {
+            self.navigationController?.view.isUserInteractionEnabled = false
             self.signInButton.reset()
             let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -253,7 +254,7 @@ class LoginViewController: UIViewController {
     @IBAction func onEyeballPress(_ sender: UIButton) {
 //        //TEST CODE - REMOVE BEFORE PUSHING
 //        LoadingView.show()
-//        viewModel.validateRegistration(guid: "b8acdd8c-b8a7-4402-995e-a90398fc67e7", onSuccess: {
+//        viewModel.validateRegistration(guid: "d4a3d228-ccac-4bd4-ab8c-243671ccd16c", onSuccess: {
 //            LoadingView.hide()
 //            self.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
 //        }, onError: { errMessage in
