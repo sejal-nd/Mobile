@@ -41,6 +41,8 @@ class BGEAutoPayViewController: UIViewController {
     
     var initialEnrollment = true
     
+    let viewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -109,6 +111,7 @@ class BGEAutoPayViewController: UIViewController {
             expirationLabel.isHidden = true
             selectBankAccountLabel.isHidden = true
             
+            bankAccountButtonIcon.image = #imageLiteral(resourceName: "opco_bank")
             bankAccountButtonAccountNumberLabel.text = "**** 4321"
             bankAccountButtonNicknameLabel.text = "SP Checking"
         } else {
@@ -118,6 +121,14 @@ class BGEAutoPayViewController: UIViewController {
             expirationLabel.isHidden = true
             enrolledPaymentAccountLabel.isHidden = true
         }
+        
+        viewModel.getAutoPayInfo(onSuccess: { 
+            
+        }, onError: { errMessage in
+            print(errMessage)
+        })
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
