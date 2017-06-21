@@ -24,10 +24,12 @@ class LoginViewModelTests: XCTestCase {
         
         viewModel.performLogin(onSuccess: { _ in 
             asyncExpectation.fulfill()
-        }) { (message) in
+        }, onRegistrationNotComplete: {
+            XCTFail("Unexpected onRegistrationNotComplete response")
+        }, onError: { message in
             print(message)
             XCTFail("Unexpected failure response")
-        }
+        })
         
         waitForExpectations(timeout: 5) { error in
             XCTAssertNil(error, "timeout")
@@ -42,9 +44,11 @@ class LoginViewModelTests: XCTestCase {
         
         viewModel.performLogin(onSuccess: {_ in 
             XCTFail("Unexpected success response")
-        }) { (message) in
+        }, onRegistrationNotComplete: {
+            XCTFail("Unexpected onRegistrationNotComplete response")
+        }, onError: { message in
             asyncExpectation.fulfill()
-        }
+        })
         
         waitForExpectations(timeout: 5) { error in
             XCTAssertNil(error, "timeout")

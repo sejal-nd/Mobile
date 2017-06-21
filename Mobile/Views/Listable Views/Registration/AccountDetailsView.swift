@@ -33,7 +33,15 @@ class AccountDetailsView: UIView {
     }
     
     private func bind(withAccount account: AccountLookupResult) {
-        accountNumberLabel.text = "****\(account.accountNumber ?? "0000")"
+        if let accountNumber = account.accountNumber,
+            accountNumber.characters.count > 6 {
+            //
+            let index = accountNumber.index(accountNumber.startIndex, offsetBy: 6)
+            accountNumberLabel.text = "**** \(accountNumber.substring(from: index))"
+        } else {
+            accountNumberLabel.text = "**** ****"
+        }
+        
         accountNumberLabel.font = SystemFont.bold.of(textStyle: .headline)
 
         streetNumberLabel.text = account.streetNumber
