@@ -15,7 +15,6 @@ class RadioSelectControl: ButtonControl {
 	var titleLabel: UILabel!
 	var selectedImageView: UIImageView!
 	var detailButton: UIButton!
-    var bottomSeparator: UIView!
 	
 	@IBInspectable var title: String = "" {
 		didSet {
@@ -49,10 +48,6 @@ class RadioSelectControl: ButtonControl {
 		}
 	}
     
-    func ShowBottomSeparator(_ show: Bool) {
-        bottomSeparator.isHidden = !show
-    }
-	
 	
 	override func commonInit() {
 		super.commonInit()
@@ -85,19 +80,9 @@ class RadioSelectControl: ButtonControl {
 		detailButton.setContentHuggingPriority(999, for: .horizontal)
 		detailButton.setContentHuggingPriority(999, for: .vertical)
         
-        var separatorFrame = CGRect()
-        separatorFrame.origin.x = 0
-        separatorFrame.origin.y = 0
-        separatorFrame.size.width = 375
-        separatorFrame.size.height = 5
-        
-        bottomSeparator = UIView(frame: separatorFrame)
-        bottomSeparator.backgroundColor = UIColor(colorLiteralRed: 216.0, green: 216.0, blue: 216.0, alpha: 1)
-		
 		addSubview(selectedImageView)
 		addSubview(titleLabel)
 		addSubview(detailButton)
-        addSubview(bottomSeparator)
 		
 		selectedImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
 		titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true

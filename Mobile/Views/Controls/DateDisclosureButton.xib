@@ -28,7 +28,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2u4-gK-GS1">
-                    <rect key="frame" x="234" y="12" width="114" height="21"/>
+                    <rect key="frame" x="124" y="12" width="224" height="22"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -37,10 +37,10 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="h65-4g-IPh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1cb-Sr-qIQ"/>
-                <constraint firstItem="2u4-gK-GS1" firstAttribute="leading" secondItem="Uh5-p8-gmy" secondAttribute="trailing" priority="999" constant="123" id="ACb-fP-xWg"/>
+                <constraint firstItem="2u4-gK-GS1" firstAttribute="leading" secondItem="Uh5-p8-gmy" secondAttribute="trailing" priority="999" constant="13" id="ACb-fP-xWg"/>
                 <constraint firstItem="Uh5-p8-gmy" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="BLS-v4-fJ4"/>
                 <constraint firstItem="h65-4g-IPh" firstAttribute="centerY" secondItem="Uh5-p8-gmy" secondAttribute="centerY" id="BwE-4S-plD"/>
-                <constraint firstItem="2u4-gK-GS1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="G9s-eF-ADf"/>
+                <constraint firstItem="2u4-gK-GS1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="1.5" id="G9s-eF-ADf"/>
                 <constraint firstItem="h65-4g-IPh" firstAttribute="leading" secondItem="2u4-gK-GS1" secondAttribute="trailing" constant="8" symbolic="YES" id="f7l-vo-M8u"/>
                 <constraint firstAttribute="trailing" secondItem="h65-4g-IPh" secondAttribute="trailing" constant="11" id="mRk-6U-z82"/>
                 <constraint firstItem="Uh5-p8-gmy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nDb-dE-GC1"/>

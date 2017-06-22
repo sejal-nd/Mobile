@@ -35,6 +35,8 @@ class AutoPaySettingsViewModel {
     let amountNotToExceed = Variable("")
     let numberOfPayments = Variable("")
     
+    var numberOfDaysBeforeDueDate = Variable("")
+    
     var autoPayUntilDate = Variable("")
     
     var primaryProfile = Variable<Bool>(false)

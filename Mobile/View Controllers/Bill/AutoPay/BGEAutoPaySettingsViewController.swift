@@ -18,53 +18,65 @@ class BGEAutoPaySettingsViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var group1StackView: UIStackView!
-    @IBOutlet weak var group2StackView: UIStackView!
-    @IBOutlet weak var group3StackView: UIStackView!
     
-    @IBOutlet weak var group1HeaderLabel: UILabel!
-    @IBOutlet weak var group2HeaderLabel: UILabel!
-    @IBOutlet weak var group3HeaderLabel: UILabel!
+    @IBOutlet weak var amountDueStackView: UIStackView!
+    @IBOutlet weak var dueDateStackView: UIStackView!
+    @IBOutlet weak var numberOfPaymentsStackView: UIStackView!
     
+    @IBOutlet weak var amountDueHeaderLabel: UILabel!
+    @IBOutlet weak var dueDateHeaderLabel: UILabel!
+    @IBOutlet weak var numberOfPaymentsHeaderLabel: UILabel!
     
-    @IBOutlet var radioControlsSet1 = [UIControl]()
-    @IBOutlet var radioControlsSet2 = [UIControl]()
-    @IBOutlet var radioControlsSet3 = [UIControl]()
+    @IBOutlet var amountDueRadioControlsSet = [UIControl]()
+    @IBOutlet var dueDateRadioControlsSet = [UIControl]()
+    @IBOutlet var numberOfPaymentsRadioControlsSet = [UIControl]()
     
-    let control1Nibless = RadioSelectControl.create(withTitle: NSLocalizedString("Total Amount Due", comment: ""))
+    let totalAmountDueRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Total Amount Due", comment: ""))
     
-    let control2Nibless = RadioSelectControl.create(withTitle: NSLocalizedString("Amount Not To Exceed", comment: ""))
+    let amountNotToExceedRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Amount Not To Exceed", comment: ""))
     let amountNotToExceedTextField = FloatLabelTextField(frame: .zero)
     let amountNotToExceedDetailsLabel = UILabel(frame: .zero)
     var amountNotToExceedHairline = UIView(frame: .zero)
     
-    let control3Nibless = RadioSelectControl.create(withTitle: NSLocalizedString("On Due Date", comment: ""))
+    let onDueDateRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("On Due Date", comment: ""))
     let onDueDateDetailsLabel = UILabel(frame: .zero)
     var onDueDateHairline = UIView(frame: .zero)
     
-    let control4Nibless = RadioSelectControl.create(withTitle: NSLocalizedString("Before Due Date", comment: ""))
+    let beforeDueDateRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Before Due Date", comment: ""))
+    let beforeDueDateDetailsLabel = UILabel(frame: .zero)
+    let beforeDueDateHairline = UIView(frame: .zero)
     
-    let control5Nibless = RadioSelectControl.create(withTitle: NSLocalizedString("Until Canceled", comment: ""))
+    let untilCanceledRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Until Canceled", comment: ""))
     let untilCanceledDetailsLabel = UILabel(frame: .zero)
     var untilCanceledHairline = UIView(frame: .zero)
     
-    let control6Nibless = RadioSelectControl.create(withTitle: NSLocalizedString("For Number of Payments", comment: ""))
+    let numberOfPaymentsRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("For Number of Payments", comment: ""))
     let numberOfPaymentsTextField = FloatLabelTextField(frame: .zero)
     let numberOfPaymentsDetailsLabel = UILabel(frame: .zero)
     var numberOfPaymentsHairline = UIView(frame: .zero)
     
-    let control7Nibless = RadioSelectControl.create(withTitle: NSLocalizedString("Until Date", comment: ""))
+    let untilDateRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Until Date", comment: ""))
     let untilDateButton = DateDisclosureButton.create(withLabel: NSLocalizedString("Until Date*", comment: ""))
     let untilDateDetailsLabel = UILabel(frame: .zero)
     var untilDateHairline = UIView(frame: .zero)
     
     let now = Calendar.current.startOfDay(for: Date())
     let lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Calendar.current.startOfDay(for: Date()))
+    
+    var dayPickerView: DayPickerContainerView!
+    
+    var numberOfDaysBefore: [String]!
 
     var viewModel = AutoPaySettingsViewModel()
-
+    
+    var zPositionForWindow:CGFloat = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let _ = self.view
+        
+//        buildPickerView()
         
         title = NSLocalizedString("AutoPay Settings", comment: "")
         
@@ -79,41 +91,44 @@ class BGEAutoPaySettingsViewController: UIViewController {
         // placeholder for now
         switch(viewModel.amountToPay.value) {
         case .totalAmountDue:
-            control1Nibless.isSelected = true
-            control2Nibless.isSelected = false
+            totalAmountDueRadioControl.isSelected = true
+            amountNotToExceedRadioControl.isSelected = false
         
         case .amountNotToExceed:
-            control1Nibless.isSelected = false
-            control2Nibless.isSelected = true
+            totalAmountDueRadioControl.isSelected = false
+            amountNotToExceedRadioControl.isSelected = true
         }
         
+        //
         switch (viewModel.whenToPay.value) {
         case .onDueDate:
-            control3Nibless.isSelected = true
-            control4Nibless.isSelected = false
+            onDueDateRadioControl.isSelected = true
+            beforeDueDateRadioControl.isSelected = false
        
         case .beforeDueDate:
-            control3Nibless.isSelected = false
-            control4Nibless.isSelected = true
+            onDueDateRadioControl.isSelected = false
+            beforeDueDateRadioControl.isSelected = true
         }
         
+        //
         switch (viewModel.howLongForAutoPay.value) {
         case .untilCanceled:
-            control5Nibless.isSelected = true
-            control6Nibless.isSelected = false
-            control7Nibless.isSelected = false
+            untilCanceledRadioControl.isSelected = true
+            numberOfPaymentsRadioControl.isSelected = false
+            untilDateRadioControl.isSelected = false
             
         case .forNumberOfPayments:
-            control5Nibless.isSelected = false
-            control6Nibless.isSelected = true
-            control7Nibless.isSelected = false
+            untilCanceledRadioControl.isSelected = false
+            numberOfPaymentsRadioControl.isSelected = true
+            untilDateRadioControl.isSelected = false
             
         case .untilDate:
-            control5Nibless.isSelected = false
-            control6Nibless.isSelected = false
-            control7Nibless.isSelected = true
+            untilCanceledRadioControl.isSelected = false
+            numberOfPaymentsRadioControl.isSelected = false
+            untilDateRadioControl.isSelected = true
         }
 
+        //
         hideAmountNotToExceedControlViews(viewModel.amountToPay.value == .totalAmountDue)
         hideBeforeDueDateControlViews(viewModel.whenToPay.value != .onDueDate)
         
@@ -126,41 +141,114 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedTextField.isHidden = isHidden
         amountNotToExceedDetailsLabel.isHidden = isHidden
         
-//        var hairlineSize = control1Nibless.intrinsicContentSize
-//        
-//        if !isHidden {
-//            hairlineSize.height += amountNotToExceedTextField.frame.size.height
-//            hairlineSize.height += amountNotToExceedDetailsLabel.frame.size.height
-//        }
-//        
-//        amountNotToExceedHairline.removeFromSuperview()
-//        amountNotToExceedHairline = createHairline(ofSize: hairlineSize)
-//        control2Nibless.addSubview(amountNotToExceedHairline)
+        viewModel.amountToPay.value = isHidden ? .totalAmountDue : .amountNotToExceed
     }
     
     func hideBeforeDueDateControlViews(_ isHidden: Bool) {
         onDueDateDetailsLabel.isHidden = isHidden
+        beforeDueDateDetailsLabel.isHidden = !isHidden
+        
+        viewModel.whenToPay.value = isHidden ? .beforeDueDate : .onDueDate
     }
     
     func hideUntilCanceled(_ isHidden: Bool) {
         untilCanceledDetailsLabel.isHidden = isHidden
+        
+        if !isHidden {
+            viewModel.howLongForAutoPay.value = .untilCanceled
+        }
     }
     
     func hideNumberOfPayments(_ isHidden: Bool) {
         numberOfPaymentsTextField.isHidden = isHidden
         numberOfPaymentsDetailsLabel.isHidden = isHidden
+        
+        if !isHidden {
+            viewModel.howLongForAutoPay.value = .forNumberOfPayments
+        }
     }
     
     func hideUntilDate(_ isHidden: Bool) {
         untilDateButton.isHidden = isHidden
         untilDateDetailsLabel.isHidden = isHidden
+        
+        if !isHidden {
+            viewModel.howLongForAutoPay.value = .untilDate
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        buildPickerView()
     }
     
     func buildNavigationButtons() {
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = submitButton
+        let backButton = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .done, target: self, action: #selector(onBackButton))
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    func buildPickerView() {
+        let currentWindow = UIApplication.shared.keyWindow
+        dayPickerView = DayPickerContainerView(frame: (currentWindow?.frame)!)
+        
+        currentWindow?.addSubview(dayPickerView)
+        
+        dayPickerView.leadingAnchor.constraint(equalTo: (currentWindow?.leadingAnchor)!, constant: 0).isActive = true
+        dayPickerView.trailingAnchor.constraint(equalTo: (currentWindow?.trailingAnchor)!, constant: 0).isActive = true
+        dayPickerView.topAnchor.constraint(equalTo: (currentWindow?.topAnchor)!, constant: 0).isActive = true
+
+        let height = dayPickerView.containerView.frame.size.height + 8
+        dayPickerView.bottomConstraint.constant = height
+        
+        dayPickerView.delegate = self
+        
+        zPositionForWindow = (currentWindow?.layer.zPosition)!
+
+        dayPickerView.isHidden = true
+    }
+    
+    func showPickerView(_ showPicker: Bool, completion: (() -> ())? = nil) {
+        if showPicker {
+            self.dayPickerView.isHidden = false
+            
+            let row = viewModel.numberOfDaysBeforeDueDate.value == "" ? 1 : Int(viewModel.numberOfDaysBeforeDueDate.value)!
+            
+            self.dayPickerView.selectRow(row - 1)
+        }
+        
+        self.dayPickerView.layer.zPosition = showPicker ? self.zPositionForWindow : -1
+        UIApplication.shared.keyWindow?.layer.zPosition = showPicker ? -1 : self.zPositionForWindow
+
+        self.dayPickerView.layoutIfNeeded()
+        
+        var bottomAnchorLength = self.dayPickerView.containerView.frame.size.height + 8
+        var alpha:Float = 0.0
+        
+        if showPicker {
+            alpha = 0.6
+            bottomAnchorLength = -8
+        }
+
+        self.dayPickerView.bottomConstraint.constant = bottomAnchorLength
+        
+        self.dayPickerView.setNeedsLayout()
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.dayPickerView.layoutIfNeeded()
+            
+            self.dayPickerView.backgroundColor =  UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: alpha)
+        }, completion: { _ in
+            if !showPicker {
+                self.dayPickerView.isHidden = true
+            }
+            
+            completion?()
+        })
+        
+//        UIView.animate(withDuration: 1.5, animations: {
+//        }, completion: {_ in
+//        })
     }
     
     func buildStackViews() {
@@ -180,43 +268,33 @@ class BGEAutoPaySettingsViewController: UIViewController {
         let bottomSpace = UIView(frame: .zero)
         
         stackView.addArrangedSubview(bottomSpace)
-}
-    
-    func createHairline() -> UIView {
-        let separator = SeparatorLineView()
-        
-        separator.translatesAutoresizingMaskIntoConstraints = false
-        separator.addConstraint(separator.heightAnchor.constraint(equalToConstant: 1.0))
-        separator.backgroundColor = .accentGray
-        
-        return separator
     }
     
     func buildAmountToPayGroup() -> UIStackView {
         //
-        group1HeaderLabel.translatesAutoresizingMaskIntoConstraints = false
-        group1HeaderLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        group1HeaderLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        group1HeaderLabel.setContentHuggingPriority(751, for: .horizontal)
-        group1HeaderLabel.setContentHuggingPriority(999, for: .vertical)
-        group1HeaderLabel.numberOfLines = 0
-        group1HeaderLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-        group1HeaderLabel.text = NSLocalizedString("How much do you want to pay?", comment: "")
+        amountDueHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
+        amountDueHeaderLabel.setContentCompressionResistancePriority(751, for: .horizontal)
+        amountDueHeaderLabel.setContentCompressionResistancePriority(999, for: .vertical)
+        amountDueHeaderLabel.setContentHuggingPriority(751, for: .horizontal)
+        amountDueHeaderLabel.setContentHuggingPriority(999, for: .vertical)
+        amountDueHeaderLabel.numberOfLines = 0
+        amountDueHeaderLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        amountDueHeaderLabel.text = NSLocalizedString("How much do you want to pay?", comment: "")
         
-        control1Nibless.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        totalAmountDueRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         // adding first button
-        group1StackView.addArrangedSubview(control1Nibless)
-        radioControlsSet1.append(control1Nibless)
+        amountDueStackView.addArrangedSubview(totalAmountDueRadioControl)
+        amountDueRadioControlsSet.append(totalAmountDueRadioControl)
         
         // adding divider
-        let separator1 = createHairline()
+        let separator1 = SeparatorLineView.create(leadingSpace: 34)
         
-        group1StackView.addArrangedSubview(separator1)
+        amountDueStackView.addArrangedSubview(separator1)
         
-        control2Nibless.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        amountNotToExceedRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         // adding second button
-        group1StackView.addArrangedSubview(control2Nibless)
-        radioControlsSet1.append(control2Nibless)
+        amountDueStackView.addArrangedSubview(amountNotToExceedRadioControl)
+        amountDueRadioControlsSet.append(amountNotToExceedRadioControl)
         
         amountNotToExceedTextField.textField.placeholder = NSLocalizedString("Amount Not To Exceed*", comment: "")
         amountNotToExceedTextField.textField.autocorrectionType = .no
@@ -227,7 +305,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         amountNotToExceedTextField.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         // adding textfield for second button
-        group1StackView.addArrangedSubview(amountNotToExceedTextField)
+        amountDueStackView.addArrangedSubview(amountNotToExceedTextField)
+        
+        amountNotToExceedTextField.textField.rx.text.orEmpty.bind(to: viewModel.amountNotToExceed).addDisposableTo(disposeBag)
         
         amountNotToExceedDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
         amountNotToExceedDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
@@ -238,11 +318,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the bill is created, and you will be responsible for manually scheduling a payment of the remaining amount. \n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in your service being disconnect.", comment: "")
         // adding details for second button
-        group1StackView.addArrangedSubview(amountNotToExceedDetailsLabel)
+        amountDueStackView.addArrangedSubview(amountNotToExceedDetailsLabel)
         
-        let separator2 = createHairline()
+        let separator2 = SeparatorLineView.create(leadingSpace: 34)
         
-        group1StackView.addArrangedSubview(separator2)
+        amountDueStackView.addArrangedSubview(separator2)
         
 //        amountNotToExceedDetailsLabel.addSubview(hairlineView)
         
@@ -261,28 +341,29 @@ class BGEAutoPaySettingsViewController: UIViewController {
         //        }).addDisposableTo(disposeBag)
         
         
-        for control in radioControlsSet1 {
+        for control in amountDueRadioControlsSet {
             control.addTarget(self, action: #selector(radioControlSet1Pressed(control:)), for: .touchUpInside)
         }
         
-        return group1StackView
+        return amountDueStackView
     }
     
     func buildWhenToPayGroup() -> UIStackView {
         //
-        group2HeaderLabel.translatesAutoresizingMaskIntoConstraints = false
-        group2HeaderLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        group2HeaderLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        group2HeaderLabel.setContentHuggingPriority(751, for: .horizontal)
-        group2HeaderLabel.setContentHuggingPriority(999, for: .vertical)
-        group2HeaderLabel.numberOfLines = 0
-        group2HeaderLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-        group2HeaderLabel.text = NSLocalizedString("When do you want to pay?", comment: "")
+        dueDateHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
+        dueDateHeaderLabel.setContentCompressionResistancePriority(751, for: .horizontal)
+        dueDateHeaderLabel.setContentCompressionResistancePriority(999, for: .vertical)
+        dueDateHeaderLabel.setContentHuggingPriority(751, for: .horizontal)
+        dueDateHeaderLabel.setContentHuggingPriority(999, for: .vertical)
+        dueDateHeaderLabel.numberOfLines = 0
+        dueDateHeaderLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        dueDateHeaderLabel.text = NSLocalizedString("When do you want to pay?", comment: "")
         
-        control3Nibless.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        group2StackView.addArrangedSubview(control3Nibless)
+        //
+        onDueDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        dueDateStackView.addArrangedSubview(onDueDateRadioControl)
         
-        radioControlsSet2.append(control3Nibless)
+        dueDateRadioControlsSet.append(onDueDateRadioControl)
         
         onDueDateDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
         onDueDateDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
@@ -292,42 +373,60 @@ class BGEAutoPaySettingsViewController: UIViewController {
         onDueDateDetailsLabel.numberOfLines = 0
         onDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         onDueDateDetailsLabel.text = NSLocalizedString("Your payments will process on each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary.", comment: "")
-        group2StackView.addArrangedSubview(onDueDateDetailsLabel)
+        dueDateStackView.addArrangedSubview(onDueDateDetailsLabel)
         
-        let separator1 = createHairline()
-        group2StackView.addArrangedSubview(separator1)
+        let separator1 = SeparatorLineView.create(leadingSpace: 34)
+        dueDateStackView.addArrangedSubview(separator1)
         
-        control4Nibless.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        control4Nibless.detailButtonTitle = NSLocalizedString("Select Number", comment: "")
-        group2StackView.addArrangedSubview(control4Nibless)
+        //
+        beforeDueDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Number", comment: "")
+        dueDateStackView.addArrangedSubview(beforeDueDateRadioControl)
         
-        let separator2 = createHairline()
-        group2StackView.addArrangedSubview(separator2)
+        beforeDueDateRadioControl.detailButton.addTarget(self, action: #selector(beforeDueDateButtonPressed), for: .touchUpInside)
+        
+        let separator2 = SeparatorLineView.create(leadingSpace: 34)
+        dueDateStackView.addArrangedSubview(separator2)
 
-        radioControlsSet2.append(control4Nibless)
+        beforeDueDateDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
+        beforeDueDateDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
+        beforeDueDateDetailsLabel.setContentCompressionResistancePriority(999, for: .vertical)
+        beforeDueDateDetailsLabel.setContentHuggingPriority(751, for: .horizontal)
+        beforeDueDateDetailsLabel.setContentHuggingPriority(999, for: .vertical)
+        beforeDueDateDetailsLabel.numberOfLines = 0
+        beforeDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        beforeDueDateDetailsLabel.text = NSLocalizedString("Your payment will process on your selected number of days before each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary.\n\nBGE recommends paying a few days before the due date to ensure adequate processing time.", comment: "")
         
-        for control in radioControlsSet2 {
+        if viewModel.numberOfDaysBeforeDueDate.value != "" {
+            modifyBeforeDueDateDetailsLabel()
+        }
+        
+        dueDateStackView.addArrangedSubview(beforeDueDateDetailsLabel)
+
+        dueDateRadioControlsSet.append(beforeDueDateRadioControl)
+        
+        for control in dueDateRadioControlsSet {
             control.addTarget(self, action: #selector(radioControlSet2Pressed(control:)), for: .touchUpInside)
         }
 
-        return group2StackView
+        return dueDateStackView
     }
     
     func buildRegularPaymentGroup() -> UIStackView {
         ///
-        group3HeaderLabel.translatesAutoresizingMaskIntoConstraints = false
-        group3HeaderLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        group3HeaderLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        group3HeaderLabel.setContentHuggingPriority(751, for: .horizontal)
-        group3HeaderLabel.setContentHuggingPriority(999, for: .vertical)
-        group3HeaderLabel.numberOfLines = 0
-        group3HeaderLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-        group3HeaderLabel.text = NSLocalizedString("How long do you want to use AutoPay?", comment: "")
+        numberOfPaymentsHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
+        numberOfPaymentsHeaderLabel.setContentCompressionResistancePriority(751, for: .horizontal)
+        numberOfPaymentsHeaderLabel.setContentCompressionResistancePriority(999, for: .vertical)
+        numberOfPaymentsHeaderLabel.setContentHuggingPriority(751, for: .horizontal)
+        numberOfPaymentsHeaderLabel.setContentHuggingPriority(999, for: .vertical)
+        numberOfPaymentsHeaderLabel.numberOfLines = 0
+        numberOfPaymentsHeaderLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        numberOfPaymentsHeaderLabel.text = NSLocalizedString("How long do you want to use AutoPay?", comment: "")
         
-        control5Nibless.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        group3StackView.addArrangedSubview(control5Nibless)
+        untilCanceledRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        numberOfPaymentsStackView.addArrangedSubview(untilCanceledRadioControl)
         
-        radioControlsSet3.append(control5Nibless)
+        numberOfPaymentsRadioControlsSet.append(untilCanceledRadioControl)
         
         untilCanceledDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
         untilCanceledDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
@@ -338,15 +437,15 @@ class BGEAutoPaySettingsViewController: UIViewController {
         untilCanceledDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         untilCanceledDetailsLabel.text = NSLocalizedString("AutoPay will schedule each month's payment until you manually unenroll from AutoPay, or your account is issued a final bill. This is the best way to keep your payments ongoing.", comment: "")
         
-        group3StackView.addArrangedSubview(untilCanceledDetailsLabel)
+        numberOfPaymentsStackView.addArrangedSubview(untilCanceledDetailsLabel)
         
-        let separator1 = createHairline()
-        group3StackView.addArrangedSubview(separator1)
+        let separator1 = SeparatorLineView.create(leadingSpace: 34)
+        numberOfPaymentsStackView.addArrangedSubview(separator1)
         
-        control6Nibless.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        group3StackView.addArrangedSubview(control6Nibless)
+        numberOfPaymentsRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        numberOfPaymentsStackView.addArrangedSubview(numberOfPaymentsRadioControl)
         
-        radioControlsSet3.append(control6Nibless)
+        numberOfPaymentsRadioControlsSet.append(numberOfPaymentsRadioControl)
         
         numberOfPaymentsTextField.textField.placeholder = NSLocalizedString("Number of Payments*", comment: "")
         numberOfPaymentsTextField.textField.autocorrectionType = .no
@@ -357,7 +456,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         numberOfPaymentsTextField.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        group3StackView.addArrangedSubview(numberOfPaymentsTextField)
+        numberOfPaymentsTextField.textField.rx.text.orEmpty.bind(to: viewModel.numberOfDaysBeforeDueDate).addDisposableTo(disposeBag)
+
+        numberOfPaymentsStackView.addArrangedSubview(numberOfPaymentsTextField)
         
         numberOfPaymentsDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
         numberOfPaymentsDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
@@ -368,18 +469,18 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         numberOfPaymentsDetailsLabel.text = NSLocalizedString("After your selected number of payments have been created, AutoPay will automatically stop and you will be responsible for restarting AutoPay or resuming manual payments on your accounts.", comment: "")
         
-        group3StackView.addArrangedSubview(numberOfPaymentsDetailsLabel)
+        numberOfPaymentsStackView.addArrangedSubview(numberOfPaymentsDetailsLabel)
         
-        let separator2 = createHairline()
-        group3StackView.addArrangedSubview(separator2)
+        let separator2 = SeparatorLineView.create(leadingSpace: 34)
+        numberOfPaymentsStackView.addArrangedSubview(separator2)
         
-        control7Nibless.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        group3StackView.addArrangedSubview(control7Nibless)
-        radioControlsSet3.append(control7Nibless)
+        untilDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        numberOfPaymentsStackView.addArrangedSubview(untilDateRadioControl)
+        numberOfPaymentsRadioControlsSet.append(untilDateRadioControl)
         
         untilDateButton.addTarget(self, action: #selector(onDateButtonSelected), for: .touchUpInside)
         
-        group3StackView.addArrangedSubview(untilDateButton)
+        numberOfPaymentsStackView.addArrangedSubview(untilDateButton)
         
         untilDateDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
         untilDateDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
@@ -390,16 +491,32 @@ class BGEAutoPaySettingsViewController: UIViewController {
         untilDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         untilDateDetailsLabel.text = NSLocalizedString("AutoPay will schedule each month's payment until the date you choose, after which AutoPay will automatically stop and you will be responsible for restarting AutoPay or manual payments on your account.", comment: "")
         
-        group3StackView.addArrangedSubview(untilDateDetailsLabel)
+        numberOfPaymentsStackView.addArrangedSubview(untilDateDetailsLabel)
         
-        let separator3 = createHairline()
-        group3StackView.addArrangedSubview(separator3)
+        let separator3 = SeparatorLineView.create(leadingSpace: 34)
+        numberOfPaymentsStackView.addArrangedSubview(separator3)
         
-        for control in radioControlsSet3 {
+        for control in numberOfPaymentsRadioControlsSet {
             control.addTarget(self, action: #selector(radioControlSet3Pressed(control:)), for: .touchUpInside)
         }
 
-        return group3StackView
+        return numberOfPaymentsStackView
+    }
+    
+    func modifyBeforeDueDateDetailsLabel() {
+        var numDays = viewModel.numberOfDaysBeforeDueDate.value
+        
+        if numDays == "0" {
+            numDays = "1"
+        }
+        
+        let numDaysPlural = numDays > "1" ? "s" : ""
+        
+        beforeDueDateDetailsLabel.text = NSLocalizedString("Your payment will process \(numDays) day\(numDaysPlural) before each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary\n\nBGE recommends paying a few days before the due date to ensure adequate processing time.", comment: "")
+    }
+    
+    func beforeDueDateButtonPressed() {
+        showPickerView(true)
     }
     
     func onDateButtonSelected() {
@@ -410,7 +527,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
         calendarVC.firstDate = now
         calendarVC.lastDate = lastDate
         
-        var selectedDate = viewModel.autoPayUntilDate.value.mmDdYyyyDate
+        var selectedDate = now
+        
+        if viewModel.autoPayUntilDate.value != "" {
+            selectedDate = viewModel.autoPayUntilDate.value.mmDdYyyyDate
+        }
         
         calendarVC.selectedDate = selectedDate
         
@@ -421,64 +542,52 @@ class BGEAutoPaySettingsViewController: UIViewController {
     func radioControlSet1Pressed(control: UIControl) {
         control.isSelected = true
         
-        radioControlsSet1
+        amountDueRadioControlsSet
             .filter { $0 != control }
             .forEach {
                 $0.isSelected = false
             }
 
-        hideAmountNotToExceedControlViews(control != control2Nibless)
+        hideAmountNotToExceedControlViews(control != amountNotToExceedRadioControl)
     }
     
     func radioControlSet2Pressed(control: UIControl) {
         control.isSelected = true
         
-        radioControlsSet2
+        dueDateRadioControlsSet
             .filter { $0 != control }
             .forEach {
                 $0.isSelected = false
             }
         
-        hideBeforeDueDateControlViews(control != control3Nibless)
+        hideBeforeDueDateControlViews(control != onDueDateRadioControl)
     }
     
     func radioControlSet3Pressed(control: UIControl) {
         control.isSelected = true
         
-        radioControlsSet3
+        numberOfPaymentsRadioControlsSet
             .filter { $0 != control }
             .forEach {
                 $0.isSelected = false
             }
         
-        hideUntilCanceled(control != control5Nibless)
-        hideNumberOfPayments(control != control6Nibless)
-        hideUntilDate(control != control7Nibless)
+        hideUntilCanceled(control != untilCanceledRadioControl)
+        hideNumberOfPayments(control != numberOfPaymentsRadioControl)
+        hideUntilDate(control != untilDateRadioControl)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-//        totalAmountDueButtonView.label.text = NSLocalizedString("Total Amount Due", comment: "")
-//        totalAmountDueButtonView.setSelected(true, animated: false)
-    }
-    
-    func onCancelPress() {
+    func onBackButton() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSubmitPress() {
-        print("Submit")
+    @IBAction func pickerCancelButtonPressed(_ sender: Any) {
+        showPickerView(false)
     }
     
-//    @IBAction func onCalendarPress() {
-//        let calendarVC = PDTSimpleCalendarViewController()
-//        calendarVC.delegate = self
-//        calendarVC.title = NSLocalizedString("Select Date", comment: "")
-//        calendarVC.lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Date())
-//        navigationController?.pushViewController(calendarVC, animated: true)
-//    }
-
+    @IBAction func pickerDoneButtonPressed(_ sender: Any) {
+        showPickerView(false)
+    }
 }
 
 
@@ -490,10 +599,22 @@ extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
         
         if textField == amountNotToExceedTextField.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 10
+            
+            let numDec = newString.components(separatedBy:".")
+            
+            if numDec.count > 2 {
+                return false
+            } else if numDec.count == 2 && numDec[1].characters.count > 2 {
+                return false
+            }
+            
+            let containsDecimal = newString.contains(".")
+            
+            return (CharacterSet.decimalDigits.isSuperset(of: characterSet) || containsDecimal) && newString.characters.count <= 10
+            
         } else if textField == numberOfPaymentsTextField.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 3
         }
         
         return true
@@ -506,7 +627,7 @@ extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
 extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
         if let selectedDate = date {
-            return true// selectedDate >= now && selectedDate <= lastDate
+            return selectedDate >= now && selectedDate <= lastDate!
         } else {
             return false
         }
@@ -520,6 +641,25 @@ extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
             viewModel.autoPayUntilDate.value = selectedUntilDate.mmDdYyyyString
             untilDateButton.selectedDateLabel.text = selectedUntilDate.mmDdYyyyString
         }
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+extension BGEAutoPaySettingsViewController: DayPickerDelegate {
+    func cancelPressed() {
+        showPickerView(false)
+    }
+    
+    func donePressed(selectedDay: Int) {
+        DispatchQueue.main.async {
+            self.viewModel.numberOfDaysBeforeDueDate.value = "\(selectedDay)"
+
+//            self.modifyBeforeDueDateDetailsLabel()
+
+            self.showPickerView(false, completion: self.modifyBeforeDueDateDetailsLabel)
+}
     }
 }
 

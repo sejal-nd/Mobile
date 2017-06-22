@@ -73,9 +73,6 @@
 		545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */; };
 		545784B31EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */; };
 		545784B41EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */; };
-		545784B61EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784B51EF9A9D200C58E63 /* SeparatorLineView.xib */; };
-		545784B71EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784B51EF9A9D200C58E63 /* SeparatorLineView.xib */; };
-		545784B81EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 545784B51EF9A9D200C58E63 /* SeparatorLineView.xib */; };
 		54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
 		54618B271EE0606800119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
 		54618B281EE0606800119FFD /* EditBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */; };
@@ -111,6 +108,12 @@
 		54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */; };
 		54B31A711EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */; };
 		54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */; };
+		54DA21EC1EFB07AF00B4CCD9 /* DayPickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA21EB1EFB07AF00B4CCD9 /* DayPickerContainerView.swift */; };
+		54DA21ED1EFB07AF00B4CCD9 /* DayPickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA21EB1EFB07AF00B4CCD9 /* DayPickerContainerView.swift */; };
+		54DA21EE1EFB07AF00B4CCD9 /* DayPickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA21EB1EFB07AF00B4CCD9 /* DayPickerContainerView.swift */; };
+		54DA21F01EFB07BC00B4CCD9 /* DayPickerContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DA21EF1EFB07BC00B4CCD9 /* DayPickerContainerView.xib */; };
+		54DA21F11EFB07BC00B4CCD9 /* DayPickerContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DA21EF1EFB07BC00B4CCD9 /* DayPickerContainerView.xib */; };
+		54DA21F21EFB07BC00B4CCD9 /* DayPickerContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DA21EF1EFB07BC00B4CCD9 /* DayPickerContainerView.xib */; };
 		54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
 		54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
 		54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
@@ -902,7 +905,6 @@
 		545784A91EF8753200C58E63 /* DateDisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisclosureButton.swift; sourceTree = "<group>"; };
 		545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateDisclosureButton.xib; sourceTree = "<group>"; };
 		545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLineView.swift; sourceTree = "<group>"; };
-		545784B51EF9A9D200C58E63 /* SeparatorLineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeparatorLineView.xib; sourceTree = "<group>"; };
 		54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewController.swift; sourceTree = "<group>"; };
 		548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewModel.swift; sourceTree = "<group>"; };
 		5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationConfirmationViewController.swift; sourceTree = "<group>"; };
@@ -914,6 +916,8 @@
 		54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationCreateCredentialsViewController.swift; sourceTree = "<group>"; };
 		54B31A6D1EE065E20002E657 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
+		54DA21EB1EFB07AF00B4CCD9 /* DayPickerContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayPickerContainerView.swift; sourceTree = "<group>"; };
+		54DA21EF1EFB07BC00B4CCD9 /* DayPickerContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayPickerContainerView.xib; sourceTree = "<group>"; };
 		54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionsViewController.swift; sourceTree = "<group>"; };
 		54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameSecurityQuestionViewController.swift; sourceTree = "<group>"; };
 		54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestion.swift; sourceTree = "<group>"; };
@@ -1516,7 +1520,8 @@
 				545784A91EF8753200C58E63 /* DateDisclosureButton.swift */,
 				545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */,
 				545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */,
-				545784B51EF9A9D200C58E63 /* SeparatorLineView.xib */,
+				54DA21EB1EFB07AF00B4CCD9 /* DayPickerContainerView.swift */,
+				54DA21EF1EFB07BC00B4CCD9 /* DayPickerContainerView.xib */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -2588,6 +2593,7 @@
 				545784AE1EF8755000C58E63 /* DateDisclosureButton.xib in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
+				54DA21F01EFB07BC00B4CCD9 /* DayPickerContainerView.xib in Resources */,
 				E8FE30B11E787625009D28B7 /* outage.json in Resources */,
 				B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736321E6740A8003B9369 /* INFO.txt in Resources */,
@@ -2616,7 +2622,6 @@
 				E8494F3B1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 				54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
-				545784B61EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */,
 				B55736411E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
@@ -2631,13 +2636,13 @@
 				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
+				54DA21F21EFB07BC00B4CCD9 /* DayPickerContainerView.xib in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736471E6742A6003B9369 /* OMC.plist in Resources */,
 				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
-				545784B81EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */,
 				545784B01EF8755000C58E63 /* DateDisclosureButton.xib in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
@@ -2686,13 +2691,13 @@
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE951E54EA5E003F640D /* Cartfile in Resources */,
+				54DA21F11EFB07BC00B4CCD9 /* DayPickerContainerView.xib in Resources */,
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
-				545784B71EF9A9D200C58E63 /* SeparatorLineView.xib in Resources */,
 				545784AF1EF8755000C58E63 /* DateDisclosureButton.xib in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
@@ -2928,6 +2933,7 @@
 				82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
+				54DA21EC1EFB07AF00B4CCD9 /* DayPickerContainerView.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E876A8601ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				54DF4BCC1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
@@ -3192,6 +3198,7 @@
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				54DA21EE1EFB07AF00B4CCD9 /* DayPickerContainerView.swift in Sources */,
 				E887C9D61ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				225FF85C1EC56B480079010C /* Date.swift in Sources */,
@@ -3354,6 +3361,7 @@
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B231EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				54DA21ED1EFB07AF00B4CCD9 /* DayPickerContainerView.swift in Sources */,
 				E887C9D51ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				225FF85B1EC56B480079010C /* Date.swift in Sources */,
