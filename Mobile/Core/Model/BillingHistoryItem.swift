@@ -50,7 +50,7 @@ struct BillingHistoryItem: Mappable {
     let date: Date?
     let description: String?
     let status: String?
-    let isFuture: Bool?
+    let isFuture: Bool
     
     init(map: Mapper) throws {
         amountPaid = map.optionalFrom("amountPaid", transformation: extractDollarAmountString)
