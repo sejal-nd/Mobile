@@ -5,9 +5,9 @@
 	<key>environment</key>
 	<string>DEV</string>
 	<key>appName</key>
-	<string>ComEd_DEV</string>
+	<string>PECO_DEV</string>
 	<key>opco</key>
-	<string>ComEd</string>
+	<string>PECO</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>

@@ -25,9 +25,11 @@ class AutoPayViewModel {
     let routingNumber = Variable("")
     let accountNumber = Variable("")
     let confirmAccountNumber = Variable("")
+    let termsAndConditionsCheck: Variable<Bool>
     
     required init(withAccountDetail accountDetail: AccountDetail) {
         enrollmentStatus = Variable(accountDetail.isAutoPay ? .isEnrolled:.enrolling)
+        termsAndConditionsCheck = Variable(Environment.sharedInstance.opco != .comEd)
     }
     
     lazy var nameOnAccountHasText: Driver<Bool> = self.nameOnAccount.asDriver()
@@ -59,13 +61,27 @@ class AutoPayViewModel {
         .map(==)
         .distinctUntilChanged()
     
-    lazy var canSubmit: Driver<Bool> = Driver.combineLatest([self.nameOnAccountHasText,
-                                                             self.routingNumberIsValid,
-                                                             self.accountNumberHasText,
-                                                             self.accountNumberIsValid,
-                                                             self.confirmAccountNumberMatches])
-        .map { !$0.contains(false) }
-        .distinctUntilChanged()
+    lazy var canSubmit: Driver<Bool> = {
+        
+        switch self.enrollmentStatus.value {
+        case .enrolling:
+            var validationDrivers = [self.nameOnAccountHasText,
+                                     self.routingNumberIsValid,
+                                     self.accountNumberHasText,
+                                     self.accountNumberIsValid,
+                                     self.confirmAccountNumberMatches]
+            
+            if Environment.sharedInstance.opco == .comEd {
+                validationDrivers.append(self.termsAndConditionsCheck.asDriver())
+            }
+            
+            return Driver.combineLatest(validationDrivers)
+                .map { !$0.contains(false) }
+                .distinctUntilChanged()
+        default:
+            return Driver.just(false)
+        }
+    }()
     
     lazy var nameOnAccountErrorText: Driver<String?> = self.nameOnAccountIsValid.asDriver()
         .distinctUntilChanged()
@@ -91,6 +107,7 @@ class AutoPayViewModel {
     
     lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumberHasText
     
+    let shouldShowTermsAndConditionsCheck = Environment.sharedInstance.opco == .comEd
     
     lazy var footerText: Driver<String> = self.enrollmentStatus.asDriver().map { enrollmentStatus in
         switch (Environment.sharedInstance.opco, enrollmentStatus) {

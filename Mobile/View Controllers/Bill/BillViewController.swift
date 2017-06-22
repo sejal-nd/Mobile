@@ -465,6 +465,7 @@ class BillViewController: AccountPickerViewController {
         } else if let vc = segue.destination as? WalletViewController {
             vc.viewModel.accountDetail = viewModel.currentAccountDetail.value!
         } else if let vc = segue.destination as? AutoPayViewController {
+            vc.delegate = self
             vc.accountDetail = viewModel.currentAccountDetail.value!
         }
     }
@@ -511,6 +512,16 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
         }
         showDelayedToast(withMessage: toastMessage)
     }
+}
+
+extension BillViewController: AutoPayViewControllerDelegate {
+    
+    func autoPayViewController(_ autoPayViewController: AutoPayViewController, enrolled: Bool) {
+        viewModel.fetchAccountDetail(isRefresh: false)
+        let message = enrolled ? NSLocalizedString("Enrolled in AutoPay", comment: ""): NSLocalizedString("Unenrolled from AutoPay", comment: "")
+        showDelayedToast(withMessage: message)
+    }
+    
 }
 
 extension Reactive where Base: BillViewController {

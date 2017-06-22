@@ -1,32 +1,30 @@
 //
-//  InfoModalViewController.swift
+//  WebViewController.swift
 //  Mobile
 //
-//  Created by Marc Shilling on 5/23/17.
+//  Created by Sam Francis on 6/22/17.
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
 
-class InfoModalViewController: DismissableFormSheetViewController {
+class WebViewController: DismissableFormSheetViewController {
     
     @IBOutlet weak var navBarView: UIView!
     @IBOutlet weak var xButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
     private var navTitle: String
-    private var image: UIImage
-    private var infoDescription: String
+    private var url: URL
     
     
-    init(title: String, image img: UIImage, description: String) {
+    init(title: String, url: URL) {
         navTitle = title
-        image = img
-        infoDescription = description
+        self.url = url
         
-        super.init(nibName: "InfoModal", bundle: nil)
+        super.init(nibName: WebViewController.className, bundle: nil)
         
         modalPresentationStyle = .formSheet // For iPad
     }
@@ -47,16 +45,19 @@ class InfoModalViewController: DismissableFormSheetViewController {
         titleLabel.textColor = .blackText
         titleLabel.text = navTitle
         
-        imageView.image = image
-
-        descriptionLabel.font = OpenSans.regular.of(textStyle: .body)
-        descriptionLabel.textColor = .deepGray
-        descriptionLabel.setLineHeight(lineHeight: 25)
-        descriptionLabel.text = infoDescription
+        webView.delegate = self
+        webView.loadRequest(URLRequest(url: url))
     }
     
     @IBAction func xAction(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
+}
 
+extension WebViewController: UIWebViewDelegate {
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        loadingIndicator.isHidden = true
+    }
+    
 }
