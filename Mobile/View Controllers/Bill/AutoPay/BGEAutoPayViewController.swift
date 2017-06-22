@@ -6,9 +6,12 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
+import RxCocoa
 
 class BGEAutoPayViewController: UIViewController {
+    
+    let disposeBag = DisposeBag()
     
     @IBOutlet weak var gradientView: UIView!
     var gradientLayer = CAGradientLayer()
@@ -39,11 +42,9 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var settingsButton: ButtonControl!
     @IBOutlet weak var settingsButtonLabel: UILabel!
     
-    var initialEnrollment = false
-    
     var accountDetail: AccountDetail! // Passed from BillViewController
     
-    let viewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService())
+    lazy var viewModel: BGEAutoPayViewModel = { BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail) }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +99,8 @@ class BGEAutoPayViewController: UIViewController {
         
         settingsButtonLabel.textColor = .actionBlue
         settingsButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        
+        setupBindings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,18 +110,11 @@ class BGEAutoPayViewController: UIViewController {
             navController.setColoredNavBar()
         }
         
-        if initialEnrollment {
-            bankAccountButtonSelectLabel.isHidden = true
+        if viewModel.enrollmentStatus.value == .isEnrolled {
             stickyBottomViewHeightConstraint.constant = 0
             expirationLabel.isHidden = true
             selectBankAccountLabel.isHidden = true
-            
-            bankAccountButtonIcon.image = #imageLiteral(resourceName: "opco_bank")
-            bankAccountButtonAccountNumberLabel.text = "**** 4321"
-            bankAccountButtonNicknameLabel.text = "SP Checking"
         } else {
-            bankAccountButtonAccountNumberLabel.isHidden = true
-            bankAccountButtonNicknameLabel.isHidden = true
             enrollmentSwitchView.isHidden = true
             expirationLabel.isHidden = true
             enrolledPaymentAccountLabel.isHidden = true
@@ -143,6 +139,16 @@ class BGEAutoPayViewController: UIViewController {
         gradientLayer.frame = gradientView.bounds
     }
     
+    func setupBindings() {
+        viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonAccountNumberLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonNicknameLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowWalletItem.drive(bankAccountButtonSelectLabel.rx.isHidden).addDisposableTo(disposeBag)
+        
+        viewModel.bankAccountButtonImage.drive(bankAccountButtonIcon.rx.image).addDisposableTo(disposeBag)
+        viewModel.walletItemAccountNumberText.drive(bankAccountButtonAccountNumberLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.walletItemNicknameText.drive(bankAccountButtonNicknameLabel.rx.text).addDisposableTo(disposeBag)
+    }
+    
     func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
@@ -160,7 +166,7 @@ class BGEAutoPayViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         let miniWalletVC = storyboard.instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
         miniWalletVC.tableHeaderLabelText = NSLocalizedString("Select a bank account to enroll in AutoPay.", comment: "")
-        miniWalletVC.accountDetail = accountDetail
+        miniWalletVC.accountDetail = viewModel.accountDetail
         miniWalletVC.creditCardsDisabled = true
         miniWalletVC.delegate = self
         navigationController?.pushViewController(miniWalletVC, animated: true)
@@ -175,6 +181,6 @@ class BGEAutoPayViewController: UIViewController {
 extension BGEAutoPayViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
-        print("SELECTED ", walletItem)
+        viewModel.selectedWalletItem.value = walletItem
     }
 }
