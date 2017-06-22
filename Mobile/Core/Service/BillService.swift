@@ -56,6 +56,15 @@ protocol BillService {
     ///   - billDate: From account detail endpoint: BillingInfo.billDate
     ///   - completion: the completion block to execute upon completion.
     func fetchBillPdf(accountNumber: String, billDate: Date, completion: @escaping (_ result: ServiceResult<String>) -> Void)
+    
+    /// Get the BillingHistoryItems for display
+    ///
+    /// - Parameters:
+    ///   - accountNumber: The account to get the bill for
+    ///   - startDate: the start date of the desired history
+    ///   - endDate: the end date of the desired history
+    ///   - completion: the completion block to execute upon completion.
+    func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date, completion: @escaping (_ result: ServiceResult<BillingHistory>) -> Void)
 }
 
 // MARK: - Reactive Extension to BillService
@@ -141,6 +150,21 @@ extension BillService {
                 switch (result) {
                 case ServiceResult.Success(let billImageData):
                     observer.onNext(billImageData)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date) -> Observable<BillingHistory> {
+        return Observable.create { observer in
+            self.fetchBillingHistory(accountNumber: accountNumber, startDate: startDate, endDate: endDate, completion: { (result: ServiceResult<BillingHistory>) in
+                switch (result) {
+                case ServiceResult.Success(let billingHistory):
+                    observer.onNext(billingHistory)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
