@@ -155,6 +155,7 @@ class BGEAutoPayViewController: UIViewController {
     
     func onSubmitPress() {
         print("Submit")
+        print(viewModel.amountToPay.value)
     }
     
     @IBAction func onLearnMorePress() {
@@ -174,6 +175,14 @@ class BGEAutoPayViewController: UIViewController {
     
     @IBAction func onSettingsPress() {
         performSegue(withIdentifier: "bgeAutoPaySettingsSegue", sender: self)
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? BGEAutoPaySettingsViewController {
+            vc.viewModel = viewModel
+        }
     }
 
 }
