@@ -112,7 +112,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         }
         
         // Comed/PECO
-        paymentCategoryType = map.optionalFrom("paymentCategoryType")
+        paymentCategoryType = map.optionalFrom("paymentCategoryType") ?? .check // Default to check for BGE (currently no credit cards)
         paymentMethodType = map.optionalFrom("paymentMethodType")
         
         // BGE

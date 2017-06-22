@@ -10,7 +10,7 @@ import UIKit
 
 class MiniWalletTableViewCell: UITableViewCell {
     
-    @IBOutlet private weak var innerContentView: UIView!
+    @IBOutlet weak var innerContentView: ButtonControl!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
@@ -21,6 +21,9 @@ class MiniWalletTableViewCell: UITableViewCell {
         selectionStyle = .none
         
         innerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        innerContentView.backgroundColorOnPress = .softGray
+        
+        iconImageView.image = #imageLiteral(resourceName: "opco_bank_mini")
         
         accountNumberLabel.font = SystemFont.medium.of(textStyle: .headline)
         accountNumberLabel.textColor = .blackText
@@ -32,6 +35,25 @@ class MiniWalletTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func bindToWalletItem(_ walletItem: WalletItem) {
+        
+        if let paymentCategoryType = walletItem.paymentCategoryType {
+            if paymentCategoryType == .check {
+                iconImageView.image = #imageLiteral(resourceName: "opco_bank_mini")
+            } else {
+                iconImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder_mini")
+            }
+        }
+        
+        if let last4digits = walletItem.maskedWalletItemAccountNumber {
+            accountNumberLabel.text = "**** \(last4digits)"
+        } else {
+            accountNumberLabel.text = ""
+        }
+        
+        nicknameLabel.text = walletItem.nickName
     }
 
 }
@@ -51,7 +73,7 @@ class MiniWalletSectionHeaderCell: UITableViewCell {
 
 class MiniWalletAddAccountCell: UITableViewCell {
     
-    @IBOutlet private weak var innerContentView: UIView!
+    @IBOutlet weak var innerContentView: ButtonControl!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     
@@ -61,6 +83,7 @@ class MiniWalletAddAccountCell: UITableViewCell {
         selectionStyle = .none
         
         innerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        innerContentView.backgroundColorOnPress = .softGray
         
         label.font = SystemFont.medium.of(textStyle: .title1)
         label.textColor = .blackText

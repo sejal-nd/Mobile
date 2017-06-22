@@ -72,7 +72,7 @@ class WalletViewModel {
         var creditCount = 0
         for item in walletItems {
             if let paymentCategoryType = item.paymentCategoryType {
-                if paymentCategoryType == .credit {
+                if paymentCategoryType == .credit || paymentCategoryType == .debit  {
                     creditCount += 1
                     if creditCount == 3 { break }
                 }

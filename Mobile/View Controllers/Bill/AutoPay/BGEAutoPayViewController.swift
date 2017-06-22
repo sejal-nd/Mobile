@@ -39,7 +39,9 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var settingsButton: ButtonControl!
     @IBOutlet weak var settingsButtonLabel: UILabel!
     
-    var initialEnrollment = true
+    var initialEnrollment = false
+    
+    var accountDetail: AccountDetail! // Passed from BillViewController
     
     let viewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService())
     
@@ -158,6 +160,9 @@ class BGEAutoPayViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         let miniWalletVC = storyboard.instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
         miniWalletVC.tableHeaderLabelText = NSLocalizedString("Select a bank account to enroll in AutoPay.", comment: "")
+        miniWalletVC.accountDetail = accountDetail
+        miniWalletVC.creditCardsDisabled = true
+        miniWalletVC.delegate = self
         navigationController?.pushViewController(miniWalletVC, animated: true)
     }
     
@@ -165,4 +170,11 @@ class BGEAutoPayViewController: UIViewController {
         performSegue(withIdentifier: "bgeAutoPaySettingsSegue", sender: self)
     }
 
+}
+
+extension BGEAutoPayViewController: MiniWalletViewControllerDelegate {
+    
+    func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
+        print("SELECTED ", walletItem)
+    }
 }

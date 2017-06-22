@@ -464,6 +464,8 @@ class BillViewController: AccountPickerViewController {
             vc.viewModel.billDate = viewModel.currentAccountDetail.value!.billingInfo.billDate
         } else if let vc = segue.destination as? WalletViewController {
             vc.viewModel.accountDetail = viewModel.currentAccountDetail.value!
+        } else if let vc = segue.destination as? BGEAutoPayViewController {
+            vc.accountDetail = viewModel.currentAccountDetail.value!
         }
     }
     
