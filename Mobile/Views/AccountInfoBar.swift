@@ -58,9 +58,8 @@ class AccountInfoBar: UIView {
         super.updateConstraints()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8).isActive = true
+        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
     }
 }
