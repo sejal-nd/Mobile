@@ -9,6 +9,17 @@
 import Foundation
 
 class MockBillService : BillService {
+    /// Get the BillingHistoryItems for display
+    ///
+    /// - Parameters:
+    ///   - accountNumber: The account to get the bill for
+    ///   - startDate: the start date of the desired history
+    ///   - endDate: the end date of the desired history
+    ///   - completion: the completion block to execute upon completion.
+    func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date, completion: @escaping (ServiceResult<BillingHistory>) -> Void) {
+        
+    }
+
 
     func fetchBudgetBillingInfo(accountNumber: String, completion: @escaping (_ result: ServiceResult<BudgetBillingInfo>) -> Void) {
         if accountNumber == "0000" {
