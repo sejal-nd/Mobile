@@ -22,6 +22,7 @@ class AutoPayViewController: UIViewController {
     @IBOutlet weak var learnMoreButton: ButtonControl!
     @IBOutlet weak var learnMoreLabel: UILabel!
     
+    // Not Enrolled
     @IBOutlet weak var enrollStackView: UIStackView!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControl!
@@ -36,6 +37,14 @@ class AutoPayViewController: UIViewController {
     @IBOutlet weak var tacSwitch: Switch!
     @IBOutlet weak var tacLabel: UILabel!
     @IBOutlet weak var tacButton: UIButton!
+    
+    // Enrolled
+    @IBOutlet weak var enrolledStackView: UIStackView!
+    @IBOutlet weak var enrollSwitch: Switch!
+    @IBOutlet weak var enrollmentStatusLabel: UILabel!
+    @IBOutlet weak var enrolledTopLabel: UILabel!
+    
+    @IBOutlet weak var thirdPartyLabel: UILabel!
     
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
@@ -70,8 +79,11 @@ class AutoPayViewController: UIViewController {
         style()
         textFieldSetup()
         bindEnrollingState()
+        thirdPartyLabel.isHidden = !viewModel.shouldShowThirdPartyLabel
+        thirdPartyLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         viewModel.footerText.drive(footerLabel.rx.text).addDisposableTo(bag)
+        
         viewModel.canSubmit.drive(submitButton.rx.isEnabled).addDisposableTo(bag)
         
         learnMoreButton.rx.touchUpInside.asDriver()
@@ -130,6 +142,14 @@ class AutoPayViewController: UIViewController {
         
         learnMoreLabel.attributedText = learnMoreAboutAutoPayAttrString
         
+        styleNotEnrolled()
+        styleEnrolled()
+        
+        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        footerLabel.setLineHeight(lineHeight: 16)
+    }
+    
+    private func styleNotEnrolled() {
         topLabel.font = OpenSans.semibold.of(textStyle: .headline)
         topLabel.setLineHeight(lineHeight: 24)
         
@@ -137,9 +157,13 @@ class AutoPayViewController: UIViewController {
         tacLabel.font = SystemFont.regular.of(textStyle: .headline)
         tacLabel.setLineHeight(lineHeight: 25)
         tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
-        
-        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        footerLabel.setLineHeight(lineHeight: 16)
+    }
+    
+    private func styleEnrolled() {
+        enrollmentStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
+        enrollmentStatusLabel.setLineHeight(lineHeight: 28)
+        enrolledTopLabel.font = OpenSans.regular.of(textStyle: .body)
+        enrolledTopLabel.setLineHeight(lineHeight: 16)
     }
     
     private func textFieldSetup() {
@@ -288,7 +312,7 @@ class AutoPayViewController: UIViewController {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, max(0, endFrameRect.size.height - footerView.frame.size.height), 0)
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }

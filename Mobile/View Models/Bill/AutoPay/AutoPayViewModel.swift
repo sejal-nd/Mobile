@@ -20,6 +20,8 @@ class AutoPayViewModel {
     
     let enrollmentStatus: Variable<EnrollmentStatus>
     
+    let accountDetail: AccountDetail
+    
     let bankAccountType = Variable<BankAccountType>(.checking)
     let nameOnAccount = Variable("")
     let routingNumber = Variable("")
@@ -28,6 +30,7 @@ class AutoPayViewModel {
     let termsAndConditionsCheck: Variable<Bool>
     
     required init(withAccountDetail accountDetail: AccountDetail) {
+        self.accountDetail = accountDetail
         enrollmentStatus = Variable(accountDetail.isAutoPay ? .isEnrolled:.enrolling)
         termsAndConditionsCheck = Variable(Environment.sharedInstance.opco != .comEd)
     }
@@ -108,6 +111,10 @@ class AutoPayViewModel {
     lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumberHasText
     
     let shouldShowTermsAndConditionsCheck = Environment.sharedInstance.opco == .comEd
+    
+    var shouldShowThirdPartyLabel: Bool {
+        return Environment.sharedInstance.opco == .peco && (self.accountDetail.isSupplier || self.accountDetail.isDualBillOption)
+    }
     
     lazy var footerText: Driver<String> = self.enrollmentStatus.asDriver().map { enrollmentStatus in
         switch (Environment.sharedInstance.opco, enrollmentStatus) {
