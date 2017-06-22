@@ -51,4 +51,9 @@ class ServiceFactory {
     class func createOneTouchPayService() -> OneTouchPayService {
         return OneTouchPayService()
     }
+    
+    class func createPaymentService() -> PaymentService {
+        return OMCPaymentService()
+    }
+    
 }

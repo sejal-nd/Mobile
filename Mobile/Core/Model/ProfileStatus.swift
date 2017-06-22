@@ -9,13 +9,13 @@
 import Foundation
 
 struct ProfileStatus {
-    let active: Bool
+    let inactive: Bool
     let primary: Bool
     let passwordLocked: Bool
     let tempPassword: Bool
     
-    init(active: Bool = false, primary: Bool = false, passwordLocked: Bool = false, tempPassword: Bool = false) {
-        self.active = active;
+    init(inactive: Bool = false, primary: Bool = false, passwordLocked: Bool = false, tempPassword: Bool = false) {
+        self.inactive = inactive;
         self.primary = primary
         self.passwordLocked = passwordLocked
         self.tempPassword = tempPassword

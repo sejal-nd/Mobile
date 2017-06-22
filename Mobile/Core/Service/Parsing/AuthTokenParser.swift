@@ -18,7 +18,7 @@ private enum ProfileStatusKey : String {
 
 private enum ProfileStatusNameValue : String {
     case LockedPassword = "isLockedPassword"
-    case Active = "active"
+    case Inactive = "inactive"
     case Primary = "primary"
     case TempPassword = "tempPassword"
 }
@@ -66,7 +66,6 @@ class AuthTokenParser : NSObject {
     /// - Returns: A successful ServiceResult containing the assertion/token
     class private func parseSuccess(parsedData: [String:Any]) -> ServiceResult<AuthTokenResponse> {
         let data: NSDictionary = parsedData["data"] as! NSDictionary
-        let assertion: String = data["assertion"] as! String
         var profileStatus: ProfileStatus = ProfileStatus()
         
         if let statusData = data["profileStatus"] as? [String:Any] {
@@ -74,18 +73,26 @@ class AuthTokenParser : NSObject {
             
             if profileStatus.passwordLocked {
                 return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
+            } else if profileStatus.inactive {
+                return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctNotActivated.rawValue))
             }
         }
         
         guard let profileType = data["profileType"] as? String else {
            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
         }
+        
         UserDefaults.standard.set(profileType == "commercial", forKey: UserDefaultKeys.IsCommercialUser)
         if profileType != "commercial" && profileType != "residential" {
             return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
         }
         
-        return ServiceResult.Success(AuthTokenResponse(token: assertion, profileStatus: profileStatus))
+        if let assertion = data["assertion"] as? String {
+            return ServiceResult.Success(AuthTokenResponse(token: assertion, profileStatus: profileStatus))
+        } else {
+            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue))
+        }
+        
     }
     
     
@@ -96,8 +103,8 @@ class AuthTokenParser : NSObject {
     class private func parseProfileStatus(profileStatus: [String:Any]) -> ProfileStatus {
         
         var lockedPassword = false;
-        var active  = false;
-        var primary  = false;
+        var inactive = false;
+        var primary = false;
         var tempPassword = false;
         
         if let status = profileStatus[ProfileStatusKey.Status.rawValue] as? Array<NSDictionary> {
@@ -106,8 +113,8 @@ class AuthTokenParser : NSObject {
                     switch name {
                     case ProfileStatusNameValue.LockedPassword.rawValue:
                         lockedPassword = item[ProfileStatusKey.Value.rawValue] as! Bool
-                    case ProfileStatusNameValue.Active.rawValue:
-                        active = item[ProfileStatusKey.Value.rawValue] as! Bool
+                    case ProfileStatusNameValue.Inactive.rawValue:
+                        inactive = item[ProfileStatusKey.Value.rawValue] as! Bool
                     case ProfileStatusNameValue.Primary.rawValue:
                         primary = item[ProfileStatusKey.Value.rawValue] as! Bool
                     case ProfileStatusNameValue.TempPassword.rawValue:
@@ -119,7 +126,7 @@ class AuthTokenParser : NSObject {
             }
         }
         
-        return ProfileStatus(active:active, primary:primary, passwordLocked:lockedPassword, tempPassword: tempPassword)
+        return ProfileStatus(inactive:inactive, primary:primary, passwordLocked:lockedPassword, tempPassword: tempPassword)
     }
     
     /// Retreives the error and wrap it in a ServiceResult
@@ -137,6 +144,8 @@ class AuthTokenParser : NSObject {
             
                 if profileStatus.passwordLocked {
                     return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
+                } else if profileStatus.inactive {
+                    return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctNotActivated.rawValue))
                 }
             }
         }
