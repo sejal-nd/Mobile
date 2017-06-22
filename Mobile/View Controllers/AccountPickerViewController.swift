@@ -125,6 +125,7 @@ class AccountPickerViewController: UIViewController {
             }, onError: { err in
                 self.accountPicker.setLoading(false)
                 let alertVc = UIAlertController(title: NSLocalizedString("Could Not Load Accounts", comment: ""), message: err.localizedDescription, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default, handler: { _ in
                     self.fetchAccounts()
                 }))
