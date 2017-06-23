@@ -223,12 +223,29 @@ class AutoPayChangeBankViewController: UIViewController {
     func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
-	
+    
+    
     func onSavePress() {
-		delegate?.changedBank()
-		navigationController?.popViewController(animated: true)
+        LoadingView.show()
+        viewModel.submit()
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: { [weak self] enrolled in
+                    LoadingView.hide()
+                    guard let strongSelf = self else { return }
+                    strongSelf.delegate?.changedBank()
+                    strongSelf.navigationController?.popViewController(animated: true)
+                }, onError: { [weak self] error in
+                    LoadingView.hide()
+                    guard let strongSelf = self else { return }
+                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                                            message: error.localizedDescription, preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    strongSelf.present(alertController, animated: true, completion: nil)
+            })
+            .addDisposableTo(bag)
     }
-
+	
 }
 
 extension AutoPayChangeBankViewController: UITextFieldDelegate {

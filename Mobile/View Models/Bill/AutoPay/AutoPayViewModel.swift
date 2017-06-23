@@ -30,10 +30,35 @@ class AutoPayViewModel {
     let termsAndConditionsCheck: Variable<Bool>
     let selectedUnenrollmentReason = Variable<String?>(nil)
     
-    required init(withAccountDetail accountDetail: AccountDetail) {
+    let paymentService: PaymentService
+    
+    required init(withPaymentService paymentService: PaymentService, accountDetail: AccountDetail) {
+        self.paymentService = paymentService
         self.accountDetail = accountDetail
         enrollmentStatus = Variable(accountDetail.isAutoPay ? .isEnrolled:.enrolling)
         termsAndConditionsCheck = Variable(Environment.sharedInstance.opco != .comEd)
+    }
+    
+    func submit() -> Observable<Bool> {
+        switch enrollmentStatus.value {
+        case .enrolling:
+            return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
+                                                  nameOfAccount: nameOnAccount.value,
+                                                  bankAccountType: bankAccountType.value,
+                                                  routingNumber: routingNumber.value,
+                                                  bankAccountNumber: accountNumber.value,
+                                                  isUpdate: false).map { _ in true }
+        case .unenrolling:
+            return paymentService.unenrollFromAutoPay(accountNumber: accountDetail.accountNumber,
+                                                      reason: selectedUnenrollmentReason.value!).map { _ in false }
+        case .isEnrolled:
+            return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
+                                                  nameOfAccount: nameOnAccount.value,
+                                                  bankAccountType: bankAccountType.value,
+                                                  routingNumber: routingNumber.value,
+                                                  bankAccountNumber: accountNumber.value,
+                                                  isUpdate: true).map { _ in true }
+        }
     }
     
     lazy var nameOnAccountHasText: Driver<Bool> = self.nameOnAccount.asDriver()

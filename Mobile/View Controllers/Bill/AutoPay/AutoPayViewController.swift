@@ -57,7 +57,7 @@ class AutoPayViewController: UIViewController {
     let bag = DisposeBag()
     
     var accountDetail: AccountDetail!
-    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withAccountDetail: self.accountDetail) }()
+    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail) }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,14 +93,12 @@ class AutoPayViewController: UIViewController {
         
         
         // background color hackery
-        let scrollLessThanZero = scrollView.rx.contentOffset.asDriver()
+        let isScrollOffsetLessThanZero = scrollView.rx.contentOffset.asDriver()
             .map { $0.y < 0 }
             .distinctUntilChanged()
         
-        Driver.combineLatest(viewModel.enrollmentStatus.asDriver(), scrollLessThanZero)
-            .map { status, scrollLessThanZero in
-                status == .unenrolling || scrollLessThanZero
-            }
+        Driver.combineLatest(viewModel.enrollmentStatus.asDriver(), isScrollOffsetLessThanZero)
+            .map { $0 == .unenrolling || $1 }
             .map { $0 ? UIColor.softGray: UIColor.white }
             .drive(onNext: { [weak self] color in
                 self?.view.backgroundColor = color
@@ -152,8 +150,24 @@ class AutoPayViewController: UIViewController {
     }
     
     func onSubmitPress() {
-        delegate?.autoPayViewController(self, enrolled: viewModel.enrollmentStatus.value == .enrolling)
-        navigationController?.popViewController(animated: true)
+        LoadingView.show()
+        viewModel.submit()
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: { [weak self] enrolled in
+                    LoadingView.hide()
+                    guard let strongSelf = self else { return }
+                    strongSelf.delegate?.autoPayViewController(strongSelf, enrolled: enrolled)
+                    strongSelf.navigationController?.popViewController(animated: true)
+                }, onError: { [weak self] error in
+                    LoadingView.hide()
+                    guard let strongSelf = self else { return }
+                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                                            message: error.localizedDescription, preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    strongSelf.present(alertController, animated: true, completion: nil)
+            })
+            .addDisposableTo(bag)
     }
     
     private func style() {
