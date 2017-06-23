@@ -53,9 +53,9 @@ struct BillingHistoryItem: Mappable {
     let isFuture: Bool
     
     init(map: Mapper) throws {
-        amountPaid = map.optionalFrom("amountPaid", transformation: extractDollarAmountString)
-        chargeAmount = map.optionalFrom("chargeAmount", transformation: extractDollarAmountString)
-        totalAmountDue = map.optionalFrom("totalAmountDue", transformation: extractDollarAmountString)
+        amountPaid = map.optionalFrom("amount_paid", transformation: extractDollarAmountString)
+        chargeAmount = map.optionalFrom("charge_amount", transformation: extractDollarAmountString)
+        totalAmountDue = map.optionalFrom("total_amount_due", transformation: extractDollarAmountString)
         date = map.optionalFrom("date", transformation: extractDate)
         description = map.optionalFrom("description")
         status = map.optionalFrom("description");
