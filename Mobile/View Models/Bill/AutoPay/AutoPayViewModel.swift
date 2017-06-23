@@ -63,24 +63,27 @@ class AutoPayViewModel {
                                                                               self.confirmAccountNumber.asDriver())
         .map(==)
         .distinctUntilChanged()
-    
+	
+	lazy var canSubmitNewAccount: Driver<Bool> = {
+		var validationDrivers = [self.nameOnAccountHasText,
+		                         self.routingNumberIsValid,
+		                         self.accountNumberHasText,
+		                         self.accountNumberIsValid,
+		                         self.confirmAccountNumberMatches]
+		
+		if Environment.sharedInstance.opco == .comEd {
+			validationDrivers.append(self.termsAndConditionsCheck.asDriver())
+		}
+		
+		return Driver.combineLatest(validationDrivers)
+			.map { !$0.contains(false) }
+			.distinctUntilChanged()
+	}()
+	
     lazy var canSubmit: Driver<Bool> = {
-        
         switch self.enrollmentStatus.value {
         case .enrolling:
-            var validationDrivers = [self.nameOnAccountHasText,
-                                     self.routingNumberIsValid,
-                                     self.accountNumberHasText,
-                                     self.accountNumberIsValid,
-                                     self.confirmAccountNumberMatches]
-            
-            if Environment.sharedInstance.opco == .comEd {
-                validationDrivers.append(self.termsAndConditionsCheck.asDriver())
-            }
-            
-            return Driver.combineLatest(validationDrivers)
-                .map { !$0.contains(false) }
-                .distinctUntilChanged()
+            return self.canSubmitNewAccount
         default:
             return Driver.just(false)
         }
@@ -117,21 +120,28 @@ class AutoPayViewModel {
     }
     
     lazy var footerText: Driver<String> = self.enrollmentStatus.asDriver().map { enrollmentStatus in
+		var footerText: String
         switch (Environment.sharedInstance.opco, enrollmentStatus) {
         case (.peco, .enrolling):
-            return NSLocalizedString("Your recurring payment will apply to the next PECO bill you receive. You will need to submit a payment for your current PECO bill if you have not already done so.", comment: "")
+            footerText = NSLocalizedString("Your recurring payment will apply to the next PECO bill you receive. You will need to submit a payment for your current PECO bill if you have not already done so.", comment: "")
         case (.comEd, .enrolling):
-            return NSLocalizedString("Your recurring payment will apply to the next ComEd bill you receive. You will need to submit a payment for your current ComEd bill if you have not already done so.", comment: "")
+            footerText = NSLocalizedString("Your recurring payment will apply to the next ComEd bill you receive. You will need to submit a payment for your current ComEd bill if you have not already done so.", comment: "")
         case (.peco, .isEnrolled):
-            return NSLocalizedString("Changing your bank account information takes up to 7 days to process. If this change is submitted less than 7 days prior to your next due date, the funds may be deducted from your original bank account.", comment: "")
+            footerText = NSLocalizedString("Changing your bank account information takes up to 7 days to process. If this change is submitted less than 7 days prior to your next due date, the funds may be deducted from your original bank account.", comment: "")
         case (.comEd, .isEnrolled):
-            return NSLocalizedString("If this change is submitted more than 4 business days prior to the bill due date, you will need to pay your current bill using another payment method because the existing bank information on file will be canceled. If this change is submitted less than 3 business days prior to the bill due date, the funds will be deducted from your original bank account.", comment: "")
+            footerText = NSLocalizedString("If this change is submitted more than 4 business days prior to the bill due date, you will need to pay your current bill using another payment method because the existing bank information on file will be canceled. If this change is submitted less than 3 business days prior to the bill due date, the funds will be deducted from your original bank account.", comment: "")
         case (.peco, .unenrolling),
              (.comEd, .unenrolling):
-            return NSLocalizedString("If this change is submitted less than 3 business days prior to the bill due date, the funds will be deducted from your original bank account.", comment: "")
+            footerText = NSLocalizedString("If this change is submitted less than 3 business days prior to the bill due date, the funds will be deducted from your original bank account.", comment: "")
         default:
             fatalError("BGE account attempted to access the ComEd/PECO AutoPay screen.")
         }
+		
+		if self.shouldShowThirdPartyLabel {
+			footerText += "\n\n" + NSLocalizedString("Please note that AutoPay will only include PECO charges. Energy Supply charges are billed separately by your chosen generation provider.", comment: "")
+		}
+		
+		return footerText
     }
     
 }

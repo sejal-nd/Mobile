@@ -43,10 +43,7 @@ class AutoPayViewController: UIViewController {
     @IBOutlet weak var enrollSwitch: Switch!
     @IBOutlet weak var enrollmentStatusLabel: UILabel!
     @IBOutlet weak var enrolledTopLabel: UILabel!
-    
-    @IBOutlet weak var thirdPartyLabel: UILabel!
-    
-    @IBOutlet weak var footerView: UIView!
+	
     @IBOutlet weak var footerLabel: UILabel!
     
     weak var delegate: AutoPayViewControllerDelegate?
@@ -79,8 +76,6 @@ class AutoPayViewController: UIViewController {
         style()
         textFieldSetup()
         bindEnrollingState()
-        thirdPartyLabel.isHidden = !viewModel.shouldShowThirdPartyLabel
-        thirdPartyLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         viewModel.footerText.drive(footerLabel.rx.text).addDisposableTo(bag)
         
@@ -161,7 +156,6 @@ class AutoPayViewController: UIViewController {
     
     private func styleEnrolled() {
         enrollmentStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
-        enrollmentStatusLabel.setLineHeight(lineHeight: 28)
         enrolledTopLabel.font = OpenSans.regular.of(textStyle: .body)
         enrolledTopLabel.setLineHeight(lineHeight: 16)
     }
@@ -304,8 +298,7 @@ class AutoPayViewController: UIViewController {
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
-    
-    
+	
     // MARK: - ScrollView
     
     func keyboardWillShow(notification: Notification) {
@@ -319,8 +312,15 @@ class AutoPayViewController: UIViewController {
     
     func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
+		scrollView.scrollIndicatorInsets = .zero
     }
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let vc = segue.destination as? AutoPayChangeBankViewController {
+			vc.viewModel = viewModel
+			vc.delegate = self
+		}
+	}
     
 }
 
@@ -356,5 +356,13 @@ extension AutoPayViewController: UITextFieldDelegate {
         }
         return false
     }
+}
+
+extension AutoPayViewController: AutoPayChangeBankViewControllerDelegate {
+	func changedBank() {
+		DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+			self.view.showToast(NSLocalizedString("Bank Account Changed", comment: ""))
+		})
+	}
 }
 
