@@ -31,13 +31,16 @@ class BGEAutoPaySettingsViewController: UIViewController {
     @IBOutlet var dueDateRadioControlsSet = [UIControl]()
     @IBOutlet var numberOfPaymentsRadioControlsSet = [UIControl]()
     
+    // Group 1
     let totalAmountDueRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Total Amount Due", comment: ""))
     
     let amountNotToExceedRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Amount Not To Exceed", comment: ""))
     let amountNotToExceedTextField = FloatLabelTextField(frame: .zero)
     let amountNotToExceedDetailsLabel = UILabel(frame: .zero)
+    var amountNotToExceedSpacerView1 = UIView(frame: .zero)
     var amountNotToExceedHairline = UIView(frame: .zero)
     
+    // Group 2
     let onDueDateRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("On Due Date", comment: ""))
     let onDueDateDetailsLabel = UILabel(frame: .zero)
     var onDueDateHairline = UIView(frame: .zero)
@@ -46,6 +49,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     let beforeDueDateDetailsLabel = UILabel(frame: .zero)
     let beforeDueDateHairline = UIView(frame: .zero)
     
+    // Group 3
     let untilCanceledRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Until Canceled", comment: ""))
     let untilCanceledDetailsLabel = UILabel(frame: .zero)
     var untilCanceledHairline = UIView(frame: .zero)
@@ -70,6 +74,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
     var viewModel: BGEAutoPayViewModel! // Passed from BGEAutoPayViewController
     
     var zPositionForWindow:CGFloat = 0.0
+    
+    let SeparatorIndentLength:CGFloat = 34.0
+    let SpacerHeight10 = 10
+    let SpacerHeight20 = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,9 +143,12 @@ class BGEAutoPaySettingsViewController: UIViewController {
         hideUntilDate(viewModel.howLongForAutoPay.value != .untilDate)
     }
     
+    // manipulate Group 1
     func hideAmountNotToExceedControlViews(_ isHidden: Bool) {
         amountNotToExceedTextField.isHidden = isHidden
         amountNotToExceedDetailsLabel.isHidden = isHidden
+        
+        amountNotToExceedSpacerView1.isHidden = isHidden
         
         viewModel.amountToPay.value = isHidden ? .totalAmountDue : .amountNotToExceed
     }
@@ -238,10 +249,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
             
             completion?()
         })
-        
-//        UIView.animate(withDuration: 1.5, animations: {
-//        }, completion: {_ in
-//        })
     }
     
     func buildStackViews() {
@@ -275,16 +282,18 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountDueHeaderLabel.text = NSLocalizedString("How much do you want to pay?", comment: "")
         
         totalAmountDueRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        
         // adding first button
         amountDueStackView.addArrangedSubview(totalAmountDueRadioControl)
         amountDueRadioControlsSet.append(totalAmountDueRadioControl)
         
         // adding divider
-        let separator1 = SeparatorLineView.create(leadingSpace: 34)
+        let separator1 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
         
         amountDueStackView.addArrangedSubview(separator1)
         
         amountNotToExceedRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        
         // adding second button
         amountDueStackView.addArrangedSubview(amountNotToExceedRadioControl)
         amountDueRadioControlsSet.append(amountNotToExceedRadioControl)
@@ -301,7 +310,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountDueStackView.addArrangedSubview(amountNotToExceedTextField)
         
         amountNotToExceedTextField.textField.rx.text.orEmpty.bind(to: viewModel.amountNotToExceed).addDisposableTo(disposeBag)
-        
+
         amountNotToExceedDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
         amountNotToExceedDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
         amountNotToExceedDetailsLabel.setContentCompressionResistancePriority(999, for: .vertical)
@@ -313,8 +322,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         // adding details for second button
         amountDueStackView.addArrangedSubview(amountNotToExceedDetailsLabel)
         
-        let separator2 = SeparatorLineView.create(leadingSpace: 34)
+        amountNotToExceedSpacerView1.backgroundColor = .black
+        amountDueStackView.addArrangedSubview(amountNotToExceedSpacerView1)
         
+        let separator2 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
         amountDueStackView.addArrangedSubview(separator2)
         
 //        amountNotToExceedDetailsLabel.addSubview(hairlineView)
@@ -366,9 +377,13 @@ class BGEAutoPaySettingsViewController: UIViewController {
         onDueDateDetailsLabel.numberOfLines = 0
         onDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         onDueDateDetailsLabel.text = NSLocalizedString("Your payments will process on each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary.", comment: "")
+        
         dueDateStackView.addArrangedSubview(onDueDateDetailsLabel)
         
-        let separator1 = SeparatorLineView.create(leadingSpace: 34)
+        let spacerView1 = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: SpacerHeight10))
+        dueDateStackView.addArrangedSubview(spacerView1)
+        
+        let separator1 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
         dueDateStackView.addArrangedSubview(separator1)
         
         //
@@ -377,9 +392,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         dueDateStackView.addArrangedSubview(beforeDueDateRadioControl)
         
         beforeDueDateRadioControl.detailButton.addTarget(self, action: #selector(beforeDueDateButtonPressed), for: .touchUpInside)
-        
-        let separator2 = SeparatorLineView.create(leadingSpace: 34)
-        dueDateStackView.addArrangedSubview(separator2)
 
         beforeDueDateDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
         beforeDueDateDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
@@ -395,6 +407,12 @@ class BGEAutoPaySettingsViewController: UIViewController {
         }
         
         dueDateStackView.addArrangedSubview(beforeDueDateDetailsLabel)
+        
+        let spacerView2 = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: SpacerHeight10))
+        dueDateStackView.addArrangedSubview(spacerView2)
+        
+        let separator2 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
+        dueDateStackView.addArrangedSubview(separator2)
 
         dueDateRadioControlsSet.append(beforeDueDateRadioControl)
         
@@ -432,7 +450,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         numberOfPaymentsStackView.addArrangedSubview(untilCanceledDetailsLabel)
         
-        let separator1 = SeparatorLineView.create(leadingSpace: 34)
+        let spacerView1 = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: SpacerHeight10))
+        numberOfPaymentsStackView.addArrangedSubview(spacerView1)
+        
+        let separator1 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
         numberOfPaymentsStackView.addArrangedSubview(separator1)
         
         numberOfPaymentsRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -464,7 +485,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         numberOfPaymentsStackView.addArrangedSubview(numberOfPaymentsDetailsLabel)
         
-        let separator2 = SeparatorLineView.create(leadingSpace: 34)
+        let spacerView2 = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: SpacerHeight10))
+        numberOfPaymentsStackView.addArrangedSubview(spacerView2)
+        
+        let separator2 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
         numberOfPaymentsStackView.addArrangedSubview(separator2)
         
         untilDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -486,7 +510,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         numberOfPaymentsStackView.addArrangedSubview(untilDateDetailsLabel)
         
-        let separator3 = SeparatorLineView.create(leadingSpace: 34)
+        let spacerView3 = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: SpacerHeight10))
+        numberOfPaymentsStackView.addArrangedSubview(spacerView3)
+        
+        let separator3 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
         numberOfPaymentsStackView.addArrangedSubview(separator3)
         
         for control in numberOfPaymentsRadioControlsSet {
@@ -513,6 +540,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func onDateButtonSelected() {
+        self.view.endEditing(true)
+        
         let calendarVC = PDTSimpleCalendarViewController()
         
         calendarVC.delegate = self

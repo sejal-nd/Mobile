@@ -15,7 +15,7 @@ class BGEAutoPayViewModel {
         case enrolling, isEnrolled, unenrolling
     }
     
-    enum AmountToPay{
+    enum AmountToPay {
         case totalAmountDue
         case amountNotToExceed
     }
