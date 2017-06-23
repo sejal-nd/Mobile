@@ -540,7 +540,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.35 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGx-aL-ACF">
-                                                                            <rect key="frame" x="107" y="7.5" width="128.5" height="16.5"/>
+                                                                            <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -1752,6 +1752,7 @@ AutoPay</string>
                                                             </view>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstItem="xsh-ka-7me" firstAttribute="centerX" secondItem="yz6-d2-EE6" secondAttribute="centerX" id="6M2-gx-Nue"/>
                                                             <constraint firstItem="SIf-1c-KV8" firstAttribute="leading" secondItem="yz6-d2-EE6" secondAttribute="leading" id="6f0-cy-wAH"/>
                                                             <constraint firstItem="jBY-zf-3vH" firstAttribute="leading" secondItem="yz6-d2-EE6" secondAttribute="leading" id="E3i-R4-mcN"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xsh-ka-7me" secondAttribute="trailing" constant="29" id="KpN-bG-doX"/>
