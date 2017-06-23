@@ -361,7 +361,7 @@ extension AutoPayViewController: UITextFieldDelegate {
 extension AutoPayViewController: AutoPayChangeBankViewControllerDelegate {
 	func changedBank() {
 		DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-			self.view.showToast(NSLocalizedString("Bank Account Changed", comment: ""))
+			self.view.showToast(NSLocalizedString("Bank account changed", comment: ""))
 		})
 	}
 }

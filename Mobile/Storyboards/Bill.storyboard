@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -824,7 +824,7 @@ to your payments.</string>
                                                 <rect key="frame" x="0.0" y="134" width="305" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Status: Active" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myo-7Z-efd">
-                                                        <rect key="frame" x="82.5" y="7" width="141" height="17"/>
+                                                        <rect key="frame" x="82" y="7" width="141" height="17"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                         <nil key="textColor"/>
@@ -1477,27 +1477,27 @@ to your payments.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWt-gL-goW">
-                                <rect key="frame" x="0.0" y="70" width="375" height="750"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="750"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ig9-dg-eaf">
                                 <rect key="frame" x="0.0" y="20" width="375" height="1480"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jBY-zf-3vH" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="4l0-uh-EDv"/>
-                                        </constraints>
-                                    </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bK-OS-FDw">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="1430"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1480"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1U-SY-HYl">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1080"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1130"/>
                                                 <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jBY-zf-3vH" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="4l0-uh-EDv"/>
+                                                        </constraints>
+                                                    </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="xsh-ka-7me">
-                                                        <rect key="frame" x="29" y="15" width="317" height="1035"/>
+                                                        <rect key="frame" x="29" y="65" width="317" height="1035"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y3s-Va-Abk" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="90"/>
@@ -1509,7 +1509,7 @@ to your payments.</string>
                                                                         <rect key="frame" x="30" y="20.5" width="43" height="49"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="997" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyj-ZX-wjI">
-                                                                        <rect key="frame" x="93" y="20.5" width="208" height="49.5"/>
+                                                                        <rect key="frame" x="93" y="21" width="208" height="49.5"/>
                                                                         <string key="text">Learn more about
 AutoPay</string>
                                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
@@ -1697,10 +1697,13 @@ AutoPay</string>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="xsh-ka-7me" firstAttribute="centerX" secondItem="O1U-SY-HYl" secondAttribute="centerX" id="Bry-sh-Hmd"/>
-                                                    <constraint firstItem="xsh-ka-7me" firstAttribute="top" secondItem="O1U-SY-HYl" secondAttribute="top" constant="15" id="CwU-VC-TqV"/>
                                                     <constraint firstItem="xsh-ka-7me" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="O1U-SY-HYl" secondAttribute="leading" constant="29" id="EgW-Ps-bVp"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jBY-zf-3vH" secondAttribute="trailing" id="SHv-iO-PAj"/>
+                                                    <constraint firstItem="xsh-ka-7me" firstAttribute="top" secondItem="jBY-zf-3vH" secondAttribute="bottom" constant="15" id="Why-Wa-RHo"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xsh-ka-7me" secondAttribute="trailing" constant="29" id="bfV-rc-FcE"/>
                                                     <constraint firstAttribute="bottom" secondItem="xsh-ka-7me" secondAttribute="bottom" constant="30" id="j64-6g-mEt"/>
+                                                    <constraint firstItem="jBY-zf-3vH" firstAttribute="leading" secondItem="O1U-SY-HYl" secondAttribute="leading" id="pl1-Pb-l5c"/>
+                                                    <constraint firstItem="jBY-zf-3vH" firstAttribute="top" secondItem="O1U-SY-HYl" secondAttribute="top" id="q10-3F-wUV"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -1723,7 +1726,7 @@ AutoPay</string>
                             <constraint firstAttribute="trailing" secondItem="ig9-dg-eaf" secondAttribute="trailing" id="Rru-l5-VZY"/>
                             <constraint firstItem="Akc-pJ-7px" firstAttribute="top" secondItem="ig9-dg-eaf" secondAttribute="bottom" id="XnE-6Q-FEv"/>
                             <constraint firstItem="bWt-gL-goW" firstAttribute="height" secondItem="N6O-j1-G4v" secondAttribute="height" multiplier="0.5" id="aol-uV-n1E"/>
-                            <constraint firstItem="bWt-gL-goW" firstAttribute="top" secondItem="jBY-zf-3vH" secondAttribute="bottom" id="jOu-Uo-WTG"/>
+                            <constraint firstItem="bWt-gL-goW" firstAttribute="top" secondItem="6OU-yP-fst" secondAttribute="bottom" id="vmO-05-8LG"/>
                             <constraint firstItem="bWt-gL-goW" firstAttribute="leading" secondItem="N6O-j1-G4v" secondAttribute="leading" id="xS0-y6-vN4"/>
                             <constraint firstItem="ig9-dg-eaf" firstAttribute="top" secondItem="6OU-yP-fst" secondAttribute="bottom" id="zug-NG-kg9"/>
                         </constraints>
@@ -2113,7 +2116,7 @@ AutoPay</string>
                                                                                         <rect key="frame" x="0.0" y="0.0" width="48" height="62.5"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fe-xL-vCG" userLabel="Alert Animation View">
-                                                                                                <rect key="frame" x="12" y="18.5" width="26" height="26"/>
+                                                                                                <rect key="frame" x="12" y="19" width="26" height="26"/>
                                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="width" constant="26" id="hRk-gG-vgB"/>
@@ -2167,7 +2170,7 @@ AutoPay</string>
                                                                                         <rect key="frame" x="0.0" y="0.0" width="337" height="144"/>
                                                                                         <subviews>
                                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gR4-Z3-SoN">
-                                                                                                <rect key="frame" x="68.5" y="37" width="201.5" height="71.5"/>
+                                                                                                <rect key="frame" x="68" y="36.5" width="201.5" height="71.5"/>
                                                                                                 <subviews>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$###.##" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYN-lO-iaJ">
                                                                                                         <rect key="frame" x="27.5" y="0.0" width="147" height="49.5"/>
@@ -2870,7 +2873,7 @@ AutoPay</string>
                                                                                                         <rect key="frame" x="30" y="20.5" width="43" height="49"/>
                                                                                                     </imageView>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="997" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="Would you like to enroll in AutoPay?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7m-1B-WyC">
-                                                                                                        <rect key="frame" x="93" y="20.5" width="207" height="49.5"/>
+                                                                                                        <rect key="frame" x="93" y="21" width="207" height="49.5"/>
                                                                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                                                         <color key="textColor" red="0.1019607843" green="0.090196078430000007" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                         <nil key="highlightedColor"/>
@@ -3322,10 +3325,10 @@ AutoPay</string>
                                                                         <rect key="frame" x="29" y="14" width="317" height="90"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="dot_pattern_right" translatesAutoresizingMaskIntoConstraints="NO" id="5bv-Uq-nD7">
-                                                                                <rect key="frame" x="171.5" y="0.0" width="126" height="90"/>
+                                                                                <rect key="frame" x="171" y="0.0" width="126" height="90"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT4-Mw-pfF">
-                                                                                <rect key="frame" x="89.5" y="20.5" width="139" height="49.5"/>
+                                                                                <rect key="frame" x="89" y="21" width="139" height="49.5"/>
                                                                                 <string key="text">What is
 Paperless eBill?</string>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
@@ -3333,7 +3336,7 @@ Paperless eBill?</string>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_paperlessleaf" translatesAutoresizingMaskIntoConstraints="NO" id="PYw-Rz-PZv">
-                                                                                <rect key="frame" x="10.5" y="19" width="55" height="52"/>
+                                                                                <rect key="frame" x="10" y="19" width="55" height="52"/>
                                                                             </imageView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3617,7 +3620,7 @@ Paperless eBill?</string>
                                                                 <rect key="frame" x="167" y="0.0" width="126" height="90"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evS-WD-Rt4">
-                                                                <rect key="frame" x="87" y="22.5" width="126" height="46.5"/>
+                                                                <rect key="frame" x="87" y="22" width="126" height="46.5"/>
                                                                 <string key="text">What is
 Budget Billing?</string>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
@@ -3649,7 +3652,7 @@ Budget Billing?</string>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqG-lk-DUF">
-                                                                        <rect key="frame" x="33.5" y="14.5" width="188" height="49.5"/>
+                                                                        <rect key="frame" x="33" y="14.5" width="188" height="49.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$200.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDe-zM-yPH">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="134" height="49.5"/>
@@ -3675,13 +3678,13 @@ Budget Billing?</string>
                                                                         </constraints>
                                                                     </view>
                                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Loading Budget Billing Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irq-1E-yq2">
-                                                                        <rect key="frame" x="20" y="31" width="214" height="17"/>
+                                                                        <rect key="frame" x="20" y="31.5" width="214" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="mdi-10-hU7" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="97.5" y="33.5" width="60" height="12"/>
+                                                                        <rect key="frame" x="96.5" y="34" width="60" height="12"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                 </subviews>
@@ -3827,7 +3830,7 @@ Budget Billing?</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="$200.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGk-nZ-2XN">
-                                                                <rect key="frame" x="237.5" y="16" width="59.5" height="22"/>
+                                                                <rect key="frame" x="237.5" y="15.5" width="59.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3898,7 +3901,7 @@ Budget Billing?</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="$200.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEI-fV-Bvl">
-                                                                <rect key="frame" x="237.5" y="16" width="59.5" height="22"/>
+                                                                <rect key="frame" x="237.5" y="15.5" width="59.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3943,7 +3946,7 @@ Budget Billing?</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="$200.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bS-Vv-dO6">
-                                                                <rect key="frame" x="237.5" y="16" width="59.5" height="22"/>
+                                                                <rect key="frame" x="237.5" y="15.5" width="59.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3988,7 +3991,7 @@ Budget Billing?</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="$200.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0iI-cF-GFO">
-                                                                <rect key="frame" x="237.5" y="16" width="59.5" height="22"/>
+                                                                <rect key="frame" x="237.5" y="15.5" width="59.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4542,7 +4545,7 @@ the year</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is Budget Billing?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gos-Aq-4Ke">
-                                        <rect key="frame" x="85.5" y="32.5" width="205" height="25"/>
+                                        <rect key="frame" x="85" y="32.5" width="205" height="25"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
