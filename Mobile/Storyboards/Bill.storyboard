@@ -1711,7 +1711,7 @@ AutoPay</string>
             </objects>
             <point key="canvasLocation" x="2777" y="272"/>
         </scene>
-        <!--Auto Pay Settings View Controller-->
+        <!--AutoPay Settings-->
         <scene sceneID="5fT-QL-E36">
             <objects>
                 <viewController id="K4v-kg-55U" customClass="BGEAutoPaySettingsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
@@ -1800,6 +1800,9 @@ AutoPay</string>
                             <constraint firstAttribute="trailingMargin" secondItem="arL-OO-1wj" secondAttribute="trailing" constant="-16" id="zFt-un-vOa"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="AutoPay Settings" id="uW9-gE-e8y">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="PPK-nU-mAj"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="600"/>
                     <connections>

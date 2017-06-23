@@ -9,19 +9,19 @@
 import Mapper
 
 enum AmountType: String {
-    case UpToAmount = "upto amount"
-    case AmountDue = "amount due"
+    case upToAmount = "upto amount"
+    case amountDue = "amount due"
 }
 
 enum PaymentDateType: String {
-    case OnDueDate = "on due"
-    case BeforeDueDate = "before due"
+    case onDueDate = "on due"
+    case beforeDueDate = "before due"
 }
 
 enum EffectivePeriod: String {
-    case UntilCancelled = "untilCanceled"
-    case EndDate = "endDate"
-    case MaxPayments = "maxPayments"
+    case untilCanceled = "untilCanceled"
+    case endDate = "endDate"
+    case maxPayments = "maxPayments"
 }
 
 struct BGEAutoPayInfo: Mappable {

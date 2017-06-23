@@ -96,11 +96,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
     func loadSettings() {
         // placeholder for now
         switch(viewModel.amountToPay.value) {
-        case .totalAmountDue:
+        case .amountDue:
             totalAmountDueRadioControl.isSelected = true
             amountNotToExceedRadioControl.isSelected = false
         
-        case .amountNotToExceed:
+        case .upToAmount:
             totalAmountDueRadioControl.isSelected = false
             amountNotToExceedRadioControl.isSelected = true
         }
@@ -123,24 +123,24 @@ class BGEAutoPaySettingsViewController: UIViewController {
             numberOfPaymentsRadioControl.isSelected = false
             untilDateRadioControl.isSelected = false
             
-        case .forNumberOfPayments:
+        case .maxPayments:
             untilCanceledRadioControl.isSelected = false
             numberOfPaymentsRadioControl.isSelected = true
             untilDateRadioControl.isSelected = false
             
-        case .untilDate:
+        case .endDate:
             untilCanceledRadioControl.isSelected = false
             numberOfPaymentsRadioControl.isSelected = false
             untilDateRadioControl.isSelected = true
         }
 
         //
-        hideAmountNotToExceedControlViews(viewModel.amountToPay.value == .totalAmountDue)
+        hideAmountNotToExceedControlViews(viewModel.amountToPay.value == .amountDue)
         hideBeforeDueDateControlViews(viewModel.whenToPay.value != .onDueDate)
         
         hideUntilCanceled(viewModel.howLongForAutoPay.value != .untilCanceled)
-        hideNumberOfPayments(viewModel.howLongForAutoPay.value != .forNumberOfPayments)
-        hideUntilDate(viewModel.howLongForAutoPay.value != .untilDate)
+        hideNumberOfPayments(viewModel.howLongForAutoPay.value != .maxPayments)
+        hideUntilDate(viewModel.howLongForAutoPay.value != .endDate)
     }
     
     // manipulate Group 1
@@ -173,7 +173,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsDetailsLabel.isHidden = isHidden
         
         if !isHidden {
-            viewModel.howLongForAutoPay.value = .forNumberOfPayments
+            viewModel.howLongForAutoPay.value = .maxPayments
         }
     }
     
@@ -182,7 +182,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         untilDateDetailsLabel.isHidden = isHidden
         
         if !isHidden {
-            viewModel.howLongForAutoPay.value = .untilDate
+            viewModel.howLongForAutoPay.value = .endDate
         }
     }
     
