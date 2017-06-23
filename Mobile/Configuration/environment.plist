@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>environment</key>
-	<string>STAGE</string>
+	<string>DEV</string>
 	<key>appName</key>
-	<string>PECO_STAGE</string>
+	<string>ComEd_DEV</string>
 	<key>opco</key>
-	<string>PECO</string>
+	<string>ComEd</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>Staging</string>
+	<string>Dev</string>
 	<key>fiservUrl</key>
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
 </dict>
