@@ -1410,14 +1410,18 @@ to your payments.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" priority="999" constant="460" id="rso-Aw-sgH"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="bVv-uo-cux" firstAttribute="top" secondItem="wdW-TR-Ok5" secondAttribute="top" constant="30" id="Xag-t1-aGl"/>
-                                            <constraint firstItem="bVv-uo-cux" firstAttribute="leading" secondItem="wdW-TR-Ok5" secondAttribute="leading" constant="29" id="XxU-UR-6u2"/>
+                                            <constraint firstItem="bVv-uo-cux" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wdW-TR-Ok5" secondAttribute="leading" constant="29" id="XxU-UR-6u2"/>
                                             <constraint firstAttribute="bottom" secondItem="bVv-uo-cux" secondAttribute="bottom" constant="30" id="rT6-cr-kpU"/>
-                                            <constraint firstAttribute="trailing" secondItem="bVv-uo-cux" secondAttribute="trailing" constant="29" id="xax-4S-lfU"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bVv-uo-cux" secondAttribute="trailing" constant="29" id="xax-4S-lfU"/>
+                                            <constraint firstItem="bVv-uo-cux" firstAttribute="centerX" secondItem="wdW-TR-Ok5" secondAttribute="centerX" id="zpb-vc-DuZ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1685,13 +1689,17 @@ AutoPay</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" priority="999" constant="460" id="FWS-hK-LQg"/>
+                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="xsh-ka-7me" firstAttribute="centerX" secondItem="O1U-SY-HYl" secondAttribute="centerX" id="Bry-sh-Hmd"/>
                                                     <constraint firstItem="xsh-ka-7me" firstAttribute="top" secondItem="O1U-SY-HYl" secondAttribute="top" constant="15" id="CwU-VC-TqV"/>
-                                                    <constraint firstAttribute="trailing" secondItem="xsh-ka-7me" secondAttribute="trailing" constant="29" id="H2O-Rm-Tby"/>
-                                                    <constraint firstItem="xsh-ka-7me" firstAttribute="leading" secondItem="O1U-SY-HYl" secondAttribute="leading" constant="29" id="IyB-7h-LMt"/>
+                                                    <constraint firstItem="xsh-ka-7me" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="O1U-SY-HYl" secondAttribute="leading" constant="29" id="EgW-Ps-bVp"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xsh-ka-7me" secondAttribute="trailing" constant="29" id="bfV-rc-FcE"/>
                                                     <constraint firstAttribute="bottom" secondItem="xsh-ka-7me" secondAttribute="bottom" constant="30" id="j64-6g-mEt"/>
                                                 </constraints>
                                             </view>
