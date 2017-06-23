@@ -465,6 +465,7 @@ class BillViewController: AccountPickerViewController {
         } else if let vc = segue.destination as? WalletViewController {
             vc.viewModel.accountDetail = viewModel.currentAccountDetail.value!
         } else if let vc = segue.destination as? BGEAutoPayViewController {
+            vc.delegate = self
             vc.accountDetail = viewModel.currentAccountDetail.value!
         } else if let vc = segue.destination as? AutoPayViewController {
             vc.delegate = self
@@ -524,6 +525,14 @@ extension BillViewController: AutoPayViewControllerDelegate {
         showDelayedToast(withMessage: message)
     }
 
+}
+
+extension BillViewController: BGEAutoPayViewControllerDelegate {
+    
+    func BGEAutoPayViewController(_ BGEAutoPayViewController: BGEAutoPayViewController, didUpdateWithToastMessage message: String) {
+        viewModel.fetchAccountDetail(isRefresh: false)
+        showDelayedToast(withMessage: message)
+    }
 }
 
 extension Reactive where Base: BillViewController {

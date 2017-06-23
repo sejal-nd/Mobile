@@ -12,14 +12,18 @@ import RxCocoa
 class BGEAutoPayViewModel {
     
     enum EnrollmentStatus {
-        case enrolling, isEnrolled, unenrolling
+        case enrolled, unenrolled
     }
     
     let disposeBag = DisposeBag()
     
     private var paymentService: PaymentService
+
+    let isFetchingAutoPayInfo = Variable(false)
+    
     var accountDetail: AccountDetail
     let enrollmentStatus: Variable<EnrollmentStatus>
+    let enrollSwitchValue: Variable<Bool>
     let selectedWalletItem = Variable<WalletItem?>(nil)
     
     // --- Settings --- //
@@ -32,7 +36,7 @@ class BGEAutoPayViewModel {
     
     var numberOfDaysBeforeDueDate = Variable("")
     
-    var autoPayUntilDate = Variable("")
+    var autoPayUntilDate = Variable<Date?>(nil)
     
     var primaryProfile = Variable<Bool>(false)
     // ---------------- //
@@ -40,18 +44,71 @@ class BGEAutoPayViewModel {
     required init(paymentService: PaymentService, accountDetail: AccountDetail) {
         self.paymentService = paymentService
         self.accountDetail = accountDetail
-        enrollmentStatus = Variable(accountDetail.isAutoPay ? .isEnrolled : .enrolling)
+        enrollmentStatus = Variable(accountDetail.isAutoPay ? .enrolled : .unenrolled)
+        enrollSwitchValue = Variable(accountDetail.isAutoPay ? true : false)
     }
     
-    func getAutoPayInfo(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
+        isFetchingAutoPayInfo.value = true
         paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { billingInfo in
+            .subscribe(onNext: { (autoPayInfo: BGEAutoPayInfo) in
+                self.isFetchingAutoPayInfo.value = false
+                
+                // MMS - I'm so, so sorry about this
+                if let masked4 = autoPayInfo.paymentAccountLast4, let nickname = autoPayInfo.paymentAccountNickname {
+                    self.selectedWalletItem.value = WalletItem.from(["maskedWalletItemAccountNumber": masked4, "nickName": nickname])
+                }
+                if let amountType = autoPayInfo.amountType {
+                    self.amountToPay.value = amountType
+                }
+                if let amountThreshold = autoPayInfo.amountThreshold {
+                    self.amountNotToExceed.value = amountThreshold
+                }
+                if let paymentDateType = autoPayInfo.paymentDateType {
+                    self.whenToPay.value = paymentDateType
+                }
+                if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
+                    self.numberOfDaysBeforeDueDate.value = paymentDaysBeforeDue
+                }
+                if let effectivePeriod = autoPayInfo.effectivePeriod {
+                    self.howLongForAutoPay.value = effectivePeriod
+                }
+                if let effectiveEndDate = autoPayInfo.effectiveEndDate {
+                    self.autoPayUntilDate.value = effectiveEndDate
+                }
+                if let effectiveNumPayments = autoPayInfo.effectiveNumPayments {
+                    self.numberOfPayments.value = effectiveNumPayments
+                }
+                onSuccess?()
+            }, onError: { error in
+                self.isFetchingAutoPayInfo.value = false
+                onError?(error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
+    func enrollOrUpdate(update: Bool = false, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        paymentService.enrollOrUpdateAutoPayBGE(accountNumber: accountDetail.accountNumber, walletItemId: selectedWalletItem.value!.walletItemID, amountType: amountToPay.value, amountThreshold: amountNotToExceed.value, paymentDateType: whenToPay.value, paymentDatesBeforeDue: numberOfDaysBeforeDueDate.value, effectivePeriod: howLongForAutoPay.value, effectiveEndDate: autoPayUntilDate.value, effectiveNumPayments: numberOfPayments.value, update: update)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
                 onSuccess()
             }, onError: { error in
                 onError(error.localizedDescription)
             })
             .addDisposableTo(disposeBag)
+    }
+    
+    func submitButtonEnabled() -> Observable<Bool> {
+        return Observable.combineLatest(enrollmentStatus.asObservable(), selectedWalletItem.asObservable(), enrollSwitchValue.asObservable()) {
+            if $0 == .unenrolled && $1 != nil { // Unenrolled with bank account selected
+                return true
+            }
+            if $0 == .enrolled && !$2 { // Enrolled and enrollment switch toggled off
+                return true
+            }
+            return false
+        }
     }
     
     lazy var shouldShowWalletItem: Driver<Bool> = self.selectedWalletItem.asDriver().map {

@@ -19,11 +19,17 @@ protocol PaymentService {
     
     
     /// Enroll in AutoPay (BGE only)
-    ///
-    /// - Parameters:
-    ///   - accountNumber: The account to get the info for
-    ///   - completion: the completion block to execute upon completion.
-    //func enrollAutoPayBGE(accountNumber: String, walletItemId: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func enrollOrUpdateAutoPayBGE(accountNumber: String,
+                                  walletItemId: String?,
+                                  amountType: AmountType,
+                                  amountThreshold: String,
+                                  paymentDateType: PaymentDateType,
+                                  paymentDaysBeforeDue: String,
+                                  effectivePeriod: EffectivePeriod,
+                                  effectiveEndDate: Date?,
+                                  effectiveNumPayments: String,
+                                  update: Bool,
+                                  completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
 }
 
@@ -36,6 +42,30 @@ extension PaymentService {
                 switch (result) {
                 case ServiceResult.Success(let autoPayInfo):
                     observer.onNext(autoPayInfo)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func enrollOrUpdateAutoPayBGE(accountNumber: String,
+                                  walletItemId: String?,
+                                  amountType: AmountType,
+                                  amountThreshold: String,
+                                  paymentDateType: PaymentDateType,
+                                  paymentDatesBeforeDue: String,
+                                  effectivePeriod: EffectivePeriod,
+                                  effectiveEndDate: Date?,
+                                  effectiveNumPayments: String,
+                                  update: Bool) -> Observable<Void> {
+        return Observable.create { observer in
+            self.enrollOrUpdateAutoPayBGE(accountNumber: accountNumber, walletItemId: walletItemId, amountType: amountType, amountThreshold: amountThreshold, paymentDateType: paymentDateType, paymentDaysBeforeDue: paymentDatesBeforeDue, effectivePeriod: effectivePeriod, effectiveEndDate: effectiveEndDate, effectiveNumPayments: effectiveNumPayments, update: update, completion: { (result: ServiceResult<Void>) in
+                switch (result) {
+                case ServiceResult.Success():
+                    observer.onNext()
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
