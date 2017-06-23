@@ -35,11 +35,11 @@ class RadioSelectControl: ButtonControl {
 		}
 	}
 	
-	override var isHighlighted: Bool {
-		didSet {
-			selectedImageView.image = (isSelected || isHighlighted) ? #imageLiteral(resourceName: "ic_radiobutton_selected"):#imageLiteral(resourceName: "ic_radiobutton_deselected")
-		}
-	}
+//	override var isHighlighted: Bool {
+//		didSet {
+//			selectedImageView.image = (isSelected || isHighlighted) ? #imageLiteral(resourceName: "ic_radiobutton_selected"):#imageLiteral(resourceName: "ic_radiobutton_deselected")
+//		}
+//	}
 	
 	override var isSelected: Bool {
 		didSet {

@@ -23,7 +23,7 @@ protocol PaymentService {
     /// - Parameters:
     ///   - accountNumber: The account to get the info for
     ///   - completion: the completion block to execute upon completion.
-    //func enrollAutoPayBGE(accountNumber: String, walletItemId: String,  completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    //func enrollAutoPayBGE(accountNumber: String, walletItemId: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
 }
 

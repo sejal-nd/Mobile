@@ -15,22 +15,6 @@ class BGEAutoPayViewModel {
         case enrolling, isEnrolled, unenrolling
     }
     
-    enum AmountToPay{
-        case totalAmountDue
-        case amountNotToExceed
-    }
-    
-    enum WhenToPay {
-        case onDueDate
-        case beforeDueDate
-    }
-    
-    enum HowLongForAutoPay {
-        case untilCanceled
-        case forNumberOfPayments
-        case untilDate
-    }
-    
     let disposeBag = DisposeBag()
     
     private var paymentService: PaymentService
@@ -39,9 +23,9 @@ class BGEAutoPayViewModel {
     let selectedWalletItem = Variable<WalletItem?>(nil)
     
     // --- Settings --- //
-    let amountToPay = Variable<AmountToPay>(.totalAmountDue)
-    let whenToPay = Variable<WhenToPay>(.onDueDate)
-    let howLongForAutoPay = Variable<HowLongForAutoPay>(.untilCanceled)
+    let amountToPay = Variable<AmountType>(.amountDue)
+    let whenToPay = Variable<PaymentDateType>(.onDueDate)
+    let howLongForAutoPay = Variable<EffectivePeriod>(.untilCanceled)
     
     let amountNotToExceed = Variable("")
     let numberOfPayments = Variable("")
