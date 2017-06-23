@@ -12,6 +12,7 @@ import RxSwift
 class BillingHistoryViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var loadingIndicator: UIView!
     
     var billingHistory: BillingHistory?
     
@@ -23,11 +24,16 @@ class BillingHistoryViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("Activity", comment: "")
+        self.loadingIndicator.isHidden = false;
+        
+        tableView.delegate = self;
+        tableView.dataSource = self;
         
         let nib = UINib(nibName: "BillingHistoryTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "Cell")
         
         viewModel.getBillingHistory(success: { (billingHistory) in
+            self.loadingIndicator.isHidden = true
             self.billingHistory = billingHistory
             self.tableView.reloadData()
         }) { (error) in
@@ -87,9 +93,27 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 3
+            guard let upcoming = self.billingHistory?.upcoming else {
+                return 0 //TODO: empty state
+            }
+            
+            if upcoming.count > 3 {
+                return 3
+            }
+            else {
+                return upcoming.count
+            }
         } else {
-            return 16;
+            guard let past = self.billingHistory?.past else {
+                return 0 //TODO: empty state
+            }
+            
+            if past.count > 16 {
+                return 16
+            }
+            else {
+                return past.count
+            }
         }
     }
     
@@ -97,17 +121,24 @@ extension BillingHistoryViewController: UITableViewDataSource {
         return 60
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 1
+//    }
+//    
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 10
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let billingHistoryItem: BillingHistoryItem
+        if indexPath.section == 0 {
+            billingHistoryItem = (self.billingHistory?.upcoming[indexPath.row])!;
+        } else {
+            billingHistoryItem = (self.billingHistory?.past[indexPath.row])!;
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BillingHistoryTableViewCell
-        //cell.configure
+        cell.configureWith(amount: billingHistoryItem.amountPaid!, date: billingHistoryItem.dateString(), isFuture: billingHistoryItem.isFuture)
         
         return cell
     }

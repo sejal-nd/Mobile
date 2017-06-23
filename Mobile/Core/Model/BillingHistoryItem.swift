@@ -61,4 +61,10 @@ struct BillingHistoryItem: Mappable {
         status = map.optionalFrom("description");
         isFuture = calculateIsFuture(dateToCompare: date)
     }
+    
+    func dateString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        return dateFormatter.string(from: date!)
+    }
 }
