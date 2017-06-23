@@ -398,6 +398,12 @@ class BillViewController: AccountPickerViewController {
 			})
 			.addDisposableTo(bag)
         
+        activityButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                self.performSegue(withIdentifier: "billingHistorySegue", sender: self)
+            })
+            .addDisposableTo(bag)
+        
         walletButton.rx.touchUpInside.asDriver()
             .drive(onNext: {
                 self.performSegue(withIdentifier: "walletSegue", sender: self)

@@ -13,16 +13,20 @@ class BillingHistoryViewModel {
     let disposeBag = DisposeBag()
     
     private var billService: BillService
-    private var billingHistory = Variable<BillingHistory>(<#Element#>)
     
     init(billService: BillService) {
         self.billService = billService
-        
+    }
+    
+    func getBillingHistory(success: @escaping (BillingHistory) -> Void, failure: @escaping (Error) -> Void) {
         let calendar = Calendar.current
-        let lastYear = calendar.date(byAdding: .month, value: -12, to: Date())
-        
+        let lastYear = calendar.date(byAdding: .month, value: -24, to: Date())
         billService.fetchBillingHistory(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, startDate: lastYear!, endDate: Date())
-            .bind(to: billingHistory)
+            .subscribe(onNext: { billingHistory in
+                success(billingHistory)
+            }, onError: { error in
+                failure(error)
+            })
             .addDisposableTo(disposeBag)
     }
 }

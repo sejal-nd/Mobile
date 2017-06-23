@@ -11,7 +11,9 @@ import RxSwift
 
 class BillingHistoryViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
+    
+    var billingHistory: BillingHistory?
     
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
     
@@ -24,10 +26,22 @@ class BillingHistoryViewController: UIViewController {
         
         let nib = UINib(nibName: "BillingHistoryTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "Cell")
+        
+        viewModel.getBillingHistory(success: { (billingHistory) in
+            self.billingHistory = billingHistory
+            self.tableView.reloadData()
+        }) { (error) in
+            print(error)
+            //TODO: handle this error
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar(hidesBottomBorder: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,9 +87,9 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            
+            return 3
         } else {
-            
+            return 16;
         }
     }
     
