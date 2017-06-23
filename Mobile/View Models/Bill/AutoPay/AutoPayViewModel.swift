@@ -14,11 +14,11 @@ class AutoPayViewModel {
     
     let bag = DisposeBag()
     
-    enum EnrollmentStatus {
+    enum AutoPayEnrollmentStatus {
         case enrolling, isEnrolled, unenrolling
     }
     
-    let enrollmentStatus: Variable<EnrollmentStatus>
+    let enrollmentStatus: Variable<AutoPayEnrollmentStatus>
     
     let accountDetail: AccountDetail
     
@@ -28,6 +28,7 @@ class AutoPayViewModel {
     let accountNumber = Variable("")
     let confirmAccountNumber = Variable("")
     let termsAndConditionsCheck: Variable<Bool>
+    let selectedUnenrollmentReason = Variable<String?>(nil)
     
     required init(withAccountDetail accountDetail: AccountDetail) {
         self.accountDetail = accountDetail
@@ -63,31 +64,37 @@ class AutoPayViewModel {
                                                                               self.confirmAccountNumber.asDriver())
         .map(==)
         .distinctUntilChanged()
-	
-	lazy var canSubmitNewAccount: Driver<Bool> = {
-		var validationDrivers = [self.nameOnAccountHasText,
-		                         self.routingNumberIsValid,
-		                         self.accountNumberHasText,
-		                         self.accountNumberIsValid,
-		                         self.confirmAccountNumberMatches]
-		
-		if Environment.sharedInstance.opco == .comEd {
-			validationDrivers.append(self.termsAndConditionsCheck.asDriver())
-		}
-		
-		return Driver.combineLatest(validationDrivers)
-			.map { !$0.contains(false) }
-			.distinctUntilChanged()
-	}()
-	
-    lazy var canSubmit: Driver<Bool> = {
-        switch self.enrollmentStatus.value {
-        case .enrolling:
-            return self.canSubmitNewAccount
-        default:
-            return Driver.just(false)
+    
+    lazy var canSubmitNewAccount: Driver<Bool> = {
+        var validationDrivers = [self.nameOnAccountHasText,
+                                 self.routingNumberIsValid,
+                                 self.accountNumberHasText,
+                                 self.accountNumberIsValid,
+                                 self.confirmAccountNumberMatches]
+        
+        if Environment.sharedInstance.opco == .comEd {
+            validationDrivers.append(self.termsAndConditionsCheck.asDriver())
         }
+        
+        return Driver.combineLatest(validationDrivers)
+            .map { !$0.contains(false) }
+            .distinctUntilChanged()
     }()
+    
+    lazy var canSubmitUnenroll: Driver<Bool> = self.selectedUnenrollmentReason.asDriver().map { $0 != nil }
+    
+    lazy var canSubmit: Driver<Bool> = Driver.combineLatest(self.enrollmentStatus.asDriver(),
+                                                            self.canSubmitNewAccount,
+                                                            self.canSubmitUnenroll)
+        .map { status, canSubmitNewAccount, canSubmitUnenroll in
+            switch status {
+            case .enrolling:
+                return canSubmitNewAccount
+            case .isEnrolled, .unenrolling:
+                return canSubmitUnenroll
+            }
+        }
+        .distinctUntilChanged()
     
     lazy var nameOnAccountErrorText: Driver<String?> = self.nameOnAccountIsValid.asDriver()
         .distinctUntilChanged()
@@ -118,6 +125,12 @@ class AutoPayViewModel {
     var shouldShowThirdPartyLabel: Bool {
         return Environment.sharedInstance.opco == .peco && (self.accountDetail.isSupplier || self.accountDetail.isDualBillOption)
     }
+    
+    let reasonStrings = [String(format: NSLocalizedString("Closing %@ account", comment: ""), Environment.sharedInstance.opco.displayString),
+                         NSLocalizedString("Changing bank account", comment: ""),
+                         NSLocalizedString("Dissatisfied with the program", comment: ""),
+                         NSLocalizedString("Program no longer meets my needs", comment: ""),
+                         NSLocalizedString("Other", comment: "")]
     
     lazy var footerText: Driver<String> = self.enrollmentStatus.asDriver().map { enrollmentStatus in
 		var footerText: String
