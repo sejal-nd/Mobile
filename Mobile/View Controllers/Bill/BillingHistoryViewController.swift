@@ -122,13 +122,19 @@ extension BillingHistoryViewController: UITableViewDataSource {
         return 60
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 1
-//    }
-//    
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 10
-//    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? { 
+        
+        if self.billingHistory != nil {
+            return upcomingHeaderView(section: section)
+        }
+        
+        return nil
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let billingHistoryItem: BillingHistoryItem
@@ -142,6 +148,47 @@ extension BillingHistoryViewController: UITableViewDataSource {
         cell.configureWith(item: billingHistoryItem)
         
         return cell
+    }
+    
+    func upcomingHeaderView(section: Int) -> UIView {
+        let view = UIView() // The width will be the same as the cell, and the height should be set in tableView:heightForRowAtIndexPath:
+        let label = UILabel()
+        let button = UIButton(type: UIButtonType.system)
+        
+        label.text = section == 0 ? "UPCOMING" : "PAST"
+        label.font = label.font.withSize(14)
+        label.textColor = UIColor.deepGray
+        
+        let titleText = section == 0 ? "View All (\(self.billingHistory!.upcoming.count))" : "View More"
+        button.setTitle(titleText, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        let selector = section == 0 ? #selector(BillingHistoryViewController.viewAllUpcoming) : #selector(BillingHistoryViewController.viewMorePast)
+        button.addTarget(self, action: selector, for:.touchUpInside)
+        
+        view.addSubview(label)
+        view.addSubview(button)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        let views = ["label": label, "button": button, "view": view]
+        
+        let horizontallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-19-[label]-60-[button]-22-|", options: .alignAllCenterY, metrics: nil, views: views)
+        view.addConstraints(horizontallayoutContraints)
+        
+        let verticalLayoutContraint = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
+        view.addConstraint(verticalLayoutContraint)
+        
+        return view
+    }
+    
+    func viewAllUpcoming() {
+        print("view all upcoming")
+    }
+    
+    func viewMorePast() {
+        print("view more past")
     }
     
 }
