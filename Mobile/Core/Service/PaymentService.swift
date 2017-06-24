@@ -19,17 +19,34 @@ protocol PaymentService {
 
 
     /// Enroll in AutoPay (BGE only)
-    func enrollOrUpdateAutoPayBGE(accountNumber: String,
-                                  walletItemId: String?,
-                                  amountType: AmountType,
-                                  amountThreshold: String,
-                                  paymentDateType: PaymentDateType,
-                                  paymentDaysBeforeDue: String,
-                                  effectivePeriod: EffectivePeriod,
-                                  effectiveEndDate: Date?,
-                                  effectiveNumPayments: String,
-                                  update: Bool,
-                                  completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    ///
+    /// - Parameters:
+    ///   - accountNumber: The account to enroll
+    ///   - walletItemId: The selected wallet item to use for AutoPay payments
+    ///   - Params 3-9: BGE AutoPay Settings
+    ///   - isUpdate: Denotes whether the account is a change, or new
+    ///   - completion: the completion block to execute upon completion.
+    func enrollInAutoPayBGE(accountNumber: String,
+                            walletItemId: String?,
+                            amountType: AmountType,
+                            amountThreshold: String,
+                            paymentDateType: PaymentDateType,
+                            paymentDaysBeforeDue: String,
+                            effectivePeriod: EffectivePeriod,
+                            effectiveEndDate: Date?,
+                            effectiveNumPayments: String,
+                            isUpdate: Bool,
+                            completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    /// Unenroll in AutoPay (BGE only)
+    ///
+    /// - Parameters:
+    ///   - accountNumber: The account to enroll
+    ///   - paymentAccount: The enrolled wallet item's nickname (MAY CHANGE)
+    ///   - completion: the completion block to execute upon completion.
+    func unenrollFromAutoPayBGE(accountNumber: String,
+                                paymentAccount: String,
+                                completion: @escaping (_ result: ServiceResult<Void>) -> Void)
 
     /// Enroll in AutoPay (ComEd & PECO only)
     ///
@@ -49,7 +66,7 @@ protocol PaymentService {
                          isUpdate: Bool,
                          completion: @escaping (_ result: ServiceResult<Void>) -> Void)
 
-    /// Enroll in AutoPay (ComEd & PECO only)
+    /// Unenroll in AutoPay (ComEd & PECO only)
     ///
     /// - Parameters:
     ///   - accountNumber: The account to unenroll
@@ -79,19 +96,19 @@ extension PaymentService {
         }
     }
 
-    func enrollOrUpdateAutoPayBGE(accountNumber: String,
-                                  walletItemId: String?,
-                                  amountType: AmountType,
-                                  amountThreshold: String,
-                                  paymentDateType: PaymentDateType,
-                                  paymentDatesBeforeDue: String,
-                                  effectivePeriod: EffectivePeriod,
-                                  effectiveEndDate: Date?,
-                                  effectiveNumPayments: String,
-                                  update: Bool) -> Observable<Void> {
+    func enrollInAutoPayBGE(accountNumber: String,
+                            walletItemId: String?,
+                            amountType: AmountType,
+                            amountThreshold: String,
+                            paymentDateType: PaymentDateType,
+                            paymentDatesBeforeDue: String,
+                            effectivePeriod: EffectivePeriod,
+                            effectiveEndDate: Date?,
+                            effectiveNumPayments: String,
+                            isUpdate: Bool) -> Observable<Void> {
         
         return Observable.create { observer in
-            self.enrollOrUpdateAutoPayBGE(accountNumber: accountNumber, walletItemId: walletItemId, amountType: amountType, amountThreshold: amountThreshold, paymentDateType: paymentDateType, paymentDaysBeforeDue: paymentDatesBeforeDue, effectivePeriod: effectivePeriod, effectiveEndDate: effectiveEndDate, effectiveNumPayments: effectiveNumPayments, update: update, completion: { (result: ServiceResult<Void>) in
+            self.enrollInAutoPayBGE(accountNumber: accountNumber, walletItemId: walletItemId, amountType: amountType, amountThreshold: amountThreshold, paymentDateType: paymentDateType, paymentDaysBeforeDue: paymentDatesBeforeDue, effectivePeriod: effectivePeriod, effectiveEndDate: effectiveEndDate, effectiveNumPayments: effectiveNumPayments, isUpdate: isUpdate, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success():
                     observer.onNext()
@@ -100,6 +117,23 @@ extension PaymentService {
                     observer.onError(err)
                 }
             })
+            return Disposables.create()
+        }
+    }
+    
+    func unenrollFromAutoPayBGE(accountNumber: String, paymentAccount: String) -> Observable<Void> {
+        
+        return Observable.create { observer in
+            self.unenrollFromAutoPayBGE(accountNumber: accountNumber, paymentAccount: paymentAccount)
+            { (result: ServiceResult<Void>) in
+                switch (result) {
+                case ServiceResult.Success:
+                    observer.onNext()
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            }
             return Disposables.create()
         }
     }

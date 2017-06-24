@@ -89,7 +89,18 @@ class BGEAutoPayViewModel {
     }
     
     func enrollOrUpdate(update: Bool = false, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.enrollOrUpdateAutoPayBGE(accountNumber: accountDetail.accountNumber, walletItemId: selectedWalletItem.value!.walletItemID, amountType: amountToPay.value, amountThreshold: amountNotToExceed.value, paymentDateType: whenToPay.value, paymentDatesBeforeDue: numberOfDaysBeforeDueDate.value, effectivePeriod: howLongForAutoPay.value, effectiveEndDate: autoPayUntilDate.value, effectiveNumPayments: numberOfPayments.value, update: update)
+        paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber, walletItemId: selectedWalletItem.value!.walletItemID, amountType: amountToPay.value, amountThreshold: amountNotToExceed.value, paymentDateType: whenToPay.value, paymentDatesBeforeDue: numberOfDaysBeforeDueDate.value, effectivePeriod: howLongForAutoPay.value, effectiveEndDate: autoPayUntilDate.value, effectiveNumPayments: numberOfPayments.value, isUpdate: update)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                onSuccess()
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
+    func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        paymentService.unenrollFromAutoPayBGE(accountNumber: accountDetail.accountNumber, paymentAccount: (selectedWalletItem.value?.nickName)!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()

@@ -180,16 +180,29 @@ class BGEAutoPayViewController: UIViewController {
                 self.present(alertVc, animated: true, completion: nil)
             })
         } else if viewModel.enrollmentStatus.value == .enrolled {
-            viewModel.enrollOrUpdate(update: true, onSuccess: {
-                LoadingView.hide()
-                self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay settings updated", comment: ""))
-                self.navigationController?.popViewController(animated: true)
-            }, onError: { errMessage in
-                LoadingView.hide()
-                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
-            })
+            if viewModel.enrollSwitchValue.value { // Update
+                viewModel.enrollOrUpdate(update: true, onSuccess: {
+                    LoadingView.hide()
+                    self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay settings updated", comment: ""))
+                    self.navigationController?.popViewController(animated: true)
+                }, onError: { errMessage in
+                    LoadingView.hide()
+                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
+                })
+            } else { // Unenroll
+                viewModel.unenroll(onSuccess: {
+                    LoadingView.hide()
+                    self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Unenrolled from AutoPay", comment: ""))
+                    self.navigationController?.popViewController(animated: true)
+                }, onError: { errMessage in
+                    LoadingView.hide()
+                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
+                })
+            }
         }
 
     }
