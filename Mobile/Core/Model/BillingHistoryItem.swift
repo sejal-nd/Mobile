@@ -8,63 +8,61 @@
 
 import Mapper
 
-private func extractDollarAmountString(object: Any?) throws -> String? {
+private func dollarAmount(fromValue value: Any?) throws -> Double {
     // We're checking for both a double or a string here, because they've changed their web services
     // here before and I want to protect against that possibility again
-    if let doubleVal = object as? Double {
-        return doubleVal.currencyString
-    } else if let stringVal = object as? String {
+    if let doubleVal = value as? Double {
+        return doubleVal
+    } else if let stringVal = value as? String {
         if let doubleVal = NumberFormatter().number(from: stringVal)?.doubleValue {
-            return doubleVal.currencyString
+            return doubleVal
         } else {
             throw MapperError.convertibleError(value: stringVal, type: Double.self)
         }
     } else {
-        throw MapperError.convertibleError(value: object, type: Double.self)
+        throw MapperError.convertibleError(value: value, type: Double.self)
     }
 }
 
-private func extractDate(object: Any?) throws -> Date? {
-    guard let dateString = object as? String else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
-    }
+private func extractDate(object: Any?) throws -> Date {
     
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    return dateFormatter.date(from: dateString)
-}
-
-private func calculateIsFuture(dateToCompare: Date?) -> Bool {
-    let today = Date()
-    guard let dateToCompare = dateToCompare else {
-        return false //what do I return here if date is nil?  Should this error
+    
+    guard let dateString = object as? String, let date = dateFormatter.date(from: dateString) else {
+        throw MapperError.convertibleError(value: object, type: Date.self)
     }
     
+    return date
+}
+
+private func calculateIsFuture(dateToCompare: Date) -> Bool {
+    let today = Date()
     return dateToCompare > today
 }
 
 struct BillingHistoryItem: Mappable {
-    let amountPaid: String?
-    let chargeAmount: String?
-    let totalAmountDue: String?
-    let date: Date?
+    let amountPaid: Double?
+    let chargeAmount: Double?
+    let totalAmountDue: Double?
+    let date: Date
     let description: String?
     let status: String?
     let isFuture: Bool
     
     init(map: Mapper) throws {
-        amountPaid = map.optionalFrom("amount_paid", transformation: extractDollarAmountString)
-        chargeAmount = map.optionalFrom("charge_amount", transformation: extractDollarAmountString)
-        totalAmountDue = map.optionalFrom("total_amount_due", transformation: extractDollarAmountString)
-        date = map.optionalFrom("date", transformation: extractDate)
+        amountPaid = map.optionalFrom("amount_paid", transformation: dollarAmount)
+        chargeAmount = map.optionalFrom("charge_amount", transformation: dollarAmount)
+        totalAmountDue = map.optionalFrom("total_amount_due", transformation: dollarAmount)
+        try date = map.from("date", transformation: extractDate)
         description = map.optionalFrom("description")
-        status = map.optionalFrom("description");
+        status = map.optionalFrom("status");
         isFuture = calculateIsFuture(dateToCompare: date)
     }
     
     func dateString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
-        return dateFormatter.string(from: date!)
+        return dateFormatter.string(from: date)
     }
 }

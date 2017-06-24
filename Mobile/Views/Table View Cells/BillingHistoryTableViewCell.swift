@@ -11,6 +11,8 @@ import UIKit
 class BillingHistoryTableViewCell: UITableViewCell {
     
     let PAYMENT = "Payment"
+    let LATE_PAYMENT = "Late Payment Charge"
+    let PAYMENT_PROCESSING = "Payment Processing"
     let SCHEDULED_PAYMENT = "Scheduled Payment"
     let BILL_ISSUED = "Bill Issued"
 
@@ -25,21 +27,50 @@ class BillingHistoryTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    //TODO: this is not complete - just trying to get something working so I can test
-    //the webservices
-    func configureWith(amount: String, date: String, isFuture: Bool) {
-        self.amountLabel.text = amount
-        self.dateLabel.text = date
+    func configureWith(item: BillingHistoryItem) {
         
-        if isFuture {
-            iconImageView.image = UIImage(named: "ic_scheduled")
-            titleLabel.text = SCHEDULED_PAYMENT
+        if item.isFuture {
+            switch item.status! {
+                case "PROCESSING":
+                    iconImageView.image = UIImage(named: "ic_pending")
+                    titleLabel.text = PAYMENT_PROCESSING
+                    self.amountLabel.text = item.amountPaid!.currencyString
+                case "SCHEDULED": 
+                    fallthrough
+                default:
+                    iconImageView.image = UIImage(named: "ic_scheduled")
+                    titleLabel.text = SCHEDULED_PAYMENT
+                    self.amountLabel.text = item.amountPaid!.currencyString
+            }
         } else {
-            iconImageView.image = UIImage(named: "ic_bill")
-            titleLabel.text = BILL_ISSUED
+            switch item.description! {
+                case "Regular Bill":
+                    iconImageView.image = UIImage(named: "ic_bill")
+                    titleLabel.text = BILL_ISSUED
+                    self.amountLabel.text = item.totalAmountDue!.currencyString
+                case "Late Payment Charge":
+                    iconImageView.image = UIImage(named: "ic_alert")
+                    titleLabel.text = LATE_PAYMENT
+                    self.amountLabel.text = item.amountPaid!.currencyString
+                case "Payment":
+                    fallthrough
+                default:
+                    iconImageView.image = UIImage(named: "ic_paymentcheck")
+                    titleLabel.text = PAYMENT
+                    self.amountLabel.text = item.amountPaid!.currencyString
+            }
         }
         
+        dateLabel.text = item.date.mmDdYyyyString
+    }
+    
+    class var identifier: String{
+        struct Static
+        {
+            static let identifier: String = "BillingHistoryTableViewCell"
+        }
         
+        return Static.identifier
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

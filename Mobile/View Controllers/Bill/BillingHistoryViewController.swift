@@ -25,15 +25,16 @@ class BillingHistoryViewController: UIViewController {
         
         self.title = NSLocalizedString("Activity", comment: "")
         self.loadingIndicator.isHidden = false;
+        self.tableView.isHidden = true;
         
         tableView.delegate = self;
         tableView.dataSource = self;
         
-        let nib = UINib(nibName: "BillingHistoryTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "Cell")
+        self.tableView.register(UINib(nibName: BillingHistoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: "Cell")
         
         viewModel.getBillingHistory(success: { (billingHistory) in
             self.loadingIndicator.isHidden = true
+            self.tableView.isHidden = false
             self.billingHistory = billingHistory
             self.tableView.reloadData()
         }) { (error) in
@@ -138,7 +139,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BillingHistoryTableViewCell
-        cell.configureWith(amount: billingHistoryItem.amountPaid!, date: billingHistoryItem.dateString(), isFuture: billingHistoryItem.isFuture)
+        cell.configureWith(item: billingHistoryItem)
         
         return cell
     }
