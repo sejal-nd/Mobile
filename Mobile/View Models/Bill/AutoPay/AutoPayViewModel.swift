@@ -14,11 +14,13 @@ class AutoPayViewModel {
     
     let bag = DisposeBag()
     
-    enum EnrollmentStatus {
+    enum AutoPayEnrollmentStatus {
         case enrolling, isEnrolled, unenrolling
     }
     
-    let enrollmentStatus: Variable<EnrollmentStatus>
+    let enrollmentStatus: Variable<AutoPayEnrollmentStatus>
+    
+    let accountDetail: AccountDetail
     
     let bankAccountType = Variable<BankAccountType>(.checking)
     let nameOnAccount = Variable("")
@@ -26,10 +28,37 @@ class AutoPayViewModel {
     let accountNumber = Variable("")
     let confirmAccountNumber = Variable("")
     let termsAndConditionsCheck: Variable<Bool>
+    let selectedUnenrollmentReason = Variable<String?>(nil)
     
-    required init(withAccountDetail accountDetail: AccountDetail) {
+    let paymentService: PaymentService
+    
+    required init(withPaymentService paymentService: PaymentService, accountDetail: AccountDetail) {
+        self.paymentService = paymentService
+        self.accountDetail = accountDetail
         enrollmentStatus = Variable(accountDetail.isAutoPay ? .isEnrolled:.enrolling)
         termsAndConditionsCheck = Variable(Environment.sharedInstance.opco != .comEd)
+    }
+    
+    func submit() -> Observable<Bool> {
+        switch enrollmentStatus.value {
+        case .enrolling:
+            return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
+                                                  nameOfAccount: nameOnAccount.value,
+                                                  bankAccountType: bankAccountType.value,
+                                                  routingNumber: routingNumber.value,
+                                                  bankAccountNumber: accountNumber.value,
+                                                  isUpdate: false).map { _ in true }
+        case .unenrolling:
+            return paymentService.unenrollFromAutoPay(accountNumber: accountDetail.accountNumber,
+                                                      reason: selectedUnenrollmentReason.value!).map { _ in false }
+        case .isEnrolled:
+            return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
+                                                  nameOfAccount: nameOnAccount.value,
+                                                  bankAccountType: bankAccountType.value,
+                                                  routingNumber: routingNumber.value,
+                                                  bankAccountNumber: accountNumber.value,
+                                                  isUpdate: true).map { _ in true }
+        }
     }
     
     lazy var nameOnAccountHasText: Driver<Bool> = self.nameOnAccount.asDriver()
@@ -61,27 +90,36 @@ class AutoPayViewModel {
         .map(==)
         .distinctUntilChanged()
     
-    lazy var canSubmit: Driver<Bool> = {
+    lazy var canSubmitNewAccount: Driver<Bool> = {
+        var validationDrivers = [self.nameOnAccountHasText,
+                                 self.routingNumberIsValid,
+                                 self.accountNumberHasText,
+                                 self.accountNumberIsValid,
+                                 self.confirmAccountNumberMatches]
         
-        switch self.enrollmentStatus.value {
-        case .enrolling:
-            var validationDrivers = [self.nameOnAccountHasText,
-                                     self.routingNumberIsValid,
-                                     self.accountNumberHasText,
-                                     self.accountNumberIsValid,
-                                     self.confirmAccountNumberMatches]
-            
-            if Environment.sharedInstance.opco == .comEd {
-                validationDrivers.append(self.termsAndConditionsCheck.asDriver())
-            }
-            
-            return Driver.combineLatest(validationDrivers)
-                .map { !$0.contains(false) }
-                .distinctUntilChanged()
-        default:
-            return Driver.just(false)
+        if Environment.sharedInstance.opco == .comEd {
+            validationDrivers.append(self.termsAndConditionsCheck.asDriver())
         }
+        
+        return Driver.combineLatest(validationDrivers)
+            .map { !$0.contains(false) }
+            .distinctUntilChanged()
     }()
+    
+    lazy var canSubmitUnenroll: Driver<Bool> = self.selectedUnenrollmentReason.asDriver().map { $0 != nil }
+    
+    lazy var canSubmit: Driver<Bool> = Driver.combineLatest(self.enrollmentStatus.asDriver(),
+                                                            self.canSubmitNewAccount,
+                                                            self.canSubmitUnenroll)
+        .map { status, canSubmitNewAccount, canSubmitUnenroll in
+            switch status {
+            case .enrolling:
+                return canSubmitNewAccount
+            case .isEnrolled, .unenrolling:
+                return canSubmitUnenroll
+            }
+        }
+        .distinctUntilChanged()
     
     lazy var nameOnAccountErrorText: Driver<String?> = self.nameOnAccountIsValid.asDriver()
         .distinctUntilChanged()
@@ -109,22 +147,39 @@ class AutoPayViewModel {
     
     let shouldShowTermsAndConditionsCheck = Environment.sharedInstance.opco == .comEd
     
+    var shouldShowThirdPartyLabel: Bool {
+        return Environment.sharedInstance.opco == .peco && (self.accountDetail.isSupplier || self.accountDetail.isDualBillOption)
+    }
+    
+    let reasonStrings = [String(format: NSLocalizedString("Closing %@ account", comment: ""), Environment.sharedInstance.opco.displayString),
+                         NSLocalizedString("Changing bank account", comment: ""),
+                         NSLocalizedString("Dissatisfied with the program", comment: ""),
+                         NSLocalizedString("Program no longer meets my needs", comment: ""),
+                         NSLocalizedString("Other", comment: "")]
+    
     lazy var footerText: Driver<String> = self.enrollmentStatus.asDriver().map { enrollmentStatus in
+		var footerText: String
         switch (Environment.sharedInstance.opco, enrollmentStatus) {
         case (.peco, .enrolling):
-            return NSLocalizedString("Your recurring payment will apply to the next PECO bill you receive. You will need to submit a payment for your current PECO bill if you have not already done so.", comment: "")
+            footerText = NSLocalizedString("Your recurring payment will apply to the next PECO bill you receive. You will need to submit a payment for your current PECO bill if you have not already done so.", comment: "")
         case (.comEd, .enrolling):
-            return NSLocalizedString("Your recurring payment will apply to the next ComEd bill you receive. You will need to submit a payment for your current ComEd bill if you have not already done so.", comment: "")
+            footerText = NSLocalizedString("Your recurring payment will apply to the next ComEd bill you receive. You will need to submit a payment for your current ComEd bill if you have not already done so.", comment: "")
         case (.peco, .isEnrolled):
-            return NSLocalizedString("Changing your bank account information takes up to 7 days to process. If this change is submitted less than 7 days prior to your next due date, the funds may be deducted from your original bank account.", comment: "")
+            footerText = NSLocalizedString("Changing your bank account information takes up to 7 days to process. If this change is submitted less than 7 days prior to your next due date, the funds may be deducted from your original bank account.", comment: "")
         case (.comEd, .isEnrolled):
-            return NSLocalizedString("If this change is submitted more than 4 business days prior to the bill due date, you will need to pay your current bill using another payment method because the existing bank information on file will be canceled. If this change is submitted less than 3 business days prior to the bill due date, the funds will be deducted from your original bank account.", comment: "")
+            footerText = NSLocalizedString("If this change is submitted more than 4 business days prior to the bill due date, you will need to pay your current bill using another payment method because the existing bank information on file will be canceled. If this change is submitted less than 3 business days prior to the bill due date, the funds will be deducted from your original bank account.", comment: "")
         case (.peco, .unenrolling),
              (.comEd, .unenrolling):
-            return NSLocalizedString("If this change is submitted less than 3 business days prior to the bill due date, the funds will be deducted from your original bank account.", comment: "")
+            footerText = NSLocalizedString("If this change is submitted less than 3 business days prior to the bill due date, the funds will be deducted from your original bank account.", comment: "")
         default:
             fatalError("BGE account attempted to access the ComEd/PECO AutoPay screen.")
         }
+		
+		if self.shouldShowThirdPartyLabel {
+			footerText += "\n\n" + NSLocalizedString("Please note that AutoPay will only include PECO charges. Energy Supply charges are billed separately by your chosen generation provider.", comment: "")
+		}
+		
+		return footerText
     }
     
 }

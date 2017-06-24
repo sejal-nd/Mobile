@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>environment</key>
-	<string>DEV</string>
+	<string>TEST</string>
 	<key>appName</key>
-	<string>BGE_DEV</string>
+	<string>BGE_TEST</string>
 	<key>opco</key>
 	<string>BGE</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>Dev</string>
+	<string>Testing</string>
 	<key>fiservUrl</key>
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
 </dict>
