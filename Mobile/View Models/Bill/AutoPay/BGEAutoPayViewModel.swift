@@ -145,6 +145,26 @@ class BGEAutoPayViewModel {
         }
     }
     
+    func getInvalidSettingsMessage() -> String? {
+        let defaultString = NSLocalizedString("Missing required fields.", comment: "")
+        
+        if amountToPay.value == .upToAmount && amountNotToExceed.value.isEmpty {
+            return defaultString
+        }
+        if whenToPay.value == .beforeDueDate && numberOfDaysBeforeDueDate.value == "0" {
+            return defaultString
+        }
+        if howLongForAutoPay.value == .maxPayments && numberOfPayments.value.isEmpty {
+            return defaultString
+        }
+        if let amountDouble = Double(amountNotToExceed.value) {
+            if amountDouble < 0.01 || amountDouble > 9999.99 {
+                return NSLocalizedString("\"Amount Not To Exceed\" must be between $0.01 and $9,999.99", comment: "")
+            }
+        }
+        return nil
+    }
+    
     lazy var shouldShowWalletItem: Driver<Bool> = self.selectedWalletItem.asDriver().map {
         return $0 != nil
     }
@@ -153,7 +173,7 @@ class BGEAutoPayViewModel {
         if $0 != nil {
             return #imageLiteral(resourceName: "opco_bank_mini")
         } else {
-            return #imageLiteral(resourceName: "bank_building")
+            return #imageLiteral(resourceName: "bank_building_mini")
         }
     }
     

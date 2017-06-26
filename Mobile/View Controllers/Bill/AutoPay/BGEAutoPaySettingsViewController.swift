@@ -16,6 +16,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     let disposeBag = DisposeBag()
 
     // grand master stackview
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!                          // 1
 
     // Group 1
@@ -100,9 +101,13 @@ class BGEAutoPaySettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let _ = self.view
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         title = NSLocalizedString("AutoPay Settings", comment: "")
+        
+        let backButton = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: self, action: #selector(onBackPress))
+        navigationItem.leftBarButtonItem = backButton
         
         buildStackViews()
         
@@ -122,6 +127,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
                 }
             }
         }).addDisposableTo(disposeBag)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func loadSettings() {
@@ -377,7 +386,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         // creating text field for second button
         amountNotToExceedTextField.textField.placeholder = NSLocalizedString("Amount Not To Exceed*", comment: "")
         amountNotToExceedTextField.textField.autocorrectionType = .no
-        amountNotToExceedTextField.textField.returnKeyType = .next
         amountNotToExceedTextField.textField.delegate = self
         amountNotToExceedTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
@@ -577,7 +585,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         numberOfPaymentsTextField.textField.placeholder = NSLocalizedString("Number of Payments*", comment: "")
         numberOfPaymentsTextField.textField.autocorrectionType = .no
-        numberOfPaymentsTextField.textField.returnKeyType = .next
         numberOfPaymentsTextField.textField.delegate = self
         numberOfPaymentsTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
@@ -718,8 +725,14 @@ class BGEAutoPaySettingsViewController: UIViewController {
         hideUntilDate(control != untilDateRadioControl)
     }
     
-    func onBackButton() {
-        navigationController?.popViewController(animated: true)
+    func onBackPress() {
+        if let errorMessage = viewModel.getInvalidSettingsMessage() {
+            let alertVc = UIAlertController(title: NSLocalizedString("Invalid Settings", comment: ""), message: errorMessage, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            present(alertVc, animated: true, completion: nil)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func pickerCancelButtonPressed(_ sender: Any) {
@@ -728,6 +741,22 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     @IBAction func pickerDoneButtonPressed(_ sender: Any) {
         showPickerView(false)
+    }
+    
+    // MARK: - ScrollView
+    
+    func keyboardWillShow(notification: Notification) {
+        let userInfo = notification.userInfo!
+        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        scrollView.contentInset = insets
+        scrollView.scrollIndicatorInsets = insets
+    }
+    
+    func keyboardWillHide(notification: Notification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
     }
 }
 

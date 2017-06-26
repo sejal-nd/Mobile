@@ -111,10 +111,8 @@ class BGEAutoPayViewController: UIViewController {
         settingsButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
         setupBindings()
-        
-        if viewModel.initialEnrollmentStatus.value == .enrolled {
-            viewModel.getAutoPayInfo(onSuccess: nil, onError: nil)
-        }
+    
+        viewModel.getAutoPayInfo(onSuccess: nil, onError: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,6 +147,11 @@ class BGEAutoPayViewController: UIViewController {
     func setupBindings() {
         viewModel.isFetchingAutoPayInfo.asDriver().drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetchingAutoPayInfo.asObservable().subscribe(onNext: { fetching in
+            if self.viewModel.initialEnrollmentStatus.value == .unenrolled {
+                self.stickyBottomViewHeightConstraint.constant = fetching ? 0 : 108
+            }
+        }).addDisposableTo(disposeBag)
         
         viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonAccountNumberLabel.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonNicknameLabel.rx.isHidden).addDisposableTo(disposeBag)
@@ -166,7 +169,16 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     func onCancelPress() {
-        navigationController?.popViewController(animated: true)
+        if viewModel.initialEnrollmentStatus.value == .enrolled && viewModel.userDidChangeSettings.value {
+            let alertVc = UIAlertController(title: NSLocalizedString("Unsaved AutoPay Settings", comment: ""), message: NSLocalizedString("Are you sure you want to exit without saving?", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            self.present(alertVc, animated: true, completion: nil)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     func onSubmitPress() {
