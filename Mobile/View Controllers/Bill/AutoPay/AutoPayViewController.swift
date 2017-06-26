@@ -22,6 +22,7 @@ class AutoPayViewController: UIViewController {
     @IBOutlet weak var learnMoreButton: ButtonControl!
     @IBOutlet weak var learnMoreLabel: UILabel!
     
+    // Not Enrolled
     @IBOutlet weak var enrollStackView: UIStackView!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControl!
@@ -37,7 +38,18 @@ class AutoPayViewController: UIViewController {
     @IBOutlet weak var tacLabel: UILabel!
     @IBOutlet weak var tacButton: UIButton!
     
-    @IBOutlet weak var footerView: UIView!
+    // Enrolled
+    @IBOutlet weak var enrolledStackView: UIStackView!
+    @IBOutlet weak var enrollSwitch: Switch!
+    @IBOutlet weak var enrollmentStatusLabel: UILabel!
+    @IBOutlet weak var enrolledContentView: UIView!
+    @IBOutlet weak var enrolledTopLabel: UILabel!
+    
+    // Unenrolling
+    @IBOutlet weak var reasonForStoppingContainerView: UIView!
+    @IBOutlet weak var reasonForStoppingTableView: IntrinsicHeightTableView!
+    @IBOutlet weak var reasonForStoppingLabel: UILabel!
+	
     @IBOutlet weak var footerLabel: UILabel!
     
     weak var delegate: AutoPayViewControllerDelegate?
@@ -45,7 +57,7 @@ class AutoPayViewController: UIViewController {
     let bag = DisposeBag()
     
     var accountDetail: AccountDetail!
-    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withAccountDetail: self.accountDetail) }()
+    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail) }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +82,7 @@ class AutoPayViewController: UIViewController {
         style()
         textFieldSetup()
         bindEnrollingState()
+        bindEnrolledState()
         
         viewModel.footerText.drive(footerLabel.rx.text).addDisposableTo(bag)
         viewModel.canSubmit.drive(submitButton.rx.isEnabled).addDisposableTo(bag)
@@ -77,6 +90,21 @@ class AutoPayViewController: UIViewController {
         learnMoreButton.rx.touchUpInside.asDriver()
             .drive(onNext: onLearnMorePress)
             .addDisposableTo(bag)
+        
+        
+        // background color hackery
+        let isScrollOffsetLessThanZero = scrollView.rx.contentOffset.asDriver()
+            .map { $0.y < 0 }
+            .distinctUntilChanged()
+        
+        Driver.combineLatest(viewModel.enrollmentStatus.asDriver(), isScrollOffsetLessThanZero)
+            .map { $0 == .unenrolling || $1 }
+            .map { $0 ? UIColor.softGray: UIColor.white }
+            .drive(onNext: { [weak self] color in
+                self?.view.backgroundColor = color
+            })
+            .addDisposableTo(bag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,16 +120,29 @@ class AutoPayViewController: UIViewController {
         gradientLayer.removeFromSuperlayer()
         
         let gLayer = CAGradientLayer()
-        gLayer.frame = gradientView.bounds
+        gLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/2)
         gLayer.colors = [UIColor.softGray.cgColor, UIColor.white.cgColor]
         
         gradientLayer = gLayer
         gradientView.layer.addSublayer(gLayer)
+        
+        // Dynamic sizing for the table header view
+        if let headerView = reasonForStoppingTableView.tableHeaderView {
+            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+            
+            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
+            if height != headerFrame.size.height {
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                reasonForStoppingTableView.tableHeaderView = headerView
+            }
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        gradientLayer.frame = gradientView.bounds
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/2)
     }
     
     func onCancelPress() {
@@ -109,8 +150,24 @@ class AutoPayViewController: UIViewController {
     }
     
     func onSubmitPress() {
-        delegate?.autoPayViewController(self, enrolled: true)
-        navigationController?.popViewController(animated: true)
+        LoadingView.show()
+        viewModel.submit()
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: { [weak self] enrolled in
+                    LoadingView.hide()
+                    guard let strongSelf = self else { return }
+                    strongSelf.delegate?.autoPayViewController(strongSelf, enrolled: enrolled)
+                    strongSelf.navigationController?.popViewController(animated: true)
+                }, onError: { [weak self] error in
+                    LoadingView.hide()
+                    guard let strongSelf = self else { return }
+                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                                            message: error.localizedDescription, preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    strongSelf.present(alertController, animated: true, completion: nil)
+            })
+            .addDisposableTo(bag)
     }
     
     private func style() {
@@ -130,6 +187,14 @@ class AutoPayViewController: UIViewController {
         
         learnMoreLabel.attributedText = learnMoreAboutAutoPayAttrString
         
+        styleNotEnrolled()
+        styleEnrolled()
+        
+        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        footerLabel.setLineHeight(lineHeight: 16)
+    }
+    
+    private func styleNotEnrolled() {
         topLabel.font = OpenSans.semibold.of(textStyle: .headline)
         topLabel.setLineHeight(lineHeight: 24)
         
@@ -137,9 +202,15 @@ class AutoPayViewController: UIViewController {
         tacLabel.font = SystemFont.regular.of(textStyle: .headline)
         tacLabel.setLineHeight(lineHeight: 25)
         tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+    }
+    
+    private func styleEnrolled() {
+        enrollmentStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
+        enrolledTopLabel.font = OpenSans.regular.of(textStyle: .body)
+        enrolledTopLabel.setLineHeight(lineHeight: 16)
         
-        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        footerLabel.setLineHeight(lineHeight: 16)
+        reasonForStoppingLabel.textColor = .blackText
+        reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
     }
     
     private func textFieldSetup() {
@@ -162,6 +233,46 @@ class AutoPayViewController: UIViewController {
         confirmAccountNumberTextField.textField.placeholder = NSLocalizedString("Confirm Account Number*", comment: "")
         confirmAccountNumberTextField.textField.delegate = self
         accountNumberTextField.textField.returnKeyType = .done
+    }
+    
+    private func bindEnrolledState() {
+        if accountDetail.isAutoPay {
+            enrollSwitch.rx.isOn
+                .map { isOn -> AutoPayViewModel.AutoPayEnrollmentStatus in
+                    isOn ? .isEnrolled: .unenrolling
+                }
+                .bind(to: viewModel.enrollmentStatus)
+                .addDisposableTo(bag)
+        }
+        
+        enrollSwitch.rx.isOn.filter { $0 }.map { _ in nil }.bind(to: viewModel.selectedUnenrollmentReason).addDisposableTo(bag)
+        viewModel.selectedUnenrollmentReason.asDriver()
+            .filter { $0 == nil }
+            .drive(onNext: { [weak self] _ in
+                guard let tableView = self?.reasonForStoppingTableView,
+                let selectedIndexPath = tableView.indexPathForSelectedRow
+                    else { return }
+                tableView.deselectRow(at: selectedIndexPath, animated: true)
+            })
+            .addDisposableTo(bag)
+        
+        viewModel.enrollmentStatus.asDriver().map { $0 == .enrolling }.drive(enrolledStackView.rx.isHidden).addDisposableTo(bag)
+        reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (pick one)", comment: "")
+        reasonForStoppingTableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReasonForStoppingCell")
+        reasonForStoppingTableView.estimatedRowHeight = 51
+        reasonForStoppingContainerView.isHidden = true
+        viewModel.enrollmentStatus.asDriver()
+            .map { $0 == .unenrolling }
+            .drive(onNext: { [weak self] unenrolling in
+                
+                self?.view.backgroundColor = unenrolling ? .softGray: .white
+                UIView.animate(withDuration: 0.3) {
+                    self?.reasonForStoppingContainerView.isHidden = !unenrolling
+                    self?.enrolledContentView.alpha = unenrolling ? 0:1
+                    self?.enrolledContentView.isHidden = unenrolling
+                }
+            })
+            .addDisposableTo(bag)
     }
     
     private func bindEnrollingState() {
@@ -280,23 +391,29 @@ class AutoPayViewController: UIViewController {
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
-    
-    
+	
     // MARK: - ScrollView
     
     func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, max(0, endFrameRect.size.height - footerView.frame.size.height), 0)
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
     
     func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
+		scrollView.scrollIndicatorInsets = .zero
     }
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let vc = segue.destination as? AutoPayChangeBankViewController {
+			vc.viewModel = viewModel
+			vc.delegate = self
+		}
+	}
     
 }
 
@@ -334,3 +451,42 @@ extension AutoPayViewController: UITextFieldDelegate {
     }
 }
 
+extension AutoPayViewController: AutoPayChangeBankViewControllerDelegate {
+	func changedBank() {
+		DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+			self.view.showToast(NSLocalizedString("Bank account changed", comment: ""))
+		})
+	}
+}
+
+
+extension AutoPayViewController: UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+}
+
+extension AutoPayViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonForStoppingCell", for: indexPath) as! RadioSelectionTableViewCell
+        
+        cell.label.text = viewModel.reasonStrings[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectedUnenrollmentReason.value = viewModel.reasonStrings[indexPath.row]
+    }
+    
+}
