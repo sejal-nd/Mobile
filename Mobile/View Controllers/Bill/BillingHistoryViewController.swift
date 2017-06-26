@@ -110,7 +110,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
             }
             
             if past.count > 16 {
-                return 16
+                return 17
             }
             else {
                 return past.count
@@ -119,18 +119,50 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 66
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if self.billingHistory != nil {
+            if section == 0 && self.billingHistory?.upcoming.count == 0 {
+                return 0.000001
+            } else if section == 1 && self.billingHistory?.past.count == 0 {
+                return 0.000001
+            }
+        }
+        
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if self.billingHistory != nil {
+            if section == 0 && self.billingHistory?.upcoming.count != 0 {
+                return 22
+            }
+        }
+        
+        return 0.000001 
     }
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? { 
         
         if self.billingHistory != nil {
-            return upcomingHeaderView(section: section)
+            if section == 0 && self.billingHistory?.upcoming.count == 0 {
+                return nil
+            } else if section == 1 && self.billingHistory?.past.count == 0 {
+                return nil
+            } else {
+               return headerView(section: section) 
+            }
+        }
+        
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if self.billingHistory != nil {
+            return footerView(section: section)
         }
         
         return nil
@@ -144,14 +176,25 @@ extension BillingHistoryViewController: UITableViewDataSource {
             billingHistoryItem = (self.billingHistory?.past[indexPath.row])!;
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BillingHistoryTableViewCell
-        cell.configureWith(item: billingHistoryItem)
+        if indexPath.section == 1 && indexPath.row == 16 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            let button = UIButton(type: UIButtonType.system)
+            button.setTitle("View More", for: .normal)
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
+            cell.contentView.addSubview(button)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BillingHistoryTableViewCell
+            cell.configureWith(item: billingHistoryItem)
+            return cell
+        }
         
-        return cell
     }
     
-    func upcomingHeaderView(section: Int) -> UIView {
+    func headerView(section: Int) -> UIView {
         let view = UIView() // The width will be the same as the cell, and the height should be set in tableView:heightForRowAtIndexPath:
+        view.backgroundColor = UIColor.white
         let label = UILabel()
         let button = UIButton(type: UIButtonType.system)
         
@@ -166,11 +209,11 @@ extension BillingHistoryViewController: UITableViewDataSource {
         let selector = section == 0 ? #selector(BillingHistoryViewController.viewAllUpcoming) : #selector(BillingHistoryViewController.viewMorePast)
         button.addTarget(self, action: selector, for:.touchUpInside)
         
-        view.addSubview(label)
-        view.addSubview(button)
-        
         label.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(label)
+        view.addSubview(button)
         
         let views = ["label": label, "button": button, "view": view]
         
@@ -179,7 +222,20 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         let verticalLayoutContraint = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
         view.addConstraint(verticalLayoutContraint)
+            
+        return view
+    }
+    
+    func footerView(section: Int) -> UIView {
         
+        let isabaleneColor = UIColor(red: 233/255.0, green: 235/255.0, blue: 238/255.0, alpha: 1.00)
+        let view = UIView() 
+        
+        if section == 0 {
+           view.backgroundColor = isabaleneColor 
+        } else {
+            view.backgroundColor = UIColor.clear
+        }
         return view
     }
     
