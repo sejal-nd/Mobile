@@ -97,13 +97,18 @@ class LoginViewModel {
         return fingerprintService.isTouchIDEnabled()
     }
     
-    func validateRegistration(guid: String, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func validateRegistration(guid: String, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         registrationService.validateConfirmationEmail(guid)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
             }, onError: { err in
-                onError(err.localizedDescription)
+                let serviceError = err as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.FnProfNotFound.rawValue {
+                    onError(NSLocalizedString("Your verification link is no longer valid", comment: ""), NSLocalizedString("If you have already verified your account, please sign in to access your account. If your link has expired, please re-register.", comment: ""))
+                } else {
+                    onError(NSLocalizedString("Error", comment: ""), err.localizedDescription)
+                }
             }).addDisposableTo(disposeBag)
     }
     

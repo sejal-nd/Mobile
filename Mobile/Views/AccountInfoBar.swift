@@ -10,7 +10,7 @@ import UIKit
 
 class AccountInfoBar: UIView {
     
-    var label: UILabel!
+    var label = UILabel(frame: .zero)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +27,6 @@ class AccountInfoBar: UIView {
     func commonInit() {
         backgroundColor = .softGray
         
-        label = UILabel(frame: .zero)
         label.numberOfLines = 2
         label.textColor = .deepGray
         label.font = SystemFont.medium.of(textStyle: .subheadline)
@@ -58,9 +57,18 @@ class AccountInfoBar: UIView {
         super.updateConstraints()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8).isActive = true
+        label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
+        let leadingConstraint = label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)
+        leadingConstraint.priority = 999
+        leadingConstraint.isActive = true
+        
+        let trailingConstraint = label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        trailingConstraint.priority = 999
+        trailingConstraint.isActive = true
+        
+        label.widthAnchor.constraint(lessThanOrEqualToConstant: 460).isActive = true
     }
 }
