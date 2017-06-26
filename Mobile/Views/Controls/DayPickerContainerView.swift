@@ -26,7 +26,7 @@ class DayPickerContainerView: UIView {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    var selectedDay = 0
+    var selectedDay = 1
 
     override init(frame: CGRect) {
         super.init(frame: frame)

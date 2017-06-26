@@ -107,6 +107,21 @@ class BGEAutoPaySettingsViewController: UIViewController {
         buildStackViews()
         
         loadSettings()
+        
+        amountNotToExceedTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: { _ in
+            if let text = self.amountNotToExceedTextField.textField.text {
+                if !text.isEmpty {
+                    self.viewModel.userDidChangeSettings.value = true
+                }
+            }
+        }).addDisposableTo(disposeBag)
+        numberOfPaymentsTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: { _ in
+            if let text = self.numberOfPaymentsTextField.textField.text {
+                if !text.isEmpty {
+                    self.viewModel.userDidChangeSettings.value = true
+                }
+            }
+        }).addDisposableTo(disposeBag)
     }
     
     func loadSettings() {
@@ -245,7 +260,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         if showPicker {
             self.dayPickerView.isHidden = false
             
-            let row = viewModel.numberOfDaysBeforeDueDate.value == "" ? 1 : Int(viewModel.numberOfDaysBeforeDueDate.value)!
+            let row = viewModel.numberOfDaysBeforeDueDate.value == "0" ? 1 : Int(viewModel.numberOfDaysBeforeDueDate.value)!
             
             self.dayPickerView.selectRow(row - 1)
         }
@@ -297,10 +312,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         let bottomSpace = UIView(frame: .zero)
         
         stackView.addArrangedSubview(bottomSpace)
-        
-//        let myView = self.view
-//        
-//        myView.addTarget(self, action: #selector(didTap), for: .touchUpInside)
     }
     
     func didTap() {
@@ -368,15 +379,12 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedTextField.textField.autocorrectionType = .no
         amountNotToExceedTextField.textField.returnKeyType = .next
         amountNotToExceedTextField.textField.delegate = self
-        amountNotToExceedTextField.textField.isShowingAccessory = true
-        amountNotToExceedTextField.textField.rx.text.orEmpty.bind(to: viewModel.amountNotToExceed).addDisposableTo(disposeBag)
         amountNotToExceedTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        amountNotToExceedTextField.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         // when amountNotToExceedTextField loses focus, append .00 (if not already extant)
         //  is there a better way to do this us Rx? especially repopulating the textfield at the end.
         amountNotToExceedTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            self.appendDecimalValue()
+            self.viewModel.formatAmountNotToExceed()
         }).addDisposableTo(disposeBag)
         
         // adding textfield for second button stack view
@@ -386,6 +394,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedSpacerView1 = SeparatorSpaceView.create()
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedSpacerView1)
         
+        viewModel.amountNotToExceed.asDriver().drive(amountNotToExceedTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
         amountNotToExceedTextField.textField.rx.text.orEmpty.bind(to: viewModel.amountNotToExceed).addDisposableTo(disposeBag)
         
         // creating details label for second button
@@ -411,28 +420,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedButtonStackView.addArrangedSubview(separator2)
 
         return amountNotToExceedButtonStackView
-    }
-    
-    func appendDecimalValue() {
-        let components = self.viewModel.amountNotToExceed.value.components(separatedBy: ".")
-        
-        if components.count == 2 {
-            let decimal = components[1]
-            
-            if decimal.characters.count == 0 {
-                self.viewModel.amountNotToExceed.value += "00"
-                
-            } else if decimal.characters.count == 1 {
-                self.viewModel.amountNotToExceed.value += "0"
-            }
-            
-        } else if components.count == 1 && components[0].characters.count > 0 {
-            self.viewModel.amountNotToExceed.value += ".00"
-        } else {
-            self.viewModel.amountNotToExceed.value = "0.00"
-        }
-        
-        self.amountNotToExceedTextField.textField.text = self.viewModel.amountNotToExceed.value
     }
     
     func buildWhenToPayGroup() -> UIStackView {
@@ -508,7 +495,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         beforeDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         beforeDueDateDetailsLabel.text = NSLocalizedString("Your payment will process on your selected number of days before each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary.\n\nBGE recommends paying a few days before the due date to ensure adequate processing time.", comment: "")
         
-        if viewModel.numberOfDaysBeforeDueDate.value != "" {
+        if viewModel.numberOfDaysBeforeDueDate.value != "0" {
             modifyBeforeDueDateDetailsLabel()
         }
         
@@ -592,12 +579,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsTextField.textField.autocorrectionType = .no
         numberOfPaymentsTextField.textField.returnKeyType = .next
         numberOfPaymentsTextField.textField.delegate = self
-        numberOfPaymentsTextField.textField.isShowingAccessory = true
-        numberOfPaymentsTextField.textField.rx.text.orEmpty.bind(to: viewModel.amountNotToExceed).addDisposableTo(disposeBag)
         numberOfPaymentsTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        numberOfPaymentsTextField.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        numberOfPaymentsTextField.textField.rx.text.orEmpty.bind(to: viewModel.numberOfDaysBeforeDueDate).addDisposableTo(disposeBag)
+        viewModel.numberOfPayments.asDriver().drive(numberOfPaymentsTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        numberOfPaymentsTextField.textField.rx.text.orEmpty.bind(to: viewModel.numberOfPayments).addDisposableTo(disposeBag)
         
         numberOfPaymentsButtonStackView.addArrangedSubview(numberOfPaymentsTextField)
         
@@ -660,11 +645,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func modifyBeforeDueDateDetailsLabel() {
-        var numDays = viewModel.numberOfDaysBeforeDueDate.value
-        
-        if numDays == "0" {
-            numDays = "1"
-        }
+        let numDays = viewModel.numberOfDaysBeforeDueDate.value
         
         let numDaysPlural = numDays > "1" ? "s" : ""
         
@@ -688,19 +669,16 @@ class BGEAutoPaySettingsViewController: UIViewController {
         calendarVC.firstDate = now
         calendarVC.lastDate = lastDate
         
-        var selectedDate = now
-        
         if let date = viewModel.autoPayUntilDate.value {
-            selectedDate = date
+            calendarVC.selectedDate = date
         }
-        
-        calendarVC.selectedDate = selectedDate
         
         navigationController?.pushViewController(calendarVC, animated: true)
     }
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
     func radioControlSet1Pressed(control: UIControl) {
+        viewModel.userDidChangeSettings.value = true
         control.isSelected = true
         
         amountDueRadioControlsSet
@@ -713,6 +691,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func radioControlSet2Pressed(control: UIControl) {
+        viewModel.userDidChangeSettings.value = true
         control.isSelected = true
         
         dueDateRadioControlsSet
@@ -725,6 +704,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func radioControlSet3Pressed(control: UIControl) {
+        viewModel.userDidChangeSettings.value = true
         control.isSelected = true
         
         numberOfPaymentsRadioControlsSet
@@ -807,6 +787,7 @@ extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+        viewModel.userDidChangeSettings.value = true
         viewModel.autoPayUntilDate.value = date
         untilDateButton.selectedDateLabel.text = date.mmDdYyyyString
     }
@@ -822,12 +803,10 @@ extension BGEAutoPaySettingsViewController: DayPickerDelegate {
     
     func donePressed(selectedDay: Int) {
         DispatchQueue.main.async {
+            self.viewModel.userDidChangeSettings.value = true
             self.viewModel.numberOfDaysBeforeDueDate.value = "\(selectedDay)"
-
-//            self.modifyBeforeDueDateDetailsLabel()
-
             self.showPickerView(false, completion: self.modifyBeforeDueDateDetailsLabel)
-}
+        }
     }
 }
 

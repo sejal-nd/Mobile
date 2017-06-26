@@ -23,14 +23,13 @@ protocol PaymentService {
     /// - Parameters:
     ///   - accountNumber: The account to enroll
     ///   - walletItemId: The selected wallet item to use for AutoPay payments
-    ///   - Params 3-9: BGE AutoPay Settings
+    ///   - Params 3-8: BGE AutoPay Settings
     ///   - isUpdate: Denotes whether the account is a change, or new
     ///   - completion: the completion block to execute upon completion.
     func enrollInAutoPayBGE(accountNumber: String,
                             walletItemId: String?,
                             amountType: AmountType,
                             amountThreshold: String,
-                            paymentDateType: PaymentDateType,
                             paymentDaysBeforeDue: String,
                             effectivePeriod: EffectivePeriod,
                             effectiveEndDate: Date?,
@@ -97,7 +96,6 @@ extension PaymentService {
                             walletItemId: String?,
                             amountType: AmountType,
                             amountThreshold: String,
-                            paymentDateType: PaymentDateType,
                             paymentDatesBeforeDue: String,
                             effectivePeriod: EffectivePeriod,
                             effectiveEndDate: Date?,
@@ -105,7 +103,7 @@ extension PaymentService {
                             isUpdate: Bool) -> Observable<Void> {
         
         return Observable.create { observer in
-            self.enrollInAutoPayBGE(accountNumber: accountNumber, walletItemId: walletItemId, amountType: amountType, amountThreshold: amountThreshold, paymentDateType: paymentDateType, paymentDaysBeforeDue: paymentDatesBeforeDue, effectivePeriod: effectivePeriod, effectiveEndDate: effectiveEndDate, effectiveNumPayments: effectiveNumPayments, isUpdate: isUpdate, completion: { (result: ServiceResult<Void>) in
+            self.enrollInAutoPayBGE(accountNumber: accountNumber, walletItemId: walletItemId, amountType: amountType, amountThreshold: amountThreshold, paymentDaysBeforeDue: paymentDatesBeforeDue, effectivePeriod: effectivePeriod, effectiveEndDate: effectiveEndDate, effectiveNumPayments: effectiveNumPayments, isUpdate: isUpdate, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success():
                     observer.onNext()

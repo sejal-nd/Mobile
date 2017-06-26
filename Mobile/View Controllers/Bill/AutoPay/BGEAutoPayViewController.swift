@@ -162,7 +162,7 @@ class BGEAutoPayViewController: UIViewController {
         enrollmentSwitch.rx.isOn.asDriver().drive(viewModel.enrollSwitchValue).addDisposableTo(disposeBag)
         
         viewModel.isUnenrolling.drive(bankAccountContainerStack.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isUnenrolling.drive(settingsButton.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowSettingsButton.map(!).drive(settingsButton.rx.isHidden).addDisposableTo(disposeBag)
     }
     
     func onCancelPress() {

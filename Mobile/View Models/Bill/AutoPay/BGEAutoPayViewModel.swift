@@ -15,20 +15,9 @@ class BGEAutoPayViewModel {
         case enrolled, unenrolled
     }
     
-    enum AmountToPay {
-        case totalAmountDue
-        case amountNotToExceed
-    }
-    
-    enum WhenToPay {
+    enum PaymentDateType {
         case onDueDate
         case beforeDueDate
-    }
-    
-    enum HowLongForAutoPay {
-        case untilCanceled
-        case forNumberOfPayments
-        case untilDate
     }
     
     let disposeBag = DisposeBag()
@@ -43,6 +32,8 @@ class BGEAutoPayViewModel {
     let selectedWalletItem = Variable<WalletItem?>(nil)
     
     // --- Settings --- //
+    var userDidChangeSettings = Variable(false)
+    
     let amountToPay = Variable<AmountType>(.amountDue)
     let whenToPay = Variable<PaymentDateType>(.onDueDate)
     let howLongForAutoPay = Variable<EffectivePeriod>(.untilCanceled)
@@ -50,11 +41,9 @@ class BGEAutoPayViewModel {
     let amountNotToExceed = Variable("")
     let numberOfPayments = Variable("")
     
-    var numberOfDaysBeforeDueDate = Variable("")
+    var numberOfDaysBeforeDueDate = Variable("0")
     
     var autoPayUntilDate = Variable<Date?>(nil)
-    
-    var primaryProfile = Variable<Bool>(false)
     // ---------------- //
 
     required init(paymentService: PaymentService, accountDetail: AccountDetail) {
@@ -72,20 +61,19 @@ class BGEAutoPayViewModel {
                 self.isFetchingAutoPayInfo.value = false
                 
                 // MMS - I'm so, so sorry about this
-                if let masked4 = autoPayInfo.paymentAccountLast4, let nickname = autoPayInfo.paymentAccountNickname {
-                    self.selectedWalletItem.value = WalletItem.from(["maskedWalletItemAccountNumber": masked4, "nickName": nickname])
+                if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4, let nickname = autoPayInfo.paymentAccountNickname {
+                    self.selectedWalletItem.value = WalletItem.from(["walletItemID": walletItemId, "maskedWalletItemAccountNumber": masked4, "nickName": nickname])
                 }
                 if let amountType = autoPayInfo.amountType {
                     self.amountToPay.value = amountType
                 }
                 if let amountThreshold = autoPayInfo.amountThreshold {
                     self.amountNotToExceed.value = amountThreshold
-                }
-                if let paymentDateType = autoPayInfo.paymentDateType {
-                    self.whenToPay.value = paymentDateType
+                    self.formatAmountNotToExceed()
                 }
                 if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
                     self.numberOfDaysBeforeDueDate.value = paymentDaysBeforeDue
+                    self.whenToPay.value = paymentDaysBeforeDue == "0" ? .onDueDate : .beforeDueDate
                 }
                 if let effectivePeriod = autoPayInfo.effectivePeriod {
                     self.howLongForAutoPay.value = effectivePeriod
@@ -105,7 +93,8 @@ class BGEAutoPayViewModel {
     }
     
     func enrollOrUpdate(update: Bool = false, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber, walletItemId: selectedWalletItem.value!.walletItemID, amountType: amountToPay.value, amountThreshold: amountNotToExceed.value, paymentDateType: whenToPay.value, paymentDatesBeforeDue: numberOfDaysBeforeDueDate.value, effectivePeriod: howLongForAutoPay.value, effectiveEndDate: autoPayUntilDate.value, effectiveNumPayments: numberOfPayments.value, isUpdate: update)
+        let daysBefore = whenToPay.value == .onDueDate ? "0" : numberOfDaysBeforeDueDate.value
+        paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber, walletItemId: selectedWalletItem.value!.walletItemID, amountType: amountToPay.value, amountThreshold: amountNotToExceed.value, paymentDatesBeforeDue: daysBefore, effectivePeriod: howLongForAutoPay.value, effectiveEndDate: autoPayUntilDate.value, effectiveNumPayments: numberOfPayments.value, isUpdate: update)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -127,14 +116,14 @@ class BGEAutoPayViewModel {
     }
     
     var submitButtonEnabled: Driver<Bool> {
-        return Driver.combineLatest(initialEnrollmentStatus.asDriver(), selectedWalletItem.asDriver(), enrollSwitchValue.asDriver()) {
+        return Driver.combineLatest(initialEnrollmentStatus.asDriver(), selectedWalletItem.asDriver(), enrollSwitchValue.asDriver(), userDidChangeSettings.asDriver()) {
             if $0 == .unenrolled && $1 != nil { // Unenrolled with bank account selected
                 return true
             }
             if $0 == .enrolled && !$2 { // Enrolled and enrollment switch toggled off
                 return true
             }
-            if $0 == .enrolled && $1 != nil && $1?.walletItemID != nil {
+            if $0 == .enrolled && $1?.walletItemID != nil && $3 { // Enrolled with a selected wallet item and changed settings
                 return true
             }
             return false
@@ -144,6 +133,15 @@ class BGEAutoPayViewModel {
     var isUnenrolling: Driver<Bool> {
         return Driver.combineLatest(initialEnrollmentStatus.asDriver(), enrollSwitchValue.asDriver()) {
             return $0 == .enrolled && !$1
+        }
+    }
+    
+    var shouldShowSettingsButton: Driver<Bool> {
+        return Driver.combineLatest(initialEnrollmentStatus.asDriver(), selectedWalletItem.asDriver(), isUnenrolling) {
+            if $2 {
+                return false
+            }
+            return $0 == .enrolled || $1 != nil
         }
     }
     
@@ -175,5 +173,27 @@ class BGEAutoPayViewModel {
         return ""
     }
     
+    func formatAmountNotToExceed() {
+        let components = amountNotToExceed.value.components(separatedBy: ".")
+        
+        var newText = amountNotToExceed.value
+        if components.count == 2 {
+            let decimal = components[1]
+            
+            if decimal.characters.count == 0 {
+                newText += "00"
+                
+            } else if decimal.characters.count == 1 {
+                newText += "0"
+            }
+            
+        } else if components.count == 1 && components[0].characters.count > 0 {
+            newText += ".00"
+        } else {
+            newText = "0.00"
+        }
     
+        amountNotToExceed.value = newText
+    }
+
 }
