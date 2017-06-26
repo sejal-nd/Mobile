@@ -376,25 +376,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         // when amountNotToExceedTextField loses focus, append .00 (if not already extant)
         //  is there a better way to do this us Rx? especially repopulating the textfield at the end.
         amountNotToExceedTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            let components = self.viewModel.amountNotToExceed.value.components(separatedBy: ".")
-
-            if components.count == 2 {
-                let decimal = components[1]
-
-                if decimal.characters.count == 0 {
-                    self.viewModel.amountNotToExceed.value += "00"
-                    
-                } else if decimal.characters.count == 1 {
-                    self.viewModel.amountNotToExceed.value += "0"
-                }
-                
-            } else if components.count == 1 && components[0].characters.count > 0 {
-                self.viewModel.amountNotToExceed.value += ".00"
-            } else {
-                self.viewModel.amountNotToExceed.value = "0.00"
-            }
-            
-            self.amountNotToExceedTextField.textField.text = self.viewModel.amountNotToExceed.value
+            self.appendDecimalValue()
         }).addDisposableTo(disposeBag)
         
         // adding textfield for second button stack view
@@ -429,6 +411,28 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedButtonStackView.addArrangedSubview(separator2)
 
         return amountNotToExceedButtonStackView
+    }
+    
+    func appendDecimalValue() {
+        let components = self.viewModel.amountNotToExceed.value.components(separatedBy: ".")
+        
+        if components.count == 2 {
+            let decimal = components[1]
+            
+            if decimal.characters.count == 0 {
+                self.viewModel.amountNotToExceed.value += "00"
+                
+            } else if decimal.characters.count == 1 {
+                self.viewModel.amountNotToExceed.value += "0"
+            }
+            
+        } else if components.count == 1 && components[0].characters.count > 0 {
+            self.viewModel.amountNotToExceed.value += ".00"
+        } else {
+            self.viewModel.amountNotToExceed.value = "0.00"
+        }
+        
+        self.amountNotToExceedTextField.textField.text = self.viewModel.amountNotToExceed.value
     }
     
     func buildWhenToPayGroup() -> UIStackView {
@@ -773,6 +777,17 @@ extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
         } else if textField == numberOfPaymentsTextField.textField {
             let characterSet = CharacterSet(charactersIn: string)
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 3
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == amountNotToExceedTextField.textField {
+            textField.resignFirstResponder()
+            
+        } else if textField == numberOfPaymentsTextField.textField {
+            textField.resignFirstResponder()
         }
         
         return true
