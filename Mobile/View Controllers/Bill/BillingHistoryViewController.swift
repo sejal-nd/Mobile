@@ -189,6 +189,8 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func viewMorePast() {
         print("view more past")
+        
+        self.performSegue(withIdentifier: "showMoreBillingHistorySegue", sender: self)
     }
     
 }
