@@ -40,6 +40,7 @@ class BGEAutoPayViewController: UIViewController {
     
     @IBOutlet weak var selectBankAccountLabel: UILabel!
     
+    @IBOutlet weak var bankAccountContainerStack: UIStackView!
     @IBOutlet weak var enrolledPaymentAccountLabel: UILabel!
     @IBOutlet weak var bankAccountButton: ButtonControl!
     @IBOutlet weak var bankAccountButtonIcon: UIImageView!
@@ -61,7 +62,7 @@ class BGEAutoPayViewController: UIViewController {
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
-        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         
@@ -111,7 +112,7 @@ class BGEAutoPayViewController: UIViewController {
         
         setupBindings()
         
-        if viewModel.enrollmentStatus.value == .enrolled {
+        if viewModel.initialEnrollmentStatus.value == .enrolled {
             viewModel.getAutoPayInfo(onSuccess: nil, onError: nil)
         }
     }
@@ -123,7 +124,7 @@ class BGEAutoPayViewController: UIViewController {
             navController.setColoredNavBar()
         }
         
-        if viewModel.enrollmentStatus.value == .enrolled {
+        if viewModel.initialEnrollmentStatus.value == .enrolled {
             stickyBottomViewHeightConstraint.constant = 0
             expirationLabel.isHidden = true
             selectBankAccountLabel.isHidden = true
@@ -159,6 +160,9 @@ class BGEAutoPayViewController: UIViewController {
         
         viewModel.enrollSwitchValue.asDriver().drive(enrollmentSwitch.rx.isOn).addDisposableTo(disposeBag)
         enrollmentSwitch.rx.isOn.asDriver().drive(viewModel.enrollSwitchValue).addDisposableTo(disposeBag)
+        
+        viewModel.isUnenrolling.drive(bankAccountContainerStack.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isUnenrolling.drive(settingsButton.rx.isHidden).addDisposableTo(disposeBag)
     }
     
     func onCancelPress() {
@@ -168,7 +172,7 @@ class BGEAutoPayViewController: UIViewController {
     func onSubmitPress() {
         LoadingView.show()
         
-        if viewModel.enrollmentStatus.value == .unenrolled {
+        if viewModel.initialEnrollmentStatus.value == .unenrolled {
             viewModel.enrollOrUpdate(onSuccess: {
                 LoadingView.hide()
                 self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Enrolled in AutoPay", comment: ""))
@@ -179,7 +183,7 @@ class BGEAutoPayViewController: UIViewController {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
             })
-        } else if viewModel.enrollmentStatus.value == .enrolled {
+        } else if viewModel.initialEnrollmentStatus.value == .enrolled {
             if viewModel.enrollSwitchValue.value { // Update
                 viewModel.enrollOrUpdate(update: true, onSuccess: {
                     LoadingView.hide()

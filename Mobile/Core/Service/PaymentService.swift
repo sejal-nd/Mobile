@@ -42,11 +42,8 @@ protocol PaymentService {
     ///
     /// - Parameters:
     ///   - accountNumber: The account to enroll
-    ///   - paymentAccount: The enrolled wallet item's nickname (MAY CHANGE)
     ///   - completion: the completion block to execute upon completion.
-    func unenrollFromAutoPayBGE(accountNumber: String,
-                                paymentAccount: String,
-                                completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func unenrollFromAutoPayBGE(accountNumber: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
 
     /// Enroll in AutoPay (ComEd & PECO only)
     ///
@@ -121,10 +118,10 @@ extension PaymentService {
         }
     }
     
-    func unenrollFromAutoPayBGE(accountNumber: String, paymentAccount: String) -> Observable<Void> {
+    func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void> {
         
         return Observable.create { observer in
-            self.unenrollFromAutoPayBGE(accountNumber: accountNumber, paymentAccount: paymentAccount)
+            self.unenrollFromAutoPayBGE(accountNumber: accountNumber)
             { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:

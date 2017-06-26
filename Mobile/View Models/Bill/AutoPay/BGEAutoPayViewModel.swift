@@ -22,7 +22,7 @@ class BGEAutoPayViewModel {
     let isFetchingAutoPayInfo = Variable(false)
     
     var accountDetail: AccountDetail
-    let enrollmentStatus: Variable<EnrollmentStatus>
+    let initialEnrollmentStatus: Variable<EnrollmentStatus>
     let enrollSwitchValue: Variable<Bool>
     let selectedWalletItem = Variable<WalletItem?>(nil)
     
@@ -44,7 +44,7 @@ class BGEAutoPayViewModel {
     required init(paymentService: PaymentService, accountDetail: AccountDetail) {
         self.paymentService = paymentService
         self.accountDetail = accountDetail
-        enrollmentStatus = Variable(accountDetail.isAutoPay ? .enrolled : .unenrolled)
+        initialEnrollmentStatus = Variable(accountDetail.isAutoPay ? .enrolled : .unenrolled)
         enrollSwitchValue = Variable(accountDetail.isAutoPay ? true : false)
     }
     
@@ -100,7 +100,7 @@ class BGEAutoPayViewModel {
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.unenrollFromAutoPayBGE(accountNumber: accountDetail.accountNumber, paymentAccount: (selectedWalletItem.value?.nickName)!)
+        paymentService.unenrollFromAutoPayBGE(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -110,15 +110,24 @@ class BGEAutoPayViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    func submitButtonEnabled() -> Observable<Bool> {
-        return Observable.combineLatest(enrollmentStatus.asObservable(), selectedWalletItem.asObservable(), enrollSwitchValue.asObservable()) {
+    var submitButtonEnabled: Driver<Bool> {
+        return Driver.combineLatest(initialEnrollmentStatus.asDriver(), selectedWalletItem.asDriver(), enrollSwitchValue.asDriver()) {
             if $0 == .unenrolled && $1 != nil { // Unenrolled with bank account selected
                 return true
             }
             if $0 == .enrolled && !$2 { // Enrolled and enrollment switch toggled off
                 return true
             }
+            if $0 == .enrolled && $1 != nil && $1?.walletItemID != nil {
+                return true
+            }
             return false
+        }
+    }
+    
+    var isUnenrolling: Driver<Bool> {
+        return Driver.combineLatest(initialEnrollmentStatus.asDriver(), enrollSwitchValue.asDriver()) {
+            return $0 == .enrolled && !$1
         }
     }
     
