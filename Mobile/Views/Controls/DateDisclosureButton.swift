@@ -14,11 +14,13 @@ class DateDisclosureButton: ButtonControl {
     @IBOutlet weak var selectedDateLabel: UILabel!
 
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 375, height: 44)
+        return CGSize(width: 375, height: 60)
     }
     
     static func create(withLabel label: String) -> DateDisclosureButton {
         let view = Bundle.main.loadViewFromNib() as DateDisclosureButton
+        
+        view.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 6)
         
         view.bind(withLabel: label)
         
@@ -29,7 +31,7 @@ class DateDisclosureButton: ButtonControl {
         dateDisclosureLabel.text = label
         dateDisclosureLabel.font = SystemFont.regular.of(textStyle: .title2)
         
-        selectedDateLabel.text = "mm/dd/yyyy"
+        selectedDateLabel.text = "Select Date"
     }
 
 }

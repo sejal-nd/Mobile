@@ -15,6 +15,22 @@ class BGEAutoPayViewModel {
         case enrolled, unenrolled
     }
     
+    enum AmountToPay {
+        case totalAmountDue
+        case amountNotToExceed
+    }
+    
+    enum WhenToPay {
+        case onDueDate
+        case beforeDueDate
+    }
+    
+    enum HowLongForAutoPay {
+        case untilCanceled
+        case forNumberOfPayments
+        case untilDate
+    }
+    
     let disposeBag = DisposeBag()
     
     private var paymentService: PaymentService
