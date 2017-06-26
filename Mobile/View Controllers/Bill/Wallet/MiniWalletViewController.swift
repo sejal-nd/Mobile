@@ -208,7 +208,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
-                cell.iconImageView.image = #imageLiteral(resourceName: "bank_building")
+                cell.iconImageView.image = #imageLiteral(resourceName: "bank_building_mini")
                 cell.label.text = NSLocalizedString("Add Bank Account", comment: "")
                 viewModel.bankAccountLimitReached.map(!).drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
                 cell.innerContentView.addTarget(self, action: #selector(onAddBankAccountPress), for: .touchUpInside)
@@ -227,7 +227,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
-                cell.iconImageView.image = #imageLiteral(resourceName: "credit_card")
+                cell.iconImageView.image = #imageLiteral(resourceName: "credit_card_mini")
                 cell.label.text = NSLocalizedString("Add Credit/Debit Card", comment: "")
                 viewModel.creditCardLimitReached.map {
                     if self.creditCardsDisabled {

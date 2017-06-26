@@ -13,10 +13,7 @@ private func extractDate(object: Any?) throws -> Date? {
     guard let dateString = object as? String else {
         throw MapperError.convertibleError(value: object, type: Date.self)
     }
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    return dateFormatter.date(from: dateString)
+    return dateString.apiFormatDate
 }
 
 enum AccountType {
@@ -67,6 +64,7 @@ struct AccountDetail: Mappable {
     let hasElectricSupplier: Bool
     let isSingleBillOption: Bool
     let isDualBillOption: Bool
+    let isSupplier: Bool
     
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
@@ -102,6 +100,7 @@ struct AccountDetail: Mappable {
         hasElectricSupplier = map.optionalFrom("hasElectricSupplier") ?? false
         isSingleBillOption = map.optionalFrom("isSingleBillOption") ?? false
         isDualBillOption = map.optionalFrom("isDualBillOption") ?? false
+        isSupplier = map.optionalFrom("isSupplier") ?? false
         
         status = map.optionalFrom("status")
         

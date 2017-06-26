@@ -13,8 +13,6 @@ import RxCocoa
 
 class BGEAutoPaySettingsViewController: UIViewController {
     
-    var selectedUntilDate: Date?
-
     let disposeBag = DisposeBag()
 
     // grand master stackview
@@ -686,8 +684,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         var selectedDate = now
         
-        if viewModel.autoPayUntilDate.value != "" {
-            selectedDate = viewModel.autoPayUntilDate.value.mmDdYyyyDate
+        if let date = viewModel.autoPayUntilDate.value {
+            selectedDate = date
         }
         
         calendarVC.selectedDate = selectedDate
@@ -791,13 +789,8 @@ extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
-        print("Selected date ", date)
-        selectedUntilDate = date
-        
-        if let selectedUntilDate = selectedUntilDate {
-            viewModel.autoPayUntilDate.value = selectedUntilDate.mmDdYyyyString
-            untilDateButton.selectedDateLabel.text = selectedUntilDate.mmDdYyyyString
-        }
+        viewModel.autoPayUntilDate.value = date
+        untilDateButton.selectedDateLabel.text = date.mmDdYyyyString
     }
 }
 
