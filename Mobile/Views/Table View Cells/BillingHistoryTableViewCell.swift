@@ -48,6 +48,10 @@ class BillingHistoryTableViewCell: UITableViewCell {
                     iconImageView.image = UIImage(named: "ic_bill")
                     titleLabel.text = BILL_ISSUED
                     self.amountLabel.text = item.totalAmountDue!.currencyString
+                case "Billing":
+                    iconImageView.image = UIImage(named: "ic_bill")
+                    titleLabel.text = BILL_ISSUED
+                    self.amountLabel.text = item.totalAmountDue!.currencyString
                 case "Late Payment Charge":
                     iconImageView.image = UIImage(named: "ic_alert")
                     titleLabel.text = LATE_PAYMENT

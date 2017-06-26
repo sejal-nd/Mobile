@@ -13,6 +13,7 @@ class BillingHistoryViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var loadingIndicator: UIView!
+    @IBOutlet var empyStateLabel: UILabel!
     
     var billingHistory: BillingHistory?
     
@@ -26,6 +27,7 @@ class BillingHistoryViewController: UIViewController {
         self.title = NSLocalizedString("Activity", comment: "")
         self.loadingIndicator.isHidden = false;
         self.tableView.isHidden = true;
+        self.empyStateLabel.isHidden = true
         
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -36,7 +38,14 @@ class BillingHistoryViewController: UIViewController {
             self.loadingIndicator.isHidden = true
             self.tableView.isHidden = false
             self.billingHistory = billingHistory
-            self.tableView.reloadData()
+            
+            if self.billingHistory?.upcoming.count == 0 && self.billingHistory?.past.count == 00 {
+                self.tableView.isHidden = true
+                self.empyStateLabel.isHidden = false
+            } else {
+                self.tableView.reloadData()
+            }
+            
         }) { (error) in
             print(error)
             //TODO: handle this error
