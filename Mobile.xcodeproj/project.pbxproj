@@ -111,6 +111,9 @@
 		54DA21F01EFB07BC00B4CCD9 /* DayPickerContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DA21EF1EFB07BC00B4CCD9 /* DayPickerContainerView.xib */; };
 		54DA21F11EFB07BC00B4CCD9 /* DayPickerContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DA21EF1EFB07BC00B4CCD9 /* DayPickerContainerView.xib */; };
 		54DA21F21EFB07BC00B4CCD9 /* DayPickerContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DA21EF1EFB07BC00B4CCD9 /* DayPickerContainerView.xib */; };
+		54DA21F41EFDA00800B4CCD9 /* SeparatorSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA21F31EFDA00800B4CCD9 /* SeparatorSpaceView.swift */; };
+		54DA21F51EFDA00800B4CCD9 /* SeparatorSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA21F31EFDA00800B4CCD9 /* SeparatorSpaceView.swift */; };
+		54DA21F61EFDA00800B4CCD9 /* SeparatorSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA21F31EFDA00800B4CCD9 /* SeparatorSpaceView.swift */; };
 		54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
 		54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
 		54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
@@ -948,6 +951,7 @@
 		54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
 		54DA21EB1EFB07AF00B4CCD9 /* DayPickerContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayPickerContainerView.swift; sourceTree = "<group>"; };
 		54DA21EF1EFB07BC00B4CCD9 /* DayPickerContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayPickerContainerView.xib; sourceTree = "<group>"; };
+		54DA21F31EFDA00800B4CCD9 /* SeparatorSpaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorSpaceView.swift; sourceTree = "<group>"; };
 		54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionsViewController.swift; sourceTree = "<group>"; };
 		54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameSecurityQuestionViewController.swift; sourceTree = "<group>"; };
 		54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestion.swift; sourceTree = "<group>"; };
@@ -1570,6 +1574,7 @@
 				545784A91EF8753200C58E63 /* DateDisclosureButton.swift */,
 				545784AD1EF8755000C58E63 /* DateDisclosureButton.xib */,
 				545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */,
+				54DA21F31EFDA00800B4CCD9 /* SeparatorSpaceView.swift */,
 				54DA21EB1EFB07AF00B4CCD9 /* DayPickerContainerView.swift */,
 				54DA21EF1EFB07BC00B4CCD9 /* DayPickerContainerView.xib */,
 			);
@@ -3025,6 +3030,7 @@
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
+				54DA21F41EFDA00800B4CCD9 /* SeparatorSpaceView.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				E887C9D91ED5CBDB002433A3 /* AddCreditCardViewController.swift in Sources */,
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
@@ -3139,6 +3145,7 @@
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				E8C453171EF3293600F5C781 /* ToastView.swift in Sources */,
 				E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
+				54DA21F61EFDA00800B4CCD9 /* SeparatorSpaceView.swift in Sources */,
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				82A18EC01EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
 				E803A0021EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
@@ -3309,6 +3316,7 @@
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				E8C453161EF3293600F5C781 /* ToastView.swift in Sources */,
 				E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
+				54DA21F51EFDA00800B4CCD9 /* SeparatorSpaceView.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				82A18EBF1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
 				E803A0011EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,

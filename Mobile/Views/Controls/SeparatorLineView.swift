@@ -46,6 +46,14 @@ class SeparatorLineView: UIView {
         return CGSize(width: 312, height: 1)
     }
     
+    func setHeight(_ height: CGFloat) {
+        self.heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
+    
+    func setColor(_ color: UIColor) {
+        self.internalLine.backgroundColor = color
+    }
+    
     static func create(leadingSpace: CGFloat? = nil) -> SeparatorLineView {
         let view = SeparatorLineView(frame: .zero)
         
