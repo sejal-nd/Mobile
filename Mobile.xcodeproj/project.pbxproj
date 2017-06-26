@@ -56,8 +56,6 @@
 		2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
 		2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
-		2F5A3F851EFD973600B9E49E /* BillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4591EFC6C49002CBD88 /* BillingHistoryViewController.swift */; };
-		2F5A3F861EFD973700B9E49E /* BillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4591EFC6C49002CBD88 /* BillingHistoryViewController.swift */; };
 		2F5A3F871EFD977F00B9E49E /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */; };
 		2F5A3F881EFD978000B9E49E /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */; };
 		2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */; };
@@ -65,7 +63,6 @@
 		2F5A3F8B1EFDEB0900B9E49E /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
-		2FB9B45A1EFC6C49002CBD88 /* BillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4591EFC6C49002CBD88 /* BillingHistoryViewController.swift */; };
 		2FB9B45D1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */; };
 		2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		2FB9B4601EFC6D77002CBD88 /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */; };
@@ -107,15 +104,9 @@
 		54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */; };
 		54B31A711EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */; };
 		54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */; };
-		54C1DEE71F01721B00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEE61F01721B00290FE5 /* BillingHistoryDetailsViewController.swift */; };
-		54C1DEE81F01721B00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEE61F01721B00290FE5 /* BillingHistoryDetailsViewController.swift */; };
-		54C1DEE91F01721B00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEE61F01721B00290FE5 /* BillingHistoryDetailsViewController.swift */; };
-		54C1DEEB1F01723B00290FE5 /* BillingHIstoryBGEDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEEA1F01723B00290FE5 /* BillingHIstoryBGEDetailsViewController.swift */; };
-		54C1DEEC1F01723B00290FE5 /* BillingHIstoryBGEDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEEA1F01723B00290FE5 /* BillingHIstoryBGEDetailsViewController.swift */; };
-		54C1DEED1F01723B00290FE5 /* BillingHIstoryBGEDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEEA1F01723B00290FE5 /* BillingHIstoryBGEDetailsViewController.swift */; };
-		54DA21F81F01514300B4CCD9 /* MoreBillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA21F71F01514300B4CCD9 /* MoreBillingHistoryViewController.swift */; };
-		54DA21F91F01514300B4CCD9 /* MoreBillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA21F71F01514300B4CCD9 /* MoreBillingHistoryViewController.swift */; };
-		54DA21FA1F01514300B4CCD9 /* MoreBillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA21F71F01514300B4CCD9 /* MoreBillingHistoryViewController.swift */; };
+		54C1DEF21F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */; };
+		54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */; };
+		54C1DEF61F01A1D000290FE5 /* MoreBillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */; };
 		54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
 		54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
 		54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
@@ -922,7 +913,6 @@
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistory.swift; sourceTree = "<group>"; };
 		2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryItem.swift; sourceTree = "<group>"; };
-		2FB9B4591EFC6C49002CBD88 /* BillingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryViewController.swift; sourceTree = "<group>"; };
 		2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillingHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryViewModel.swift; path = ../More/BillingHistoryViewModel.swift; sourceTree = "<group>"; };
@@ -938,9 +928,9 @@
 		54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationCreateCredentialsViewController.swift; sourceTree = "<group>"; };
 		54B31A6D1EE065E20002E657 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
-		54C1DEE61F01721B00290FE5 /* BillingHistoryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryDetailsViewController.swift; sourceTree = "<group>"; };
-		54C1DEEA1F01723B00290FE5 /* BillingHIstoryBGEDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHIstoryBGEDetailsViewController.swift; sourceTree = "<group>"; };
-		54DA21F71F01514300B4CCD9 /* MoreBillingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreBillingHistoryViewController.swift; sourceTree = "<group>"; };
+		54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryDetailsViewController.swift; path = "Billing History/BillingHistoryDetailsViewController.swift"; sourceTree = "<group>"; };
+		54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryViewController.swift; path = "Billing History/BillingHistoryViewController.swift"; sourceTree = "<group>"; };
+		54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreBillingHistoryViewController.swift; path = "Billing History/MoreBillingHistoryViewController.swift"; sourceTree = "<group>"; };
 		54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionsViewController.swift; sourceTree = "<group>"; };
 		54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameSecurityQuestionViewController.swift; sourceTree = "<group>"; };
 		54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestion.swift; sourceTree = "<group>"; };
@@ -1472,6 +1462,16 @@
 				087630E21E72F5D000FA7020 /* Info.plist */,
 			);
 			path = BGEUITests;
+			sourceTree = "<group>";
+		};
+		54C1DEEE1F01A12700290FE5 /* Billing History */ = {
+			isa = PBXGroup;
+			children = (
+				54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */,
+				54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */,
+				54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */,
+			);
+			name = "Billing History";
 			sourceTree = "<group>";
 		};
 		54DF4BD81EE9CB39008CF7AD /* Registration */ = {
@@ -2235,10 +2235,7 @@
 		E882B7E21EA7FE6300EA3C13 /* Bill */ = {
 			isa = PBXGroup;
 			children = (
-				2FB9B4591EFC6C49002CBD88 /* BillingHistoryViewController.swift */,
-				54DA21F71F01514300B4CCD9 /* MoreBillingHistoryViewController.swift */,
-				54C1DEE61F01721B00290FE5 /* BillingHistoryDetailsViewController.swift */,
-				54C1DEEA1F01723B00290FE5 /* BillingHIstoryBGEDetailsViewController.swift */,
+				54C1DEEE1F01A12700290FE5 /* Billing History */,
 				E8C4531C1EF42E7800F5C781 /* AutoPay */,
 				E876A8541ECDEF3E00CA63BF /* Wallet */,
 				E882B7E31EA8009500EA3C13 /* BillViewController.swift */,
@@ -2963,7 +2960,6 @@
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
 				54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				E873DA7C1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
-				2FB9B45A1EFC6C49002CBD88 /* BillingHistoryViewController.swift in Sources */,
 				82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
@@ -2976,13 +2972,13 @@
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */,
-				54C1DEE71F01721B00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				82A18EDD1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
+				54C1DEF21F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				82D5994B1EC36B5500DDB380 /* Currency.swift in Sources */,
 				E8039FF11EFB0405004DB789 /* PaymentService.swift in Sources */,
@@ -3016,7 +3012,6 @@
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */,
 				54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
-				54C1DEEB1F01723B00290FE5 /* BillingHIstoryBGEDetailsViewController.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				B56DD4981ED84E6000F0198B /* FiservApi.swift in Sources */,
@@ -3035,6 +3030,8 @@
 				54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
+				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
+				54C1DEF61F01A1D000290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				B56DD4A21ED87AE200F0198B /* CreditCard.swift in Sources */,
@@ -3059,7 +3056,6 @@
 				E8C3AC011EDA09B50004F705 /* OneTouchPayService.swift in Sources */,
 				54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
-				54DA21F81F01514300B4CCD9 /* MoreBillingHistoryViewController.swift in Sources */,
 				54930DC81EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
 				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
@@ -3133,7 +3129,6 @@
 				E80D2E191E721668002626C9 /* MaskedString.swift in Sources */,
 				E8D340981EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				822BBB951EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
-				54C1DEE91F01721B00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				B56DD49F1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				54930DCA1EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
 				8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */,
@@ -3190,7 +3185,6 @@
 				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDC1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
-				2F5A3F861EFD973700B9E49E /* BillingHistoryViewController.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -3205,7 +3199,6 @@
 				54EDD2E11ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
 				82A18F101EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
-				54C1DEED1F01723B00290FE5 /* BillingHIstoryBGEDetailsViewController.swift in Sources */,
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -3252,7 +3245,6 @@
 				E8039FFD1EFB0426004DB789 /* OMCPaymentService.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A41ED87AE200F0198B /* CreditCard.swift in Sources */,
-				54DA21FA1F01514300B4CCD9 /* MoreBillingHistoryViewController.swift in Sources */,
 				E89496381EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
@@ -3304,7 +3296,6 @@
 				82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				E80D2E181E721668002626C9 /* MaskedString.swift in Sources */,
 				822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
-				54C1DEE81F01721B00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				E8D340971EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				B56DD49E1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				54930DC91EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
@@ -3361,7 +3352,6 @@
 				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
-				2F5A3F851EFD973600B9E49E /* BillingHistoryViewController.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -3376,7 +3366,6 @@
 				54EDD2E01ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
 				82A18F0F1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
-				54C1DEEC1F01723B00290FE5 /* BillingHIstoryBGEDetailsViewController.swift in Sources */,
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -3423,7 +3412,6 @@
 				E8039FFC1EFB0426004DB789 /* OMCPaymentService.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A31ED87AE200F0198B /* CreditCard.swift in Sources */,
-				54DA21F91F01514300B4CCD9 /* MoreBillingHistoryViewController.swift in Sources */,
 				E89496371EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
