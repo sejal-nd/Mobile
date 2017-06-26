@@ -170,9 +170,9 @@ class BGEAutoPayViewController: UIViewController {
     
     func onCancelPress() {
         if viewModel.initialEnrollmentStatus.value == .enrolled && viewModel.userDidChangeSettings.value {
-            let alertVc = UIAlertController(title: NSLocalizedString("Unsaved AutoPay Settings", comment: ""), message: NSLocalizedString("Are you sure you want to exit without saving?", comment: ""), preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
+            let alertVc = UIAlertController(title: NSLocalizedString("Unsaved Settings", comment: ""), message: NSLocalizedString("You have unsaved settings - are you sure you want to exit this screen without saving your changes? Return to the AutoPay screen and Tap \"Submit\" to save your AutoPay settings.", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .destructive, handler: { _ in
                 self.navigationController?.popViewController(animated: true)
             }))
             self.present(alertVc, animated: true, completion: nil)

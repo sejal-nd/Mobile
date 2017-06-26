@@ -727,7 +727,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     func onBackPress() {
         if let errorMessage = viewModel.getInvalidSettingsMessage() {
-            let alertVc = UIAlertController(title: NSLocalizedString("Invalid Settings", comment: ""), message: errorMessage, preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Missing Required Fields", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             present(alertVc, animated: true, completion: nil)
         } else {
@@ -765,6 +765,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.characters.count == 0 { // Allow backspace
+            return true
+        }
+        
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         
         if textField == amountNotToExceedTextField.textField {
