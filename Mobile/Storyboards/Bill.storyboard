@@ -541,7 +541,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.35 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGx-aL-ACF">
-                                                                            <rect key="frame" x="107" y="7.5" width="128.5" height="16.5"/>
+                                                                            <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -4280,7 +4280,29 @@ Budget Billing?</string>
                                             </stackView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="WyB-Ty-ej0" secondAttribute="trailing" id="0qJ-Uz-KNp"/>
+                                            <constraint firstAttribute="trailing" secondItem="nka-dH-aZj" secondAttribute="trailing" id="BOn-wT-NtT"/>
+                                            <constraint firstItem="dbY-W5-4LA" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="MCX-a3-WXY"/>
+                                            <constraint firstAttribute="trailing" secondItem="Vxm-7B-Nuf" secondAttribute="trailing" id="Mfy-GP-KWf"/>
+                                            <constraint firstAttribute="trailing" secondItem="yiM-2P-VdC" secondAttribute="trailing" id="RK5-zm-Nu9"/>
+                                            <constraint firstAttribute="trailing" secondItem="4KJ-ju-rJf" secondAttribute="trailing" id="UAk-58-eaw"/>
+                                            <constraint firstItem="hF6-3k-Qyp" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="Uqn-1K-bT8"/>
+                                            <constraint firstAttribute="trailing" secondItem="dbY-W5-4LA" secondAttribute="trailing" id="Wg9-B4-XD0"/>
+                                            <constraint firstAttribute="trailing" secondItem="2Dr-w7-ppD" secondAttribute="trailing" id="XL2-Xr-OYR"/>
+                                            <constraint firstAttribute="trailing" secondItem="Vvh-Um-xag" secondAttribute="trailing" id="Xde-Gj-fKl"/>
+                                            <constraint firstItem="WyB-Ty-ej0" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="Xx7-ym-uth"/>
+                                            <constraint firstItem="yiM-2P-VdC" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="ZnQ-h8-e5w"/>
                                             <constraint firstItem="nka-dH-aZj" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="cAF-iJ-4VO"/>
+                                            <constraint firstAttribute="trailing" secondItem="bIL-xm-JNF" secondAttribute="trailing" id="dD9-Nu-Xyg"/>
+                                            <constraint firstAttribute="trailing" secondItem="oel-4q-rja" secondAttribute="trailing" id="dfn-rk-MSH"/>
+                                            <constraint firstItem="ZEX-tO-f8j" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="ezj-XP-S28"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZEX-tO-f8j" secondAttribute="trailing" id="fFG-DG-W4U"/>
+                                            <constraint firstAttribute="trailing" secondItem="FmK-f8-hfd" secondAttribute="trailing" id="h2F-eG-mCn"/>
+                                            <constraint firstItem="oel-4q-rja" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="hrv-V6-0PM"/>
+                                            <constraint firstItem="2Dr-w7-ppD" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="jz6-3b-KzO"/>
+                                            <constraint firstAttribute="trailing" secondItem="hF6-3k-Qyp" secondAttribute="trailing" id="llD-1R-FKb"/>
+                                            <constraint firstItem="bIL-xm-JNF" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="nzu-TE-Ol2"/>
+                                            <constraint firstItem="Vvh-Um-xag" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="vfk-Io-Zir"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
