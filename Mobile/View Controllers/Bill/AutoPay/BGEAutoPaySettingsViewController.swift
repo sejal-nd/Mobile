@@ -388,8 +388,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
                     self.viewModel.amountNotToExceed.value += "0"
                 }
                 
-            } else {
+            } else if components.count == 1 && components[0].characters.count > 0 {
                 self.viewModel.amountNotToExceed.value += ".00"
+            } else {
+                self.viewModel.amountNotToExceed.value = "0.00"
             }
             
             self.amountNotToExceedTextField.textField.text = self.viewModel.amountNotToExceed.value
@@ -764,8 +766,9 @@ extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
             }
             
             let containsDecimal = newString.contains(".")
+            let containsBackslash = newString.contains("\\")
             
-            return (CharacterSet.decimalDigits.isSuperset(of: characterSet) || containsDecimal) && newString.characters.count <= 10
+            return (CharacterSet.decimalDigits.isSuperset(of: characterSet) || containsDecimal) && newString.characters.count <= 7 && !containsBackslash
             
         } else if textField == numberOfPaymentsTextField.textField {
             let characterSet = CharacterSet(charactersIn: string)
