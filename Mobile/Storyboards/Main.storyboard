@@ -23,7 +23,6 @@
                         <segue destination="860-AT-jXi" kind="relationship" relationship="viewControllers" id="kqX-sB-LBP"/>
                         <segue destination="4hR-iJ-D1w" kind="relationship" relationship="viewControllers" id="MtQ-f3-P1j"/>
                         <segue destination="bdC-Bo-rcI" kind="relationship" relationship="viewControllers" id="QJc-5g-EqX"/>
-                        <segue destination="coO-LU-Nds" kind="relationship" relationship="viewControllers" id="8pZ-Og-zwx"/>
                         <segue destination="uQF-ze-ffY" kind="relationship" relationship="viewControllers" id="C2S-Qc-mDn"/>
                     </connections>
                 </tabBarController>
