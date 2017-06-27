@@ -277,10 +277,15 @@ class BillViewController: AccountPickerViewController {
 		questionMarkButton.isHidden = !viewModel.shouldShowAmountDueTooltip
 
 		viewModel.shouldShowRestoreService.not().drive(restoreServiceView.rx.isHidden).addDisposableTo(bag)
+        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(restoreServiceView.rx.alpha).addDisposableTo(bag)
 		viewModel.shouldShowCatchUpAmount.not().drive(catchUpView.rx.isHidden).addDisposableTo(bag)
+        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(catchUpView.rx.alpha).addDisposableTo(bag)
 		viewModel.shouldShowCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).addDisposableTo(bag)
+        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(catchUpDisclaimerView.rx.alpha).addDisposableTo(bag)
 		viewModel.shouldShowAvoidShutoff.not().drive(avoidShutoffView.rx.isHidden).addDisposableTo(bag)
+        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(avoidShutoffView.rx.alpha).addDisposableTo(bag)
 		viewModel.shouldShowPastDue.not().drive(pastDueView.rx.isHidden).addDisposableTo(bag)
+        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(pastDueView.rx.alpha).addDisposableTo(bag)
 
 		viewModel.shouldShowPendingPayment.not().drive(paymentStackView.rx.isHidden).addDisposableTo(bag)
 
