@@ -276,8 +276,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         self.dayPickerView.layer.zPosition = showPicker ? self.zPositionForWindow : -1
         UIApplication.shared.keyWindow?.layer.zPosition = showPicker ? -1 : self.zPositionForWindow
-
-        self.dayPickerView.layoutIfNeeded()
         
         var bottomAnchorLength = self.dayPickerView.containerView.frame.size.height + 8
         var alpha:Float = 0.0
@@ -288,9 +286,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
         }
 
         self.dayPickerView.bottomConstraint.constant = bottomAnchorLength
-        
-        self.dayPickerView.setNeedsLayout()
-        
+    
+        self.dayPickerView.layoutIfNeeded()
         UIView.animate(withDuration: 0.25, animations: {
             self.dayPickerView.layoutIfNeeded()
             
@@ -663,8 +660,13 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func beforeDueDateButtonPressed() {
-        showPickerView(true)
+        view.endEditing(true)
+        // Delay here fixes a bug when button is tapped with keyboard up
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
+            self.showPickerView(true)
+        })
     }
+
     
     func onDateButtonSelected() {
         self.view.endEditing(true)
