@@ -13,10 +13,7 @@ private func extractDate(object: Any?) throws -> Date? {
     guard let dateString = object as? String else {
         throw MapperError.convertibleError(value: object, type: Date.self)
     }
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    return dateFormatter.date(from: dateString)
+    return dateString.apiFormatDate
 }
 
 enum AccountType {

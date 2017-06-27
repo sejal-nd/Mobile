@@ -108,6 +108,11 @@ class BillViewModel {
         return Driver.zip(self.shouldShowAlertBanner, showPastDue) { !$0 && $1 }
     }()
     
+    lazy var pendingPaymentAmountDueBoxesAlpha: Driver<CGFloat> = self.currentAccountDetail.asDriver().map {
+        guard let pendingPaymentAmount = $0?.billingInfo.pendingPaymentAmount else { return 1.0 }
+        return pendingPaymentAmount > 0 ? 0.5 : 1.0
+    }
+    
     lazy var shouldShowPendingPayment: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         //TODO: Account for web service change when this becomes an array
         $0?.billingInfo.pendingPaymentAmount ?? 0 > 0
@@ -144,9 +149,10 @@ class BillViewModel {
     
     let shouldShowAmountDueTooltip = Environment.sharedInstance.opco == .peco
     
-    lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map {
-        guard let isAMICustomer = $0?.isAMICustomer else { return false }
-        return !UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && !isAMICustomer
+    lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map { _ in
+        return false // Bill Analysis will be Release 2
+//        guard let isAMICustomer = $0?.isAMICustomer else { return false }
+//        return !UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && !isAMICustomer
     }
     
     lazy var shouldEnableMakeAPaymentButton: Driver<Bool> = self.currentAccountDetail.asDriver().map {
