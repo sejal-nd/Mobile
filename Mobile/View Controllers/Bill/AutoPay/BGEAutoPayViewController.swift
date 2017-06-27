@@ -169,8 +169,8 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     func onCancelPress() {
-        if viewModel.initialEnrollmentStatus.value == .enrolled && viewModel.userDidChangeSettings.value {
-            let alertVc = UIAlertController(title: NSLocalizedString("Unsaved Settings", comment: ""), message: NSLocalizedString("You have unsaved settings - are you sure you want to exit this screen without saving your changes? Return to the AutoPay screen and Tap \"Submit\" to save your AutoPay settings.", comment: ""), preferredStyle: .alert)
+        if viewModel.initialEnrollmentStatus.value == .enrolled && (viewModel.userDidChangeSettings.value || viewModel.userDidChangeBankAccount.value) {
+            let alertVc = UIAlertController(title: NSLocalizedString("Unsaved Changes", comment: ""), message: NSLocalizedString("You have unsaved changes - are you sure you want to exit this screen without saving your changes? Return to the AutoPay screen and Tap \"Submit\" to save your AutoPay changes.", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .destructive, handler: { _ in
                 self.navigationController?.popViewController(animated: true)
@@ -199,7 +199,7 @@ class BGEAutoPayViewController: UIViewController {
             if viewModel.enrollSwitchValue.value { // Update
                 viewModel.enrollOrUpdate(update: true, onSuccess: {
                     LoadingView.hide()
-                    self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay settings updated", comment: ""))
+                    self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { errMessage in
                     LoadingView.hide()
@@ -255,6 +255,11 @@ class BGEAutoPayViewController: UIViewController {
 extension BGEAutoPayViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
+        if let currWalletItem = viewModel.selectedWalletItem.value {
+            if walletItem != currWalletItem {
+                viewModel.userDidChangeBankAccount.value = true
+            }
+        }
         viewModel.selectedWalletItem.value = walletItem
     }
 }

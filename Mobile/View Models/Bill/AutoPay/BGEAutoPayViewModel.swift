@@ -33,6 +33,7 @@ class BGEAutoPayViewModel {
     
     // --- Settings --- //
     var userDidChangeSettings = Variable(false)
+    var userDidChangeBankAccount = Variable(false)
     
     let amountToPay = Variable<AmountType>(.amountDue)
     let whenToPay = Variable<PaymentDateType>(.onDueDate)
@@ -116,14 +117,14 @@ class BGEAutoPayViewModel {
     }
     
     var submitButtonEnabled: Driver<Bool> {
-        return Driver.combineLatest(initialEnrollmentStatus.asDriver(), selectedWalletItem.asDriver(), enrollSwitchValue.asDriver(), userDidChangeSettings.asDriver()) {
+        return Driver.combineLatest(initialEnrollmentStatus.asDriver(), selectedWalletItem.asDriver(), enrollSwitchValue.asDriver(), userDidChangeSettings.asDriver(), userDidChangeBankAccount.asDriver()) {
             if $0 == .unenrolled && $1 != nil { // Unenrolled with bank account selected
                 return true
             }
             if $0 == .enrolled && !$2 { // Enrolled and enrollment switch toggled off
                 return true
             }
-            if $0 == .enrolled && $1?.walletItemID != nil && $3 { // Enrolled with a selected wallet item and changed settings
+            if $0 == .enrolled && $1?.walletItemID != nil && ($3 || $4) { // Enrolled with a selected wallet item and changed settings or bank
                 return true
             }
             return false
