@@ -604,7 +604,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsDetailsLabel.setContentHuggingPriority(999, for: .vertical)
         numberOfPaymentsDetailsLabel.numberOfLines = 0
         numberOfPaymentsDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        numberOfPaymentsDetailsLabel.text = NSLocalizedString("After your selected number of payments have been created, AutoPay will automatically stop and you will be responsible for restarting AutoPay or resuming manual payments on your accounts.", comment: "")
+        viewModel.numberOfPaymentsLabelText.drive(numberOfPaymentsDetailsLabel.rx.text).addDisposableTo(disposeBag)
         
         numberOfPaymentsButtonStackView.addArrangedSubview(numberOfPaymentsDetailsLabel)
         

@@ -197,6 +197,14 @@ class BGEAutoPayViewModel {
         return ""
     }
     
+    lazy var numberOfPaymentsLabelText: Driver<String> = self.numberOfPayments.asDriver().map {
+        if $0.isEmpty {
+            return NSLocalizedString("After your selected number of payments have been created, AutoPay will automatically stop and you will be responsible for restarting AutoPay or resuming manual payments on your accounts.", comment: "")
+        } else {
+            return NSLocalizedString("After \($0) payments have been created, AutoPay will automatically stop and you will be responsible for restarting AutoPay or resuming manual payments on your accounts.", comment: "")
+        }
+    }
+    
     func formatAmountNotToExceed() {
         let components = amountNotToExceed.value.components(separatedBy: ".")
         
