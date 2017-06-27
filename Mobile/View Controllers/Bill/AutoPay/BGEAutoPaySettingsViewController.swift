@@ -177,7 +177,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
             numberOfPaymentsRadioControl.isSelected = false
             untilDateRadioControl.isSelected = true
         }
-
+        
+        if let date = viewModel.autoPayUntilDate.value {
+             untilDateButton.selectedDateLabel.text = date.mmDdYyyyString
+        }
+    
         //
         hideAmountNotToExceedControlViews(viewModel.amountToPay.value == .amountDue)
         hideBeforeDueDateControlViews(viewModel.whenToPay.value != .onDueDate)
@@ -624,8 +628,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsRadioControlsSet.append(untilDateRadioControl)
         
         untilDateButton.addTarget(self, action: #selector(onDateButtonSelected), for: .touchUpInside)
-        untilDateButton.layer.shadowRadius = 1
-        untilDateButton.layer.borderColor = UIColor.black.cgColor
+        untilDateButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        untilDateButton.backgroundColorOnPress = .softGray
         
         untilDateButtonStackView.addArrangedSubview(untilDateButton)
         
