@@ -150,6 +150,8 @@ class AutoPayViewController: UIViewController {
     }
     
     func onSubmitPress() {
+        view.endEditing(true)
+        
         LoadingView.show()
         viewModel.submit()
             .observeOn(MainScheduler.instance)
