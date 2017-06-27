@@ -91,7 +91,7 @@ class AutoPayChangeBankViewController: UIViewController {
 		
 		confirmAccountNumberTextField.textField.placeholder = NSLocalizedString("Confirm Account Number*", comment: "")
 		confirmAccountNumberTextField.textField.delegate = self
-		accountNumberTextField.textField.returnKeyType = .done
+		confirmAccountNumberTextField.textField.returnKeyType = .done
 	}
 	
 	private func bindViews() {

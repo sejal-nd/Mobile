@@ -8,6 +8,12 @@
 
 import RxSwift
 
+/* IMPORTANT - THEIR BACKEND MAPS THE CODES AS FOLLOWS (DIFFERENT FROM OUR DISPLAY
+ 01 = All Information
+ 02 = No Information
+ 03 = All Info Excluding Usage
+*/
+
 protocol PECOReleaseOfInfoViewControllerDelegate: class {
     func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController)
 }
@@ -56,8 +62,15 @@ class PECOReleaseOfInfoViewController: UIViewController {
     }
     
     func onSubmitPress() {
+        var rowToIntMapping = selectedRowIndex // Address only is mapped correctly
+        if selectedRowIndex == 0 {
+            rowToIntMapping = 1
+        } else if selectedRowIndex == 1 {
+            rowToIntMapping = 0
+        }
+        
         LoadingView.show()
-        accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.sharedInstance.currentAccount!, selectedIndex: selectedRowIndex)
+        accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.sharedInstance.currentAccount!, selectedIndex: rowToIntMapping)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 LoadingView.hide()
@@ -79,7 +92,13 @@ class PECOReleaseOfInfoViewController: UIViewController {
                 .subscribe(onNext: { accountDetail in
                     if let selectedRelease = accountDetail.releaseOfInformation {
                         if let releaseOfInfoInt = Int(selectedRelease) {
-                            let indexPath = IndexPath(row: releaseOfInfoInt - 1, section: 0)
+                            var intToRowMapping = 2 // Address only is mapped correctly
+                            if releaseOfInfoInt == 1 {
+                                intToRowMapping = 1
+                            } else if releaseOfInfoInt == 2 {
+                                intToRowMapping = 0
+                            }
+                            let indexPath = IndexPath(row: intToRowMapping, section: 0)
                             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                         }
                     }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RadioSelectionView" customModule="BGE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="442" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2W-wA-fdl">
+                    <rect key="frame" x="35" y="12.5" width="387" height="19.5"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" button="YES" staticText="YES"/>
+                    </accessibility>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_radiobutton_deselected" translatesAutoresizingMaskIntoConstraints="NO" id="M7I-B3-Nyd">
+                    <rect key="frame" x="0.0" y="10" width="24" height="24"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" button="YES" image="YES"/>
+                    </accessibility>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="lDa-kk-Vcm"/>
+                        <constraint firstAttribute="height" constant="24" id="zv7-Rr-lDM"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="M7I-B3-Nyd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Mk9-zL-e09"/>
+                <constraint firstItem="B2W-wA-fdl" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ktn-bJ-yIw"/>
+                <constraint firstItem="B2W-wA-fdl" firstAttribute="leading" secondItem="M7I-B3-Nyd" secondAttribute="trailing" constant="11" id="kwu-JX-Jkh"/>
+                <constraint firstItem="M7I-B3-Nyd" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="vQ6-5j-fzD"/>
+                <constraint firstAttribute="trailing" secondItem="B2W-wA-fdl" secondAttribute="trailing" constant="20" id="yMA-Qc-MqY"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="label" destination="B2W-wA-fdl" id="rUY-NP-83l"/>
+                <outlet property="radioButtonImageView" destination="M7I-B3-Nyd" id="2M0-EC-biU"/>
+            </connections>
+            <point key="canvasLocation" x="-9" y="-263"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_radiobutton_deselected" width="24" height="24"/>
+    </resources>
+</document>

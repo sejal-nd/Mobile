@@ -90,6 +90,7 @@ class AddBankAccountViewController: UIViewController {
         
         nicknameTextField.textField.placeholder = Environment.sharedInstance.opco == .bge ? NSLocalizedString("Nickname*", comment: "") : NSLocalizedString("Nickname (Optional)", comment: "")
         nicknameTextField.textField.autocorrectionType = .no
+        nicknameTextField.textField.returnKeyType = .done
 
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -121,7 +122,6 @@ class AddBankAccountViewController: UIViewController {
     
     func onSavePress() {
         view.endEditing(true)
-        
         
         let customerNumber = viewModel.accountDetail.customerInfo.number
         
@@ -318,6 +318,8 @@ extension AddBankAccountViewController: UITextFieldDelegate {
                 }
             } else if textField == confirmAccountNumberTextField.textField {
                 nicknameTextField.textField.becomeFirstResponder()
+            } else if textField == nicknameTextField.textField {
+                self.onSavePress()
             }
         } else {
             if textField == routingNumberTextField.textField {
@@ -328,6 +330,8 @@ extension AddBankAccountViewController: UITextFieldDelegate {
                 }
             } else if textField == confirmAccountNumberTextField.textField {
                 nicknameTextField.textField.becomeFirstResponder()
+            } else if textField == nicknameTextField.textField {
+                self.onSavePress()
             }
         }
         return false

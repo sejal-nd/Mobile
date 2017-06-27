@@ -141,7 +141,9 @@ class AutoPayViewModel {
         .distinctUntilChanged()
         .map { $0 ? nil: NSLocalizedString("Account numbers do not match", comment: "") }
     
-    lazy var confirmAccountNumberIsValid: Driver<Bool> = self.confirmAccountNumberErrorText.map { $0 == nil }
+    lazy var confirmAccountNumberIsValid: Driver<Bool> = Driver.combineLatest(self.confirmAccountNumberErrorText.map { $0 == nil }, self.confirmAccountNumber.asDriver()) {
+        return $0 && !$1.isEmpty
+    }
     
     lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumberHasText
     
