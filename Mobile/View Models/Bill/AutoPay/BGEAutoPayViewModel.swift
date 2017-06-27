@@ -149,19 +149,22 @@ class BGEAutoPayViewModel {
     func getInvalidSettingsMessage() -> String? {
         let defaultString = NSLocalizedString("Complete all required fields before returning to the AutoPay screen. Check your selected settings and complete secondary fields.", comment: "")
         
-        if amountToPay.value == .upToAmount && amountNotToExceed.value.isEmpty {
-            return defaultString
+        if amountToPay.value == .upToAmount {
+            if amountNotToExceed.value.isEmpty {
+                return defaultString
+            } else {
+                if let amountDouble = Double(amountNotToExceed.value) {
+                    if amountDouble < 0.01 || amountDouble > 9999.99 {
+                        return NSLocalizedString("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between $0.01 and $9,999.99", comment: "")
+                    }
+                }
+            }
         }
         if whenToPay.value == .beforeDueDate && numberOfDaysBeforeDueDate.value == "0" {
             return defaultString
         }
         if howLongForAutoPay.value == .maxPayments && numberOfPayments.value.isEmpty {
             return defaultString
-        }
-        if let amountDouble = Double(amountNotToExceed.value) {
-            if amountDouble < 0.01 || amountDouble > 9999.99 {
-                return NSLocalizedString("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between $0.01 and $9,999.99", comment: "")
-            }
         }
         return nil
     }
