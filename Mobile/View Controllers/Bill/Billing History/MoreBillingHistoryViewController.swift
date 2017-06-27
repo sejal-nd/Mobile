@@ -24,6 +24,8 @@ class MoreBillingHistoryViewController: UIViewController {
     
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
     
+    var accountDetail: AccountDetail!
+
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -81,6 +83,41 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
         // 
         if billingSelection == .history {
             self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+        } else {
+            let billingItem = self.billingList[indexPath.row]
+            
+            let status = billingItem.status!
+            
+            let storyboard = UIStoryboard(name: "Bill", bundle: nil)
+            
+            let opco = Environment.sharedInstance.opco
+            
+            // PROCESSING, SCHEDULED, AUTOMATIC
+            if opco == .bge {
+                if status == "AUTOMATIC" {
+                    if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
+                        vc.accountDetail = self.accountDetail
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                } else if status == "PROCESSING" {
+                    self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+                    
+                } else if status == "SCHEDULED" {
+                    // TODO: load Scheduled Payment workflow (Sprint 13)
+                }
+                
+            } else { // .comed/.peco
+                if status == "AUTOMATIC" {
+                    if let vc = storyboard.instantiateViewController(withIdentifier: "AutoPay") as? AutoPayViewController {
+                        vc.accountDetail = self.accountDetail
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                } else if status == "SCHEDULED" {
+                    // TODO: load Scheduled Payment workflow (Sprint 13)
+                }
+            }
         }
     }
 }

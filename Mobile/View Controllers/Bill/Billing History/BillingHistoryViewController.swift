@@ -31,6 +31,8 @@ class BillingHistoryViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
+    var accountDetail: AccountDetail!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,6 +87,8 @@ class BillingHistoryViewController: UIViewController {
         view.endEditing(true)
         
         if let vc = segue.destination as? MoreBillingHistoryViewController {
+            vc.accountDetail = self.accountDetail
+            
             vc.billingSelection = self.billingSelection
             vc.billingHistory = billingHistory
             
@@ -114,6 +118,41 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         if indexPath.section == 1 {
             self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+        } else {
+            let billingItem = self.billingHistory?.upcoming[indexPath.row]
+            
+            let status = billingItem?.status!
+            
+            let storyboard = UIStoryboard(name: "Bill", bundle: nil)
+            
+            let opco = Environment.sharedInstance.opco
+            
+            // PROCESSING, SCHEDULED, AUTOMATIC
+            if opco == .bge {
+                if status == "AUTOMATIC" {
+                    if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
+                        vc.accountDetail = self.accountDetail
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+
+                } else if status == "PROCESSING" {
+                    self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+                
+                } else if status == "SCHEDULED" {
+                    // TODO: load Scheduled Payment workflow (Sprint 13)
+                }
+                
+            } else { // .comed/.peco
+                if status == "AUTOMATIC" {
+                    if let vc = storyboard.instantiateViewController(withIdentifier: "AutoPay") as? AutoPayViewController {
+                        vc.accountDetail = self.accountDetail
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                } else if status == "SCHEDULED" {
+                    // TODO: load Scheduled Payment workflow (Sprint 13)
+                }
+            }
         }
     }
     

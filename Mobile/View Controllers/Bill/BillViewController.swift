@@ -481,6 +481,8 @@ class BillViewController: AccountPickerViewController {
         } else if let vc = segue.destination as? AutoPayViewController {
             vc.delegate = self
             vc.accountDetail = viewModel.currentAccountDetail.value!
+        } else if let vc = segue.destination as? BillingHistoryViewController {
+            vc.accountDetail = viewModel.currentAccountDetail.value!
         }
     }
 

@@ -137,29 +137,50 @@ class BillingHistoryDetailsViewController: UIViewController {
     
     func populateWithData() {
         paymentAccountDetailsLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber
-        paymentDateDetailsLabel.text = self.billingHistoryItem.date.mmDdYyyyString
+
+        if self.billingHistoryItem.date != nil {
+            paymentDateDetailsLabel.text = self.billingHistoryItem.date.mmDdYyyyString
+        } else {
+            paymentDateStackView.isHidden = true
+            paymentAmountSeparatorLine.isHidden = true
+        }
         
         if let amountPaid = self.billingHistoryItem.amountPaid {
             paymentAmountDetailsLabel.text = "$\(String(describing: amountPaid))"
         } else {
-            paymentAmountDetailsLabel.text = "$0.00"
+            paymentAmountStackView.isHidden = true
+            paymentAmountSeparatorLine.isHidden = true
+//            paymentAmountDetailsLabel.text = "$0.00"
         }
         
         if let chargeAmount = self.billingHistoryItem.chargeAmount {
             convenienceFeeDetailsLabel.text = "$\(String(describing: chargeAmount))"
         } else {
-            convenienceFeeDetailsLabel.text = "$0.00"
+            convenienceFeeStackView.isHidden = true
+            convenienceFeeSeparatorLine.isHidden = true
+//            convenienceFeeDetailsLabel.text = "$0.00"
         }
         
         if let totalAmountDue = self.billingHistoryItem.totalAmountDue {
             totalAmountPaidDetailsLabel.text = "$\(String(describing: totalAmountDue))"
         } else {
-            totalAmountPaidDetailsLabel.text = "$0.00"
+            totalAmountPaidStackView.isHidden = true
+            totalAmountPaidSeparatorLine.isHidden = true
+//            totalAmountPaidDetailsLabel.text = "$0.00"
         }
 
-        paymentStatusDetailsLabel.text = self.billingHistoryItem.status
+        if self.billingHistoryItem.status != nil {
+            paymentStatusDetailsLabel.text = self.billingHistoryItem.status
+        } else {
+            paymentStatusStackView.isHidden = true
+            paymentAmountSeparatorLine.isHidden = true
+        }
         
-        confirmationNumberDetailsLabel.text = self.billingHistoryItem.confirmationNumber
+        if self.billingHistoryItem.confirmationNumber != nil {
+            confirmationNumberDetailsLabel.text = self.billingHistoryItem.confirmationNumber
+        } else {
+            confirmationNumberStackView.isHidden = true
+        }
         
         print(self.billingHistoryItem.paymentType ?? "Unknown")
     }
