@@ -105,9 +105,13 @@ class BGEAutoPaySettingsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         title = NSLocalizedString("AutoPay Settings", comment: "")
-        
-        let backButton = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: self, action: #selector(onBackPress))
-        navigationItem.leftBarButtonItem = backButton
+
+        let systemBack = Bundle.main.loadNibNamed("UINavigationBackButton", owner: self, options: nil)![0] as! UINavigationBackButton
+        systemBack.addTarget(self, action: #selector(onBackPress), for: .touchUpInside)
+        let backButton = UIBarButtonItem(customView: systemBack)
+        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -8
+        navigationItem.leftBarButtonItems = [negativeSpacer, backButton]
         
         buildStackViews()
         
