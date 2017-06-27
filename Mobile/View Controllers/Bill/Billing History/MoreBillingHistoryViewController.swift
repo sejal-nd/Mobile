@@ -46,15 +46,9 @@ class MoreBillingHistoryViewController: UIViewController {
         
         self.tableView.register(UINib(nibName: BillingHistoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: "BillingHistoryCell")
         
-//        viewModel.getBillingHistory(success: { (billingHistory) in
-            self.loadingIndicator.isHidden = true
-            self.tableView.isHidden = false
-//            self.billingHistory = billingHistory
-            self.tableView.reloadData()
-//        }) { (error) in
-//            print(error)
-//            //TODO: handle this error
-//        }
+        self.loadingIndicator.isHidden = true
+        self.tableView.isHidden = false
+        self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,7 +78,10 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
         
         selectedIndexPath = indexPath
 
-        self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+        // 
+        if billingSelection == .history {
+            self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+        }
     }
 }
 

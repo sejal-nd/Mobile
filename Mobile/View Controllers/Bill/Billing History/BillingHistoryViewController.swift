@@ -112,7 +112,9 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         selectedIndexPath = indexPath
         
-        self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+        if indexPath.section == 1 {
+            self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+        }
     }
     
 }
