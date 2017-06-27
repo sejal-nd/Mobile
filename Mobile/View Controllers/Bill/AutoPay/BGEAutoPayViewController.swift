@@ -26,10 +26,6 @@ class BGEAutoPayViewController: UIViewController {
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
-    @IBOutlet weak var stickyBottomView: UIView!
-    @IBOutlet weak var stickyBottomLabel: UILabel!
-    @IBOutlet weak var stickyBottomViewHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var learnMoreButton: ButtonControl!
     @IBOutlet weak var learnMoreButtonLabel: UILabel!
     
@@ -50,6 +46,8 @@ class BGEAutoPayViewController: UIViewController {
     
     @IBOutlet weak var settingsButton: ButtonControl!
     @IBOutlet weak var settingsButtonLabel: UILabel!
+    
+    @IBOutlet weak var bottomLabel: UILabel!
     
     var accountDetail: AccountDetail! // Passed from BillViewController
     
@@ -103,9 +101,8 @@ class BGEAutoPayViewController: UIViewController {
         bankAccountButtonAccountNumberLabel.textColor = .blackText
         bankAccountButtonNicknameLabel.textColor = .middleGray
         
-        stickyBottomView.backgroundColor = .softGray
-        stickyBottomLabel.textColor = .blackText
-        stickyBottomLabel.text = NSLocalizedString("Your recurring payment will apply to the next BGE bill you receive. You will need to submit a payment for your current BGE bill if you have not already done so.", comment: "")
+        bottomLabel.textColor = .blackText
+        bottomLabel.text = NSLocalizedString("Your recurring payment will apply to the next BGE bill you receive. You will need to submit a payment for your current BGE bill if you have not already done so.", comment: "")
         
         settingsButtonLabel.textColor = .actionBlue
         settingsButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -123,7 +120,7 @@ class BGEAutoPayViewController: UIViewController {
         }
         
         if viewModel.initialEnrollmentStatus.value == .enrolled {
-            stickyBottomViewHeightConstraint.constant = 0
+            bottomLabel.isHidden = true
             expirationLabel.isHidden = true
             selectBankAccountLabel.isHidden = true
         } else {
@@ -149,7 +146,7 @@ class BGEAutoPayViewController: UIViewController {
         viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isFetchingAutoPayInfo.asObservable().subscribe(onNext: { fetching in
             if self.viewModel.initialEnrollmentStatus.value == .unenrolled {
-                self.stickyBottomViewHeightConstraint.constant = fetching ? 0 : 108
+                self.bottomLabel.isHidden = fetching
             }
         }).addDisposableTo(disposeBag)
         

@@ -105,9 +105,13 @@ class BGEAutoPaySettingsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         title = NSLocalizedString("AutoPay Settings", comment: "")
-        
-        let backButton = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: self, action: #selector(onBackPress))
-        navigationItem.leftBarButtonItem = backButton
+
+        let systemBack = Bundle.main.loadNibNamed("UINavigationBackButton", owner: self, options: nil)![0] as! UINavigationBackButton
+        systemBack.addTarget(self, action: #selector(onBackPress), for: .touchUpInside)
+        let backButton = UIBarButtonItem(customView: systemBack)
+        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -8
+        navigationItem.leftBarButtonItems = [negativeSpacer, backButton]
         
         buildStackViews()
         
@@ -173,7 +177,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
             numberOfPaymentsRadioControl.isSelected = false
             untilDateRadioControl.isSelected = true
         }
-
+        
+        if let date = viewModel.autoPayUntilDate.value {
+             untilDateButton.selectedDateLabel.text = date.mmDdYyyyString
+        }
+    
         //
         hideAmountNotToExceedControlViews(viewModel.amountToPay.value == .amountDue)
         hideBeforeDueDateControlViews(viewModel.whenToPay.value != .onDueDate)
@@ -600,7 +608,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsDetailsLabel.setContentHuggingPriority(999, for: .vertical)
         numberOfPaymentsDetailsLabel.numberOfLines = 0
         numberOfPaymentsDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        numberOfPaymentsDetailsLabel.text = NSLocalizedString("After your selected number of payments have been created, AutoPay will automatically stop and you will be responsible for restarting AutoPay or resuming manual payments on your accounts.", comment: "")
+        viewModel.numberOfPaymentsLabelText.drive(numberOfPaymentsDetailsLabel.rx.text).addDisposableTo(disposeBag)
         
         numberOfPaymentsButtonStackView.addArrangedSubview(numberOfPaymentsDetailsLabel)
         
@@ -620,8 +628,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsRadioControlsSet.append(untilDateRadioControl)
         
         untilDateButton.addTarget(self, action: #selector(onDateButtonSelected), for: .touchUpInside)
-        untilDateButton.layer.shadowRadius = 1
-        untilDateButton.layer.borderColor = UIColor.black.cgColor
+        untilDateButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        untilDateButton.backgroundColorOnPress = .softGray
         
         untilDateButtonStackView.addArrangedSubview(untilDateButton)
         
