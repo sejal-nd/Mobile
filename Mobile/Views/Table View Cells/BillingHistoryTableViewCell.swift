@@ -43,25 +43,33 @@ class BillingHistoryTableViewCell: UITableViewCell {
                     self.amountLabel.text = item.amountPaid!.currencyString
             }
         } else {
-            switch item.description! {
-                case "Regular Bill":
-                    iconImageView.image = UIImage(named: "ic_bill")
-                    titleLabel.text = BILL_ISSUED
-                    self.amountLabel.text = item.totalAmountDue!.currencyString
-                case "Billing":
-                    iconImageView.image = UIImage(named: "ic_bill")
-                    titleLabel.text = BILL_ISSUED
-                    self.amountLabel.text = item.totalAmountDue!.currencyString
-                case "Late Payment Charge":
-                    iconImageView.image = UIImage(named: "ic_alert")
-                    titleLabel.text = LATE_PAYMENT
-                    self.amountLabel.text = item.amountPaid!.currencyString
-                case "Payment":
-                    fallthrough
-                default:
-                    iconImageView.image = UIImage(named: "ic_paymentcheck")
-                    titleLabel.text = PAYMENT
-                    self.amountLabel.text = item.amountPaid!.currencyString
+            if let description = item.description {
+                switch description {
+                    case "Regular Bill":
+                        iconImageView.image = UIImage(named: "ic_bill")
+                        titleLabel.text = BILL_ISSUED
+                        self.amountLabel.text = item.totalAmountDue!.currencyString
+                    case "Billing":
+                        iconImageView.image = UIImage(named: "ic_bill")
+                        titleLabel.text = BILL_ISSUED
+                        self.amountLabel.text = item.totalAmountDue!.currencyString
+                    case "Late Payment Charge":
+                        iconImageView.image = UIImage(named: "ic_alert")
+                        titleLabel.text = LATE_PAYMENT
+                        self.amountLabel.text = item.amountPaid!.currencyString
+                    case "Payment":
+                        fallthrough
+                    default:
+                        iconImageView.image = UIImage(named: "ic_paymentcheck")
+                        titleLabel.text = PAYMENT
+                        self.amountLabel.text = item.amountPaid!.currencyString
+                        self.amountLabel.textColor = .successGreenText
+                }
+            } else {
+                iconImageView.image = UIImage(named: "ic_paymentcheck")
+                titleLabel.text = PAYMENT
+                self.amountLabel.text = item.amountPaid!.currencyString
+                self.amountLabel.textColor = .successGreenText
             }
         }
         

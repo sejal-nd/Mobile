@@ -107,6 +107,14 @@
 		54C1DEF21F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */; };
 		54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */; };
 		54C1DEF61F01A1D000290FE5 /* MoreBillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */; };
+		54C1DEF71F01EBF900290FE5 /* BGEasyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89548F41EC646A200730022 /* BGEasyViewController.swift */; };
+		54C1DEF81F01EBFA00290FE5 /* BGEasyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89548F41EC646A200730022 /* BGEasyViewController.swift */; };
+		54C1DEF91F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */; };
+		54C1DEFA1F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */; };
+		54C1DEFB1F02B8E200290FE5 /* MoreBillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */; };
+		54C1DEFC1F02B8E300290FE5 /* MoreBillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */; };
+		54C1DEFD1F02B8FB00290FE5 /* BillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */; };
+		54C1DEFE1F02B8FC00290FE5 /* BillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */; };
 		54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
 		54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
 		54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
@@ -3089,6 +3097,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
+				54C1DEF81F01EBFA00290FE5 /* BGEasyViewController.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF21EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
@@ -3153,6 +3162,7 @@
 				B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8039FF71EFB041C004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				E8039FFA1EFB0420004DB789 /* PaymentService.swift in Sources */,
+				54C1DEFA1F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				82D5994D1EC36B5500DDB380 /* Currency.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
@@ -3217,12 +3227,14 @@
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				E876A8581ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
+				54C1DEFE1F02B8FC00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				82BE05811ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				E8C453291EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */,
 				54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
+				54C1DEFC1F02B8E300290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
@@ -3256,6 +3268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
+				54C1DEF71F01EBF900290FE5 /* BGEasyViewController.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
@@ -3320,6 +3333,7 @@
 				82A18EDE1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E8039FF61EFB041C004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				E8039FF91EFB0420004DB789 /* PaymentService.swift in Sources */,
+				54C1DEF91F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				82D5994C1EC36B5500DDB380 /* Currency.swift in Sources */,
@@ -3384,12 +3398,14 @@
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				E876A8571ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
+				54C1DEFD1F02B8FB00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				2F5A3F811EFD870200B9E49E /* BillingHistory.swift in Sources */,
 				54AE06951ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
+				54C1DEFB1F02B8E200290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,

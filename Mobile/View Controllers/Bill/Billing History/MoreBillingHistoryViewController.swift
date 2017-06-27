@@ -16,6 +16,10 @@ class MoreBillingHistoryViewController: UIViewController {
     
     var billingHistory: BillingHistory?
     
+    var billingSelection: BillingSelection?
+    
+    var billingList: [BillingHistoryItem]!
+    
     var selectedIndexPath:IndexPath!
     
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
@@ -24,6 +28,14 @@ class MoreBillingHistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        switch (billingSelection!) {
+        case .history:
+            billingList = billingHistory?.past
+            
+        case .upcoming:
+            billingList = billingHistory?.upcoming
+        }
         
         self.title = NSLocalizedString("More Activity", comment: "")
         self.loadingIndicator.isHidden = false
@@ -34,15 +46,15 @@ class MoreBillingHistoryViewController: UIViewController {
         
         self.tableView.register(UINib(nibName: BillingHistoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: "BillingHistoryCell")
         
-        viewModel.getBillingHistory(success: { (billingHistory) in
+//        viewModel.getBillingHistory(success: { (billingHistory) in
             self.loadingIndicator.isHidden = true
             self.tableView.isHidden = false
-            self.billingHistory = billingHistory
+//            self.billingHistory = billingHistory
             self.tableView.reloadData()
-        }) { (error) in
-            print(error)
-            //TODO: handle this error
-        }
+//        }) { (error) in
+//            print(error)
+//            //TODO: handle this error
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +80,8 @@ class MoreBillingHistoryViewController: UIViewController {
 
 extension MoreBillingHistoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
         selectedIndexPath = indexPath
 
         self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
@@ -77,8 +91,8 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
 extension MoreBillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (self.billingHistory?.past) != nil {
-            return self.billingHistory!.past.count
+        if (self.billingList) != nil {
+            return self.billingList!.count
         } else {
             return 0
         }
@@ -87,7 +101,7 @@ extension MoreBillingHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let billingHistoryItem: BillingHistoryItem
 
-        billingHistoryItem = (self.billingHistory?.past[indexPath.row])!
+        billingHistoryItem = (self.billingList![indexPath.row])
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BillingHistoryCell", for: indexPath) as! BillingHistoryTableViewCell
         

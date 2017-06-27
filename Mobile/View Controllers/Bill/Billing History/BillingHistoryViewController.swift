@@ -9,13 +9,23 @@
 import UIKit
 import RxSwift
 
+enum BillingSelection {
+    case upcoming
+    case history
+}
+
 class BillingHistoryViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var loadingIndicator: UIView!
     @IBOutlet var empyStateLabel: UILabel!
     
+    var billingSelection: BillingSelection!
+    
     var billingHistory: BillingHistory?
+    
+    var selectedIndexPath:IndexPath!
+    var historyItem: BillingHistoryItem?
     
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
     
@@ -66,16 +76,30 @@ class BillingHistoryViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        view.endEditing(true)
+        
+        if let vc = segue.destination as? MoreBillingHistoryViewController {
+            vc.billingSelection = self.billingSelection
+            vc.billingHistory = billingHistory
+            
+        } else if let vc = segue.destination as? BillingHistoryDetailsViewController {
+            let billingHistoryItem: BillingHistoryItem
+            
+            if(selectedIndexPath.section == 0) {
+                billingHistoryItem = (self.billingHistory?.upcoming[selectedIndexPath.row])!
+            } else {
+                billingHistoryItem = (self.billingHistory?.past[selectedIndexPath.row])!
+            }
+            
+            vc.billingHistoryItem = billingHistoryItem
+        }
     }
-    */
-
 }
 
 
@@ -86,11 +110,9 @@ extension BillingHistoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        if indexPath.section == 0 {
-            performSegue(withIdentifier: "billingHistoryDetail", sender: self)
-        } else if indexPath.section == 1 {
-            
-        } 
+        selectedIndexPath = indexPath
+        
+        self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
     }
     
 }
@@ -189,6 +211,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             let button = UIButton(type: UIButtonType.system)
             button.setTitle("View More", for: .normal)
+            button.setTitleColor(.actionBlue, for: .normal)
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
             button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
             cell.contentView.addSubview(button)
@@ -214,6 +237,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         let titleText = section == 0 ? "View All (\(self.billingHistory!.upcoming.count))" : "View More"
         button.setTitle(titleText, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.actionBlue, for: .normal)
         
         let selector = section == 0 ? #selector(BillingHistoryViewController.viewAllUpcoming) : #selector(BillingHistoryViewController.viewMorePast)
         button.addTarget(self, action: selector, for:.touchUpInside)
@@ -249,11 +273,13 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func viewAllUpcoming() {
-        print("view all upcoming")
+        self.billingSelection = .upcoming
+        
+        self.performSegue(withIdentifier: "showMoreBillingHistorySegue", sender: self)
     }
     
     func viewMorePast() {
-        print("view more past")
+        self.billingSelection = .history
         
         self.performSegue(withIdentifier: "showMoreBillingHistorySegue", sender: self)
     }

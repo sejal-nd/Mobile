@@ -46,7 +46,7 @@
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHf-5j-OVg">
-                        <rect key="frame" x="220" y="23" width="42" height="20.5"/>
+                        <rect key="frame" x="219" y="23" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -60,9 +60,9 @@
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="YHf-5j-OVg" secondAttribute="trailing" constant="59" id="Lib-jD-Gsx"/>
                     <constraint firstItem="z4I-YT-a8d" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OTF-HG-C62"/>
                     <constraint firstItem="YHf-5j-OVg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aXi-1O-38j"/>
-                    <constraint firstItem="YHf-5j-OVg" firstAttribute="leading" secondItem="7GB-fG-AIl" secondAttribute="trailing" constant="16" id="ddw-mQ-QLH"/>
                     <constraint firstItem="3eO-XJ-k96" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iIp-Gk-yhJ"/>
                     <constraint firstItem="7GB-fG-AIl" firstAttribute="leading" secondItem="3eO-XJ-k96" secondAttribute="trailing" constant="14" id="s05-TL-FWf"/>
                     <constraint firstItem="7GB-fG-AIl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tbv-fU-Uzh"/>

@@ -141,18 +141,27 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         if let amountPaid = self.billingHistoryItem.amountPaid {
             paymentAmountDetailsLabel.text = "$\(String(describing: amountPaid))"
+        } else {
+            paymentAmountDetailsLabel.text = "$0.00"
         }
         
         if let chargeAmount = self.billingHistoryItem.chargeAmount {
             convenienceFeeDetailsLabel.text = "$\(String(describing: chargeAmount))"
+        } else {
+            convenienceFeeDetailsLabel.text = "$0.00"
         }
         
         if let totalAmountDue = self.billingHistoryItem.totalAmountDue {
             totalAmountPaidDetailsLabel.text = "$\(String(describing: totalAmountDue))"
+        } else {
+            totalAmountPaidDetailsLabel.text = "$0.00"
         }
 
         paymentStatusDetailsLabel.text = self.billingHistoryItem.status
-//        confirmationNumberDetailsLabel.text = ""
+        
+        confirmationNumberDetailsLabel.text = self.billingHistoryItem.confirmationNumber
+        
+        print(self.billingHistoryItem.paymentType ?? "Unknown")
     }
     
 
