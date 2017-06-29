@@ -24,6 +24,7 @@ enum AccountType {
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
+    let premises: Array<Premise>
     
     let status: String?
     let isLinked: Bool
@@ -34,6 +35,7 @@ struct Account: Mappable, Equatable, Hashable {
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
         address = map.optionalFrom("address")
+        premises = map.optionalFrom("PremiseInfo") ?? []
         
         status = map.optionalFrom("status")
         isLinked = map.optionalFrom("isLinkedProfile") ?? false
