@@ -88,34 +88,22 @@ class WalletTableViewCell: UITableViewCell {
         switch Environment.sharedInstance.opco {
         case .comEd, .peco:
             if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+                accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 bottomBarLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
-                if let paymentMethodType = walletItem.paymentMethodType {
-                    switch paymentMethodType {
-                    case .visa:
-                        accountImageView.image = #imageLiteral(resourceName: "ic_visa")
-                        a11yLabel = NSLocalizedString("Visa card", comment: "")
-                    case .mastercard:
-                        accountImageView.image = #imageLiteral(resourceName: "ic_mastercard")
-                        a11yLabel = NSLocalizedString("Master card", comment: "")
-                    case .discover:
-                        accountImageView.image = #imageLiteral(resourceName: "ic_discover")
-                        a11yLabel = NSLocalizedString("Discover card", comment: "")
-                    case .americanexpress:
-                        accountImageView.image = #imageLiteral(resourceName: "ic_amex")
-                        a11yLabel = NSLocalizedString("American Express card", comment: "")
-                    }
-                } else {
-                    accountImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder")
-                    a11yLabel =  NSLocalizedString("Credit card", comment: "")
-                }
+                a11yLabel =  NSLocalizedString("Credit card", comment: "")
             } else if walletItem.paymentCategoryType == .check {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
                 a11yLabel =  NSLocalizedString("Bank account", comment: "")
             }
         case .bge:
-            accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-            a11yLabel = NSLocalizedString("Bank account", comment: "")
-            
+            if walletItem.paymentCategoryType == .check {
+                accountImageView.image = #imageLiteral(resourceName: "opco_bank")
+                a11yLabel = NSLocalizedString("Bank account", comment: "")
+            } else {
+                accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
+                //bottomBarLabel.text = NSLocalizedString("Fees: $1.50 Residential | 2.4% Business", comment: "")
+                a11yLabel = NSLocalizedString("Credit card", comment: "")
+            }
             switch walletItem.walletItemStatusTypeBGE! {
             case .pndWait:
                 bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
@@ -140,9 +128,6 @@ class WalletTableViewCell: UITableViewCell {
                 bottomBarLabel.textColor = .successGreenText
                 bottomBarLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
             }
-        
-            // if credit card:
-            // bottomBarLabel.text = NSLocalizedString("Fees: $1.50 Residential | 2.4% Business", comment: "")
         }
         
         // Nickname

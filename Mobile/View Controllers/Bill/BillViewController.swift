@@ -446,6 +446,13 @@ class BillViewController: AccountPickerViewController {
                 }
             })
             .addDisposableTo(bag)
+        
+        makeAPaymentButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+                self.navigationController?.pushViewController(paymentVc, animated: true)
+            })
+            .addDisposableTo(bag)
     }
 
     func configureAccessibility() {

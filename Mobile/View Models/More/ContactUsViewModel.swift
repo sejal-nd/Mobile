@@ -116,7 +116,7 @@ class ContactUsViewModel {
     var linkedinURL: String? {
         switch opco {
         case .bge: return "https://www.linkedin.com/company/5115"
-        case .peco: return "https://www.linkedin.com/" // TODO: TEMPORARY LINK
+        case .peco: return "https://www.linkedin.com/company/peco-energy"
         case .comEd: return "https://www.linkedin.com/company/comed"
         }
     }

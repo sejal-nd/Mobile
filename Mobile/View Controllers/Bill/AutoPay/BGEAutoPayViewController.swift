@@ -226,8 +226,7 @@ class BGEAutoPayViewController: UIViewController {
     }
 
     @IBAction func onSelectBankAccountPress() {
-        let storyboard = UIStoryboard(name: "Bill", bundle: nil)
-        let miniWalletVC = storyboard.instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
+        let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
         miniWalletVC.tableHeaderLabelText = NSLocalizedString("Select a bank account to enroll in AutoPay.", comment: "")
         miniWalletVC.accountDetail = viewModel.accountDetail
         miniWalletVC.creditCardsDisabled = true

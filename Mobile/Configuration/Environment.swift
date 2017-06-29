@@ -29,6 +29,7 @@ struct Environment  {
     let oAuthEndpoint: String
     let mcsInstanceName: String
     let fiservUrl: String
+    let outageMapUrl: String
     
     private init() {
         let path = Bundle.main.path(forResource: "environment", ofType: "plist")
@@ -40,6 +41,7 @@ struct Environment  {
         oAuthEndpoint = dict?["oauthEndpoint"] as! String
         mcsInstanceName = dict?["mcsInstanceName"] as! String
         fiservUrl = dict?["fiservUrl"] as! String
+        outageMapUrl = dict?["outageMapUrl"] as! String
     }
     
     var opcoDateFormatter: DateFormatter {

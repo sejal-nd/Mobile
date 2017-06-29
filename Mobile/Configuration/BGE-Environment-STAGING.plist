@@ -14,5 +14,7 @@
 	<string>Staging</string>
 	<key>fiservUrl</key>
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
+	<key>outageMapUrl</key>
+	<string>http://outagemaptest.comed.com.s3.amazonaws.com/app.html</string>
 </dict>
 </plist>

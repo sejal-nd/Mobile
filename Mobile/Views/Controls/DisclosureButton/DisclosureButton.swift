@@ -57,6 +57,10 @@ class DisclosureButton: UIButton {
         label.font = SystemFont.medium.of(textStyle: (text.isEmpty ? .title1: .headline))
     }
     
+    public func setHideCaret(caretHidden: Bool) {
+        caretAccessory.isHidden = caretHidden
+    }
+    
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
