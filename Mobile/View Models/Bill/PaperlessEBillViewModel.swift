@@ -95,24 +95,31 @@ class PaperlessEBillViewModel {
     
     func submitChanges(onSuccess: @escaping (PaperlessEBillChangedStatus) -> Void, onError: @escaping (String) -> Void) {
         var requestObservables = [Observable<Void>]()
-        var enrolled = false, unenrolled = false
+        var enrolled = false //, unenrolled = false
         for account in accountsToEnroll.value {
             enrolled = true
             requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: initialAccountDetail.value.customerInfo.emailAddress).debug("ACCOUNT NUMBER: \(account), INDEX: \(index)"))
         }
         for account in accountsToUnenroll.value {
-            unenrolled = true
+            //unenrolled = true
             requestObservables.append(billService.unenrollPaperlessBilling(accountNumber: account).debug("ACCOUNT NUMBER: \(account), INDEX: \(index)"))
         }
         
         var changedStatus: PaperlessEBillChangedStatus
-        if enrolled && unenrolled {
+        if Environment.sharedInstance.opco == .bge {
+            changedStatus = enrolled ? .Enroll : .Unenroll
+        } else { // EM-1780 ComEd/PECO should always show Mixed
             changedStatus = PaperlessEBillChangedStatus.Mixed
-        } else if enrolled {
-            changedStatus = PaperlessEBillChangedStatus.Enroll
-        } else { // User cannot submit without enrolling/unenrolling at least 1 account, so it's safe to make this a generic 'else'
-            changedStatus = PaperlessEBillChangedStatus.Unenroll
         }
+        
+//        // Pre EM-1780:
+//        if enrolled && unenrolled {
+//            changedStatus = PaperlessEBillChangedStatus.Mixed
+//        } else if enrolled {
+//            changedStatus = PaperlessEBillChangedStatus.Enroll
+//        } else { // User cannot submit without enrolling/unenrolling at least 1 account, so it's safe to make this a generic 'else'
+//            changedStatus = PaperlessEBillChangedStatus.Unenroll
+//        }
         
         Observable.from(requestObservables)
             .merge(maxConcurrent: 3)
