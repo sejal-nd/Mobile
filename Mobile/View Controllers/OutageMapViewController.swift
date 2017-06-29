@@ -10,9 +10,9 @@ import UIKit
 
 class OutageMapViewController: UIViewController {
 
-    @IBOutlet var webView: UIWebView!
+    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
     let opco = Environment.sharedInstance.opco
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,13 +21,8 @@ class OutageMapViewController: UIViewController {
         
         webView.delegate = self
         
-        let urlString = Environment.sharedInstance.outageMapUrl //TODO: BGE url is not valid
-        
-        let url = URL(string: urlString)!
-        
-        let request = URLRequest(url: url)
-        
-        webView.loadRequest(request)
+        let url = URL(string: Environment.sharedInstance.outageMapUrl)!
+        webView.loadRequest(URLRequest(url: url))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,17 +33,12 @@ class OutageMapViewController: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
 
 extension OutageMapViewController: UIWebViewDelegate {
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        dLog(message: "web view finished loading")
+        loadingIndicator.isHidden = true
     }
     
 }
