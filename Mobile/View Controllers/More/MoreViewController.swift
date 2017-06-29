@@ -22,10 +22,8 @@ class MoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // self.title = NSLocalizedString("More", comment: "")
         styleViews()
         bindViews()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,12 +34,6 @@ class MoreViewController: UIViewController {
     func styleViews() {
         view.backgroundColor = .primaryColor
         signOutButton.setHideCaret(caretHidden: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-
     }
     
     func bindViews() {
@@ -83,6 +75,10 @@ class MoreViewController: UIViewController {
         }, onError: { (error) in
             print("Logout Error: \(error)")
         }).addDisposableTo(disposeBag)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
 }
