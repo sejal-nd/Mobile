@@ -20,7 +20,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: true)
         viewModel.submitChanges(onSuccess: { status in
-            if status != PaperlessEBillChangedStatus.Enroll {
+            if Environment.sharedInstance.opco == .bge && status != PaperlessEBillChangedStatus.Enroll {
                 XCTFail("status should be .Enroll")
             }
             // Pass
@@ -47,7 +47,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: false)
         viewModel.submitChanges(onSuccess: { status in
-            if status != PaperlessEBillChangedStatus.Unenroll {
+            if Environment.sharedInstance.opco == .bge && status != PaperlessEBillChangedStatus.Unenroll {
                 XCTFail("status should be .Unenroll")
             }
             // Pass
@@ -76,7 +76,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
         viewModel.switched(accountDetail: accountDetail!, on: true)
         viewModel.switched(accountDetail: accountDetail2!, on: true)
         viewModel.submitChanges(onSuccess: { status in
-            if status != PaperlessEBillChangedStatus.Enroll {
+            if Environment.sharedInstance.opco == .bge && status != PaperlessEBillChangedStatus.Enroll {
                 XCTFail("status should be .Enroll")
             }
             // Pass
@@ -107,7 +107,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
         viewModel.switched(accountDetail: accountDetail!, on: false)
         viewModel.switched(accountDetail: accountDetail2!, on: false)
         viewModel.submitChanges(onSuccess: { status in
-            if status != PaperlessEBillChangedStatus.Unenroll {
+            if Environment.sharedInstance.opco == .bge && status != PaperlessEBillChangedStatus.Unenroll {
                 XCTFail("status should be .Unenroll")
             }
             // Pass
@@ -138,7 +138,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
         viewModel.switched(accountDetail: accountDetail!, on: true)
         viewModel.switched(accountDetail: accountDetail2!, on: false)
         viewModel.submitChanges(onSuccess: { status in
-            if status != PaperlessEBillChangedStatus.Mixed {
+            if Environment.sharedInstance.opco != .bge && status != PaperlessEBillChangedStatus.Mixed {
                 XCTFail("status should be .Mixed")
             }
             // Pass
