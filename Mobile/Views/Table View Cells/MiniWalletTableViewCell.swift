@@ -43,7 +43,7 @@ class MiniWalletTableViewCell: UITableViewCell {
             if paymentCategoryType == .check {
                 iconImageView.image = #imageLiteral(resourceName: "opco_bank_mini")
             } else {
-                iconImageView.image = #imageLiteral(resourceName: "ic_credit_placeholder_mini")
+                iconImageView.image = #imageLiteral(resourceName: "opco_credit_card_mini")
             }
         }
         
