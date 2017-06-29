@@ -21,18 +21,7 @@ class OutageMapViewController: UIViewController {
         
         webView.delegate = self
         
-        var urlString: String
-        
-        switch opco {
-        case .bge:
-            urlString = "http://outagemaptest.comed.com.s3.amazonaws.com/app.html" //TODO: where's the actual bge link?
-        case .comEd:
-            urlString = "http://outagemaptest.comed.com.s3.amazonaws.com/app.html"
-        case .peco:
-            fallthrough
-        default:
-            urlString = "http://s3.amazonaws.com/outagemaptest.peco.com/external/app.html"
-        }
+        let urlString = Environment.sharedInstance.outageMapUrl
         
         let url = URL(string: urlString)!
         

@@ -14,5 +14,7 @@
 	<string>Testing</string>
 	<key>fiservUrl</key>
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
+	<key>outageMapUrl</key>
+	<string>http://s3.amazonaws.com/outagemaptest.peco.com/external/app.html</string>
 </dict>
 </plist>
