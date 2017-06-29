@@ -380,7 +380,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     @IBAction func onViewOutageMapPress() {
-        print("View Outage Map")
+        self.performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
     // MARK: - Navigation
