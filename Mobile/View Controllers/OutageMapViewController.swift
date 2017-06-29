@@ -21,7 +21,7 @@ class OutageMapViewController: UIViewController {
         
         webView.delegate = self
         
-        let urlString = Environment.sharedInstance.outageMapUrl
+        let urlString = Environment.sharedInstance.outageMapUrl //TODO: BGE url is not valid
         
         let url = URL(string: urlString)!
         

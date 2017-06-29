@@ -168,7 +168,7 @@
                                                     <rect key="frame" x="0.0" y="62" width="375" height="62.5"/>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_carat_down" translatesAutoresizingMaskIntoConstraints="NO" id="owp-nw-AOB">
-                                                    <rect key="frame" x="354" y="80" width="13" height="8"/>
+                                                    <rect key="frame" x="354" y="79.5" width="13" height="8"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="8" id="AK4-5c-vEk"/>
                                                         <constraint firstAttribute="width" constant="13" id="qG8-I3-Bua"/>
