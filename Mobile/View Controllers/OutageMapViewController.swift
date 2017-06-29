@@ -34,10 +34,6 @@ class OutageMapViewController: UIViewController {
             urlString = "http://s3.amazonaws.com/outagemaptest.peco.com/external/app.html"
         }
         
-//        guard let url = URL(string: urlString) else {
-//            //TODO: not sure what to do here
-//        }
-        
         let url = URL(string: urlString)!
         
         let request = URLRequest(url: url)
