@@ -684,6 +684,9 @@
 		E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
 		E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
 		E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
+		E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */; };
+		E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */; };
+		E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */; };
 		E873DA651EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */; };
 		E873DA751EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873DA731EE8699600020D1B /* RadioSelectionTableViewCell.swift */; };
 		E873DA761EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873DA731EE8699600020D1B /* RadioSelectionTableViewCell.swift */; };
@@ -1288,6 +1291,7 @@
 		E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FloatLabelTextField.xib; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.xib; sourceTree = SOURCE_ROOT; };
 		E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatLabelTextField.swift; path = Mobile/Views/FloatLabelTextField/FloatLabelTextField.swift; sourceTree = SOURCE_ROOT; };
 		E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetJVFloatLabeledTextField.swift; sourceTree = "<group>"; };
+		E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PECOReleaseOfInfoViewController.swift; sourceTree = "<group>"; };
 		E873DA731EE8699600020D1B /* RadioSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		E873DA741EE8699600020D1B /* RadioSelectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioSelectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -1725,6 +1729,7 @@
 				E8B4F4B21E5C99380031D934 /* Alerts.storyboard */,
 				E8B4F4B61E5C99A00031D934 /* Outage.storyboard */,
 				E8B4F4BE1E5C9A200031D934 /* Home.storyboard */,
+				E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -2608,7 +2613,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2747,6 +2752,7 @@
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
+				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				B55736381E6740A8003B9369 /* OMLocalizable.strings in Resources */,
@@ -2805,6 +2811,7 @@
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
+				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
@@ -2862,6 +2869,7 @@
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
+				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				B55736391E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,

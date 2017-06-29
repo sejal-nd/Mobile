@@ -411,7 +411,9 @@ class BillViewController: AccountPickerViewController {
         
         walletButton.rx.touchUpInside.asDriver()
             .drive(onNext: {
-                self.performSegue(withIdentifier: "walletSegue", sender: self)
+                let walletVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateInitialViewController() as! WalletViewController
+                walletVc.viewModel.accountDetail = self.viewModel.currentAccountDetail.value!
+                self.navigationController?.pushViewController(walletVc, animated: true)
             })
             .addDisposableTo(bag)
 
@@ -473,8 +475,6 @@ class BillViewController: AccountPickerViewController {
             vc.initialAccountDetail = viewModel.currentAccountDetail.value!
         } else if let vc = segue.destination as? ViewBillViewController {
             vc.viewModel.billDate = viewModel.currentAccountDetail.value!.billingInfo.billDate
-        } else if let vc = segue.destination as? WalletViewController {
-            vc.viewModel.accountDetail = viewModel.currentAccountDetail.value!
         } else if let vc = segue.destination as? BGEAutoPayViewController {
             vc.delegate = self
             vc.accountDetail = viewModel.currentAccountDetail.value!
