@@ -8,12 +8,22 @@
 
 import Mapper
 
-struct Premise: Mappable {
-    let premiseNumber: String?
+struct Premise: Mappable, Equatable, Hashable {
+    let premiseNumber: String
     let address: String?
     
     init(map: Mapper) throws {
-        premiseNumber = map.optionalFrom("premiseNumber")
+        try premiseNumber = map.from("premiseNumber")
         address = map.optionalFrom("mainAddress.addressGeneral")
+    }
+    
+    // Equatable
+    static func ==(lhs: Premise, rhs: Premise) -> Bool {
+        return lhs.premiseNumber == rhs.premiseNumber
+    }
+    
+    // Hashable
+    var hashValue: Int {
+        return premiseNumber.hash
     }
 }

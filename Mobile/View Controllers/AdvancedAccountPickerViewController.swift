@@ -18,7 +18,6 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var expandedStates = [Bool]()
     var accounts: [Account]!
     
     override func viewDidLoad() {
@@ -31,9 +30,6 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
         let currentAccount = accounts.remove(at: index!)
         accounts.insert(currentAccount, at: 0)
         
-        for _ in accounts {
-            expandedStates.append(false)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,11 +65,21 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
         return accounts.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let account = accounts[indexPath.row]
+        
+        if account.premises.count > 0 {
+            return 100
+        } else {
+            return 60
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let account = accounts[indexPath.row]
         
-        if account.currentPremise != nil {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! MultiPremiseTableViewCell
+        if account.premises.count > 0 {//TODO: should be 1 (depending if there's always a premise that matches the account)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewMultPremiseCell", for: indexPath) as! MultiPremiseTableViewCell
             cell.configureCellWith(account: account)
             return cell
         } else {
@@ -81,29 +87,6 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
             cell.configureCellWith(account: account)
             return cell
         }
-        
-//        // Decision made on 5/2/17 that BGE is unable to display multi-premise addresses
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewDropDownCell", for: indexPath) as! MultiPremiseDropDownTableViewCell
-//        
-//        let account = accounts[indexPath.row]
-//        
-//        cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
-//        cell.accountNumber.text = account.accountNumber
-//        cell.addressLabel.text = account.address
-//        cell.accountStatusLabel.text = ""
-//        cell.viewAddressesButton.tag = indexPath.row
-//        cell.viewAddressesButton.addTarget(self, action: #selector(showPremises), for: .touchUpInside)
-//        
-//        if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
-//            cell.accountImageViewLeadingConstraint.constant = 39
-//            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//            cell.checkMarkImageView.isHidden = false
-//        } else {
-//            cell.accountImageViewLeadingConstraint.constant = 16
-//            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//            cell.checkMarkImageView.isHidden = true
-//        }
-//        return cell
     }
     
 }

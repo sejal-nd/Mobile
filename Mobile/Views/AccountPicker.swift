@@ -100,12 +100,12 @@ class AccountPicker: UIView {
         var isMultiPremise = false
         
         for account in allAccounts {
-            if account.premises.count > 1 {
+            if account.premises.count > 0 { //TODO: should be greater than 1, set to 0 for testing
                 isMultiPremise = true
             }
         }
 
-        if allAccounts.count > 1 && allAccounts.count <= MAX_ACCOUNTS && !isMultiPremise {
+        if allAccounts.count > 1 && allAccounts.count <= MAX_ACCOUNTS {
             pageControl.numberOfPages = allAccounts.count
             pageControl.currentPage = 0
         } else {

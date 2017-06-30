@@ -51,6 +51,12 @@
 		22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
 		22EBDCCE1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
 		22EBDCCF1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
+		2F3FA6371F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */; };
+		2F3FA6381F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */; };
+		2F3FA6391F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */; };
+		2F3FA63B1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */; };
+		2F3FA63C1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */; };
+		2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */; };
 		2F4AFE5A1F068FE800603B0E /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		2F4AFE5B1F068FE900603B0E /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
@@ -965,6 +971,8 @@
 		087630E21E72F5D000FA7020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPremiseAddressView.swift; sourceTree = "<group>"; };
+		2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiPremiseAddressView.xib; sourceTree = "<group>"; };
 		2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistory.swift; sourceTree = "<group>"; };
 		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = "Mobile/View Controllers/OutageMapViewController.swift"; sourceTree = SOURCE_ROOT; };
 		2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryItem.swift; sourceTree = "<group>"; };
@@ -1776,6 +1784,8 @@
 				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
 				E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */,
 				545784A11EF823A300C58E63 /* RadioSelectControl.swift */,
+				2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */,
+				2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2735,6 +2745,7 @@
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
+				2F3FA63B1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				540B94981EF4775A00F08325 /* RadioSelectionView.xib in Resources */,
@@ -2822,6 +2833,7 @@
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
+				2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
@@ -2852,6 +2864,7 @@
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE951E54EA5E003F640D /* Cartfile in Resources */,
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
+				2F3FA63C1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				E841F3B01F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				E841F3A01F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
@@ -3180,6 +3193,7 @@
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				2FA7B9FA1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
+				2F3FA6371F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD41E736596001E8A44 /* Macros.swift in Sources */,
@@ -3349,6 +3363,7 @@
 				54EDD2E11ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
 				82A18F101EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
+				2F3FA6391F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -3531,6 +3546,7 @@
 				54EDD2E01ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
 				82A18F0F1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
+				2F3FA6381F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,

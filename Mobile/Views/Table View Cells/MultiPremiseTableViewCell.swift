@@ -66,17 +66,26 @@ class MultiPremiseTableViewCell: UITableViewCell {
             self.checkMarkImageView.isHidden = true
             self.checkMarkImageView.isAccessibilityElement = false
         }
+        var premises = account.premises
         
-        //TODO: arrange the addresses with the currentPremise address first
+        //make sure currentIndex is first in list
+        let index = premises.index(of: account.currentPremise!)
+        let currentPremise = premises.remove(at: index!)
+        premises.insert(currentPremise, at: 0)
+        
+        
+        //TODO: create horizontal stack view with check on left for index 0, 
+        
         //premise info
-        for premise in account.premises {
+        for (index, premise) in premises.enumerated() {
             guard let address = premise.address else {
                 return
             }
-            let label = UILabel()
-            label.text = "\(address)"
-            label.textAlignment = NSTextAlignment.left
-            self.premiseAddressStackView.addArrangedSubview(label)
+            
+            let view = MultiPremiseAddressView.instanceFromNib(showsCheck: index == 0, labelText: address)
+            self.premiseAddressStackView.addArrangedSubview(view)
+            
+            
         }
     }
 

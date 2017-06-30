@@ -44,7 +44,7 @@ struct Account: Mappable, Equatable, Hashable {
         isFinaled = map.optionalFrom("flagFinaled") ?? false
         //isStopped = map.optionalFrom("isStoppedFlag") ?? false
         
-        currentPremise = premises.count > 1 ? premises[0] : nil
+        currentPremise = premises.count > 0 ? premises[0] : nil //TODO: needs to be 1 here too (most likely)
     }
     
     // Equatable
