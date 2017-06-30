@@ -93,11 +93,19 @@ class AccountPicker: UIView {
         if loadedAccounts { return } // Prevent calling this multiple times
         loadedAccounts = true
 
-        let allAccounts: [Account]! = AccountsStore.sharedInstance.accounts
+        let allAccounts: [Account] = AccountsStore.sharedInstance.accounts
         currentAccount = allAccounts[0]
-        var pagedAccounts: [Account]! = allAccounts
+        var pagedAccounts: [Account] = allAccounts
+        
+        var isMultiPremise = false
+        
+        for account in allAccounts {
+            if account.premises.count > 1 {
+                isMultiPremise = true
+            }
+        }
 
-        if allAccounts.count > 1 && allAccounts.count <= MAX_ACCOUNTS {
+        if allAccounts.count > 1 && allAccounts.count <= MAX_ACCOUNTS && !isMultiPremise {
             pageControl.numberOfPages = allAccounts.count
             pageControl.currentPage = 0
         } else {

@@ -1,14 +1,14 @@
 //
-//  AdvancedAccountPickerTableViewCell.swift
+//  MultiPremiseTableViewCell.swift
 //  Mobile
 //
-//  Created by Wesley Weitzel on 4/24/17.
+//  Created by Wesley Weitzel on 4/28/17.
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
 
-class AdvancedAccountPickerTableViewCell: UITableViewCell {
+class MultiPremiseTableViewCell: UITableViewCell {
 
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var accountNumber: UILabel!
@@ -16,6 +16,7 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
     @IBOutlet weak var checkMarkImageView: UIImageView!
     @IBOutlet weak var accountImageViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var accountStatusLabel: UILabel!
+    @IBOutlet var premiseAddressStackView: UIStackView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +29,8 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
     }
     
     func configureCellWith(account: Account) {
+        
+        //top portion is the same as AdvancedAccountPickerTableViewCell
         let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
         
         self.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
@@ -63,6 +66,18 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
             self.checkMarkImageView.isHidden = true
             self.checkMarkImageView.isAccessibilityElement = false
         }
+        
+        //TODO: arrange the addresses with the currentPremise address first
+        //premise info
+        for premise in account.premises {
+            guard let address = premise.address else {
+                return
+            }
+            let label = UILabel()
+            label.text = "\(address)"
+            label.textAlignment = NSTextAlignment.left
+            self.premiseAddressStackView.addArrangedSubview(label)
+        }
     }
-    
+
 }

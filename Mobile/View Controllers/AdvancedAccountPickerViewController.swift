@@ -43,25 +43,6 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
             navController.setWhiteNavBar()
         }
     }
-    
-    func showPremises(sender: UIButton) {
-        if let cell = tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as? AdvancedAccountPickerDropDownTableViewCell {
-            if cell.isExpanded == false {
-                cell.viewAddressesLabel.isHidden = true
-                cell.premisesLabel.text = "1215 E Fort Ave\n2109 Spring Garden St\n500 Norris St\n700 12th St NW"
-                cell.caretImageView.image? = #imageLiteral(resourceName: "ic_carat_up")
-                cell.isExpanded = true
-            } else {
-                cell.viewAddressesLabel.isHidden = false
-                cell.premisesLabel.text = nil
-                cell.caretImageView.image? = #imageLiteral(resourceName: "ic_carat_down")
-                cell.isExpanded = false
-            }
-            
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }
-    }
 
 }
 
@@ -89,48 +70,20 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AdvancedAccountPickerTableViewCell
-        
         let account = accounts[indexPath.row]
-        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
         
-        cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
-        cell.accountImageView.isAccessibilityElement = true
-        cell.accountImageView.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial account", comment: "") : NSLocalizedString("Residential account", comment: "")
-        cell.accountNumber.text = account.accountNumber
-        cell.accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
-        cell.addressLabel.text = account.address
-        if let address = account.address {
-            cell.addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
-        }
-        
-        if account.isDefault {
-            cell.accountStatusLabel.text = NSLocalizedString("Default", comment: "")
-        } else if account.isFinaled {
-            cell.accountStatusLabel.text = NSLocalizedString("Finaled", comment: "")
-            cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial_disabled") : #imageLiteral(resourceName: "ic_residential_disabled")
-        } else if account.isLinked {
-            cell.accountStatusLabel.text = NSLocalizedString("Linked", comment: "")
+        if account.currentPremise != nil {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! MultiPremiseTableViewCell
+            cell.configureCellWith(account: account)
+            return cell
         } else {
-            cell.accountStatusLabel.text = ""
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AdvancedAccountPickerTableViewCell
+            cell.configureCellWith(account: account)
+            return cell
         }
-        
-        if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
-            cell.accountImageViewLeadingConstraint.constant = 39
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
-            cell.checkMarkImageView.isHidden = false
-            cell.checkMarkImageView.isAccessibilityElement = true
-            cell.checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
-        } else {
-            cell.accountImageViewLeadingConstraint.constant = 16
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
-            cell.checkMarkImageView.isHidden = true
-            cell.checkMarkImageView.isAccessibilityElement = false
-        }
-        return cell
         
 //        // Decision made on 5/2/17 that BGE is unable to display multi-premise addresses
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewDropDownCell", for: indexPath) as! AdvancedAccountPickerDropDownTableViewCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewDropDownCell", for: indexPath) as! MultiPremiseDropDownTableViewCell
 //        
 //        let account = accounts[indexPath.row]
 //        

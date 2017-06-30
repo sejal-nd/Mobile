@@ -25,6 +25,7 @@ struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
     let premises: Array<Premise>
+    let currentPremise: Premise?
     
     let status: String?
     let isLinked: Bool
@@ -42,6 +43,8 @@ struct Account: Mappable, Equatable, Hashable {
         isDefault = map.optionalFrom("isDefaultProfile") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false
         //isStopped = map.optionalFrom("isStoppedFlag") ?? false
+        
+        currentPremise = premises.count > 1 ? premises[0] : nil
     }
     
     // Equatable

@@ -51,6 +51,8 @@
 		22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
 		22EBDCCE1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
 		22EBDCCF1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
+		2F4AFE5A1F068FE800603B0E /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		2F4AFE5B1F068FE900603B0E /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
 		2F5A3F811EFD870200B9E49E /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
 		2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
@@ -236,9 +238,9 @@
 		82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
 		82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
 		82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
-		82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
-		82A18EDB1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
-		82A18EDC1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift */; };
+		82A18EDA1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift */; };
+		82A18EDB1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift */; };
+		82A18EDC1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift */; };
 		82A18EDD1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED41EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift */; };
 		82A18EDE1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED41EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift */; };
 		82A18EDF1EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED41EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift */; };
@@ -1024,7 +1026,7 @@
 		82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultCell.swift; sourceTree = "<group>"; };
-		82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerDropDownTableViewCell.swift; sourceTree = "<group>"; };
+		82A18ED31EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPremiseTableViewCell.swift; sourceTree = "<group>"; };
 		82A18ED41EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerTableViewCell.swift; sourceTree = "<group>"; };
 		82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameTableViewCell.swift; sourceTree = "<group>"; };
 		82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillAccountView.swift; sourceTree = "<group>"; };
@@ -1653,7 +1655,7 @@
 				E873DA661EE8681200020D1B /* RadioSelectionTableViewCell */,
 				82A18EC91EBA681800BE9F21 /* SettingsTableViewCell */,
 				82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */,
-				82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift */,
+				82A18ED31EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift */,
 				82A18ED41EBA684F00BE9F21 /* AdvancedAccountPickerTableViewCell.swift */,
 				82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */,
 				E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */,
@@ -3088,7 +3090,7 @@
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
 				54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				E873DA7C1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
-				82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
+				82A18EDA1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountPicker.swift in Sources */,
@@ -3272,10 +3274,11 @@
 				E8D340981EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				822BBB951EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				B56DD49F1ED87AD800F0198B /* BankAccount.swift in Sources */,
+				2F4AFE5B1F068FE900603B0E /* Premise.swift in Sources */,
 				54930DCA1EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
 				8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */,
 				82A18EC61EBA676700BE9F21 /* Switch.swift in Sources */,
-				82A18EDC1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
+				82A18EDC1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				E841F3A41F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				822BBBA31EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
@@ -3453,13 +3456,14 @@
 				E80D2E181E721668002626C9 /* MaskedString.swift in Sources */,
 				822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				E8D340971EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
+				2F4AFE5A1F068FE800603B0E /* Premise.swift in Sources */,
 				B56DD49E1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				54930DC91EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
 				8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */,
 				82A18EC51EBA676700BE9F21 /* Switch.swift in Sources */,
 				E841F3A31F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				822BBBA21EFC1A01004EBBAB /* WebViewController.swift in Sources */,
-				82A18EDB1EBA684F00BE9F21 /* AdvancedAccountPickerDropDownTableViewCell.swift in Sources */,
+				82A18EDB1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				5492E0201EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
