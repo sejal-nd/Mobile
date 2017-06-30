@@ -22,8 +22,8 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 64
+//        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.estimatedRowHeight = 64
         
         // Make the currently selected account the first item in list
         let index = AccountsStore.sharedInstance.accounts.index(of: AccountsStore.sharedInstance.currentAccount)
@@ -65,13 +65,24 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
         return accounts.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let account = accounts[indexPath.row]
         
         if account.premises.count > 0 {
-            return 100
+            return 125
         } else {
-            return 60
+            return 64
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension
+        let account = accounts[indexPath.row]
+        
+        if account.premises.count > 0 {
+            return 125
+        } else {
+            return 64
         }
     }
     

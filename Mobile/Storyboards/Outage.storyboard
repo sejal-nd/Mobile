@@ -140,7 +140,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVO-ut-r8N">
-                                                    <rect key="frame" x="139" y="30" width="217" height="17"/>
+                                                    <rect key="frame" x="139" y="29.5" width="217" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -152,6 +152,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="8Jg-1y-V5m" secondAttribute="bottom" constant="10" id="04t-qz-m4J"/>
                                                 <constraint firstItem="jVO-ut-r8N" firstAttribute="centerY" secondItem="idt-a8-aFn" secondAttribute="centerY" constant="-24.25" id="0YX-kh-h49"/>
+                                                <constraint firstItem="Axq-L0-Jf5" firstAttribute="top" secondItem="DAO-4v-L19" secondAttribute="bottom" constant="4" id="1Ro-sk-dKJ"/>
                                                 <constraint firstItem="jVO-ut-r8N" firstAttribute="leading" secondItem="Axq-L0-Jf5" secondAttribute="trailing" constant="6.5" id="1f2-Fn-fqM"/>
                                                 <constraint firstItem="jVO-ut-r8N" firstAttribute="leading" secondItem="DAO-4v-L19" secondAttribute="trailing" constant="7" id="Bb3-vZ-6x1"/>
                                                 <constraint firstItem="DAO-4v-L19" firstAttribute="leading" secondItem="Xpt-xJ-vXP" secondAttribute="trailing" constant="8" id="L0K-ex-qKR"/>

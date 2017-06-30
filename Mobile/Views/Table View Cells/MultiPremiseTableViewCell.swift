@@ -73,18 +73,20 @@ class MultiPremiseTableViewCell: UITableViewCell {
         let currentPremise = premises.remove(at: index!)
         premises.insert(currentPremise, at: 0)
         
+        //TODO: remove when testing is done
+        var newPrem = currentPremise
+        newPrem.address = "100 Grand St, Frederick MD 21704"
+        newPrem.premiseNumber = "1232123"
         
-        //TODO: create horizontal stack view with check on left for index 0, 
+        premises.append(newPrem)
         
         //premise info
         for (index, premise) in premises.enumerated() {
             guard let address = premise.address else {
                 return
             }
-            
             let view = MultiPremiseAddressView.instanceFromNib(showsCheck: index == 0, labelText: address)
             self.premiseAddressStackView.addArrangedSubview(view)
-            
             
         }
     }
