@@ -450,6 +450,7 @@ class BillViewController: AccountPickerViewController {
         makeAPaymentButton.rx.touchUpInside.asDriver()
             .drive(onNext: {
                 let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+                paymentVc.accountDetail = self.viewModel.currentAccountDetail.value!
                 self.navigationController?.pushViewController(paymentVc, animated: true)
             })
             .addDisposableTo(bag)

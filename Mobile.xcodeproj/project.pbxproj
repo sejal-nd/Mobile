@@ -693,6 +693,10 @@
 		E867A8FF1F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E867A8FE1F054BC6007F4FD9 /* MakePaymentViewController.swift */; };
 		E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E867A8FE1F054BC6007F4FD9 /* MakePaymentViewController.swift */; };
 		E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E867A8FE1F054BC6007F4FD9 /* MakePaymentViewController.swift */; };
+		E86DE4B71F06D70800EDB154 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */; };
+		E86DE4B81F06D70800EDB154 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */; };
+		E86DE4B91F06D70800EDB154 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */; };
+		E86DE4BA1F06D70800EDB154 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */; };
 		E873DA651EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */; };
 		E873DA751EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873DA731EE8699600020D1B /* RadioSelectionTableViewCell.swift */; };
 		E873DA761EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873DA731EE8699600020D1B /* RadioSelectionTableViewCell.swift */; };
@@ -1300,6 +1304,7 @@
 		E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetJVFloatLabeledTextField.swift; sourceTree = "<group>"; };
 		E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		E867A8FE1F054BC6007F4FD9 /* MakePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakePaymentViewController.swift; sourceTree = "<group>"; };
+		E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PECOReleaseOfInfoViewController.swift; sourceTree = "<group>"; };
 		E873DA731EE8699600020D1B /* RadioSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		E873DA741EE8699600020D1B /* RadioSelectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioSelectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -1575,13 +1580,14 @@
 		82A18E581EB9186000BE9F21 /* Bill */ = {
 			isa = PBXGroup;
 			children = (
-				2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */,
 				E8C4531D1EF42E8200F5C781 /* AutoPay */,
 				E876A8591ECF372600CA63BF /* Wallet */,
 				82A18E591EB918C900BE9F21 /* BillViewModel.swift */,
 				82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */,
 				82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */,
 				E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */,
+				2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */,
+				E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -3192,6 +3198,7 @@
 				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD41E736596001E8A44 /* Macros.swift in Sources */,
 				E882B7ED1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
+				E86DE4B71F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
@@ -3279,6 +3286,7 @@
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				82A18EA31EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				E80D2E191E721668002626C9 /* MaskedString.swift in Sources */,
+				E86DE4B91F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
 				E8D340981EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				822BBB951EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				B56DD49F1ED87AD800F0198B /* BankAccount.swift in Sources */,
@@ -3461,6 +3469,7 @@
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
+				E86DE4B81F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
 				E80D2E181E721668002626C9 /* MaskedString.swift in Sources */,
 				822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				E8D340971EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
@@ -3684,6 +3693,7 @@
 				E895E9B01EBB849A003B38A1 /* ChangePasswordViewModel.swift in Sources */,
 				B574BADC1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E895E9AE1EBB8489003B38A1 /* ForgotPasswordViewModel.swift in Sources */,
+				E86DE4BA1F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
 				E8F51EEE1ECA51790080AB3E /* BillViewModel.swift in Sources */,
 				E89496391EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E895E9AC1EBB8464003B38A1 /* ReportOutageViewModel.swift in Sources */,
