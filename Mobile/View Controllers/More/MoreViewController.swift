@@ -11,15 +11,54 @@ import RxSwift
 
 class MoreViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var settingsButton: DisclosureButton!
+    @IBOutlet weak var contactUsButton: DisclosureButton!
+    @IBOutlet weak var termAndPoliciesButton: DisclosureButton!
+    @IBOutlet weak var signOutButton: DisclosureButton!
+
     
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("More", comment: "")
+        styleViews()
+        bindViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    func styleViews() {
+        view.backgroundColor = .primaryColor
+        signOutButton.setHideCaret(caretHidden: true)
+    }
+    
+    func bindViews() {
+        settingsButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                self.performSegue(withIdentifier: "settingsSegue", sender: self)
+            })
+            .addDisposableTo(disposeBag)
+        contactUsButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                self.performSegue(withIdentifier: "contactUsSegue", sender: self)
+            })
+            .addDisposableTo(disposeBag)
+        termAndPoliciesButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                self.performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
+            })
+            .addDisposableTo(disposeBag)
+        signOutButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                self.onSignOutPress()
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
     
     func onSignOutPress() {
         let confirmAlert = UIAlertController(title: NSLocalizedString("Sign Out", comment: ""), message: NSLocalizedString("Are you sure you want to sign out?", comment: ""), preferredStyle: .alert)
@@ -38,53 +77,8 @@ class MoreViewController: UIViewController {
         }).addDisposableTo(disposeBag)
     }
     
-}
-
-extension MoreViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        
-        if indexPath.row == 0 {
-            performSegue(withIdentifier: "settingsSegue", sender: self)
-        } else if indexPath.row == 1 {
-            performSegue(withIdentifier: "contactUsSegue", sender: self)
-        } else if indexPath.row == 2 {
-            performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
-        } else if indexPath.row == 3 {
-            onSignOutPress()
-        }
-    }
-    
-}
-
-extension MoreViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
-        var label = ""
-        if indexPath.row == 0 {
-            label = NSLocalizedString("Settings", comment: "")
-        } else if indexPath.row == 1 {
-            label = NSLocalizedString("Contact Us", comment: "")
-        } else if indexPath.row == 2 {
-            label = NSLocalizedString("Terms & Policies", comment: "")
-        } else if indexPath.row == 3 {
-            label = NSLocalizedString("Sign Out", comment: "")
-        }
-        cell.textLabel?.text = label
-        cell.textLabel?.font = SystemFont.regular.of(textStyle: .headline)
-        
-        return cell
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
 }
