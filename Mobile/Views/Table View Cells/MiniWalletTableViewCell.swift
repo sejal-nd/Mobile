@@ -14,6 +14,7 @@ class MiniWalletTableViewCell: UITableViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
+    @IBOutlet weak var checkmarkImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +30,8 @@ class MiniWalletTableViewCell: UITableViewCell {
         accountNumberLabel.textColor = .blackText
         nicknameLabel.font = SystemFont.medium.of(textStyle: .footnote)
         nicknameLabel.textColor = .middleGray
+        
+        checkmarkImageView.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

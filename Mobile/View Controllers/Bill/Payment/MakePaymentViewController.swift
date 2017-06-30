@@ -82,6 +82,9 @@ class MakePaymentViewController: UIViewController {
         paymentAmountFeeLabel.textColor = .blackText
         paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
+        paymentAmountTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: {
+            self.paymentAmountTextField.textField.resignFirstResponder()
+        }).addDisposableTo(disposeBag)
         
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
         dueDateTextLabel.textColor = .deepGray
@@ -109,6 +112,9 @@ class MakePaymentViewController: UIViewController {
         
         bindViewHiding()
         bindViewContent()
+        bindButtonTaps()
+        
+        viewModel.fetchWalletItems(onSuccess: nil, onError: nil)
     }
     
     deinit {
@@ -123,8 +129,6 @@ class MakePaymentViewController: UIViewController {
         }
         
         paymentDateFixedDateView.isHidden = true
-        
-        viewModel.fetchWalletItems(onSuccess: nil, onError: nil)
     }
     
     func bindViewHiding() {
@@ -141,13 +145,24 @@ class MakePaymentViewController: UIViewController {
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).addDisposableTo(disposeBag)
     }
     
+    func bindButtonTaps() {
+        paymentAccountButton.rx.touchUpInside.subscribe(onNext: {
+            let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
+            miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
+            miniWalletVC.viewModel.selectedItem.value = self.viewModel.selectedWalletItem.value
+            miniWalletVC.accountDetail = self.viewModel.accountDetail.value
+            miniWalletVC.delegate = self
+            self.navigationController?.pushViewController(miniWalletVC, animated: true)
+        }).addDisposableTo(disposeBag)
+    }
+    
     // MARK: - ScrollView
     
     func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - stickyPaymentFooterHeightConstraint.constant, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
@@ -157,4 +172,11 @@ class MakePaymentViewController: UIViewController {
         scrollView.scrollIndicatorInsets = .zero
     }
 
+}
+
+extension MakePaymentViewController: MiniWalletViewControllerDelegate {
+    
+    func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
+        viewModel.selectedWalletItem.value = walletItem
+    }
 }

@@ -46,9 +46,7 @@ class MiniWalletViewController: UIViewController {
         
         tableHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
         tableHeaderLabel.textColor = .blackText
-        if let headerText = tableHeaderLabelText {
-            tableHeaderLabel.text = headerText
-        }
+        tableHeaderLabel.text = tableHeaderLabelText
         
         tableFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
         tableFooterLabel.textColor = .blackText
@@ -60,7 +58,9 @@ class MiniWalletViewController: UIViewController {
         viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowErrorLabel.map(!).drive(errorLabel.rx.isHidden).addDisposableTo(disposeBag)
 
-        fetchWalletItems()
+        if viewModel.walletItems.value == nil { // Wallet items are passed in from MakePaymentViewController - so only fetch if necessary
+            fetchWalletItems()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -203,6 +203,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 let bankItem = viewModel.bankAccounts[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "MiniWalletItemCell", for: indexPath) as! MiniWalletTableViewCell
                 cell.bindToWalletItem(bankItem)
+                cell.checkmarkImageView.isHidden = bankItem != viewModel.selectedItem.value
                 cell.innerContentView.tag = indexPath.row
                 cell.innerContentView.addTarget(self, action: #selector(onBankAccountPress(sender:)), for: .touchUpInside)
                 return cell
@@ -216,9 +217,10 @@ extension MiniWalletViewController: UITableViewDataSource {
             }
         } else {
             if indexPath.row < viewModel.creditCards.count {
-                let cardItem = viewModel.bankAccounts[indexPath.row]
+                let cardItem = viewModel.creditCards[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "MiniWalletItemCell", for: indexPath) as! MiniWalletTableViewCell
                 cell.bindToWalletItem(cardItem)
+                cell.checkmarkImageView.isHidden = cardItem != viewModel.selectedItem.value
                 cell.innerContentView.tag = indexPath.row
                 cell.innerContentView.addTarget(self, action: #selector(onCreditCardPress(sender:)), for: .touchUpInside)
                 if self.creditCardsDisabled {

@@ -127,29 +127,38 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6I-lh-JqZ">
-                                                            <rect key="frame" x="80" y="11" width="229" height="19.5"/>
+                                                            <rect key="frame" x="80" y="11" width="198" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFr-kO-yGc">
-                                                            <rect key="frame" x="80" y="33.5" width="229" height="14.5"/>
+                                                            <rect key="frame" x="80" y="34" width="198" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_meterping" translatesAutoresizingMaskIntoConstraints="NO" id="Bd3-RA-fnV">
+                                                            <rect key="frame" x="286" y="23" width="18" height="14"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="14" id="DXH-Ty-Sg8"/>
+                                                                <constraint firstAttribute="width" constant="18" id="Plf-GQ-fgG"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="0NA-xT-JjP"/>
                                                         <constraint firstItem="tLb-WZ-kUz" firstAttribute="centerY" secondItem="58q-3c-dwO" secondAttribute="centerY" id="2JL-Fr-Gl9"/>
-                                                        <constraint firstAttribute="trailing" secondItem="G6I-lh-JqZ" secondAttribute="trailing" constant="8" id="6x9-02-A5v"/>
-                                                        <constraint firstAttribute="trailing" secondItem="tFr-kO-yGc" secondAttribute="trailing" constant="8" id="ByS-Wd-bug"/>
+                                                        <constraint firstItem="Bd3-RA-fnV" firstAttribute="leading" secondItem="G6I-lh-JqZ" secondAttribute="trailing" constant="8" id="7eD-Tc-z7e"/>
+                                                        <constraint firstItem="Bd3-RA-fnV" firstAttribute="centerY" secondItem="58q-3c-dwO" secondAttribute="centerY" id="ByJ-mm-V1m"/>
                                                         <constraint firstItem="tFr-kO-yGc" firstAttribute="top" secondItem="G6I-lh-JqZ" secondAttribute="bottom" constant="3" id="Eux-pS-o4h"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Bd3-RA-fnV" secondAttribute="trailing" constant="13" id="LWh-OX-2A6"/>
                                                         <constraint firstItem="G6I-lh-JqZ" firstAttribute="top" secondItem="58q-3c-dwO" secondAttribute="top" constant="11" id="YgE-gU-dsE"/>
                                                         <constraint firstItem="G6I-lh-JqZ" firstAttribute="leading" secondItem="tLb-WZ-kUz" secondAttribute="trailing" constant="18" id="aEr-Dg-0kM"/>
                                                         <constraint firstItem="tFr-kO-yGc" firstAttribute="leading" secondItem="tLb-WZ-kUz" secondAttribute="trailing" constant="18" id="cnN-24-nZU"/>
                                                         <constraint firstItem="tLb-WZ-kUz" firstAttribute="leading" secondItem="58q-3c-dwO" secondAttribute="leading" constant="12" id="kmZ-Oy-Obp"/>
+                                                        <constraint firstItem="Bd3-RA-fnV" firstAttribute="leading" secondItem="tFr-kO-yGc" secondAttribute="trailing" constant="8" id="rZE-fT-UM6"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -163,6 +172,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="accountNumberLabel" destination="G6I-lh-JqZ" id="8gN-GU-7xr"/>
+                                            <outlet property="checkmarkImageView" destination="Bd3-RA-fnV" id="Art-ay-fHN"/>
                                             <outlet property="iconImageView" destination="tLb-WZ-kUz" id="VF2-NN-wYI"/>
                                             <outlet property="innerContentView" destination="58q-3c-dwO" id="7Lt-KK-SNh"/>
                                             <outlet property="nicknameLabel" destination="tFr-kO-yGc" id="2I5-nD-Bcr"/>
@@ -268,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kdt-Dp-yom" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-362" y="-378"/>
+            <point key="canvasLocation" x="-362.39999999999998" y="-378.26086956521743"/>
         </scene>
         <!--Make a Payment-->
         <scene sceneID="GLS-qw-DgX">
@@ -1036,7 +1046,7 @@
                                                 <rect key="frame" x="0.0" y="134" width="305" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Status: Active" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nS2-9H-MqM">
-                                                        <rect key="frame" x="82" y="7" width="141" height="17"/>
+                                                        <rect key="frame" x="82.5" y="7" width="141" height="17"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                         <nil key="textColor"/>
@@ -1494,7 +1504,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.35 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-Yl-Loj">
-                                                                            <rect key="frame" x="107" y="7.5" width="128.5" height="16.5"/>
+                                                                            <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -2294,6 +2304,7 @@ to your payments.</string>
         <image name="ic_billmatrix" width="118" height="43"/>
         <image name="ic_camera" width="25" height="19"/>
         <image name="ic_caret" width="8" height="13"/>
+        <image name="ic_check_meterping" width="18" height="14"/>
         <image name="ic_delete" width="20" height="22"/>
         <image name="ic_one_touch_pay_check" width="11" height="9"/>
         <image name="ic_question" width="17" height="17"/>
