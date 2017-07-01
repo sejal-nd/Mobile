@@ -70,6 +70,11 @@ class ExelonPickerContainerView: UIView {
         exelonPicker.selectRow(0, inComponent: 0, animated: true)
     }
     
+    func addNewData(dataArray: [String]) {
+        self.dataArray = dataArray
+        exelonPicker.reloadAllComponents()
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         

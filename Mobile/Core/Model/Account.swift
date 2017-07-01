@@ -24,8 +24,8 @@ enum AccountType {
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
-    let premises: Array<Premise>
-    let currentPremise: Premise?
+    var premises: Array<Premise> //TODO: return to let when testing is done
+    var currentPremise: Premise?
     
     let status: String?
     let isLinked: Bool
@@ -43,8 +43,19 @@ struct Account: Mappable, Equatable, Hashable {
         isDefault = map.optionalFrom("isDefaultProfile") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false
         //isStopped = map.optionalFrom("isStoppedFlag") ?? false
+    
+        premises += premises
+        premises += premises
+        premises += premises
         
-        currentPremise = premises.count > 0 ? premises[0] : nil //TODO: needs to be 1 here too (most likely)
+        if premises.count > 0 {
+            for i in 0...premises.count - 1 {
+                premises[i].address = "\(i) Grand St, Volcanoville, AZ 81723"
+                premises[i].premiseNumber = "\(i)"
+            }
+        }
+        
+        currentPremise = premises.count > 0 ? premises[1] : nil //TODO: could be 0 depending on whether each account has matching default premise
     }
     
     // Equatable

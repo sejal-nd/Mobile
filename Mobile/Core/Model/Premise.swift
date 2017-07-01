@@ -9,7 +9,7 @@
 import Mapper
 
 struct Premise: Mappable, Equatable, Hashable {
-    var premiseNumber: String //TODO: change these back to lets when testing is done
+    var premiseNumber: String //TODO back to lets after testing
     var address: String?
     
     init(map: Mapper) throws {

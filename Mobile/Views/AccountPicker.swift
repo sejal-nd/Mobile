@@ -100,7 +100,7 @@ class AccountPicker: UIView {
         var isMultiPremise = false
         
         for account in allAccounts {
-            if account.premises.count > 0 { //TODO: should be greater than 1, set to 0 for testing
+            if account.premises.count > 1 { //TODO: may be 0, we don't know if each account will have a default matching premise
                 isMultiPremise = true
             }
         }
@@ -114,7 +114,7 @@ class AccountPicker: UIView {
         }
 
         pageViews.removeAll()
-        if allAccounts.count <= MAX_ACCOUNTS {
+        if allAccounts.count <= MAX_ACCOUNTS && !isMultiPremise {
             for account in pagedAccounts {
                 addAccountToScrollView(account)
             }

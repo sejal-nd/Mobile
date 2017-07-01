@@ -28,6 +28,14 @@ class MultiPremiseTableViewCell: UITableViewCell {
         accountStatusLabel.textColor = .middleGray
     }
     
+    override func prepareForReuse() {
+        let addressViews = premiseAddressStackView.arrangedSubviews
+        for view in addressViews {
+            premiseAddressStackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
+    }
+    
     func configureCellWith(account: Account) {
         
         //top portion is the same as AdvancedAccountPickerTableViewCell
@@ -72,13 +80,6 @@ class MultiPremiseTableViewCell: UITableViewCell {
         let index = premises.index(of: account.currentPremise!)
         let currentPremise = premises.remove(at: index!)
         premises.insert(currentPremise, at: 0)
-        
-        //TODO: remove when testing is done
-        var newPrem = currentPremise
-        newPrem.address = "100 Grand St, Frederick MD 21704"
-        newPrem.premiseNumber = "1232123"
-        
-        premises.append(newPrem)
         
         //premise info
         for (index, premise) in premises.enumerated() {
