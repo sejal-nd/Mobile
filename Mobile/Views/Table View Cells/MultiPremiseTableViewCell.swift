@@ -38,6 +38,8 @@ class MultiPremiseTableViewCell: UITableViewCell {
     
     func configureCellWith(account: Account) {
         
+        let isCurrentAccount = account == AccountsStore.sharedInstance.currentAccount
+        
         //top portion is the same as AdvancedAccountPickerTableViewCell
         let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
         
@@ -86,7 +88,8 @@ class MultiPremiseTableViewCell: UITableViewCell {
             guard let address = premise.address else {
                 return
             }
-            let view = MultiPremiseAddressView.instanceFromNib(showsCheck: index == 0, labelText: address)
+            let showCheck = isCurrentAccount && index == 0
+            let view = MultiPremiseAddressView.instanceFromNib(showsCheck: showCheck, labelText: address)
             self.premiseAddressStackView.addArrangedSubview(view)
             
         }
