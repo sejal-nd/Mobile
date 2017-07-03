@@ -150,7 +150,7 @@ class BillViewModel {
     let shouldShowAmountDueTooltip = Environment.sharedInstance.opco == .peco
     
     lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map { _ in
-        return true // Bill Analysis will be Release 2
+        return false // Bill Analysis will be Release 2
 //        guard let isAMICustomer = $0?.isAMICustomer else { return false }
 //        return !UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && !isAMICustomer
     }
