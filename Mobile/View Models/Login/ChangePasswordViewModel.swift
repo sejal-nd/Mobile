@@ -125,11 +125,6 @@ class ChangePasswordViewModel {
                         self.fingerprintService.setStoredPassword(password: self.newPassword.value)
                     }
                     onSuccess()
-                    self.authService.logout().subscribe(onNext: {
-                        onSuccess()
-                    }, onError: { (error) in
-                        onError(error.localizedDescription)
-                    }).addDisposableTo(self.disposeBag)
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
                     
