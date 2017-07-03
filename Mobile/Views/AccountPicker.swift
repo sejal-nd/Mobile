@@ -272,7 +272,11 @@ extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
         
         // Update advanced account picker
         advancedAccountNumberLabel?.text = account.accountNumber
-        advancedAccountAddressLabel?.text = account.address
+        if account.currentPremise != nil {
+            advancedAccountAddressLabel?.text = account.currentPremise!.addressGeneral
+        } else {
+            advancedAccountAddressLabel?.text = account.address
+        }
         
         delegate?.accountPickerDidChangeAccount(self)
     }

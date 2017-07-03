@@ -53,6 +53,7 @@ struct Account: Mappable, Equatable, Hashable {
             for i in 0...premises.count - 1 {
                 premises[i].addressGeneral = "\(i) Grand St, Volcanoville, AZ 81723"
                 premises[i].premiseNumber = "\(i)"
+                premises[i].addressLine = ["\(i) Grand St", "Suite2"]
             }
         }
         //end testing stuff
