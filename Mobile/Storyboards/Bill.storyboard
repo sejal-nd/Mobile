@@ -506,7 +506,7 @@ AutoPay</string>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arL-OO-1wj">
                                 <rect key="frame" x="0.0" y="64" width="375" height="536"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nQq-jE-sRu" userLabel="Parent Container SV">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nQq-jE-sRu" userLabel="Parent Container SV">
                                         <rect key="frame" x="29" y="0.0" width="317" height="121.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xz6-5a-1l4" userLabel="Top Spacer">
@@ -1355,7 +1355,7 @@ AutoPay</string>
                                                                                                 <rect key="frame" x="68" y="36.5" width="201.5" height="71.5"/>
                                                                                                 <subviews>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$###.##" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYN-lO-iaJ">
-                                                                                                        <rect key="frame" x="27.5" y="0.0" width="147" height="49.5"/>
+                                                                                                        <rect key="frame" x="27" y="0.0" width="147" height="49.5"/>
                                                                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="36"/>
                                                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                         <nil key="highlightedColor"/>
@@ -1364,7 +1364,7 @@ AutoPay</string>
                                                                                                         <rect key="frame" x="0.0" y="49.5" width="201.5" height="22"/>
                                                                                                         <subviews>
                                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Amount Due By ##/##/##" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2f6-hb-PDT">
-                                                                                                                <rect key="frame" x="0.0" y="3" width="176.5" height="16.5"/>
+                                                                                                                <rect key="frame" x="0.0" y="2.5" width="176.5" height="16.5"/>
                                                                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                                 <nil key="highlightedColor"/>
@@ -1824,7 +1824,7 @@ AutoPay</string>
                                                                                                                         <rect key="frame" x="0.0" y="17" width="21" height="19"/>
                                                                                                                     </imageView>
                                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need help understanding your bill?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wb-7e-w4G">
-                                                                                                                        <rect key="frame" x="32" y="17" width="238" height="19.5"/>
+                                                                                                                        <rect key="frame" x="32" y="26.5" width="237" height="0.0"/>
                                                                                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="14"/>
                                                                                                                         <color key="textColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                                         <nil key="highlightedColor"/>
@@ -2838,7 +2838,7 @@ Budget Billing?</string>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqG-lk-DUF">
-                                                                        <rect key="frame" x="33" y="14.5" width="188" height="49.5"/>
+                                                                        <rect key="frame" x="34" y="14.5" width="188" height="49.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$200.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDe-zM-yPH">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="134" height="49.5"/>
@@ -2870,7 +2870,7 @@ Budget Billing?</string>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="mdi-10-hU7" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="96.5" y="34" width="60" height="12"/>
+                                                                        <rect key="frame" x="97.5" y="34" width="60" height="12"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                 </subviews>
@@ -3403,7 +3403,7 @@ Budget Billing?</string>
                                         <rect key="frame" x="0.0" y="28" width="383" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uHK-Cp-oJY" id="ATG-i7-XOx" customClass="BillingHistoryTableViewCell" customModule="BGE" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
