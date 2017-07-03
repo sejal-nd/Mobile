@@ -36,8 +36,8 @@ class MakePaymentViewController: UIViewController {
     
     @IBOutlet weak var paymentDateView: UIView!
     @IBOutlet weak var paymentDateTextLabel: UILabel!
+    @IBOutlet weak var paymentDateButtonView: UIView!
     @IBOutlet weak var paymentDateButton: DisclosureButton!
-    @IBOutlet weak var paymentDateFixedDateView: UIView!
     @IBOutlet weak var paymentDateFixedDateLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDatePastDueLabel: UILabel!
     
@@ -61,6 +61,10 @@ class MakePaymentViewController: UIViewController {
         
         title = NSLocalizedString("Make a Payment", comment: "")
         
+        let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        navigationItem.rightBarButtonItem = nextButton
+        viewModel.makePaymentNextButtonEnabled.drive(nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
 
@@ -82,6 +86,7 @@ class MakePaymentViewController: UIViewController {
         paymentAmountFeeLabel.textColor = .blackText
         paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
+        paymentAmountTextField.textField.keyboardType = .decimalPad
         paymentAmountTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: {
             self.paymentAmountTextField.textField.resignFirstResponder()
         }).addDisposableTo(disposeBag)
@@ -113,6 +118,7 @@ class MakePaymentViewController: UIViewController {
         bindViewHiding()
         bindViewContent()
         bindButtonTaps()
+        addDoneButtonOnKeyboard()
         
         viewModel.fetchWalletItems(onSuccess: nil, onError: nil)
     }
@@ -127,8 +133,21 @@ class MakePaymentViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
         }
-        
-        paymentDateFixedDateView.isHidden = true
+    }
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle       = UIBarStyle.default
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(doneButtonAction))
+        done.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.actionBlue], for: .normal)
+        doneToolbar.items = [flexSpace, done]
+        doneToolbar.sizeToFit()
+        paymentAmountTextField.textField.inputAccessoryView = doneToolbar
+    }
+    
+    func doneButtonAction() {
+        paymentAmountTextField.textField.resignFirstResponder()
     }
     
     func bindViewHiding() {
@@ -136,13 +155,36 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).addDisposableTo(disposeBag)
         
+        // Payment Account
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).addDisposableTo(disposeBag)
+        
+        // Payment Date
+        viewModel.isFixedPaymentDate.drive(paymentDateButtonView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFixedPaymentDate.map(!).drive(paymentDateFixedDateLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFixedPaymentDatePastDue.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).addDisposableTo(disposeBag)
     }
     
     func bindViewContent() {
+        // Selected Wallet Item
         viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).addDisposableTo(disposeBag)
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountAccountNumberLabel.rx.text).addDisposableTo(disposeBag)
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Amount Due
+        viewModel.amountDueValue.asDriver().drive(amountDueValueLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Payment Amount Text Field
+        viewModel.paymentAmount.asDriver().drive(paymentAmountTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        paymentAmountTextField.textField.rx.text.orEmpty.bind(to: viewModel.paymentAmount).addDisposableTo(disposeBag)
+        paymentAmountTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            self.viewModel.formatPaymentAmount()
+        }).addDisposableTo(disposeBag)
+        
+        // Due Date
+        viewModel.dueDate.asDriver().drive(dueDateDateLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Payment Date
+        viewModel.fixedPaymentDateString.asDriver().drive(paymentDateFixedDateLabel.rx.text).addDisposableTo(disposeBag)
     }
     
     func bindButtonTaps() {
@@ -154,6 +196,10 @@ class MakePaymentViewController: UIViewController {
             miniWalletVC.delegate = self
             self.navigationController?.pushViewController(miniWalletVC, animated: true)
         }).addDisposableTo(disposeBag)
+    }
+    
+    func onNextPress() {
+        performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
     }
     
     // MARK: - ScrollView
@@ -170,6 +216,12 @@ class MakePaymentViewController: UIViewController {
     func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ReviewPaymentViewController {
+            vc.viewModel = viewModel
+        }
     }
 
 }

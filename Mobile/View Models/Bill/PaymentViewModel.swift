@@ -24,11 +24,16 @@ class PaymentViewModel {
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
     
+    let amountDue = Variable<Double>(0)
+    let paymentAmount = Variable("")
+    let paymentDate: Variable<Date>
+    
     init(walletService: WalletService, paymentService: PaymentService, oneTouchPayService: OneTouchPayService, accountDetail: AccountDetail) {
         self.walletService = walletService
         self.paymentService = paymentService
         self.oneTouchPayService = oneTouchPayService
         self.accountDetail = Variable(accountDetail)
+        self.paymentDate = Variable((accountDetail.billingInfo.dueByDate ?? nil)!)
     }
     
     func fetchWalletItems(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
@@ -64,6 +69,14 @@ class PaymentViewModel {
             }).addDisposableTo(disposeBag)
     }
     
+    var makePaymentNextButtonEnabled: Driver<Bool> {
+        return shouldShowContent
+    }
+    
+    var reviewPaymentSubmitButtonEnabled: Driver<Bool> {
+        return shouldShowContent
+    }
+    
     var shouldShowContent: Driver<Bool> {
         return Driver.combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver()).map {
             return !$0 && !$1
@@ -93,6 +106,60 @@ class PaymentViewModel {
     lazy var selectedWalletItemNickname: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return "" }
         return walletItem.nickName ?? ""
+    }
+    
+    lazy var amountDueValue: Driver<String?> = self.accountDetail.asDriver().map {
+        guard let netDueAmount = $0.billingInfo.netDueAmount else { return nil }
+        return max(netDueAmount, 0).currencyString ?? "--"
+    }
+    
+    lazy var dueDate: Driver<String?> = self.accountDetail.asDriver().map {
+        return $0.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
+    }
+    
+    var isFixedPaymentDate: Driver<Bool> {
+        return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
+            if let walletItem = $1 {
+                if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+                    return true
+                }
+            }
+            if $0.billingInfo.pastDueAmount ?? 0 > 0 { // Past due, avoid shutoff
+                return true
+            }
+            if ($0.billingInfo.restorationAmount ?? 0 > 0 || $0.billingInfo.amtDpaReinst ?? 0 > 0) || $0.isCutOutNonPay { // Cut for non-pay
+                return true
+            }
+            return false
+        }
+    }
+    
+    lazy var isFixedPaymentDatePastDue: Driver<Bool> = self.accountDetail.asDriver().map {
+        return $0.billingInfo.pastDueAmount ?? 0 > 0
+    }
+    
+    lazy var fixedPaymentDateString: Driver<String?> = self.paymentDate.asDriver().map {
+        return $0.mmDdYyyyString
+    }
+
+    func formatPaymentAmount() {
+        let components = paymentAmount.value.components(separatedBy: ".")
+        
+        var newText = paymentAmount.value
+        if components.count == 2 {
+            let decimal = components[1]
+            if decimal.characters.count == 0 {
+                newText += "00"
+            } else if decimal.characters.count == 1 {
+                newText += "0"
+            }
+        } else if components.count == 1 && components[0].characters.count > 0 {
+            newText += ".00"
+        } else {
+            newText = "0.00"
+        }
+        
+        paymentAmount.value = newText
     }
     
 }
