@@ -64,6 +64,17 @@ protocol AuthenticationService {
     ///     or the error on failure.
     func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
+    /// Change the password for a given user. Used for temp password changes.
+    ///
+    /// - Parameters:
+    ///   - username: current user's username
+    ///   - currentPassword: the users current password.
+    ///   - newPassword: the users new password to set.
+    ///   - completion: the completion block to execute upon completion. The
+    ///     ServiceResult that is provided will contain the user id on success,
+    ///     or the error on failure.
+    func changePasswordAnon(_ username: String, currentPassword: String, newPassword: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
     /// Attempt to recover a username by providing a phone number and identifier.
     ///
     /// - Parameters:
@@ -164,7 +175,7 @@ extension AuthenticationService {
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
                 }
-            })
+            }) 
             
             return Disposables.create()
         }
@@ -188,6 +199,28 @@ extension AuthenticationService {
                 }
             })
             
+            return Disposables.create()
+        }
+    }
+    
+    /// Change the password of the given user
+    ///
+    /// - Parameters:
+    ///   - username: user's username
+    ///   - currentPassword: the users current password.
+    ///   - newPassword: the users new password to set.
+    /// - Returns: An observable to subscribe to.
+    func changePasswordAnon(_ username: String, currentPassword: String, newPassword: String) -> Observable<Void> {
+        return Observable.create { observer in
+            self.changePasswordAnon(username, currentPassword: currentPassword, newPassword: newPassword, completion: { (result: ServiceResult<Void>) in
+                switch(result){
+                case ServiceResult.Success:
+                    observer.onNext()
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
             return Disposables.create()
         }
     }
