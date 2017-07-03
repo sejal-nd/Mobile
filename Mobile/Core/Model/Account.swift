@@ -44,16 +44,18 @@ struct Account: Mappable, Equatable, Hashable {
         isFinaled = map.optionalFrom("flagFinaled") ?? false
         //isStopped = map.optionalFrom("isStoppedFlag") ?? false
     
+        //this is for testing while we have corrupt data
         premises += premises
         premises += premises
         premises += premises
         
         if premises.count > 0 {
             for i in 0...premises.count - 1 {
-                premises[i].address = "\(i) Grand St, Volcanoville, AZ 81723"
+                premises[i].addressGeneral = "\(i) Grand St, Volcanoville, AZ 81723"
                 premises[i].premiseNumber = "\(i)"
             }
         }
+        //end testing stuff
         
         currentPremise = premises.count > 0 ? premises[1] : nil //TODO: could be 0 depending on whether each account has matching default premise
     }

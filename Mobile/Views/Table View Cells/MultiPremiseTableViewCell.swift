@@ -65,34 +65,36 @@ class MultiPremiseTableViewCell: UITableViewCell {
         }
         
         if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
-            self.accountImageViewLeadingConstraint.constant = 39
+            
             self.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
             self.checkMarkImageView.isHidden = false
             self.checkMarkImageView.isAccessibilityElement = true
             self.checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
         } else {
-            self.accountImageViewLeadingConstraint.constant = 16
+            
             self.separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
             self.checkMarkImageView.isHidden = true
             self.checkMarkImageView.isAccessibilityElement = false
         }
-        var premises = account.premises
         
-        //make sure currentIndex is first in list
-        let index = premises.index(of: account.currentPremise!)
-        let currentPremise = premises.remove(at: index!)
-        premises.insert(currentPremise, at: 0)
+        let premises = account.premises
+        let currentPremiseIndex = premises.index(of: account.currentPremise!)
         
         //premise info
         for (index, premise) in premises.enumerated() {
-            guard let address = premise.address else {
-                return
-            }
-            let showCheck = isCurrentAccount && index == 0
+            
+            let address = premise.addressLineString()
+            let showCheck = isCurrentAccount && index == currentPremiseIndex
             let view = MultiPremiseAddressView.instanceFromNib(showsCheck: showCheck, labelText: address)
+            view.addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
             self.premiseAddressStackView.addArrangedSubview(view)
+            premiseAddressStackView.setNeedsLayout()
+            premiseAddressStackView.layoutIfNeeded()
             
         }
+        
+        self.contentView.setNeedsLayout()
+        self.contentView.layoutIfNeeded()
     }
 
 }

@@ -10,11 +10,18 @@ import Mapper
 
 struct Premise: Mappable, Equatable, Hashable {
     var premiseNumber: String //TODO back to lets after testing
-    var address: String?
+    var addressGeneral: String?
+    var addressLine: Array<String>?
     
     init(map: Mapper) throws {
         try premiseNumber = map.from("premiseNumber")
-        address = map.optionalFrom("mainAddress.addressGeneral")
+        addressGeneral = map.optionalFrom("mainAddress.addressGeneral")
+        addressLine = map.optionalFrom("mainAddress.addressLine")
+    }
+    
+    func addressLineString() -> String{
+        guard let addressLineArray = addressLine else { return ""}
+        return addressLineArray.joined(separator: ",")
     }
     
     // Equatable

@@ -52,13 +52,13 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
         }
         
         if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
-            self.accountImageViewLeadingConstraint.constant = 39
+            
             self.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
             self.checkMarkImageView.isHidden = false
             self.checkMarkImageView.isAccessibilityElement = true
             self.checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
         } else {
-            self.accountImageViewLeadingConstraint.constant = 16
+            
             self.separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
             self.checkMarkImageView.isHidden = true
             self.checkMarkImageView.isAccessibilityElement = false

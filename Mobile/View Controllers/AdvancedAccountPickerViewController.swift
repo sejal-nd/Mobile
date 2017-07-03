@@ -28,8 +28,6 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.rowHeight = UITableViewAutomaticDimension
-//        tableView.estimatedRowHeight = 64
         
         // Make the currently selected account the first item in list
         let index = AccountsStore.sharedInstance.accounts.index(of: AccountsStore.sharedInstance.currentAccount)
@@ -114,14 +112,15 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
 extension AdvancedAccountPickerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
         let account = accounts[indexPath.row]
         
         if account.premises.count > 0 {
             self.accountIndexToEditPremise = indexPath.row
             
             let dataArray = account.premises.map({ (premise: Premise) -> String in
-                guard let address = premise.address else { return "" }
-                return address
+                return premise.addressLineString()
             })
             premisePickerView.addNewData(dataArray: dataArray)
             self.showPickerView(true)
@@ -162,14 +161,14 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableViewAutomaticDimension
-        let account = accounts[indexPath.row]
-        
-        if account.premises.count > 0 {
-            return 180
-        } else {
-            return 64
-        }
+        return UITableViewAutomaticDimension
+//        let account = accounts[indexPath.row]
+//        
+//        if account.premises.count > 0 {
+//            return 180
+//        } else {
+//            return 64
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
