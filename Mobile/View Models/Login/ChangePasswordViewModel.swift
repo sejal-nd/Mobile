@@ -116,15 +116,20 @@ class ChangePasswordViewModel {
     
     func changePassword(sentFromLogin: Bool, onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
         
-        if(!sentFromLogin){
-            authService.changePassword(currentPassword.value, newPassword: newPassword.value)
+        if sentFromLogin {
+            authService.changePasswordAnon(fingerprintService.getStoredUsername()!, currentPassword: currentPassword.value, newPassword: newPassword.value)
                 .observeOn(MainScheduler.instance)
                 .asObservable()
                 .subscribe(onNext: { _ in
-                    if self.fingerprintService.isTouchIDEnabled() { // Store the new password in the keychain
+                    if self.fingerprintService.isTouchIDEnabled() {
                         self.fingerprintService.setStoredPassword(password: self.newPassword.value)
                     }
                     onSuccess()
+                    self.authService.logout().subscribe(onNext: {
+                        onSuccess()
+                    }, onError: { (error) in
+                        onError(error.localizedDescription)
+                    }).addDisposableTo(self.disposeBag)
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
                     
@@ -136,11 +141,11 @@ class ChangePasswordViewModel {
                 })
                 .addDisposableTo(disposeBag)
         } else {
-            authService.changePasswordAnon(fingerprintService.getStoredUsername()!, currentPassword: currentPassword.value, newPassword: newPassword.value)
-            .observeOn(MainScheduler.instance)
-            .asObservable()
+            authService.changePassword(currentPassword.value, newPassword: newPassword.value)
+                .observeOn(MainScheduler.instance)
+                .asObservable()
                 .subscribe(onNext: { _ in
-                    if self.fingerprintService.isTouchIDEnabled() {
+                    if self.fingerprintService.isTouchIDEnabled() { // Store the new password in the keychain
                         self.fingerprintService.setStoredPassword(password: self.newPassword.value)
                     }
                     onSuccess()

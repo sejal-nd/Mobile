@@ -53,11 +53,12 @@ class LoginViewModel {
             .asObservable()
             .subscribe(onNext: { (profileStatus: ProfileStatus) in
                 onSuccess(profileStatus.tempPassword)
-                self.authService.logout().subscribe(onNext: {
-                    
-                }, onError: { (error) in
-                    print("Logout Error: \(error)")
-                }).addDisposableTo(self.disposeBag)
+                if profileStatus.tempPassword {
+                    self.authService.logout().subscribe(onNext: {
+                    }, onError: { (error) in
+                        print("Logout Error: \(error)")
+                    }).addDisposableTo(self.disposeBag)
+                }
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.FnAccountProtected.rawValue {
