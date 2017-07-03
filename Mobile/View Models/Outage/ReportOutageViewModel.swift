@@ -28,7 +28,7 @@ class ReportOutageViewModel {
             reportFormHidden.value = true
         }
         
-        Observable.combineLatest(self.reportFormHidden.asObservable(), self.phoneNumber.asObservable()) {
+        Observable.combineLatest(self.reportFormHidden.asObservable(), svar.phoneNumber.asObservable()) {
             let digitsOnlyString = self.extractDigitsFrom($1)
             return !$0 && digitsOnlyString.characters.count == 10
             }
@@ -58,6 +58,9 @@ class ReportOutageViewModel {
         var outageInfo = OutageInfo(account: AccountsStore.sharedInstance.currentAccount, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value))
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
+        }
+        if let premise = AccountsStore.sharedInstance.currentAccount.currentPremise {
+            outageInfo.premiseNumber = premise.premiseNumber
         }
         
         outageService.reportOutage(outageInfo: outageInfo)
