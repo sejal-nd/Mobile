@@ -44,6 +44,14 @@ struct MockAuthenticationService : AuthenticationService {
         }
     }
     
+    func changePasswordAnon(_ username: String,currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
+        if currentPassword == validCurrentPassword {
+            completion(ServiceResult.Success())
+        } else {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
+        }
+    }
+    
     func refreshAuthorization(completion: @escaping (ServiceResult<Void>) -> Void) {
         
     }
