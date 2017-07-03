@@ -164,38 +164,9 @@ class EditBankAccountViewController: UIViewController {
         bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         bankImageView.isAccessibilityElement = true
         bankImageView.accessibilityLabel = NSLocalizedString("Bank account", comment: "")
-        switch opco {
-        case .comEd, .peco:
-            bankImageView.image = #imageLiteral(resourceName: "opco_bank")
-        case .bge:
-            bankImageView.image = #imageLiteral(resourceName: "opco_bank")
-            
-            switch walletItem.walletItemStatusTypeBGE! {
-            case .pndWait:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Processing", comment: "")
-            case .pndActive:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Pending", comment: "")
-            case .cancel:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Cancelled", comment: "")
-            case .bad_active:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Failed", comment: "")
-            case .deleted:
-                break
-            case .active:
-                bottomBarLabel.textColor = .successGreenText
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
-            }
 
-        }
-        
+        bankImageView.image = #imageLiteral(resourceName: "opco_bank")
+
         oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
         
         oneTouchPayCardView.isHidden = true

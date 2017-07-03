@@ -20,7 +20,6 @@ class AddBankAccountViewModel {
     let selectedSegmentIndex = Variable(0)
     let accountHolderName = Variable("")
     let routingNumber = Variable("")
-    let confirmRoutingNumber = Variable("")
     let accountNumber = Variable("")
     let confirmAccountNumber = Variable("")
     let nickname = Variable("")
@@ -32,7 +31,7 @@ class AddBankAccountViewModel {
     
     func saveButtonIsEnabled() -> Observable<Bool> {
         if Environment.sharedInstance.opco == .bge {
-            return Observable.combineLatest([accountHolderNameHasText(), routingNumberIsValid(), confirmRoutingNumberMatches(), accountNumberHasText(), accountNumberIsValid(), confirmAccountNumberMatches(), nicknameHasText(), nicknameIsValid()]) {
+            return Observable.combineLatest([accountHolderNameHasText(), routingNumberIsValid(), accountNumberHasText(), accountNumberIsValid(), confirmAccountNumberMatches(), nicknameHasText(), nicknameIsValid()]) {
                 return !$0.contains(false)
             }
         } else {
@@ -51,12 +50,6 @@ class AddBankAccountViewModel {
     func routingNumberIsValid() -> Observable<Bool> {
         return routingNumber.asObservable().map {
             return $0.characters.count == 9
-        }
-    }
-    
-    func confirmRoutingNumberMatches() -> Observable<Bool> {
-        return Observable.combineLatest(routingNumber.asObservable(), confirmRoutingNumber.asObservable()) {
-            return $0 == $1
         }
     }
     
