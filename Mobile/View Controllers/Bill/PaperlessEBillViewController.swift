@@ -106,6 +106,7 @@ class PaperlessEBillViewController: UIViewController {
     }
     
     func colorAndShadowSetup() {
+        topBackgroundView.backgroundColor = UIColor.white
         topBackgroundView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0, height: 2), radius: 1)
         enrollAllAccountsView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 2)
         enrollAllAccountsView.layer.cornerRadius = 2
