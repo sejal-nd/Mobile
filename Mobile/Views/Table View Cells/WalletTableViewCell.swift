@@ -104,30 +104,6 @@ class WalletTableViewCell: UITableViewCell {
                 //bottomBarLabel.text = NSLocalizedString("Fees: $1.50 Residential | 2.4% Business", comment: "")
                 a11yLabel = NSLocalizedString("Credit card", comment: "")
             }
-            switch walletItem.walletItemStatusTypeBGE! {
-            case .pndWait:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Processing", comment: "")
-            case .pndActive:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Pending", comment: "")
-            case .cancel:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Cancelled", comment: "")
-            case .bad_active:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Failed", comment: "")
-            case .deleted:
-                break
-            case .active:
-                bottomBarLabel.font = OpenSans.regular.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .successGreenText
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
-            }
         }
         
         // Nickname
