@@ -28,7 +28,7 @@ class ReportOutageViewModel {
             reportFormHidden.value = true
         }
         
-        Observable.combineLatest(self.reportFormHidden.asObservable(), svar.phoneNumber.asObservable()) {
+        Observable.combineLatest(self.reportFormHidden.asObservable(), self.phoneNumber.asObservable()) {
             let digitsOnlyString = self.extractDigitsFrom($1)
             return !$0 && digitsOnlyString.characters.count == 10
             }
