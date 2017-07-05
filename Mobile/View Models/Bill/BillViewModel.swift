@@ -55,8 +55,8 @@ class BillViewModel {
         accountDetailErrorMessage = fetchAccountDetailResult.errors()
             .map { 
                 if let serviceError = $0 as? ServiceError {
-                    if serviceError.serviceCode == "FN-NOT-FOUND" {
-                        return NSLocalizedString("TC-UNKNOWN", comment: "")
+                    if serviceError.serviceCode == ServiceErrorCode.FnNotFound.rawValue {
+                        return NSLocalizedString(ServiceErrorCode.TcUnknown.rawValue, comment: "")
                     } else {
                         return serviceError.errorDescription
                     }
