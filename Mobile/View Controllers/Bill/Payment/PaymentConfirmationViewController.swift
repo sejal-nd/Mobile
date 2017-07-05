@@ -13,15 +13,18 @@ class PaymentConfirmationViewController: UIViewController {
     @IBOutlet weak var xButton: UIButton!
     @IBOutlet weak var navBarTitleLabel: UILabel!
     @IBOutlet weak var confirmationLabel: UILabel!
-    @IBOutlet weak var paymentDateLabel: UILabel!
-    @IBOutlet weak var paymentAmountLabel: UILabel!
+
     
-    @IBOutlet weak var paymentDateView: UIView!
-    @IBOutlet weak var totalAmountView: UIView!
+    @IBOutlet weak var paymentInfoView: UIView!
+    @IBOutlet weak var paymentDateTextLabel: UILabel!
+    @IBOutlet weak var paymentDateValueLabel: UILabel!
+    @IBOutlet weak var amountPaidTextLabel: UILabel!
+    @IBOutlet weak var amountPaidValueLabel: UILabel!
     
     @IBOutlet weak var autoPayView: UIStackView!
     @IBOutlet weak var billMatrixView: UIStackView!
 
+    @IBOutlet weak var autoPayLabel: UILabel!
     @IBOutlet weak var enrollAutoPayButton: SecondaryButton!
     
     var presentingNavController: UINavigationController! // Passed from ReviewPaymentViewController
@@ -35,13 +38,30 @@ class PaymentConfirmationViewController: UIViewController {
         navBarTitleLabel.textColor = .blackText
         navBarTitleLabel.text = NSLocalizedString("Payment Confirmation", comment: "")
         
-        paymentDateView.backgroundColor = .softGray
-        totalAmountView.backgroundColor = .softGray
+        confirmationLabel.textColor = .blackText
+        confirmationLabel.font = OpenSans.regular.of(textStyle: .body)
+        confirmationLabel.text = NSLocalizedString("Thank you for your payment. A confirmation email will be sent to your shortly.", comment: "")
+        
+        paymentInfoView.backgroundColor = .softGray
+        
+        paymentDateTextLabel.textColor = .blackText
+        paymentDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentDateTextLabel.text = NSLocalizedString("Payment Date", comment: "")
+        paymentDateValueLabel.textColor = .blackText
+        paymentDateValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountPaidTextLabel.textColor = .blackText
+        amountPaidTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountPaidTextLabel.text = NSLocalizedString("Amount Paid", comment: "")
+        amountPaidValueLabel.textColor = .blackText
+        amountPaidValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         //TODO: hide/show this
-        autoPayView.isHidden = true
-        billMatrixView.isHidden = true
+//        autoPayView.isHidden = true
+//        billMatrixView.isHidden = true
         
+        autoPayLabel.textColor = .deepGray
+        autoPayLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        autoPayLabel.text = NSLocalizedString("Would you like to set up Automatic Payments?", comment: "")
         enrollAutoPayButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
     }
 
