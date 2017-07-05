@@ -12,6 +12,15 @@ class PaymentConfirmationViewController: UIViewController {
     
     @IBOutlet weak var xButton: UIButton!
     @IBOutlet weak var navBarTitleLabel: UILabel!
+    @IBOutlet weak var confirmationLabel: UILabel!
+    @IBOutlet weak var paymentDateLabel: UILabel!
+    @IBOutlet weak var paymentAmountLabel: UILabel!
+    
+    @IBOutlet weak var paymentDateView: UIView!
+    @IBOutlet weak var totalAmountView: UIView!
+    
+    @IBOutlet weak var autoPayView: UIStackView!
+    @IBOutlet weak var billMatrixView: UIStackView!
 
     @IBOutlet weak var enrollAutoPayButton: SecondaryButton!
     
@@ -25,6 +34,13 @@ class PaymentConfirmationViewController: UIViewController {
 
         navBarTitleLabel.textColor = .blackText
         navBarTitleLabel.text = NSLocalizedString("Payment Confirmation", comment: "")
+        
+        paymentDateView.backgroundColor = .softGray
+        totalAmountView.backgroundColor = .softGray
+        
+        //TODO: hide/show this
+        autoPayView.isHidden = true
+        billMatrixView.isHidden = true
         
         enrollAutoPayButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
     }
@@ -51,6 +67,11 @@ class PaymentConfirmationViewController: UIViewController {
             break
         }
         presentingNavController.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func onPrivacyPolicyPress(_ sender: Any) {
+        
+        dLog(message: "privacy policy press")
     }
 
 
