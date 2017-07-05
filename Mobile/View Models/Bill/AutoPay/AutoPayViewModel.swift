@@ -73,8 +73,8 @@ class AutoPayViewModel {
         }
         .distinctUntilChanged()
     
-    lazy var routingNumberIsValid: Driver<Bool> = self.routingNumber.asDriver()
-        .map { $0.characters.count == 9 }
+    lazy var routingNumberNotEmpty: Driver<Bool> = self.routingNumber.asDriver()
+        .map { $0.characters.count > 0 }
         .distinctUntilChanged()
     
     lazy var accountNumberHasText: Driver<Bool> = self.accountNumber.asDriver()
@@ -92,7 +92,7 @@ class AutoPayViewModel {
     
     lazy var canSubmitNewAccount: Driver<Bool> = {
         var validationDrivers = [self.nameOnAccountHasText,
-                                 self.routingNumberIsValid,
+                                 self.routingNumberNotEmpty,
                                  self.accountNumberHasText,
                                  self.accountNumberIsValid,
                                  self.confirmAccountNumberMatches]
@@ -124,11 +124,6 @@ class AutoPayViewModel {
     lazy var nameOnAccountErrorText: Driver<String?> = self.nameOnAccountIsValid.asDriver()
         .distinctUntilChanged()
         .map { $0 ? nil: NSLocalizedString("Can only contain letters, numbers, and spaces", comment: "") }
-    
-    lazy var routingNumberErrorText: Driver<String?> = self.routingNumber.asDriver()
-        .map { $0.characters.count == 9 || $0.isEmpty }
-        .distinctUntilChanged()
-        .map { $0 ? nil: NSLocalizedString("Must be 9 digits", comment: "") }
     
     lazy var accountNumberErrorText: Driver<String?> = self.accountNumber.asDriver()
         .map { 8...17 ~= $0.characters.count }

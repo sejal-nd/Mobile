@@ -128,16 +128,12 @@ class AutoPayChangeBankViewController: UIViewController {
 			.controlEvent(.editingDidBegin).asDriver()
 			.map{ nil }
 		
-		let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
-			.controlEvent(.editingDidEnd).asDriver()
-			.withLatestFrom(viewModel.routingNumberErrorText)
-		
-		Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
-			.distinctUntilChanged(==)
-			.drive(onNext: { [weak self] errorText in
-				self?.routingNumberTextField.setError(errorText)
-			})
-			.addDisposableTo(bag)
+//		Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
+//			.distinctUntilChanged(==)
+//			.drive(onNext: { [weak self] errorText in
+//				self?.routingNumberTextField.setError(errorText)
+//			})
+//			.addDisposableTo(bag)
 		
 		// Account Number
 		let accountNumberErrorTextFocused: Driver<String?> = accountNumberTextField.textField.rx
@@ -250,10 +246,9 @@ class AutoPayChangeBankViewController: UIViewController {
 
 extension AutoPayChangeBankViewController: UITextFieldDelegate {
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-		let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
 		let characterSet = CharacterSet(charactersIn: string)
 		if textField == routingNumberTextField.textField {
-			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
+			return CharacterSet.decimalDigits.isSuperset(of: characterSet)
 		} else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
 			return CharacterSet.decimalDigits.isSuperset(of: characterSet)
 		}
@@ -261,7 +256,7 @@ extension AutoPayChangeBankViewController: UITextFieldDelegate {
 	}
 	
 	func textFieldDidChange(_ textField: UITextField) {
-		if textField == routingNumberTextField.textField && textField.text?.characters.count == 9 {
+		if textField == routingNumberTextField.textField {
 			accountNumberTextField.textField.becomeFirstResponder()
 		}
 	}
