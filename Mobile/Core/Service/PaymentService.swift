@@ -16,15 +16,6 @@ protocol PaymentService {
     ///   - accountNumber: The account to get the info for
     ///   - completion: the completion block to execute upon completion.
     func fetchBGEAutoPayInfo(accountNumber: String, completion: @escaping (_ result: ServiceResult<BGEAutoPayInfo>) -> Void)
-    
-    
-    /// Fetch bank name through routing number
-    ///
-    /// - Parameters:
-    ///     - routing number
-    ///     - completion: the result contains the name of the bank that is determined by the routing number.
-    
-    func fetchBankName(routingNumber: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
 
 
     /// Enroll in AutoPay (BGE only)
@@ -97,23 +88,6 @@ extension PaymentService {
                     observer.onError(err)
                 }
             })
-            return Disposables.create()
-        }
-    }
-    
-    // Fetch bank name
-    func fetchBankName(_ routingNumber: String) -> Observable<String> {
-        return Observable.create { observer in
-            self.fetchBankName(routingNumber: routingNumber, completion: { (result: ServiceResult<String>) in
-                switch(result) {
-                case ServiceResult.Success(let bankName):
-                    observer.onNext(bankName)
-                    observer.onCompleted()
-                case ServiceResult.Failure(let err):
-                    observer.onError(err)
-                }
-            })
-            
             return Disposables.create()
         }
     }

@@ -31,11 +31,13 @@ class AutoPayViewModel {
     let selectedUnenrollmentReason = Variable<String?>(nil)
     
     let paymentService: PaymentService
+    let walletService: WalletService
     
     var bankName = ""
     
-    required init(withPaymentService paymentService: PaymentService, accountDetail: AccountDetail) {
+    required init(withPaymentService paymentService: PaymentService, walletService: WalletService, accountDetail: AccountDetail) {
         self.paymentService = paymentService
+        self.walletService = walletService
         self.accountDetail = accountDetail
         enrollmentStatus = Variable(accountDetail.isAutoPay ? .isEnrolled:.enrolling)
         termsAndConditionsCheck = Variable(Environment.sharedInstance.opco != .comEd)
@@ -64,7 +66,7 @@ class AutoPayViewModel {
     }
     
     func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
-        paymentService.fetchBankName(routingNumber.value)
+        walletService.fetchBankName(routingNumber.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { bankName in
                 self.bankName = bankName
@@ -86,8 +88,8 @@ class AutoPayViewModel {
         }
         .distinctUntilChanged()
     
-    lazy var routingNumberNotEmpty: Driver<Bool> = self.routingNumber.asDriver()
-        .map { $0.characters.count > 0 }
+    lazy var routingNumberIsValid: Driver<Bool> = self.routingNumber.asDriver()
+        .map { $0.characters.count == 9 }
         .distinctUntilChanged()
     
     lazy var accountNumberHasText: Driver<Bool> = self.accountNumber.asDriver()
@@ -105,7 +107,7 @@ class AutoPayViewModel {
     
     lazy var canSubmitNewAccount: Driver<Bool> = {
         var validationDrivers = [self.nameOnAccountHasText,
-                                 self.routingNumberNotEmpty,
+                                 self.routingNumberIsValid,
                                  self.accountNumberHasText,
                                  self.accountNumberIsValid,
                                  self.confirmAccountNumberMatches]
@@ -137,6 +139,11 @@ class AutoPayViewModel {
     lazy var nameOnAccountErrorText: Driver<String?> = self.nameOnAccountIsValid.asDriver()
         .distinctUntilChanged()
         .map { $0 ? nil: NSLocalizedString("Can only contain letters, numbers, and spaces", comment: "") }
+    
+    lazy var routingNumberErrorText: Driver<String?> = self.routingNumber.asDriver()
+        .map { $0.characters.count == 9 || $0.isEmpty }
+        .distinctUntilChanged()
+        .map { $0 ? nil : NSLocalizedString("Must be 9 digits", comment: "") }
     
     lazy var accountNumberErrorText: Driver<String?> = self.accountNumber.asDriver()
         .map { 8...17 ~= $0.characters.count }

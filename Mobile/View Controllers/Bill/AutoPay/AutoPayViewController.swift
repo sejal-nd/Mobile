@@ -57,7 +57,7 @@ class AutoPayViewController: UIViewController {
     let bag = DisposeBag()
     
     var accountDetail: AccountDetail!
-    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail) }()
+    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: self.accountDetail) }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -309,17 +309,29 @@ class AutoPayViewController: UIViewController {
             .addDisposableTo(bag)
         
         // Routing Number
+        let routingNumberErrorTextFocused: Driver<String?> = routingNumberTextField.textField.rx
+            .controlEvent(.editingDidBegin).asDriver()
+            .map{ nil }
+        
+        let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
+            .controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(viewModel.routingNumberErrorText)
+
+        Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
+            .distinctUntilChanged(==)
+            .drive(onNext: { [weak self] errorText in
+                self?.routingNumberTextField.setError(errorText)
+            })
+            .addDisposableTo(bag)
+        
         routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.routingNumber.value.isEmpty {
+            if self.viewModel.routingNumber.value.characters.count == 9 {
                 self.viewModel.getBankName(onSuccess: {
                     self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
                 }, onError: {
                     self.routingNumberTextField.setInfoMessage(nil)
                 })
             }
-        }).addDisposableTo(bag)
-        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.routingNumberTextField.setError(nil)
         }).addDisposableTo(bag)
         
         // Account Number

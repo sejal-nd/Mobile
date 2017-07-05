@@ -5,9 +5,9 @@
 	<key>environment</key>
 	<string>TEST</string>
 	<key>appName</key>
-	<string>BGE_TEST</string>
+	<string>PECO_TEST</string>
 	<key>opco</key>
-	<string>BGE</string>
+	<string>PECO</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
@@ -15,6 +15,6 @@
 	<key>fiservUrl</key>
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
 	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemaptest.comed.com/app.html</string>
+	<string>https://s3.amazonaws.com/outagemaptest.peco.com/external/app.html</string>
 </dict>
 </plist>
