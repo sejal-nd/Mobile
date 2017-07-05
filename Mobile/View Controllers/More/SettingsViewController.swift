@@ -13,8 +13,9 @@ import ToastSwiftFramework
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
-    let viewModel = SettingsViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
+    let viewModel = SettingsViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService(), accountService: ServiceFactory.createAccountService())
     
     let disposeBag = DisposeBag()
     
@@ -40,6 +41,34 @@ class SettingsViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setWhiteNavBar()
         }
+        
+        if AccountsStore.sharedInstance.accounts == nil {
+            fetchAccounts()
+        } else {
+            
+        }
+        
+    }
+    
+    func fetchAccounts() {
+        loadingIndicator.isHidden = false
+        tableView.isHidden = true
+        viewModel.fetchAccounts()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.loadingIndicator.isHidden = true
+                self?.tableView.isHidden = false
+            }, onError: { [weak self] err in
+                guard let strongSelf = self else { return }
+                strongSelf.loadingIndicator.isHidden = true
+                strongSelf.tableView.isHidden = false
+                let alertVc = UIAlertController(title: NSLocalizedString("Could Not Load Accounts", comment: ""), message: err.localizedDescription, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default, handler: { _ in
+                    strongSelf.fetchAccounts()
+                }))
+                strongSelf.present(alertVc, animated: true, completion: nil)
+            }).addDisposableTo(disposeBag)
     }
     
     // MARK: - Touch ID Switch Handling
@@ -111,7 +140,7 @@ extension SettingsViewController: UITableViewDelegate {
     
     func handleOpcoCellPress() {
         if Environment.sharedInstance.opco == .bge {
-            print("Default account")
+            performSegue(withIdentifier: "defaultAccountSegue", sender: self)
         } else if Environment.sharedInstance.opco == .peco {
             performSegue(withIdentifier: "releaseOfInfoSegue", sender: self)
         }
@@ -126,7 +155,7 @@ extension SettingsViewController: UITableViewDataSource {
         if viewModel.isDeviceTouchIDCompatible() {
             numSections += 1
         }
-        if (Environment.sharedInstance.opco == .bge && AccountsStore.sharedInstance.accounts.count > 1) {
+        if Environment.sharedInstance.opco == .bge {// && AccountsStore.sharedInstance.accounts.count > 1 {
             numSections += 1
         }
         if Environment.sharedInstance.opco == .peco {

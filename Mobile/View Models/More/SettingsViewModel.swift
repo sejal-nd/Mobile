@@ -17,10 +17,12 @@ class SettingsViewModel {
     
     private var authService: AuthenticationService
     private var fingerprintService: FingerprintService
+    private var accountService: AccountService
     
-    init(authService: AuthenticationService, fingerprintService: FingerprintService) {
+    init(authService: AuthenticationService, fingerprintService: FingerprintService, accountService: AccountService) {
         self.authService = authService
         self.fingerprintService = fingerprintService
+        self.accountService = accountService
         
         // We should always have a stored username unless user skipped login, in which case this will probably change
         // in a future sprint anyway
@@ -43,6 +45,10 @@ class SettingsViewModel {
     
     func getConfirmPasswordMessage() -> String {
         return String(format: NSLocalizedString("Enter the password for %@ to enable Touch ID", comment: ""), username.value)
+    }
+    
+    func fetchAccounts() -> Observable<[Account]> {
+        return accountService.fetchAccounts()
     }
     
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
