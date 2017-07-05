@@ -127,13 +127,17 @@ class AutoPayChangeBankViewController: UIViewController {
 		let routingNumberErrorTextFocused: Driver<String?> = routingNumberTextField.textField.rx
 			.controlEvent(.editingDidBegin).asDriver()
 			.map{ nil }
+        
+        let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
+            .controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(viewModel.getBankName)
 		
-//		Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
-//			.distinctUntilChanged(==)
-//			.drive(onNext: { [weak self] errorText in
-//				self?.routingNumberTextField.setError(errorText)
-//			})
-//			.addDisposableTo(bag)
+		Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
+			.distinctUntilChanged(==)
+			.drive(onNext: { [weak self] errorText in
+				self?.routingNumberTextField.setError(errorText)
+			})
+			.addDisposableTo(bag)
 		
 		// Account Number
 		let accountNumberErrorTextFocused: Driver<String?> = accountNumberTextField.textField.rx

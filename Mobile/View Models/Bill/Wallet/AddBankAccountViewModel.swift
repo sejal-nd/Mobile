@@ -25,6 +25,8 @@ class AddBankAccountViewModel {
     let nickname = Variable("")
     let oneTouchPay = Variable(false)
     
+    var bankName = "";
+    
     required init(walletService: WalletService) {
         self.walletService = walletService
     }
@@ -91,6 +93,17 @@ class AddBankAccountViewModel {
             trimString = trimString.components(separatedBy: CharacterSet.alphanumerics).joined(separator: "")
             return trimString.isEmpty
         }
+    }
+    
+    func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
+        walletService.fetchBankName(routingNumber.value)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { bankName in
+                self.bankName = bankName
+                onSuccess()
+            }, onError: { (error: Error) in
+                onError()
+            }).addDisposableTo(disposeBag)
     }
     
     func addBankAccount(onDuplicate: @escaping (String) -> Void, onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {

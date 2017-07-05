@@ -71,6 +71,14 @@ protocol PaymentService {
     func unenrollFromAutoPay(accountNumber: String,
                              reason: String,
                              completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    /// Fetch bank name through routing number
+    ///
+    /// - Parameters:
+    ///     - routing number
+    ///     - completion: the result contains the name of the bank that is determined by the routing number.
+    
+    func fetchBankName(routingNumber: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
 
 }
 
@@ -178,5 +186,22 @@ extension PaymentService {
         }
     }
 
+    
+    // Fetch bank name
+    func fetchBankName(_ routingNumber: String) -> Observable<String> {
+        return Observable.create { observer in
+            self.fetchBankName(routingNumber: routingNumber, completion: { (result: ServiceResult<String>) in
+                switch(result) {
+                case ServiceResult.Success(let bankName):
+                    observer.onNext(bankName)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            
+            return Disposables.create()
+        }
+    }
 
 }
