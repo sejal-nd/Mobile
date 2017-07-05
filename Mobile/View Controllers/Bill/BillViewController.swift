@@ -389,17 +389,8 @@ class BillViewController: AccountPickerViewController {
 			.addDisposableTo(bag)
 
 		autoPayButton.rx.touchUpInside.asDriver()
-			.withLatestFrom(viewModel.currentAccountDetailUnwrapped)
-			.drive(onNext: { accountDetail in
-				if Environment.sharedInstance.opco == .bge {
-                    if accountDetail.isBGEasy {
-                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
-                    } else {
-                        self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
-                    }
-                } else {
-                    self.performSegue(withIdentifier: "autoPaySegue", sender: self)
-                }
+			.drive(onNext: {
+                self.navigateToAutoPay()
 			})
 			.addDisposableTo(bag)
         
@@ -454,6 +445,20 @@ class BillViewController: AccountPickerViewController {
                 self.navigationController?.pushViewController(paymentVc, animated: true)
             })
             .addDisposableTo(bag)
+    }
+    
+    func navigateToAutoPay() {
+        viewModel.currentAccountDetailUnwrapped.asObservable().single().subscribe(onNext: { accountDetail in
+            if Environment.sharedInstance.opco == .bge {
+                if accountDetail.isBGEasy {
+                    self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                } else {
+                    self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
+                }
+            } else {
+                self.performSegue(withIdentifier: "autoPaySegue", sender: self)
+            }
+        }).addDisposableTo(bag)
     }
 
     func configureAccessibility() {

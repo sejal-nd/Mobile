@@ -110,7 +110,13 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func onSubmitPress() {
-        print("Submit")
+        performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? PaymentConfirmationViewController {
+            vc.presentingNavController = self.navigationController!
+        }
     }
 
 }
