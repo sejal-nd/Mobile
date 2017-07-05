@@ -157,6 +157,7 @@ struct BillingInfo: Mappable {
     let disconnectNoticeArrears: Int
     let isDisconnectNotice: Bool
     let billDate: Date?
+    let convenienceFee: Double?
     let scheduledPaymentAmount: Double?
     let atReinstateFee: Double?
     
@@ -174,6 +175,7 @@ struct BillingInfo: Mappable {
         disconnectNoticeArrears = map.optionalFrom("disconnectNoticeArrears") ?? 0
         isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
         billDate = map.optionalFrom("billDate", transformation: extractDate)
+        convenienceFee = map.optionalFrom("convenienceFee")
         scheduledPaymentAmount = map.optionalFrom("scheduledPaymentAmount")
         atReinstateFee = map.optionalFrom("atReinstateFee")
     }

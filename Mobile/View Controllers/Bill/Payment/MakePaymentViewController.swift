@@ -189,6 +189,7 @@ class MakePaymentViewController: UIViewController {
     
     func bindButtonTaps() {
         paymentAccountButton.rx.touchUpInside.subscribe(onNext: {
+            self.view.endEditing(true)
             let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
             miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
             miniWalletVC.viewModel.selectedItem.value = self.viewModel.selectedWalletItem.value
@@ -199,6 +200,7 @@ class MakePaymentViewController: UIViewController {
     }
     
     func onNextPress() {
+        self.view.endEditing(true)
         performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
     }
     

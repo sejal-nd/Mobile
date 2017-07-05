@@ -28,6 +28,8 @@ class PaymentViewModel {
     let paymentAmount = Variable("")
     let paymentDate: Variable<Date>
     
+    let reviewPaymentSwitchValue = Variable(false)
+    
     init(walletService: WalletService, paymentService: PaymentService, oneTouchPayService: OneTouchPayService, accountDetail: AccountDetail) {
         self.walletService = walletService
         self.paymentService = paymentService
@@ -73,10 +75,6 @@ class PaymentViewModel {
         return shouldShowContent
     }
     
-    var reviewPaymentSubmitButtonEnabled: Driver<Bool> {
-        return shouldShowContent
-    }
-    
     var shouldShowContent: Driver<Bool> {
         return Driver.combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver()).map {
             return !$0 && !$1
@@ -106,6 +104,17 @@ class PaymentViewModel {
     lazy var selectedWalletItemNickname: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return "" }
         return walletItem.nickName ?? ""
+    }
+    
+    var convenienceFee: Driver<Double?> {
+        return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
+            if let walletItem = $1 {
+                if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+                    return $0.billingInfo.convenienceFee
+                }
+            }
+            return nil
+        }
     }
     
     lazy var amountDueValue: Driver<String?> = self.accountDetail.asDriver().map {
@@ -141,7 +150,83 @@ class PaymentViewModel {
     lazy var fixedPaymentDateString: Driver<String?> = self.paymentDate.asDriver().map {
         return $0.mmDdYyyyString
     }
-
+    
+    // MARK: - Review Payment Drivers
+    
+    var reviewPaymentSubmitButtonEnabled: Driver<Bool> {
+        return Driver.combineLatest(isOverpaying.asDriver(), reviewPaymentSwitchValue.asDriver()).map {
+            if Environment.sharedInstance.opco == .bge {
+                if $0 { // If overpaying, enable submit button only when switch is toggled
+                    return $1
+                } else {
+                    return true
+                }
+            } else { // ComEd/PECO only enabled after toggling switch
+                return $1
+            }
+        }
+    }
+    
+    lazy var reviewPaymentShouldShowConvenienceFeeBox: Driver<Bool> = self.selectedWalletItem.asDriver().map {
+        guard let walletItem: WalletItem = $0 else { return false }
+        return walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit
+    }
+    
+    var isOverpaying: Driver<Bool> {
+        return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver().map { return Double($0) ?? 0 }).map {
+            return $1 > $0
+        }
+    }
+    
+    lazy var shouldShowOverpaymentLabel: Driver<Bool> = self.isOverpaying.map {
+        return Environment.sharedInstance.opco == .bge && $0
+    }
+    
+    var shouldShowSwitchView: Driver<Bool> {
+        return isOverpaying.map {
+            if Environment.sharedInstance.opco == .bge { // On BGE, the switch view is just for confirming overpayment
+                return $0
+            } else { // On ComEd/PECO, it's always shown for the terms and conditions agreement
+                return true
+            }
+        }
+    }
+    
+    var switchViewLabelText: String {
+        if Environment.sharedInstance.opco == .bge {
+            return "Yes, I acknowledge I am scheduling a payment for more than is currently due on my account."
+        } else {
+            return "Yes, I have read, understand, and agree to the terms and conditions provided below:"
+        }
+    }
+    
+    var shouldShowTermsConditionsButton: Driver<Bool> {
+        return Driver.just(Environment.sharedInstance.opco != .bge)
+    }
+    
+    var shouldShowBillMatrixView: Driver<Bool> {
+        return Driver.just(Environment.sharedInstance.opco != .bge)
+    }
+    
+    lazy var paymentAmountDisplayString: Driver<String> = self.paymentAmount.asDriver().map {
+        return "$\($0)"
+    }
+    
+    lazy var convenienceFeeDisplayString: Driver<String> = self.convenienceFee.map {
+        guard let fee = $0 else { return "" }
+        return fee.currencyString ?? ""
+    }
+    
+    var totalPaymentDisplayString: Driver<String> {
+        return Driver.combineLatest(paymentAmount.asDriver().map { return Double($0) ?? 0 }, convenienceFee.asDriver().map { return $0 ?? 0 }).map {
+            return ($0 + $1).currencyString ?? ""
+        }
+    }
+    
+    
+    // MARK: - Random functions
+    
+    
     func formatPaymentAmount() {
         let components = paymentAmount.value.components(separatedBy: ".")
         

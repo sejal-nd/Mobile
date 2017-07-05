@@ -18,11 +18,17 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var scrollViewContentView: UIView!
     var gradientLayer = CAGradientLayer()
     
+    @IBOutlet weak var overpaymentView: UIView!
+    @IBOutlet weak var overpaymentLabel: UILabel!
+    
     @IBOutlet weak var paymentAccountTextLabel: UILabel!
+    @IBOutlet weak var paymentAccountImageView: UIImageView!
     @IBOutlet weak var paymentAccountMaskedAccountNumberLabel: UILabel!
     @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
     
+    // -- Receipt View -- //
     @IBOutlet weak var receiptView: UIView!
+    
     @IBOutlet weak var amountDueTextLabel: UILabel!
     @IBOutlet weak var amountDueValueLabel: UILabel!
     @IBOutlet weak var dueDateTextLabel: UILabel!
@@ -39,9 +45,24 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var paymentDateValueLabel: UILabel!
     @IBOutlet weak var totalPaymentTextLabel: UILabel!
     @IBOutlet weak var totalPaymentValueLabel: UILabel!
+    // ------------------ //
+    
+    @IBOutlet weak var reviewSwitchView: UIView!
+    @IBOutlet weak var reviewSwitch: Switch!
+    @IBOutlet weak var reviewLabel: UILabel!
+    @IBOutlet weak var termsConditionsButtonView: UIView!
+    @IBOutlet weak var termsConditionsButton: UIButton!
+    
+    @IBOutlet weak var billMatrixView: UIView!
+    @IBOutlet weak var privacyPolicyButton: UIButton!
+    
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var footerLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .softGray
 
         title = NSLocalizedString("Review Payment", comment: "")
         
@@ -55,6 +76,11 @@ class ReviewPaymentViewController: UIViewController {
             UIColor.white.cgColor,
         ]
         scrollViewContentView.layer.insertSublayer(gradientLayer, at: 0)
+        
+        overpaymentLabel.textColor = .blackText
+        overpaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        overpaymentLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your amount due.", comment: "")
+        overpaymentLabel.setLineHeight(lineHeight: 24)
         
         paymentAccountTextLabel.textColor = .deepGray
         paymentAccountTextLabel.text = NSLocalizedString("Payment Account", comment: "")
@@ -97,6 +123,24 @@ class ReviewPaymentViewController: UIViewController {
         totalPaymentTextLabel.text = NSLocalizedString("Total Payment", comment: "")
         totalPaymentValueLabel.textColor = .blackText
         totalPaymentValueLabel.font = SystemFont.medium.of(textStyle: .headline)
+        
+        reviewLabel.textColor = .deepGray
+        reviewLabel.font = SystemFont.regular.of(textStyle: .headline)
+        reviewLabel.text = viewModel.switchViewLabelText
+        reviewLabel.setLineHeight(lineHeight: 25)
+        termsConditionsButton.setTitleColor(.actionBlue, for: .normal)
+        termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)
+        termsConditionsButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        
+        privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
+        privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
+        
+        footerView.backgroundColor = .softGray
+        footerLabel.textColor = .blackText
+        footerLabel.text = NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
+        
+        bindViewHiding()
+        bindViewContent()
     }
     
     override func viewDidLayoutSubviews() {
@@ -107,6 +151,42 @@ class ReviewPaymentViewController: UIViewController {
     
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         gradientLayer.frame = scrollViewContentView.bounds
+    }
+    
+    func bindViewHiding() {
+        viewModel.shouldShowOverpaymentLabel.map(!).drive(overpaymentView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.reviewPaymentShouldShowConvenienceFeeBox.map(!).drive(convenienceFeeView.rx.isHidden).addDisposableTo(disposeBag)
+        
+        viewModel.shouldShowSwitchView.map(!).drive(reviewSwitchView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowTermsConditionsButton.map(!).drive(termsConditionsButtonView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).addDisposableTo(disposeBag)
+    }
+    
+    func bindViewContent() {
+        // Payment Account
+        viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).addDisposableTo(disposeBag)
+        viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountMaskedAccountNumberLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Amount Due
+        viewModel.amountDueValue.asDriver().drive(amountDueValueLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Due Date
+        viewModel.dueDate.asDriver().drive(dueDateValueLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Payment Amount
+        viewModel.paymentAmountDisplayString.asDriver().drive(paymentAmountValueLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Convenience Fee
+        viewModel.convenienceFeeDisplayString.asDriver().drive(convenienceFeeValueLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Payment Date
+        viewModel.fixedPaymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Total Payment
+        viewModel.totalPaymentDisplayString.asDriver().drive(totalPaymentValueLabel.rx.text).addDisposableTo(disposeBag)
+        
+        reviewSwitch.rx.isOn.bind(to: viewModel.reviewPaymentSwitchValue).addDisposableTo(disposeBag)
     }
     
     func onSubmitPress() {
