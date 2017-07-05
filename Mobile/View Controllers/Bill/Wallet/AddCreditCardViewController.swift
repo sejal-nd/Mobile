@@ -136,14 +136,7 @@ class AddCreditCardViewController: UIViewController {
     
     func onSavePress() {
         view.endEditing(true)
-        
-        if Environment.sharedInstance.opco == .bge {
-            let alertVc = UIAlertController(title: "Not Implemented", message: "Add credit card is not yet implemented for BGE.", preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alertVc, animated: true, completion: nil)
-            return
-        }
-        
+                
         let customerNumber = viewModel.accountDetail.customerInfo.number
         
         var shouldShowOneTouchPayWarning = false
