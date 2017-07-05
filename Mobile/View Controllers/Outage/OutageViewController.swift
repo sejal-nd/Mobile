@@ -410,7 +410,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
         updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Your outage report has been received", comment: ""))
+            self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
         })
     }
     

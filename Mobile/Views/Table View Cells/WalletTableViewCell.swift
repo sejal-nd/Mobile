@@ -89,7 +89,7 @@ class WalletTableViewCell: UITableViewCell {
         case .comEd, .peco:
             if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                bottomBarLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
+                bottomBarLabel.text = NSLocalizedString("$2.50 Convenience Fee", comment: "")
                 a11yLabel =  NSLocalizedString("Credit card", comment: "")
             } else if walletItem.paymentCategoryType == .check {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")

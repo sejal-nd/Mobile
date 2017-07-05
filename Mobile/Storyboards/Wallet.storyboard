@@ -1839,7 +1839,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HrX-gt-60v">
                                                         <rect key="frame" x="8" y="106" width="289" height="29"/>
-                                                        <string key="text">A $2.35 convenience fee will be applied
+                                                        <string key="text">A $2.50 convenience fee will be applied
 to your payments.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
@@ -2018,7 +2018,7 @@ to your payments.</string>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rna-sJ-STt">
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.35 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-Yl-Loj">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.50 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-Yl-Loj">
                                                                             <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
@@ -2237,7 +2237,7 @@ to your payments.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="p6x-Y9-SQL">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="825"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="735"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pD-pj-byf" userLabel="Spacer View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="7"/>
@@ -2290,15 +2290,8 @@ to your payments.</string>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="zwr-Uh-kV2"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gD8-vc-ZDv" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="307" width="317" height="60"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="3m5-5r-nWK"/>
-                                                </constraints>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzg-0o-fm0" userLabel="Account Number View">
-                                                <rect key="frame" x="29" y="397" width="317" height="60"/>
+                                                <rect key="frame" x="29" y="307" width="317" height="60"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YdN-qJ-AbU" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
@@ -2328,21 +2321,21 @@ to your payments.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KgA-Ni-VPj" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="487" width="317" height="60"/>
+                                                <rect key="frame" x="29" y="397" width="317" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="ZNn-uU-I1F"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adk-Eb-Mfd" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="577" width="317" height="60"/>
+                                                <rect key="frame" x="29" y="487" width="317" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="ehW-8N-eDk"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxs-YT-SQq" userLabel="One Touch Pay View">
-                                                <rect key="frame" x="29" y="667" width="317" height="128"/>
+                                                <rect key="frame" x="29" y="577" width="317" height="128"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uW-wu-HuB">
                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="72"/>
@@ -2373,7 +2366,7 @@ to your payments.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CW8-1e-zGc" userLabel="Spacer View">
-                                                <rect key="frame" x="0.0" y="825" width="375" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="735" width="375" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="Cgd-gC-b0d"/>
@@ -2387,9 +2380,7 @@ to your payments.</string>
                                             <constraint firstItem="H28-na-p1M" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="7WM-3R-Ceh"/>
                                             <constraint firstAttribute="trailing" secondItem="adk-Eb-Mfd" secondAttribute="trailing" constant="29" id="9Fq-CN-dLm"/>
                                             <constraint firstAttribute="trailing" secondItem="KgA-Ni-VPj" secondAttribute="trailing" constant="29" id="FaM-Mo-S4w"/>
-                                            <constraint firstAttribute="trailing" secondItem="gD8-vc-ZDv" secondAttribute="trailing" constant="29" id="Ki0-QV-zUY"/>
                                             <constraint firstItem="4aq-yh-h7j" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="Owt-Kz-43R"/>
-                                            <constraint firstItem="gD8-vc-ZDv" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="UWS-qr-XyE"/>
                                             <constraint firstItem="fxs-YT-SQq" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="aLc-yY-UKm"/>
                                             <constraint firstItem="VTL-zb-zmg" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="c4J-bM-Q5F"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="fMM-WS-m0Z"/>
@@ -2427,7 +2418,6 @@ to your payments.</string>
                         <outlet property="accountNumberTooltipButton" destination="Dwd-0r-emm" id="r6s-eu-LFk"/>
                         <outlet property="checkingSavingsSegmentedControl" destination="H28-na-p1M" id="TkU-8e-9QI"/>
                         <outlet property="confirmAccountNumberTextField" destination="KgA-Ni-VPj" id="i8c-4k-N2t"/>
-                        <outlet property="confirmRoutingNumberTextField" destination="gD8-vc-ZDv" id="W2L-mP-HQP"/>
                         <outlet property="nicknameTextField" destination="adk-Eb-Mfd" id="TpS-qo-9bo"/>
                         <outlet property="oneTouchPayDescriptionLabel" destination="5uW-wu-HuB" id="sG5-Rl-X5d"/>
                         <outlet property="oneTouchPayLabel" destination="Wyh-SQ-ABu" id="aKG-IS-kAs"/>
@@ -2533,7 +2523,7 @@ to your payments.</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EsJ-KP-esf">
                                                         <rect key="frame" x="0.0" y="134" width="306" height="31"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.35 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPd-Y3-TTP">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.50 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPd-Y3-TTP">
                                                                 <rect key="frame" x="89" y="7" width="128.5" height="17"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
