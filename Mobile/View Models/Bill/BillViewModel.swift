@@ -242,7 +242,7 @@ class BillViewModel {
     lazy var totalAmountDescriptionText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let billingInfo = $0?.billingInfo else { return nil }
         
-        if billingInfo.pastDueAmount == billingInfo.netDueAmount { // Confluence Billing 11.10
+        if Double(billingInfo.pastDueAmount!) > 0 && billingInfo.pastDueAmount == billingInfo.netDueAmount { // Confluence Billing 11.10
             return NSLocalizedString("Total Amount Due Immediately", comment: "")
         } else if Environment.sharedInstance.opco == .bge {
             if let netDueAmount = billingInfo.netDueAmount {
