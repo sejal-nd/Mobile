@@ -126,9 +126,13 @@ extension SettingsViewController: UITableViewDataSource {
         if viewModel.isDeviceTouchIDCompatible() {
             numSections += 1
         }
-        if Environment.sharedInstance.opco == .bge || Environment.sharedInstance.opco == .peco {
+        if (Environment.sharedInstance.opco == .bge && AccountsStore.sharedInstance.accounts.count > 1) {
             numSections += 1
         }
+        if Environment.sharedInstance.opco == .peco {
+            numSections += 1
+        }
+        
         return numSections
     }
     
