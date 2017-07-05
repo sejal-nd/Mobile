@@ -248,9 +248,10 @@ class AutoPayChangeBankViewController: UIViewController {
 
 extension AutoPayChangeBankViewController: UITextFieldDelegate {
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
 		let characterSet = CharacterSet(charactersIn: string)
 		if textField == routingNumberTextField.textField {
-			return CharacterSet.decimalDigits.isSuperset(of: characterSet)
+			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
 		} else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
 			return CharacterSet.decimalDigits.isSuperset(of: characterSet)
 		}
@@ -258,7 +259,7 @@ extension AutoPayChangeBankViewController: UITextFieldDelegate {
 	}
 	
 	func textFieldDidChange(_ textField: UITextField) {
-		if textField == routingNumberTextField.textField {
+		if textField == routingNumberTextField.textField && textField.text?.characters.count == 9 {
 			accountNumberTextField.textField.becomeFirstResponder()
 		}
 	}
