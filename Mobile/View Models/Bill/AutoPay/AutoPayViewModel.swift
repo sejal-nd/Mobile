@@ -32,6 +32,8 @@ class AutoPayViewModel {
     
     let paymentService: PaymentService
     
+    var bankName = ""
+    
     required init(withPaymentService paymentService: PaymentService, accountDetail: AccountDetail) {
         self.paymentService = paymentService
         self.accountDetail = accountDetail
@@ -61,21 +63,16 @@ class AutoPayViewModel {
         }
     }
     
-    lazy var getBankName: Driver<String?> = self.routingNumber.asDriver()
-        .map { !$0.isEmpty }
-        .distinctUntilChanged()
-        .map { $0 ? nil :
-            self.paymentService.fetchBankName(routingNumber.value)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { bankName in
-                    return bankName
-                    onSuccess()
-                }, onError: { (error: Error) in
-                    return nil
-                    onError()
-                }).addDisposableTo(bag)
- }
-    
+    func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
+        paymentService.fetchBankName(routingNumber.value)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { bankName in
+                self.bankName = bankName
+                onSuccess()
+            }, onError: { (error: Error) in
+                onError()
+            }).addDisposableTo(bag)
+    }
 
     lazy var nameOnAccountHasText: Driver<Bool> = self.nameOnAccount.asDriver()
         .map { !$0.isEmpty }

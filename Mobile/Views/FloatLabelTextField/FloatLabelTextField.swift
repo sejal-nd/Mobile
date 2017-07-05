@@ -19,6 +19,7 @@ class FloatLabelTextField: UIView {
     @IBOutlet weak var bottomColorBar: UIView!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    
     @IBOutlet weak var disabledColorBar: UIView!
     
     var errorState = false
@@ -120,6 +121,34 @@ class FloatLabelTextField: UIView {
             textField.floatingLabelActiveTextColor = .primaryColorDark
             textField.floatingLabel.textColor = .primaryColorDark
             
+            errorLabel.text = nil
+            errorView.isHidden = true
+        }
+    }
+    
+    func setInfoMessage(_ message: String?) {
+        errorState = false
+        
+        leftColorBar.backgroundColor = .primaryColor
+        if textFieldIsFocused {
+            bottomColorBar.backgroundColor = .primaryColor
+        } else {
+            bottomColorBar.backgroundColor = .accentGray
+            if !textField.hasText {
+                bottomColorBar.isHidden = true
+            }
+        }
+        
+        textField.floatingLabelTextColor = .primaryColorDark
+        textField.floatingLabelActiveTextColor = .primaryColorDark
+        textField.floatingLabel.textColor = .primaryColorDark
+        
+        if let info = message {
+            errorLabel.textColor = .primaryColorDark
+            errorLabel.text = String(format: NSLocalizedString("%@", comment: ""), info)
+            errorView.isHidden = false
+        } else {
+            errorLabel.textColor = .errorRed
             errorLabel.text = nil
             errorView.isHidden = true
         }

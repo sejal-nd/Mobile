@@ -180,9 +180,9 @@ class AddBankAccountViewController: UIViewController {
         routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.routingNumber.value.isEmpty {
                 self.viewModel.getBankName(onSuccess: {
-                    self.routingNumberTextField.setError(self.viewModel.bankName)
+                    self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
                 }, onError: {
-                    self.routingNumberTextField.setError("no bank name")
+                    self.routingNumberTextField.setInfoMessage(nil)
                 })
             }
         }).addDisposableTo(disposeBag)
