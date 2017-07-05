@@ -1,5 +1,5 @@
 //
-//  DayPickerContainerView.swift
+//  ExelonPickerContainerView.swift
 //  Mobile
 //
 //  Created by MG-MC-GHill on 6/21/17.
@@ -8,28 +8,36 @@
 
 import UIKit
 
-protocol DayPickerDelegate {
-    func donePressed(selectedDay: Int)
+protocol ExelonPickerDelegate {
+    func donePressed(selectedIndex: Int)
     
     func cancelPressed()
 }
 
-class DayPickerContainerView: UIView {
+class ExelonPickerContainerView: UIView {
     
-    var delegate: DayPickerDelegate!
+    var delegate: ExelonPickerDelegate!
 
     @IBOutlet weak var containerView: UIView!
     
-    @IBOutlet weak var dayPicker: UIPickerView!
+    @IBOutlet weak var exelonPicker: UIPickerView!
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    var selectedDay = 1
+    var dataArray: [String] = []
+    var selectedIndex = 0
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        commonInit()
+    }
+    
+    init(frame: CGRect, dataArray: [String]) {
+        super.init(frame: frame)
+        self.dataArray = dataArray
         
         commonInit()
     }
@@ -41,10 +49,10 @@ class DayPickerContainerView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed(DayPickerContainerView.className, owner: self, options: nil)
+        Bundle.main.loadNibNamed(ExelonPickerContainerView.className, owner: self, options: nil)
         
         //
-        containerView.addSubview(dayPicker)
+        containerView.addSubview(exelonPicker)
         containerView.addSubview(cancelButton)
         containerView.addSubview(doneButton)
         
@@ -57,9 +65,14 @@ class DayPickerContainerView: UIView {
         bottomConstraint.isActive = true
         
         //
-        dayPicker.dataSource = self
-        dayPicker.delegate = self
-        dayPicker.selectRow(0, inComponent: 0, animated: true)
+        exelonPicker.dataSource = self
+        exelonPicker.delegate = self
+        exelonPicker.selectRow(0, inComponent: 0, animated: true)
+    }
+    
+    func addNewData(dataArray: [String]) {
+        self.dataArray = dataArray
+        exelonPicker.reloadAllComponents()
     }
     
     override func layoutSubviews() {
@@ -69,7 +82,7 @@ class DayPickerContainerView: UIView {
     }
     
     func selectRow(_ row: Int) {
-        dayPicker.selectRow(row, inComponent: 0, animated: true)
+        exelonPicker.selectRow(row, inComponent: 0, animated: true)
     }
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -77,35 +90,33 @@ class DayPickerContainerView: UIView {
     }
 
     @IBAction func doneButtonPressed(_ sender: Any) {
-        delegate.donePressed(selectedDay: selectedDay)
+        delegate.donePressed(selectedIndex: selectedIndex)
     }
 }
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-extension DayPickerContainerView: UIPickerViewDelegate {
+extension ExelonPickerContainerView: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let plural = row > 0 ? "s" : ""
-        
-        return "\(row + 1) Day\(plural)" //self.dataArray[row]
+        return self.dataArray[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedDay = row + 1
+        selectedIndex = row
     }
 }
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-extension DayPickerContainerView: UIPickerViewDataSource {
+extension ExelonPickerContainerView: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 15
+        return dataArray.count
     }
 }
 
