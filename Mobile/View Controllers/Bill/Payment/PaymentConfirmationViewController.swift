@@ -12,8 +12,12 @@ class PaymentConfirmationViewController: UIViewController {
     
     @IBOutlet weak var xButton: UIButton!
     @IBOutlet weak var navBarTitleLabel: UILabel!
+    @IBOutlet weak var confirmationLabel: UILabel!
+    @IBOutlet weak var paymentDateLabel: UILabel!
+    @IBOutlet weak var paymentAmountLabel: UIStackView!
 
     @IBOutlet weak var enrollAutoPayButton: SecondaryButton!
+    @IBOutlet weak var privacyPolicyButton: UIButton!
     
     var presentingNavController: UINavigationController! // Passed from ReviewPaymentViewController
     

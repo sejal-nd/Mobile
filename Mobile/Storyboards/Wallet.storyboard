@@ -1130,7 +1130,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOr-iA-uL8">
                                                         <rect key="frame" x="0.0" y="0.0" width="329" height="299"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="ehV-nD-y5v">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_confirmation_green" translatesAutoresizingMaskIntoConstraints="NO" id="ehV-nD-y5v">
                                                                 <rect key="frame" x="61" y="10" width="206" height="136"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="136" id="ITY-RC-PLc"/>
@@ -1263,8 +1263,10 @@
                                                                     <constraint firstAttribute="width" constant="118" id="mw8-sp-OIz"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yto-mJ-zq3">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yto-mJ-zq3">
                                                                 <rect key="frame" x="118" y="0.0" width="211" height="43"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                <color key="tintColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <state key="normal" title="Privacy Policy"/>
                                                             </button>
                                                         </subviews>
@@ -1317,8 +1319,12 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="confirmationLabel" destination="PLs-KE-i9s" id="Zae-Ba-QXE"/>
                         <outlet property="enrollAutoPayButton" destination="QjE-fj-RSI" id="Fza-Q8-0TR"/>
                         <outlet property="navBarTitleLabel" destination="ldr-V6-xca" id="lwM-vl-cUp"/>
+                        <outlet property="paymentAmountLabel" destination="e2s-4x-2db" id="1GX-Jt-iYA"/>
+                        <outlet property="paymentDateLabel" destination="YV8-13-H93" id="y8i-Ra-0Ub"/>
+                        <outlet property="privacyPolicyButton" destination="yto-mJ-zq3" id="Ush-QL-o2G"/>
                         <outlet property="xButton" destination="hmN-H0-ex2" id="qjg-aA-Mt8"/>
                     </connections>
                 </viewController>
@@ -2952,7 +2958,7 @@ to your payments.</string>
         <image name="ic_delete" width="20" height="22"/>
         <image name="ic_one_touch_pay_check" width="11" height="9"/>
         <image name="ic_question" width="17" height="17"/>
-        <image name="img_confirmation" width="206" height="136"/>
+        <image name="img_confirmation_green" width="206" height="136"/>
         <image name="opco_bank_mini" width="50" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
