@@ -19,7 +19,7 @@ struct Premise: Mappable, Equatable, Hashable {
         addressLine = map.optionalFrom("mainAddress.addressLine")
     }
     
-    func addressLineString() -> String{
+    var addressLineString: String {
         guard let addressLineArray = addressLine else { return ""}
         return addressLineArray.joined(separator: ",")
     }

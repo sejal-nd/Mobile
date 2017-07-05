@@ -16,7 +16,7 @@ protocol ExelonPickerDelegate {
 
 class ExelonPickerContainerView: UIView {
     
-    var delegate: ExelonPickerDelegate!
+    var delegate: ExelonPickerDelegate?
 
     @IBOutlet weak var containerView: UIView!
     
@@ -26,23 +26,25 @@ class ExelonPickerContainerView: UIView {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    var dataArray: [String] = []
+    var dataArray: [String]
     var selectedIndex = 0
 
     override init(frame: CGRect) {
+        dataArray = []
         super.init(frame: frame)
         
         commonInit()
     }
     
     init(frame: CGRect, dataArray: [String]) {
-        super.init(frame: frame)
         self.dataArray = dataArray
+        super.init(frame: frame)
         
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
+        dataArray = []
         super.init(coder: aDecoder)
         
 //        commonInit()
@@ -86,11 +88,11 @@ class ExelonPickerContainerView: UIView {
     }
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        delegate.cancelPressed()
+        delegate?.cancelPressed()
     }
 
     @IBAction func doneButtonPressed(_ sender: Any) {
-        delegate.donePressed(selectedIndex: selectedIndex)
+        delegate?.donePressed(selectedIndex: selectedIndex)
     }
 }
 

@@ -83,7 +83,7 @@ class MultiPremiseTableViewCell: UITableViewCell {
         //premise info
         for (index, premise) in premises.enumerated() {
             
-            let address = premise.addressLineString()
+            let address = premise.addressLineString
             let showCheck = isCurrentAccount && index == currentPremiseIndex
             let view = MultiPremiseAddressView.instanceFromNib(showsCheck: showCheck, labelText: address)
             view.addressLabel.font = SystemFont.regular.of(textStyle: .footnote)

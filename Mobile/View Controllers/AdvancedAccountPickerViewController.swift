@@ -120,7 +120,7 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
             self.accountIndexToEditPremise = indexPath.row
             
             let dataArray = account.premises.map({ (premise: Premise) -> String in
-                return premise.addressLineString()
+                return premise.addressLineString
             })
             premisePickerView.addNewData(dataArray: dataArray)
             self.showPickerView(true)

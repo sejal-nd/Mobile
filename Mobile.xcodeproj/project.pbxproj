@@ -181,6 +181,7 @@
 		826413791EAEAE5E007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
+		826DCCE71F0D66520063D47E /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
 		82A18E561EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
 		82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
@@ -3696,6 +3697,7 @@
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
 				225FF85D1EC56B480079010C /* Date.swift in Sources */,
 				E803A0071EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
+				826DCCE71F0D66520063D47E /* Premise.swift in Sources */,
 				E8039FFB1EFB0421004DB789 /* PaymentService.swift in Sources */,
 				E895E9B01EBB849A003B38A1 /* ChangePasswordViewModel.swift in Sources */,
 				B574BADC1E78360D001E8A44 /* AccountService.swift in Sources */,
