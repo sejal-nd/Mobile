@@ -102,7 +102,7 @@ class WalletViewModel {
         case .bge:
             return NSLocalizedString("A convenience fee will be applied to your payments. Residential accounts: $1.50.\nBusiness accounts: 2.4%", comment: "")
         case .comEd, .peco:
-            return NSLocalizedString("A $2.35 convenience fee will be applied\nto your payments.", comment: "")
+            return NSLocalizedString("A $2.50 convenience fee will be applied\nto your payments.", comment: "")
         }
     }
     

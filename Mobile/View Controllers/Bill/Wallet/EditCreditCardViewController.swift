@@ -222,7 +222,7 @@ class EditCreditCardViewController: UIViewController {
         convenienceFeeLabel.textColor = .blackText
         switch opco {
         case .comEd, .peco:
-            convenienceFeeLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
+            convenienceFeeLabel.text = NSLocalizedString("$2.50 Convenience Fee", comment: "")
             bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
         case .bge:
             break
