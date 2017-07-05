@@ -1268,6 +1268,9 @@
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                                 <color key="tintColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <state key="normal" title="Privacy Policy"/>
+                                                                <connections>
+                                                                    <action selector="onPrivacyPolicyPress:" destination="g5f-50-sjo" eventType="touchUpInside" id="yhr-WG-RD1"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -1319,12 +1322,15 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="autoPayView" destination="QAE-mD-IkG" id="AF9-ew-yRB"/>
+                        <outlet property="billMatrixView" destination="Y7H-di-rfC" id="gC4-0X-29W"/>
                         <outlet property="confirmationLabel" destination="PLs-KE-i9s" id="Zae-Ba-QXE"/>
                         <outlet property="enrollAutoPayButton" destination="QjE-fj-RSI" id="Fza-Q8-0TR"/>
                         <outlet property="navBarTitleLabel" destination="ldr-V6-xca" id="lwM-vl-cUp"/>
-                        <outlet property="paymentAmountLabel" destination="e2s-4x-2db" id="1GX-Jt-iYA"/>
+                        <outlet property="paymentAmountLabel" destination="seF-oH-rtF" id="2KR-ky-tG0"/>
                         <outlet property="paymentDateLabel" destination="YV8-13-H93" id="y8i-Ra-0Ub"/>
-                        <outlet property="privacyPolicyButton" destination="yto-mJ-zq3" id="Ush-QL-o2G"/>
+                        <outlet property="paymentDateView" destination="Nvj-V1-x2s" id="AKi-L7-Hor"/>
+                        <outlet property="totalAmountView" destination="0e6-KY-daG" id="0WF-ml-kIC"/>
                         <outlet property="xButton" destination="hmN-H0-ex2" id="qjg-aA-Mt8"/>
                     </connections>
                 </viewController>
