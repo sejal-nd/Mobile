@@ -53,7 +53,17 @@ class BillViewModel {
 			.addDisposableTo(disposeBag)
         
         accountDetailErrorMessage = fetchAccountDetailResult.errors()
-            .map { $0.localizedDescription }
+            .map { 
+                if let serviceError = $0 as? ServiceError {
+                    if serviceError.serviceCode == "FN-NOT-FOUND" {
+                        return NSLocalizedString("TC-UNKNOWN", comment: "")
+                    } else {
+                        return serviceError.errorDescription
+                    }
+                } else {
+                    return $0.localizedDescription
+                }
+            }
             .asDriver(onErrorJustReturn: "")
     }
 	
