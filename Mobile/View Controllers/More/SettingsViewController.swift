@@ -45,7 +45,8 @@ class SettingsViewController: UIViewController {
         if AccountsStore.sharedInstance.accounts == nil {
             fetchAccounts()
         } else {
-            
+            loadingIndicator.isHidden = true
+            tableView.isHidden = false
         }
         
     }

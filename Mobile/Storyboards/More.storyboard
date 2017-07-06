@@ -823,7 +823,7 @@
         <!--Default Account-->
         <scene sceneID="27j-Xl-aTB">
             <objects>
-                <viewController id="Bcx-aT-Yfi" sceneMemberID="viewController">
+                <viewController id="Bcx-aT-Yfi" customClass="DefaultAccountViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j6r-fW-x6O"/>
                         <viewControllerLayoutGuide type="bottom" id="aMz-TB-2ED"/>
@@ -836,17 +836,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Bcx-aT-Yfi" id="BY8-nA-Ie9"/>
+                                    <outlet property="delegate" destination="Bcx-aT-Yfi" id="YYY-mW-wMU"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Default Account" id="hRf-0Y-QhX">
-                        <barButtonItem key="rightBarButtonItem" image="ic_question_white" id="05r-Xz-J9D"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Default Account" id="hRf-0Y-QhX"/>
+                    <connections>
+                        <outlet property="tableView" destination="iB6-T0-pnB" id="V8K-H6-YJt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Le-LR-AKF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4252" y="3204.6476761619192"/>
+            <point key="canvasLocation" x="4252" y="3211"/>
         </scene>
         <!--Terms & Policies-->
         <scene sceneID="Y5c-le-Fkt">
@@ -890,6 +895,5 @@
     <resources>
         <image name="ic_check" width="13" height="10"/>
         <image name="ic_eyeball_disabled" width="24" height="24"/>
-        <image name="ic_question_white" width="24" height="24"/>
     </resources>
 </document>

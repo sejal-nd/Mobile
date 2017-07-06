@@ -180,7 +180,7 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AdvancedAccountPickerTableViewCell
-            cell.configureCellWith(account: account)
+            cell.configure(withAccount: account)
             return cell
         }
     }

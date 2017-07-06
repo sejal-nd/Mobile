@@ -19,7 +19,7 @@ class LoadingView: UIView {
     }
     
     private lazy var animationContainer = UIView()
-    private var loadingAnimationView = LOTAnimationView(name: "full_screen_loading")
+    private var loadingAnimationView = LOTAnimationView(name: "full_screen_loading")!
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,11 +27,11 @@ class LoadingView: UIView {
         animationContainer.frame.size = (UIApplication.shared.keyWindow?.bounds.size)!
         animationContainer.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
-        loadingAnimationView!.frame.size = CGSize(width: 72, height: 72)
-        loadingAnimationView!.loopAnimation = true
-        loadingAnimationView!.play()
+        loadingAnimationView.frame.size = CGSize(width: 72, height: 72)
+        loadingAnimationView.loopAnimation = true
+        loadingAnimationView.play()
         
-        animationContainer.addSubview(loadingAnimationView!)
+        animationContainer.addSubview(loadingAnimationView)
         addSubview(animationContainer)
     }
     
@@ -87,8 +87,8 @@ class LoadingView: UIView {
             if frame == CGRect.zero {
                 return
             }
-            animationContainer.center = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
-            loadingAnimationView!.center = CGPoint(x: animationContainer.bounds.size.width / 2, y: animationContainer.bounds.size.height / 2)
+            animationContainer.center = CGPoint(x: frame.width / 2, y: frame.height / 2)
+            loadingAnimationView.center = CGPoint(x: animationContainer.bounds.width / 2, y: animationContainer.bounds.height / 2)
         }
     }
     
