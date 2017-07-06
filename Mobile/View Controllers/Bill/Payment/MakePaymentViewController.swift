@@ -54,6 +54,7 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var billMatrixView: UIView!
     @IBOutlet weak var privacyPolicyButton: UIButton!
     
+    @IBOutlet weak var walletFooterSpacerView: UIView! // Only used for spacing when footerView is hidden
     @IBOutlet weak var walletFooterView: UIView!
     @IBOutlet weak var walletFooterLabel: UILabel!
     
@@ -104,8 +105,10 @@ class MakePaymentViewController: UIViewController {
         paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.textField.keyboardType = .decimalPad
-        paymentAmountTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: {
-            self.paymentAmountTextField.textField.resignFirstResponder()
+        paymentAmountTextField.textField.rx.controlEvent(UIControlEvents.editingDidEnd).subscribe(onNext: {
+            self.viewModel.paymentAmountErrorMessage.asObservable().single().subscribe(onNext: { errorMessage in
+                self.paymentAmountTextField.setError(errorMessage)
+            }).addDisposableTo(self.disposeBag)
         }).addDisposableTo(disposeBag)
         
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
@@ -151,7 +154,8 @@ class MakePaymentViewController: UIViewController {
         bindViewContent()
         bindButtonTaps()
         addDoneButtonOnKeyboard()
-        
+
+        viewModel.formatPaymentAmount() // Initial formatting
         viewModel.fetchWalletItems(onSuccess: nil, onError: nil)
         
         // TODO - Enable these in sprint 14
@@ -211,6 +215,10 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowAddBankAccount.map(!).drive(addBankAccountView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowAddCreditCard.map(!).drive(addCreditCardView.rx.isHidden).addDisposableTo(disposeBag)
         
+        // Wallet empty state info footer
+        viewModel.shouldShowWalletFooterView.map(!).drive(walletFooterView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowWalletFooterView.drive(walletFooterSpacerView.rx.isHidden).addDisposableTo(disposeBag)
+        
         // Sticky Footer
         viewModel.shouldShowStickyFooterView.drive(onNext: { shouldShow in
             self.stickyPaymentFooterHeightConstraint.constant = shouldShow ? 80 : 0
@@ -228,6 +236,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.amountDueValue.asDriver().drive(amountDueValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Payment Amount Text Field
+        viewModel.paymentAmountFeeLabelText.asDriver().drive(paymentAmountFeeLabel.rx.text).addDisposableTo(disposeBag)
         viewModel.paymentAmount.asDriver().drive(paymentAmountTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
         paymentAmountTextField.textField.rx.text.orEmpty.bind(to: viewModel.paymentAmount).addDisposableTo(disposeBag)
         paymentAmountTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {

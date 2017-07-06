@@ -162,6 +162,10 @@ struct BillingInfo: Mappable {
     let convenienceFee: Double?
     let scheduledPaymentAmount: Double?
     let atReinstateFee: Double?
+    let minPaymentAmount: Double?
+    let maxPaymentAmount: Double?
+    let minPaymentAmountACH: Double?
+    let maxPaymentAmountACH: Double?
     
     init(map: Mapper) throws {
 		netDueAmount = map.optionalFrom("netDueAmount")
@@ -180,6 +184,10 @@ struct BillingInfo: Mappable {
         convenienceFee = map.optionalFrom("convenienceFee")
         scheduledPaymentAmount = map.optionalFrom("scheduledPaymentAmount")
         atReinstateFee = map.optionalFrom("atReinstateFee")
+        minPaymentAmount = map.optionalFrom("minimumPaymentAmount")
+        maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")
+        minPaymentAmountACH =  map.optionalFrom("minimumPaymentAmountACH")
+        maxPaymentAmountACH = map.optionalFrom("maximumPaymentAmountACH")
     }
 }
 

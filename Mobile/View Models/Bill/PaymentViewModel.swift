@@ -25,7 +25,7 @@ class PaymentViewModel {
     let selectedWalletItem = Variable<WalletItem?>(nil)
     
     let amountDue = Variable<Double>(0)
-    let paymentAmount = Variable("")
+    let paymentAmount: Variable<String>
     let paymentDate: Variable<Date>
     
     let reviewPaymentSwitchValue = Variable(false)
@@ -35,7 +35,20 @@ class PaymentViewModel {
         self.paymentService = paymentService
         self.oneTouchPayService = oneTouchPayService
         self.accountDetail = Variable(accountDetail)
-        self.paymentDate = Variable((accountDetail.billingInfo.dueByDate ?? nil)!)
+        
+        if let amountDue = accountDetail.billingInfo.netDueAmount {
+            paymentAmount = Variable(String(amountDue))
+        } else {
+            paymentAmount = Variable("")
+        }
+        
+        let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
+        self.paymentDate = Variable(startOfTodayDate)
+        if let dueDate = accountDetail.billingInfo.dueByDate {
+            if dueDate >= startOfTodayDate {
+                self.paymentDate.value = dueDate
+            }
+        }
     }
     
     func fetchWalletItems(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
@@ -60,7 +73,7 @@ class PaymentViewModel {
                 if self.selectedWalletItem.value == nil && walletItems.count > 0 {
                     self.selectedWalletItem.value = walletItems[0]
                 }
-                
+                 
                 self.isFetchingWalletItems.value = false
                 self.walletItems.value = walletItems
                 onSuccess?()
@@ -74,7 +87,9 @@ class PaymentViewModel {
     // MARK: - Make Payment Drivers
     
     var makePaymentNextButtonEnabled: Driver<Bool> {
-        return shouldShowContent
+        return Driver.combineLatest(shouldShowContent, selectedWalletItem.asDriver(), paymentAmount.asDriver(), paymentAmountErrorMessage).map {
+            return $0 && $1 != nil && !$2.isEmpty && $3 == nil
+        }
     }
     
     lazy var isCashOnlyUser: Driver<Bool> = self.accountDetail.asDriver().map {
@@ -98,6 +113,77 @@ class PaymentViewModel {
     
     var shouldShowPaymentAmountTextField: Driver<Bool> {
         return hasWalletItems
+    }
+    
+    var paymentAmountErrorMessage: Driver<String?> {
+        return Driver.combineLatest(selectedWalletItem.asDriver(), accountDetail.asDriver(), paymentAmount.asDriver().map { Double($0) }, amountDue.asDriver()).map { (walletItem, accountDetail, paymentAmount, amountDue) -> String? in
+            guard let walletItem: WalletItem = walletItem else { return nil }
+            guard let paymentAmount: Double = paymentAmount else { return nil }
+            
+            let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
+            
+            if walletItem.paymentCategoryType == .check {
+                if Environment.sharedInstance.opco == .bge {
+                    // BGE BANK
+                    let minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 0.01
+                    let maxPayment = accountDetail.billingInfo.maxPaymentAmountACH ?? (commercialUser ? 99999.99 : 9999.99)
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                    }
+                } else {
+                    // COMED/PECO BANK
+                    let minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 5
+                    let maxPayment = accountDetail.billingInfo.maxPaymentAmountACH ?? 90000
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
+                    } else if paymentAmount <= amountDue {
+                        return NSLocalizedString("Payment must be less than or equal to amount due", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                    }
+                }
+            } else {
+                if Environment.sharedInstance.opco == .bge {
+                    // BGE CREDIT CARD
+                    let minPayment = accountDetail.billingInfo.minPaymentAmount ?? 0.01
+                    let maxPayment = accountDetail.billingInfo.maxPaymentAmount ?? (commercialUser ? 25000 : 600)
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                    }
+                } else {
+                    // COMED/PECO CREDIT CARD
+                    let minPayment = accountDetail.billingInfo.minPaymentAmount ?? 5
+                    let maxPayment = accountDetail.billingInfo.maxPaymentAmount ?? 5000
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
+                    } else if paymentAmount <= amountDue {
+                        return NSLocalizedString("Payment must be less than or equal to amount due", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                    }
+                }
+            }
+            return nil
+        }
+    }
+    
+    var paymentAmountFeeLabelText: Driver<String> {
+        return Driver.combineLatest(selectedWalletItem.asDriver(), convenienceFee).map { (walletItem, fee) -> String in
+            guard let walletItem = walletItem else { return "" }
+            if walletItem.paymentCategoryType == .check {
+                return NSLocalizedString("No convenience fee will be applied.", comment: "")
+            } else {
+                if Environment.sharedInstance.opco == .bge {
+                    return NSLocalizedString("A convenience fee will be applied by Western Union Speedpay, our payment partner. Residential accounts: $1.50. Business accounts: 2.6%.", comment: "")
+                } else {
+                    return String(format: "A %@ convenience fee will be applied by Bill matrix, our payment partner.", fee.currencyString ?? "")
+                }
+            }
+        }
     }
     
     var shouldShowPaymentDateView: Driver<Bool> {
@@ -127,15 +213,24 @@ class PaymentViewModel {
         return walletItem.nickName ?? ""
     }
     
-    var convenienceFee: Driver<Double?> {
-        return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
-            if let walletItem = $1 {
-                if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
-                    return $0.billingInfo.convenienceFee
-                }
-            }
-            return nil
+    var convenienceFee: Driver<Double> {
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            return Driver.just(1.5)
+        case .comEd:
+            return Driver.just(2.5)
+        case .peco:
+            return Driver.just(2.35)
+        
         }
+//        return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
+//            if let walletItem = $1 {
+//                if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+//                    return $0.billingInfo.convenienceFee
+//                }
+//            }
+//            return nil
+//        }
     }
     
     lazy var amountDueValue: Driver<String?> = self.accountDetail.asDriver().map {
@@ -154,6 +249,10 @@ class PaymentViewModel {
     }
     
     var shouldShowAddCreditCard: Driver<Bool> {
+        return hasWalletItems.map(!)
+    }
+    
+    var shouldShowWalletFooterView: Driver<Bool> {
         return hasWalletItems.map(!)
     }
     
@@ -253,13 +352,17 @@ class PaymentViewModel {
     }
     
     lazy var convenienceFeeDisplayString: Driver<String> = self.convenienceFee.map {
-        guard let fee = $0 else { return "" }
-        return fee.currencyString ?? ""
+        //guard let fee = $0 else { return "" }
+        return $0.currencyString ?? ""
     }
     
     var totalPaymentDisplayString: Driver<String> {
-        return Driver.combineLatest(paymentAmount.asDriver().map { return Double($0) ?? 0 }, convenienceFee.asDriver().map { return $0 ?? 0 }).map {
-            return ($0 + $1).currencyString ?? ""
+        return Driver.combineLatest(paymentAmount.asDriver().map { return Double($0) ?? 0 }, reviewPaymentShouldShowConvenienceFeeBox, convenienceFee).map {
+            if $1 {
+                return ($0 + $2).currencyString!
+            } else {
+                return $0.currencyString!
+            }
         }
     }
     
@@ -286,5 +389,27 @@ class PaymentViewModel {
         
         paymentAmount.value = newText
     }
+    
+//    func getFormattedString(forDouble double: Double) -> String {
+//        let string = String(double)
+//        
+//        let components = string.components(separatedBy: ".")
+//        
+//        var newText = string
+//        if components.count == 2 {
+//            let decimal = components[1]
+//            if decimal.characters.count == 0 {
+//                newText += "00"
+//            } else if decimal.characters.count == 1 {
+//                newText += "0"
+//            }
+//        } else if components.count == 1 && components[0].characters.count > 0 {
+//            newText += ".00"
+//        } else {
+//            newText = "0.00"
+//        }
+//        
+//        return newText
+//    }
     
 }
