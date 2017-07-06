@@ -34,6 +34,7 @@ enum ServiceErrorCode : String {
     case FnUserInvalid = "FN-USER-INVALID"
     case FnUserExists = "FN-USER-EXISTS"
     case FnMultiAccountFound = "FN-MULTI-ACCT-FOUND" // Forgot Username scenario for BGE with multiple account numbers
+    case ExpiredTempPassword = "EXPIRED-TEMP-PASSWORD" // Temp password older than an hour
 }
 
 // MARK: - ServiceError
@@ -56,15 +57,15 @@ struct ServiceError : Error {
 
 /// Adds LocalizedDescription to ServiceError
 extension ServiceError : LocalizedError {
-    public var errorDescription: String? {
+    public var errorDescription: String {
         
-        if(cause != nil) {
-            return cause?.localizedDescription
+        if let cause = cause {
+            return cause.localizedDescription
         } else {
             let description = NSLocalizedString(serviceCode, tableName: "ErrorMessages", comment: "")
             if(description != serviceCode) {
                 return description
-            } else if serviceMessage != nil {
+            } else if let serviceMessage = serviceMessage {
                 return serviceMessage
             } else {
                 return "An unknown error occurred (" + serviceCode + ")"
