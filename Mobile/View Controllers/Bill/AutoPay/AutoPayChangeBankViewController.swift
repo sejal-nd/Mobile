@@ -123,21 +123,36 @@ class AutoPayChangeBankViewController: UIViewController {
 			})
 			.addDisposableTo(bag)
 		
-		// Routing Numbe
-		let routingNumberErrorTextFocused: Driver<String?> = routingNumberTextField.textField.rx
-			.controlEvent(.editingDidBegin).asDriver()
-			.map{ nil }
-		
-		let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
-			.controlEvent(.editingDidEnd).asDriver()
-			.withLatestFrom(viewModel.routingNumberErrorText)
-		
-		Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
-			.distinctUntilChanged(==)
-			.drive(onNext: { [weak self] errorText in
-				self?.routingNumberTextField.setError(errorText)
-			})
-			.addDisposableTo(bag)
+		// Routing Number
+        let routingNumberErrorTextFocused: Driver<String?> = routingNumberTextField.textField.rx
+            .controlEvent(.editingDidBegin).asDriver()
+            .map{ nil }
+        
+        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.routingNumberTextField.setError(nil)
+        }).addDisposableTo(bag)
+        
+        let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
+            .controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(viewModel.routingNumberErrorText)
+        
+        
+        routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            if self.viewModel.routingNumber.value.characters.count == 9 {
+                self.viewModel.getBankName(onSuccess: {
+                    self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
+                }, onError: {
+                    self.routingNumberTextField.setInfoMessage(nil)
+                })
+            }
+        }).addDisposableTo(bag)
+        
+        Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
+            .distinctUntilChanged(==)
+            .drive(onNext: { [weak self] errorText in
+                self?.routingNumberTextField.setError(errorText)
+            })
+            .addDisposableTo(bag)
 		
 		// Account Number
 		let accountNumberErrorTextFocused: Driver<String?> = accountNumberTextField.textField.rx
@@ -255,7 +270,7 @@ extension AutoPayChangeBankViewController: UITextFieldDelegate {
 		if textField == routingNumberTextField.textField {
 			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
 		} else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
-			return CharacterSet.decimalDigits.isSuperset(of: characterSet)
+			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 17
 		}
 		return true
 	}

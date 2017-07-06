@@ -187,7 +187,7 @@ class LoginViewController: UIViewController {
                     if self.viewModel.isDeviceTouchIDCompatible() {
                         if self.viewModel.shouldPromptToEnableTouchID() {
                             let touchIDAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: NSLocalizedString("Would you like to use Touch ID to sign in from now on?", comment: ""), preferredStyle: .alert)
-                            touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default, handler: { (action) in
+                            touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { (action) in
                                 self.launchMainApp()
                             }))
                             touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in

@@ -53,7 +53,17 @@ class BillViewModel {
 			.addDisposableTo(disposeBag)
         
         accountDetailErrorMessage = fetchAccountDetailResult.errors()
-            .map { $0.localizedDescription }
+            .map { 
+                if let serviceError = $0 as? ServiceError {
+                    if serviceError.serviceCode == ServiceErrorCode.FnNotFound.rawValue {
+                        return NSLocalizedString(ServiceErrorCode.TcUnknown.rawValue, comment: "")
+                    } else {
+                        return serviceError.localizedDescription
+                    }
+                } else {
+                    return $0.localizedDescription
+                }
+            }
             .asDriver(onErrorJustReturn: "")
     }
 	
@@ -242,7 +252,7 @@ class BillViewModel {
     lazy var totalAmountDescriptionText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let billingInfo = $0?.billingInfo else { return nil }
         
-        if billingInfo.pastDueAmount == billingInfo.netDueAmount { // Confluence Billing 11.10
+        if Double(billingInfo.pastDueAmount!) > 0 && billingInfo.pastDueAmount == billingInfo.netDueAmount { // Confluence Billing 11.10
             return NSLocalizedString("Total Amount Due Immediately", comment: "")
         } else if Environment.sharedInstance.opco == .bge {
             if let netDueAmount = billingInfo.netDueAmount {

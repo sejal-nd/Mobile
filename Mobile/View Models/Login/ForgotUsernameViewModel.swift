@@ -58,7 +58,7 @@ class ForgotUsernameViewModel {
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.FnProfBadSecurity.rawValue {
-                    onAnswerNoMatch(serviceError.errorDescription!)
+                    onAnswerNoMatch(serviceError.localizedDescription)
                 } else {
                     onError(error.localizedDescription)
                 }

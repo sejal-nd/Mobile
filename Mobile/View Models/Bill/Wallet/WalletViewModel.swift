@@ -101,8 +101,11 @@ class WalletViewModel {
         switch Environment.sharedInstance.opco {
         case .bge:
             return NSLocalizedString("A convenience fee will be applied to your payments. Residential accounts: $1.50.\nBusiness accounts: 2.4%", comment: "")
-        case .comEd, .peco:
+        case .comEd:
+            return NSLocalizedString("A $2.50 convenience fee will be applied\nto your payments.", comment: "")
+        case .peco:
             return NSLocalizedString("A $2.35 convenience fee will be applied\nto your payments.", comment: "")
+
         }
     }
     

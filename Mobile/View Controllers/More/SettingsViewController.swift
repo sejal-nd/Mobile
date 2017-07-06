@@ -92,7 +92,7 @@ class SettingsViewController: UIViewController {
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (action) -> Void in
             self.touchIdCell?.setSwitch(on: false)
         }))
-        pwAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { (action) -> Void in
+        pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) -> Void in
             LoadingView.show()
             self.viewModel.validateCredentials(onSuccess: {
                 LoadingView.hide()
@@ -217,7 +217,7 @@ extension SettingsViewController: ChangePasswordViewControllerDelegate {
     
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Password successfully changed", comment: ""))
+            self.view.showToast(NSLocalizedString("Password changed", comment: ""))
         })
     }
     

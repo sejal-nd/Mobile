@@ -31,9 +31,13 @@ class AutoPayViewModel {
     let selectedUnenrollmentReason = Variable<String?>(nil)
     
     let paymentService: PaymentService
+    let walletService: WalletService
     
-    required init(withPaymentService paymentService: PaymentService, accountDetail: AccountDetail) {
+    var bankName = ""
+    
+    required init(withPaymentService paymentService: PaymentService, walletService: WalletService, accountDetail: AccountDetail) {
         self.paymentService = paymentService
+        self.walletService = walletService
         self.accountDetail = accountDetail
         enrollmentStatus = Variable(accountDetail.isAutoPay ? .isEnrolled:.enrolling)
         termsAndConditionsCheck = Variable(Environment.sharedInstance.opco != .comEd)
@@ -61,6 +65,17 @@ class AutoPayViewModel {
         }
     }
     
+    func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
+        walletService.fetchBankName(routingNumber.value)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { bankName in
+                self.bankName = bankName
+                onSuccess()
+            }, onError: { (error: Error) in
+                onError()
+            }).addDisposableTo(bag)
+    }
+
     lazy var nameOnAccountHasText: Driver<Bool> = self.nameOnAccount.asDriver()
         .map { !$0.isEmpty }
         .distinctUntilChanged()
@@ -82,7 +97,7 @@ class AutoPayViewModel {
         .distinctUntilChanged()
     
     lazy var accountNumberIsValid: Driver<Bool> = self.accountNumber.asDriver()
-        .map { 8...17 ~= $0.characters.count }
+        .map { 4...17 ~= $0.characters.count }
         .distinctUntilChanged()
     
     lazy var confirmAccountNumberMatches: Driver<Bool> = Driver.combineLatest(self.accountNumber.asDriver(),
@@ -128,12 +143,12 @@ class AutoPayViewModel {
     lazy var routingNumberErrorText: Driver<String?> = self.routingNumber.asDriver()
         .map { $0.characters.count == 9 || $0.isEmpty }
         .distinctUntilChanged()
-        .map { $0 ? nil: NSLocalizedString("Must be 9 digits", comment: "") }
+        .map { $0 ? nil : NSLocalizedString("Must be 9 digits", comment: "") }
     
     lazy var accountNumberErrorText: Driver<String?> = self.accountNumber.asDriver()
-        .map { 8...17 ~= $0.characters.count }
+        .map { 4...17 ~= $0.characters.count }
         .distinctUntilChanged()
-        .map { $0 ? nil: NSLocalizedString("Must be between 8-17 digits", comment: "") }
+        .map { $0 ? nil: NSLocalizedString("Must be between 4-17 digits", comment: "") }
     
     lazy var confirmAccountNumberErrorText: Driver<String?> = Driver.combineLatest(self.confirmAccountNumber.asDriver().map { $0.isEmpty },
                                                                                    self.confirmAccountNumberMatches)

@@ -14,6 +14,7 @@ private enum ProfileStatusKey : String {
     case Name = "name"
     case Value = "value"
     case Offset = "offset"
+    case TempPasswordFailReason = "reason"
 }
 
 private enum ProfileStatusNameValue : String {
@@ -75,6 +76,8 @@ class AuthTokenParser : NSObject {
                 return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
             } else if profileStatus.inactive {
                 return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctNotActivated.rawValue))
+            } else if profileStatus.expiredTempPassword {
+                return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.ExpiredTempPassword.rawValue))
             }
         }
         
@@ -106,6 +109,7 @@ class AuthTokenParser : NSObject {
         var inactive = false;
         var primary = false;
         var tempPassword = false;
+        var expiredTempPassword = false;
         
         if let status = profileStatus[ProfileStatusKey.Status.rawValue] as? Array<NSDictionary> {
             for item in status {
@@ -119,6 +123,7 @@ class AuthTokenParser : NSObject {
                         primary = item[ProfileStatusKey.Value.rawValue] as! Bool
                     case ProfileStatusNameValue.TempPassword.rawValue:
                         tempPassword = item[ProfileStatusKey.Value.rawValue] as! Bool
+                        expiredTempPassword = item[ProfileStatusKey.TempPasswordFailReason.rawValue] as! String == "expired"
                     default:
                         break
                     }
@@ -126,7 +131,7 @@ class AuthTokenParser : NSObject {
             }
         }
         
-        return ProfileStatus(inactive:inactive, primary:primary, passwordLocked:lockedPassword, tempPassword: tempPassword)
+        return ProfileStatus(inactive:inactive, primary:primary, passwordLocked:lockedPassword, tempPassword: tempPassword,expiredTempPassword: expiredTempPassword)
     }
     
     /// Retreives the error and wrap it in a ServiceResult

@@ -86,7 +86,16 @@ class WalletTableViewCell: UITableViewCell {
         
         bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         switch Environment.sharedInstance.opco {
-        case .comEd, .peco:
+        case .comEd:
+            if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+                accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
+                bottomBarLabel.text = NSLocalizedString("$2.50 Convenience Fee", comment: "")
+                a11yLabel =  NSLocalizedString("Credit card", comment: "")
+            } else if walletItem.paymentCategoryType == .check {
+                accountImageView.image = #imageLiteral(resourceName: "opco_bank")
+                a11yLabel =  NSLocalizedString("Bank account", comment: "")
+            }
+        case .peco:
             if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 bottomBarLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")

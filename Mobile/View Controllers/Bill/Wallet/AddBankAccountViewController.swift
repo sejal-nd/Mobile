@@ -182,8 +182,15 @@ class AddBankAccountViewController: UIViewController {
                 self.viewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
                     if !valid {
                         self.routingNumberTextField.setError(NSLocalizedString("Must be 9 digits", comment: ""))
+                    } else {
+                        self.viewModel.getBankName(onSuccess: {
+                            self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
+                        }, onError: {
+                            self.routingNumberTextField.setInfoMessage(nil)
+                        })
                     }
                 }).addDisposableTo(self.disposeBag)
+                
             }
         }).addDisposableTo(disposeBag)
         routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
@@ -194,7 +201,7 @@ class AddBankAccountViewController: UIViewController {
             if !self.viewModel.accountNumber.value.isEmpty {
                 self.viewModel.accountNumberIsValid().single().subscribe(onNext: { valid in
                     if !valid {
-                        self.accountNumberTextField.setError(NSLocalizedString("Must be between 8-17 digits", comment: ""))
+                        self.accountNumberTextField.setError(NSLocalizedString("Must be between 4-17 digits", comment: ""))
                     }
                 }).addDisposableTo(self.disposeBag)
             }
@@ -256,7 +263,7 @@ extension AddBankAccountViewController: UITextFieldDelegate {
         if textField == routingNumberTextField.textField {
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
         } else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet)
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 17
         }
         return true
     }
