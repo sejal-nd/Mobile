@@ -58,7 +58,7 @@ class BillViewModel {
                     if serviceError.serviceCode == ServiceErrorCode.FnNotFound.rawValue {
                         return NSLocalizedString(ServiceErrorCode.TcUnknown.rawValue, comment: "")
                     } else {
-                        return serviceError.errorDescription
+                        return serviceError.localizedDescription
                     }
                 } else {
                     return $0.localizedDescription
