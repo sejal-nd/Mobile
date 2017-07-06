@@ -53,6 +53,8 @@ class LoadingView: UIView {
             
             containerView.addSubview(loadingView)
             
+            loadingView.loadingAnimationView.play()
+            
             UIView.animate(withDuration: animated ? 0.2 : 0, delay: 0.0, options: .curveEaseOut, animations: {
                 loadingView.alpha = 1.0
             }, completion: { _ in
@@ -73,6 +75,7 @@ class LoadingView: UIView {
             UIView.animate(withDuration: animated ? 0.2 : 0, delay: 0.0, options: .curveEaseOut, animations: {
                 loadingView.alpha = 0.0
             }, completion: {_ in
+                loadingView.loadingAnimationView.pause()
                 loadingView.alpha = 1.0
                 loadingView.removeFromSuperview()
                 
