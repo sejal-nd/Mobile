@@ -224,6 +224,19 @@ class AddCreditCardViewController: UIViewController {
             self.expMonthTextField.setError(nil)
         }).addDisposableTo(disposeBag)
         
+        cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            if !self.viewModel.cardNumber.value.isEmpty {
+                self.viewModel.cardNumberIsValid().single().subscribe(onNext: { valid in 
+                    if !valid {
+                        self.cardNumberTextField.setError(NSLocalizedString("Invalid credit card", comment: ""))
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
+        cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.cardNumberTextField.setError(nil)
+        }).addDisposableTo(disposeBag)
+        
         expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.expYear.value.isEmpty {
                 self.viewModel.expYearIsNotInPast().single().subscribe(onNext: { valid in
