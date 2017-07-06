@@ -24,12 +24,11 @@ class LoadingView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        animationContainer.frame.size = (UIApplication.shared.keyWindow?.bounds.size)!
+        animationContainer.frame.size = UIApplication.shared.keyWindow!.bounds.size
         animationContainer.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
         loadingAnimationView.frame.size = CGSize(width: 72, height: 72)
         loadingAnimationView.loopAnimation = true
-        loadingAnimationView.play()
         
         animationContainer.addSubview(loadingAnimationView)
         addSubview(animationContainer)
