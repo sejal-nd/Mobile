@@ -124,8 +124,21 @@ class AutoPayChangeBankViewController: UIViewController {
 			.addDisposableTo(bag)
 		
 		// Routing Number
+        let routingNumberErrorTextFocused: Driver<String?> = routingNumberTextField.textField.rx
+            .controlEvent(.editingDidBegin).asDriver()
+            .map{ nil }
+        
+        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.routingNumberTextField.setError(nil)
+        }).addDisposableTo(bag)
+        
+        let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
+            .controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(viewModel.routingNumberErrorText)
+        
+        
         routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.routingNumber.value.isEmpty {
+            if self.viewModel.routingNumber.value.characters.count == 9 {
                 self.viewModel.getBankName(onSuccess: {
                     self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
                 }, onError: {
@@ -133,9 +146,13 @@ class AutoPayChangeBankViewController: UIViewController {
                 })
             }
         }).addDisposableTo(bag)
-        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.routingNumberTextField.setError(nil)
-        }).addDisposableTo(bag)
+        
+        Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
+            .distinctUntilChanged(==)
+            .drive(onNext: { [weak self] errorText in
+                self?.routingNumberTextField.setError(errorText)
+            })
+            .addDisposableTo(bag)
 		
 		// Account Number
 		let accountNumberErrorTextFocused: Driver<String?> = accountNumberTextField.textField.rx
