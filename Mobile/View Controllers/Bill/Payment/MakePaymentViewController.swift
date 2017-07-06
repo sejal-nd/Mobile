@@ -15,6 +15,8 @@ class MakePaymentViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var bankAccountsUnavailableLabel: UILabel!
+    
     @IBOutlet weak var paymentAccountView: UIView! // Contains paymentAccountLabel and paymentAccountButton
     @IBOutlet weak var paymentAccountLabel: UILabel! // Label that says "Payment Account" above the button
     @IBOutlet weak var paymentAccountButton: ButtonControl!
@@ -41,8 +43,19 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentDateFixedDateLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDatePastDueLabel: UILabel!
     
+    @IBOutlet weak var addBankAccountView: UIView!
+    @IBOutlet weak var addBankAccountFeeLabel: UILabel!
+    @IBOutlet weak var addBankAccountButton: ButtonControl!
+    
+    @IBOutlet weak var addCreditCardView: UIView!
+    @IBOutlet weak var addCreditCardFeeLabel: UILabel!
+    @IBOutlet weak var addCreditCardButton: ButtonControl!
+    
     @IBOutlet weak var billMatrixView: UIView!
     @IBOutlet weak var privacyPolicyButton: UIButton!
+    
+    @IBOutlet weak var walletFooterView: UIView!
+    @IBOutlet weak var walletFooterLabel: UILabel!
     
     @IBOutlet weak var stickyPaymentFooterHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var stickyPaymentFooterView: UIView!
@@ -67,6 +80,10 @@ class MakePaymentViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
+        bankAccountsUnavailableLabel.textColor = .blackText
+        bankAccountsUnavailableLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        bankAccountsUnavailableLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
 
         paymentAccountLabel.text = NSLocalizedString("Payment Account", comment: "")
         paymentAccountLabel.textColor = .deepGray
@@ -108,8 +125,23 @@ class MakePaymentViewController: UIViewController {
         paymentDateFixedDatePastDueLabel.textColor = .blackText
         paymentDateFixedDatePastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
+        addBankAccountFeeLabel.textColor = .blackText
+        addBankAccountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        addBankAccountFeeLabel.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
+        addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        
+        addCreditCardFeeLabel.textColor = .blackText
+        addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        addCreditCardFeeLabel.text = NSLocalizedString("A $2.35 convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+        addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
         privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
+        
+        walletFooterView.backgroundColor = .softGray
+        walletFooterLabel.textColor = .deepGray
+        walletFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        walletFooterLabel.text = viewModel.walletFooterLabelText
         
         stickyPaymentFooterView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         stickyPaymentFooterPaymentLabel.textColor = .blackText
@@ -121,6 +153,10 @@ class MakePaymentViewController: UIViewController {
         addDoneButtonOnKeyboard()
         
         viewModel.fetchWalletItems(onSuccess: nil, onError: nil)
+        
+        // TODO - Enable these in sprint 14
+        addBankAccountButton.isEnabled = false
+        addCreditCardButton.isEnabled = false
     }
     
     deinit {
@@ -151,17 +187,35 @@ class MakePaymentViewController: UIViewController {
     }
     
     func bindViewHiding() {
+        // Loading
         viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).addDisposableTo(disposeBag)
         
+        // Cash Only Bank Accounts Unavailable Label
+        viewModel.isCashOnlyUser.map(!).drive(bankAccountsUnavailableLabel.rx.isHidden).addDisposableTo(disposeBag)
+        
         // Payment Account
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).addDisposableTo(disposeBag)
         
+        // Payment Amount Text Field
+        viewModel.shouldShowPaymentAmountTextField.map(!).drive(paymentAmountView.rx.isHidden).addDisposableTo(disposeBag)
+        
         // Payment Date
+        viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isFixedPaymentDate.drive(paymentDateButtonView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isFixedPaymentDate.map(!).drive(paymentDateFixedDateLabel.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isFixedPaymentDatePastDue.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).addDisposableTo(disposeBag)
+        
+        // Add bank/credit card empty wallet state
+        viewModel.shouldShowAddBankAccount.map(!).drive(addBankAccountView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowAddCreditCard.map(!).drive(addCreditCardView.rx.isHidden).addDisposableTo(disposeBag)
+        
+        // Sticky Footer
+        viewModel.shouldShowStickyFooterView.drive(onNext: { shouldShow in
+            self.stickyPaymentFooterHeightConstraint.constant = shouldShow ? 80 : 0
+            self.stickyPaymentFooterView.isHidden = !shouldShow
+        }).addDisposableTo(disposeBag)
     }
     
     func bindViewContent() {

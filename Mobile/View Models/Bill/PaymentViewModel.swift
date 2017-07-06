@@ -71,8 +71,14 @@ class PaymentViewModel {
             }).addDisposableTo(disposeBag)
     }
     
+    // MARK: - Make Payment Drivers
+    
     var makePaymentNextButtonEnabled: Driver<Bool> {
         return shouldShowContent
+    }
+    
+    lazy var isCashOnlyUser: Driver<Bool> = self.accountDetail.asDriver().map {
+        return $0.isCashOnly
     }
     
     var shouldShowContent: Driver<Bool> {
@@ -81,10 +87,25 @@ class PaymentViewModel {
         }
     }
     
-    var shouldShowPaymentAccountView: Driver<Bool> {
-        return selectedWalletItem.asDriver().map {
-            return $0 != nil
-        }
+    lazy var shouldShowPaymentAccountView: Driver<Bool> = self.selectedWalletItem.asDriver().map {
+        return $0 != nil
+    }
+    
+    lazy var hasWalletItems: Driver<Bool> = self.walletItems.asDriver().map {
+        guard let walletItems: [WalletItem] = $0 else { return false }
+        return walletItems.count > 0
+    }
+    
+    var shouldShowPaymentAmountTextField: Driver<Bool> {
+        return hasWalletItems
+    }
+    
+    var shouldShowPaymentDateView: Driver<Bool> {
+        return hasWalletItems
+    }
+    
+    var shouldShowStickyFooterView: Driver<Bool> {
+        return hasWalletItems
     }
     
     lazy var selectedWalletItemImage: Driver<UIImage?> = self.selectedWalletItem.asDriver().map {
@@ -126,6 +147,16 @@ class PaymentViewModel {
         return $0.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
     }
     
+    var shouldShowAddBankAccount: Driver<Bool> {
+        return Driver.combineLatest(isCashOnlyUser, hasWalletItems).map {
+            return !$0 && !$1
+        }
+    }
+    
+    var shouldShowAddCreditCard: Driver<Bool> {
+        return hasWalletItems.map(!)
+    }
+    
     var isFixedPaymentDate: Driver<Bool> {
         return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
             if let walletItem = $1 {
@@ -149,6 +180,15 @@ class PaymentViewModel {
     
     lazy var fixedPaymentDateString: Driver<String?> = self.paymentDate.asDriver().map {
         return $0.mmDdYyyyString
+    }
+    
+    var walletFooterLabelText: String {
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Small business customers cannot use VISA.", comment: "")
+        case .comEd, .peco:
+            return NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
+        }
     }
     
     // MARK: - Review Payment Drivers
