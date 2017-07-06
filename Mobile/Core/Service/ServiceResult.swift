@@ -56,15 +56,15 @@ struct ServiceError : Error {
 
 /// Adds LocalizedDescription to ServiceError
 extension ServiceError : LocalizedError {
-    public var errorDescription: String? {
+    public var errorDescription: String {
         
-        if(cause != nil) {
-            return cause?.localizedDescription
+        if let cause = cause {
+            return cause.localizedDescription
         } else {
             let description = NSLocalizedString(serviceCode, tableName: "ErrorMessages", comment: "")
             if(description != serviceCode) {
                 return description
-            } else if serviceMessage != nil {
+            } else if let serviceMessage = serviceMessage {
                 return serviceMessage
             } else {
                 return "An unknown error occurred (" + serviceCode + ")"
