@@ -20,6 +20,7 @@ class PaymentConfirmationViewController: UIViewController {
     @IBOutlet weak var paymentDateValueLabel: UILabel!
     @IBOutlet weak var amountPaidTextLabel: UILabel!
     @IBOutlet weak var amountPaidValueLabel: UILabel!
+    @IBOutlet weak var convenienceFeeLabel: UILabel!
     
     @IBOutlet weak var autoPayView: UIStackView!
     @IBOutlet weak var billMatrixView: UIStackView!
@@ -41,6 +42,11 @@ class PaymentConfirmationViewController: UIViewController {
         confirmationLabel.textColor = .blackText
         confirmationLabel.font = OpenSans.regular.of(textStyle: .body)
         confirmationLabel.text = NSLocalizedString("Thank you for your payment. A confirmation email will be sent to your shortly.", comment: "")
+        
+        convenienceFeeLabel.textColor = .blackText
+        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        convenienceFeeLabel.text = NSLocalizedString("A $2.35 convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+        convenienceFeeLabel.isHidden = true
         
         paymentInfoView.backgroundColor = .softGray
         
