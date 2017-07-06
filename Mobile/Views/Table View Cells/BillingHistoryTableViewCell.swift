@@ -62,7 +62,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
                     default:
                         iconImageView.image = UIImage(named: "ic_paymentcheck")
                         titleLabel.text = PAYMENT
-                        self.amountLabel.text = item.amountPaid!.currencyString
+                        self.amountLabel.text = item.amountPaid?.currencyString
                         self.amountLabel.textColor = .successGreenText
                 }
             } else {
