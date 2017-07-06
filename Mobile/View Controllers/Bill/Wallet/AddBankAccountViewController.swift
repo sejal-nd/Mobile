@@ -201,7 +201,7 @@ class AddBankAccountViewController: UIViewController {
             if !self.viewModel.accountNumber.value.isEmpty {
                 self.viewModel.accountNumberIsValid().single().subscribe(onNext: { valid in
                     if !valid {
-                        self.accountNumberTextField.setError(NSLocalizedString("Must be between 8-17 digits", comment: ""))
+                        self.accountNumberTextField.setError(NSLocalizedString("Must be between 4-17 digits", comment: ""))
                     }
                 }).addDisposableTo(self.disposeBag)
             }

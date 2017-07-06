@@ -438,7 +438,7 @@ extension AutoPayViewController: UITextFieldDelegate {
         if textField == routingNumberTextField.textField {
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
         } else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet)
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 17
         }
         return true
     }

@@ -97,7 +97,7 @@ class AutoPayViewModel {
         .distinctUntilChanged()
     
     lazy var accountNumberIsValid: Driver<Bool> = self.accountNumber.asDriver()
-        .map { 8...17 ~= $0.characters.count }
+        .map { 4...17 ~= $0.characters.count }
         .distinctUntilChanged()
     
     lazy var confirmAccountNumberMatches: Driver<Bool> = Driver.combineLatest(self.accountNumber.asDriver(),
@@ -146,9 +146,9 @@ class AutoPayViewModel {
         .map { $0 ? nil : NSLocalizedString("Must be 9 digits", comment: "") }
     
     lazy var accountNumberErrorText: Driver<String?> = self.accountNumber.asDriver()
-        .map { 8...17 ~= $0.characters.count }
+        .map { 4...17 ~= $0.characters.count }
         .distinctUntilChanged()
-        .map { $0 ? nil: NSLocalizedString("Must be between 8-17 digits", comment: "") }
+        .map { $0 ? nil: NSLocalizedString("Must be between 4-17 digits", comment: "") }
     
     lazy var confirmAccountNumberErrorText: Driver<String?> = Driver.combineLatest(self.confirmAccountNumber.asDriver().map { $0.isEmpty },
                                                                                    self.confirmAccountNumberMatches)
