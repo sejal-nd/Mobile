@@ -148,7 +148,12 @@ class AddCreditCardViewController: UIViewController {
         
         let addCreditCard = { (setAsOneTouchPay: Bool) in
             LoadingView.show()
-            self.viewModel.addCreditCard(onSuccess: { walletItemResult in
+            self.viewModel.addCreditCard(onDuplicate: { message in
+                LoadingView.hide()
+                let alertVc = UIAlertController(title: NSLocalizedString("Duplicate Credit Card", comment: ""), message: message, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertVc, animated: true, completion: nil)
+            }, onSuccess: { walletItemResult in
                 if setAsOneTouchPay {
                     let accountNumber = self.viewModel.cardNumber.value
                     let last4 = accountNumber.substring(from: accountNumber.index(accountNumber.endIndex, offsetBy: -4))
