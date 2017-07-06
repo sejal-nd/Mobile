@@ -57,7 +57,7 @@ struct ServiceError : Error {
 
 /// Adds LocalizedDescription to ServiceError
 extension ServiceError : LocalizedError {
-    public var errorDescription: String {
+    public var errorDescription: String? {
         
         if let cause = cause {
             return cause.localizedDescription
