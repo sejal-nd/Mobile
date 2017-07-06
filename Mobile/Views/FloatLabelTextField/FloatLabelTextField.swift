@@ -19,6 +19,7 @@ class FloatLabelTextField: UIView {
     @IBOutlet weak var bottomColorBar: UIView!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    
     @IBOutlet weak var disabledColorBar: UIView!
     
     var errorState = false
@@ -92,6 +93,7 @@ class FloatLabelTextField: UIView {
         if let errorMessage = error {
             errorState = true
             checkAccessoryImageView.isHidden = true
+            errorLabel.textColor = .errorRed
 
             leftColorBar.backgroundColor = .errorRed
             bottomColorBar.backgroundColor = .errorRed
@@ -120,6 +122,19 @@ class FloatLabelTextField: UIView {
             textField.floatingLabelActiveTextColor = .primaryColorDark
             textField.floatingLabel.textColor = .primaryColorDark
             
+            errorLabel.text = nil
+            errorView.isHidden = true
+        }
+    }
+    
+    func setInfoMessage(_ message: String?) {
+        
+        if let info = message {
+            errorLabel.textColor = .successGreenText
+            errorLabel.text = String(format: NSLocalizedString("%@", comment: ""), info)
+            errorView.isHidden = false
+        } else {
+            errorLabel.textColor = .errorRed
             errorLabel.text = nil
             errorView.isHidden = true
         }
