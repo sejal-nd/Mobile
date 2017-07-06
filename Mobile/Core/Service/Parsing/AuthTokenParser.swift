@@ -21,6 +21,7 @@ private enum ProfileStatusNameValue : String {
     case Inactive = "inactive"
     case Primary = "primary"
     case TempPassword = "tempPassword"
+    case TempPasswordFailReason = "reason"
 }
 
 class AuthTokenParser : NSObject {
@@ -75,6 +76,8 @@ class AuthTokenParser : NSObject {
                 return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
             } else if profileStatus.inactive {
                 return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctNotActivated.rawValue))
+            } else if profileStatus.expiredTempPassword {
+                return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.ExpiredTempPassword.rawValue, serviceMessage: "Your temporary password has expired. Please request a new temporary password."))
             }
         }
         
@@ -106,6 +109,7 @@ class AuthTokenParser : NSObject {
         var inactive = false;
         var primary = false;
         var tempPassword = false;
+        var expiredTempPassword = false;
         
         if let status = profileStatus[ProfileStatusKey.Status.rawValue] as? Array<NSDictionary> {
             for item in status {
@@ -119,6 +123,7 @@ class AuthTokenParser : NSObject {
                         primary = item[ProfileStatusKey.Value.rawValue] as! Bool
                     case ProfileStatusNameValue.TempPassword.rawValue:
                         tempPassword = item[ProfileStatusKey.Value.rawValue] as! Bool
+                        expiredTempPassword = item[ProfileStatusNameValue.TempPasswordFailReason.rawValue] as! String == "expired"
                     default:
                         break
                     }
@@ -126,7 +131,7 @@ class AuthTokenParser : NSObject {
             }
         }
         
-        return ProfileStatus(inactive:inactive, primary:primary, passwordLocked:lockedPassword, tempPassword: tempPassword)
+        return ProfileStatus(inactive:inactive, primary:primary, passwordLocked:lockedPassword, tempPassword: tempPassword,expiredTempPassword: expiredTempPassword)
     }
     
     /// Retreives the error and wrap it in a ServiceResult
