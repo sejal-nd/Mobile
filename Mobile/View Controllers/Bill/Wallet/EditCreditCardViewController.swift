@@ -221,8 +221,11 @@ class EditCreditCardViewController: UIViewController {
         convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         convenienceFeeLabel.textColor = .blackText
         switch opco {
-        case .comEd, .peco:
+        case .comEd:
             convenienceFeeLabel.text = NSLocalizedString("$2.50 Convenience Fee", comment: "")
+            bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
+        case .peco:
+            convenienceFeeLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
             bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
         case .bge:
             break

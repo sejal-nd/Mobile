@@ -34,6 +34,7 @@ enum ServiceErrorCode : String {
     case FnUserInvalid = "FN-USER-INVALID"
     case FnUserExists = "FN-USER-EXISTS"
     case FnMultiAccountFound = "FN-MULTI-ACCT-FOUND" // Forgot Username scenario for BGE with multiple account numbers
+    case ExpiredTempPassword = "EXPIRED-TEMP-PASSWORD" // Temp password older than an hour
 }
 
 // MARK: - ServiceError

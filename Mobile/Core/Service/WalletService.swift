@@ -17,6 +17,16 @@ protocol WalletService {
     
     func fetchWalletItems(completion: @escaping (_ result: ServiceResult<[WalletItem]>) -> Void)
     
+    
+    /// Fetch bank name through routing number
+    ///
+    /// - Parameters:
+    ///     - routing number
+    ///     - completion: the result contains the name of the bank that is determined by the routing number.
+    
+    func fetchBankName(routingNumber: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
+    
+    
     /// Add a bank account to the users wallet.
     ///
     /// - Parameters:
@@ -98,6 +108,23 @@ extension WalletService {
                 switch result {
                 case ServiceResult.Success(let walletItems):
                     observer.onNext(walletItems)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            
+            return Disposables.create()
+        }
+    }
+    
+    // Fetch bank name
+    func fetchBankName(_ routingNumber: String) -> Observable<String> {
+        return Observable.create { observer in
+            self.fetchBankName(routingNumber: routingNumber, completion: { (result: ServiceResult<String>) in
+                switch(result) {
+                case ServiceResult.Success(let bankName):
+                    observer.onNext(bankName)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

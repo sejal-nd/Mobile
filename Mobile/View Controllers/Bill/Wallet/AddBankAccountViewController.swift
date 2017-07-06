@@ -182,8 +182,15 @@ class AddBankAccountViewController: UIViewController {
                 self.viewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
                     if !valid {
                         self.routingNumberTextField.setError(NSLocalizedString("Must be 9 digits", comment: ""))
+                    } else {
+                        self.viewModel.getBankName(onSuccess: {
+                            self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
+                        }, onError: {
+                            self.routingNumberTextField.setInfoMessage(nil)
+                        })
                     }
                 }).addDisposableTo(self.disposeBag)
+                
             }
         }).addDisposableTo(disposeBag)
         routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
