@@ -32,11 +32,11 @@ class AddCreditCardViewModel {
     
     func saveButtonIsEnabled() -> Observable<Bool> {
         if Environment.sharedInstance.opco == .bge {
-            return Observable.combineLatest([nameOnCardHasText(), cardNumberHasText(), expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits(), nicknameHasText(), nicknameIsValid()]) {
+            return Observable.combineLatest([nameOnCardHasText(), cardNumberHasText(), cardNumberIsValid(), expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits(), nicknameHasText(), nicknameIsValid()]) {
                 return !$0.contains(false)
             }
         } else {
-            return Observable.combineLatest([cardNumberHasText(), expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits(), nicknameIsValid()]) {
+            return Observable.combineLatest([cardNumberHasText(), cardNumberIsValid(), expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits(), nicknameIsValid()]) {
                 return !$0.contains(false)
             }
         }
@@ -51,6 +51,12 @@ class AddCreditCardViewModel {
     func cardNumberHasText() -> Observable<Bool> {
         return cardNumber.asObservable().map {
             return !$0.isEmpty
+        }
+    }
+    
+    func cardNumberIsValid() -> Observable<Bool> {
+        return cardNumber.asObservable().map {
+            return self.luhnCheck(cardNumber: $0)
         }
     }
     
@@ -142,7 +148,7 @@ class AddCreditCardViewModel {
         }
     }
     
-    func addCreditCard(onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
+    func addCreditCard(onDuplicate: @escaping (String) -> Void, onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
         
         let card = CreditCard(cardNumber: cardNumber.value, securityCode: cvv.value, firstName: "", lastName: "", expirationMonth: expMonth.value, expirationYear: expYear.value, postalCode: zipCode.value, nickname: nickname.value)
         
@@ -152,7 +158,12 @@ class AddCreditCardViewModel {
             .subscribe(onNext: { walletItemResult in
                 onSuccess(walletItemResult)
             }, onError: { err in
-                onError(err.localizedDescription)
+                let serviceError = err as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
+                    onDuplicate(err.localizedDescription)
+                } else {
+                    onError(err.localizedDescription)
+                }
             })
             .addDisposableTo(disposeBag)
         
@@ -165,5 +176,19 @@ class AddCreditCardViewModel {
 //                break
 //            }
 //        })
+    }
+    
+    private func luhnCheck(cardNumber: String) -> Bool {
+        var sum = 0
+        let reversedCharacters = cardNumber.characters.reversed().map { String($0) }
+        for (idx, element) in reversedCharacters.enumerated() {
+            guard let digit = Int(element) else { return false }
+            switch ((idx % 2 == 1), digit) {
+            case (true, 9): sum += 9
+            case (true, 0...8): sum += (digit * 2) % 9
+            default: sum += digit
+            }
+        }
+        return sum % 10 == 0
     }
 }

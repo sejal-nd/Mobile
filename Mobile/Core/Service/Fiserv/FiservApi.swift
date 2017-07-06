@@ -290,7 +290,10 @@ struct FiservApi {
                     if(responseValue.responseCode == 0) {
                         completion(ServiceResult.Success(responseValue))
                     } else {
-                        let serviceError = ServiceError(serviceCode: "Fiserv", serviceMessage:responseValue.statusMessage)
+                        var serviceError = ServiceError(serviceCode: "Fiserv", serviceMessage:responseValue.statusMessage)
+                        if (responseValue.statusMessage.range(of: "inval-0019") != nil) {
+                            serviceError = ServiceError(serviceCode: ServiceErrorCode.DupPaymentAccount.rawValue, serviceMessage:responseValue.statusMessage)
+                        }
                         completion(ServiceResult.Failure(serviceError))
                     }
                 }

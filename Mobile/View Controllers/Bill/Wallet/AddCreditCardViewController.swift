@@ -148,7 +148,12 @@ class AddCreditCardViewController: UIViewController {
         
         let addCreditCard = { (setAsOneTouchPay: Bool) in
             LoadingView.show()
-            self.viewModel.addCreditCard(onSuccess: { walletItemResult in
+            self.viewModel.addCreditCard(onDuplicate: { message in
+                LoadingView.hide()
+                let alertVc = UIAlertController(title: NSLocalizedString("Duplicate Credit Card", comment: ""), message: message, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertVc, animated: true, completion: nil)
+            }, onSuccess: { walletItemResult in
                 if setAsOneTouchPay {
                     let accountNumber = self.viewModel.cardNumber.value
                     let last4 = accountNumber.substring(from: accountNumber.index(accountNumber.endIndex, offsetBy: -4))
@@ -217,6 +222,19 @@ class AddCreditCardViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expMonthTextField.setError(nil)
+        }).addDisposableTo(disposeBag)
+        
+        cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            if !self.viewModel.cardNumber.value.isEmpty {
+                self.viewModel.cardNumberIsValid().single().subscribe(onNext: { valid in 
+                    if !valid {
+                        self.cardNumberTextField.setError(NSLocalizedString("Invalid credit card", comment: ""))
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
+        cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.cardNumberTextField.setError(nil)
         }).addDisposableTo(disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
