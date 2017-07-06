@@ -14,6 +14,7 @@ private enum ProfileStatusKey : String {
     case Name = "name"
     case Value = "value"
     case Offset = "offset"
+    case TempPasswordFailReason = "reason"
 }
 
 private enum ProfileStatusNameValue : String {
@@ -21,7 +22,6 @@ private enum ProfileStatusNameValue : String {
     case Inactive = "inactive"
     case Primary = "primary"
     case TempPassword = "tempPassword"
-    case TempPasswordFailReason = "reason"
 }
 
 class AuthTokenParser : NSObject {
@@ -77,7 +77,7 @@ class AuthTokenParser : NSObject {
             } else if profileStatus.inactive {
                 return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctNotActivated.rawValue))
             } else if profileStatus.expiredTempPassword {
-                return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.ExpiredTempPassword.rawValue, serviceMessage: "Your temporary password has expired. Please request a new temporary password."))
+                return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.ExpiredTempPassword.rawValue))
             }
         }
         
@@ -123,7 +123,7 @@ class AuthTokenParser : NSObject {
                         primary = item[ProfileStatusKey.Value.rawValue] as! Bool
                     case ProfileStatusNameValue.TempPassword.rawValue:
                         tempPassword = item[ProfileStatusKey.Value.rawValue] as! Bool
-                        expiredTempPassword = item[ProfileStatusNameValue.TempPasswordFailReason.rawValue] as! String == "expired"
+                        expiredTempPassword = item[ProfileStatusKey.TempPasswordFailReason.rawValue] as! String == "expired"
                     default:
                         break
                     }
