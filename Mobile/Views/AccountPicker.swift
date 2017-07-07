@@ -93,9 +93,17 @@ class AccountPicker: UIView {
         if loadedAccounts { return } // Prevent calling this multiple times
         loadedAccounts = true
 
-        let allAccounts: [Account]! = AccountsStore.sharedInstance.accounts
+        let allAccounts: [Account] = AccountsStore.sharedInstance.accounts
         currentAccount = allAccounts[0]
-        var pagedAccounts: [Account]! = allAccounts
+        var pagedAccounts: [Account] = allAccounts
+        
+        var isMultiPremise = false
+        
+        for account in allAccounts {
+            if account.isMultipremise {
+                isMultiPremise = true
+            }
+        }
 
         if allAccounts.count > 1 && allAccounts.count <= MAX_ACCOUNTS {
             pageControl.numberOfPages = allAccounts.count
@@ -106,7 +114,7 @@ class AccountPicker: UIView {
         }
 
         pageViews.removeAll()
-        if allAccounts.count <= MAX_ACCOUNTS {
+        if allAccounts.count <= MAX_ACCOUNTS && !isMultiPremise {
             for account in pagedAccounts {
                 addAccountToScrollView(account)
             }
@@ -264,7 +272,11 @@ extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
         
         // Update advanced account picker
         advancedAccountNumberLabel?.text = account.accountNumber
-        advancedAccountAddressLabel?.text = account.address
+        if account.currentPremise != nil {
+            advancedAccountAddressLabel?.text = account.currentPremise!.addressGeneral
+        } else {
+            advancedAccountAddressLabel?.text = account.address
+        }
         
         delegate?.accountPickerDidChangeAccount(self)
     }
