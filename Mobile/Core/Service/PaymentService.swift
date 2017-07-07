@@ -71,7 +71,14 @@ protocol PaymentService {
     func unenrollFromAutoPay(accountNumber: String,
                              reason: String,
                              completion: @escaping (_ result: ServiceResult<Void>) -> Void)
-
+    
+    
+    /// Schedule a payment
+    ///
+    /// - Parameters:
+    ///   - payment: the payment to schedule
+    ///   - completion: the completion block to execute upon completion.
+    func schedulePayment(payment: Payment, completion: @escaping (_ result: ServiceResult<String>) -> Void)
 }
 
 // MARK: - Reactive Extension to PaymentService
@@ -178,4 +185,20 @@ extension PaymentService {
         }
     }
 
+    func schedulePayment(payment: Payment) -> Observable<Void> {
+        
+        return Observable.create { observer in
+            self.schedulePayment(payment: payment)
+            { (result: ServiceResult<String>) in
+                switch (result) {
+                case ServiceResult.Success(_):
+                    observer.onNext()
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            }
+            return Disposables.create()
+        }
+    }
 }
