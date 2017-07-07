@@ -142,6 +142,8 @@ class LoginViewController: UIViewController {
         
         // Reset the view for when user pops back from ChangePasswordViewController
         self.signInButton.reset()
+        self.signInButton.accessibilityLabel = "Sign In";
+        self.signInButton.accessibilityViewIsModal = false;
         self.passwordTextField.textField.text = ""
         self.passwordTextField.textField.sendActions(for: .editingChanged)
     }
@@ -163,6 +165,8 @@ class LoginViewController: UIViewController {
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
 
         signInButton.setLoading()
+        signInButton.accessibilityLabel = "Loading";
+        signInButton.accessibilityViewIsModal = true;
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
@@ -220,6 +224,9 @@ class LoginViewController: UIViewController {
         }, onRegistrationNotComplete: {
             self.navigationController?.view.isUserInteractionEnabled = true
             self.signInButton.reset()
+            self.signInButton.accessibilityLabel = "Sign In";
+            self.signInButton.accessibilityViewIsModal = false;
+            
             let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Resend", comment: ""), style: .default, handler: { (action) in
@@ -301,6 +308,9 @@ class LoginViewController: UIViewController {
     
     func showErrorAlertWith(title: String?, message: String) {
         signInButton.reset()
+        signInButton.accessibilityLabel = "Sign In";
+        signInButton.accessibilityViewIsModal = false;
+        
         let errorAlert = UIAlertController(title: title != nil ? title : NSLocalizedString("Sign In Error", comment: ""), message: message, preferredStyle: .alert)
         errorAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.present(errorAlert, animated: true, completion: nil)
@@ -316,6 +326,8 @@ class LoginViewController: UIViewController {
             self.passwordAutofilledFromTouchID = true // be sure to set this to true after the above line because will send an rx event on the text observer
             
             self.signInButton.setLoading()
+            self.signInButton.accessibilityLabel = "Loading";
+            self.signInButton.accessibilityViewIsModal = true;
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
         }, onSuccess: { (loggedInWithTempPassword: Bool) in // fingerprint and subsequent login successful
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
