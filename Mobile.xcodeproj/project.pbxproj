@@ -701,6 +701,7 @@
 		E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
 		E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
 		E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */; };
+		E86414F61F1038CA00DA859A /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */; };
 		E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */; };
 		E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */; };
@@ -2656,7 +2657,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3636,6 +3637,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E840BD3D1EB3C91D00812DD0 /* BillService.swift in Sources */,
+				E86414F61F1038CA00DA859A /* Premise.swift in Sources */,
 				54AE069C1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				54AE06B31ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
