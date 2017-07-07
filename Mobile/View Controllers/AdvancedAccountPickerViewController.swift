@@ -116,7 +116,7 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
         
         let account = accounts[indexPath.row]
         
-        if account.premises.count > 0 {
+        if account.isMultipremise {
             self.accountIndexToEditPremise = indexPath.row
             
             let dataArray = account.premises.map({ (premise: Premise) -> String in
@@ -153,7 +153,7 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let account = accounts[indexPath.row]
         
-        if account.premises.count > 0 {
+        if account.isMultipremise {
             return 125
         } else {
             return 64
@@ -162,19 +162,12 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
-//        let account = accounts[indexPath.row]
-//        
-//        if account.premises.count > 0 {
-//            return 180
-//        } else {
-//            return 64
-//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let account = accounts[indexPath.row]
         
-        if account.premises.count > 1 {//TODO: could be 0 (depending if there's always a premise that matches the account)
+        if account.isMultipremise {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewMultPremiseCell", for: indexPath) as! MultiPremiseTableViewCell
             cell.configureCellWith(account: account)
             return cell

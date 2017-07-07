@@ -78,6 +78,7 @@
 		2FB9B4601EFC6D77002CBD88 /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */; };
 		441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		54036BAD1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
 		54036BAE1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
 		54036BAF1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };

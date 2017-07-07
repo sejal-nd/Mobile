@@ -100,7 +100,7 @@ class AccountPicker: UIView {
         var isMultiPremise = false
         
         for account in allAccounts {
-            if account.premises.count > 1 { //TODO: may be 0, we don't know if each account will have a default matching premise
+            if account.isMultipremise {
                 isMultiPremise = true
             }
         }
