@@ -186,6 +186,17 @@ class PaymentViewModel {
         }
     }
     
+    var paymentAmountFeeFooterLabelText: Driver<String> {
+        return Driver.combineLatest(selectedWalletItem.asDriver(), convenienceFee).map { (walletItem, fee) -> String in
+            guard let walletItem = walletItem else { return "" }
+            if walletItem.paymentCategoryType == .check {
+                return NSLocalizedString("No convenience fee will be applied.", comment: "")
+            } else {
+                return String(format: "A %@ convenience fee will be applied.", fee.currencyString!)
+            }
+        }
+    }
+    
     var shouldShowPaymentDateView: Driver<Bool> {
         return hasWalletItems
     }
@@ -235,7 +246,7 @@ class PaymentViewModel {
     
     lazy var amountDueValue: Driver<String?> = self.accountDetail.asDriver().map {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return nil }
-        return max(netDueAmount, 0).currencyString ?? "--"
+        return max(netDueAmount, 0).currencyString!
     }
     
     lazy var dueDate: Driver<String?> = self.accountDetail.asDriver().map {
@@ -257,6 +268,7 @@ class PaymentViewModel {
     }
     
     var isFixedPaymentDate: Driver<Bool> {
+        //return Driver.just(false)
         return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
             if let walletItem = $1 {
                 if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
@@ -273,11 +285,15 @@ class PaymentViewModel {
         }
     }
     
+//    var isFixedPaymentDatePastDue: Driver<Bool> {
+//        return Driver.just(false)
+//    }
+    
     lazy var isFixedPaymentDatePastDue: Driver<Bool> = self.accountDetail.asDriver().map {
         return $0.billingInfo.pastDueAmount ?? 0 > 0
     }
     
-    lazy var fixedPaymentDateString: Driver<String?> = self.paymentDate.asDriver().map {
+    lazy var paymentDateString: Driver<String?> = self.paymentDate.asDriver().map {
         return $0.mmDdYyyyString
     }
     
@@ -352,8 +368,7 @@ class PaymentViewModel {
     }
     
     lazy var convenienceFeeDisplayString: Driver<String> = self.convenienceFee.map {
-        //guard let fee = $0 else { return "" }
-        return $0.currencyString ?? ""
+        return $0.currencyString!
     }
     
     var totalPaymentDisplayString: Driver<String> {
@@ -389,27 +404,5 @@ class PaymentViewModel {
         
         paymentAmount.value = newText
     }
-    
-//    func getFormattedString(forDouble double: Double) -> String {
-//        let string = String(double)
-//        
-//        let components = string.components(separatedBy: ".")
-//        
-//        var newText = string
-//        if components.count == 2 {
-//            let decimal = components[1]
-//            if decimal.characters.count == 0 {
-//                newText += "00"
-//            } else if decimal.characters.count == 1 {
-//                newText += "0"
-//            }
-//        } else if components.count == 1 && components[0].characters.count > 0 {
-//            newText += ".00"
-//        } else {
-//            newText = "0.00"
-//        }
-//        
-//        return newText
-//    }
     
 }

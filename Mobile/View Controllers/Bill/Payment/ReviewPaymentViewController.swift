@@ -181,7 +181,7 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.convenienceFeeDisplayString.asDriver().drive(convenienceFeeValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Payment Date
-        viewModel.fixedPaymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Total Payment
         viewModel.totalPaymentDisplayString.asDriver().drive(totalPaymentValueLabel.rx.text).addDisposableTo(disposeBag)

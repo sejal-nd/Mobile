@@ -105,6 +105,7 @@ class MakePaymentViewController: UIViewController {
         paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.textField.keyboardType = .decimalPad
+        paymentAmountTextField.textField.delegate = self
         paymentAmountTextField.textField.rx.controlEvent(UIControlEvents.editingDidEnd).subscribe(onNext: {
             self.viewModel.paymentAmountErrorMessage.asObservable().single().subscribe(onNext: { errorMessage in
                 self.paymentAmountTextField.setError(errorMessage)
@@ -247,7 +248,11 @@ class MakePaymentViewController: UIViewController {
         viewModel.dueDate.asDriver().drive(dueDateDateLabel.rx.text).addDisposableTo(disposeBag)
         
         // Payment Date
-        viewModel.fixedPaymentDateString.asDriver().drive(paymentDateFixedDateLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.paymentDateString.asDriver().drive(paymentDateButton.label.rx.text).addDisposableTo(disposeBag)
+        viewModel.paymentDateString.asDriver().drive(paymentDateFixedDateLabel.rx.text).addDisposableTo(disposeBag)
+        
+        viewModel.totalPaymentDisplayString.map { String(format: NSLocalizedString("Total Payment: %@", comment: ""), $0) }.drive(stickyPaymentFooterPaymentLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.paymentAmountFeeFooterLabelText.drive(stickyPaymentFooterFeeLabel.rx.text).addDisposableTo(disposeBag)
     }
     
     func bindButtonTaps() {
@@ -259,6 +264,17 @@ class MakePaymentViewController: UIViewController {
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
             miniWalletVC.delegate = self
             self.navigationController?.pushViewController(miniWalletVC, animated: true)
+        }).addDisposableTo(disposeBag)
+        
+        paymentDateButton.rx.touchUpInside.subscribe(onNext: {
+            self.view.endEditing(true)
+            
+            let calendarVC = PDTSimpleCalendarViewController()
+            calendarVC.delegate = self
+            calendarVC.title = NSLocalizedString("Select Payment Date", comment: "")
+            calendarVC.selectedDate = self.viewModel.paymentDate.value
+            
+            self.navigationController?.pushViewController(calendarVC, animated: true)
         }).addDisposableTo(disposeBag)
     }
     
@@ -291,9 +307,53 @@ class MakePaymentViewController: UIViewController {
 
 }
 
+extension MakePaymentViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.characters.count == 0 { // Allow backspace
+            return true
+        }
+        
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        if textField == paymentAmountTextField.textField {
+            let characterSet = CharacterSet(charactersIn: string)
+            
+            let numDec = newString.components(separatedBy:".")
+            
+            if numDec.count > 2 {
+                return false
+            } else if numDec.count == 2 && numDec[1].characters.count > 2 {
+                return false
+            }
+            
+            let containsDecimal = newString.contains(".")
+            let containsBackslash = newString.contains("\\")
+            
+            return (CharacterSet.decimalDigits.isSuperset(of: characterSet) || containsDecimal) && newString.characters.count <= 7 && !containsBackslash
+        }
+        return true
+    }
+}
+
 extension MakePaymentViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
         viewModel.selectedWalletItem.value = walletItem
+    }
+}
+
+extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
+    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
+        let today = Calendar.current.startOfDay(for: Date())
+        if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
+            let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
+            return date >= today && date <= startOfDueDate
+        } else { // Should never come into play?
+            return date >= today
+        }
+    }
+    
+    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+        viewModel.paymentDate.value = date
     }
 }
