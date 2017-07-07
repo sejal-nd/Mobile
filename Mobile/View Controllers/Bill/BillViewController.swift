@@ -440,9 +440,23 @@ class BillViewController: AccountPickerViewController {
         
         makeAPaymentButton.rx.touchUpInside.asDriver()
             .drive(onNext: {
-                let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
-                paymentVc.accountDetail = self.viewModel.currentAccountDetail.value!
-                self.navigationController?.pushViewController(paymentVc, animated: true)
+                self.viewModel.makePaymentScheduledPaymentAlertInfo.single().subscribe(onNext: { (titleOpt, messageOpt) in
+                    let goToMakePayment = {
+                        let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+                        paymentVc.accountDetail = self.viewModel.currentAccountDetail.value!
+                        self.navigationController?.pushViewController(paymentVc, animated: true)
+                    }
+                    if let title = titleOpt, let message = messageOpt {
+                        let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { _ in
+                            goToMakePayment()
+                        }))
+                        self.present(alertVc, animated: true, completion: nil)
+                    } else {
+                        goToMakePayment()
+                    }
+                }).addDisposableTo(self.bag)
             })
             .addDisposableTo(bag)
     }
