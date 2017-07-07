@@ -393,6 +393,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedTextField.textField.autocorrectionType = .no
         amountNotToExceedTextField.textField.delegate = self
         amountNotToExceedTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+        amountNotToExceedTextField.textField.keyboardType = .decimalPad
+        addDoneButtonOnKeyboard()
         
         // when amountNotToExceedTextField loses focus, append .00 (if not already extant)
         //  is there a better way to do this us Rx? especially repopulating the textfield at the end.
@@ -433,6 +435,21 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedButtonStackView.addArrangedSubview(separator2)
 
         return amountNotToExceedButtonStackView
+    }
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle       = UIBarStyle.default
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(doneButtonAction))
+        done.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.actionBlue], for: .normal)
+        doneToolbar.items = [flexSpace, done]
+        doneToolbar.sizeToFit()
+        amountNotToExceedTextField.textField.inputAccessoryView = doneToolbar
+    }
+    
+    func doneButtonAction() {
+        amountNotToExceedTextField.textField.resignFirstResponder()
     }
     
     func buildWhenToPayGroup() -> UIStackView {
