@@ -56,7 +56,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
                     case "Late Payment Charge":
                         iconImageView.image = UIImage(named: "ic_alert")
                         titleLabel.text = LATE_PAYMENT
-                        self.amountLabel.text = item.amountPaid!.currencyString
+                        self.amountLabel.text = item.amountPaid?.currencyString
                     case "Payment":
                         fallthrough
                     default:
