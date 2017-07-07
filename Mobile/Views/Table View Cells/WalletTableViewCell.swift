@@ -86,7 +86,16 @@ class WalletTableViewCell: UITableViewCell {
         
         bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         switch Environment.sharedInstance.opco {
-        case .comEd, .peco:
+        case .comEd:
+            if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+                accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
+                bottomBarLabel.text = NSLocalizedString("$2.50 Convenience Fee", comment: "")
+                a11yLabel =  NSLocalizedString("Credit card", comment: "")
+            } else if walletItem.paymentCategoryType == .check {
+                accountImageView.image = #imageLiteral(resourceName: "opco_bank")
+                a11yLabel =  NSLocalizedString("Bank account", comment: "")
+            }
+        case .peco:
             if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 bottomBarLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
@@ -103,30 +112,6 @@ class WalletTableViewCell: UITableViewCell {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 //bottomBarLabel.text = NSLocalizedString("Fees: $1.50 Residential | 2.4% Business", comment: "")
                 a11yLabel = NSLocalizedString("Credit card", comment: "")
-            }
-            switch walletItem.walletItemStatusTypeBGE! {
-            case .pndWait:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Processing", comment: "")
-            case .pndActive:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Pending", comment: "")
-            case .cancel:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Cancelled", comment: "")
-            case .bad_active:
-                bottomBarLabel.font = OpenSans.italic.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .deepGray
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Failed", comment: "")
-            case .deleted:
-                break
-            case .active:
-                bottomBarLabel.font = OpenSans.regular.of(textStyle: .footnote)
-                bottomBarLabel.textColor = .successGreenText
-                bottomBarLabel.text = NSLocalizedString("Verification Status: Active", comment: "")
             }
         }
         

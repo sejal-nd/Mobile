@@ -57,7 +57,7 @@ class AutoPayViewController: UIViewController {
     let bag = DisposeBag()
     
     var accountDetail: AccountDetail!
-    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail) }()
+    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: self.accountDetail) }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -308,14 +308,26 @@ class AutoPayViewController: UIViewController {
             })
             .addDisposableTo(bag)
         
-        // Routing Numbe
+        // Routing Number
         let routingNumberErrorTextFocused: Driver<String?> = routingNumberTextField.textField.rx
             .controlEvent(.editingDidBegin).asDriver()
             .map{ nil }
+        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.routingNumberTextField.setError(nil)
+        }).addDisposableTo(bag)
         
         let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
             .controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(viewModel.routingNumberErrorText)
+        routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            if self.viewModel.routingNumber.value.characters.count == 9 {
+                self.viewModel.getBankName(onSuccess: {
+                    self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
+                }, onError: {
+                    self.routingNumberTextField.setInfoMessage(nil)
+                })
+            }
+        }).addDisposableTo(bag)
 
         Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
             .distinctUntilChanged(==)
@@ -426,7 +438,7 @@ extension AutoPayViewController: UITextFieldDelegate {
         if textField == routingNumberTextField.textField {
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
         } else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet)
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 17
         }
         return true
     }
@@ -456,7 +468,7 @@ extension AutoPayViewController: UITextFieldDelegate {
 extension AutoPayViewController: AutoPayChangeBankViewControllerDelegate {
 	func changedBank() {
 		DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-			self.view.showToast(NSLocalizedString("Bank account changed", comment: ""))
+			self.view.showToast(NSLocalizedString("AutoPay bank account updated", comment: ""))
 		})
 	}
 }

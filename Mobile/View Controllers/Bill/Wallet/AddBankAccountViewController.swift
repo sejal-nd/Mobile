@@ -18,7 +18,6 @@ class AddBankAccountViewController: UIViewController {
     // Checking/Savings Segmented Control (BGE ONLY)
     // Bank account holder name (BGE ONLY)
     // Routing Number with question mark
-    // Confirm routing number (BGE ONLY)
     // Account number with question mark
     // Confirm account number
     // Nickname (Optional for ComEd/PECO, required for BGE)
@@ -33,7 +32,6 @@ class AddBankAccountViewController: UIViewController {
     @IBOutlet weak var accountHolderNameTextField: FloatLabelTextField!
     @IBOutlet weak var routingNumberTextField: FloatLabelTextField!
     @IBOutlet weak var routingNumberTooltipButton: UIButton!
-    @IBOutlet weak var confirmRoutingNumberTextField: FloatLabelTextField!
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     @IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextField!
@@ -73,11 +71,6 @@ class AddBankAccountViewController: UIViewController {
         routingNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         routingNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        confirmRoutingNumberTextField.textField.placeholder = NSLocalizedString("Confirm Routing Number*", comment: "")
-        confirmRoutingNumberTextField.textField.delegate = self
-        confirmRoutingNumberTextField.textField.returnKeyType = .next
-        confirmRoutingNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.delegate = self
         accountNumberTextField.textField.returnKeyType = .next
@@ -103,7 +96,6 @@ class AddBankAccountViewController: UIViewController {
         } else { // BGE only fields should be removed on ComEd/PECO
             checkingSavingsSegmentedControl.isHidden = true
             accountHolderNameTextField.isHidden = true
-            confirmRoutingNumberTextField.isHidden = true
         }
         
         bindViewModel()
@@ -174,15 +166,11 @@ class AddBankAccountViewController: UIViewController {
         checkingSavingsSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).addDisposableTo(disposeBag)
         accountHolderNameTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountHolderName).addDisposableTo(disposeBag)
         routingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.routingNumber).addDisposableTo(disposeBag)
-        confirmRoutingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmRoutingNumber).addDisposableTo(disposeBag)
         accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
         confirmAccountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmAccountNumber).addDisposableTo(disposeBag)
         nicknameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nickname).addDisposableTo(disposeBag)
         oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
         
-        viewModel.confirmRoutingNumberIsEnabled.drive(onNext: { enabled in
-            self.confirmRoutingNumberTextField.setEnabled(enabled)
-        }).addDisposableTo(disposeBag)
         viewModel.confirmAccountNumberIsEnabled.drive(onNext: { enabled in
             self.confirmAccountNumberTextField.setEnabled(enabled)
         }).addDisposableTo(disposeBag)
@@ -194,32 +182,26 @@ class AddBankAccountViewController: UIViewController {
                 self.viewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
                     if !valid {
                         self.routingNumberTextField.setError(NSLocalizedString("Must be 9 digits", comment: ""))
+                    } else {
+                        self.viewModel.getBankName(onSuccess: {
+                            self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
+                        }, onError: {
+                            self.routingNumberTextField.setInfoMessage(nil)
+                        })
                     }
                 }).addDisposableTo(self.disposeBag)
+                
             }
         }).addDisposableTo(disposeBag)
         routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.routingNumberTextField.setError(nil)
         }).addDisposableTo(disposeBag)
         
-        viewModel.confirmRoutingNumberMatches().subscribe(onNext: { matches in
-            if !self.viewModel.confirmRoutingNumber.value.isEmpty {
-                if matches {
-                    self.confirmRoutingNumberTextField.setValidated(true, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
-                } else {
-                    self.confirmRoutingNumberTextField.setError(NSLocalizedString("Routing numbers do not match", comment: ""))
-                }
-            } else {
-                self.confirmRoutingNumberTextField.setValidated(false)
-                self.confirmRoutingNumberTextField.setError(nil)
-            }
-        }).addDisposableTo(disposeBag)
-        
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.accountNumber.value.isEmpty {
                 self.viewModel.accountNumberIsValid().single().subscribe(onNext: { valid in
                     if !valid {
-                        self.accountNumberTextField.setError(NSLocalizedString("Must be between 8-17 digits", comment: ""))
+                        self.accountNumberTextField.setError(NSLocalizedString("Must be between 4-17 digits", comment: ""))
                     }
                 }).addDisposableTo(self.disposeBag)
             }
@@ -278,24 +260,16 @@ extension AddBankAccountViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
-        if textField == routingNumberTextField.textField || textField == confirmRoutingNumberTextField.textField {
+        if textField == routingNumberTextField.textField {
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
         } else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet)
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 17
         }
         return true
     }
     
     func textFieldDidChange(_ textField: UITextField) {
         if textField == routingNumberTextField.textField {
-            if textField.text?.characters.count == 9 {
-                if Environment.sharedInstance.opco == .bge {
-                     confirmRoutingNumberTextField.textField.becomeFirstResponder()
-                } else {
-                    accountNumberTextField.textField.becomeFirstResponder()
-                }
-            }
-        } else if textField == confirmRoutingNumberTextField.textField {
             if textField.text?.characters.count == 9 {
                 accountNumberTextField.textField.becomeFirstResponder()
             }
@@ -307,10 +281,6 @@ extension AddBankAccountViewController: UITextFieldDelegate {
             if textField == accountHolderNameTextField.textField {
                 routingNumberTextField.textField.becomeFirstResponder()
             } else if textField == routingNumberTextField.textField {
-                if confirmRoutingNumberTextField.isUserInteractionEnabled {
-                    confirmRoutingNumberTextField.textField.becomeFirstResponder()
-                }
-            } else if textField == confirmRoutingNumberTextField.textField {
                 accountNumberTextField.textField.becomeFirstResponder()
             } else if textField == accountNumberTextField.textField {
                 if confirmAccountNumberTextField.isUserInteractionEnabled {

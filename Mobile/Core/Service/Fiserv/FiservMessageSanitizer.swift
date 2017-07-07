@@ -25,10 +25,11 @@ struct FiservMessageSanitizer {
             status = "We're sorry, we are unable to process your request at this time. Please" +
             " try again later.";
         } else if (walletStatus.range(of: "inval-0019") != nil) {
+            status = "inval-0019: "
             if (transactionType == "makePayment") {
-                status = "We're sorry, we are unable to process your request as the wallet item already exists. Please login to make a payment."; //SIR112221 //fiservResponse.statusMessage;
+                status += "We're sorry, we are unable to process your request as the wallet item already exists. Please login to make a payment."; //SIR112221 //fiservResponse.statusMessage;
             } else {
-                status = "Cannot save this wallet item as it already exists!"; //SIR112221
+                status += "Cannot save this wallet item as it already exists!"; //SIR112221
             }
         }//Start: SIR112221
         else if (walletStatus.range(of: "inval-0001") != nil || walletStatus.range(of: "inval-0020") != nil

@@ -115,33 +115,46 @@ class ChangePasswordViewModel {
     }
     
     func changePassword(sentFromLogin: Bool, onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        authService.changePassword(currentPassword.value, newPassword: newPassword.value)
-            .observeOn(MainScheduler.instance)
-            .asObservable()
-            .subscribe(onNext: { _ in
-                if self.fingerprintService.isTouchIDEnabled() { // Store the new password in the keychain
-                    self.fingerprintService.setStoredPassword(password: self.newPassword.value)
-                }
-                
-                if sentFromLogin {
-                    self.authService.logout().subscribe(onNext: {
-                        onSuccess()
-                    }, onError: { (error) in
-                        onError(error.localizedDescription)
-                    }).addDisposableTo(self.disposeBag)
-                } else {
+        
+        if sentFromLogin {
+            authService.changePasswordAnon(fingerprintService.getStoredUsername()!, currentPassword: currentPassword.value, newPassword: newPassword.value)
+                .observeOn(MainScheduler.instance)
+                .asObservable()
+                .subscribe(onNext: { _ in
+                    if self.fingerprintService.isTouchIDEnabled() {
+                        self.fingerprintService.setStoredPassword(password: self.newPassword.value)
+                    }
                     onSuccess()
-                }
-            }, onError: { (error: Error) in
-                let serviceError = error as! ServiceError
-                
-                if(serviceError.serviceCode == ServiceErrorCode.FNPwdNoMatch.rawValue) {
-                    onPasswordNoMatch()
-                } else {
-                    onError(error.localizedDescription)
-                }
-            })
-            .addDisposableTo(disposeBag)
+                }, onError: { (error: Error) in
+                    let serviceError = error as! ServiceError
+                    
+                    if(serviceError.serviceCode == ServiceErrorCode.FNPwdNoMatch.rawValue) {
+                        onPasswordNoMatch()
+                    } else {
+                        onError(error.localizedDescription)
+                    }
+                })
+                .addDisposableTo(disposeBag)
+        } else {
+            authService.changePassword(currentPassword.value, newPassword: newPassword.value)
+                .observeOn(MainScheduler.instance)
+                .asObservable()
+                .subscribe(onNext: { _ in
+                    if self.fingerprintService.isTouchIDEnabled() { // Store the new password in the keychain
+                        self.fingerprintService.setStoredPassword(password: self.newPassword.value)
+                    }
+                    onSuccess()
+                }, onError: { (error: Error) in
+                    let serviceError = error as! ServiceError
+                    
+                    if(serviceError.serviceCode == ServiceErrorCode.FNPwdNoMatch.rawValue) {
+                        onPasswordNoMatch()
+                    } else {
+                        onError(error.localizedDescription)
+                    }
+                })
+                .addDisposableTo(disposeBag)
+        }
     }
 
     
