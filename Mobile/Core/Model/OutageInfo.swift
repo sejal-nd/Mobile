@@ -53,7 +53,7 @@ struct OutageInfo {
          unusualMessage: String?=nil,
          isNeighbor: OutageTrivalent?=nil) {
         self.account = account
-        self.premiseNumber = premiseNumber != nil ? premiseNumber! : nil
+        self.premiseNumber = premiseNumber
         self.reportedTime = Date()
         self.issue = issue
         self.phoneNumber = phoneNumber
