@@ -56,7 +56,7 @@
                                             <constraint firstAttribute="height" constant="60" id="4Uz-yl-xtg"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Term &amp; Policies"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Terms and Policies"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oov-GC-Mrn" userLabel="Sign Out Button" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
