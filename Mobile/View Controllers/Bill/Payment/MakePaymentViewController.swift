@@ -106,10 +106,13 @@ class MakePaymentViewController: UIViewController {
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.textField.keyboardType = .decimalPad
         paymentAmountTextField.textField.delegate = self
-        paymentAmountTextField.textField.rx.controlEvent(UIControlEvents.editingDidEnd).subscribe(onNext: {
+        paymentAmountTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.viewModel.paymentAmountErrorMessage.asObservable().single().subscribe(onNext: { errorMessage in
                 self.paymentAmountTextField.setError(errorMessage)
             }).addDisposableTo(self.disposeBag)
+        }).addDisposableTo(disposeBag)
+        paymentAmountTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.paymentAmountTextField.setError(nil)
         }).addDisposableTo(disposeBag)
         
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
@@ -216,6 +219,9 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowAddBankAccount.map(!).drive(addBankAccountView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowAddCreditCard.map(!).drive(addCreditCardView.rx.isHidden).addDisposableTo(disposeBag)
         
+        // Bill Matrix
+        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).addDisposableTo(disposeBag)
+        
         // Wallet empty state info footer
         viewModel.shouldShowWalletFooterView.map(!).drive(walletFooterView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowWalletFooterView.drive(walletFooterSpacerView.rx.isHidden).addDisposableTo(disposeBag)
@@ -234,7 +240,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).addDisposableTo(disposeBag)
         
         // Amount Due
-        viewModel.amountDueValue.asDriver().drive(amountDueValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Payment Amount Text Field
         viewModel.paymentAmountFeeLabelText.asDriver().drive(paymentAmountFeeLabel.rx.text).addDisposableTo(disposeBag)
@@ -276,11 +282,19 @@ class MakePaymentViewController: UIViewController {
             
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).addDisposableTo(disposeBag)
+        
+        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).addDisposableTo(disposeBag)
     }
     
     func onNextPress() {
         self.view.endEditing(true)
         performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
+    }
+    
+    func onPrivacyPolicyPress() {
+        let tacModal = WebViewController(title: NSLocalizedString("Privacy Policy", comment: ""),
+                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/privacy_notice_en-us.html")!)
+        navigationController?.present(tacModal, animated: true, completion: nil)
     }
     
     // MARK: - ScrollView

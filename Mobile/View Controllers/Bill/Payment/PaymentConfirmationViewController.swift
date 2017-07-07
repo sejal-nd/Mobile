@@ -6,15 +6,16 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 
 class PaymentConfirmationViewController: UIViewController {
+    
+    let disposeBag = DisposeBag()
     
     @IBOutlet weak var xButton: UIButton!
     @IBOutlet weak var navBarTitleLabel: UILabel!
     @IBOutlet weak var confirmationLabel: UILabel!
 
-    
     @IBOutlet weak var paymentInfoView: UIView!
     @IBOutlet weak var paymentDateTextLabel: UILabel!
     @IBOutlet weak var paymentDateValueLabel: UILabel!
@@ -22,13 +23,16 @@ class PaymentConfirmationViewController: UIViewController {
     @IBOutlet weak var amountPaidValueLabel: UILabel!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
-    @IBOutlet weak var autoPayView: UIStackView!
-    @IBOutlet weak var billMatrixView: UIStackView!
-
+    @IBOutlet weak var autoPayView: UIView!
     @IBOutlet weak var autoPayLabel: UILabel!
     @IBOutlet weak var enrollAutoPayButton: SecondaryButton!
     
+    @IBOutlet weak var billMatrixView: UIView!
+    @IBOutlet weak var privacyPolicyButton: UIButton!
+    
     var presentingNavController: UINavigationController! // Passed from ReviewPaymentViewController
+    
+    var viewModel: PaymentViewModel! // Passed from ReviewPaymentViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +49,6 @@ class PaymentConfirmationViewController: UIViewController {
         
         convenienceFeeLabel.textColor = .blackText
         convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        convenienceFeeLabel.text = NSLocalizedString("A $2.35 convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
-        convenienceFeeLabel.isHidden = true
         
         paymentInfoView.backgroundColor = .softGray
         
@@ -61,14 +63,33 @@ class PaymentConfirmationViewController: UIViewController {
         amountPaidValueLabel.textColor = .blackText
         amountPaidValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        //TODO: hide/show this
-//        autoPayView.isHidden = true
-//        billMatrixView.isHidden = true
-        
         autoPayLabel.textColor = .deepGray
         autoPayLabel.font = SystemFont.regular.of(textStyle: .footnote)
         autoPayLabel.text = NSLocalizedString("Would you like to set up Automatic Payments?", comment: "")
         enrollAutoPayButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        
+        privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
+        privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
+        
+        bindViewHiding()
+        bindViewContent()
+    }
+    
+    func bindViewHiding() {
+        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowAutoPayEnrollButton.map(!).drive(autoPayView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowConvenienceFeeLabel.map(!).drive(convenienceFeeLabel.rx.isHidden).addDisposableTo(disposeBag)
+    }
+    
+    func bindViewContent() {
+        // Payment Date
+        viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Total Payment
+        viewModel.totalPaymentDisplayString.asDriver().drive(amountPaidValueLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Conv. Fee Label
+        viewModel.paymentAmountFeeLabelText.asDriver().drive(convenienceFeeLabel.rx.text).addDisposableTo(disposeBag)
     }
 
     @IBAction func onXButtonPress() {
@@ -96,9 +117,9 @@ class PaymentConfirmationViewController: UIViewController {
     }
     
     @IBAction func onPrivacyPolicyPress(_ sender: Any) {
-        
-        dLog(message: "privacy policy press")
+        let tacModal = WebViewController(title: NSLocalizedString("Privacy Policy", comment: ""),
+                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/privacy_notice_en-us.html")!)
+        present(tacModal, animated: true, completion: nil)
     }
-
-
+    
 }

@@ -24,7 +24,7 @@ class PaymentViewModel {
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
     
-    let amountDue = Variable<Double>(0)
+    let amountDue: Variable<Double>
     let paymentAmount: Variable<String>
     let paymentDate: Variable<Date>
     
@@ -36,9 +36,11 @@ class PaymentViewModel {
         self.oneTouchPayService = oneTouchPayService
         self.accountDetail = Variable(accountDetail)
         
-        if let amountDue = accountDetail.billingInfo.netDueAmount {
-            paymentAmount = Variable(String(amountDue))
+        if let netDueAmount = accountDetail.billingInfo.netDueAmount {
+            amountDue = Variable(netDueAmount)
+            paymentAmount = Variable(String(netDueAmount))
         } else {
+            amountDue = Variable(0)
             paymentAmount = Variable("")
         }
         
@@ -138,7 +140,7 @@ class PaymentViewModel {
                     let maxPayment = accountDetail.billingInfo.maxPaymentAmountACH ?? 90000
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
-                    } else if paymentAmount <= amountDue {
+                    } else if paymentAmount > amountDue {
                         return NSLocalizedString("Payment must be less than or equal to amount due", comment: "")
                     } else if paymentAmount > maxPayment {
                         return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
@@ -160,7 +162,7 @@ class PaymentViewModel {
                     let maxPayment = accountDetail.billingInfo.maxPaymentAmount ?? 5000
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
-                    } else if paymentAmount <= amountDue {
+                    } else if paymentAmount > amountDue {
                         return NSLocalizedString("Payment must be less than or equal to amount due", comment: "")
                     } else if paymentAmount > maxPayment {
                         return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
@@ -244,9 +246,8 @@ class PaymentViewModel {
 //        }
     }
     
-    lazy var amountDueValue: Driver<String?> = self.accountDetail.asDriver().map {
-        guard let netDueAmount = $0.billingInfo.netDueAmount else { return nil }
-        return max(netDueAmount, 0).currencyString!
+    lazy var amountDueCurrencyString: Driver<String> = self.amountDue.asDriver().map {
+        return $0.currencyString!
     }
     
     lazy var dueDate: Driver<String?> = self.accountDetail.asDriver().map {
@@ -295,6 +296,15 @@ class PaymentViewModel {
     
     lazy var paymentDateString: Driver<String?> = self.paymentDate.asDriver().map {
         return $0.mmDdYyyyString
+    }
+    
+    lazy var shouldShowBillMatrixView: Driver<Bool> = self.selectedWalletItem.asDriver().map {
+        if let walletItem = $0 {
+            if Environment.sharedInstance.opco != .bge && (walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit) {
+                return true
+            }
+        }
+        return false
     }
     
     var walletFooterLabelText: String {
@@ -359,16 +369,16 @@ class PaymentViewModel {
         return Driver.just(Environment.sharedInstance.opco != .bge)
     }
     
-    var shouldShowBillMatrixView: Driver<Bool> {
-        return Driver.just(Environment.sharedInstance.opco != .bge)
-    }
-    
     lazy var paymentAmountDisplayString: Driver<String> = self.paymentAmount.asDriver().map {
         return "$\($0)"
     }
     
     lazy var convenienceFeeDisplayString: Driver<String> = self.convenienceFee.map {
         return $0.currencyString!
+    }
+    
+    lazy var shouldShowAutoPayEnrollButton: Driver<Bool> = self.accountDetail.asDriver().map {
+        return !$0.isAutoPay && $0.isAutoPayEligible
     }
     
     var totalPaymentDisplayString: Driver<String> {
@@ -379,6 +389,17 @@ class PaymentViewModel {
                 return $0.currencyString!
             }
         }
+    }
+    
+    // MARK: - Payment Confirmation
+    
+    lazy var shouldShowConvenienceFeeLabel: Driver<Bool> = self.selectedWalletItem.asDriver().map {
+        if let walletItem = $0 {
+            if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+                return true
+            }
+        }
+        return false
     }
     
     

@@ -141,6 +141,7 @@ class ReviewPaymentViewController: UIViewController {
         
         bindViewHiding()
         bindViewContent()
+        bindButtonTaps()
     }
     
     override func viewDidLayoutSubviews() {
@@ -169,7 +170,7 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).addDisposableTo(disposeBag)
         
         // Amount Due
-        viewModel.amountDueValue.asDriver().drive(amountDueValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Due Date
         viewModel.dueDate.asDriver().drive(dueDateValueLabel.rx.text).addDisposableTo(disposeBag)
@@ -189,13 +190,31 @@ class ReviewPaymentViewController: UIViewController {
         reviewSwitch.rx.isOn.bind(to: viewModel.reviewPaymentSwitchValue).addDisposableTo(disposeBag)
     }
     
+    func bindButtonTaps() {
+        termsConditionsButton.rx.touchUpInside.asDriver().drive(onNext: onTermsConditionsPress).addDisposableTo(disposeBag)
+        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).addDisposableTo(disposeBag)
+    }
+    
     func onSubmitPress() {
         performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+    }
+    
+    func onTermsConditionsPress() {
+        let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
+                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
+        navigationController?.present(tacModal, animated: true, completion: nil)
+    }
+    
+    func onPrivacyPolicyPress() {
+        let tacModal = WebViewController(title: NSLocalizedString("Privacy Policy", comment: ""),
+                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/privacy_notice_en-us.html")!)
+        navigationController?.present(tacModal, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PaymentConfirmationViewController {
             vc.presentingNavController = self.navigationController!
+            vc.viewModel = viewModel
         }
     }
 
