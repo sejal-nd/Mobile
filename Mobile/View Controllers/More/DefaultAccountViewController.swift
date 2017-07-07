@@ -20,7 +20,7 @@ class DefaultAccountViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_question").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(infoButtonPressed))
+        let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_question_white"), style: .plain, target: self, action: #selector(infoButtonPressed))
         navigationItem.rightBarButtonItem = infoButton
         let nib = UINib(nibName: AdvancedAccountPickerTableViewCell.className, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: AdvancedAccountPickerTableViewCell.className)

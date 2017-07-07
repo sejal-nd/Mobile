@@ -59,6 +59,7 @@ class SettingsViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.loadingIndicator.isHidden = true
                 self?.tableView.isHidden = false
+                self?.tableView.reloadData()
             }, onError: { [weak self] err in
                 guard let strongSelf = self else { return }
                 strongSelf.loadingIndicator.isHidden = true
@@ -156,7 +157,7 @@ extension SettingsViewController: UITableViewDataSource {
         if viewModel.isDeviceTouchIDCompatible() {
             numSections += 1
         }
-        if Environment.sharedInstance.opco == .bge {// && AccountsStore.sharedInstance.accounts.count > 1 {
+        if Environment.sharedInstance.opco == .bge && AccountsStore.sharedInstance.accounts != nil && AccountsStore.sharedInstance.accounts.count > 1 {
             numSections += 1
         }
         if Environment.sharedInstance.opco == .peco {
