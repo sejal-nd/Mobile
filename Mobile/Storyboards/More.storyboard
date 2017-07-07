@@ -485,9 +485,6 @@
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="dvR-dm-UwW" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="158" y="385" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" label="Loading">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

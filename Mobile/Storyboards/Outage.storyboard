@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -450,9 +450,6 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <accessibility key="accessibilityConfiguration" label="Loading">
-                                                    <bool key="isElement" value="YES"/>
-                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstItem="hNa-Vb-1pp" firstAttribute="centerX" secondItem="E6B-ne-mO1" secondAttribute="centerX" id="E9o-7j-F3f"/>
                                                     <constraint firstItem="hNa-Vb-1pp" firstAttribute="centerY" secondItem="E6B-ne-mO1" secondAttribute="centerY" id="IXZ-Bd-bUw"/>
@@ -569,9 +566,6 @@ For downed or sparking power lines or dim / flickering lights, please call 1-877
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="RA2-uD-xmP" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="157" y="303" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" label="Loading">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
