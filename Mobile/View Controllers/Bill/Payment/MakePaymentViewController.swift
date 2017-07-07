@@ -268,6 +268,7 @@ class MakePaymentViewController: UIViewController {
             miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
             miniWalletVC.viewModel.selectedItem.value = self.viewModel.selectedWalletItem.value
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
+            miniWalletVC.addingDisabled = true
             miniWalletVC.delegate = self
             self.navigationController?.pushViewController(miniWalletVC, animated: true)
         }).addDisposableTo(disposeBag)

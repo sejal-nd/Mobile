@@ -28,6 +28,7 @@ class MiniWalletViewController: UIViewController {
     let viewModel = MiniWalletViewModel(walletService: ServiceFactory.createWalletService())
     
     // These should be passed by whatever VC is presenting MiniWalletViewController
+    var addingDisabled = false // Temporarily being used for sprint 13 payment workflow. Sprint 14 will enable but using them will have different actions
     var creditCardsDisabled = false
     var tableHeaderLabelText: String?
     var accountDetail: AccountDetail!
@@ -211,7 +212,12 @@ extension MiniWalletViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
                 cell.iconImageView.image = #imageLiteral(resourceName: "bank_building_mini")
                 cell.label.text = NSLocalizedString("Add Bank Account", comment: "")
-                viewModel.bankAccountLimitReached.map(!).drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
+                viewModel.bankAccountLimitReached.map {
+                    if self.addingDisabled {
+                        return false
+                    }
+                    return !$0
+                }.drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
                 cell.innerContentView.addTarget(self, action: #selector(onAddBankAccountPress), for: .touchUpInside)
                 return cell
             }
@@ -232,7 +238,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.iconImageView.image = #imageLiteral(resourceName: "credit_card_mini")
                 cell.label.text = NSLocalizedString("Add Credit/Debit Card", comment: "")
                 viewModel.creditCardLimitReached.map {
-                    if self.creditCardsDisabled {
+                    if self.creditCardsDisabled || self.addingDisabled {
                         return false
                     }
                     return !$0
