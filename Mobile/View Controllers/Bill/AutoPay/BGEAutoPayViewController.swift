@@ -81,7 +81,6 @@ class BGEAutoPayViewController: UIViewController {
         learnMoreButtonLabel.attributedText = attrString
         
         expirationLabel.textColor = .blackText
-        expirationLabel.text = "Enrollment expired due to AutoPay settings - you set enrollment to expire on TODO."
         
         selectBankAccountLabel.textColor = .blackText
         selectBankAccountLabel.font = OpenSans.semibold.of(textStyle: .headline)
@@ -121,11 +120,9 @@ class BGEAutoPayViewController: UIViewController {
         
         if viewModel.initialEnrollmentStatus.value == .enrolled {
             bottomLabel.isHidden = true
-            expirationLabel.isHidden = true
             selectBankAccountLabel.isHidden = true
         } else {
             enrollmentSwitchView.isHidden = true
-            expirationLabel.isHidden = true
             enrolledPaymentAccountLabel.isHidden = true
         }
 
@@ -163,6 +160,9 @@ class BGEAutoPayViewController: UIViewController {
         
         viewModel.isUnenrolling.drive(bankAccountContainerStack.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowSettingsButton.map(!).drive(settingsButton.rx.isHidden).addDisposableTo(disposeBag)
+        
+        viewModel.expiredReason.asDriver().drive(expirationLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.shouldShowExpiredReason.map(!).drive(expirationLabel.rx.isHidden).addDisposableTo(disposeBag)
     }
     
     func onCancelPress() {

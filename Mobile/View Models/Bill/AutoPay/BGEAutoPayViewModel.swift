@@ -30,6 +30,7 @@ class BGEAutoPayViewModel {
     let initialEnrollmentStatus: Variable<EnrollmentStatus>
     let enrollSwitchValue: Variable<Bool>
     let selectedWalletItem = Variable<WalletItem?>(nil)
+    let expiredReason = Variable<String?>(nil)
     
     // --- Settings --- //
     var userDidChangeSettings = Variable(false)
@@ -85,6 +86,19 @@ class BGEAutoPayViewModel {
                 if let effectiveNumPayments = autoPayInfo.effectiveNumPayments {
                     self.numberOfPayments.value = effectiveNumPayments
                 }
+                
+                // Expired accounts
+                if let numberOfPayments = autoPayInfo.numberOfPayments,
+                    let numberOfPaymentsScheduled = autoPayInfo.numberOfPaymentsScheduled,
+                    numberOfPayments > numberOfPaymentsScheduled {
+                    self.expiredReason.value = NSLocalizedString("", comment: "")
+                } else if let effectiveEndDate = autoPayInfo.effectiveEndDate, effectiveEndDate < Date() {
+                    let localizedString = NSLocalizedString("Enrollment expired due to AutoPay settings - you set enrollment to expire on %@.", comment: "")
+                    self.expiredReason.value = String(format: localizedString, effectiveEndDate.mmDdYyyyString)
+                } else {
+                    self.expiredReason.value = nil
+                }
+                
                 onSuccess?()
             }, onError: { error in
                 self.isFetchingAutoPayInfo.value = false
@@ -116,8 +130,11 @@ class BGEAutoPayViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    var submitButtonEnabled: Driver<Bool> {
-        return Driver.combineLatest(initialEnrollmentStatus.asDriver(), selectedWalletItem.asDriver(), enrollSwitchValue.asDriver(), userDidChangeSettings.asDriver(), userDidChangeBankAccount.asDriver()) {
+    lazy var submitButtonEnabled: Driver<Bool> = Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
+                                                                      self.selectedWalletItem.asDriver(),
+                                                                      self.enrollSwitchValue.asDriver(),
+                                                                      self.userDidChangeSettings.asDriver(),
+                                                                      self.userDidChangeBankAccount.asDriver()) {
             if $0 == .unenrolled && $1 != nil { // Unenrolled with bank account selected
                 return true
             }
@@ -129,22 +146,15 @@ class BGEAutoPayViewModel {
             }
             return false
         }
+    
+    lazy var isUnenrolling: Driver<Bool> = Driver.combineLatest(self.initialEnrollmentStatus.asDriver(), self.enrollSwitchValue.asDriver()) {
+            $0 == .enrolled && !$1
+        }
+    
+    lazy var shouldShowSettingsButton: Driver<Bool> = Driver.combineLatest(self.initialEnrollmentStatus.asDriver(), self.selectedWalletItem.asDriver(), self.isUnenrolling) {
+        $0 == .enrolled || $1 != nil && !$2
     }
     
-    var isUnenrolling: Driver<Bool> {
-        return Driver.combineLatest(initialEnrollmentStatus.asDriver(), enrollSwitchValue.asDriver()) {
-            return $0 == .enrolled && !$1
-        }
-    }
-    
-    var shouldShowSettingsButton: Driver<Bool> {
-        return Driver.combineLatest(initialEnrollmentStatus.asDriver(), selectedWalletItem.asDriver(), isUnenrolling) {
-            if $2 {
-                return false
-            }
-            return $0 == .enrolled || $1 != nil
-        }
-    }
     
     func getInvalidSettingsMessage() -> String? {
         let defaultString = NSLocalizedString("Complete all required fields before returning to the AutoPay screen. Check your selected settings and complete secondary fields.", comment: "")
@@ -204,6 +214,8 @@ class BGEAutoPayViewModel {
             return NSLocalizedString("After \($0) payments have been created, AutoPay will automatically stop and you will be responsible for restarting AutoPay or resuming manual payments on your accounts.", comment: "")
         }
     }
+    
+    lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().map { $0 != nil }
     
     func formatAmountNotToExceed() {
         let components = amountNotToExceed.value.components(separatedBy: ".")

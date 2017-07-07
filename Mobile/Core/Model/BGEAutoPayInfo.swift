@@ -44,6 +44,8 @@ struct BGEAutoPayInfo: Mappable {
     let effectivePeriod: EffectivePeriod?
     let effectiveEndDate: Date?
     let effectiveNumPayments: String?
+    let numberOfPayments: Int?
+    let numberOfPaymentsScheduled: Int?
     
     init(map: Mapper) throws {
         walletItemId = map.optionalFrom("wallet_item_id")
@@ -55,5 +57,7 @@ struct BGEAutoPayInfo: Mappable {
         effectivePeriod = map.optionalFrom("effective_period")
         effectiveEndDate = map.optionalFrom("effective_end_date", transformation: extractDate)
         effectiveNumPayments = map.optionalFrom("effective_number_of_payments")
+        numberOfPayments = map.optionalFrom("number_of_payments")
+        numberOfPaymentsScheduled = map.optionalFrom("no_of_payments_scheduled")
     }
 }
