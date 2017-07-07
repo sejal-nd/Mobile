@@ -8,13 +8,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DayPickerContainerView" customModule="BGE" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExelonPickerContainerView" customModule="BGE" customModuleProvider="target">
             <connections>
                 <outlet property="bottomConstraint" destination="0in-lb-CbZ" id="sr5-Gg-Kns"/>
                 <outlet property="cancelButton" destination="vTg-pp-hvo" id="i8g-Rw-7CX"/>
                 <outlet property="containerView" destination="w9N-yL-eT9" id="8Pc-5h-Q0U"/>
-                <outlet property="dayPicker" destination="SbX-cM-xcP" id="5EJ-qk-Ijg"/>
                 <outlet property="doneButton" destination="RPg-WA-R6h" id="RPN-SS-QMd"/>
+                <outlet property="exelonPicker" destination="SbX-cM-xcP" id="hQi-uO-K1C"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

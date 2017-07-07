@@ -1,14 +1,14 @@
 //
-//  AdvancedAccountPickerTableViewCell.swift
+//  MultiPremiseTableViewCell.swift
 //  Mobile
 //
-//  Created by Wesley Weitzel on 4/24/17.
+//  Created by Wesley Weitzel on 4/28/17.
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
 
-class AdvancedAccountPickerTableViewCell: UITableViewCell {
+class MultiPremiseTableViewCell: UITableViewCell {
 
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var accountNumber: UILabel!
@@ -16,6 +16,7 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
     @IBOutlet weak var checkMarkImageView: UIImageView!
     @IBOutlet weak var accountImageViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var accountStatusLabel: UILabel!
+    @IBOutlet var premiseAddressStackView: UIStackView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +28,19 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
         accountStatusLabel.textColor = .middleGray
     }
     
+    override func prepareForReuse() {
+        let addressViews = premiseAddressStackView.arrangedSubviews
+        for view in addressViews {
+            premiseAddressStackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
+    }
+    
     func configureCellWith(account: Account) {
+        
+        let isCurrentAccount = account == AccountsStore.sharedInstance.currentAccount
+        
+        //top portion is the same as AdvancedAccountPickerTableViewCell
         let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
         
         self.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
@@ -63,6 +76,25 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
             self.checkMarkImageView.isHidden = true
             self.checkMarkImageView.isAccessibilityElement = false
         }
+        
+        let premises = account.premises
+        let currentPremiseIndex = premises.index(of: account.currentPremise!)
+        
+        //premise info
+        for (index, premise) in premises.enumerated() {
+            
+            let address = premise.addressLineString()
+            let showCheck = isCurrentAccount && index == currentPremiseIndex
+            let view = MultiPremiseAddressView.instanceFromNib(showsCheck: showCheck, labelText: address)
+            view.addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
+            self.premiseAddressStackView.addArrangedSubview(view)
+            premiseAddressStackView.setNeedsLayout()
+            premiseAddressStackView.layoutIfNeeded()
+            
+        }
+        
+        self.contentView.setNeedsLayout()
+        self.contentView.layoutIfNeeded()
     }
-    
+
 }

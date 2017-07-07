@@ -86,7 +86,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     let now = Calendar.current.startOfDay(for: Date())
     let lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Calendar.current.startOfDay(for: Date()))
     
-    var dayPickerView: DayPickerContainerView!
+    var dayPickerView: ExelonPickerContainerView!
     
     var numberOfDaysBefore: [String]!
 
@@ -254,8 +254,12 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func buildPickerView() {
+        
+        //build dataArray for picker
+        let dataArray = (1...15).map { $0 > 1 ? "\($0) Days" : "\($0) Day" }
+        
         let currentWindow = UIApplication.shared.keyWindow
-        dayPickerView = DayPickerContainerView(frame: (currentWindow?.frame)!)
+        dayPickerView = ExelonPickerContainerView(frame: (currentWindow?.frame)!, dataArray: dataArray)
         
         currentWindow?.addSubview(dayPickerView)
         
@@ -856,15 +860,16 @@ extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-extension BGEAutoPaySettingsViewController: DayPickerDelegate {
+extension BGEAutoPaySettingsViewController: ExelonPickerDelegate {
     func cancelPressed() {
         showPickerView(false)
     }
     
-    func donePressed(selectedDay: Int) {
+    func donePressed(selectedIndex: Int) {
         DispatchQueue.main.async {
+            let day = selectedIndex + 1
             self.viewModel.userDidChangeSettings.value = true
-            self.viewModel.numberOfDaysBeforeDueDate.value = "\(selectedDay)"
+            self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"
             self.showPickerView(false, completion: self.modifyBeforeDueDateDetailsLabel)
         }
     }

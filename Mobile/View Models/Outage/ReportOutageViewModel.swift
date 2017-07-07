@@ -59,6 +59,9 @@ class ReportOutageViewModel {
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
+        if let premise = AccountsStore.sharedInstance.currentAccount.currentPremise {
+            outageInfo.premiseNumber = premise.premiseNumber
+        }
         
         outageService.reportOutage(outageInfo: outageInfo)
             .observeOn(MainScheduler.instance)
