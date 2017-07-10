@@ -9,40 +9,51 @@
 import Foundation
 
 class FiservErrorMapper : NSObject, XMLParserDelegate {
-    let sharedInstance = FiservErrorMapper()
+    static let sharedInstance = FiservErrorMapper()
+    
     var items = [FiservError]()
     
-    private override init() {
-        var parser: XMLParser?
-        let path = Bundle.main.path(forResource: "fiserv_errors", ofType: "xml")
-        
-        if (path != nil) {
-            parser = XMLParser(contentsOf: URL(fileURLWithPath: path!))
-        }
-        
-        parser?.delegate = sharedInstance
-        parser?.parse()
-    }
+    static private var fiservError : FiservError?
+    
+    private override init() {    }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if (elementName as String == "item") {
-            let fiservError = FiservError()
+            FiservErrorMapper.fiservError = FiservError()
             
-            fiservError.context = attributeDict["context"]!
-            fiservError.id = attributeDict["id"]!
-            fiservError.name = attributeDict["name"]!
-            
-            items.append(fiservError)
+            FiservErrorMapper.fiservError?.context = attributeDict["context"]!
+            FiservErrorMapper.fiservError?.id = attributeDict["id"]!
         }
     }
     
-    func getError(message : String, context : String?) -> FiservError? {
-        return items.filter({message.uppercased().contains($0.name)}).first
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if (elementName as String == "item") {
+            items.append(FiservErrorMapper.fiservError!)
+        }
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        FiservErrorMapper.fiservError?.text += string
+    }
+    
+    public func getError(message : String, context : String?) -> FiservError? {
+        if self.items.count == 0 {
+            var parser: XMLParser?
+            let path = Bundle.main.path(forResource: "fiserv_errors", ofType: "xml")
+            
+            if (path != nil) {
+                parser = XMLParser(contentsOf: URL(fileURLWithPath: path!))
+            }
+            
+            parser?.delegate = FiservErrorMapper.sharedInstance
+            parser?.parse()
+        }
+        return items.filter({message.uppercased().contains($0.id) && (context == nil || $0.context == context)}).first
     }
 }
 
 class FiservError : NSObject {
     var id: String = ""
     var context: String = ""
-    var name: String = ""
+    var text: String = ""
 }

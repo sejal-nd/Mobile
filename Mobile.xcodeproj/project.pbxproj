@@ -515,12 +515,12 @@
 		B5D07CB41F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		B5D07CB51F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		B5D07CB61F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
-		CED8ED551F14305400BE1B26 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = CED8ED511F14305400BE1B26 /* fiserv_errors.xml */; };
-		CED8ED571F14305800BE1B26 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = CED8ED4F1F14305400BE1B26 /* fiserv_errors.xml */; };
 		CED8ED581F14305F00BE1B26 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = CED8ED531F14305400BE1B26 /* fiserv_errors.xml */; };
 		CED8ED5A1F1430A100BE1B26 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8ED591F1430A100BE1B26 /* FiservErrorMapper.swift */; };
 		CED8ED5B1F1430A100BE1B26 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8ED591F1430A100BE1B26 /* FiservErrorMapper.swift */; };
 		CED8ED5C1F1430A100BE1B26 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8ED591F1430A100BE1B26 /* FiservErrorMapper.swift */; };
+		CED8ED611F143E8700BE1B26 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = CED8ED601F143E8700BE1B26 /* fiserv_errors.xml */; };
+		CED8ED631F143EA100BE1B26 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = CED8ED621F143EA100BE1B26 /* fiserv_errors.xml */; };
 		E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
@@ -1285,10 +1285,10 @@
 		B5EB9EED1EC3EB430049B586 /* OMObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMObject.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMObject.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EEE1EC3EB430049B586 /* OMOTPService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMOTPService.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMOTPService.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EEF1EC3EB430049B586 /* OMToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMToken.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMToken.h"; sourceTree = SOURCE_ROOT; };
-		CED8ED4F1F14305400BE1B26 /* fiserv_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = fiserv_errors.xml; path = ../PECO/fiserv_errors.xml; sourceTree = "<group>"; };
-		CED8ED511F14305400BE1B26 /* fiserv_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = fiserv_errors.xml; path = ../PECO/fiserv_errors.xml; sourceTree = "<group>"; };
 		CED8ED531F14305400BE1B26 /* fiserv_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
 		CED8ED591F1430A100BE1B26 /* FiservErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservErrorMapper.swift; sourceTree = "<group>"; };
+		CED8ED601F143E8700BE1B26 /* fiserv_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
+		CED8ED621F143EA100BE1B26 /* fiserv_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E80043081E64DEE2005CF531 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Carthage/Build/iOS/ToastSwiftFramework.framework; sourceTree = "<group>"; };
@@ -2321,7 +2321,7 @@
 		CED8ED5D1F14328300BE1B26 /* BGE */ = {
 			isa = PBXGroup;
 			children = (
-				CED8ED4F1F14305400BE1B26 /* fiserv_errors.xml */,
+				CED8ED601F143E8700BE1B26 /* fiserv_errors.xml */,
 			);
 			path = BGE;
 			sourceTree = "<group>";
@@ -2329,7 +2329,7 @@
 		CED8ED5E1F14328D00BE1B26 /* ComEd */ = {
 			isa = PBXGroup;
 			children = (
-				CED8ED511F14305400BE1B26 /* fiserv_errors.xml */,
+				CED8ED621F143EA100BE1B26 /* fiserv_errors.xml */,
 			);
 			path = ComEd;
 			sourceTree = "<group>";
@@ -2883,12 +2883,12 @@
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
 				E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
+				CED8ED611F143E8700BE1B26 /* fiserv_errors.xml in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
-				CED8ED571F14305800BE1B26 /* fiserv_errors.xml in Resources */,
 				E8FE30B11E787625009D28B7 /* outage.json in Resources */,
 				B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736321E6740A8003B9369 /* INFO.txt in Resources */,
@@ -3006,11 +3006,11 @@
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
 				822BBBA51EFC1A01004EBBAB /* WebViewController.xib in Resources */,
+				CED8ED631F143EA100BE1B26 /* fiserv_errors.xml in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
-				CED8ED551F14305400BE1B26 /* fiserv_errors.xml in Resources */,
 				E841F3A81F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */,
 				E8FE30B71E787635009D28B7 /* outage.json in Resources */,
 				B557363F1E6740C9003B9369 /* SyncStore.mom in Resources */,
