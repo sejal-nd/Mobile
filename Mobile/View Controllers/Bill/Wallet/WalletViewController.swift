@@ -98,6 +98,15 @@ class WalletViewController: UIViewController {
         setupButtonTaps()
         
         viewModel.fetchWalletItems.onNext() // Fetch the items!
+        
+        addAccessibility()
+    }
+    
+    func addAccessibility() {
+        bankButton.isAccessibilityElement = true
+        bankButton.accessibilityLabel = NSLocalizedString("Bank Account", comment: "")
+        creditCardButton.isAccessibilityElement = true
+        creditCardButton.accessibilityLabel = NSLocalizedString("Credit/Debit Card", comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
