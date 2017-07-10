@@ -86,7 +86,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     let now = Calendar.current.startOfDay(for: Date())
     let lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Calendar.current.startOfDay(for: Date()))
     
-    var dayPickerView: DayPickerContainerView!
+    var dayPickerView: ExelonPickerContainerView!
     
     var numberOfDaysBefore: [String]!
 
@@ -254,21 +254,28 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func buildPickerView() {
-        let currentWindow = UIApplication.shared.keyWindow
-        dayPickerView = DayPickerContainerView(frame: (currentWindow?.frame)!)
         
-        currentWindow?.addSubview(dayPickerView)
+        //build dataArray for picker
+        let dataArray = (1...15).map { $0 == 1 ? "\($0) Days" : "\($0) Day" }
         
-        dayPickerView.leadingAnchor.constraint(equalTo: (currentWindow?.leadingAnchor)!, constant: 0).isActive = true
-        dayPickerView.trailingAnchor.constraint(equalTo: (currentWindow?.trailingAnchor)!, constant: 0).isActive = true
-        dayPickerView.topAnchor.constraint(equalTo: (currentWindow?.topAnchor)!, constant: 0).isActive = true
+        guard let currentWindow = UIApplication.shared.keyWindow else {
+            fatalError("No keyWindow?")
+        }
+        
+        dayPickerView = ExelonPickerContainerView(frame: currentWindow.frame, dataArray: dataArray)
+        
+        currentWindow.addSubview(dayPickerView)
+        
+        dayPickerView.leadingAnchor.constraint(equalTo: currentWindow.leadingAnchor, constant: 0).isActive = true
+        dayPickerView.trailingAnchor.constraint(equalTo: currentWindow.trailingAnchor, constant: 0).isActive = true
+        dayPickerView.topAnchor.constraint(equalTo: currentWindow.topAnchor, constant: 0).isActive = true
 
         let height = dayPickerView.containerView.frame.size.height + 8
         dayPickerView.bottomConstraint.constant = height
         
         dayPickerView.delegate = self
         
-        zPositionForWindow = (currentWindow?.layer.zPosition)!
+        zPositionForWindow = currentWindow.layer.zPosition
 
         dayPickerView.isHidden = true
     }
@@ -839,15 +846,16 @@ extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-extension BGEAutoPaySettingsViewController: DayPickerDelegate {
+extension BGEAutoPaySettingsViewController: ExelonPickerDelegate {
     func cancelPressed() {
         showPickerView(false)
     }
     
-    func donePressed(selectedDay: Int) {
+    func donePressed(selectedIndex: Int) {
         DispatchQueue.main.async {
+            let day = selectedIndex + 1
             self.viewModel.userDidChangeSettings.value = true
-            self.viewModel.numberOfDaysBeforeDueDate.value = "\(selectedDay)"
+            self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"
             self.showPickerView(false, completion: self.modifyBeforeDueDateDetailsLabel)
         }
     }

@@ -24,6 +24,8 @@ enum AccountType {
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
+    var premises: Array<Premise> //TODO: return to let when testing is done
+    var currentPremise: Premise?
     
     let status: String?
     let isLinked: Bool
@@ -32,14 +34,21 @@ struct Account: Mappable, Equatable, Hashable {
     //let isStopped: Bool // Not sure the status of this. Will BGE accounts just send `flagFinaled` or will it be different?
     
     init(map: Mapper) throws {
-        try accountNumber = map.from("accountNumber")
+        accountNumber = try map.from("accountNumber")
         address = map.optionalFrom("address")
+        premises = map.optionalFrom("PremiseInfo") ?? []
         
         status = map.optionalFrom("status")
         isLinked = map.optionalFrom("isLinkedProfile") ?? false
         isDefault = map.optionalFrom("isDefaultProfile") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false
         //isStopped = map.optionalFrom("isStoppedFlag") ?? false
+        
+        currentPremise = isMultipremise ? premises[0] : nil 
+    }
+    
+    var isMultipremise: Bool{
+        return premises.count > 1 //TODO: could be 0 depending on whether each account has matching default premise
     }
     
     // Equatable
