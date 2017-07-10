@@ -14,14 +14,12 @@ class MultiPremiseAddressView: UIView {
     @IBOutlet var checkMark: UIImageView!
     
     class func instanceFromNib(showsCheck: Bool, labelText: String) -> MultiPremiseAddressView {
-        
-        let view = UINib(nibName: String(describing: MultiPremiseAddressView.self), bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MultiPremiseAddressView
-        
+        let view = Bundle.main.loadViewFromNib() as MultiPremiseAddressView
+       
         view.addressLabel.text = labelText
         view.checkMark.isHidden = !showsCheck
         
         return view
-        
     }
 
 }

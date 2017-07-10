@@ -34,7 +34,7 @@ struct Account: Mappable, Equatable, Hashable {
     //let isStopped: Bool // Not sure the status of this. Will BGE accounts just send `flagFinaled` or will it be different?
     
     init(map: Mapper) throws {
-        try accountNumber = map.from("accountNumber")
+        accountNumber = try map.from("accountNumber")
         address = map.optionalFrom("address")
         premises = map.optionalFrom("PremiseInfo") ?? []
         

@@ -19,19 +19,18 @@ class LoadingView: UIView {
     }
     
     private lazy var animationContainer = UIView()
-    private var loadingAnimationView = LOTAnimationView(name: "full_screen_loading")
+    private var loadingAnimationView = LOTAnimationView(name: "full_screen_loading")!
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        animationContainer.frame.size = (UIApplication.shared.keyWindow?.bounds.size)!
+        animationContainer.frame.size = UIApplication.shared.keyWindow!.bounds.size
         animationContainer.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
-        loadingAnimationView!.frame.size = CGSize(width: 72, height: 72)
-        loadingAnimationView!.loopAnimation = true
-        loadingAnimationView!.play()
+        loadingAnimationView.frame.size = CGSize(width: 72, height: 72)
+        loadingAnimationView.loopAnimation = true
         
-        animationContainer.addSubview(loadingAnimationView!)
+        animationContainer.addSubview(loadingAnimationView)
         addSubview(animationContainer)
     }
     
@@ -53,6 +52,8 @@ class LoadingView: UIView {
             
             containerView.addSubview(loadingView)
             
+            loadingView.loadingAnimationView.play()
+            
             UIView.animate(withDuration: animated ? 0.2 : 0, delay: 0.0, options: .curveEaseOut, animations: {
                 loadingView.alpha = 1.0
             }, completion: { _ in
@@ -73,6 +74,7 @@ class LoadingView: UIView {
             UIView.animate(withDuration: animated ? 0.2 : 0, delay: 0.0, options: .curveEaseOut, animations: {
                 loadingView.alpha = 0.0
             }, completion: {_ in
+                loadingView.loadingAnimationView.pause()
                 loadingView.alpha = 1.0
                 loadingView.removeFromSuperview()
                 
@@ -87,8 +89,8 @@ class LoadingView: UIView {
             if frame == CGRect.zero {
                 return
             }
-            animationContainer.center = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
-            loadingAnimationView!.center = CGPoint(x: animationContainer.bounds.size.width / 2, y: animationContainer.bounds.size.height / 2)
+            animationContainer.center = CGPoint(x: frame.width / 2, y: frame.height / 2)
+            loadingAnimationView.center = CGPoint(x: animationContainer.bounds.width / 2, y: animationContainer.bounds.height / 2)
         }
     }
     
