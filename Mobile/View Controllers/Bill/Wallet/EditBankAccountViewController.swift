@@ -135,22 +135,20 @@ class EditBankAccountViewController: UIViewController {
         let opco = Environment.sharedInstance.opco
         
         if let nickname = walletItem.nickName {
+            nicknameLabel.text = nickname.uppercased()
             if opco == .bge {
-                if let bankAccountType = walletItem.bankAccountType {
-                    nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
-                } else {
-                    nicknameLabel.text = nickname.uppercased()
+                if walletItem.bankOrCard == .bank {
+                    if let bankAccountType = walletItem.bankAccountType {
+                        nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
+                    }
                 }
-            } else {
-                nicknameLabel.text = nickname.uppercased()
             }
         } else {
+            nicknameLabel.text = ""
             if opco == .bge {
                 if let bankAccountType = walletItem.bankAccountType {
                     nicknameLabel.text = bankAccountType.rawValue.uppercased()
                 }
-            } else {
-                nicknameLabel.text = ""
             }
         }
         
@@ -210,7 +208,7 @@ class EditBankAccountViewController: UIViewController {
         
         let saveBankAccountChanges = { (oneTouchPay: Bool) in
             if oneTouchPay {
-                self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, paymentCategoryType: .check, forCustomerNumber: customerNumber)
+                self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, bankOrCard: .bank, forCustomerNumber: customerNumber)
             } else {
                 self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
             }

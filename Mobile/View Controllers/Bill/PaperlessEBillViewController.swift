@@ -21,7 +21,7 @@ class PaperlessEBillViewController: UIViewController {
     // Background
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var gradientBackgroundView: UIView!
-    private var gradientLayer: CALayer = CAGradientLayer()
+    private var gradientLayer: CAGradientLayer!
     
     // Content
     @IBOutlet weak var whatIsButton: ButtonControl!
@@ -113,23 +113,15 @@ class PaperlessEBillViewController: UIViewController {
         
         whatIsButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         whatIsButton.layer.cornerRadius = 2
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        gradientLayer.removeFromSuperlayer()
         
-        let gLayer = CAGradientLayer()
-        gLayer.frame = gradientBackgroundView.frame
-        gLayer.colors = [UIColor.softGray.cgColor, UIColor.white.cgColor]
-        
-        gradientLayer = gLayer
-        gradientBackgroundView.layer.addSublayer(gLayer)
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        gradientLayer.frame = gradientBackgroundView.frame
+        gradientLayer = CAGradientLayer()
+        gradientLayer.frame = gradientBackgroundView.bounds
+        gradientLayer.colors = [
+            UIColor.softGray.cgColor,
+            UIColor.white.cgColor,
+        ]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientBackgroundView.layer.addSublayer(gradientLayer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -138,6 +130,16 @@ class PaperlessEBillViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        gradientLayer.frame = gradientBackgroundView.frame
+    }
+    
+    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        gradientLayer.frame = gradientBackgroundView.frame
     }
     
     func add(accountDetail: AccountDetail, animated: Bool) {

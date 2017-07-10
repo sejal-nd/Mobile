@@ -14,6 +14,7 @@ class MiniWalletTableViewCell: UITableViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
+    @IBOutlet weak var checkmarkImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +30,8 @@ class MiniWalletTableViewCell: UITableViewCell {
         accountNumberLabel.textColor = .blackText
         nicknameLabel.font = SystemFont.medium.of(textStyle: .footnote)
         nicknameLabel.textColor = .middleGray
+        
+        checkmarkImageView.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,14 +41,7 @@ class MiniWalletTableViewCell: UITableViewCell {
     }
     
     func bindToWalletItem(_ walletItem: WalletItem) {
-        
-        if let paymentCategoryType = walletItem.paymentCategoryType {
-            if paymentCategoryType == .check {
-                iconImageView.image = #imageLiteral(resourceName: "opco_bank_mini")
-            } else {
-                iconImageView.image = #imageLiteral(resourceName: "opco_credit_card_mini")
-            }
-        }
+        iconImageView.image = walletItem.bankOrCard == .bank ? #imageLiteral(resourceName: "opco_bank_mini") : #imageLiteral(resourceName: "opco_credit_card_mini")
         
         if let last4digits = walletItem.maskedWalletItemAccountNumber {
             accountNumberLabel.text = "**** \(last4digits)"
