@@ -28,6 +28,7 @@ class MiniWalletViewController: UIViewController {
     let viewModel = MiniWalletViewModel(walletService: ServiceFactory.createWalletService())
     
     // These should be passed by whatever VC is presenting MiniWalletViewController
+    var addingDisabled = false // Temporarily being used for sprint 13 payment workflow. Sprint 14 will enable but using them will have different actions
     var creditCardsDisabled = false
     var tableHeaderLabelText: String?
     var accountDetail: AccountDetail!
@@ -46,9 +47,7 @@ class MiniWalletViewController: UIViewController {
         
         tableHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
         tableHeaderLabel.textColor = .blackText
-        if let headerText = tableHeaderLabelText {
-            tableHeaderLabel.text = headerText
-        }
+        tableHeaderLabel.text = tableHeaderLabelText
         
         tableFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
         tableFooterLabel.textColor = .blackText
@@ -60,7 +59,9 @@ class MiniWalletViewController: UIViewController {
         viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowErrorLabel.map(!).drive(errorLabel.rx.isHidden).addDisposableTo(disposeBag)
 
-        fetchWalletItems()
+        if viewModel.walletItems.value == nil { // Wallet items are passed in from MakePaymentViewController - so only fetch if necessary
+            fetchWalletItems()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -203,6 +204,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 let bankItem = viewModel.bankAccounts[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "MiniWalletItemCell", for: indexPath) as! MiniWalletTableViewCell
                 cell.bindToWalletItem(bankItem)
+                cell.checkmarkImageView.isHidden = bankItem != viewModel.selectedItem.value
                 cell.innerContentView.tag = indexPath.row
                 cell.innerContentView.addTarget(self, action: #selector(onBankAccountPress(sender:)), for: .touchUpInside)
                 return cell
@@ -210,15 +212,21 @@ extension MiniWalletViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
                 cell.iconImageView.image = #imageLiteral(resourceName: "bank_building_mini")
                 cell.label.text = NSLocalizedString("Add Bank Account", comment: "")
-                viewModel.bankAccountLimitReached.map(!).drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
+                viewModel.bankAccountLimitReached.map {
+                    if self.addingDisabled {
+                        return false
+                    }
+                    return !$0
+                }.drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
                 cell.innerContentView.addTarget(self, action: #selector(onAddBankAccountPress), for: .touchUpInside)
                 return cell
             }
         } else {
             if indexPath.row < viewModel.creditCards.count {
-                let cardItem = viewModel.bankAccounts[indexPath.row]
+                let cardItem = viewModel.creditCards[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "MiniWalletItemCell", for: indexPath) as! MiniWalletTableViewCell
                 cell.bindToWalletItem(cardItem)
+                cell.checkmarkImageView.isHidden = cardItem != viewModel.selectedItem.value
                 cell.innerContentView.tag = indexPath.row
                 cell.innerContentView.addTarget(self, action: #selector(onCreditCardPress(sender:)), for: .touchUpInside)
                 if self.creditCardsDisabled {
@@ -230,7 +238,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.iconImageView.image = #imageLiteral(resourceName: "credit_card_mini")
                 cell.label.text = NSLocalizedString("Add Credit/Debit Card", comment: "")
                 viewModel.creditCardLimitReached.map {
-                    if self.creditCardsDisabled {
+                    if self.creditCardsDisabled || self.addingDisabled {
                         return false
                     }
                     return !$0

@@ -87,52 +87,50 @@ class WalletTableViewCell: UITableViewCell {
         bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         switch Environment.sharedInstance.opco {
         case .comEd:
-            if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+            if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 bottomBarLabel.text = NSLocalizedString("$2.50 Convenience Fee", comment: "")
                 a11yLabel =  NSLocalizedString("Credit card", comment: "")
-            } else if walletItem.paymentCategoryType == .check {
+            } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
                 a11yLabel =  NSLocalizedString("Bank account", comment: "")
             }
         case .peco:
-            if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+            if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 bottomBarLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
                 a11yLabel =  NSLocalizedString("Credit card", comment: "")
-            } else if walletItem.paymentCategoryType == .check {
+            } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
                 a11yLabel =  NSLocalizedString("Bank account", comment: "")
             }
         case .bge:
-            if walletItem.paymentCategoryType == .check {
-                accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                a11yLabel = NSLocalizedString("Bank account", comment: "")
-            } else {
+            if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 //bottomBarLabel.text = NSLocalizedString("Fees: $1.50 Residential | 2.4% Business", comment: "")
                 a11yLabel = NSLocalizedString("Credit card", comment: "")
+            } else {
+                accountImageView.image = #imageLiteral(resourceName: "opco_bank")
+                a11yLabel = NSLocalizedString("Bank account", comment: "")
             }
         }
         
         // Nickname
         if let nickname = walletItem.nickName {
+            nicknameLabel.text = nickname.uppercased()
             if Environment.sharedInstance.opco == .bge {
-                if let bankAccountType = walletItem.bankAccountType {
-                    nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
-                } else {
-                    nicknameLabel.text = nickname.uppercased()
+                if walletItem.bankOrCard == .bank {
+                    if let bankAccountType = walletItem.bankAccountType {
+                        nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
+                    }
                 }
-            } else {
-                nicknameLabel.text = nickname.uppercased()
             }
         } else {
+            nicknameLabel.text = ""
             if Environment.sharedInstance.opco == .bge {
                 if let bankAccountType = walletItem.bankAccountType {
                     nicknameLabel.text = bankAccountType.rawValue.uppercased()
                 }
-            } else {
-                nicknameLabel.text = ""
             }
         }
         

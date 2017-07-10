@@ -220,7 +220,7 @@ extension WalletViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedWalletItem = viewModel.walletItems.value![indexPath.section]
-        if selectedWalletItem?.paymentCategoryType == .credit || selectedWalletItem?.paymentCategoryType == .debit {
+        if selectedWalletItem?.bankOrCard == .card {
             self.performSegue(withIdentifier: "editCreditCardSegue", sender: self)
         } else {
             self.performSegue(withIdentifier: "editBankAccountSegue", sender: self)

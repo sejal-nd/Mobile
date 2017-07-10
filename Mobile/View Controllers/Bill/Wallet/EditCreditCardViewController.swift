@@ -377,7 +377,7 @@ class EditCreditCardViewController: UIViewController {
                     
                     let editOneTouchPay = {
                         if oneTouchPay {
-                            self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, paymentCategoryType: .credit, forCustomerNumber: customerNumber)
+                            self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, bankOrCard: .card, forCustomerNumber: customerNumber)
                         } else {
                             self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
                         }
@@ -425,7 +425,7 @@ class EditCreditCardViewController: UIViewController {
             } else {
                 let toggleOneTouchPay = {
                     if self.viewModel.oneTouchPay.value {
-                        self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, paymentCategoryType: .credit, forCustomerNumber: customerNumber)
+                        self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, bankOrCard: .card, forCustomerNumber: customerNumber)
                         self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
                         _ = self.navigationController?.popViewController(animated: true)
                     } else {

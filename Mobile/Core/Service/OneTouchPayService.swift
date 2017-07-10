@@ -31,13 +31,14 @@ class OneTouchPayService {
         return nil
     }
     
-    func setOneTouchPayItem(walletItemID: String, maskedWalletItemAccountNumber: String, paymentCategoryType: PaymentCategoryType, forCustomerNumber number: String?) {
+    func setOneTouchPayItem(walletItemID: String, maskedWalletItemAccountNumber: String, bankOrCard: BankOrCard, forCustomerNumber number: String?) {
         if let customerNumber = number {
             var oneTouchPayDictionary = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.OneTouchPayDictionary)!
             oneTouchPayDictionary[customerNumber] = [
                 "walletItemID": walletItemID,
                 "maskedWalletItemAccountNumber": maskedWalletItemAccountNumber,
-                "paymentCategoryType": paymentCategoryType.rawValue
+                "paymentCategoryType": bankOrCard == .bank ? PaymentCategoryType.check.rawValue : PaymentCategoryType.credit.rawValue,
+                "bankAccountType": bankOrCard == .bank ? BankAccountType.checking.rawValue : BankAccountType.card.rawValue
             ]
             UserDefaults.standard.set(oneTouchPayDictionary, forKey: UserDefaultKeys.OneTouchPayDictionary)
         } else {
@@ -58,10 +59,10 @@ class OneTouchPayService {
     func getOneTouchPayDisplayString(forCustomerNumber number: String?) -> String {
         if let customerNumber = number {
             if let oneTouchPayItem = self.oneTouchPayItem(forCustomerNumber: customerNumber) {
-                switch oneTouchPayItem.paymentCategoryType! {
-                case .check:
+                switch oneTouchPayItem.bankOrCard {
+                case .bank:
                     return String(format: NSLocalizedString("You are currently using bank account %@ for One Touch Pay.", comment: ""), "**** \(oneTouchPayItem.maskedWalletItemAccountNumber!)")
-                case .credit, .debit:
+                case .card:
                     return String(format: NSLocalizedString("You are currently using card %@ for One Touch Pay.", comment: ""), "**** \(oneTouchPayItem.maskedWalletItemAccountNumber!)")
                 }
             }
