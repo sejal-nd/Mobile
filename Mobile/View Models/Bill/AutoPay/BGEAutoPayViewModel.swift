@@ -88,11 +88,11 @@ class BGEAutoPayViewModel {
                 }
                 
                 // Expired accounts
-                if let numberOfPayments = autoPayInfo.effectiveNumPayments,
+                if let effectiveNumberOfPayments = autoPayInfo.effectiveNumPayments,
                     let numberOfPaymentsScheduled = autoPayInfo.numberOfPaymentsScheduled,
-                    Int(numberOfPayments)! >= Int(numberOfPaymentsScheduled)! {
+                    Int(numberOfPaymentsScheduled)! >= Int(effectiveNumberOfPayments)! {
                     let localizedString = NSLocalizedString("Enrollment expired due to AutoPay settings - you set enrollment to expire after %d payments.", comment: "")
-                    self.expiredReason.value = String(format: localizedString, Int(numberOfPaymentsScheduled)!)
+                    self.expiredReason.value = String(format: localizedString, Int(effectiveNumberOfPayments)!)
                 } else if let effectiveEndDate = autoPayInfo.effectiveEndDate, effectiveEndDate < Date() {
                     let localizedString = NSLocalizedString("Enrollment expired due to AutoPay settings - you set enrollment to expire on %@.", comment: "")
                     self.expiredReason.value = String(format: localizedString, effectiveEndDate.mmDdYyyyString)
