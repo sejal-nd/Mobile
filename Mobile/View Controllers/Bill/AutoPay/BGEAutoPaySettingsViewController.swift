@@ -256,23 +256,26 @@ class BGEAutoPaySettingsViewController: UIViewController {
     func buildPickerView() {
         
         //build dataArray for picker
-        let dataArray = (1...15).map { $0 > 1 ? "\($0) Days" : "\($0) Day" }
+        let dataArray = (1...15).map { $0 == 1 ? "\($0) Days" : "\($0) Day" }
         
-        let currentWindow = UIApplication.shared.keyWindow
-        dayPickerView = ExelonPickerContainerView(frame: (currentWindow?.frame)!, dataArray: dataArray)
+        guard let currentWindow = UIApplication.shared.keyWindow else {
+            fatalError("No keyWindow?")
+        }
         
-        currentWindow?.addSubview(dayPickerView)
+        dayPickerView = ExelonPickerContainerView(frame: currentWindow.frame, dataArray: dataArray)
         
-        dayPickerView.leadingAnchor.constraint(equalTo: (currentWindow?.leadingAnchor)!, constant: 0).isActive = true
-        dayPickerView.trailingAnchor.constraint(equalTo: (currentWindow?.trailingAnchor)!, constant: 0).isActive = true
-        dayPickerView.topAnchor.constraint(equalTo: (currentWindow?.topAnchor)!, constant: 0).isActive = true
+        currentWindow.addSubview(dayPickerView)
+        
+        dayPickerView.leadingAnchor.constraint(equalTo: currentWindow.leadingAnchor, constant: 0).isActive = true
+        dayPickerView.trailingAnchor.constraint(equalTo: currentWindow.trailingAnchor, constant: 0).isActive = true
+        dayPickerView.topAnchor.constraint(equalTo: currentWindow.topAnchor, constant: 0).isActive = true
 
         let height = dayPickerView.containerView.frame.size.height + 8
         dayPickerView.bottomConstraint.constant = height
         
         dayPickerView.delegate = self
         
-        zPositionForWindow = (currentWindow?.layer.zPosition)!
+        zPositionForWindow = currentWindow.layer.zPosition
 
         dayPickerView.isHidden = true
     }

@@ -57,10 +57,10 @@ struct OutageInfo {
         self.reportedTime = Date()
         self.issue = issue
         self.phoneNumber = phoneNumber
-        self.phoneExtension = phoneExtension != nil ? phoneExtension! : nil
-        self.isUnusual = isUnusual != nil ? isUnusual! : nil
-        self.unusualMessage = unusualMessage != nil ? unusualMessage! : nil
-        self.isNeighbor = isNeighbor != nil ? isNeighbor! : nil
+        self.phoneExtension = phoneExtension
+        self.isUnusual = isUnusual
+        self.unusualMessage = unusualMessage
+        self.isNeighbor = isNeighbor
     }
 }
 

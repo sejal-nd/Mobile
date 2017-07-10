@@ -9,6 +9,7 @@
 import Foundation
 
 struct MockAccountService : AccountService {
+
     
     let testAccounts = [
         Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"]),
@@ -28,6 +29,10 @@ struct MockAccountService : AccountService {
     }
     
     func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int, completion: @escaping (ServiceResult<Void>) -> Void) {
+        completion(ServiceResult.Success())
+    }
+    
+    func setDefaultAccount(account: Account, completion: @escaping (ServiceResult<Void>) -> Void) {
         completion(ServiceResult.Success())
     }
 }
