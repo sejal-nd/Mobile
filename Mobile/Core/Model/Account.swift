@@ -75,6 +75,7 @@ struct AccountDetail: Mappable {
     let isDualBillOption: Bool
     let isCashOnly: Bool
     let isSupplier: Bool
+    let isActiveSeverance: Bool
     
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
@@ -112,6 +113,7 @@ struct AccountDetail: Mappable {
         isDualBillOption = map.optionalFrom("isDualBillOption") ?? false
         isCashOnly = map.optionalFrom("isCashOnly") ?? false
         isSupplier = map.optionalFrom("isSupplier") ?? false
+        isActiveSeverance = map.optionalFrom("activeSeverance") ?? false
         
         status = map.optionalFrom("status")
         
