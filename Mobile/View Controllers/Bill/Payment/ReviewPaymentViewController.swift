@@ -18,7 +18,7 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var scrollViewContentView: UIView!
     var gradientLayer = CAGradientLayer()
     
-    @IBOutlet weak var overpaymentView: UIView!
+    @IBOutlet weak var overpaymentLabelView: UIView!
     @IBOutlet weak var overpaymentLabel: UILabel!
     
     @IBOutlet weak var paymentAccountTextLabel: UILabel!
@@ -39,6 +39,10 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var paymentAmountValueLabel: UILabel!
     @IBOutlet weak var convenienceFeeTextLabel: UILabel!
     @IBOutlet weak var convenienceFeeValueLabel: UILabel!
+    
+    @IBOutlet weak var overpayingView: UIView!
+    @IBOutlet weak var overpayingTextLabel: UILabel!
+    @IBOutlet weak var overpayingValueLabel: UILabel!
     
     @IBOutlet weak var totalPaymentView: UIView!
     @IBOutlet weak var paymentDateTextLabel: UILabel!
@@ -112,6 +116,12 @@ class ReviewPaymentViewController: UIViewController {
         convenienceFeeValueLabel.textColor = .deepGray
         convenienceFeeValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
+        overpayingTextLabel.textColor = .deepGray
+        overpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        overpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
+        overpayingValueLabel.textColor = .deepGray
+        overpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
         totalPaymentView.backgroundColor = .softGray
         paymentDateTextLabel.textColor = .blackText
         paymentDateTextLabel.font = SystemFont.medium.of(textStyle: .headline)
@@ -155,9 +165,9 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func bindViewHiding() {
-        viewModel.shouldShowOverpaymentLabel.map(!).drive(overpaymentView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowOverpaymentLabel.map(!).drive(overpaymentLabelView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isOverpaying.map(!).drive(overpayingView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.reviewPaymentShouldShowConvenienceFeeBox.map(!).drive(convenienceFeeView.rx.isHidden).addDisposableTo(disposeBag)
-        
         viewModel.shouldShowSwitchView.map(!).drive(reviewSwitchView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowTermsConditionsButton.map(!).drive(termsConditionsButtonView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).addDisposableTo(disposeBag)
@@ -178,8 +188,11 @@ class ReviewPaymentViewController: UIViewController {
         // Payment Amount
         viewModel.paymentAmountDisplayString.asDriver().drive(paymentAmountValueLabel.rx.text).addDisposableTo(disposeBag)
         
+        // Overpaying
+        viewModel.overpayingValueDisplayString.drive(overpayingValueLabel.rx.text).addDisposableTo(disposeBag)
+        
         // Convenience Fee
-        viewModel.convenienceFeeDisplayString.asDriver().drive(convenienceFeeValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.convenienceFeeDisplayString.drive(convenienceFeeValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Payment Date
         viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).addDisposableTo(disposeBag)

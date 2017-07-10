@@ -402,6 +402,12 @@ class PaymentViewModel {
         return Environment.sharedInstance.opco == .bge && $0
     }
     
+    var overpayingValueDisplayString: Driver<String> {
+        return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver().map { return Double($0) ?? 0 }).map {
+            return ($1 - $0).currencyString!
+        }
+    }
+    
     var shouldShowSwitchView: Driver<Bool> {
         return isOverpaying.map {
             if Environment.sharedInstance.opco == .bge { // On BGE, the switch view is just for confirming overpayment
