@@ -18,22 +18,22 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var expandedStates = [Bool]()
     var accounts: [Account]!
+    
+    var premisePickerView: ExelonPickerContainerView!
+    
+    var zPositionForWindow:CGFloat = 0.0
+    
+    var accountIndexToEditPremise = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 64
         
         // Make the currently selected account the first item in list
         let index = AccountsStore.sharedInstance.accounts.index(of: AccountsStore.sharedInstance.currentAccount)
         let currentAccount = accounts.remove(at: index!)
         accounts.insert(currentAccount, at: 0)
         
-        for _ in accounts {
-            expandedStates.append(false)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,23 +44,67 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
         }
     }
     
-    func showPremises(sender: UIButton) {
-        if let cell = tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as? AdvancedAccountPickerDropDownTableViewCell {
-            if cell.isExpanded == false {
-                cell.viewAddressesLabel.isHidden = true
-                cell.premisesLabel.text = "1215 E Fort Ave\n2109 Spring Garden St\n500 Norris St\n700 12th St NW"
-                cell.caretImageView.image? = #imageLiteral(resourceName: "ic_carat_up")
-                cell.isExpanded = true
-            } else {
-                cell.viewAddressesLabel.isHidden = false
-                cell.premisesLabel.text = nil
-                cell.caretImageView.image? = #imageLiteral(resourceName: "ic_carat_down")
-                cell.isExpanded = false
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        buildPickerView()
+    }
+    
+    func buildPickerView() {
+        
+        let currentWindow = UIApplication.shared.keyWindow
+        premisePickerView = ExelonPickerContainerView(frame: (currentWindow?.frame)!)
+        
+        currentWindow?.addSubview(premisePickerView)
+        
+        premisePickerView.leadingAnchor.constraint(equalTo: (currentWindow?.leadingAnchor)!, constant: 0).isActive = true
+        premisePickerView.trailingAnchor.constraint(equalTo: (currentWindow?.trailingAnchor)!, constant: 0).isActive = true
+        premisePickerView.topAnchor.constraint(equalTo: (currentWindow?.topAnchor)!, constant: 0).isActive = true
+        
+        let height = premisePickerView.containerView.frame.size.height + 8
+        premisePickerView.bottomConstraint.constant = height
+        
+        premisePickerView.delegate = self
+        
+        zPositionForWindow = (currentWindow?.layer.zPosition)!
+        
+        premisePickerView.isHidden = true
+    }
+    
+    func showPickerView(_ showPicker: Bool, completion: (() -> ())? = nil) {
+        if showPicker {
+            self.premisePickerView.isHidden = false
+            
+            let row = 0
+            
+            self.premisePickerView.selectRow(row)
+        }
+        
+        self.premisePickerView.layer.zPosition = showPicker ? self.zPositionForWindow : -1
+        UIApplication.shared.keyWindow?.layer.zPosition = showPicker ? -1 : self.zPositionForWindow
+        
+        var bottomAnchorLength = self.premisePickerView.containerView.frame.size.height + 8
+        var alpha:Float = 0.0
+        
+        if showPicker {
+            alpha = 0.6
+            bottomAnchorLength = -8
+        }
+        
+        self.premisePickerView.bottomConstraint.constant = bottomAnchorLength
+        
+        self.premisePickerView.layoutIfNeeded()
+        UIView.animate(withDuration: 0.25, animations: {
+            self.premisePickerView.layoutIfNeeded()
+            
+            self.premisePickerView.backgroundColor =  UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: alpha)
+        }, completion: { _ in
+            if !showPicker {
+                self.premisePickerView.isHidden = true
             }
             
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }
+            completion?()
+        })
     }
 
 }
@@ -68,7 +112,25 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
 extension AdvancedAccountPickerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.advancedAccountPickerViewController(self, didSelectAccount: accounts[indexPath.row])
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        let account = accounts[indexPath.row]
+        
+        if account.isMultipremise {
+            self.accountIndexToEditPremise = indexPath.row
+            
+            let dataArray = account.premises.map({ (premise: Premise) -> String in
+                return premise.addressLineString
+            })
+            premisePickerView.addNewData(dataArray: dataArray)
+            self.showPickerView(true)
+        } else {
+            self.exitWith(selectedAccount: accounts[indexPath.row])
+        }
+    }
+    
+    func exitWith(selectedAccount: Account) {
+        delegate?.advancedAccountPickerViewController(self, didSelectAccount: selectedAccount)
         if UIDevice.current.userInterfaceIdiom == .pad {
             dismiss(animated: true, completion: nil)
         } else {
@@ -88,71 +150,51 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
         return accounts.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AdvancedAccountPickerTableViewCell
-        
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let account = accounts[indexPath.row]
-        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
         
-        cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
-        cell.accountImageView.isAccessibilityElement = true
-        cell.accountImageView.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial account", comment: "") : NSLocalizedString("Residential account", comment: "")
-        cell.accountNumber.text = account.accountNumber
-        cell.accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
-        cell.addressLabel.text = account.address
-        if let address = account.address {
-            cell.addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
-        }
-        
-        if account.isDefault {
-            cell.accountStatusLabel.text = NSLocalizedString("Default", comment: "")
-        } else if account.isFinaled {
-            cell.accountStatusLabel.text = NSLocalizedString("Finaled", comment: "")
-            cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial_disabled") : #imageLiteral(resourceName: "ic_residential_disabled")
-        } else if account.isLinked {
-            cell.accountStatusLabel.text = NSLocalizedString("Linked", comment: "")
+        if account.isMultipremise {
+            return 125
         } else {
-            cell.accountStatusLabel.text = ""
+            return 64
         }
-        
-        if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
-            cell.accountImageViewLeadingConstraint.constant = 39
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
-            cell.checkMarkImageView.isHidden = false
-            cell.checkMarkImageView.isAccessibilityElement = true
-            cell.checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
-        } else {
-            cell.accountImageViewLeadingConstraint.constant = 16
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
-            cell.checkMarkImageView.isHidden = true
-            cell.checkMarkImageView.isAccessibilityElement = false
-        }
-        return cell
-        
-//        // Decision made on 5/2/17 that BGE is unable to display multi-premise addresses
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewDropDownCell", for: indexPath) as! AdvancedAccountPickerDropDownTableViewCell
-//        
-//        let account = accounts[indexPath.row]
-//        
-//        cell.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
-//        cell.accountNumber.text = account.accountNumber
-//        cell.addressLabel.text = account.address
-//        cell.accountStatusLabel.text = ""
-//        cell.viewAddressesButton.tag = indexPath.row
-//        cell.viewAddressesButton.addTarget(self, action: #selector(showPremises), for: .touchUpInside)
-//        
-//        if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
-//            cell.accountImageViewLeadingConstraint.constant = 39
-//            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//            cell.checkMarkImageView.isHidden = false
-//        } else {
-//            cell.accountImageViewLeadingConstraint.constant = 16
-//            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//            cell.checkMarkImageView.isHidden = true
-//        }
-//        return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let account = accounts[indexPath.row]
+        
+        if account.isMultipremise {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewMultPremiseCell", for: indexPath) as! MultiPremiseTableViewCell
+            cell.configureCellWith(account: account)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AdvancedAccountPickerTableViewCell
+            cell.configure(withAccount: account)
+            return cell
+        }
+    }
+}
+
+extension AdvancedAccountPickerViewController: ExelonPickerDelegate {
+    func cancelPressed() {
+        self.showPickerView(false)
+    }
+    
+    func donePressed(selectedIndex: Int) {
+        dLog(message: "selectedIndex \(selectedIndex)")
+        
+        self.accounts[self.accountIndexToEditPremise].currentPremise = self.accounts[self.accountIndexToEditPremise].premises[selectedIndex]
+        
+        AccountsStore.sharedInstance.accounts = self.accounts
+        
+        self.showPickerView(false) { 
+            self.exitWith(selectedAccount: self.accounts[self.accountIndexToEditPremise])
+        }
+    }
 }
 
 

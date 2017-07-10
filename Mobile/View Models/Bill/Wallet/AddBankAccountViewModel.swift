@@ -63,7 +63,7 @@ class AddBankAccountViewModel {
     
     func accountNumberIsValid() -> Observable<Bool> {
         return accountNumber.asObservable().map {
-            return $0.characters.count >= 8 && $0.characters.count <= 17
+            return $0.characters.count >= 4 && $0.characters.count <= 17
         }
     }
     

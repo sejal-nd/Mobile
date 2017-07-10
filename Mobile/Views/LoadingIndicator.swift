@@ -34,6 +34,11 @@ class LoadingIndicator: UIView {
         lottieAnimationView!.play()
         
         addSubview(lottieAnimationView!)
+        
+        //make accessibility label for loading animation - and make it the only thing tappable
+        lottieAnimationView!.isAccessibilityElement = true;
+        lottieAnimationView!.accessibilityLabel = "Loading";
+        lottieAnimationView!.accessibilityViewIsModal = true;
     }
     
     override var intrinsicContentSize: CGSize {

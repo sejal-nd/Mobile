@@ -200,7 +200,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     func setupValidation() {
-        let checkImageOrNil: (Bool) -> UIImage? = { $0 ? #imageLiteral(resourceName: "ic_check"): nil }
+        let checkImageOrNil: (Bool) -> UIImage? = { $0 ? #imageLiteral(resourceName: "ic_check") : nil }
         
         viewModel.characterCountValid().map(checkImageOrNil).bind(to: characterCountCheck.rx.image).addDisposableTo(disposeBag)
         viewModel.characterCountValid().subscribe(onNext: { valid in

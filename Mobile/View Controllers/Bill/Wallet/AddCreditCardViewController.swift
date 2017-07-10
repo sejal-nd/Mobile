@@ -228,7 +228,7 @@ class AddCreditCardViewController: UIViewController {
             if !self.viewModel.cardNumber.value.isEmpty {
                 self.viewModel.cardNumberIsValid().single().subscribe(onNext: { valid in 
                     if !valid {
-                        self.cardNumberTextField.setError(NSLocalizedString("Invalid credit card", comment: ""))
+                        self.cardNumberTextField.setError(NSLocalizedString("Invalid card number", comment: ""))
                     }
                 }).addDisposableTo(self.disposeBag)
             }
