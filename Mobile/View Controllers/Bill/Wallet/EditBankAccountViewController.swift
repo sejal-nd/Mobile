@@ -135,22 +135,20 @@ class EditBankAccountViewController: UIViewController {
         let opco = Environment.sharedInstance.opco
         
         if let nickname = walletItem.nickName {
+            nicknameLabel.text = nickname.uppercased()
             if opco == .bge {
-                if let bankAccountType = walletItem.bankAccountType {
-                    nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
-                } else {
-                    nicknameLabel.text = nickname.uppercased()
+                if walletItem.bankOrCard == .bank {
+                    if let bankAccountType = walletItem.bankAccountType {
+                        nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
+                    }
                 }
-            } else {
-                nicknameLabel.text = nickname.uppercased()
             }
         } else {
+            nicknameLabel.text = ""
             if opco == .bge {
                 if let bankAccountType = walletItem.bankAccountType {
                     nicknameLabel.text = bankAccountType.rawValue.uppercased()
                 }
-            } else {
-                nicknameLabel.text = ""
             }
         }
         

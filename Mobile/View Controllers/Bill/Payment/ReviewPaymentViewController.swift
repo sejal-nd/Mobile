@@ -18,7 +18,6 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var scrollViewContentView: UIView!
     var gradientLayer = CAGradientLayer()
     
-    @IBOutlet weak var overpaymentLabelView: UIView!
     @IBOutlet weak var overpaymentLabel: UILabel!
     
     @IBOutlet weak var paymentAccountTextLabel: UILabel!
@@ -51,11 +50,15 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var totalPaymentValueLabel: UILabel!
     // ------------------ //
     
-    @IBOutlet weak var reviewSwitchView: UIView!
-    @IBOutlet weak var reviewSwitch: Switch!
-    @IBOutlet weak var reviewLabel: UILabel!
+    @IBOutlet weak var termsConditionsSwitchView: UIView!
+    @IBOutlet weak var termsConditionsSwitch: Switch!
+    @IBOutlet weak var termsConditionsSwitchLabel: UILabel!
     @IBOutlet weak var termsConditionsButtonView: UIView!
     @IBOutlet weak var termsConditionsButton: UIButton!
+    
+    @IBOutlet weak var overpayingSwitchView: UIView!
+    @IBOutlet weak var overpayingSwitch: Switch!
+    @IBOutlet weak var overpayingSwitchLabel: UILabel!
     
     @IBOutlet weak var billMatrixView: UIView!
     @IBOutlet weak var privacyPolicyButton: UIButton!
@@ -134,13 +137,18 @@ class ReviewPaymentViewController: UIViewController {
         totalPaymentValueLabel.textColor = .blackText
         totalPaymentValueLabel.font = SystemFont.medium.of(textStyle: .headline)
         
-        reviewLabel.textColor = .deepGray
-        reviewLabel.font = SystemFont.regular.of(textStyle: .headline)
-        reviewLabel.text = viewModel.switchViewLabelText
-        reviewLabel.setLineHeight(lineHeight: 25)
+        termsConditionsSwitchLabel.textColor = .deepGray
+        termsConditionsSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
+        termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
+        termsConditionsSwitchLabel.setLineHeight(lineHeight: 25)
         termsConditionsButton.setTitleColor(.actionBlue, for: .normal)
         termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)
         termsConditionsButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        
+        overpayingSwitchLabel.textColor = .deepGray
+        overpayingSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
+        overpayingSwitchLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
+        overpayingSwitchLabel.setLineHeight(lineHeight: 25)
         
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
         privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
@@ -165,11 +173,11 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func bindViewHiding() {
-        viewModel.shouldShowOverpaymentLabel.map(!).drive(overpaymentLabelView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isOverpaying.map(!).drive(overpaymentLabel.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isOverpaying.map(!).drive(overpayingView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.reviewPaymentShouldShowConvenienceFeeBox.map(!).drive(convenienceFeeView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowSwitchView.map(!).drive(reviewSwitchView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowTermsConditionsButton.map(!).drive(termsConditionsButtonView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowTermsConditionsSwitchView.map(!).drive(termsConditionsSwitchView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).addDisposableTo(disposeBag)
     }
     
@@ -200,7 +208,8 @@ class ReviewPaymentViewController: UIViewController {
         // Total Payment
         viewModel.totalPaymentDisplayString.asDriver().drive(totalPaymentValueLabel.rx.text).addDisposableTo(disposeBag)
         
-        reviewSwitch.rx.isOn.bind(to: viewModel.reviewPaymentSwitchValue).addDisposableTo(disposeBag)
+        termsConditionsSwitch.rx.isOn.bind(to: viewModel.termsConditionsSwitchValue).addDisposableTo(disposeBag)
+        overpayingSwitch.rx.isOn.bind(to: viewModel.overpayingSwitchValue).addDisposableTo(disposeBag)
     }
     
     func bindButtonTaps() {
@@ -222,8 +231,9 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func onTermsConditionsPress() {
-        let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
-                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
+        let url = Environment.sharedInstance.opco == .bge ? URL(string: "https://www.speedpay.com/westernuniontac_cf.asp")! :
+            URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
+        let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
         navigationController?.present(tacModal, animated: true, completion: nil)
     }
     

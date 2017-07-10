@@ -29,7 +29,8 @@ class PaymentViewModel {
     let paymentAmount: Variable<String>
     let paymentDate: Variable<Date>
     
-    let reviewPaymentSwitchValue = Variable(false)
+    let termsConditionsSwitchValue = Variable(false)
+    let overpayingSwitchValue = Variable(false)
     
     init(walletService: WalletService, paymentService: PaymentService, oneTouchPayService: OneTouchPayService, accountDetail: AccountDetail) {
         self.walletService = walletService
@@ -37,7 +38,7 @@ class PaymentViewModel {
         self.oneTouchPayService = oneTouchPayService
         self.accountDetail = Variable(accountDetail)
         
-        if let netDueAmount = accountDetail.billingInfo.netDueAmount {
+        if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
             amountDue = Variable(netDueAmount)
             paymentAmount = Variable(String(netDueAmount))
         } else {
@@ -322,7 +323,19 @@ class PaymentViewModel {
                     return true
                 }
             }
-            return self.fixedPaymentDateLogic
+            
+            if self.fixedPaymentDateLogic {
+                return true
+            }
+            
+            let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
+            if let dueDate = $0.billingInfo.dueByDate {
+                if dueDate < startOfTodayDate {
+                    return true
+                }
+            }
+            
+            return false
         }
     }
     
@@ -374,16 +387,15 @@ class PaymentViewModel {
     // MARK: - Review Payment Drivers
     
     var reviewPaymentSubmitButtonEnabled: Driver<Bool> {
-        return Driver.combineLatest(isOverpaying.asDriver(), reviewPaymentSwitchValue.asDriver()).map {
-            if Environment.sharedInstance.opco == .bge {
-                if $0 { // If overpaying, enable submit button only when switch is toggled
-                    return $1
-                } else {
-                    return true
-                }
-            } else { // ComEd/PECO only enabled after toggling switch
-                return $1
+        return Driver.combineLatest(shouldShowTermsConditionsSwitchView, termsConditionsSwitchValue.asDriver(), isOverpaying, overpayingSwitchValue.asDriver()).map {
+            var isValid = true
+            if $0 {
+                isValid = $1
             }
+            if $2 {
+                isValid = $3
+            }
+            return isValid
         }
     }
     
@@ -398,9 +410,9 @@ class PaymentViewModel {
         }
     }
     
-    lazy var shouldShowOverpaymentLabel: Driver<Bool> = self.isOverpaying.map {
-        return Environment.sharedInstance.opco == .bge && $0
-    }
+//    lazy var shouldShowOverpaymentLabel: Driver<Bool> = self.isOverpaying.map {
+//        return Environment.sharedInstance.opco == .bge && $0
+//    }
     
     var overpayingValueDisplayString: Driver<String> {
         return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver().map { return Double($0) ?? 0 }).map {
@@ -408,28 +420,19 @@ class PaymentViewModel {
         }
     }
     
-    var shouldShowSwitchView: Driver<Bool> {
-        return isOverpaying.map {
-            if Environment.sharedInstance.opco == .bge { // On BGE, the switch view is just for confirming overpayment
-                return $0
-            } else { // On ComEd/PECO, it's always shown for the terms and conditions agreement
-                return true
-            }
+    lazy var shouldShowTermsConditionsSwitchView: Driver<Bool> = self.selectedWalletItem.asDriver().map {
+        guard let walletItem: WalletItem = $0 else { return false }
+        if Environment.sharedInstance.opco == .bge { // On BGE, Speedpay is only for credit cards
+            return walletItem.bankOrCard == .card
+        } else { // On ComEd/PECO, it's always shown for the terms and conditions agreement
+            return true
         }
     }
     
-    var switchViewLabelText: String {
-        if Environment.sharedInstance.opco == .bge {
-            return "Yes, I acknowledge I am scheduling a payment for more than is currently due on my account."
-        } else {
-            return "Yes, I have read, understand, and agree to the terms and conditions provided below:"
-        }
+    var shouldShowOverpaymentSwitchView: Driver<Bool> {
+        return isOverpaying
     }
-    
-    var shouldShowTermsConditionsButton: Driver<Bool> {
-        return Driver.just(Environment.sharedInstance.opco != .bge)
-    }
-    
+
     lazy var paymentAmountDisplayString: Driver<String> = self.paymentAmount.asDriver().map {
         return "$\($0)"
     }

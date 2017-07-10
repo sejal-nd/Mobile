@@ -117,22 +117,20 @@ class WalletTableViewCell: UITableViewCell {
         
         // Nickname
         if let nickname = walletItem.nickName {
+            nicknameLabel.text = nickname.uppercased()
             if Environment.sharedInstance.opco == .bge {
-                if let bankAccountType = walletItem.bankAccountType {
-                    nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
-                } else {
-                    nicknameLabel.text = nickname.uppercased()
+                if walletItem.bankOrCard == .bank {
+                    if let bankAccountType = walletItem.bankAccountType {
+                        nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
+                    }
                 }
-            } else {
-                nicknameLabel.text = nickname.uppercased()
             }
         } else {
+            nicknameLabel.text = ""
             if Environment.sharedInstance.opco == .bge {
                 if let bankAccountType = walletItem.bankAccountType {
                     nicknameLabel.text = bankAccountType.rawValue.uppercased()
                 }
-            } else {
-                nicknameLabel.text = ""
             }
         }
         
