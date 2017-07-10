@@ -210,7 +210,7 @@ class EditBankAccountViewController: UIViewController {
         
         let saveBankAccountChanges = { (oneTouchPay: Bool) in
             if oneTouchPay {
-                self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, paymentCategoryType: .check, forCustomerNumber: customerNumber)
+                self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, bankOrCard: .bank, forCustomerNumber: customerNumber)
             } else {
                 self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
             }

@@ -501,6 +501,11 @@
 		B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */; };
 		B5AC07401E52A2ED00BBA4ED /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC073B1E52A2BD00BBA4ED /* Security.framework */; };
 		B5AC07421E52A49900BBA4ED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07411E52A49900BBA4ED /* CoreLocation.framework */; };
+		B5D07CB21F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
+		B5D07CB31F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
+		B5D07CB41F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
+		B5D07CB51F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
+		B5D07CB61F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
@@ -1242,6 +1247,7 @@
 		B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B5AC073B1E52A2BD00BBA4ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B5D07CB11F0EC2F10018B02D /* Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		B5EB9EDD1EC3EB390049B586 /* IDMMobileSDKv2Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDMMobileSDKv2Library.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/IDMMobileSDKv2Library.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EDE1EC3EB430049B586 /* NSData+OMBase32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSData+OMBase32.h"; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/NSData+OMBase32.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EDF1EC3EB430049B586 /* NSData+OMBase64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSData+OMBase64.h"; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/NSData+OMBase64.h"; sourceTree = SOURCE_ROOT; };
@@ -2247,6 +2253,7 @@
 				54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */,
 				E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */,
 				2FEC69401F056EEB00C059DC /* Premise.swift */,
+				B5D07CB11F0EC2F10018B02D /* Payment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3105,6 +3112,7 @@
 				B574BAF51E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B5053DBB1ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */,
+				B5D07CB61F0EC2F10018B02D /* Payment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3229,6 +3237,7 @@
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				B5053DB71ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
+				B5D07CB21F0EC2F10018B02D /* Payment.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				82A18F0E1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
@@ -3406,6 +3415,7 @@
 				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
+				B5D07CB41F0EC2F10018B02D /* Payment.swift in Sources */,
 				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDC1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
@@ -3594,6 +3604,7 @@
 				82A18E6C1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
+				B5D07CB31F0EC2F10018B02D /* Payment.swift in Sources */,
 				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
@@ -3712,6 +3723,7 @@
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
 				B56DD4A51ED87AE200F0198B /* CreditCard.swift in Sources */,
+				B5D07CB51F0EC2F10018B02D /* Payment.swift in Sources */,
 				E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,

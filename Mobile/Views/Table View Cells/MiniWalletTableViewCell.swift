@@ -41,14 +41,7 @@ class MiniWalletTableViewCell: UITableViewCell {
     }
     
     func bindToWalletItem(_ walletItem: WalletItem) {
-        
-        if let paymentCategoryType = walletItem.paymentCategoryType {
-            if paymentCategoryType == .check {
-                iconImageView.image = #imageLiteral(resourceName: "opco_bank_mini")
-            } else {
-                iconImageView.image = #imageLiteral(resourceName: "opco_credit_card_mini")
-            }
-        }
+        iconImageView.image = walletItem.bankOrCard == .bank ? #imageLiteral(resourceName: "opco_bank_mini") : #imageLiteral(resourceName: "opco_credit_card_mini")
         
         if let last4digits = walletItem.maskedWalletItemAccountNumber {
             accountNumberLabel.text = "**** \(last4digits)"

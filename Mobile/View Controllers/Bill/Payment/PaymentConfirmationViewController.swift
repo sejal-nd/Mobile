@@ -97,6 +97,7 @@ class PaymentConfirmationViewController: UIViewController {
             guard let dest = vc as? BillViewController else {
                 continue
             }
+            dest.viewModel.fetchAccountDetail(isRefresh: false)
             presentingNavController.popToViewController(dest, animated: false)
             break
         }
@@ -110,6 +111,7 @@ class PaymentConfirmationViewController: UIViewController {
                 continue
             }
             presentingNavController.popToViewController(dest, animated: false)
+            //dest.viewModel.fetchAccountDetail(isRefresh: false) // Can't do this because currentAccountDetail will be nil in prepareForSegue
             dest.navigateToAutoPay()
             break
         }

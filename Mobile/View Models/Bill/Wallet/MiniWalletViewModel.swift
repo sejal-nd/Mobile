@@ -56,10 +56,8 @@ class MiniWalletViewModel {
         var banks = [WalletItem]()
         guard let walletItems = self.walletItems.value else { return banks }
         for item in walletItems {
-            if let paymentCategoryType = item.paymentCategoryType {
-                if paymentCategoryType == .check {
-                    banks.append(item)
-                }
+            if item.bankOrCard == .bank {
+                banks.append(item)
             }
         }
         return banks
@@ -71,11 +69,9 @@ class MiniWalletViewModel {
         guard let walletItems = $0 else { return false }
         var bankCount = 0
         for item in walletItems {
-            if let paymentCategoryType = item.paymentCategoryType {
-                if paymentCategoryType == .check {
-                    bankCount += 1
-                    if bankCount == 3 { break }
-                }
+            if item.bankOrCard == .bank {
+                bankCount += 1
+                if bankCount == 3 { break }
             }
         }
         return bankCount >= 3
@@ -85,10 +81,8 @@ class MiniWalletViewModel {
         var cards = [WalletItem]()
         guard let walletItems = self.walletItems.value else { return cards }
         for item in walletItems {
-            if let paymentCategoryType = item.paymentCategoryType {
-                if paymentCategoryType == .credit || paymentCategoryType == .debit {
-                    cards.append(item)
-                }
+            if item.bankOrCard == .card {
+                cards.append(item)
             }
         }
         return cards
@@ -100,11 +94,9 @@ class MiniWalletViewModel {
         guard let walletItems = $0 else { return false }
         var creditCount = 0
         for item in walletItems {
-            if let paymentCategoryType = item.paymentCategoryType {
-                if paymentCategoryType == .credit || paymentCategoryType == .debit {
-                    creditCount += 1
-                    if creditCount == 3 { break }
-                }
+            if item.bankOrCard == .card {
+                creditCount += 1
+                if creditCount == 3 { break }
             }
         }
         return creditCount >= 3

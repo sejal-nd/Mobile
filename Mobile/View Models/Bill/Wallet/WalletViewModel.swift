@@ -71,11 +71,9 @@ class WalletViewModel {
         guard let walletItems = $0 else { return false }
         var creditCount = 0
         for item in walletItems {
-            if let paymentCategoryType = item.paymentCategoryType {
-                if paymentCategoryType == .credit || paymentCategoryType == .debit  {
-                    creditCount += 1
-                    if creditCount == 3 { break }
-                }
+            if item.bankOrCard == .card {
+                creditCount += 1
+                if creditCount == 3 { break }
             }
         }
         return creditCount >= 3
@@ -87,11 +85,9 @@ class WalletViewModel {
         guard let walletItems = $0 else { return false }
         var bankCount = 0
         for item in walletItems {
-            if let paymentCategoryType = item.paymentCategoryType {
-                if paymentCategoryType == .check {
-                    bankCount += 1
-                    if bankCount == 3 { break }
-                }
+            if item.bankOrCard == .bank {
+                bankCount += 1
+                if bankCount == 3 { break }
             }
         }
         return bankCount >= 3

@@ -24,6 +24,10 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAccountAccountNumberLabel: UILabel!
     @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
     
+    @IBOutlet weak var cvvView: UIView!
+    @IBOutlet weak var cvvTextField: FloatLabelTextField!
+    @IBOutlet weak var cvvTooltipButton: UIButton!
+    
     @IBOutlet weak var amountDueView: UIView! // Contains amountDueTextLabel and amountDueValueLabel
     @IBOutlet weak var amountDueTextLabel: UILabel!
     @IBOutlet weak var amountDueValueLabel: UILabel!
@@ -95,6 +99,24 @@ class MakePaymentViewController: UIViewController {
         paymentAccountAccountNumberLabel.textColor = .blackText
         paymentAccountNicknameLabel.textColor = .middleGray
         
+        cvvTextField.textField.placeholder = NSLocalizedString("CVV2*", comment: "")
+        cvvTextField.textField.delegate = self
+        cvvTextField.textField.keyboardType = .numberPad
+        cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            if !self.viewModel.cvv.value.isEmpty {
+                self.viewModel.cvvIsCorrectLength.single().subscribe(onNext: { valid in
+                    if !valid {
+                        self.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
+        cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.cvvTextField.setError(nil)
+        }).addDisposableTo(disposeBag)
+        
+        cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
+        
         amountDueTextLabel.text = NSLocalizedString("Amount Due", comment: "")
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -106,14 +128,17 @@ class MakePaymentViewController: UIViewController {
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.textField.keyboardType = .decimalPad
         paymentAmountTextField.textField.delegate = self
-        paymentAmountTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.viewModel.paymentAmountErrorMessage.asObservable().single().subscribe(onNext: { errorMessage in
-                self.paymentAmountTextField.setError(errorMessage)
-            }).addDisposableTo(self.disposeBag)
-        }).addDisposableTo(disposeBag)
-        paymentAmountTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.paymentAmountTextField.setError(nil)
-        }).addDisposableTo(disposeBag)
+//        paymentAmountTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+//            self.viewModel.paymentAmountErrorMessage.asObservable().single().subscribe(onNext: { errorMessage in
+//                self.paymentAmountTextField.setError(errorMessage)
+//            }).addDisposableTo(self.disposeBag)
+//        }).addDisposableTo(disposeBag)
+//        paymentAmountTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+//            self.paymentAmountTextField.setError(nil)
+//        }).addDisposableTo(disposeBag)
+        viewModel.paymentAmountErrorMessage.asObservable().subscribe(onNext: { errorMessage in
+            self.paymentAmountTextField.setError(errorMessage)
+        }).addDisposableTo(self.disposeBag)
         
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
         dueDateTextLabel.textColor = .deepGray
@@ -148,7 +173,6 @@ class MakePaymentViewController: UIViewController {
         walletFooterView.backgroundColor = .softGray
         walletFooterLabel.textColor = .deepGray
         walletFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        walletFooterLabel.text = viewModel.walletFooterLabelText
         
         stickyPaymentFooterView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         stickyPaymentFooterPaymentLabel.textColor = .blackText
@@ -188,10 +212,11 @@ class MakePaymentViewController: UIViewController {
         doneToolbar.items = [flexSpace, done]
         doneToolbar.sizeToFit()
         paymentAmountTextField.textField.inputAccessoryView = doneToolbar
+        cvvTextField.textField.inputAccessoryView = doneToolbar
     }
     
     func doneButtonAction() {
-        paymentAmountTextField.textField.resignFirstResponder()
+        self.view.endEditing(true)
     }
     
     func bindViewHiding() {
@@ -205,6 +230,9 @@ class MakePaymentViewController: UIViewController {
         
         // Payment Account
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).addDisposableTo(disposeBag)
+        
+        // CVV (BGE credit card only)
+        viewModel.shouldShowCvvTextField.map(!).drive(cvvView.rx.isHidden).addDisposableTo(disposeBag)
         
         // Payment Amount Text Field
         viewModel.shouldShowPaymentAmountTextField.map(!).drive(paymentAmountView.rx.isHidden).addDisposableTo(disposeBag)
@@ -239,6 +267,9 @@ class MakePaymentViewController: UIViewController {
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountAccountNumberLabel.rx.text).addDisposableTo(disposeBag)
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).addDisposableTo(disposeBag)
         
+        // CVV (BGE credit card only)
+        cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).addDisposableTo(disposeBag)
+        
         // Amount Due
         viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).addDisposableTo(disposeBag)
         
@@ -257,6 +288,10 @@ class MakePaymentViewController: UIViewController {
         viewModel.paymentDateString.asDriver().drive(paymentDateButton.label.rx.text).addDisposableTo(disposeBag)
         viewModel.paymentDateString.asDriver().drive(paymentDateFixedDateLabel.rx.text).addDisposableTo(disposeBag)
         
+        // Wallet Footer Label
+        viewModel.walletFooterLabelText.drive(walletFooterLabel.rx.text).addDisposableTo(disposeBag)
+        
+        // Sticky Footer Payment View
         viewModel.totalPaymentDisplayString.map { String(format: NSLocalizedString("Total Payment: %@", comment: ""), $0) }.drive(stickyPaymentFooterPaymentLabel.rx.text).addDisposableTo(disposeBag)
         viewModel.paymentAmountFeeFooterLabelText.drive(stickyPaymentFooterFeeLabel.rx.text).addDisposableTo(disposeBag)
     }
@@ -318,6 +353,11 @@ class MakePaymentViewController: UIViewController {
         if let vc = segue.destination as? ReviewPaymentViewController {
             vc.viewModel = viewModel
         }
+    }
+    
+    @IBAction func onCVVTooltipPress() {
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""), image: #imageLiteral(resourceName: "cvv_info"), description: NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: ""))
+        navigationController?.present(infoModal, animated: true, completion: nil)
     }
 
 }

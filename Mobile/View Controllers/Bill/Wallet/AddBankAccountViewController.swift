@@ -135,7 +135,7 @@ class AddBankAccountViewController: UIViewController {
                 if setAsOneTouchPay {
                     let accountNumber = self.viewModel.accountNumber.value
                     let last4 = accountNumber.substring(from: accountNumber.index(accountNumber.endIndex, offsetBy: -4))
-                    self.oneTouchPayService.setOneTouchPayItem(walletItemID: walletItemResult.walletItemId, maskedWalletItemAccountNumber: last4, paymentCategoryType: .check, forCustomerNumber: customerNumber)
+                    self.oneTouchPayService.setOneTouchPayItem(walletItemID: walletItemResult.walletItemId, maskedWalletItemAccountNumber: last4, bankOrCard: .bank, forCustomerNumber: customerNumber)
                 }
                 
                 LoadingView.hide()

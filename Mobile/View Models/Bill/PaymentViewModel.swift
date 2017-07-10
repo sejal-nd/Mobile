@@ -23,6 +23,7 @@ class PaymentViewModel {
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
+    let cvv = Variable("")
     
     let amountDue: Variable<Double>
     let paymentAmount: Variable<String>
@@ -47,11 +48,13 @@ class PaymentViewModel {
         let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
         self.paymentDate = Variable(startOfTodayDate)
         if let dueDate = accountDetail.billingInfo.dueByDate {
-            if dueDate >= startOfTodayDate {
+            if dueDate >= startOfTodayDate && !fixedPaymentDateLogic {
                 self.paymentDate.value = dueDate
             }
         }
     }
+    
+    // MARK: - Service Calls
     
     func fetchWalletItems(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
         isFetchingWalletItems.value = true
@@ -86,11 +89,35 @@ class PaymentViewModel {
             }).addDisposableTo(disposeBag)
     }
     
+    func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        let paymentType: PaymentType = selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
+        let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate.value, walletId: accountDetail.value.customerInfo.number!, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
+        paymentService.schedulePayment(payment: payment)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            }).addDisposableTo(disposeBag)
+    }
+    
     // MARK: - Make Payment Drivers
     
     var makePaymentNextButtonEnabled: Driver<Bool> {
-        return Driver.combineLatest(shouldShowContent, selectedWalletItem.asDriver(), paymentAmount.asDriver(), paymentAmountErrorMessage).map {
-            return $0 && $1 != nil && !$2.isEmpty && $3 == nil
+        return Driver.combineLatest(shouldShowContent, selectedWalletItem.asDriver(), paymentAmount.asDriver(), paymentAmountErrorMessage, cvvIsCorrectLength.asDriver(onErrorJustReturn: false)).map {
+            if Environment.sharedInstance.opco == .bge {
+                if let selectedWalletItem = $1 {
+                    if selectedWalletItem.bankOrCard == .card {
+                        return $0 && !$2.isEmpty && $3 == nil && $4
+                    } else {
+                        return $0 && !$2.isEmpty && $3 == nil
+                    }
+                } else {
+                    return false
+                }
+            } else {
+                return $0 && $1 != nil && !$2.isEmpty && $3 == nil
+            }
         }
     }
     
@@ -113,6 +140,19 @@ class PaymentViewModel {
         return walletItems.count > 0
     }
     
+    lazy var shouldShowCvvTextField: Driver<Bool> = self.selectedWalletItem.asDriver().map {
+        if let walletItem = $0 {
+            if Environment.sharedInstance.opco == .bge && walletItem.bankOrCard == .card {
+                return true
+            }
+        }
+        return false
+    }
+    
+    lazy var cvvIsCorrectLength: Observable<Bool> = self.cvv.asObservable().map {
+        return $0.characters.count == 3 || $0.characters.count == 4
+    }
+    
     var shouldShowPaymentAmountTextField: Driver<Bool> {
         return hasWalletItems
     }
@@ -124,7 +164,7 @@ class PaymentViewModel {
             
             let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
             
-            if walletItem.paymentCategoryType == .check {
+            if walletItem.bankOrCard == .bank {
                 if Environment.sharedInstance.opco == .bge {
                     // BGE BANK
                     let minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 0.01
@@ -176,7 +216,7 @@ class PaymentViewModel {
     var paymentAmountFeeLabelText: Driver<String> {
         return Driver.combineLatest(selectedWalletItem.asDriver(), convenienceFee).map { (walletItem, fee) -> String in
             guard let walletItem = walletItem else { return "" }
-            if walletItem.paymentCategoryType == .check {
+            if walletItem.bankOrCard == .bank {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
                 if Environment.sharedInstance.opco == .bge {
@@ -191,7 +231,7 @@ class PaymentViewModel {
     var paymentAmountFeeFooterLabelText: Driver<String> {
         return Driver.combineLatest(selectedWalletItem.asDriver(), convenienceFee).map { (walletItem, fee) -> String in
             guard let walletItem = walletItem else { return "" }
-            if walletItem.paymentCategoryType == .check {
+            if walletItem.bankOrCard == .bank {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
                 return String(format: "A %@ convenience fee will be applied.", fee.currencyString!)
@@ -209,7 +249,7 @@ class PaymentViewModel {
     
     lazy var selectedWalletItemImage: Driver<UIImage?> = self.selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return nil }
-        if walletItem.paymentCategoryType == .check {
+        if walletItem.bankOrCard == .bank {
             return #imageLiteral(resourceName: "opco_bank_mini")
         } else {
             return #imageLiteral(resourceName: "opco_credit_card_mini")
@@ -238,7 +278,7 @@ class PaymentViewModel {
         }
 //        return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
 //            if let walletItem = $1 {
-//                if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+//                if walletItem.bankOrCard == .card
 //                    return $0.billingInfo.convenienceFee
 //                }
 //            }
@@ -265,25 +305,35 @@ class PaymentViewModel {
     }
     
     var shouldShowWalletFooterView: Driver<Bool> {
-        return hasWalletItems.map(!)
+        return hasWalletItems.map {
+            if Environment.sharedInstance.opco == .bge {
+                return true
+            } else {
+                return !$0
+            }
+        }
     }
     
     var isFixedPaymentDate: Driver<Bool> {
         //return Driver.just(false)
         return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
             if let walletItem = $1 {
-                if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+                if walletItem.bankOrCard == .card {
                     return true
                 }
             }
-            if $0.billingInfo.pastDueAmount ?? 0 > 0 { // Past due, avoid shutoff
-                return true
-            }
-            if ($0.billingInfo.restorationAmount ?? 0 > 0 || $0.billingInfo.amtDpaReinst ?? 0 > 0) || $0.isCutOutNonPay { // Cut for non-pay
-                return true
-            }
-            return false
+            return self.fixedPaymentDateLogic
         }
+    }
+    
+    private var fixedPaymentDateLogic: Bool {
+        if accountDetail.value.billingInfo.pastDueAmount ?? 0 > 0 { // Past due, avoid shutoff
+            return true
+        }
+        if (accountDetail.value.billingInfo.restorationAmount ?? 0 > 0 || accountDetail.value.billingInfo.amtDpaReinst ?? 0 > 0) || accountDetail.value.isCutOutNonPay { // Cut for non-pay
+            return true
+        }
+        return false
     }
     
 //    var isFixedPaymentDatePastDue: Driver<Bool> {
@@ -300,19 +350,24 @@ class PaymentViewModel {
     
     lazy var shouldShowBillMatrixView: Driver<Bool> = self.selectedWalletItem.asDriver().map {
         if let walletItem = $0 {
-            if Environment.sharedInstance.opco != .bge && (walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit) {
+            if Environment.sharedInstance.opco != .bge && walletItem.bankOrCard == .card {
                 return true
             }
         }
         return false
     }
     
-    var walletFooterLabelText: String {
-        switch Environment.sharedInstance.opco {
-        case .bge:
-            return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Small business customers cannot use VISA.", comment: "")
-        case .comEd, .peco:
-            return NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
+    var walletFooterLabelText: Driver<String> {
+        return hasWalletItems.map {
+            if Environment.sharedInstance.opco == .bge {
+                if $0 {
+                    return NSLocalizedString("Any payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
+                } else {
+                    return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Small business customers cannot use VISA.", comment: "")
+                }
+            } else {
+                return NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
+            }
         }
     }
     
@@ -334,7 +389,7 @@ class PaymentViewModel {
     
     lazy var reviewPaymentShouldShowConvenienceFeeBox: Driver<Bool> = self.selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return false }
-        return walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit
+        return walletItem.bankOrCard == .card
     }
     
     var isOverpaying: Driver<Bool> {
@@ -395,7 +450,7 @@ class PaymentViewModel {
     
     lazy var shouldShowConvenienceFeeLabel: Driver<Bool> = self.selectedWalletItem.asDriver().map {
         if let walletItem = $0 {
-            if walletItem.paymentCategoryType == .credit || walletItem.paymentCategoryType == .debit {
+            if walletItem.bankOrCard == .card {
                 return true
             }
         }

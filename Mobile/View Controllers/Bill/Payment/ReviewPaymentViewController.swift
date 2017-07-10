@@ -196,7 +196,16 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func onSubmitPress() {
-        performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+        LoadingView.show()
+        viewModel.schedulePayment(onSuccess: {
+            LoadingView.hide()
+            self.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+        }, onError: { errMessage in
+            LoadingView.hide()
+            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertVc, animated: true, completion: nil)
+        })
     }
     
     func onTermsConditionsPress() {
