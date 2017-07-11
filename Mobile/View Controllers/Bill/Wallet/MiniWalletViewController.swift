@@ -183,7 +183,7 @@ extension MiniWalletViewController: UITableViewDataSource {
         if section == 0 {
             cell.label.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
         } else {
-            cell.label.text = NSLocalizedString("A $1.50 convenience fee will be applied.", comment: "")
+            cell.label.text = viewModel.creditCardFeeString
             if creditCardsDisabled {
                 cell.label.alpha = 0.33
             }
