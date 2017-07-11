@@ -1105,7 +1105,7 @@
 		8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsPoliciesViewController.swift; sourceTree = "<group>"; };
 		8FD5AE851E54EA49003F640D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8FD5AE8F1E54EA53003F640D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		8FD5AE931E54EA5E003F640D /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		8FD5AE931E54EA5E003F640D /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		8FD5AE981E54EAB8003F640D /* checkmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark.json; sourceTree = "<group>"; };
 		8FD5AE991E54EAB8003F640D /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		8FDF8C661E550502000B7BD0 /* BGEColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEColor.swift; sourceTree = "<group>"; };

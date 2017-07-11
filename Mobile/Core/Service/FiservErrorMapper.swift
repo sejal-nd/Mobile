@@ -15,7 +15,7 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
     
     static private var fiservError : FiservError?
     
-    private override init() {    }
+    private override init() {  }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if (elementName as String == "item") {
@@ -41,14 +41,19 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
             var parser: XMLParser?
             let path = Bundle.main.path(forResource: "fiserv_errors", ofType: "xml")
             
-            if (path != nil) {
+            if path != nil {
                 parser = XMLParser(contentsOf: URL(fileURLWithPath: path!))
             }
             
             parser?.delegate = FiservErrorMapper.sharedInstance
             parser?.parse()
         }
-        return items.filter({message.uppercased().contains($0.id) && (context == nil || $0.context == context)}).first
+        let error = items.filter(
+                {message.uppercased().contains($0.id) && (context == nil || $0.context == context)}
+        ).first;
+
+        if error == nil && context != nil { return getError(message: message, context: nil) }
+        else { return nil }
     }
 }
 
