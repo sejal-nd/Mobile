@@ -14,5 +14,8 @@ final class AccountsStore {
     var customerIdentifier: String!
     
     // Private init protects against another instance being accidentally instantiated
-    private init() { }
+    private init() {
+        // Load from disk
+        customerIdentifier = UserDefaults.standard.string(forKey: UserDefaultKeys.CustomerIdentifier)!
+    }
 }
