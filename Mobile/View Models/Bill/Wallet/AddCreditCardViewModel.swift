@@ -153,7 +153,7 @@ class AddCreditCardViewModel {
         }
     }
     
-    func addCreditCard(onDuplicate: @escaping (String) -> Void, onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
+    func addCreditCard(onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (FiservError) -> Void) {
         
         let card = CreditCard(cardNumber: cardNumber.value, securityCode: cvv.value, firstName: "", lastName: "", expirationMonth: expMonth.value, expirationYear: expYear.value, postalCode: zipCode.value, nickname: nickname.value)
         
@@ -163,12 +163,8 @@ class AddCreditCardViewModel {
             .subscribe(onNext: { walletItemResult in
                 onSuccess(walletItemResult)
             }, onError: { err in
-                let serviceError = err as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
-                    onDuplicate(err.localizedDescription)
-                } else {
-                    onError(err.localizedDescription)
-                }
+                let error = FiservErrorMapper.sharedInstance.getError(message: err.localizedDescription, context: "wallet")
+                onError( error )
             })
             .addDisposableTo(disposeBag)
         

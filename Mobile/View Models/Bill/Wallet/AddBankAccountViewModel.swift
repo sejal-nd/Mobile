@@ -106,7 +106,7 @@ class AddBankAccountViewModel {
             }).addDisposableTo(disposeBag)
     }
     
-    func addBankAccount(onDuplicate: @escaping (String) -> Void, onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
+    func addBankAccount(onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (FiservError) -> Void) {
         var accountType: String?
         if Environment.sharedInstance.opco == .bge {
             accountType = selectedSegmentIndex.value == 0 ? "checking" : "saving"
@@ -121,15 +121,8 @@ class AddBankAccountViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { walletItemResult in
                 onSuccess(walletItemResult)
-            }, onError: { (error: Error) in
-                let serviceError = error as! ServiceError
-                
-                if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
-                    onDuplicate(error.localizedDescription)
-                } else {
-                    onError(error.localizedDescription)
-                }
-                
+            }, onError: { (err: Error) in
+                onError(FiservErrorMapper.sharedInstance.getError(message: err.localizedDescription, context: "wallet"))
             })
             .addDisposableTo(disposeBag)
     }

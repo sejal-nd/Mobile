@@ -38,7 +38,7 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
         FiservErrorMapper.fiservError?.text += string
     }
     
-    public func getError(message : String, context : String?) -> FiservError? {
+    public func getError(message : String, context : String?) -> FiservError {
         if self.items.count == 0 {
             var parser: XMLParser?
             let path = Bundle.main.path(forResource: "fiserv_errors", ofType: "xml")
@@ -53,17 +53,24 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
 
         let error = items.filter(
                 {
-                    message.uppercased().contains($0.id) && (context == nil || $0.context == context)
+                    message.uppercased().contains($0.id!) && (context == nil || $0.context == context)
                 }
         ).first;
 
         if error == nil && context != nil { return getError(message: message, context: nil) }
-        else { return error }
+        else if error == nil { return FiservError(text: message) }
+        else { return error! }
     }
 }
 
 class FiservError : NSObject {
-    var id: String = ""
+    var id: String? = nil
     var context: String = ""
     var text: String = ""
+
+    init(id: String? = nil, context: String = "", text: String = "") {
+        self.id = id
+        self.context = context
+        self.text = text
+    }
 }
