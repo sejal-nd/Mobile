@@ -321,7 +321,6 @@ class PaymentViewModel {
     }
     
     var isFixedPaymentDate: Driver<Bool> {
-        //return Driver.just(false)
         return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
             if let walletItem = $1 {
                 if walletItem.bankOrCard == .card {
@@ -356,10 +355,6 @@ class PaymentViewModel {
         }
         return false
     }
-    
-//    var isFixedPaymentDatePastDue: Driver<Bool> {
-//        return Driver.just(false)
-//    }
     
     lazy var isFixedPaymentDatePastDue: Driver<Bool> = self.accountDetail.asDriver().map {
         return $0.billingInfo.pastDueAmount ?? 0 > 0
