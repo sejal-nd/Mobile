@@ -73,7 +73,9 @@ struct AccountDetail: Mappable {
     let hasElectricSupplier: Bool
     let isSingleBillOption: Bool
     let isDualBillOption: Bool
+    let isCashOnly: Bool
     let isSupplier: Bool
+    let isActiveSeverance: Bool
     
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
@@ -109,7 +111,9 @@ struct AccountDetail: Mappable {
         hasElectricSupplier = map.optionalFrom("hasElectricSupplier") ?? false
         isSingleBillOption = map.optionalFrom("isSingleBillOption") ?? false
         isDualBillOption = map.optionalFrom("isDualBillOption") ?? false
+        isCashOnly = map.optionalFrom("isCashOnly") ?? false
         isSupplier = map.optionalFrom("isSupplier") ?? false
+        isActiveSeverance = map.optionalFrom("activeSeverance") ?? false
         
         status = map.optionalFrom("status")
         
@@ -166,8 +170,14 @@ struct BillingInfo: Mappable {
     let disconnectNoticeArrears: Int
     let isDisconnectNotice: Bool
     let billDate: Date?
+    let convenienceFee: Double?
     let scheduledPaymentAmount: Double?
+    let scheduledPaymentDate: Date?
     let atReinstateFee: Double?
+    let minPaymentAmount: Double?
+    let maxPaymentAmount: Double?
+    let minPaymentAmountACH: Double?
+    let maxPaymentAmountACH: Double?
     
     init(map: Mapper) throws {
 		netDueAmount = map.optionalFrom("netDueAmount")
@@ -183,8 +193,14 @@ struct BillingInfo: Mappable {
         disconnectNoticeArrears = map.optionalFrom("disconnectNoticeArrears") ?? 0
         isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
         billDate = map.optionalFrom("billDate", transformation: extractDate)
+        convenienceFee = map.optionalFrom("convenienceFee")
         scheduledPaymentAmount = map.optionalFrom("scheduledPaymentAmount")
+        scheduledPaymentDate = map.optionalFrom("scheduledPaymentDate", transformation: extractDate)
         atReinstateFee = map.optionalFrom("atReinstateFee")
+        minPaymentAmount = map.optionalFrom("minimumPaymentAmount")
+        maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")
+        minPaymentAmountACH =  map.optionalFrom("minimumPaymentAmountACH")
+        maxPaymentAmountACH = map.optionalFrom("maximumPaymentAmountACH")
     }
 }
 

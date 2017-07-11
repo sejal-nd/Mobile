@@ -205,13 +205,11 @@ extension WalletViewController: UITableViewDataSource {
         cell.bindToWalletItem(walletItem)
         
         cell.oneTouchPayView.isHidden = true
-        if let customerNumber = viewModel.accountDetail.customerInfo.number {
-            if let oneTouchPayItem = viewModel.oneTouchPayDictionary![customerNumber] {
-                if oneTouchPayItem.walletItemID == walletItem.walletItemID {
-                    cell.oneTouchPayView.isHidden = false
-                    let a11yLabel = cell.accessibilityLabel!
-                    cell.accessibilityLabel = a11yLabel + ", One Touch Pay account"
-                }
+        if let oneTouchPayItem = viewModel.oneTouchPayDictionary![AccountsStore.sharedInstance.customerIdentifier] {
+            if oneTouchPayItem.walletItemID == walletItem.walletItemID {
+                cell.oneTouchPayView.isHidden = false
+                let a11yLabel = cell.accessibilityLabel!
+                cell.accessibilityLabel = a11yLabel + ", One Touch Pay account"
             }
         }
         
@@ -220,7 +218,7 @@ extension WalletViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedWalletItem = viewModel.walletItems.value![indexPath.section]
-        if selectedWalletItem?.paymentCategoryType == .credit || selectedWalletItem?.paymentCategoryType == .debit {
+        if selectedWalletItem?.bankOrCard == .card {
             self.performSegue(withIdentifier: "editCreditCardSegue", sender: self)
         } else {
             self.performSegue(withIdentifier: "editBankAccountSegue", sender: self)

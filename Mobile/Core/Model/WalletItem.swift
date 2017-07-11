@@ -51,6 +51,12 @@ enum WalletItemStatusTypeBGE: String {
     case deleted = "deleted"
 }
 
+enum PaymentType: String {
+    case check = "Check"
+    case credit = "Card"
+}
+
+
 // Comed/PECO
 enum PaymentCategoryType: String {
     case check = "Check"
@@ -70,8 +76,20 @@ enum PaymentMethodType: String {
 enum BankAccountType: String {
     case checking = "checking"
     case savings = "saving"
+    case card = "card"
 }
 
+enum BankOrCard {
+    case bank
+    case card
+}
+
+private func extractLast4(object: Any?) throws -> String? {
+    guard let string = object as? String else {
+        throw MapperError.convertibleError(value: object, type: String.self)
+    }
+    return string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+}
 
 struct WalletItem: Mappable, Equatable, Hashable {
     let walletItemID: String?
@@ -88,13 +106,15 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let bankAccountNumber: String?
     let bankAccountName: String?
     
+    // Reduce bankAccountType (BGE) and paymentCategoryType (ComEd/PECO) to this one variable
+    var bankOrCard: BankOrCard
     
     init(map: Mapper) throws {
         // All
         walletItemID = map.optionalFrom("walletItemID")
         walletExternalID = map.optionalFrom("walletExternalID")
         
-        maskedWalletItemAccountNumber = map.optionalFrom("maskedWalletItemAccountNumber")
+        maskedWalletItemAccountNumber = map.optionalFrom("maskedWalletItemAccountNumber", transformation: extractLast4)
         
         nickName = map.optionalFrom("nickName")
         if let nickname = nickName {
@@ -103,16 +123,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
             }
         }
         
-        if Environment.sharedInstance.opco == .bge {
-            walletItemStatusTypeBGE = map.optionalFrom("walletItemStatusType")
-            walletItemStatusType = nil
-        } else {
-            walletItemStatusTypeBGE = nil
-            walletItemStatusType = map.optionalFrom("walletItemStatusType")
-        }
-        
         // Comed/PECO
-        paymentCategoryType = map.optionalFrom("paymentCategoryType") ?? .check // Default to check for BGE (currently no credit cards)
+        paymentCategoryType = map.optionalFrom("paymentCategoryType")
         paymentMethodType = map.optionalFrom("paymentMethodType")
         
         // BGE
@@ -120,6 +132,21 @@ struct WalletItem: Mappable, Equatable, Hashable {
         isNOCViewed = map.optionalFrom("flagnocViewed") ?? false
         bankAccountNumber = map.optionalFrom("bankAccountNumber")
         bankAccountName = map.optionalFrom("bankAccountName")
+        
+        bankOrCard = .card
+        if Environment.sharedInstance.opco == .bge {
+            walletItemStatusTypeBGE = map.optionalFrom("walletItemStatusType")
+            walletItemStatusType = nil
+            if let type = bankAccountType {
+                bankOrCard = type == .card ? .card : .bank
+            }
+        } else {
+            walletItemStatusTypeBGE = nil
+            walletItemStatusType = map.optionalFrom("walletItemStatusType")
+            if let type = paymentCategoryType {
+                bankOrCard = (type == .credit || type == .debit) ? .card : .bank
+            }
+        }
     }
     
     

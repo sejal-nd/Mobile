@@ -393,13 +393,21 @@ class BillViewModel {
                     let paymentString = scheduledPaymentAmount.currencyString ?? "--"
                     let dueByDateString = accountDetail.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
                     let localizedText = NSLocalizedString("You have an automatic payment of %@ for %@", comment: "")
-                    return String(format: localizedText, paymentString, dueByDateString)
+                    if let scheduledPaymentDate = accountDetail.billingInfo.scheduledPaymentDate?.mmDdYyyyString {
+                        return String(format: localizedText, paymentString, scheduledPaymentDate)
+                    } else {
+                        return String(format: localizedText, paymentString, dueByDateString)
+                    }
                 }
             } else {
                 let paymentString = scheduledPaymentAmount.currencyString ?? "--"
                 let dueByDateString = accountDetail.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
                 let localizedText = NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: "")
-                return String(format: localizedText, paymentString, dueByDateString)
+                if let scheduledPaymentDate = accountDetail.billingInfo.scheduledPaymentDate?.mmDdYyyyString {
+                    return String(format: localizedText, paymentString, scheduledPaymentDate)
+                } else {
+                    return String(format: localizedText, paymentString, dueByDateString)
+                }
             }
         } else if let pendingPaymentAmount = accountDetail.billingInfo.pendingPaymentAmount, pendingPaymentAmount > 0 {
             let paymentString = pendingPaymentAmount.currencyString ?? "--"
@@ -425,6 +433,32 @@ class BillViewModel {
             let localizedText = NSLocalizedString("Thank you for %@ payment on %@", comment: "")
             return String(format: localizedText, paymentString, dueByDateString)
         }
+    }
+    
+    lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?)> = self.currentAccountDetail.asObservable().map {
+        guard let accountDetail = $0 else { return (nil, nil) }
+        if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPaymentAmount, scheduledPaymentAmount > 0.0 {
+            if accountDetail.isBGEasy {
+                return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date of your bill from the bank account you originally submitted. You may make a one-time payment now, but it may result in duplicate payment processing. Do you want to continue with a one-time payment?", comment: ""))
+            } else if accountDetail.isAutoPay {
+                if Environment.sharedInstance.opco == .bge {
+                    return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You currently have automatic payments set up. To avoid a duplicate payment, please review your payment activity before proceeding. Would you like to continue making an additional payment?", comment: ""))
+                } else {
+                    return (nil, nil)
+                }
+            } else {
+                let paymentString = scheduledPaymentAmount.currencyString ?? "--"
+                let dueByDateString = accountDetail.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
+                let localizedTitle = NSLocalizedString("Existing Scheduled Payment", comment: "")
+                let localizedText = NSLocalizedString("You have a payment of %@ scheduled for %@. To avoid a duplicate payment, please review your payment activity before proceeding. Would you like to continue making an additional payment?", comment: "")
+                if let scheduledPaymentDate = accountDetail.billingInfo.scheduledPaymentDate?.mmDdYyyyString {
+                    return (localizedTitle, String(format: localizedText, paymentString, scheduledPaymentDate))
+                } else {
+                    return (localizedTitle, String(format: localizedText, paymentString, dueByDateString))
+                }
+            }
+        }
+        return (nil, nil)
     }
     
     //MARK: - Enrollment

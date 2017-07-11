@@ -389,17 +389,8 @@ class BillViewController: AccountPickerViewController {
 			.addDisposableTo(bag)
 
 		autoPayButton.rx.touchUpInside.asDriver()
-			.withLatestFrom(viewModel.currentAccountDetailUnwrapped)
-			.drive(onNext: { accountDetail in
-				if Environment.sharedInstance.opco == .bge {
-                    if accountDetail.isBGEasy {
-                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
-                    } else {
-                        self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
-                    }
-                } else {
-                    self.performSegue(withIdentifier: "autoPaySegue", sender: self)
-                }
+			.drive(onNext: {
+                self.navigateToAutoPay()
 			})
 			.addDisposableTo(bag)
         
@@ -446,6 +437,42 @@ class BillViewController: AccountPickerViewController {
                 }
             })
             .addDisposableTo(bag)
+        
+        makeAPaymentButton.rx.touchUpInside.asDriver()
+            .drive(onNext: {
+                self.viewModel.makePaymentScheduledPaymentAlertInfo.single().subscribe(onNext: { (titleOpt, messageOpt) in
+                    let goToMakePayment = {
+                        let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+                        paymentVc.accountDetail = self.viewModel.currentAccountDetail.value!
+                        self.navigationController?.pushViewController(paymentVc, animated: true)
+                    }
+                    if let title = titleOpt, let message = messageOpt {
+                        let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { _ in
+                            goToMakePayment()
+                        }))
+                        self.present(alertVc, animated: true, completion: nil)
+                    } else {
+                        goToMakePayment()
+                    }
+                }).addDisposableTo(self.bag)
+            })
+            .addDisposableTo(bag)
+    }
+    
+    func navigateToAutoPay() {
+        viewModel.currentAccountDetailUnwrapped.asObservable().single().subscribe(onNext: { accountDetail in
+            if Environment.sharedInstance.opco == .bge {
+                if accountDetail.isBGEasy {
+                    self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                } else {
+                    self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
+                }
+            } else {
+                self.performSegue(withIdentifier: "autoPaySegue", sender: self)
+            }
+        }).addDisposableTo(bag)
     }
 
     func configureAccessibility() {

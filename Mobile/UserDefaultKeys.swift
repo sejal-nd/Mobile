@@ -16,8 +16,11 @@ struct UserDefaultKeys {
     static let ShouldPromptToEnableTouchID = "kShouldPromptToEnableTouchID" // Should we prompt the user to enable Touch ID after a successful login?
     static let LoggedInUsername = "kLoggedInUsername" // The username of the currently logged in user
     
-    // Detect Commerical User - TEMPORARY
+    // Detect Commerical User
     static let IsCommercialUser = "kIsCommercialUser"
+    
+    // Persist Customer Identifer (from login) to disk
+    static let CustomerIdentifier = "kCustomerIdentifier"
     
     static let OneTouchPayDictionary = "kOneTouchPayDictionary"
     

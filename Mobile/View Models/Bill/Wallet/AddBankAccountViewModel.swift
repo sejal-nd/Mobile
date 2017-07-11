@@ -63,7 +63,7 @@ class AddBankAccountViewModel {
     
     func accountNumberIsValid() -> Observable<Bool> {
         return accountNumber.asObservable().map {
-            return $0.characters.count >= 8 && $0.characters.count <= 17
+            return $0.characters.count >= 4 && $0.characters.count <= 17
         }
     }
     
@@ -117,7 +117,7 @@ class AddBankAccountViewModel {
         let bankAccount = BankAccount(bankAccountNumber: accountNumber.value, routingNumber: routingNumber.value, accountNickname: nickname, accountType: accountType, accountName: accountName, oneTimeUse: false)
         
         walletService
-            .addBankAccount(bankAccount, forCustomerNumber: accountDetail.customerInfo.number!)
+            .addBankAccount(bankAccount, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { walletItemResult in
                 onSuccess(walletItemResult)

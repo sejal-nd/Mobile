@@ -104,7 +104,7 @@ class AddCreditCardViewController: UIViewController {
         
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        oneTouchPayDescriptionLabel.text = oneTouchPayService.getOneTouchPayDisplayString(forCustomerNumber: viewModel.accountDetail.customerInfo.number)
+        oneTouchPayDescriptionLabel.text = oneTouchPayService.getOneTouchPayDisplayString(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         
@@ -137,7 +137,7 @@ class AddCreditCardViewController: UIViewController {
     func onSavePress() {
         view.endEditing(true)
                 
-        let customerNumber = viewModel.accountDetail.customerInfo.number
+        let customerNumber: String = AccountsStore.sharedInstance.customerIdentifier
         
         var shouldShowOneTouchPayWarning = false
         if viewModel.oneTouchPay.value {
@@ -157,7 +157,7 @@ class AddCreditCardViewController: UIViewController {
                 if setAsOneTouchPay {
                     let accountNumber = self.viewModel.cardNumber.value
                     let last4 = accountNumber.substring(from: accountNumber.index(accountNumber.endIndex, offsetBy: -4))
-                    self.oneTouchPayService.setOneTouchPayItem(walletItemID: walletItemResult.walletItemId, maskedWalletItemAccountNumber: last4, paymentCategoryType: .credit, forCustomerNumber: customerNumber)
+                    self.oneTouchPayService.setOneTouchPayItem(walletItemID: walletItemResult.walletItemId, maskedWalletItemAccountNumber: last4, bankOrCard: .card, forCustomerNumber: customerNumber)
                 }
                 
                 LoadingView.hide()
