@@ -66,7 +66,7 @@ class PaymentViewModel {
             .subscribe(onNext: { walletItems in
                 // Default to One Touch Pay item
                 if self.selectedWalletItem.value == nil {
-                    if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: self.accountDetail.value.customerInfo.number) {
+                    if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
                         for item in walletItems {
                             if item == otpItem {
                                 self.selectedWalletItem.value = item
@@ -93,7 +93,7 @@ class PaymentViewModel {
     
     func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let paymentType: PaymentType = selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-        let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate.value, walletId: accountDetail.value.customerInfo.number!, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
+        let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate.value, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
         paymentService.schedulePayment(payment: payment)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in

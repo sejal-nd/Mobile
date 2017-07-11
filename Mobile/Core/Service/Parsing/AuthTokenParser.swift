@@ -85,6 +85,11 @@ class AuthTokenParser : NSObject {
            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
         }
         
+        guard let customerIdentifier = data["customerIdentifier"] as? String else {
+            return ServiceResult.Failure(ServiceError(serviceMessage: NSLocalizedString("Customer Identifier not found", comment: "")))
+        }
+        AccountsStore.sharedInstance.customerIdentifier = customerIdentifier
+        
         UserDefaults.standard.set(profileType == "commercial", forKey: UserDefaultKeys.IsCommercialUser)
         if profileType != "commercial" && profileType != "residential" {
             return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))

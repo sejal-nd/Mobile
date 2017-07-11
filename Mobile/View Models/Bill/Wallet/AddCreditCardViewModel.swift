@@ -158,7 +158,7 @@ class AddCreditCardViewModel {
         let card = CreditCard(cardNumber: cardNumber.value, securityCode: cvv.value, firstName: "", lastName: "", expirationMonth: expMonth.value, expirationYear: expYear.value, postalCode: zipCode.value, nickname: nickname.value)
         
         walletService
-            .addCreditCard(card, forCustomerNumber: accountDetail.customerInfo.number!)
+            .addCreditCard(card, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { walletItemResult in
                 onSuccess(walletItemResult)

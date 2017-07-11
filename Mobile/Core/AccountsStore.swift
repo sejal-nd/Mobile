@@ -11,6 +11,7 @@ final class AccountsStore {
     
     var accounts: [Account]!
     var currentAccount: Account!
+    var customerIdentifier: String!
     
     // Private init protects against another instance being accidentally instantiated
     private init() { }

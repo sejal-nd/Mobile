@@ -157,7 +157,7 @@ class EditCreditCardViewController: UIViewController {
         
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        oneTouchPayDescriptionLabel.text = oneTouchPayService.getOneTouchPayDisplayString(forCustomerNumber: viewModel.accountDetail.customerInfo.number)
+        oneTouchPayDescriptionLabel.text = oneTouchPayService.getOneTouchPayDisplayString(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         
@@ -241,7 +241,7 @@ class EditCreditCardViewController: UIViewController {
         oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
         
         oneTouchPayCardView.isHidden = true
-        let oneTouchPayWalletItem = oneTouchPayService.oneTouchPayItem(forCustomerNumber: viewModel.accountDetail.customerInfo.number)
+        let oneTouchPayWalletItem = oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
         if (oneTouchPayWalletItem == viewModel.walletItem) {
             oneTouchPayCardView.isHidden = false
             viewModel.oneTouchPayInitialValue.value = true
@@ -355,7 +355,7 @@ class EditCreditCardViewController: UIViewController {
     func onSavePress() {
         view.endEditing(true)
         
-        let customerNumber = viewModel.accountDetail.customerInfo.number
+        let customerNumber: String = AccountsStore.sharedInstance.customerIdentifier
         
         var shouldShowOneTouchPayReplaceWarning = false
         var shouldShowOneTouchPayDisableWarning = false
@@ -464,7 +464,7 @@ class EditCreditCardViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { _ in
             LoadingView.show()
             self.viewModel.deleteCreditCard(onSuccess: {
-                let customerNumber = self.viewModel.accountDetail.customerInfo.number
+                let customerNumber: String = AccountsStore.sharedInstance.customerIdentifier
                 if self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) == self.viewModel.walletItem {
                     self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
                 }

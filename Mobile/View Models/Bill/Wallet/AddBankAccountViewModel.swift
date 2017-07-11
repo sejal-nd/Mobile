@@ -117,7 +117,7 @@ class AddBankAccountViewModel {
         let bankAccount = BankAccount(bankAccountNumber: accountNumber.value, routingNumber: routingNumber.value, accountNickname: nickname, accountType: accountType, accountName: accountName, oneTimeUse: false)
         
         walletService
-            .addBankAccount(bankAccount, forCustomerNumber: accountDetail.customerInfo.number!)
+            .addBankAccount(bankAccount, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { walletItemResult in
                 onSuccess(walletItemResult)
