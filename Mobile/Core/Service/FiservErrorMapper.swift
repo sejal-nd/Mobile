@@ -28,7 +28,9 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if (elementName as String == "item") {
+            FiservErrorMapper.fiservError!.text = FiservErrorMapper.fiservError!.text
             items.append(FiservErrorMapper.fiservError!)
+            FiservErrorMapper.fiservError = nil
         }
     }
     
@@ -48,12 +50,15 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
             parser?.delegate = FiservErrorMapper.sharedInstance
             parser?.parse()
         }
+
         let error = items.filter(
-                {message.uppercased().contains($0.id) && (context == nil || $0.context == context)}
+                {
+                    message.uppercased().contains($0.id) && (context == nil || $0.context == context)
+                }
         ).first;
 
         if error == nil && context != nil { return getError(message: message, context: nil) }
-        else { return nil }
+        else { return error }
     }
 }
 
