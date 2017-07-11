@@ -109,7 +109,13 @@ class PaymentViewModel {
     
     func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let paymentType: PaymentType = selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-        let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate.value, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
+        var paymentDate = self.paymentDate.value
+        if let walletItem = selectedWalletItem.value {
+            if walletItem.bankOrCard == .card {
+                paymentDate = NSCalendar.current.startOfDay(for: Date())
+            }
+        }
+        let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
         paymentService.schedulePayment(payment: payment)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
@@ -376,8 +382,16 @@ class PaymentViewModel {
         return $0.billingInfo.pastDueAmount ?? 0 > 0
     }
     
-    lazy var paymentDateString: Driver<String?> = self.paymentDate.asDriver().map {
-        return $0.mmDdYyyyString
+    var paymentDateString: Driver<String> {
+        return Driver.combineLatest(paymentDate.asDriver(), selectedWalletItem.asDriver()).map {
+            if let walletItem = $1 {
+                if walletItem.bankOrCard == .card {
+                    let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
+                    return startOfTodayDate.mmDdYyyyString
+                }
+            }
+            return $0.mmDdYyyyString
+        }
     }
     
     lazy var shouldShowBillMatrixView: Driver<Bool> = self.selectedWalletItem.asDriver().map {
