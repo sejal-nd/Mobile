@@ -172,6 +172,7 @@ struct BillingInfo: Mappable {
     let billDate: Date?
     let convenienceFee: Double?
     let scheduledPaymentAmount: Double?
+    let scheduledPaymentDate: Date?
     let atReinstateFee: Double?
     let minPaymentAmount: Double?
     let maxPaymentAmount: Double?
@@ -194,6 +195,7 @@ struct BillingInfo: Mappable {
         billDate = map.optionalFrom("billDate", transformation: extractDate)
         convenienceFee = map.optionalFrom("convenienceFee")
         scheduledPaymentAmount = map.optionalFrom("scheduledPaymentAmount")
+        scheduledPaymentDate = map.optionalFrom("scheduledPaymentDate", transformation: extractDate)
         atReinstateFee = map.optionalFrom("atReinstateFee")
         minPaymentAmount = map.optionalFrom("minimumPaymentAmount")
         maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")

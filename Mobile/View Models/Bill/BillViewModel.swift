@@ -393,13 +393,21 @@ class BillViewModel {
                     let paymentString = scheduledPaymentAmount.currencyString ?? "--"
                     let dueByDateString = accountDetail.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
                     let localizedText = NSLocalizedString("You have an automatic payment of %@ for %@", comment: "")
-                    return String(format: localizedText, paymentString, dueByDateString)
+                    if let scheduledPaymentDate = accountDetail.billingInfo.scheduledPaymentDate?.mmDdYyyyString {
+                        return String(format: localizedText, paymentString, scheduledPaymentDate)
+                    } else {
+                        return String(format: localizedText, paymentString, dueByDateString)
+                    }
                 }
             } else {
                 let paymentString = scheduledPaymentAmount.currencyString ?? "--"
                 let dueByDateString = accountDetail.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
                 let localizedText = NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: "")
-                return String(format: localizedText, paymentString, dueByDateString)
+                if let scheduledPaymentDate = accountDetail.billingInfo.scheduledPaymentDate?.mmDdYyyyString {
+                    return String(format: localizedText, paymentString, scheduledPaymentDate)
+                } else {
+                    return String(format: localizedText, paymentString, dueByDateString)
+                }
             }
         } else if let pendingPaymentAmount = accountDetail.billingInfo.pendingPaymentAmount, pendingPaymentAmount > 0 {
             let paymentString = pendingPaymentAmount.currencyString ?? "--"
@@ -437,8 +445,13 @@ class BillViewModel {
             } else {
                 let paymentString = scheduledPaymentAmount.currencyString ?? "--"
                 let dueByDateString = accountDetail.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
+                let localizedTitle = NSLocalizedString("Existing Scheduled Payment", comment: "")
                 let localizedText = NSLocalizedString("You have a payment of %@ scheduled for %@. To avoid a duplicate payment, please review your payment activity before proceeding. Would you like to continue making an additional payment?", comment: "")
-                return (NSLocalizedString("Existing Scheduled Payment", comment: ""), String(format: localizedText, paymentString, dueByDateString))
+                if let scheduledPaymentDate = accountDetail.billingInfo.scheduledPaymentDate?.mmDdYyyyString {
+                    return (localizedTitle, String(format: localizedText, paymentString, scheduledPaymentDate))
+                } else {
+                    return (localizedTitle, String(format: localizedText, paymentString, dueByDateString))
+                }
             }
         }
         return (nil, nil)
