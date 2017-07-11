@@ -385,7 +385,7 @@ class BillViewModel {
     //MARK: - Payment Status
     lazy var paymentStatusText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return nil }
-        if let scheduledPaymentAmount = accountDetail.billingInfo.netDueAmount, scheduledPaymentAmount > 0.0 {
+        if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPaymentAmount, scheduledPaymentAmount > 0.0 {
             if accountDetail.isAutoPay {
                 if Environment.sharedInstance.opco == .bge {
                     return NSLocalizedString("You are enrolled in AutoPay", comment: "")
@@ -437,11 +437,15 @@ class BillViewModel {
     
     lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?)> = self.currentAccountDetail.asObservable().map {
         guard let accountDetail = $0 else { return (nil, nil) }
-        if let scheduledPaymentAmount = accountDetail.billingInfo.netDueAmount, scheduledPaymentAmount > 0.0 {
+        if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPaymentAmount, scheduledPaymentAmount > 0.0 {
             if accountDetail.isBGEasy {
                 return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date of your bill from the bank account you originally submitted. You may make a one-time payment now, but it may result in duplicate payment processing. Do you want to continue with a one-time payment?", comment: ""))
-            } else if accountDetail.isAutoPay && Environment.sharedInstance.opco == .bge {
-                return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You currently have automatic payments set up. To avoid a duplicate payment, please review your payment activity before proceeding. Would you like to continue making an additional payment?", comment: ""))
+            } else if accountDetail.isAutoPay {
+                if Environment.sharedInstance.opco == .bge {
+                    return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You currently have automatic payments set up. To avoid a duplicate payment, please review your payment activity before proceeding. Would you like to continue making an additional payment?", comment: ""))
+                } else {
+                    return (nil, nil)
+                }
             } else {
                 let paymentString = scheduledPaymentAmount.currencyString ?? "--"
                 let dueByDateString = accountDetail.billingInfo.dueByDate?.mmDdYyyyString ?? "--"

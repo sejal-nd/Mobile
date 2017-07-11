@@ -39,4 +39,7 @@
 
 #import <PDTSimpleCalendar/PDTSimpleCalendar.h>
 
+#import "SSJailbreakCheck.h"
+#import "DTTJailbreakDetection.h"
+
 #endif /* EXBridgingHeader_h */
