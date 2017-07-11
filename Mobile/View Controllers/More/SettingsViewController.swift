@@ -97,7 +97,7 @@ class SettingsViewController: UIViewController {
             LoadingView.show()
             self.viewModel.validateCredentials(onSuccess: {
                 LoadingView.hide()
-                self.view.showToast(NSLocalizedString("Touch ID Enabled", comment: ""))
+                self.view.showToast(NSLocalizedString("Fingerprint Enabled", comment: ""))
             }, onError: { (error) in
                 LoadingView.hide()
                 self.touchIdPasswordRetryCount += 1

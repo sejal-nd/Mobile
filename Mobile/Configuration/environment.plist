@@ -5,7 +5,7 @@
 	<key>environment</key>
 	<string>DEV</string>
 	<key>appName</key>
-	<string>PECO_DEV</string>
+	<string>PECO_TEST</string>
 	<key>opco</key>
 	<string>PECO</string>
 	<key>oauthEndpoint</key>

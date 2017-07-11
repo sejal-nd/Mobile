@@ -31,6 +31,7 @@ class PaymentViewModel {
     
     let termsConditionsSwitchValue = Variable(false)
     let overpayingSwitchValue = Variable(false)
+    let activeSeveranceSwitchValue = Variable(false)
     
     init(walletService: WalletService, paymentService: PaymentService, oneTouchPayService: OneTouchPayService, accountDetail: AccountDetail) {
         self.walletService = walletService
@@ -124,6 +125,10 @@ class PaymentViewModel {
     
     lazy var isCashOnlyUser: Driver<Bool> = self.accountDetail.asDriver().map {
         return $0.isCashOnly
+    }
+    
+    lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetail.asDriver().map {
+        return $0.isActiveSeverance
     }
     
     var shouldShowContent: Driver<Bool> {
@@ -327,7 +332,7 @@ class PaymentViewModel {
             if self.fixedPaymentDateLogic {
                 return true
             }
-            
+
             let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
             if let dueDate = $0.billingInfo.dueByDate {
                 if dueDate < startOfTodayDate {
@@ -344,6 +349,9 @@ class PaymentViewModel {
             return true
         }
         if (accountDetail.value.billingInfo.restorationAmount ?? 0 > 0 || accountDetail.value.billingInfo.amtDpaReinst ?? 0 > 0) || accountDetail.value.isCutOutNonPay { // Cut for non-pay
+            return true
+        }
+        if accountDetail.value.isActiveSeverance {
             return true
         }
         return false
@@ -387,13 +395,16 @@ class PaymentViewModel {
     // MARK: - Review Payment Drivers
     
     var reviewPaymentSubmitButtonEnabled: Driver<Bool> {
-        return Driver.combineLatest(shouldShowTermsConditionsSwitchView, termsConditionsSwitchValue.asDriver(), isOverpaying, overpayingSwitchValue.asDriver()).map {
+        return Driver.combineLatest(shouldShowTermsConditionsSwitchView, termsConditionsSwitchValue.asDriver(), isOverpaying, overpayingSwitchValue.asDriver(), isActiveSeveranceUser, activeSeveranceSwitchValue.asDriver()).map {
             var isValid = true
             if $0 {
                 isValid = $1
             }
             if $2 {
                 isValid = $3
+            }
+            if $4 {
+                isValid = $5
             }
             return isValid
         }
@@ -409,10 +420,6 @@ class PaymentViewModel {
             return $1 > $0
         }
     }
-    
-//    lazy var shouldShowOverpaymentLabel: Driver<Bool> = self.isOverpaying.map {
-//        return Environment.sharedInstance.opco == .bge && $0
-//    }
     
     var overpayingValueDisplayString: Driver<String> {
         return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver().map { return Double($0) ?? 0 }).map {

@@ -18,6 +18,7 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var scrollViewContentView: UIView!
     var gradientLayer = CAGradientLayer()
     
+    @IBOutlet weak var activeSeveranceLabel: UILabel!
     @IBOutlet weak var overpaymentLabel: UILabel!
     
     @IBOutlet weak var paymentAccountTextLabel: UILabel!
@@ -60,6 +61,10 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var overpayingSwitch: Switch!
     @IBOutlet weak var overpayingSwitchLabel: UILabel!
     
+    @IBOutlet weak var activeSeveranceSwitchView: UIView!
+    @IBOutlet weak var activeSeveranceSwitch: Switch!
+    @IBOutlet weak var activeSeveranceSwitchLabel: UILabel!
+    
     @IBOutlet weak var billMatrixView: UIView!
     @IBOutlet weak var privacyPolicyButton: UIButton!
     
@@ -83,6 +88,11 @@ class ReviewPaymentViewController: UIViewController {
             UIColor.white.cgColor,
         ]
         scrollViewContentView.layer.insertSublayer(gradientLayer, at: 0)
+        
+        activeSeveranceLabel.textColor = .blackText
+        activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        activeSeveranceLabel.text = NSLocalizedString("Your account is active severance, as such you will not be able to edit or delete this payment once it is created.", comment: "")
+        activeSeveranceLabel.setLineHeight(lineHeight: 24)
         
         overpaymentLabel.textColor = .blackText
         overpaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -145,13 +155,18 @@ class ReviewPaymentViewController: UIViewController {
         termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)
         termsConditionsButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
         
+        privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
+        privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
+        
         overpayingSwitchLabel.textColor = .deepGray
         overpayingSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
         overpayingSwitchLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
         overpayingSwitchLabel.setLineHeight(lineHeight: 25)
         
-        privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
-        privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
+        activeSeveranceSwitchLabel.textColor = .deepGray
+        activeSeveranceSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
+        activeSeveranceSwitchLabel.text = NSLocalizedString("I acknowledge I will not be able to edit or delete this payment once submitted.", comment: "")
+        activeSeveranceSwitchLabel.setLineHeight(lineHeight: 25)
         
         footerView.backgroundColor = .softGray
         footerLabel.textColor = .blackText
@@ -173,11 +188,13 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func bindViewHiding() {
+        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isOverpaying.map(!).drive(overpaymentLabel.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isOverpaying.map(!).drive(overpayingView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.reviewPaymentShouldShowConvenienceFeeBox.map(!).drive(convenienceFeeView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowTermsConditionsSwitchView.map(!).drive(termsConditionsSwitchView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceSwitchView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).addDisposableTo(disposeBag)
     }
     
@@ -208,8 +225,10 @@ class ReviewPaymentViewController: UIViewController {
         // Total Payment
         viewModel.totalPaymentDisplayString.asDriver().drive(totalPaymentValueLabel.rx.text).addDisposableTo(disposeBag)
         
+        // Switches
         termsConditionsSwitch.rx.isOn.bind(to: viewModel.termsConditionsSwitchValue).addDisposableTo(disposeBag)
         overpayingSwitch.rx.isOn.bind(to: viewModel.overpayingSwitchValue).addDisposableTo(disposeBag)
+        activeSeveranceSwitch.rx.isOn.bind(to: viewModel.activeSeveranceSwitchValue).addDisposableTo(disposeBag)
     }
     
     func bindButtonTaps() {
