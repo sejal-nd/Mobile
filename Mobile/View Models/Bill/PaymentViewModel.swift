@@ -64,23 +64,39 @@ class PaymentViewModel {
         walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { walletItems in
-                // Default to One Touch Pay item
                 if self.selectedWalletItem.value == nil {
-                    if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
-                        for item in walletItems {
-                            if item == otpItem {
-                                self.selectedWalletItem.value = item
-                                break
+                    if self.accountDetail.value.isCashOnly {
+                        // Default to One Touch Pay item IF it's a credit card
+                        if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
+                            for item in walletItems {
+                                if item == otpItem && item.bankOrCard == .card {
+                                    self.selectedWalletItem.value = item
+                                    break
+                                }
                             }
+                        } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
+                            for item in walletItems {
+                                if item.bankOrCard == .card {
+                                    self.selectedWalletItem.value = item
+                                    break
+                                }
+                            }
+                        }
+                    } else {
+                        // Default to One Touch Pay item
+                        if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
+                            for item in walletItems {
+                                if item == otpItem {
+                                    self.selectedWalletItem.value = item
+                                    break
+                                }
+                            }
+                        } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
+                            self.selectedWalletItem.value = walletItems[0]
                         }
                     }
                 }
-                
-                // If no OTP item, default to first wallet item
-                if self.selectedWalletItem.value == nil && walletItems.count > 0 {
-                    self.selectedWalletItem.value = walletItems[0]
-                }
-                 
+
                 self.isFetchingWalletItems.value = false
                 self.walletItems.value = walletItems
                 onSuccess?()

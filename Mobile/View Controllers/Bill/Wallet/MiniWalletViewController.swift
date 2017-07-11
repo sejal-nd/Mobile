@@ -29,6 +29,7 @@ class MiniWalletViewController: UIViewController {
     
     // These should be passed by whatever VC is presenting MiniWalletViewController
     var addingDisabled = false // Temporarily being used for sprint 13 payment workflow. Sprint 14 will enable but using them will have different actions
+    var bankAccountsDisabled = false
     var creditCardsDisabled = false
     var tableHeaderLabelText: String?
     var accountDetail: AccountDetail!
@@ -58,6 +59,10 @@ class MiniWalletViewController: UIViewController {
         viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowErrorLabel.map(!).drive(errorLabel.rx.isHidden).addDisposableTo(disposeBag)
+        
+        if accountDetail.isCashOnly {
+            bankAccountsDisabled = true
+        }
 
         if viewModel.walletItems.value == nil { // Wallet items are passed in from MakePaymentViewController - so only fetch if necessary
             fetchWalletItems()
@@ -182,6 +187,9 @@ extension MiniWalletViewController: UITableViewDataSource {
         
         if section == 0 {
             cell.label.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
+            if bankAccountsDisabled {
+                cell.label.alpha = 0.33
+            }
         } else {
             cell.label.text = viewModel.creditCardFeeString
             if creditCardsDisabled {
@@ -207,6 +215,9 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.checkmarkImageView.isHidden = bankItem != viewModel.selectedItem.value
                 cell.innerContentView.tag = indexPath.row
                 cell.innerContentView.addTarget(self, action: #selector(onBankAccountPress(sender:)), for: .touchUpInside)
+                if self.bankAccountsDisabled {
+                    cell.innerContentView.isEnabled = false
+                }
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
