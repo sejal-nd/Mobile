@@ -106,7 +106,7 @@ class WalletViewController: UIViewController {
         miniBankButton.accessibilityLabel = NSLocalizedString("Add Bank account", comment: "")
         
         creditCardButton.isAccessibilityElement = true
-        creditCardButton.accessibilityLabel = NSLocalizedString("Add Credit/Debit Card", comment: "")
+        creditCardButton.accessibilityLabel = NSLocalizedString("Add Credit Card", comment: "")
         miniCreditCardButton.isAccessibilityElement = true
         miniCreditCardButton.accessibilityLabel = NSLocalizedString("Add Credit card", comment: "")
 
