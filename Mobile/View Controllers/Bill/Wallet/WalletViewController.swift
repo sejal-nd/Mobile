@@ -81,12 +81,9 @@ class WalletViewController: UIViewController {
         addPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
         miniCreditCardButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniCreditCardButton.layer.cornerRadius = 8
-        miniCreditCardButton.isAccessibilityElement = true
-        miniCreditCardButton.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
         miniBankButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniBankButton.layer.cornerRadius = 8
-        miniBankButton.isAccessibilityElement = true
-        miniBankButton.accessibilityLabel = NSLocalizedString("Bank account", comment: "")
+
         
         tableViewFooter.text = viewModel.footerLabelText
         tableViewFooter.font = SystemFont.regular.of(textStyle: .footnote)
@@ -104,9 +101,15 @@ class WalletViewController: UIViewController {
     
     func addAccessibility() {
         bankButton.isAccessibilityElement = true
-        bankButton.accessibilityLabel = NSLocalizedString("Bank Account", comment: "")
+        bankButton.accessibilityLabel = NSLocalizedString("Add Bank Account", comment: "")
+        miniBankButton.isAccessibilityElement = true
+        miniBankButton.accessibilityLabel = NSLocalizedString("Add Bank account", comment: "")
+        
         creditCardButton.isAccessibilityElement = true
-        creditCardButton.accessibilityLabel = NSLocalizedString("Credit/Debit Card", comment: "")
+        creditCardButton.accessibilityLabel = NSLocalizedString("Add Credit/Debit Card", comment: "")
+        miniCreditCardButton.isAccessibilityElement = true
+        miniCreditCardButton.accessibilityLabel = NSLocalizedString("Add Credit card", comment: "")
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
