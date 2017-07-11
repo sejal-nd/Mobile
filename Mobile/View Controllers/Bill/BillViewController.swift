@@ -459,6 +459,19 @@ class BillViewController: AccountPickerViewController {
                 }).addDisposableTo(self.bag)
             })
             .addDisposableTo(bag)
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onMakeAPaymentStatusLabelTap))
+        makeAPaymentStatusLabel.addGestureRecognizer(tapRecognizer)
+    }
+    
+    func onMakeAPaymentStatusLabelTap() {
+        viewModel.makePaymentStatusTextTapRouting.single().subscribe(onNext: { (route: MakePaymentStatusTextRouting) in
+            if route == .activity {
+                self.performSegue(withIdentifier: "billingHistorySegue", sender: self)
+            } else if route == .autoPay {
+                self.navigateToAutoPay()
+            }
+        }).addDisposableTo(bag)
     }
     
     func navigateToAutoPay() {

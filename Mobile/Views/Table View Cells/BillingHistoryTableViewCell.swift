@@ -34,13 +34,13 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 case "PROCESSING":
                     iconImageView.image = UIImage(named: "ic_pending")
                     titleLabel.text = PAYMENT_PROCESSING
-                    self.amountLabel.text = item.amountPaid!.currencyString
+                    self.amountLabel.text = item.amountPaid?.currencyString
                 case "SCHEDULED": 
                     fallthrough
                 default:
                     iconImageView.image = UIImage(named: "ic_scheduled")
                     titleLabel.text = SCHEDULED_PAYMENT
-                    self.amountLabel.text = item.amountPaid!.currencyString
+                    self.amountLabel.text = item.amountPaid?.currencyString
             }
         } else {
             if let description = item.description {
@@ -48,11 +48,11 @@ class BillingHistoryTableViewCell: UITableViewCell {
                     case "Regular Bill":
                         iconImageView.image = UIImage(named: "ic_bill")
                         titleLabel.text = BILL_ISSUED
-                        self.amountLabel.text = item.totalAmountDue!.currencyString
+                        self.amountLabel.text = item.totalAmountDue?.currencyString
                     case "Billing":
                         iconImageView.image = UIImage(named: "ic_bill")
                         titleLabel.text = BILL_ISSUED
-                        self.amountLabel.text = item.totalAmountDue!.currencyString
+                        self.amountLabel.text = item.totalAmountDue?.currencyString
                     case "Late Payment Charge":
                         iconImageView.image = UIImage(named: "ic_alert")
                         titleLabel.text = LATE_PAYMENT
