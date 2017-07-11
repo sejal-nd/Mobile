@@ -31,7 +31,7 @@ protocol WalletService {
     ///
     /// - Parameters:
     ///   - bankAccount: the account to add
-    ///   - customerNumber: the user's accountDetail.CustomerInfo.number
+    ///   - customerNumber: AccountsStore.sharedInstance.customerIdentifier
     ///   - completiong: the block to execute upon completion
     func addBankAccount(_ bankAccount : BankAccount,
                         forCustomerNumber: String,
@@ -42,7 +42,7 @@ protocol WalletService {
     ///
     /// - Parameters:
     ///   - creditCard: the card to add
-    ///   - customerNumber: the user's accountDetail.CustomerInfo.number
+    ///   - customerNumber: AccountsStore.sharedInstance.customerIdentifier
     ///   - completion: the bock to execute upon completion
     func addCreditCard(_ creditCard: CreditCard,
                        forCustomerNumber: String,
@@ -53,7 +53,7 @@ protocol WalletService {
     ///
     /// - Parameters:
     ///   - walletItemId: the wallet item id to update
-    ///   - customerNumber: the user's accountDetail.CustomerInfo.number
+    ///   - customerNumber: AccountsStore.sharedInstance.customerIdentifier
     ///   - expirationMonth: the expiration month to set
     ///   - expirationYear: the expiration year to set
     ///   - securityCode: the security code to set

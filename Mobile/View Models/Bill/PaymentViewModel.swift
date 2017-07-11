@@ -31,6 +31,7 @@ class PaymentViewModel {
     
     let termsConditionsSwitchValue = Variable(false)
     let overpayingSwitchValue = Variable(false)
+    let activeSeveranceSwitchValue = Variable(false)
     
     init(walletService: WalletService, paymentService: PaymentService, oneTouchPayService: OneTouchPayService, accountDetail: AccountDetail) {
         self.walletService = walletService
@@ -63,23 +64,39 @@ class PaymentViewModel {
         walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { walletItems in
-                // Default to One Touch Pay item
                 if self.selectedWalletItem.value == nil {
-                    if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: self.accountDetail.value.customerInfo.number) {
-                        for item in walletItems {
-                            if item == otpItem {
-                                self.selectedWalletItem.value = item
-                                break
+                    if self.accountDetail.value.isCashOnly {
+                        // Default to One Touch Pay item IF it's a credit card
+                        if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
+                            for item in walletItems {
+                                if item == otpItem && item.bankOrCard == .card {
+                                    self.selectedWalletItem.value = item
+                                    break
+                                }
                             }
+                        } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
+                            for item in walletItems {
+                                if item.bankOrCard == .card {
+                                    self.selectedWalletItem.value = item
+                                    break
+                                }
+                            }
+                        }
+                    } else {
+                        // Default to One Touch Pay item
+                        if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
+                            for item in walletItems {
+                                if item == otpItem {
+                                    self.selectedWalletItem.value = item
+                                    break
+                                }
+                            }
+                        } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
+                            self.selectedWalletItem.value = walletItems[0]
                         }
                     }
                 }
-                
-                // If no OTP item, default to first wallet item
-                if self.selectedWalletItem.value == nil && walletItems.count > 0 {
-                    self.selectedWalletItem.value = walletItems[0]
-                }
-                 
+
                 self.isFetchingWalletItems.value = false
                 self.walletItems.value = walletItems
                 onSuccess?()
@@ -92,7 +109,13 @@ class PaymentViewModel {
     
     func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let paymentType: PaymentType = selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-        let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate.value, walletId: accountDetail.value.customerInfo.number!, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
+        var paymentDate = self.paymentDate.value
+        if let walletItem = selectedWalletItem.value {
+            if walletItem.bankOrCard == .card {
+                paymentDate = NSCalendar.current.startOfDay(for: Date())
+            }
+        }
+        let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
         paymentService.schedulePayment(payment: payment)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
@@ -124,6 +147,10 @@ class PaymentViewModel {
     
     lazy var isCashOnlyUser: Driver<Bool> = self.accountDetail.asDriver().map {
         return $0.isCashOnly
+    }
+    
+    lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetail.asDriver().map {
+        return $0.isActiveSeverance
     }
     
     var shouldShowContent: Driver<Bool> {
@@ -316,7 +343,6 @@ class PaymentViewModel {
     }
     
     var isFixedPaymentDate: Driver<Bool> {
-        //return Driver.just(false)
         return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
             if let walletItem = $1 {
                 if walletItem.bankOrCard == .card {
@@ -327,7 +353,7 @@ class PaymentViewModel {
             if self.fixedPaymentDateLogic {
                 return true
             }
-            
+
             let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
             if let dueDate = $0.billingInfo.dueByDate {
                 if dueDate < startOfTodayDate {
@@ -346,19 +372,26 @@ class PaymentViewModel {
         if (accountDetail.value.billingInfo.restorationAmount ?? 0 > 0 || accountDetail.value.billingInfo.amtDpaReinst ?? 0 > 0) || accountDetail.value.isCutOutNonPay { // Cut for non-pay
             return true
         }
+        if accountDetail.value.isActiveSeverance {
+            return true
+        }
         return false
     }
-    
-//    var isFixedPaymentDatePastDue: Driver<Bool> {
-//        return Driver.just(false)
-//    }
     
     lazy var isFixedPaymentDatePastDue: Driver<Bool> = self.accountDetail.asDriver().map {
         return $0.billingInfo.pastDueAmount ?? 0 > 0
     }
     
-    lazy var paymentDateString: Driver<String?> = self.paymentDate.asDriver().map {
-        return $0.mmDdYyyyString
+    var paymentDateString: Driver<String> {
+        return Driver.combineLatest(paymentDate.asDriver(), selectedWalletItem.asDriver()).map {
+            if let walletItem = $1 {
+                if walletItem.bankOrCard == .card {
+                    let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
+                    return startOfTodayDate.mmDdYyyyString
+                }
+            }
+            return $0.mmDdYyyyString
+        }
     }
     
     lazy var shouldShowBillMatrixView: Driver<Bool> = self.selectedWalletItem.asDriver().map {
@@ -387,13 +420,16 @@ class PaymentViewModel {
     // MARK: - Review Payment Drivers
     
     var reviewPaymentSubmitButtonEnabled: Driver<Bool> {
-        return Driver.combineLatest(shouldShowTermsConditionsSwitchView, termsConditionsSwitchValue.asDriver(), isOverpaying, overpayingSwitchValue.asDriver()).map {
+        return Driver.combineLatest(shouldShowTermsConditionsSwitchView, termsConditionsSwitchValue.asDriver(), isOverpaying, overpayingSwitchValue.asDriver(), isActiveSeveranceUser, activeSeveranceSwitchValue.asDriver()).map {
             var isValid = true
             if $0 {
                 isValid = $1
             }
             if $2 {
                 isValid = $3
+            }
+            if $4 {
+                isValid = $5
             }
             return isValid
         }
@@ -409,10 +445,6 @@ class PaymentViewModel {
             return $1 > $0
         }
     }
-    
-//    lazy var shouldShowOverpaymentLabel: Driver<Bool> = self.isOverpaying.map {
-//        return Environment.sharedInstance.opco == .bge && $0
-//    }
     
     var overpayingValueDisplayString: Driver<String> {
         return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver().map { return Double($0) ?? 0 }).map {

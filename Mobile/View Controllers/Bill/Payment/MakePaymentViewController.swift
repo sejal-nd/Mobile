@@ -15,6 +15,7 @@ class MakePaymentViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var activeSeveranceLabel: UILabel!
     @IBOutlet weak var bankAccountsUnavailableLabel: UILabel!
     
     @IBOutlet weak var paymentAccountView: UIView! // Contains paymentAccountLabel and paymentAccountButton
@@ -87,6 +88,10 @@ class MakePaymentViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
+        activeSeveranceLabel.textColor = .blackText
+        activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        activeSeveranceLabel.text = NSLocalizedString("Your account is active severance. You are limited to creating a payment for the current date only, and you will not be able to edit or delete this payment once it is created.", comment: "")
         
         bankAccountsUnavailableLabel.textColor = .blackText
         bankAccountsUnavailableLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -243,6 +248,9 @@ class MakePaymentViewController: UIViewController {
         viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).addDisposableTo(disposeBag)
+        
+        // Active Severance Label
+        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).addDisposableTo(disposeBag)
         
         // Cash Only Bank Accounts Unavailable Label
         viewModel.isCashOnlyUser.map(!).drive(bankAccountsUnavailableLabel.rx.isHidden).addDisposableTo(disposeBag)

@@ -75,6 +75,7 @@ struct AccountDetail: Mappable {
     let isDualBillOption: Bool
     let isCashOnly: Bool
     let isSupplier: Bool
+    let isActiveSeverance: Bool
     
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
@@ -112,6 +113,7 @@ struct AccountDetail: Mappable {
         isDualBillOption = map.optionalFrom("isDualBillOption") ?? false
         isCashOnly = map.optionalFrom("isCashOnly") ?? false
         isSupplier = map.optionalFrom("isSupplier") ?? false
+        isActiveSeverance = map.optionalFrom("activeSeverance") ?? false
         
         status = map.optionalFrom("status")
         
@@ -170,6 +172,7 @@ struct BillingInfo: Mappable {
     let billDate: Date?
     let convenienceFee: Double?
     let scheduledPaymentAmount: Double?
+    let scheduledPaymentDate: Date?
     let atReinstateFee: Double?
     let minPaymentAmount: Double?
     let maxPaymentAmount: Double?
@@ -192,6 +195,7 @@ struct BillingInfo: Mappable {
         billDate = map.optionalFrom("billDate", transformation: extractDate)
         convenienceFee = map.optionalFrom("convenienceFee")
         scheduledPaymentAmount = map.optionalFrom("scheduledPaymentAmount")
+        scheduledPaymentDate = map.optionalFrom("scheduledPaymentDate", transformation: extractDate)
         atReinstateFee = map.optionalFrom("atReinstateFee")
         minPaymentAmount = map.optionalFrom("minimumPaymentAmount")
         maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")
