@@ -98,8 +98,7 @@ class PaymentViewModel {
             .subscribe(onNext: { _ in
                 onSuccess()
             }, onError: { err in
-                let error = FiservErrorMapper.sharedInstance.getError(message: err.localizedDescription, context: "payment")
-                onError( error )
+                onError(FiservErrorMapper.sharedInstance.getError(message: err.localizedDescription, context: "payment"))
             }).addDisposableTo(disposeBag)
     }
     
