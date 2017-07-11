@@ -22,6 +22,7 @@ class ForgotUsernameViewController: UIViewController {
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
+    var nextButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class ForgotUsernameViewController: UIViewController {
         title = NSLocalizedString("Forgot Username", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = nextButton
         viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
@@ -56,9 +57,13 @@ class ForgotUsernameViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.phoneNumberTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         identifierTextField?.textField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
@@ -79,9 +84,13 @@ class ForgotUsernameViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         identifierTextField?.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.identifierTextField?.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         accountNumberTextField?.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
@@ -98,9 +107,13 @@ class ForgotUsernameViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         accountNumberTextField?.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.accountNumberTextField?.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         accountLookupToolButton?.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
@@ -111,6 +124,20 @@ class ForgotUsernameViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        if phoneNumberTextField.getError() != "" {
+            message += "Phone number error: " + phoneNumberTextField.getError() + ". "
+        }
+        if identifierTextField?.getError() != "" {
+            message += "Identifier error: " + (identifierTextField?.getError())! + ". "
+        }
+        if accountNumberTextField?.getError() != "" {
+            message += "Account number error: " + (accountNumberTextField?.getError())! + ". "
+        }
+        self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {

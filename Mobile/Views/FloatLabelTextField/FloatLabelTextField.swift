@@ -24,6 +24,7 @@ class FloatLabelTextField: UIView {
     
     var errorState = false
     var textFieldIsFocused = false
+    var errorMessage = ""
     
     let disposeBag = DisposeBag()
     
@@ -104,6 +105,7 @@ class FloatLabelTextField: UIView {
             textField.floatingLabel.textColor = .errorRed
             
             errorLabel.text = String(format: NSLocalizedString("Error: %@", comment: ""), errorMessage)
+            self.errorMessage = errorMessage
             errorView.isHidden = false
         } else {
             errorState = false
@@ -124,9 +126,14 @@ class FloatLabelTextField: UIView {
             
             errorLabel.text = nil
             errorView.isHidden = true
+            self.errorMessage = ""
         }
     }
     
+    func getError() -> String {
+        return errorMessage
+    }
+        
     func setInfoMessage(_ message: String?) {
         
         if let info = message {

@@ -29,6 +29,7 @@ class RegistrationValidateAccountViewController: UIViewController {
 
     let viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService(), authenticationService: ServiceFactory.createAuthenticationService())
 
+    var nextButton = UIBarButtonItem()
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
     override func viewDidLoad() {
@@ -53,7 +54,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     
     func setupNavigationButtons() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
 
         navigationItem.leftBarButtonItem = cancelButton
@@ -101,10 +102,14 @@ class RegistrationValidateAccountViewController: UIViewController {
                         }
                     }).addDisposableTo(self.disposeBag)
                 }
+                self.accessibilityErrorLabel()
+                
             }).addDisposableTo(disposeBag)
             
             accountNumberTextField?.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
                 self.accountNumberTextField?.setError(nil)
+                self.accessibilityErrorLabel()
+                
             }).addDisposableTo(disposeBag)
         } else {
             accountNumberView.isHidden = true
@@ -126,10 +131,14 @@ class RegistrationValidateAccountViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.phoneNumberTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         //
@@ -161,15 +170,33 @@ class RegistrationValidateAccountViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         ssNumberNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.ssNumberNumberTextField?.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        if accountNumberTextField.getError() != "" {
+            message += "Account number error: " + accountNumberTextField.getError() + ". "
+        }
+        if phoneNumberTextField.getError() != "" {
+            message += "Phone number error: " + phoneNumberTextField.getError() + ". "
+        }
+        if ssNumberNumberTextField.getError() != "" {
+            message += "SS number error: " + ssNumberNumberTextField.getError() + ". "
+        }
+        self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {

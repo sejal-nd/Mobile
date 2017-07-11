@@ -23,6 +23,8 @@ class ForgotPasswordViewController: UIViewController {
     let viewModel = ForgotPasswordViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
+    
+    var submitButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,7 @@ class ForgotPasswordViewController: UIViewController {
         self.title = NSLocalizedString("Forgot Password", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+        submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
@@ -51,10 +53,20 @@ class ForgotPasswordViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         usernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.usernameTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         forgotUsernameButton.setTitle(NSLocalizedString("Forgot Username?", comment: ""), for: .normal)
         forgotUsernameButton.setTitleColor(.actionBlue, for: .normal)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        if usernameTextField.getError() != "" {
+            message += "Username error: " + usernameTextField.getError() + ". "
+        }
+        self.submitButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,6 +100,8 @@ class ForgotPasswordViewController: UIViewController {
         }, onProfileNotFound: { error in
             LoadingView.hide()
             self.usernameTextField.setError(NSLocalizedString(error, comment: ""))
+            self.accessibilityErrorLabel()
+            
         }, onError: { errorMessage in
             LoadingView.hide()
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)

@@ -55,6 +55,8 @@ class EditCreditCardViewController: UIViewController {
     var viewModel = EditCreditCardViewModel(walletService: ServiceFactory.createWalletService())
     
     let oneTouchPayService = ServiceFactory.createOneTouchPayService()
+    
+    var saveButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,7 +120,7 @@ class EditCreditCardViewController: UIViewController {
     
     func buildNavigationButtons() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
+        saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
 
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
@@ -264,10 +266,14 @@ class EditCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expMonthTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
@@ -283,10 +289,14 @@ class EditCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expYearTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
@@ -297,10 +307,14 @@ class EditCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cvvTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
@@ -311,11 +325,32 @@ class EditCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.zipCodeTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        if expMonthTextField.getError() != "" {
+            message += "Expiration month error: " + expMonthTextField.getError() + ". "
+        }
+        if expYearTextField.getError() != "" {
+            message += "Expiration year error: " + expYearTextField.getError() + ". "
+        }
+        if cvvTextField.getError() != "" {
+            message += "CVV number error: " + cvvTextField.getError() + ". "
+        }
+        if zipCodeTextField.getError() != "" {
+            message += "Zip code error: " + zipCodeTextField.getError() + ". "
+        }
+        self.saveButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
     // MARK: - ScrollView

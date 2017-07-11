@@ -60,6 +60,8 @@ class ReportOutageViewController: UIViewController {
     let opco = Environment.sharedInstance.opco
     
     let disposeBag = DisposeBag()
+    
+    var submitButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +69,7 @@ class ReportOutageViewController: UIViewController {
         self.title = NSLocalizedString("Report Outage", comment: "")
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+        submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
@@ -152,9 +154,13 @@ class ReportOutageViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.phoneNumberTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         phoneExtensionTextField.textField.placeholder = NSLocalizedString("Contact Number Ext. (Optional)", comment: "")
         phoneExtensionTextField.textField.autocorrectionType = .no
@@ -188,6 +194,14 @@ class ReportOutageViewController: UIViewController {
         // Format the intial value
         let range = NSMakeRange(0, viewModel.phoneNumber.value.characters.count)
         _ = textField(phoneNumberTextField.textField, shouldChangeCharactersIn: range, replacementString: viewModel.phoneNumber.value)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        if phoneNumberTextField.getError() != "" {
+            message += "Phone number error: " + phoneNumberTextField.getError() + ". "
+        }
+        self.submitButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {

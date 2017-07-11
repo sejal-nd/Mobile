@@ -103,6 +103,8 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         }, onEmailAlreadyExists: {
             LoadingView.hide()
             self.createUsernameTextField.setError(NSLocalizedString("Email already exists. Please select a different email to login to view your account.", comment: ""))
+            self.accessibilityErrorLabel()
+            
         }, onError: { (title, message) in
             LoadingView.hide()
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -139,6 +141,8 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 } else {
                     self.createPasswordTextField.setError(nil)
                 }
+                self.accessibilityErrorLabel()
+                
             }).addDisposableTo(disposeBag)
         
         viewModel.confirmPasswordMatches().asDriver(onErrorJustReturn: false)
@@ -153,6 +157,8 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                     self.confirmPasswordTextField.setValidated(false)
                     self.confirmPasswordTextField.setError(nil)
                 }
+                self.accessibilityErrorLabel()
+                
             }).addDisposableTo(disposeBag)
         
         viewModel.doneButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
@@ -167,16 +173,22 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         createUsernameTextField.textField.delegate = self
         createUsernameTextField.textField.isShowingAccessory = true
         createUsernameTextField.setError(nil)
+        self.accessibilityErrorLabel()
+        
         createUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         self.viewModel.newUsernameIsValid().subscribe(onNext: { errorMessage in
             self.createUsernameTextField.setError(errorMessage)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(self.disposeBag)
         
         createUsernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             if self.createUsernameTextField.errorState {
                 self.createUsernameTextField.setError(nil)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         confirmUsernameTextField.textField.placeholder = NSLocalizedString("Confirm Email Address*", comment: "")
@@ -201,6 +213,8 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             } else {
                 self.confirmUsernameTextField.setError(nil)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(self.disposeBag)
 
         createPasswordTextField.textField.placeholder = NSLocalizedString("Password*", comment: "")
@@ -228,6 +242,8 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 if self.createUsernameTextField.errorState {
                     self.createUsernameTextField.setError(nil)
                 }
+                self.accessibilityErrorLabel()
+                
             }).addDisposableTo(disposeBag)
         
         createUsernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
@@ -275,6 +291,23 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
         primaryProfileSwitch.rx.isOn.bind(to: viewModel.primaryProfile).addDisposableTo(disposeBag)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        if createUsernameTextField.getError() != "" {
+            message += "Create username error: " + createUsernameTextField.getError() + ". "
+        }
+        if createPasswordTextField.getError() != "" {
+            message += "Create password error: " + createPasswordTextField.getError() + ". "
+        }
+        if confirmPasswordTextField.getError() != "" {
+            message += "Confirm password error: " + confirmPasswordTextField.getError() + ". "
+        }
+        if confirmUsernameTextField.getError() != "" {
+            message += "Confirm username error: " + confirmUsernameTextField.getError() + ". "
+        }
+        self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
     // MARK: - Navigation

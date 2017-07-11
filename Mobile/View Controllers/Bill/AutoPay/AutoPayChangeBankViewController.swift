@@ -35,7 +35,8 @@ class AutoPayChangeBankViewController: UIViewController {
 	let bag = DisposeBag()
 	
 	var viewModel: AutoPayViewModel!
-	
+    var saveButton = UIBarButtonItem()
+    
 	weak var delegate: AutoPayChangeBankViewControllerDelegate?
 
     override func viewDidLoad() {
@@ -44,7 +45,8 @@ class AutoPayChangeBankViewController: UIViewController {
         title = NSLocalizedString("Change Bank Account", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
+        saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
+        
         navigationItem.leftBarButtonItem = cancelButton
 		navigationItem.rightBarButtonItem = saveButton
 		
@@ -120,6 +122,8 @@ class AutoPayChangeBankViewController: UIViewController {
 		viewModel.nameOnAccountErrorText
 			.drive(onNext: { [weak self] errorText in
 				self?.nameTextField.setError(errorText)
+                self?.accessibilityErrorLabel()
+                
 			})
 			.addDisposableTo(bag)
 		
@@ -130,6 +134,8 @@ class AutoPayChangeBankViewController: UIViewController {
         
         routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.routingNumberTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(bag)
         
         let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
@@ -151,6 +157,8 @@ class AutoPayChangeBankViewController: UIViewController {
             .distinctUntilChanged(==)
             .drive(onNext: { [weak self] errorText in
                 self?.routingNumberTextField.setError(errorText)
+                self?.accessibilityErrorLabel()
+                
             })
             .addDisposableTo(bag)
 		
@@ -167,6 +175,8 @@ class AutoPayChangeBankViewController: UIViewController {
 			.distinctUntilChanged(==)
 			.drive(onNext: { [weak self] errorText in
 				self?.accountNumberTextField.setError(errorText)
+                self?.accessibilityErrorLabel()
+                
 			})
 			.addDisposableTo(bag)
 		
@@ -174,6 +184,8 @@ class AutoPayChangeBankViewController: UIViewController {
 		viewModel.confirmAccountNumberErrorText
 			.drive(onNext: { [weak self] errorText in
 				self?.confirmAccountNumberTextField.setError(errorText)
+                self?.accessibilityErrorLabel()
+                
 			})
 			.addDisposableTo(bag)
 		
@@ -200,6 +212,23 @@ class AutoPayChangeBankViewController: UIViewController {
 		
 		viewModel.footerText.drive(footerLabel.rx.text).addDisposableTo(bag)
 	}
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        if nameTextField.getError() != "" {
+            message += "Name error: " + nameTextField.getError() + ". "
+        }
+        if routingNumberTextField.getError() != "" {
+            message += "Routing number error: " + routingNumberTextField.getError() + ". "
+        }
+        if accountNumberTextField.getError() != "" {
+            message += "Account number error: " + accountNumberTextField.getError() + ". "
+        }
+        if confirmAccountNumberTextField.getError() != "" {
+            message += "Confirm account number error: " + confirmAccountNumberTextField.getError() + ". "
+        }
+        self.saveButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+    }
 	
 	
 	func onTermsAndConditionsPress() {
