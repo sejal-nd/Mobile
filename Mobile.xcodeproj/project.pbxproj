@@ -440,6 +440,18 @@
 		B55A8AFC1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
 		B55A8AFD1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
 		B55A8AFE1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
+		B55A8B0C1F15644800F63AC3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0B1F15644800F63AC3 /* CoreData.framework */; };
+		B55A8B0E1F15646E00F63AC3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0D1F15646E00F63AC3 /* libz.tbd */; };
+		B55A8B101F15647D00F63AC3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */; };
+		B55A8B121F1564A400F63AC3 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B111F1564A400F63AC3 /* libGoogleAnalyticsServices.a */; };
+		B55A8B131F1564A400F63AC3 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B111F1564A400F63AC3 /* libGoogleAnalyticsServices.a */; };
+		B55A8B141F1564A400F63AC3 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B111F1564A400F63AC3 /* libGoogleAnalyticsServices.a */; };
+		B55A8B151F1564D200F63AC3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0B1F15644800F63AC3 /* CoreData.framework */; };
+		B55A8B161F1564DF00F63AC3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0D1F15646E00F63AC3 /* libz.tbd */; };
+		B55A8B171F1564E500F63AC3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */; };
+		B55A8B181F1564ED00F63AC3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0B1F15644800F63AC3 /* CoreData.framework */; };
+		B55A8B191F1564F900F63AC3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0D1F15646E00F63AC3 /* libz.tbd */; };
+		B55A8B1A1F15650200F63AC3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */; };
 		B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
@@ -1224,6 +1236,20 @@
 		B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSJailbreakCheck.m; sourceTree = "<group>"; };
 		B55A8AF81F1537B900F63AC3 /* DTTJailbreakDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTJailbreakDetection.h; sourceTree = "<group>"; };
 		B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTJailbreakDetection.m; sourceTree = "<group>"; };
+		B55A8B011F15642500F63AC3 /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		B55A8B021F15642500F63AC3 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		B55A8B031F15642500F63AC3 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
+		B55A8B041F15642500F63AC3 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		B55A8B051F15642500F63AC3 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		B55A8B061F15642500F63AC3 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		B55A8B071F15642500F63AC3 /* GAIFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		B55A8B081F15642500F63AC3 /* GAILogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		B55A8B091F15642500F63AC3 /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		B55A8B0A1F15642500F63AC3 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		B55A8B0B1F15644800F63AC3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B55A8B0D1F15646E00F63AC3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		B55A8B111F1564A400F63AC3 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		B56DD4971ED84E6000F0198B /* FiservApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservApi.swift; sourceTree = "<group>"; };
 		B56DD49C1ED87AD800F0198B /* BankAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
@@ -1461,6 +1487,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55A8B101F15647D00F63AC3 /* libsqlite3.tbd in Frameworks */,
+				B55A8B0E1F15646E00F63AC3 /* libz.tbd in Frameworks */,
+				B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B55A8B0C1F15644800F63AC3 /* CoreData.framework in Frameworks */,
 				E887C9FE1ED5D400002433A3 /* MobileCoreServices.framework in Frameworks */,
 				E887C9FC1ED5D3F9002433A3 /* CoreMedia.framework in Frameworks */,
 				E887C9FA1ED5D3F1002433A3 /* AudioToolbox.framework in Frameworks */,
@@ -1485,10 +1515,10 @@
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
 				B5AC073C1E52A2BD00BBA4ED /* Security.framework in Frameworks */,
-				B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				E887C9EF1ED5D367002433A3 /* libCardIO.a in Frameworks */,
 				B54A4B721EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */,
 				E887C9EC1ED5D367002433A3 /* libopencv_core.a in Frameworks */,
+				B55A8B121F1564A400F63AC3 /* libGoogleAnalyticsServices.a in Frameworks */,
 				E80043181E65DFE4005CF531 /* ToastSwiftFramework.framework in Frameworks */,
 				E80043491E671F0B005CF531 /* Zxcvbn.framework in Frameworks */,
 			);
@@ -1498,6 +1528,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55A8B1A1F15650200F63AC3 /* libsqlite3.tbd in Frameworks */,
+				B55A8B191F1564F900F63AC3 /* libz.tbd in Frameworks */,
+				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B55A8B181F1564ED00F63AC3 /* CoreData.framework in Frameworks */,
 				E887CA081ED5D474002433A3 /* MobileCoreServices.framework in Frameworks */,
 				E887CA071ED5D46F002433A3 /* CoreMedia.framework in Frameworks */,
 				E887CA061ED5D469002433A3 /* AudioToolbox.framework in Frameworks */,
@@ -1520,9 +1554,9 @@
 				B54F0FFD1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E887C9EB1ED5D367002433A3 /* libopencv_imgproc.a in Frameworks */,
 				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
+				B55A8B141F1564A400F63AC3 /* libGoogleAnalyticsServices.a in Frameworks */,
 				8FD3C2621E52454F005FB1BB /* RxSwift.framework in Frameworks */,
 				B5AC07401E52A2ED00BBA4ED /* Security.framework in Frameworks */,
-				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				E887C9F11ED5D367002433A3 /* libCardIO.a in Frameworks */,
 				B54A4B741EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */,
 				E887C9EE1ED5D367002433A3 /* libopencv_core.a in Frameworks */,
@@ -1535,6 +1569,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55A8B171F1564E500F63AC3 /* libsqlite3.tbd in Frameworks */,
+				B55A8B161F1564DF00F63AC3 /* libz.tbd in Frameworks */,
+				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B55A8B151F1564D200F63AC3 /* CoreData.framework in Frameworks */,
 				E887CA031ED5D448002433A3 /* MobileCoreServices.framework in Frameworks */,
 				E887CA021ED5D440002433A3 /* CoreMedia.framework in Frameworks */,
 				E887CA011ED5D43A002433A3 /* AudioToolbox.framework in Frameworks */,
@@ -1557,9 +1595,9 @@
 				B54F0FFC1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
 				E887C9EA1ED5D367002433A3 /* libopencv_imgproc.a in Frameworks */,
 				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
+				B55A8B131F1564A400F63AC3 /* libGoogleAnalyticsServices.a in Frameworks */,
 				8FD3C2601E524548005FB1BB /* RxSwift.framework in Frameworks */,
 				B5AC073E1E52A2E000BBA4ED /* Security.framework in Frameworks */,
-				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
 				E887C9F01ED5D367002433A3 /* libCardIO.a in Frameworks */,
 				B54A4B731EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */,
 				E887C9ED1ED5D367002433A3 /* libopencv_core.a in Frameworks */,
@@ -1786,6 +1824,9 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */,
+				B55A8B0D1F15646E00F63AC3 /* libz.tbd */,
+				B55A8B0B1F15644800F63AC3 /* CoreData.framework */,
 				E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */,
 				E887C9FD1ED5D400002433A3 /* MobileCoreServices.framework */,
 				E887C9FB1ED5D3F9002433A3 /* CoreMedia.framework */,
@@ -2106,6 +2147,24 @@
 				B557363D1E6740C9003B9369 /* VersionInfo.plist */,
 			);
 			path = SyncStore.momd;
+			sourceTree = "<group>";
+		};
+		B55A8B001F15640A00F63AC3 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				B55A8B111F1564A400F63AC3 /* libGoogleAnalyticsServices.a */,
+				B55A8B011F15642500F63AC3 /* GAI.h */,
+				B55A8B021F15642500F63AC3 /* GAIDictionaryBuilder.h */,
+				B55A8B031F15642500F63AC3 /* GAIEcommerceFields.h */,
+				B55A8B041F15642500F63AC3 /* GAIEcommerceProduct.h */,
+				B55A8B051F15642500F63AC3 /* GAIEcommerceProductAction.h */,
+				B55A8B061F15642500F63AC3 /* GAIEcommercePromotion.h */,
+				B55A8B071F15642500F63AC3 /* GAIFields.h */,
+				B55A8B081F15642500F63AC3 /* GAILogger.h */,
+				B55A8B091F15642500F63AC3 /* GAITrackedViewController.h */,
+				B55A8B0A1F15642500F63AC3 /* GAITracker.h */,
+			);
+			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
 		B56DD4961ED84E2400F0198B /* Fiserv */ = {
@@ -2517,6 +2576,7 @@
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				B55A8B001F15640A00F63AC3 /* GoogleAnalytics */,
 				B5D07CB71F13D5A40018B02D /* SSJailbreakCheck */,
 				E887C9DC1ED5D326002433A3 /* CardIO */,
 				E8B4F4C41E5CE18F0031D934 /* A0SimpleKeychain */,
@@ -4144,6 +4204,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4169,6 +4230,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4259,6 +4321,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4351,6 +4414,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4441,6 +4505,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4465,6 +4530,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4489,6 +4555,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4515,6 +4582,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4539,6 +4607,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4563,6 +4632,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4587,6 +4657,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4611,6 +4682,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4637,6 +4709,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4661,6 +4734,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4685,6 +4759,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
