@@ -33,10 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupUserDefaults()
         setupToastStyles()
         setupAppearance()
+        jailbreakCheck()
         //printFonts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
-   
+        
         return true
     }
 
@@ -148,7 +149,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app (or the registration confirmation modal)
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
     }
-        
+    
+    func jailbreakCheck() {
+        let ssBroken = SSJailbreakCheck.jailbroken()
+        let dtBroken = DTTJailbreakDetection.isJailbroken()
+        if ssBroken != NOTJAIL || dtBroken {
+            let message = String(format: NSLocalizedString("The %@ App cannot be used on jailbroken devices.", comment: ""), Environment.sharedInstance.appName)
+            let alertVc = UIAlertController(title: "", message: message, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { _ in
+                exit(0)
+            }))
+            
+            let deadlineTime = DispatchTime.now() + .seconds(1)
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+                self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+            }
+        }
+    }
+    
     func printFonts() {
         for familyName in UIFont.familyNames {
             print("------------------------------")

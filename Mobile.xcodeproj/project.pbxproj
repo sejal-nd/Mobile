@@ -430,6 +430,16 @@
 		B55736451E6742A6003B9369 /* OMC.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* OMC.plist */; };
 		B55736461E6742A6003B9369 /* OMC.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* OMC.plist */; };
 		B55736471E6742A6003B9369 /* OMC.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* OMC.plist */; };
+		B55A8AF31F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */; };
+		B55A8AF41F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */; };
+		B55A8AF51F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */; };
+		B55A8AF61F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */; };
+		B55A8AF71F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */; };
+		B55A8AFA1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
+		B55A8AFB1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
+		B55A8AFC1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
+		B55A8AFD1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
+		B55A8AFE1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
 		B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
@@ -1210,6 +1220,10 @@
 		B557363C1E6740C9003B9369 /* SyncStore.mom */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = SyncStore.mom; sourceTree = "<group>"; };
 		B557363D1E6740C9003B9369 /* VersionInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = VersionInfo.plist; sourceTree = "<group>"; };
 		B55736441E6742A6003B9369 /* OMC.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OMC.plist; sourceTree = "<group>"; };
+		B55A8AF11F13E78E00F63AC3 /* SSJailbreakCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSJailbreakCheck.h; sourceTree = "<group>"; };
+		B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSJailbreakCheck.m; sourceTree = "<group>"; };
+		B55A8AF81F1537B900F63AC3 /* DTTJailbreakDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTJailbreakDetection.h; sourceTree = "<group>"; };
+		B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTJailbreakDetection.m; sourceTree = "<group>"; };
 		B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		B56DD4971ED84E6000F0198B /* FiservApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservApi.swift; sourceTree = "<group>"; };
 		B56DD49C1ED87AD800F0198B /* BankAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
@@ -2295,6 +2309,17 @@
 			path = OMC;
 			sourceTree = "<group>";
 		};
+		B5D07CB71F13D5A40018B02D /* SSJailbreakCheck */ = {
+			isa = PBXGroup;
+			children = (
+				B55A8AF11F13E78E00F63AC3 /* SSJailbreakCheck.h */,
+				B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */,
+				B55A8AF81F1537B900F63AC3 /* DTTJailbreakDetection.h */,
+				B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */,
+			);
+			path = SSJailbreakCheck;
+			sourceTree = "<group>";
+		};
 		E800431B1E65FF4D005CF531 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -2492,6 +2517,7 @@
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				B5D07CB71F13D5A40018B02D /* SSJailbreakCheck */,
 				E887C9DC1ED5D326002433A3 /* CardIO */,
 				E8B4F4C41E5CE18F0031D934 /* A0SimpleKeychain */,
 				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
@@ -2711,6 +2737,7 @@
 				TargetAttributes = {
 					087630DD1E72F5D000FA7020 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
@@ -3135,7 +3162,9 @@
 			files = (
 				B574BB031E79BF7F001E8A44 /* ServiceResult.swift in Sources */,
 				B574BAF51E785AE3001E8A44 /* OutageStatus.swift in Sources */,
+				B55A8AF71F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */,
 				B5053DBB1ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
+				B55A8AFE1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */,
 				087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3162,6 +3191,7 @@
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
+				B55A8AFA1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */,
 				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
 				B574BAF11E785AE3001E8A44 /* OutageStatus.swift in Sources */,
@@ -3178,6 +3208,7 @@
 				E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
+				B55A8AF31F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */,
 				B5A16F351F0D44110016952C /* SpeedpayApi.swift in Sources */,
 				82A18EE31EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
@@ -3358,6 +3389,7 @@
 				E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				82A18EC01EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
+				B55A8AF51F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */,
 				E803A0021EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
 				E89518751F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				22EBDCCF1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
@@ -3422,6 +3454,7 @@
 				82A18EC31EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				545784A41EF823A300C58E63 /* RadioSelectControl.swift in Sources */,
 				9A3161041EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
+				B55A8AFC1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */,
 				E8C3AC031EDA09B50004F705 /* OneTouchPayService.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
@@ -3549,6 +3582,7 @@
 				E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				82A18EBF1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
+				B55A8AF41F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */,
 				E803A0011EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
 				E89518741F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				22EBDCCE1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
@@ -3613,6 +3647,7 @@
 				82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				545784A31EF823A300C58E63 /* RadioSelectControl.swift in Sources */,
 				9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
+				B55A8AFB1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */,
 				E8C3AC021EDA09B50004F705 /* OneTouchPayService.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
@@ -3725,6 +3760,7 @@
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
 				E876A85E1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
+				B55A8AFD1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */,
 				E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */,
 				E8F51EEB1ECA40AF0080AB3E /* PaperlessEBillViewModel.swift in Sources */,
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
@@ -3757,6 +3793,7 @@
 				E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
+				B55A8AF61F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */,
 				E840BD421EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8F51EEA1ECA40870080AB3E /* PaperlessEBillViewModelTests.swift in Sources */,
 				E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */,
@@ -3887,6 +3924,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -3909,6 +3947,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = Develop;
@@ -3916,10 +3956,13 @@
 		087630E61E72F5D000FA7020 /* Testing */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = BGEUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = Testing;
@@ -3927,10 +3970,12 @@
 		087630E71E72F5D000FA7020 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = BGEUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = Staging;
@@ -3938,10 +3983,13 @@
 		087630E81E72F5D000FA7020 /* Automation */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = BGEUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = Automation;
@@ -3949,10 +3997,12 @@
 		087630E91E72F5D000FA7020 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = BGEUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = Release;
