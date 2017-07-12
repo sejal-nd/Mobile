@@ -84,7 +84,8 @@ class ExelonPickerContainerView: UIView {
     }
     
     func selectRow(_ row: Int) {
-        exelonPicker.selectRow(row, inComponent: 0, animated: true)
+        selectedIndex = row
+        exelonPicker.selectRow(row, inComponent: 0, animated: false)
     }
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
