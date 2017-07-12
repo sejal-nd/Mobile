@@ -2202,7 +2202,7 @@
 		B5AC06C61E521B2600BBA4ED /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				CED8ED431F142EBC00BE1B26 /* Xml */,
+				CED8ED431F142EBC00BE1B26 /* XML */,
 				E800431B1E65FF4D005CF531 /* Fonts */,
 				8FD5AE971E54EA8C003F640D /* Lottie Animations */,
 				B5AC06C71E521B3200BBA4ED /* Assets.xcassets */,
@@ -2308,14 +2308,14 @@
 			path = OMC;
 			sourceTree = "<group>";
 		};
-		CED8ED431F142EBC00BE1B26 /* Xml */ = {
+		CED8ED431F142EBC00BE1B26 /* XML */ = {
 			isa = PBXGroup;
 			children = (
 				CED8ED5F1F14329600BE1B26 /* PECO */,
 				CED8ED5E1F14328D00BE1B26 /* ComEd */,
 				CED8ED5D1F14328300BE1B26 /* BGE */,
 			);
-			name = Xml;
+			path = XML;
 			sourceTree = "<group>";
 		};
 		CED8ED5D1F14328300BE1B26 /* BGE */ = {
