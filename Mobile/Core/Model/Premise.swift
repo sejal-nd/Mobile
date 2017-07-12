@@ -9,12 +9,14 @@
 import Mapper
 
 struct Premise: Mappable, Equatable, Hashable {
-    var premiseNumber: String //TODO back to lets after testing
-    var addressGeneral: String?
-    var addressLine: Array<String>?
+    let premiseNumber: String 
+    let locationId: String? //this is the id used for outages
+    let addressGeneral: String?
+    let addressLine: Array<String>?
     
     init(map: Mapper) throws {
         try premiseNumber = map.from("premiseNumber")
+        locationId = map.optionalFrom("electricLocationId") //TODO: make sure this is correct assuming they add this property here
         addressGeneral = map.optionalFrom("mainAddress.addressGeneral")
         addressLine = map.optionalFrom("mainAddress.addressLine")
     }

@@ -47,8 +47,12 @@ class PaymentViewModel {
             paymentAmount = Variable("")
         }
         
-        let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
+        let startOfTodayDate = Calendar.current.startOfDay(for: Date())
         self.paymentDate = Variable(startOfTodayDate)
+        if Environment.sharedInstance.opco == .bge && Calendar.current.component(.hour, from: Date()) >= 20 {
+            let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
+            self.paymentDate.value = tomorrow
+        }
         if let dueDate = accountDetail.billingInfo.dueByDate {
             if dueDate >= startOfTodayDate && !fixedPaymentDateLogic {
                 self.paymentDate.value = dueDate
@@ -112,7 +116,7 @@ class PaymentViewModel {
         var paymentDate = self.paymentDate.value
         if let walletItem = selectedWalletItem.value {
             if walletItem.bankOrCard == .card {
-                paymentDate = NSCalendar.current.startOfDay(for: Date())
+                paymentDate = Calendar.current.startOfDay(for: Date())
             }
         }
         let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
@@ -354,7 +358,7 @@ class PaymentViewModel {
                 return true
             }
 
-            let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
+            let startOfTodayDate = Calendar.current.startOfDay(for: Date())
             if let dueDate = $0.billingInfo.dueByDate {
                 if dueDate < startOfTodayDate {
                     return true
@@ -386,7 +390,7 @@ class PaymentViewModel {
         return Driver.combineLatest(paymentDate.asDriver(), selectedWalletItem.asDriver()).map {
             if let walletItem = $1 {
                 if walletItem.bankOrCard == .card {
-                    let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
+                    let startOfTodayDate = Calendar.current.startOfDay(for: Date())
                     return startOfTodayDate.mmDdYyyyString
                 }
             }

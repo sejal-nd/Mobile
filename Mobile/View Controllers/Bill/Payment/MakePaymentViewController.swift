@@ -423,12 +423,25 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
         let today = Calendar.current.startOfDay(for: Date())
-        if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
-            let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
-            return date >= today && date <= startOfDueDate
-        } else { // Should never come into play?
-            return date >= today
+        if Environment.sharedInstance.opco == .bge {
+            if let walletItem = viewModel.selectedWalletItem.value {
+                if walletItem.bankOrCard == .card {
+                    let todayPlus90 = Calendar.current.date(byAdding: .day, value: 90, to: today)!
+                    return date >= today && date <= todayPlus90
+                } else {
+                    let todayPlus180 = Calendar.current.date(byAdding: .day, value: 180, to: today)!
+                    return date >= today && date <= todayPlus180
+                }
+            }
+        } else {
+            if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
+                let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
+                return date >= today && date <= startOfDueDate
+            }
         }
+        
+        // Should never get called?
+        return date >= today
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {

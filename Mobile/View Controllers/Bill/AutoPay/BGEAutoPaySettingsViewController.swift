@@ -256,7 +256,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     func buildPickerView() {
         
         //build dataArray for picker
-        let dataArray = (1...15).map { $0 == 1 ? "\($0) Days" : "\($0) Day" }
+        let dataArray = (1...15).map { $0 == 1 ? "\($0) Day" : "\($0) Days" }
         
         guard let currentWindow = UIApplication.shared.keyWindow else {
             fatalError("No keyWindow?")
@@ -282,11 +282,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     func showPickerView(_ showPicker: Bool, completion: (() -> ())? = nil) {
         if showPicker {
-            self.dayPickerView.isHidden = false
-            
             let row = viewModel.numberOfDaysBeforeDueDate.value == "0" ? 1 : Int(viewModel.numberOfDaysBeforeDueDate.value)!
-            
             self.dayPickerView.selectRow(row - 1)
+            self.dayPickerView.isHidden = false
         }
         
         self.dayPickerView.layer.zPosition = showPicker ? self.zPositionForWindow : -1
