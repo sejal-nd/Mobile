@@ -20,6 +20,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
     @IBOutlet weak var questionMarkButton: UIButton!
 
     var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
+    var nextButton = UIBarButtonItem()
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
     override func viewDidLoad() {
@@ -36,7 +37,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
 
     /// Helpers
     func setupNavigationButtons() {
-        let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         viewModel.accountNumberHasTenDigits().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         navigationItem.rightBarButtonItem = nextButton
     }
@@ -67,11 +68,19 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.accountNumberTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
+    }
+    
+    private func accessibilityErrorLabel() {
+        self.nextButton.accessibilityLabel = NSLocalizedString(accountNumberTextField.getError(), comment: "")
     }
 
     

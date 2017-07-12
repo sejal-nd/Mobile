@@ -15,6 +15,18 @@ class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
     var isShowingAccessory = false
     var isShowingLeftAccessory = false
     
+    override var accessibilityLabel: String? {
+        get {
+            if let _ = self.text {
+                return self.floatingLabel.text
+            }
+            return ""
+        }
+        set {
+            
+        }
+    }
+    
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return getRect(forBounds: bounds)
     }
