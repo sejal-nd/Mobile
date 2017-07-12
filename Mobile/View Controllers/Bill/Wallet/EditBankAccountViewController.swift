@@ -258,12 +258,9 @@ class EditBankAccountViewController: UIViewController {
                 LoadingView.hide()
                 self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Card/Bank Account deleted", comment: ""))
                 _ = self.navigationController?.popViewController(animated: true)
-            }, onError: { error in
-
-                let message = error.id == nil ? "There was a problem adding this payment account. Please review your information and try again." : error.text
-
+            }, onError: { errMessage in
                 LoadingView.hide()
-                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: message, preferredStyle: .alert)
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
             })

@@ -31,13 +31,13 @@ class EditBankAccountViewModel {
         }
     }
 
-    func deleteBankAccount(onSuccess: @escaping () -> Void, onError: @escaping (FiservError) -> Void) {
+    func deleteBankAccount(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         walletService.deletePaymentMethod(walletItem)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
             }, onError: { err in
-                onError(FiservErrorMapper.sharedInstance.getError(message: err.localizedDescription, context: "wallet"));
+                onError(err.localizedDescription)
             })
             .addDisposableTo(disposeBag)
     }

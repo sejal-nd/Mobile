@@ -95,26 +95,24 @@ class EditCreditCardViewModel {
         }
     }
     
-    func editCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (FiservError) -> Void) {
+    func editCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         walletService.updateCreditCard(walletItem.walletItemID!, customerNumber: accountDetail.customerInfo.number!, expirationMonth: expMonth.value.isEmpty ? nil : expMonth.value, expirationYear: expYear.value.isEmpty ? nil : expYear.value, securityCode: cvv.value.isEmpty ? nil : cvv.value, postalCode: zipCode.value.isEmpty ? nil : zipCode.value, nickname: nil)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
             }, onError: { err in
-                let error = FiservErrorMapper.sharedInstance.getError(message: err.localizedDescription, context: "wallet")
-                onError( error )
+                onError(err.localizedDescription)
             })
             .addDisposableTo(disposeBag)
     }
     
-    func deleteCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (FiservError) -> Void) {
+    func deleteCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         walletService.deletePaymentMethod(walletItem)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
             }, onError: { err in
-                let error = FiservErrorMapper.sharedInstance.getError(message: err.localizedDescription, context: "wallet")
-                onError( error )
+                onError(err.localizedDescription)
             })
             .addDisposableTo(disposeBag)
     }

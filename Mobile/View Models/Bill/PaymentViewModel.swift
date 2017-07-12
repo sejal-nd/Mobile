@@ -91,7 +91,7 @@ class PaymentViewModel {
             }).addDisposableTo(disposeBag)
     }
     
-    func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (FiservError) -> Void) {
+    func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let paymentType: PaymentType = selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
         let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate.value, walletId: accountDetail.value.customerInfo.number!, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
         paymentService.schedulePayment(payment: payment)
@@ -99,7 +99,7 @@ class PaymentViewModel {
             .subscribe(onNext: { _ in
                 onSuccess()
             }, onError: { err in
-                onError(FiservErrorMapper.sharedInstance.getError(message: err.localizedDescription, context: "payment"))
+                onError(err.localizedDescription)
             }).addDisposableTo(disposeBag)
     }
     

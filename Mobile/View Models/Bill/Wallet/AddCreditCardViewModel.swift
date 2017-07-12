@@ -153,7 +153,7 @@ class AddCreditCardViewModel {
         }
     }
     
-    func addCreditCard(onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (FiservError) -> Void) {
+    func addCreditCard(onDuplicate: @escaping (String) -> Void, onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
         
         let card = CreditCard(cardNumber: cardNumber.value, securityCode: cvv.value, firstName: "", lastName: "", expirationMonth: expMonth.value, expirationYear: expYear.value, postalCode: zipCode.value, nickname: nickname.value)
         
@@ -163,20 +163,14 @@ class AddCreditCardViewModel {
             .subscribe(onNext: { walletItemResult in
                 onSuccess(walletItemResult)
             }, onError: { err in
-                let error = FiservErrorMapper.sharedInstance.getError(message: err.localizedDescription, context: "wallet")
-                onError( error )
+                let serviceError = err as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
+                    onDuplicate(err.localizedDescription)
+                } else {
+                    onError(err.localizedDescription)
+                }
             })
             .addDisposableTo(disposeBag)
-        
-//        walletService.addCreditCard(card, completion: { (result: ServiceResult<Void>) in
-//            switch(result) {
-//            case .Success:
-//                break
-//            case .Failure(let err):
-//                dLog(message: "\n" + err.localizedDescription)
-//                break
-//            }
-//        })
     }
     
     private func luhnCheck(cardNumber: String) -> Bool {

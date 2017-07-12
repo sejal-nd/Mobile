@@ -51,15 +51,22 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
             parser?.parse()
         }
 
-        let error = items.filter(
-                {
-                    message.uppercased().contains($0.id!) && (context == nil || $0.context == context)
-                }
-        ).first;
-
-        if error == nil && context != nil { return getError(message: message, context: nil) }
-        else if error == nil { return FiservError(text: message) }
-        else { return error! }
+        let error = items.filter {
+            message.uppercased().contains($0.id!) && (context == nil || $0.context == context)
+        }.first;
+        
+        guard let err = error else {
+            if context != nil {
+                return getError(message: message, context: nil)
+            }
+            return FiservError(text: message)
+        }
+        
+        if !err.text.isEmpty {
+            return err
+        }
+        
+        return FiservError(text: message)
     }
 }
 

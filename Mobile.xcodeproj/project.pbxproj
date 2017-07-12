@@ -359,11 +359,6 @@
 		9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
 		9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
 		9A3161041EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
-		B5053DB71ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */; };
-		B5053DB81ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */; };
-		B5053DB91ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */; };
-		B5053DBA1ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */; };
-		B5053DBB1ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */; };
 		B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
@@ -1113,7 +1108,6 @@
 		8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComEdColor.swift; sourceTree = "<group>"; };
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
 		9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerViewController.swift; sourceTree = "<group>"; };
-		B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservMessageSanitizer.swift; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
 		B54846821E687CEB008CE1B1 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
@@ -2109,7 +2103,6 @@
 			isa = PBXGroup;
 			children = (
 				B56DD4971ED84E6000F0198B /* FiservApi.swift */,
-				B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */,
 			);
 			path = Fiserv;
 			sourceTree = "<group>";
@@ -3185,7 +3178,6 @@
 			files = (
 				B574BB031E79BF7F001E8A44 /* ServiceResult.swift in Sources */,
 				B574BAF51E785AE3001E8A44 /* OutageStatus.swift in Sources */,
-				B5053DBB1ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */,
 				B5D07CB61F0EC2F10018B02D /* Payment.swift in Sources */,
 			);
@@ -3313,7 +3305,6 @@
 				54DF4BD11EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
-				B5053DB71ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				B5D07CB21F0EC2F10018B02D /* Payment.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				82A18F0E1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
@@ -3550,7 +3541,6 @@
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
-				B5053DB91ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				E876A85D1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E971EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				54AE06B71ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
@@ -3742,7 +3732,6 @@
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
-				B5053DB81ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
@@ -3832,7 +3821,6 @@
 				E8BCB9BD1EFAE79A00779588 /* BGEAutoPayViewModel.swift in Sources */,
 				E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */,
 				E82FA1371EA541D100C2DABC /* ForgotPasswordViewModelTests.swift in Sources */,
-				B5053DBA1ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,
 				B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,

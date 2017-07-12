@@ -241,9 +241,9 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.schedulePayment(onSuccess: {
             LoadingView.hide()
             self.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-        }, onError: { err in
+        }, onError: { errMessage in
             LoadingView.hide()
-            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: err.text, preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertVc, animated: true, completion: nil)
         })
