@@ -73,6 +73,7 @@ class SegmentedControl: UIControl {
         
         if let items = items {
             let itemWidth = frame.width / CGFloat(items.count)
+            var selectedLabel = ""
             for (index, item) in items.enumerated() {
                 let xPos = CGFloat(index) * itemWidth
                 
@@ -90,6 +91,7 @@ class SegmentedControl: UIControl {
                 let label = labels[index]
                 label.text = item
                 if index == selectedIndex.value {
+                    selectedLabel = label.text!
                     label.font = SystemFont.bold.of(textStyle: .subheadline)
                 } else {
                     label.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -98,9 +100,13 @@ class SegmentedControl: UIControl {
                 label.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)
                 
                 let button = buttons[index]
-                button.accessibilityLabel = String(format: NSLocalizedString("Segmented control, %@ option, %@ of %@", comment: ""), item, String(index + 1), String(self.items!.count))
                 button.accessibilityTraits = UIAccessibilityTraitNone
                 button.frame = view.frame
+            }
+            
+            for (index, _) in items.enumerated() {
+                let button = buttons[index]
+                button.accessibilityLabel = String(format: NSLocalizedString("%@ of %@ options, %@ selected", comment: ""), String(index + 1), String(self.items!.count), selectedLabel)
             }
             
             bigBottomBar!.frame = CGRect(x: 0, y: frame.height - 6, width: frame.width, height: 6)

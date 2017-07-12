@@ -49,6 +49,7 @@ class AddCreditCardViewController: UIViewController {
     let viewModel = AddCreditCardViewModel(walletService: ServiceFactory.createWalletService())
     
     let oneTouchPayService = ServiceFactory.createOneTouchPayService()
+    var saveButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,8 @@ class AddCreditCardViewController: UIViewController {
         title = NSLocalizedString("Add Card", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
+        saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
+        
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
         viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
@@ -224,9 +226,13 @@ class AddCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expMonthTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
@@ -237,9 +243,13 @@ class AddCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cardNumberTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
@@ -255,9 +265,13 @@ class AddCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expYearTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
@@ -268,9 +282,13 @@ class AddCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cvvTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
@@ -281,14 +299,31 @@ class AddCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.zipCodeTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         viewModel.nicknameIsValid().subscribe(onNext: { valid in
             self.nicknameTextField.setError(valid ? nil : NSLocalizedString("Can only contain letters, numbers, and spaces", comment: ""))
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        message += expMonthTextField.getError()
+        message += cardNumberTextField.getError()
+        message += expYearTextField.getError()
+        message += cvvTextField.getError()
+        message += zipCodeTextField.getError()
+        message += nicknameTextField.getError()
+        self.saveButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
     func configureCardIO() {

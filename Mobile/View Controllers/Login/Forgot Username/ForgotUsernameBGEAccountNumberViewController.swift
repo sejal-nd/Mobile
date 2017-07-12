@@ -19,12 +19,14 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
+    var nextButton = UIBarButtonItem()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = NSLocalizedString("Forgot Username", comment: "")
         
-        let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
         viewModel.accountNumberHasTenDigits().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
@@ -45,12 +47,20 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.accountNumberTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
+    }
+    
+    private func accessibilityErrorLabel() {
+        self.nextButton.accessibilityLabel = NSLocalizedString(accountNumberTextField.getError(), comment: "")
     }
     
     func onNextPress() {

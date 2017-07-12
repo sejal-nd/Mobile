@@ -71,6 +71,8 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
     var accountDetail: AccountDetail! // Passed from BillViewController
+    var nextButton = UIBarButtonItem()
+    
     lazy var viewModel: PaymentViewModel = {
         PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), oneTouchPayService: ServiceFactory.createOneTouchPayService(), accountDetail: self.accountDetail)
     }()
@@ -80,7 +82,7 @@ class MakePaymentViewController: UIViewController {
         
         title = NSLocalizedString("Make a Payment", comment: "")
         
-        let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
         viewModel.makePaymentNextButtonEnabled.drive(nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
@@ -115,9 +117,13 @@ class MakePaymentViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cvvTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
@@ -143,6 +149,8 @@ class MakePaymentViewController: UIViewController {
 //        }).addDisposableTo(disposeBag)
         viewModel.paymentAmountErrorMessage.asObservable().subscribe(onNext: { errorMessage in
             self.paymentAmountTextField.setError(errorMessage)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(self.disposeBag)
         
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
@@ -198,6 +206,13 @@ class MakePaymentViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        message += cvvTextField.getError()
+        message += paymentAmountTextField.getError()
+        self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {

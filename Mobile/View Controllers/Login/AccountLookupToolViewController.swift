@@ -20,6 +20,8 @@ class AccountLookupToolViewController: UIViewController {
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
     @IBOutlet weak var identifierTextField: FloatLabelTextField!
+    
+    var searchButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,7 @@ class AccountLookupToolViewController: UIViewController {
         title = NSLocalizedString("Account Lookup", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let searchButton = UIBarButtonItem(title: NSLocalizedString("Search", comment: ""), style: .done, target: self, action: #selector(onSearchPress))
+        searchButton = UIBarButtonItem(title: NSLocalizedString("Search", comment: ""), style: .done, target: self, action: #selector(onSearchPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = searchButton
         viewModel.searchButtonEnabled().bind(to: searchButton.rx.isEnabled).addDisposableTo(disposeBag)
@@ -51,11 +53,15 @@ class AccountLookupToolViewController: UIViewController {
                     if !valid {
                         self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
                     }
+                    self.accessibilityErrorLabel()
+                    
                 }).addDisposableTo(self.disposeBag)
             }
         }).addDisposableTo(disposeBag)
         phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.phoneNumberTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd) // Load the passed phone number from view model
         
@@ -70,17 +76,27 @@ class AccountLookupToolViewController: UIViewController {
                     if !valid {
                         self.identifierTextField.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
                     }
+                    self.accessibilityErrorLabel()
+                    
                 }).addDisposableTo(self.disposeBag)
                 self.viewModel.identifierIsNumeric().single().subscribe(onNext: { numeric in
                     if !numeric {
                         self.identifierTextField.setError(NSLocalizedString("This number must be numeric.", comment: ""))
                     }
+                    self.accessibilityErrorLabel()
+                    
                 }).addDisposableTo(self.disposeBag)
             }
         }).addDisposableTo(disposeBag)
         identifierTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.identifierTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
+    }
+    
+    private func accessibilityErrorLabel() {
+        self.searchButton.accessibilityLabel = NSLocalizedString(phoneNumberTextField.getError() + identifierTextField.getError(), comment: "")
     }
     
     deinit {

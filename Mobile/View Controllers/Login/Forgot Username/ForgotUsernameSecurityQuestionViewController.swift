@@ -23,13 +23,14 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
+    var submitButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = NSLocalizedString("Forgot Username", comment: "")
         
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+        submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.rightBarButtonItem = submitButton
         viewModel.securityQuestionAnswerNotEmpty().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
@@ -54,7 +55,13 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         answerTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.answerTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
+    }
+    
+    private func accessibilityErrorLabel() {
+        self.submitButton.accessibilityLabel = NSLocalizedString(answerTextField.getError(), comment: "")
     }
     
     func onSubmitPress() {
@@ -75,6 +82,8 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         }, onAnswerNoMatch: { inlineErrorMessage in
             LoadingView.hide()
             self.answerTextField.setError(inlineErrorMessage)
+            self.accessibilityErrorLabel()
+            
         }, onError: { errorMessage in
             LoadingView.hide()
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)

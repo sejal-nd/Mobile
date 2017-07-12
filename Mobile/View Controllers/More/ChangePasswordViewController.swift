@@ -99,6 +99,8 @@ class ChangePasswordViewController: UIViewController {
             // If we displayed an inline error, clear it when user edits the text
             if self.currentPasswordTextField.errorState {
                 self.currentPasswordTextField.setError(nil)
+                self.accessibilityErrorLabel()
+                
             }
         }).addDisposableTo(disposeBag)
         
@@ -142,6 +144,14 @@ class ChangePasswordViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    private func accessibilityErrorLabel() {
+        var message = ""
+        message += currentPasswordTextField.getError()
+        message += newPasswordTextField.getError()
+        message += confirmPasswordTextField.getError()
+        self.doneButton?.accessibilityLabel = NSLocalizedString(message, comment: "")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -175,6 +185,8 @@ class ChangePasswordViewController: UIViewController {
         }, onPasswordNoMatch: { _ in
             LoadingView.hide()
             self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))
+            self.accessibilityErrorLabel()
+            
         }, onError: { (error: String) in
             LoadingView.hide()
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error, preferredStyle: .alert)
@@ -236,8 +248,12 @@ class ChangePasswordViewController: UIViewController {
         viewModel.passwordMatchesUsername().subscribe(onNext: { matches in
             if matches {
                 self.newPasswordTextField.setError(NSLocalizedString("Passsword cannot match username", comment: ""))
+                self.accessibilityErrorLabel()
+                
             } else {
                 self.newPasswordTextField.setError(nil)
+                self.accessibilityErrorLabel()
+                
             }
         }).addDisposableTo(disposeBag)
         
@@ -247,6 +263,8 @@ class ChangePasswordViewController: UIViewController {
                     self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 } else {
                     self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
+                    self.accessibilityErrorLabel()
+                    
                 }
             } else {
                 self.confirmPasswordTextField.setValidated(false)
