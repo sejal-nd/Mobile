@@ -55,13 +55,6 @@ class ContactUsViewController: UIViewController {
         }
     }
     
-    // Had to do this for smoother transition (rather than in viewWillAppear of MoreViewController)
-    override func willMove(toParentViewController parent: UIViewController?) {
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setWhiteNavBar()
-        }
-    }
-    
     func emergencySetup() {
         emergencyNumberTextView.text = contactUsViewModel.phoneNumber1
         emergencyNumberTextView.textContainerInset = .zero
