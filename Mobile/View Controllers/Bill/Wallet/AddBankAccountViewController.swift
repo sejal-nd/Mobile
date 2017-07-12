@@ -244,18 +244,10 @@ class AddBankAccountViewController: UIViewController {
     
     private func accessibilityErrorLabel() {
         var message = ""
-        if routingNumberTextField.getError() != "" {
-            message += "Routing number error: " + routingNumberTextField.getError() + ". "
-        }
-        if accountNumberTextField.getError() != "" {
-            message += "Account number error: " + accountNumberTextField.getError() + ". "
-        }
-        if confirmAccountNumberTextField.getError() != "" {
-            message += "Confirm account number error: " + confirmAccountNumberTextField.getError() + ". "
-        }
-        if nicknameTextField.getError() != "" {
-            message += "Nickname error: " + nicknameTextField.getError() + ". "
-        }
+        message += routingNumberTextField.getError()
+        message += accountNumberTextField.getError()
+        message += confirmAccountNumberTextField.getError()
+        message += nicknameTextField.getError()
         self.saveButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     

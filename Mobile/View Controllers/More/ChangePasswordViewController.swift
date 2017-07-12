@@ -146,15 +146,9 @@ class ChangePasswordViewController: UIViewController {
     
     private func accessibilityErrorLabel() {
         var message = ""
-        if currentPasswordTextField.getError() != "" {
-            message += "Current password error: " + currentPasswordTextField.getError() + ". "
-        }
-        if newPasswordTextField.getError() != "" {
-            message += "New password error: " + newPasswordTextField.getError() + ". "
-        }
-        if confirmPasswordTextField.getError() != "" {
-            message += "Confirm password error: " + confirmPasswordTextField.getError() + ". "
-        }
+        message += currentPasswordTextField.getError()
+        message += newPasswordTextField.getError()
+        message += confirmPasswordTextField.getError()
         self.doneButton?.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     

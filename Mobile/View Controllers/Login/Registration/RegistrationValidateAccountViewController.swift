@@ -187,15 +187,9 @@ class RegistrationValidateAccountViewController: UIViewController {
     
     private func accessibilityErrorLabel() {
         var message = ""
-        if accountNumberTextField.getError() != "" {
-            message += "Account number error: " + accountNumberTextField.getError() + ". "
-        }
-        if phoneNumberTextField.getError() != "" {
-            message += "Phone number error: " + phoneNumberTextField.getError() + ". "
-        }
-        if ssNumberNumberTextField.getError() != "" {
-            message += "SS number error: " + ssNumberNumberTextField.getError() + ". "
-        }
+        message += accountNumberTextField.getError()
+        message += phoneNumberTextField.getError()
+        message += ssNumberNumberTextField.getError()
         self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     

@@ -60,11 +60,7 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
     }
     
     private func accessibilityErrorLabel() {
-        var message = ""
-        if accountNumberTextField.getError() != "" {
-            message += "Account number error: " + accountNumberTextField.getError() + ". "
-        }
-        self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+        self.nextButton.accessibilityLabel = NSLocalizedString(accountNumberTextField.getError(), comment: "")
     }
     
     func onNextPress() {

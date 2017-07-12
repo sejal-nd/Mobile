@@ -210,12 +210,8 @@ class MakePaymentViewController: UIViewController {
     
     private func accessibilityErrorLabel() {
         var message = ""
-        if cvvTextField.getError() != "" {
-            message += "CVV error: " + cvvTextField.getError() + ". "
-        }
-        if paymentAmountTextField.getError() != "" {
-            message += "Payment amount error: " + paymentAmountTextField.getError() + ". "
-        }
+        message += cvvTextField.getError()
+        message += paymentAmountTextField.getError()
         self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     

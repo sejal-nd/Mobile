@@ -128,15 +128,9 @@ class ForgotUsernameViewController: UIViewController {
     
     private func accessibilityErrorLabel() {
         var message = ""
-        if phoneNumberTextField.getError() != "" {
-            message += "Phone number error: " + phoneNumberTextField.getError() + ". "
-        }
-        if identifierTextField?.getError() != "" {
-            message += "Identifier error: " + (identifierTextField?.getError())! + ". "
-        }
-        if accountNumberTextField?.getError() != "" {
-            message += "Account number error: " + (accountNumberTextField?.getError())! + ". "
-        }
+        message += phoneNumberTextField.getError()
+        message += (identifierTextField?.getError())!
+        message += (accountNumberTextField?.getError())!
         self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     

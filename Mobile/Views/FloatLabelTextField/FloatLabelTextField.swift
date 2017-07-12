@@ -131,7 +131,8 @@ class FloatLabelTextField: UIView {
     }
     
     func getError() -> String {
-        return errorMessage
+        let fieldTitle = textField.floatingLabel.text?.replacingOccurrences(of: "*", with: "")
+        return errorMessage != "" ? fieldTitle! + " error: " + errorMessage + ". " : ""
     }
         
     func setInfoMessage(_ message: String?) {

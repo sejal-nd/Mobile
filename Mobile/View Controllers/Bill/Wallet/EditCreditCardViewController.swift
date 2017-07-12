@@ -338,18 +338,10 @@ class EditCreditCardViewController: UIViewController {
     
     private func accessibilityErrorLabel() {
         var message = ""
-        if expMonthTextField.getError() != "" {
-            message += "Expiration month error: " + expMonthTextField.getError() + ". "
-        }
-        if expYearTextField.getError() != "" {
-            message += "Expiration year error: " + expYearTextField.getError() + ". "
-        }
-        if cvvTextField.getError() != "" {
-            message += "CVV number error: " + cvvTextField.getError() + ". "
-        }
-        if zipCodeTextField.getError() != "" {
-            message += "Zip code error: " + zipCodeTextField.getError() + ". "
-        }
+        message += expMonthTextField.getError()
+        message += expYearTextField.getError()
+        message += cvvTextField.getError()
+        message += zipCodeTextField.getError()
         self.saveButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     

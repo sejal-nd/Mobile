@@ -197,11 +197,7 @@ class ReportOutageViewController: UIViewController {
     }
     
     private func accessibilityErrorLabel() {
-        var message = ""
-        if phoneNumberTextField.getError() != "" {
-            message += "Phone number error: " + phoneNumberTextField.getError() + ". "
-        }
-        self.submitButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+        self.submitButton.accessibilityLabel = NSLocalizedString(phoneNumberTextField.getError(), comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -295,18 +295,10 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     
     private func accessibilityErrorLabel() {
         var message = ""
-        if createUsernameTextField.getError() != "" {
-            message += "Create username error: " + createUsernameTextField.getError() + ". "
-        }
-        if createPasswordTextField.getError() != "" {
-            message += "Create password error: " + createPasswordTextField.getError() + ". "
-        }
-        if confirmPasswordTextField.getError() != "" {
-            message += "Confirm password error: " + confirmPasswordTextField.getError() + ". "
-        }
-        if confirmUsernameTextField.getError() != "" {
-            message += "Confirm username error: " + confirmUsernameTextField.getError() + ". "
-        }
+        message += createUsernameTextField.getError()
+        message += createPasswordTextField.getError()
+        message += confirmPasswordTextField.getError()
+        message += confirmUsernameTextField.getError()
         self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
