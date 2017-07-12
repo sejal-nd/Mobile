@@ -103,9 +103,9 @@
                                             <constraints>
                                                 <constraint firstItem="QX6-c6-cqn" firstAttribute="centerX" secondItem="PI4-xw-ry3" secondAttribute="centerX" id="0Yy-RR-d7e"/>
                                                 <constraint firstItem="QX6-c6-cqn" firstAttribute="top" secondItem="PI4-xw-ry3" secondAttribute="top" id="JZU-LR-u8F"/>
-                                                <constraint firstItem="QX6-c6-cqn" firstAttribute="leading" secondItem="PI4-xw-ry3" secondAttribute="leading" constant="29" id="r4l-Ue-8kc"/>
+                                                <constraint firstItem="QX6-c6-cqn" firstAttribute="leading" secondItem="PI4-xw-ry3" secondAttribute="leading" priority="999" constant="29" id="r4l-Ue-8kc"/>
                                                 <constraint firstAttribute="bottom" secondItem="QX6-c6-cqn" secondAttribute="bottom" id="wJy-lm-KEE"/>
-                                                <constraint firstAttribute="trailing" secondItem="QX6-c6-cqn" secondAttribute="trailing" constant="29" id="zTg-kU-UlF"/>
+                                                <constraint firstAttribute="trailing" secondItem="QX6-c6-cqn" secondAttribute="trailing" priority="999" constant="29" id="zTg-kU-UlF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -2654,7 +2654,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.50 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-Yl-Loj">
-                                                                            <rect key="frame" x="107" y="7.5" width="128.5" height="16.5"/>
+                                                                            <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>

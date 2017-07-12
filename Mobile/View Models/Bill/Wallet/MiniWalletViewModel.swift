@@ -52,6 +52,17 @@ class MiniWalletViewModel {
         }
     }
     
+    var creditCardFeeString: String {
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            return NSLocalizedString("A $1.50 convenience fee will be applied.", comment: "")
+        case .comEd:
+            return NSLocalizedString("A $2.50 convenience fee will be applied.", comment: "")
+        case .peco:
+            return NSLocalizedString("A $2.35 convenience fee will be applied.", comment: "")
+        }
+    }
+    
     var bankAccounts: [WalletItem]! {
         var banks = [WalletItem]()
         guard let walletItems = self.walletItems.value else { return banks }

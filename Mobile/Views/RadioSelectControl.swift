@@ -24,7 +24,10 @@ class RadioSelectControl: ButtonControl {
 	
 	@IBInspectable var detailButtonTitle: String? {
 		didSet {
-			detailButton.setTitle(detailButtonTitle, for: .normal)
+            UIView.performWithoutAnimation { // Prevents ugly setTitle animation
+                detailButton.setTitle(detailButtonTitle, for: .normal)
+                detailButton.layoutIfNeeded()
+            }
 			detailButton.isHidden = !isSelected || detailButtonTitle == nil
 		}
 	}

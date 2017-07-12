@@ -104,7 +104,7 @@ class AddCreditCardViewController: UIViewController {
         
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        oneTouchPayDescriptionLabel.text = oneTouchPayService.getOneTouchPayDisplayString(forCustomerNumber: viewModel.accountDetail.customerInfo.number)
+        oneTouchPayDescriptionLabel.text = oneTouchPayService.getOneTouchPayDisplayString(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         
@@ -137,7 +137,7 @@ class AddCreditCardViewController: UIViewController {
     func onSavePress() {
         view.endEditing(true)
                 
-        let customerNumber = viewModel.accountDetail.customerInfo.number
+        let customerNumber: String = AccountsStore.sharedInstance.customerIdentifier
         
         var shouldShowOneTouchPayWarning = false
         if viewModel.oneTouchPay.value {
@@ -165,7 +165,12 @@ class AddCreditCardViewController: UIViewController {
                 _ = self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
                 LoadingView.hide()
-                let alertVc = UIAlertController(title: NSLocalizedString("Verification Failed", comment: ""), message: NSLocalizedString("There was a problem adding this payment account. Please review your information and try again.", comment: ""), preferredStyle: .alert)
+                var alertVc: UIAlertController
+                if Environment.sharedInstance.opco == .bge {
+                    alertVc = UIAlertController(title: NSLocalizedString("Verification Failed", comment: ""), message: NSLocalizedString("There was a problem adding this payment account. Please review your information and try again.", comment: ""), preferredStyle: .alert)
+                } else { // Error message comes from Fiserv
+                    alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                }
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
             })
