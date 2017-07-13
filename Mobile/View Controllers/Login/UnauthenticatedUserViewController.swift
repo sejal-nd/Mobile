@@ -50,13 +50,19 @@ class UnauthenticatedUserViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
+        navigationController?.view.backgroundColor = .primaryColor
         navigationController?.navigationBar.barTintColor = .primaryColor
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
+        navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .white
         
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        let titleDict: [String: Any] = [
+            NSForegroundColorAttributeName: UIColor.white,
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        ]
+        navigationController?.navigationBar.titleTextAttributes = titleDict
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     @IBAction func onContactUsPress(_ sender: UIButton) {
