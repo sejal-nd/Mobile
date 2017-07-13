@@ -89,6 +89,12 @@
 		2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		2FB9B4601EFC6D77002CBD88 /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
+		389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
+		389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
+		389B0C641F17C945005DD0F9 /* UU_OTP_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 389B0C631F17C945005DD0F9 /* UU_OTP_animation.json */; };
+		389B0C651F17C945005DD0F9 /* UU_OTP_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 389B0C631F17C945005DD0F9 /* UU_OTP_animation.json */; };
+		389B0C661F17C945005DD0F9 /* UU_OTP_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 389B0C631F17C945005DD0F9 /* UU_OTP_animation.json */; };
 		441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		54036BAD1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
 		54036BAE1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
@@ -1038,6 +1044,8 @@
 		2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillingHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryViewModel.swift; path = ../More/BillingHistoryViewModel.swift; sourceTree = "<group>"; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
+		389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedUserViewController.swift; sourceTree = "<group>"; };
+		389B0C631F17C945005DD0F9 /* UU_OTP_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = UU_OTP_animation.json; path = ../../../../../Downloads/UU_OTP_animation.json; sourceTree = "<group>"; };
 		54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCreditCardViewController.swift; sourceTree = "<group>"; };
 		540B94971EF4775A00F08325 /* RadioSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RadioSelectionView.xib; path = AutoPay/RadioSelectionView.xib; sourceTree = "<group>"; };
 		540B949B1EF4778300F08325 /* RadioSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadioSelectionView.swift; path = AutoPay/RadioSelectionView.swift; sourceTree = "<group>"; };
@@ -1909,6 +1917,7 @@
 				E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */,
 				E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */,
 				E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */,
+				389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1925,6 +1934,7 @@
 				E85895761E8AACFF009485E3 /* loading_blue.json */,
 				E8494F361EBBCB2B0047D6BE /* full_screen_loading.json */,
 				E8494F371EBBCB2B0047D6BE /* ellipses_loading.json */,
+				389B0C631F17C945005DD0F9 /* UU_OTP_animation.json */,
 			);
 			path = "Lottie Animations";
 			sourceTree = "<group>";
@@ -2887,6 +2897,7 @@
 			files = (
 				2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */,
 				8FD5AE941E54EA5E003F640D /* Cartfile in Resources */,
+				389B0C641F17C945005DD0F9 /* UU_OTP_animation.json in Resources */,
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
@@ -2975,6 +2986,7 @@
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
 				82A18EFE1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
+				389B0C661F17C945005DD0F9 /* UU_OTP_animation.json in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
@@ -3036,6 +3048,7 @@
 				E85895781E8AACFF009485E3 /* loading_blue.json in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				82A18EFD1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
+				389B0C651F17C945005DD0F9 /* UU_OTP_animation.json in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
@@ -3359,6 +3372,7 @@
 				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
 				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD41E736596001E8A44 /* Macros.swift in Sources */,
+				389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				E882B7ED1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				E86DE4B71F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
@@ -3422,6 +3436,7 @@
 				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				54618B281EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
+				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
@@ -3619,6 +3634,7 @@
 				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				54618B271EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
+				389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,

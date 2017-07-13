@@ -13,7 +13,7 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var signInButton: SecondaryButton!
     @IBOutlet weak var orLabel: UILabel!
     @IBOutlet weak var registerButton: SecondaryButton!
-    @IBOutlet weak var skipForNowButon: UIButton!
+    @IBOutlet weak var continueAsGuestButon: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +21,10 @@ class LandingViewController: UIViewController {
         signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
         orLabel.text = NSLocalizedString("OR", comment: "")
         registerButton.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
-        skipForNowButon.setTitle(NSLocalizedString("SKIP FOR NOW", comment: ""), for: .normal)
+        continueAsGuestButon.setTitle(NSLocalizedString("CONTINUE AS GUEST", comment: ""), for: .normal)
         
         orLabel.font = SystemFont.regular.of(textStyle: .headline)
-        skipForNowButon.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
+        continueAsGuestButon.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
         
         view.backgroundColor = .primaryColor
     }
@@ -32,7 +32,7 @@ class LandingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -44,9 +44,8 @@ class LandingViewController: UIViewController {
         
     }
     
-    @IBAction func onSkipForNowPress(_ sender: UIButton) {
-//        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-//        self.present(viewController!, animated: true, completion: nil)
+    @IBAction func onContinueAsGuestPress(_ sender: UIButton) {
+        performSegue(withIdentifier: "UnauthenticatedUserSegue", sender: self)
     }
     
     @IBAction func onSignInPress() {
