@@ -34,7 +34,7 @@ class OneTouchSlider: UIControl {
     
     let sliderWidth = CGFloat(40)
     let sliderText = "Slide to pay now"
-    let commitToSwipe: Float = 0.65 //swipe percentage point at which we commit to the swipe and call success
+    let commitToSwipe: Float = 0.95 //swipe percentage point at which we commit to the swipe and call success
     
     //MARK: - UIControl
     public override init(frame: CGRect) {
@@ -70,6 +70,8 @@ class OneTouchSlider: UIControl {
         //Add the slider label and set the constraints that will keep it centered
         self.sliderLabel.translatesAutoresizingMaskIntoConstraints = false
         self.sliderLabel.textAlignment = .center
+        self.sliderLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        self.sliderLabel.setLineHeight(lineHeight: 16)
         self.sliderLabel.textColor = UIColor.white
         self.sliderLabel.text = self.sliderText
         self.addSubview(self.sliderLabel)
@@ -77,7 +79,7 @@ class OneTouchSlider: UIControl {
         
         //Create SliderFinishView
         self.sliderFinish.translatesAutoresizingMaskIntoConstraints = false
-        self.sliderFinish.backgroundColor = .primaryColorADA
+        self.sliderFinish.backgroundColor = UIColor.primaryColorADA
         self.sliderFinish.layer.masksToBounds = true
         self.addSubview(self.sliderFinish)
         self.addVisualConstraints("V:|-5-[view]-5-|", horizontal: "H:[view]-5-|", view: self.sliderFinish, toView: self)
@@ -120,9 +122,9 @@ class OneTouchSlider: UIControl {
     func panGesture(_ recognizer:UIPanGestureRecognizer) {
         let x = recognizer.location(in: self).x
         let padding: CGFloat = 20.0
-        
         switch (recognizer.state) {
         case .began:
+            self.sliderLabel.fadeOut()
             //Only slide if the gestures starts within the slide frame
             self.shouldSlide = x > (self.sliderWidthConstraint.constant - CGFloat(self.sliderWidth)) && x < self.sliderWidthConstraint.constant + padding
         case .changed:
@@ -132,6 +134,7 @@ class OneTouchSlider: UIControl {
             self.delegate?.sliderValueChanged(self)
         case .ended:fallthrough
         case .cancelled:
+            self.sliderLabel.fadeIn() 
             guard self.shouldSlide else { return }
             self.shouldSlide = false
             
@@ -152,9 +155,13 @@ class OneTouchSlider: UIControl {
             self.sliderWidthConstraint.constant = finalX
             self.setNeedsUpdateConstraints()
             
-            UIView.animate(withDuration: 0.25, animations: { 
-                self.layoutIfNeeded()
-            }, completion: { (finished) in
+            UIView.animate(withDuration: 0.45,
+                           delay: 0.0,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: CGFloat(self.progress),
+                           animations: {
+                            self.layoutIfNeeded()
+            }, completion: { finished in
                 if success {
                     self.delegate?.didFinishSwipe(self)
                 } else {
