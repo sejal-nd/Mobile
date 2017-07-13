@@ -131,7 +131,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="yCw-uU-voO" kind="show" identifier="signInRegisterSegue" id="p9D-Po-oQy"/>
+                                    <segue destination="vi5-8X-nCv" kind="show" identifier="signInRegisterSegue" id="27W-i3-9TU"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9i4-Zy-CXL" userLabel="Button Stack">
@@ -2845,8 +2845,8 @@
         <image name="img_logo_white" width="251" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="p9D-Po-oQy"/>
-        <segue reference="He9-IH-khb"/>
         <segue reference="m8m-Zs-f6g"/>
+        <segue reference="27W-i3-9TU"/>
+        <segue reference="He9-IH-khb"/>
     </inferredMetricsTieBreakers>
 </document>
