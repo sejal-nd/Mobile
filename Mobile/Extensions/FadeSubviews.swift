@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIView {
-    func fadeSubviews(fadeAmount amount: CGFloat, animationDuration: TimeInterval = 0.0, delay: TimeInterval = 0.0, excludedViews: [UIView] = [UIView](), completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
+    func fadeSubviews(fadeAmount amount: CGFloat, animationDuration: TimeInterval = 0.0, delay: TimeInterval = 0.0, excludedViews: [UIView] = [UIView](), completion: ((Bool) -> Void)? = nil) {
         let subviews = self.subviews + self.subviews.flatMap { $0.subviews }
         UIView.animate(withDuration: animationDuration, delay: delay,  animations: {
             subviews.filter { !excludedViews.contains($0) }.forEach { subview in
@@ -22,7 +22,7 @@ extension UIView {
         }, completion: completion)
     }
     
-    func fadeView(fadeAmount amount: CGFloat, animationDuration: TimeInterval = 0.0, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
+    func fadeView(fadeAmount amount: CGFloat, animationDuration: TimeInterval = 0.0, delay: TimeInterval = 0.0, completion: ((Bool) -> Void)? = nil) {
         UIView.animate(withDuration: animationDuration, delay: delay,  animations: {
             self.alpha = amount
         }, completion: completion)
