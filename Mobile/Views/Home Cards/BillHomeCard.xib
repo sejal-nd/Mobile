@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BillHomeCard" customModule="BGE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="630"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TP9-ke-nUB">
+                    <rect key="frame" x="21" y="32" width="333" height="583"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="ah8-rf-Pem" userLabel="Not Ready Stack">
+                            <rect key="frame" x="0.0" y="0.0" width="333" height="211"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsN-kq-Kkp">
+                                    <rect key="frame" x="51" y="0.0" width="231" height="26"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="999" constant="26" id="aIj-m6-GXX"/>
+                                    </constraints>
+                                </view>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_home_billnotready" translatesAutoresizingMaskIntoConstraints="NO" id="rXB-7h-ktz">
+                                    <rect key="frame" x="78" y="49" width="177" height="54"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="998" verticalCompressionResistancePriority="999" text="Your bill will be available here once it is ready." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXv-EE-Dax">
+                                    <rect key="frame" x="51" y="126" width="231" height="43"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4qS-Um-KXE">
+                                    <rect key="frame" x="51" y="192" width="231" height="19"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="999" constant="19" id="y8k-6a-cYm"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="bXv-EE-Dax" secondAttribute="trailing" constant="51" id="cZ1-Hy-CV0"/>
+                                <constraint firstItem="bXv-EE-Dax" firstAttribute="leading" secondItem="ah8-rf-Pem" secondAttribute="leading" constant="51" id="zgF-dR-Twj"/>
+                            </constraints>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOg-L4-HE6" userLabel="Alert Animation View">
+                            <rect key="frame" x="153.5" y="211" width="26" height="26"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="26" id="HNJ-sW-xEu"/>
+                                <constraint firstAttribute="width" constant="26" id="mkc-nW-CzD"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Your bill is Ready" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ete-Tn-ef4">
+                            <rect key="frame" x="98" y="237" width="137" height="21.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="$270.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGy-c0-9Sp">
+                            <rect key="frame" x="97.5" y="258.5" width="138.5" height="43"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                            <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XC7-uc-Qn4">
+                            <rect key="frame" x="107" y="301.5" width="119" height="19"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Due in 13 days" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsu-VT-VAy">
+                                    <rect key="frame" x="0.0" y="0.0" width="94" height="19"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70d-sW-2bl">
+                                    <rect key="frame" x="102" y="0.0" width="17" height="19"/>
+                                    <state key="normal" image="ic_question"/>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Your bill total of $270.00 is due in 13 days." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geS-co-2YU">
+                            <rect key="frame" x="46.5" y="320.5" width="240" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="A $1.50 convenience fee will be applied by Western Union Speedpay, our payment partner." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xd9-s1-GVz">
+                            <rect key="frame" x="14" y="335" width="305" height="29"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                            <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-nz-bzd" customClass="OneTouchSlider" customModule="BGE" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="364" width="333" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="999" constant="50" id="ZWw-1L-cDO"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_home_scheduled" translatesAutoresizingMaskIntoConstraints="NO" id="Nzb-Wa-fMH">
+                            <rect key="frame" x="145" y="414" width="43" height="50"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3n-bY-J9C">
+                            <rect key="frame" x="74.5" y="464" width="184" height="29"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <state key="normal" title="You are enrolled in AutoPay">
+                                <color key="titleColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ous-f4-dvh">
+                            <rect key="frame" x="0.0" y="493" width="333" height="29"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <state key="normal" title="Thank you for scheduling your $270.00 payment for 03/14/2017.">
+                                <color key="titleColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pkg-99-X99">
+                            <rect key="frame" x="0.0" y="522" width="333" height="27"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <state key="normal" title="Payments made using One Touch Pay cannot be canceled. By using One Touch Pay, you agree to the payment Terms &amp; Conditions.">
+                                <color key="titleColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpW-XK-KnQ">
+                            <rect key="frame" x="131" y="549" width="71" height="34"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                            <state key="normal" title="View Bill">
+                                <color key="titleColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="ah8-rf-Pem" firstAttribute="leading" secondItem="TP9-ke-nUB" secondAttribute="leading" id="A7C-O5-dra"/>
+                        <constraint firstAttribute="trailing" secondItem="Myo-nz-bzd" secondAttribute="trailing" id="YPy-6E-pfb"/>
+                        <constraint firstItem="Myo-nz-bzd" firstAttribute="leading" secondItem="TP9-ke-nUB" secondAttribute="leading" id="ga1-CY-8fV"/>
+                        <constraint firstAttribute="trailing" secondItem="ah8-rf-Pem" secondAttribute="trailing" id="o7Y-z9-FjT"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="TP9-ke-nUB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="32" id="5ye-Aj-V0f"/>
+                <constraint firstItem="TP9-ke-nUB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="21" id="7qH-8H-rav"/>
+                <constraint firstAttribute="trailing" secondItem="TP9-ke-nUB" secondAttribute="trailing" constant="21" id="CLX-AQ-OiZ"/>
+                <constraint firstAttribute="bottom" secondItem="TP9-ke-nUB" secondAttribute="bottom" constant="15" id="vp1-v4-mS0"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="35.5" y="-95"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_home_billnotready" width="177" height="54"/>
+        <image name="ic_home_scheduled" width="43" height="50"/>
+        <image name="ic_question" width="17" height="17"/>
+    </resources>
+</document>

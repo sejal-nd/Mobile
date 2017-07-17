@@ -30,7 +30,7 @@ class OneTouchSlider: UIControl {
     private let imageView:UIImageView = UIImageView()
     
     //MARK: - Public Variables
-    fileprivate(set) var progress: Float = 0.0
+    private(set) var progress: Float = 0.0
     
     let sliderWidth = CGFloat(40)
     let sliderText = "Slide to pay now"
@@ -55,14 +55,14 @@ class OneTouchSlider: UIControl {
     }
     
     //MARK: - Private Methods
-    fileprivate func addVisualConstraints(_ vertical:String, horizontal:String, view:UIView, toView:UIView) {
+    private func addVisualConstraints(_ vertical:String, horizontal:String, view:UIView, toView:UIView) {
         let veritcalConstraints = NSLayoutConstraint.constraints(withVisualFormat: vertical, options: [], metrics: nil, views: ["view":view])
         let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: horizontal, options: [], metrics: nil, views: ["view":view])
         self.addConstraints(veritcalConstraints)
         self.addConstraints(horizontalConstraints)
     }
     
-    fileprivate func setupSlider() {
+    private func setupSlider() {
         //Apply the custom slider styling
         self.layer.masksToBounds = true
         self.backgroundColor = .primaryColor
