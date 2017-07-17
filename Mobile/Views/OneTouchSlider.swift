@@ -124,9 +124,11 @@ class OneTouchSlider: UIControl {
         let padding: CGFloat = 20.0
         switch (recognizer.state) {
         case .began:
-            self.sliderLabel.fadeOut()
             //Only slide if the gestures starts within the slide frame
             self.shouldSlide = x > (self.sliderWidthConstraint.constant - CGFloat(self.sliderWidth)) && x < self.sliderWidthConstraint.constant + padding
+            if shouldSlide {
+                self.sliderLabel.fadeView(fadeAmount: 0.0, animationDuration: 0.2)
+            }
         case .changed:
             guard self.shouldSlide && x > CGFloat(self.sliderWidth) && x <= self.bounds.size.width + padding else { return }
             self.sliderWidthConstraint.constant = x
@@ -134,7 +136,7 @@ class OneTouchSlider: UIControl {
             self.delegate?.sliderValueChanged(self)
         case .ended:fallthrough
         case .cancelled:
-            self.sliderLabel.fadeIn() 
+            self.sliderLabel.fadeView(fadeAmount: 1.0) 
             guard self.shouldSlide else { return }
             self.shouldSlide = false
             
