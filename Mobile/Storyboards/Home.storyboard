@@ -1,44 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Home-->
         <scene sceneID="cod-qW-QjA">
             <objects>
-                <viewController id="GkP-jV-MfK" sceneMemberID="viewController">
+                <viewController id="GkP-jV-MfK" customClass="HomeViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jWa-SC-zWM"/>
                         <viewControllerLayoutGuide type="bottom" id="NGU-uh-WyU"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5uc-ch-d5G">
+                    <view key="view" contentMode="scaleToFill" id="5uc-ch-d5G" customClass="home">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feature not implemented" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oo4-eE-8V5">
-                                <rect key="frame" x="92" y="323" width="192" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzY-0e-rXR">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-go-05Y" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rxw-UV-VRQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="302"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3W-dd-oF2" userLabel="Primary Color View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="302"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tbt-1n-lFy" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="17W-Ep-WKn"/>
+                                                                    <constraint firstAttribute="height" priority="999" constant="64" id="o5M-Yt-TrX"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="tbt-1n-lFy" secondAttribute="trailing" id="BNg-bT-ybc"/>
+                                                            <constraint firstItem="tbt-1n-lFy" firstAttribute="top" secondItem="N3W-dd-oF2" secondAttribute="top" id="U3n-5T-Zw0"/>
+                                                            <constraint firstItem="tbt-1n-lFy" firstAttribute="leading" secondItem="N3W-dd-oF2" secondAttribute="leading" id="XOy-6m-Qhr"/>
+                                                            <constraint firstAttribute="height" constant="302" id="dKA-CO-8JY"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hCp-8D-Zp1" userLabel="Bill Card">
+                                                <rect key="frame" x="16" y="187" width="343" height="412"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qz5-kT-EpO" customClass="OneTouchSlider" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="22" y="181" width="299" height="50"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="et7-JK-FuV"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="Qz5-kT-EpO" firstAttribute="leading" secondItem="hCp-8D-Zp1" secondAttribute="leading" constant="22" id="JgC-0a-7g9"/>
+                                                    <constraint firstItem="Qz5-kT-EpO" firstAttribute="centerY" secondItem="hCp-8D-Zp1" secondAttribute="centerY" id="Y2P-6X-tXM"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Qz5-kT-EpO" secondAttribute="trailing" constant="22" id="eWq-AV-BiW"/>
+                                                    <constraint firstAttribute="height" constant="412" id="jg0-mC-IYZ"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Rxw-UV-VRQ" firstAttribute="leading" secondItem="QgD-go-05Y" secondAttribute="leading" id="AZd-Uw-Knv"/>
+                                            <constraint firstItem="Rxw-UV-VRQ" firstAttribute="top" secondItem="QgD-go-05Y" secondAttribute="top" id="Leb-sy-LDo"/>
+                                            <constraint firstAttribute="trailing" secondItem="hCp-8D-Zp1" secondAttribute="trailing" constant="16" id="SIK-3A-LpC"/>
+                                            <constraint firstItem="hCp-8D-Zp1" firstAttribute="leading" secondItem="QgD-go-05Y" secondAttribute="leading" constant="16" id="XCk-vK-sEo"/>
+                                            <constraint firstItem="hCp-8D-Zp1" firstAttribute="top" secondItem="QgD-go-05Y" secondAttribute="top" constant="187" id="cxA-E3-vTp"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rxw-UV-VRQ" secondAttribute="trailing" id="zOK-VA-pen"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="QgD-go-05Y" secondAttribute="bottom" id="3W8-Xz-Kxe"/>
+                                    <constraint firstItem="QgD-go-05Y" firstAttribute="top" secondItem="mzY-0e-rXR" secondAttribute="top" id="8KW-mN-Fyx"/>
+                                    <constraint firstItem="QgD-go-05Y" firstAttribute="centerX" secondItem="mzY-0e-rXR" secondAttribute="centerX" id="9Sr-jD-eyt"/>
+                                    <constraint firstItem="QgD-go-05Y" firstAttribute="leading" secondItem="mzY-0e-rXR" secondAttribute="leading" id="K6g-CC-77a"/>
+                                    <constraint firstAttribute="trailing" secondItem="QgD-go-05Y" secondAttribute="trailing" id="a21-nL-OYx"/>
+                                    <constraint firstItem="QgD-go-05Y" firstAttribute="centerY" secondItem="mzY-0e-rXR" secondAttribute="centerY" id="zES-PT-RzV"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oo4-eE-8V5" firstAttribute="centerX" secondItem="5uc-ch-d5G" secondAttribute="centerX" id="Org-9e-HP1"/>
-                            <constraint firstItem="oo4-eE-8V5" firstAttribute="centerY" secondItem="5uc-ch-d5G" secondAttribute="centerY" id="wAC-tr-PU3"/>
+                            <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="mzY-0e-rXR" secondAttribute="bottom" id="HBG-DW-3ss"/>
+                            <constraint firstItem="mzY-0e-rXR" firstAttribute="top" secondItem="jWa-SC-zWM" secondAttribute="bottom" id="SEM-7S-7dX"/>
+                            <constraint firstAttribute="trailing" secondItem="mzY-0e-rXR" secondAttribute="trailing" id="f6Y-5u-y4u"/>
+                            <constraint firstItem="mzY-0e-rXR" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="kwX-DU-XYv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="Cdz-VI-tMt"/>
+                    <connections>
+                        <outlet property="accountPicker" destination="tbt-1n-lFy" id="6WX-Yr-ri2"/>
+                        <outlet property="oneTouchSlider" destination="Qz5-kT-EpO" id="ApP-Vd-W6t"/>
+                        <outlet property="primaryColorView" destination="N3W-dd-oF2" id="Ilk-Ft-kdm"/>
+                        <outlet property="scrollView" destination="mzY-0e-rXR" id="ejP-8Y-Dy4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URM-gv-xjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1440.8" y="-1465.8170914542729"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jUl-wO-EKp">
+            <objects>
+                <viewController id="qQj-Mw-yIH" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bH5-b2-whw"/>
+                        <viewControllerLayoutGuide type="bottom" id="RmK-D0-VHV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="APc-nZ-Hd4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="61g-8v-Agk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
 </document>
