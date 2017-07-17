@@ -19,15 +19,15 @@ class OneTouchSlider: UIControl {
     weak var delegate: oneTouchSliderDelegate?
     
     //MARK: - Private Variables
-    fileprivate let slider:UIView = UIView()
-    fileprivate let sliderFinish: UIView = UIView()
-    fileprivate let sliderLabel: UILabel = UILabel()
-    fileprivate var sliderWidthConstraint: NSLayoutConstraint!
-    fileprivate var sliderFinishWidthConstraint: NSLayoutConstraint!
-    fileprivate var sliderImageWidthConstraint: NSLayoutConstraint!
-    fileprivate var sliderImageHeightConstraint: NSLayoutConstraint!
-    fileprivate var shouldSlide: Bool = false
-    fileprivate let imageView:UIImageView = UIImageView()
+    private let slider:UIView = UIView()
+    private let sliderFinish: UIView = UIView()
+    private let sliderLabel: UILabel = UILabel()
+    private var sliderWidthConstraint: NSLayoutConstraint!
+    private var sliderFinishWidthConstraint: NSLayoutConstraint!
+    private var sliderImageWidthConstraint: NSLayoutConstraint!
+    private var sliderImageHeightConstraint: NSLayoutConstraint!
+    private var shouldSlide: Bool = false
+    private let imageView:UIImageView = UIImageView()
     
     //MARK: - Public Variables
     fileprivate(set) var progress: Float = 0.0
@@ -39,19 +39,19 @@ class OneTouchSlider: UIControl {
     //MARK: - UIControl
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setupSlider()
+        setupSlider()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.setupSlider()
+        setupSlider()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = CGFloat(self.layer.frame.height / 2)
-        self.sliderFinish.layer.cornerRadius = CGFloat(self.sliderFinish.layer.frame.height / 2)
-        self.slider.layer.cornerRadius = CGFloat(self.slider.layer.frame.height / 2)
+        sliderFinish.layer.cornerRadius = CGFloat(self.sliderFinish.layer.frame.height / 2)
+        slider.layer.cornerRadius = CGFloat(self.slider.layer.frame.height / 2)
     }
     
     //MARK: - Private Methods
@@ -68,55 +68,55 @@ class OneTouchSlider: UIControl {
         self.backgroundColor = .primaryColor
         
         //Add the slider label and set the constraints that will keep it centered
-        self.sliderLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.sliderLabel.textAlignment = .center
-        self.sliderLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        self.sliderLabel.setLineHeight(lineHeight: 16)
-        self.sliderLabel.textColor = UIColor.white
-        self.sliderLabel.text = self.sliderText
-        self.addSubview(self.sliderLabel)
-        self.addVisualConstraints("V:|[view]|", horizontal: "H:|[view]|", view: self.sliderLabel, toView: self)
+        sliderLabel.translatesAutoresizingMaskIntoConstraints = false
+        sliderLabel.textAlignment = .center
+        sliderLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        sliderLabel.setLineHeight(lineHeight: 16)
+        sliderLabel.textColor = UIColor.white
+        sliderLabel.text = self.sliderText
+        addSubview(self.sliderLabel)
+        addVisualConstraints("V:|[view]|", horizontal: "H:|[view]|", view: self.sliderLabel, toView: self)
         
         //Create SliderFinishView
-        self.sliderFinish.translatesAutoresizingMaskIntoConstraints = false
-        self.sliderFinish.backgroundColor = UIColor.primaryColorADA
-        self.sliderFinish.layer.masksToBounds = true
-        self.addSubview(self.sliderFinish)
-        self.addVisualConstraints("V:|-5-[view]-5-|", horizontal: "H:[view]-5-|", view: self.sliderFinish, toView: self)
-        self.sliderFinishWidthConstraint = NSLayoutConstraint(item: self.sliderFinish, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.sliderWidth)
-        self.sliderFinish.addConstraint(self.sliderFinishWidthConstraint)
+        sliderFinish.translatesAutoresizingMaskIntoConstraints = false
+        sliderFinish.backgroundColor = UIColor.primaryColorADA
+        sliderFinish.layer.masksToBounds = true
+        addSubview(self.sliderFinish)
+        addVisualConstraints("V:|-5-[view]-5-|", horizontal: "H:[view]-5-|", view: self.sliderFinish, toView: self)
+        sliderFinishWidthConstraint = NSLayoutConstraint(item: self.sliderFinish, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.sliderWidth)
+        sliderFinish.addConstraint(self.sliderFinishWidthConstraint)
         
         //Create Slider
-        self.slider.translatesAutoresizingMaskIntoConstraints = false
-        self.slider.backgroundColor = UIColor.white
-        self.slider.layer.masksToBounds = true
-        self.addSubview(self.slider)
-        self.addVisualConstraints("V:|-5-[view]-5-|", horizontal: "H:|-5-[view]", view: self.slider, toView: self)
-        self.sliderWidthConstraint = NSLayoutConstraint(item: self.slider, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.sliderWidth)
-        self.slider.addConstraint(self.sliderWidthConstraint)
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.backgroundColor = UIColor.white
+        slider.layer.masksToBounds = true
+        addSubview(self.slider)
+        addVisualConstraints("V:|-5-[view]-5-|", horizontal: "H:|-5-[view]", view: self.slider, toView: self)
+        sliderWidthConstraint = NSLayoutConstraint(item: self.slider, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.sliderWidth)
+        slider.addConstraint(self.sliderWidthConstraint)
         
         //ImageView for caret
-        self.imageView.translatesAutoresizingMaskIntoConstraints = false
-        self.slider.addSubview(self.imageView)
-        self.imageView.contentMode = .scaleAspectFit
-        self.imageView.image = #imageLiteral(resourceName: "ic_caret")
-        self.addVisualConstraints("V:|[view]|", horizontal: "H:[view]-15-|", view:self.imageView, toView: self.slider)
-        self.sliderImageWidthConstraint = NSLayoutConstraint(item: self.imageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: CGFloat(8))
-        self.sliderImageHeightConstraint = NSLayoutConstraint(item: self.imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: CGFloat(13))
-        self.imageView.addConstraint(self.sliderImageWidthConstraint)
-        self.imageView.addConstraint(self.sliderImageHeightConstraint)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        slider.addSubview(self.imageView)
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = #imageLiteral(resourceName: "ic_caret")
+        addVisualConstraints("V:|[view]|", horizontal: "H:[view]-15-|", view:self.imageView, toView: self.slider)
+        sliderImageWidthConstraint = NSLayoutConstraint(item: self.imageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: CGFloat(8))
+        sliderImageHeightConstraint = NSLayoutConstraint(item: self.imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: CGFloat(13))
+        imageView.addConstraint(self.sliderImageWidthConstraint)
+        imageView.addConstraint(self.sliderImageHeightConstraint)
         
         //Add pan gesture to slide the slider view
         let pan = UIPanGestureRecognizer(target: self, action: #selector(self.panGesture(_:)))
-        self.addGestureRecognizer(pan)
+        addGestureRecognizer(pan)
     }
     
     //MARK: - Public Methods
     open func reset() {
-        self.progress = 0.0
-        self.sliderWidthConstraint.constant = CGFloat(self.sliderWidth)
-        self.setNeedsUpdateConstraints()
-        self.layoutIfNeeded()
+        progress = 0.0
+        sliderWidthConstraint.constant = CGFloat(self.sliderWidth)
+        setNeedsUpdateConstraints()
+        layoutIfNeeded()
     }
     
     func panGesture(_ recognizer:UIPanGestureRecognizer) {
@@ -125,22 +125,22 @@ class OneTouchSlider: UIControl {
         switch (recognizer.state) {
         case .began:
             //Only slide if the gestures starts within the slide frame
-            self.shouldSlide = x > (self.sliderWidthConstraint.constant - CGFloat(self.sliderWidth)) && x < self.sliderWidthConstraint.constant + padding
+            shouldSlide = x > (self.sliderWidthConstraint.constant - CGFloat(self.sliderWidth)) && x < self.sliderWidthConstraint.constant + padding
             if shouldSlide {
                 self.sliderLabel.fadeView(fadeAmount: 0.0, animationDuration: 0.2)
             }
         case .changed:
             guard self.shouldSlide && x > CGFloat(self.sliderWidth) && x <= self.bounds.size.width + padding else { return }
-            self.sliderWidthConstraint.constant = x
-            self.progress = Float(min(x/self.bounds.size.width, 1))
-            self.delegate?.sliderValueChanged(self)
+            sliderWidthConstraint.constant = x
+            progress = Float(min(x/self.bounds.size.width, 1))
+            delegate?.sliderValueChanged(self)
         case .ended:fallthrough
         case .cancelled:
-            self.sliderLabel.fadeView(fadeAmount: 1.0) 
-            guard self.shouldSlide else { return }
-            self.shouldSlide = false
+            sliderLabel.fadeView(fadeAmount: 1.0) 
+            guard shouldSlide else { return }
+            shouldSlide = false
             
-            self.progress = Float(x/self.bounds.size.width)
+            progress = Float(x/self.bounds.size.width)
             let success: Bool
             let finalX: CGFloat
             
@@ -154,13 +154,13 @@ class OneTouchSlider: UIControl {
                 self.progress = 0.0
             }
             
-            self.sliderWidthConstraint.constant = finalX
-            self.setNeedsUpdateConstraints()
+            sliderWidthConstraint.constant = finalX
+            setNeedsUpdateConstraints()
             
             UIView.animate(withDuration: 0.45,
                            delay: 0.0,
                            usingSpringWithDamping: 0.5,
-                           initialSpringVelocity: CGFloat(self.progress),
+                           initialSpringVelocity: CGFloat(progress),
                            animations: {
                             self.layoutIfNeeded()
             }, completion: { finished in
