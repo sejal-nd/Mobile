@@ -89,7 +89,7 @@ class PaymentConfirmationViewController: UIViewController {
         viewModel.totalPaymentDisplayString.asDriver().drive(amountPaidValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Conv. Fee Label
-        viewModel.paymentAmountFeeLabelText.asDriver().drive(convenienceFeeLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.paymentAmountFeeFooterLabelText.asDriver().drive(convenienceFeeLabel.rx.text).addDisposableTo(disposeBag)
     }
 
     @IBAction func onXButtonPress() {
