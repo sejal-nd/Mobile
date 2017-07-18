@@ -16,6 +16,20 @@ extension Date {
     @nonobjc var apiFormatString: String {
         return DateFormatter.apiFormatter.string(from: self)
     }
+    
+    @nonobjc var localizedGreeting: String {
+        let components = Calendar.current.dateComponents([.hour], from: self)
+        guard let hour = components.hour else { return "Greetings" }
+        
+        if 4 ... 11 ~= hour {
+            return NSLocalizedString("Good Morning", comment: "")
+        } else if 11 ... 16 ~= hour {
+            return NSLocalizedString("Good Afternoon", comment: "")
+        } else {
+            return NSLocalizedString("Good Evening", comment: "")
+        }
+        
+    }
 }
 
 extension DateFormatter {

@@ -213,7 +213,7 @@ class PaymentViewModel {
             guard let walletItem: WalletItem = walletItem else { return nil }
             guard let paymentAmount: Double = paymentAmount else { return nil }
             
-            let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
+            let commercialUser = !accountDetail.isResidential
             
             if walletItem.bankOrCard == .bank {
                 if Environment.sharedInstance.opco == .bge {
