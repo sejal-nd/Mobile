@@ -14,7 +14,6 @@ class PaymentViewModel {
     
     private var walletService: WalletService
     private var paymentService: PaymentService
-    private var oneTouchPayService: OneTouchPayService
     
     let accountDetail: Variable<AccountDetail>
     
@@ -37,10 +36,9 @@ class PaymentViewModel {
     
     var workdayArray = [Date]()
     
-    init(walletService: WalletService, paymentService: PaymentService, oneTouchPayService: OneTouchPayService, accountDetail: AccountDetail) {
+    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail) {
         self.walletService = walletService
         self.paymentService = paymentService
-        self.oneTouchPayService = oneTouchPayService
         self.accountDetail = Variable(accountDetail)
         
         if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
@@ -77,12 +75,9 @@ class PaymentViewModel {
                 if self.selectedWalletItem.value == nil {
                     if self.accountDetail.value.isCashOnly {
                         // Default to One Touch Pay item IF it's a credit card
-                        if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
-                            for item in walletItems {
-                                if item == otpItem && item.bankOrCard == .card {
-                                    self.selectedWalletItem.value = item
-                                    break
-                                }
+                        if let otpItem = walletItems.first(where: { $0.isDefault == true }) {
+                            if otpItem.bankOrCard == .card {
+                                self.selectedWalletItem.value = otpItem
                             }
                         } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
                             for item in walletItems {
@@ -94,13 +89,8 @@ class PaymentViewModel {
                         }
                     } else {
                         // Default to One Touch Pay item
-                        if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
-                            for item in walletItems {
-                                if item == otpItem {
-                                    self.selectedWalletItem.value = item
-                                    break
-                                }
-                            }
+                        if let otpItem = walletItems.first(where: { $0.isDefault == true }) {
+                            self.selectedWalletItem.value = otpItem
                         } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
                             self.selectedWalletItem.value = walletItems[0]
                         }

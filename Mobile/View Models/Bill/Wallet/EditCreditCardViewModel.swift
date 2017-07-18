@@ -25,23 +25,15 @@ class EditCreditCardViewModel {
     
     var accountDetail: AccountDetail! // Passed from WalletViewController
     var walletItem: WalletItem! // Passed from WalletViewController
+    var oneTouchPayItem: WalletItem!
     
     required init(walletService: WalletService) {
         self.walletService = walletService
     }
     
     func saveButtonIsEnabled() -> Observable<Bool> {
-        if Environment.sharedInstance.opco == .bge {
-//            return Observable.combineLatest([expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits()]) {
-//                return !$0.contains(false)
-//            }
-            return Observable.combineLatest(oneTouchPayInitialValue.asObservable(), oneTouchPay.asObservable()) {
-                return $0 != $1
-            }
-        } else {
-            return Observable.combineLatest(webServicesDataChanged(), oneTouchPayInitialValue.asObservable(), oneTouchPay.asObservable()) {
-                return $0 || ($1 != $2)
-            }
+        return Observable.combineLatest(webServicesDataChanged(), oneTouchPayInitialValue.asObservable(), oneTouchPay.asObservable()) {
+            return $0 || ($1 != $2)
         }
     }
     
@@ -104,6 +96,9 @@ class EditCreditCardViewModel {
                 onError(err.localizedDescription)
             })
             .addDisposableTo(disposeBag)
+        walletService.setOneTouchPayItem(walletItemId: walletItem.walletItemID!, walletId: walletItem.walletExternalID, customerId: AccountsStore.sharedInstance.customerIdentifier) { (result: ServiceResult<Void>) in
+            
+        }
     }
     
     func deleteCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -115,5 +110,42 @@ class EditCreditCardViewModel {
                 onError(err.localizedDescription)
             })
             .addDisposableTo(disposeBag)
+    }
+    
+    func enableOneTouchPay(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        walletService.setOneTouchPayItem(walletItemId: walletItem.walletItemID!,
+                                         walletId: walletItem.walletExternalID,
+                                         customerId: AccountsStore.sharedInstance.customerIdentifier)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
+    func deleteOneTouchPay(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        walletService.removeOneTouchPayItem(customerId: AccountsStore.sharedInstance.customerIdentifier)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+        walletService.removeOneTouchPayItem(customerId: AccountsStore.sharedInstance.customerIdentifier) { (result: ServiceResult<Void>) in }
+    }
+    
+    func getOneTouchDisplayString() -> String {
+        if let item = oneTouchPayItem {
+            switch item.bankOrCard {
+            case .bank:
+                return String(format: NSLocalizedString("You are currently using bank account %@ for One Touch Pay.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
+            case .card:
+                return String(format: NSLocalizedString("You are currently using card %@ for One Touch Pay.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
+            }
+        }
+        return NSLocalizedString("Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default.", comment: "")
     }
 }

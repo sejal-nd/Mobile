@@ -35,7 +35,7 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var miniBankButton: ButtonControl!
     @IBOutlet weak var tableViewFooter: UILabel!
     
-    let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService(), oneTouchPayService: ServiceFactory.createOneTouchPayService())
+    let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService())
     
     var selectedWalletItem: WalletItem?
     
@@ -163,23 +163,29 @@ class WalletViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let oneTouchPayItem = viewModel.walletItems.value?.first(where: { $0.isDefault == true })
+
         if let vc = segue.destination as? AddBankAccountViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail
+            vc.viewModel.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
         } else if let vc = segue.destination as? AddCreditCardViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail
+            vc.viewModel.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
         } else if let vc = segue.destination as? EditBankAccountViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail
             vc.viewModel.walletItem = self.selectedWalletItem
+            vc.viewModel.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
         } else if let vc = segue.destination as? EditCreditCardViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail
             vc.viewModel.walletItem = self.selectedWalletItem
+            vc.viewModel.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
         }
     }
-    
 }
 
 extension WalletViewController: UITableViewDelegate {
@@ -216,13 +222,10 @@ extension WalletViewController: UITableViewDataSource {
         let walletItem = viewModel.walletItems.value![indexPath.section]
         cell.bindToWalletItem(walletItem, billingInfo: viewModel.accountDetail.billingInfo)
         
-        cell.oneTouchPayView.isHidden = true
-        if let oneTouchPayItem = viewModel.oneTouchPayDictionary![AccountsStore.sharedInstance.customerIdentifier] {
-            if oneTouchPayItem.walletItemID == walletItem.walletItemID {
-                cell.oneTouchPayView.isHidden = false
-                let a11yLabel = cell.accessibilityLabel!
-                cell.accessibilityLabel = a11yLabel + ", One Touch Pay account"
-            }
+        cell.oneTouchPayView.isHidden = !walletItem.isDefault
+        if walletItem.isDefault {
+            let a11yLabel = cell.accessibilityLabel!
+            cell.accessibilityLabel = a11yLabel + ", One Touch Pay account"
         }
         
         return cell
