@@ -92,6 +92,7 @@ struct AccountDetail: Mappable {
     let isCutOutNonPay: Bool
 	
 	let isAMICustomer: Bool
+    let isResidential: Bool
     
     let releaseOfInformation: String?
 	
@@ -123,6 +124,7 @@ struct AccountDetail: Mappable {
 		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
 		
 		isAMICustomer = map.optionalFrom("isAMICustomer") ?? false
+        isResidential = map.optionalFrom("isResidential") ?? false
         
         releaseOfInformation = map.optionalFrom("releaseOfInformation")
     }
@@ -178,6 +180,8 @@ struct BillingInfo: Mappable {
     let maxPaymentAmount: Double?
     let minPaymentAmountACH: Double?
     let maxPaymentAmountACH: Double?
+    let residentialFee: Double?
+    let commercialFee: Double?
     
     init(map: Mapper) throws {
 		netDueAmount = map.optionalFrom("netDueAmount")
@@ -201,6 +205,8 @@ struct BillingInfo: Mappable {
         maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")
         minPaymentAmountACH =  map.optionalFrom("minimumPaymentAmountACH")
         maxPaymentAmountACH = map.optionalFrom("maximumPaymentAmountACH")
+        residentialFee = map.optionalFrom("feeResidential")
+        commercialFee = map.optionalFrom("feeCommercial")
     }
 }
 

@@ -214,7 +214,7 @@ extension WalletViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WalletCell", for: indexPath) as! WalletTableViewCell
         
         let walletItem = viewModel.walletItems.value![indexPath.section]
-        cell.bindToWalletItem(walletItem)
+        cell.bindToWalletItem(walletItem, billingInfo: viewModel.accountDetail.billingInfo)
         
         cell.oneTouchPayView.isHidden = true
         if let oneTouchPayItem = viewModel.oneTouchPayDictionary![AccountsStore.sharedInstance.customerIdentifier] {
