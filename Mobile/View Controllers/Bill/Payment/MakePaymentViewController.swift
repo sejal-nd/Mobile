@@ -72,7 +72,7 @@ class MakePaymentViewController: UIViewController {
     
     var accountDetail: AccountDetail! // Passed from BillViewController
     lazy var viewModel: PaymentViewModel = {
-        PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), oneTouchPayService: ServiceFactory.createOneTouchPayService(), accountDetail: self.accountDetail)
+        PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail)
     }()
     
     override func viewDidLoad() {
