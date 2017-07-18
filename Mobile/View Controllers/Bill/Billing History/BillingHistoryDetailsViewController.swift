@@ -12,43 +12,43 @@ class BillingHistoryDetailsViewController: UIViewController {
 
     var billingHistoryItem: BillingHistoryItem!
     
-    @IBOutlet weak var paymentAccountStackView: UIStackView!
+    @IBOutlet weak var paymentAccountView: UIView!
     @IBOutlet weak var paymentAccountLabel: UILabel!
     @IBOutlet weak var paymentAccountDetailsLabel: UILabel!
     
     @IBOutlet weak var paymentAccountSeparatorLine: UIView!
     
-    @IBOutlet weak var paymentDateStackView: UIStackView!
+    @IBOutlet weak var paymentDateView: UIView!
     @IBOutlet weak var paymentDateLabel: UILabel!
     @IBOutlet weak var paymentDateDetailsLabel: UILabel!
     
     @IBOutlet weak var paymentDateSeparatorLine: UIView!
     
-    @IBOutlet weak var paymentAmountStackView: UIStackView!
+    @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var paymentAmountDetailsLabel: UILabel!
     
     @IBOutlet weak var paymentAmountSeparatorLine: UIView!
     
-    @IBOutlet weak var convenienceFeeStackView: UIStackView!
+    @IBOutlet weak var convenienceFeeView: UIView!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     @IBOutlet weak var convenienceFeeDetailsLabel: UILabel!
     
     @IBOutlet weak var convenienceFeeSeparatorLine: UIView!
     
-    @IBOutlet weak var totalAmountPaidStackView: UIStackView!
+    @IBOutlet weak var totalAmountPaidView: UIView!
     @IBOutlet weak var totalAmountPaidLabel: UILabel!
     @IBOutlet weak var totalAmountPaidDetailsLabel: UILabel!
     
     @IBOutlet weak var totalAmountPaidSeparatorLine: UIView!
     
-    @IBOutlet weak var paymentStatusStackView: UIStackView!
+    @IBOutlet weak var paymentStatusView: UIView!
     @IBOutlet weak var paymentStatusLabel: UILabel!
     @IBOutlet weak var paymentStatusDetailsLabel: UILabel!
     
     @IBOutlet weak var paymentStatusSeparatorLine: UIView!
     
-    @IBOutlet weak var confirmationNumberStackView: UIStackView!
+    @IBOutlet weak var confirmationNumberView: UIView!
     @IBOutlet weak var confirmationNumberLabel: UILabel!
     @IBOutlet weak var confirmationNumberDetailsLabel: UILabel!
     
@@ -81,16 +81,16 @@ class BillingHistoryDetailsViewController: UIViewController {
         if opco != .bge {
             // show payment date, amount paid, payment status
             // hide the rest
-            paymentAccountStackView.isHidden = true
+            paymentAccountView.isHidden = true
             paymentAccountSeparatorLine.isHidden = true
             
-            convenienceFeeStackView.isHidden = true
+            convenienceFeeView.isHidden = true
             convenienceFeeSeparatorLine.isHidden = true
             
-            totalAmountPaidStackView.isHidden = true
+            totalAmountPaidView.isHidden = true
             totalAmountPaidSeparatorLine.isHidden = true
             
-            confirmationNumberStackView.isHidden = true
+            confirmationNumberView.isHidden = true
         } else {
             
         }
@@ -144,19 +144,21 @@ class BillingHistoryDetailsViewController: UIViewController {
     }
     
     func populateWithData() {
-        paymentAccountDetailsLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber
+        let accountNum = AccountsStore.sharedInstance.currentAccount.accountNumber
+        paymentAccountDetailsLabel.text = "**** " +
+            String(accountNum.characters.suffix(4))
 
         if self.billingHistoryItem.date != nil {
             paymentDateDetailsLabel.text = self.billingHistoryItem.date.mmDdYyyyString
         } else {
-            paymentDateStackView.isHidden = true
+            paymentDateView.isHidden = true
             paymentAmountSeparatorLine.isHidden = true
         }
         
         if let amountPaid = self.billingHistoryItem.amountPaid {
             paymentAmountDetailsLabel.text = "$\(String(describing: amountPaid))"
         } else {
-            paymentAmountStackView.isHidden = true
+            paymentAmountView.isHidden = true
             paymentAmountSeparatorLine.isHidden = true
 //            paymentAmountDetailsLabel.text = "$0.00"
         }
@@ -164,7 +166,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         if let chargeAmount = self.billingHistoryItem.chargeAmount {
             convenienceFeeDetailsLabel.text = "$\(String(describing: chargeAmount))"
         } else {
-            convenienceFeeStackView.isHidden = true
+            convenienceFeeView.isHidden = true
             convenienceFeeSeparatorLine.isHidden = true
 //            convenienceFeeDetailsLabel.text = "$0.00"
         }
@@ -172,7 +174,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         if let totalAmountDue = self.billingHistoryItem.totalAmountDue {
             totalAmountPaidDetailsLabel.text = "$\(String(describing: totalAmountDue))"
         } else {
-            totalAmountPaidStackView.isHidden = true
+            totalAmountPaidView.isHidden = true
             totalAmountPaidSeparatorLine.isHidden = true
 //            totalAmountPaidDetailsLabel.text = "$0.00"
         }
@@ -180,14 +182,14 @@ class BillingHistoryDetailsViewController: UIViewController {
         if self.billingHistoryItem.status != nil {
             paymentStatusDetailsLabel.text = self.billingHistoryItem.status
         } else {
-            paymentStatusStackView.isHidden = true
+            paymentStatusView.isHidden = true
             paymentAmountSeparatorLine.isHidden = true
         }
         
         if self.billingHistoryItem.confirmationNumber != nil {
             confirmationNumberDetailsLabel.text = self.billingHistoryItem.confirmationNumber
         } else {
-            confirmationNumberStackView.isHidden = true
+            confirmationNumberView.isHidden = true
         }
         
         print(self.billingHistoryItem.paymentType ?? "Unknown")
