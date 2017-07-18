@@ -72,6 +72,11 @@ protocol PaymentService {
                              reason: String,
                              completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
+    /// Fetch the next 90 days that PECO users are elibile to make payments
+    ///
+    /// - Parameters:
+    ///   - completion: the completion block to execute upon completion.
+    func fetchWorkdays(completion: @escaping (_ result: ServiceResult<[Date]>) -> Void)
     
     /// Schedule a payment
     ///
@@ -181,6 +186,21 @@ extension PaymentService {
                     observer.onError(err)
                 }
             }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchWorkdays() -> Observable<[Date]> {
+        return Observable.create { observer in
+            self.fetchWorkdays(completion: { (result: ServiceResult<[Date]>) in
+                switch (result) {
+                case ServiceResult.Success(let workdays):
+                    observer.onNext(workdays)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
             return Disposables.create()
         }
     }
