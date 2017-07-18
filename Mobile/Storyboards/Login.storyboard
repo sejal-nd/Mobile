@@ -22,7 +22,7 @@
         <scene sceneID="Qff-1Z-8Qt">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RbL-iO-8ib" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hjm-LC-WA0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hjm-LC-WA0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -116,6 +116,7 @@
                                     </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="yrY-DD-kdB" firstAttribute="centerX" secondItem="a53-WZ-2ae" secondAttribute="centerX" id="X8b-VZ-s1T"/>
                                     <constraint firstItem="yrY-DD-kdB" firstAttribute="leading" secondItem="a53-WZ-2ae" secondAttribute="leading" id="o0r-le-Ymc" userLabel="LottieView.leading = Leading"/>
                                     <constraint firstAttribute="trailing" secondItem="yrY-DD-kdB" secondAttribute="trailing" id="vpw-Ux-HbY"/>
                                 </constraints>
@@ -131,7 +132,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vi5-8X-nCv" kind="show" identifier="signInRegisterSegue" id="27W-i3-9TU"/>
+                                    <action selector="onLoginRegisterPress:" destination="Bzu-HN-7Zr" eventType="touchUpInside" id="bkt-V6-YBv"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9i4-Zy-CXL" userLabel="Button Stack">
@@ -791,7 +792,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sli-Tt-vCb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xPE-hv-B2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xPE-hv-B2n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2845,8 +2846,7 @@
         <image name="img_logo_white" width="251" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="m8m-Zs-f6g"/>
-        <segue reference="27W-i3-9TU"/>
         <segue reference="He9-IH-khb"/>
+        <segue reference="m8m-Zs-f6g"/>
     </inferredMetricsTieBreakers>
 </document>

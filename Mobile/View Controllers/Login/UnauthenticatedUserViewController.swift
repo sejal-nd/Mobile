@@ -74,6 +74,6 @@ class UnauthenticatedUserViewController: UIViewController {
     }
     
     @IBAction func onLoginRegisterPress(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "signInRegisterSegue", sender: self)
+        navigationController?.popViewController(animated: true)
     }
 }
