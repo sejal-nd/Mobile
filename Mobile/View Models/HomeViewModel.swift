@@ -21,6 +21,10 @@ class HomeViewModel {
     let isFetchingAccountDetail: Driver<Bool>
     let accountDetailErrorMessage: Driver<String>
     
+    let greeting = Variable<String>("")
+    let weatherTemp = Variable<String?>(nil)
+    let weatherIcon = Variable<UIImage?>(nil)
+    
     required init(accountService: AccountService) {
         self.accountService = accountService
         
@@ -47,6 +51,22 @@ class HomeViewModel {
         fetchAccountDetailResult.elements()
             .bind(to: currentAccountDetail)
             .addDisposableTo(disposeBag)
+        
+        //bind this to fetchAccountDetailRequest to ensure address is available on sign in/keep me logged in
+        let weatherItemResponse = fetchAccountDetailResult.elements().map { $0.address ?? "" }
+        .flatMap(WeatherAPI().fetchWeather).shareReplay(2)
+        
+        weatherItemResponse.map { $0.temperature.stringValue + "°" }
+            .bind(to: self.weatherTemp)
+            .addDisposableTo(self.disposeBag)
+            
+        weatherItemResponse.map { $0.icon }
+            .bind(to: self.weatherIcon)
+            .addDisposableTo(self.disposeBag)
+        
+        weatherItemResponse.map { $0.greeting }
+            .bind(to: self.greeting)
+            .addDisposableTo(self.disposeBag)
         
         accountDetailErrorMessage = fetchAccountDetailResult.errors()
             .map { 

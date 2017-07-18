@@ -12,9 +12,11 @@ import CoreLocation
 
 let baseUrl = "https://api.weather.gov/"
 
+//added greeting to this so everything loads at the same time
 struct WeatherItemResult {
-    let temperature : NSNumber
-    let icon : UIImage
+    let greeting: String
+    let temperature: NSNumber
+    let icon: UIImage
 }
 
 private enum ResponseKey : String {
@@ -67,8 +69,15 @@ struct WeatherAPI {
                         dLog(message: responseString)
                         
                         do {
-                            let resultDictionary = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
-                            completion(ServiceResult.Success(self.weatherItemFrom(data: resultDictionary)!))  //TODO: don't force this
+                            let results = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
+                            guard let resultDictionary = results,
+                                let weatherItemResult = self.weatherItemFrom(data: resultDictionary) else {
+                                    let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
+                                    completion(ServiceResult.Failure(serviceError))
+                                    return
+                            }
+                            
+                            completion(ServiceResult.Success(weatherItemResult))
                             
                         }
                         catch let error as NSError {
@@ -97,9 +106,10 @@ struct WeatherAPI {
                 return nil 
         }
         
+        let greeting = Date().localizedGreeting
         let icon = iconImage(iconString: iconString)
         
-        return WeatherItemResult(temperature: temp, icon: icon)
+        return WeatherItemResult(greeting: greeting, temperature: temp, icon: icon)
         
     }
     

@@ -19,6 +19,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var homeLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var weatherIconHolderView: UIView!
     
+    @IBOutlet weak var weatherWidgetView: UIView!
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImage: UIImageView!
@@ -45,7 +46,6 @@ class HomeViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -63,11 +63,8 @@ class HomeViewController: AccountPickerViewController {
             }
         }).addDisposableTo(bag)
         
-        scrollView.backgroundColor = .primaryColor
-        weatherIconHolderView.backgroundColor = .primaryColor
-        headerStackView.backgroundColor = .primaryColor
+        styleViews()
         bindLoadingStates()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,13 +72,22 @@ class HomeViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    func styleViews() {
+        scrollView.backgroundColor = .primaryColor
+        weatherIconHolderView.backgroundColor = .primaryColor
+        weatherWidgetView.backgroundColor = .primaryColor
+        headerStackView.backgroundColor = .primaryColor
+    }
+    
     func bindLoadingStates() {
         topLoadingIndicatorView.isHidden = true
         viewModel.isFetchingAccountDetail.filter(!).drive(rx.isRefreshing).addDisposableTo(bag)
-        
         viewModel.isFetchingDifferentAccount.not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
         viewModel.isFetchingDifferentAccount.drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
         
+        self.viewModel.weatherTemp.asDriver().drive(self.temperatureLabel.rx.text).addDisposableTo(self.bag)
+        self.viewModel.weatherIcon.asDriver().drive(self.weatherIconImage.rx.image).addDisposableTo(self.bag)
+        self.viewModel.greeting.asDriver().drive(self.greetingLabel.rx.text).addDisposableTo(self.bag)
     }
     
     
@@ -100,9 +106,8 @@ class HomeViewController: AccountPickerViewController {
 extension HomeViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-//        viewModel.fetchAccountDetail(isRefresh: false)
+        viewModel.fetchAccountDetail(isRefresh: false)
     }
-    
 }
 
 extension Reactive where Base: HomeViewController {
