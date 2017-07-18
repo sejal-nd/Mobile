@@ -42,8 +42,6 @@ class AddBankAccountViewController: UIViewController {
     @IBOutlet weak var oneTouchPayLabel: UILabel!
     
     let viewModel = AddBankAccountViewModel(walletService: ServiceFactory.createWalletService())
-    
-    let oneTouchPayService = ServiceFactory.createOneTouchPayService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,13 +85,12 @@ class AddBankAccountViewController: UIViewController {
 
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        oneTouchPayDescriptionLabel.text = oneTouchPayService.getOneTouchPayDisplayString(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
+        oneTouchPayDescriptionLabel.text = viewModel.getOneTouchDisplayString()
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         
-        if Environment.sharedInstance.opco == .bge {
-            oneTouchPayView.isHidden = true // Cannot do One Touch Pay on BGE until the endpoint returns walletItemID
-        } else { // BGE only fields should be removed on ComEd/PECO
+        // BGE only fields should be removed on ComEd/PECO
+        if Environment.sharedInstance.opco != .bge {
             checkingSavingsSegmentedControl.isHidden = true
             accountHolderNameTextField.isHidden = true
         }
@@ -115,11 +112,9 @@ class AddBankAccountViewController: UIViewController {
     func onSavePress() {
         view.endEditing(true)
         
-        let customerNumber: String = AccountsStore.sharedInstance.customerIdentifier
-        
         var shouldShowOneTouchPayWarning = false
         if viewModel.oneTouchPay.value {
-            if oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) != nil {
+            if viewModel.oneTouchPayItem != nil {
                 shouldShowOneTouchPayWarning = true
             }
         }
@@ -133,14 +128,17 @@ class AddBankAccountViewController: UIViewController {
                 self.present(alertVc, animated: true, completion: nil)
             }, onSuccess: { walletItemResult in
                 if setAsOneTouchPay {
-                    let accountNumber = self.viewModel.accountNumber.value
-                    let last4 = accountNumber.substring(from: accountNumber.index(accountNumber.endIndex, offsetBy: -4))
-                    self.oneTouchPayService.setOneTouchPayItem(walletItemID: walletItemResult.walletItemId, maskedWalletItemAccountNumber: last4, bankOrCard: .bank, forCustomerNumber: customerNumber)
+                    self.viewModel.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: { 
+                        LoadingView.hide()
+                        self.delegate?.addBankAccountViewControllerDidAddAccount(self)
+                        _ = self.navigationController?.popViewController(animated: true)
+                    }, onError: { (errMessage: String) in
+                        //In this case, the card was already saved, the error
+                        LoadingView.hide()
+                        self.delegate?.addBankAccountViewControllerDidAddAccount(self)
+                        _ = self.navigationController?.popViewController(animated: true)
+                    })
                 }
-                
-                LoadingView.hide()
-                self.delegate?.addBankAccountViewControllerDidAddAccount(self)
-                _ = self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Verification Failed", comment: ""), message: NSLocalizedString("There was a problem adding this payment account. Please review your information and try again.", comment: ""), preferredStyle: .alert)
