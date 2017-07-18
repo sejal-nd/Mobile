@@ -98,6 +98,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     
     let bankAccountNumber: String?
     let bankAccountName: String?
+    let isDefault: Bool
     
     init(map: Mapper) throws {
         walletItemID = map.optionalFrom("walletItemID")
@@ -131,6 +132,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
         
         bankAccountNumber = map.optionalFrom("bankAccountNumber")
         bankAccountName = map.optionalFrom("bankAccountName")
+        isDefault = map.optionalFrom("isDefault") ?? false
+
     }
     
     

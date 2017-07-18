@@ -16,14 +16,6 @@ protocol WalletService {
     ///     that is provided will contain the WalletItem on success, or a ServiceError on failure.
     func fetchWalletItems(completion: @escaping (_ result: ServiceResult<[WalletItem]>) -> Void)
     
-    /// Fetch default wallet item detailed information.
-    ///
-    /// - Parameters:
-    ///   	- completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain the WalletItem on success, or a ServiceError on failure.
-    func fetchDefaultWalletItem(accountDetail: AccountDetail, completion: @escaping (_ result: ServiceResult<WalletItem>) -> Void)
-    
-    
     /// Fetch bank name through routing number
     ///
     /// - Parameters:
@@ -113,23 +105,6 @@ extension WalletService {
                 switch result {
                 case ServiceResult.Success(let walletItems):
                     observer.onNext(walletItems)
-                    observer.onCompleted()
-                case ServiceResult.Failure(let err):
-                    observer.onError(err)
-                }
-            })
-            
-            return Disposables.create()
-        }
-    }
-    
-    // Fetch default wallet item
-    func fetchDefaultWalletItem(accountDetail: AccountDetail) -> Observable<WalletItem> {
-        return Observable.create { observer in
-            self.fetchDefaultWalletItem(accountDetail: accountDetail, completion: { (result: ServiceResult<WalletItem>) in
-                switch result {
-                case ServiceResult.Success(let walletItem):
-                    observer.onNext(walletItem)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

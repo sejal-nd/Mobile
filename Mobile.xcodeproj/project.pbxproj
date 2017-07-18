@@ -187,12 +187,12 @@
 		825171A31F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */; };
 		825171A41F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */; };
 		825171A51F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */; };
-		825171A81F1D1FA00020A6CA /* BillHomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A71F1D1FA00020A6CA /* BillHomeCard.swift */; };
-		825171A91F1D1FA00020A6CA /* BillHomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A71F1D1FA00020A6CA /* BillHomeCard.swift */; };
-		825171AA1F1D1FA00020A6CA /* BillHomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A71F1D1FA00020A6CA /* BillHomeCard.swift */; };
-		825171AC1F1D1FAA0020A6CA /* BillHomeCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 825171AB1F1D1FAA0020A6CA /* BillHomeCard.xib */; };
-		825171AD1F1D1FAA0020A6CA /* BillHomeCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 825171AB1F1D1FAA0020A6CA /* BillHomeCard.xib */; };
-		825171AE1F1D1FAA0020A6CA /* BillHomeCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 825171AB1F1D1FAA0020A6CA /* BillHomeCard.xib */; };
+		825171A81F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A71F1D1FA00020A6CA /* HomeBillCardView.swift */; };
+		825171A91F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A71F1D1FA00020A6CA /* HomeBillCardView.swift */; };
+		825171AA1F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A71F1D1FA00020A6CA /* HomeBillCardView.swift */; };
+		825171AC1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 825171AB1F1D1FAA0020A6CA /* HomeBillCardView.xib */; };
+		825171AD1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 825171AB1F1D1FAA0020A6CA /* HomeBillCardView.xib */; };
+		825171AE1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 825171AB1F1D1FAA0020A6CA /* HomeBillCardView.xib */; };
 		825171B51F1D25130020A6CA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171B41F1D25130020A6CA /* HomeViewModel.swift */; };
 		825171B61F1D25130020A6CA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171B41F1D25130020A6CA /* HomeViewModel.swift */; };
 		825171B71F1D25130020A6CA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171B41F1D25130020A6CA /* HomeViewModel.swift */; };
@@ -1076,8 +1076,8 @@
 		822BBB9F1EFC1A01004EBBAB /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		822BBBA01EFC1A01004EBBAB /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectControl.swift; sourceTree = "<group>"; };
-		825171A71F1D1FA00020A6CA /* BillHomeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillHomeCard.swift; sourceTree = "<group>"; };
-		825171AB1F1D1FAA0020A6CA /* BillHomeCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillHomeCard.xib; sourceTree = "<group>"; };
+		825171A71F1D1FA00020A6CA /* HomeBillCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardView.swift; sourceTree = "<group>"; };
+		825171AB1F1D1FAA0020A6CA /* HomeBillCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeBillCardView.xib; sourceTree = "<group>"; };
 		825171B41F1D25130020A6CA /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		825171B81F1D25280020A6CA /* BillHomeCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillHomeCardViewModel.swift; sourceTree = "<group>"; };
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -1681,8 +1681,8 @@
 		825171A61F1D1F210020A6CA /* Home Cards */ = {
 			isa = PBXGroup;
 			children = (
-				825171A71F1D1FA00020A6CA /* BillHomeCard.swift */,
-				825171AB1F1D1FAA0020A6CA /* BillHomeCard.xib */,
+				825171A71F1D1FA00020A6CA /* HomeBillCardView.swift */,
+				825171AB1F1D1FAA0020A6CA /* HomeBillCardView.xib */,
 			);
 			path = "Home Cards";
 			sourceTree = "<group>";
@@ -2936,7 +2936,7 @@
 				E85895771E8AACFF009485E3 /* loading_blue.json in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
-				825171AC1F1D1FAA0020A6CA /* BillHomeCard.xib in Resources */,
+				825171AC1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */,
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
@@ -2978,7 +2978,7 @@
 				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
 				822BBBA61EFC1A01004EBBAB /* WebViewController.xib in Resources */,
-				825171AE1F1D1FAA0020A6CA /* BillHomeCard.xib in Resources */,
+				825171AE1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -3040,7 +3040,7 @@
 				E841F3A01F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
-				825171AD1F1D1FAA0020A6CA /* BillHomeCard.xib in Resources */,
+				825171AD1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
 				822BBBA51EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
@@ -3327,7 +3327,7 @@
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B261EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				E887C9F21ED5D367002433A3 /* CardIO.m in Sources */,
-				825171A81F1D1FA00020A6CA /* BillHomeCard.swift in Sources */,
+				825171A81F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
@@ -3525,7 +3525,7 @@
 				E8C3AC031EDA09B50004F705 /* OneTouchPayService.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
-				825171AA1F1D1FA00020A6CA /* BillHomeCard.swift in Sources */,
+				825171AA1F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */,
 				54DF4BD31EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				54036BAF1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
 				82A18EA01EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
@@ -3724,7 +3724,7 @@
 				E8C3AC021EDA09B50004F705 /* OneTouchPayService.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
-				825171A91F1D1FA00020A6CA /* BillHomeCard.swift in Sources */,
+				825171A91F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */,
 				54DF4BD21EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				54036BAE1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
 				82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
