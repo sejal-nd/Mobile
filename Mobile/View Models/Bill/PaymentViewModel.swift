@@ -45,8 +45,12 @@ class PaymentViewModel {
             paymentAmount = Variable("")
         }
         
-        let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
+        let startOfTodayDate = Calendar.current.startOfDay(for: Date())
         self.paymentDate = Variable(startOfTodayDate)
+        if Environment.sharedInstance.opco == .bge && Calendar.current.component(.hour, from: Date()) >= 20 {
+            let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
+            self.paymentDate.value = tomorrow
+        }
         if let dueDate = accountDetail.billingInfo.dueByDate {
             if dueDate >= startOfTodayDate && !fixedPaymentDateLogic {
                 self.paymentDate.value = dueDate
@@ -99,7 +103,13 @@ class PaymentViewModel {
     
     func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let paymentType: PaymentType = selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-        let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate.value, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
+        var paymentDate = self.paymentDate.value
+        if let walletItem = selectedWalletItem.value {
+            if walletItem.bankOrCard == .card {
+                paymentDate = Calendar.current.startOfDay(for: Date())
+            }
+        }
+        let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
         paymentService.schedulePayment(payment: payment)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
@@ -232,9 +242,12 @@ class PaymentViewModel {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
                 if Environment.sharedInstance.opco == .bge {
-                    return NSLocalizedString("A convenience fee will be applied by Western Union Speedpay, our payment partner. Residential accounts: $1.50. Business accounts: 2.6%.", comment: "")
+                    let feeStr = String(format: "A convenience fee will be applied by Western Union Speedpay, our payment partner. Residential accounts: $%.2f. Business accounts: %.2f%%.",
+                                        self.accountDetail.value.billingInfo.residentialFee!, self.accountDetail.value.billingInfo.commercialFee!)
+                    return NSLocalizedString(feeStr, comment: "")
                 } else {
-                    return String(format: "A %@ convenience fee will be applied by Bill matrix, our payment partner.", fee.currencyString ?? "")
+                    let feeStr = String(format: "A %@ convenience fee will be applied by Bill Matrix, our payment partner.", fee.currencyString!)
+                    return NSLocalizedString(feeStr, comment: "")
                 }
             }
         }
@@ -246,7 +259,9 @@ class PaymentViewModel {
             if walletItem.bankOrCard == .bank {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
-                return String(format: "A %@ convenience fee will be applied.", fee.currencyString!)
+                let feeStr = String(format: "Your payment includes a %@ convenience fee.",
+                                    (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? String(format: "%.2f%%", fee) : fee.currencyString!)
+                return NSLocalizedString(feeStr, comment: "")
             }
         }
     }
@@ -281,11 +296,9 @@ class PaymentViewModel {
     var convenienceFee: Driver<Double> {
         switch Environment.sharedInstance.opco {
         case .bge:
-            return Driver.just(1.5)
-        case .comEd:
-            return Driver.just(2.5)
-        case .peco:
-            return Driver.just(2.35)
+            return accountDetail.value.isResidential ? Driver.just(accountDetail.value.billingInfo.residentialFee!) : Driver.just(accountDetail.value.billingInfo.commercialFee!)
+        case .comEd, .peco:
+            return Driver.just(accountDetail.value.billingInfo.convenienceFee!)
         
         }
 //        return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
@@ -338,7 +351,7 @@ class PaymentViewModel {
                 return true
             }
 
-            let startOfTodayDate = NSCalendar.current.startOfDay(for: Date())
+            let startOfTodayDate = Calendar.current.startOfDay(for: Date())
             if let dueDate = $0.billingInfo.dueByDate {
                 if dueDate < startOfTodayDate {
                     return true
@@ -366,8 +379,16 @@ class PaymentViewModel {
         return $0.billingInfo.pastDueAmount ?? 0 > 0
     }
     
-    lazy var paymentDateString: Driver<String?> = self.paymentDate.asDriver().map {
-        return $0.mmDdYyyyString
+    var paymentDateString: Driver<String> {
+        return Driver.combineLatest(paymentDate.asDriver(), selectedWalletItem.asDriver()).map {
+            if let walletItem = $1 {
+                if walletItem.bankOrCard == .card {
+                    let startOfTodayDate = Calendar.current.startOfDay(for: Date())
+                    return startOfTodayDate.mmDdYyyyString
+                }
+            }
+            return $0.mmDdYyyyString
+        }
     }
     
     lazy var shouldShowBillMatrixView: Driver<Bool> = self.selectedWalletItem.asDriver().map {
@@ -446,7 +467,7 @@ class PaymentViewModel {
     }
     
     lazy var convenienceFeeDisplayString: Driver<String> = self.convenienceFee.map {
-        return $0.currencyString!
+        return (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? String(format: "%.2f%%", $0) : $0.currencyString!
     }
     
     lazy var shouldShowAutoPayEnrollButton: Driver<Bool> = self.accountDetail.asDriver().map {
@@ -456,7 +477,15 @@ class PaymentViewModel {
     var totalPaymentDisplayString: Driver<String> {
         return Driver.combineLatest(paymentAmount.asDriver().map { return Double($0) ?? 0 }, reviewPaymentShouldShowConvenienceFeeBox, convenienceFee).map {
             if $1 {
-                return ($0 + $2).currencyString!
+                if (Environment.sharedInstance.opco == .bge) {
+                    if (self.accountDetail.value.isResidential) {
+                        return ($0 + $2).currencyString!
+                    } else {
+                        return ((1 + $2 / 100) * $0).currencyString!
+                    }
+                } else {
+                    return ($0 + $2).currencyString!
+                }
             } else {
                 return $0.currencyString!
             }

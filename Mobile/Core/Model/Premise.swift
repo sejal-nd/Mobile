@@ -9,9 +9,9 @@
 import Mapper
 
 struct Premise: Mappable, Equatable, Hashable {
-    var premiseNumber: String //TODO back to lets after testing
-    var addressGeneral: String?
-    var addressLine: Array<String>?
+    let premiseNumber: String 
+    let addressGeneral: String?
+    let addressLine: Array<String>?
     
     init(map: Mapper) throws {
         try premiseNumber = map.from("premiseNumber")

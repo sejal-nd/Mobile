@@ -53,7 +53,8 @@ class EditCreditCardViewController: UIViewController {
     var gradientLayer = CAGradientLayer()
     
     var viewModel = EditCreditCardViewModel(walletService: ServiceFactory.createWalletService())
-    
+    var saveButton = UIBarButtonItem()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -116,7 +117,7 @@ class EditCreditCardViewController: UIViewController {
     
     func buildNavigationButtons() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
+        saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
 
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
@@ -211,13 +212,14 @@ class EditCreditCardViewController: UIViewController {
         convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         convenienceFeeLabel.textColor = .blackText
         switch opco {
-        case .comEd:
-            convenienceFeeLabel.text = NSLocalizedString("$2.50 Convenience Fee", comment: "")
-            bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
-        case .peco:
-            convenienceFeeLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
+        case .comEd, .peco:
+            convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
             bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
         case .bge:
+            let feeString =  String(format:"Fees: %@", viewModel.accountDetail.billingInfo.residentialFee!.currencyString!) +
+                " Residential | " + String(format:"%.2f%% Business", viewModel.accountDetail.billingInfo.commercialFee!)
+            convenienceFeeLabel.text = NSLocalizedString(feeString, comment: "")
+            bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
             break
         }
     }
@@ -254,10 +256,14 @@ class EditCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expMonthTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
@@ -273,10 +279,14 @@ class EditCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expYearTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
@@ -287,10 +297,14 @@ class EditCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cvvTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
@@ -301,11 +315,24 @@ class EditCreditCardViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.zipCodeTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        message += expMonthTextField.getError()
+        message += expYearTextField.getError()
+        message += cvvTextField.getError()
+        message += zipCodeTextField.getError()
+        self.saveButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
     // MARK: - ScrollView

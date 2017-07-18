@@ -51,25 +51,17 @@ enum WalletItemStatusTypeBGE: String {
     case deleted = "deleted"
 }
 
+// Used internally for Payment model
 enum PaymentType: String {
     case check = "Check"
     case credit = "Card"
 }
-
 
 // Comed/PECO
 enum PaymentCategoryType: String {
     case check = "Check"
     case credit = "Credit"
     case debit = "Debit"
-}
-
-// Comed/PECO
-enum PaymentMethodType: String {
-    case visa = "VISA"
-    case mastercard = "MASTERCARD"
-    case americanexpress = "AMERICANEXPRESS"
-    case discover = "DISCOVER"
 }
 
 // BGE
@@ -79,6 +71,7 @@ enum BankAccountType: String {
     case card = "card"
 }
 
+// We consolidate PaymentCategoryType & BankAccountType into this
 enum BankOrCard {
     case bank
     case card
@@ -98,20 +91,16 @@ struct WalletItem: Mappable, Equatable, Hashable {
     var nickName: String?
     let walletItemStatusType: WalletItemStatusType?
     let walletItemStatusTypeBGE: WalletItemStatusTypeBGE?
-    let paymentCategoryType: PaymentCategoryType?
-    let paymentMethodType: PaymentMethodType?
     
+    let paymentCategoryType: PaymentCategoryType?
     let bankAccountType: BankAccountType?
-    let isNOCViewed: Bool
+    var bankOrCard: BankOrCard
+    
     let bankAccountNumber: String?
     let bankAccountName: String?
     let isDefault: Bool
     
-    // Reduce bankAccountType (BGE) and paymentCategoryType (ComEd/PECO) to this one variable
-    var bankOrCard: BankOrCard
-    
     init(map: Mapper) throws {
-        // All
         walletItemID = map.optionalFrom("walletItemID")
         walletExternalID = map.optionalFrom("walletExternalID")
         
@@ -124,18 +113,13 @@ struct WalletItem: Mappable, Equatable, Hashable {
             }
         }
         
-        // Comed/PECO
         paymentCategoryType = map.optionalFrom("paymentCategoryType")
-        paymentMethodType = map.optionalFrom("paymentMethodType")
-        
-        // BGE
         bankAccountType = map.optionalFrom("bankAccountType")
-        isNOCViewed = map.optionalFrom("flagnocViewed") ?? false
         bankAccountNumber = map.optionalFrom("bankAccountNumber")
         bankAccountName = map.optionalFrom("bankAccountName")
         isDefault = map.optionalFrom("isDefault") ?? false
-        
         bankOrCard = .card
+        
         if Environment.sharedInstance.opco == .bge {
             walletItemStatusTypeBGE = map.optionalFrom("walletItemStatusType")
             walletItemStatusType = nil

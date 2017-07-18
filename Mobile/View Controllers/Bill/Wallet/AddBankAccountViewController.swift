@@ -42,6 +42,7 @@ class AddBankAccountViewController: UIViewController {
     @IBOutlet weak var oneTouchPayLabel: UILabel!
     
     let viewModel = AddBankAccountViewModel(walletService: ServiceFactory.createWalletService())
+    var saveButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,8 @@ class AddBankAccountViewController: UIViewController {
         title = NSLocalizedString("Add Bank Account", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
+        saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
+        
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
         viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
@@ -187,12 +189,16 @@ class AddBankAccountViewController: UIViewController {
                             self.routingNumberTextField.setInfoMessage(nil)
                         })
                     }
+                    self.accessibilityErrorLabel()
+                    
                 }).addDisposableTo(self.disposeBag)
                 
             }
         }).addDisposableTo(disposeBag)
         routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.routingNumberTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
@@ -201,11 +207,15 @@ class AddBankAccountViewController: UIViewController {
                     if !valid {
                         self.accountNumberTextField.setError(NSLocalizedString("Must be between 4-17 digits", comment: ""))
                     }
+                    self.accessibilityErrorLabel()
+                
                 }).addDisposableTo(self.disposeBag)
             }
         }).addDisposableTo(disposeBag)
         accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accountNumberTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         viewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
@@ -219,11 +229,24 @@ class AddBankAccountViewController: UIViewController {
                 self.confirmAccountNumberTextField.setValidated(false)
                 self.confirmAccountNumberTextField.setError(nil)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         viewModel.nicknameIsValid().subscribe(onNext: { valid in
             self.nicknameTextField.setError(valid ? nil : NSLocalizedString("Can only contain letters, numbers, and spaces", comment: ""))
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        message += routingNumberTextField.getError()
+        message += accountNumberTextField.getError()
+        message += confirmAccountNumberTextField.getError()
+        message += nicknameTextField.getError()
+        self.saveButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
     @IBAction func onRoutingNumberQuestionMarkPress() {

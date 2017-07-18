@@ -22,6 +22,7 @@ class MoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addAccessibility()
         styleViews()
         bindViews()
     }
@@ -29,6 +30,17 @@ class MoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    func addAccessibility() {
+        settingsButton.isAccessibilityElement = true
+        settingsButton.accessibilityLabel = NSLocalizedString("Settings", comment: "")
+        contactUsButton.isAccessibilityElement = true
+        contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
+        termAndPoliciesButton.isAccessibilityElement = true
+        termAndPoliciesButton.accessibilityLabel = NSLocalizedString("Terms and Policies", comment: "")
+        signOutButton.isAccessibilityElement = true
+        signOutButton.accessibilityLabel = NSLocalizedString("Sign out", comment: "")
     }
     
     func styleViews() {

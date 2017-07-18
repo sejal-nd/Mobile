@@ -71,6 +71,8 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
     var accountDetail: AccountDetail! // Passed from BillViewController
+    var nextButton = UIBarButtonItem()
+    
     lazy var viewModel: PaymentViewModel = {
         PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail)
     }()
@@ -80,7 +82,7 @@ class MakePaymentViewController: UIViewController {
         
         title = NSLocalizedString("Make a Payment", comment: "")
         
-        let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
         viewModel.makePaymentNextButtonEnabled.drive(nextButton.rx.isEnabled).addDisposableTo(disposeBag)
         
@@ -115,9 +117,13 @@ class MakePaymentViewController: UIViewController {
                     }
                 }).addDisposableTo(self.disposeBag)
             }
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cvvTextField.setError(nil)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(disposeBag)
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
@@ -143,6 +149,8 @@ class MakePaymentViewController: UIViewController {
 //        }).addDisposableTo(disposeBag)
         viewModel.paymentAmountErrorMessage.asObservable().subscribe(onNext: { errorMessage in
             self.paymentAmountTextField.setError(errorMessage)
+            self.accessibilityErrorLabel()
+            
         }).addDisposableTo(self.disposeBag)
         
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
@@ -169,7 +177,18 @@ class MakePaymentViewController: UIViewController {
         
         addCreditCardFeeLabel.textColor = .blackText
         addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        addCreditCardFeeLabel.text = NSLocalizedString("A $2.35 convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+        switch Environment.sharedInstance.opco {
+        case .comEd, .peco:
+            addCreditCardFeeLabel.text = NSLocalizedString("Your payment includes a " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee.", comment: "")
+            break
+        case .bge:
+            var feeString = "Your payment includes a "
+            feeString += accountDetail.isResidential ?
+                accountDetail.billingInfo.residentialFee!.currencyString! : String(format:"%.2f%%", accountDetail.billingInfo.commercialFee!)
+            feeString += " convenience fee."
+            addCreditCardFeeLabel.text = NSLocalizedString(feeString, comment: "")
+            break
+        }
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
         
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
@@ -198,6 +217,13 @@ class MakePaymentViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        message += cvvTextField.getError()
+        message += paymentAmountTextField.getError()
+        self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -408,12 +434,25 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
         let today = Calendar.current.startOfDay(for: Date())
-        if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
-            let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
-            return date >= today && date <= startOfDueDate
-        } else { // Should never come into play?
-            return date >= today
+        if Environment.sharedInstance.opco == .bge {
+            if let walletItem = viewModel.selectedWalletItem.value {
+                if walletItem.bankOrCard == .card {
+                    let todayPlus90 = Calendar.current.date(byAdding: .day, value: 90, to: today)!
+                    return date >= today && date <= todayPlus90
+                } else {
+                    let todayPlus180 = Calendar.current.date(byAdding: .day, value: 180, to: today)!
+                    return date >= today && date <= todayPlus180
+                }
+            }
+        } else {
+            if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
+                let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
+                return date >= today && date <= startOfDueDate
+            }
         }
+        
+        // Should never get called?
+        return date >= today
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
