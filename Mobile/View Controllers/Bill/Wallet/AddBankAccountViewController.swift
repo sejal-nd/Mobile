@@ -41,6 +41,8 @@ class AddBankAccountViewController: UIViewController {
     @IBOutlet weak var oneTouchPaySwitch: Switch!
     @IBOutlet weak var oneTouchPayLabel: UILabel!
     
+    @IBOutlet weak var addBankFormView: AddBankFormView!
+    
     let viewModel = AddBankAccountViewModel(walletService: ServiceFactory.createWalletService())
     
     let oneTouchPayService = ServiceFactory.createOneTouchPayService()
