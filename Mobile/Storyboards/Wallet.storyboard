@@ -2654,7 +2654,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.50 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-Yl-Loj">
-                                                                            <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
+                                                                            <rect key="frame" x="107" y="7.5" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -2865,174 +2865,27 @@ to your payments.</string>
                         <viewControllerLayoutGuide type="bottom" id="jZL-pH-GsT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TfX-07-7GI">
-                        <rect key="frame" x="0.0" y="64" width="375" height="936"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfS-J7-dS9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="p6x-Y9-SQL">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="735"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pD-pj-byf" userLabel="Spacer View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="7"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="7" id="FYb-Ac-0aY"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H28-na-p1M" customClass="SegmentedControl" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="37" width="317" height="60"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" priority="999" constant="60" id="b7n-Zh-Og2"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4aq-yh-h7j" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="127" width="317" height="60"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="u8g-v4-ILH"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VTL-zb-zmg" userLabel="Routing Number View">
-                                                <rect key="frame" x="29" y="217" width="317" height="60"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKg-ee-tdx" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phL-fL-ELl">
-                                                        <rect key="frame" x="266" y="4.5" width="51" height="51"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="51" id="gfY-g4-VcN"/>
-                                                            <constraint firstAttribute="height" constant="51" id="pM5-EF-xf9"/>
-                                                        </constraints>
-                                                        <state key="normal" image="ic_question"/>
-                                                        <connections>
-                                                            <action selector="onRoutingNumberQuestionMarkPress" destination="aBa-SE-DiV" eventType="touchUpInside" id="I5Y-eo-tPn"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="phL-fL-ELl" firstAttribute="top" secondItem="xKg-ee-tdx" secondAttribute="top" constant="4.5" id="0Im-y6-qju"/>
-                                                    <constraint firstAttribute="trailing" secondItem="xKg-ee-tdx" secondAttribute="trailing" id="3so-9w-uoK"/>
-                                                    <constraint firstItem="phL-fL-ELl" firstAttribute="trailing" secondItem="xKg-ee-tdx" secondAttribute="trailing" id="ESC-te-gJS"/>
-                                                    <constraint firstAttribute="bottom" secondItem="xKg-ee-tdx" secondAttribute="bottom" id="Wi3-Eq-5Mi"/>
-                                                    <constraint firstItem="xKg-ee-tdx" firstAttribute="top" secondItem="VTL-zb-zmg" secondAttribute="top" id="Z9F-lv-C43"/>
-                                                    <constraint firstItem="xKg-ee-tdx" firstAttribute="leading" secondItem="VTL-zb-zmg" secondAttribute="leading" id="kvI-dK-aUF"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="zwr-Uh-kV2"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzg-0o-fm0" userLabel="Account Number View">
-                                                <rect key="frame" x="29" y="307" width="317" height="60"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YdN-qJ-AbU" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dwd-0r-emm">
-                                                        <rect key="frame" x="266" y="4.5" width="51" height="51"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="51" id="N2g-Us-hB4"/>
-                                                            <constraint firstAttribute="height" constant="51" id="NnQ-9K-Kzg"/>
-                                                        </constraints>
-                                                        <state key="normal" image="ic_question"/>
-                                                        <connections>
-                                                            <action selector="onAccountNumberQuestionMarkPress" destination="aBa-SE-DiV" eventType="touchUpInside" id="cE1-A7-7vw"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="Dwd-0r-emm" firstAttribute="trailing" secondItem="YdN-qJ-AbU" secondAttribute="trailing" id="05X-9i-ko9"/>
-                                                    <constraint firstAttribute="trailing" secondItem="YdN-qJ-AbU" secondAttribute="trailing" id="GKm-J6-eFV"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="YOS-KP-4o9"/>
-                                                    <constraint firstAttribute="bottom" secondItem="YdN-qJ-AbU" secondAttribute="bottom" id="gIF-JC-mTF"/>
-                                                    <constraint firstItem="Dwd-0r-emm" firstAttribute="top" secondItem="YdN-qJ-AbU" secondAttribute="top" constant="4.5" id="h7V-kG-uDZ"/>
-                                                    <constraint firstItem="YdN-qJ-AbU" firstAttribute="leading" secondItem="fzg-0o-fm0" secondAttribute="leading" id="m2L-uQ-c4n"/>
-                                                    <constraint firstItem="YdN-qJ-AbU" firstAttribute="top" secondItem="fzg-0o-fm0" secondAttribute="top" id="uhX-d6-Ptc"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KgA-Ni-VPj" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="397" width="317" height="60"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="ZNn-uU-I1F"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adk-Eb-Mfd" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="487" width="317" height="60"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="ehW-8N-eDk"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxs-YT-SQq" userLabel="One Touch Pay View">
-                                                <rect key="frame" x="29" y="577" width="317" height="128"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uW-wu-HuB">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="72"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Opu-Hq-wYl" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="97" width="51" height="31"/>
-                                                    </switch>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One Touch Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wyh-SQ-ABu">
-                                                        <rect key="frame" x="61" y="103" width="109" height="19.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="5uW-wu-HuB" firstAttribute="leading" secondItem="fxs-YT-SQq" secondAttribute="leading" id="6eM-IH-qwh"/>
-                                                    <constraint firstItem="5uW-wu-HuB" firstAttribute="top" secondItem="fxs-YT-SQq" secondAttribute="top" id="CgF-nq-d84"/>
-                                                    <constraint firstItem="Opu-Hq-wYl" firstAttribute="leading" secondItem="fxs-YT-SQq" secondAttribute="leading" id="G3b-AR-Cfb"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Opu-Hq-wYl" secondAttribute="bottom" id="oKJ-aM-xzW"/>
-                                                    <constraint firstAttribute="trailing" secondItem="5uW-wu-HuB" secondAttribute="trailing" id="tUS-io-2cR"/>
-                                                    <constraint firstItem="Opu-Hq-wYl" firstAttribute="top" secondItem="5uW-wu-HuB" secondAttribute="bottom" priority="999" constant="25" id="wFj-Ig-uEa"/>
-                                                    <constraint firstItem="Wyh-SQ-ABu" firstAttribute="centerY" secondItem="Opu-Hq-wYl" secondAttribute="centerY" id="woC-sa-GjT"/>
-                                                    <constraint firstItem="Wyh-SQ-ABu" firstAttribute="leading" secondItem="Opu-Hq-wYl" secondAttribute="trailing" constant="12" id="zqg-ac-vQj"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CW8-1e-zGc" userLabel="Spacer View">
-                                                <rect key="frame" x="0.0" y="735" width="375" height="0.0"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" id="Cgd-gC-b0d"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIE-Dt-IYI" customClass="AddBankFormView" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="604"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="4aq-yh-h7j" secondAttribute="trailing" constant="29" id="00a-gg-MFz"/>
-                                            <constraint firstAttribute="trailing" secondItem="fxs-YT-SQq" secondAttribute="trailing" constant="29" id="3Kn-x1-i2G"/>
-                                            <constraint firstAttribute="trailing" secondItem="VTL-zb-zmg" secondAttribute="trailing" constant="29" id="7B2-09-8GG"/>
-                                            <constraint firstItem="H28-na-p1M" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="7WM-3R-Ceh"/>
-                                            <constraint firstAttribute="trailing" secondItem="adk-Eb-Mfd" secondAttribute="trailing" constant="29" id="9Fq-CN-dLm"/>
-                                            <constraint firstAttribute="trailing" secondItem="KgA-Ni-VPj" secondAttribute="trailing" constant="29" id="FaM-Mo-S4w"/>
-                                            <constraint firstItem="4aq-yh-h7j" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="Owt-Kz-43R"/>
-                                            <constraint firstItem="fxs-YT-SQq" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="aLc-yY-UKm"/>
-                                            <constraint firstItem="VTL-zb-zmg" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="c4J-bM-Q5F"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="fMM-WS-m0Z"/>
-                                            <constraint firstItem="KgA-Ni-VPj" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="fjL-Yp-YgK"/>
-                                            <constraint firstItem="adk-Eb-Mfd" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="gqw-C0-Jbd"/>
-                                            <constraint firstAttribute="trailing" secondItem="H28-na-p1M" secondAttribute="trailing" constant="29" id="qGm-Jr-DBh"/>
-                                            <constraint firstAttribute="trailing" secondItem="fzg-0o-fm0" secondAttribute="trailing" constant="29" id="vZ3-ks-JW6"/>
-                                            <constraint firstItem="fzg-0o-fm0" firstAttribute="leading" secondItem="p6x-Y9-SQL" secondAttribute="leading" constant="29" id="z6K-6R-yZc"/>
+                                            <constraint firstAttribute="height" priority="250" constant="604" id="A2G-Kd-VjZ"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="cWk-0G-9gR"/>
                                         </constraints>
-                                    </stackView>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="p6x-Y9-SQL" firstAttribute="centerX" secondItem="rfS-J7-dS9" secondAttribute="centerX" id="Cpg-fE-QLR"/>
-                                    <constraint firstAttribute="bottom" secondItem="p6x-Y9-SQL" secondAttribute="bottom" id="Yxb-5c-ptG"/>
-                                    <constraint firstItem="p6x-Y9-SQL" firstAttribute="leading" secondItem="rfS-J7-dS9" secondAttribute="leading" priority="999" id="dby-iD-xMQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="p6x-Y9-SQL" secondAttribute="trailing" priority="999" id="lJf-9J-Krf"/>
-                                    <constraint firstItem="p6x-Y9-SQL" firstAttribute="top" secondItem="rfS-J7-dS9" secondAttribute="top" id="wC3-R1-Dwl"/>
+                                    <constraint firstAttribute="trailing" secondItem="EIE-Dt-IYI" secondAttribute="trailing" priority="999" id="7ze-VA-lzH"/>
+                                    <constraint firstItem="EIE-Dt-IYI" firstAttribute="top" secondItem="rfS-J7-dS9" secondAttribute="top" id="CmA-0g-XZ8"/>
+                                    <constraint firstItem="EIE-Dt-IYI" firstAttribute="centerX" secondItem="rfS-J7-dS9" secondAttribute="centerX" id="PZW-wN-hkg"/>
+                                    <constraint firstItem="EIE-Dt-IYI" firstAttribute="leading" secondItem="rfS-J7-dS9" secondAttribute="leading" priority="999" id="y2z-WF-QNA"/>
+                                    <constraint firstAttribute="bottom" secondItem="EIE-Dt-IYI" secondAttribute="bottom" id="ygw-Oc-Mv5"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -3045,27 +2898,14 @@ to your payments.</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Bank Account" id="Lad-mx-Sf4"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="1000"/>
                     <connections>
-                        <outlet property="accountHolderNameTextField" destination="4aq-yh-h7j" id="dLK-MZ-QeS"/>
-                        <outlet property="accountNumberTextField" destination="YdN-qJ-AbU" id="1oT-Qy-jkj"/>
-                        <outlet property="accountNumberTooltipButton" destination="Dwd-0r-emm" id="r6s-eu-LFk"/>
-                        <outlet property="checkingSavingsSegmentedControl" destination="H28-na-p1M" id="TkU-8e-9QI"/>
-                        <outlet property="confirmAccountNumberTextField" destination="KgA-Ni-VPj" id="i8c-4k-N2t"/>
-                        <outlet property="nicknameTextField" destination="adk-Eb-Mfd" id="TpS-qo-9bo"/>
-                        <outlet property="oneTouchPayDescriptionLabel" destination="5uW-wu-HuB" id="sG5-Rl-X5d"/>
-                        <outlet property="oneTouchPayLabel" destination="Wyh-SQ-ABu" id="aKG-IS-kAs"/>
-                        <outlet property="oneTouchPaySwitch" destination="Opu-Hq-wYl" id="OfH-lp-HNB"/>
-                        <outlet property="oneTouchPayView" destination="fxs-YT-SQq" id="fqK-an-PjX"/>
-                        <outlet property="routingNumberTextField" destination="xKg-ee-tdx" id="SDf-dH-7vg"/>
-                        <outlet property="routingNumberTooltipButton" destination="phL-fL-ELl" id="x8X-lg-oAe"/>
+                        <outlet property="addBankFormView" destination="EIE-Dt-IYI" id="ArB-h7-FPd"/>
                         <outlet property="scrollView" destination="rfS-J7-dS9" id="OFh-O9-IPj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsV-6S-24W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1206" y="709"/>
+            <point key="canvasLocation" x="-1207.2" y="707.49625187406298"/>
         </scene>
         <!--Edit Credit Card-->
         <scene sceneID="QJ5-4l-39K">

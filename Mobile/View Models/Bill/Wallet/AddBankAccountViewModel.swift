@@ -14,108 +14,53 @@ class AddBankAccountViewModel {
     let disposeBag = DisposeBag()
     
     let walletService: WalletService!
+    let addBankFormViewModel: AddBankFormViewModel!
     
     var accountDetail: AccountDetail! // Passed from WalletViewController
     
-    let selectedSegmentIndex = Variable(0)
-    let accountHolderName = Variable("")
-    let routingNumber = Variable("")
-    let accountNumber = Variable("")
-    let confirmAccountNumber = Variable("")
-    let nickname = Variable("")
-    let oneTouchPay = Variable(false)
     var oneTouchPayItem: WalletItem!
     
-    var bankName = "";
-    
-    required init(walletService: WalletService) {
+    required init(walletService: WalletService, addBankFormViewModel: AddBankFormViewModel) {
         self.walletService = walletService
+        self.addBankFormViewModel = addBankFormViewModel
     }
     
     func saveButtonIsEnabled() -> Observable<Bool> {
         if Environment.sharedInstance.opco == .bge {
-            return Observable.combineLatest([accountHolderNameHasText(), routingNumberIsValid(), accountNumberHasText(), accountNumberIsValid(), confirmAccountNumberMatches(), nicknameHasText(), nicknameIsValid()]) {
+            return Observable.combineLatest([addBankFormViewModel.accountHolderNameHasText(),
+                                             addBankFormViewModel.routingNumberIsValid(),
+                                             addBankFormViewModel.accountNumberHasText(),
+                                             addBankFormViewModel.accountNumberIsValid(),
+                                             addBankFormViewModel.confirmAccountNumberMatches(),
+                                             addBankFormViewModel.nicknameHasText(),
+                                             addBankFormViewModel.nicknameIsValid()]) {
                 return !$0.contains(false)
             }
         } else {
-            return Observable.combineLatest([routingNumberIsValid(), accountNumberHasText(), accountNumberIsValid(), confirmAccountNumberMatches(), nicknameIsValid()]) {
+            return Observable.combineLatest([addBankFormViewModel.routingNumberIsValid(),
+                                             addBankFormViewModel.accountNumberHasText(),
+                                             addBankFormViewModel.accountNumberIsValid(),
+                                             addBankFormViewModel.confirmAccountNumberMatches(),
+                                             addBankFormViewModel.nicknameIsValid()]) {
                 return !$0.contains(false)
             }
         }
-    }
-    
-    func accountHolderNameHasText() -> Observable<Bool> {
-        return accountHolderName.asObservable().map {
-            return !$0.isEmpty
-        }
-    }
-    
-    func routingNumberIsValid() -> Observable<Bool> {
-        return routingNumber.asObservable().map {
-            return $0.characters.count == 9
-        }
-    }
-    
-    func accountNumberHasText() -> Observable<Bool> {
-        return accountNumber.asObservable().map {
-            return !$0.isEmpty
-        }
-    }
-    
-    func accountNumberIsValid() -> Observable<Bool> {
-        return accountNumber.asObservable().map {
-            return $0.characters.count >= 4 && $0.characters.count <= 17
-        }
-    }
-    
-    func confirmAccountNumberMatches() -> Observable<Bool> {
-        return Observable.combineLatest(accountNumber.asObservable(), confirmAccountNumber.asObservable()) {
-            return $0 == $1
-        }
-    }
-    
-    lazy var confirmRoutingNumberIsEnabled: Driver<Bool> = self.routingNumber.asDriver().map {
-        return !$0.isEmpty
-    }
-    
-    lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumber.asDriver().map {
-        return !$0.isEmpty
-    }
-    
-    func nicknameHasText() -> Observable<Bool> {
-        return nickname.asObservable().map {
-            return !$0.isEmpty
-        }
-    }
-    
-    func nicknameIsValid() -> Observable<Bool> {
-        return nickname.asObservable().map {
-            var trimString = $0.components(separatedBy: CharacterSet.whitespaces).joined(separator: "")
-            trimString = trimString.components(separatedBy: CharacterSet.alphanumerics).joined(separator: "")
-            return trimString.isEmpty
-        }
-    }
-    
-    func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
-        walletService.fetchBankName(routingNumber.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { bankName in
-                self.bankName = bankName
-                onSuccess()
-            }, onError: { (error: Error) in
-                onError()
-            }).addDisposableTo(disposeBag)
     }
     
     func addBankAccount(onDuplicate: @escaping (String) -> Void, onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
         var accountType: String?
         if Environment.sharedInstance.opco == .bge {
-            accountType = selectedSegmentIndex.value == 0 ? "checking" : "saving"
+            accountType = addBankFormViewModel.selectedSegmentIndex.value == 0 ? "checking" : "saving"
         }
-        let accountName: String? = self.accountHolderName.value.isEmpty ? nil : self.accountHolderName.value
-        let nickname: String? = self.nickname.value.isEmpty ? nil : self.nickname.value
+        let accountName: String? = addBankFormViewModel.accountHolderName.value.isEmpty ? nil : addBankFormViewModel.accountHolderName.value
+        let nickname: String? = addBankFormViewModel.nickname.value.isEmpty ? nil : addBankFormViewModel.nickname.value
         
-        let bankAccount = BankAccount(bankAccountNumber: accountNumber.value, routingNumber: routingNumber.value, accountNickname: nickname, accountType: accountType, accountName: accountName, oneTimeUse: false)
+        let bankAccount = BankAccount(bankAccountNumber: addBankFormViewModel.accountNumber.value,
+                                      routingNumber: addBankFormViewModel.routingNumber.value,
+                                      accountNickname: nickname,
+                                      accountType: accountType,
+                                      accountName: accountName,
+                                      oneTimeUse: false)
         
         walletService
             .addBankAccount(bankAccount, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
