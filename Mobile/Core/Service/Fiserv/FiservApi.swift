@@ -290,10 +290,7 @@ struct FiservApi {
                     if(responseValue.responseCode == 0) {
                         completion(ServiceResult.Success(responseValue))
                     } else {
-                        var serviceError = ServiceError(serviceCode: "Fiserv", serviceMessage:responseValue.statusMessage)
-                        if (responseValue.statusMessage.range(of: "inval-0019") != nil) {
-                            serviceError = ServiceError(serviceCode: ServiceErrorCode.DupPaymentAccount.rawValue, serviceMessage:responseValue.statusMessage)
-                        }
+                        let serviceError = ServiceError(serviceCode: "Fiserv", serviceMessage:responseValue.statusMessage)
                         completion(ServiceResult.Failure(serviceError))
                     }
                 }
@@ -319,12 +316,12 @@ struct FiservApi {
     private func parseResponse(with value: [String:Any]) -> WalletItemResult {
         let code = value[ResponseKey.ResponseCode.rawValue] as? Int
         let statusMessage = value[ResponseKey.StatusMessage.rawValue] as? String
-        let sanitizedStatusMessage = FiservMessageSanitizer.sanitizeErrorMessage(message:statusMessage ?? "", transactionType: "")
+        let fiservError = FiservErrorMapper.sharedInstance.getError(message: statusMessage ?? "", context: nil)
         
         var walletItemIdString = ""
         if let walletItemId = value[ResponseKey.WalletItemId.rawValue] as? Int {
             walletItemIdString = String(walletItemId)
         }
-        return WalletItemResult(responseCode:code ?? -1, statusMessage:sanitizedStatusMessage, walletItemId: walletItemIdString)
+        return WalletItemResult(responseCode: code ?? -1, statusMessage: fiservError.text, walletItemId: walletItemIdString)
     }
 }
