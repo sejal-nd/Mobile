@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzY-0e-rXR">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-go-05Y" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
@@ -123,9 +123,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="mzY-0e-rXR" firstAttribute="top" secondItem="5uc-ch-d5G" secondAttribute="top" id="03v-Ze-ZcI"/>
                             <constraint firstItem="QgD-go-05Y" firstAttribute="width" secondItem="5uc-ch-d5G" secondAttribute="width" id="Am4-Xm-502"/>
                             <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="mzY-0e-rXR" secondAttribute="bottom" id="HBG-DW-3ss"/>
-                            <constraint firstItem="mzY-0e-rXR" firstAttribute="top" secondItem="jWa-SC-zWM" secondAttribute="bottom" id="SEM-7S-7dX"/>
                             <constraint firstAttribute="trailing" secondItem="mzY-0e-rXR" secondAttribute="trailing" id="f6Y-5u-y4u"/>
                             <constraint firstItem="mzY-0e-rXR" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="kwX-DU-XYv"/>
                         </constraints>

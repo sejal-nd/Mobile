@@ -6,6 +6,8 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import CoreLocation
+
 final class AccountsStore {
     static let sharedInstance = AccountsStore()
     

@@ -67,6 +67,7 @@ class HomeViewController: AccountPickerViewController {
         weatherIconHolderView.backgroundColor = .primaryColor
         headerStackView.backgroundColor = .primaryColor
         bindLoadingStates()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

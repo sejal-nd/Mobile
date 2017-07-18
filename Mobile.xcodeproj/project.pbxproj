@@ -69,6 +69,9 @@
 		2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */; };
 		2F5A3F8A1EFD979F00B9E49E /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */; };
 		2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
+		2F5C81FA1F1D4B1B005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
+		2F5C81FB1F1D5C4A005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
+		2F5C81FC1F1D5C4B005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
 		2FA5D85F1F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
 		2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
 		2FA5D8611F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
@@ -1027,6 +1030,7 @@
 		2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPremiseAddressView.swift; sourceTree = "<group>"; };
 		2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiPremiseAddressView.xib; sourceTree = "<group>"; };
 		2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistory.swift; sourceTree = "<group>"; };
+		2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchSlider.swift; sourceTree = "<group>"; };
 		2FA5D8631F17D88500A8B16B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2FA5D8681F17DB6F00A8B16B /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -2291,6 +2295,7 @@
 				B54846821E687CEB008CE1B1 /* HttpMethod.swift */,
 				E8C3AC001EDA09B50004F705 /* OneTouchPayService.swift */,
 				E8039FF01EFB0405004DB789 /* PaymentService.swift */,
+				2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -3373,6 +3378,7 @@
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
+				2F5C81FA1F1D4B1B005B35FA /* WeatherAPI.swift in Sources */,
 				E887C9D41ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
@@ -3580,6 +3586,7 @@
 				82A18E9D1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				825171A51F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
 				E8039FFD1EFB0426004DB789 /* OMCPaymentService.swift in Sources */,
+				2F5C81FC1F1D5C4B005B35FA /* WeatherAPI.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A41ED87AE200F0198B /* CreditCard.swift in Sources */,
 				E89496381EE9E04000B76F8C /* NotificationNames.swift in Sources */,
@@ -3777,6 +3784,7 @@
 				82A18E9C1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				825171A41F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
 				E8039FFC1EFB0426004DB789 /* OMCPaymentService.swift in Sources */,
+				2F5C81FB1F1D5C4A005B35FA /* WeatherAPI.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A31ED87AE200F0198B /* CreditCard.swift in Sources */,
 				E89496371EE9E04000B76F8C /* NotificationNames.swift in Sources */,

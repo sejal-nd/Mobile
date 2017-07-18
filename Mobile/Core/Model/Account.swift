@@ -24,7 +24,7 @@ enum AccountType {
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
-    var premises: Array<Premise> //TODO: return to let when testing is done
+    let premises: Array<Premise>
     var currentPremise: Premise?
     
     let status: String?
