@@ -52,4 +52,7 @@ class ServiceFactory {
         return OMCPaymentService()
     }
     
+    class func createWeatherService() -> WeatherService {
+        return WeatherAPI()
+    }
 }

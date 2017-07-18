@@ -14,19 +14,25 @@ class HomeViewModel {
     
     let disposeBag = DisposeBag()
     
-    private var accountService: AccountService
+    private let accountService: AccountService
+    private let weatherService: WeatherService
     
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let currentAccountDetail = Variable<AccountDetail?>(nil)
     let isFetchingAccountDetail: Driver<Bool>
     let accountDetailErrorMessage: Driver<String>
     
-    let greeting = Variable<String>("")
-    let weatherTemp = Variable<String?>(nil)
-    let weatherIcon = Variable<UIImage?>(nil)
+    private let weatherItem = Variable<WeatherItemResult?>(nil)
+    private(set) lazy var greeting: Driver<String?> = self.weatherItem.asDriver().map { $0?.greeting }
+    private(set) lazy var weatherTemp: Driver<String?> = self.weatherItem.asDriver().map {
+        guard let temperature = $0?.temperature else { return nil }
+        return "\(temperature)°"
+    }
+    private(set) lazy var weatherIcon: Driver<UIImage?> = self.weatherItem.asDriver().map { $0?.icon }
     
-    required init(accountService: AccountService) {
+    required init(accountService: AccountService, weatherService: WeatherService) {
         self.accountService = accountService
+        self.weatherService = weatherService
         
         let fetchingAccountDetailTracker = ActivityTracker()
         isFetchingAccountDetail = fetchingAccountDetailTracker.asDriver()
@@ -53,20 +59,10 @@ class HomeViewModel {
             .addDisposableTo(disposeBag)
         
         //bind this to fetchAccountDetailRequest to ensure address is available on sign in/keep me logged in
-        let weatherItemResponse = fetchAccountDetailResult.elements().map { $0.address ?? "" }
-        .flatMap(WeatherAPI().fetchWeather).shareReplay(2)
-        
-        weatherItemResponse.map { $0.temperature.stringValue + "°" }
-            .bind(to: self.weatherTemp)
-            .addDisposableTo(self.disposeBag)
-            
-        weatherItemResponse.map { $0.icon }
-            .bind(to: self.weatherIcon)
-            .addDisposableTo(self.disposeBag)
-        
-        weatherItemResponse.map { $0.greeting }
-            .bind(to: self.greeting)
-            .addDisposableTo(self.disposeBag)
+        fetchAccountDetailResult.elements().map { $0.address ?? "" }
+        .flatMap(weatherService.fetchWeather)
+        .bind(to: weatherItem)
+        .addDisposableTo(disposeBag)
         
         accountDetailErrorMessage = fetchAccountDetailResult.errors()
             .map { 

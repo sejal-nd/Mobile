@@ -37,7 +37,7 @@ class HomeViewController: AccountPickerViewController {
     
     var alertLottieAnimation = LOTAnimationView(name: "alert_icon")!
     
-    let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService())
+    let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(), weatherService: ServiceFactory.createWeatherService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -86,9 +86,9 @@ class HomeViewController: AccountPickerViewController {
         viewModel.isFetchingDifferentAccount.not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
         viewModel.isFetchingDifferentAccount.drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
         
-        self.viewModel.weatherTemp.asDriver().drive(self.temperatureLabel.rx.text).addDisposableTo(self.bag)
-        self.viewModel.weatherIcon.asDriver().drive(self.weatherIconImage.rx.image).addDisposableTo(self.bag)
-        self.viewModel.greeting.asDriver().drive(self.greetingLabel.rx.text).addDisposableTo(self.bag)
+        self.viewModel.weatherTemp.drive(self.temperatureLabel.rx.text).addDisposableTo(self.bag)
+        self.viewModel.weatherIcon.drive(self.weatherIconImage.rx.image).addDisposableTo(self.bag)
+        self.viewModel.greeting.drive(self.greetingLabel.rx.text).addDisposableTo(self.bag)
     }
     
     func configureAccessibility() {

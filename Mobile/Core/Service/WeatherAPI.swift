@@ -15,7 +15,7 @@ let baseUrl = "https://api.weather.gov/"
 //added greeting to this so everything loads at the same time
 struct WeatherItemResult {
     let greeting: String
-    let temperature: NSNumber
+    let temperature: Int
     let icon: UIImage
 }
 
@@ -26,29 +26,9 @@ private enum ResponseKey : String {
     case Icon = "icon"
 }
 
-struct WeatherAPI { 
+struct WeatherAPI: WeatherService { 
     
-    //weather observable
-    func fetchWeather(address: String) -> Observable<WeatherItemResult> {
-        return Observable.create { observer in
-            self.getWeather(address: address, completion: { (result: ServiceResult<WeatherItemResult>) in
-                
-                switch(result) {
-                case .Success(let weatherItemResult):
-                    observer.onNext(weatherItemResult)
-                    observer.onCompleted()
-                    break
-                case .Failure(let error):
-                    observer.onError(error)
-                }
-                
-            })  
-            return Disposables.create()
-        }
-    }
-
-
-    private func getWeather(address: String, completion: @escaping (_ result: ServiceResult<WeatherItemResult>) -> Swift.Void) {
+    func getWeather(address: String, completion: @escaping (_ result: ServiceResult<WeatherItemResult>) -> Swift.Void) {
         let geoCoder = CLGeocoder()
         
         geoCoder.geocodeAddressString(address, completionHandler: { (placemarks, error) in 
@@ -101,7 +81,7 @@ struct WeatherAPI {
     private func weatherItemFrom(data: Dictionary<String, Any?>?) -> WeatherItemResult? {
         guard let properties = data?[ResponseKey.Properties.rawValue] as? Dictionary<String, Any>,
             let periods = properties[ResponseKey.Periods.rawValue] as? Array<[String: Any]>,
-            let temp = periods[0][ResponseKey.Temperature.rawValue] as? NSNumber,
+            let temp = periods[0][ResponseKey.Temperature.rawValue] as? Int,
             let iconString = periods[0][ResponseKey.Icon.rawValue] as? String else { 
                 return nil 
         }
