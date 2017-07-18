@@ -109,6 +109,14 @@ class PaymentViewModel {
                 self.isError.value = true
                 onError?(err.localizedDescription)
             }).addDisposableTo(disposeBag)
+        
+        paymentService.fetchWorkdays()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { dateArray in
+                print(dateArray)
+            }, onError: { err in
+                
+            }).addDisposableTo(disposeBag)
     }
     
     func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -311,14 +319,6 @@ class PaymentViewModel {
             return Driver.just(accountDetail.value.billingInfo.convenienceFee!)
         
         }
-//        return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
-//            if let walletItem = $1 {
-//                if walletItem.bankOrCard == .card
-//                    return $0.billingInfo.convenienceFee
-//                }
-//            }
-//            return nil
-//        }
     }
     
     lazy var amountDueCurrencyString: Driver<String> = self.amountDue.asDriver().map {
