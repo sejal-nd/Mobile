@@ -172,16 +172,6 @@ class AddCreditCardViewModel {
                 }
             })
             .addDisposableTo(disposeBag)
-        
-//        walletService.addCreditCard(card, completion: { (result: ServiceResult<Void>) in
-//            switch(result) {
-//            case .Success:
-//                break
-//            case .Failure(let err):
-//                dLog(message: "\n" + err.localizedDescription)
-//                break
-//            }
-//        })
     }
     
     private func luhnCheck(cardNumber: String) -> Bool {
