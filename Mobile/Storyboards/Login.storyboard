@@ -96,38 +96,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="a53-WZ-2ae" userLabel="LottieTopView">
-                                <rect key="frame" x="19" y="0.0" width="337" height="230"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="222.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yrY-DD-kdB" userLabel="LottieView">
-                                        <rect key="frame" x="0.0" y="0.0" width="337" height="180"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="180" id="IpY-Hd-H08"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in now to effortlessly pay your bill from the home screen with One Touch Pay." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5CE-lL-rQJ">
-                                        <rect key="frame" x="0.0" y="189" width="337" height="41"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in now to effortlessly pay your bill from the home screen with One Touch Pay." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5CE-lL-rQJ">
+                                        <rect key="frame" x="37" y="189" width="301" height="33.5"/>
                                         <accessibility key="accessibilityConfiguration" label="Sign"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="337" id="1HG-H7-07y"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="JMy-0e-G2K"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5CE-lL-rQJ" secondAttribute="trailing" priority="999" constant="37" id="HDn-5e-f62"/>
+                                    <constraint firstItem="5CE-lL-rQJ" firstAttribute="top" secondItem="yrY-DD-kdB" secondAttribute="bottom" constant="9" id="PKC-i4-c7w"/>
+                                    <constraint firstItem="5CE-lL-rQJ" firstAttribute="leading" secondItem="a53-WZ-2ae" secondAttribute="leading" priority="999" constant="37" id="Ppo-xx-30N"/>
                                     <constraint firstItem="yrY-DD-kdB" firstAttribute="centerX" secondItem="a53-WZ-2ae" secondAttribute="centerX" id="X8b-VZ-s1T"/>
                                     <constraint firstItem="yrY-DD-kdB" firstAttribute="leading" secondItem="a53-WZ-2ae" secondAttribute="leading" id="o0r-le-Ymc" userLabel="LottieView.leading = Leading"/>
                                     <constraint firstAttribute="trailing" secondItem="yrY-DD-kdB" secondAttribute="trailing" id="vpw-Ux-HbY"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLB-ga-RSd" userLabel="Sign In / Register Button">
-                                <rect key="frame" x="37.5" y="250" width="300" height="30"/>
+                                <rect key="frame" x="53" y="242.5" width="269" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="54N-G8-hYn"/>
-                                    <constraint firstAttribute="width" constant="300" id="YeA-Fx-3eC"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="YeA-Fx-3eC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Sign In / Register">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -136,7 +139,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9i4-Zy-CXL" userLabel="Button Stack">
-                                <rect key="frame" x="45" y="305" width="285" height="340"/>
+                                <rect key="frame" x="45" y="302.5" width="285" height="340"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAa-0X-AbV" userLabel="Report an outage Button" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="285" height="60"/>
@@ -198,15 +201,15 @@
                         <color key="backgroundColor" red="0.43137254901960786" green="0.72156862745098038" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="9i4-Zy-CXL" secondAttribute="trailing" priority="999" constant="29" id="3Bb-o3-Khg" userLabel="trailing = Button Stack.trailing + 29"/>
-                            <constraint firstItem="9i4-Zy-CXL" firstAttribute="top" secondItem="TLB-ga-RSd" secondAttribute="bottom" constant="25" id="7gO-5B-fLU"/>
-                            <constraint firstItem="a53-WZ-2ae" firstAttribute="leading" secondItem="nOo-uk-Fx2" secondAttribute="leading" constant="19" id="EKx-R9-hdp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TLB-ga-RSd" secondAttribute="trailing" priority="999" constant="16" id="IOj-tL-hWa"/>
+                            <constraint firstItem="9i4-Zy-CXL" firstAttribute="top" secondItem="TLB-ga-RSd" secondAttribute="bottom" constant="30" id="7gO-5B-fLU"/>
+                            <constraint firstItem="a53-WZ-2ae" firstAttribute="leading" secondItem="nOo-uk-Fx2" secondAttribute="leading" id="EKx-R9-hdp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TLB-ga-RSd" secondAttribute="trailing" priority="999" constant="37" id="IOj-tL-hWa"/>
                             <constraint firstItem="9i4-Zy-CXL" firstAttribute="leading" secondItem="nOo-uk-Fx2" secondAttribute="leadingMargin" priority="999" constant="29" id="K6Z-SD-p3S" userLabel="Button Stack.leading = leading + 29"/>
                             <constraint firstItem="TLB-ga-RSd" firstAttribute="centerX" secondItem="nOo-uk-Fx2" secondAttribute="centerX" id="TCX-ak-SBr"/>
-                            <constraint firstAttribute="trailing" secondItem="a53-WZ-2ae" secondAttribute="trailing" constant="19" id="TXl-6n-Fr6"/>
+                            <constraint firstAttribute="trailing" secondItem="a53-WZ-2ae" secondAttribute="trailing" id="TXl-6n-Fr6"/>
                             <constraint firstItem="9i4-Zy-CXL" firstAttribute="centerX" secondItem="nOo-uk-Fx2" secondAttribute="centerX" id="UaX-hG-0fo"/>
                             <constraint firstItem="a53-WZ-2ae" firstAttribute="centerX" secondItem="nOo-uk-Fx2" secondAttribute="centerX" id="d2t-Nh-MIR"/>
-                            <constraint firstItem="TLB-ga-RSd" firstAttribute="leading" secondItem="nOo-uk-Fx2" secondAttribute="leadingMargin" priority="999" constant="16" id="inO-8l-Bs2"/>
+                            <constraint firstItem="TLB-ga-RSd" firstAttribute="leading" secondItem="nOo-uk-Fx2" secondAttribute="leadingMargin" priority="999" constant="37" id="inO-8l-Bs2"/>
                             <constraint firstItem="a53-WZ-2ae" firstAttribute="top" secondItem="nOo-uk-Fx2" secondAttribute="top" id="lLX-uH-15L"/>
                             <constraint firstItem="TLB-ga-RSd" firstAttribute="top" secondItem="a53-WZ-2ae" secondAttribute="bottom" constant="20" id="waa-81-NsU"/>
                         </constraints>

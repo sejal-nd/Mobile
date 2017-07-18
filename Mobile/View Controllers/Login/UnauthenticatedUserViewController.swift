@@ -55,6 +55,8 @@ class UnauthenticatedUserViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
         
         let titleDict: [String: Any] = [
             NSForegroundColorAttributeName: UIColor.white,
