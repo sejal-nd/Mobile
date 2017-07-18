@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BillingHistoryDetailsViewController: UIViewController {
+class BillingHistoryDetailsViewController: DismissableFormSheetViewController {
 
     var billingHistoryItem: BillingHistoryItem!
     

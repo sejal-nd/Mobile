@@ -3361,6 +3361,7 @@ Budget Billing?</string>
                         <outlet property="loadingIndicator" destination="3FP-hJ-GKm" id="vbG-v5-AvT"/>
                         <outlet property="tableView" destination="gXN-bS-1R3" id="EKS-Ub-RaX"/>
                         <segue destination="MpQ-Zp-Bed" kind="show" identifier="showBillingHistoryDetailsSegue" id="erR-LQ-U7d"/>
+                        <segue destination="MpQ-Zp-Bed" kind="presentation" identifier="showBillingDetailsIpadSegue" modalPresentationStyle="formSheet" id="lxz-6d-T4J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DWr-jW-b5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4255,6 +4256,6 @@ the year</string>
         <image name="paperless_modal" width="330" height="317"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6Wm-zp-S36"/>
+        <segue reference="lxz-6d-T4J"/>
     </inferredMetricsTieBreakers>
 </document>
