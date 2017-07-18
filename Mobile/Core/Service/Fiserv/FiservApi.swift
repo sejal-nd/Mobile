@@ -156,7 +156,7 @@ struct FiservApi {
         
         getTokens(onSuccess: { (unique, guid, hashResult) in
             do {
-                let encodedBody = try self.encodePayload(params, action: Action.Insert.rawValue, unique: unique, guid: guid, hashResult: hashResult)
+                let encodedBody = try self.encodePayload(params, action: Action.Update.rawValue, unique: unique, guid: guid, hashResult: hashResult)
                 self.post(body: encodedBody, completion: completion)
             } catch let err as NSError {
                 completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))

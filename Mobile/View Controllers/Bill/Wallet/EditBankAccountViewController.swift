@@ -45,8 +45,6 @@ class EditBankAccountViewController: UIViewController {
     
     var viewModel = EditBankAccountViewModel(walletService: ServiceFactory.createWalletService())
     
-    let oneTouchPayService = ServiceFactory.createOneTouchPayService()
-
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -60,7 +58,7 @@ class EditBankAccountViewController: UIViewController {
         oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        oneTouchPayDescriptionLabel.text = oneTouchPayService.getOneTouchPayDisplayString(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
+        oneTouchPayDescriptionLabel.text = viewModel.getOneTouchDisplayString()
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         nicknameLabel.textColor = .blackText
@@ -168,7 +166,7 @@ class EditBankAccountViewController: UIViewController {
         oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
         
         oneTouchPayCardView.isHidden = true
-        let oneTouchPayWalletItem = oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
+        let oneTouchPayWalletItem = viewModel.oneTouchPayItem
         if (oneTouchPayWalletItem == viewModel.walletItem) {
             oneTouchPayCardView.isHidden = false
             viewModel.oneTouchPayInitialValue.value = true
@@ -190,12 +188,10 @@ class EditBankAccountViewController: UIViewController {
     
     func onSavePress() {
         view.endEditing(true)
-        
-        let customerNumber: String = AccountsStore.sharedInstance.customerIdentifier
-        
+
         var shouldShowOneTouchPayReplaceWarning = false
         var shouldShowOneTouchPayDisableWarning = false
-        let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber)
+        let otpItem = viewModel.oneTouchPayItem
         if self.viewModel.oneTouchPay.value {
             if otpItem != nil && otpItem != self.viewModel.walletItem {
                 shouldShowOneTouchPayReplaceWarning = true
@@ -207,14 +203,30 @@ class EditBankAccountViewController: UIViewController {
         }
         
         let saveBankAccountChanges = { (oneTouchPay: Bool) in
+            LoadingView.show()
             if oneTouchPay {
-                self.oneTouchPayService.setOneTouchPayItem(walletItemID: self.viewModel.walletItem.walletItemID!, maskedWalletItemAccountNumber: self.viewModel.walletItem.maskedWalletItemAccountNumber!, bankOrCard: .bank, forCustomerNumber: customerNumber)
+                self.viewModel.enableOneTouchPay(onSuccess: { 
+                    LoadingView.hide()
+                    self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
+                    _ = self.navigationController?.popViewController(animated: true)
+                }, onError: { (errMessage: String) in
+                    LoadingView.hide()
+                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
+                })
             } else {
-                self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
+                self.viewModel.deleteOneTouchPay(onSuccess: { 
+                    LoadingView.hide()
+                    self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
+                    _ = self.navigationController?.popViewController(animated: true)
+                }, onError: { (errMessage: String) in
+                    LoadingView.hide()
+                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
+                })
             }
-            
-            self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
-            _ = self.navigationController?.popViewController(animated: true)
         }
         
         if shouldShowOneTouchPayReplaceWarning {
@@ -234,7 +246,6 @@ class EditBankAccountViewController: UIViewController {
         } else {
             saveBankAccountChanges(viewModel.oneTouchPay.value)
         }
-
     }
 
     ///
@@ -251,10 +262,6 @@ class EditBankAccountViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { _ in
             LoadingView.show()
             self.viewModel.deleteBankAccount(onSuccess: {
-                let customerNumber: String = AccountsStore.sharedInstance.customerIdentifier
-                if self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: customerNumber) == self.viewModel.walletItem {
-                    self.oneTouchPayService.deleteTouchPayItem(forCustomerNumber: customerNumber)
-                }
                 LoadingView.hide()
                 self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Bank Account deleted", comment: ""))
                 _ = self.navigationController?.popViewController(animated: true)
