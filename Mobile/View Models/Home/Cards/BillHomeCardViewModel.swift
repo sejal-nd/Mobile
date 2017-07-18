@@ -78,9 +78,9 @@ class HomeBillCardViewModel {
     
     // Just a temporary function so I can try to wrap my head around the logic of this mess
     func parseData(accountDetail: AccountDetail, walletItem: WalletItem?) {
-        if false { // logic not yet specified
+        if false { // bill not ready logic not yet specified // 4.1
             // show not ready state
-        } else if walletItem == nil {
+        } else if let walletItem = walletItem { // 4.3
             // show:
             // "Your bill is ready"
             // Amount
@@ -88,7 +88,7 @@ class HomeBillCardViewModel {
             // "Save a payment account to One Touch Pay" button
             // disabled OTP slider
             // "View Bill" button
-        } else if let walletItem = walletItem {
+        } else if walletItem == nil { // 4.2
             // show:
             // "Your bill is ready"
             // Amount
