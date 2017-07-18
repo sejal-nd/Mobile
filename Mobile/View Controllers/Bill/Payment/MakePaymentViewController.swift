@@ -252,7 +252,7 @@ class MakePaymentViewController: UIViewController {
     
     func bindViewHiding() {
         // Loading
-        viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).addDisposableTo(disposeBag)
         
@@ -447,7 +447,12 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
         } else {
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
-                return date >= today && date <= startOfDueDate
+                if Environment.sharedInstance.opco == .peco {
+                    let isInWorkdaysArray = viewModel.workdayArray.contains(date)
+                    return date >= today && date <= startOfDueDate && isInWorkdaysArray
+                } else {
+                    return date >= today && date <= startOfDueDate
+                }
             }
         }
         
