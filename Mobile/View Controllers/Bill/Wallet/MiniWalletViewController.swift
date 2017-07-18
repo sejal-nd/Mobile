@@ -52,7 +52,7 @@ class MiniWalletViewController: UIViewController {
         
         tableFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
         tableFooterLabel.textColor = .blackText
-        tableFooterLabel.text = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Small business customers cannot use VISA.", comment: "")
+        tableFooterLabel.text = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
         
         tableView.estimatedSectionHeaderHeight = 16
         
@@ -191,7 +191,19 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.label.alpha = 0.33
             }
         } else {
-            cell.label.text = viewModel.creditCardFeeString
+            var creditCardFeeString: String {
+                switch Environment.sharedInstance.opco {
+                case .bge:
+                    let feeString = "A convenience fee will be applied by Western Union Speedpay, our payment partner. " +
+                        "\nResidential accounts: " +  accountDetail.billingInfo.residentialFee!.currencyString! +
+                        ". Business accounts: " + String(format:"%.2f", accountDetail.billingInfo.commercialFee!) + "%."
+                    return NSLocalizedString(feeString, comment: "")
+                case .comEd, .peco:
+                    let feeString = "A " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee will be applied by Bill Matrix, our payment partner."
+                    return NSLocalizedString(feeString, comment: "")
+                }
+            }
+            cell.label.text = creditCardFeeString
             if creditCardsDisabled {
                 cell.label.alpha = 0.33
             }

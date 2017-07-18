@@ -74,7 +74,7 @@ class MakePaymentViewController: UIViewController {
     var nextButton = UIBarButtonItem()
     
     lazy var viewModel: PaymentViewModel = {
-        PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), oneTouchPayService: ServiceFactory.createOneTouchPayService(), accountDetail: self.accountDetail)
+        PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail)
     }()
     
     override func viewDidLoad() {
@@ -177,7 +177,18 @@ class MakePaymentViewController: UIViewController {
         
         addCreditCardFeeLabel.textColor = .blackText
         addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        addCreditCardFeeLabel.text = NSLocalizedString("A $2.35 convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+        switch Environment.sharedInstance.opco {
+        case .comEd, .peco:
+            addCreditCardFeeLabel.text = NSLocalizedString("Your payment includes a " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee.", comment: "")
+            break
+        case .bge:
+            var feeString = "Your payment includes a "
+            feeString += accountDetail.isResidential ?
+                accountDetail.billingInfo.residentialFee!.currencyString! : String(format:"%.2f%%", accountDetail.billingInfo.commercialFee!)
+            feeString += " convenience fee."
+            addCreditCardFeeLabel.text = NSLocalizedString(feeString, comment: "")
+            break
+        }
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
         
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)

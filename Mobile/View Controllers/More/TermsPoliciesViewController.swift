@@ -33,7 +33,42 @@ class TermsPoliciesViewController: UIViewController {
         
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setWhiteNavBar()
+        } else {
+            // if it loads from unauthorized user entry screen, then it
+            // needs to explicitly set its style here because it cannot be cast
+            // to MainBaseNavigationController
+            setWhiteNavBar()
         }
+    }
+    
+    private func setWhiteNavBar() {
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .actionBlue
+        navigationController?.navigationBar.isTranslucent = false
+        
+        // Re-add the bottom border line (in case it was removed on another screen)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        
+        let titleDict: [String: Any] = [
+            NSForegroundColorAttributeName: UIColor.blackText,
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        ]
+        navigationController?.navigationBar.titleTextAttributes = titleDict
+        
+        setNeedsStatusBarAppearanceUpdate()
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // some trick when transition from terms and policies back to unauthorized entry screen
+        // This prevent the navigation bar turns white when it goes back
+        navigationController?.setNavigationBarHidden(true, animated: true)
+
     }
     
     override func viewDidLayoutSubviews() {

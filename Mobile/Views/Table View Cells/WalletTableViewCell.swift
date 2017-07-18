@@ -80,25 +80,16 @@ class WalletTableViewCell: UITableViewCell {
     }
     
     
-    func bindToWalletItem(_ walletItem: WalletItem) {
+    func bindToWalletItem(_ walletItem: WalletItem, billingInfo: BillingInfo) {
         
         var a11yLabel = ""
         
         bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         switch Environment.sharedInstance.opco {
-        case .comEd:
+        case .comEd, .peco:
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                bottomBarLabel.text = NSLocalizedString("$2.50 Convenience Fee", comment: "")
-                a11yLabel =  NSLocalizedString("Credit card", comment: "")
-            } else {
-                accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                a11yLabel =  NSLocalizedString("Bank account", comment: "")
-            }
-        case .peco:
-            if walletItem.bankOrCard == .card {
-                accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                bottomBarLabel.text = NSLocalizedString("$2.35 Convenience Fee", comment: "")
+                bottomBarLabel.text = NSLocalizedString(billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
                 a11yLabel =  NSLocalizedString("Credit card", comment: "")
             } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
@@ -107,7 +98,8 @@ class WalletTableViewCell: UITableViewCell {
         case .bge:
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                //bottomBarLabel.text = NSLocalizedString("Fees: $1.50 Residential | 2.4% Business", comment: "")
+                bottomBarLabel.text = NSLocalizedString("Fees: " + billingInfo.residentialFee!.currencyString! + " Residential | " +
+                    String(format:"%.2f%% Business", billingInfo.commercialFee!), comment: "")
                 a11yLabel = NSLocalizedString("Credit card", comment: "")
             } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")

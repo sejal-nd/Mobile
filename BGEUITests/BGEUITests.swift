@@ -42,7 +42,7 @@ class BGEUITests: XCTestCase {
     func testLandingPageLayout(){
         XCTAssert(app.buttons["Sign In"].exists)
         XCTAssert(app.buttons["Register"].exists)
-        XCTAssert(app.buttons["SKIP FOR NOW"].exists)
+        XCTAssert(app.buttons["CONTINUE AS GUEST"].exists)
         XCTAssert(app.images["img_logo_white"].exists)
     }
     

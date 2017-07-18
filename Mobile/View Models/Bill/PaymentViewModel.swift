@@ -14,7 +14,6 @@ class PaymentViewModel {
     
     private var walletService: WalletService
     private var paymentService: PaymentService
-    private var oneTouchPayService: OneTouchPayService
     
     let accountDetail: Variable<AccountDetail>
     
@@ -33,10 +32,9 @@ class PaymentViewModel {
     let overpayingSwitchValue = Variable(false)
     let activeSeveranceSwitchValue = Variable(false)
     
-    init(walletService: WalletService, paymentService: PaymentService, oneTouchPayService: OneTouchPayService, accountDetail: AccountDetail) {
+    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail) {
         self.walletService = walletService
         self.paymentService = paymentService
-        self.oneTouchPayService = oneTouchPayService
         self.accountDetail = Variable(accountDetail)
         
         if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
@@ -71,12 +69,9 @@ class PaymentViewModel {
                 if self.selectedWalletItem.value == nil {
                     if self.accountDetail.value.isCashOnly {
                         // Default to One Touch Pay item IF it's a credit card
-                        if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
-                            for item in walletItems {
-                                if item == otpItem && item.bankOrCard == .card {
-                                    self.selectedWalletItem.value = item
-                                    break
-                                }
+                        if let otpItem = walletItems.first(where: { $0.isDefault == true }) {
+                            if otpItem.bankOrCard == .card {
+                                self.selectedWalletItem.value = otpItem
                             }
                         } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
                             for item in walletItems {
@@ -88,13 +83,8 @@ class PaymentViewModel {
                         }
                     } else {
                         // Default to One Touch Pay item
-                        if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
-                            for item in walletItems {
-                                if item == otpItem {
-                                    self.selectedWalletItem.value = item
-                                    break
-                                }
-                            }
+                        if let otpItem = walletItems.first(where: { $0.isDefault == true }) {
+                            self.selectedWalletItem.value = otpItem
                         } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
                             self.selectedWalletItem.value = walletItems[0]
                         }
@@ -252,9 +242,12 @@ class PaymentViewModel {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
                 if Environment.sharedInstance.opco == .bge {
-                    return NSLocalizedString("A convenience fee will be applied by Western Union Speedpay, our payment partner. Residential accounts: $1.50. Business accounts: 2.6%.", comment: "")
+                    let feeStr = String(format: "A convenience fee will be applied by Western Union Speedpay, our payment partner. Residential accounts: $%.2f. Business accounts: %.2f%%.",
+                                        self.accountDetail.value.billingInfo.residentialFee!, self.accountDetail.value.billingInfo.commercialFee!)
+                    return NSLocalizedString(feeStr, comment: "")
                 } else {
-                    return String(format: "A %@ convenience fee will be applied by Bill matrix, our payment partner.", fee.currencyString ?? "")
+                    let feeStr = String(format: "A %@ convenience fee will be applied by Bill Matrix, our payment partner.", fee.currencyString!)
+                    return NSLocalizedString(feeStr, comment: "")
                 }
             }
         }
@@ -266,7 +259,9 @@ class PaymentViewModel {
             if walletItem.bankOrCard == .bank {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
-                return String(format: "A %@ convenience fee will be applied.", fee.currencyString!)
+                let feeStr = String(format: "Your payment includes a %@ convenience fee.",
+                                    (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? String(format: "%.2f%%", fee) : fee.currencyString!)
+                return NSLocalizedString(feeStr, comment: "")
             }
         }
     }
@@ -301,11 +296,9 @@ class PaymentViewModel {
     var convenienceFee: Driver<Double> {
         switch Environment.sharedInstance.opco {
         case .bge:
-            return Driver.just(1.5)
-        case .comEd:
-            return Driver.just(2.5)
-        case .peco:
-            return Driver.just(2.35)
+            return accountDetail.value.isResidential ? Driver.just(accountDetail.value.billingInfo.residentialFee!) : Driver.just(accountDetail.value.billingInfo.commercialFee!)
+        case .comEd, .peco:
+            return Driver.just(accountDetail.value.billingInfo.convenienceFee!)
         
         }
 //        return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
@@ -474,7 +467,7 @@ class PaymentViewModel {
     }
     
     lazy var convenienceFeeDisplayString: Driver<String> = self.convenienceFee.map {
-        return $0.currencyString!
+        return (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? String(format: "%.2f%%", $0) : $0.currencyString!
     }
     
     lazy var shouldShowAutoPayEnrollButton: Driver<Bool> = self.accountDetail.asDriver().map {
@@ -484,7 +477,15 @@ class PaymentViewModel {
     var totalPaymentDisplayString: Driver<String> {
         return Driver.combineLatest(paymentAmount.asDriver().map { return Double($0) ?? 0 }, reviewPaymentShouldShowConvenienceFeeBox, convenienceFee).map {
             if $1 {
-                return ($0 + $2).currencyString!
+                if (Environment.sharedInstance.opco == .bge) {
+                    if (self.accountDetail.value.isResidential) {
+                        return ($0 + $2).currencyString!
+                    } else {
+                        return ((1 + $2 / 100) * $0).currencyString!
+                    }
+                } else {
+                    return ($0 + $2).currencyString!
+                }
             } else {
                 return $0.currencyString!
             }

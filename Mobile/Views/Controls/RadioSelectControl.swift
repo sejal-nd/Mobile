@@ -38,15 +38,9 @@ class RadioSelectControl: ButtonControl {
 		}
 	}
 	
-//	override var isHighlighted: Bool {
-//		didSet {
-//			selectedImageView.image = (isSelected || isHighlighted) ? #imageLiteral(resourceName: "ic_radiobutton_selected"):#imageLiteral(resourceName: "ic_radiobutton_deselected")
-//		}
-//	}
-	
 	override var isSelected: Bool {
 		didSet {
-			selectedImageView.image = (isSelected || isHighlighted) ? #imageLiteral(resourceName: "ic_radiobutton_selected"):#imageLiteral(resourceName: "ic_radiobutton_deselected")
+			selectedImageView.image = isSelected ? #imageLiteral(resourceName: "ic_radiobutton_selected"):#imageLiteral(resourceName: "ic_radiobutton_deselected")
 			detailButton.isHidden = !isSelected || detailButtonTitle == nil
 		}
 	}
@@ -76,8 +70,8 @@ class RadioSelectControl: ButtonControl {
 		
 		detailButton = UIButton(type: .system)
 		detailButton.translatesAutoresizingMaskIntoConstraints = false
-		detailButton.setTitleColor(#colorLiteral(red: 0, green: 0.3490196078, blue: 0.6431372549, alpha: 1), for: .normal)
-		detailButton.titleLabel?.font = .systemFont(ofSize: 16, weight: UIFontWeightSemibold)
+		detailButton.setTitleColor(.actionBlue, for: .normal)
+		detailButton.titleLabel?.font = SystemFont.regular.of(textStyle: .headline)
 		detailButton.setContentCompressionResistancePriority(999, for: .horizontal)
 		detailButton.setContentCompressionResistancePriority(999, for: .vertical)
 		detailButton.setContentHuggingPriority(999, for: .horizontal)

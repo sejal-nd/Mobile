@@ -40,6 +40,7 @@ struct OutageStatus: Mappable {
     var flagNoPay: Bool
     let meterPingInfo: MeterPingInfo?
     var etr: Date?
+    let locationId: String?
     
     init(map: Mapper) throws {
         flagGasOnly = map.optionalFrom("flagGasOnly") ?? false
@@ -51,6 +52,7 @@ struct OutageStatus: Mappable {
         flagNoPay = map.optionalFrom("flagNoPay") ?? false
         meterPingInfo = map.optionalFrom("meterInfo")
         etr = map.optionalFrom("ETR", transformation: extractDate)
+        locationId = map.optionalFrom("locationId")
     }
     
 }
