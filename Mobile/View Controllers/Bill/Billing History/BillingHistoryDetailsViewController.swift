@@ -55,12 +55,20 @@ class BillingHistoryDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = NSLocalizedString("Payment Details", comment: "")
 
         formatSections()
         
         populateWithData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar(hidesBottomBorder: true)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -90,49 +98,49 @@ class BillingHistoryDetailsViewController: UIViewController {
         paymentAccountLabel.textColor = .deepGray
         paymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentAccountDetailsLabel.textColor = .black
-        paymentAccountDetailsLabel.font = SystemFont.regular.of(textStyle: .headline)
+        paymentAccountDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
         
         paymentAccountSeparatorLine.backgroundColor = .softGray
         
         paymentDateLabel.textColor = .deepGray
         paymentDateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentDateDetailsLabel.textColor = .black
-        paymentDateDetailsLabel.font = SystemFont.regular.of(textStyle: .headline)
+        paymentDateDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
         
         paymentDateSeparatorLine.backgroundColor = .softGray
         
         paymentAmountLabel.textColor = .deepGray
         paymentAmountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentAmountDetailsLabel.textColor = .successGreenText
-        paymentAmountDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
+        paymentAmountDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
         
         paymentAmountSeparatorLine.backgroundColor = .softGray
         
         convenienceFeeLabel.textColor = .deepGray
         convenienceFeeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         convenienceFeeDetailsLabel.textColor = .successGreenText
-        convenienceFeeDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
+        convenienceFeeDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
         
         convenienceFeeSeparatorLine.backgroundColor = .softGray
         
         totalAmountPaidLabel.textColor = .deepGray
         totalAmountPaidLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         totalAmountPaidDetailsLabel.textColor = .successGreenText
-        totalAmountPaidDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
+        totalAmountPaidDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
         
         totalAmountPaidSeparatorLine.backgroundColor = .softGray
         
         paymentStatusLabel.textColor = .deepGray
         paymentStatusLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentStatusDetailsLabel.textColor = .black
-        paymentStatusDetailsLabel.font = SystemFont.regular.of(textStyle: .headline)
+        paymentStatusDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
 
         paymentStatusSeparatorLine.backgroundColor = .softGray
         
         confirmationNumberLabel.textColor = .deepGray
         confirmationNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         confirmationNumberDetailsLabel.textColor = .black
-        confirmationNumberDetailsLabel.font = SystemFont.regular.of(textStyle: .headline)
+        confirmationNumberDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
     }
     
     func populateWithData() {
