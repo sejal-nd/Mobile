@@ -373,11 +373,6 @@
 		9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
 		9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
 		9A3161041EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
-		B5053DB71ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */; };
-		B5053DB81ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */; };
-		B5053DB91ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */; };
-		B5053DBA1ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */; };
-		B5053DBB1ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */; };
 		B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
@@ -538,6 +533,9 @@
 		B5D07CB31F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		B5D07CB41F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		B5D07CB51F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
+		CED8ED5A1F1430A100BE1B26 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8ED591F1430A100BE1B26 /* FiservErrorMapper.swift */; };
+		CED8ED5B1F1430A100BE1B26 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8ED591F1430A100BE1B26 /* FiservErrorMapper.swift */; };
+		CED8ED5C1F1430A100BE1B26 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8ED591F1430A100BE1B26 /* FiservErrorMapper.swift */; };
 		E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
@@ -710,6 +708,9 @@
 		E841F3B41F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */; };
 		E841F3B51F030EE5007BFA82 /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
 		E841F3B61F030EE7007BFA82 /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
+		E84407821F16CFD100CB9707 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = E844077D1F16CFCC00CB9707 /* fiserv_errors.xml */; };
+		E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = E844077F1F16CFCC00CB9707 /* fiserv_errors.xml */; };
+		E84407841F16CFD800CB9707 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = E84407811F16CFCC00CB9707 /* fiserv_errors.xml */; };
 		E8494F381EBBCB2B0047D6BE /* full_screen_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = E8494F361EBBCB2B0047D6BE /* full_screen_loading.json */; };
 		E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = E8494F361EBBCB2B0047D6BE /* full_screen_loading.json */; };
 		E8494F3A1EBBCB2B0047D6BE /* full_screen_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = E8494F361EBBCB2B0047D6BE /* full_screen_loading.json */; };
@@ -1122,7 +1123,7 @@
 		8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsPoliciesViewController.swift; sourceTree = "<group>"; };
 		8FD5AE851E54EA49003F640D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8FD5AE8F1E54EA53003F640D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		8FD5AE931E54EA5E003F640D /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		8FD5AE931E54EA5E003F640D /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		8FD5AE981E54EAB8003F640D /* checkmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark.json; sourceTree = "<group>"; };
 		8FD5AE991E54EAB8003F640D /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		8FDF8C661E550502000B7BD0 /* BGEColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEColor.swift; sourceTree = "<group>"; };
@@ -1130,7 +1131,6 @@
 		8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComEdColor.swift; sourceTree = "<group>"; };
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
 		9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerViewController.swift; sourceTree = "<group>"; };
-		B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservMessageSanitizer.swift; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
 		B54846821E687CEB008CE1B1 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
@@ -1306,6 +1306,7 @@
 		B5EB9EED1EC3EB430049B586 /* OMObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMObject.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMObject.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EEE1EC3EB430049B586 /* OMOTPService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMOTPService.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMOTPService.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EEF1EC3EB430049B586 /* OMToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMToken.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMToken.h"; sourceTree = SOURCE_ROOT; };
+		CED8ED591F1430A100BE1B26 /* FiservErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservErrorMapper.swift; sourceTree = "<group>"; };
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E80043081E64DEE2005CF531 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Carthage/Build/iOS/ToastSwiftFramework.framework; sourceTree = "<group>"; };
@@ -1362,6 +1363,9 @@
 		E841F3A61F02F316007BFA82 /* ExelonPickerContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExelonPickerContainerView.swift; sourceTree = "<group>"; };
 		E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateDisclosureButton.xib; sourceTree = "<group>"; };
 		E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisclosureButton.swift; sourceTree = "<group>"; };
+		E844077D1F16CFCC00CB9707 /* fiserv_errors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
+		E844077F1F16CFCC00CB9707 /* fiserv_errors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
+		E84407811F16CFCC00CB9707 /* fiserv_errors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
 		E8494F361EBBCB2B0047D6BE /* full_screen_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = full_screen_loading.json; sourceTree = "<group>"; };
 		E8494F371EBBCB2B0047D6BE /* ellipses_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ellipses_loading.json; sourceTree = "<group>"; };
 		E8494F3E1EBBCB3A0047D6BE /* outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_loading.json; sourceTree = "<group>"; };
@@ -2135,7 +2139,6 @@
 			isa = PBXGroup;
 			children = (
 				B56DD4971ED84E6000F0198B /* FiservApi.swift */,
-				B5053DB61ED9F696002B3F41 /* FiservMessageSanitizer.swift */,
 			);
 			path = Fiserv;
 			sourceTree = "<group>";
@@ -2228,6 +2231,7 @@
 		B5AC06C61E521B2600BBA4ED /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E844077B1F16CFB400CB9707 /* XML */,
 				E800431B1E65FF4D005CF531 /* Fonts */,
 				8FD5AE971E54EA8C003F640D /* Lottie Animations */,
 				B5AC06C71E521B3200BBA4ED /* Assets.xcassets */,
@@ -2290,6 +2294,7 @@
 				B54846821E687CEB008CE1B1 /* HttpMethod.swift */,
 				E8039FF01EFB0405004DB789 /* PaymentService.swift */,
 				2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */,
+				CED8ED591F1430A100BE1B26 /* FiservErrorMapper.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2432,6 +2437,40 @@
 				E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */,
 			);
 			path = UINavigationBackButton;
+			sourceTree = "<group>";
+		};
+		E844077B1F16CFB400CB9707 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				E84407801F16CFCC00CB9707 /* BGE */,
+				E844077E1F16CFCC00CB9707 /* ComEd */,
+				E844077C1F16CFCC00CB9707 /* PECO */,
+			);
+			path = XML;
+			sourceTree = "<group>";
+		};
+		E844077C1F16CFCC00CB9707 /* PECO */ = {
+			isa = PBXGroup;
+			children = (
+				E844077D1F16CFCC00CB9707 /* fiserv_errors.xml */,
+			);
+			path = PECO;
+			sourceTree = "<group>";
+		};
+		E844077E1F16CFCC00CB9707 /* ComEd */ = {
+			isa = PBXGroup;
+			children = (
+				E844077F1F16CFCC00CB9707 /* fiserv_errors.xml */,
+			);
+			path = ComEd;
+			sourceTree = "<group>";
+		};
+		E84407801F16CFCC00CB9707 /* BGE */ = {
+			isa = PBXGroup;
+			children = (
+				E84407811F16CFCC00CB9707 /* fiserv_errors.xml */,
+			);
+			path = BGE;
 			sourceTree = "<group>";
 		};
 		E86334721E5F96980091E6FE /* FloatLabelTextField */ = {
@@ -2887,6 +2926,7 @@
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
 				E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
+				E84407841F16CFD800CB9707 /* fiserv_errors.xml in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -2951,6 +2991,7 @@
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				E841F3A91F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */,
+				E84407821F16CFD100CB9707 /* fiserv_errors.xml in Resources */,
 				E8FE30B61E787632009D28B7 /* outage.json in Resources */,
 				B55736401E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736341E6740A8003B9369 /* INFO.txt in Resources */,
@@ -3012,6 +3053,7 @@
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
+				E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */,
 				E841F3A81F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */,
 				E8FE30B71E787635009D28B7 /* outage.json in Resources */,
 				B557363F1E6740C9003B9369 /* SyncStore.mom in Resources */,
@@ -3187,7 +3229,6 @@
 				B574BB031E79BF7F001E8A44 /* ServiceResult.swift in Sources */,
 				B574BAF51E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B55A8AF71F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */,
-				B5053DBB1ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				B55A8AFE1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */,
 				087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */,
 			);
@@ -3267,6 +3308,7 @@
 				2FA5D85F1F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
+				CED8ED5A1F1430A100BE1B26 /* FiservErrorMapper.swift in Sources */,
 				54C1DEF21F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				82D5994B1EC36B5500DDB380 /* Currency.swift in Sources */,
@@ -3318,7 +3360,6 @@
 				54DF4BD11EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
-				B5053DB71ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				B5D07CB21F0EC2F10018B02D /* Payment.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				82A18F0E1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
@@ -3495,6 +3536,7 @@
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
+				CED8ED5C1F1430A100BE1B26 /* FiservErrorMapper.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
@@ -3559,7 +3601,6 @@
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
-				B5053DB91ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				E876A85D1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E971EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				54AE06B71ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
@@ -3692,6 +3733,7 @@
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */,
+				CED8ED5B1F1430A100BE1B26 /* FiservErrorMapper.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				54B31A711EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
@@ -3756,7 +3798,6 @@
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
-				B5053DB81ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
@@ -3849,7 +3890,6 @@
 				E8BCB9BD1EFAE79A00779588 /* BGEAutoPayViewModel.swift in Sources */,
 				E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */,
 				E82FA1371EA541D100C2DABC /* ForgotPasswordViewModelTests.swift in Sources */,
-				B5053DBA1ED9F696002B3F41 /* FiservMessageSanitizer.swift in Sources */,
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,
 				B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,

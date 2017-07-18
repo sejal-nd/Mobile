@@ -17,8 +17,10 @@ class PaymentViewModel {
     
     let accountDetail: Variable<AccountDetail>
     
-    let isFetchingWalletItems = Variable(false)
+    let isFetching = Variable(false) // Combines isFetchingWalletItems & isFetchingWorkdays
     let isError = Variable(false)
+    private let isFetchingWalletItems = Variable(false)
+    private let isFetchingWorkdays = Variable(false)
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
@@ -31,6 +33,8 @@ class PaymentViewModel {
     let termsConditionsSwitchValue = Variable(false)
     let overpayingSwitchValue = Variable(false)
     let activeSeveranceSwitchValue = Variable(false)
+    
+    var workdayArray = [Date]()
     
     init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail) {
         self.walletService = walletService
@@ -61,8 +65,10 @@ class PaymentViewModel {
     // MARK: - Service Calls
     
     func fetchWalletItems(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
-        isFetchingWalletItems.value = true
+        isFetching.value = true
         isError.value = false
+        
+        isFetchingWalletItems.value = true
         walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { walletItems in
@@ -91,14 +97,37 @@ class PaymentViewModel {
                     }
                 }
 
-                self.isFetchingWalletItems.value = false
                 self.walletItems.value = walletItems
+                
+                self.isFetchingWalletItems.value = false
+                if !self.isFetchingWorkdays.value {
+                    self.isFetching.value = false
+                }
+                
                 onSuccess?()
             }, onError: { err in
                 self.isFetchingWalletItems.value = false
                 self.isError.value = true
                 onError?(err.localizedDescription)
             }).addDisposableTo(disposeBag)
+        
+        if Environment.sharedInstance.opco == .peco { // Only PECO prevents certain payment dates
+            isFetchingWorkdays.value = true
+            paymentService.fetchWorkdays()
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { dateArray in
+                    self.isFetchingWorkdays.value = false
+                    if !self.isFetchingWalletItems.value {
+                        self.isFetching.value = false
+                    }
+                    self.workdayArray = dateArray
+                }, onError: { err in
+                    self.isFetchingWorkdays.value = false
+                    if !self.isFetchingWalletItems.value {
+                        self.isFetching.value = false
+                    }
+                }).addDisposableTo(disposeBag)
+        }
     }
     
     func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -148,7 +177,7 @@ class PaymentViewModel {
     }
     
     var shouldShowContent: Driver<Bool> {
-        return Driver.combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver()).map {
+        return Driver.combineLatest(isFetching.asDriver(), isError.asDriver()).map {
             return !$0 && !$1
         }
     }
@@ -301,14 +330,6 @@ class PaymentViewModel {
             return Driver.just(accountDetail.value.billingInfo.convenienceFee!)
         
         }
-//        return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
-//            if let walletItem = $1 {
-//                if walletItem.bankOrCard == .card
-//                    return $0.billingInfo.convenienceFee
-//                }
-//            }
-//            return nil
-//        }
     }
     
     lazy var amountDueCurrencyString: Driver<String> = self.amountDue.asDriver().map {
