@@ -105,6 +105,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let isNOCViewed: Bool
     let bankAccountNumber: String?
     let bankAccountName: String?
+    let isDefault: Bool
     
     // Reduce bankAccountType (BGE) and paymentCategoryType (ComEd/PECO) to this one variable
     var bankOrCard: BankOrCard
@@ -132,6 +133,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         isNOCViewed = map.optionalFrom("flagnocViewed") ?? false
         bankAccountNumber = map.optionalFrom("bankAccountNumber")
         bankAccountName = map.optionalFrom("bankAccountName")
+        isDefault = map.optionalFrom("isDefault") ?? false
         
         bankOrCard = .card
         if Environment.sharedInstance.opco == .bge {
