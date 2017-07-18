@@ -65,6 +65,7 @@ class HomeViewController: AccountPickerViewController {
         
         styleViews()
         bindLoadingStates()
+        configureAccessibility()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,6 +89,18 @@ class HomeViewController: AccountPickerViewController {
         self.viewModel.weatherTemp.asDriver().drive(self.temperatureLabel.rx.text).addDisposableTo(self.bag)
         self.viewModel.weatherIcon.asDriver().drive(self.weatherIconImage.rx.image).addDisposableTo(self.bag)
         self.viewModel.greeting.asDriver().drive(self.greetingLabel.rx.text).addDisposableTo(self.bag)
+    }
+    
+    func configureAccessibility() {
+        guard let greetingString = greetingLabel.text,
+            let temperatureString = temperatureLabel.text else {
+                greetingLabel.accessibilityLabel = NSLocalizedString("Greetings", comment: "")
+                temperatureLabel.accessibilityLabel = NSLocalizedString("Temperature not available", comment: "") //TODO: not sure about these
+                return
+        }
+        
+        greetingLabel.accessibilityLabel = NSLocalizedString(greetingString, comment: "")
+        temperatureLabel.accessibilityLabel = NSLocalizedString(temperatureString, comment: "")
     }
     
     
