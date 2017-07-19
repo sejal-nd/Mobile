@@ -221,6 +221,7 @@
                         <outlet property="contactUsButton" destination="ba3-EE-aBt" id="YU7-Kv-xrz"/>
                         <outlet property="lottieView" destination="yrY-DD-kdB" id="7ER-NP-uUc"/>
                         <outlet property="reportAnOutageButton" destination="jAa-0X-AbV" id="XYl-hX-lvh"/>
+                        <outlet property="textLabel" destination="5CE-lL-rQJ" id="8P8-6r-jol"/>
                         <outlet property="viewOutageMapButton" destination="bp9-WO-0sf" id="5ox-M2-fhN"/>
                     </connections>
                 </viewController>

@@ -13,6 +13,7 @@ class UnauthenticatedUserViewController: UIViewController {
     @IBOutlet weak var lottieView: UIView!
     
     @IBOutlet weak var LoginRegisterButton: UIButton!
+    @IBOutlet weak var textLabel: UILabel!
     
     @IBOutlet weak var reportAnOutageButton: DisclosureButton!
     @IBOutlet weak var checkMyOutageStatusButton: DisclosureButton!
@@ -80,6 +81,12 @@ class UnauthenticatedUserViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
         navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        LoginRegisterButton.titleLabel!.font =  OpenSans.bold.of(textStyle: .title1)
+        LoginRegisterButton.titleLabel!.font =  OpenSans.bold.of(size: 18)
+        
+        textLabel.font =  OpenSans.regular.of(textStyle: .subheadline)
+        textLabel.font =  OpenSans.regular.of(size: 14)
     }
     
     @IBAction func onContactUsPress(_ sender: UIButton) {
