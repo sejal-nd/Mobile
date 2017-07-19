@@ -215,6 +215,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="LoginRegisterButton" destination="TLB-ga-RSd" id="3Wz-30-9FP"/>
                         <outlet property="TermPoliciesButton" destination="fJk-6t-qHv" id="i1D-za-0DB"/>
                         <outlet property="checkMyOutageStatusButton" destination="MxD-jC-DFh" id="3Ux-Gp-Ezw"/>
                         <outlet property="contactUsButton" destination="ba3-EE-aBt" id="YU7-Kv-xrz"/>

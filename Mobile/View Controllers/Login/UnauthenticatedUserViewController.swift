@@ -12,6 +12,8 @@ import Lottie
 class UnauthenticatedUserViewController: UIViewController {
     @IBOutlet weak var lottieView: UIView!
     
+    @IBOutlet weak var LoginRegisterButton: UIButton!
+    
     @IBOutlet weak var reportAnOutageButton: DisclosureButton!
     @IBOutlet weak var checkMyOutageStatusButton: DisclosureButton!
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
@@ -22,7 +24,20 @@ class UnauthenticatedUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let animationView = LOTAnimationView(name: "UU_OTP_animation") {
+        var lottieName = ""
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            lottieName = "UU_OTP_animation_BGE"
+            break
+        case .comEd:
+            lottieName = "UU_OTP_animation_ComEd"
+            break
+        case .peco:
+            lottieName = "UU_OTP_animation_PECO"
+            break
+        }
+        
+        if let animationView = LOTAnimationView(name: lottieName) {
             animationView.frame = CGRect(x: 0, y: 0, width: 230, height: 180)
             animationView.contentMode = .scaleAspectFill
             animationView.loopAnimation = true
