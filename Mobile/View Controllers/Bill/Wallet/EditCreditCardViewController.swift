@@ -215,10 +215,8 @@ class EditCreditCardViewController: UIViewController {
         case .comEd, .peco:
             convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
             bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
-        case .bge:
-            let feeString =  String(format:"Fees: %@", viewModel.accountDetail.billingInfo.residentialFee!.currencyString!) +
-                " Residential | " + String(format:"%.2f%% Business", viewModel.accountDetail.billingInfo.commercialFee!)
-            convenienceFeeLabel.text = NSLocalizedString(feeString, comment: "")
+        case .bge:            
+            convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFeeString(isComplete: false), comment: "")
             bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
             break
         }
