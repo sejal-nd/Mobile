@@ -24,6 +24,8 @@ class PaymentViewModel {
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
+    let inlineBank = Variable(false)
+    let inlineCard = Variable(false)
     let cvv = Variable("")
     
     let amountDue: Variable<Double>
@@ -165,6 +167,12 @@ class PaymentViewModel {
             } else {
                 return $0 && $1 != nil && !$2.isEmpty && $3 == nil
             }
+        }
+    }
+    
+    var shouldShowInlinePaymentDivider: Driver<Bool> {
+        return Driver.combineLatest(inlineBank.asDriver(), inlineCard.asDriver()).map {
+            return $0 || $1
         }
     }
     

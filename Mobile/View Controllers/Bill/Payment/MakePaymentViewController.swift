@@ -15,6 +15,10 @@ class MakePaymentViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var addBankFormView: AddBankFormView!
+    @IBOutlet weak var addCardFormView: AddCardFormView!
+    @IBOutlet weak var inlinePaymentDividerLine: UIView!
+    
     @IBOutlet weak var activeSeveranceLabel: UILabel!
     @IBOutlet weak var bankAccountsUnavailableLabel: UILabel!
     
@@ -89,6 +93,8 @@ class MakePaymentViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
+        inlinePaymentDividerLine.backgroundColor = .lightGray
         
         activeSeveranceLabel.textColor = .blackText
         activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -175,6 +181,7 @@ class MakePaymentViewController: UIViewController {
         addBankAccountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         addBankAccountFeeLabel.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
         addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        addBankAccountButton.backgroundColorOnPress = .softGray
         
         addCreditCardFeeLabel.textColor = .blackText
         addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -189,6 +196,7 @@ class MakePaymentViewController: UIViewController {
             break
         }
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        addCreditCardButton.backgroundColorOnPress = .softGray
         
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
         privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
@@ -208,10 +216,6 @@ class MakePaymentViewController: UIViewController {
 
         viewModel.formatPaymentAmount() // Initial formatting
         viewModel.fetchWalletItems(onSuccess: nil, onError: nil)
-        
-        // TODO - Enable these in sprint 14
-        addBankAccountButton.isEnabled = false
-        addCreditCardButton.isEnabled = false
     }
     
     deinit {
@@ -254,6 +258,11 @@ class MakePaymentViewController: UIViewController {
         viewModel.isFetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).addDisposableTo(disposeBag)
+        
+        // Inline Bank/Card
+        viewModel.inlineBank.asDriver().map(!).drive(addBankFormView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.inlineCard.asDriver().map(!).drive(addCardFormView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowInlinePaymentDivider.map(!).drive(inlinePaymentDividerLine.rx.isHidden).addDisposableTo(disposeBag)
         
         // Active Severance Label
         viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).addDisposableTo(disposeBag)
@@ -351,6 +360,14 @@ class MakePaymentViewController: UIViewController {
             calendarVC.selectedDate = self.viewModel.paymentDate.value
             
             self.navigationController?.pushViewController(calendarVC, animated: true)
+        }).addDisposableTo(disposeBag)
+        
+        addBankAccountButton.rx.touchUpInside.subscribe(onNext: {
+            self.viewModel.inlineBank.value = true
+        }).addDisposableTo(disposeBag)
+        
+        addCreditCardButton.rx.touchUpInside.subscribe(onNext: {
+            self.viewModel.inlineCard.value = true
         }).addDisposableTo(disposeBag)
         
         privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).addDisposableTo(disposeBag)
