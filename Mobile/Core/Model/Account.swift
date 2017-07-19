@@ -208,6 +208,18 @@ struct BillingInfo: Mappable {
         residentialFee = map.optionalFrom("feeResidential")
         commercialFee = map.optionalFrom("feeCommercial")
     }
+    
+    func convenienceFeeString(isComplete: Bool) -> String {
+        var conveienceFeeStr = ""
+        if isComplete {
+            conveienceFeeStr = String(format: "A convenience fee will be applied by Western Union Speedpay, our payment partner.\nResidential accounts: %@. Business accounts: %@",
+                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+        } else {
+            conveienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",
+                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+        }
+        return conveienceFeeStr
+    }
 }
 
 enum EBillEnrollStatus {

@@ -183,14 +183,8 @@ class MakePaymentViewController: UIViewController {
             addCreditCardFeeLabel.text = NSLocalizedString("Your payment includes a " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee.", comment: "")
             break
         case .bge:
-            var commercialDouble = 0.0
-            if let commercial = accountDetail.billingInfo.commercialFee {
-                commercialDouble = round(commercial * 100) / 100
-            }
-            var feeString = "Your payment includes a "
-            feeString += accountDetail.isResidential ?
-                accountDetail.billingInfo.residentialFee!.currencyString! : "\(commercialDouble)%"
-            feeString += " convenience fee."
+            let feeString = String(format: "Your payment includes a %@ convenience fee. ", accountDetail.isResidential ?
+                accountDetail.billingInfo.residentialFee!.currencyString! : accountDetail.billingInfo.commercialFee!.percentString!)
             addCreditCardFeeLabel.text = NSLocalizedString(feeString, comment: "")
             break
         }

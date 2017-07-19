@@ -98,13 +98,7 @@ class WalletTableViewCell: UITableViewCell {
         case .bge:
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                var feeStr = "Fees: " + billingInfo.residentialFee!.currencyString! + " Residential | "
-                if let commercial = billingInfo.commercialFee {
-                    feeStr += "\(round(commercial * 100) / 100)% Business"
-                } else {
-                    feeStr += "0% Business"
-                }
-                bottomBarLabel.text = NSLocalizedString(feeStr, comment: "")
+                bottomBarLabel.text = NSLocalizedString(billingInfo.convenienceFeeString(isComplete: false), comment: "")
                 a11yLabel = NSLocalizedString("Credit card", comment: "")
             } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")

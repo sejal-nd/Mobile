@@ -88,12 +88,8 @@ class WalletViewModel {
     var emptyStateCreditFeeLabelText: String {
         switch Environment.sharedInstance.opco {
         case .bge:
-            var feeStr = "A convenience fee will be applied to your payments. Residential accounts: " + accountDetail.billingInfo.residentialFee!.currencyString! + ".\n"
-            if let commercial = accountDetail.billingInfo.commercialFee {
-                feeStr += "Business accounts: \(round(commercial * 100) / 100)%"
-            } else {
-                feeStr += "Business accounts: 0%"
-            }
+            let feeStr = String(format: "A convenience fee will be applied to your payments.\nResidential accounts: %@. Business accounts: %@",
+                                accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
             return NSLocalizedString(feeStr, comment: "")
         case .comEd, .peco:
             return NSLocalizedString("A " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee will be applied\nto your payments.", comment: "")
