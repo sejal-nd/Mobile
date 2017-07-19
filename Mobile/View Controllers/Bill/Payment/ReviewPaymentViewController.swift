@@ -91,7 +91,7 @@ class ReviewPaymentViewController: UIViewController {
         
         activeSeveranceLabel.textColor = .blackText
         activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        activeSeveranceLabel.text = NSLocalizedString("Your account is active severance, as such you will not be able to edit or delete this payment once it is created.", comment: "")
+        activeSeveranceLabel.text = NSLocalizedString("Due to the status of this account, this payment cannot be edited or deleted once it is submitted.", comment: "")
         activeSeveranceLabel.setLineHeight(lineHeight: 24)
         
         overpaymentLabel.textColor = .blackText

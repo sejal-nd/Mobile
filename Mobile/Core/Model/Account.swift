@@ -24,7 +24,7 @@ enum AccountType {
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
-    var premises: Array<Premise> //TODO: return to let when testing is done
+    let premises: Array<Premise>
     var currentPremise: Premise?
     
     let status: String?
@@ -92,6 +92,7 @@ struct AccountDetail: Mappable {
     let isCutOutNonPay: Bool
 	
 	let isAMICustomer: Bool
+    let isResidential: Bool
     
     let releaseOfInformation: String?
 	
@@ -123,6 +124,7 @@ struct AccountDetail: Mappable {
 		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
 		
 		isAMICustomer = map.optionalFrom("isAMICustomer") ?? false
+        isResidential = map.optionalFrom("isResidential") ?? false
         
         releaseOfInformation = map.optionalFrom("releaseOfInformation")
     }
@@ -178,6 +180,8 @@ struct BillingInfo: Mappable {
     let maxPaymentAmount: Double?
     let minPaymentAmountACH: Double?
     let maxPaymentAmountACH: Double?
+    let residentialFee: Double?
+    let commercialFee: Double?
     
     init(map: Mapper) throws {
 		netDueAmount = map.optionalFrom("netDueAmount")
@@ -201,6 +205,20 @@ struct BillingInfo: Mappable {
         maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")
         minPaymentAmountACH =  map.optionalFrom("minimumPaymentAmountACH")
         maxPaymentAmountACH = map.optionalFrom("maximumPaymentAmountACH")
+        residentialFee = map.optionalFrom("feeResidential")
+        commercialFee = map.optionalFrom("feeCommercial")
+    }
+    
+    func convenienceFeeString(isComplete: Bool) -> String {
+        var conveienceFeeStr = ""
+        if isComplete {
+            conveienceFeeStr = String(format: "A convenience fee will be applied by Western Union Speedpay, our payment partner.\nResidential accounts: %@. Business accounts: %@",
+                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+        } else {
+            conveienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",
+                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+        }
+        return conveienceFeeStr
     }
 }
 

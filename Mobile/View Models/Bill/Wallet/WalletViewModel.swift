@@ -14,18 +14,15 @@ class WalletViewModel {
     let disposeBag = DisposeBag()
     
     let walletService: WalletService!
-    let oneTouchPayService: OneTouchPayService!
     
     var accountDetail: AccountDetail! // Passed from BillViewController
-    var oneTouchPayDictionary: [String: WalletItem]?
     
     let fetchWalletItems = PublishSubject<Void>()
     let walletItems = Variable<[WalletItem]?>(nil)
     let isFetchingWalletItems: Driver<Bool>
     
-    required init(walletService: WalletService, oneTouchPayService: OneTouchPayService) {
+    required init(walletService: WalletService) {
         self.walletService = walletService
-        self.oneTouchPayService = oneTouchPayService
         
         let fetchingWalletItemsTracker = ActivityTracker()
         isFetchingWalletItems = fetchingWalletItemsTracker.asDriver()
@@ -38,11 +35,6 @@ class WalletViewModel {
             }
             .bind(to: walletItems)
             .addDisposableTo(disposeBag)
-        
-        walletItems.asObservable().subscribe(onNext: { _ in
-            self.oneTouchPayDictionary = self.oneTouchPayService.getOneTouchPayDictionary()
-        }).addDisposableTo(disposeBag)
-        
     }
     
     lazy var shouldShowEmptyState: Driver<Bool> = {
@@ -96,11 +88,11 @@ class WalletViewModel {
     var emptyStateCreditFeeLabelText: String {
         switch Environment.sharedInstance.opco {
         case .bge:
-            return NSLocalizedString("A convenience fee will be applied to your payments. Residential accounts: $1.50.\nBusiness accounts: 2.4%", comment: "")
-        case .comEd:
-            return NSLocalizedString("A $2.50 convenience fee will be applied\nto your payments.", comment: "")
-        case .peco:
-            return NSLocalizedString("A $2.35 convenience fee will be applied\nto your payments.", comment: "")
+            let feeStr = String(format: "A convenience fee will be applied to your payments.\nResidential accounts: %@. Business accounts: %@",
+                                accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
+            return NSLocalizedString(feeStr, comment: "")
+        case .comEd, .peco:
+            return NSLocalizedString("A " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee will be applied\nto your payments.", comment: "")
 
         }
     }

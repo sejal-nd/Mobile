@@ -13,8 +13,17 @@ import Lottie
 
 class HomeViewController: AccountPickerViewController {
     
-    @IBOutlet weak var primaryColorView: UIView!
-    @IBOutlet weak var oneTouchSlider: OneTouchSlider!
+    @IBOutlet weak var headerContentView: UIView!
+    @IBOutlet weak var headerStackView: UIStackView!
+    @IBOutlet weak var topLoadingIndicatorView: UIView!
+    @IBOutlet weak var homeLoadingIndicator: LoadingIndicator!
+    @IBOutlet weak var weatherIconHolderView: UIView!
+    
+    @IBOutlet weak var weatherWidgetView: UIView!
+    @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var weatherIconImage: UIImageView!
+    
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl? {
@@ -28,7 +37,7 @@ class HomeViewController: AccountPickerViewController {
     
     var alertLottieAnimation = LOTAnimationView(name: "alert_icon")!
     
-    let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService())
+    let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(), weatherService: ServiceFactory.createWeatherService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -36,8 +45,6 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        oneTouchSlider.delegate = self
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self
@@ -56,8 +63,9 @@ class HomeViewController: AccountPickerViewController {
             }
         }).addDisposableTo(bag)
         
-        primaryColorView.backgroundColor = .primaryColor
-        
+        styleViews()
+        bindLoadingStates()
+        configureAccessibility()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +73,35 @@ class HomeViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    func styleViews() {
+        scrollView.backgroundColor = .primaryColor
+        weatherIconHolderView.backgroundColor = .primaryColor
+        weatherWidgetView.backgroundColor = .primaryColor
+        headerStackView.backgroundColor = .primaryColor
+    }
+    
+    func bindLoadingStates() {
+        topLoadingIndicatorView.isHidden = true
+        viewModel.isFetchingAccountDetail.filter(!).drive(rx.isRefreshing).addDisposableTo(bag)
+        viewModel.isFetchingDifferentAccount.not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
+        viewModel.isFetchingDifferentAccount.drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
+        
+        self.viewModel.weatherTemp.drive(self.temperatureLabel.rx.text).addDisposableTo(self.bag)
+        self.viewModel.weatherIcon.drive(self.weatherIconImage.rx.image).addDisposableTo(self.bag)
+        self.viewModel.greeting.drive(self.greetingLabel.rx.text).addDisposableTo(self.bag)
+    }
+    
+    func configureAccessibility() {
+        guard let greetingString = greetingLabel.text,
+            let temperatureString = temperatureLabel.text else {
+                greetingLabel.accessibilityLabel = NSLocalizedString("Greetings", comment: "")
+                temperatureLabel.accessibilityLabel = NSLocalizedString("Temperature not available", comment: "") //TODO: not sure about these
+                return
+        }
+        
+        greetingLabel.accessibilityLabel = NSLocalizedString(greetingString, comment: "")
+        temperatureLabel.accessibilityLabel = NSLocalizedString(temperatureString, comment: "")
+    }
     
     
     
@@ -82,25 +119,8 @@ class HomeViewController: AccountPickerViewController {
 extension HomeViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-//        viewModel.fetchAccountDetail(isRefresh: false)
+        viewModel.fetchAccountDetail(isRefresh: false)
     }
-    
-}
-
-extension HomeViewController: oneTouchSliderDelegate {
-    
-    func didFinishSwipe(_ oneTouchSlider: OneTouchSlider) {
-        dLog(message: "Finished swipe")
-    }
-    
-    func didCancelSwipe(_ oneTouchSlider: OneTouchSlider) {
-        dLog(message: "Canceled swipe")
-    }
-    
-    func sliderValueChanged(_ oneTouchSlider: OneTouchSlider) {
-        //here if we need it
-    }
-    
 }
 
 extension Reactive where Base: HomeViewController {

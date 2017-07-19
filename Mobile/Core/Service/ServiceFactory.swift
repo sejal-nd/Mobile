@@ -48,12 +48,11 @@ class ServiceFactory {
         return OMCRegistrationService()
     }
     
-    class func createOneTouchPayService() -> OneTouchPayService {
-        return OneTouchPayService()
-    }
-    
     class func createPaymentService() -> PaymentService {
         return OMCPaymentService()
     }
     
+    class func createWeatherService() -> WeatherService {
+        return WeatherAPI()
+    }
 }
