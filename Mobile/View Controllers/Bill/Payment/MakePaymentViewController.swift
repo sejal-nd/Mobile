@@ -92,7 +92,7 @@ class MakePaymentViewController: UIViewController {
         
         activeSeveranceLabel.textColor = .blackText
         activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        activeSeveranceLabel.text = NSLocalizedString("Your account is active severance. You are limited to creating a payment for the current date only, and you will not be able to edit or delete this payment once it is created.", comment: "")
+        activeSeveranceLabel.text = NSLocalizedString("Due to the status of this account, online payments are limited to the current date. Payments also may not be edited or deleted.", comment: "")
         
         bankAccountsUnavailableLabel.textColor = .blackText
         bankAccountsUnavailableLabel.font = SystemFont.semibold.of(textStyle: .headline)
