@@ -27,7 +27,7 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
     }
     
     func configure(withAccount account: Account) {
-        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
+        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
         
         accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
         accountImageView.isAccessibilityElement = true
