@@ -151,17 +151,18 @@ class AddCreditCardViewController: UIViewController {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
             }, onSuccess: { walletItemResult in
+                let completion = {
+                    LoadingView.hide()
+                    self.delegate?.addCreditCardViewControllerDidAddAccount(self)
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
                 if setAsOneTouchPay {
-                    self.viewModel.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: {
-                        LoadingView.hide()
-                        self.delegate?.addCreditCardViewControllerDidAddAccount(self)
-                         _ = self.navigationController?.popViewController(animated: true)
-                    }, onError: { (_ String) in
-                        //In this case, the card was already saved, the error
-                        LoadingView.hide()
-                        self.delegate?.addCreditCardViewControllerDidAddAccount(self)
-                         _ = self.navigationController?.popViewController(animated: true)
+                    self.viewModel.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: completion, onError: { errMessage in
+                        //In this case, the card was already saved, so not really an error
+                        completion()
                     })
+                } else {
+                    completion()
                 }
             }, onError: { errMessage in
                 LoadingView.hide()
