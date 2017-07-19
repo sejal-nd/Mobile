@@ -65,6 +65,7 @@ class MakePaymentViewController: UIViewController {
     
     @IBOutlet weak var stickyPaymentFooterHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var stickyPaymentFooterView: UIView!
+    @IBOutlet weak var stickyPaymentFooterTextContainer: UIView!
     @IBOutlet weak var stickyPaymentFooterPaymentLabel: UILabel!
     @IBOutlet weak var stickyPaymentFooterFeeLabel: UILabel!
 
@@ -291,7 +292,8 @@ class MakePaymentViewController: UIViewController {
         // Sticky Footer
         viewModel.shouldShowStickyFooterView.drive(onNext: { shouldShow in
             self.stickyPaymentFooterHeightConstraint.constant = shouldShow ? 80 : 0
-            self.stickyPaymentFooterView.isHidden = !shouldShow
+            // For some reason, just hiding stickyPaymentFooterView was not enough to hide the label...
+            self.stickyPaymentFooterTextContainer.isHidden = !shouldShow
         }).addDisposableTo(disposeBag)
     }
     
