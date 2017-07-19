@@ -48,9 +48,6 @@ class OutageViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let ad = UIApplication.shared.delegate as! AppDelegate
-        ad.showMaintenanceMode()
-        
         title = NSLocalizedString("Outage", comment: "")
 
         gradientLayer = CAGradientLayer()
@@ -124,10 +121,18 @@ class OutageViewController: AccountPickerViewController {
                 }
             }
         }).addDisposableTo(disposeBag)
+        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        
+        
+        let ad = UIApplication.shared.delegate as! AppDelegate
+        ad.showMaintenanceMode()
+        
         
         navigationController?.setNavigationBarHidden(true, animated: true)
     }

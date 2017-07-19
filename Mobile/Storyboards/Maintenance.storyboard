@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--maintenanceViewController-->
         <scene sceneID="JHU-C4-tXL">
             <objects>
-                <viewController storyboardIdentifier="maintenanceModeViewController" automaticallyAdjustsScrollViewInsets="NO" id="emJ-sh-7g1" customClass="MaintenanceModeViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="maintenanceModeViewController" title="maintenanceViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="emJ-sh-7g1" customClass="MaintenanceModeViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ca7-8w-wBE"/>
                         <viewControllerLayoutGuide type="bottom" id="BlZ-mU-8sJ"/>
@@ -40,7 +40,7 @@
                                                     <view contentMode="scaleToFill" restorationIdentifier="Reload View" translatesAutoresizingMaskIntoConstraints="NO" id="VcL-AS-HfY" userLabel="Reload View" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="125.5" y="127" width="78.5" height="22"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5hD-gP-UEs">
+                                                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5hD-gP-UEs">
                                                                 <rect key="frame" x="0.0" y="0.0" width="78.5" height="22"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_reload" translatesAutoresizingMaskIntoConstraints="NO" id="0j4-df-xqf" userLabel="Reload Image">
@@ -56,6 +56,9 @@
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" button="YES"/>
+                                                        </accessibility>
                                                         <constraints>
                                                             <constraint firstItem="5hD-gP-UEs" firstAttribute="leading" secondItem="VcL-AS-HfY" secondAttribute="leading" id="CwJ-bm-Hqq"/>
                                                             <constraint firstAttribute="trailing" secondItem="5hD-gP-UEs" secondAttribute="trailing" id="Q81-Gk-f2d"/>
@@ -207,7 +210,6 @@
                         <outlet property="label3" destination="0fP-UW-M2y" id="AcM-yz-Vs4"/>
                         <outlet property="label4" destination="BaB-ha-WMq" id="eom-x0-bzR"/>
                         <outlet property="maintenanceModeBody" destination="nKd-gP-q76" id="AUO-TB-nNg"/>
-                        <outlet property="maintenanceModeView" destination="nKd-gP-q76" id="u2t-GP-8we"/>
                         <outlet property="opcoLogo" destination="ejI-Id-7Io" id="3sl-Bb-rt5"/>
                         <outlet property="reloadButton" destination="VcL-AS-HfY" id="fQC-fe-D4q"/>
                         <outlet property="scrollView" destination="N0W-zM-Af5" id="0qL-Zg-85W"/>

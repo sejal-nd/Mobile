@@ -137,10 +137,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func showMaintenanceMode(){
         LoadingView.hide()
-        
-        let maintenanceStoryboard = UIStoryboard(name: "Maintenance",bundle: nil)
-        if let vc = maintenanceStoryboard.instantiateInitialViewController(){
-            window?.rootViewController?.present(vc, animated: true, completion: nil)
+    
+        if let rootVC = window?.rootViewController {
+            var topmostVC = rootVC
+            while let presentedVC = topmostVC.presentedViewController {
+                topmostVC = presentedVC
+            }
+            
+            let maintenanceStoryboard = UIStoryboard(name: "Maintenance",bundle: nil)
+            let vc = maintenanceStoryboard.instantiateInitialViewController()!
+            topmostVC.present(vc, animated: true, completion: nil)
         }
     }
     
