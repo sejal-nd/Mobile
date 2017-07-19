@@ -99,6 +99,9 @@
 		389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
 		389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
 		441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
+		4465DE851F1FCFD90014537F /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4465DE841F1FCFD90014537F /* TemplateCardViewModel.swift */; };
+		4465DE871F1FD0090014537F /* TemplateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4465DE861F1FD0090014537F /* TemplateCardView.swift */; };
+		4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4465DE881F1FD07C0014537F /* TemplateCardView.xib */; };
 		54036BAD1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
 		54036BAE1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
 		54036BAF1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */; };
@@ -1046,6 +1049,9 @@
 		2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryViewModel.swift; path = ../More/BillingHistoryViewModel.swift; sourceTree = "<group>"; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
 		389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedUserViewController.swift; sourceTree = "<group>"; };
+		4465DE841F1FCFD90014537F /* TemplateCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardViewModel.swift; sourceTree = "<group>"; };
+		4465DE861F1FD0090014537F /* TemplateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardView.swift; sourceTree = "<group>"; };
+		4465DE881F1FD07C0014537F /* TemplateCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateCardView.xib; sourceTree = "<group>"; };
 		54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCreditCardViewController.swift; sourceTree = "<group>"; };
 		545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLineView.swift; sourceTree = "<group>"; };
 		54618B251EE05FE000119FFD /* EditBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBankAccountViewController.swift; sourceTree = "<group>"; };
@@ -1642,9 +1648,27 @@
 		2FA5D8671F17DB5400A8B16B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4465DE831F1FCF940014537F /* Cards */,
 				2FA5D8681F17DB6F00A8B16B /* HomeViewModel.swift */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		4465DE821F1FCF7E0014537F /* Home Cards */ = {
+			isa = PBXGroup;
+			children = (
+				4465DE861F1FD0090014537F /* TemplateCardView.swift */,
+				4465DE881F1FD07C0014537F /* TemplateCardView.xib */,
+			);
+			name = "Home Cards";
+			sourceTree = "<group>";
+		};
+		4465DE831F1FCF940014537F /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				4465DE841F1FCFD90014537F /* TemplateCardViewModel.swift */,
+			);
+			name = Cards;
 			sourceTree = "<group>";
 		};
 		54C1DEEE1F01A12700290FE5 /* Billing History */ = {
@@ -1879,6 +1903,7 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4465DE821F1FCF7E0014537F /* Home Cards */,
 				2F3FA63E1F06F10700A1F4BF /* Multi Premise address view */,
 				82A18EB01EBA667900BE9F21 /* Controls */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
@@ -2953,6 +2978,7 @@
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
+				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
@@ -3258,6 +3284,7 @@
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF11E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				E841F3A21F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
+				4465DE871F1FD0090014537F /* TemplateCardView.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
 				E8C4532B1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */,
 				82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
@@ -3361,6 +3388,7 @@
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
+				4465DE851F1FCFD90014537F /* TemplateCardViewModel.swift in Sources */,
 				54036BAD1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
 				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD441EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
