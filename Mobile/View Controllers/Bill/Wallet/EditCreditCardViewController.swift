@@ -216,8 +216,15 @@ class EditCreditCardViewController: UIViewController {
             convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
             bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
         case .bge:
-            let feeString =  String(format:"Fees: %@", viewModel.accountDetail.billingInfo.residentialFee!.currencyString!) +
-                " Residential | " + String(format:"%.2f%% Business", viewModel.accountDetail.billingInfo.commercialFee!)
+            var feeString =  String(format:"Fees: %@", viewModel.accountDetail.billingInfo.residentialFee!.currencyString!) +
+                " Residential | "
+            
+            if let commercial = viewModel.accountDetail.billingInfo.commercialFee {
+                feeString += "\(round(commercial * 100) / 100)% Business"
+            } else {
+                feeString += "0% Business"
+            }
+            
             convenienceFeeLabel.text = NSLocalizedString(feeString, comment: "")
             bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
             break

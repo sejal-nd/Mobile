@@ -271,8 +271,14 @@ class PaymentViewModel {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
                 if Environment.sharedInstance.opco == .bge {
-                    let feeStr = String(format: "A convenience fee will be applied by Western Union Speedpay, our payment partner. Residential accounts: $%.2f. Business accounts: %.2f%%.",
-                                        self.accountDetail.value.billingInfo.residentialFee!, self.accountDetail.value.billingInfo.commercialFee!)
+                    var feeStr = String(format: "A convenience fee will be applied by Western Union Speedpay, our payment partner. Residential accounts: $%.2f. ",
+                                        self.accountDetail.value.billingInfo.residentialFee!)
+                    
+                    if let commercial = self.accountDetail.value.billingInfo.commercialFee {
+                        feeStr += "Business accounts: \(round(commercial * 100) / 100)%."
+                    } else {
+                        feeStr += "Business accounts: 0%."
+                    }
                     return NSLocalizedString(feeStr, comment: "")
                 } else {
                     let feeStr = String(format: "A %@ convenience fee will be applied by Bill Matrix, our payment partner.", fee.currencyString!)
@@ -289,7 +295,7 @@ class PaymentViewModel {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
                 let feeStr = String(format: "Your payment includes a %@ convenience fee.",
-                                    (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? String(format: "%.2f%%", fee) : fee.currencyString!)
+                                    (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? "\(round(fee * 100) / 100)%" : fee.currencyString!)
                 return NSLocalizedString(feeStr, comment: "")
             }
         }
@@ -488,7 +494,7 @@ class PaymentViewModel {
     }
     
     lazy var convenienceFeeDisplayString: Driver<String> = self.convenienceFee.map {
-        return (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? String(format: "%.2f%%", $0) : $0.currencyString!
+        return (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? "\(round($0 * 100) / 100)%" : $0.currencyString!
     }
     
     lazy var shouldShowAutoPayEnrollButton: Driver<Bool> = self.accountDetail.asDriver().map {

@@ -194,9 +194,14 @@ extension MiniWalletViewController: UITableViewDataSource {
             var creditCardFeeString: String {
                 switch Environment.sharedInstance.opco {
                 case .bge:
-                    let feeString = "A convenience fee will be applied by Western Union Speedpay, our payment partner. " +
-                        "\nResidential accounts: " +  accountDetail.billingInfo.residentialFee!.currencyString! +
-                        ". Business accounts: " + String(format:"%.2f", accountDetail.billingInfo.commercialFee!) + "%."
+                    var feeString = "A convenience fee will be applied by Western Union Speedpay, our payment partner. " +
+                        "\nResidential accounts: " +  accountDetail.billingInfo.residentialFee!.currencyString! + ". "
+                    if let commercial = accountDetail.billingInfo.commercialFee {
+                        feeString += "Business accounts: \(round(commercial * 100) / 100)%"
+                    } else {
+                        feeString += "Business accounts: 0%"
+                    }
+                    
                     return NSLocalizedString(feeString, comment: "")
                 case .comEd, .peco:
                     let feeString = "A " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee will be applied by Bill Matrix, our payment partner."
