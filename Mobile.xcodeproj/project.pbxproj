@@ -911,6 +911,9 @@
 		E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCD1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8C4CDCE1E9FE21A00D66EC1 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
+		E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */; };
+		E8C6F29E1F1F995700C4644C /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8ED591F1430A100BE1B26 /* FiservErrorMapper.swift */; };
+		E8C6F29F1F1F996A00C4644C /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
 		E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
 		E8CA07DE1E9BD10000A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
 		E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
@@ -3909,14 +3912,17 @@
 				E8039FFE1EFB0427004DB789 /* OMCPaymentService.swift in Sources */,
 				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
 				82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */,
+				E8C6F29E1F1F995700C4644C /* FiservErrorMapper.swift in Sources */,
 				E841F3B61F030EE7007BFA82 /* BillingHistoryItem.swift in Sources */,
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E887C9D71ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
+				E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
 				B56DD49B1ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82D5994E1EC36B5500DDB380 /* Currency.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
+				E8C6F29F1F1F996A00C4644C /* WeatherAPI.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
 				225FF85D1EC56B480079010C /* Date.swift in Sources */,
 				E803A0071EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
