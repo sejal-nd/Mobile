@@ -98,8 +98,7 @@ class WalletTableViewCell: UITableViewCell {
         case .bge:
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                bottomBarLabel.text = NSLocalizedString("Fees: " + billingInfo.residentialFee!.currencyString! + " Residential | " +
-                    String(format:"%.2f%% Business", billingInfo.commercialFee!), comment: "")
+                bottomBarLabel.text = NSLocalizedString(billingInfo.convenienceFeeString(isComplete: false), comment: "")
                 a11yLabel = NSLocalizedString("Credit card", comment: "")
             } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")

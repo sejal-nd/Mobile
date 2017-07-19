@@ -1,5 +1,5 @@
 //
-//  BillHomeCard.swift
+//  TemplateCardViewModel.swift
 //  Mobile
 //
 //  Created by Dan Jorquera on 7/19/17.
