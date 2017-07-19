@@ -135,6 +135,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
     }
     
+    func showMaintenanceMode(){
+        LoadingView.hide()
+        
+        let maintenanceStoryboard = UIStoryboard(name: "Maintenance",bundle: nil)
+        if let vc = maintenanceStoryboard.instantiateInitialViewController(){
+            window?.rootViewController?.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     func resetNavigation(sendToLogin: Bool = false) {
         LoadingView.hide() // Just in case we left one stranded
         

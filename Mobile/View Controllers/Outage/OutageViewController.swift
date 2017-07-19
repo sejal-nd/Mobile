@@ -48,6 +48,9 @@ class OutageViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let ad = UIApplication.shared.delegate as! AppDelegate
+        ad.showMaintenanceMode()
+        
         title = NSLocalizedString("Outage", comment: "")
 
         gradientLayer = CAGradientLayer()
