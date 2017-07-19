@@ -30,7 +30,10 @@ class HomeViewModel {
         guard let temperature = $0?.temperature else { return nil }
         return "\(temperature)°"
     }
-    private(set) lazy var weatherIcon: Driver<UIImage?> = self.weatherItem.asDriver().map { $0?.icon }
+    private(set) lazy var weatherIcon: Driver<UIImage?> = self.weatherItem.asDriver().map { 
+        guard let iconName = $0?.iconName else { return nil }
+        return iconName != WeatherIconNames.UNKNOWN.rawValue ? UIImage(named: iconName) : nil 
+    }
     
     required init(accountService: AccountService, weatherService: WeatherService) {
         self.accountService = accountService

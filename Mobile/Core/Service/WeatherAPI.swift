@@ -15,7 +15,7 @@ let baseUrl = "https://api.weather.gov/"
 //added greeting to this so everything loads at the same time
 struct WeatherItemResult {
     let temperature: Int
-    let icon: UIImage
+    let iconName: String
 }
 
 private enum ResponseKey : String {
@@ -27,7 +27,7 @@ private enum ResponseKey : String {
 }
 
 //TODO: when swift is refactorable make this more readable 
-private enum WeatherIconNames: String { 
+enum WeatherIconNames: String { 
     case HOT = "hot"
     case COLD = "cold"
     case TS_WARN = "ts_warn"
@@ -65,6 +65,7 @@ private enum WeatherIconNames: String {
     case WIND_OVC = "wind_ovc"
     case SNOW = "snow"
     case BLIZZARD = "blizzard"
+    case UNKNOWN = "unknown"
 }
 
 extension WeatherIconNames {
@@ -131,144 +132,144 @@ struct WeatherAPI: WeatherService {
                 return nil 
         }
         
-        let icon = iconImage(iconString: iconString, isDaytime: isDaytime)
+        let iconNameString = iconName(iconString: iconString, isDaytime: isDaytime)
         
-        return WeatherItemResult(temperature: temp, icon: icon)
+        return WeatherItemResult(temperature: temp, iconName: iconNameString)
         
     }
     
-    private func iconImage(iconString: String, isDaytime: Bool) -> UIImage {
+    private func iconName(iconString: String, isDaytime: Bool) -> String {
         
         let iconName = WeatherIconNames.values.filter { iconString.contains($0.rawValue) }.first
         
         if let iconName = iconName {
             switch iconName.rawValue {
             case WeatherIconNames.HOT.rawValue:
-                return #imageLiteral(resourceName: "ic_hot")
+                return "ic_hot"
             case WeatherIconNames.COLD.rawValue:
-                return #imageLiteral(resourceName: "ic_cold")
+                return "ic_cold"
             case WeatherIconNames.TS_WARN.rawValue:
-                return #imageLiteral(resourceName: "ic_tropicalstorm")
+                return "ic_tropicalstorm"
             case WeatherIconNames.TS_WATCH.rawValue:
-                return #imageLiteral(resourceName: "ic_tropicalstorm")
+                return "ic_tropicalstorm"
             case WeatherIconNames.TS_HURR_WARN.rawValue:
-                return #imageLiteral(resourceName: "ic_tropicalstorm")
+                return "ic_tropicalstorm"
             case WeatherIconNames.HURR_WARN.rawValue:
-                return #imageLiteral(resourceName: "ic_hurricane")
+                return "ic_hurricane"
             case WeatherIconNames.HURR_WATCH.rawValue:
-                return #imageLiteral(resourceName: "ic_hurricane")
+                return "ic_hurricane"
             case WeatherIconNames.FOG.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_fog")
+                    return "ic_day_fog"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_fog")
+                    return "ic_nt_fog"
                 }
             case WeatherIconNames.HAZE.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_fog")
+                    return "ic_day_fog"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_fog")
+                    return "ic_nt_fog"
                 }
             case WeatherIconNames.SMOKE.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_fog")
+                    return "ic_day_fog"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_fog")
+                    return "ic_nt_fog"
                 }
             case WeatherIconNames.DUST.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_fog")
+                    return "ic_day_fog"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_fog")
+                    return "ic_nt_fog"
                 }
             case WeatherIconNames.SKC.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_clear")
+                    return "ic_day_clear"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_clear")
+                    return "ic_nt_clear"
                 }
             case WeatherIconNames.WIND_SKC.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_clear")
+                    return "ic_day_clear"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_clear")
+                    return "ic_nt_clear"
                 }
             case WeatherIconNames.BKN.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_mostlycloudy")
+                    return "ic_day_mostlycloudy"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_mostlycloudy")
+                    return "ic_nt_mostlycloudy"
                 }
             case WeatherIconNames.WIND_BKN.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_mostlycloudy")
+                    return "ic_day_mostlycloudy"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_mostlycloudy")
+                    return "ic_nt_mostlycloudy"
                 }
             case WeatherIconNames.FEW.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_partlycloudy")
+                    return "ic_day_partlycloudy"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_partlycloudy")
+                    return "ic_nt_partlycloudy"
                 }
             case WeatherIconNames.SCT.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_partlycloudy")
+                    return "ic_day_partlycloudy"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_partlycloudy")
+                    return "ic_nt_partlycloudy"
                 }
             case WeatherIconNames.WIND_FEW.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_partlycloudy")
+                    return "ic_day_partlycloudy"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_partlycloudy")
+                    return "ic_nt_partlycloudy"
                 }
             case WeatherIconNames.WIND_SCT.rawValue:
                 if isDaytime {
-                    return #imageLiteral(resourceName: "ic_day_partlycloudy")
+                    return "ic_day_partlycloudy"
                 } else {
-                    return #imageLiteral(resourceName: "ic_nt_partlycloudy")
+                    return "ic_nt_partlycloudy"
                 }
             case WeatherIconNames.TORNADO.rawValue:
-                return #imageLiteral(resourceName: "ic_tornado")
+                return "ic_tornado"
             case WeatherIconNames.RAIN.rawValue:
-                return #imageLiteral(resourceName: "ic_rain")
+                return "ic_rain"
             case WeatherIconNames.RAIN_SHOWERS.rawValue:
-                return #imageLiteral(resourceName: "ic_rain")
+                return "ic_rain"
             case WeatherIconNames.RAIN_SHOWERS_HI.rawValue:
-                return #imageLiteral(resourceName: "ic_rain")
+                return "ic_rain"
             case WeatherIconNames.RAIN_SLEET.rawValue:
-                return #imageLiteral(resourceName: "ic_rain")
+                return "ic_rain"
             case WeatherIconNames.RAIN_FZRA.rawValue:
-                return #imageLiteral(resourceName: "ic_rain")
+                return "ic_rain"
             case WeatherIconNames.SNOW_SLEET.rawValue:
-                return #imageLiteral(resourceName: "ic_sleet")
+                return "ic_sleet"
             case WeatherIconNames.FZRA.rawValue:
-                return #imageLiteral(resourceName: "ic_sleet")
+                return "ic_sleet"
             case WeatherIconNames.RAIN_SNOW.rawValue:
-                return #imageLiteral(resourceName: "ic_sleet")
+                return "ic_sleet"
             case WeatherIconNames.SNOW_FZRA.rawValue:
-                return #imageLiteral(resourceName: "ic_sleet")
+                return "ic_sleet"
             case WeatherIconNames.SLEET.rawValue:
-                return #imageLiteral(resourceName: "ic_sleet")
+                return "ic_sleet"
             case WeatherIconNames.TSRA.rawValue:
-                return #imageLiteral(resourceName: "ic_tstorms")
+                return "ic_tstorms"
             case WeatherIconNames.TSRA_SCT.rawValue:
-                return #imageLiteral(resourceName: "ic_tstorms")
+                return "ic_tstorms"
             case WeatherIconNames.TSRA_HI.rawValue:
-                return #imageLiteral(resourceName: "ic_tstorms")
+                return "ic_tstorms"
             case WeatherIconNames.OVC.rawValue:
-                return #imageLiteral(resourceName: "ic_cloudy")
+                return "ic_cloudy"
             case WeatherIconNames.WIND_OVC.rawValue:
-                return #imageLiteral(resourceName: "ic_cloudy")
+                return "ic_cloudy"
             case WeatherIconNames.SNOW.rawValue:
-                return #imageLiteral(resourceName: "ic_snow")
+                return "ic_snow"
             case WeatherIconNames.BLIZZARD.rawValue:
-                return #imageLiteral(resourceName: "ic_snow")
+                return "ic_snow"
             default:
-                return UIImage()
+                return WeatherIconNames.UNKNOWN.rawValue
             }
         }
-        return UIImage()
+        return WeatherIconNames.UNKNOWN.rawValue
     }
 }
