@@ -10,6 +10,6 @@
 import RxSwift
 import RxCocoa
 
-class HomeBillCardViewModel {
+class TemplateCardViewModel {
     
 }

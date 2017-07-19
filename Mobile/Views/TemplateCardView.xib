@@ -11,11 +11,54 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TemplateCardView" customModule="BGE" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="366" height="440"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NHJ-XG-xSz">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ways to Save" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhm-qC-Elk">
+                    <rect key="frame" x="16" y="213" width="247" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <color key="textColor" red="0.13695448637008667" green="0.12190086394548416" blue="0.12551042437553406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weD-2h-BRE">
+                    <rect key="frame" x="133" y="388" width="109" height="34"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <state key="normal" title="Learn More">
+                        <color key="titleColor" red="0.032299015671014786" green="0.3424241840839386" blue="0.65145665407180786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Save energy and money by taking advantage of solutions and tools for your home." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oy3-8x-Exf">
+                    <rect key="frame" x="16" y="239" width="343" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.45093852281570435" green="0.45100712776184082" blue="0.45092350244522095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="weD-2h-BRE" secondAttribute="bottom" constant="18" id="0JI-KS-85u"/>
+                <constraint firstItem="Hhm-qC-Elk" firstAttribute="top" secondItem="NHJ-XG-xSz" secondAttribute="bottom" constant="8" id="DoI-Pl-eI2"/>
+                <constraint firstItem="Oy3-8x-Exf" firstAttribute="top" secondItem="Hhm-qC-Elk" secondAttribute="bottom" constant="10" id="rLW-fd-Mkl"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bodyLabel" destination="Oy3-8x-Exf" id="QQu-ic-mOV"/>
+                <outlet property="callToActionButton" destination="weD-2h-BRE" id="zwU-Ds-LWS"/>
+                <outlet property="imageView" destination="NHJ-XG-xSz" id="ngC-cR-hmA"/>
+                <outlet property="titleLabel" destination="Hhm-qC-Elk" id="wra-cn-TCU"/>
+            </connections>
+            <point key="canvasLocation" x="31" y="-64"/>
         </view>
+        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="WdS-kM-GCC">
+            <rect key="frame" x="0.0" y="0.0" width="97" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <nil key="textColor"/>
+            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+            <textInputTraits key="textInputTraits"/>
+        </textField>
     </objects>
 </document>
