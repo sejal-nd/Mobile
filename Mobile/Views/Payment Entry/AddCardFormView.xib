@@ -15,7 +15,23 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddCardFormView" customModule="BGE" customModuleProvider="target">
             <connections>
+                <outlet property="cardIOButton" destination="Ckd-So-G6Z" id="TzW-f2-z0h"/>
+                <outlet property="cardLogoImageView" destination="CEX-bi-tO6" id="yew-cM-mUK"/>
+                <outlet property="cardNumberTextField" destination="jH3-TE-BZh" id="udg-Af-4ct"/>
+                <outlet property="cvvTextField" destination="cVS-yv-NzF" id="zZx-Cx-R7n"/>
+                <outlet property="cvvTooltipButton" destination="Fqf-fs-UTH" id="Cq7-3w-8gl"/>
+                <outlet property="expDateLabel" destination="aZw-2E-5Jx" id="efV-Ol-GBJ"/>
+                <outlet property="expMonthTextField" destination="v0b-el-Kxw" id="29R-F3-JMc"/>
+                <outlet property="expYearTextField" destination="khG-s2-840" id="w57-1T-ESm"/>
+                <outlet property="footnoteLabel" destination="dSc-CP-IE9" id="dNE-DG-JG4"/>
+                <outlet property="nameOnCardTextField" destination="038-hW-4hn" id="VgS-92-aMl"/>
+                <outlet property="nicknameTextField" destination="bIB-Jm-Flu" id="uj8-pm-2vN"/>
+                <outlet property="oneTouchPayDescriptionLabel" destination="3Yp-DR-Zk8" id="GoK-0g-aAs"/>
+                <outlet property="oneTouchPayLabel" destination="m8l-D9-9Ct" id="efb-Le-Qhv"/>
+                <outlet property="oneTouchPaySwitch" destination="Ifa-US-KMn" id="mhm-1t-axw"/>
+                <outlet property="oneTouchPayView" destination="pJq-aU-YbT" id="mKl-Jr-7Yc"/>
                 <outlet property="view" destination="iN0-l3-epB" id="sje-VL-4BY"/>
+                <outlet property="zipCodeTextField" destination="Oxa-yP-ppg" id="Cji-Lr-8NE"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -73,6 +89,9 @@
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                     <state key="normal" image="ic_camera"/>
+                                    <connections>
+                                        <action selector="onCardIOButtonPress" destination="-1" eventType="touchUpInside" id="JYx-fz-aEa"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -147,6 +166,9 @@
                                         <constraint firstAttribute="width" constant="51" id="zhe-C8-JGR"/>
                                     </constraints>
                                     <state key="normal" image="ic_question"/>
+                                    <connections>
+                                        <action selector="onCVVTooltipPress" destination="-1" eventType="touchUpInside" id="sez-qn-Tga"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oxa-yP-ppg" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                     <rect key="frame" x="141" y="0.0" width="172" height="60"/>
@@ -241,7 +263,7 @@
                     </constraints>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="UYS-sq-qZi" secondAttribute="trailing" id="6hW-FH-b3z"/>
                 <constraint firstAttribute="bottom" secondItem="UYS-sq-qZi" secondAttribute="bottom" id="Gys-XP-Tye"/>

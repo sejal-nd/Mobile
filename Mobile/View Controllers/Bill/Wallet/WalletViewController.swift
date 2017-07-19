@@ -171,8 +171,8 @@ class WalletViewController: UIViewController {
             vc.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
         } else if let vc = segue.destination as? AddCreditCardViewController {
-            vc.viewModel.accountDetail = viewModel.accountDetail
-            vc.viewModel.oneTouchPayItem = oneTouchPayItem
+            vc.accountDetail = viewModel.accountDetail
+            vc.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
         } else if let vc = segue.destination as? EditBankAccountViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail

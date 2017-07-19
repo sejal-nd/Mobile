@@ -17,7 +17,6 @@ class AddBankAccountViewModel {
     let addBankFormViewModel: AddBankFormViewModel!
     
     var accountDetail: AccountDetail! // Passed from WalletViewController
-    
     var oneTouchPayItem: WalletItem!
     
     required init(walletService: WalletService, addBankFormViewModel: AddBankFormViewModel) {

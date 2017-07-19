@@ -111,11 +111,16 @@ class MiniWalletViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let oneTouchPayItem = viewModel.walletItems.value?.first(where: { $0.isDefault == true })
+        
         if let vc = segue.destination as? AddBankAccountViewController {
-            vc.viewModel.accountDetail = accountDetail
+            vc.accountDetail = accountDetail
+            vc.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
         } else if let vc = segue.destination as? AddCreditCardViewController {
-            vc.viewModel.accountDetail = accountDetail
+            vc.accountDetail = accountDetail
+            vc.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
         }
     }

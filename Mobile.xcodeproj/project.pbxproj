@@ -929,6 +929,11 @@
 		E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */; };
 		E8C6F29E1F1F995700C4644C /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8ED591F1430A100BE1B26 /* FiservErrorMapper.swift */; };
 		E8C6F29F1F1F996A00C4644C /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
+		E8C6F2A11F1FD37800C4644C /* AddCardFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F2A01F1FD37800C4644C /* AddCardFormViewModel.swift */; };
+		E8C6F2A21F1FD37800C4644C /* AddCardFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F2A01F1FD37800C4644C /* AddCardFormViewModel.swift */; };
+		E8C6F2A31F1FD37800C4644C /* AddCardFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F2A01F1FD37800C4644C /* AddCardFormViewModel.swift */; };
+		E8C6F2A41F1FEB6A00C4644C /* AddCardFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F2A01F1FD37800C4644C /* AddCardFormViewModel.swift */; };
+		E8C6F2A51F1FEB7300C4644C /* AddBankFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */; };
 		E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
 		E8CA07DE1E9BD10000A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
 		E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
@@ -1464,6 +1469,7 @@
 		E8C4532A1EF435F700F5C781 /* MiniWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniWalletViewController.swift; sourceTree = "<group>"; };
 		E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayChangeBankViewController.swift; sourceTree = "<group>"; };
 		E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDTSimpleCalendar.framework; path = Carthage/Build/iOS/PDTSimpleCalendar.framework; sourceTree = "<group>"; };
+		E8C6F2A01F1FD37800C4644C /* AddCardFormViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardFormViewModel.swift; sourceTree = "<group>"; };
 		E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameResultViewController.swift; sourceTree = "<group>"; };
 		E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
 		E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableFormSheetViewController.swift; sourceTree = "<group>"; };
@@ -1639,6 +1645,7 @@
 				01F612281F1E406100A4F9DA /* AddBankFormView.swift */,
 				01F6121C1F1E400E00A4F9DA /* AddCardFormView.swift */,
 				01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */,
+				E8C6F2A01F1FD37800C4644C /* AddCardFormViewModel.swift */,
 				01F612241F1E404F00A4F9DA /* AddBankFormView.xib */,
 				01F612201F1E401900A4F9DA /* AddCardFormView.xib */,
 			);
@@ -3442,6 +3449,7 @@
 				E863346B1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				2FEC69411F056EEB00C059DC /* Premise.swift in Sources */,
+				E8C6F2A11F1FD37800C4644C /* AddCardFormViewModel.swift in Sources */,
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
@@ -3643,6 +3651,7 @@
 				2FA7B9FC1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				E876A8581ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
+				E8C6F2A31F1FD37800C4644C /* AddCardFormViewModel.swift in Sources */,
 				E88B8DA31F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
 				54C1DEFE1F02B8FC00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				82BE05811ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
@@ -3844,6 +3853,7 @@
 				2FA7B9FB1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				E876A8571ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
+				E8C6F2A21F1FD37800C4644C /* AddCardFormViewModel.swift in Sources */,
 				E88B8DA21F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
 				54C1DEFD1F02B8FB00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
@@ -3910,6 +3920,7 @@
 				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
 				E81F38161ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
+				E8C6F2A51F1FEB7300C4644C /* AddBankFormViewModel.swift in Sources */,
 				54EDD2DD1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				E895E9B11EBB84B4003B38A1 /* OutageViewModel.swift in Sources */,
@@ -3976,6 +3987,7 @@
 				E803A0071EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E8039FFB1EFB0421004DB789 /* PaymentService.swift in Sources */,
 				E895E9B01EBB849A003B38A1 /* ChangePasswordViewModel.swift in Sources */,
+				E8C6F2A41F1FEB6A00C4644C /* AddCardFormViewModel.swift in Sources */,
 				B574BADC1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E895E9AE1EBB8489003B38A1 /* ForgotPasswordViewModel.swift in Sources */,
 				E86DE4BA1F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
