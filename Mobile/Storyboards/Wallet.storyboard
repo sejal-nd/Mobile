@@ -870,6 +870,7 @@
                         <outlet property="stickyPaymentFooterFeeLabel" destination="xob-SH-3xm" id="0vc-fw-km2"/>
                         <outlet property="stickyPaymentFooterHeightConstraint" destination="8uW-KE-qC1" id="Oo1-fh-UJP"/>
                         <outlet property="stickyPaymentFooterPaymentLabel" destination="I4K-sd-n9y" id="9Vt-o1-T7h"/>
+                        <outlet property="stickyPaymentFooterTextContainer" destination="O8E-zj-eG1" id="WDD-kF-BhL"/>
                         <outlet property="stickyPaymentFooterView" destination="7pY-iO-15B" id="u79-9q-rU0"/>
                         <outlet property="walletFooterLabel" destination="nwL-lz-EHV" id="7zv-Bf-jSe"/>
                         <outlet property="walletFooterSpacerView" destination="k1P-tS-Dpk" id="GzB-8X-2Mc"/>

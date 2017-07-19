@@ -126,7 +126,7 @@ class AccountPicker: UIView {
     }
     
     private func addAccountToScrollView(_ account: Account, advancedPicker: Bool = false) {
-        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
+        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
         
         let pageView = UIView(frame: .zero)
         pageViews.append(pageView)

@@ -33,7 +33,7 @@ class AccountPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && Environment.sharedInstance.opco != .bge
+        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
         
         containerView = UIView(frame: CGRect(x: 0, y: -60, width: UIScreen.main.bounds.size.width, height: 60))
         containerView.backgroundColor = .white
