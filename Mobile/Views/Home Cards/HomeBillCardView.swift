@@ -29,6 +29,16 @@ class HomeBillCardView: UIView {
         }
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        styleViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        styleViews()
+    }
+    
     static func create(withViewModel viewModel: HomeBillCardViewModel) -> HomeBillCardView {
         let view = Bundle.main.loadViewFromNib() as HomeBillCardView
         view.styleViews()
@@ -37,7 +47,9 @@ class HomeBillCardView: UIView {
     }
     
     private func styleViews() {
-        // set fonts, colors, etc. that aren't dependent on data
+        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        
+        
     }
     
     private func bindViewModel() {
