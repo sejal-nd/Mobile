@@ -79,7 +79,7 @@
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" image="ic_day_clear" translatesAutoresizingMaskIntoConstraints="NO" id="aXQ-xP-rVE">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" image="ic_day_clear" translatesAutoresizingMaskIntoConstraints="NO" id="aXQ-xP-rVE">
                                                                 <rect key="frame" x="309" y="0.0" width="80" height="100"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="100" id="KcV-8v-l6L"/>
