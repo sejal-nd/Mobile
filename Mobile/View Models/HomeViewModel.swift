@@ -22,8 +22,10 @@ class HomeViewModel {
     let isFetchingAccountDetail: Driver<Bool>
     let accountDetailErrorMessage: Driver<String>
     
+    private let greetingVariable = Variable<String?>(nil)
+    
     private let weatherItem = Variable<WeatherItemResult?>(nil)
-    private(set) lazy var greeting: Driver<String?> = self.weatherItem.asDriver().map { $0?.greeting }
+    private(set) lazy var greeting: Driver<String?> = self.greetingVariable.asDriver()
     private(set) lazy var weatherTemp: Driver<String?> = self.weatherItem.asDriver().map {
         guard let temperature = $0?.temperature else { return nil }
         return "\(temperature)°"
@@ -59,9 +61,22 @@ class HomeViewModel {
             .addDisposableTo(disposeBag)
         
         //bind this to fetchAccountDetailRequest to ensure address is available on sign in/keep me logged in
-        fetchAccountDetailResult.elements().map { $0.address ?? "" }
+        let weatherResult = fetchAccountDetailResult.elements().map { $0.address ?? "" }
         .flatMap(weatherService.fetchWeather)
+            .materialize()
+            
+        weatherResult.elements()
         .bind(to: weatherItem)
+        .addDisposableTo(disposeBag)
+        
+        weatherResult.errors()
+            .map { _ in Date().localizedGreeting }
+        .bind(to: greetingVariable)
+        .addDisposableTo(disposeBag)
+        
+        weatherItem.asObservable()
+            .map {_ in Date().localizedGreeting }
+        .bind(to: greetingVariable)
         .addDisposableTo(disposeBag)
         
         accountDetailErrorMessage = fetchAccountDetailResult.errors()

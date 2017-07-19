@@ -14,7 +14,6 @@ let baseUrl = "https://api.weather.gov/"
 
 //added greeting to this so everything loads at the same time
 struct WeatherItemResult {
-    let greeting: String
     let temperature: Int
     let icon: UIImage
 }
@@ -24,6 +23,46 @@ private enum ResponseKey : String {
     case Periods = "periods"
     case Temperature = "temperature"
     case Icon = "icon"
+}
+
+private enum weatherIcons: String { 
+    case HOT = "hot"
+    case COLD = "cold"
+    case TS_WARN = "ts_warn"
+    case TS_WATCH = "ts_watch"
+    case TS_HURR_WARN = "ts_hurr_warn" 
+    case HURR_WARN = "hurr_warn" 
+    case HURR_WATCH = "hurr_watch"
+    case FOG = "fog"
+    case HAZE = "haze"
+    case SMOKE = "smoke"
+    case DUST = "dust"
+    case SKC = "skc"
+    case WIND_SKC = "wind_skc"
+    case BKN = "bkn"
+    case WIND_BKN = "wind_bkn"
+    case FEW = "few"
+    case SCT = "sct"
+    case WIND_FEW = "wind_few"
+    case WIND_SCT = "wind_sct"
+    case TORNADO = "tornado"
+    case RAIN = "rain"
+    case RAIN_SHOWERS = "rain_showers"
+    case RAIN_SHOWERS_HI = "rain_showers_hi"
+    case RAIN_SLEET = "rain_sleet"
+    case RAIN_FZRA = "rain_fzra"
+    case TORNADO = "tornado"
+    case TORNADO = "tornado"
+    case TORNADO = "tornado"
+    case TORNADO = "tornado"
+    case TORNADO = "tornado"
+    case TORNADO = "tornado"
+    case TORNADO = "tornado"
+    case TORNADO = "tornado"
+    case TORNADO = "tornado"
+    case TORNADO = "tornado"
+    case TORNADO = "tornado"
+    case TORNADO = "tornado"
 }
 
 struct WeatherAPI: WeatherService { 
@@ -86,10 +125,9 @@ struct WeatherAPI: WeatherService {
                 return nil 
         }
         
-        let greeting = Date().localizedGreeting
         let icon = iconImage(iconString: iconString)
         
-        return WeatherItemResult(greeting: greeting, temperature: temp, icon: icon)
+        return WeatherItemResult(temperature: temp, icon: icon)
         
     }
     
