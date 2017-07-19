@@ -65,6 +65,7 @@ class MakePaymentViewController: UIViewController {
     
     @IBOutlet weak var stickyPaymentFooterHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var stickyPaymentFooterView: UIView!
+    @IBOutlet weak var stickyPaymentFooterTextContainer: UIView!
     @IBOutlet weak var stickyPaymentFooterPaymentLabel: UILabel!
     @IBOutlet weak var stickyPaymentFooterFeeLabel: UILabel!
 
@@ -74,7 +75,7 @@ class MakePaymentViewController: UIViewController {
     var nextButton = UIBarButtonItem()
     
     lazy var viewModel: PaymentViewModel = {
-        PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), oneTouchPayService: ServiceFactory.createOneTouchPayService(), accountDetail: self.accountDetail)
+        PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail)
     }()
     
     override func viewDidLoad() {
@@ -182,10 +183,8 @@ class MakePaymentViewController: UIViewController {
             addCreditCardFeeLabel.text = NSLocalizedString("Your payment includes a " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee.", comment: "")
             break
         case .bge:
-            var feeString = "Your payment includes a "
-            feeString += accountDetail.isResidential ?
-                accountDetail.billingInfo.residentialFee!.currencyString! : String(format:"%.2f%%", accountDetail.billingInfo.commercialFee!)
-            feeString += " convenience fee."
+            let feeString = String(format: "Your payment includes a %@ convenience fee. ", accountDetail.isResidential ?
+                accountDetail.billingInfo.residentialFee!.currencyString! : accountDetail.billingInfo.commercialFee!.percentString!)
             addCreditCardFeeLabel.text = NSLocalizedString(feeString, comment: "")
             break
         }
@@ -252,7 +251,7 @@ class MakePaymentViewController: UIViewController {
     
     func bindViewHiding() {
         // Loading
-        viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).addDisposableTo(disposeBag)
         
@@ -291,7 +290,8 @@ class MakePaymentViewController: UIViewController {
         // Sticky Footer
         viewModel.shouldShowStickyFooterView.drive(onNext: { shouldShow in
             self.stickyPaymentFooterHeightConstraint.constant = shouldShow ? 80 : 0
-            self.stickyPaymentFooterView.isHidden = !shouldShow
+            // For some reason, just hiding stickyPaymentFooterView was not enough to hide the label...
+            self.stickyPaymentFooterTextContainer.isHidden = !shouldShow
         }).addDisposableTo(disposeBag)
     }
     
@@ -447,7 +447,12 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
         } else {
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
-                return date >= today && date <= startOfDueDate
+                if Environment.sharedInstance.opco == .peco {
+                    let isInWorkdaysArray = viewModel.workdayArray.contains(date)
+                    return date >= today && date <= startOfDueDate && isInWorkdaysArray
+                } else {
+                    return date >= today && date <= startOfDueDate
+                }
             }
         }
         

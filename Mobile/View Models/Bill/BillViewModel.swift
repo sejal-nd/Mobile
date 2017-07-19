@@ -165,8 +165,8 @@ class BillViewModel {
     
     lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map { _ in
         return false // Bill Analysis will be Release 2
-//        guard let isAMICustomer = $0?.isAMICustomer else { return false }
-//        return !UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && !isAMICustomer
+//        guard let accountDetail = $0 else { return false }
+//        return accountDetail.isResidential && !accountDetail.isAMICustomer
     }
     
     lazy var shouldEnableMakeAPaymentButton: Driver<Bool> = self.currentAccountDetail.asDriver().map {
@@ -180,7 +180,7 @@ class BillViewModel {
     
     lazy var shouldShowPaperless: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return false }
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
+        if !accountDetail.isResidential && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
             return true
         }
         
@@ -496,7 +496,7 @@ class BillViewModel {
     
     lazy var paperlessButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return nil }
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser) && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
+        if !accountDetail.isResidential && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
             return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
         }
         

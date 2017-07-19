@@ -93,6 +93,30 @@ protocol WalletService {
     ///       that is provided will contain nothing on success, or a ServiceError on failure.
     func deletePaymentMethod(_ walletItem : WalletItem,
                              completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    
+    /// Set a wallet item as the default/OneTouch payment method.
+    ///
+    /// - Parameters:
+    ///   - walletItemId: the wallet item id to set
+    ///   - walletId: the wallet id
+    ///   - customerId: the custom number
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain nothing on success or a ServiceError on failure.
+    func setOneTouchPayItem(walletItemId: String,
+                            walletId: String?,
+                            customerId: String,
+                            completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    
+    /// Disable OneTouch Payment
+    ///
+    /// - Parameters:
+    ///   - customerId: the customer number to disable one touch
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain nothing on success or a ServiceError on failure.
+    func removeOneTouchPayItem(customerId: String,
+                               completion: @escaping (_ result: ServiceResult<Void>) -> Void)
 }
 
 
@@ -248,4 +272,41 @@ extension WalletService {
             return Disposables.create()
         }
     }
+    
+    func setOneTouchPayItem(walletItemId: String,
+                            walletId: String?,
+                            customerId: String) -> Observable<Void> {
+        return Observable.create { observer in
+            self.setOneTouchPayItem(walletItemId: walletItemId, walletId: walletId, customerId: customerId, completion: { (result: ServiceResult<Void>) in
+                switch (result) {
+                case ServiceResult.Success:
+                    observer.onNext()
+                    observer.onCompleted()
+                    
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            
+            return Disposables.create()
+        }
+    }
+    
+    func removeOneTouchPayItem(customerId: String) -> Observable<Void> {
+        return Observable.create { observer in
+            self.removeOneTouchPayItem(customerId: customerId, completion: { (result: ServiceResult<Void>) in
+                switch (result) {
+                case ServiceResult.Success:
+                    observer.onNext()
+                    observer.onCompleted()
+                    
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            
+            return Disposables.create()
+        }
+    }
+    
 }
