@@ -150,6 +150,28 @@ class PaymentViewModel {
             }).addDisposableTo(disposeBag)
     }
     
+    // MARK: - Shared Drivers
+    
+    var bankWorkflow: Driver<Bool> {
+        return Driver.combineLatest(selectedWalletItem.asDriver(), inlineBank.asDriver()).map {
+            if let walletItem = $0 {
+                return walletItem.bankOrCard == .bank
+            } else {
+                return $1
+            }
+        }
+    }
+    
+    var cardWorkflow: Driver<Bool> {
+        return Driver.combineLatest(selectedWalletItem.asDriver(), inlineCard.asDriver()).map {
+            if let walletItem = $0 {
+                return walletItem.bankOrCard == .card
+            } else {
+                return $1
+            }
+        }
+    }
+    
     // MARK: - Make Payment Drivers
     
     var makePaymentNextButtonEnabled: Driver<Bool> {
@@ -190,8 +212,13 @@ class PaymentViewModel {
         }
     }
     
-    lazy var shouldShowPaymentAccountView: Driver<Bool> = self.selectedWalletItem.asDriver().map {
-        return $0 != nil
+    var shouldShowPaymentAccountView: Driver<Bool> {
+        return Driver.combineLatest(selectedWalletItem.asDriver(), inlineBank.asDriver(), inlineCard.asDriver()).map {
+            if $1 || $2 {
+                return false
+            }
+            return $0 != nil
+        }
     }
     
     lazy var hasWalletItems: Driver<Bool> = self.walletItems.asDriver().map {
@@ -217,13 +244,12 @@ class PaymentViewModel {
     }
     
     var paymentAmountErrorMessage: Driver<String?> {
-        return Driver.combineLatest(selectedWalletItem.asDriver(), accountDetail.asDriver(), paymentAmount.asDriver().map { Double($0) }, amountDue.asDriver()).map { (walletItem, accountDetail, paymentAmount, amountDue) -> String? in
-            guard let walletItem: WalletItem = walletItem else { return nil }
+        return Driver.combineLatest(bankWorkflow, cardWorkflow, accountDetail.asDriver(), paymentAmount.asDriver().map { Double($0) }, amountDue.asDriver()).map { (bankWorkflow, cardWorkflow, accountDetail, paymentAmount, amountDue) -> String? in
             guard let paymentAmount: Double = paymentAmount else { return nil }
             
             let commercialUser = !accountDetail.isResidential
             
-            if walletItem.bankOrCard == .bank {
+            if bankWorkflow {
                 if Environment.sharedInstance.opco == .bge {
                     // BGE BANK
                     let minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 0.01
@@ -245,7 +271,7 @@ class PaymentViewModel {
                         return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 }
-            } else {
+            } else if cardWorkflow {
                 if Environment.sharedInstance.opco == .bge {
                     // BGE CREDIT CARD
                     let minPayment = accountDetail.billingInfo.minPaymentAmount ?? 0.01
@@ -273,11 +299,10 @@ class PaymentViewModel {
     }
     
     var paymentAmountFeeLabelText: Driver<String> {
-        return Driver.combineLatest(selectedWalletItem.asDriver(), convenienceFee).map { (walletItem, fee) -> String in
-            guard let walletItem = walletItem else { return "" }
-            if walletItem.bankOrCard == .bank {
+        return Driver.combineLatest(bankWorkflow, cardWorkflow, convenienceFee).map { (bankWorkflow, cardWorkflow, fee) -> String in
+            if bankWorkflow {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
-            } else {
+            } else if cardWorkflow {
                 if Environment.sharedInstance.opco == .bge {
                     return NSLocalizedString(self.accountDetail.value.billingInfo.convenienceFeeString(isComplete: true), comment: "")
                 } else {
@@ -285,19 +310,20 @@ class PaymentViewModel {
                     return NSLocalizedString(feeStr, comment: "")
                 }
             }
+            return ""
         }
     }
     
     var paymentAmountFeeFooterLabelText: Driver<String> {
-        return Driver.combineLatest(selectedWalletItem.asDriver(), convenienceFee).map { (walletItem, fee) -> String in
-            guard let walletItem = walletItem else { return "" }
-            if walletItem.bankOrCard == .bank {
+        return Driver.combineLatest(bankWorkflow, cardWorkflow, convenienceFee).map { (bankWorkflow, cardWorkflow, fee) -> String in
+            if bankWorkflow {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
-            } else {
+            } else if cardWorkflow {
                 let feeStr = String(format: "Your payment includes a %@ convenience fee.",
                                     (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? fee.percentString! : fee.currencyString!)
                 return NSLocalizedString(feeStr, comment: "")
             }
+            return ""
         }
     }
     
@@ -367,11 +393,9 @@ class PaymentViewModel {
     }
     
     var isFixedPaymentDate: Driver<Bool> {
-        return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
-            if let walletItem = $1 {
-                if walletItem.bankOrCard == .card {
-                    return true
-                }
+        return Driver.combineLatest(accountDetail.asDriver(), cardWorkflow).map {
+            if $1 {
+                return true
             }
             
             if self.fixedPaymentDateLogic {
@@ -407,22 +431,18 @@ class PaymentViewModel {
     }
     
     var paymentDateString: Driver<String> {
-        return Driver.combineLatest(paymentDate.asDriver(), selectedWalletItem.asDriver()).map {
-            if let walletItem = $1 {
-                if walletItem.bankOrCard == .card {
-                    let startOfTodayDate = Calendar.current.startOfDay(for: Date())
-                    return startOfTodayDate.mmDdYyyyString
-                }
+        return Driver.combineLatest(paymentDate.asDriver(), cardWorkflow).map {
+            if $1 {
+                let startOfTodayDate = Calendar.current.startOfDay(for: Date())
+                return startOfTodayDate.mmDdYyyyString
             }
             return $0.mmDdYyyyString
         }
     }
     
-    lazy var shouldShowBillMatrixView: Driver<Bool> = self.selectedWalletItem.asDriver().map {
-        if let walletItem = $0 {
-            if Environment.sharedInstance.opco != .bge && walletItem.bankOrCard == .card {
-                return true
-            }
+    lazy var shouldShowBillMatrixView: Driver<Bool> = self.cardWorkflow.map {
+        if Environment.sharedInstance.opco != .bge && $0 {
+            return true
         }
         return false
     }
@@ -459,9 +479,8 @@ class PaymentViewModel {
         }
     }
     
-    lazy var reviewPaymentShouldShowConvenienceFeeBox: Driver<Bool> = self.selectedWalletItem.asDriver().map {
-        guard let walletItem: WalletItem = $0 else { return false }
-        return walletItem.bankOrCard == .card
+    lazy var reviewPaymentShouldShowConvenienceFeeBox: Driver<Bool> = self.cardWorkflow.map {
+        return $0
     }
     
     var isOverpaying: Driver<Bool> {
@@ -476,10 +495,9 @@ class PaymentViewModel {
         }
     }
     
-    lazy var shouldShowTermsConditionsSwitchView: Driver<Bool> = self.selectedWalletItem.asDriver().map {
-        guard let walletItem: WalletItem = $0 else { return false }
+    lazy var shouldShowTermsConditionsSwitchView: Driver<Bool> = self.cardWorkflow.map {
         if Environment.sharedInstance.opco == .bge { // On BGE, Speedpay is only for credit cards
-            return walletItem.bankOrCard == .card
+            return $0
         } else { // On ComEd/PECO, it's always shown for the terms and conditions agreement
             return true
         }
@@ -521,18 +539,12 @@ class PaymentViewModel {
     
     // MARK: - Payment Confirmation
     
-    lazy var shouldShowConvenienceFeeLabel: Driver<Bool> = self.selectedWalletItem.asDriver().map {
-        if let walletItem = $0 {
-            if walletItem.bankOrCard == .card {
-                return true
-            }
-        }
-        return false
+    lazy var shouldShowConvenienceFeeLabel: Driver<Bool> = self.cardWorkflow.asDriver().map {
+        return $0
     }
     
     
     // MARK: - Random functions
-    
     
     func formatPaymentAmount() {
         let components = paymentAmount.value.components(separatedBy: ".")

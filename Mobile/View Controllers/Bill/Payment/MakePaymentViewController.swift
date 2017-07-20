@@ -15,7 +15,9 @@ class MakePaymentViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var addBankContainerView: UIView!
     @IBOutlet weak var addBankFormView: AddBankFormView!
+    @IBOutlet weak var addCardContainerView: UIView!
     @IBOutlet weak var addCardFormView: AddCardFormView!
     @IBOutlet weak var inlinePaymentDividerLine: UIView!
     
@@ -260,8 +262,8 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).addDisposableTo(disposeBag)
         
         // Inline Bank/Card
-        viewModel.inlineBank.asDriver().map(!).drive(addBankFormView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.inlineCard.asDriver().map(!).drive(addCardFormView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.inlineBank.asDriver().map(!).drive(addBankContainerView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.inlineCard.asDriver().map(!).drive(addCardContainerView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowInlinePaymentDivider.map(!).drive(inlinePaymentDividerLine.rx.isHidden).addDisposableTo(disposeBag)
         
         // Active Severance Label
@@ -346,7 +348,7 @@ class MakePaymentViewController: UIViewController {
             miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
             miniWalletVC.viewModel.selectedItem.value = self.viewModel.selectedWalletItem.value
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
-            miniWalletVC.addingDisabled = true
+            miniWalletVC.sentFromPayment = true
             miniWalletVC.delegate = self
             self.navigationController?.pushViewController(miniWalletVC, animated: true)
         }).addDisposableTo(disposeBag)
@@ -445,6 +447,14 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
         viewModel.selectedWalletItem.value = walletItem
+    }
+    
+    func miniWalletViewControllerDidTapAddBank(_ miniWalletViewController: MiniWalletViewController) {
+        viewModel.inlineBank.value = true
+    }
+    
+    func miniWalletViewControllerDidTapAddCard(_ miniWalletViewController: MiniWalletViewController) {
+        viewModel.inlineCard.value = true
     }
 }
 
