@@ -88,6 +88,14 @@ class MiniWalletViewModel {
         return cards
     }
     
+    func getTableFooterLabel() -> String {
+        if Environment.sharedInstance.opco == .bge {
+            return "We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA."
+        } else {
+            return "Up to three payment accounts for credit cards and bank accoutns may be saved. We accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, OR ACCEL logo. American Express is not accepted at this time."
+        }
+    }
+    
     lazy var creditCardLimitReached: Driver<Bool> = self.walletItems.asDriver().map {
         if Environment.sharedInstance.opco == .bge { return false } // No limit for BGE
         
