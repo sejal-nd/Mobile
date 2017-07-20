@@ -319,7 +319,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="zVb-NP-XFC" secondAttribute="bottom" priority="999" id="7ip-hs-98M"/>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="GgU-or-BOj"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="518" id="GgU-or-BOj"/>
                                                     <constraint firstItem="zVb-NP-XFC" firstAttribute="leading" secondItem="vJF-bC-ypb" secondAttribute="leading" id="QUJ-LH-eT2"/>
                                                     <constraint firstItem="zVb-NP-XFC" firstAttribute="top" secondItem="vJF-bC-ypb" secondAttribute="top" constant="10" id="U3Z-fc-P5X"/>
                                                     <constraint firstAttribute="trailing" secondItem="zVb-NP-XFC" secondAttribute="trailing" id="gyf-V5-TvT"/>
@@ -339,7 +339,7 @@
                                                     <constraint firstItem="gL0-oU-tn7" firstAttribute="top" secondItem="XaS-YX-UYF" secondAttribute="top" constant="10" id="8Ao-ct-del"/>
                                                     <constraint firstItem="gL0-oU-tn7" firstAttribute="leading" secondItem="XaS-YX-UYF" secondAttribute="leading" id="H5N-y4-sg2"/>
                                                     <constraint firstAttribute="bottom" secondItem="gL0-oU-tn7" secondAttribute="bottom" priority="999" id="dd2-is-7nT"/>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="uNq-Iq-oNk"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="518" id="uNq-Iq-oNk"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="INH-x5-sWJ">
@@ -2473,7 +2473,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.50 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-Yl-Loj">
-                                                                            <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
+                                                                            <rect key="frame" x="107" y="7.5" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
