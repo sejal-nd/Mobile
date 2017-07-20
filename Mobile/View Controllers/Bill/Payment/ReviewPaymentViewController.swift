@@ -266,16 +266,6 @@ class ReviewPaymentViewController: UIViewController {
         })
     }
     
-    private func callNumber(phoneNumber: String) {
-        if let url = URL(string: "tel://\(phoneNumber)"), UIApplication.shared.canOpenURL(url) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        }
-    }
-    
     func onTermsConditionsPress() {
         let url = Environment.sharedInstance.opco == .bge ? URL(string: "https://www.speedpay.com/westernuniontac_cf.asp")! :
             URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
