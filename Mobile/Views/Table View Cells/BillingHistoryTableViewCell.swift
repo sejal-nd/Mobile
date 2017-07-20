@@ -15,6 +15,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
     let PAYMENT_PROCESSING = "Payment Processing"
     let SCHEDULED_PAYMENT = "Scheduled Payment"
     let BILL_ISSUED = "Bill Issued"
+    let PENDING_PAYMENT = "Pending Payment"
     
     enum BillingHistoryProperties: String {
         case TypeBilling = "billing"
@@ -23,6 +24,8 @@ class BillingHistoryTableViewCell: UITableViewCell {
         case StatusCANCELLED = "CANCELLED" //PECO
         case StatusPosted = "Posted"
         case StatusFailed = "failed"
+        case StatusPending = "Pending" //TODO: need to confirm case
+        case StatusProcessing = "processing" //TODO: need to confirm case
     }
 
     @IBOutlet var iconImageView: UIImageView!
@@ -39,18 +42,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
     func configureWith(item: BillingHistoryItem) {
         
         if item.isFuture {
-            switch item.status! {
-                case "PROCESSING":
-                    iconImageView.image = UIImage(named: "ic_pending")
-                    titleLabel.text = PAYMENT_PROCESSING
-                    self.amountLabel.text = item.amountPaid?.currencyString
-                case "SCHEDULED": 
-                    fallthrough
-                default:
-                    iconImageView.image = UIImage(named: "ic_scheduled")
-                    titleLabel.text = SCHEDULED_PAYMENT
-                    self.amountLabel.text = item.amountPaid?.currencyString
-            }
+            configureUpcomingCell(item: item)
         } else {
             configurePastCell(item: item)
         }
@@ -78,6 +70,26 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 amountLabel.text = "-\(String(describing: amountPaid))"
                 amountLabel.textColor = .successGreenText
             }
+        }
+    }
+    
+    private func configureUpcomingCell(item: BillingHistoryItem) {
+        guard let status = item.status,
+            let amountPaid = item.amountPaid?.currencyString else { return }
+        
+        if status == BillingHistoryProperties.StatusPending.rawValue {
+            iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
+            titleLabel.text = PENDING_PAYMENT
+            self.amountLabel.text = amountPaid
+        } else if status == BillingHistoryProperties.StatusProcessing.rawValue {
+            iconImageView.image = #imageLiteral(resourceName: "ic_pending")
+            titleLabel.text = PAYMENT_PROCESSING
+            self.amountLabel.text = amountPaid
+            dateLabel.isHidden = true
+        } else { //status = scheduled?  hopefully
+            iconImageView.image = #imageLiteral(resourceName: "ic_pending")
+            titleLabel.text = SCHEDULED_PAYMENT
+            self.amountLabel.text = amountPaid
         }
     }
     
