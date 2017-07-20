@@ -39,6 +39,14 @@ class BillingHistoryTableViewCell: UITableViewCell {
         // Initialization code
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        dateLabel.text = ""
+        titleLabel.text = ""
+        amountLabel.text = ""
+        iconImageView.image = nil
+    }
+    
     func configureWith(item: BillingHistoryItem) {
         
         if item.isFuture {

@@ -32,6 +32,8 @@ class BillingHistoryViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var accountDetail: AccountDetail!
+    
+    var didCreateBGEasyCell = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +76,7 @@ class BillingHistoryViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Dispose of any resources that can be revarated.
     }
     
 
@@ -188,26 +190,19 @@ extension BillingHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             guard let upcoming = self.billingHistory?.upcoming else {
-                return 0 //TODO: empty state
+                return accountDetail.isBGEasy ? 1 : 0
             }
             
-            if upcoming.count > 3 {
-                return 3
-            }
-            else {
-                return upcoming.count
+            if accountDetail.isBGEasy {
+                return upcoming.count > 2 ? 3 : upcoming.count + 1
+            } else {
+                return upcoming.count > 3 ? 3 : upcoming.count
             }
         } else {
             guard let past = self.billingHistory?.past else {
-                return 0 //TODO: empty state
+                return 0 
             }
-            
-            if past.count > 16 {
-                return 17
-            }
-            else {
-                return past.count
-            }
+            return past.count > 16 ? 17 : past.count
         }
     }
     
@@ -241,8 +236,12 @@ extension BillingHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? { 
         
         if self.billingHistory != nil {
-            if section == 0 && self.billingHistory?.upcoming.count == 0 {
-                return nil
+            if section == 0 {
+                if accountDetail.isBGEasy {
+                    return headerView(section: section)
+                } else {
+                    return self.billingHistory?.upcoming.count == 0 ? nil : headerView(section: section)
+                }
             } else if section == 1 && self.billingHistory?.past.count == 0 {
                 return nil
             } else {
@@ -263,21 +262,20 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let billingHistoryItem: BillingHistoryItem
+        
         if indexPath.section == 0 {
-            billingHistoryItem = (self.billingHistory?.upcoming[indexPath.row])!;
+            
+            if accountDetail.isBGEasy {
+                return bgEasyTableViewCell(indexPath: indexPath)
+            } else {
+                billingHistoryItem = (self.billingHistory?.upcoming[indexPath.row])!;
+            }
         } else {
             billingHistoryItem = (self.billingHistory?.past[indexPath.row])!;
         }
         
         if indexPath.section == 1 && indexPath.row == 16 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-            let button = UIButton(type: UIButtonType.system)
-            button.setTitle("View More", for: .normal)
-            button.setTitleColor(.actionBlue, for: .normal)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-            button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
-            cell.contentView.addSubview(button)
-            return cell
+            return viewMoreTableViewCell(indexPath: indexPath)
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BillingHistoryTableViewCell
             cell.configureWith(item: billingHistoryItem)
@@ -344,6 +342,46 @@ extension BillingHistoryViewController: UITableViewDataSource {
         self.billingSelection = .history
         
         self.performSegue(withIdentifier: "showMoreBillingHistorySegue", sender: self)
+    }
+    
+    func viewMoreTableViewCell(indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "ViewMoreCell")
+        let button = UIButton(type: UIButtonType.system)
+        button.setTitle("View More", for: .normal)
+        button.setTitleColor(.actionBlue, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
+        cell.contentView.addSubview(button)
+        return cell
+    }
+    
+    func bgEasyTableViewCell(indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "BgEasyCell")
+        
+        let label = UILabel()
+        label.text = "You currently have AutoPay set up"
+        label.font = SystemFont.medium.of(textStyle: .subheadline).withSize(17)
+        
+        let carat = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
+        carat.contentMode = .scaleAspectFit
+    
+        label.translatesAutoresizingMaskIntoConstraints = false
+        carat.translatesAutoresizingMaskIntoConstraints = false
+        
+        cell.contentView.addSubview(label)
+        cell.contentView.addSubview(carat)
+        
+        let views = ["label": label, "carat": carat, "view": cell.contentView]
+        
+        let horizontallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-19-[label]-8-[carat]-22-|", options: .alignAllCenterY, metrics: nil, views: views)
+        cell.contentView.addConstraints(horizontallayoutContraints)
+        
+        let verticalLayoutContraint = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: cell.contentView, attribute: .centerY, multiplier: 1, constant: 0)
+        cell.contentView.addConstraint(verticalLayoutContraint)
+        
+        return cell
+        
     }
     
 }
