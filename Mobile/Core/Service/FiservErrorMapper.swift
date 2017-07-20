@@ -63,11 +63,12 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
         }
         
         if !err.text.isEmpty {
-            // Assuming the first error will be the general one if the parser could not find a specific Fiserv Error
-            return items[0]
+            return err
         }
         
-        return FiservError(text: message)
+        // Assuming the first error will be the general one if the parser could not find a specific Fiserv Error
+        // If there is no specific error message handled in xml, the general error message will display
+        return items[0]
     }
 }
 
