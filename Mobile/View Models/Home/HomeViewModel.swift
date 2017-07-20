@@ -14,17 +14,14 @@ class HomeViewModel {
     
     let disposeBag = DisposeBag()
     
-    var	 billCardViewModel: HomeBillCardViewModel {
-        return HomeBillCardViewModel(withAccount: Observable.just(AccountsStore.sharedInstance.currentAccount),
-                                     accountDetail: self.currentAccountDetail.asObservable().unwrap(),
-                                     walletService: self.walletService)
-    }
+    let billCardViewModel: HomeBillCardViewModel
     
     private let accountService: AccountService
     private let weatherService: WeatherService
     private let walletService: WalletService
     
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
+    let currentAccount = Variable<Account?>(nil)
     let currentAccountDetail = Variable<AccountDetail?>(nil)
     let isFetchingAccountDetail: Driver<Bool>
     let accountDetailErrorMessage: Driver<String>
@@ -51,6 +48,10 @@ class HomeViewModel {
         isFetchingAccountDetail = fetchingAccountDetailTracker.asDriver()
         
         let sharedFetchAccountDetail = fetchAccountDetail.share()
+        
+        sharedFetchAccountDetail.map { _ in AccountsStore.sharedInstance.currentAccount }
+            .bind(to: currentAccount)
+            .addDisposableTo(disposeBag)
         
         sharedFetchAccountDetail
             .filter { $0 != .refresh }
@@ -103,6 +104,10 @@ class HomeViewModel {
                 }
             }
             .asDriver(onErrorJustReturn: "")
+        
+        billCardViewModel = HomeBillCardViewModel(withAccount: currentAccount.asObservable().unwrap(),
+                                                  accountDetail: self.currentAccountDetail.asObservable().unwrap(),
+                                                  walletService: self.walletService)
     }
     
     func fetchAccountDetail(isRefresh: Bool) {

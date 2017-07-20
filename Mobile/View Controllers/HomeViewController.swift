@@ -25,6 +25,8 @@ class HomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var cardStackView: UIStackView!
     
+    var billCardView: HomeBillCardView!
+    
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl? {
         didSet {
@@ -57,7 +59,6 @@ class HomeViewController: AccountPickerViewController {
                 // Sam, do your custom loading here
                 break
             case .readyToFetchData:
-                self.cardStackView.addArrangedSubview(HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel))
                 if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
                     self.viewModel.fetchAccountDetail(isRefresh: false)
                 } else if self.viewModel.currentAccountDetail.value == nil {
@@ -66,6 +67,8 @@ class HomeViewController: AccountPickerViewController {
             }
         }).addDisposableTo(bag)
         
+        billCardView = HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel)
+        self.cardStackView.addArrangedSubview(billCardView)
         styleViews()
         bindLoadingStates()
         configureAccessibility()
