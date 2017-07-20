@@ -8,6 +8,21 @@
 
 import UIKit
 
+enum BillingHistoryProperties: String {
+    case TypeBilling = "billing"
+    case TypePayment = "payment"
+    case StatusCanceled = "canceled"
+    case StatusCANCELLED = "CANCELLED" //PECO
+    case StatusPosted = "Posted"
+    case StatusFailed = "failed"
+    case StatusPending = "Pending" //TODO: need to confirm case
+    case StatusProcessing = "processing" //TODO: need to confirm case and existence
+    case StatusScheduled = "scheduled"
+    case StatusSCHEDULED = "SCHEDULED" //PECO
+    case PaymentMethod_S = "S"
+    case PaymentMethod_R = "R"
+}
+
 class BillingHistoryTableViewCell: UITableViewCell {
     
     let PAYMENT = "Payment"
@@ -16,17 +31,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
     let SCHEDULED_PAYMENT = "Scheduled Payment"
     let BILL_ISSUED = "Bill Issued"
     let PENDING_PAYMENT = "Pending Payment"
-    
-    enum BillingHistoryProperties: String {
-        case TypeBilling = "billing"
-        case TypePayment = "payment"
-        case StatusCanceled = "canceled"
-        case StatusCANCELLED = "CANCELLED" //PECO
-        case StatusPosted = "Posted"
-        case StatusFailed = "failed"
-        case StatusPending = "Pending" //TODO: need to confirm case
-        case StatusProcessing = "processing" //TODO: need to confirm case
-    }
 
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!

@@ -108,8 +108,6 @@ class BillingHistoryViewController: UIViewController {
     }
 }
 
-
-
 extension BillingHistoryViewController: UITableViewDelegate {
     
     //TODO: Not done here - need to figure out the Rx pattern to load this data
@@ -120,60 +118,70 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         if indexPath.section == 1 {
             switch UIDevice.current.userInterfaceIdiom {
-            case .phone:
-                self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
-                break
             case .pad:
                 self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
                 break
             default:
-                // what device is this... O_O
+                self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
                 break
             }
             
         } else {
-            let billingItem = self.billingHistory?.upcoming[indexPath.row]
-            
-            let status = billingItem?.status!
-            
-            let storyboard = UIStoryboard(name: "Bill", bundle: nil)
-            
             let opco = Environment.sharedInstance.opco
             
-            // PROCESSING, SCHEDULED, AUTOMATIC
             if opco == .bge {
-                if status == "AUTOMATIC" {
-                    if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
-                        vc.accountDetail = self.accountDetail
-                        self.navigationController?.pushViewController(vc, animated: true)
+                if accountDetail.isBGEasy {
+                    if self.billingHistory?.upcoming == nil {
+                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                    } else if indexPath.row == self.billingHistory!.upcoming.count + 1 {
+                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                    } else  {
+                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
                     }
-
-                } else if status == "PROCESSING" {
-                    switch UIDevice.current.userInterfaceIdiom {
-                    case .phone:
-                        self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
-                        break
-                    case .pad:
-                        self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
-                        break
-                    default:
-                        // what device is this... O_O
-                        break
-                    }
+                } 
+            } else {
+                guard let billingItem = self.billingHistory?.upcoming[indexPath.row], 
+                    let status = billingItem.status else { return }
                 
-                } else if status == "SCHEDULED" {
-                    // TODO: load Scheduled Payment workflow (Sprint 13)
+                //pending payments do not get a tap so we only handle scheduled payments
+                if status == BillingHistoryProperties.StatusProcessing.rawValue || status == BillingHistoryProperties.StatusSCHEDULED.rawValue {
+                    handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
                 }
-                
-            } else { // .comed/.peco
-                if status == "AUTOMATIC" {
-                    if let vc = storyboard.instantiateViewController(withIdentifier: "AutoPay") as? AutoPayViewController {
-                        vc.accountDetail = self.accountDetail
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                    
-                } else if status == "SCHEDULED" {
-                    // TODO: load Scheduled Payment workflow (Sprint 13)
+            }
+        }
+    }
+    
+    private func handleBGEUpcomingClick(indexPath: IndexPath) {
+        guard let billingItem = self.billingHistory?.upcoming[indexPath.row], 
+            let status = billingItem.status else { return }
+        
+        if status == BillingHistoryProperties.StatusProcessing.rawValue {
+            
+            //TODO: something here maybe, if processing is a thing
+            
+        } else { //It's scheduled hopefully
+            handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
+        }
+    }
+    
+    private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
+        guard let paymentMethod = billingItem.paymentMethod else { return }
+        let storyboard = UIStoryboard(name: "Bill", bundle: nil)
+        
+        if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
+            
+            //TODO: add modify scheduled payment workflow
+            
+        } else { // recurring/automatic
+            if Environment.sharedInstance.opco == .bge {
+                if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
+                    vc.accountDetail = self.accountDetail
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            } else {
+                if let vc = storyboard.instantiateViewController(withIdentifier: "AutoPay") as? AutoPayViewController {
+                    vc.accountDetail = self.accountDetail
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
         }
@@ -294,7 +302,16 @@ extension BillingHistoryViewController: UITableViewDataSource {
         label.font = label.font.withSize(14)
         label.textColor = UIColor.deepGray
         
-        let titleText = section == 0 ? "View All (\(self.billingHistory!.upcoming.count))" : "View More" 
+        //let titleText = section == 0 ? "View All (\(self.billingHistory!.upcoming.count))" : "View More" 
+        var titleText = ""
+        if section == 0 {
+            if !accountDetail.isBGEasy {
+                titleText = "View All (\(self.billingHistory!.upcoming.count))"
+            }
+        } else {
+            titleText = "View More"
+        }
+        
         button.setTitle(titleText, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.actionBlue, for: .normal)

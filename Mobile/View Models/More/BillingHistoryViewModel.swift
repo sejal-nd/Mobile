@@ -9,6 +9,8 @@
 import RxSwift
 
 class BillingHistoryViewModel {
+    
+    let months = -24
 
     let disposeBag = DisposeBag()
     
@@ -20,7 +22,7 @@ class BillingHistoryViewModel {
     
     func getBillingHistory(success: @escaping (BillingHistory) -> Void, failure: @escaping (Error) -> Void) {
         let calendar = Calendar.current
-        let lastYear = calendar.date(byAdding: .month, value: -24, to: Date())
+        let lastYear = calendar.date(byAdding: .month, value: months, to: Date())
         billService.fetchBillingHistory(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, startDate: lastYear!, endDate: Date())
             .subscribe(onNext: { billingHistory in
                 success(billingHistory)
