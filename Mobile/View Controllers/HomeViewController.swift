@@ -17,7 +17,6 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var headerStackView: UIStackView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
     @IBOutlet weak var homeLoadingIndicator: LoadingIndicator!
-    @IBOutlet weak var weatherIconHolderView: UIView!
     
     @IBOutlet weak var weatherWidgetView: UIView!
     @IBOutlet weak var greetingLabel: UILabel!
@@ -75,7 +74,6 @@ class HomeViewController: AccountPickerViewController {
     
     func styleViews() {
         scrollView.backgroundColor = .primaryColor
-        weatherIconHolderView.backgroundColor = .primaryColor
         weatherWidgetView.backgroundColor = .primaryColor
         headerStackView.backgroundColor = .primaryColor
     }
