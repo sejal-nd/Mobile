@@ -14,6 +14,8 @@ class HomeViewModel {
     
     let disposeBag = DisposeBag()
     
+    let templateCardViewModel: TemplateCardViewModel
+    
     private let accountService: AccountService
     private let weatherService: WeatherService
     
@@ -95,6 +97,8 @@ class HomeViewModel {
                 }
             }
             .asDriver(onErrorJustReturn: "")
+        
+        templateCardViewModel = TemplateCardViewModel()
     }
     
     func fetchAccountDetail(isRefresh: Bool) {

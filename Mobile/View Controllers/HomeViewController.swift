@@ -23,6 +23,9 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImage: UIImageView!
     
+    @IBOutlet weak var cardStackView: UIStackView!
+    
+    var templateCardView: TemplateCardView!
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl? {
@@ -62,6 +65,8 @@ class HomeViewController: AccountPickerViewController {
             }
         }).addDisposableTo(bag)
         
+        templateCardView = TemplateCardView.create(withViewModel: self.viewModel.templateCardViewModel)
+        self.cardStackView.addArrangedSubview(templateCardView)
         styleViews()
         bindLoadingStates()
         configureAccessibility()
