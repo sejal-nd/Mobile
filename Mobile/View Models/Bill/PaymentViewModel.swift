@@ -14,12 +14,13 @@ class PaymentViewModel {
     
     private var walletService: WalletService
     private var paymentService: PaymentService
-    private var oneTouchPayService: OneTouchPayService
     
     let accountDetail: Variable<AccountDetail>
     
-    let isFetchingWalletItems = Variable(false)
+    let isFetching = Variable(false) // Combines isFetchingWalletItems & isFetchingWorkdays
     let isError = Variable(false)
+    private let isFetchingWalletItems = Variable(false)
+    private let isFetchingWorkdays = Variable(false)
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
@@ -33,10 +34,11 @@ class PaymentViewModel {
     let overpayingSwitchValue = Variable(false)
     let activeSeveranceSwitchValue = Variable(false)
     
-    init(walletService: WalletService, paymentService: PaymentService, oneTouchPayService: OneTouchPayService, accountDetail: AccountDetail) {
+    var workdayArray = [Date]()
+    
+    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail) {
         self.walletService = walletService
         self.paymentService = paymentService
-        self.oneTouchPayService = oneTouchPayService
         self.accountDetail = Variable(accountDetail)
         
         if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
@@ -63,20 +65,19 @@ class PaymentViewModel {
     // MARK: - Service Calls
     
     func fetchWalletItems(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
-        isFetchingWalletItems.value = true
+        isFetching.value = true
         isError.value = false
+        
+        isFetchingWalletItems.value = true
         walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { walletItems in
                 if self.selectedWalletItem.value == nil {
                     if self.accountDetail.value.isCashOnly {
                         // Default to One Touch Pay item IF it's a credit card
-                        if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
-                            for item in walletItems {
-                                if item == otpItem && item.bankOrCard == .card {
-                                    self.selectedWalletItem.value = item
-                                    break
-                                }
+                        if let otpItem = walletItems.first(where: { $0.isDefault == true }) {
+                            if otpItem.bankOrCard == .card {
+                                self.selectedWalletItem.value = otpItem
                             }
                         } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
                             for item in walletItems {
@@ -88,27 +89,45 @@ class PaymentViewModel {
                         }
                     } else {
                         // Default to One Touch Pay item
-                        if let otpItem = self.oneTouchPayService.oneTouchPayItem(forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier) {
-                            for item in walletItems {
-                                if item == otpItem {
-                                    self.selectedWalletItem.value = item
-                                    break
-                                }
-                            }
+                        if let otpItem = walletItems.first(where: { $0.isDefault == true }) {
+                            self.selectedWalletItem.value = otpItem
                         } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
                             self.selectedWalletItem.value = walletItems[0]
                         }
                     }
                 }
 
-                self.isFetchingWalletItems.value = false
                 self.walletItems.value = walletItems
+                
+                self.isFetchingWalletItems.value = false
+                if !self.isFetchingWorkdays.value {
+                    self.isFetching.value = false
+                }
+                
                 onSuccess?()
             }, onError: { err in
                 self.isFetchingWalletItems.value = false
                 self.isError.value = true
                 onError?(err.localizedDescription)
             }).addDisposableTo(disposeBag)
+        
+        if Environment.sharedInstance.opco == .peco { // Only PECO prevents certain payment dates
+            isFetchingWorkdays.value = true
+            paymentService.fetchWorkdays()
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { dateArray in
+                    self.isFetchingWorkdays.value = false
+                    if !self.isFetchingWalletItems.value {
+                        self.isFetching.value = false
+                    }
+                    self.workdayArray = dateArray
+                }, onError: { err in
+                    self.isFetchingWorkdays.value = false
+                    if !self.isFetchingWalletItems.value {
+                        self.isFetching.value = false
+                    }
+                }).addDisposableTo(disposeBag)
+        }
     }
     
     func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -158,7 +177,7 @@ class PaymentViewModel {
     }
     
     var shouldShowContent: Driver<Bool> {
-        return Driver.combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver()).map {
+        return Driver.combineLatest(isFetching.asDriver(), isError.asDriver()).map {
             return !$0 && !$1
         }
     }
@@ -194,7 +213,7 @@ class PaymentViewModel {
             guard let walletItem: WalletItem = walletItem else { return nil }
             guard let paymentAmount: Double = paymentAmount else { return nil }
             
-            let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
+            let commercialUser = !accountDetail.isResidential
             
             if walletItem.bankOrCard == .bank {
                 if Environment.sharedInstance.opco == .bge {
@@ -252,9 +271,10 @@ class PaymentViewModel {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
                 if Environment.sharedInstance.opco == .bge {
-                    return NSLocalizedString("A convenience fee will be applied by Western Union Speedpay, our payment partner. Residential accounts: $1.50. Business accounts: 2.6%.", comment: "")
+                    return NSLocalizedString(self.accountDetail.value.billingInfo.convenienceFeeString(isComplete: true), comment: "")
                 } else {
-                    return String(format: "A %@ convenience fee will be applied by Bill matrix, our payment partner.", fee.currencyString ?? "")
+                    let feeStr = String(format: "A %@ convenience fee will be applied by Bill Matrix, our payment partner.", fee.currencyString!)
+                    return NSLocalizedString(feeStr, comment: "")
                 }
             }
         }
@@ -266,7 +286,9 @@ class PaymentViewModel {
             if walletItem.bankOrCard == .bank {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
-                return String(format: "A %@ convenience fee will be applied.", fee.currencyString!)
+                let feeStr = String(format: "Your payment includes a %@ convenience fee.",
+                                    (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? fee.percentString! : fee.currencyString!)
+                return NSLocalizedString(feeStr, comment: "")
             }
         }
     }
@@ -301,21 +323,11 @@ class PaymentViewModel {
     var convenienceFee: Driver<Double> {
         switch Environment.sharedInstance.opco {
         case .bge:
-            return Driver.just(1.5)
-        case .comEd:
-            return Driver.just(2.5)
-        case .peco:
-            return Driver.just(2.35)
+            return accountDetail.value.isResidential ? Driver.just(accountDetail.value.billingInfo.residentialFee!) : Driver.just(accountDetail.value.billingInfo.commercialFee!)
+        case .comEd, .peco:
+            return Driver.just(accountDetail.value.billingInfo.convenienceFee!)
         
         }
-//        return Driver.combineLatest(accountDetail.asDriver(), selectedWalletItem.asDriver()).map {
-//            if let walletItem = $1 {
-//                if walletItem.bankOrCard == .card
-//                    return $0.billingInfo.convenienceFee
-//                }
-//            }
-//            return nil
-//        }
     }
     
     lazy var amountDueCurrencyString: Driver<String> = self.amountDue.asDriver().map {
@@ -474,7 +486,7 @@ class PaymentViewModel {
     }
     
     lazy var convenienceFeeDisplayString: Driver<String> = self.convenienceFee.map {
-        return $0.currencyString!
+        return (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? $0.percentString! : $0.currencyString!
     }
     
     lazy var shouldShowAutoPayEnrollButton: Driver<Bool> = self.accountDetail.asDriver().map {
@@ -484,7 +496,15 @@ class PaymentViewModel {
     var totalPaymentDisplayString: Driver<String> {
         return Driver.combineLatest(paymentAmount.asDriver().map { return Double($0) ?? 0 }, reviewPaymentShouldShowConvenienceFeeBox, convenienceFee).map {
             if $1 {
-                return ($0 + $2).currencyString!
+                if (Environment.sharedInstance.opco == .bge) {
+                    if (self.accountDetail.value.isResidential) {
+                        return ($0 + $2).currencyString!
+                    } else {
+                        return ((1 + $2 / 100) * $0).currencyString!
+                    }
+                } else {
+                    return ($0 + $2).currencyString!
+                }
             } else {
                 return $0.currencyString!
             }

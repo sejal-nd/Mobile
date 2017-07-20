@@ -117,7 +117,18 @@ extension BillingHistoryViewController: UITableViewDelegate {
         selectedIndexPath = indexPath
         
         if indexPath.section == 1 {
-            self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+            switch UIDevice.current.userInterfaceIdiom {
+            case .phone:
+                self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+                break
+            case .pad:
+                self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
+                break
+            default:
+                // what device is this... O_O
+                break
+            }
+            
         } else {
             let billingItem = self.billingHistory?.upcoming[indexPath.row]
             
@@ -136,7 +147,17 @@ extension BillingHistoryViewController: UITableViewDelegate {
                     }
 
                 } else if status == "PROCESSING" {
-                    self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+                    switch UIDevice.current.userInterfaceIdiom {
+                    case .phone:
+                        self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+                        break
+                    case .pad:
+                        self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
+                        break
+                    default:
+                        // what device is this... O_O
+                        break
+                    }
                 
                 } else if status == "SCHEDULED" {
                     // TODO: load Scheduled Payment workflow (Sprint 13)

@@ -65,6 +65,7 @@ class MakePaymentViewController: UIViewController {
     
     @IBOutlet weak var stickyPaymentFooterHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var stickyPaymentFooterView: UIView!
+    @IBOutlet weak var stickyPaymentFooterTextContainer: UIView!
     @IBOutlet weak var stickyPaymentFooterPaymentLabel: UILabel!
     @IBOutlet weak var stickyPaymentFooterFeeLabel: UILabel!
 
@@ -74,7 +75,7 @@ class MakePaymentViewController: UIViewController {
     var nextButton = UIBarButtonItem()
     
     lazy var viewModel: PaymentViewModel = {
-        PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), oneTouchPayService: ServiceFactory.createOneTouchPayService(), accountDetail: self.accountDetail)
+        PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail)
     }()
     
     override func viewDidLoad() {
@@ -91,7 +92,7 @@ class MakePaymentViewController: UIViewController {
         
         activeSeveranceLabel.textColor = .blackText
         activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        activeSeveranceLabel.text = NSLocalizedString("Your account is active severance. You are limited to creating a payment for the current date only, and you will not be able to edit or delete this payment once it is created.", comment: "")
+        activeSeveranceLabel.text = NSLocalizedString("Due to the status of this account, online payments are limited to the current date. Payments also may not be edited or deleted.", comment: "")
         
         bankAccountsUnavailableLabel.textColor = .blackText
         bankAccountsUnavailableLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -177,7 +178,16 @@ class MakePaymentViewController: UIViewController {
         
         addCreditCardFeeLabel.textColor = .blackText
         addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        addCreditCardFeeLabel.text = NSLocalizedString("A $2.35 convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+        switch Environment.sharedInstance.opco {
+        case .comEd, .peco:
+            addCreditCardFeeLabel.text = NSLocalizedString("Your payment includes a " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee.", comment: "")
+            break
+        case .bge:
+            let feeString = String(format: "Your payment includes a %@ convenience fee. ", accountDetail.isResidential ?
+                accountDetail.billingInfo.residentialFee!.currencyString! : accountDetail.billingInfo.commercialFee!.percentString!)
+            addCreditCardFeeLabel.text = NSLocalizedString(feeString, comment: "")
+            break
+        }
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
         
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
@@ -241,7 +251,7 @@ class MakePaymentViewController: UIViewController {
     
     func bindViewHiding() {
         // Loading
-        viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).addDisposableTo(disposeBag)
         
@@ -280,7 +290,8 @@ class MakePaymentViewController: UIViewController {
         // Sticky Footer
         viewModel.shouldShowStickyFooterView.drive(onNext: { shouldShow in
             self.stickyPaymentFooterHeightConstraint.constant = shouldShow ? 80 : 0
-            self.stickyPaymentFooterView.isHidden = !shouldShow
+            // For some reason, just hiding stickyPaymentFooterView was not enough to hide the label...
+            self.stickyPaymentFooterTextContainer.isHidden = !shouldShow
         }).addDisposableTo(disposeBag)
     }
     
@@ -436,7 +447,12 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
         } else {
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
-                return date >= today && date <= startOfDueDate
+                if Environment.sharedInstance.opco == .peco {
+                    let isInWorkdaysArray = viewModel.workdayArray.contains(date)
+                    return date >= today && date <= startOfDueDate && isInWorkdaysArray
+                } else {
+                    return date >= today && date <= startOfDueDate
+                }
             }
         }
         

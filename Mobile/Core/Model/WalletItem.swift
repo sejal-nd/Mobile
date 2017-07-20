@@ -115,7 +115,11 @@ struct WalletItem: Mappable, Equatable, Hashable {
         
         paymentCategoryType = map.optionalFrom("paymentCategoryType")
         bankAccountType = map.optionalFrom("bankAccountType")
+        bankAccountNumber = map.optionalFrom("bankAccountNumber")
+        bankAccountName = map.optionalFrom("bankAccountName")
+        isDefault = map.optionalFrom("isDefault") ?? false
         bankOrCard = .card
+        
         if Environment.sharedInstance.opco == .bge {
             walletItemStatusTypeBGE = map.optionalFrom("walletItemStatusType")
             walletItemStatusType = nil
