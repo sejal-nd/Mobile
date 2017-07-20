@@ -133,10 +133,6 @@ struct WalletItem: Mappable, Equatable, Hashable {
                 bankOrCard = (type == .credit || type == .debit) ? .card : .bank
             }
         }
-        
-        bankAccountNumber = map.optionalFrom("bankAccountNumber")
-        bankAccountName = map.optionalFrom("bankAccountName")
-        isDefault = map.optionalFrom("isDefault") ?? false
 
     }
     

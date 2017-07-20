@@ -68,11 +68,8 @@ class HomeBillCardViewModel {
         
         let billingInfo = accountDetail.billingInfo
         
-        let paymentAmount = UserDefaults.standard.double(forKey: account.accountNumber + ":paymentAmount")
-        let paymentDate = UserDefaults.standard.integer(forKey: account.accountNumber + ":paymentDate")
-        
-        if Date(timeIntervalSince1970: TimeInterval(paymentDate)) < Date().addingTimeInterval(172_800) {
-            //            mLastPaymentAmount = paymentAmount;
+        if let paymentDetails = PaymentDetailsStore.shared[account],
+            paymentDetails.date.addingTimeInterval(172_800) > Date() {
             return .payment;
         }
             
