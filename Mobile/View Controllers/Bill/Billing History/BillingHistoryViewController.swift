@@ -296,7 +296,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         label.font = label.font.withSize(14)
         label.textColor = UIColor.deepGray
         
-        let titleText = section == 0 ? "View All (\(self.billingHistory!.upcoming.count))" : "View More"
+        let titleText = section == 0 ? "View All (\(self.billingHistory!.upcoming.count))" : "View More" 
         button.setTitle(titleText, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.actionBlue, for: .normal)

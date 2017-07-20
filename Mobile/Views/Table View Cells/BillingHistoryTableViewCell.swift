@@ -15,6 +15,15 @@ class BillingHistoryTableViewCell: UITableViewCell {
     let PAYMENT_PROCESSING = "Payment Processing"
     let SCHEDULED_PAYMENT = "Scheduled Payment"
     let BILL_ISSUED = "Bill Issued"
+    
+    enum BillingHistoryProperties: String {
+        case TypeBilling = "billing"
+        case TypePayment = "payment"
+        case StatusCanceled = "canceled"
+        case StatusCANCELLED = "CANCELLED" //PECO
+        case StatusPosted = "Posted"
+        case StatusFailed = "failed"
+    }
 
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
@@ -43,37 +52,33 @@ class BillingHistoryTableViewCell: UITableViewCell {
                     self.amountLabel.text = item.amountPaid?.currencyString
             }
         } else {
-            if let description = item.description {
-                switch description {
-                    case "Regular Bill":
-                        iconImageView.image = UIImage(named: "ic_bill")
-                        titleLabel.text = BILL_ISSUED
-                        self.amountLabel.text = item.totalAmountDue?.currencyString
-                    case "Billing":
-                        iconImageView.image = UIImage(named: "ic_bill")
-                        titleLabel.text = BILL_ISSUED
-                        self.amountLabel.text = item.totalAmountDue?.currencyString
-                    case "Late Payment Charge":
-                        iconImageView.image = UIImage(named: "ic_alert")
-                        titleLabel.text = LATE_PAYMENT
-                        self.amountLabel.text = item.amountPaid?.currencyString
-                    case "Payment":
-                        fallthrough
-                    default:
-                        iconImageView.image = UIImage(named: "ic_paymentcheck")
-                        titleLabel.text = PAYMENT
-                        self.amountLabel.text = item.amountPaid?.currencyString
-                        self.amountLabel.textColor = .successGreenText
-                }
-            } else {
-                iconImageView.image = UIImage(named: "ic_paymentcheck")
-                titleLabel.text = PAYMENT
-                self.amountLabel.text = item.amountPaid!.currencyString
-                self.amountLabel.textColor = .successGreenText
-            }
+            configurePastCell(item: item)
         }
         
         dateLabel.text = item.date.mmDdYyyyString
+    }
+    
+    private func configurePastCell(item: BillingHistoryItem) {
+        if item.type == BillingHistoryProperties.TypeBilling.rawValue {
+            iconImageView.image = #imageLiteral(resourceName: "ic_bill")
+            titleLabel.text = BILL_ISSUED
+            amountLabel.text = item.totalAmountDue?.currencyString
+        } else {
+            guard let status = item.status,
+                let amountPaid = item.amountPaid?.currencyString else { return }
+            if status == BillingHistoryProperties.StatusCanceled.rawValue || 
+                status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
+                status == BillingHistoryProperties.StatusFailed.rawValue {
+                    iconImageView.image = #imageLiteral(resourceName: "ic_paymentcanceledfailed")
+                    titleLabel.text = PAYMENT
+                    amountLabel.text = amountPaid
+            } else {
+                iconImageView.image = #imageLiteral(resourceName: "ic_paymentcheck")
+                titleLabel.text = PAYMENT
+                amountLabel.text = "-\(String(describing: amountPaid))"
+                amountLabel.textColor = .successGreenText
+            }
+        }
     }
     
     class var identifier: String{
