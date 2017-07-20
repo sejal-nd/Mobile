@@ -66,7 +66,7 @@
                                     <rect key="frame" x="0.0" y="239.5" width="333" height="50"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" priority="999" constant="50" id="ZWw-1L-cDO"/>
+                                        <constraint firstAttribute="height" constant="50" id="ZWw-1L-cDO"/>
                                     </constraints>
                                 </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" image="ic_home_scheduled" translatesAutoresizingMaskIntoConstraints="NO" id="Nzb-Wa-fMH">
@@ -101,6 +101,10 @@
                                     </state>
                                 </button>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Myo-nz-bzd" secondAttribute="trailing" id="L0E-Rm-CdG"/>
+                                <constraint firstItem="Myo-nz-bzd" firstAttribute="leading" secondItem="VyQ-uF-pu2" secondAttribute="leading" id="QjC-1i-KMc"/>
+                            </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" axis="vertical" alignment="center" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="ah8-rf-Pem" userLabel="Not Ready Stack">
                             <rect key="frame" x="0.0" y="458.5" width="333" height="211"/>

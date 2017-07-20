@@ -14,15 +14,38 @@ class HomeViewModel {
     
     let disposeBag = DisposeBag()
     
-    private var accountService: AccountService
+    var	 billCardViewModel: HomeBillCardViewModel {
+        return HomeBillCardViewModel(withAccount: Observable.just(AccountsStore.sharedInstance.currentAccount),
+                                     accountDetail: self.currentAccountDetail.asObservable().unwrap(),
+                                     walletService: self.walletService)
+    }
+    
+    private let accountService: AccountService
+    private let weatherService: WeatherService
+    private let walletService: WalletService
     
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let currentAccountDetail = Variable<AccountDetail?>(nil)
     let isFetchingAccountDetail: Driver<Bool>
     let accountDetailErrorMessage: Driver<String>
     
-    required init(accountService: AccountService) {
+    private let greetingVariable = Variable<String?>(nil)
+    
+    private let weatherItem = Variable<WeatherItemResult?>(nil)
+    private(set) lazy var greeting: Driver<String?> = self.greetingVariable.asDriver()
+    private(set) lazy var weatherTemp: Driver<String?> = self.weatherItem.asDriver().map {
+        guard let temperature = $0?.temperature else { return nil }
+        return "\(temperature)°"
+    }
+    private(set) lazy var weatherIcon: Driver<UIImage?> = self.weatherItem.asDriver().map { 
+        guard let iconName = $0?.iconName else { return nil }
+        return iconName != WeatherIconNames.UNKNOWN.rawValue ? UIImage(named: iconName) : nil 
+    }
+    
+    required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService) {
         self.accountService = accountService
+        self.weatherService = weatherService
+        self.walletService = walletService
         
         let fetchingAccountDetailTracker = ActivityTracker()
         isFetchingAccountDetail = fetchingAccountDetailTracker.asDriver()
@@ -47,6 +70,25 @@ class HomeViewModel {
         fetchAccountDetailResult.elements()
             .bind(to: currentAccountDetail)
             .addDisposableTo(disposeBag)
+        
+        //bind this to fetchAccountDetailRequest to ensure address is available on sign in/keep me logged in
+        let weatherResult = fetchAccountDetailResult.elements().map { $0.address ?? "" }
+        .flatMap(weatherService.fetchWeather)
+            .materialize()
+            
+        weatherResult.elements()
+        .bind(to: weatherItem)
+        .addDisposableTo(disposeBag)
+        
+        weatherResult.errors()
+            .map { _ in Date().localizedGreeting }
+        .bind(to: greetingVariable)
+        .addDisposableTo(disposeBag)
+        
+        weatherItem.asObservable()
+            .map {_ in Date().localizedGreeting }
+        .bind(to: greetingVariable)
+        .addDisposableTo(disposeBag)
         
         accountDetailErrorMessage = fetchAccountDetailResult.errors()
             .map { 

@@ -19,15 +19,13 @@ class HomeBillCardViewModel {
     
     private let account: Observable<Account>
     private let accountDetail: Observable<AccountDetail>
-    private let accountService: AccountService
     private let walletService: WalletService
     
     private let loadingTracker = ActivityTracker()
     
-    required init(withAccount account: Observable<Account>, accountDetail: Observable<AccountDetail>, accountService: AccountService, walletService: WalletService) {
+    required init(withAccount account: Observable<Account>, accountDetail: Observable<AccountDetail>, walletService: WalletService) {
         self.account = account
         self.accountDetail = accountDetail
-        self.accountService = accountService
         self.walletService = walletService
     }
     
@@ -70,7 +68,7 @@ class HomeBillCardViewModel {
         
         if let paymentDetails = PaymentDetailsStore.shared[account],
             paymentDetails.date.addingTimeInterval(172_800) > Date() {
-            return .payment;
+            return .payment
         }
             
         else if billingInfo.billDate == nil, billingInfo.netDueAmount == 0 {

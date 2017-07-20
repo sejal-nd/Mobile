@@ -23,6 +23,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImage: UIImageView!
     
+    @IBOutlet weak var cardStackView: UIStackView!
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl? {
@@ -36,7 +37,9 @@ class HomeViewController: AccountPickerViewController {
     
     var alertLottieAnimation = LOTAnimationView(name: "alert_icon")!
     
-    let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService())
+    let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(),
+                                  weatherService: ServiceFactory.createWeatherService(),
+                                  walletService: ServiceFactory.createWalletService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -54,6 +57,7 @@ class HomeViewController: AccountPickerViewController {
                 // Sam, do your custom loading here
                 break
             case .readyToFetchData:
+                self.cardStackView.addArrangedSubview(HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel))
                 if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
                     self.viewModel.fetchAccountDetail(isRefresh: false)
                 } else if self.viewModel.currentAccountDetail.value == nil {
@@ -84,9 +88,9 @@ class HomeViewController: AccountPickerViewController {
         viewModel.isFetchingDifferentAccount.not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
         viewModel.isFetchingDifferentAccount.drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
         
-//        self.viewModel.weatherTemp.drive(self.temperatureLabel.rx.text).addDisposableTo(self.bag)
-//        self.viewModel.weatherIcon.drive(self.weatherIconImage.rx.image).addDisposableTo(self.bag)
-//        self.viewModel.greeting.drive(self.greetingLabel.rx.text).addDisposableTo(self.bag)
+        viewModel.weatherTemp.drive(temperatureLabel.rx.text).addDisposableTo(bag)
+        viewModel.weatherIcon.drive(weatherIconImage.rx.image).addDisposableTo(bag)
+        viewModel.greeting.drive(greetingLabel.rx.text).addDisposableTo(bag)
     }
     
     func configureAccessibility() {
