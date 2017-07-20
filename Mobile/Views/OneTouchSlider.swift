@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol oneTouchSliderDelegate: class {
+protocol OneTouchSliderDelegate: class {
     func didFinishSwipe(_ oneTouchSlider: OneTouchSlider)
     func didCancelSwipe(_ oneTouchSlider: OneTouchSlider)
     func sliderValueChanged(_ oneTouchSlider: OneTouchSlider)
@@ -16,16 +16,16 @@ protocol oneTouchSliderDelegate: class {
 
 class OneTouchSlider: UIControl {
     
-    weak var delegate: oneTouchSliderDelegate?
+    weak var delegate: OneTouchSliderDelegate?
     
     //MARK: - Private Variables
-    private let slider:UIView = UIView()
-    private let sliderFinish: UIView = UIView()
-    private let sliderLabel: UILabel = UILabel()
+    private let slider = UIView()
+    private let sliderFinish = UIView()
+    private let sliderLabel = UILabel()
     private var sliderWidthConstraint: NSLayoutConstraint!
     private var sliderFinishWidthConstraint: NSLayoutConstraint!
     private var shouldSlide: Bool = false
-    private let imageView:UIImageView = UIImageView()
+    private let imageView = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
     
     //MARK: - Public Variables
     private(set) var progress: CGFloat = 0.0
@@ -50,6 +50,10 @@ class OneTouchSlider: UIControl {
         layer.cornerRadius = layer.frame.height / 2
         sliderFinish.layer.cornerRadius = sliderFinish.layer.frame.height / 2
         slider.layer.cornerRadius = slider.layer.frame.height / 2
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 300, height: 50)
     }
     
     //MARK: - Private Methods
@@ -96,7 +100,6 @@ class OneTouchSlider: UIControl {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         slider.addSubview(imageView)
         imageView.contentMode = .scaleAspectFit
-        imageView.image = #imageLiteral(resourceName: "ic_caret")
         imageView.centerYAnchor.constraint(equalTo: slider.centerYAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: slider.trailingAnchor, constant: -15).isActive = true
         imageView.setContentHuggingPriority(999, for: .horizontal)
@@ -170,3 +173,8 @@ class OneTouchSlider: UIControl {
         }
     }
 }
+
+import RxSwift
+import RxCocoa
+
+

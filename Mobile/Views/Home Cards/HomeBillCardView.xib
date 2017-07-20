@@ -62,12 +62,9 @@
                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-nz-bzd" customClass="OneTouchSlider" customModule="BGE" customModuleProvider="target">
+                                <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-nz-bzd" customClass="OneTouchSlider" customModule="BGE" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="239.5" width="333" height="50"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" priority="999" constant="50" id="ZWw-1L-cDO"/>
-                                    </constraints>
                                 </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" image="ic_home_scheduled" translatesAutoresizingMaskIntoConstraints="NO" id="Nzb-Wa-fMH">
                                     <rect key="frame" x="145" y="289.5" width="43" height="50"/>
