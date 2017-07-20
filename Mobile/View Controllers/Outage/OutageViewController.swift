@@ -127,13 +127,6 @@ class OutageViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
-        
-        let ad = UIApplication.shared.delegate as! AppDelegate
-        ad.showMaintenanceMode()
-        
-        
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     

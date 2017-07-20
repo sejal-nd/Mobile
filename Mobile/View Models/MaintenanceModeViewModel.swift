@@ -51,7 +51,7 @@ class MaintenanceModeViewModel{
     
     func getLabel1Text() -> String {
         switch opco {
-        case .bge: return NSLocalizedString("For a power outage, downed or sparking power lines, or dim/flickering lights, please call 1-877-778-2222", comment: "")
+        case .bge: return NSLocalizedString("To report a gas emergency, please call 1-800-865-0123", comment: "")
         case .comEd: return NSLocalizedString("To report a gas emergency, a downed or sparking power line or a power outage, please call 1-800-334-7661 Representatives are available 24 hours a day, 7 days a week.", comment: "")
         case .peco: return NSLocalizedString("To report a gas emergency, a downed or sparking power line or a power outage, please call 1-800-841-4141 Representatives are available 24 hours a day, 7 days a week.", comment: "")
         }
@@ -81,6 +81,10 @@ class MaintenanceModeViewModel{
         }
     }
     
+    func isBGE() -> Bool {
+        return opco == .bge
+    }
+    
     func doReload(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
         var isMaintenanceMode = true
         
@@ -90,7 +94,7 @@ class MaintenanceModeViewModel{
                 isMaintenanceMode = maintenanceInfo.getIsOutage
                 onSuccess(isMaintenanceMode)
             }, onError: { error in
-                let serviceError = error as! ServiceError
+                _ = error as! ServiceError
             }).addDisposableTo(disposeBag)
     }
 

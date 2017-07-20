@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //printFonts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        
         
         return true
     }

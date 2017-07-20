@@ -38,6 +38,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkForMaintenanceMode()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(verifyAccountNotificationReceived), name: NSNotification.Name.DidTapAccountVerificationDeepLink, object: nil)
@@ -376,6 +378,20 @@ class LoginViewController: UIViewController {
         scrollView.scrollIndicatorInsets = .zero
     }
     
+    func checkForMaintenanceMode(){
+        viewModel.checkForMaintenance(onSuccess: { isMaintenance in
+            if isMaintenance || true{
+                let ad = UIApplication.shared.delegate as! AppDelegate
+                ad.showMaintenanceMode()
+            }
+        }, onError: { errorMessage in
+            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        })
+    }
+    
+    
     // MARK: - Other
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -385,6 +401,7 @@ class LoginViewController: UIViewController {
     func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
         return a + (b - a) * t;
     }
+    
     
     // MARK: - Navigation
     

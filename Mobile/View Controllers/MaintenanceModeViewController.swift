@@ -60,6 +60,8 @@ class MaintenanceModeViewController: UIViewController {
         label4.font = OpenSans.regular.of(textStyle: .body)
         label4.textColor = .black
         
+        BGEStackView.isHidden = !viewModel.isBGE()
+        
         view.backgroundColor = .primaryColor
     }
     
@@ -89,8 +91,12 @@ class MaintenanceModeViewController: UIViewController {
     }
     
     func onReloadPress() {
+        LoadingView.show()
         viewModel.doReload(onSuccess: { isMaintenance in
             LoadingView.hide()
+            if !isMaintenance{
+                self.dismiss(animated: true, completion: nil)
+            }
         }, onError: { errorMessage in
             LoadingView.hide()
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
