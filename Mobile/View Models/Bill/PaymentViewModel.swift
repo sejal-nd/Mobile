@@ -24,8 +24,6 @@ class PaymentViewModel {
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
-    let inlineBank = Variable(false)
-    let inlineCard = Variable(false)
     let cvv = Variable("")
     
     let amountDue: Variable<Double>
@@ -38,10 +36,18 @@ class PaymentViewModel {
     
     var workdayArray = [Date]()
     
-    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail) {
+    let addBankFormViewModel: AddBankFormViewModel!
+    let addCardFormViewModel: AddCardFormViewModel!
+    let inlineCard = Variable(false)
+    let inlineBank = Variable(false)
+    var oneTouchPayItem: WalletItem!
+    
+    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel) {
         self.walletService = walletService
         self.paymentService = paymentService
         self.accountDetail = Variable(accountDetail)
+        self.addBankFormViewModel = addBankFormViewModel
+        self.addCardFormViewModel = addCardFormViewModel
         
         if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
             amountDue = Variable(netDueAmount)
@@ -100,6 +106,7 @@ class PaymentViewModel {
                 }
 
                 self.walletItems.value = walletItems
+                self.oneTouchPayItem = walletItems.first(where: { $0.isDefault == true })
                 
                 self.isFetchingWalletItems.value = false
                 if !self.isFetchingWorkdays.value {
@@ -133,21 +140,33 @@ class PaymentViewModel {
     }
     
     func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        let paymentType: PaymentType = selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-        var paymentDate = self.paymentDate.value
-        if let walletItem = selectedWalletItem.value {
-            if walletItem.bankOrCard == .card {
+        if inlineBank.value {
+            let paymentType: PaymentType = .check
+            var paymentDate = self.paymentDate.value
+            if !addBankFormViewModel.saveToWallet.value {
                 paymentDate = Calendar.current.startOfDay(for: Date())
             }
+        } else if inlineCard.value {
+            let paymentType: PaymentType = .credit
+            let paymentDate = Calendar.current.startOfDay(for: Date())
+        } else { // Existing wallet item
+            let paymentType: PaymentType = selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
+            var paymentDate = self.paymentDate.value
+            if let walletItem = selectedWalletItem.value {
+                if walletItem.bankOrCard == .card {
+                    paymentDate = Calendar.current.startOfDay(for: Date())
+                }
+            }
+            let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
+            paymentService.schedulePayment(payment: payment)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { _ in
+                    onSuccess()
+                }, onError: { err in
+                    onError(err.localizedDescription)
+                }).addDisposableTo(disposeBag)
         }
-        let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
-        paymentService.schedulePayment(payment: payment)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                onSuccess()
-            }, onError: { err in
-                onError(err.localizedDescription)
-            }).addDisposableTo(disposeBag)
+    
     }
     
     // MARK: - Shared Drivers
@@ -189,6 +208,20 @@ class PaymentViewModel {
             } else {
                 return $0 && $1 != nil && !$2.isEmpty && $3 == nil
             }
+        }
+    }
+    
+    var oneTouchPayDescriptionLabelText: Driver<String> {
+        return walletItems.asDriver().map { _ in
+            if let item = self.oneTouchPayItem {
+                switch item.bankOrCard {
+                case .bank:
+                    return String(format: NSLocalizedString("You are currently using bank account %@ for One Touch Pay.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
+                case .card:
+                    return String(format: NSLocalizedString("You are currently using card %@ for One Touch Pay.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
+                }
+            }
+            return NSLocalizedString("Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default.", comment: "")
         }
     }
     
@@ -240,7 +273,9 @@ class PaymentViewModel {
     }
     
     var shouldShowPaymentAmountTextField: Driver<Bool> {
-        return hasWalletItems
+        return Driver.combineLatest(hasWalletItems, inlineBank.asDriver(), inlineCard.asDriver()).map {
+            return $0 || $1 || $2
+        }
     }
     
     var paymentAmountErrorMessage: Driver<String?> {
@@ -328,11 +363,15 @@ class PaymentViewModel {
     }
     
     var shouldShowPaymentDateView: Driver<Bool> {
-        return hasWalletItems
+        return Driver.combineLatest(hasWalletItems, inlineBank.asDriver(), inlineCard.asDriver()).map {
+            return $0 || $1 || $2
+        }
     }
     
     var shouldShowStickyFooterView: Driver<Bool> {
-        return hasWalletItems
+        return Driver.combineLatest(hasWalletItems, inlineBank.asDriver(), inlineCard.asDriver()).map {
+            return $0 || $1 || $2
+        }
     }
     
     lazy var selectedWalletItemImage: Driver<UIImage?> = self.selectedWalletItem.asDriver().map {
@@ -373,28 +412,53 @@ class PaymentViewModel {
     }
     
     var shouldShowAddBankAccount: Driver<Bool> {
-        return Driver.combineLatest(isCashOnlyUser, hasWalletItems).map {
-            return !$0 && !$1
+        return Driver.combineLatest(isCashOnlyUser, hasWalletItems, inlineBank.asDriver(), inlineCard.asDriver()).map {
+            return !$0 && !$1 && !$2 && !$3
         }
     }
     
     var shouldShowAddCreditCard: Driver<Bool> {
-        return hasWalletItems.map(!)
+        return Driver.combineLatest(hasWalletItems, inlineBank.asDriver(), inlineCard.asDriver()).map {
+            return !$0 && !$1 && !$2
+        }
     }
     
     var shouldShowWalletFooterView: Driver<Bool> {
-        return hasWalletItems.map {
+        return Driver.combineLatest(hasWalletItems, inlineBank.asDriver(), inlineCard.asDriver()).map {
             if Environment.sharedInstance.opco == .bge {
                 return true
             } else {
+                if $1 {
+                    return false
+                } else if $2 {
+                    return true
+                }
                 return !$0
             }
         }
     }
     
+    var walletFooterLabelText: Driver<String> {
+        return Driver.combineLatest(hasWalletItems, inlineCard.asDriver()).map {
+            if Environment.sharedInstance.opco == .bge {
+                if $0 {
+                    return NSLocalizedString("Any payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
+                } else {
+                    return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Small business customers cannot use VISA.", comment: "")
+                }
+            } else {
+                if $1 {
+                    return NSLocalizedString("We accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
+                } else {
+                    return NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
+                }
+            }
+        }
+    }
+    
     var isFixedPaymentDate: Driver<Bool> {
-        return Driver.combineLatest(accountDetail.asDriver(), cardWorkflow).map {
-            if $1 {
+        return Driver.combineLatest(accountDetail.asDriver(), cardWorkflow, addBankFormViewModel.saveToWallet.asDriver()).map {
+            if $1 || !$2 {
                 return true
             }
             
@@ -431,8 +495,8 @@ class PaymentViewModel {
     }
     
     var paymentDateString: Driver<String> {
-        return Driver.combineLatest(paymentDate.asDriver(), cardWorkflow).map {
-            if $1 {
+        return Driver.combineLatest(paymentDate.asDriver(), cardWorkflow, addBankFormViewModel.saveToWallet.asDriver()).map {
+            if $1 || !$2 {
                 let startOfTodayDate = Calendar.current.startOfDay(for: Date())
                 return startOfTodayDate.mmDdYyyyString
             }
@@ -447,19 +511,6 @@ class PaymentViewModel {
         return false
     }
     
-    var walletFooterLabelText: Driver<String> {
-        return hasWalletItems.map {
-            if Environment.sharedInstance.opco == .bge {
-                if $0 {
-                    return NSLocalizedString("Any payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
-                } else {
-                    return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Small business customers cannot use VISA.", comment: "")
-                }
-            } else {
-                return NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
-            }
-        }
-    }
     
     // MARK: - Review Payment Drivers
     

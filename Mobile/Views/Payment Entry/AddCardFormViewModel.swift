@@ -22,6 +22,7 @@ class AddCardFormViewModel {
     
     let walletService: WalletService!
     
+    // Normal Add Bank forms
     let nameOnCard = Variable("")
     let cardNumber = Variable("")
     let expMonth = Variable("")
@@ -30,6 +31,10 @@ class AddCardFormViewModel {
     let zipCode = Variable("")
     let nickname = Variable("")
     let oneTouchPay = Variable(false)
+    
+    // Payment workflow
+    let paymentWorkflow = Variable(false) // If form is being used on payment screen
+    let saveToWallet = Variable(true) // Switch value
     
     required init(walletService: WalletService) {
         self.walletService = walletService

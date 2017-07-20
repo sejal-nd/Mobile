@@ -30,11 +30,19 @@ class AddCardFormView: UIView {
     @IBOutlet weak var cvvTextField: FloatLabelTextField!
     @IBOutlet weak var cvvTooltipButton: UIButton!
     @IBOutlet weak var zipCodeTextField: FloatLabelTextField!
+    
+    @IBOutlet weak var saveToWalletStackView: UIStackView!
+    @IBOutlet weak var saveToWalletSwitch: Switch!
+    @IBOutlet weak var saveToWalletLabel: UILabel!
+    @IBOutlet weak var byNotSavingLabel: UILabel!
+    
     @IBOutlet weak var nicknameTextField: FloatLabelTextField!
+    
     @IBOutlet weak var oneTouchPayView: UIView!
     @IBOutlet weak var oneTouchPayDescriptionLabel: UILabel!
     @IBOutlet weak var oneTouchPaySwitch: Switch!
     @IBOutlet weak var oneTouchPayLabel: UILabel!
+    
     @IBOutlet weak var footnoteLabel: UILabel!
     
     var viewModel = AddCardFormViewModel(walletService: ServiceFactory.createWalletService())
@@ -90,6 +98,12 @@ class AddCardFormView: UIView {
         zipCodeTextField.textField.delegate = self
         zipCodeTextField.textField.keyboardType = .numberPad
         
+        saveToWalletLabel.textColor = .deepGray
+        saveToWalletLabel.text = NSLocalizedString("Save to My Wallet", comment: "")
+        byNotSavingLabel.textColor = .blackText
+        byNotSavingLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        byNotSavingLabel.text = NSLocalizedString("By not saving this payment account, you will only be eligible to make an instant payment.", comment: "")
+        
         nicknameTextField.textField.placeholder = Environment.sharedInstance.opco == .bge ? NSLocalizedString("Nickname*", comment: "") : NSLocalizedString("Nickname (Optional)", comment: "")
         
         oneTouchPayDescriptionLabel.textColor = .blackText
@@ -111,6 +125,7 @@ class AddCardFormView: UIView {
         }
         
         bindViewModel()
+        bindViewHiding()
         bindValidation()
     }
     
@@ -121,8 +136,16 @@ class AddCardFormView: UIView {
         expYearTextField.textField.rx.text.orEmpty.bind(to: viewModel.expYear).addDisposableTo(disposeBag)
         cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).addDisposableTo(disposeBag)
         zipCodeTextField.textField.rx.text.orEmpty.bind(to: viewModel.zipCode).addDisposableTo(disposeBag)
+        saveToWalletSwitch.rx.isOn.bind(to: viewModel.saveToWallet).addDisposableTo(disposeBag)
         nicknameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nickname).addDisposableTo(disposeBag)
         oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
+    }
+    
+    func bindViewHiding() {
+        viewModel.saveToWallet.asDriver().drive(byNotSavingLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.saveToWallet.asDriver().map(!).drive(nicknameTextField.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.saveToWallet.asDriver().map(!).drive(oneTouchPayView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.paymentWorkflow.asDriver().drive(footnoteLabel.rx.isHidden).addDisposableTo(disposeBag)
     }
     
     func bindValidation() {

@@ -21,6 +21,7 @@ class AddBankFormView: UIView {
     let disposeBag = DisposeBag()
 
     @IBOutlet weak var view: UIView!
+    
     @IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControl!
     @IBOutlet weak var accountHolderNameTextField: FloatLabelTextField!
     @IBOutlet weak var routingNumberTextField: FloatLabelTextField!
@@ -28,7 +29,14 @@ class AddBankFormView: UIView {
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     @IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextField!
+    
+    @IBOutlet weak var saveToWalletStackView: UIStackView!
+    @IBOutlet weak var saveToWalletSwitch: Switch!
+    @IBOutlet weak var saveToWalletLabel: UILabel!
+    @IBOutlet weak var byNotSavingLabel: UILabel!
+    
     @IBOutlet weak var nicknameTextField: FloatLabelTextField!
+    
     @IBOutlet weak var oneTouchPayView: UIView!
     @IBOutlet weak var oneTouchPayDescriptionLabel: UILabel!
     @IBOutlet weak var oneTouchPaySwitch: Switch!
@@ -75,6 +83,12 @@ class AddBankFormView: UIView {
         confirmAccountNumberTextField.textField.delegate = self
         confirmAccountNumberTextField.textField.returnKeyType = .next
         
+        saveToWalletLabel.textColor = .deepGray
+        saveToWalletLabel.text = NSLocalizedString("Save to My Wallet", comment: "")
+        byNotSavingLabel.textColor = .blackText
+        byNotSavingLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        byNotSavingLabel.text = NSLocalizedString("By not saving this payment account, you will only be eligible to make an instant payment.", comment: "")
+        
         nicknameTextField.textField.placeholder = Environment.sharedInstance.opco == .bge ? NSLocalizedString("Nickname*", comment: "") : NSLocalizedString("Nickname (Optional)", comment: "")
         nicknameTextField.textField.autocorrectionType = .no
         
@@ -83,13 +97,16 @@ class AddBankFormView: UIView {
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         
-        // BGE only fields should be removed on ComEd/PECO
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.sharedInstance.opco == .bge {
+            saveToWalletStackView.isHidden = true // BGE bank payments must be saved
+        } else {
+            // BGE only fields
             checkingSavingsSegmentedControl.isHidden = true
             accountHolderNameTextField.isHidden = true
         }
         
         bindViewModel()
+        bindViewHiding()
         bindValidation()
     }
     
@@ -99,12 +116,19 @@ class AddBankFormView: UIView {
         routingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.routingNumber).addDisposableTo(disposeBag)
         accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
         confirmAccountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmAccountNumber).addDisposableTo(disposeBag)
+        saveToWalletSwitch.rx.isOn.bind(to: viewModel.saveToWallet).addDisposableTo(disposeBag)
         nicknameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nickname).addDisposableTo(disposeBag)
         oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
         
         viewModel.confirmAccountNumberIsEnabled.drive(onNext: { enabled in
             self.confirmAccountNumberTextField.setEnabled(enabled)
         }).addDisposableTo(disposeBag)
+    }
+    
+    func bindViewHiding() {
+        viewModel.saveToWallet.asDriver().drive(byNotSavingLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.saveToWallet.asDriver().map(!).drive(nicknameTextField.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.saveToWallet.asDriver().map(!).drive(oneTouchPayView.rx.isHidden).addDisposableTo(disposeBag)
     }
     
     func bindValidation() {

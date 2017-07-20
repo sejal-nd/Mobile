@@ -292,17 +292,29 @@
                         <viewControllerLayoutGuide type="bottom" id="Req-pH-hyO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="I4A-fL-EPU">
-                        <rect key="frame" x="0.0" y="64" width="375" height="1336"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="1736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYp-6G-8jL">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1256"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1656"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCf-D5-HrT" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1v-Mv-gqZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCf-D5-HrT" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="E03-9H-DES"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="E03-9H-DES"/>
+                                            <constraint firstAttribute="bottom" secondItem="tCf-D5-HrT" secondAttribute="bottom" constant="20" id="6ok-wV-y7D"/>
+                                            <constraint firstItem="tCf-D5-HrT" firstAttribute="top" secondItem="A1v-Mv-gqZ" secondAttribute="top" id="Ign-xm-eav"/>
+                                            <constraint firstItem="tCf-D5-HrT" firstAttribute="leading" secondItem="A1v-Mv-gqZ" secondAttribute="leading" id="wL2-Pr-ZyC"/>
+                                            <constraint firstAttribute="trailing" secondItem="tCf-D5-HrT" secondAttribute="trailing" id="xoJ-4P-k21"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="KSW-5c-nIB">
@@ -804,19 +816,18 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="KSW-5c-nIB" firstAttribute="top" secondItem="tCf-D5-HrT" secondAttribute="bottom" constant="20" id="CA3-VB-c4Z"/>
-                                    <constraint firstItem="tCf-D5-HrT" firstAttribute="top" secondItem="dYp-6G-8jL" secondAttribute="top" id="InG-Ob-8n3"/>
-                                    <constraint firstItem="tCf-D5-HrT" firstAttribute="leading" secondItem="dYp-6G-8jL" secondAttribute="leading" id="KMO-6I-xxV"/>
-                                    <constraint firstAttribute="trailing" secondItem="tCf-D5-HrT" secondAttribute="trailing" id="Kcc-Bd-LPW"/>
+                                    <constraint firstItem="A1v-Mv-gqZ" firstAttribute="top" secondItem="dYp-6G-8jL" secondAttribute="top" id="9hg-bE-PJU"/>
                                     <constraint firstAttribute="bottom" secondItem="KSW-5c-nIB" secondAttribute="bottom" id="LE2-dc-M1B"/>
-                                    <constraint firstItem="tCf-D5-HrT" firstAttribute="centerX" secondItem="dYp-6G-8jL" secondAttribute="centerX" id="Wvq-LJ-eWd"/>
                                     <constraint firstItem="KSW-5c-nIB" firstAttribute="centerX" secondItem="dYp-6G-8jL" secondAttribute="centerX" id="XhT-w2-9cC"/>
                                     <constraint firstAttribute="trailing" secondItem="KSW-5c-nIB" secondAttribute="trailing" id="mD9-bD-yH7"/>
+                                    <constraint firstAttribute="trailing" secondItem="A1v-Mv-gqZ" secondAttribute="trailing" id="ro7-lc-osG"/>
                                     <constraint firstItem="KSW-5c-nIB" firstAttribute="leading" secondItem="dYp-6G-8jL" secondAttribute="leading" id="vNC-Hw-29H"/>
+                                    <constraint firstItem="A1v-Mv-gqZ" firstAttribute="leading" secondItem="dYp-6G-8jL" secondAttribute="leading" id="wCC-Dd-Z7L"/>
+                                    <constraint firstItem="KSW-5c-nIB" firstAttribute="top" secondItem="A1v-Mv-gqZ" secondAttribute="bottom" id="xny-dW-HTr"/>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7pY-iO-15B">
-                                <rect key="frame" x="0.0" y="1256" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="1656" width="375" height="80"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8E-zj-eG1">
                                         <rect key="frame" x="88.5" y="20.5" width="199.5" height="40"/>
@@ -854,7 +865,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="VB9-7f-nyr" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157" y="662" width="60" height="12"/>
+                                <rect key="frame" x="157" y="862" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -876,7 +887,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="1400"/>
+                    <size key="freeformSize" width="375" height="1800"/>
                     <connections>
                         <outlet property="activeSeveranceLabel" destination="Mo4-35-vd0" id="gAM-71-JOR"/>
                         <outlet property="addBankAccountButton" destination="KNK-HB-q47" id="RH0-Dt-QV2"/>
@@ -919,6 +930,7 @@
                         <outlet property="paymentDateView" destination="B7J-ry-KXl" id="hC7-W8-5sw"/>
                         <outlet property="privacyPolicyButton" destination="MT4-LD-aYq" id="gkJ-hv-0Rk"/>
                         <outlet property="scrollView" destination="dYp-6G-8jL" id="aac-GW-EhO"/>
+                        <outlet property="stackView" destination="KSW-5c-nIB" id="Wgg-C2-5OD"/>
                         <outlet property="stickyPaymentFooterFeeLabel" destination="xob-SH-3xm" id="0vc-fw-km2"/>
                         <outlet property="stickyPaymentFooterHeightConstraint" destination="8uW-KE-qC1" id="Oo1-fh-UJP"/>
                         <outlet property="stickyPaymentFooterPaymentLabel" destination="I4K-sd-n9y" id="9Vt-o1-T7h"/>

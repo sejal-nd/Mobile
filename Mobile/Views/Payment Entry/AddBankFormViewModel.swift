@@ -23,6 +23,7 @@ class AddBankFormViewModel {
     
     let walletService: WalletService!
     
+    // Normal Add Bank forms
     let selectedSegmentIndex = Variable(0)
     let accountHolderName = Variable("")
     let routingNumber = Variable("")
@@ -30,6 +31,10 @@ class AddBankFormViewModel {
     let confirmAccountNumber = Variable("")
     let nickname = Variable("")
     let oneTouchPay = Variable(false)
+
+    // Payment workflow
+    let paymentWorkflow = Variable(false) // If form is being used on payment screen
+    let saveToWallet = Variable(true) // Switch value
     
     var bankName = "";
 
