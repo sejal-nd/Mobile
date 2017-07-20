@@ -193,20 +193,155 @@ class PaymentViewModel {
     
     // MARK: - Make Payment Drivers
     
+    
+    // MARK: - Inline Bank Validation
+    
+    var saveToWalletBankFormValidBGE: Driver<Bool> {
+        return Driver.combineLatest([addBankFormViewModel.accountHolderNameHasText().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.routingNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.accountNumberHasText().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.accountNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.confirmAccountNumberMatches().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.nicknameHasText().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.nicknameIsValid().asDriver(onErrorJustReturn: false)]) {
+            return !$0.contains(false)
+        }
+    }
+    
+    var saveToWalletBankFormValidComEdPECO: Driver<Bool> {
+        return Driver.combineLatest([addBankFormViewModel.routingNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.accountNumberHasText().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.accountNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.confirmAccountNumberMatches().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.nicknameIsValid().asDriver(onErrorJustReturn: false)]) {
+            return !$0.contains(false)
+        }
+    }
+    
+    var noSaveToWalletBankFormValidBGE: Driver<Bool> {
+        return Driver.combineLatest([addBankFormViewModel.accountHolderNameHasText().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.routingNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.accountNumberHasText().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.accountNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.confirmAccountNumberMatches().asDriver(onErrorJustReturn: false)]) {
+            return !$0.contains(false)
+        }
+    }
+    
+    var noSaveToWalletBankFormValidComEdPECO: Driver<Bool> {
+        return Driver.combineLatest([addBankFormViewModel.routingNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.accountNumberHasText().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.accountNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.confirmAccountNumberMatches().asDriver(onErrorJustReturn: false)]) {
+            return !$0.contains(false)
+        }
+    }
+    
+    // MARK: - Inline Card Validation
+    
+    var saveToWalletCardFormValidBGE: Driver<Bool> {
+        return Driver.combineLatest([addCardFormViewModel.nameOnCardHasText().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.cardNumberHasText().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.cardNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expMonthIs2Digits().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expMonthIsValidMonth().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expYearIs4Digits().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expYearIsNotInPast().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.cvvIsCorrectLength().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.zipCodeIs5Digits().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.nicknameHasText().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.nicknameIsValid().asDriver(onErrorJustReturn: false)]) {
+            return !$0.contains(false)
+        }
+    }
+    
+    var saveToWalletCardFormValidComEdPECO: Driver<Bool> {
+        return Driver.combineLatest([addCardFormViewModel.cardNumberHasText().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.cardNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expMonthIs2Digits().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expMonthIsValidMonth().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expYearIs4Digits().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expYearIsNotInPast().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.cvvIsCorrectLength().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.zipCodeIs5Digits().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.nicknameIsValid().asDriver(onErrorJustReturn: false)]) {
+            return !$0.contains(false)
+        }
+    }
+    
+    var noSaveToWalletCardFormValidBGE: Driver<Bool> {
+        return Driver.combineLatest([addCardFormViewModel.nameOnCardHasText().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.cardNumberHasText().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.cardNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expMonthIs2Digits().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expMonthIsValidMonth().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expYearIs4Digits().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expYearIsNotInPast().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.cvvIsCorrectLength().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.zipCodeIs5Digits().asDriver(onErrorJustReturn: false)]) {
+            return !$0.contains(false)
+        }
+    }
+    
+    var noSaveToWalletCardFormValidComEdPECO: Driver<Bool> {
+        return Driver.combineLatest([addCardFormViewModel.cardNumberHasText().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.cardNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expMonthIs2Digits().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expMonthIsValidMonth().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expYearIs4Digits().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.expYearIsNotInPast().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.cvvIsCorrectLength().asDriver(onErrorJustReturn: false),
+                                     addCardFormViewModel.zipCodeIs5Digits().asDriver(onErrorJustReturn: false)]) {
+            return !$0.contains(false)
+        }
+    }
+    
+    var inlineBankValid: Driver<Bool> {
+        return Driver.combineLatest(addBankFormViewModel.saveToWallet.asDriver(), saveToWalletBankFormValidBGE, saveToWalletBankFormValidComEdPECO, noSaveToWalletBankFormValidBGE, noSaveToWalletBankFormValidComEdPECO).map {
+            if $0 { // Save to wallet
+                return Environment.sharedInstance.opco == .bge ? $1 : $2
+            } else { // No save
+                return Environment.sharedInstance.opco == .bge ? $3 : $4
+            }
+        }
+    }
+    
+    var inlineCardValid: Driver<Bool> {
+        return Driver.combineLatest(addCardFormViewModel.saveToWallet.asDriver(), saveToWalletCardFormValidBGE, saveToWalletCardFormValidComEdPECO, noSaveToWalletCardFormValidBGE, noSaveToWalletCardFormValidComEdPECO).map {
+            if $0 { // Save to wallet
+                return Environment.sharedInstance.opco == .bge ? $1 : $2
+            } else { // No save
+                return Environment.sharedInstance.opco == .bge ? $3 : $4
+            }
+        }
+    }
+    
+    var paymentFieldsValid: Driver<Bool> {
+        return Driver.combineLatest(shouldShowContent, paymentAmount.asDriver(), paymentAmountErrorMessage).map {
+            return $0 && !$1.isEmpty && $2 == nil
+        }
+    }
+    
     var makePaymentNextButtonEnabled: Driver<Bool> {
-        return Driver.combineLatest(shouldShowContent, selectedWalletItem.asDriver(), paymentAmount.asDriver(), paymentAmountErrorMessage, cvvIsCorrectLength.asDriver(onErrorJustReturn: false)).map {
-            if Environment.sharedInstance.opco == .bge {
-                if let selectedWalletItem = $1 {
-                    if selectedWalletItem.bankOrCard == .card {
-                        return $0 && !$2.isEmpty && $3 == nil && $4
+        return Driver.combineLatest(inlineBank.asDriver(), inlineBankValid, inlineCard.asDriver(), inlineCardValid, selectedWalletItem.asDriver(), paymentFieldsValid, cvvIsCorrectLength.asDriver(onErrorJustReturn: false)).map { (inlineBank, inlineBankValid, inlineCard, inlineCardValid, selectedWalletItem, paymentFieldsValid, cvvIsCorrectLength) in
+            if inlineBank {
+                return inlineBankValid && paymentFieldsValid
+            } else if inlineCard {
+                return inlineCardValid && paymentFieldsValid
+            } else {
+                if Environment.sharedInstance.opco == .bge {
+                    if let walletItem = selectedWalletItem {
+                        if walletItem.bankOrCard == .card {
+                            return paymentFieldsValid && cvvIsCorrectLength
+                        } else {
+                            return paymentFieldsValid
+                        }
                     } else {
-                        return $0 && !$2.isEmpty && $3 == nil
+                        return false
                     }
                 } else {
-                    return false
+                    return selectedWalletItem != nil && paymentFieldsValid
                 }
-            } else {
-                return $0 && $1 != nil && !$2.isEmpty && $3 == nil
             }
         }
     }

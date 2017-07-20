@@ -40,6 +40,14 @@ class AddBankFormViewModel {
 
     required init(walletService: WalletService) {
         self.walletService = walletService
+        
+        // When Save To Wallet switch is toggled off, reset the fields that get hidden
+        saveToWallet.asObservable().subscribe(onNext: { save in
+            if !save {
+                self.nickname.value = ""
+                self.oneTouchPay.value = false
+            }
+        }).addDisposableTo(disposeBag)
     }
     
     func accountHolderNameHasText() -> Observable<Bool> {
