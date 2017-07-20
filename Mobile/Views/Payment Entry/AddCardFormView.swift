@@ -142,6 +142,7 @@ class AddCardFormView: UIView {
     }
     
     func bindViewHiding() {
+        viewModel.paymentWorkflow.asDriver().map(!).drive(saveToWalletStackView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.saveToWallet.asDriver().drive(byNotSavingLabel.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.saveToWallet.asDriver().map(!).drive(nicknameTextField.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.saveToWallet.asDriver().map(!).drive(oneTouchPayView.rx.isHidden).addDisposableTo(disposeBag)
