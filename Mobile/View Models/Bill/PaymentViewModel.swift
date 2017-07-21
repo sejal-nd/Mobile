@@ -840,8 +840,10 @@ class PaymentViewModel {
         return "$\($0)"
     }
     
-    lazy var convenienceFeeDisplayString: Driver<String> = self.convenienceFee.map {
-        return (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? $0.percentString! : $0.currencyString!
+    var convenienceFeeDisplayString: Driver<String> {
+        return Driver.combineLatest(convenienceFee, paymentAmount.asDriver().map { return Double($0) ?? 0 }).map {
+            return (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? (($0 / 100) * $1).currencyString! : $0.currencyString!
+        }
     }
     
     lazy var shouldShowAutoPayEnrollButton: Driver<Bool> = self.accountDetail.asDriver().map {
