@@ -508,23 +508,47 @@ class PaymentViewModel {
         }
     }
     
-    lazy var selectedWalletItemImage: Driver<UIImage?> = self.selectedWalletItem.asDriver().map {
-        guard let walletItem: WalletItem = $0 else { return nil }
-        if walletItem.bankOrCard == .bank {
-            return #imageLiteral(resourceName: "opco_bank_mini")
-        } else {
-            return #imageLiteral(resourceName: "opco_credit_card_mini")
+    var selectedWalletItemImage: Driver<UIImage?> {
+        return Driver.combineLatest(selectedWalletItem.asDriver(), inlineBank.asDriver(), inlineCard.asDriver()).map {
+            if $1 {
+                return #imageLiteral(resourceName: "opco_bank_mini")
+            } else if $2 {
+                return #imageLiteral(resourceName: "opco_credit_card_mini")
+            } else {
+                guard let walletItem: WalletItem = $0 else { return nil }
+                if walletItem.bankOrCard == .bank {
+                    return #imageLiteral(resourceName: "opco_bank_mini")
+                } else {
+                    return #imageLiteral(resourceName: "opco_credit_card_mini")
+                }
+            }
         }
     }
     
-    lazy var selectedWalletItemMaskedAccountString: Driver<String> = self.selectedWalletItem.asDriver().map {
-        guard let walletItem: WalletItem = $0 else { return "" }
-        return "**** \(walletItem.maskedWalletItemAccountNumber ?? "")"
+    var selectedWalletItemMaskedAccountString: Driver<String?> {
+        return Driver.combineLatest(selectedWalletItem.asDriver(), inlineBank.asDriver(), addBankFormViewModel.accountNumber.asDriver(), inlineCard.asDriver(), addCardFormViewModel.cardNumber.asDriver()).map {
+            if $1 && $2.characters.count >= 4 {
+                return "**** \($2.substring(from: $2.index($2.endIndex, offsetBy: -4)))"
+            } else if $3 && $4.characters.count >= 4 {
+                return "**** \($4.substring(from: $4.index($4.endIndex, offsetBy: -4)))"
+            } else {
+                guard let walletItem: WalletItem = $0 else { return "" }
+                return "**** \(walletItem.maskedWalletItemAccountNumber ?? "")"
+            }
+        }
     }
     
-    lazy var selectedWalletItemNickname: Driver<String> = self.selectedWalletItem.asDriver().map {
-        guard let walletItem: WalletItem = $0 else { return "" }
-        return walletItem.nickName ?? ""
+    var selectedWalletItemNickname: Driver<String> {
+        return Driver.combineLatest(selectedWalletItem.asDriver(), inlineBank.asDriver(), addBankFormViewModel.nickname.asDriver(), inlineCard.asDriver(), addCardFormViewModel.nickname.asDriver()).map {
+            if $1 {
+                return $2
+            } else if $3 {
+                return $4
+            } else {
+                guard let walletItem: WalletItem = $0 else { return "" }
+                return walletItem.nickName ?? ""
+            }
+        }
     }
     
     var convenienceFee: Driver<Double> {
