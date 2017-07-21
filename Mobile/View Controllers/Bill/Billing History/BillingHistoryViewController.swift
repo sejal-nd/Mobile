@@ -95,15 +95,11 @@ class BillingHistoryViewController: UIViewController {
             vc.billingHistory = billingHistory
             
         } else if let vc = segue.destination as? BillingHistoryDetailsViewController {
-            let billingHistoryItem: BillingHistoryItem
-            
-            if(selectedIndexPath.section == 0) {
-                billingHistoryItem = (self.billingHistory?.upcoming[selectedIndexPath.row])!
-            } else {
-                billingHistoryItem = (self.billingHistory?.past[selectedIndexPath.row])!
-            }
-            
+            let billingHistoryItem = selectedIndexPath.section == 0 ? (self.billingHistory?.upcoming[selectedIndexPath.row])! : (self.billingHistory?.past[selectedIndexPath.row])!
             vc.billingHistoryItem = billingHistoryItem
+        } else if let vc = segue.destination as? ViewBillViewController {
+            let billingHistoryItem = selectedIndexPath.section == 0 ? (self.billingHistory?.upcoming[selectedIndexPath.row])! : (self.billingHistory?.past[selectedIndexPath.row])!
+            vc.viewModel.billDate = billingHistoryItem.date.apiFormatDate
         }
     }
 }
@@ -117,14 +113,27 @@ extension BillingHistoryViewController: UITableViewDelegate {
         selectedIndexPath = indexPath
         
         if indexPath.section == 1 {
-            switch UIDevice.current.userInterfaceIdiom {
-            case .pad:
-                self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
-                break
-            default:
-                self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
-                break
+            guard let billingItem = self.billingHistory?.past[indexPath.row], 
+                let type = billingItem.type else { return }
+            if type == BillingHistoryProperties.TypeBilling.rawValue {
+                if Environment.sharedInstance.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
+                    let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVC, animated: true, completion: nil)
+                } else {
+                    self.performSegue(withIdentifier: "viewBillSegue", sender: self)
+                }
+            } else {
+                switch UIDevice.current.userInterfaceIdiom {
+                case .pad:
+                    self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
+                    break
+                default:
+                    self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+                    break
+                }
             }
+            
             
         } else {
             let opco = Environment.sharedInstance.opco

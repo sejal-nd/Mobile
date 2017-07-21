@@ -21,6 +21,8 @@ enum BillingHistoryProperties: String {
     case StatusSCHEDULED = "SCHEDULED" //PECO
     case PaymentMethod_S = "S"
     case PaymentMethod_R = "R"
+    case PaymentTypeSpeedpay = "SPEEDPAY"
+    case PaymentTypeCSS = "CSS"
 }
 
 class BillingHistoryTableViewCell: UITableViewCell {
