@@ -178,9 +178,10 @@ extension BillingHistoryViewController: UITableViewDelegate {
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         
         if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
-            
-            //TODO: add modify scheduled payment workflow
-            
+            let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+            paymentVc.accountDetail = accountDetail
+            paymentVc.modifying = true
+            self.navigationController?.pushViewController(paymentVc, animated: true)
         } else { // recurring/automatic
             if Environment.sharedInstance.opco == .bge {
                 if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {

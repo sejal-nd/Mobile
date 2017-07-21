@@ -84,12 +84,13 @@ class MakePaymentViewController: UIViewController {
     var cardIOViewController: CardIOPaymentViewController!
     
     var viewModel: PaymentViewModel!
-    var accountDetail: AccountDetail! // Passed from BillViewController
+    var accountDetail: AccountDetail! // Passed in from presenting view
+    var modifying: Bool! // Passed in from BillingHistoryViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail, addBankFormViewModel: self.addBankFormView.viewModel, addCardFormViewModel: self.addCardFormView.viewModel)
+        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail, addBankFormViewModel: self.addBankFormView.viewModel, addCardFormViewModel: self.addCardFormView.viewModel, modifying: modifying)
         
         view.backgroundColor = .softGray
         
@@ -100,7 +101,13 @@ class MakePaymentViewController: UIViewController {
         stackView.addSubview(bg)
         stackView.sendSubview(toBack: bg)
         
-        title = NSLocalizedString("Make a Payment", comment: "")
+        if modifying {
+            title = NSLocalizedString("Modify Payment", comment: "")
+        } else {
+            title = NSLocalizedString("Make a Payment", comment: "")
+        }
+        
+        //title = modifying ? NSLocalizedString("Modify Payment", comment: "") : NSLocalizedString("Make a Payment", comment: "")
         
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton

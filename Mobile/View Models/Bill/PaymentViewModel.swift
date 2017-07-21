@@ -40,14 +40,18 @@ class PaymentViewModel {
     let addCardFormViewModel: AddCardFormViewModel!
     let inlineCard = Variable(false)
     let inlineBank = Variable(false)
+    
     var oneTouchPayItem: WalletItem!
     
-    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel) {
+    let modifying: Variable<Bool>
+    
+    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, modifying: Bool) {
         self.walletService = walletService
         self.paymentService = paymentService
         self.accountDetail = Variable(accountDetail)
         self.addBankFormViewModel = addBankFormViewModel
         self.addCardFormViewModel = addCardFormViewModel
+        self.modifying = Variable(modifying)
         
         if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
             amountDue = Variable(netDueAmount)
