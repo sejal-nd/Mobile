@@ -17,6 +17,11 @@ extension Date {
         return DateFormatter.apiFormatter.string(from: self)
     }
     
+    @nonobjc var apiFormatDate: Date {
+        let dateString = DateFormatter.apiFormatter.string(from: self)
+        return dateString.apiFormatDate
+    }
+    
     @nonobjc var localizedGreeting: String {
         let components = Calendar.current.dateComponents([.hour], from: self)
         guard let hour = components.hour else { return "Greetings" }
