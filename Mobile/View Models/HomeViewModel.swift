@@ -98,7 +98,8 @@ class HomeViewModel {
             }
             .asDriver(onErrorJustReturn: "")
         
-        templateCardViewModel = TemplateCardViewModel()
+        //display opco specific template card
+        templateCardViewModel = TemplateCardViewModel(accountDetailEvents: currentAccountDetail.asObservable().unwrap().materialize())!
     }
     
     func fetchAccountDetail(isRefresh: Bool) {

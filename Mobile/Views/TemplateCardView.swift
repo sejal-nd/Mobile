@@ -20,6 +20,10 @@ class TemplateCardView: UIView {
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var callToActionButton: UIButton!
     
+    @IBOutlet weak var errorStateView: UIView!
+    
+    private var callToActionLabel = ""
+    
     private var viewModel: TemplateCardViewModel! {
         didSet {
             bag = DisposeBag() // Clear all pre-existing bindings
@@ -43,10 +47,16 @@ class TemplateCardView: UIView {
     private func bindViewModel() {
         
         //grab all the content
-        imageView.image = UIImage(named: ("General Residential Not enrolled in PeakRewards - shutterstock_461845090"))
-        titleLabel.text = viewModel.getTitleString()
-        bodyLabel.text = viewModel.getBodyString()
-        callToActionButton.titleLabel?.text = viewModel.getCallToActionString()
+        viewModel.templateImage.drive(imageView.rx.image).addDisposableTo(bag)
+        viewModel.titleString.drive(titleLabel.rx.text).addDisposableTo(bag)
+        viewModel.bodyString.drive(bodyLabel.rx.text).addDisposableTo(bag)
+        viewModel.ctaString.drive(callToActionButton.rx.title()).addDisposableTo(bag)
+        //TODO:
+        //open URL from viewModel.ctaUrl
+        
+        //show error state if an error is received
+        viewModel.shouldShowErrorState.drive(clippingView.rx.isHidden).addDisposableTo(bag)
+        viewModel.shouldShowErrorState.not().drive(errorStateView.rx.isHidden).addDisposableTo(bag)
     }
     
 }

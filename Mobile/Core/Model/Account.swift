@@ -95,6 +95,8 @@ struct AccountDetail: Mappable {
     let isResidential: Bool
     
     let releaseOfInformation: String?
+    
+    let peakRewards: String?
 	
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
@@ -127,6 +129,8 @@ struct AccountDetail: Mappable {
         isResidential = map.optionalFrom("isResidential") ?? false
         
         releaseOfInformation = map.optionalFrom("releaseOfInformation")
+        
+        peakRewards = map.optionalFrom("peakRewards")
     }
 	
     var eBillEnrollStatus: EBillEnrollStatus {
