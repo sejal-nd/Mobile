@@ -141,14 +141,9 @@ class PaymentViewModel {
     
     func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         if inlineBank.value {
-            let paymentType: PaymentType = .check
-            var paymentDate = self.paymentDate.value
-            if !addBankFormViewModel.saveToWallet.value {
-                paymentDate = Calendar.current.startOfDay(for: Date())
-            }
+            scheduleInlineBankPayment(onSuccess: onSuccess, onError: onError)
         } else if inlineCard.value {
-            let paymentType: PaymentType = .credit
-            let paymentDate = Calendar.current.startOfDay(for: Date())
+            scheduleInlineCardPayment(onSuccess: onSuccess, onError: onError)
         } else { // Existing wallet item
             let paymentType: PaymentType = selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
             var paymentDate = self.paymentDate.value
@@ -169,25 +164,127 @@ class PaymentViewModel {
     
     }
     
+    private func scheduleInlineBankPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        var accountType: String?
+        if Environment.sharedInstance.opco == .bge {
+            accountType = addBankFormViewModel.selectedSegmentIndex.value == 0 ? "checking" : "saving"
+        }
+        let accountName: String? = addBankFormViewModel.accountHolderName.value.isEmpty ? nil : addBankFormViewModel.accountHolderName.value
+        let nickname: String? = addBankFormViewModel.nickname.value.isEmpty ? nil : addBankFormViewModel.nickname.value
+        
+        let bankAccount = BankAccount(bankAccountNumber: addBankFormViewModel.accountNumber.value,
+                                      routingNumber: addBankFormViewModel.routingNumber.value,
+                                      accountNickname: nickname,
+                                      accountType: accountType,
+                                      accountName: accountName,
+                                      oneTimeUse: !addBankFormViewModel.saveToWallet.value)
+        
+        walletService
+            .addBankAccount(bankAccount, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { walletItemResult in
+                if self.addBankFormViewModel.oneTouchPay.value {
+                    self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
+                }
+                
+                let paymentType: PaymentType = .check
+                var paymentDate = self.paymentDate.value
+                if !self.addBankFormViewModel.saveToWallet.value {
+                    paymentDate = Calendar.current.startOfDay(for: Date())
+                }
+                
+                let accountNum = self.addBankFormViewModel.accountNumber.value
+                let maskedAccountNumber = accountNum.substring(from: accountNum.index(accountNum.endIndex, offsetBy: -4))
+                
+                let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addBankFormViewModel.saveToWallet.value, maskedWalletAccountNumber: maskedAccountNumber, paymentAmount: Double(self.paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: walletItemResult.walletItemId)
+                self.paymentService.schedulePayment(payment: payment)
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onNext: { _ in
+                        onSuccess()
+                    }, onError: { err in
+                        if !self.addBankFormViewModel.saveToWallet.value {
+                            // Rollback the wallet add
+                            self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
+                        }
+                        onError(err.localizedDescription)
+                    }).addDisposableTo(self.disposeBag)
+            }, onError: { (error: Error) in
+                onError(error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
+    private func scheduleInlineCardPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        var nickname = addCardFormViewModel.nickname.value
+        if nickname.isEmpty && Environment.sharedInstance.opco == .bge {
+            nickname = "Credit Card" // Doesn't matter because we won't be saving it to the Wallet
+        }
+        let card = CreditCard(cardNumber: addCardFormViewModel.cardNumber.value, securityCode: addCardFormViewModel.cvv.value, firstName: "", lastName: "", expirationMonth: addCardFormViewModel.expMonth.value, expirationYear: addCardFormViewModel.expYear.value, postalCode: addCardFormViewModel.zipCode.value, nickname: nickname)
+        
+        walletService
+            .addCreditCard(card, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { walletItemResult in
+                if self.addCardFormViewModel.oneTouchPay.value {
+                    self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
+                }
+                
+                let paymentType: PaymentType = .credit
+                let paymentDate = Calendar.current.startOfDay(for: Date())
+                
+                let cardNum = self.addCardFormViewModel.cardNumber.value
+                let maskedAccountNumber = cardNum.substring(from: cardNum.index(cardNum.endIndex, offsetBy: -4))
+                
+                let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addCardFormViewModel.saveToWallet.value, maskedWalletAccountNumber: maskedAccountNumber, paymentAmount: Double(self.paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: walletItemResult.walletItemId, cvv: self.addCardFormViewModel.cvv.value)
+                self.paymentService.schedulePayment(payment: payment)
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onNext: { _ in
+                        onSuccess()
+                    }, onError: { err in
+                        if !self.addCardFormViewModel.saveToWallet.value {
+                            // Rollback the wallet add
+                            self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
+                        }
+                        onError(err.localizedDescription)
+                    }).addDisposableTo(self.disposeBag)
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
+    func enableOneTouchPay(walletItemID: String, onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
+        walletService.setOneTouchPayItem(walletItemId: walletItemID,
+                                         walletId: nil,
+                                         customerId: AccountsStore.sharedInstance.customerIdentifier)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess?()
+            }, onError: { err in
+                onError?(err.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
     // MARK: - Shared Drivers
     
     var bankWorkflow: Driver<Bool> {
         return Driver.combineLatest(selectedWalletItem.asDriver(), inlineBank.asDriver()).map {
-            if let walletItem = $0 {
-                return walletItem.bankOrCard == .bank
-            } else {
-                return $1
+            if $1 {
+                return true
             }
+            guard let walletItem = $0 else { return false }
+            return walletItem.bankOrCard == .bank
         }
     }
     
     var cardWorkflow: Driver<Bool> {
         return Driver.combineLatest(selectedWalletItem.asDriver(), inlineCard.asDriver()).map {
-            if let walletItem = $0 {
-                return walletItem.bankOrCard == .card
-            } else {
-                return $1
+            if $1 {
+                return true
             }
+            guard let walletItem = $0 else { return false }
+            return walletItem.bankOrCard == .card
         }
     }
     
