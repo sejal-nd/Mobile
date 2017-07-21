@@ -806,6 +806,18 @@ class PaymentViewModel {
         }
     }
     
+    var isOverpayingCard: Driver<Bool> {
+        return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver().map { return Double($0) ?? 0 }, cardWorkflow).map {
+            return $1 > $0 && $2
+        }
+    }
+    
+    var isOverpayingBank: Driver<Bool> {
+        return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver().map { return Double($0) ?? 0 }, bankWorkflow).map {
+            return $1 > $0 && $2
+        }
+    }
+    
     var overpayingValueDisplayString: Driver<String> {
         return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver().map { return Double($0) ?? 0 }).map {
             return ($1 - $0).currencyString!

@@ -40,9 +40,13 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var convenienceFeeTextLabel: UILabel!
     @IBOutlet weak var convenienceFeeValueLabel: UILabel!
     
-    @IBOutlet weak var overpayingView: UIView!
-    @IBOutlet weak var overpayingTextLabel: UILabel!
-    @IBOutlet weak var overpayingValueLabel: UILabel!
+    @IBOutlet weak var cardOverpayingView: UIView!
+    @IBOutlet weak var cardOverpayingTextLabel: UILabel!
+    @IBOutlet weak var cardOverpayingValueLabel: UILabel!
+    
+    @IBOutlet weak var bankOverpayingView: UIView!
+    @IBOutlet weak var bankOverpayingTextLabel: UILabel!
+    @IBOutlet weak var bankOverpayingValueLabel: UILabel!
     
     @IBOutlet weak var totalPaymentView: UIView!
     @IBOutlet weak var paymentDateTextLabel: UILabel!
@@ -129,11 +133,17 @@ class ReviewPaymentViewController: UIViewController {
         convenienceFeeValueLabel.textColor = .deepGray
         convenienceFeeValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        overpayingTextLabel.textColor = .deepGray
-        overpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        overpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
-        overpayingValueLabel.textColor = .deepGray
-        overpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        cardOverpayingTextLabel.textColor = .deepGray
+        cardOverpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        cardOverpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
+        cardOverpayingValueLabel.textColor = .deepGray
+        cardOverpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        bankOverpayingTextLabel.textColor = .deepGray
+        bankOverpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        bankOverpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
+        bankOverpayingValueLabel.textColor = .deepGray
+        bankOverpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         totalPaymentView.backgroundColor = .softGray
         paymentDateTextLabel.textColor = .blackText
@@ -190,7 +200,8 @@ class ReviewPaymentViewController: UIViewController {
     func bindViewHiding() {
         viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isOverpaying.map(!).drive(overpaymentLabel.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isOverpaying.map(!).drive(overpayingView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isOverpayingCard.map(!).drive(cardOverpayingView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isOverpayingBank.map(!).drive(bankOverpayingView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.reviewPaymentShouldShowConvenienceFeeBox.map(!).drive(convenienceFeeView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowTermsConditionsSwitchView.map(!).drive(termsConditionsSwitchView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).addDisposableTo(disposeBag)
@@ -214,7 +225,8 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.paymentAmountDisplayString.asDriver().drive(paymentAmountValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Overpaying
-        viewModel.overpayingValueDisplayString.drive(overpayingValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.overpayingValueDisplayString.drive(cardOverpayingValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.overpayingValueDisplayString.drive(bankOverpayingValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Convenience Fee
         viewModel.convenienceFeeDisplayString.drive(convenienceFeeValueLabel.rx.text).addDisposableTo(disposeBag)
