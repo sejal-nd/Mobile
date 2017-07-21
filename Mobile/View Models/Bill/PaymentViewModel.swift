@@ -485,9 +485,20 @@ class PaymentViewModel {
         }
     }
     
-    lazy var hasWalletItems: Driver<Bool> = self.walletItems.asDriver().map {
-        guard let walletItems: [WalletItem] = $0 else { return false }
-        return walletItems.count > 0
+    var hasWalletItems: Driver<Bool> {
+        return Driver.combineLatest(walletItems.asDriver(), isCashOnlyUser).map {
+            guard let walletItems: [WalletItem] = $0 else { return false }
+            if $1 { // If only bank accounts, treat cash only user as if they have no wallet items
+                for item in walletItems {
+                    if item.bankOrCard == .card {
+                        return true
+                    }
+                }
+                return false
+            } else {
+                return walletItems.count > 0
+            }
+        }
     }
     
     lazy var shouldShowCvvTextField: Driver<Bool> = self.selectedWalletItem.asDriver().map {
