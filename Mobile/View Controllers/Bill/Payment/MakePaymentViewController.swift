@@ -8,12 +8,20 @@
 
 import RxSwift
 import RxCocoa
+import AVFoundation
 
 class MakePaymentViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var stackView: UIStackView!
+    
+    @IBOutlet weak var addBankContainerView: UIView!
+    @IBOutlet weak var addBankFormView: AddBankFormView!
+    @IBOutlet weak var addCardContainerView: UIView!
+    @IBOutlet weak var addCardFormView: AddCardFormView!
+    @IBOutlet weak var inlinePaymentDividerLine: UIView!
     
     @IBOutlet weak var activeSeveranceLabel: UILabel!
     @IBOutlet weak var bankAccountsUnavailableLabel: UILabel!
@@ -71,15 +79,26 @@ class MakePaymentViewController: UIViewController {
 
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
-    var accountDetail: AccountDetail! // Passed from BillViewController
     var nextButton = UIBarButtonItem()
     
-    lazy var viewModel: PaymentViewModel = {
-        PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail)
-    }()
+    var cardIOViewController: CardIOPaymentViewController!
+    
+    var viewModel: PaymentViewModel!
+    var accountDetail: AccountDetail! // Passed from BillViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail, addBankFormViewModel: self.addBankFormView.viewModel, addCardFormViewModel: self.addCardFormView.viewModel)
+        
+        view.backgroundColor = .softGray
+        
+        // Put white background on stack view
+        let bg = UIView(frame: stackView.bounds)
+        bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        bg.backgroundColor = .white
+        stackView.addSubview(bg)
+        stackView.sendSubview(toBack: bg)
         
         title = NSLocalizedString("Make a Payment", comment: "")
         
@@ -89,6 +108,12 @@ class MakePaymentViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
+        addBankFormView.delegate = self
+        addBankFormView.viewModel.paymentWorkflow.value = true
+        addCardFormView.delegate = self
+        addCardFormView.viewModel.paymentWorkflow.value = true
+        inlinePaymentDividerLine.backgroundColor = .lightGray
         
         activeSeveranceLabel.textColor = .blackText
         activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -175,6 +200,7 @@ class MakePaymentViewController: UIViewController {
         addBankAccountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         addBankAccountFeeLabel.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
         addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        addBankAccountButton.backgroundColorOnPress = .softGray
         
         addCreditCardFeeLabel.textColor = .blackText
         addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -189,6 +215,7 @@ class MakePaymentViewController: UIViewController {
             break
         }
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        addCreditCardButton.backgroundColorOnPress = .softGray
         
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
         privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
@@ -201,6 +228,7 @@ class MakePaymentViewController: UIViewController {
         stickyPaymentFooterPaymentLabel.textColor = .blackText
         stickyPaymentFooterFeeLabel.textColor = .deepGray
         
+        configureCardIO()
         bindViewHiding()
         bindViewContent()
         bindButtonTaps()
@@ -208,10 +236,6 @@ class MakePaymentViewController: UIViewController {
 
         viewModel.formatPaymentAmount() // Initial formatting
         viewModel.fetchWalletItems(onSuccess: nil, onError: nil)
-        
-        // TODO - Enable these in sprint 14
-        addBankAccountButton.isEnabled = false
-        addCreditCardButton.isEnabled = false
     }
     
     deinit {
@@ -249,11 +273,37 @@ class MakePaymentViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    func configureCardIO() {
+        CardIOUtilities.preloadCardIO() // Speeds up subsequent launch
+        cardIOViewController = CardIOPaymentViewController.init(paymentDelegate: self)
+        cardIOViewController.disableManualEntryButtons = true
+        cardIOViewController.guideColor = UIColor.successGreen
+        cardIOViewController.hideCardIOLogo = true
+        cardIOViewController.collectCardholderName = false
+        cardIOViewController.collectExpiry = false
+        cardIOViewController.collectCVV = false
+        cardIOViewController.collectPostalCode = false
+        cardIOViewController.navigationBarStyle = .black
+        cardIOViewController.navigationBarTintColor = .primaryColor
+        cardIOViewController.navigationBar.isTranslucent = false
+        cardIOViewController.navigationBar.tintColor = .white
+        let titleDict: [String: Any] = [
+            NSForegroundColorAttributeName: UIColor.white,
+            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        ]
+        cardIOViewController.navigationBar.titleTextAttributes = titleDict
+    }
+    
     func bindViewHiding() {
         // Loading
         viewModel.isFetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).addDisposableTo(disposeBag)
+        
+        // Inline Bank/Card
+        viewModel.inlineBank.asDriver().map(!).drive(addBankContainerView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.inlineCard.asDriver().map(!).drive(addCardContainerView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowInlinePaymentDivider.map(!).drive(inlinePaymentDividerLine.rx.isHidden).addDisposableTo(disposeBag)
         
         // Active Severance Label
         viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).addDisposableTo(disposeBag)
@@ -296,6 +346,10 @@ class MakePaymentViewController: UIViewController {
     }
     
     func bindViewContent() {
+        // Inline payment
+        viewModel.oneTouchPayDescriptionLabelText.drive(addBankFormView.oneTouchPayDescriptionLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.oneTouchPayDescriptionLabelText.drive(addCardFormView.oneTouchPayDescriptionLabel.rx.text).addDisposableTo(disposeBag)
+        
         // Selected Wallet Item
         viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).addDisposableTo(disposeBag)
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountAccountNumberLabel.rx.text).addDisposableTo(disposeBag)
@@ -337,7 +391,7 @@ class MakePaymentViewController: UIViewController {
             miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
             miniWalletVC.viewModel.selectedItem.value = self.viewModel.selectedWalletItem.value
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
-            miniWalletVC.addingDisabled = true
+            miniWalletVC.sentFromPayment = true
             miniWalletVC.delegate = self
             self.navigationController?.pushViewController(miniWalletVC, animated: true)
         }).addDisposableTo(disposeBag)
@@ -353,12 +407,45 @@ class MakePaymentViewController: UIViewController {
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).addDisposableTo(disposeBag)
         
+        addBankAccountButton.rx.touchUpInside.subscribe(onNext: {
+            self.viewModel.inlineBank.value = true
+        }).addDisposableTo(disposeBag)
+        
+        addCreditCardButton.rx.touchUpInside.subscribe(onNext: {
+            self.viewModel.inlineCard.value = true
+        }).addDisposableTo(disposeBag)
+        
         privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).addDisposableTo(disposeBag)
     }
     
     func onNextPress() {
         self.view.endEditing(true)
-        performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
+        
+        var shouldShowOneTouchPayWarning = false
+        if viewModel.inlineBank.value {
+            if viewModel.addBankFormViewModel.oneTouchPay.value {
+                if viewModel.oneTouchPayItem != nil {
+                    shouldShowOneTouchPayWarning = true
+                }
+            }
+        } else if viewModel.inlineCard.value {
+            if viewModel.addCardFormViewModel.oneTouchPay.value {
+                if viewModel.oneTouchPayItem != nil {
+                    shouldShowOneTouchPayWarning = true
+                }
+            }
+        }
+        
+        if shouldShowOneTouchPayWarning {
+            let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
+                self.performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
+            }))
+            present(alertVc, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
+        }
     }
     
     func onPrivacyPolicyPress() {
@@ -429,6 +516,14 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
         viewModel.selectedWalletItem.value = walletItem
     }
+    
+    func miniWalletViewControllerDidTapAddBank(_ miniWalletViewController: MiniWalletViewController) {
+        viewModel.inlineBank.value = true
+    }
+    
+    func miniWalletViewControllerDidTapAddCard(_ miniWalletViewController: MiniWalletViewController) {
+        viewModel.inlineCard.value = true
+    }
 }
 
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
@@ -462,5 +557,52 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
         viewModel.paymentDate.value = date
+    }
+}
+
+extension MakePaymentViewController: AddBankFormViewDelegate {
+    func addBankFormViewDidTapRoutingNumberTooltip(_ addBankFormView: AddBankFormView) {
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Routing Number", comment: ""), image: #imageLiteral(resourceName: "routing_number_info"), description: NSLocalizedString("This number is used to identify your banking institution. You can find your bank’s nine-digit routing number on the bottom of your paper check.", comment: ""))
+        navigationController?.present(infoModal, animated: true, completion: nil)
+    }
+    
+    func addBankFormViewDidTapAccountNumberTooltip(_ addBankFormView: AddBankFormView) {
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Account Number", comment: ""), image: #imageLiteral(resourceName: "account_number_info"), description: NSLocalizedString("This number is used to identify your bank account. You can find your checking account number on the bottom of your paper check following the routing number.", comment: ""))
+        navigationController?.present(infoModal, animated: true, completion: nil)
+    }
+}
+
+extension MakePaymentViewController: AddCardFormViewDelegate {
+    func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        if cameraAuthorizationStatus == .denied || cameraAuthorizationStatus == .restricted {
+            let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVC.addAction(UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""), style: .default, handler: { _ in
+                if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                    UIApplication.shared.openURL(url)
+                }
+            }))
+            present(alertVC, animated: true, completion: nil)
+        } else {
+            present(cardIOViewController!, animated: true, completion: nil)
+        }
+    }
+    
+    func addCardFormViewDidTapCVVTooltip(_ addCardFormView: AddCardFormView) {
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""), image: #imageLiteral(resourceName: "cvv_info"), description: NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: ""))
+        navigationController?.present(infoModal, animated: true, completion: nil)
+    }
+}
+
+extension MakePaymentViewController: CardIOPaymentViewControllerDelegate {
+    func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
+        cardIOViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func userDidProvide(_ cardInfo: CardIOCreditCardInfo!, in paymentViewController: CardIOPaymentViewController!) {
+        cardIOViewController.dismiss(animated: true, completion: nil)
+        addCardFormView.cardNumberTextField.textField.text = cardInfo.cardNumber
+        addCardFormView.cardNumberTextField.textField.sendActions(for: .editingChanged) // updates viewModel
     }
 }
