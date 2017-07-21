@@ -19,12 +19,15 @@ class HomeViewModel {
     private let accountService: AccountService
     private let weatherService: WeatherService
     private let walletService: WalletService
+    private let paymentService: PaymentService
     
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let currentAccount = Variable<Account?>(nil)
     let currentAccountDetail = Variable<AccountDetail?>(nil)
     let isFetchingAccountDetail: Driver<Bool>
     let accountDetailErrorMessage: Driver<String>
+    
+    let fetchingTracker = ActivityTracker()
     
     private let greetingVariable = Variable<String?>(nil)
     
@@ -39,10 +42,11 @@ class HomeViewModel {
         return iconName != WeatherIconNames.UNKNOWN.rawValue ? UIImage(named: iconName) : nil 
     }
     
-    required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService) {
+    required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService) {
         self.accountService = accountService
         self.weatherService = weatherService
         self.walletService = walletService
+        self.paymentService = paymentService
         
         let fetchingAccountDetailTracker = ActivityTracker()
         isFetchingAccountDetail = fetchingAccountDetailTracker.asDriver()
@@ -74,22 +78,17 @@ class HomeViewModel {
         
         //bind this to fetchAccountDetailRequest to ensure address is available on sign in/keep me logged in
         let weatherResult = fetchAccountDetailResult.elements().map { $0.address ?? "" }
-        .flatMap(weatherService.fetchWeather)
+            .flatMap(weatherService.fetchWeather)
             .materialize()
             
         weatherResult.elements()
         .bind(to: weatherItem)
         .addDisposableTo(disposeBag)
         
-        weatherResult.errors()
+        weatherResult
             .map { _ in Date().localizedGreeting }
-        .bind(to: greetingVariable)
-        .addDisposableTo(disposeBag)
-        
-        weatherItem.asObservable()
-            .map {_ in Date().localizedGreeting }
-        .bind(to: greetingVariable)
-        .addDisposableTo(disposeBag)
+            .bind(to: greetingVariable)
+            .addDisposableTo(disposeBag)
         
         accountDetailErrorMessage = fetchAccountDetailResult.errors()
             .map { 
@@ -106,9 +105,13 @@ class HomeViewModel {
             .asDriver(onErrorJustReturn: "")
         
         billCardViewModel = HomeBillCardViewModel(withAccount: currentAccount.asObservable().unwrap(),
-                                                  accountDetail: self.currentAccountDetail.asObservable().unwrap(),
-                                                  walletService: self.walletService)
+                                                  accountDetailEvents: self.currentAccountDetail.asObservable().unwrap().materialize(),
+                                                  walletService: self.walletService,
+                                                  paymentService: self.paymentService,
+                                                  fetchingTracker: self.fetchingTracker)
+        
     }
+    
     
     func fetchAccountDetail(isRefresh: Bool) {
         fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)

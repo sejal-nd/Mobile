@@ -87,7 +87,40 @@ class HomeBillCardView: UIView {
     
     private func bindViewModel() {
         viewModel.billNotReady.not().drive(billNotReadyStack.rx.isHidden).addDisposableTo(bag)
-        viewModel.errorOccurred.not().drive(errorStack.rx.isHidden).addDisposableTo(bag)
+        viewModel.shouldShowErrorState.not().drive(errorStack.rx.isHidden).addDisposableTo(bag)
+        
+        viewModel.shouldShowAlertIcon.not().drive(alertImageView.rx.isHidden).addDisposableTo(bag)
+        viewModel.titleText.drive(titleLabel.rx.text).addDisposableTo(bag)
+        viewModel.titleFont.drive(onNext: { [weak self] font in
+            self?.titleLabel.font = font
+        }).addDisposableTo(bag)
     }
+    
+    private let submitOneTouchPaySubject = PublishSubject<Void>()
+    
+    private(set) lazy var submitOneTouchPay: Observable<Void> = self.submitOneTouchPaySubject.asObservable()
+    
+    private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
+        .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
+        .filter { $0 }
+        .map { _ in
+            let alertController = UIAlertController(title: NSLocalizedString("Weekend/Holiday Payment", comment: ""),
+                                                    message: NSLocalizedString("You are making a payment on a weekend or holiday. Your payment will be scheduled for the next business day.", comment: ""), preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in self?.submitOneTouchPaySubject.onNext()
+            })
+            return alertController
+    }
+    
+    private lazy var tooltipModal: Driver<UIViewController> = Driver.merge(self.dueDateTooltip.rx.tap.asDriver(),
+                                                                           self.dueAmountAndDateTooltip.rx.tap.asDriver())
+        .map {
+            let alertController = UIAlertController(title: NSLocalizedString("Your Due Date", comment: ""),
+                                                    message: NSLocalizedString("If you recently changed your energy supplier, a portion of your balance may have an earlier due date. Please view your previous bills and corresponding due dates.", comment: ""), preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            return alertController
+    }
+    
+    private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(self.tooltipModal, self.oneTouchSliderWeekendAlert)
 
 }

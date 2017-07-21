@@ -41,7 +41,8 @@ class HomeViewController: AccountPickerViewController {
     
     let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(),
                                   weatherService: ServiceFactory.createWeatherService(),
-                                  walletService: ServiceFactory.createWalletService())
+                                  walletService: ServiceFactory.createWalletService(),
+                                  paymentService: ServiceFactory.createPaymentService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     

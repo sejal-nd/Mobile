@@ -7,16 +7,10 @@
 //
 
 import UIKit
-
-protocol OneTouchSliderDelegate: class {
-    func didFinishSwipe(_ oneTouchSlider: OneTouchSlider)
-    func didCancelSwipe(_ oneTouchSlider: OneTouchSlider)
-    func sliderValueChanged(_ oneTouchSlider: OneTouchSlider)
-}
+import RxCocoa
+import RxSwift
 
 class OneTouchSlider: UIControl {
-    
-    weak var delegate: OneTouchSliderDelegate?
     
     //MARK: - Private Variables
     private let slider = UIView()
@@ -33,6 +27,14 @@ class OneTouchSlider: UIControl {
     let sliderWidth: CGFloat = 40
     let sliderText = NSLocalizedString("Slide to pay now", comment: "")
     let commitToSwipe: CGFloat = 0.95 //swipe percentage point at which we commit to the swipe and call success
+    
+    private let sliderValueChangedSubject = PublishSubject<CGFloat>()
+    private let didFinishSwipeSubject = PublishSubject<Void>()
+    private let didCancelSwipeSubject = PublishSubject<Void>()
+    
+    private(set) lazy var sliderValueChanged: Driver<CGFloat> = self.sliderValueChangedSubject.asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var didFinishSwipe: Driver<Void> = self.didFinishSwipeSubject.asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var didCancelSwipe: Driver<Void> = self.didCancelSwipeSubject.asDriver(onErrorDriveWith: .empty())
     
     //MARK: - UIControl
     public override init(frame: CGRect) {
@@ -89,12 +91,15 @@ class OneTouchSlider: UIControl {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.backgroundColor = .white
         slider.layer.masksToBounds = true
+        slider.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 2), radius: 3)
         addSubview(slider)
         slider.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
         slider.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
         slider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
         sliderWidthConstraint = slider.widthAnchor.constraint(equalToConstant: sliderWidth)
+        sliderWidthConstraint.priority = 999
         sliderWidthConstraint.isActive = true
+        slider.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -5).isActive = true
         
         //ImageView for caret
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -132,7 +137,7 @@ class OneTouchSlider: UIControl {
             guard shouldSlide && x > sliderWidth && x <= bounds.size.width + padding else { return }
             sliderWidthConstraint.constant = x
             progress = min(x/bounds.size.width, 1)
-            delegate?.sliderValueChanged(self)
+            sliderValueChangedSubject.onNext(progress)
         case .ended:fallthrough
         case .cancelled:
             sliderLabel.fadeView(fadeAmount: 1.0) 
@@ -164,17 +169,13 @@ class OneTouchSlider: UIControl {
                             self.layoutIfNeeded()
             }, completion: { finished in
                 if success {
-                    self.delegate?.didFinishSwipe(self)
+                    self.didFinishSwipeSubject.onNext()
                 } else {
-                    self.delegate?.didCancelSwipe(self)
+                    self.didCancelSwipeSubject.onNext()
                 }
             })
         default: break
         }
     }
 }
-
-import RxSwift
-import RxCocoa
-
 

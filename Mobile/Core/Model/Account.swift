@@ -16,11 +16,6 @@ private func extractDate(object: Any?) throws -> Date? {
     return dateString.apiFormatDate
 }
 
-enum AccountType {
-    case Residential
-    case Commercial
-}
-
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
