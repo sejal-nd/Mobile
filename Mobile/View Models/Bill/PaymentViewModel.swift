@@ -191,9 +191,6 @@ class PaymentViewModel {
         }
     }
     
-    // MARK: - Make Payment Drivers
-    
-    
     // MARK: - Inline Bank Validation
     
     var saveToWalletBankFormValidBGE: Driver<Bool> {
@@ -321,6 +318,8 @@ class PaymentViewModel {
             return $0 && !$1.isEmpty && $2 == nil
         }
     }
+    
+    // MARK: - Make Payment Drivers
     
     var makePaymentNextButtonEnabled: Driver<Bool> {
         return Driver.combineLatest(inlineBank.asDriver(), inlineBankValid, inlineCard.asDriver(), inlineCardValid, selectedWalletItem.asDriver(), paymentFieldsValid, cvvIsCorrectLength.asDriver(onErrorJustReturn: false)).map { (inlineBank, inlineBankValid, inlineCard, inlineCardValid, selectedWalletItem, paymentFieldsValid, cvvIsCorrectLength) in
