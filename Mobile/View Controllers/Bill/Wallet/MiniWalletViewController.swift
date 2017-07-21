@@ -52,7 +52,7 @@ class MiniWalletViewController: UIViewController {
         
         tableFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
         tableFooterLabel.textColor = .blackText
-        tableFooterLabel.text = NSLocalizedString(viewModel.getTableFooterLabel(), comment: "")
+        tableFooterLabel.text = viewModel.footerLabelText
         
         tableView.estimatedSectionHeaderHeight = 16
         
