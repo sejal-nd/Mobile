@@ -19,28 +19,6 @@ class MaintenanceModeViewModel{
         self.authService = authService
     }
     
-    var emergencyAttrString: NSAttributedString {
-        let emergencyAttrString: NSMutableAttributedString
-        switch opco {
-        case .bge:
-            let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-            let localizedString = String(format: NSLocalizedString("If you see downed power lines or smell natural gas, %@ and then call BGE. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
-            emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(NSFontAttributeName, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
-        case .peco:
-            let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-            let localizedString = String(format: NSLocalizedString("If you see downed power lines or smell natural gas, %@ and then call PECO. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
-            emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(NSFontAttributeName, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
-        case .comEd:
-            let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-            let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
-            emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(NSFontAttributeName, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
-        }
-        return emergencyAttrString
-    }
-    
     func getHeaderLabelText() -> String {
         switch opco {
         case .bge: return NSLocalizedString("The BGE App is currently unavailable due to scheduled maintenance.", comment: "")
@@ -49,36 +27,23 @@ class MaintenanceModeViewModel{
         }
     }
     
-    func getLabel1Text() -> String {
+    func getLabelBody() -> NSAttributedString {
+        let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
+        let emergencyAttrString: NSMutableAttributedString
+        var localizedString: String
         switch opco {
-        case .bge: return NSLocalizedString("To report a gas emergency, please call 1-800-865-0123", comment: "")
-        case .comEd: return NSLocalizedString("To report a gas emergency, a downed or sparking power line or a power outage, please call 1-800-334-7661 Representatives are available 24 hours a day, 7 days a week.", comment: "")
-        case .peco: return NSLocalizedString("To report a gas emergency, a downed or sparking power line or a power outage, please call 1-800-841-4141 Representatives are available 24 hours a day, 7 days a week.", comment: "")
+        case .bge:
+            localizedString = String(format: NSLocalizedString("If you smell natural gas or see downed power lines, %@ and then call BGE at 1-800-685-0123\n\nIf your power is out, call 1-877-778-2222", comment: ""),leaveAreaString)
+        case .comEd:
+            localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd at 1-800-334-7661 Representatives are available 24 hours a day, 7 days a week.\nFor all other inquiries, please call 1-800-334-7661 M-F 7AM to 7PM\n\n", comment: ""),leaveAreaString)
+        case .peco:
+            localizedString = String(format: NSLocalizedString("If you smell natural gas or see downed power lines, %@ and then call PECO at 1-800-841-4141 Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call 1-800-494-4000 M-F 7AM to 7PM\n\n", comment: ""),leaveAreaString)
         }
-    }
-    
-    func getLabel2Text() -> String {
-        switch opco {
-        case .bge: return NSLocalizedString("For a power outage, downed or sparking power lines, or dim/flickering lights, please call 1-877-778-2222", comment: "")
-        case .comEd: return NSLocalizedString("To report a gas emergency, a downed or sparking power line or a power outage, please call 1-800-334-7661 Representatives are available 24 hours a day, 7 days a week.", comment: "")
-        case .peco: return NSLocalizedString("For all other inquiries, please call 1-800-494-4000 M-F 7AM to 7PM", comment: "")
-        }
-    }
-    
-    func getLabel3Text() -> String? {
-        switch opco{
-            case .bge: return NSLocalizedString("Representatives are available 24 hours a day, 7 days a week.", comment: "")
-        default:
-            return nil
-        }
-    }
-    
-    func getLabel4Text() -> String? {
-        switch opco{
-        case .bge: return NSLocalizedString("For all other inquiries, please call 1-800-685-0123 M-F 7AM to 7PM", comment: "")
-        default:
-            return nil
-        }
+        
+        emergencyAttrString = NSMutableAttributedString(string: localizedString)
+        emergencyAttrString.addAttribute(NSFontAttributeName, value: SystemFont.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+        
+        return emergencyAttrString
     }
     
     func isBGE() -> Bool {

@@ -24,11 +24,8 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var opcoLogo: UIImageView!
     @IBOutlet weak var maintenanceModeBody: UIView!
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var label1: DataDetectorTextView!
-    @IBOutlet weak var label2: DataDetectorTextView!
+    @IBOutlet weak var bodyLabel: DataDetectorTextView!
     @IBOutlet weak var BGEStackView: UIStackView!
-    @IBOutlet weak var label3: UILabel!
-    @IBOutlet weak var label4: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,24 +38,13 @@ class MaintenanceModeViewController: UIViewController {
         maintenanceModeBody.layer.cornerRadius = 2
         
         headerLabel.text = viewModel.getHeaderLabelText()
-        headerLabel.font = SystemFont.bold.of(textStyle: .body)
         headerLabel.textColor = .deepGray
         
-        label1.text = viewModel.getLabel1Text()
-        label1.font = OpenSans.regular.of(textStyle: .body)
-        label1.textColor = .black
-        
-        label2.text = viewModel.getLabel2Text()
-        label2.font = OpenSans.regular.of(textStyle: .body)
-        label2.textColor = .black
-        
-        label3.text = viewModel.getLabel3Text()
-        label3.font = OpenSans.regular.of(textStyle: .body)
-        label3.textColor = .black
-        
-        label4.text = viewModel.getLabel4Text()
-        label4.font = OpenSans.regular.of(textStyle: .body)
-        label4.textColor = .black
+        bodyLabel.attributedText = viewModel.getLabelBody()
+
+        bodyLabel.textColor = .black
+        bodyLabel.textContainerInset = .zero
+        bodyLabel.textContainer.lineFragmentPadding = 0
         
         BGEStackView.isHidden = !viewModel.isBGE()
         
@@ -88,6 +74,10 @@ class MaintenanceModeViewController: UIViewController {
     
     func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
         return a + (b - a) * t;
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     func onReloadPress() {

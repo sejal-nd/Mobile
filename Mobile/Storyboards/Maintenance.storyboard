@@ -8,6 +8,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--maintenanceViewController-->
         <scene sceneID="JHU-C4-tXL">
@@ -28,17 +33,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oar-PX-3sy" userLabel="Tablet View">
-                                                <rect key="frame" x="29" y="8" width="329" height="587"/>
+                                                <rect key="frame" x="29" y="8" width="317" height="587"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="ejI-Id-7Io">
-                                                        <rect key="frame" x="66" y="20" width="263" height="80"/>
+                                                        <rect key="frame" x="54" y="20" width="263" height="80"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="80" id="5cb-LQ-Z00"/>
                                                             <constraint firstAttribute="width" constant="263" id="xq7-cC-ux7"/>
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" restorationIdentifier="Reload View" translatesAutoresizingMaskIntoConstraints="NO" id="VcL-AS-HfY" userLabel="Reload View" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="125.5" y="127" width="78.5" height="22"/>
+                                                        <rect key="frame" x="119.5" y="127" width="78.5" height="22"/>
                                                         <subviews>
                                                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5hD-gP-UEs">
                                                                 <rect key="frame" x="0.0" y="0.0" width="78.5" height="22"/>
@@ -70,22 +75,25 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKd-gP-q76">
-                                                        <rect key="frame" x="0.0" y="173" width="329" height="341"/>
+                                                        <rect key="frame" x="0.0" y="173" width="317" height="359.5"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="6iq-2M-LHc" userLabel="Main Stack">
-                                                                <rect key="frame" x="22" y="28" width="285" height="281"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6iq-2M-LHc" userLabel="Main Stack">
+                                                                <rect key="frame" x="22" y="28" width="273" height="316.5"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="bV4-kB-3pq" userLabel="Title and Image Stack">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="285" height="60"/>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bV4-kB-3pq" userLabel="Title and Image Stack">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="273" height="75"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="998" verticalCompressionResistancePriority="999" restorationIdentifier="Heading" text="The BGE App is currently unavailable due to scheduled maintenance." lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iY-Ll-WFa">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="175" height="60"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="161" height="75"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="75" id="aVs-ER-oyi"/>
+                                                                                </constraints>
+                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_maint_mode" translatesAutoresizingMaskIntoConstraints="NO" id="YD8-MU-XS4">
-                                                                                <rect key="frame" x="178" y="0.0" width="107" height="60"/>
+                                                                                <rect key="frame" x="166" y="0.0" width="107" height="72"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="107" id="gCM-rg-krV"/>
                                                                                 </constraints>
@@ -100,61 +108,58 @@
                                                                             <constraint firstAttribute="trailing" secondItem="YD8-MU-XS4" secondAttribute="trailing" id="zZb-t8-jXF"/>
                                                                         </constraints>
                                                                     </stackView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="9JL-Rl-3Pj" userLabel="Middle Labels Stack">
-                                                                        <rect key="frame" x="0.0" y="67" width="285" height="116"/>
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuV-2z-TTf" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="85" width="271" height="114.5"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <string key="text">If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123 
+
+For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
+                                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                    </textView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ud4-bu-ibZ">
+                                                                        <rect key="frame" x="0.0" y="209.5" width="273" height="107"/>
                                                                         <subviews>
-                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" editable="NO" text="If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123" translatesAutoresizingMaskIntoConstraints="NO" id="GuV-2z-TTf" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="285" height="50"/>
-                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                                            </textView>
-                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" text="If your power is out, call 1-877-778-2222" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yMb-1i-jF0" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="66" width="285" height="50"/>
-                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                                            </textView>
-                                                                        </subviews>
-                                                                    </stackView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ud4-bu-ibZ">
-                                                                        <rect key="frame" x="0.0" y="190" width="274" height="91"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Representatives are available 24 hours a day, 7 days a week." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fP-UW-M2y">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="268.5" height="29"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Representatives are available 24 hours a day, 7 days a week." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fP-UW-M2y">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="264" height="33"/>
+                                                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wt4-D4-g0s" userLabel="Divider">
-                                                                                <rect key="frame" x="0.0" y="45" width="274" height="1"/>
+                                                                                <rect key="frame" x="0.0" y="45" width="273" height="1"/>
                                                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="Cwv-5g-rTu"/>
                                                                                 </constraints>
                                                                             </view>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="For all other inquiries, please call 1-800-685-0123 M-F 7AM to 7PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaB-ha-WMq">
-                                                                                <rect key="frame" x="0.0" y="62" width="193.5" height="29"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
+                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" text="For all other inquiries, please call 1-800-685-0123 M-F 7AM to 7PM" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SEK-X4-R8B" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="58" width="273" height="49"/>
+                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                            </textView>
                                                                         </subviews>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="SEK-X4-R8B" secondAttribute="bottom" id="5B6-9W-WIm"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="Wt4-D4-g0s" secondAttribute="trailing" id="D0c-EK-Cat"/>
+                                                                            <constraint firstItem="SEK-X4-R8B" firstAttribute="leading" secondItem="Ud4-bu-ibZ" secondAttribute="leading" id="FgN-S3-oGu"/>
+                                                                            <constraint firstItem="Wt4-D4-g0s" firstAttribute="leading" secondItem="Ud4-bu-ibZ" secondAttribute="leading" id="Ncr-3R-ybK"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="SEK-X4-R8B" secondAttribute="trailing" id="owx-fx-rvP"/>
+                                                                        </constraints>
                                                                     </stackView>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="9JL-Rl-3Pj" secondAttribute="trailing" id="6k4-YF-0Ls"/>
-                                                                    <constraint firstItem="9JL-Rl-3Pj" firstAttribute="leading" secondItem="6iq-2M-LHc" secondAttribute="leading" id="IoZ-xo-VuE"/>
+                                                                    <constraint firstItem="GuV-2z-TTf" firstAttribute="leading" secondItem="6iq-2M-LHc" secondAttribute="leading" id="9t2-k7-wOD"/>
                                                                     <constraint firstAttribute="trailing" secondItem="bV4-kB-3pq" secondAttribute="trailing" id="JcS-Kd-fa1"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="9JL-Rl-3Pj" secondAttribute="trailing" id="Svu-JW-dJ4"/>
-                                                                    <constraint firstItem="9JL-Rl-3Pj" firstAttribute="leading" secondItem="6iq-2M-LHc" secondAttribute="leading" id="ZFk-1I-11S"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="Ud4-bu-ibZ" secondAttribute="bottom" id="Uuu-4E-V5w"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Ud4-bu-ibZ" secondAttribute="trailing" id="jOe-7x-Rok"/>
                                                                 </constraints>
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="341" id="Cqp-sU-yVK"/>
-                                                            <constraint firstAttribute="bottom" secondItem="6iq-2M-LHc" secondAttribute="bottom" constant="32" id="Hk0-HM-4IT"/>
+                                                            <constraint firstAttribute="bottom" secondItem="6iq-2M-LHc" secondAttribute="bottom" constant="15" id="Hk0-HM-4IT"/>
                                                             <constraint firstItem="6iq-2M-LHc" firstAttribute="leading" secondItem="nKd-gP-q76" secondAttribute="leading" constant="22" id="Sff-gk-Zt1"/>
                                                             <constraint firstAttribute="trailing" secondItem="6iq-2M-LHc" secondAttribute="trailing" constant="22" id="ZLh-Va-Xkl"/>
                                                             <constraint firstItem="6iq-2M-LHc" firstAttribute="top" secondItem="nKd-gP-q76" secondAttribute="top" constant="28" id="ddC-5w-qzB"/>
@@ -206,11 +211,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="BGEStackView" destination="Ud4-bu-ibZ" id="liV-tP-2wR"/>
+                        <outlet property="bodyLabel" destination="GuV-2z-TTf" id="OvM-Pg-9UK"/>
                         <outlet property="headerLabel" destination="3iY-Ll-WFa" id="6KF-PY-29u"/>
-                        <outlet property="label1" destination="GuV-2z-TTf" id="5Nx-Kj-ndS"/>
-                        <outlet property="label2" destination="yMb-1i-jF0" id="tiT-4v-KXs"/>
-                        <outlet property="label3" destination="0fP-UW-M2y" id="AcM-yz-Vs4"/>
-                        <outlet property="label4" destination="BaB-ha-WMq" id="eom-x0-bzR"/>
                         <outlet property="maintenanceModeBody" destination="nKd-gP-q76" id="AUO-TB-nNg"/>
                         <outlet property="opcoLogo" destination="ejI-Id-7Io" id="3sl-Bb-rt5"/>
                         <outlet property="reloadButton" destination="VcL-AS-HfY" id="fQC-fe-D4q"/>
@@ -219,7 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HJo-Hn-FoH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-775.20000000000005" y="142.57871064467767"/>
+            <point key="canvasLocation" x="-2039" y="7"/>
         </scene>
     </scenes>
     <resources>
