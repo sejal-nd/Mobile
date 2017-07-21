@@ -82,7 +82,17 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
 
         // 
         if billingSelection == .history {
-            self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+            switch UIDevice.current.userInterfaceIdiom {
+            case .phone:
+                self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+                break
+            case .pad:
+                self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
+                break
+            default:
+                // what device is this... O_O
+                break
+            }
         } else {
             let billingItem = self.billingList[indexPath.row]
             
@@ -101,7 +111,17 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                     }
                     
                 } else if status == "PROCESSING" {
-                    self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+                    switch UIDevice.current.userInterfaceIdiom {
+                    case .phone:
+                        self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+                        break
+                    case .pad:
+                        self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
+                        break
+                    default:
+                        // what device is this... O_O
+                        break
+                    }
                     
                 } else if status == "SCHEDULED" {
                     // TODO: load Scheduled Payment workflow (Sprint 13)

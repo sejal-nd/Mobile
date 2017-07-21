@@ -62,7 +62,7 @@ class MiniWalletViewController: UIViewController {
         
         tableFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
         tableFooterLabel.textColor = .blackText
-        tableFooterLabel.text = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
+        tableFooterLabel.text = viewModel.footerLabelText
         
         tableView.estimatedSectionHeaderHeight = 16
         
