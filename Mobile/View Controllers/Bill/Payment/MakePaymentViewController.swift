@@ -64,6 +64,9 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var addCreditCardFeeLabel: UILabel!
     @IBOutlet weak var addCreditCardButton: ButtonControl!
     
+    @IBOutlet weak var deletePaymentButton: ButtonControl!
+    @IBOutlet weak var deletePaymentLabel: UILabel!
+    
     @IBOutlet weak var billMatrixView: UIView!
     @IBOutlet weak var privacyPolicyButton: UIButton!
     
@@ -85,12 +88,12 @@ class MakePaymentViewController: UIViewController {
     
     var viewModel: PaymentViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
-    var modifying: Bool! // Passed in from BillingHistoryViewController
+    var paymentId: String? // Passed in from BillingHistoryViewController, indicates we are modifying a payment
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail, addBankFormViewModel: self.addBankFormView.viewModel, addCardFormViewModel: self.addCardFormView.viewModel, modifying: modifying)
+        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail, addBankFormViewModel: self.addBankFormView.viewModel, addCardFormViewModel: self.addCardFormView.viewModel, paymentId: paymentId)
         
         view.backgroundColor = .softGray
         
@@ -101,13 +104,11 @@ class MakePaymentViewController: UIViewController {
         stackView.addSubview(bg)
         stackView.sendSubview(toBack: bg)
         
-        if modifying {
+        if paymentId != nil {
             title = NSLocalizedString("Modify Payment", comment: "")
         } else {
             title = NSLocalizedString("Make a Payment", comment: "")
         }
-        
-        //title = modifying ? NSLocalizedString("Modify Payment", comment: "") : NSLocalizedString("Make a Payment", comment: "")
         
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
@@ -224,6 +225,10 @@ class MakePaymentViewController: UIViewController {
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
         addCreditCardButton.backgroundColorOnPress = .softGray
         
+        deletePaymentButton.accessibilityLabel = NSLocalizedString("Delete payment", comment: "")
+        deletePaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
+        deletePaymentLabel.textColor = .actionBlue
+        
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
         privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
         
@@ -242,7 +247,7 @@ class MakePaymentViewController: UIViewController {
         addDoneButtonOnKeyboard()
 
         viewModel.formatPaymentAmount() // Initial formatting
-        viewModel.fetchWalletItems(onSuccess: nil, onError: nil)
+        viewModel.fetchData(onSuccess: nil, onError: nil)
     }
     
     deinit {
@@ -337,6 +342,9 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowAddBankAccount.map(!).drive(addBankAccountView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowAddCreditCard.map(!).drive(addCreditCardView.rx.isHidden).addDisposableTo(disposeBag)
         
+        // Delete Payment
+        viewModel.shouldShowDeletePaymentButton.map(!).drive(deletePaymentButton.rx.isHidden).addDisposableTo(disposeBag)
+        
         // Bill Matrix
         viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).addDisposableTo(disposeBag)
         
@@ -420,6 +428,10 @@ class MakePaymentViewController: UIViewController {
         
         addCreditCardButton.rx.touchUpInside.subscribe(onNext: {
             self.viewModel.inlineCard.value = true
+        }).addDisposableTo(disposeBag)
+        
+        deletePaymentButton.rx.touchUpInside.subscribe(onNext: {
+            print("delete payment")
         }).addDisposableTo(disposeBag)
         
         privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).addDisposableTo(disposeBag)

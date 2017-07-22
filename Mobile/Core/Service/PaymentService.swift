@@ -84,6 +84,14 @@ protocol PaymentService {
     ///   - payment: the payment to schedule
     ///   - completion: the completion block to execute upon completion.
     func schedulePayment(payment: Payment, completion: @escaping (_ result: ServiceResult<String>) -> Void)
+    
+    /// Gets full details of an one time payment transaction
+    ///
+    /// - Parameters:
+    ///   - accountNumber: The account to fetch for
+    ///   - paymentId: the paymentId
+    ///   - completion: the completion block to execute upon completion.
+    func fetchPaymentDetails(accountNumber: String, paymentId: String, completion: @escaping (_ result: ServiceResult<PaymentDetail>) -> Void)
 }
 
 // MARK: - Reactive Extension to PaymentService
@@ -213,6 +221,23 @@ extension PaymentService {
                 switch (result) {
                 case ServiceResult.Success(_):
                     observer.onNext()
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail> {
+        
+        return Observable.create { observer in
+            self.fetchPaymentDetails(accountNumber: accountNumber, paymentId: paymentId)
+            { (result: ServiceResult<PaymentDetail>) in
+                switch (result) {
+                case ServiceResult.Success(let paymentDetail):
+                    observer.onNext(paymentDetail)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

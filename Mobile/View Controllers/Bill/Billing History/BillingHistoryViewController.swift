@@ -174,15 +174,15 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
-        guard let paymentMethod = billingItem.paymentMethod else { return }
-        let storyboard = UIStoryboard(name: "Bill", bundle: nil)
-        
-        if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
+        //guard let paymentMethod = billingItem.paymentMethod else { return }
+        //if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
+        if true {
             let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
             paymentVc.accountDetail = accountDetail
-            paymentVc.modifying = true
+            paymentVc.paymentId = billingItem.paymentId
             self.navigationController?.pushViewController(paymentVc, animated: true)
         } else { // recurring/automatic
+            let storyboard = UIStoryboard(name: "Bill", bundle: nil)
             if Environment.sharedInstance.opco == .bge {
                 if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
                     vc.accountDetail = self.accountDetail
