@@ -752,7 +752,7 @@
                                                     <constraint firstItem="yHa-2J-ydC" firstAttribute="leading" secondItem="O6F-W0-cJO" secondAttribute="leading" constant="8" id="hLO-mk-fs7"/>
                                                     <constraint firstItem="ASk-0H-KT7" firstAttribute="leading" secondItem="yHa-2J-ydC" secondAttribute="trailing" constant="8" id="lMp-p0-CxU"/>
                                                     <constraint firstAttribute="trailing" secondItem="ASk-0H-KT7" secondAttribute="trailing" constant="8" id="pPy-H8-PdW"/>
-                                                    <constraint firstAttribute="bottom" secondItem="yHa-2J-ydC" secondAttribute="bottom" constant="4" id="yre-Vc-Ci2"/>
+                                                    <constraint firstAttribute="bottom" secondItem="yHa-2J-ydC" secondAttribute="bottom" priority="999" constant="4" id="yre-Vc-Ci2"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
@@ -2572,7 +2572,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.50 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-Yl-Loj">
-                                                                            <rect key="frame" x="107" y="7.5" width="128.5" height="16.5"/>
+                                                                            <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>

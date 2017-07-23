@@ -25,20 +25,14 @@ private func dollarAmount(fromValue value: Any?) throws -> Double {
 }
 
 private func extractDate(object: Any?) throws -> Date {
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    
-    guard let dateString = object as? String, let date = dateFormatter.date(from: dateString) else {
+    guard let dateString = object as? String else {
         throw MapperError.convertibleError(value: object, type: Date.self)
     }
-    
-    return date
+    return dateString.apiFormatDate
 }
 
 private func calculateIsFuture(dateToCompare: Date) -> Bool {
-    let today = Date()
-    return dateToCompare > today
+    return dateToCompare > Date()
 }
 
 struct BillingHistoryItem: Mappable {
@@ -54,6 +48,7 @@ struct BillingHistoryItem: Mappable {
     let type: String?
     let paymentMethod: String?
     let paymentId: String?
+    let walletItemId: String?
     
     init(map: Mapper) throws {
         amountPaid = map.optionalFrom("amount_paid", transformation: dollarAmount)
@@ -66,8 +61,9 @@ struct BillingHistoryItem: Mappable {
         confirmationNumber = map.optionalFrom("confirmation_number")
         paymentType = map.optionalFrom("payment_type")
         paymentMethod = map.optionalFrom("payment_method")
-        try type = map.from("type")
+        type = map.optionalFrom("type")
         paymentId = map.optionalFrom("payment_id")
+        walletItemId = map.optionalFrom("wallet_item_id")
     }
     
     func dateString() -> String {

@@ -62,6 +62,7 @@ class BillingHistoryViewController: UIViewController {
             
         }) { (error) in
             print(error)
+            self.loadingIndicator.isHidden = true
             //TODO: handle this error
         }
     }
@@ -178,8 +179,13 @@ extension BillingHistoryViewController: UITableViewDelegate {
         //if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
         if true {
             let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+            paymentVc.delegate = self
             paymentVc.accountDetail = accountDetail
             paymentVc.paymentId = billingItem.paymentId
+            if let walletItemId = billingItem.walletItemId, let paymentAmount = billingItem.amountPaid {
+                let paymentDetail = PaymentDetail(walletItemId: walletItemId, paymentAmount: paymentAmount, paymentDate: billingItem.date)
+                paymentVc.paymentDetail = paymentDetail
+            }
             self.navigationController?.pushViewController(paymentVc, animated: true)
         } else { // recurring/automatic
             let storyboard = UIStoryboard(name: "Bill", bundle: nil)
@@ -411,4 +417,12 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
     }
     
+}
+
+extension BillingHistoryViewController: MakePaymentViewControllerDelegate {
+    func makePaymentViewControllerDidCancelPayment(_ makePaymentViewController: MakePaymentViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Scheduled payment deleted", comment: ""))
+        })
+    }
 }

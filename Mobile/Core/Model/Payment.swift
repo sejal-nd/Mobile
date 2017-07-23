@@ -60,4 +60,10 @@ struct PaymentDetail: Mappable {
         paymentAmount = map.optionalFrom("payment_amount") ?? 0
         paymentDate = map.optionalFrom("payment_date", transformation: extractDate)
     }
+    
+    init(walletItemId: String?, paymentAmount: Double, paymentDate: Date?) {
+        self.walletItemId = walletItemId
+        self.paymentAmount = paymentAmount
+        self.paymentDate = paymentDate
+    }
 }

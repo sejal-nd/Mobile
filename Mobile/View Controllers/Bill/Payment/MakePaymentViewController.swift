@@ -10,7 +10,13 @@ import RxSwift
 import RxCocoa
 import AVFoundation
 
+protocol MakePaymentViewControllerDelegate: class {
+    func makePaymentViewControllerDidCancelPayment(_ makePaymentViewController: MakePaymentViewController)
+}
+
 class MakePaymentViewController: UIViewController {
+    
+    weak var delegate: MakePaymentViewControllerDelegate?
     
     let disposeBag = DisposeBag()
     
@@ -89,11 +95,12 @@ class MakePaymentViewController: UIViewController {
     var viewModel: PaymentViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
     var paymentId: String? // Passed in from BillingHistoryViewController, indicates we are modifying a payment
+    var paymentDetail: PaymentDetail? // Passed in from BillingHistoryViewController IF we had the data already (ComEd/PECO)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail, addBankFormViewModel: self.addBankFormView.viewModel, addCardFormViewModel: self.addCardFormView.viewModel, paymentId: paymentId)
+        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail, addBankFormViewModel: self.addBankFormView.viewModel, addCardFormViewModel: self.addCardFormView.viewModel, paymentId: paymentId, paymentDetail: paymentDetail)
         
         view.backgroundColor = .softGray
         
@@ -408,6 +415,20 @@ class MakePaymentViewController: UIViewController {
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
             miniWalletVC.sentFromPayment = true
             miniWalletVC.delegate = self
+            if self.paymentId != nil, let walletItem = self.viewModel.selectedWalletItem.value {
+                if Environment.sharedInstance.opco == .bge {
+                    if walletItem.bankOrCard == .bank {
+                        miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a bank account payment, you may only select another bank account as your method of payment.", comment: "")
+                        miniWalletVC.creditCardsDisabled = true
+                    } else {
+                        miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a card payment, you may only select another card as your method of payment.", comment: "")
+                        miniWalletVC.bankAccountsDisabled = true
+                    }
+                } else {
+                    miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a bank account payment, you may only select another bank account as your method of payment.", comment: "")
+                    miniWalletVC.creditCardsDisabled = true
+                }
+            }
             self.navigationController?.pushViewController(miniWalletVC, animated: true)
         }).addDisposableTo(disposeBag)
         
@@ -431,7 +452,7 @@ class MakePaymentViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         
         deletePaymentButton.rx.touchUpInside.subscribe(onNext: {
-            print("delete payment")
+            self.onDeletePaymentPress()
         }).addDisposableTo(disposeBag)
         
         privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).addDisposableTo(disposeBag)
@@ -471,6 +492,25 @@ class MakePaymentViewController: UIViewController {
         let tacModal = WebViewController(title: NSLocalizedString("Privacy Policy", comment: ""),
                                          url: URL(string:"https://webpayments.billmatrix.com/HTML/privacy_notice_en-us.html")!)
         navigationController?.present(tacModal, animated: true, completion: nil)
+    }
+    
+    func onDeletePaymentPress() {
+        let confirmAlert = UIAlertController(title: NSLocalizedString("Delete Scheduled Payment", comment: ""), message: NSLocalizedString("Are you sure you want to delete this scheduled payment?", comment: ""), preferredStyle: .alert)
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { _ in
+            LoadingView.show()
+            self.viewModel.cancelPayment(onSuccess: { 
+                LoadingView.hide()
+                self.delegate?.makePaymentViewControllerDidCancelPayment(self)
+                self.navigationController?.popViewController(animated: true)
+            }, onError: { errMessage in
+                LoadingView.hide()
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertVc, animated: true, completion: nil)
+            })
+        }))
+        present(confirmAlert, animated: true, completion: nil)
     }
     
     // MARK: - ScrollView

@@ -45,7 +45,16 @@ class PaymentConfirmationViewController: UIViewController {
         
         confirmationLabel.textColor = .blackText
         confirmationLabel.font = OpenSans.regular.of(textStyle: .body)
-        confirmationLabel.text = NSLocalizedString("Thank you for your payment. A confirmation email will be sent to your shortly.", comment: "")
+        var confirmationMessage = ""
+        if viewModel.paymentId.value != nil {
+            confirmationMessage += NSLocalizedString("Thank you for modifying your payment.", comment: "")
+        } else {
+            confirmationMessage += NSLocalizedString("Thank you for your payment.", comment: "")
+        }
+        if Environment.sharedInstance.opco != .bge {
+            confirmationMessage += NSLocalizedString(" A confirmation email will be sent to your shortly.", comment: "")
+        }
+        confirmationLabel.text = confirmationMessage
         
         convenienceFeeLabel.textColor = .blackText
         convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
