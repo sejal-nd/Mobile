@@ -37,12 +37,23 @@ class PaymentDetailsStore {
     subscript(account: Account) -> PaymentDetails? {
         get {
             if let paymentDetails = paymentDetailsCache[account.accountNumber] {
-                return paymentDetails
+                if paymentDetails.date.addingTimeInterval(86_400) > Date() {
+                    return paymentDetails
+                } else {
+                    removePaymentDetails(forAccount: account)
+                    return nil
+                }
             } else if let paymentDetailsDictionary = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.PaymentDetailsDictionary),
                 let paymentDictionary = paymentDetailsDictionary[account.accountNumber] as? NSDictionary,
                 let paymentDetails = PaymentDetails.from(paymentDictionary) {
+                
+                if paymentDetails.date.addingTimeInterval(86_400) > Date() {
                     paymentDetailsCache[account.accountNumber] = paymentDetails
                     return paymentDetails
+                } else {
+                    removePaymentDetails(forAccount: account)
+                    return nil
+                }
             } else {
                 return nil
             }
@@ -67,6 +78,16 @@ class PaymentDetailsStore {
             }
             
         }
+    }
+    
+    private func removePaymentDetails(forAccount account: Account) {
+        paymentDetailsCache.removeValue(forKey: account.accountNumber)
+        var paymentDetailsDictionary = [String: Any]()
+        if let existingDict = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.PaymentDetailsDictionary) {
+            paymentDetailsDictionary = existingDict
+        }
+        paymentDetailsDictionary.removeValue(forKey: account.accountNumber)
+        UserDefaults.standard.set(paymentDetailsDictionary, forKey: UserDefaultKeys.PaymentDetailsDictionary)
     }
     
 }

@@ -86,13 +86,35 @@ class HomeBillCardView: UIView {
     }
     
     private func bindViewModel() {
+        // Show/Hide Subviews
         viewModel.billNotReady.not().drive(billNotReadyStack.rx.isHidden).addDisposableTo(bag)
-        viewModel.shouldShowErrorState.not().drive(errorStack.rx.isHidden).addDisposableTo(bag)
+        viewModel.showErrorState.not().drive(errorStack.rx.isHidden).addDisposableTo(bag)
+        viewModel.showAlertIcon.not().drive(alertImageView.rx.isHidden).addDisposableTo(bag)
+        viewModel.showPaymentPendingIcon.not().drive(paymentPendingImageView.rx.isHidden).addDisposableTo(bag)
+        viewModel.showBillPaidIcon.not().drive(paymentConfirmationImageView.rx.isHidden).addDisposableTo(bag)
+        viewModel.showAmountPaid.not().drive(amountPaidLabel.rx.isHidden).addDisposableTo(bag)
+        viewModel.showAmount.not().drive(amountLabel.rx.isHidden).addDisposableTo(bag)
+        viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).addDisposableTo(bag)
+        dueDateTooltip.isHidden = !viewModel.showDueDateTooltip
+        viewModel.showDueAmountAndDate.not().drive(dueAmountAndDateStack.rx.isHidden).addDisposableTo(bag)
+        dueAmountAndDateTooltip.isHidden = !viewModel.showDueAmountAndDateTooltip
+        viewModel.showBankCreditButton.not().drive(bankCreditNumberButton.rx.isHidden).addDisposableTo(bag)
+        viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountButton.rx.isHidden).addDisposableTo(bag)
+        viewModel.showMinimumPaymentAllowed.not().drive(minimumPaymentLabel.rx.isHidden).addDisposableTo(bag)
+        viewModel.showOneTouchPaySlider.not().drive(oneTouchSlider.rx.isHidden).addDisposableTo(bag)
+        viewModel.showAutoPayIcon.not().drive(autoPayImageView.rx.isHidden).addDisposableTo(bag)
+        viewModel.showScheduledImageView.not().drive(scheduledImageView.rx.isHidden).addDisposableTo(bag)
+        viewModel.showAutomaticPaymentInfoButton.not().drive(automaticPaymentInfoButton.rx.isHidden).addDisposableTo(bag)
+        viewModel.showScheduledPaymentInfoButton.not().drive(thankYouForSchedulingButton.rx.isHidden).addDisposableTo(bag)
+        viewModel.showScheduledPaymentInfoButton.not().drive(oneTouchPayTCButton.rx.isHidden).addDisposableTo(bag)
         
-        viewModel.shouldShowAlertIcon.not().drive(alertImageView.rx.isHidden).addDisposableTo(bag)
+        // Subview States
         viewModel.titleText.drive(titleLabel.rx.text).addDisposableTo(bag)
         viewModel.titleFont.drive(onNext: { [weak self] font in
             self?.titleLabel.font = font
+        }).addDisposableTo(bag)
+        viewModel.amountFont.drive(onNext: { [weak self] font in
+            self?.amountLabel.font = font
         }).addDisposableTo(bag)
     }
     
