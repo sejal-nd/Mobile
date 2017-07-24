@@ -45,7 +45,6 @@ class HomeViewModel {
         .withLatestFrom(self.currentAccount.asObservable()).debug("FETCH ACCOUNT DETAIL")
         .unwrap()
         .flatMapLatest(self.fetchAccountDetail)
-        .shareReplay(1)
     
     private func fetchAccountDetail(forAccount account: Account) -> Observable<Event<AccountDetail>> {
         return accountService.fetchAccountDetail(account: account)
@@ -57,7 +56,7 @@ class HomeViewModel {
     // Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
         .map { $0.address ?? "" }
-        .flatMap(self.weatherService.fetchWeather)
+        .flatMapLatest(self.weatherService.fetchWeather)
         .materialize()
     
     private(set) lazy var greeting: Driver<String?> = self.weatherEvents

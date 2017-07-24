@@ -28,7 +28,7 @@ extension Date {
         
         if 4 ... 11 ~= hour {
             return NSLocalizedString("Good Morning", comment: "")
-        } else if 11 ... 16 ~= hour {
+        } else if 11 ... 15 ~= hour {
             return NSLocalizedString("Good Afternoon", comment: "")
         } else {
             return NSLocalizedString("Good Evening", comment: "")
