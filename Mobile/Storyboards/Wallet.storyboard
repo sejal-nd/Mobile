@@ -1724,7 +1724,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LR6-Vf-nPn" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="644.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="e2s-4x-2db">
                                                 <rect key="frame" x="23" y="10" width="329" height="528"/>
@@ -1922,12 +1922,37 @@
                                                     <constraint firstItem="tOr-iA-uL8" firstAttribute="leading" secondItem="e2s-4x-2db" secondAttribute="leading" constant="6" id="lT6-CB-HK3"/>
                                                 </constraints>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ig6-sS-lcX">
+                                                <rect key="frame" x="0.0" y="568" width="375" height="76.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxi-oC-Yo1">
+                                                        <rect key="frame" x="29" y="30" width="317" height="16.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="9kp-tU-9qO"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="jxi-oC-Yo1" firstAttribute="centerX" secondItem="Ig6-sS-lcX" secondAttribute="centerX" id="48d-Xe-y1x"/>
+                                                    <constraint firstItem="jxi-oC-Yo1" firstAttribute="leading" secondItem="Ig6-sS-lcX" secondAttribute="leading" priority="999" constant="29" id="BYn-a2-HDd"/>
+                                                    <constraint firstAttribute="bottom" secondItem="jxi-oC-Yo1" secondAttribute="bottom" priority="999" constant="30" id="GlE-Ea-NgP"/>
+                                                    <constraint firstItem="jxi-oC-Yo1" firstAttribute="top" secondItem="Ig6-sS-lcX" secondAttribute="top" constant="30" id="JK3-QF-qXc"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jxi-oC-Yo1" secondAttribute="trailing" priority="999" constant="29" id="QZr-2R-ynd"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="Ig6-sS-lcX" firstAttribute="leading" secondItem="LR6-Vf-nPn" secondAttribute="leading" id="4CD-UB-sM4"/>
+                                            <constraint firstItem="Ig6-sS-lcX" firstAttribute="top" secondItem="e2s-4x-2db" secondAttribute="bottom" constant="30" id="LRd-4N-uG2"/>
                                             <constraint firstAttribute="trailing" secondItem="e2s-4x-2db" secondAttribute="trailing" priority="999" constant="23" id="d4R-XY-Yec"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ig6-sS-lcX" secondAttribute="trailing" id="eDX-8D-b5S"/>
                                             <constraint firstItem="e2s-4x-2db" firstAttribute="centerX" secondItem="LR6-Vf-nPn" secondAttribute="centerX" id="fgc-Ie-7ie"/>
-                                            <constraint firstAttribute="bottom" secondItem="e2s-4x-2db" secondAttribute="bottom" id="hia-Y1-JBC"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ig6-sS-lcX" secondAttribute="bottom" id="gky-9M-mEW"/>
                                             <constraint firstItem="e2s-4x-2db" firstAttribute="leading" secondItem="LR6-Vf-nPn" secondAttribute="leading" priority="999" constant="23" id="lkd-qd-tTD"/>
                                             <constraint firstItem="e2s-4x-2db" firstAttribute="top" secondItem="LR6-Vf-nPn" secondAttribute="top" constant="10" id="tv2-WM-dUV"/>
                                         </constraints>
@@ -1959,6 +1984,8 @@
                         <outlet property="amountPaidValueLabel" destination="seF-oH-rtF" id="4uZ-Rz-eox"/>
                         <outlet property="autoPayLabel" destination="2te-OS-XlP" id="THM-Ii-ky1"/>
                         <outlet property="autoPayView" destination="J8R-ss-xTD" id="Tf0-tQ-lsK"/>
+                        <outlet property="bgeFooterLabel" destination="jxi-oC-Yo1" id="cBO-Zk-0FI"/>
+                        <outlet property="bgeFooterView" destination="Ig6-sS-lcX" id="5Y9-eK-BpM"/>
                         <outlet property="billMatrixView" destination="5zL-Nt-p5Y" id="pwC-DZ-0yK"/>
                         <outlet property="confirmationLabel" destination="PLs-KE-i9s" id="Zae-Ba-QXE"/>
                         <outlet property="convenienceFeeLabel" destination="4Wq-Nz-oMr" id="xqp-cb-nxM"/>

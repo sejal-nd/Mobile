@@ -30,6 +30,9 @@ class PaymentConfirmationViewController: UIViewController {
     @IBOutlet weak var billMatrixView: UIView!
     @IBOutlet weak var privacyPolicyButton: UIButton!
     
+    @IBOutlet weak var bgeFooterView: UIView!
+    @IBOutlet weak var bgeFooterLabel: UILabel!
+    
     var presentingNavController: UINavigationController! // Passed from ReviewPaymentViewController
     
     var viewModel: PaymentViewModel! // Passed from ReviewPaymentViewController
@@ -79,6 +82,16 @@ class PaymentConfirmationViewController: UIViewController {
         
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
         privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
+        
+        if Environment.sharedInstance.opco == .bge {
+            bgeFooterView.backgroundColor = .softGray
+            bgeFooterLabel.textColor = .blackText
+            bgeFooterLabel.text = NSLocalizedString("If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.\n\nPlease ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.\n\nIf an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.", comment: "")
+        } else {
+            bgeFooterView.isHidden = true
+            bgeFooterLabel.text = ""
+        }
+        
         
         bindViewHiding()
         bindViewContent()
