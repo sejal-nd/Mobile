@@ -17,10 +17,8 @@ class PaymentViewModel {
     
     let accountDetail: Variable<AccountDetail>
     
-    let isFetching = Variable(false) // Combines isFetchingWalletItems & isFetchingWorkdays
+    let isFetching = Variable(false)
     let isError = Variable(false)
-    private let isFetchingWalletItems = Variable(false)
-    private let isFetchingWorkdays = Variable(false)
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
@@ -40,14 +38,20 @@ class PaymentViewModel {
     let addCardFormViewModel: AddCardFormViewModel!
     let inlineCard = Variable(false)
     let inlineBank = Variable(false)
-    var oneTouchPayItem: WalletItem!
     
-    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel) {
+    var oneTouchPayItem: WalletItem?
+    
+    let paymentId: Variable<String?>
+    let paymentDetail = Variable<PaymentDetail?>(nil)
+    
+    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentId: String?, paymentDetail: PaymentDetail?) {
         self.walletService = walletService
         self.paymentService = paymentService
         self.accountDetail = Variable(accountDetail)
         self.addBankFormViewModel = addBankFormViewModel
         self.addCardFormViewModel = addCardFormViewModel
+        self.paymentId = Variable(paymentId)
+        self.paymentDetail.value = paymentDetail
         
         if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
             amountDue = Variable(netDueAmount)
@@ -72,71 +76,82 @@ class PaymentViewModel {
     
     // MARK: - Service Calls
     
-    func fetchWalletItems(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
-        isFetching.value = true
-        isError.value = false
+    func fetchWalletItems() -> Observable<Void> {
+        return walletService.fetchWalletItems()
+            .map { walletItems in
+                self.walletItems.value = walletItems
+                self.oneTouchPayItem = walletItems.first(where: { $0.isDefault == true })
+            }
+    }
+    
+    func fetchPECOWorkdays() -> Observable<Void> {
+        return paymentService.fetchWorkdays()
+            .map { dateArray in
+                self.workdayArray = dateArray
+            }
+    }
+    
+    func fetchPaymentDetails(paymentId: String) -> Observable<Void> {
+        return paymentService.fetchPaymentDetails(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId).map { paymentDetail in
+            self.paymentDetail.value = paymentDetail
+        }
+    }
+    
+    func fetchData(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
+        var observables = [fetchWalletItems()]
+        if Environment.sharedInstance.opco == .peco {
+            observables.append(fetchPECOWorkdays())
+        }
+        if let paymentId = paymentId.value, paymentDetail.value == nil {
+            observables.append(fetchPaymentDetails(paymentId: paymentId))
+        }
         
-        isFetchingWalletItems.value = true
-        walletService.fetchWalletItems()
+        isFetching.value = true
+        Observable.zip(observables)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { walletItems in
-                if self.selectedWalletItem.value == nil {
-                    if self.accountDetail.value.isCashOnly {
-                        // Default to One Touch Pay item IF it's a credit card
-                        if let otpItem = walletItems.first(where: { $0.isDefault == true }) {
-                            if otpItem.bankOrCard == .card {
-                                self.selectedWalletItem.value = otpItem
-                            }
-                        } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
-                            for item in walletItems {
-                                if item.bankOrCard == .card {
-                                    self.selectedWalletItem.value = item
-                                    break
-                                }
+            .subscribe(onNext: { _ in
+                self.isFetching.value = false
+                
+                if let walletItems = self.walletItems.value, self.selectedWalletItem.value == nil {
+                    if let paymentDetail = self.paymentDetail.value, self.paymentId.value != nil { // Modifiying Payment
+                        self.paymentAmount.value = String(paymentDetail.paymentAmount)
+                        self.formatPaymentAmount()
+                        self.paymentDate.value = paymentDetail.paymentDate!
+                        for item in walletItems {
+                            if item.walletItemID == paymentDetail.walletItemId {
+                                self.selectedWalletItem.value = item
+                                break
                             }
                         }
                     } else {
-                        // Default to One Touch Pay item
-                        if let otpItem = walletItems.first(where: { $0.isDefault == true }) {
-                            self.selectedWalletItem.value = otpItem
-                        } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
-                            self.selectedWalletItem.value = walletItems[0]
+                        if self.accountDetail.value.isCashOnly {
+                            // Default to One Touch Pay item IF it's a credit card
+                            if let otpItem = self.oneTouchPayItem {
+                                if otpItem.bankOrCard == .card {
+                                    self.selectedWalletItem.value = otpItem
+                                }
+                            } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
+                                for item in walletItems {
+                                    if item.bankOrCard == .card {
+                                        self.selectedWalletItem.value = item
+                                        break
+                                    }
+                                }
+                            }
+                        } else {
+                            // Default to One Touch Pay item
+                            if let otpItem = self.oneTouchPayItem {
+                                self.selectedWalletItem.value = otpItem
+                            } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
+                                self.selectedWalletItem.value = walletItems[0]
+                            }
                         }
                     }
                 }
-
-                self.walletItems.value = walletItems
-                self.oneTouchPayItem = walletItems.first(where: { $0.isDefault == true })
-                
-                self.isFetchingWalletItems.value = false
-                if !self.isFetchingWorkdays.value {
-                    self.isFetching.value = false
-                }
-                
-                onSuccess?()
-            }, onError: { err in
-                self.isFetchingWalletItems.value = false
+            }, onError: { _ in
+                self.isFetching.value = false
                 self.isError.value = true
-                onError?(err.localizedDescription)
             }).addDisposableTo(disposeBag)
-        
-        if Environment.sharedInstance.opco == .peco { // Only PECO prevents certain payment dates
-            isFetchingWorkdays.value = true
-            paymentService.fetchWorkdays()
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { dateArray in
-                    self.isFetchingWorkdays.value = false
-                    if !self.isFetchingWalletItems.value {
-                        self.isFetching.value = false
-                    }
-                    self.workdayArray = dateArray
-                }, onError: { err in
-                    self.isFetchingWorkdays.value = false
-                    if !self.isFetchingWalletItems.value {
-                        self.isFetching.value = false
-                    }
-                }).addDisposableTo(disposeBag)
-        }
     }
     
     func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -277,6 +292,35 @@ class PaymentViewModel {
                 onError?(err.localizedDescription)
             })
             .addDisposableTo(disposeBag)
+    }
+    
+    func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, bankOrCard: selectedWalletItem.value!.bankOrCard, paymentDetail: paymentDetail.value!)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+    }
+    
+    func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
+            let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
+            var paymentDate = self.paymentDate.value
+            if isFixed {
+                paymentDate = Calendar.current.startOfDay(for: Date())
+            }
+            let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(self.paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: self.selectedWalletItem.value!.walletItemID!, cvv: self.cvv.value)
+            self.paymentService.updatePayment(paymentId: self.paymentId.value!, payment: payment)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { _ in
+                    onSuccess()
+                }, onError: { err in
+                    onError(err.localizedDescription)
+                }).addDisposableTo(self.disposeBag)
+        }).addDisposableTo(disposeBag)
     }
     
     // MARK: - Shared Drivers
@@ -773,13 +817,20 @@ class PaymentViewModel {
     }
     
     var paymentDateString: Driver<String> {
-        return Driver.combineLatest(paymentDate.asDriver(), cardWorkflow, addBankFormViewModel.saveToWallet.asDriver()).map {
-            if $1 || !$2 {
+        return Driver.combineLatest(paymentDate.asDriver(), isFixedPaymentDate).map {
+            if $1 {
                 let startOfTodayDate = Calendar.current.startOfDay(for: Date())
+                if Environment.sharedInstance.opco == .bge && Calendar.current.component(.hour, from: Date()) >= 20 {
+                    return Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!.mmDdYyyyString
+                }
                 return startOfTodayDate.mmDdYyyyString
             }
             return $0.mmDdYyyyString
         }
+    }
+    
+    lazy var shouldShowDeletePaymentButton: Driver<Bool> = self.paymentId.asDriver().map {
+        return $0 != nil
     }
     
     lazy var shouldShowBillMatrixView: Driver<Bool> = self.cardWorkflow.map {

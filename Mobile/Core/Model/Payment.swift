@@ -6,7 +6,7 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import Foundation
+import Mapper
 
 struct Payment {
     var accountNumber : String
@@ -40,5 +40,30 @@ struct Payment {
         self.walletId = walletId
         self.walletItemId = walletItemId
         self.cvv = cvv
+    }
+}
+
+private func extractDate(object: Any?) throws -> Date? {
+    guard let dateString = object as? String else {
+        throw MapperError.convertibleError(value: object, type: Date.self)
+    }
+    return dateString.apiFormatDate
+}
+
+struct PaymentDetail: Mappable {
+    var walletItemId: String?
+    var paymentAmount: Double
+    var paymentDate: Date?
+    
+    init(map: Mapper) throws {
+        walletItemId = map.optionalFrom("wallet_item_id")
+        paymentAmount = map.optionalFrom("payment_amount") ?? 0
+        paymentDate = map.optionalFrom("payment_date", transformation: extractDate)
+    }
+    
+    init(walletItemId: String?, paymentAmount: Double, paymentDate: Date?) {
+        self.walletItemId = walletItemId
+        self.paymentAmount = paymentAmount
+        self.paymentDate = paymentDate
     }
 }
