@@ -811,8 +811,8 @@ class PaymentViewModel {
     }
     
     var paymentDateString: Driver<String> {
-        return Driver.combineLatest(paymentDate.asDriver(), cardWorkflow, addBankFormViewModel.saveToWallet.asDriver()).map {
-            if $1 || !$2 {
+        return Driver.combineLatest(paymentDate.asDriver(), isFixedPaymentDate).map {
+            if $1 {
                 let startOfTodayDate = Calendar.current.startOfDay(for: Date())
                 if Environment.sharedInstance.opco == .bge && Calendar.current.component(.hour, from: Date()) >= 20 {
                     return Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!.mmDdYyyyString
