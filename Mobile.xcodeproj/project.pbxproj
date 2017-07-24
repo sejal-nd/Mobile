@@ -771,6 +771,7 @@
 		E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */; };
 		E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */; };
 		E857C5221F269FF6002A8E94 /* TemplateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4465DE861F1FD0090014537F /* TemplateCardView.swift */; };
+		E857C5231F26A268002A8E94 /* TemplateCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4465DE881F1FD07C0014537F /* TemplateCardView.xib */; };
 		E85895771E8AACFF009485E3 /* loading_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = E85895761E8AACFF009485E3 /* loading_blue.json */; };
 		E85895781E8AACFF009485E3 /* loading_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = E85895761E8AACFF009485E3 /* loading_blue.json */; };
 		E85895791E8AACFF009485E3 /* loading_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = E85895761E8AACFF009485E3 /* loading_blue.json */; };
@@ -3194,6 +3195,7 @@
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */,
 				E841F3A81F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */,
+				E857C5231F26A268002A8E94 /* TemplateCardView.xib in Resources */,
 				E8FE30B71E787635009D28B7 /* outage.json in Resources */,
 				B557363F1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736331E6740A8003B9369 /* INFO.txt in Resources */,
