@@ -100,7 +100,9 @@ class OneTouchSlider: UIControl {
         sliderFinish.layer.masksToBounds = true
         addSubview(sliderFinish)
         sliderFinish.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
-        sliderFinish.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
+        let sliderFinishBottomConstraint = sliderFinish.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
+        sliderFinishBottomConstraint.priority = 999
+        sliderFinishBottomConstraint.isActive = true
         sliderFinish.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
         sliderFinishWidthConstraint = sliderFinish.widthAnchor.constraint(equalToConstant: sliderWidth)
         sliderFinishWidthConstraint.isActive = true
@@ -112,7 +114,9 @@ class OneTouchSlider: UIControl {
         slider.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 2), radius: 3)
         addSubview(slider)
         slider.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
-        slider.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
+        let sliderBottomConstraint =  slider.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
+        sliderBottomConstraint.priority = 999
+        sliderBottomConstraint.isActive = true
         slider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
         sliderWidthConstraint = slider.widthAnchor.constraint(equalToConstant: sliderWidth)
         sliderWidthConstraint.priority = 999
