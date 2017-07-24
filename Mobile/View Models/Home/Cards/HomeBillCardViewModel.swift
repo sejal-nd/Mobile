@@ -103,18 +103,19 @@ class HomeBillCardViewModel {
     private lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailElements.asDriver(onErrorDriveWith: .empty())
     private lazy var walletItemDriver: Driver<WalletItem?> = self.walletItem.asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var billNotReady: Driver<Bool> = self.accountDetailDriver.map { _ in false }
+    private(set) lazy var billNotReady: Driver<Bool> = self.accountDetailDriver
+        .map { ($0.billingInfo.netDueAmount ?? 0) == 0 && ($0.billingInfo.lastPaymentAmount ?? 0) > 0 }
     
     private(set) lazy var showErrorState: Driver<Bool> = Observable.zip(self.accountDetailEvents, self.walletItemEvents)
         .map { $0.0.error != nil || $0.1.error != nil }
         .asDriver(onErrorDriveWith: .empty())
     
     
-    // MARK: - Title Label
+    // MARK: - Title States
     
     enum TitleState {
         case restoreService, catchUp, avoidShutoff, avoidShutoffBGEMultipremise, pastDueTotal,
-        pastDueNotTotal, billReady, billPaid, credit, multipremiseReady, paymentPending
+        pastDueNotTotal, billReady, billPaid, billPaidIntermediate, credit, multipremiseReady, paymentPending
     }
     
     private lazy var isPrecariousBillSituation: Driver<Bool> = self.titleState.map {
@@ -166,57 +167,21 @@ class HomeBillCardViewModel {
                     return .paymentPending
                 }
                 
-                if (billingInfo.netDueAmount ?? 0) == 0 || RecentPaymentsStore.shared[account] != nil {
+                if (billingInfo.netDueAmount ?? 0) == 0, let lastPaymentAmount = billingInfo.lastPaymentAmount {
                     return .billPaid
+                }
+                
+                if RecentPaymentsStore.shared[account] != nil {
+                    return .billPaidIntermediate
                 }
                 
                 if opco == .bge && account.isMultipremise {
                     return .multipremiseReady
                 }
+                
                 return .billReady
             }
             .asDriver(onErrorDriveWith: .empty())
-    
-    
-    private(set) lazy var titleText: Driver<String?> = self.titleState
-        .map {
-            switch $0 {
-            case .restoreService:
-                return NSLocalizedString("Amount Due to Restore Service", comment: "")
-            case .catchUp:
-                return NSLocalizedString("Amount Due to Catch Up on Agreement", comment: "")
-            case .avoidShutoff:
-                switch Environment.sharedInstance.opco {
-                case .bge:
-                    return NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
-                case .comEd, .peco:
-                    return NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")
-                }
-            case .avoidShutoffBGEMultipremise:
-                return NSLocalizedString("Amount due to avoid shutoff for your multi-premise bill", comment: "")
-            case .pastDueTotal, .pastDueNotTotal:
-                return NSLocalizedString("Amount Past Due", comment: "")
-            case .billReady:
-                return NSLocalizedString("Your bill is ready", comment: "")
-            case .billPaid:
-                return NSLocalizedString("Thank you for your payment", comment: "")
-            case .credit:
-                return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
-            case .multipremiseReady:
-                return NSLocalizedString("Your multi-premise bill is ready", comment: "")
-            case .paymentPending:
-                switch Environment.sharedInstance.opco {
-                case .bge:
-                    return NSLocalizedString("Your payment is processing", comment: "")
-                case .comEd, .peco:
-                    return NSLocalizedString("Your payment is pending", comment: "")
-                }
-            }
-        }
-        .asDriver(onErrorJustReturn: nil)
-    
-    private lazy var showAutoPay: Driver<Bool> = Driver.zip(self.isPrecariousBillSituation, self.accountDetailDriver)
-        .map { !$0 && $1.isAutoPay }
     
     // MARK: - Show/Hide view logic
     private(set) lazy var showAlertIcon: Driver<Bool> = self.titleState
@@ -229,6 +194,9 @@ class HomeBillCardViewModel {
             }
     }
     
+    private lazy var showAutoPay: Driver<Bool> = Driver.zip(self.isPrecariousBillSituation, self.accountDetailDriver)
+        .map { !$0 && $1.isAutoPay }
+    
     private(set) lazy var showPaymentPendingIcon: Driver<Bool> = self.titleState.map { $0 == .paymentPending }
     
     private(set) lazy var showBillPaidIcon: Driver<Bool> = self.titleState.map { $0 == .billPaid }
@@ -237,16 +205,21 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showAmount: Driver<Bool> = self.titleState.map { $0 != .billPaid }
     
+    private(set) lazy var showConvenienceFee: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation, self.showAutoPay, self.walletItemDriver)
+        .map { !$0 && !$1 && $2 != nil }
+    
     private(set) lazy var showDueDate: Driver<Bool> = self.titleState.map {
         switch $0 {
-        case .billPaid, .credit:
+        case .billPaid, .billPaidIntermediate, .credit:
             return false
         default:
             return true
         }
     }
     
-    let showDueDateTooltip = Environment.sharedInstance.opco == .peco
+    private(set) lazy var showDueDateTooltip: Driver<Bool> = self.showDueAmountAndDate.map {
+        !$0 && Environment.sharedInstance.opco == .peco
+    }
     
     private(set) lazy var showDueAmountAndDate: Driver<Bool> = self.titleState.map {
         switch $0 {
@@ -297,7 +270,132 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showScheduledPaymentInfoButton: Driver<Bool> = self.showScheduledImageView
     
+    private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.zip(self.showOneTouchPaySlider,
+                                                                             self.enableOneTouchSlider) { $0 && $1 }
+    
+    
     // MARK: - View States
+    private(set) lazy var titleText: Driver<String?> = self.titleState
+        .map {
+            switch $0 {
+            case .restoreService:
+                return NSLocalizedString("Amount Due to Restore Service", comment: "")
+            case .catchUp:
+                return NSLocalizedString("Amount Due to Catch Up on Agreement", comment: "")
+            case .avoidShutoff:
+                switch Environment.sharedInstance.opco {
+                case .bge:
+                    return NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
+                case .comEd, .peco:
+                    return NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")
+                }
+            case .avoidShutoffBGEMultipremise:
+                return NSLocalizedString("Amount due to avoid shutoff for your multi-premise bill", comment: "")
+            case .pastDueTotal, .pastDueNotTotal:
+                return NSLocalizedString("Amount Past Due", comment: "")
+            case .billReady:
+                return NSLocalizedString("Your bill is ready", comment: "")
+            case .billPaid, .billPaidIntermediate:
+                return NSLocalizedString("Thank you for your payment", comment: "")
+            case .credit:
+                return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
+            case .multipremiseReady:
+                return NSLocalizedString("Your multi-premise bill is ready", comment: "")
+            case .paymentPending:
+                switch Environment.sharedInstance.opco {
+                case .bge:
+                    return NSLocalizedString("Your payment is processing", comment: "")
+                case .comEd, .peco:
+                    return NSLocalizedString("Your payment is pending", comment: "")
+                }
+            }
+    }
+    
+    private(set) lazy var amountPaidText: Driver<String?> = self.accountDetailDriver.map {
+        guard let lastPaymentAmountString = $0.billingInfo.lastPaymentAmount?.currencyString else { return nil }
+        return String(format: NSLocalizedString("Amount Paid: %@", comment: ""), lastPaymentAmountString)
+    }
+    
+    private(set) lazy var amountText: Driver<String?> = self.accountDetailDriver.map {
+        $0.billingInfo.netDueAmount?.currencyString
+    }
+    
+    private(set) lazy var dueDateText: Driver<NSAttributedString?> = self.accountDetailDriver.map {
+        if Environment.sharedInstance.opco == .bge {
+            let localizedText = NSLocalizedString("Due by %@", comment: "")
+            let dueByDateString = $0.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
+            return NSAttributedString(string: String(format: localizedText, dueByDateString),
+                                      attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
+                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+        } else {
+            return NSAttributedString(string: NSLocalizedString("Due Immediately", comment: ""),
+                                      attributes: [NSForegroundColorAttributeName: UIColor.errorRed,
+                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+        }
+    }
+    
+    private(set) lazy var dueAmountAndDateText: Driver<String?> = self.accountDetailDriver.map {
+        guard let amountDueString = $0.billingInfo.netDueAmount?.currencyString else { return nil }
+        guard let dueByDate = $0.billingInfo.dueByDate else { return nil }
+        
+        let calendar = NSCalendar.current
+        let date1 = calendar.startOfDay(for: Date())
+        let date2 = calendar.startOfDay(for: dueByDate)
+        guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else { return nil }
+        
+        let localizedText = NSLocalizedString("Your bill total of %@ is due in %d days.", comment: "")
+        return String(format: localizedText, amountDueString, days)
+    }
+    
+    private(set) lazy var bankCreditCardNumberText: Driver<String?> = self.walletItemDriver.map {
+        $0?.maskedWalletItemAccountNumber
+    }
+    
+    private(set) lazy var bankCreditCardImage: Driver<UIImage?> = self.walletItemDriver.map {
+        guard let walletItem = $0 else { return nil }
+        switch walletItem.bankOrCard {
+        case .bank:
+            return #imageLiteral(resourceName: "ic_bank")
+        case .card:
+            return #imageLiteral(resourceName: "ic_creditcard")
+        }
+    }
+    
+    private(set) lazy var bankCreditCardImageAccessibilityLabel: Driver<String?> = self.walletItemDriver.map {
+        guard let walletItem = $0 else { return nil }
+        switch walletItem.bankOrCard {
+        case .bank:
+            return NSLocalizedString("Bank account", comment: "")
+        case .card:
+            return NSLocalizedString("Credit card", comment: "")
+        }
+    }
+    
+    private(set) lazy var minPaymentAllowedText: Driver<String?> = self.accountDetailDriver.map {
+        guard let minPaymentAmountText = $0.billingInfo.minPaymentAmount?.currencyString else { return nil }
+        let localizedText = NSLocalizedString("Minimum payment allowed is %@.", comment: "")
+        return String(format: localizedText, minPaymentAmountText)
+    }
+    
+    private(set) lazy var convenienceFeeText: Driver<String?> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver)
+        .map { accountDetail, walletItem in
+            guard let walletItem = walletItem else { return nil }
+            switch (accountDetail.isResidential, walletItem.bankOrCard, Environment.sharedInstance.opco) {
+            case (_, .card, .peco):
+                return NSLocalizedString("A 2.35 convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+            case (_, .card, .comEd):
+                return NSLocalizedString("A 2.50 convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+            case (true, .card, .bge):
+                return NSLocalizedString("A 1.50 convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
+            case (false, .card, .bge):
+                return NSLocalizedString("A 2.4% convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
+            case (_, .bank, _):
+                return NSLocalizedString("No fees applied.", comment: "")
+            default:
+                return nil
+            }
+    }
+    
     private(set) lazy var enableOneTouchSlider: Driver<Bool> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver)
         .map { accountDetail, walletItem in
             if walletItem == nil {
@@ -312,13 +410,12 @@ class HomeBillCardViewModel {
             }
         }
     
-    // MARK: - Text Styling
     private(set) lazy var titleFont: Driver<UIFont> = self.titleState
         .map {
             switch $0 {
             case .restoreService, .catchUp, .avoidShutoff, .avoidShutoffBGEMultipremise, .pastDueTotal, .pastDueNotTotal:
                 return OpenSans.regular.of(textStyle: .headline)
-            case .billReady, .billPaid, .credit, .multipremiseReady:
+            case .billReady, .billPaid, .billPaidIntermediate, .credit, .multipremiseReady:
                 return OpenSans.regular.of(textStyle: .title1)
             case .paymentPending:
                 return OpenSans.italic.of(textStyle: .title1)
@@ -327,6 +424,36 @@ class HomeBillCardViewModel {
     
     private(set) lazy var amountFont: Driver<UIFont> = self.titleState
         .map { $0 == .paymentPending ? OpenSans.semiboldItalic.of(size: 28): OpenSans.semibold.of(size: 36) }
+    
+    //TODO: scheduledPaymentAmount or netDueAmount?
+    private(set) lazy var automaticPaymentInfoButtonText: Driver<String?> = self.accountDetailDriver.map {
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            return NSLocalizedString("You are enrolled in AutoPay." , comment: "")
+        case .peco, .comEd:
+            guard let paymentAmountText = $0.billingInfo.scheduledPaymentAmount?.currencyString else { return nil }
+            guard let paymentDateText = $0.billingInfo.scheduledPaymentDate?.mmDdYyyyString else { return nil }
+            let localizedText = NSLocalizedString("You have an automatic payment of %@ for $@." , comment: "")
+            return String(format: localizedText, paymentAmountText, paymentDateText)
+        }
+    }
+    
+    private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = self.accountDetailDriver.map {
+        guard let paymentAmountText = $0.billingInfo.scheduledPaymentAmount?.currencyString else { return nil }
+        guard let paymentDateText = $0.billingInfo.scheduledPaymentDate?.mmDdYyyyString else { return nil }
+        let localizedText = NSLocalizedString("Thank you for scheduling your %@ payment for %@." , comment: "")
+        return String(format: localizedText, paymentAmountText, paymentDateText)
+    }
+    
+    private(set) lazy var oneTouchPayTCButtonText: Driver<String?> = self.walletItemDriver.map {
+        guard let walletItem = $0 else { return nil }
+        switch (Environment.sharedInstance.opco, walletItem.bankOrCard) {
+        case (.bge, .bank):
+            return NSLocalizedString("One Touch Pay cannot be canceled." , comment: "")
+        default:
+            return NSLocalizedString("Payments made using One Touch Pay cannot be canceled. By using One Touch Pay, you agree to the payment Terms & Conditions." , comment: "")
+        }
+    }
     
 }
 
