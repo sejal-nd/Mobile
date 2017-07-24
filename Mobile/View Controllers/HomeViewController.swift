@@ -79,12 +79,14 @@ class HomeViewController: AccountPickerViewController {
         billCardView = HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel)
         cardStackView.addArrangedSubview(billCardView)
         
-        templateCardView = TemplateCardView.create(withViewModel: self.viewModel.templateCardViewModel)
-        templateCardView.callToActionViewController
-            .drive(onNext: { [weak self] viewController in
-                self?.present(viewController, animated: true, completion: nil)
-            }).addDisposableTo(bag)
-        cardStackView.addArrangedSubview(templateCardView)
+        if viewModel.showTemplateCard {
+            templateCardView = TemplateCardView.create(withViewModel: self.viewModel.templateCardViewModel)
+            templateCardView.callToActionViewController
+                .drive(onNext: { [weak self] viewController in
+                    self?.present(viewController, animated: true, completion: nil)
+                }).addDisposableTo(bag)
+            cardStackView.addArrangedSubview(templateCardView)
+        }
         
         styleViews()
         bindLoadingStates()
