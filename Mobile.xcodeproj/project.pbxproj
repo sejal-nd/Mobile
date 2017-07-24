@@ -90,6 +90,7 @@
 		2F5C81FA1F1D4B1B005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
 		2F5C81FB1F1D5C4A005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
 		2F5C81FC1F1D5C4B005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
+		2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
 		2FA5D85F1F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
 		2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
 		2FA5D8611F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
@@ -1064,6 +1065,7 @@
 		2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiPremiseAddressView.xib; sourceTree = "<group>"; };
 		2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistory.swift; sourceTree = "<group>"; };
 		2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
+		2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryDetailsViewModel.swift; sourceTree = "<group>"; };
 		2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchSlider.swift; sourceTree = "<group>"; };
 		2FA5D8631F17D88500A8B16B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2FA5D8681F17DB6F00A8B16B /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -1415,7 +1417,7 @@
 		E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetJVFloatLabeledTextField.swift; sourceTree = "<group>"; };
 		E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		E867A8FE1F054BC6007F4FD9 /* MakePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakePaymentViewController.swift; sourceTree = "<group>"; };
-		E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
+		E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewModel.swift; path = ../PaymentViewModel.swift; sourceTree = "<group>"; };
 		E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PECOReleaseOfInfoViewController.swift; sourceTree = "<group>"; };
 		E873DA731EE8699600020D1B /* RadioSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		E873DA741EE8699600020D1B /* RadioSelectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioSelectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -1675,6 +1677,15 @@
 			name = "Multi Premise address view";
 			sourceTree = "<group>";
 		};
+		2F86FB771F2661B100F1A55A /* History */ = {
+			isa = PBXGroup;
+			children = (
+				2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */,
+				2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */,
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
 		2FA5D8621F17D85A00A8B16B /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -1731,14 +1742,13 @@
 		82A18E581EB9186000BE9F21 /* Bill */ = {
 			isa = PBXGroup;
 			children = (
+				2F86FB771F2661B100F1A55A /* History */,
 				E8C4531D1EF42E8200F5C781 /* AutoPay */,
 				E876A8591ECF372600CA63BF /* Wallet */,
 				82A18E591EB918C900BE9F21 /* BillViewModel.swift */,
 				82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */,
 				82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */,
 				E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */,
-				2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */,
-				E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -2572,6 +2582,7 @@
 		E876A8591ECF372600CA63BF /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */,
 				E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */,
 				E887C9D31ED4CDDE002433A3 /* AddBankAccountViewModel.swift */,
 				548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */,
@@ -3367,6 +3378,7 @@
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E89518731F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
+				2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */,
 				B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				2FA5D85F1F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */,
