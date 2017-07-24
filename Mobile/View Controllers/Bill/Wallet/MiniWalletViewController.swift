@@ -10,6 +10,16 @@ import RxSwift
 
 protocol MiniWalletViewControllerDelegate: class {
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem)
+    
+    // Used in the payment workflow:
+    func miniWalletViewControllerDidTapAddBank(_ miniWalletViewController: MiniWalletViewController)
+    func miniWalletViewControllerDidTapAddCard(_ miniWalletViewController: MiniWalletViewController)
+}
+
+// Default implementation to make these protocol functions optional
+extension MiniWalletViewControllerDelegate {
+    func miniWalletViewControllerDidTapAddBank(_ miniWalletViewController: MiniWalletViewController) { }
+    func miniWalletViewControllerDidTapAddCard(_ miniWalletViewController: MiniWalletViewController) { }
 }
 
 class MiniWalletViewController: UIViewController {
@@ -28,7 +38,7 @@ class MiniWalletViewController: UIViewController {
     let viewModel = MiniWalletViewModel(walletService: ServiceFactory.createWalletService())
     
     // These should be passed by whatever VC is presenting MiniWalletViewController
-    var addingDisabled = false // Temporarily being used for sprint 13 payment workflow. Sprint 14 will enable but using them will have different actions
+    var sentFromPayment = false
     var bankAccountsDisabled = false
     var creditCardsDisabled = false
     var tableHeaderLabelText: String?
@@ -52,7 +62,7 @@ class MiniWalletViewController: UIViewController {
         
         tableFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
         tableFooterLabel.textColor = .blackText
-        tableFooterLabel.text = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
+        tableFooterLabel.text = viewModel.footerLabelText
         
         tableView.estimatedSectionHeaderHeight = 16
         
@@ -111,11 +121,16 @@ class MiniWalletViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let oneTouchPayItem = viewModel.walletItems.value?.first(where: { $0.isDefault == true })
+        
         if let vc = segue.destination as? AddBankAccountViewController {
-            vc.viewModel.accountDetail = accountDetail
+            vc.accountDetail = accountDetail
+            vc.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
         } else if let vc = segue.destination as? AddCreditCardViewController {
-            vc.viewModel.accountDetail = accountDetail
+            vc.accountDetail = accountDetail
+            vc.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
         }
     }
@@ -136,7 +151,12 @@ class MiniWalletViewController: UIViewController {
     }
     
     func onAddBankAccountPress() {
-        performSegue(withIdentifier: "miniWalletAddBankAccountSegue", sender: self)
+        if sentFromPayment {
+            delegate?.miniWalletViewControllerDidTapAddBank(self)
+            navigationController?.popViewController(animated: true)
+        } else {
+            performSegue(withIdentifier: "miniWalletAddBankAccountSegue", sender: self)
+        }
     }
     
     func onCreditCardPress(sender: ButtonControl) {
@@ -146,7 +166,12 @@ class MiniWalletViewController: UIViewController {
     }
     
     func onAddCreditCardPress() {
-        performSegue(withIdentifier: "miniWalletAddCreditCardSegue", sender: self)
+        if sentFromPayment {
+            delegate?.miniWalletViewControllerDidTapAddCard(self)
+            navigationController?.popViewController(animated: true)
+        } else {
+            performSegue(withIdentifier: "miniWalletAddCreditCardSegue", sender: self)
+        }
     }
 
 }
@@ -223,21 +248,21 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.bindToWalletItem(bankItem)
                 cell.checkmarkImageView.isHidden = bankItem != viewModel.selectedItem.value
                 cell.innerContentView.tag = indexPath.row
+                cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onBankAccountPress(sender:)), for: .touchUpInside)
-                if self.bankAccountsDisabled {
-                    cell.innerContentView.isEnabled = false
-                }
+                cell.innerContentView.isEnabled = !self.bankAccountsDisabled
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
                 cell.iconImageView.image = #imageLiteral(resourceName: "bank_building_mini")
                 cell.label.text = NSLocalizedString("Add Bank Account", comment: "")
                 viewModel.bankAccountLimitReached.map {
-                    if self.addingDisabled {
+                    if self.bankAccountsDisabled {
                         return false
                     }
                     return !$0
                 }.drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
+                cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddBankAccountPress), for: .touchUpInside)
                 return cell
             }
@@ -248,21 +273,21 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.bindToWalletItem(cardItem)
                 cell.checkmarkImageView.isHidden = cardItem != viewModel.selectedItem.value
                 cell.innerContentView.tag = indexPath.row
+                cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onCreditCardPress(sender:)), for: .touchUpInside)
-                if self.creditCardsDisabled {
-                    cell.innerContentView.isEnabled = false
-                }
+                cell.innerContentView.isEnabled = !self.creditCardsDisabled
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
                 cell.iconImageView.image = #imageLiteral(resourceName: "credit_card_mini")
                 cell.label.text = NSLocalizedString("Add Credit/Debit Card", comment: "")
                 viewModel.creditCardLimitReached.map {
-                    if self.creditCardsDisabled || self.addingDisabled {
+                    if self.creditCardsDisabled {
                         return false
                     }
                     return !$0
                 }.drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
+                cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddCreditCardPress), for: .touchUpInside)
                 return cell
             }

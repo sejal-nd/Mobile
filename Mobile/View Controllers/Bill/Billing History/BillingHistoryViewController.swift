@@ -32,6 +32,8 @@ class BillingHistoryViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var accountDetail: AccountDetail!
+    
+    var didCreateBGEasyCell = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +76,7 @@ class BillingHistoryViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Dispose of any resources that can be revarated.
     }
     
 
@@ -93,20 +95,14 @@ class BillingHistoryViewController: UIViewController {
             vc.billingHistory = billingHistory
             
         } else if let vc = segue.destination as? BillingHistoryDetailsViewController {
-            let billingHistoryItem: BillingHistoryItem
-            
-            if(selectedIndexPath.section == 0) {
-                billingHistoryItem = (self.billingHistory?.upcoming[selectedIndexPath.row])!
-            } else {
-                billingHistoryItem = (self.billingHistory?.past[selectedIndexPath.row])!
-            }
-            
+            let billingHistoryItem = selectedIndexPath.section == 0 ? (self.billingHistory?.upcoming[selectedIndexPath.row])! : (self.billingHistory?.past[selectedIndexPath.row])!
             vc.billingHistoryItem = billingHistoryItem
+        } else if let vc = segue.destination as? ViewBillViewController {
+            let billingHistoryItem = selectedIndexPath.section == 0 ? (self.billingHistory?.upcoming[selectedIndexPath.row])! : (self.billingHistory?.past[selectedIndexPath.row])!
+            vc.viewModel.billDate = billingHistoryItem.date.apiFormatDate
         }
     }
 }
-
-
 
 extension BillingHistoryViewController: UITableViewDelegate {
     
@@ -117,40 +113,84 @@ extension BillingHistoryViewController: UITableViewDelegate {
         selectedIndexPath = indexPath
         
         if indexPath.section == 1 {
-            self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+            guard let billingItem = self.billingHistory?.past[indexPath.row], 
+                let type = billingItem.type else { return }
+            if type == BillingHistoryProperties.TypeBilling.rawValue {
+                if Environment.sharedInstance.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
+                    let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVC, animated: true, completion: nil)
+                } else {
+                    self.performSegue(withIdentifier: "viewBillSegue", sender: self)
+                }
+            } else {
+                switch UIDevice.current.userInterfaceIdiom {
+                case .pad:
+                    self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
+                    break
+                default:
+                    self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+                    break
+                }
+            }
+            
+            
         } else {
-            let billingItem = self.billingHistory?.upcoming[indexPath.row]
-            
-            let status = billingItem?.status!
-            
-            let storyboard = UIStoryboard(name: "Bill", bundle: nil)
-            
             let opco = Environment.sharedInstance.opco
             
-            // PROCESSING, SCHEDULED, AUTOMATIC
             if opco == .bge {
-                if status == "AUTOMATIC" {
-                    if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
-                        vc.accountDetail = self.accountDetail
-                        self.navigationController?.pushViewController(vc, animated: true)
+                if accountDetail.isBGEasy {
+                    if self.billingHistory?.upcoming == nil {
+                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                    } else if indexPath.row == self.billingHistory!.upcoming.count + 1 {
+                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                    } else  {
+                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
                     }
-
-                } else if status == "PROCESSING" {
-                    self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+                } 
+            } else {
+                guard let billingItem = self.billingHistory?.upcoming[indexPath.row], 
+                    let status = billingItem.status else { return }
                 
-                } else if status == "SCHEDULED" {
-                    // TODO: load Scheduled Payment workflow (Sprint 13)
+                //pending payments do not get a tap so we only handle scheduled payments
+                if status == BillingHistoryProperties.StatusProcessing.rawValue || status == BillingHistoryProperties.StatusSCHEDULED.rawValue {
+                    handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
                 }
-                
-            } else { // .comed/.peco
-                if status == "AUTOMATIC" {
-                    if let vc = storyboard.instantiateViewController(withIdentifier: "AutoPay") as? AutoPayViewController {
-                        vc.accountDetail = self.accountDetail
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                    
-                } else if status == "SCHEDULED" {
-                    // TODO: load Scheduled Payment workflow (Sprint 13)
+            }
+        }
+    }
+    
+    private func handleBGEUpcomingClick(indexPath: IndexPath) {
+        guard let billingItem = self.billingHistory?.upcoming[indexPath.row], 
+            let status = billingItem.status else { return }
+        
+        if status == BillingHistoryProperties.StatusProcessing.rawValue {
+            
+            //TODO: something here maybe, if processing is a thing
+            
+        } else { //It's scheduled hopefully
+            handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
+        }
+    }
+    
+    private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
+        guard let paymentMethod = billingItem.paymentMethod else { return }
+        let storyboard = UIStoryboard(name: "Bill", bundle: nil)
+        
+        if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
+            
+            //TODO: add modify scheduled payment workflow
+            
+        } else { // recurring/automatic
+            if Environment.sharedInstance.opco == .bge {
+                if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
+                    vc.accountDetail = self.accountDetail
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            } else {
+                if let vc = storyboard.instantiateViewController(withIdentifier: "AutoPay") as? AutoPayViewController {
+                    vc.accountDetail = self.accountDetail
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
         }
@@ -167,26 +207,19 @@ extension BillingHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             guard let upcoming = self.billingHistory?.upcoming else {
-                return 0 //TODO: empty state
+                return accountDetail.isBGEasy ? 1 : 0
             }
             
-            if upcoming.count > 3 {
-                return 3
-            }
-            else {
-                return upcoming.count
+            if accountDetail.isBGEasy {
+                return upcoming.count > 2 ? 3 : upcoming.count + 1
+            } else {
+                return upcoming.count > 3 ? 3 : upcoming.count
             }
         } else {
             guard let past = self.billingHistory?.past else {
-                return 0 //TODO: empty state
+                return 0 
             }
-            
-            if past.count > 16 {
-                return 17
-            }
-            else {
-                return past.count
-            }
+            return past.count > 16 ? 17 : past.count
         }
     }
     
@@ -220,8 +253,12 @@ extension BillingHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? { 
         
         if self.billingHistory != nil {
-            if section == 0 && self.billingHistory?.upcoming.count == 0 {
-                return nil
+            if section == 0 {
+                if accountDetail.isBGEasy {
+                    return headerView(section: section)
+                } else {
+                    return self.billingHistory?.upcoming.count == 0 ? nil : headerView(section: section)
+                }
             } else if section == 1 && self.billingHistory?.past.count == 0 {
                 return nil
             } else {
@@ -242,21 +279,20 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let billingHistoryItem: BillingHistoryItem
+        
         if indexPath.section == 0 {
-            billingHistoryItem = (self.billingHistory?.upcoming[indexPath.row])!;
+            
+            if accountDetail.isBGEasy {
+                return bgEasyTableViewCell(indexPath: indexPath)
+            } else {
+                billingHistoryItem = (self.billingHistory?.upcoming[indexPath.row])!;
+            }
         } else {
             billingHistoryItem = (self.billingHistory?.past[indexPath.row])!;
         }
         
         if indexPath.section == 1 && indexPath.row == 16 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-            let button = UIButton(type: UIButtonType.system)
-            button.setTitle("View More", for: .normal)
-            button.setTitleColor(.actionBlue, for: .normal)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-            button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
-            cell.contentView.addSubview(button)
-            return cell
+            return viewMoreTableViewCell(indexPath: indexPath)
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BillingHistoryTableViewCell
             cell.configureWith(item: billingHistoryItem)
@@ -275,7 +311,16 @@ extension BillingHistoryViewController: UITableViewDataSource {
         label.font = label.font.withSize(14)
         label.textColor = UIColor.deepGray
         
-        let titleText = section == 0 ? "View All (\(self.billingHistory!.upcoming.count))" : "View More"
+        //let titleText = section == 0 ? "View All (\(self.billingHistory!.upcoming.count))" : "View More" 
+        var titleText = ""
+        if section == 0 {
+            if !accountDetail.isBGEasy {
+                titleText = "View All (\(self.billingHistory!.upcoming.count))"
+            }
+        } else {
+            titleText = "View More"
+        }
+        
         button.setTitle(titleText, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.actionBlue, for: .normal)
@@ -323,6 +368,46 @@ extension BillingHistoryViewController: UITableViewDataSource {
         self.billingSelection = .history
         
         self.performSegue(withIdentifier: "showMoreBillingHistorySegue", sender: self)
+    }
+    
+    func viewMoreTableViewCell(indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "ViewMoreCell")
+        let button = UIButton(type: UIButtonType.system)
+        button.setTitle("View More", for: .normal)
+        button.setTitleColor(.actionBlue, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
+        cell.contentView.addSubview(button)
+        return cell
+    }
+    
+    func bgEasyTableViewCell(indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "BgEasyCell")
+        
+        let label = UILabel()
+        label.text = "You currently have AutoPay set up"
+        label.font = SystemFont.medium.of(textStyle: .subheadline).withSize(17)
+        
+        let carat = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
+        carat.contentMode = .scaleAspectFit
+    
+        label.translatesAutoresizingMaskIntoConstraints = false
+        carat.translatesAutoresizingMaskIntoConstraints = false
+        
+        cell.contentView.addSubview(label)
+        cell.contentView.addSubview(carat)
+        
+        let views = ["label": label, "carat": carat, "view": cell.contentView]
+        
+        let horizontallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-19-[label]-8-[carat]-22-|", options: .alignAllCenterY, metrics: nil, views: views)
+        cell.contentView.addConstraints(horizontallayoutContraints)
+        
+        let verticalLayoutContraint = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: cell.contentView, attribute: .centerY, multiplier: 1, constant: 0)
+        cell.contentView.addConstraint(verticalLayoutContraint)
+        
+        return cell
+        
     }
     
 }

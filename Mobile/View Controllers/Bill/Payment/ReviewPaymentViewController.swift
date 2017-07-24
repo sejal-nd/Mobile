@@ -40,9 +40,13 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var convenienceFeeTextLabel: UILabel!
     @IBOutlet weak var convenienceFeeValueLabel: UILabel!
     
-    @IBOutlet weak var overpayingView: UIView!
-    @IBOutlet weak var overpayingTextLabel: UILabel!
-    @IBOutlet weak var overpayingValueLabel: UILabel!
+    @IBOutlet weak var cardOverpayingView: UIView!
+    @IBOutlet weak var cardOverpayingTextLabel: UILabel!
+    @IBOutlet weak var cardOverpayingValueLabel: UILabel!
+    
+    @IBOutlet weak var bankOverpayingView: UIView!
+    @IBOutlet weak var bankOverpayingTextLabel: UILabel!
+    @IBOutlet weak var bankOverpayingValueLabel: UILabel!
     
     @IBOutlet weak var totalPaymentView: UIView!
     @IBOutlet weak var paymentDateTextLabel: UILabel!
@@ -91,7 +95,7 @@ class ReviewPaymentViewController: UIViewController {
         
         activeSeveranceLabel.textColor = .blackText
         activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        activeSeveranceLabel.text = NSLocalizedString("Your account is active severance, as such you will not be able to edit or delete this payment once it is created.", comment: "")
+        activeSeveranceLabel.text = NSLocalizedString("Due to the status of this account, this payment cannot be edited or deleted once it is submitted.", comment: "")
         activeSeveranceLabel.setLineHeight(lineHeight: 24)
         
         overpaymentLabel.textColor = .blackText
@@ -129,11 +133,17 @@ class ReviewPaymentViewController: UIViewController {
         convenienceFeeValueLabel.textColor = .deepGray
         convenienceFeeValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        overpayingTextLabel.textColor = .deepGray
-        overpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        overpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
-        overpayingValueLabel.textColor = .deepGray
-        overpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        cardOverpayingTextLabel.textColor = .deepGray
+        cardOverpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        cardOverpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
+        cardOverpayingValueLabel.textColor = .deepGray
+        cardOverpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        bankOverpayingTextLabel.textColor = .deepGray
+        bankOverpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        bankOverpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
+        bankOverpayingValueLabel.textColor = .deepGray
+        bankOverpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         totalPaymentView.backgroundColor = .softGray
         paymentDateTextLabel.textColor = .blackText
@@ -190,7 +200,8 @@ class ReviewPaymentViewController: UIViewController {
     func bindViewHiding() {
         viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isOverpaying.map(!).drive(overpaymentLabel.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isOverpaying.map(!).drive(overpayingView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isOverpayingCard.map(!).drive(cardOverpayingView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isOverpayingBank.map(!).drive(bankOverpayingView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.reviewPaymentShouldShowConvenienceFeeBox.map(!).drive(convenienceFeeView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowTermsConditionsSwitchView.map(!).drive(termsConditionsSwitchView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).addDisposableTo(disposeBag)
@@ -214,7 +225,8 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.paymentAmountDisplayString.asDriver().drive(paymentAmountValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Overpaying
-        viewModel.overpayingValueDisplayString.drive(overpayingValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.overpayingValueDisplayString.drive(cardOverpayingValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.overpayingValueDisplayString.drive(bankOverpayingValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Convenience Fee
         viewModel.convenienceFeeDisplayString.drive(convenienceFeeValueLabel.rx.text).addDisposableTo(disposeBag)
@@ -244,7 +256,24 @@ class ReviewPaymentViewController: UIViewController {
         }, onError: { errMessage in
             LoadingView.hide()
             let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            
+            // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
+            // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
+            if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
+                    action -> Void in
+                    if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
+                        if #available(iOS 10, *) {
+                            UIApplication.shared.open(url)
+                        } else {
+                            UIApplication.shared.openURL(url)
+                        }
+                    }
+                }))
+            } else {
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            }
             self.present(alertVc, animated: true, completion: nil)
         })
     }
