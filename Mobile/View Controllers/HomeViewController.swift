@@ -13,6 +13,7 @@ import Lottie
 
 class HomeViewController: AccountPickerViewController {
     
+    @IBOutlet weak var primaryColorHeaderView: UIView!
     @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var headerStackView: UIStackView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
@@ -76,14 +77,14 @@ class HomeViewController: AccountPickerViewController {
             .addDisposableTo(bag)
         
         billCardView = HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel)
-        self.cardStackView.addArrangedSubview(billCardView)
+        cardStackView.addArrangedSubview(billCardView)
         
         templateCardView = TemplateCardView.create(withViewModel: self.viewModel.templateCardViewModel)
         templateCardView.callToActionViewController
             .drive(onNext: { [weak self] viewController in
                 self?.present(viewController, animated: true, completion: nil)
             }).addDisposableTo(bag)
-        self.cardStackView.addArrangedSubview(templateCardView)
+        cardStackView.addArrangedSubview(templateCardView)
         
         styleViews()
         bindLoadingStates()
@@ -96,9 +97,15 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func styleViews() {
+        primaryColorHeaderView.backgroundColor = .primaryColor
         scrollView.backgroundColor = .primaryColor
         weatherWidgetView.backgroundColor = .primaryColor
         headerStackView.backgroundColor = .primaryColor
+        scrollView.rx.contentOffset
+            .asDriver()
+            .map { $0.y < 0 ? .primaryColor: .softGray }
+            .drive(onNext: { [weak self] color in self?.scrollView.backgroundColor = color })
+            .addDisposableTo(bag)
     }
     
     func bindLoadingStates() {
@@ -107,7 +114,7 @@ class HomeViewController: AccountPickerViewController {
         viewModel.switchAccountsTracker.asDriver().not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
         viewModel.switchAccountsTracker.asDriver().drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
         
-        viewModel.weatherTemp.drive(temperatureLabel.rx.text).addDisposableTo(bag)
+        viewModel.weatherTemp.debug("*****").drive(temperatureLabel.rx.text).addDisposableTo(bag)
         viewModel.weatherIcon.drive(weatherIconImage.rx.image).addDisposableTo(bag)
         viewModel.greeting.drive(greetingLabel.rx.text).addDisposableTo(bag)
     }
