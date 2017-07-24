@@ -102,15 +102,26 @@ class PaymentConfirmationViewController: UIViewController {
     }
 
     @IBAction func onXButtonPress() {
-        for vc in presentingNavController.viewControllers {
-            guard let dest = vc as? BillViewController else {
-                continue
+        if viewModel.paymentId.value != nil { // Modify Payment
+            for vc in presentingNavController.viewControllers {
+                guard let dest = vc as? BillingHistoryViewController else {
+                    continue
+                }
+                dest.getBillingHistory()
+                presentingNavController.popToViewController(dest, animated: false)
+                break
             }
-            dest.viewModel.fetchAccountDetail(isRefresh: false)
-            presentingNavController.popToViewController(dest, animated: false)
-            break
+        } else {
+            for vc in presentingNavController.viewControllers {
+                guard let dest = vc as? BillViewController else {
+                    continue
+                }
+                dest.viewModel.fetchAccountDetail(isRefresh: false)
+                presentingNavController.popToViewController(dest, animated: false)
+                break
+            }
+            presentingNavController.setNavigationBarHidden(true, animated: true) // Fixes bad dismiss animation
         }
-        presentingNavController.setNavigationBarHidden(true, animated: true) // Fixes bad dismiss animation
         presentingNavController.dismiss(animated: true, completion: nil)
     }
     

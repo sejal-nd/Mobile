@@ -588,12 +588,16 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
         let today = Calendar.current.startOfDay(for: Date())
         if Environment.sharedInstance.opco == .bge {
-            if let walletItem = viewModel.selectedWalletItem.value {
+            let todayPlus90 = Calendar.current.date(byAdding: .day, value: 90, to: today)!
+            let todayPlus180 = Calendar.current.date(byAdding: .day, value: 180, to: today)!
+            if viewModel.inlineCard.value {
+                return date >= today && date <= todayPlus90
+            } else if viewModel.inlineBank.value {
+                return date >= today && date <= todayPlus180
+            } else if let walletItem = viewModel.selectedWalletItem.value {
                 if walletItem.bankOrCard == .card {
-                    let todayPlus90 = Calendar.current.date(byAdding: .day, value: 90, to: today)!
                     return date >= today && date <= todayPlus90
                 } else {
-                    let todayPlus180 = Calendar.current.date(byAdding: .day, value: 180, to: today)!
                     return date >= today && date <= todayPlus180
                 }
             }

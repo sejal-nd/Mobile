@@ -39,15 +39,27 @@ class BillingHistoryViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("Activity", comment: "")
-        self.loadingIndicator.isHidden = false;
-        self.tableView.isHidden = true;
-        self.empyStateLabel.isHidden = true
         
         tableView.delegate = self;
         tableView.dataSource = self;
         
         self.tableView.register(UINib(nibName: BillingHistoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: "Cell")
         
+        getBillingHistory()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar(hidesBottomBorder: true)
+        }
+    }
+    
+    func getBillingHistory() {
+        self.loadingIndicator.isHidden = false;
+        self.tableView.isHidden = true;
+        self.empyStateLabel.isHidden = true
         viewModel.getBillingHistory(success: { (billingHistory) in
             self.loadingIndicator.isHidden = true
             self.tableView.isHidden = false
@@ -66,20 +78,6 @@ class BillingHistoryViewController: UIViewController {
             //TODO: handle this error
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar(hidesBottomBorder: true)
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be revarated.
-    }
-    
 
     // MARK: - Navigation
 
