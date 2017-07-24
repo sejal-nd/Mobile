@@ -153,7 +153,6 @@ class ReviewPaymentViewController: UIViewController {
         paymentDateValueLabel.font = SystemFont.medium.of(textStyle: .headline)
         totalPaymentTextLabel.textColor = .blackText
         totalPaymentTextLabel.font = SystemFont.medium.of(textStyle: .headline)
-        totalPaymentTextLabel.text = NSLocalizedString("Total Payment", comment: "")
         totalPaymentValueLabel.textColor = .blackText
         totalPaymentValueLabel.font = SystemFont.medium.of(textStyle: .headline)
         
@@ -184,7 +183,6 @@ class ReviewPaymentViewController: UIViewController {
         
         footerView.backgroundColor = .softGray
         footerLabel.textColor = .blackText
-        footerLabel.text = NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
         
         bindViewHiding()
         bindViewContent()
@@ -239,12 +237,16 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Total Payment
-        viewModel.totalPaymentDisplayString.asDriver().drive(totalPaymentValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.totalPaymentLabelText.drive(totalPaymentTextLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.totalPaymentDisplayString.drive(totalPaymentValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Switches
         termsConditionsSwitch.rx.isOn.bind(to: viewModel.termsConditionsSwitchValue).addDisposableTo(disposeBag)
         overpayingSwitch.rx.isOn.bind(to: viewModel.overpayingSwitchValue).addDisposableTo(disposeBag)
         activeSeveranceSwitch.rx.isOn.bind(to: viewModel.activeSeveranceSwitchValue).addDisposableTo(disposeBag)
+        
+        // Footer Label
+        viewModel.reviewPaymentFooterLabelText.drive(footerLabel.rx.text).addDisposableTo(disposeBag)
     }
     
     func bindButtonTaps() {

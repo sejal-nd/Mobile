@@ -924,6 +924,15 @@ class PaymentViewModel {
         return !$0.isAutoPay && $0.isAutoPayEligible
     }
     
+    var totalPaymentLabelText: Driver<String> {
+        return Driver.combineLatest(bankWorkflow, isOverpaying).map {
+            if $0 && !$1 {
+                return NSLocalizedString("Payment Amount", comment: "")
+            }
+            return NSLocalizedString("Total Payment", comment: "")
+        }
+    }
+    
     var totalPaymentDisplayString: Driver<String> {
         return Driver.combineLatest(paymentAmount.asDriver().map {
             return Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
@@ -940,6 +949,16 @@ class PaymentViewModel {
                 }
             } else {
                 return $0.currencyString!
+            }
+        }
+    }
+    
+    var reviewPaymentFooterLabelText: Driver<String?> {
+        return bankWorkflow.map {
+            if Environment.sharedInstance.opco == .bge && $0 {
+                return nil
+            } else {
+                return NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
             }
         }
     }
