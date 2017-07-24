@@ -26,6 +26,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var cardStackView: UIStackView!
     
     var billCardView: HomeBillCardView!
+    var templateCardView: TemplateCardView!
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl? {
@@ -70,6 +71,8 @@ class HomeViewController: AccountPickerViewController {
         
         billCardView = HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel)
         self.cardStackView.addArrangedSubview(billCardView)
+        templateCardView = TemplateCardView.create(withViewModel: self.viewModel.templateCardViewModel)
+        self.cardStackView.addArrangedSubview(templateCardView)
         styleViews()
         bindLoadingStates()
         configureAccessibility()

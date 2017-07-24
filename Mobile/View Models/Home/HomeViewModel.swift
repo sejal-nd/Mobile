@@ -15,6 +15,7 @@ class HomeViewModel {
     let disposeBag = DisposeBag()
     
     let billCardViewModel: HomeBillCardViewModel
+    let templateCardViewModel: TemplateCardViewModel
     
     private let accountService: AccountService
     private let weatherService: WeatherService
@@ -110,6 +111,7 @@ class HomeViewModel {
                                                   paymentService: self.paymentService,
                                                   fetchingTracker: self.fetchingTracker)
         
+        templateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.currentAccountDetail.asObservable().unwrap().materialize())
     }
     
     
