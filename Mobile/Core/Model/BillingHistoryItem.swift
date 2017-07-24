@@ -49,6 +49,8 @@ struct BillingHistoryItem: Mappable {
     let paymentMethod: String?
     let paymentId: String?
     let walletItemId: String?
+    let flagAllowDeletes: Bool?
+    let flagAllowEdits: Bool?
     
     init(map: Mapper) throws {
         amountPaid = map.optionalFrom("amount_paid", transformation: dollarAmount)
@@ -64,6 +66,8 @@ struct BillingHistoryItem: Mappable {
         type = map.optionalFrom("type")
         paymentId = map.optionalFrom("payment_id")
         walletItemId = map.optionalFrom("wallet_item_id")
+        flagAllowDeletes = map.optionalFrom("flag_allow_deletes")
+        flagAllowEdits = map.optionalFrom("flag_allow_edits")
     }
     
     func dateString() -> String {

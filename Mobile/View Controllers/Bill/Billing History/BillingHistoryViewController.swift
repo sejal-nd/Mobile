@@ -111,29 +111,16 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         selectedIndexPath = indexPath
         
+        //past billing history
         if indexPath.section == 1 {
             guard let billingItem = self.billingHistory?.past[indexPath.row], 
                 let type = billingItem.type else { return }
             if type == BillingHistoryProperties.TypeBilling.rawValue {
-                if Environment.sharedInstance.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
-                    let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
-                    alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertVC, animated: true, completion: nil)
-                } else {
-                    self.performSegue(withIdentifier: "viewBillSegue", sender: self)
-                }
+                showBillPdf()
             } else {
-                switch UIDevice.current.userInterfaceIdiom {
-                case .pad:
-                    self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
-                    break
-                default:
-                    self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
-                    break
-                }
+                showBillingDetails()
             }
-            
-            
+        //upcoming billing history
         } else {
             let opco = Environment.sharedInstance.opco
             
@@ -144,7 +131,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
                     } else if indexPath.row == self.billingHistory!.upcoming.count + 1 {
                         self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
                     } else  {
-                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                        handleBGEUpcomingClick(indexPath: indexPath)
                     }
                 } 
             } else {
@@ -165,7 +152,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         if status == BillingHistoryProperties.StatusProcessing.rawValue {
             
-            //TODO: something here maybe, if processing is a thing
+            showBillingDetails()
             
         } else { //It's scheduled hopefully
             handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
@@ -173,32 +160,78 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
-        //guard let paymentMethod = billingItem.paymentMethod else { return }
-        //if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
-        if true {
-            let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
-            paymentVc.delegate = self
-            paymentVc.accountDetail = accountDetail
-            paymentVc.paymentId = billingItem.paymentId
-            if let walletItemId = billingItem.walletItemId, let paymentAmount = billingItem.amountPaid {
-                let paymentDetail = PaymentDetail(walletItemId: walletItemId, paymentAmount: paymentAmount, paymentDate: billingItem.date)
-                paymentVc.paymentDetail = paymentDetail
-            }
-            self.navigationController?.pushViewController(paymentVc, animated: true)
-        } else { // recurring/automatic
-            let storyboard = UIStoryboard(name: "Bill", bundle: nil)
-            if Environment.sharedInstance.opco == .bge {
-                if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
-                    vc.accountDetail = self.accountDetail
-                    self.navigationController?.pushViewController(vc, animated: true)
+        
+        let opco = Environment.sharedInstance.opco
+        
+        if opco == .bge {
+            guard let paymentMethod = billingItem.paymentMethod,
+                let allowDelete = billingItem.flagAllowDeletes,
+                let allowEdit = billingItem.flagAllowEdits else { return }
+            
+            if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
+                if allowEdit || allowDelete {
+                    showModifyScheduledItem(billingItem: billingItem)
                 }
-            } else {
-                if let vc = storyboard.instantiateViewController(withIdentifier: "AutoPay") as? AutoPayViewController {
-                    vc.accountDetail = self.accountDetail
-                    self.navigationController?.pushViewController(vc, animated: true)
+                else {
+                    showBillingDetails()
+                }
+                
+            } else {  // recurring/automatic
+                let storyboard = UIStoryboard(name: "Bill", bundle: nil)
+                if Environment.sharedInstance.opco == .bge {
+                    if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
+                        vc.accountDetail = self.accountDetail
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                } else {
+                    if let vc = storyboard.instantiateViewController(withIdentifier: "AutoPay") as? AutoPayViewController {
+                        vc.accountDetail = self.accountDetail
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
             }
+            
+        } else { //PECO/COMED scheduled
+            guard let walletItemId = billingItem.walletItemId else { return }
+            
+            if walletItemId != "" {
+                showModifyScheduledItem(billingItem: billingItem)
+            }
+            
         }
+    }
+    
+    private func showBillingDetails() {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
+            break
+        default:
+            self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+            break
+        }
+    }
+    
+    private func showBillPdf() {
+        if Environment.sharedInstance.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
+            let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+        } else {
+            self.performSegue(withIdentifier: "viewBillSegue", sender: self)
+        }
+    }
+    
+    private func showModifyScheduledItem(billingItem: BillingHistoryItem) {
+        let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+        paymentVc.delegate = self
+        paymentVc.accountDetail = accountDetail
+        paymentVc.paymentId = billingItem.paymentId
+        if let walletItemId = billingItem.walletItemId, let paymentAmount = billingItem.amountPaid {
+            let paymentDetail = PaymentDetail(walletItemId: walletItemId, paymentAmount: paymentAmount, paymentDate: billingItem.date)
+            paymentVc.paymentDetail = paymentDetail
+        }
+        self.navigationController?.pushViewController(paymentVc, animated: true)
     }
     
 }
