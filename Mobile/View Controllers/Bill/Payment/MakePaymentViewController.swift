@@ -206,12 +206,11 @@ class MakePaymentViewController: UIViewController {
         addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         switch Environment.sharedInstance.opco {
         case .comEd, .peco:
-            addCreditCardFeeLabel.text = NSLocalizedString("Your payment includes a " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee.", comment: "")
+            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill matrix, our payment partner.", comment: ""), accountDetail.billingInfo.convenienceFee!.currencyString!)
             break
         case .bge:
-            let feeString = String(format: "Your payment includes a %@ convenience fee. ", accountDetail.isResidential ?
-                accountDetail.billingInfo.residentialFee!.currencyString! : accountDetail.billingInfo.commercialFee!.percentString!)
-            addCreditCardFeeLabel.text = NSLocalizedString(feeString, comment: "")
+            //let feeString = String(format: "Your payment includes a %@ convenience fee. ", accountDetail.isResidential ? accountDetail.billingInfo.residentialFee!.currencyString! : accountDetail.billingInfo.commercialFee!.percentString!)
+            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A convenience fee will be applied by Western Union Speedpay, our payment partner. Residential accounts: %@. Business accounts: %@.", comment: ""), accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
             break
         }
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)

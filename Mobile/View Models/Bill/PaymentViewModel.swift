@@ -64,7 +64,7 @@ class PaymentViewModel {
             self.paymentDate.value = tomorrow
         }
         if let dueDate = accountDetail.billingInfo.dueByDate {
-            if dueDate >= startOfTodayDate && !fixedPaymentDateLogic {
+            if dueDate >= startOfTodayDate && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true) {
                 self.paymentDate.value = dueDate
             }
         }
@@ -145,23 +145,23 @@ class PaymentViewModel {
         } else if inlineCard.value {
             scheduleInlineCardPayment(onSuccess: onSuccess, onError: onError)
         } else { // Existing wallet item
-            let paymentType: PaymentType = selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-            var paymentDate = self.paymentDate.value
-            if let walletItem = selectedWalletItem.value {
-                if walletItem.bankOrCard == .card {
+            self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
+                let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
+                var paymentDate = self.paymentDate.value
+                if isFixed {
                     paymentDate = Calendar.current.startOfDay(for: Date())
                 }
-            }
-            let payment = Payment(accountNumber: accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: selectedWalletItem.value!.walletItemID!, cvv: cvv.value)
-            paymentService.schedulePayment(payment: payment)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { _ in
-                    onSuccess()
-                }, onError: { err in
-                    onError(err.localizedDescription)
-                }).addDisposableTo(disposeBag)
+                
+                let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(self.paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: self.selectedWalletItem.value!.walletItemID!, cvv: self.cvv.value)
+                self.paymentService.schedulePayment(payment: payment)
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onNext: { _ in
+                        onSuccess()
+                    }, onError: { err in
+                        onError(err.localizedDescription)
+                    }).addDisposableTo(self.disposeBag)
+            }).addDisposableTo(disposeBag)
         }
-    
     }
     
     private func scheduleInlineBankPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -187,27 +187,29 @@ class PaymentViewModel {
                     self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
                 }
                 
-                let paymentType: PaymentType = .check
-                var paymentDate = self.paymentDate.value
-                if !self.addBankFormViewModel.saveToWallet.value {
-                    paymentDate = Calendar.current.startOfDay(for: Date())
-                }
-                
-                let accountNum = self.addBankFormViewModel.accountNumber.value
-                let maskedAccountNumber = accountNum.substring(from: accountNum.index(accountNum.endIndex, offsetBy: -4))
-                
-                let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addBankFormViewModel.saveToWallet.value, maskedWalletAccountNumber: maskedAccountNumber, paymentAmount: Double(self.paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: walletItemResult.walletItemId)
-                self.paymentService.schedulePayment(payment: payment)
-                    .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { _ in
-                        onSuccess()
-                    }, onError: { err in
-                        if !self.addBankFormViewModel.saveToWallet.value {
-                            // Rollback the wallet add
-                            self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
-                        }
-                        onError(err.localizedDescription)
-                    }).addDisposableTo(self.disposeBag)
+                self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
+                    let paymentType: PaymentType = .check
+                    var paymentDate = self.paymentDate.value
+                    if isFixed {
+                        paymentDate = Calendar.current.startOfDay(for: Date())
+                    }
+                    
+                    let accountNum = self.addBankFormViewModel.accountNumber.value
+                    let maskedAccountNumber = accountNum.substring(from: accountNum.index(accountNum.endIndex, offsetBy: -4))
+                    
+                    let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addBankFormViewModel.saveToWallet.value, maskedWalletAccountNumber: maskedAccountNumber, paymentAmount: Double(self.paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: walletItemResult.walletItemId)
+                    self.paymentService.schedulePayment(payment: payment)
+                        .observeOn(MainScheduler.instance)
+                        .subscribe(onNext: { _ in
+                            onSuccess()
+                        }, onError: { err in
+                            if !self.addBankFormViewModel.saveToWallet.value {
+                                // Rollback the wallet add
+                                self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
+                            }
+                            onError(err.localizedDescription)
+                        }).addDisposableTo(self.disposeBag)
+                }).addDisposableTo(self.disposeBag)
             }, onError: { (error: Error) in
                 onError(error.localizedDescription)
             })
@@ -229,24 +231,31 @@ class PaymentViewModel {
                     self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
                 }
                 
-                let paymentType: PaymentType = .credit
-                let paymentDate = Calendar.current.startOfDay(for: Date())
+                self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
+                    let paymentType: PaymentType = .credit
+                    var paymentDate = self.paymentDate.value
+                    if isFixed {
+                        paymentDate = Calendar.current.startOfDay(for: Date())
+                    }
+                    
+                    let cardNum = self.addCardFormViewModel.cardNumber.value
+                    let maskedAccountNumber = cardNum.substring(from: cardNum.index(cardNum.endIndex, offsetBy: -4))
+                    
+                    let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addCardFormViewModel.saveToWallet.value, maskedWalletAccountNumber: maskedAccountNumber, paymentAmount: Double(self.paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: walletItemResult.walletItemId, cvv: self.addCardFormViewModel.cvv.value)
+                    self.paymentService.schedulePayment(payment: payment)
+                        .observeOn(MainScheduler.instance)
+                        .subscribe(onNext: { _ in
+                            onSuccess()
+                        }, onError: { err in
+                            if !self.addCardFormViewModel.saveToWallet.value {
+                                // Rollback the wallet add
+                                self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
+                            }
+                            onError(err.localizedDescription)
+                        }).addDisposableTo(self.disposeBag)
+                }).addDisposableTo(self.disposeBag)
                 
-                let cardNum = self.addCardFormViewModel.cardNumber.value
-                let maskedAccountNumber = cardNum.substring(from: cardNum.index(cardNum.endIndex, offsetBy: -4))
-                
-                let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addCardFormViewModel.saveToWallet.value, maskedWalletAccountNumber: maskedAccountNumber, paymentAmount: Double(self.paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: walletItemResult.walletItemId, cvv: self.addCardFormViewModel.cvv.value)
-                self.paymentService.schedulePayment(payment: payment)
-                    .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { _ in
-                        onSuccess()
-                    }, onError: { err in
-                        if !self.addCardFormViewModel.saveToWallet.value {
-                            // Rollback the wallet add
-                            self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
-                        }
-                        onError(err.localizedDescription)
-                    }).addDisposableTo(self.disposeBag)
+
             }, onError: { err in
                 onError(err.localizedDescription)
             })
@@ -710,7 +719,7 @@ class PaymentViewModel {
                 if $0 || $2 {
                     return NSLocalizedString("Any payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
                 } else {
-                    return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
+                    return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nAny payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
                 }
             } else {
                 if $1 {
@@ -724,42 +733,31 @@ class PaymentViewModel {
     
     var isFixedPaymentDate: Driver<Bool> {
         return Driver.combineLatest(accountDetail.asDriver(), cardWorkflow, inlineCard.asDriver(), addBankFormViewModel.saveToWallet.asDriver(), addCardFormViewModel.saveToWallet.asDriver()).map { (accountDetail, cardWorkflow, inlineCard, saveBank, saveCard) in
-            if Environment.sharedInstance.opco == .bge {
-                if inlineCard && !saveCard {
-                    return true
-                }
-            } else if cardWorkflow || inlineCard || !saveBank {
-                return true
-            }
-            
-            if self.fixedPaymentDateLogic {
-                return true
-            }
-
-            if Environment.sharedInstance.opco != .bge {
-                let startOfTodayDate = Calendar.current.startOfDay(for: Date())
-                if let dueDate = accountDetail.billingInfo.dueByDate {
-                    if dueDate < startOfTodayDate {
-                        return true
-                    }
-                }
-            }
-
-            return false
+            return self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: cardWorkflow, inlineCard: inlineCard, saveBank: saveBank, saveCard: saveCard)
         }
     }
     
-    private var fixedPaymentDateLogic: Bool {
-        if Environment.sharedInstance.opco != .bge {
-            if accountDetail.value.billingInfo.pastDueAmount ?? 0 > 0 { // Past due, avoid shutoff
+    private func fixedPaymentDateLogic(accountDetail: AccountDetail, cardWorkflow: Bool, inlineCard: Bool, saveBank: Bool, saveCard: Bool) -> Bool {
+        if Environment.sharedInstance.opco == .bge {
+            if (inlineCard && !saveCard) || accountDetail.isActiveSeverance {
                 return true
             }
-            if (accountDetail.value.billingInfo.restorationAmount ?? 0 > 0 || accountDetail.value.billingInfo.amtDpaReinst ?? 0 > 0) || accountDetail.value.isCutOutNonPay { // Cut for non-pay
+        } else {
+            if cardWorkflow || inlineCard || !saveBank {
                 return true
             }
-        }
-        if accountDetail.value.isActiveSeverance {
-            return true
+            if accountDetail.billingInfo.pastDueAmount ?? 0 > 0 { // Past due, avoid shutoff
+                return true
+            }
+            if (accountDetail.billingInfo.restorationAmount ?? 0 > 0 || accountDetail.billingInfo.amtDpaReinst ?? 0 > 0) || accountDetail.isCutOutNonPay { // Cut for non-pay
+                return true
+            }
+            let startOfTodayDate = Calendar.current.startOfDay(for: Date())
+            if let dueDate = accountDetail.billingInfo.dueByDate {
+                if dueDate < startOfTodayDate {
+                    return true
+                }
+            }
         }
         return false
     }
