@@ -23,6 +23,7 @@ class AddBankFormViewModel {
     
     let walletService: WalletService!
     
+    // Normal Add Bank forms
     let selectedSegmentIndex = Variable(0)
     let accountHolderName = Variable("")
     let routingNumber = Variable("")
@@ -30,11 +31,23 @@ class AddBankFormViewModel {
     let confirmAccountNumber = Variable("")
     let nickname = Variable("")
     let oneTouchPay = Variable(false)
+
+    // Payment workflow
+    let paymentWorkflow = Variable(false) // If form is being used on payment screen
+    let saveToWallet = Variable(true) // Switch value
     
     var bankName = "";
 
     required init(walletService: WalletService) {
         self.walletService = walletService
+        
+        // When Save To Wallet switch is toggled off, reset the fields that get hidden
+        saveToWallet.asObservable().subscribe(onNext: { save in
+            if !save {
+                self.nickname.value = ""
+                self.oneTouchPay.value = false
+            }
+        }).addDisposableTo(disposeBag)
     }
     
     func accountHolderNameHasText() -> Observable<Bool> {

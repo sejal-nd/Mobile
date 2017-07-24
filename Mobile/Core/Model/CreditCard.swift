@@ -9,25 +9,25 @@
 import Foundation
 
 struct CreditCard {
-    var cardNumber : String
-    var securityCode : String
-    var firstName : String?
-    var lastName : String?
-    var expirationMonth : String
-    var expirationYear : String
-    var postalCode : String
-    var nickname : String?
-    var oneTimeUse : Bool?
+    var cardNumber: String
+    var securityCode: String
+    var firstName: String?
+    var lastName: String?
+    var expirationMonth: String
+    var expirationYear: String
+    var postalCode: String
+    var nickname: String?
+    var oneTimeUse: Bool
     
     init(cardNumber: String,
          securityCode: String,
-         firstName: String?=nil,
-         lastName: String?=nil,
+         firstName: String? = nil,
+         lastName: String? = nil,
          expirationMonth: String,
          expirationYear: String,
          postalCode: String,
-         nickname: String?=nil,
-         oneTimeUse: Bool?=false) {
+         nickname: String? = nil,
+         oneTimeUse: Bool = false) {
         self.cardNumber = cardNumber
         self.securityCode = securityCode
         self.firstName = firstName
@@ -36,6 +36,6 @@ struct CreditCard {
         self.expirationYear = expirationYear
         self.postalCode = postalCode
         self.nickname = nickname
-        self.oneTimeUse = oneTimeUse!
+        self.oneTimeUse = oneTimeUse
     }
 }

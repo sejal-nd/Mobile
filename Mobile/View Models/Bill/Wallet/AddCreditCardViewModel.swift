@@ -87,18 +87,6 @@ class AddCreditCardViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    func deleteOneTouchPay(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        walletService.removeOneTouchPayItem(customerId: AccountsStore.sharedInstance.customerIdentifier)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                onSuccess()
-            }, onError: { err in
-                onError(err.localizedDescription)
-            })
-            .addDisposableTo(disposeBag)
-        walletService.removeOneTouchPayItem(customerId: AccountsStore.sharedInstance.customerIdentifier) { (result: ServiceResult<Void>) in }
-    }
-    
     func getOneTouchDisplayString() -> String {
         if let item = oneTouchPayItem {
             switch item.bankOrCard {
