@@ -392,9 +392,16 @@ class BillViewModel {
         if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPaymentAmount, scheduledPaymentAmount > 0.0 {
             if accountDetail.isAutoPay {
                 if Environment.sharedInstance.opco == .bge {
-                    return NSLocalizedString("You are enrolled in AutoPay", comment: "")
+                    if accountDetail.isBGEasy {
+                        return NSLocalizedString("You are enrolled in BGEasy", comment: "")
+                    } else {
+                        return NSLocalizedString("You are enrolled in AutoPay", comment: "")
+                    }
                 } else {
-                    let paymentString = scheduledPaymentAmount.currencyString ?? "--"
+                    var paymentString = scheduledPaymentAmount.currencyString ?? "--"
+                    if let netDueAmount = accountDetail.billingInfo.netDueAmount {
+                        paymentString = netDueAmount.currencyString ?? "--"
+                    }
                     let dueByDateString = accountDetail.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
                     let localizedText = NSLocalizedString("You have an automatic payment of %@ for %@", comment: "")
                     if let scheduledPaymentDate = accountDetail.billingInfo.scheduledPaymentDate?.mmDdYyyyString {

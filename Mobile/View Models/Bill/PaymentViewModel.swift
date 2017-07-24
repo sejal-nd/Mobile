@@ -63,7 +63,7 @@ class PaymentViewModel {
         
         let startOfTodayDate = Calendar.current.startOfDay(for: Date())
         self.paymentDate = Variable(startOfTodayDate)
-        if Environment.sharedInstance.opco == .bge && Calendar.current.component(.hour, from: Date()) >= 20 {
+        if Environment.sharedInstance.opco == .bge && Calendar.current.component(.hour, from: Date()) >= 20 && !accountDetail.isActiveSeverance {
             let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
             self.paymentDate.value = tomorrow
         }
@@ -813,7 +813,7 @@ class PaymentViewModel {
     }
     
     lazy var isFixedPaymentDatePastDue: Driver<Bool> = self.accountDetail.asDriver().map {
-        return $0.billingInfo.pastDueAmount ?? 0 > 0
+        return Environment.sharedInstance.opco != .bge && $0.billingInfo.pastDueAmount ?? 0 > 0
     }
     
     var paymentDateString: Driver<String> {
@@ -924,6 +924,15 @@ class PaymentViewModel {
         return !$0.isAutoPay && $0.isAutoPayEligible
     }
     
+    var totalPaymentLabelText: Driver<String> {
+        return Driver.combineLatest(bankWorkflow, isOverpaying).map {
+            if $0 && !$1 {
+                return NSLocalizedString("Payment Amount", comment: "")
+            }
+            return NSLocalizedString("Total Payment", comment: "")
+        }
+    }
+    
     var totalPaymentDisplayString: Driver<String> {
         return Driver.combineLatest(paymentAmount.asDriver().map {
             return Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
@@ -944,6 +953,16 @@ class PaymentViewModel {
         }
     }
     
+    var reviewPaymentFooterLabelText: Driver<String?> {
+        return bankWorkflow.map {
+            if Environment.sharedInstance.opco == .bge && $0 {
+                return nil
+            } else {
+                return NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
+            }
+        }
+    }
+    
     // MARK: - Payment Confirmation
     
     lazy var shouldShowConvenienceFeeLabel: Driver<Bool> = self.cardWorkflow.asDriver().map {
@@ -954,12 +973,16 @@ class PaymentViewModel {
     // MARK: - Random functions
     
     func formatPaymentAmount() {
-        let textStr = String(paymentAmount.value.characters.filter { "0123456789".characters.contains($0) })
-        if let intVal = Double(textStr) {
-            if intVal == 0 {
-                paymentAmount.value = "$0.00"
-            } else {
-                paymentAmount.value = (intVal / 100).currencyString!
+        if paymentAmount.value.isEmpty {
+            paymentAmount.value = "$0.00"
+        } else {
+            let textStr = String(paymentAmount.value.characters.filter { "0123456789".characters.contains($0) })
+            if let intVal = Double(textStr) {
+                if intVal == 0 {
+                    paymentAmount.value = "$0.00"
+                } else {
+                    paymentAmount.value = (intVal / 100).currencyString!
+                }
             }
         }
     }

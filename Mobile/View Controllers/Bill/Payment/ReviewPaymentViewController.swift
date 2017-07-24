@@ -153,13 +153,16 @@ class ReviewPaymentViewController: UIViewController {
         paymentDateValueLabel.font = SystemFont.medium.of(textStyle: .headline)
         totalPaymentTextLabel.textColor = .blackText
         totalPaymentTextLabel.font = SystemFont.medium.of(textStyle: .headline)
-        totalPaymentTextLabel.text = NSLocalizedString("Total Payment", comment: "")
         totalPaymentValueLabel.textColor = .blackText
         totalPaymentValueLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         termsConditionsSwitchLabel.textColor = .deepGray
         termsConditionsSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
-        termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
+        if Environment.sharedInstance.opco == .bge {
+            termsConditionsSwitchLabel.text = NSLocalizedString("I have read and accept the Terms and Conditions below & E-Sign Disclosure and Consent Notice. Please review and retain a copy for your records.", comment: "")
+        } else {
+            termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
+        }
         termsConditionsSwitchLabel.setLineHeight(lineHeight: 25)
         termsConditionsButton.setTitleColor(.actionBlue, for: .normal)
         termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)
@@ -180,7 +183,6 @@ class ReviewPaymentViewController: UIViewController {
         
         footerView.backgroundColor = .softGray
         footerLabel.textColor = .blackText
-        footerLabel.text = NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
         
         bindViewHiding()
         bindViewContent()
@@ -235,12 +237,16 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Total Payment
-        viewModel.totalPaymentDisplayString.asDriver().drive(totalPaymentValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.totalPaymentLabelText.drive(totalPaymentTextLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.totalPaymentDisplayString.drive(totalPaymentValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Switches
         termsConditionsSwitch.rx.isOn.bind(to: viewModel.termsConditionsSwitchValue).addDisposableTo(disposeBag)
         overpayingSwitch.rx.isOn.bind(to: viewModel.overpayingSwitchValue).addDisposableTo(disposeBag)
         activeSeveranceSwitch.rx.isOn.bind(to: viewModel.activeSeveranceSwitchValue).addDisposableTo(disposeBag)
+        
+        // Footer Label
+        viewModel.reviewPaymentFooterLabelText.drive(footerLabel.rx.text).addDisposableTo(disposeBag)
     }
     
     func bindButtonTaps() {
