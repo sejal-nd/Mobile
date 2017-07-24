@@ -1670,13 +1670,13 @@
 			path = BGEUITests;
 			sourceTree = "<group>";
 		};
-		2F3FA63E1F06F10700A1F4BF /* Multi Premise address view */ = {
+		2F3FA63E1F06F10700A1F4BF /* MultiPremiseAddressView */ = {
 			isa = PBXGroup;
 			children = (
 				2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */,
 				2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */,
 			);
-			name = "Multi Premise address view";
+			path = MultiPremiseAddressView;
 			sourceTree = "<group>";
 		};
 		2F86FB771F2661B100F1A55A /* History */ = {
@@ -1936,7 +1936,7 @@
 			isa = PBXGroup;
 			children = (
 				01F612171F1E3C0200A4F9DA /* Payment Entry */,
-				2F3FA63E1F06F10700A1F4BF /* Multi Premise address view */,
+				2F3FA63E1F06F10700A1F4BF /* MultiPremiseAddressView */,
 				82A18EB01EBA667900BE9F21 /* Controls */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				82A18EB11EBA667F00BE9F21 /* Listable Views */,
