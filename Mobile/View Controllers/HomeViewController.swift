@@ -34,7 +34,7 @@ class HomeViewController: AccountPickerViewController {
             refreshDisposable?.dispose()
             refreshDisposable = refreshControl?.rx.controlEvent(.valueChanged).asObservable()
                 .map { FetchingAccountState.refresh }
-                .bind(to: viewModel.fetchAccountDetail)
+                .bind(to: viewModel.fetchData)
         }
     }
     
@@ -55,24 +55,36 @@ class HomeViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        accountPickerViewControllerWillAppear.subscribe(onNext: { state in
-            switch(state) {
-            case .loadingAccounts:
-                // Sam, do your custom loading here
-                break
-            case .readyToFetchData:
-                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-                    self.viewModel.fetchAccountDetail(isRefresh: false)
-                } else if self.viewModel.currentAccountDetail.value == nil {
-                    self.viewModel.fetchAccountDetail(isRefresh: false)
+        accountPickerViewControllerWillAppear
+            .withLatestFrom(Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
+                                                     viewModel.accountDetailEvents.elements().map { $0 }.startWith(nil)))
+            .subscribe(onNext: { state, accountDetail in
+                switch(state) {
+                case .loadingAccounts:
+                    // Sam, do your custom loading here
+                    break
+                case .readyToFetchData:
+                    self.viewModel.currentAccount.value = self.accountPicker.currentAccount
+                    if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                        self.viewModel.fetchData.onNext(.switchAccount)
+                    } else if accountDetail == nil {
+                        self.viewModel.fetchData.onNext(.switchAccount)
+                    }
                 }
-            }
-        }).addDisposableTo(bag)
+                
+            })
+            .addDisposableTo(bag)
         
         billCardView = HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel)
         self.cardStackView.addArrangedSubview(billCardView)
+        
         templateCardView = TemplateCardView.create(withViewModel: self.viewModel.templateCardViewModel)
+        templateCardView.callToActionViewController
+            .drive(onNext: { [weak self] viewController in
+                self?.present(viewController, animated: true, completion: nil)
+            }).addDisposableTo(bag)
         self.cardStackView.addArrangedSubview(templateCardView)
+        
         styleViews()
         bindLoadingStates()
         configureAccessibility()
@@ -91,9 +103,9 @@ class HomeViewController: AccountPickerViewController {
     
     func bindLoadingStates() {
         topLoadingIndicatorView.isHidden = true
-        viewModel.isFetchingAccountDetail.filter(!).drive(rx.isRefreshing).addDisposableTo(bag)
-        viewModel.isFetchingDifferentAccount.not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
-        viewModel.isFetchingDifferentAccount.drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
+        viewModel.fetchingTracker.asDriver().filter(!).drive(rx.isRefreshing).addDisposableTo(bag)
+        viewModel.switchAccountsTracker.asDriver().not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
+        viewModel.switchAccountsTracker.asDriver().drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
         
         viewModel.weatherTemp.drive(temperatureLabel.rx.text).addDisposableTo(bag)
         viewModel.weatherIcon.drive(weatherIconImage.rx.image).addDisposableTo(bag)
@@ -112,8 +124,6 @@ class HomeViewController: AccountPickerViewController {
         temperatureLabel.accessibilityLabel = NSLocalizedString(temperatureString, comment: "")
     }
     
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
@@ -126,9 +136,8 @@ class HomeViewController: AccountPickerViewController {
 }
 
 extension HomeViewController: AccountPickerDelegate {
-    
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        viewModel.fetchAccountDetail(isRefresh: false)
+        viewModel.fetchData.onNext(.switchAccount)
     }
 }
 

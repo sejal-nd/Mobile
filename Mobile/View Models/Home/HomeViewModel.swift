@@ -14,115 +14,62 @@ class HomeViewModel {
     
     let disposeBag = DisposeBag()
     
-    let billCardViewModel: HomeBillCardViewModel
-    let templateCardViewModel: TemplateCardViewModel
-    
     private let accountService: AccountService
     private let weatherService: WeatherService
     private let walletService: WalletService
     private let paymentService: PaymentService
     
-    let fetchAccountDetail = PublishSubject<FetchingAccountState>()
+    let fetchData = PublishSubject<FetchingAccountState>()
     let currentAccount = Variable<Account?>(nil)
-    let currentAccountDetail = Variable<AccountDetail?>(nil)
-    let isFetchingAccountDetail: Driver<Bool>
-    let accountDetailErrorMessage: Driver<String>
     
+    let refreshTracker = ActivityTracker()
+    let switchAccountsTracker = ActivityTracker()
     let fetchingTracker = ActivityTracker()
-    
-    private let greetingVariable = Variable<String?>(nil)
-    
-    private let weatherItem = Variable<WeatherItemResult?>(nil)
-    private(set) lazy var greeting: Driver<String?> = self.greetingVariable.asDriver()
-    private(set) lazy var weatherTemp: Driver<String?> = self.weatherItem.asDriver().map {
-        guard let temperature = $0?.temperature else { return nil }
-        return "\(temperature)°"
-    }
-    private(set) lazy var weatherIcon: Driver<UIImage?> = self.weatherItem.asDriver().map { 
-        guard let iconName = $0?.iconName else { return nil }
-        return iconName != WeatherIconNames.UNKNOWN.rawValue ? UIImage(named: iconName) : nil 
-    }
     
     required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService) {
         self.accountService = accountService
         self.weatherService = weatherService
         self.walletService = walletService
         self.paymentService = paymentService
-        
-        let fetchingAccountDetailTracker = ActivityTracker()
-        isFetchingAccountDetail = fetchingAccountDetailTracker.asDriver()
-        
-        let sharedFetchAccountDetail = fetchAccountDetail.share()
-        
-        sharedFetchAccountDetail.map { _ in AccountsStore.sharedInstance.currentAccount }
-            .bind(to: currentAccount)
-            .addDisposableTo(disposeBag)
-        
-        sharedFetchAccountDetail
-            .filter { $0 != .refresh }
-            .map { _ in nil }
-            .bind(to: currentAccountDetail)
-            .addDisposableTo(disposeBag)
-        
-        let fetchAccountDetailResult = sharedFetchAccountDetail
-            .flatMapLatest { _ in
-                accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
-                    .retry(.exponentialDelayed(maxCount: 2, initial: 2.0, multiplier: 1.5))
-                    .trackActivity(fetchingAccountDetailTracker)
-                    .materialize()
-            }
-            .shareReplay(1)
-        
-        fetchAccountDetailResult.elements()
-            .bind(to: currentAccountDetail)
-            .addDisposableTo(disposeBag)
-        
-        //bind this to fetchAccountDetailRequest to ensure address is available on sign in/keep me logged in
-        let weatherResult = fetchAccountDetailResult.elements().map { $0.address ?? "" }
-            .flatMap(weatherService.fetchWeather)
-            .materialize()
-            
-        weatherResult.elements()
-        .bind(to: weatherItem)
-        .addDisposableTo(disposeBag)
-        
-        weatherResult
-            .map { _ in Date().localizedGreeting }
-            .bind(to: greetingVariable)
-            .addDisposableTo(disposeBag)
-        
-        accountDetailErrorMessage = fetchAccountDetailResult.errors()
-            .map { 
-                if let serviceError = $0 as? ServiceError {
-                    if serviceError.serviceCode == ServiceErrorCode.FnNotFound.rawValue {
-                        return NSLocalizedString(ServiceErrorCode.TcUnknown.rawValue, comment: "")
-                    } else {
-                        return serviceError.localizedDescription
-                    }
-                } else {
-                    return $0.localizedDescription
-                }
-            }
-            .asDriver(onErrorJustReturn: "")
-        
-        billCardViewModel = HomeBillCardViewModel(withAccount: currentAccount.asObservable().unwrap(),
-                                                  accountDetailEvents: self.currentAccountDetail.asObservable().unwrap().materialize(),
-                                                  walletService: self.walletService,
-                                                  paymentService: self.paymentService,
-                                                  fetchingTracker: self.fetchingTracker)
-        
-        templateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.currentAccountDetail.asObservable().unwrap().materialize())
     }
     
+    private(set) lazy var billCardViewModel: HomeBillCardViewModel = HomeBillCardViewModel(withAccount: self.currentAccount.asObservable().unwrap(),
+                                                                                           accountDetailEvents: self.accountDetailEvents,
+                                                                                           walletService: self.walletService,
+                                                                                           paymentService: self.paymentService,
+                                                                                           fetchingTracker: self.fetchingTracker)
     
-    func fetchAccountDetail(isRefresh: Bool) {
-        fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)
-    }
+    private(set) lazy var templateCardViewModel: TemplateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents)
     
-    lazy var currentAccountDetailUnwrapped: Driver<AccountDetail> = self.currentAccountDetail.asObservable()
+    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.fetchData
+        .withLatestFrom(self.currentAccount.asObservable()).debug("FETCH ACCOUNT DETAIL")
         .unwrap()
-        .asDriver(onErrorDriveWith: Driver.empty())
+        .flatMapLatest(self.fetchAccountDetail)
+        .shareReplay(1)
     
-    lazy var isFetchingDifferentAccount: Driver<Bool> = self.currentAccountDetail.asDriver().map { $0 == nil }    
+    private func fetchAccountDetail(forAccount account: Account) -> Observable<Event<AccountDetail>> {
+        return accountService.fetchAccountDetail(account: account)
+            .retry(.exponentialDelayed(maxCount: 2, initial: 2.0, multiplier: 1.5))
+            .trackActivity(self.fetchingTracker)
+            .materialize()
+    }
+    
+    // Weather
+    private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
+        .map { $0.address ?? "" }
+        .flatMap(self.weatherService.fetchWeather)
+        .materialize()
+    
+    private(set) lazy var greeting: Driver<String?> = self.weatherEvents
+        .map { _ in Date().localizedGreeting }
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var weatherTemp: Driver<String?> = self.weatherEvents.elements()
+        .map { "\($0.temperature)°" }
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var weatherIcon: Driver<UIImage?> = self.weatherEvents.elements()
+        .map { $0.iconName != WeatherIconNames.UNKNOWN.rawValue ? UIImage(named: $0.iconName) : nil }
+        .asDriver(onErrorDriveWith: .empty())
     
 }

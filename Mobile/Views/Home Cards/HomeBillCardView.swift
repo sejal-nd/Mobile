@@ -136,6 +136,10 @@ class HomeBillCardView: UIView {
         errorLabel.font = OpenSans.regular.of(textStyle: .title1)
         errorLabel.setLineHeight(lineHeight: 26)
         errorLabel.textAlignment = .center
+        if let errorLabelText = errorLabel.text {
+            let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
+            errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
+        }
     }
     
     private func bindViewModel() {

@@ -22,35 +22,33 @@ class TemplateCardViewModel {
     }
     
     //Set main image for the template
-    private(set) lazy var templateImage: Driver<UIImage?> = self.accountDetailElements.map { accountDetail -> String? in
+    private(set) lazy var templateImage: Driver<UIImage?> = self.accountDetailElements.map { accountDetail -> UIImage? in
         switch Environment.sharedInstance.opco {
         case .peco:
             if(accountDetail.isResidential) {
-                return "Residential"
+                return #imageLiteral(resourceName: "Residential")
             } else {
-                return "Commercial"
+                return #imageLiteral(resourceName: "Commercial")
             }
         case .bge:
             if(accountDetail.isResidential) {
                 switch accountDetail.peakRewards {
                 case "HONEYWELL WIFI"?: //"legacy" account
-                    return "PeakRewards Legacy Tstat - shutterstock_541239523"
+                    return #imageLiteral(resourceName: "PeakRewards Legacy Tstat - shutterstock_541239523")
                 case "ECOBEE WIFI"?:
-                    return "PeakRewards WiFi TStat - Ecobee3lite"
+                    return #imageLiteral(resourceName: "PeakRewards WiFi TStat - Ecobee3lite")
                 default: //user is not enrolled in PeakRewards
-                    return "General Residential Not enrolled in PeakRewards - shutterstock_461845090"
+                    return #imageLiteral(resourceName: "General Residential Not enrolled in PeakRewards - shutterstock_461845090")
                 }
             } else { //Commercial account
-                return "smallbusiness"
+                return #imageLiteral(resourceName: "smallbusiness")
             }
         case .comEd:
             return nil
         }
         }
-        .unwrap()
-        .map { UIImage(named: $0) }
         .asDriver(onErrorDriveWith: .empty())
-
+    
     //Set title string
     private(set) lazy var titleString: Driver<String?> = self.accountDetailElements.map { accountDetail -> String? in
         switch Environment.sharedInstance.opco {
@@ -111,11 +109,7 @@ class TemplateCardViewModel {
     private(set) lazy var ctaString: Driver<String?> = self.accountDetailElements.map { accountDetail -> String? in
         switch Environment.sharedInstance.opco {
         case .peco:
-            if(accountDetail.isResidential) {
-                return NSLocalizedString("Get started today", comment: "")
-            } else {
-                return NSLocalizedString("Get started today", comment: "")
-            }
+            return NSLocalizedString("Get started today", comment: "")
         case .bge:
             if(accountDetail.isResidential) {
                 switch accountDetail.peakRewards {
@@ -136,7 +130,7 @@ class TemplateCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     //Set call to action URL to navigate to
-    private(set) lazy var ctaUrl: Driver<String?> = self.accountDetailElements.map { accountDetail -> String? in
+    private(set) lazy var ctaUrl: Driver<URL> = self.accountDetailElements.map { accountDetail -> String? in
         switch Environment.sharedInstance.opco {
         case .peco:
             if(accountDetail.isResidential) {
@@ -161,18 +155,13 @@ class TemplateCardViewModel {
             return nil
         }
         }
+        .unwrap()
+        .map { URL(string: $0) }
+        .unwrap()
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var shouldShowErrorState: Driver<Bool> = Observable.merge(self.accountDetailElements.map { _ in false },
                                                                                 self.accountDetailErrors.map { _ -> Bool in true })
         .asDriver(onErrorDriveWith: .empty())
     
-    func openWebView() {
-        //TODO: Implement web view
-        /*
-        let urlModal = WebViewController(title: NSLocalizedString("", comment: ""),
-                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
-        navigationController?.present(urlModal, animated: true, completion: nil)
-         */
-    }
 }
