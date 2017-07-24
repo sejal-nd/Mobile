@@ -42,7 +42,7 @@ class HomeViewModel {
     private(set) lazy var templateCardViewModel: TemplateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents)
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.fetchData
-        .withLatestFrom(self.currentAccount.asObservable()).debug("FETCH ACCOUNT DETAIL")
+        .withLatestFrom(self.currentAccount.asObservable())
         .unwrap()
         .flatMapLatest(self.fetchAccountDetail)
     
@@ -52,6 +52,8 @@ class HomeViewModel {
             .trackActivity(self.fetchingTracker)
             .materialize()
     }
+    
+    let showTemplateCard = Environment.sharedInstance.opco != .comEd
     
     // Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
