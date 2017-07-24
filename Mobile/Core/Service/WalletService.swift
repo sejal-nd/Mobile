@@ -13,17 +13,14 @@ protocol WalletService {
     ///
     /// - Parameters:
     ///   	- completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain the AccountDetails on success, or a ServiceError on failure.
-    
+    ///     that is provided will contain the WalletItem on success, or a ServiceError on failure.
     func fetchWalletItems(completion: @escaping (_ result: ServiceResult<[WalletItem]>) -> Void)
-    
     
     /// Fetch bank name through routing number
     ///
     /// - Parameters:
     ///     - routing number
     ///     - completion: the result contains the name of the bank that is determined by the routing number.
-    
     func fetchBankName(routingNumber: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
     
     

@@ -216,7 +216,7 @@ class PaymentViewModel {
                     let accountNum = self.addBankFormViewModel.accountNumber.value
                     let maskedAccountNumber = accountNum.substring(from: accountNum.index(accountNum.endIndex, offsetBy: -4))
                     
-                    let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addBankFormViewModel.saveToWallet.value, maskedWalletAccountNumber: maskedAccountNumber, paymentAmount: self.paymentAmountDouble(), paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: walletItemResult.walletItemId)
+                    let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addBankFormViewModel.saveToWallet.value, maskedWalletAccountNumber: maskedAccountNumber, paymentAmount: self.paymentAmountDouble(), paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: walletItemResult.walletItemId, cvv: nil)
                     self.paymentService.schedulePayment(payment: payment)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { _ in

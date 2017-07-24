@@ -13,7 +13,7 @@ import CoreLocation
 let baseUrl = "https://api.weather.gov/"
 
 //added greeting to this so everything loads at the same time
-struct WeatherItemResult {
+struct WeatherItem {
     let temperature: Int
     let iconName: String
 }
@@ -73,7 +73,7 @@ extension WeatherIconNames {
 }
 struct WeatherAPI: WeatherService { 
     
-    func getWeather(address: String, completion: @escaping (_ result: ServiceResult<WeatherItemResult>) -> Swift.Void) {
+    func getWeather(address: String, completion: @escaping (_ result: ServiceResult<WeatherItem>) -> Swift.Void) {
         let geoCoder = CLGeocoder()
         
         geoCoder.geocodeAddressString(address, completionHandler: { (placemarks, error) in 
@@ -96,13 +96,13 @@ struct WeatherAPI: WeatherService {
                         do {
                             let results = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
                             guard let resultDictionary = results,
-                                let weatherItemResult = self.weatherItemFrom(data: resultDictionary) else {
+                                let weatherItem = self.weatherItemFrom(data: resultDictionary) else {
                                     let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
                                     completion(ServiceResult.Failure(serviceError))
                                     return
                             }
                             
-                            completion(ServiceResult.Success(weatherItemResult))
+                            completion(ServiceResult.Success(weatherItem))
                             
                         }
                         catch let error as NSError {
@@ -123,7 +123,7 @@ struct WeatherAPI: WeatherService {
         
     }
     
-    private func weatherItemFrom(data: Dictionary<String, Any?>?) -> WeatherItemResult? {
+    private func weatherItemFrom(data: Dictionary<String, Any?>?) -> WeatherItem? {
         guard let properties = data?[ResponseKey.Properties.rawValue] as? Dictionary<String, Any>,
             let periods = properties[ResponseKey.Periods.rawValue] as? Array<[String: Any]>,
             let temp = periods[0][ResponseKey.Temperature.rawValue] as? Int,
@@ -134,7 +134,7 @@ struct WeatherAPI: WeatherService {
         
         let iconNameString = iconName(iconString: iconString, isDaytime: isDaytime)
         
-        return WeatherItemResult(temperature: temp, iconName: iconNameString)
+        return WeatherItem(temperature: temp, iconName: iconNameString)
         
     }
     

@@ -22,7 +22,7 @@ struct UserDefaultKeys {
     // Persist Customer Identifer (from login) to disk
     static let CustomerIdentifier = "kCustomerIdentifier"
     
-    static let OneTouchPayDictionary = "kOneTouchPayDictionary"
+    static let PaymentDetailsDictionary = "kPaymentDetailsDictionary"
     
     static let InMainApp = "kInMainApp" // Is the user in the "Main" area of the app (past-login). Set to true in MainTabBarController
 }
