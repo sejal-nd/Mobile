@@ -326,7 +326,10 @@ class PaymentViewModel {
     // MARK: - Shared Drivers
     
     var bankWorkflow: Driver<Bool> {
-        return Driver.combineLatest(selectedWalletItem.asDriver(), inlineBank.asDriver()).map {
+        return Driver.combineLatest(selectedWalletItem.asDriver(), inlineBank.asDriver(), inlineCard.asDriver()).map {
+            if $2 {
+                return false
+            }
             if $1 {
                 return true
             }
@@ -336,7 +339,10 @@ class PaymentViewModel {
     }
     
     var cardWorkflow: Driver<Bool> {
-        return Driver.combineLatest(selectedWalletItem.asDriver(), inlineCard.asDriver()).map {
+        return Driver.combineLatest(selectedWalletItem.asDriver(), inlineCard.asDriver(), inlineBank.asDriver()).map {
+            if $2 {
+                return false
+            }
             if $1 {
                 return true
             }
@@ -642,8 +648,7 @@ class PaymentViewModel {
                 if Environment.sharedInstance.opco == .bge {
                     return NSLocalizedString(self.accountDetail.value.billingInfo.convenienceFeeString(isComplete: true), comment: "")
                 } else {
-                    let feeStr = String(format: "A %@ convenience fee will be applied by Bill Matrix, our payment partner.", fee.currencyString!)
-                    return NSLocalizedString(feeStr, comment: "")
+                    return String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: ""), fee.currencyString!)
                 }
             }
             return ""
@@ -655,9 +660,7 @@ class PaymentViewModel {
             if bankWorkflow {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else if cardWorkflow {
-                let feeStr = String(format: "Your payment includes a %@ convenience fee.",
-                                    (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ? fee.percentString! : fee.currencyString!)
-                return NSLocalizedString(feeStr, comment: "")
+                return String(format: NSLocalizedString("Your payment includes a %@ convenience fee.", comment: ""), Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential ? fee.percentString! : fee.currencyString!)
             }
             return ""
         }
