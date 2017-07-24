@@ -833,13 +833,10 @@ class PaymentViewModel {
         return $0 != nil
     }
     
-    lazy var shouldShowBillMatrixView: Driver<Bool> = self.cardWorkflow.map {
-        if Environment.sharedInstance.opco != .bge && $0 {
-            return true
-        }
-        return false
+    var shouldShowBillMatrixView: Driver<Bool> {
+        return Driver.just(Environment.sharedInstance.opco != .bge)
     }
-    
+
     
     // MARK: - Review Payment Drivers
     
