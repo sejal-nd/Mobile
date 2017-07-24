@@ -55,6 +55,10 @@ class BGEAutoPayViewModel {
         enrollSwitchValue = Variable(accountDetail.isAutoPay ? true : false)
     }
     
+    private func amountNotToExceedDouble() -> String {
+        return String(amountNotToExceed.value.characters.filter { "0123456789".characters.contains($0) })
+    }
+    
     func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
         isFetchingAutoPayInfo.value = true
         paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
@@ -110,7 +114,7 @@ class BGEAutoPayViewModel {
     
     func enrollOrUpdate(update: Bool = false, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let daysBefore = whenToPay.value == .onDueDate ? "0" : numberOfDaysBeforeDueDate.value
-        paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber, walletItemId: selectedWalletItem.value!.walletItemID, amountType: amountToPay.value, amountThreshold: amountNotToExceed.value, paymentDatesBeforeDue: daysBefore, effectivePeriod: howLongForAutoPay.value, effectiveEndDate: autoPayUntilDate.value, effectiveNumPayments: numberOfPayments.value, isUpdate: update)
+        paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber, walletItemId: selectedWalletItem.value!.walletItemID, amountType: amountToPay.value, amountThreshold: amountNotToExceedDouble(), paymentDatesBeforeDue: daysBefore, effectivePeriod: howLongForAutoPay.value, effectiveEndDate: autoPayUntilDate.value, effectiveNumPayments: numberOfPayments.value, isUpdate: update)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -164,7 +168,7 @@ class BGEAutoPayViewModel {
             if amountNotToExceed.value.isEmpty {
                 return defaultString
             } else {
-                if let amountDouble = Double(amountNotToExceed.value) {
+                if let amountDouble = Double(amountNotToExceedDouble()) {
                     if amountDouble < 0.01 || amountDouble > 9999.99 {
                         return NSLocalizedString("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between $0.01 and $9,999.99", comment: "")
                     }
@@ -219,26 +223,14 @@ class BGEAutoPayViewModel {
     lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().map { $0 != nil }
     
     func formatAmountNotToExceed() {
-        let components = amountNotToExceed.value.components(separatedBy: ".")
-        
-        var newText = amountNotToExceed.value
-        if components.count == 2 {
-            let decimal = components[1]
-            
-            if decimal.characters.count == 0 {
-                newText += "00"
-                
-            } else if decimal.characters.count == 1 {
-                newText += "0"
+        let textStr = String(amountNotToExceed.value.characters.filter { "0123456789".characters.contains($0) })
+        if let intVal = Double(textStr) {
+            if intVal == 0 {
+                amountNotToExceed.value = "$0.00"
+            } else {
+                amountNotToExceed.value = (intVal / 100).currencyString!
             }
-            
-        } else if components.count == 1 && components[0].characters.count > 0 {
-            newText += ".00"
-        } else {
-            newText = "0.00"
         }
-    
-        amountNotToExceed.value = newText
     }
 
 }
