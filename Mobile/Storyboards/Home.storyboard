@@ -29,10 +29,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-go-05Y" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="410"/>
                                         <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FBk-8O-0Lj" userLabel="Background Stack">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="410"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qur-gf-bcD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="282"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="282" id="kYb-gM-91a"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KHs-QI-UoW">
+                                                        <rect key="frame" x="0.0" y="282" width="375" height="128"/>
+                                                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UPV-GL-s03" userLabel="Main Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="228"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="390"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rxw-UV-VRQ">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="228"/>
@@ -108,7 +124,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Opk-mo-Gnw" userLabel="Card Stack View">
-                                                        <rect key="frame" x="16" y="228" width="343" height="0.0"/>
+                                                        <rect key="frame" x="16" y="228" width="343" height="162"/>
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
@@ -122,8 +138,12 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="UPV-GL-s03" firstAttribute="top" secondItem="QgD-go-05Y" secondAttribute="top" id="2VY-xm-wem"/>
+                                            <constraint firstAttribute="bottom" secondItem="FBk-8O-0Lj" secondAttribute="bottom" id="6BL-FG-z3y"/>
+                                            <constraint firstItem="FBk-8O-0Lj" firstAttribute="top" secondItem="QgD-go-05Y" secondAttribute="top" id="BzL-CC-dWh"/>
+                                            <constraint firstItem="FBk-8O-0Lj" firstAttribute="leading" secondItem="QgD-go-05Y" secondAttribute="leading" id="Gxe-vY-Rwa"/>
                                             <constraint firstAttribute="trailing" secondItem="UPV-GL-s03" secondAttribute="trailing" id="LqA-p0-UNB"/>
                                             <constraint firstAttribute="bottom" secondItem="UPV-GL-s03" secondAttribute="bottom" constant="20" id="RKg-ey-8Qo"/>
+                                            <constraint firstAttribute="trailing" secondItem="FBk-8O-0Lj" secondAttribute="trailing" id="SjY-pa-bP4"/>
                                             <constraint firstItem="UPV-GL-s03" firstAttribute="leading" secondItem="QgD-go-05Y" secondAttribute="leading" id="xuK-H1-hh4"/>
                                         </constraints>
                                     </view>
@@ -153,6 +173,7 @@
                         <outlet property="headerContentView" destination="QgD-go-05Y" id="p1j-X0-Ik8"/>
                         <outlet property="headerStackView" destination="Rxw-UV-VRQ" id="DvQ-fc-VLC"/>
                         <outlet property="homeLoadingIndicator" destination="IEW-ff-2hC" id="faI-27-HeU"/>
+                        <outlet property="primaryColorHeaderView" destination="qur-gf-bcD" id="0N4-s4-stK"/>
                         <outlet property="scrollView" destination="mzY-0e-rXR" id="ejP-8Y-Dy4"/>
                         <outlet property="temperatureLabel" destination="vy3-co-jWg" id="awd-kW-sND"/>
                         <outlet property="topLoadingIndicatorView" destination="YJl-JH-94o" id="3um-iH-9up"/>
