@@ -63,7 +63,7 @@ class PaymentViewModel {
         
         let startOfTodayDate = Calendar.current.startOfDay(for: Date())
         self.paymentDate = Variable(startOfTodayDate)
-        if Environment.sharedInstance.opco == .bge && Calendar.current.component(.hour, from: Date()) >= 20 {
+        if Environment.sharedInstance.opco == .bge && Calendar.current.component(.hour, from: Date()) >= 20 && !accountDetail.isActiveSeverance {
             let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
             self.paymentDate.value = tomorrow
         }
