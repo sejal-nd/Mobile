@@ -505,7 +505,7 @@ extension MakePaymentViewController: UITextFieldDelegate {
             let containsDecimal = newString.contains(".")
             let containsBackslash = newString.contains("\\")
             
-            return (CharacterSet.decimalDigits.isSuperset(of: characterSet) || containsDecimal) && newString.characters.count <= 7 && !containsBackslash
+            return (CharacterSet.decimalDigits.isSuperset(of: characterSet) || containsDecimal) && newString.characters.count <= 8 && !containsBackslash
         }
         return true
     }

@@ -705,12 +705,12 @@ class PaymentViewModel {
     }
     
     var walletFooterLabelText: Driver<String> {
-        return Driver.combineLatest(hasWalletItems, inlineCard.asDriver()).map {
+        return Driver.combineLatest(hasWalletItems, inlineCard.asDriver(), inlineBank.asDriver()).map {
             if Environment.sharedInstance.opco == .bge {
-                if $0 {
+                if $0 || $2 {
                     return NSLocalizedString("Any payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
                 } else {
-                    return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Small business customers cannot use VISA.", comment: "")
+                    return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
                 }
             } else {
                 if $1 {
@@ -723,8 +723,12 @@ class PaymentViewModel {
     }
     
     var isFixedPaymentDate: Driver<Bool> {
-        return Driver.combineLatest(accountDetail.asDriver(), cardWorkflow, addBankFormViewModel.saveToWallet.asDriver()).map {
-            if $1 || !$2 {
+        return Driver.combineLatest(accountDetail.asDriver(), cardWorkflow, inlineCard.asDriver(), addBankFormViewModel.saveToWallet.asDriver(), addCardFormViewModel.saveToWallet.asDriver()).map { (accountDetail, cardWorkflow, inlineCard, saveBank, saveCard) in
+            if Environment.sharedInstance.opco == .bge {
+                if inlineCard && !saveCard {
+                    return true
+                }
+            } else if cardWorkflow || inlineCard || !saveBank {
                 return true
             }
             
@@ -732,23 +736,27 @@ class PaymentViewModel {
                 return true
             }
 
-            let startOfTodayDate = Calendar.current.startOfDay(for: Date())
-            if let dueDate = $0.billingInfo.dueByDate {
-                if dueDate < startOfTodayDate {
-                    return true
+            if Environment.sharedInstance.opco != .bge {
+                let startOfTodayDate = Calendar.current.startOfDay(for: Date())
+                if let dueDate = accountDetail.billingInfo.dueByDate {
+                    if dueDate < startOfTodayDate {
+                        return true
+                    }
                 }
             }
-            
+
             return false
         }
     }
     
     private var fixedPaymentDateLogic: Bool {
-        if accountDetail.value.billingInfo.pastDueAmount ?? 0 > 0 { // Past due, avoid shutoff
-            return true
-        }
-        if (accountDetail.value.billingInfo.restorationAmount ?? 0 > 0 || accountDetail.value.billingInfo.amtDpaReinst ?? 0 > 0) || accountDetail.value.isCutOutNonPay { // Cut for non-pay
-            return true
+        if Environment.sharedInstance.opco != .bge {
+            if accountDetail.value.billingInfo.pastDueAmount ?? 0 > 0 { // Past due, avoid shutoff
+                return true
+            }
+            if (accountDetail.value.billingInfo.restorationAmount ?? 0 > 0 || accountDetail.value.billingInfo.amtDpaReinst ?? 0 > 0) || accountDetail.value.isCutOutNonPay { // Cut for non-pay
+                return true
+            }
         }
         if accountDetail.value.isActiveSeverance {
             return true
