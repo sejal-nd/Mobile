@@ -452,6 +452,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
 
 extension BillingHistoryViewController: MakePaymentViewControllerDelegate {
     func makePaymentViewControllerDidCancelPayment(_ makePaymentViewController: MakePaymentViewController) {
+        self.getBillingHistory()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Scheduled payment deleted", comment: ""))
         })
