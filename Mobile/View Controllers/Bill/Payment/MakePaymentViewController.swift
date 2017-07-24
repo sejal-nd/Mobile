@@ -355,11 +355,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.paymentAmount.asDriver().drive(paymentAmountTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
         paymentAmountTextField.textField.rx.text.orEmpty.bind(to: viewModel.paymentAmount).addDisposableTo(disposeBag)
         paymentAmountTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: {
-            if let text = self.paymentAmountTextField.textField.text {
-                if !text.isEmpty {
-                    self.viewModel.formatPaymentAmount()
-                }
-            }
+            self.viewModel.formatPaymentAmount()
         }).addDisposableTo(disposeBag)
         
         // Due Date

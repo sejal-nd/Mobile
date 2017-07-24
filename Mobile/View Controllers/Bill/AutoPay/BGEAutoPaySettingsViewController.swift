@@ -121,6 +121,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
             if let text = self.amountNotToExceedTextField.textField.text {
                 if !text.isEmpty {
                     self.viewModel.userDidChangeSettings.value = true
+                    self.viewModel.formatAmountNotToExceed()
                 }
             }
         }).addDisposableTo(disposeBag)
@@ -399,13 +400,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedTextField.textField.delegate = self
         amountNotToExceedTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         amountNotToExceedTextField.textField.keyboardType = .decimalPad
-        addDoneButtonOnKeyboard()
-        
-        // when amountNotToExceedTextField loses focus, append .00 (if not already extant)
-        //  is there a better way to do this us Rx? especially repopulating the textfield at the end.
-        amountNotToExceedTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            self.viewModel.formatAmountNotToExceed()
-        }).addDisposableTo(disposeBag)
         
         // adding textfield for second button stack view
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedTextField)
@@ -440,21 +434,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedButtonStackView.addArrangedSubview(separator2)
 
         return amountNotToExceedButtonStackView
-    }
-    
-    func addDoneButtonOnKeyboard() {
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
-        doneToolbar.barStyle       = UIBarStyle.default
-        let flexSpace              = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem  = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(doneButtonAction))
-        done.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.actionBlue], for: .normal)
-        doneToolbar.items = [flexSpace, done]
-        doneToolbar.sizeToFit()
-        amountNotToExceedTextField.textField.inputAccessoryView = doneToolbar
-    }
-    
-    func doneButtonAction() {
-        amountNotToExceedTextField.textField.resignFirstResponder()
     }
     
     func buildWhenToPayGroup() -> UIStackView {
@@ -796,36 +775,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.characters.count == 0 { // Allow backspace
-            return true
-        }
-        
-        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        
-        if textField == amountNotToExceedTextField.textField {
-            let characterSet = CharacterSet(charactersIn: string)
-            
-            let numDec = newString.components(separatedBy:".")
-            
-            if numDec.count > 2 {
-                return false
-            } else if numDec.count == 2 && numDec[1].characters.count > 2 {
-                return false
-            }
-            
-            let containsDecimal = newString.contains(".")
-            let containsBackslash = newString.contains("\\")
-            
-            return (CharacterSet.decimalDigits.isSuperset(of: characterSet) || containsDecimal) && newString.characters.count <= 7 && !containsBackslash
-            
-        } else if textField == numberOfPaymentsTextField.textField {
-            let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 3
-        }
-        
-        return true
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == amountNotToExceedTextField.textField {
