@@ -109,7 +109,7 @@ class LoginViewModel {
         authService.getMaintenanceMode()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { maintenanceInfo in
-                isMaintenanceMode = maintenanceInfo.getIsOutage
+                isMaintenanceMode = maintenanceInfo.allStatus
                 onSuccess(isMaintenanceMode)
             }, onError: { error in
                 _ = error as! ServiceError

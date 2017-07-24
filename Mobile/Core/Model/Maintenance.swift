@@ -9,30 +9,16 @@
 import Mapper
 
 struct Maintenance: Mappable {
-    let maintenanceStatus: MaintenanceStatusResponse
-    
+    let allStatus: Bool
+    let homeStatus: Bool
+    let billStatus: Bool
+    let alertStatus: Bool
+
     init(map: Mapper) throws {
-        maintenanceStatus = try map.from("status")
+        allStatus = map.optionalFrom("ALL") ?? false
+        homeStatus = map.optionalFrom("HOME") ?? false
+        billStatus = map.optionalFrom("OUTAGE") ?? false
+        alertStatus = map.optionalFrom("ALERTS") ?? false
     }
-    
-    var getIsOutage: Bool {
-        return maintenanceStatus.allStatus!
-    }
- 
     
 }
-
-struct MaintenanceStatusResponse: Mappable {
-    let allStatus: Bool?
-    let homeStatus: Bool?
-    let billStatus: Bool?
-    let alertStatus: Bool?
-    
-    init(map: Mapper) throws {
-        allStatus = map.optionalFrom("ALL")
-        homeStatus = map.optionalFrom("HOME")
-        billStatus = map.optionalFrom("OUTAGE")
-        alertStatus = map.optionalFrom("ALERTS")
-    }
-}
-

@@ -54,7 +54,6 @@ class MaintenanceModeViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NotificationCenter.default.removeObserver(self) // Important for deep linking, do not remove
     }
 
     override func viewWillAppear(_ animated: Bool) {

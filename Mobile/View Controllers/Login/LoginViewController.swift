@@ -138,6 +138,8 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         
         setNeedsStatusBarAppearanceUpdate()
+//        checkForMaintenanceMode()
+        
         
         navigationController?.setNavigationBarHidden(false, animated: true)
         
@@ -380,7 +382,7 @@ class LoginViewController: UIViewController {
     
     func checkForMaintenanceMode(){
         viewModel.checkForMaintenance(onSuccess: { isMaintenance in
-            if isMaintenance || true{
+            if isMaintenance{
                 let ad = UIApplication.shared.delegate as! AppDelegate
                 ad.showMaintenanceMode()
             }
