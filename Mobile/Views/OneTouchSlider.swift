@@ -58,6 +58,24 @@ class OneTouchSlider: UIControl {
         return CGSize(width: 300, height: 50)
     }
     
+    override var isEnabled: Bool {
+        didSet {
+            if isEnabled {
+                backgroundColor = .primaryColor
+                sliderFinish.backgroundColor = .primaryColorADA
+                sliderFinish.alpha = 1
+                alpha = 1
+                imageView.image = #imageLiteral(resourceName: "ic_caret")
+            } else {
+                backgroundColor = .accentGray
+                sliderFinish.backgroundColor = .middleGray
+                sliderFinish.alpha = 0.5
+                alpha = 0.5
+                imageView.image = #imageLiteral(resourceName: "ic_caret_disabled")
+            }
+        }
+    }
+    
     //MARK: - Private Methods
     
     private func setupSlider() {

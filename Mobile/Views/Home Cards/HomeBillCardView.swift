@@ -86,6 +86,15 @@ class HomeBillCardView: UIView {
     }
     
     private func bindViewModel() {
+        viewModel.paymentTracker.asDriver().drive(onNext: {
+            if $0 {
+                LoadingView.show(animated: true)
+            } else {
+                LoadingView.hide(animated: true)
+            }
+            })
+            .addDisposableTo(bag)
+        
         // Show/Hide Subviews
         viewModel.billNotReady.not().drive(billNotReadyStack.rx.isHidden).addDisposableTo(bag)
         viewModel.showErrorState.not().drive(errorStack.rx.isHidden).addDisposableTo(bag)
@@ -101,7 +110,7 @@ class HomeBillCardView: UIView {
         viewModel.showBankCreditButton.not().drive(bankCreditNumberButton.rx.isHidden).addDisposableTo(bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountButton.rx.isHidden).addDisposableTo(bag)
         viewModel.showMinimumPaymentAllowed.not().drive(minimumPaymentLabel.rx.isHidden).addDisposableTo(bag)
-        viewModel.showOneTouchPaySlider.not().drive(oneTouchSlider.rx.isHidden).addDisposableTo(bag)
+        //viewModel.showOneTouchPaySlider.not().drive(oneTouchSlider.rx.isHidden).addDisposableTo(bag)
         viewModel.showAutoPayIcon.not().drive(autoPayImageView.rx.isHidden).addDisposableTo(bag)
         viewModel.showScheduledImageView.not().drive(scheduledImageView.rx.isHidden).addDisposableTo(bag)
         viewModel.showAutomaticPaymentInfoButton.not().drive(automaticPaymentInfoButton.rx.isHidden).addDisposableTo(bag)
@@ -116,11 +125,18 @@ class HomeBillCardView: UIView {
         viewModel.amountFont.drive(onNext: { [weak self] font in
             self?.amountLabel.font = font
         }).addDisposableTo(bag)
+        viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).addDisposableTo(bag)
+        
+        // Actions
+        oneTouchSlider.didFinishSwipe
+            .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
+            //.filter { !$0 }
+            .map { _ in () }
+            .drive(viewModel.submitOneTouchPay)
+            .addDisposableTo(bag)
+        
+        viewModel.oneTouchPayResult.subscribe { print($0) }.addDisposableTo(bag)
     }
-    
-    private let submitOneTouchPaySubject = PublishSubject<Void>()
-    
-    private(set) lazy var submitOneTouchPay: Observable<Void> = self.submitOneTouchPaySubject.asObservable()
     
     private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
         .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
@@ -129,7 +145,8 @@ class HomeBillCardView: UIView {
             let alertController = UIAlertController(title: NSLocalizedString("Weekend/Holiday Payment", comment: ""),
                                                     message: NSLocalizedString("You are making a payment on a weekend or holiday. Your payment will be scheduled for the next business day.", comment: ""), preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in self?.submitOneTouchPaySubject.onNext()
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
+                self?.viewModel.submitOneTouchPay.onNext()
             })
             return alertController
     }

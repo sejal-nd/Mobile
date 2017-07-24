@@ -25,7 +25,10 @@ class HomeBillCardViewModel {
     private let walletService: WalletService
     private let paymentService: PaymentService
     
+    let submitOneTouchPay = PublishSubject<Void>()
+    
     private let fetchingTracker: ActivityTracker
+    let paymentTracker = ActivityTracker()
     
     required init(withAccount account: Observable<Account>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
@@ -47,7 +50,9 @@ class HomeBillCardViewModel {
     
     private lazy var walletItem: Observable<WalletItem?> = self.walletItemEvents.elements()
 
-    private(set) lazy var data: Observable<Event<(Account, AccountDetail, WalletItem?)>> = Observable.combineLatest(self.account, self.accountDetailElements, self.walletItem)
+    private(set) lazy var data: Observable<Event<(Account, AccountDetail, WalletItem?)>> = Observable.combineLatest(self.account,
+                                                                                                                    self.accountDetailElements,
+                                                                                                                    self.walletItem)
         .materialize()
         .share()
     
@@ -64,6 +69,31 @@ class HomeBillCardViewModel {
     
     private(set) lazy var workDays: Observable<[Date]> = self.account.map { _ in () }.flatMapLatest(self.fetchWorkDays)
     
+    private func schedulePayment(_ payment: Payment) -> Observable<Void> {
+        let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
+        return paymentService.schedulePayment(payment: payment)
+            .withLatestFrom(account)
+            .do(onNext: { RecentPaymentsStore.shared[$0] = paymentDetails })
+            .map { _ in () }
+            .trackActivity(paymentTracker)
+    }
+    
+    private(set) lazy var oneTouchPayResult: Observable<Void> = self.submitOneTouchPay.asObservable()
+        .withLatestFrom(Observable.combineLatest(self.accountDetailElements, self.walletItem.unwrap()))
+        .map { accountDetail, walletItem in
+            Payment(accountNumber: accountDetail.accountNumber,
+                    existingAccount: true,
+                    saveAccount: true,
+                    maskedWalletAccountNumber: walletItem.maskedWalletItemAccountNumber!,
+                    paymentAmount: accountDetail.billingInfo.netDueAmount!,
+                    paymentType: (walletItem.paymentCategoryType == .check) ? .check : .credit,
+                    paymentDate: Date(),
+                    walletId: AccountsStore.sharedInstance.customerIdentifier,
+                    walletItemId: walletItem.walletItemID!,
+                    cvv: nil)
+        }
+        .flatMapLatest(self.schedulePayment)
+    
     private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = self.workDays
         .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty && Environment.sharedInstance.opco == .peco }
         .asDriver(onErrorDriveWith: .empty())
@@ -75,54 +105,16 @@ class HomeBillCardViewModel {
     
     private(set) lazy var billNotReady: Driver<Bool> = self.accountDetailDriver.map { _ in false }
     
-    private(set) lazy var showErrorState: Driver<Bool> = Observable.zip(self.accountDetailEvents, self.walletItem)
-        .map { $0.0.error != nil }
-        .asDriver(onErrorDriveWith: .empty())
-    
-    private(set) lazy var state: Driver<BillCardState> = self.data.map { event -> BillCardState in
-        guard let (account, accountDetail, walletItem) = event.element else {
-            return .error
-        }
-        
-        let billingInfo = accountDetail.billingInfo
-        
-        if let paymentDetails = PaymentDetailsStore.shared[account],
-            paymentDetails.date.addingTimeInterval(86_400) > Date() {
-            return .payment
-        }
-            
-        else if billingInfo.billDate == nil, billingInfo.netDueAmount == 0 {
-            return .noBill
-        }
-        else if (billingInfo.pastDueAmount ?? 0) > 0 {
-            return .pastDue
-        }
-        else if (billingInfo.netDueAmount ?? 0) > 0 {
-            return .due
-        }
-        else if (billingInfo.pendingPaymentAmount ?? 0) > 0 {
-            return .paymentPending
-        }
-        else if billingInfo.isDisconnectNotice {
-            return .avoidShutoff
-        }
-        else if (billingInfo.currentDueAmount ?? 0) < 0 {
-            return .credit
-        }
-        else if (billingInfo.lastPaymentAmount ?? 0) > 0 || billingInfo.netDueAmount == 0 {
-            return .payment
-        }
-        else {
-            return .noBill
-        }
-        }
+    private(set) lazy var showErrorState: Driver<Bool> = Observable.zip(self.accountDetailEvents, self.walletItemEvents)
+        .map { $0.0.error != nil || $0.1.error != nil }
         .asDriver(onErrorDriveWith: .empty())
     
     
     // MARK: - Title Label
     
     enum TitleState {
-        case restoreService, catchUp, avoidShutoff, avoidShutoffBGEMultipremise, pastDueTotal, pastDueNotTotal, billReady, billPaid, credit, multipremiseReady, paymentPending
+        case restoreService, catchUp, avoidShutoff, avoidShutoffBGEMultipremise, pastDueTotal,
+        pastDueNotTotal, billReady, billPaid, credit, multipremiseReady, paymentPending
     }
     
     private lazy var isPrecariousBillSituation: Driver<Bool> = self.titleState.map {
@@ -174,7 +166,7 @@ class HomeBillCardViewModel {
                     return .paymentPending
                 }
                 
-                if (billingInfo.netDueAmount ?? 0) == 0 || PaymentDetailsStore.shared[account] != nil {
+                if (billingInfo.netDueAmount ?? 0) == 0 || RecentPaymentsStore.shared[account] != nil {
                     return .billPaid
                 }
                 
@@ -267,16 +259,33 @@ class HomeBillCardViewModel {
     
     let showDueAmountAndDateTooltip = Environment.sharedInstance.opco == .peco
     
-    private(set) lazy var showBankCreditButton: Driver<Bool> = Driver.zip(self.titleState, self.isPrecariousBillSituation, self.walletItemDriver)
+    private(set) lazy var showBankCreditButton: Driver<Bool> = Driver.combineLatest(self.titleState,
+                                                                          self.isPrecariousBillSituation,
+                                                                          self.walletItemDriver)
         .map { $0 != .credit && !$1 && $2 != nil }
     
-    private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.zip(self.titleState, self.isPrecariousBillSituation, self.walletItemDriver)
+    private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.titleState,
+                                                                                   self.isPrecariousBillSituation,
+                                                                                   self.walletItemDriver)
         .map { $0 != .credit && !$1 && $2 == nil }
     
-    private(set) lazy var showMinimumPaymentAllowed: Driver<Bool> = Driver.zip(self.titleState, self.isPrecariousBillSituation, self.walletItemDriver, self.accountDetailDriver)
-        .map { $0 != .credit && !$1 && $2 != nil && ($3.billingInfo.netDueAmount ?? 0) < 5 }
+    private(set) lazy var showMinimumPaymentAllowed: Driver<Bool> = Driver.combineLatest(self.titleState,
+                                                                               self.isPrecariousBillSituation,
+                                                                               self.walletItemDriver,
+                                                                               self.accountDetailDriver)
+    { titleState, isPrecariousBillSituation, walletItem, accountDetail in
+        guard let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount else { return false }
+        return titleState != .credit &&
+            !isPrecariousBillSituation &&
+            walletItem != nil &&
+            (accountDetail.billingInfo.netDueAmount ?? 0) < minPaymentAmount &&
+            Environment.sharedInstance.opco != .bge
+    }
     
-    private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.zip(self.titleState, self.isPrecariousBillSituation, self.showAutoPay, self.walletItemDriver)
+    private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(self.titleState,
+                                                                           self.isPrecariousBillSituation,
+                                                                           self.showAutoPay,
+                                                                           self.walletItemDriver)
         .map { $0 != .credit && !$1 && !$2 && $3 != nil }
     
     private(set) lazy var showScheduledImageView: Driver<Bool> = self.accountDetailDriver
@@ -288,6 +297,20 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showScheduledPaymentInfoButton: Driver<Bool> = self.showScheduledImageView
     
+    // MARK: - View States
+    private(set) lazy var enableOneTouchSlider: Driver<Bool> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver)
+        .map { accountDetail, walletItem in
+            if walletItem == nil {
+                return false
+            } else if let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount,
+                accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.sharedInstance.opco != .bge {
+                return false
+            } else if accountDetail.billingInfo.netDueAmount ?? 0 < 0 && Environment.sharedInstance.opco == .bge {
+                return false
+            } else {
+                return true
+            }
+        }
     
     // MARK: - Text Styling
     private(set) lazy var titleFont: Driver<UIFont> = self.titleState
@@ -306,9 +329,6 @@ class HomeBillCardViewModel {
         .map { $0 == .paymentPending ? OpenSans.semiboldItalic.of(size: 28): OpenSans.semibold.of(size: 36) }
     
 }
-
-
-
 
 
 

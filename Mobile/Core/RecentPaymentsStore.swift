@@ -18,6 +18,11 @@ struct PaymentDetails: Mappable {
         date = try map.from("date", transformation: PaymentDetails.extractDate)
     }
     
+    init(amount: Double, date: Date) {
+        self.amount = amount
+        self.date = date
+    }
+    
     private static func extractDate(object: Any?) throws -> Date {
         guard let dateString = object as? String else {
             throw MapperError.convertibleError(value: object, type: Date.self)
@@ -26,8 +31,11 @@ struct PaymentDetails: Mappable {
     }
 }
 
-class PaymentDetailsStore {
-    static let shared = PaymentDetailsStore()
+class RecentPaymentsStore {
+    
+    private let paymentTimeLimit: TimeInterval = 86_400 // 24 hours
+    
+    static let shared = RecentPaymentsStore()
     
     // Private init protects against another instance being accidentally instantiated
     private init() { }
@@ -37,7 +45,7 @@ class PaymentDetailsStore {
     subscript(account: Account) -> PaymentDetails? {
         get {
             if let paymentDetails = paymentDetailsCache[account.accountNumber] {
-                if paymentDetails.date.addingTimeInterval(86_400) > Date() {
+                if paymentDetails.date.addingTimeInterval(paymentTimeLimit) > Date() {
                     return paymentDetails
                 } else {
                     removePaymentDetails(forAccount: account)
@@ -47,7 +55,7 @@ class PaymentDetailsStore {
                 let paymentDictionary = paymentDetailsDictionary[account.accountNumber] as? NSDictionary,
                 let paymentDetails = PaymentDetails.from(paymentDictionary) {
                 
-                if paymentDetails.date.addingTimeInterval(86_400) > Date() {
+                if paymentDetails.date.addingTimeInterval(paymentTimeLimit) > Date() {
                     paymentDetailsCache[account.accountNumber] = paymentDetails
                     return paymentDetails
                 } else {
