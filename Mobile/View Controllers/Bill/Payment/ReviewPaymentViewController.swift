@@ -159,7 +159,11 @@ class ReviewPaymentViewController: UIViewController {
         
         termsConditionsSwitchLabel.textColor = .deepGray
         termsConditionsSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
-        termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
+        if Environment.sharedInstance.opco == .bge {
+            termsConditionsSwitchLabel.text = NSLocalizedString("I have read and accept the Terms and Conditions below & E-Sign Disclosure and Consent Notice. Please review and retain a copy for your records.", comment: <#T##String#>)
+        } else {
+            termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
+        }
         termsConditionsSwitchLabel.setLineHeight(lineHeight: 25)
         termsConditionsButton.setTitleColor(.actionBlue, for: .normal)
         termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)

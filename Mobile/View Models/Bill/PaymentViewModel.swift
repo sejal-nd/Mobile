@@ -954,12 +954,16 @@ class PaymentViewModel {
     // MARK: - Random functions
     
     func formatPaymentAmount() {
-        let textStr = String(paymentAmount.value.characters.filter { "0123456789".characters.contains($0) })
-        if let intVal = Double(textStr) {
-            if intVal == 0 {
-                paymentAmount.value = "$0.00"
-            } else {
-                paymentAmount.value = (intVal / 100).currencyString!
+        if paymentAmount.value.isEmpty {
+            paymentAmount.value = "$0.00"
+        } else {
+            let textStr = String(paymentAmount.value.characters.filter { "0123456789".characters.contains($0) })
+            if let intVal = Double(textStr) {
+                if intVal == 0 {
+                    paymentAmount.value = "$0.00"
+                } else {
+                    paymentAmount.value = (intVal / 100).currencyString!
+                }
             }
         }
     }
