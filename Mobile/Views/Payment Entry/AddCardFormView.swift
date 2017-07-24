@@ -114,7 +114,7 @@ class AddCardFormView: UIView {
         footnoteLabel.textColor = .blackText
         footnoteLabel.font = OpenSans.regular.of(textStyle: .footnote)
         if Environment.sharedInstance.opco == .bge {
-            footnoteLabel.text = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Small business customers cannot use VISA.", comment: "")
+            footnoteLabel.text = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
         } else {
             footnoteLabel.text = NSLocalizedString("We accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
         }
