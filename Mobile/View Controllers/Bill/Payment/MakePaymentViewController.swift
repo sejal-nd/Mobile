@@ -164,15 +164,6 @@ class MakePaymentViewController: UIViewController {
         paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.textField.keyboardType = .decimalPad
-        paymentAmountTextField.textField.delegate = self
-//        paymentAmountTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-//            self.viewModel.paymentAmountErrorMessage.asObservable().single().subscribe(onNext: { errorMessage in
-//                self.paymentAmountTextField.setError(errorMessage)
-//            }).addDisposableTo(self.disposeBag)
-//        }).addDisposableTo(disposeBag)
-//        paymentAmountTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-//            self.paymentAmountTextField.setError(nil)
-//        }).addDisposableTo(disposeBag)
         viewModel.paymentAmountErrorMessage.asObservable().subscribe(onNext: { errorMessage in
             self.paymentAmountTextField.setError(errorMessage)
             self.accessibilityErrorLabel()
@@ -264,7 +255,6 @@ class MakePaymentViewController: UIViewController {
         done.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.actionBlue], for: .normal)
         doneToolbar.items = [flexSpace, done]
         doneToolbar.sizeToFit()
-        paymentAmountTextField.textField.inputAccessoryView = doneToolbar
         cvvTextField.textField.inputAccessoryView = doneToolbar
     }
     
@@ -364,8 +354,12 @@ class MakePaymentViewController: UIViewController {
         viewModel.paymentAmountFeeLabelText.asDriver().drive(paymentAmountFeeLabel.rx.text).addDisposableTo(disposeBag)
         viewModel.paymentAmount.asDriver().drive(paymentAmountTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
         paymentAmountTextField.textField.rx.text.orEmpty.bind(to: viewModel.paymentAmount).addDisposableTo(disposeBag)
-        paymentAmountTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.viewModel.formatPaymentAmount()
+        paymentAmountTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: {
+            if let text = self.paymentAmountTextField.textField.text {
+                if !text.isEmpty {
+                    self.viewModel.formatPaymentAmount()
+                }
+            }
         }).addDisposableTo(disposeBag)
         
         // Due Date

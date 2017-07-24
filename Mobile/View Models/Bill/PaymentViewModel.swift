@@ -884,23 +884,15 @@ class PaymentViewModel {
     // MARK: - Random functions
     
     func formatPaymentAmount() {
-        let components = paymentAmount.value.components(separatedBy: ".")
-        
-        var newText = paymentAmount.value
-        if components.count == 2 {
-            let decimal = components[1]
-            if decimal.characters.count == 0 {
-                newText += "00"
-            } else if decimal.characters.count == 1 {
-                newText += "0"
+        let textStr = paymentAmount.value.replacingOccurrences(of: ".", with: "")
+        if let intVal = Double(textStr) {
+            
+            if intVal == 0 {
+                paymentAmount.value = "0.00"
+            } else {
+                paymentAmount.value = "\(intVal / 100)"
             }
-        } else if components.count == 1 && components[0].characters.count > 0 {
-            newText += ".00"
-        } else {
-            newText = "0.00"
         }
-        
-        paymentAmount.value = newText
     }
     
 }
