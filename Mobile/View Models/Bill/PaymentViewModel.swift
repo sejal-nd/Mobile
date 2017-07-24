@@ -807,7 +807,7 @@ class PaymentViewModel {
     }
     
     lazy var isFixedPaymentDatePastDue: Driver<Bool> = self.accountDetail.asDriver().map {
-        return $0.billingInfo.pastDueAmount ?? 0 > 0
+        return Environment.sharedInstance.opco != .bge && $0.billingInfo.pastDueAmount ?? 0 > 0
     }
     
     var paymentDateString: Driver<String> {
