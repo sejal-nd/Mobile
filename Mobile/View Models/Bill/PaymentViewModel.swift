@@ -564,13 +564,13 @@ class PaymentViewModel {
         }
     }
     
-    lazy var shouldShowCvvTextField: Driver<Bool> = self.selectedWalletItem.asDriver().map {
-        if let walletItem = $0 {
-            if Environment.sharedInstance.opco == .bge && walletItem.bankOrCard == .card {
+    var shouldShowCvvTextField: Driver<Bool> {
+        return Driver.combineLatest(cardWorkflow, inlineCard.asDriver()).map {
+            if Environment.sharedInstance.opco == .bge && $0 && !$1 {
                 return true
             }
+            return false
         }
-        return false
     }
     
     lazy var cvvIsCorrectLength: Observable<Bool> = self.cvv.asObservable().map {
