@@ -58,7 +58,7 @@ class HomeViewModel {
     
     private func fetchAccountDetail(forAccount account: Account) -> Observable<Event<AccountDetail>> {
         return accountService.fetchAccountDetail(account: account)
-            .retry(.exponentialDelayed(maxCount: 2, initial: 2.0, multiplier: 1.5))
+            .debug("fetch account detail")
             .trackActivity(self.fetchingTracker)
             .materialize()
     }
@@ -77,10 +77,13 @@ class HomeViewModel {
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
         .map { $0.address ?? "" }
         .flatMapLatest(self.fetchWeather)
-        .materialize()
+        .shareReplay(1)
     
-    private func fetchWeather(forAddress address: String) -> Observable<WeatherItem> {
-        return weatherService.fetchWeather(address: address).trackActivity(self.fetchingTracker)
+    private func fetchWeather(forAddress address: String) -> Observable<Event<WeatherItem>> {
+        return weatherService.fetchWeather(address: address)
+            .debug("fetch weather")
+            .trackActivity(fetchingTracker)
+            .materialize()
     }
     
     private(set) lazy var greeting: Driver<String?> = self.weatherEvents
