@@ -49,10 +49,10 @@ class HomeBillCardViewModel {
         .shareReplay(1)
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == "ERR-NO-NETWORK-CONNECTION" }
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
     private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = self.workDayEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == "ERR-NO-NETWORK-CONNECTION" }
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
     private lazy var walletItem: Observable<WalletItem?> = self.walletItemEvents.elements()
 

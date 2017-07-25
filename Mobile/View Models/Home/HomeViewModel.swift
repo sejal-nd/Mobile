@@ -66,7 +66,7 @@ class HomeViewModel {
     let showTemplateCard = Environment.sharedInstance.opco != .comEd
     
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == "ERR-NO-NETWORK-CONNECTION" }
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
     private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = Observable.merge(self.accountDetailNoNetworkConnection,
                                                                                         self.billCardViewModel.walletItemNoNetworkConnection,
