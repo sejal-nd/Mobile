@@ -16,11 +16,6 @@ private func extractDate(object: Any?) throws -> Date? {
     return dateString.apiFormatDate
 }
 
-enum AccountType {
-    case Residential
-    case Commercial
-}
-
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
@@ -95,6 +90,8 @@ struct AccountDetail: Mappable {
     let isResidential: Bool
     
     let releaseOfInformation: String?
+    
+    let peakRewards: String?
 	
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
@@ -127,6 +124,8 @@ struct AccountDetail: Mappable {
         isResidential = map.optionalFrom("isResidential") ?? false
         
         releaseOfInformation = map.optionalFrom("releaseOfInformation")
+        
+        peakRewards = map.optionalFrom("peakRewards")
     }
 	
     var eBillEnrollStatus: EBillEnrollStatus {
@@ -180,6 +179,7 @@ struct BillingInfo: Mappable {
     let maxPaymentAmount: Double?
     let minPaymentAmountACH: Double?
     let maxPaymentAmountACH: Double?
+    let currentDueAmount: Double?
     let residentialFee: Double?
     let commercialFee: Double?
     
@@ -205,6 +205,7 @@ struct BillingInfo: Mappable {
         maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")
         minPaymentAmountACH =  map.optionalFrom("minimumPaymentAmountACH")
         maxPaymentAmountACH = map.optionalFrom("maximumPaymentAmountACH")
+        currentDueAmount = map.optionalFrom("currentDueAmount")
         residentialFee = map.optionalFrom("feeResidential")
         commercialFee = map.optionalFrom("feeCommercial")
     }

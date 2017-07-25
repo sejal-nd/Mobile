@@ -30,6 +30,9 @@ class PaymentConfirmationViewController: UIViewController {
     @IBOutlet weak var billMatrixView: UIView!
     @IBOutlet weak var privacyPolicyButton: UIButton!
     
+    @IBOutlet weak var bgeFooterView: UIView!
+    @IBOutlet weak var bgeFooterLabel: UILabel!
+    
     var presentingNavController: UINavigationController! // Passed from ReviewPaymentViewController
     
     var viewModel: PaymentViewModel! // Passed from ReviewPaymentViewController
@@ -45,7 +48,16 @@ class PaymentConfirmationViewController: UIViewController {
         
         confirmationLabel.textColor = .blackText
         confirmationLabel.font = OpenSans.regular.of(textStyle: .body)
-        confirmationLabel.text = NSLocalizedString("Thank you for your payment. A confirmation email will be sent to your shortly.", comment: "")
+        var confirmationMessage = ""
+        if viewModel.paymentId.value != nil {
+            confirmationMessage += NSLocalizedString("Thank you for modifying your payment.", comment: "")
+        } else {
+            confirmationMessage += NSLocalizedString("Thank you for your payment.", comment: "")
+        }
+        if Environment.sharedInstance.opco != .bge {
+            confirmationMessage += NSLocalizedString(" A confirmation email will be sent to your shortly.", comment: "")
+        }
+        confirmationLabel.text = confirmationMessage
         
         convenienceFeeLabel.textColor = .blackText
         convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -71,6 +83,16 @@ class PaymentConfirmationViewController: UIViewController {
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
         privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
         
+        if Environment.sharedInstance.opco == .bge {
+            bgeFooterView.backgroundColor = .softGray
+            bgeFooterLabel.textColor = .blackText
+            bgeFooterLabel.text = NSLocalizedString("If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.\n\nPlease ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.\n\nIf an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.", comment: "")
+        } else {
+            bgeFooterView.isHidden = true
+            bgeFooterLabel.text = ""
+        }
+        
+        
         bindViewHiding()
         bindViewContent()
     }
@@ -93,15 +115,26 @@ class PaymentConfirmationViewController: UIViewController {
     }
 
     @IBAction func onXButtonPress() {
-        for vc in presentingNavController.viewControllers {
-            guard let dest = vc as? BillViewController else {
-                continue
+        if viewModel.paymentId.value != nil { // Modify Payment
+            for vc in presentingNavController.viewControllers {
+                guard let dest = vc as? BillingHistoryViewController else {
+                    continue
+                }
+                dest.getBillingHistory()
+                presentingNavController.popToViewController(dest, animated: false)
+                break
             }
-            dest.viewModel.fetchAccountDetail(isRefresh: false)
-            presentingNavController.popToViewController(dest, animated: false)
-            break
+        } else {
+            for vc in presentingNavController.viewControllers {
+                guard let dest = vc as? BillViewController else {
+                    continue
+                }
+                dest.viewModel.fetchAccountDetail(isRefresh: false)
+                presentingNavController.popToViewController(dest, animated: false)
+                break
+            }
+            presentingNavController.setNavigationBarHidden(true, animated: true) // Fixes bad dismiss animation
         }
-        presentingNavController.setNavigationBarHidden(true, animated: true) // Fixes bad dismiss animation
         presentingNavController.dismiss(animated: true, completion: nil)
     }
     

@@ -40,9 +40,13 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var convenienceFeeTextLabel: UILabel!
     @IBOutlet weak var convenienceFeeValueLabel: UILabel!
     
-    @IBOutlet weak var overpayingView: UIView!
-    @IBOutlet weak var overpayingTextLabel: UILabel!
-    @IBOutlet weak var overpayingValueLabel: UILabel!
+    @IBOutlet weak var cardOverpayingView: UIView!
+    @IBOutlet weak var cardOverpayingTextLabel: UILabel!
+    @IBOutlet weak var cardOverpayingValueLabel: UILabel!
+    
+    @IBOutlet weak var bankOverpayingView: UIView!
+    @IBOutlet weak var bankOverpayingTextLabel: UILabel!
+    @IBOutlet weak var bankOverpayingValueLabel: UILabel!
     
     @IBOutlet weak var totalPaymentView: UIView!
     @IBOutlet weak var paymentDateTextLabel: UILabel!
@@ -129,11 +133,17 @@ class ReviewPaymentViewController: UIViewController {
         convenienceFeeValueLabel.textColor = .deepGray
         convenienceFeeValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        overpayingTextLabel.textColor = .deepGray
-        overpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        overpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
-        overpayingValueLabel.textColor = .deepGray
-        overpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        cardOverpayingTextLabel.textColor = .deepGray
+        cardOverpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        cardOverpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
+        cardOverpayingValueLabel.textColor = .deepGray
+        cardOverpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        bankOverpayingTextLabel.textColor = .deepGray
+        bankOverpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        bankOverpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
+        bankOverpayingValueLabel.textColor = .deepGray
+        bankOverpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         totalPaymentView.backgroundColor = .softGray
         paymentDateTextLabel.textColor = .blackText
@@ -143,13 +153,16 @@ class ReviewPaymentViewController: UIViewController {
         paymentDateValueLabel.font = SystemFont.medium.of(textStyle: .headline)
         totalPaymentTextLabel.textColor = .blackText
         totalPaymentTextLabel.font = SystemFont.medium.of(textStyle: .headline)
-        totalPaymentTextLabel.text = NSLocalizedString("Total Payment", comment: "")
         totalPaymentValueLabel.textColor = .blackText
         totalPaymentValueLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         termsConditionsSwitchLabel.textColor = .deepGray
         termsConditionsSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
-        termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
+        if Environment.sharedInstance.opco == .bge {
+            termsConditionsSwitchLabel.text = NSLocalizedString("I have read and accept the Terms and Conditions below & E-Sign Disclosure and Consent Notice. Please review and retain a copy for your records.", comment: "")
+        } else {
+            termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
+        }
         termsConditionsSwitchLabel.setLineHeight(lineHeight: 25)
         termsConditionsButton.setTitleColor(.actionBlue, for: .normal)
         termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)
@@ -170,7 +183,6 @@ class ReviewPaymentViewController: UIViewController {
         
         footerView.backgroundColor = .softGray
         footerLabel.textColor = .blackText
-        footerLabel.text = NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
         
         bindViewHiding()
         bindViewContent()
@@ -190,7 +202,8 @@ class ReviewPaymentViewController: UIViewController {
     func bindViewHiding() {
         viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isOverpaying.map(!).drive(overpaymentLabel.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isOverpaying.map(!).drive(overpayingView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isOverpayingCard.map(!).drive(cardOverpayingView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isOverpayingBank.map(!).drive(bankOverpayingView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.reviewPaymentShouldShowConvenienceFeeBox.map(!).drive(convenienceFeeView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.shouldShowTermsConditionsSwitchView.map(!).drive(termsConditionsSwitchView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).addDisposableTo(disposeBag)
@@ -214,7 +227,8 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.paymentAmountDisplayString.asDriver().drive(paymentAmountValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Overpaying
-        viewModel.overpayingValueDisplayString.drive(overpayingValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.overpayingValueDisplayString.drive(cardOverpayingValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.overpayingValueDisplayString.drive(bankOverpayingValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Convenience Fee
         viewModel.convenienceFeeDisplayString.drive(convenienceFeeValueLabel.rx.text).addDisposableTo(disposeBag)
@@ -223,12 +237,16 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Total Payment
-        viewModel.totalPaymentDisplayString.asDriver().drive(totalPaymentValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.totalPaymentLabelText.drive(totalPaymentTextLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.totalPaymentDisplayString.drive(totalPaymentValueLabel.rx.text).addDisposableTo(disposeBag)
         
         // Switches
         termsConditionsSwitch.rx.isOn.bind(to: viewModel.termsConditionsSwitchValue).addDisposableTo(disposeBag)
         overpayingSwitch.rx.isOn.bind(to: viewModel.overpayingSwitchValue).addDisposableTo(disposeBag)
         activeSeveranceSwitch.rx.isOn.bind(to: viewModel.activeSeveranceSwitchValue).addDisposableTo(disposeBag)
+        
+        // Footer Label
+        viewModel.reviewPaymentFooterLabelText.drive(footerLabel.rx.text).addDisposableTo(disposeBag)
     }
     
     func bindButtonTaps() {
@@ -238,15 +256,47 @@ class ReviewPaymentViewController: UIViewController {
     
     func onSubmitPress() {
         LoadingView.show()
-        viewModel.schedulePayment(onSuccess: {
-            LoadingView.hide()
-            self.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-        }, onError: { errMessage in
+        
+        let handleError = { (errMessage: String) in
             LoadingView.hide()
             let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            
+            // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
+            // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
+            if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
+                    action -> Void in
+                    if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
+                        if #available(iOS 10, *) {
+                            UIApplication.shared.open(url)
+                        } else {
+                            UIApplication.shared.openURL(url)
+                        }
+                    }
+                }))
+            } else {
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            }
             self.present(alertVc, animated: true, completion: nil)
-        })
+        }
+        
+        if viewModel.paymentId.value != nil { // Modify
+            viewModel.modifyPayment(onSuccess: {
+                LoadingView.hide()
+                self.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+            }, onError: { errMessage in
+                handleError(errMessage)
+            })
+        } else { // Schedule
+            viewModel.schedulePayment(onSuccess: {
+                LoadingView.hide()
+                self.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+            }, onError: { errMessage in
+                handleError(errMessage)
+            })
+        }
+
     }
     
     func onTermsConditionsPress() {

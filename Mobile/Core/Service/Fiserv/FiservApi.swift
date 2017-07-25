@@ -73,9 +73,10 @@ struct FiservApi {
                         nickname: String?,
                         token: String,
                         customerNumber: String,
+                        oneTimeUse: Bool,
                         completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Swift.Void) {
         
-        var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: false)
+        var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: oneTimeUse)
         
         params[Parameter.MessageId.rawValue] = MessageId.InsertCheck.rawValue
         params[Parameter.CheckingDetail.rawValue] = createBankAccountDetailDictionary(accountNumber: bankAccountNumber,
@@ -104,10 +105,11 @@ struct FiservApi {
                        nickname: String?,
                        token: String,
                        customerNumber: String,
+                       oneTimeUse: Bool,
                        completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Swift.Void) {
         
         
-        var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: false)
+        var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: oneTimeUse)
         params[Parameter.MessageId.rawValue] = MessageId.InsertCredit.rawValue
         params[Parameter.CardDetail.rawValue] = createCardDetailDictionary(cardNumber: cardNumber,
                                                           expirationMonth: expirationMonth,

@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupUserDefaults() {
         UserDefaults.standard.register(defaults: [
             UserDefaultKeys.ShouldPromptToEnableTouchID: true,
-            UserDefaultKeys.OneTouchPayDictionary: [String: NSDictionary]()
+            UserDefaultKeys.PaymentDetailsDictionary: [String: NSDictionary]()
         ])
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
     }

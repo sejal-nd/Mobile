@@ -133,6 +133,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
                 bankOrCard = (type == .credit || type == .debit) ? .card : .bank
             }
         }
+
     }
     
     

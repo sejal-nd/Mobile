@@ -22,6 +22,7 @@ class AddCardFormViewModel {
     
     let walletService: WalletService!
     
+    // Normal Add Bank forms
     let nameOnCard = Variable("")
     let cardNumber = Variable("")
     let expMonth = Variable("")
@@ -31,8 +32,20 @@ class AddCardFormViewModel {
     let nickname = Variable("")
     let oneTouchPay = Variable(false)
     
+    // Payment workflow
+    let paymentWorkflow = Variable(false) // If form is being used on payment screen
+    let saveToWallet = Variable(true) // Switch value
+    
     required init(walletService: WalletService) {
         self.walletService = walletService
+        
+        // When Save To Wallet switch is toggled off, reset the fields that get hidden
+        saveToWallet.asObservable().subscribe(onNext: { save in
+            if !save {
+                self.nickname.value = ""
+                self.oneTouchPay.value = false
+            }
+        }).addDisposableTo(disposeBag)
     }
     
     func nameOnCardHasText() -> Observable<Bool> {
