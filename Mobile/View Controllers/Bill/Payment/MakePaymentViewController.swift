@@ -493,6 +493,7 @@ class MakePaymentViewController: UIViewController {
                     }
                     dest.onPaymentDelete()
                     self.navigationController?.popToViewController(dest, animated: true)
+                    return
                 }
                 self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
