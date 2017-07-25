@@ -65,7 +65,6 @@ class EditBankAccountViewModel {
                 onError(err.localizedDescription)
             })
             .addDisposableTo(disposeBag)
-        walletService.removeOneTouchPayItem(customerId: AccountsStore.sharedInstance.customerIdentifier) { (result: ServiceResult<Void>) in }
     }
     
     func getOneTouchDisplayString() -> String {
