@@ -114,14 +114,13 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         } catch {
             
         }
+        
     }
 
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
-
     
     func loadSecurityQuestionsAndAccounts() {
         loadingIndicator.isHidden = false

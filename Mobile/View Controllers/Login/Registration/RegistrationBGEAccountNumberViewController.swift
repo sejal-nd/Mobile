@@ -33,6 +33,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         populateHelperLabels()
         
         prepareTextFieldsForInput()
+        
     }
 
     /// Helpers

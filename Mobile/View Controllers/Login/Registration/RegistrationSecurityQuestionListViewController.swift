@@ -41,8 +41,8 @@ class RegistrationSecurityQuestionListViewController: UITableViewController {
         
         self.tableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "RadioSelectionCell")
         self.tableView.estimatedRowHeight = 51
+        
     }
-
 
     // MARK: - Table view data source
 

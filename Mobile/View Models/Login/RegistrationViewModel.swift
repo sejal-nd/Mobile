@@ -265,6 +265,19 @@ class RegistrationViewModel {
         }
     }
     
+    func checkForMaintenance(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
+        var isMaintenanceMode = false
+        
+        authenticationService.getMaintenanceMode()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { maintenanceInfo in
+                isMaintenanceMode = maintenanceInfo.allStatus
+                onSuccess(isMaintenanceMode)
+            }, onError: { error in
+                _ = error as! ServiceError
+            }).addDisposableTo(disposeBag)
+    }
+    
     func phoneNumberHasTenDigits() -> Observable<Bool> {
         return phoneNumber.asObservable().map({ text -> Bool in
             let digitsOnlyString = self.extractDigitsFrom(text)

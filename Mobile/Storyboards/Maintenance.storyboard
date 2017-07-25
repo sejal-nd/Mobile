@@ -33,9 +33,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oar-PX-3sy" userLabel="Tablet View">
-                                                <rect key="frame" x="29" y="8" width="317" height="587"/>
+                                                <rect key="frame" x="29" y="78" width="317" height="517"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="ejI-Id-7Io">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="ejI-Id-7Io">
                                                         <rect key="frame" x="54" y="20" width="263" height="80"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="80" id="5cb-LQ-Z00"/>
@@ -185,7 +185,8 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                                             <constraint firstAttribute="bottomMargin" secondItem="oar-PX-3sy" secondAttribute="bottom" id="L2v-p4-SGO"/>
                                             <constraint firstAttribute="height" constant="603" id="UhI-DC-C4V"/>
                                             <constraint firstItem="oar-PX-3sy" firstAttribute="leading" secondItem="NZe-n8-O6q" secondAttribute="leading" priority="999" constant="29" id="cgE-lZ-6n7"/>
-                                            <constraint firstItem="oar-PX-3sy" firstAttribute="top" secondItem="NZe-n8-O6q" secondAttribute="topMargin" id="fXi-A3-K6f"/>
+                                            <constraint firstItem="oar-PX-3sy" firstAttribute="top" secondItem="NZe-n8-O6q" secondAttribute="topMargin" constant="70" id="fXi-A3-K6f"/>
+                                            <constraint firstItem="oar-PX-3sy" firstAttribute="centerX" secondItem="NZe-n8-O6q" secondAttribute="centerX" id="xca-qf-GCg"/>
                                         </constraints>
                                     </view>
                                 </subviews>

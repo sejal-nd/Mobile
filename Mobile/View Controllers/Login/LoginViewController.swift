@@ -138,7 +138,6 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         
         setNeedsStatusBarAppearanceUpdate()
-//        checkForMaintenanceMode()
         
         
         navigationController?.setNavigationBarHidden(false, animated: true)
