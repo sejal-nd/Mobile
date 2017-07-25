@@ -2851,11 +2851,7 @@
         <image name="img_logo_white" width="251" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-        <segue reference="27W-i3-9TU"/>
         <segue reference="6eI-mv-PAf"/>
-=======
->>>>>>> develop
         <segue reference="He9-IH-khb"/>
         <segue reference="m8m-Zs-f6g"/>
     </inferredMetricsTieBreakers>
