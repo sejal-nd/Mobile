@@ -123,7 +123,7 @@ class HomeBillCardViewModel {
     private lazy var walletItemDriver: Driver<WalletItem?> = self.walletItem.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var billNotReady: Driver<Bool> = self.accountDetailDriver
-        .map { ($0.billingInfo.netDueAmount ?? 0) == 0 && ($0.billingInfo.lastPaymentAmount ?? 0) > 0 }
+        .map { ($0.billingInfo.netDueAmount ?? 0) == 0 && ($0.billingInfo.lastPaymentAmount ?? 0) <= 0 }
     
     private(set) lazy var showErrorState: Driver<Bool> = Observable.zip(self.accountDetailEvents, self.walletItemEvents)
         .map { $0.0.error != nil || $0.1.error != nil }
