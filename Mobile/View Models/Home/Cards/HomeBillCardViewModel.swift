@@ -443,16 +443,17 @@ class HomeBillCardViewModel {
         .map { $0 == .paymentPending ? OpenSans.semiboldItalic.of(size: 28): OpenSans.semibold.of(size: 36) }
     
     //TODO: scheduledPaymentAmount or netDueAmount?
-    private(set) lazy var automaticPaymentInfoButtonText: Driver<String?> = self.accountDetailDriver.map {
-        switch Environment.sharedInstance.opco {
-        case .bge:
-            return NSLocalizedString("You are enrolled in AutoPay." , comment: "")
-        case .peco, .comEd:
-            guard let paymentAmountText = $0.billingInfo.scheduledPaymentAmount?.currencyString else { return nil }
-            guard let paymentDateText = $0.billingInfo.scheduledPaymentDate?.mmDdYyyyString else { return nil }
-            let localizedText = NSLocalizedString("You have an automatic payment of %@ for $@." , comment: "")
-            return String(format: localizedText, paymentAmountText, paymentDateText)
-        }
+    private(set) lazy var automaticPaymentInfoButtonText: Driver<String?> = self.accountDetailDriver.map { _ in
+        return NSLocalizedString("You are enrolled in AutoPay." , comment: "")
+//        switch Environment.sharedInstance.opco {
+//        case .bge:
+//            return NSLocalizedString("You are enrolled in AutoPay." , comment: "")
+//        case .peco, .comEd:
+//            guard let paymentAmountText = $0.billingInfo.scheduledPaymentAmount?.currencyString else { return nil }
+//            guard let paymentDateText = $0.billingInfo.scheduledPaymentDate?.mmDdYyyyString else { return nil }
+//            let localizedText = NSLocalizedString("You have an automatic payment of %@ for $@." , comment: "")
+//            return String(format: localizedText, paymentAmountText, paymentDateText)
+//        }
     }
     
     private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = self.accountDetailDriver.map {

@@ -148,6 +148,18 @@ class HomeViewController: AccountPickerViewController {
             .map { FetchingAccountState.switchAccount }
             .bind(to: viewModel.fetchData)
             .addDisposableTo(bag)
+        
+        billCardView.viewBillPressed
+            .drive(onNext: { [weak self] in
+                self?.tabBarController?.selectedIndex = 1
+            })
+            .addDisposableTo(bag)
+        
+        billCardView.modalViewControllers
+            .drive(onNext: { [weak self] viewController in
+                self?.present(viewController, animated: true, completion: nil)
+            })
+            .addDisposableTo(bag)
     }
     
     func configureAccessibility() {
