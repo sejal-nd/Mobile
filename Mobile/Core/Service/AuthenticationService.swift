@@ -75,6 +75,9 @@ protocol AuthenticationService {
     ///     or the error on failure.
     func changePasswordAnon(_ username: String, currentPassword: String, newPassword: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
+    
+    func getMaintenanceMode(completion: @escaping(_ result: ServiceResult<Maintenance>) -> Void)
+    
     /// Attempt to recover a username by providing a phone number and identifier.
     ///
     /// - Parameters:
@@ -222,6 +225,22 @@ extension AuthenticationService {
                 }
             })
             return Disposables.create()
+        }
+    }
+    
+    
+    func getMaintenanceMode() -> Observable<Maintenance> {
+        return Observable.create { observer in
+            self.getMaintenanceMode( completion: { (result: ServiceResult<Maintenance>) in
+            switch(result){
+            case ServiceResult.Success(let maintenanceInfo):
+                observer.onNext(maintenanceInfo)
+                observer.onCompleted()
+            case ServiceResult.Failure(let err):
+                observer.onError(err)
+            }
+        })
+        return Disposables.create()
         }
     }
     

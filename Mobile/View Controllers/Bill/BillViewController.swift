@@ -154,6 +154,9 @@ class BillViewController: AccountPickerViewController {
         bindViews()
         bindButtonTaps()
         configureAccessibility()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -161,6 +164,11 @@ class BillViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
+    func killRefresh() -> Void {
+        self.refreshControl?.endRefreshing()
+        self.scrollView.alwaysBounceVertical = false
+    }
+    
     func styleViews() {
         view.backgroundColor = .primaryColor
         contentView.backgroundColor = .primaryColor
