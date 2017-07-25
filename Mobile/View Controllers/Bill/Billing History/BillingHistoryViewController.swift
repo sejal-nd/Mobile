@@ -97,7 +97,17 @@ class BillingHistoryViewController: UIViewController {
         } else if let vc = segue.destination as? ViewBillViewController {
             let billingHistoryItem = selectedIndexPath.section == 0 ? (self.billingHistory?.upcoming[selectedIndexPath.row])! : (self.billingHistory?.past[selectedIndexPath.row])!
             vc.viewModel.billDate = billingHistoryItem.date.apiFormatDate
+        } else if let vc = segue.destination as? BGEAutoPayViewController {
+            vc.accountDetail = accountDetail
+        } else if let vc = segue.destination as? AutoPayViewController {
+            vc.accountDetail = accountDetail
         }
+    }
+    
+    func showDelayedToast(withMessage message: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(message)
+        })
     }
 }
 
@@ -127,7 +137,11 @@ extension BillingHistoryViewController: UITableViewDelegate {
             
             if indexPath.row == 0 && (accountDetail.isBGEasy || accountDetail.isAutoPay) {
                 if accountDetail.isAutoPay {
-                    print("autopay workflow")
+                    if opco == .bge {
+                        self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
+                    } else {
+                        self.performSegue(withIdentifier: "autoPaySegue", sender: self)
+                    }
                 } else if accountDetail.isBGEasy {
                     self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
                 }
