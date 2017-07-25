@@ -46,28 +46,39 @@ class HomeBillCardViewModel {
     
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.account.map { _ in () }
         .flatMapLatest(self.fetchOTPWalletItem)
-        .materialize()
+        .shareReplay(1)
+    
+    private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+    
+    private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = self.workDayEvents
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
     private lazy var walletItem: Observable<WalletItem?> = self.walletItemEvents.elements()
 
-    private(set) lazy var data: Observable<Event<(Account, AccountDetail, WalletItem?)>> = Observable.combineLatest(self.account,
-                                                                                                                    self.accountDetailElements,
-                                                                                                                    self.walletItem)
-        .materialize()
-        .share()
+    private(set) lazy var data: Observable<Event<(Account, AccountDetail, WalletItem?)>> =
+        Observable.combineLatest(self.account,
+                                 self.accountDetailElements,
+                                 self.walletItem)
+            .materialize()
+            .share()
     
-    private func fetchOTPWalletItem() -> Observable<WalletItem?> {
+    private func fetchOTPWalletItem() -> Observable<Event<WalletItem?>> {
         return walletService.fetchWalletItems()
             .trackActivity(fetchingTracker)
             .map { $0.first(where: { $0.isDefault }) }
+            .materialize()
     }
     
-    private func fetchWorkDays() -> Observable<[Date]> {
+    private func fetchWorkDays() -> Observable<Event<[Date]>> {
         return paymentService.fetchWorkdays()
             .trackActivity(fetchingTracker)
+            .materialize()
     }
     
-    private(set) lazy var workDays: Observable<[Date]> = self.account.map { _ in () }.flatMapLatest(self.fetchWorkDays)
+    private lazy var workDayEvents: Observable<Event<[Date]>> = self.account.map { _ in () }
+        .flatMapLatest(self.fetchWorkDays)
+        .shareReplay(1)
     
     private func schedulePayment(_ payment: Payment) -> Observable<Void> {
         let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
@@ -94,9 +105,15 @@ class HomeBillCardViewModel {
         }
         .flatMapLatest(self.schedulePayment)
     
-    private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = self.workDays
-        .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty && Environment.sharedInstance.opco == .peco }
-        .asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
+        if Environment.sharedInstance.opco != .peco {
+            return Driver.just(false)
+        } else {
+            return self.workDayEvents.elements()
+                .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty }
+                .asDriver(onErrorDriveWith: .empty())
+        }
+    }()
     
     //MARK: - Loaded States
     
