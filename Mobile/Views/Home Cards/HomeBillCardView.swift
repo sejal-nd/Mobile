@@ -220,6 +220,8 @@ class HomeBillCardView: UIView {
         viewModel.oneTouchPayResult.subscribe { print($0) }.addDisposableTo(bag)
     }
     
+    private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.tap.asDriver()
+    
     private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
         .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
         .filter { $0 }
