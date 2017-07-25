@@ -82,9 +82,9 @@ class TemplateCardViewModel {
         switch Environment.sharedInstance.opco {
         case .peco:
             if(accountDetail.isResidential) {
-                return NSLocalizedString("Get cash back with PECO rebates on high-efficiency appliances & hvac equipment. Click or call 1-888-5-PECO-SAVE", comment: "")
+                return NSLocalizedString("Get cash back with PECO rebates on high-efficiency appliances & HVAC equipment.", comment: "")
             } else {
-                return NSLocalizedString("PECO can help you get on the fast track to substantial energy & cost savings. Click or call 1-844-4BIZ-SAVE", comment: "")
+                return NSLocalizedString("PECO can help you get on the fast track to substantial energy & cost savings.", comment: "")
             }
         case .bge:
             if(accountDetail.isResidential) {
