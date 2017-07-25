@@ -13,6 +13,7 @@ import Lottie
 
 class HomeViewController: AccountPickerViewController {
     
+    @IBOutlet weak var primaryColorHeaderView: UIView!
     @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var headerStackView: UIStackView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
@@ -23,6 +24,10 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImage: UIImageView!
     
+    @IBOutlet weak var cardStackView: UIStackView!
+    
+    var billCardView: HomeBillCardView!
+    var templateCardView: TemplateCardView!
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl? {
@@ -30,13 +35,16 @@ class HomeViewController: AccountPickerViewController {
             refreshDisposable?.dispose()
             refreshDisposable = refreshControl?.rx.controlEvent(.valueChanged).asObservable()
                 .map { FetchingAccountState.refresh }
-                .bind(to: viewModel.fetchAccountDetail)
+                .bind(to: viewModel.fetchData)
         }
     }
     
     var alertLottieAnimation = LOTAnimationView(name: "alert_icon")!
     
-    let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(), weatherService: ServiceFactory.createWeatherService())
+    let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(),
+                                  weatherService: ServiceFactory.createWeatherService(),
+                                  walletService: ServiceFactory.createWalletService(),
+                                  paymentService: ServiceFactory.createPaymentService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -48,19 +56,37 @@ class HomeViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        accountPickerViewControllerWillAppear.subscribe(onNext: { state in
-            switch(state) {
-            case .loadingAccounts:
-                // Sam, do your custom loading here
-                break
-            case .readyToFetchData:
-                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-                    self.viewModel.fetchAccountDetail(isRefresh: false)
-                } else if self.viewModel.currentAccountDetail.value == nil {
-                    self.viewModel.fetchAccountDetail(isRefresh: false)
+        accountPickerViewControllerWillAppear
+            .withLatestFrom(Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
+                                                     viewModel.accountDetailEvents.elements().map { $0 }.startWith(nil)))
+            .subscribe(onNext: { state, accountDetail in
+                switch(state) {
+                case .loadingAccounts:
+                    // Sam, do your custom loading here
+                    break
+                case .readyToFetchData:
+                    self.viewModel.currentAccount.value = self.accountPicker.currentAccount
+                    if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                        self.viewModel.fetchData.onNext(.switchAccount)
+                    } else if accountDetail == nil {
+                        self.viewModel.fetchData.onNext(.switchAccount)
+                    }
                 }
-            }
-        }).addDisposableTo(bag)
+                
+            })
+            .addDisposableTo(bag)
+        
+        billCardView = HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel)
+        cardStackView.addArrangedSubview(billCardView)
+        
+        if viewModel.showTemplateCard {
+            templateCardView = TemplateCardView.create(withViewModel: self.viewModel.templateCardViewModel)
+            templateCardView.callToActionViewController
+                .drive(onNext: { [weak self] viewController in
+                    self?.present(viewController, animated: true, completion: nil)
+                }).addDisposableTo(bag)
+            cardStackView.addArrangedSubview(templateCardView)
+        }
         
         styleViews()
         bindLoadingStates()
@@ -73,20 +99,26 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func styleViews() {
+        primaryColorHeaderView.backgroundColor = .primaryColor
         scrollView.backgroundColor = .primaryColor
         weatherWidgetView.backgroundColor = .primaryColor
         headerStackView.backgroundColor = .primaryColor
+        scrollView.rx.contentOffset
+            .asDriver()
+            .map { $0.y < 0 ? .primaryColor: .softGray }
+            .drive(onNext: { [weak self] color in self?.scrollView.backgroundColor = color })
+            .addDisposableTo(bag)
     }
     
     func bindLoadingStates() {
         topLoadingIndicatorView.isHidden = true
-        viewModel.isFetchingAccountDetail.filter(!).drive(rx.isRefreshing).addDisposableTo(bag)
-        viewModel.isFetchingDifferentAccount.not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
-        viewModel.isFetchingDifferentAccount.drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
+        viewModel.fetchingTracker.asDriver().filter(!).drive(rx.isRefreshing).addDisposableTo(bag)
+        viewModel.switchAccountsTracker.asDriver().not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
+        viewModel.switchAccountsTracker.asDriver().drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
         
-        self.viewModel.weatherTemp.drive(self.temperatureLabel.rx.text).addDisposableTo(self.bag)
-        self.viewModel.weatherIcon.drive(self.weatherIconImage.rx.image).addDisposableTo(self.bag)
-        self.viewModel.greeting.drive(self.greetingLabel.rx.text).addDisposableTo(self.bag)
+        viewModel.weatherTemp.debug("*****").drive(temperatureLabel.rx.text).addDisposableTo(bag)
+        viewModel.weatherIcon.drive(weatherIconImage.rx.image).addDisposableTo(bag)
+        viewModel.greeting.drive(greetingLabel.rx.text).addDisposableTo(bag)
     }
     
     func configureAccessibility() {
@@ -101,8 +133,6 @@ class HomeViewController: AccountPickerViewController {
         temperatureLabel.accessibilityLabel = NSLocalizedString(temperatureString, comment: "")
     }
     
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
@@ -115,9 +145,8 @@ class HomeViewController: AccountPickerViewController {
 }
 
 extension HomeViewController: AccountPickerDelegate {
-    
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        viewModel.fetchAccountDetail(isRefresh: false)
+        viewModel.fetchData.onNext(.switchAccount)
     }
 }
 
