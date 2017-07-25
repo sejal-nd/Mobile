@@ -83,8 +83,11 @@ class MaintenanceModeViewController: UIViewController {
         LoadingView.show()
         viewModel.doReload(onSuccess: { isMaintenance in
             LoadingView.hide()
+            self.presentingViewController?.view.isUserInteractionEnabled = true
             if !isMaintenance{
-                self.dismiss(animated: true, completion: nil)
+                self.presentingViewController?.dismiss(animated: true, completion: {
+                    print("Dismissed MM")
+                })
             }
         }, onError: { errorMessage in
             LoadingView.hide()

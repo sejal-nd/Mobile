@@ -38,8 +38,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkForMaintenanceMode()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(verifyAccountNotificationReceived), name: NSNotification.Name.DidTapAccountVerificationDeepLink, object: nil)
@@ -119,6 +117,8 @@ class LoginViewController: UIViewController {
         
         touchIDLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         touchIDLabel.isAccessibilityElement = false // The button itself will read "Touch ID"
+
+        checkForMaintenanceMode()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -382,7 +382,8 @@ class LoginViewController: UIViewController {
     
     func checkForMaintenanceMode(){
         viewModel.checkForMaintenance(onSuccess: { isMaintenance in
-            if isMaintenance{
+            if isMaintenance {
+                self.navigationController?.view.isUserInteractionEnabled = true
                 let ad = UIApplication.shared.delegate as! AppDelegate
                 ad.showMaintenanceMode()
             }

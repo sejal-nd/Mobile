@@ -104,7 +104,7 @@ class LoginViewModel {
     }
     
     func checkForMaintenance(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
-        var isMaintenanceMode = true
+        var isMaintenanceMode = false
         
         authService.getMaintenanceMode()
             .observeOn(MainScheduler.instance)

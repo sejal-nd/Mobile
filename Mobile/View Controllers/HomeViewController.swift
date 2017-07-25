@@ -66,11 +66,18 @@ class HomeViewController: AccountPickerViewController {
         styleViews()
         bindLoadingStates()
         configureAccessibility()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    func killRefresh() -> Void {
+        self.refreshControl?.endRefreshing()
+        self.scrollView.alwaysBounceVertical = true
     }
     
     func styleViews() {

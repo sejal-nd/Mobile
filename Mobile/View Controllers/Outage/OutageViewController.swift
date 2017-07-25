@@ -122,14 +122,11 @@ class OutageViewController: AccountPickerViewController {
             }
         }).addDisposableTo(disposeBag)
         
-
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let ad = UIApplication.shared.delegate as! AppDelegate
-        ad.showMaintenanceMode()
         
         navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -139,6 +136,11 @@ class OutageViewController: AccountPickerViewController {
         super.viewDidLayoutSubviews()
         
         gradientLayer.frame = gradientBackground.frame
+    }
+    
+    func killRefresh() -> Void {
+        self.refreshControl?.endRefreshing()
+        self.scrollView.alwaysBounceVertical = false
     }
     
     func setRefreshControlEnabled(enabled: Bool) {

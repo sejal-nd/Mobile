@@ -15,10 +15,10 @@ struct Maintenance: Mappable {
     let alertStatus: Bool
 
     init(map: Mapper) throws {
-        allStatus = map.optionalFrom("ALL") ?? false
-        homeStatus = map.optionalFrom("HOME") ?? false
-        billStatus = map.optionalFrom("OUTAGE") ?? false
-        alertStatus = map.optionalFrom("ALERTS") ?? false
+        allStatus = map.optionalFrom("all") ?? false
+        homeStatus = map.optionalFrom("home") ?? false
+        billStatus = map.optionalFrom("outage") ?? false
+        alertStatus = map.optionalFrom("alerts") ?? false
     }
     
 }
