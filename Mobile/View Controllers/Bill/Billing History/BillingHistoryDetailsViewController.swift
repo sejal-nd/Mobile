@@ -192,8 +192,8 @@ class BillingHistoryDetailsViewController: DismissableFormSheetViewController {
         paymentAmountLabel.text = viewModel.paymentAmountLabel
         paymentAmountDetailsLabel.text = viewModel.amountPaid
         
-        viewModel.fetchingTracker.asDriver().drive(mainStackView.rx.isHidden).addDisposableTo(bag)
-        viewModel.fetchingTracker.asDriver().filter(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(bag)
+        viewModel.fetching.drive(mainStackView.rx.isHidden).addDisposableTo(self.bag)
+        viewModel.fetching.map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(self.bag)
         
         viewModel.convenienceFee.drive(self.convenienceFeeDetailsLabel.rx.text).addDisposableTo(self.bag)
         viewModel.totalAmountPaid.drive(self.totalAmountPaidDetailsLabel.rx.text).addDisposableTo(self.bag)

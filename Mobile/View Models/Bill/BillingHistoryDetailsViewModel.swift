@@ -18,6 +18,7 @@ class BillingHistoryDetailsViewModel {
     private let billingHistory: BillingHistoryItem
     
     let fetchingTracker = ActivityTracker()
+    let fetching: Driver<Bool>
     
     private lazy var paymentDetail: Observable<PaymentDetail> = Observable.just(self.billingHistory)
         .filter { $0.encryptedPaymentId != nil }
@@ -110,6 +111,7 @@ class BillingHistoryDetailsViewModel {
     required init(paymentService: PaymentService, billingHistoryItem: BillingHistoryItem) {
         self.paymentService = paymentService
         self.billingHistory = billingHistoryItem
+        self.fetching = self.fetchingTracker.asDriver()
     }
     
     func fetchPaymentDetails(paymentId: String) -> Observable<PaymentDetail> {
