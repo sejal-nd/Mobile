@@ -77,6 +77,8 @@
 		2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */; };
 		2F4AFE5A1F068FE800603B0E /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		2F4AFE5B1F068FE900603B0E /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		2F51B4961F26E20000550C64 /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
+		2F51B4971F26E20100550C64 /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
 		2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
 		2F5A3F811EFD870200B9E49E /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
 		2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
@@ -3658,6 +3660,7 @@
 				5492E0211EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				E887C9DB1ED5CBDB002433A3 /* AddCreditCardViewController.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountPicker.swift in Sources */,
+				2F51B4971F26E20100550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				54EDD2D71ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
@@ -3866,6 +3869,7 @@
 				5492E0201EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18F091EBD12D600BE9F21 /* Control.swift in Sources */,
 				E887C9DA1ED5CBDB002433A3 /* AddCreditCardViewController.swift in Sources */,
+				2F51B4961F26E20000550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				54EDD2D61ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
