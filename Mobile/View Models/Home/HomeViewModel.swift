@@ -54,15 +54,25 @@ class HomeViewModel {
         .withLatestFrom(self.currentAccount.asObservable())
         .unwrap()
         .flatMapLatest(self.fetchAccountDetail)
+        .materialize()
+        .shareReplay(1)
     
-    private func fetchAccountDetail(forAccount account: Account) -> Observable<Event<AccountDetail>> {
+    private func fetchAccountDetail(forAccount account: Account) -> Observable<AccountDetail> {
         return accountService.fetchAccountDetail(account: account)
             .retry(.exponentialDelayed(maxCount: 2, initial: 2.0, multiplier: 1.5))
             .trackActivity(self.fetchingTracker)
-            .materialize()
+            .debug("fetchAccountDetail")
     }
     
     let showTemplateCard = Environment.sharedInstance.opco != .comEd
+    
+    private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
+        .map { ($0.error as? ServiceError)?.serviceCode == "ERR-NO-NETWORK-CONNECTION" }
+    
+    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = Observable.merge(self.accountDetailNoNetworkConnection,
+                                                                                        self.billCardViewModel.walletItemNoNetworkConnection,
+                                                                                        self.billCardViewModel.workDaysNoNetworkConnection)
+        .asDriver(onErrorDriveWith: .empty())
     
     // Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
@@ -87,9 +97,9 @@ class HomeViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private lazy var weatherSuccess: Driver<Bool> = Observable.merge(self.accountDetailEvents.errors().map { _ in false },
-                                                                           self.weatherEvents.errors().map { _ in false },
-                                                                           self.accountDetailEvents.elements().map { _ in true },
-                                                                           self.weatherEvents.elements().map { _ in true })
+                                                                     self.weatherEvents.errors().map { _ in false },
+                                                                     self.accountDetailEvents.elements().map { _ in true },
+                                                                     self.weatherEvents.elements().map { _ in true })
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showWeatherDetails: Driver<Bool> = Driver.combineLatest(self.isSwitchingAccounts, self.weatherSuccess)

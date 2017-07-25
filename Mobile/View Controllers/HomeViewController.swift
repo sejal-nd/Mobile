@@ -120,8 +120,9 @@ class HomeViewController: AccountPickerViewController {
         viewModel.isSwitchingAccounts.drive(cardStackView.rx.isHidden).addDisposableTo(bag)
         viewModel.isSwitchingAccounts.not().drive(loadingView.rx.isHidden).addDisposableTo(bag)
         
-        viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).addDisposableTo(bag)
+        viewModel.showNoNetworkConnectionState.drive(onNext: { print("---- NO NETWORK CONNECTIONa? \($0) ----")}).addDisposableTo(bag)
         
+        viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).addDisposableTo(bag)
         viewModel.isSwitchingAccounts.drive(temperatureLabel.rx.isHidden).addDisposableTo(bag)
         viewModel.isSwitchingAccounts.drive(weatherIconImage.rx.isHidden).addDisposableTo(bag)
         
