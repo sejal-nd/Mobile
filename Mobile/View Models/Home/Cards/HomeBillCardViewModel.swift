@@ -46,7 +46,6 @@ class HomeBillCardViewModel {
     
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.account.map { _ in () }
         .flatMapLatest(self.fetchOTPWalletItem)
-        .materialize()
         .shareReplay(1)
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents
@@ -61,22 +60,24 @@ class HomeBillCardViewModel {
         Observable.combineLatest(self.account,
                                  self.accountDetailElements,
                                  self.walletItem)
-        .materialize()
-        .share()
+            .materialize()
+            .share()
     
-    private func fetchOTPWalletItem() -> Observable<WalletItem?> {
+    private func fetchOTPWalletItem() -> Observable<Event<WalletItem?>> {
         return walletService.fetchWalletItems()
             .trackActivity(fetchingTracker)
-            .map { $0.first(where: { $0.isDefault }) }.debug("fetchOTPWalletItem")
+            .map { $0.first(where: { $0.isDefault }) }
+            .materialize()
     }
     
-    private func fetchWorkDays() -> Observable<[Date]> {
-        return paymentService.fetchWorkdays().trackActivity(fetchingTracker).debug("fetchWorkDays")
+    private func fetchWorkDays() -> Observable<Event<[Date]>> {
+        return paymentService.fetchWorkdays()
+            .trackActivity(fetchingTracker)
+            .materialize()
     }
     
     private lazy var workDayEvents: Observable<Event<[Date]>> = self.account.map { _ in () }
         .flatMapLatest(self.fetchWorkDays)
-        .materialize()
         .shareReplay(1)
     
     private func schedulePayment(_ payment: Payment) -> Observable<Void> {

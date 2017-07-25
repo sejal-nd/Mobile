@@ -18,6 +18,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var headerStackView: UIStackView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
     @IBOutlet weak var homeLoadingIndicator: LoadingIndicator!
+    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     
     @IBOutlet weak var weatherWidgetView: UIView!
     @IBOutlet weak var greetingLabel: UILabel!
@@ -120,7 +121,10 @@ class HomeViewController: AccountPickerViewController {
         viewModel.isSwitchingAccounts.drive(cardStackView.rx.isHidden).addDisposableTo(bag)
         viewModel.isSwitchingAccounts.not().drive(loadingView.rx.isHidden).addDisposableTo(bag)
         
-        viewModel.showNoNetworkConnectionState.drive(onNext: { print("---- NO NETWORK CONNECTIONa? \($0) ----")}).addDisposableTo(bag)
+        viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).addDisposableTo(bag)
+        viewModel.showNoNetworkConnectionState.drive(scrollView.rx.isHidden).addDisposableTo(bag)
+        viewModel.isSwitchingAccounts.not().filter(!).drive(scrollView.rx.isHidden).addDisposableTo(bag)
+        viewModel.isSwitchingAccounts.filter { $0 }.drive(noNetworkConnectionView.rx.isHidden).addDisposableTo(bag)
         
         viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).addDisposableTo(bag)
         viewModel.isSwitchingAccounts.drive(temperatureLabel.rx.isHidden).addDisposableTo(bag)
@@ -132,6 +136,11 @@ class HomeViewController: AccountPickerViewController {
         viewModel.weatherTemp.drive(temperatureLabel.rx.text).addDisposableTo(bag)
         viewModel.weatherIcon.drive(weatherIconImage.rx.image).addDisposableTo(bag)
         viewModel.greeting.drive(greetingLabel.rx.text).addDisposableTo(bag)
+        
+        noNetworkConnectionView.reload
+            .map { FetchingAccountState.switchAccount }
+            .bind(to: viewModel.fetchData)
+            .addDisposableTo(bag)
     }
     
     func configureAccessibility() {

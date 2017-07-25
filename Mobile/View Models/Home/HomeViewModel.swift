@@ -54,14 +54,13 @@ class HomeViewModel {
         .withLatestFrom(self.currentAccount.asObservable())
         .unwrap()
         .flatMapLatest(self.fetchAccountDetail)
-        .materialize()
         .shareReplay(1)
     
-    private func fetchAccountDetail(forAccount account: Account) -> Observable<AccountDetail> {
+    private func fetchAccountDetail(forAccount account: Account) -> Observable<Event<AccountDetail>> {
         return accountService.fetchAccountDetail(account: account)
             .retry(.exponentialDelayed(maxCount: 2, initial: 2.0, multiplier: 1.5))
             .trackActivity(self.fetchingTracker)
-            .debug("fetchAccountDetail")
+            .materialize()
     }
     
     let showTemplateCard = Environment.sharedInstance.opco != .comEd
