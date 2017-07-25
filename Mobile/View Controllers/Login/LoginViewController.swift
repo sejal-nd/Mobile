@@ -381,7 +381,7 @@ class LoginViewController: UIViewController {
     
     func checkForMaintenanceMode(){
         viewModel.checkForMaintenance(onSuccess: { isMaintenance in
-            if true || isMaintenance {
+            if isMaintenance {
                 self.navigationController?.view.isUserInteractionEnabled = true
                 let ad = UIApplication.shared.delegate as! AppDelegate
                 ad.showMaintenanceMode()
