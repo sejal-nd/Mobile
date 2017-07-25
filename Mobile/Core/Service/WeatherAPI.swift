@@ -172,8 +172,7 @@ struct WeatherAPI: WeatherService {
                 return "ic_sleet"
             case WeatherIconNames.TSRA.rawValue, WeatherIconNames.TSRA_SCT.rawValue, WeatherIconNames.TSRA_HI.rawValue,
                  WeatherIconNames.TS_HURR_WARN.rawValue, WeatherIconNames.TS_WARN.rawValue, WeatherIconNames.TS_WATCH.rawValue,
-                 WeatherIconNames.TS_HURR_WARN.rawValue, WeatherIconNames.HURR_WARN.rawValue, WeatherIconNames.HURR_WATCH.rawValue,
-                 WeatherIconNames.TORNADO.rawValue:
+                 WeatherIconNames.HURR_WARN.rawValue, WeatherIconNames.HURR_WATCH.rawValue, WeatherIconNames.TORNADO.rawValue:
                 return "ic_tstorms"
             case WeatherIconNames.OVC.rawValue, WeatherIconNames.WIND_OVC.rawValue:
                 return "ic_cloudy"
