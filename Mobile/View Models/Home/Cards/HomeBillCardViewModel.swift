@@ -19,7 +19,7 @@ class HomeBillCardViewModel {
     let bag = DisposeBag()
     
     private let account: Observable<Account>
-    private let accountDetailEvents: Observable<Event<AccountDetail>>
+    let accountDetailEvents: Observable<Event<AccountDetail>>
     private let accountDetailElements: Observable<AccountDetail>
     private let accountDetailErrors: Observable<Error>
     private let walletService: WalletService
@@ -65,6 +65,7 @@ class HomeBillCardViewModel {
     
     private func fetchOTPWalletItem() -> Observable<Event<WalletItem?>> {
         return walletService.fetchWalletItems()
+            .debug("fetch wallet item")
             .trackActivity(fetchingTracker)
             .map { $0.first(where: { $0.isDefault }) }
             .materialize()
@@ -72,6 +73,7 @@ class HomeBillCardViewModel {
     
     private func fetchWorkDays() -> Observable<Event<[Date]>> {
         return paymentService.fetchWorkdays()
+            .debug("fetch work days")
             .trackActivity(fetchingTracker)
             .materialize()
     }
@@ -161,6 +163,7 @@ class HomeBillCardViewModel {
                 
                 // All OpCos
                 if let pastDueAmount = billingInfo.pastDueAmount,
+                    pastDueAmount > 0,
                     let dueByDate = billingInfo.dueByDate {
                     if billingInfo.netDueAmount == pastDueAmount {
                         return .pastDueTotal
@@ -338,16 +341,26 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var dueDateText: Driver<NSAttributedString?> = self.accountDetailDriver.map {
-        if Environment.sharedInstance.opco == .bge {
-            let localizedText = NSLocalizedString("Due by %@", comment: "")
-            let dueByDateString = $0.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
-            return NSAttributedString(string: String(format: localizedText, dueByDateString),
-                                      attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
-        } else {
+        if $0.billingInfo.pastDueAmount ?? 0 > 0 {
             return NSAttributedString(string: NSLocalizedString("Due Immediately", comment: ""),
                                       attributes: [NSForegroundColorAttributeName: UIColor.errorRed,
                                                    NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+        } else if let dueByDate = $0.billingInfo.dueByDate {
+            let calendar = NSCalendar.current
+            
+            let date1 = calendar.startOfDay(for: Date())
+            let date2 = calendar.startOfDay(for: dueByDate)
+            
+            guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else {
+                return nil
+            }
+            
+            let localizedText = NSLocalizedString("Due in %d days", comment: "")
+            return NSAttributedString(string: String(format: localizedText, days),
+                                      attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
+                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+        } else {
+            return nil
         }
     }
     
@@ -365,7 +378,8 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var bankCreditCardNumberText: Driver<String?> = self.walletItemDriver.map {
-        $0?.maskedWalletItemAccountNumber
+        guard let maskedNumber = $0?.maskedWalletItemAccountNumber else { return nil }
+        return "**** " + maskedNumber
     }
     
     private(set) lazy var bankCreditCardImage: Driver<UIImage?> = self.walletItemDriver.map {
@@ -397,20 +411,31 @@ class HomeBillCardViewModel {
     private(set) lazy var convenienceFeeText: Driver<String?> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver)
         .map { accountDetail, walletItem in
             guard let walletItem = walletItem else { return nil }
+            
+            var localizedText: String? = nil
+            var convenienceFeeString: String? = nil
             switch (accountDetail.isResidential, walletItem.bankOrCard, Environment.sharedInstance.opco) {
             case (_, .card, .peco):
-                return NSLocalizedString("A 2.35 convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+                convenienceFeeString = accountDetail.billingInfo.convenienceFee?.currencyString
             case (_, .card, .comEd):
-                return NSLocalizedString("A 2.50 convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+                convenienceFeeString = accountDetail.billingInfo.convenienceFee?.currencyString
             case (true, .card, .bge):
-                return NSLocalizedString("A 1.50 convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
+                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
+                convenienceFeeString = accountDetail.billingInfo.convenienceFee?.currencyString
             case (false, .card, .bge):
-                return NSLocalizedString("A 2.4% convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
+                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
+                convenienceFeeString = accountDetail.billingInfo.convenienceFee?.percentString
             case (_, .bank, _):
                 return NSLocalizedString("No fees applied.", comment: "")
             default:
-                return nil
+                break
             }
+            
+            guard let text = localizedText, let convenienceFee = convenienceFeeString else { return nil }
+            return String(format: text, convenienceFee)
+            
     }
     
     private(set) lazy var enableOneTouchSlider: Driver<Bool> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver)
@@ -473,6 +498,14 @@ class HomeBillCardViewModel {
         }
     }
     
+    var paymentTACUrl: URL {
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            return URL(string: "https://www.speedpay.com/westernuniontac_cf.asp")!
+        case .comEd, .peco:
+            return URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
+        }
+    }
 }
 
 
