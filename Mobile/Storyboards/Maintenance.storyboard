@@ -211,6 +211,7 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                     <navigationItem key="navigationItem" title="Title" id="7Pi-wa-lIn"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="BGEInquiriesLabel" destination="SEK-X4-R8B" id="ATq-ic-ZD5"/>
                         <outlet property="BGEStackView" destination="Ud4-bu-ibZ" id="liV-tP-2wR"/>
                         <outlet property="bodyLabel" destination="GuV-2z-TTf" id="OvM-Pg-9UK"/>
                         <outlet property="headerLabel" destination="3iY-Ll-WFa" id="6KF-PY-29u"/>
