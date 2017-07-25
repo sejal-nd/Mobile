@@ -8,10 +8,14 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class BillingHistoryDetailsViewController: DismissableFormSheetViewController {
 
     var billingHistoryItem: BillingHistoryItem!
+    
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var mainStackView: UIScrollView!
     
     @IBOutlet weak var paymentTypeView: UIView!
     @IBOutlet weak var paymentTypeLabel: UILabel!
@@ -68,11 +72,13 @@ class BillingHistoryDetailsViewController: DismissableFormSheetViewController {
         self.title = NSLocalizedString("Payment Details", comment: "")
         
         viewModel = BillingHistoryDetailsViewModel.init(paymentService: ServiceFactory.createPaymentService(), billingHistoryItem: billingHistoryItem)
-
         
-        formatSections()
+//        if viewModel.isSpeedpay {
+//            mainStackView.isHidden = true
+//        }
+        formatViews()
+        styleViews()
         bindLoadingStates()
-//        populateWithData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -86,13 +92,8 @@ class BillingHistoryDetailsViewController: DismissableFormSheetViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    func formatSections() {
-        let opco = Environment.sharedInstance.opco
-        
-        if opco != .bge {
-            // show payment date, amount paid, payment status
-            // hide the rest
+    func formatViews() {
+        if !viewModel.isBGE {
             paymentTypeView.isHidden = true
             paymentTypeSeparatorLine.isHidden = true
             
@@ -107,8 +108,24 @@ class BillingHistoryDetailsViewController: DismissableFormSheetViewController {
             
             confirmationNumberView.isHidden = true
         } else {
-            
+            if viewModel.isSpeedpay {
+                paymentTypeView.isHidden = true
+                paymentTypeSeparatorLine.isHidden = true
+            } else {
+                paymentAccountView.isHidden = true
+                paymentAccountSeparatorLine.isHidden = true
+                
+                convenienceFeeView.isHidden = true
+                convenienceFeeSeparatorLine.isHidden = true
+                
+                totalAmountPaidView.isHidden = true
+                totalAmountPaidSeparatorLine.isHidden = true
+                
+            }
         }
+    }
+    
+    func styleViews() {
         
         paymentTypeLabel.textColor = .deepGray
         paymentTypeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -166,72 +183,23 @@ class BillingHistoryDetailsViewController: DismissableFormSheetViewController {
     }
     
     func bindLoadingStates() {
-                
-        //        self.viewModel.paymentDate.drive(self.paymentDateDetailsLabel.rx.text).addDisposableTo(self.bag)
         
         viewModel.paymentAccount.drive(self.paymentAccountDetailsLabel.rx.text).addDisposableTo(self.bag)
         
+        paymentTypeLabel.text = viewModel.paymentTypeLabel
         paymentTypeDetailLabel.text = viewModel.paymentType
         paymentDateDetailsLabel.text = viewModel.paymentDate
+        paymentAmountLabel.text = viewModel.paymentAmountLabel
         paymentAmountDetailsLabel.text = viewModel.amountPaid
+        
+        viewModel.fetchingTracker.asDriver().drive(mainStackView.rx.isHidden).addDisposableTo(bag)
+        viewModel.fetchingTracker.asDriver().filter(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(bag)
         
         viewModel.convenienceFee.drive(self.convenienceFeeDetailsLabel.rx.text).addDisposableTo(self.bag)
         viewModel.totalAmountPaid.drive(self.totalAmountPaidDetailsLabel.rx.text).addDisposableTo(self.bag)
         
         paymentStatusDetailsLabel.text = viewModel.paymentStatus
         confirmationNumberDetailsLabel.text = viewModel.confirmationNumber
-    }
-    
-    func populateWithData() {
-//        let accountNum = AccountsStore.sharedInstance.currentAccount.accountNumber
-//        paymentAccountDetailsLabel.text = "**** " +
-//            String(accountNum.characters.suffix(4))
-
-//        if self.billingHistoryItem.date != nil {
-//            paymentDateDetailsLabel.text = self.billingHistoryItem.date.mmDdYyyyString
-//        } else {
-//            paymentDateView.isHidden = true
-//            paymentAmountSeparatorLine.isHidden = true
-//        }
-        
-//        if let amountPaid = self.billingHistoryItem.amountPaid {
-//            paymentAmountDetailsLabel.text = "$\(String(describing: amountPaid))"
-//        } else {
-//            paymentAmountView.isHidden = true
-//            paymentAmountSeparatorLine.isHidden = true
-////            paymentAmountDetailsLabel.text = "$0.00"
-//        }
-        
-//        if let chargeAmount = self.billingHistoryItem.chargeAmount {
-//            convenienceFeeDetailsLabel.text = "$\(String(describing: chargeAmount))"
-//        } else {
-//            convenienceFeeView.isHidden = true
-//            convenienceFeeSeparatorLine.isHidden = true
-////            convenienceFeeDetailsLabel.text = "$0.00"
-//        }
-        
-//        if let totalAmountDue = self.billingHistoryItem.totalAmountDue {
-//            totalAmountPaidDetailsLabel.text = "$\(String(describing: totalAmountDue))"
-//        } else {
-//            totalAmountPaidView.isHidden = true
-//            totalAmountPaidSeparatorLine.isHidden = true
-////            totalAmountPaidDetailsLabel.text = "$0.00"
-//        }
-
-//        if self.billingHistoryItem.status != nil {
-//            paymentStatusDetailsLabel.text = self.billingHistoryItem.status
-//        } else {
-//            paymentStatusView.isHidden = true
-//            paymentAmountSeparatorLine.isHidden = true
-//        }
-        
-//        if self.billingHistoryItem.confirmationNumber != nil {
-//            confirmationNumberDetailsLabel.text = self.billingHistoryItem.confirmationNumber
-//        } else {
-//            confirmationNumberView.isHidden = true
-//        }
-        
-        print(self.billingHistoryItem.paymentType ?? "Unknown")
     }
     
 

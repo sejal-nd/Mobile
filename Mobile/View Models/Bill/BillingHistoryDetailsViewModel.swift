@@ -17,6 +17,8 @@ class BillingHistoryDetailsViewModel {
     
     private let billingHistory: BillingHistoryItem
     
+    let fetchingTracker = ActivityTracker()
+    
     private lazy var paymentDetail: Observable<PaymentDetail> = Observable.just(self.billingHistory)
         .filter { $0.encryptedPaymentId != nil }
         .map { $0.paymentId }
@@ -101,6 +103,10 @@ class BillingHistoryDetailsViewModel {
         return isCSS ? "PaymentAccountNickname" : "Payment Type"
     }
     
+    var paymentAmountLabel: String {
+        return isSpeedpay ? "Payment Amount" : "Amount Paid"
+    }
+    
     required init(paymentService: PaymentService, billingHistoryItem: BillingHistoryItem) {
         self.paymentService = paymentService
         self.billingHistory = billingHistoryItem
@@ -108,5 +114,6 @@ class BillingHistoryDetailsViewModel {
     
     func fetchPaymentDetails(paymentId: String) -> Observable<PaymentDetail> {
         return paymentService.fetchPaymentDetails(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, paymentId: paymentId)
+        .trackActivity(fetchingTracker)
     }
 }
