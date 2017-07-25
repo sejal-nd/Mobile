@@ -225,8 +225,11 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showAmount: Driver<Bool> = self.titleState.map { $0 != .billPaid }
     
-    private(set) lazy var showConvenienceFee: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation, self.showAutoPay, self.walletItemDriver)
-        .map { !$0 && !$1 && $2 != nil }
+    private(set) lazy var showConvenienceFee: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation,
+                                                                                  self.showAutoPay,
+                                                                                  self.walletItemDriver,
+                                                                                  self.showScheduledImageView)
+        .map { !$0 && !$1 && $2 != nil && !$3 }
     
     private(set) lazy var showDueDate: Driver<Bool> = self.titleState.map {
         switch $0 {
@@ -254,8 +257,10 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showBankCreditButton: Driver<Bool> = Driver.combineLatest(self.titleState,
                                                                           self.isPrecariousBillSituation,
-                                                                          self.walletItemDriver)
-        .map { $0 != .credit && !$1 && $2 != nil }
+                                                                          self.walletItemDriver,
+                                                                          self.showScheduledImageView,
+                                                                          self.showAutoPay)
+        .map { $0 != .credit && !$1 && $2 != nil && !$3 && !$4 }
     
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.titleState,
                                                                                    self.isPrecariousBillSituation,
@@ -278,11 +283,15 @@ class HomeBillCardViewModel {
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(self.titleState,
                                                                            self.isPrecariousBillSituation,
                                                                            self.showAutoPay,
-                                                                           self.walletItemDriver)
-        .map { $0 != .credit && !$1 && !$2 && $3 != nil }
+                                                                           self.walletItemDriver,
+                                                                           self.showScheduledImageView)
+        .map { $0 != .credit && !$1 && !$2 && $3 != nil && !$4 }
     
-    private(set) lazy var showScheduledImageView: Driver<Bool> = self.accountDetailDriver
-        .map { $0.billingInfo.scheduledPaymentAmount != nil && $0.billingInfo.scheduledPaymentDate != nil }
+    private(set) lazy var showScheduledImageView: Driver<Bool> = {
+        let isScheduled = self.accountDetailDriver
+            .map { $0.billingInfo.scheduledPaymentAmount != nil && $0.billingInfo.scheduledPaymentDate != nil }
+        return Driver.combineLatest(isScheduled, self.showAutoPay) { $0 && !$1 }
+    } ()
     
     private(set) lazy var showAutoPayIcon: Driver<Bool> = self.showAutoPay
     
@@ -291,7 +300,8 @@ class HomeBillCardViewModel {
     private(set) lazy var showScheduledPaymentInfoButton: Driver<Bool> = self.showScheduledImageView
     
     private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.zip(self.showOneTouchPaySlider,
-                                                                             self.enableOneTouchSlider) { $0 && $1 }
+                                                                             self.enableOneTouchSlider,
+                                                                             self.showScheduledImageView) { $0 && $1 && !$2 }
     
     
     // MARK: - View States
