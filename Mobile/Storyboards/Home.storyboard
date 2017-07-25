@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -205,7 +205,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="Cdz-VI-tMt"/>
                     <connections>
-                        <outlet property="accountPicker" destination="tbt-1n-lFy" id="6WX-Yr-ri2"/>
+                        <outlet property="accountPicker" destination="tbt-1n-lFy" id="6iu-lp-I83"/>
                         <outlet property="cardStackView" destination="Opk-mo-Gnw" id="4fa-tb-ffm"/>
                         <outlet property="greetingLabel" destination="uyw-91-O7K" id="1to-aN-5GJ"/>
                         <outlet property="headerContentView" destination="QgD-go-05Y" id="p1j-X0-Ik8"/>
