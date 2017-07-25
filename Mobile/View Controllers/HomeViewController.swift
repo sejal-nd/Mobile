@@ -160,6 +160,22 @@ class HomeViewController: AccountPickerViewController {
                 self?.present(viewController, animated: true, completion: nil)
             })
             .addDisposableTo(bag)
+        
+        billCardView.pushedViewControllers
+            .drive(onNext: { [weak self] viewController in
+                guard let `self` = self else { return }
+                
+                if let vc = viewController as? WalletViewController {
+                    vc.didUpdate
+                        .map { FetchingAccountState.switchAccount }
+                        .bind(to: self.viewModel.fetchData)
+                        .addDisposableTo(self.bag)
+                }
+                
+                self.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .addDisposableTo(bag)
+        
     }
     
     func configureAccessibility() {

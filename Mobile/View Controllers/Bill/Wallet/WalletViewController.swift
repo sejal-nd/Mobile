@@ -39,6 +39,9 @@ class WalletViewController: UIViewController {
     
     var selectedWalletItem: WalletItem?
     
+    fileprivate let didUpdateSubject = PublishSubject<Void>()
+    private(set) lazy var didUpdate: Observable<Void> = self.didUpdateSubject.asObservable()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -186,6 +189,7 @@ class WalletViewController: UIViewController {
             vc.delegate = self
         }
     }
+    
 }
 
 extension WalletViewController: UITableViewDelegate {
@@ -246,6 +250,7 @@ extension WalletViewController: AddBankAccountViewControllerDelegate {
     
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
         self.viewModel.fetchWalletItems.onNext()
+        didUpdateSubject.onNext()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
         })
@@ -257,6 +262,7 @@ extension WalletViewController: EditBankAccountViewControllerDelegate {
     
     func editBankAccountViewControllerDidEditAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String) {
         self.viewModel.fetchWalletItems.onNext()
+        didUpdateSubject.onNext()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(message)
         })
@@ -268,6 +274,7 @@ extension WalletViewController: AddCreditCardViewControllerDelegate {
     
     func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
         self.viewModel.fetchWalletItems.onNext()
+        didUpdateSubject.onNext()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Card added", comment: ""))
         })
@@ -278,6 +285,7 @@ extension WalletViewController: EditCreditCardViewControllerDelegate {
     
     func editCreditCardViewControllerDidEditAccount(_ editCreditCardViewController: EditCreditCardViewController, message: String) {
         self.viewModel.fetchWalletItems.onNext()
+        didUpdateSubject.onNext()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(message)
         })
