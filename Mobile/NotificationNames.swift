@@ -10,5 +10,5 @@ extension NSNotification.Name {
     
     static let DidReceiveInvalidAuthToken = NSNotification.Name(rawValue: "kDidReceiveInvalidAuthToken")
     static let DidTapAccountVerificationDeepLink = NSNotification.Name(rawValue: "kDidTapAccountVerificationDeepLink")
-    
+    static let DidMaintenanceModeTurnOn = NSNotification.Name(rawValue : "kDidMaintenanceModeTurnOn")
 }

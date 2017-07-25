@@ -52,6 +52,9 @@ struct MockAuthenticationService : AuthenticationService {
         }
     }
     
+    func getMaintenanceMode(completion: @escaping (ServiceResult<Maintenance>) -> Void){
+    }
+    
     func refreshAuthorization(completion: @escaping (ServiceResult<Void>) -> Void) {
         
     }

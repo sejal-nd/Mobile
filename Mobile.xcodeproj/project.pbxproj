@@ -59,6 +59,19 @@
 		01F6122E1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */; };
 		01F6122F1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */; };
 		087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087630E01E72F5D000FA7020 /* BGEUITests.swift */; };
+		0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C6C41F1D3360004793DD /* Maintenance.storyboard */; };
+		0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C6C41F1D3360004793DD /* Maintenance.storyboard */; };
+		0D79C6C71F1D3360004793DD /* Maintenance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C6C41F1D3360004793DD /* Maintenance.storyboard */; };
+		0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */; };
+		0D79C6CA1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */; };
+		0D79C6CB1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */; };
+		0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */; };
+		0D79C6CE1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */; };
+		0D79C6CF1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */; };
+		0D79C6D11F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
+		0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
+		0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
+		0D79C6D41F1FE98A004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		225FF85A1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85B1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85C1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
@@ -107,9 +120,15 @@
 		2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		2FB9B4601EFC6D77002CBD88 /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
-		387E5C411F1FABB600D6710D /* UU_OTP_animation_BGE.json in Resources */ = {isa = PBXBuildFile; fileRef = 387E5C401F1FABB600D6710D /* UU_OTP_animation_BGE.json */; };
-		387E5C431F1FABBF00D6710D /* UU_OTP_animation_ComEd.json in Resources */ = {isa = PBXBuildFile; fileRef = 387E5C421F1FABBF00D6710D /* UU_OTP_animation_ComEd.json */; };
-		387E5C451F1FABCB00D6710D /* UU_OTP_animation_PECO.json in Resources */ = {isa = PBXBuildFile; fileRef = 387E5C441F1FABCB00D6710D /* UU_OTP_animation_PECO.json */; };
+		385AF21C1F278EFD001E3619 /* uu_otp_peco.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21B1F278EFD001E3619 /* uu_otp_peco.json */; };
+		385AF21E1F278F06001E3619 /* uu_otp_comed.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21D1F278F06001E3619 /* uu_otp_comed.json */; };
+		385AF2201F278F11001E3619 /* uu_otp_bge.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21F1F278F11001E3619 /* uu_otp_bge.json */; };
+		385AF2231F27915A001E3619 /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2211F27915A001E3619 /* img_0.png */; };
+		385AF2241F27915A001E3619 /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2211F27915A001E3619 /* img_0.png */; };
+		385AF2251F27915A001E3619 /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2211F27915A001E3619 /* img_0.png */; };
+		385AF2261F27915A001E3619 /* img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2221F27915A001E3619 /* img_1.png */; };
+		385AF2271F27915A001E3619 /* img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2221F27915A001E3619 /* img_1.png */; };
+		385AF2281F27915A001E3619 /* img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2221F27915A001E3619 /* img_1.png */; };
 		387E5C471F1FCC4600D6710D /* Percentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387E5C461F1FCC4600D6710D /* Percentage.swift */; };
 		387E5C481F1FCDAD00D6710D /* Percentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387E5C461F1FCC4600D6710D /* Percentage.swift */; };
 		387E5C491F1FCDAD00D6710D /* Percentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387E5C461F1FCC4600D6710D /* Percentage.swift */; };
@@ -207,6 +226,12 @@
 		54EDD2E01ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
 		54EDD2E11ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
 		54EDD2E21ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
+		82156F1D1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
+		82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
+		82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
+		82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
+		82156F221F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
+		82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
 		822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		822BBB951EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
@@ -1082,6 +1107,10 @@
 		087630DE1E72F5D000FA7020 /* BGEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BGEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		087630E01E72F5D000FA7020 /* BGEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEUITests.swift; sourceTree = "<group>"; };
 		087630E21E72F5D000FA7020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D79C6C41F1D3360004793DD /* Maintenance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Maintenance.storyboard; sourceTree = "<group>"; };
+		0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewController.swift; sourceTree = "<group>"; };
+		0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewModel.swift; sourceTree = "<group>"; };
+		0D79C6D01F1FB761004793DD /* Maintenance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maintenance.swift; sourceTree = "<group>"; };
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
@@ -1098,9 +1127,11 @@
 		2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillingHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryViewModel.swift; path = ../More/BillingHistoryViewModel.swift; sourceTree = "<group>"; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
-		387E5C401F1FABB600D6710D /* UU_OTP_animation_BGE.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UU_OTP_animation_BGE.json; sourceTree = "<group>"; };
-		387E5C421F1FABBF00D6710D /* UU_OTP_animation_ComEd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UU_OTP_animation_ComEd.json; sourceTree = "<group>"; };
-		387E5C441F1FABCB00D6710D /* UU_OTP_animation_PECO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UU_OTP_animation_PECO.json; sourceTree = "<group>"; };
+		385AF21B1F278EFD001E3619 /* uu_otp_peco.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp_peco.json; sourceTree = "<group>"; };
+		385AF21D1F278F06001E3619 /* uu_otp_comed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp_comed.json; sourceTree = "<group>"; };
+		385AF21F1F278F11001E3619 /* uu_otp_bge.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp_bge.json; sourceTree = "<group>"; };
+		385AF2211F27915A001E3619 /* img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_0.png; sourceTree = "<group>"; };
+		385AF2221F27915A001E3619 /* img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_1.png; sourceTree = "<group>"; };
 		387E5C461F1FCC4600D6710D /* Percentage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Percentage.swift; sourceTree = "<group>"; };
 		389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedUserViewController.swift; sourceTree = "<group>"; };
 		4465DE861F1FD0090014537F /* TemplateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardView.swift; sourceTree = "<group>"; };
@@ -1131,6 +1162,8 @@
 		54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
 		54EDD2D91ECE236000CAB8A6 /* WalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCWalletService.swift; sourceTree = "<group>"; };
+		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoNetworkConnectionView.swift; sourceTree = "<group>"; };
+		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoNetworkConnectionView.xib; sourceTree = "<group>"; };
 		822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewModel.swift; sourceTree = "<group>"; };
 		822BBB9F1EFC1A01004EBBAB /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		822BBBA01EFC1A01004EBBAB /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -1736,6 +1769,15 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		385AF2291F2791A5001E3619 /* UnauthenticatedLottieText */ = {
+			isa = PBXGroup;
+			children = (
+				385AF2211F27915A001E3619 /* img_0.png */,
+				385AF2221F27915A001E3619 /* img_1.png */,
+			);
+			name = UnauthenticatedLottieText;
+			sourceTree = "<group>";
+		};
 		4465DE821F1FCF7E0014537F /* Home Cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -1967,6 +2009,7 @@
 				E8B4F4B61E5C99A00031D934 /* Outage.storyboard */,
 				E8B4F4BE1E5C9A200031D934 /* Home.storyboard */,
 				E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */,
+				0D79C6C41F1D3360004793DD /* Maintenance.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1976,6 +2019,7 @@
 			children = (
 				2FA5D8621F17D85A00A8B16B /* Home */,
 				E8067C901EC3C257004C2724 /* SplashViewController.swift */,
+				0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */,
 				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
 				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
 				E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */,
@@ -2010,6 +2054,8 @@
 				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
 				E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */,
 				2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */,
+				82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */,
+				82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2033,6 +2079,7 @@
 		8FD5AE971E54EA8C003F640D /* Lottie Animations */ = {
 			isa = PBXGroup;
 			children = (
+				385AF2291F2791A5001E3619 /* UnauthenticatedLottieText */,
 				E8FE30AD1E7875E5009D28B7 /* BGE */,
 				E8FE30AE1E7875EA009D28B7 /* ComEd */,
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
@@ -2444,6 +2491,7 @@
 				E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */,
 				2FEC69401F056EEB00C059DC /* Premise.swift */,
 				B5D07CB11F0EC2F10018B02D /* Payment.swift */,
+				0D79C6D01F1FB761004793DD /* Maintenance.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2765,6 +2813,7 @@
 				82A18E581EB9186000BE9F21 /* Bill */,
 				82A18E651EB918D400BE9F21 /* Outage */,
 				82A18E6F1EB9192B00BE9F21 /* More */,
+				0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -2796,7 +2845,7 @@
 		E8FE30AD1E7875E5009D28B7 /* BGE */ = {
 			isa = PBXGroup;
 			children = (
-				387E5C401F1FABB600D6710D /* UU_OTP_animation_BGE.json */,
+				385AF21F1F278F11001E3619 /* uu_otp_bge.json */,
 				E8494F3E1EBBCB3A0047D6BE /* outage_loading.json */,
 				E8FE30B01E787625009D28B7 /* outage.json */,
 			);
@@ -2806,7 +2855,7 @@
 		E8FE30AE1E7875EA009D28B7 /* ComEd */ = {
 			isa = PBXGroup;
 			children = (
-				387E5C421F1FABBF00D6710D /* UU_OTP_animation_ComEd.json */,
+				385AF21D1F278F06001E3619 /* uu_otp_comed.json */,
 				E8494F401EBBCB430047D6BE /* outage_loading.json */,
 				E8FE30B21E78762B009D28B7 /* outage.json */,
 			);
@@ -2816,7 +2865,7 @@
 		E8FE30AF1E7875F0009D28B7 /* PECO */ = {
 			isa = PBXGroup;
 			children = (
-				387E5C441F1FABCB00D6710D /* UU_OTP_animation_PECO.json */,
+				385AF21B1F278EFD001E3619 /* uu_otp_peco.json */,
 				E8494F421EBBCB4C0047D6BE /* outage_loading.json */,
 				E8FE30B41E78762F009D28B7 /* outage.json */,
 			);
@@ -3043,6 +3092,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */,
 				8FD5AE941E54EA5E003F640D /* Cartfile in Resources */,
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
@@ -3053,6 +3103,7 @@
 				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
+				385AF2201F278F11001E3619 /* uu_otp_bge.json in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
 				E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
@@ -3060,8 +3111,8 @@
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
-				387E5C411F1FABB600D6710D /* UU_OTP_animation_BGE.json in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				385AF2231F27915A001E3619 /* img_0.png in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				E8FE30B11E787625009D28B7 /* outage.json in Resources */,
 				B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */,
@@ -3078,6 +3129,8 @@
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				825171AC1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */,
+				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
+				385AF2261F27915A001E3619 /* img_1.png in Resources */,
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
@@ -3114,6 +3167,7 @@
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
+				385AF21C1F278EFD001E3619 /* uu_otp_peco.json in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				E841F3B11F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				E841F3A11F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
@@ -3124,6 +3178,7 @@
 				825171AE1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */,
+				385AF2251F27915A001E3619 /* img_0.png in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
@@ -3140,8 +3195,11 @@
 				E80043431E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895791E8AACFF009485E3 /* loading_blue.json in Resources */,
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
+				0D79C6C71F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				82A18EFE1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
+				385AF2281F27915A001E3619 /* img_1.png in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
+				82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				387E5C451F1FABCB00D6710D /* UU_OTP_animation_PECO.json in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
@@ -3188,8 +3246,9 @@
 				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				825171AD1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */,
-				387E5C431F1FABBF00D6710D /* UU_OTP_animation_ComEd.json in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
+				385AF21E1F278F06001E3619 /* uu_otp_comed.json in Resources */,
+				385AF2241F27915A001E3619 /* img_0.png in Resources */,
 				822BBBA51EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -3207,7 +3266,10 @@
 				E800432D1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895781E8AACFF009485E3 /* loading_blue.json in Resources */,
+				0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */,
+				385AF2271F27915A001E3619 /* img_1.png in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
+				82156F221F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				82A18EFD1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
@@ -3498,10 +3560,13 @@
 				54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
+				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				B56DD4981ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82A18ECC1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
+				82156F1D1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
+				0D79C6D11F1FB761004793DD /* Maintenance.swift in Sources */,
 				825171B91F1D25280020A6CA /* HomeBillCardViewModel.swift in Sources */,
 				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				54036BAD1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
@@ -3510,6 +3575,7 @@
 				E88B8DA11F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
 				54DF4BD11EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
+				0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				B5D07CB21F0EC2F10018B02D /* Payment.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
@@ -3608,6 +3674,7 @@
 				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				54618B281EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
 				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
+				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
@@ -3705,10 +3772,12 @@
 				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
+				0D79C6CF1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				B5D07CB41F0EC2F10018B02D /* Payment.swift in Sources */,
 				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDC1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
+				0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */,
 				54C1DF081F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
 				825171BB1F1D25280020A6CA /* HomeBillCardViewModel.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
@@ -3717,6 +3786,7 @@
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				826DCCEF1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
 				E841F3AC1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */,
+				0D79C6CB1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD461EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
@@ -3817,6 +3887,7 @@
 				54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				54618B271EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
 				389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
+				82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
@@ -3914,10 +3985,12 @@
 				82A18E6C1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
+				0D79C6CE1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				B5D07CB31F0EC2F10018B02D /* Payment.swift in Sources */,
 				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
+				0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */,
 				54C1DF071F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
 				825171BA1F1D25280020A6CA /* HomeBillCardViewModel.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
@@ -3926,6 +3999,7 @@
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				826DCCEE1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
 				E841F3AB1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */,
+				0D79C6CA1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DB1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				E8CA07DE1E9BD10000A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD451EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
@@ -4020,6 +4094,7 @@
 				E8F51EEB1ECA40AF0080AB3E /* PaperlessEBillViewModel.swift in Sources */,
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
+				0D79C6D41F1FE98A004793DD /* Maintenance.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				E8F51EEF1ECA5AE40080AB3E /* Fonts.swift in Sources */,
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,

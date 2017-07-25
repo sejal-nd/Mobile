@@ -22,8 +22,6 @@ class HomeViewModel {
     let fetchData = PublishSubject<FetchingAccountState>()
     let currentAccount = Variable<Account?>(nil)
     
-    let refreshTracker = ActivityTracker()
-    let switchAccountsTracker = ActivityTracker()
     let fetchingTracker = ActivityTracker()
     
     required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService) {
@@ -41,10 +39,22 @@ class HomeViewModel {
     
     private(set) lazy var templateCardViewModel: TemplateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents)
     
+    private(set) lazy var isRefreshing: Driver<Bool> = Observable.combineLatest(self.fetchingTracker.asObservable(),
+                                                                                self.fetchData.asObservable())
+        .map { $0 && $1 == .refresh }
+        .asDriver(onErrorJustReturn: false)
+    
+    private(set) lazy var isSwitchingAccounts: Driver<Bool> = Observable.combineLatest(self.fetchingTracker.asObservable(),
+                                                                                       self.fetchData.asObservable())
+        .map { $0 && $1 == .switchAccount }
+        .asDriver(onErrorJustReturn: false)
+    
+    
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.fetchData
         .withLatestFrom(self.currentAccount.asObservable())
         .unwrap()
         .flatMapLatest(self.fetchAccountDetail)
+        .shareReplay(1)
     
     private func fetchAccountDetail(forAccount account: Account) -> Observable<Event<AccountDetail>> {
         return accountService.fetchAccountDetail(account: account)
@@ -55,11 +65,23 @@ class HomeViewModel {
     
     let showTemplateCard = Environment.sharedInstance.opco != .comEd
     
+    private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+    
+    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = Observable.merge(self.accountDetailNoNetworkConnection,
+                                                                                        self.billCardViewModel.walletItemNoNetworkConnection,
+                                                                                        self.billCardViewModel.workDaysNoNetworkConnection)
+        .asDriver(onErrorDriveWith: .empty())
+    
     // Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
         .map { $0.address ?? "" }
-        .flatMapLatest(self.weatherService.fetchWeather)
+        .flatMapLatest(self.fetchWeather)
         .materialize()
+    
+    private func fetchWeather(forAddress address: String) -> Observable<WeatherItem> {
+        return weatherService.fetchWeather(address: address).trackActivity(self.fetchingTracker)
+    }
     
     private(set) lazy var greeting: Driver<String?> = self.weatherEvents
         .map { _ in Date().localizedGreeting }
@@ -72,5 +94,14 @@ class HomeViewModel {
     private(set) lazy var weatherIcon: Driver<UIImage?> = self.weatherEvents.elements()
         .map { $0.iconName != WeatherIconNames.UNKNOWN.rawValue ? UIImage(named: $0.iconName) : nil }
         .asDriver(onErrorDriveWith: .empty())
+    
+    private lazy var weatherSuccess: Driver<Bool> = Observable.merge(self.accountDetailEvents.errors().map { _ in false },
+                                                                     self.weatherEvents.errors().map { _ in false },
+                                                                     self.accountDetailEvents.elements().map { _ in true },
+                                                                     self.weatherEvents.elements().map { _ in true })
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showWeatherDetails: Driver<Bool> = Driver.combineLatest(self.isSwitchingAccounts, self.weatherSuccess)
+        .map { !$0 && $1 }
     
 }

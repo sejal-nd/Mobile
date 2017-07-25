@@ -18,6 +18,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var headerStackView: UIStackView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
     @IBOutlet weak var homeLoadingIndicator: LoadingIndicator!
+    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     
     @IBOutlet weak var weatherWidgetView: UIView!
     @IBOutlet weak var greetingLabel: UILabel!
@@ -25,6 +26,8 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var weatherIconImage: UIImageView!
     
     @IBOutlet weak var cardStackView: UIStackView!
+    
+    @IBOutlet weak var loadingView: UIView!
     
     var billCardView: HomeBillCardView!
     var templateCardView: TemplateCardView!
@@ -52,7 +55,6 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -91,6 +93,8 @@ class HomeViewController: AccountPickerViewController {
         styleViews()
         bindLoadingStates()
         configureAccessibility()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,27 +102,52 @@ class HomeViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
+    }
+    
+    func killRefresh() -> Void {
+        self.refreshControl?.endRefreshing()
+        self.scrollView.alwaysBounceVertical = true
+    }
+    
     func styleViews() {
+        view.backgroundColor = .primaryColor
         primaryColorHeaderView.backgroundColor = .primaryColor
-        scrollView.backgroundColor = .primaryColor
-        weatherWidgetView.backgroundColor = .primaryColor
-        headerStackView.backgroundColor = .primaryColor
-        scrollView.rx.contentOffset
-            .asDriver()
-            .map { $0.y < 0 ? .primaryColor: .softGray }
-            .drive(onNext: { [weak self] color in self?.scrollView.backgroundColor = color })
-            .addDisposableTo(bag)
+        loadingView.layer.cornerRadius = 2
+        loadingView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
     }
     
     func bindLoadingStates() {
         topLoadingIndicatorView.isHidden = true
-        viewModel.fetchingTracker.asDriver().filter(!).drive(rx.isRefreshing).addDisposableTo(bag)
-        viewModel.switchAccountsTracker.asDriver().not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
-        viewModel.switchAccountsTracker.asDriver().drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
+        viewModel.isRefreshing.filter(!).drive(rx.isRefreshing).addDisposableTo(bag)
+        viewModel.isSwitchingAccounts.not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
+        viewModel.isSwitchingAccounts.drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
+        viewModel.isSwitchingAccounts.drive(cardStackView.rx.isHidden).addDisposableTo(bag)
+        viewModel.isSwitchingAccounts.not().drive(loadingView.rx.isHidden).addDisposableTo(bag)
         
-        viewModel.weatherTemp.debug("*****").drive(temperatureLabel.rx.text).addDisposableTo(bag)
+        viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).addDisposableTo(bag)
+        viewModel.showNoNetworkConnectionState.drive(scrollView.rx.isHidden).addDisposableTo(bag)
+        viewModel.isSwitchingAccounts.not().filter(!).drive(scrollView.rx.isHidden).addDisposableTo(bag)
+        viewModel.isSwitchingAccounts.filter { $0 }.drive(noNetworkConnectionView.rx.isHidden).addDisposableTo(bag)
+        
+        viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).addDisposableTo(bag)
+        viewModel.isSwitchingAccounts.drive(temperatureLabel.rx.isHidden).addDisposableTo(bag)
+        viewModel.isSwitchingAccounts.drive(weatherIconImage.rx.isHidden).addDisposableTo(bag)
+        
+        viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).addDisposableTo(bag)
+        viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).addDisposableTo(bag)
+        
+        viewModel.weatherTemp.drive(temperatureLabel.rx.text).addDisposableTo(bag)
         viewModel.weatherIcon.drive(weatherIconImage.rx.image).addDisposableTo(bag)
         viewModel.greeting.drive(greetingLabel.rx.text).addDisposableTo(bag)
+        
+        noNetworkConnectionView.reload
+            .map { FetchingAccountState.switchAccount }
+            .bind(to: viewModel.fetchData)
+            .addDisposableTo(bag)
     }
     
     func configureAccessibility() {

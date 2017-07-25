@@ -28,13 +28,13 @@ class UnauthenticatedUserViewController: UIViewController {
         var lottieName = ""
         switch Environment.sharedInstance.opco {
         case .bge:
-            lottieName = "UU_OTP_animation_BGE"
+            lottieName = "uu_otp_bge"
             break
         case .comEd:
-            lottieName = "UU_OTP_animation_ComEd"
+            lottieName = "uu_otp_comed"
             break
         case .peco:
-            lottieName = "UU_OTP_animation_PECO"
+            lottieName = "uu_otp_peco"
             break
         }
         

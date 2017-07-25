@@ -103,6 +103,19 @@ class LoginViewModel {
         return fingerprintService.isTouchIDEnabled()
     }
     
+    func checkForMaintenance(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
+        var isMaintenanceMode = false
+        
+        authService.getMaintenanceMode()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { maintenanceInfo in
+                isMaintenanceMode = maintenanceInfo.allStatus
+                onSuccess(isMaintenanceMode)
+            }, onError: { error in
+                _ = error as! ServiceError
+            }).addDisposableTo(disposeBag)
+    }
+    
     func validateRegistration(guid: String, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         registrationService.validateConfirmationEmail(guid)
             .observeOn(MainScheduler.instance)

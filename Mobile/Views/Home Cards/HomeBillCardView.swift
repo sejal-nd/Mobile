@@ -155,6 +155,10 @@ class HomeBillCardView: UIView {
         // Show/Hide Subviews
         viewModel.billNotReady.not().drive(billNotReadyStack.rx.isHidden).addDisposableTo(bag)
         viewModel.showErrorState.not().drive(errorStack.rx.isHidden).addDisposableTo(bag)
+        Driver.zip(viewModel.billNotReady, viewModel.showErrorState)
+            .map { $0 || $1 }
+            .drive(infoStack.rx.isHidden)
+            .addDisposableTo(bag)
         viewModel.showAlertIcon.not().drive(alertContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showPaymentPendingIcon.not().drive(paymentPendingContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showBillPaidIcon.not().drive(paymentConfirmationContainer.rx.isHidden).addDisposableTo(bag)
