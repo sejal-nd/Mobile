@@ -33,8 +33,24 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         populateHelperLabels()
         
         prepareTextFieldsForInput()
+        
+        checkForMaintenanceMode()
     }
 
+    func checkForMaintenanceMode(){
+        viewModel.checkForMaintenance(onSuccess: { isMaintenance in
+            if isMaintenance {
+                self.navigationController?.view.isUserInteractionEnabled = true
+                let ad = UIApplication.shared.delegate as! AppDelegate
+                ad.showMaintenanceMode()
+            }
+        }, onError: { errorMessage in
+            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        })
+    }
+    
     /// Helpers
     func setupNavigationButtons() {
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))

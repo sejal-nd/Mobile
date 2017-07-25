@@ -39,6 +39,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, fullString.characters.count))
         
         bodyLabel.attributedText = attrString
+        
     }
     
     private var emailAddress: String {
