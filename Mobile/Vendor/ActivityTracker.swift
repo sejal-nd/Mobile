@@ -59,14 +59,14 @@ public class ActivityTracker: SharedSequenceConvertibleType {
     private func increment() {
         _lock.lock()
         _variable.value = _variable.value + 1
-        print("activity increment: \(_variable.value)")
+        dLog(message: "activity increment: \(_variable.value)")
         _lock.unlock()
     }
     
     private func decrement() {
         _lock.lock()
         _variable.value = _variable.value - 1
-        print("activity decrement: \(_variable.value)")
+        dLog(message: "activity decrement: \(_variable.value)")
         _lock.unlock()
     }
     
