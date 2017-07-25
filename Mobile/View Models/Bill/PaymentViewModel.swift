@@ -845,17 +845,16 @@ class PaymentViewModel {
     
     var reviewPaymentSubmitButtonEnabled: Driver<Bool> {
         return Driver.combineLatest(shouldShowTermsConditionsSwitchView, termsConditionsSwitchValue.asDriver(), isOverpaying, overpayingSwitchValue.asDriver(), isActiveSeveranceUser, activeSeveranceSwitchValue.asDriver()).map {
-            var isValid = true
-            if $0 {
-                isValid = $1
+            if $0 && !$1 {
+                return false
             }
-            if $2 {
-                isValid = $3
+            if $2 && !$3 {
+                return false
             }
-            if $4 {
-                isValid = $5
+            if $4 && !$5 {
+                return false
             }
-            return isValid
+            return true
         }
     }
     
@@ -954,8 +953,11 @@ class PaymentViewModel {
     }
     
     var reviewPaymentFooterLabelText: Driver<String?> {
-        return bankWorkflow.map {
-            if Environment.sharedInstance.opco == .bge && $0 {
+        return cardWorkflow.map {
+            if Environment.sharedInstance.opco == .bge {
+                if $0 {
+                    return NSLocalizedString("You hereby authorize a payment debit entry to your Credit/Debit/Share Draft account. You understand that if the payment under this authorization is returned or otherwise dishonored, you will promptly remit the payment due plus any fees due under your account.", comment: "")
+                }
                 return nil
             } else {
                 return NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
