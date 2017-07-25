@@ -63,11 +63,10 @@ class HomeBillCardViewModel {
     }
     
     private func fetchWorkDays() -> Observable<[Date]> {
-        return paymentService.fetchWorkdays()
-            .trackActivity(fetchingTracker)
+        return paymentService.fetchWorkdays().trackActivity(fetchingTracker)
     }
     
-    private(set) lazy var workDays: Observable<[Date]> = self.account.map { _ in () }.flatMapLatest(self.fetchWorkDays)
+    private lazy var workDays: Observable<[Date]> = self.account.map { _ in () }.flatMapLatest(self.fetchWorkDays)
     
     private func schedulePayment(_ payment: Payment) -> Observable<Void> {
         let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
@@ -94,9 +93,15 @@ class HomeBillCardViewModel {
         }
         .flatMapLatest(self.schedulePayment)
     
-    private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = self.workDays
-        .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty && Environment.sharedInstance.opco == .peco }
-        .asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
+        if Environment.sharedInstance.opco != .peco {
+            return Driver.just(false)
+        } else {
+            return self.workDays
+                .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty }
+                .asDriver(onErrorDriveWith: .empty())
+        }
+    }()
     
     //MARK: - Loaded States
     
