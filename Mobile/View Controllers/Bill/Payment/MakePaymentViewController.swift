@@ -274,6 +274,7 @@ class MakePaymentViewController: UIViewController {
         done.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.actionBlue], for: .normal)
         doneToolbar.items = [flexSpace, done]
         doneToolbar.sizeToFit()
+        paymentAmountTextField.textField.inputAccessoryView = doneToolbar
         cvvTextField.textField.inputAccessoryView = doneToolbar
     }
     

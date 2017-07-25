@@ -55,7 +55,7 @@ class PaymentViewModel {
         
         if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
             amountDue = Variable(netDueAmount)
-            paymentAmount = Variable(String(netDueAmount))
+            paymentAmount = Variable(String.init(format: "%.02f", netDueAmount))
         } else {
             amountDue = Variable(0)
             paymentAmount = Variable("")
@@ -114,7 +114,7 @@ class PaymentViewModel {
                 
                 if let walletItems = self.walletItems.value, self.selectedWalletItem.value == nil {
                     if let paymentDetail = self.paymentDetail.value, self.paymentId.value != nil { // Modifiying Payment
-                        self.paymentAmount.value = String(paymentDetail.paymentAmount)
+                        self.paymentAmount.value = String.init(format: "%.02f", paymentDetail.paymentAmount)
                         self.formatPaymentAmount()
                         self.paymentDate.value = paymentDetail.paymentDate!
                         for item in walletItems {
@@ -312,7 +312,7 @@ class PaymentViewModel {
             if isFixed {
                 paymentDate = Calendar.current.startOfDay(for: Date())
             }
-            let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: Double(self.paymentAmount.value)!, paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: self.selectedWalletItem.value!.walletItemID!, cvv: self.cvv.value)
+            let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: self.paymentAmountDouble(), paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: self.selectedWalletItem.value!.walletItemID!, cvv: self.cvv.value)
             self.paymentService.updatePayment(paymentId: self.paymentId.value!, payment: payment)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { _ in
