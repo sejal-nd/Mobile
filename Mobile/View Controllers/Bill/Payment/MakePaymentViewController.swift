@@ -10,13 +10,7 @@ import RxSwift
 import RxCocoa
 import AVFoundation
 
-protocol MakePaymentViewControllerDelegate: class {
-    func makePaymentViewControllerDidCancelPayment(_ makePaymentViewController: MakePaymentViewController)
-}
-
 class MakePaymentViewController: UIViewController {
-    
-    weak var delegate: MakePaymentViewControllerDelegate?
     
     let disposeBag = DisposeBag()
     
@@ -491,7 +485,16 @@ class MakePaymentViewController: UIViewController {
             LoadingView.show()
             self.viewModel.cancelPayment(onSuccess: { 
                 LoadingView.hide()
-                self.delegate?.makePaymentViewControllerDidCancelPayment(self)
+
+                // Always pop back to the root billing history screen here (because MoreBillingHistoryViewController does not refetch data)
+                for vc in (self.navigationController?.viewControllers)! {
+                    guard let dest = vc as? BillingHistoryViewController else {
+                        continue
+                    }
+                    dest.onPaymentDelete()
+                    self.navigationController?.popToViewController(dest, animated: true)
+                    return
+                }
                 self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
                 LoadingView.hide()

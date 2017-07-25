@@ -195,7 +195,6 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
     
     private func showModifyScheduledItem(billingItem: BillingHistoryItem) {
         let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
-        paymentVc.delegate = self
         paymentVc.accountDetail = accountDetail
         paymentVc.paymentId = billingItem.paymentId
         if let walletItemId = billingItem.walletItemId, let paymentAmount = billingItem.amountPaid {
@@ -230,13 +229,5 @@ extension MoreBillingHistoryViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
-    }
-}
-
-extension MoreBillingHistoryViewController: MakePaymentViewControllerDelegate {
-    func makePaymentViewControllerDidCancelPayment(_ makePaymentViewController: MakePaymentViewController) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Scheduled payment deleted", comment: ""))
-        })
     }
 }
