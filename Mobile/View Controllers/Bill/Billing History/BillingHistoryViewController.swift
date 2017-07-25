@@ -138,9 +138,13 @@ extension BillingHistoryViewController: UITableViewDelegate {
                 guard let billingItem = self.billingHistory?.upcoming[indexPath.row], 
                     let status = billingItem.status else { return }
                 
-                //pending payments do not get a tap so we only handle scheduled payments
+                //pending payments do not get a tap so we only handle scheduled/cancelled payments
                 if status == BillingHistoryProperties.StatusProcessing.rawValue || status == BillingHistoryProperties.StatusSCHEDULED.rawValue {
                     handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
+                } else if status == BillingHistoryProperties.StatusCanceled.rawValue || 
+                    status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
+                    status == BillingHistoryProperties.StatusFailed.rawValue {
+                    showBillingDetails()
                 }
             }
         }
@@ -349,11 +353,14 @@ extension BillingHistoryViewController: UITableViewDataSource {
         label.font = label.font.withSize(14)
         label.textColor = UIColor.deepGray
         
-        //let titleText = section == 0 ? "View All (\(self.billingHistory!.upcoming.count))" : "View More" 
         var titleText = ""
         if section == 0 {
-            if !accountDetail.isBGEasy {
+            if let upcomingCount = billingHistory?.upcoming.count, 
+                upcomingCount > 3, 
+                !accountDetail.isBGEasy {
                 titleText = "View All (\(self.billingHistory!.upcoming.count))"
+            } else {
+                button.isEnabled = false
             }
         } else {
             titleText = "View More"

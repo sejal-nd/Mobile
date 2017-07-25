@@ -50,6 +50,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
         dateLabel.text = ""
         titleLabel.text = ""
         amountLabel.text = ""
+        amountLabel.textColor = UIColor.black
         iconImageView.image = nil
     }
     
@@ -100,6 +101,12 @@ class BillingHistoryTableViewCell: UITableViewCell {
             titleLabel.text = PAYMENT_PROCESSING
             self.amountLabel.text = amountPaid
             dateLabel.isHidden = true
+        } else if status == BillingHistoryProperties.StatusCanceled.rawValue || 
+            status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
+            status == BillingHistoryProperties.StatusFailed.rawValue {
+            iconImageView.image = #imageLiteral(resourceName: "ic_paymentcanceledfailed")
+            titleLabel.text = PAYMENT
+            amountLabel.text = amountPaid
         } else { //status = scheduled?  hopefully
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = SCHEDULED_PAYMENT
