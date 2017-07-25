@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //printFonts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        
         
         return true
     }
@@ -133,6 +135,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("Your session has expired. Please sign in again.", comment: ""), preferredStyle: .alert)
         alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+    }
+    
+    func showMaintenanceMode(){
+        LoadingView.hide()
+    
+        if let rootVC = window?.rootViewController {
+            var topmostVC = rootVC
+            while let presentedVC = topmostVC.presentedViewController {
+                topmostVC = presentedVC
+            }
+            
+            let maintenanceStoryboard = UIStoryboard(name: "Maintenance",bundle: nil)
+            let vc = maintenanceStoryboard.instantiateInitialViewController()!
+            topmostVC.present(vc, animated: true, completion: nil)
+        }
     }
     
     func resetNavigation(sendToLogin: Bool = false) {

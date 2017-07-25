@@ -117,6 +117,8 @@ class LoginViewController: UIViewController {
         
         touchIDLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         touchIDLabel.isAccessibilityElement = false // The button itself will read "Touch ID"
+
+        checkForMaintenanceMode()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -136,6 +138,8 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         
         setNeedsStatusBarAppearanceUpdate()
+//        checkForMaintenanceMode()
+        
         
         navigationController?.setNavigationBarHidden(false, animated: true)
         
@@ -376,6 +380,21 @@ class LoginViewController: UIViewController {
         scrollView.scrollIndicatorInsets = .zero
     }
     
+    func checkForMaintenanceMode(){
+        viewModel.checkForMaintenance(onSuccess: { isMaintenance in
+            if isMaintenance {
+                self.navigationController?.view.isUserInteractionEnabled = true
+                let ad = UIApplication.shared.delegate as! AppDelegate
+                ad.showMaintenanceMode()
+            }
+        }, onError: { errorMessage in
+            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        })
+    }
+    
+    
     // MARK: - Other
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -385,6 +404,7 @@ class LoginViewController: UIViewController {
     func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
         return a + (b - a) * t;
     }
+    
     
     // MARK: - Navigation
     

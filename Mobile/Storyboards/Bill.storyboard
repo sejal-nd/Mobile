@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -3378,23 +3378,63 @@ Budget Billing?</string>
                         <viewControllerLayoutGuide type="bottom" id="bFz-2x-G7g"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qyT-bL-ygT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="844-zQ-P3R">
-                                <rect key="frame" x="0.0" y="5" width="379" height="662"/>
+                                <rect key="frame" x="0.0" y="5" width="379" height="731"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1I-Xk-I4g" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="379" height="479"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="379" height="544"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sWB-Do-Lzi">
-                                                <rect key="frame" x="20" y="5" width="359" height="454"/>
+                                                <rect key="frame" x="20" y="5" width="359" height="519"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQX-th-1K0" userLabel="Payment Account View">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XjP-e3-T11" userLabel="Payment Type View">
                                                         <rect key="frame" x="0.0" y="0.0" width="359" height="64"/>
                                                         <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="FyC-vH-E7I">
+                                                                <rect key="frame" x="0.0" y="-5" width="359" height="74.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQZ-WB-PVH" userLabel="Payment Type Label">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVb-Yd-4LM">
+                                                                        <rect key="frame" x="0.0" y="24.5" width="359" height="50"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="zVb-Yd-4LM" firstAttribute="top" secondItem="sQZ-WB-PVH" secondAttribute="bottom" constant="4" id="8cH-Kn-0PM"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="FyC-vH-E7I" secondAttribute="trailing" id="5vv-OO-LhC"/>
+                                                            <constraint firstAttribute="height" constant="64" id="9LN-lC-yjN"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="T5P-bS-cxV"/>
+                                                            <constraint firstItem="FyC-vH-E7I" firstAttribute="leading" secondItem="XjP-e3-T11" secondAttribute="leading" id="YXx-YA-loK"/>
+                                                            <constraint firstItem="FyC-vH-E7I" firstAttribute="centerY" secondItem="XjP-e3-T11" secondAttribute="centerY" id="dEF-iE-tk7"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="odx-Zf-mgS" userLabel="Separator View">
+                                                        <rect key="frame" x="0.0" y="64" width="359" height="1"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" priority="999" constant="1" id="pSg-eO-5HG"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQX-th-1K0" userLabel="Payment Account View">
+                                                        <rect key="frame" x="0.0" y="65" width="359" height="64"/>
+                                                        <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vxm-7B-Nuf">
-                                                                <rect key="frame" x="0.0" y="9.5" width="359" height="45"/>
+                                                                <rect key="frame" x="0.0" y="-5" width="359" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhV-92-nLf" userLabel="Payment Account">
                                                                         <rect key="frame" x="0.0" y="0.0" width="134.5" height="20.5"/>
@@ -3402,8 +3442,8 @@ Budget Billing?</string>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AkZ-MO-r7Z">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="42" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AkZ-MO-r7Z">
+                                                                        <rect key="frame" x="0.0" y="24.5" width="359" height="50"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -3424,17 +3464,17 @@ Budget Billing?</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="nka-dH-aZj" userLabel="Separator View">
-                                                        <rect key="frame" x="0.0" y="64" width="359" height="1"/>
+                                                        <rect key="frame" x="0.0" y="129" width="359" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="999" constant="1" id="hDf-d1-jA4"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3QE-qF-Ndm" userLabel="Payment Date View">
-                                                        <rect key="frame" x="0.0" y="65" width="359" height="64"/>
+                                                        <rect key="frame" x="0.0" y="130" width="359" height="64"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="FmK-f8-hfd">
-                                                                <rect key="frame" x="0.0" y="10" width="359" height="45"/>
+                                                                <rect key="frame" x="0.0" y="-4.5" width="359" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oiB-jk-g9H">
                                                                         <rect key="frame" x="0.0" y="0.0" width="107" height="20.5"/>
@@ -3442,8 +3482,8 @@ Budget Billing?</string>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTv-xo-XZ5">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="42" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTv-xo-XZ5">
+                                                                        <rect key="frame" x="0.0" y="24.5" width="359" height="50"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -3461,17 +3501,17 @@ Budget Billing?</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZEX-tO-f8j" userLabel="Separator View">
-                                                        <rect key="frame" x="0.0" y="129" width="359" height="1"/>
+                                                        <rect key="frame" x="0.0" y="194" width="359" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="999" constant="1" id="iPC-VN-N1a"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uAt-gn-Tuy" userLabel="Payment Amount View">
-                                                        <rect key="frame" x="0.0" y="130" width="359" height="64"/>
+                                                        <rect key="frame" x="0.0" y="195" width="359" height="64"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="4KJ-ju-rJf">
-                                                                <rect key="frame" x="0.0" y="9.5" width="359" height="45"/>
+                                                                <rect key="frame" x="0.0" y="-5" width="359" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9M-EQ-LMx">
                                                                         <rect key="frame" x="0.0" y="0.0" width="131" height="20.5"/>
@@ -3479,8 +3519,8 @@ Budget Billing?</string>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJV-ob-eP6">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="42" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJV-ob-eP6">
+                                                                        <rect key="frame" x="0.0" y="24.5" width="359" height="50"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -3498,17 +3538,17 @@ Budget Billing?</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yiM-2P-VdC" userLabel="Separator View">
-                                                        <rect key="frame" x="0.0" y="194" width="359" height="1"/>
+                                                        <rect key="frame" x="0.0" y="259" width="359" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="999" constant="1" id="DlV-Fg-oWv"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmJ-Jg-QL8" userLabel="Convenience Fee View">
-                                                        <rect key="frame" x="0.0" y="195" width="359" height="64"/>
+                                                        <rect key="frame" x="0.0" y="260" width="359" height="64"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="oel-4q-rja">
-                                                                <rect key="frame" x="0.0" y="9.5" width="359" height="45"/>
+                                                                <rect key="frame" x="0.0" y="-5" width="359" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aai-Rm-yvo">
                                                                         <rect key="frame" x="0.0" y="0.0" width="131.5" height="20.5"/>
@@ -3516,8 +3556,8 @@ Budget Billing?</string>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uke-FH-oLp">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="42" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uke-FH-oLp">
+                                                                        <rect key="frame" x="0.0" y="24.5" width="359" height="50"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -3535,17 +3575,17 @@ Budget Billing?</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF6-3k-Qyp" userLabel="Separator View">
-                                                        <rect key="frame" x="0.0" y="259" width="359" height="1"/>
+                                                        <rect key="frame" x="0.0" y="324" width="359" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="999" constant="1" id="14E-L9-YqJ"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3R-WG-mv4" userLabel="Amount Paid View">
-                                                        <rect key="frame" x="0.0" y="260" width="359" height="64"/>
+                                                        <rect key="frame" x="0.0" y="325" width="359" height="64"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2Dr-w7-ppD">
-                                                                <rect key="frame" x="0.0" y="9.5" width="359" height="45"/>
+                                                                <rect key="frame" x="0.0" y="-5" width="359" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Total Amount Paid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYL-5t-ePd">
                                                                         <rect key="frame" x="0.0" y="0.0" width="139.5" height="20.5"/>
@@ -3553,8 +3593,8 @@ Budget Billing?</string>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLI-bK-ReK">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="42" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLI-bK-ReK">
+                                                                        <rect key="frame" x="0.0" y="24.5" width="359" height="50"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -3572,17 +3612,17 @@ Budget Billing?</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WyB-Ty-ej0" userLabel="Separator View">
-                                                        <rect key="frame" x="0.0" y="324" width="359" height="1"/>
+                                                        <rect key="frame" x="0.0" y="389" width="359" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="999" constant="1" id="Kuy-Uc-mOy"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYD-v0-HHW" userLabel="Payment Status View">
-                                                        <rect key="frame" x="0.0" y="325" width="359" height="64"/>
+                                                        <rect key="frame" x="0.0" y="390" width="359" height="64"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="bIL-xm-JNF">
-                                                                <rect key="frame" x="0.0" y="9.5" width="359" height="45"/>
+                                                                <rect key="frame" x="0.0" y="-5" width="359" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxK-go-9vS">
                                                                         <rect key="frame" x="0.0" y="0.0" width="120.5" height="20.5"/>
@@ -3590,8 +3630,8 @@ Budget Billing?</string>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zam-xG-TiC">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="42" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zam-xG-TiC">
+                                                                        <rect key="frame" x="0.0" y="24.5" width="359" height="50"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -3609,17 +3649,17 @@ Budget Billing?</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbY-W5-4LA" userLabel="Separator View">
-                                                        <rect key="frame" x="0.0" y="389" width="359" height="1"/>
+                                                        <rect key="frame" x="0.0" y="454" width="359" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="999" constant="1" id="cnz-bb-pL7"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9u-dE-IeU" userLabel="Confirmation Number View">
-                                                        <rect key="frame" x="0.0" y="390" width="359" height="64"/>
+                                                        <rect key="frame" x="0.0" y="455" width="359" height="64"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vvh-Um-xag">
-                                                                <rect key="frame" x="0.0" y="9.5" width="359" height="45"/>
+                                                                <rect key="frame" x="0.0" y="-5" width="359" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Confirmation Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7d-qD-WYg">
                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="20.5"/>
@@ -3627,8 +3667,8 @@ Budget Billing?</string>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwQ-M5-Anv">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="42" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwQ-M5-Anv">
+                                                                        <rect key="frame" x="0.0" y="24.5" width="359" height="50"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -3650,10 +3690,13 @@ Budget Billing?</string>
                                                     <constraint firstAttribute="trailing" secondItem="i9u-dE-IeU" secondAttribute="trailing" priority="999" id="0fV-aE-QkC"/>
                                                     <constraint firstAttribute="trailing" secondItem="WyB-Ty-ej0" secondAttribute="trailing" id="0qJ-Uz-KNp"/>
                                                     <constraint firstItem="uAt-gn-Tuy" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" priority="999" id="1My-kh-jve"/>
+                                                    <constraint firstAttribute="trailing" secondItem="odx-Zf-mgS" secondAttribute="trailing" id="3cj-sX-9Hg"/>
                                                     <constraint firstItem="vmJ-Jg-QL8" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" priority="999" id="3gL-KY-Bmh"/>
                                                     <constraint firstAttribute="trailing" secondItem="vmJ-Jg-QL8" secondAttribute="trailing" priority="999" id="90m-Ti-7yg"/>
                                                     <constraint firstAttribute="trailing" secondItem="nka-dH-aZj" secondAttribute="trailing" id="BOn-wT-NtT"/>
+                                                    <constraint firstItem="XjP-e3-T11" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="CQh-BG-0qO"/>
                                                     <constraint firstAttribute="trailing" secondItem="o3R-WG-mv4" secondAttribute="trailing" priority="999" id="FtS-Ii-Kan"/>
+                                                    <constraint firstAttribute="trailing" secondItem="XjP-e3-T11" secondAttribute="trailing" id="I5a-uS-Sce"/>
                                                     <constraint firstItem="dbY-W5-4LA" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="MCX-a3-WXY"/>
                                                     <constraint firstItem="oQX-th-1K0" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" priority="999" id="MLh-ll-tyJ"/>
                                                     <constraint firstAttribute="trailing" secondItem="uAt-gn-Tuy" secondAttribute="trailing" priority="999" id="OJp-Sz-OLr"/>
@@ -3672,6 +3715,7 @@ Budget Billing?</string>
                                                     <constraint firstAttribute="trailing" secondItem="hF6-3k-Qyp" secondAttribute="trailing" id="llD-1R-FKb"/>
                                                     <constraint firstAttribute="trailing" secondItem="3QE-qF-Ndm" secondAttribute="trailing" priority="999" id="qK5-cs-dN5"/>
                                                     <constraint firstItem="o3R-WG-mv4" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" priority="9" id="wS7-BQ-qpy"/>
+                                                    <constraint firstItem="odx-Zf-mgS" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" id="y6e-E8-H2h"/>
                                                     <constraint firstItem="3QE-qF-Ndm" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" priority="999" id="yrP-ks-5ns"/>
                                                 </constraints>
                                             </stackView>
@@ -3694,11 +3738,17 @@ Budget Billing?</string>
                                     <constraint firstItem="s1I-Xk-I4g" firstAttribute="leading" secondItem="844-zQ-P3R" secondAttribute="leading" id="y3h-8t-nJV"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="MLn-AN-IpM" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="157" y="362" width="60" height="12"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="844-zQ-P3R" secondAttribute="trailing" constant="-20" id="8VX-IQ-3h3"/>
+                            <constraint firstItem="MLn-AN-IpM" firstAttribute="centerX" secondItem="qyT-bL-ygT" secondAttribute="centerX" id="Oae-k1-Xxg"/>
                             <constraint firstItem="bFz-2x-G7g" firstAttribute="top" secondItem="844-zQ-P3R" secondAttribute="bottom" id="XJu-tb-CNt"/>
+                            <constraint firstItem="MLn-AN-IpM" firstAttribute="centerY" secondItem="qyT-bL-ygT" secondAttribute="centerY" id="hct-k6-BMd"/>
                             <constraint firstItem="844-zQ-P3R" firstAttribute="leading" secondItem="qyT-bL-ygT" secondAttribute="leadingMargin" constant="-16" id="hzp-R1-Lxz"/>
                             <constraint firstItem="844-zQ-P3R" firstAttribute="top" secondItem="y0S-zS-DgU" secondAttribute="bottom" constant="5" id="r1C-cI-hRf"/>
                         </constraints>
@@ -3711,8 +3761,10 @@ Budget Billing?</string>
                         <outlet property="convenienceFeeLabel" destination="aai-Rm-yvo" id="F5i-4Y-Cxd"/>
                         <outlet property="convenienceFeeSeparatorLine" destination="hF6-3k-Qyp" id="bHV-8y-AJm"/>
                         <outlet property="convenienceFeeView" destination="vmJ-Jg-QL8" id="4R5-Bw-39t"/>
+                        <outlet property="loadingIndicator" destination="MLn-AN-IpM" id="8lR-jy-aUd"/>
+                        <outlet property="mainStackView" destination="844-zQ-P3R" id="bqp-9V-nNY"/>
                         <outlet property="paymentAccountDetailsLabel" destination="AkZ-MO-r7Z" id="rx3-Sf-sSD"/>
-                        <outlet property="paymentAccountLabel" destination="XhV-92-nLf" id="2Ha-HZ-t5o"/>
+                        <outlet property="paymentAccountLabel" destination="XhV-92-nLf" id="oMc-Yw-Zuw"/>
                         <outlet property="paymentAccountSeparatorLine" destination="nka-dH-aZj" id="QVe-3h-yNX"/>
                         <outlet property="paymentAccountView" destination="oQX-th-1K0" id="Jr9-Zm-8Tb"/>
                         <outlet property="paymentAmountDetailsLabel" destination="oJV-ob-eP6" id="2WX-WN-Doy"/>
@@ -3727,6 +3779,10 @@ Budget Billing?</string>
                         <outlet property="paymentStatusLabel" destination="DxK-go-9vS" id="DnL-vq-aY7"/>
                         <outlet property="paymentStatusSeparatorLine" destination="dbY-W5-4LA" id="5Xx-SJ-CJg"/>
                         <outlet property="paymentStatusView" destination="NYD-v0-HHW" id="Rhj-v3-Sjn"/>
+                        <outlet property="paymentTypeDetailLabel" destination="zVb-Yd-4LM" id="vWe-AE-4LY"/>
+                        <outlet property="paymentTypeLabel" destination="sQZ-WB-PVH" id="hSW-P9-MKQ"/>
+                        <outlet property="paymentTypeSeparatorLine" destination="odx-Zf-mgS" id="0cd-Vm-qqM"/>
+                        <outlet property="paymentTypeView" destination="XjP-e3-T11" id="tpP-g2-HBT"/>
                         <outlet property="totalAmountPaidDetailsLabel" destination="bLI-bK-ReK" id="isu-SG-FSM"/>
                         <outlet property="totalAmountPaidLabel" destination="CYL-5t-ePd" id="QyK-Uo-cau"/>
                         <outlet property="totalAmountPaidSeparatorLine" destination="WyB-Ty-ej0" id="BaC-3f-TsZ"/>
@@ -4259,8 +4315,8 @@ the year</string>
         <image name="paperless_modal" width="330" height="317"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="X62-GM-RxQ"/>
         <segue reference="Z6O-TZ-udR"/>
-        <segue reference="c6a-C1-blF"/>
-        <segue reference="lxz-6d-T4J"/>
+        <segue reference="JxE-Ae-J8n"/>
     </inferredMetricsTieBreakers>
 </document>
