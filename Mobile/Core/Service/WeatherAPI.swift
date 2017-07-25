@@ -144,127 +144,40 @@ struct WeatherAPI: WeatherService {
         
         if let iconName = iconName {
             switch iconName.rawValue {
-            case WeatherIconNames.HOT.rawValue:
-                return "ic_hot"
-            case WeatherIconNames.COLD.rawValue:
-                return "ic_cold"
-            case WeatherIconNames.TS_WARN.rawValue:
-                return "ic_tropicalstorm"
-            case WeatherIconNames.TS_WATCH.rawValue:
-                return "ic_tropicalstorm"
-            case WeatherIconNames.TS_HURR_WARN.rawValue:
-                return "ic_tropicalstorm"
-            case WeatherIconNames.HURR_WARN.rawValue:
-                return "ic_hurricane"
-            case WeatherIconNames.HURR_WATCH.rawValue:
-                return "ic_hurricane"
-            case WeatherIconNames.FOG.rawValue:
-                if isDaytime {
-                    return "ic_day_fog"
-                } else {
-                    return "ic_nt_fog"
-                }
-            case WeatherIconNames.HAZE.rawValue:
-                if isDaytime {
-                    return "ic_day_fog"
-                } else {
-                    return "ic_nt_fog"
-                }
-            case WeatherIconNames.SMOKE.rawValue:
-                if isDaytime {
-                    return "ic_day_fog"
-                } else {
-                    return "ic_nt_fog"
-                }
-            case WeatherIconNames.DUST.rawValue:
-                if isDaytime {
-                    return "ic_day_fog"
-                } else {
-                    return "ic_nt_fog"
-                }
-            case WeatherIconNames.SKC.rawValue:
+            case WeatherIconNames.HOT.rawValue, WeatherIconNames.SKC.rawValue, WeatherIconNames.WIND_SKC.rawValue:
                 if isDaytime {
                     return "ic_day_clear"
                 } else {
                     return "ic_nt_clear"
                 }
-            case WeatherIconNames.WIND_SKC.rawValue:
+            case WeatherIconNames.FEW.rawValue, WeatherIconNames.SCT.rawValue, WeatherIconNames.WIND_FEW.rawValue,
+                 WeatherIconNames.WIND_SCT.rawValue, WeatherIconNames.SMOKE.rawValue, WeatherIconNames.HAZE.rawValue,
+                 WeatherIconNames.DUST.rawValue:
                 if isDaytime {
-                    return "ic_day_clear"
+                    return "ic_day_partlycloudy"
                 } else {
-                    return "ic_nt_clear"
+                    return "ic_nt_partlycloudy"
                 }
-            case WeatherIconNames.BKN.rawValue:
+            case WeatherIconNames.BKN.rawValue, WeatherIconNames.WIND_BKN.rawValue, WeatherIconNames.FOG.rawValue:
                 if isDaytime {
                     return "ic_day_mostlycloudy"
                 } else {
                     return "ic_nt_mostlycloudy"
                 }
-            case WeatherIconNames.WIND_BKN.rawValue:
-                if isDaytime {
-                    return "ic_day_mostlycloudy"
-                } else {
-                    return "ic_nt_mostlycloudy"
-                }
-            case WeatherIconNames.FEW.rawValue:
-                if isDaytime {
-                    return "ic_day_partlycloudy"
-                } else {
-                    return "ic_nt_partlycloudy"
-                }
-            case WeatherIconNames.SCT.rawValue:
-                if isDaytime {
-                    return "ic_day_partlycloudy"
-                } else {
-                    return "ic_nt_partlycloudy"
-                }
-            case WeatherIconNames.WIND_FEW.rawValue:
-                if isDaytime {
-                    return "ic_day_partlycloudy"
-                } else {
-                    return "ic_nt_partlycloudy"
-                }
-            case WeatherIconNames.WIND_SCT.rawValue:
-                if isDaytime {
-                    return "ic_day_partlycloudy"
-                } else {
-                    return "ic_nt_partlycloudy"
-                }
-            case WeatherIconNames.TORNADO.rawValue:
-                return "ic_tornado"
-            case WeatherIconNames.RAIN.rawValue:
+            case WeatherIconNames.RAIN.rawValue, WeatherIconNames.RAIN_SHOWERS.rawValue, WeatherIconNames.RAIN_SLEET.rawValue,
+                 WeatherIconNames.RAIN_SHOWERS_HI.rawValue, WeatherIconNames.RAIN_FZRA.rawValue:
                 return "ic_rain"
-            case WeatherIconNames.RAIN_SHOWERS.rawValue:
-                return "ic_rain"
-            case WeatherIconNames.RAIN_SHOWERS_HI.rawValue:
-                return "ic_rain"
-            case WeatherIconNames.RAIN_SLEET.rawValue:
-                return "ic_rain"
-            case WeatherIconNames.RAIN_FZRA.rawValue:
-                return "ic_rain"
-            case WeatherIconNames.SNOW_SLEET.rawValue:
+            case WeatherIconNames.SNOW_SLEET.rawValue, WeatherIconNames.FZRA.rawValue, WeatherIconNames.RAIN_SNOW.rawValue,
+                 WeatherIconNames.SNOW_FZRA.rawValue, WeatherIconNames.SLEET.rawValue:
                 return "ic_sleet"
-            case WeatherIconNames.FZRA.rawValue:
-                return "ic_sleet"
-            case WeatherIconNames.RAIN_SNOW.rawValue:
-                return "ic_sleet"
-            case WeatherIconNames.SNOW_FZRA.rawValue:
-                return "ic_sleet"
-            case WeatherIconNames.SLEET.rawValue:
-                return "ic_sleet"
-            case WeatherIconNames.TSRA.rawValue:
+            case WeatherIconNames.TSRA.rawValue, WeatherIconNames.TSRA_SCT.rawValue, WeatherIconNames.TSRA_HI.rawValue,
+                 WeatherIconNames.TS_HURR_WARN.rawValue, WeatherIconNames.TS_WARN.rawValue, WeatherIconNames.TS_WATCH.rawValue,
+                 WeatherIconNames.TS_HURR_WARN.rawValue, WeatherIconNames.HURR_WARN.rawValue, WeatherIconNames.HURR_WATCH.rawValue,
+                 WeatherIconNames.TORNADO.rawValue:
                 return "ic_tstorms"
-            case WeatherIconNames.TSRA_SCT.rawValue:
-                return "ic_tstorms"
-            case WeatherIconNames.TSRA_HI.rawValue:
-                return "ic_tstorms"
-            case WeatherIconNames.OVC.rawValue:
+            case WeatherIconNames.OVC.rawValue, WeatherIconNames.WIND_OVC.rawValue:
                 return "ic_cloudy"
-            case WeatherIconNames.WIND_OVC.rawValue:
-                return "ic_cloudy"
-            case WeatherIconNames.SNOW.rawValue:
-                return "ic_snow"
-            case WeatherIconNames.BLIZZARD.rawValue:
+            case WeatherIconNames.SNOW.rawValue, WeatherIconNames.BLIZZARD.rawValue, WeatherIconNames.COLD.rawValue:
                 return "ic_snow"
             default:
                 return WeatherIconNames.UNKNOWN.rawValue
