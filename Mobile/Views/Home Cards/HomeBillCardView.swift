@@ -215,7 +215,7 @@ class HomeBillCardView: UIView {
         
         // Actions
         oneTouchSlider.didFinishSwipe
-            .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
+            .withLatestFrom(Driver.combineLatest(self.viewModel.shouldShowWeekendWarning, self.viewModel.promptForCVV) { $0 || $1 })
             .filter(!)
             .map { _ in () }
             .drive(viewModel.submitOneTouchPay)
@@ -247,6 +247,47 @@ class HomeBillCardView: UIView {
                 self?.viewModel.submitOneTouchPay.onNext()
             })
             return alertController
+    }
+    
+//    private(set) lazy var oneTouchSliderBGEAlert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
+//        .withLatestFrom(self.viewModel.promptForCVV)
+//        .filter { $0 }
+//        .map { _ in
+//            
+//    }
+    
+    func otpSliderAlert() -> UIAlertController {
+        let alertController = UIAlertController(title: NSLocalizedString("Enter CVV2", comment: ""),
+                                                message: NSLocalizedString("Enter your 3 digit security code to complete One Touch Pay.", comment: ""),
+                                                preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
+            let textField = alertController.textFields![0]
+            dLog(message: "\(textField.text ?? "")")
+        })
+        
+        alertController.addTextField {
+            $0.isSecureTextEntry = true
+            $0.keyboardType = .numberPad
+            $0.delegate = self
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        
+        return alertController
+    }
+    
+    func otpSliderAlert2() -> UIAlertController {
+        let alertController = UIAlertController(title: nil,
+                                                message: NSLocalizedString("If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.\n\nPlease ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.\n\nIf an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.", comment: ""), preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
+            self?.viewModel.submitOneTouchPay.onNext()
+        })
+        return alertController
     }
     
     private lazy var tooltipModal: Driver<UIViewController> = Driver.merge(self.dueDateTooltip.rx.tap.asDriver(),
@@ -304,3 +345,13 @@ class HomeBillCardView: UIView {
                                                                                          self.autoPayViewController)
 
 }
+
+extension HomeBillCardView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let characterSet = CharacterSet(charactersIn: string)
+        
+        return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+    }
+}
+

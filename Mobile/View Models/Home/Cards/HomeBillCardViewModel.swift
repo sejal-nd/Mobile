@@ -117,6 +117,22 @@ class HomeBillCardViewModel {
         }
     }()
     
+    private(set) lazy var promptForCVV: Driver<Bool> = {
+        if Environment.sharedInstance.opco != .bge {
+            return Driver.just(false)
+        } else {
+            return self.walletItemDriver.map {
+                guard let walletItem = $0 else { return false }
+                switch walletItem.bankOrCard {
+                case .bank:
+                    return false
+                case .card:
+                    return true
+                }
+            }
+        }
+    }()
+    
     //MARK: - Loaded States
     
     private lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailElements.asDriver(onErrorDriveWith: .empty())
