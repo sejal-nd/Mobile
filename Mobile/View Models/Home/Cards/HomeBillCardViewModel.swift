@@ -226,8 +226,17 @@ class HomeBillCardViewModel {
             }
     }
     
-    private lazy var showAutoPay: Driver<Bool> = Driver.zip(self.isPrecariousBillSituation, self.accountDetailDriver)
-        .map { !$0 && $1.isAutoPay }
+    private lazy var billPaidOrPending: Driver<Bool> = self.titleState.map {
+        switch $0 {
+        case .billPaid, .paymentPending, .billPaidIntermediate:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    private lazy var showAutoPay: Driver<Bool> = Driver.zip(self.isPrecariousBillSituation, self.accountDetailDriver, self.billPaidOrPending)
+        .map { !$0 && $1.isAutoPay && !$2 }
     
     private(set) lazy var showPaymentPendingIcon: Driver<Bool> = self.titleState.map { $0 == .paymentPending }
     
@@ -285,21 +294,24 @@ class HomeBillCardViewModel {
     private(set) lazy var showMinimumPaymentAllowed: Driver<Bool> = Driver.combineLatest(self.titleState,
                                                                                self.isPrecariousBillSituation,
                                                                                self.walletItemDriver,
-                                                                               self.accountDetailDriver)
-    { titleState, isPrecariousBillSituation, walletItem, accountDetail in
+                                                                               self.accountDetailDriver,
+                                                                               self.showOneTouchPaySlider)
+    { titleState, isPrecariousBillSituation, walletItem, accountDetail, showOneTouchPaySlider in
         guard let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount else { return false }
         return titleState != .credit &&
             !isPrecariousBillSituation &&
             walletItem != nil &&
             (accountDetail.billingInfo.netDueAmount ?? 0) < minPaymentAmount &&
-            Environment.sharedInstance.opco != .bge
+            Environment.sharedInstance.opco != .bge &&
+            showOneTouchPaySlider
     }
     
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation,
                                                                                      self.showAutoPay,
                                                                                      self.showScheduledImageView,
-                                                                                     self.accountDetailDriver)
-        .map { !$0 && !$1 && !$2 && !$3.isActiveSeverance && !$3.isCashOnly }
+                                                                                     self.accountDetailDriver,
+                                                                                     self.billPaidOrPending)
+        .map { !$0 && !$1 && !$2 && !$3.isActiveSeverance && !$3.isCashOnly && !$4 }
     
     private(set) lazy var showScheduledImageView: Driver<Bool> = {
         let currentDate = Date()
