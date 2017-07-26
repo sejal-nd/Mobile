@@ -367,7 +367,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         let label = UILabel()
         let button = UIButton(type: UIButtonType.system)
         
-        label.text = section == 0 ? NSLocalizedString("UPCOMING", comment: "") : NSLocalizedString("Past", comment: "")
+        label.text = section == 0 ? NSLocalizedString("UPCOMING", comment: "") : NSLocalizedString("PAST", comment: "")
         label.font = label.font.withSize(14)
         label.textColor = UIColor.deepGray
         
