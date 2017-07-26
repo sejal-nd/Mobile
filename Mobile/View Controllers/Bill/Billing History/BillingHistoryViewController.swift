@@ -120,7 +120,8 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         //past billing history
         if indexPath.section == 1 {
-            guard let billingItem = self.billingHistory?.past[indexPath.row], 
+            guard indexPath.row != billingHistory?.pastSixMonths.count,
+                let billingItem = self.billingHistory?.pastSixMonths[indexPath.row],
                 let type = billingItem.type else { return }
             if type == BillingHistoryProperties.TypeBilling.rawValue {
                 showBillPdf()
@@ -275,10 +276,11 @@ extension BillingHistoryViewController: UITableViewDataSource {
                 return upcoming.count > 3 ? 3 : upcoming.count
             }
         } else {
-            guard let past = self.billingHistory?.past else {
+            guard let pastSixMonths = self.billingHistory?.pastSixMonths,
+                let past = self.billingHistory?.past else {
                 return 0 
             }
-            return past.count > 16 ? 17 : past.count
+            return past.count > pastSixMonths.count ? pastSixMonths.count + 1 : pastSixMonths.count
         }
     }
     
@@ -345,19 +347,20 @@ extension BillingHistoryViewController: UITableViewDataSource {
                 return bgEasyTableViewCell(indexPath: indexPath)
             } else {
                 let row = (accountDetail.isBGEasy || accountDetail.isAutoPay) ? indexPath.row - 1 : indexPath.row
-                billingHistoryItem = (billingHistory?.upcoming[row])!;
+                billingHistoryItem = (billingHistory?.upcoming[row])!
             }
         } else {
-            billingHistoryItem = (billingHistory?.past[indexPath.row])!;
+            if indexPath.row != billingHistory?.pastSixMonths.count {
+                billingHistoryItem =  (billingHistory?.pastSixMonths[indexPath.row])!
+            } else {
+                return viewMoreTableViewCell(indexPath: indexPath)
+            }
+            
         }
         
-        if indexPath.section == 1 && indexPath.row == 16 {
-            return viewMoreTableViewCell(indexPath: indexPath)
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BillingHistoryTableViewCell
-            cell.configureWith(item: billingHistoryItem)
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BillingHistoryTableViewCell
+        cell.configureWith(item: billingHistoryItem)
+        return cell
         
     }
     
@@ -380,7 +383,14 @@ extension BillingHistoryViewController: UITableViewDataSource {
                 button.isEnabled = false
             }
         } else {
-            titleText = "View More"
+            if let past = billingHistory?.past.count,
+                let pastSixMonths = billingHistory?.pastSixMonths.count,
+                past > pastSixMonths {
+                titleText = "View More"
+            } else {
+                button.isEnabled = false
+            }
+            
         }
         
         button.setTitle(titleText, for: .normal)
@@ -439,7 +449,19 @@ extension BillingHistoryViewController: UITableViewDataSource {
         button.setTitleColor(.actionBlue, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
         cell.contentView.addSubview(button)
+        
+        let views = ["button": button, "view": cell.contentView]
+        
+        let horizontallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[button]-|", options: .alignAllCenterY, metrics: nil, views: views)
+        cell.contentView.addConstraints(horizontallayoutContraints)
+        
+        let verticalLayoutContraint = NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: cell.contentView, attribute: .centerY, multiplier: 1, constant: 0)
+        cell.contentView.addConstraint(verticalLayoutContraint)
+        
         return cell
     }
     
