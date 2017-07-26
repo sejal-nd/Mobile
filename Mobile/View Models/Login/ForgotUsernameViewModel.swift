@@ -36,7 +36,8 @@ class ForgotUsernameViewModel {
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue ||
+                    serviceError.serviceCode == ServiceErrorCode.FnProfNotFound.rawValue {
                     onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
                 } else if serviceError.serviceCode == ServiceErrorCode.FnMultiAccountFound.rawValue {
                     onNeedAccountNumber()
