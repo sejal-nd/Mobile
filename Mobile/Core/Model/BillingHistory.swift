@@ -15,7 +15,7 @@ struct BillingHistory: Mappable {
     
     init(map: Mapper) throws {
         billingHistoryItems = map.optionalFrom("billing_and_payment_history")?.sorted(by: { $0.date > $1.date }) ?? []
-        upcoming = billingHistoryItems.filter{ $0.isFuture }.sorted(by: { $0.date > $1.date })
+        upcoming = billingHistoryItems.filter{ $0.isFuture }.sorted(by: { $0.date < $1.date })
         past = billingHistoryItems.filter { !$0.isFuture }.sorted(by: { $0.date > $1.date })
     }
 }
