@@ -236,7 +236,10 @@ class HomeBillCardView: UIView {
     // Actions
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.tap.asDriver()
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
-        .do(onNext: { _ in LoadingView.hide(animated: true) }).map { _ in () }
+        .do(onNext: { [weak self] _ in
+            LoadingView.hide(animated: true)
+            self?.oneTouchSlider.reset()
+        }).map { _ in () }
     
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
@@ -268,7 +271,11 @@ class HomeBillCardView: UIView {
 //    }
     
     private lazy var oneTouchPayErrorAlert: Driver<UIViewController> = self.viewModel.oneTouchPayResult.errors()
-        .do(onNext: { _ in LoadingView.hide(animated: true) })
+        .debug("oneTouchPayErrorAlert")
+        .do(onNext: { [weak self] _ in
+            LoadingView.hide(animated: true)
+            self?.oneTouchSlider.reset()
+        })
         .map { error in
             let errMessage = error.localizedDescription
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Unable to process your request", comment: ""), preferredStyle: .alert)

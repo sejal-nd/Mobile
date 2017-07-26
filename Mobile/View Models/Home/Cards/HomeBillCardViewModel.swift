@@ -81,8 +81,9 @@ class HomeBillCardViewModel {
     private func schedulePayment(_ payment: Payment) -> Observable<Event<Void>> {
         let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
         return paymentService.schedulePayment(payment: payment)
-            .withLatestFrom(account)
-            .do(onNext: { RecentPaymentsStore.shared[$0] = paymentDetails })
+            .do(onNext: {
+                RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] = paymentDetails
+            })
             .map { _ in () }
             .trackActivity(paymentTracker)
             .materialize()
@@ -240,7 +241,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showPaymentPendingIcon: Driver<Bool> = self.titleState.map { $0 == .paymentPending }
     
-    private(set) lazy var showBillPaidIcon: Driver<Bool> = self.titleState.map { $0 == .billPaid }
+    private(set) lazy var showBillPaidIcon: Driver<Bool> = self.titleState.map { $0 == .billPaid || $0 == .billPaidIntermediate }
     
     private(set) lazy var showAmountPaid: Driver<Bool> = self.titleState.map { $0 == .billPaid }
     
@@ -288,8 +289,9 @@ class HomeBillCardViewModel {
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.titleState,
                                                                                    self.isPrecariousBillSituation,
                                                                                    self.walletItemDriver,
-                                                                                   self.accountDetailDriver)
-        .map { $0 != .credit && !$1 && $2 == nil && !$3.isActiveSeverance && !$3.isCashOnly }
+                                                                                   self.accountDetailDriver,
+                                                                                   self.showAutoPay)
+        .map { $0 != .credit && !$1 && $2 == nil && !$3.isActiveSeverance && !$3.isCashOnly && !$4 }
     
     private(set) lazy var showMinimumPaymentAllowed: Driver<Bool> = Driver.combineLatest(self.titleState,
                                                                                self.isPrecariousBillSituation,
@@ -384,6 +386,12 @@ class HomeBillCardViewModel {
                 return $0.billingInfo.amtDpaReinst?.currencyString
             case .restoreService:
                 return $0.billingInfo.restorationAmount?.currencyString
+            case .billPaidIntermediate:
+                if let recentPayment = RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] {
+                    return recentPayment.amount.currencyString
+                } else {
+                    return $0.billingInfo.restorationAmount?.currencyString
+                }
             default:
                 return $0.billingInfo.netDueAmount?.currencyString
             }

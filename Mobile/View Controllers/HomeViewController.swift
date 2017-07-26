@@ -78,7 +78,7 @@ class HomeViewController: AccountPickerViewController {
             .addDisposableTo(bag)
         
         billCardView = HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel)
-        billCardView.oneTouchPayFinished
+        billCardView.oneTouchPayFinished.debug("oneTouchPayFinished")
             .map { FetchingAccountState.switchAccount }
             .bind(to: viewModel.fetchData)
             .addDisposableTo(bag)
