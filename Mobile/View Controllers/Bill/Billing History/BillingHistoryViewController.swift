@@ -266,10 +266,10 @@ extension BillingHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             guard let upcoming = self.billingHistory?.upcoming else {
-                return accountDetail.isBGEasy ? 1 : 0
+                return accountDetail.isBGEasy || accountDetail.isAutoPay ? 1 : 0
             }
             
-            if accountDetail.isBGEasy {
+            if accountDetail.isBGEasy || accountDetail.isAutoPay {
                 return upcoming.count > 2 ? 3 : upcoming.count + 1
             } else {
                 return upcoming.count > 3 ? 3 : upcoming.count
@@ -288,7 +288,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if self.billingHistory != nil {
-            if section == 0 && self.billingHistory?.upcoming.count == 0 {
+            if section == 0 && self.billingHistory?.upcoming.count == 0 && !accountDetail.isAutoPay && !accountDetail.isBGEasy {
                 return 0.000001
             } else if section == 1 && self.billingHistory?.past.count == 0 {
                 return 0.000001
@@ -313,7 +313,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         if self.billingHistory != nil {
             if section == 0 {
-                if accountDetail.isBGEasy {
+                if accountDetail.isBGEasy || accountDetail.isAutoPay {
                     return headerView(section: section)
                 } else {
                     return self.billingHistory?.upcoming.count == 0 ? nil : headerView(section: section)
@@ -337,7 +337,6 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let billingHistory = self.billingHistory else { return UITableViewCell()}
         
         let billingHistoryItem: BillingHistoryItem
         
@@ -346,10 +345,10 @@ extension BillingHistoryViewController: UITableViewDataSource {
                 return bgEasyTableViewCell(indexPath: indexPath)
             } else {
                 let row = (accountDetail.isBGEasy || accountDetail.isAutoPay) ? indexPath.row - 1 : indexPath.row
-                billingHistoryItem = billingHistory.upcoming[row];
+                billingHistoryItem = (billingHistory?.upcoming[row])!;
             }
         } else {
-            billingHistoryItem = billingHistory.past[indexPath.row];
+            billingHistoryItem = (billingHistory?.past[indexPath.row])!;
         }
         
         if indexPath.section == 1 && indexPath.row == 16 {
@@ -368,7 +367,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         let label = UILabel()
         let button = UIButton(type: UIButtonType.system)
         
-        label.text = section == 0 ? "UPCOMING" : "PAST"
+        label.text = section == 0 ? NSLocalizedString("UPCOMING", comment: "") : NSLocalizedString("Past", comment: "")
         label.font = label.font.withSize(14)
         label.textColor = UIColor.deepGray
         
@@ -450,9 +449,9 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         let label = UILabel()
         if accountDetail.isAutoPay {
-            label.text = "You currently have AutoPay set up"
+            label.text = NSLocalizedString("You currently have AutoPay set up", comment: "")
         } else {
-            label.text = "You are enrolled in BGEasy"
+            label.text = NSLocalizedString("You are enrolled in BGEasy", comment: "")
         }
         
         label.font = SystemFont.medium.of(textStyle: .subheadline).withSize(17)

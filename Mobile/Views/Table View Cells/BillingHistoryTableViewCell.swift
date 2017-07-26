@@ -27,12 +27,12 @@ enum BillingHistoryProperties: String {
 
 class BillingHistoryTableViewCell: UITableViewCell {
     
-    let PAYMENT = "Payment"
-    let LATE_PAYMENT = "Late Payment Charge"
-    let PAYMENT_PROCESSING = "Payment Processing"
-    let SCHEDULED_PAYMENT = "Scheduled Payment"
-    let BILL_ISSUED = "Bill Issued"
-    let PENDING_PAYMENT = "Pending Payment"
+    let PAYMENT = NSLocalizedString("Payment", comment: "")
+    let LATE_PAYMENT = NSLocalizedString("Late Payment Charge", comment: "")
+    let PAYMENT_PROCESSING = NSLocalizedString("Payment Processing", comment: "")
+    let SCHEDULED_PAYMENT = NSLocalizedString("Scheduled Payment", comment: "")
+    let BILL_ISSUED = NSLocalizedString("Bill Issued", comment: "")
+    let PENDING_PAYMENT = NSLocalizedString("Pending Payment", comment: "")
 
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
