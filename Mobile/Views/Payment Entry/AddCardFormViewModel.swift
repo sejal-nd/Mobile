@@ -160,17 +160,18 @@ class AddCardFormViewModel {
     }
     
     private func luhnCheck(cardNumber: String) -> Bool {
-        var sum = 0
+        var oddSum = 0
+        var evenSum = 0
         let reversedCharacters = cardNumber.characters.reversed().map { String($0) }
         for (idx, element) in reversedCharacters.enumerated() {
             guard let digit = Int(element) else { return false }
-            switch ((idx % 2 == 1), digit) {
-            case (true, 9): sum += 9
-            case (true, 0...8): sum += (digit * 2) % 9
-            default: sum += digit
+            if (idx % 2 == 0) {
+                evenSum += digit;
+            } else {
+                oddSum += digit / 5 + (2 * digit) % 10;
             }
         }
-        return sum % 10 == 0
+        return (oddSum + evenSum) % 10 == 0;
     }
     
     private func pecoValidCreditCardCheck(cardNumber: String) -> Bool {
