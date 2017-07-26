@@ -78,16 +78,17 @@ class HomeBillCardViewModel {
         .flatMapLatest(self.fetchWorkDays)
         .shareReplay(1)
     
-    private func schedulePayment(_ payment: Payment) -> Observable<Void> {
+    private func schedulePayment(_ payment: Payment) -> Observable<Event<Void>> {
         let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
         return paymentService.schedulePayment(payment: payment)
             .withLatestFrom(account)
             .do(onNext: { RecentPaymentsStore.shared[$0] = paymentDetails })
             .map { _ in () }
             .trackActivity(paymentTracker)
+            .materialize()
     }
     
-    private(set) lazy var oneTouchPayResult: Observable<Void> = self.submitOneTouchPay.asObservable()
+    private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
         .withLatestFrom(Observable.combineLatest(self.accountDetailElements, self.walletItem.unwrap()))
         .map { accountDetail, walletItem in
             Payment(accountNumber: accountDetail.accountNumber,
@@ -301,8 +302,11 @@ class HomeBillCardViewModel {
         .map { !$0 && !$1 && !$2 && !$3.isActiveSeverance && !$3.isCashOnly }
     
     private(set) lazy var showScheduledImageView: Driver<Bool> = {
+        let currentDate = Date()
         let isScheduled = self.accountDetailDriver
-            .map { ($0.billingInfo.scheduledPaymentAmount ?? 0) > 0 && $0.billingInfo.scheduledPaymentDate != nil && ($0.billingInfo.pendingPaymentAmount ?? 0) == 0 }
+            .map { ($0.billingInfo.scheduledPaymentAmount ?? 0) > 0 &&
+                $0.billingInfo.scheduledPaymentDate ?? currentDate > currentDate &&
+                ($0.billingInfo.pendingPaymentAmount ?? 0) == 0 }
         return Driver.combineLatest(isScheduled, self.showAutoPay, self.isPrecariousBillSituation) { $0 && !$1 && !$2 }
     } ()
     

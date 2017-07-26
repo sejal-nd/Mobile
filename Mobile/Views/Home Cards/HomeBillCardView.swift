@@ -227,15 +227,16 @@ class HomeBillCardView: UIView {
             .withLatestFrom(Driver.combineLatest(self.viewModel.shouldShowWeekendWarning, self.viewModel.promptForCVV) { $0 || $1 })
             .filter(!)
             .map { _ in () }
+            .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
             .addDisposableTo(bag)
         
-        viewModel.oneTouchPayResult.subscribe { print($0) }.addDisposableTo(bag)
     }
     
     // Actions
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.tap.asDriver()
-    
+    private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
+        .do(onNext: { _ in LoadingView.hide(animated: true) }).map { _ in () }
     
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
@@ -253,6 +254,7 @@ class HomeBillCardView: UIView {
                                                     message: NSLocalizedString("You are making a payment on a weekend or holiday. Your payment will be scheduled for the next business day.", comment: ""), preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
+                LoadingView.show(animated: true)
                 self?.viewModel.submitOneTouchPay.onNext()
             })
             return alertController
@@ -264,6 +266,34 @@ class HomeBillCardView: UIView {
 //        .map { _ in
 //            
 //    }
+    
+    private lazy var oneTouchPayErrorAlert: Driver<UIViewController> = self.viewModel.oneTouchPayResult.errors()
+        .do(onNext: { _ in LoadingView.hide(animated: true) })
+        .map { error in
+            let errMessage = error.localizedDescription
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Unable to process your request", comment: ""), preferredStyle: .alert)
+            
+            // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
+            // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
+            if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
+                    action -> Void in
+                    if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
+                        if #available(iOS 10, *) {
+                            UIApplication.shared.open(url)
+                        } else {
+                            UIApplication.shared.openURL(url)
+                        }
+                    }
+                }))
+            } else {
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            }
+            
+            return alert
+        }
+        .asDriver(onErrorDriveWith: .empty())
     
     func otpSliderAlert() -> UIAlertController {
         let alertController = UIAlertController(title: NSLocalizedString("Enter CVV2", comment: ""),
@@ -294,6 +324,7 @@ class HomeBillCardView: UIView {
                                                 message: NSLocalizedString("If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.\n\nPlease ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.\n\nIf an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.", comment: ""), preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
+            LoadingView.show(animated: true)
             self?.viewModel.submitOneTouchPay.onNext()
         })
         return alertController
@@ -310,7 +341,8 @@ class HomeBillCardView: UIView {
     
     private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(self.tooltipModal,
                                                                                         self.oneTouchSliderWeekendAlert,
-                                                                                        self.paymentTACModal)
+                                                                                        self.paymentTACModal,
+                                                                                        self.oneTouchPayErrorAlert)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = Observable.merge(self.saveAPaymentAccountButton.rx.touchUpInside.asObservable(),

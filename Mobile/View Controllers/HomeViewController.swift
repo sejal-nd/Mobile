@@ -78,6 +78,10 @@ class HomeViewController: AccountPickerViewController {
             .addDisposableTo(bag)
         
         billCardView = HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel)
+        billCardView.oneTouchPayFinished
+            .map { FetchingAccountState.switchAccount }
+            .bind(to: viewModel.fetchData)
+            .addDisposableTo(bag)
         cardStackView.addArrangedSubview(billCardView)
         
         if viewModel.showTemplateCard {
