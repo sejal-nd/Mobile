@@ -12,10 +12,6 @@ import RxSwiftExt
 
 class HomeBillCardViewModel {
     
-    enum BillCardState {
-        case error, avoidShutoff, autoPay, pastDue, due, noBill, credit, payment, paymentPending
-    }
-    
     let bag = DisposeBag()
     
     private let account: Observable<Account>
@@ -145,7 +141,6 @@ class HomeBillCardViewModel {
         .map { $0.0.error != nil || $0.1.error != nil }
         .asDriver(onErrorDriveWith: .empty())
     
-    
     // MARK: - Title States
     
     enum TitleState {
@@ -178,6 +173,13 @@ class HomeBillCardViewModel {
                 }
                 
                 // All OpCos
+                if billingInfo.disconnectNoticeArrears > 0 && billingInfo.isDisconnectNotice {
+                    if opco == .bge && account.isMultipremise {
+                        return .avoidShutoffBGEMultipremise
+                    }
+                    return .avoidShutoff
+                }
+                
                 if let pastDueAmount = billingInfo.pastDueAmount,
                     pastDueAmount > 0,
                     let dueByDate = billingInfo.dueByDate {
@@ -186,13 +188,6 @@ class HomeBillCardViewModel {
                     } else {
                         return .pastDueNotTotal
                     }
-                }
-                
-                if billingInfo.disconnectNoticeArrears > 0 && billingInfo.isDisconnectNotice {
-                    if opco == .bge && account.isMultipremise {
-                        return .avoidShutoffBGEMultipremise
-                    }
-                    return .avoidShutoff
                 }
                 
                 if opco == .bge && (billingInfo.netDueAmount ?? 0) < 0 {
@@ -244,8 +239,9 @@ class HomeBillCardViewModel {
     private(set) lazy var showConvenienceFee: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation,
                                                                                   self.showAutoPay,
                                                                                   self.walletItemDriver,
-                                                                                  self.showScheduledImageView)
-        .map { !$0 && !$1 && $2 != nil && !$3 }
+                                                                                  self.showScheduledImageView,
+                                                                                  self.showOneTouchPaySlider)
+        .map { !$0 && !$1 && $2 != nil && !$3 && $4 }
     
     private(set) lazy var showDueDate: Driver<Bool> = self.titleState.map {
         switch $0 {
@@ -262,7 +258,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showDueAmountAndDate: Driver<Bool> = self.titleState.map {
         switch $0 {
-        case .avoidShutoff, .avoidShutoffBGEMultipremise:
+        case .avoidShutoff, .pastDueNotTotal, .catchUp, .avoidShutoffBGEMultipremise:
             return true
         default:
             return false
@@ -275,8 +271,9 @@ class HomeBillCardViewModel {
                                                                           self.isPrecariousBillSituation,
                                                                           self.walletItemDriver,
                                                                           self.showScheduledImageView,
-                                                                          self.showAutoPay)
-        .map { $0 != .credit && !$1 && $2 != nil && !$3 && !$4 }
+                                                                          self.showAutoPay,
+                                                                          self.showOneTouchPaySlider)
+        .map { $0 != .credit && !$1 && $2 != nil && !$3 && !$4 && $5 }
     
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.titleState,
                                                                                    self.isPrecariousBillSituation,
@@ -297,17 +294,16 @@ class HomeBillCardViewModel {
             Environment.sharedInstance.opco != .bge
     }
     
-    private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(self.titleState,
-                                                                                     self.isPrecariousBillSituation,
+    private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation,
                                                                                      self.showAutoPay,
                                                                                      self.showScheduledImageView,
                                                                                      self.accountDetailDriver)
-        .map { $0 != .credit && !$1 && !$2 && !$3 && !$4.isActiveSeverance && !$4.isCashOnly }
+        .map { !$0 && !$1 && !$2 && !$3.isActiveSeverance && !$3.isCashOnly }
     
     private(set) lazy var showScheduledImageView: Driver<Bool> = {
         let isScheduled = self.accountDetailDriver
-            .map { $0.billingInfo.scheduledPaymentAmount != nil && $0.billingInfo.scheduledPaymentDate != nil }
-        return Driver.combineLatest(isScheduled, self.showAutoPay) { $0 && !$1 }
+            .map { ($0.billingInfo.scheduledPaymentAmount ?? 0) > 0 && $0.billingInfo.scheduledPaymentDate != nil && ($0.billingInfo.pendingPaymentAmount ?? 0) == 0 }
+        return Driver.combineLatest(isScheduled, self.showAutoPay, self.isPrecariousBillSituation) { $0 && !$1 && !$2 }
     } ()
     
     private(set) lazy var showAutoPayIcon: Driver<Bool> = self.showAutoPay
@@ -363,8 +359,18 @@ class HomeBillCardViewModel {
         return String(format: NSLocalizedString("Amount Paid: %@", comment: ""), lastPaymentAmountString)
     }
     
-    private(set) lazy var amountText: Driver<String?> = self.accountDetailDriver.map {
-        $0.billingInfo.netDueAmount?.currencyString
+    private(set) lazy var amountText: Driver<String?> = Driver.combineLatest(self.accountDetailDriver, self.titleState)
+        .map {
+            switch $1 {
+            case .pastDueNotTotal:
+                return $0.billingInfo.pastDueAmount?.currencyString
+            case .catchUp:
+                return $0.billingInfo.amtDpaReinst?.currencyString
+            case .restoreService:
+                return $0.billingInfo.restorationAmount?.currencyString
+            default:
+                return $0.billingInfo.netDueAmount?.currencyString
+            }
     }
     
     private(set) lazy var dueDateText: Driver<NSAttributedString?> = self.accountDetailDriver.map {
@@ -382,8 +388,8 @@ class HomeBillCardViewModel {
                 return nil
             }
             
-            let localizedText = NSLocalizedString("Due in %d days", comment: "")
-            return NSAttributedString(string: String(format: localizedText, days),
+            let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
+            return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
                                       attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
                                                    NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
         } else {
@@ -400,8 +406,14 @@ class HomeBillCardViewModel {
         let date2 = calendar.startOfDay(for: dueByDate)
         guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else { return nil }
         
-        let localizedText = NSLocalizedString("Your bill total of %@ is due in %d days.", comment: "")
-        return String(format: localizedText, amountDueString, days)
+        if days > 0 {
+            let localizedText = NSLocalizedString("Your bill total of %@ is due in %d day%@.", comment: "")
+            return String(format: localizedText, amountDueString, days, days == 1 ? "": "s")
+        } else {
+            let localizedText = NSLocalizedString("Your bill total of %@ is due immediately.", comment: "")
+            return String(format: localizedText, amountDueString)
+        }
+        
     }
     
     private(set) lazy var bankCreditCardNumberText: Driver<String?> = self.walletItemDriver.map {

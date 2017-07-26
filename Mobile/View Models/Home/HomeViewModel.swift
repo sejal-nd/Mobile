@@ -20,7 +20,6 @@ class HomeViewModel {
     private let paymentService: PaymentService
     
     let fetchData = PublishSubject<FetchingAccountState>()
-    let currentAccount = Variable<Account?>(nil)
     
     let fetchingTracker = ActivityTracker()
     
@@ -31,7 +30,7 @@ class HomeViewModel {
         self.paymentService = paymentService
     }
     
-    private(set) lazy var billCardViewModel: HomeBillCardViewModel = HomeBillCardViewModel(withAccount: self.currentAccount.asObservable().unwrap(),
+    private(set) lazy var billCardViewModel: HomeBillCardViewModel = HomeBillCardViewModel(withAccount: self.fetchData.map { _ in AccountsStore.sharedInstance.currentAccount },
                                                                                            accountDetailEvents: self.accountDetailEvents,
                                                                                            walletService: self.walletService,
                                                                                            paymentService: self.paymentService,
@@ -51,7 +50,7 @@ class HomeViewModel {
     
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.fetchData
-        .withLatestFrom(self.currentAccount.asObservable())
+        .map { _ in AccountsStore.sharedInstance.currentAccount }
         .unwrap()
         .flatMapLatest(self.fetchAccountDetail)
         .shareReplay(1)
@@ -82,11 +81,11 @@ class HomeViewModel {
     private func fetchWeather(forAddress address: String) -> Observable<Event<WeatherItem>> {
         return weatherService.fetchWeather(address: address)
             .debug("fetch weather")
-            .trackActivity(fetchingTracker)
+            //.trackActivity(fetchingTracker)
             .materialize()
     }
     
-    private(set) lazy var greeting: Driver<String?> = self.weatherEvents
+    private(set) lazy var greeting: Driver<String?> = self.fetchData
         .map { _ in Date().localizedGreeting }
         .asDriver(onErrorDriveWith: .empty())
     

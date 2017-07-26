@@ -67,7 +67,6 @@ class HomeViewController: AccountPickerViewController {
                     // Sam, do your custom loading here
                     break
                 case .readyToFetchData:
-                    self.viewModel.currentAccount.value = self.accountPicker.currentAccount
                     if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
                         self.viewModel.fetchData.onNext(.switchAccount)
                     } else if accountDetail == nil {

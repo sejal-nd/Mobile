@@ -153,20 +153,29 @@ class HomeBillCardView: UIView {
             .addDisposableTo(bag)
         
         // Show/Hide Subviews
-        viewModel.billNotReady.not().drive(billNotReadyStack.rx.isHidden).addDisposableTo(bag)
+        Driver.zip(viewModel.billNotReady, viewModel.showErrorState)
+            .map { $0 && !$1 }
+            .not()
+            .drive(billNotReadyStack.rx.isHidden)
+            .addDisposableTo(bag)
+        
         viewModel.showErrorState.not().drive(errorStack.rx.isHidden).addDisposableTo(bag)
+        
         Driver.zip(viewModel.billNotReady, viewModel.showErrorState)
             .map { $0 || $1 }
             .drive(infoStack.rx.isHidden)
             .addDisposableTo(bag)
+        
         viewModel.showAlertIcon.not().drive(alertContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showPaymentPendingIcon.not().drive(paymentPendingContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showBillPaidIcon.not().drive(paymentConfirmationContainer.rx.isHidden).addDisposableTo(bag)
+        
         Driver.zip(viewModel.showAlertIcon, viewModel.showPaymentPendingIcon, viewModel.showBillPaidIcon)
             .map { $0 || $1 || $2 }
             .map { $0 ? 0: 32 }
             .drive(titleLabelTopConstraint.rx.constant)
             .addDisposableTo(bag)
+        
         viewModel.showAmountPaid.not().drive(amountPaidContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showAmount.not().drive(amountLabel.rx.isHidden).addDisposableTo(bag)
         viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).addDisposableTo(bag)
