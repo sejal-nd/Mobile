@@ -8,10 +8,11 @@
 
 import UIKit
 
+
 class DismissableFormSheetViewController: UIViewController {
     
     private var tapOutsideRecognizer: UITapGestureRecognizer!
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 

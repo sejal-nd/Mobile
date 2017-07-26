@@ -123,7 +123,7 @@ class HomeBillCardViewModel {
     private lazy var walletItemDriver: Driver<WalletItem?> = self.walletItem.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var billNotReady: Driver<Bool> = self.accountDetailDriver
-        .map { ($0.billingInfo.netDueAmount ?? 0) == 0 && ($0.billingInfo.lastPaymentAmount ?? 0) > 0 }
+        .map { ($0.billingInfo.netDueAmount ?? 0) == 0 && ($0.billingInfo.lastPaymentAmount ?? 0) <= 0 }
     
     private(set) lazy var showErrorState: Driver<Bool> = Observable.zip(self.accountDetailEvents, self.walletItemEvents)
         .map { $0.0.error != nil || $0.1.error != nil }
@@ -264,8 +264,9 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.titleState,
                                                                                    self.isPrecariousBillSituation,
-                                                                                   self.walletItemDriver)
-        .map { $0 != .credit && !$1 && $2 == nil }
+                                                                                   self.walletItemDriver,
+                                                                                   self.accountDetailDriver)
+        .map { $0 != .credit && !$1 && $2 == nil && !$3.isActiveSeverance && !$3.isCashOnly }
     
     private(set) lazy var showMinimumPaymentAllowed: Driver<Bool> = Driver.combineLatest(self.titleState,
                                                                                self.isPrecariousBillSituation,
@@ -281,11 +282,11 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(self.titleState,
-                                                                           self.isPrecariousBillSituation,
-                                                                           self.showAutoPay,
-                                                                           self.walletItemDriver,
-                                                                           self.showScheduledImageView)
-        .map { $0 != .credit && !$1 && !$2 && $3 != nil && !$4 }
+                                                                                     self.isPrecariousBillSituation,
+                                                                                     self.showAutoPay,
+                                                                                     self.showScheduledImageView,
+                                                                                     self.accountDetailDriver)
+        .map { $0 != .credit && !$1 && !$2 && !$3 && !$4.isActiveSeverance && !$4.isCashOnly }
     
     private(set) lazy var showScheduledImageView: Driver<Bool> = {
         let isScheduled = self.accountDetailDriver
@@ -506,6 +507,20 @@ class HomeBillCardViewModel {
         default:
             return NSLocalizedString("Payments made using One Touch Pay cannot be canceled. By using One Touch Pay, you agree to the payment Terms & Conditions." , comment: "")
         }
+    }
+    
+    private(set) lazy var enableOneTouchPayTCButton: Driver<Bool> = self.walletItemDriver.map {
+        guard let walletItem = $0 else { return false }
+        switch (Environment.sharedInstance.opco, walletItem.bankOrCard) {
+        case (.bge, .bank):
+            return false
+        default:
+            return true
+        }
+    }
+    
+    private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = self.enableOneTouchPayTCButton.map {
+        $0 ? UIColor.actionBlue: UIColor.blackText
     }
     
     var paymentTACUrl: URL {

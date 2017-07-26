@@ -208,6 +208,10 @@ class HomeBillCardView: UIView {
         viewModel.automaticPaymentInfoButtonText.drive(automaticPaymentInfoButtonLabel.rx.text).addDisposableTo(bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButtonLabel.rx.text).addDisposableTo(bag)
         viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButtonLabel.rx.text).addDisposableTo(bag)
+        viewModel.enableOneTouchPayTCButton.drive(oneTouchPayTCButton.rx.isEnabled).addDisposableTo(bag)
+        viewModel.oneTouchPayTCButtonTextColor.drive(onNext: { [weak self] color in
+            self?.oneTouchPayTCButtonLabel.textColor = color
+        }).addDisposableTo(bag)
         
         // Actions
         oneTouchSlider.didFinishSwipe

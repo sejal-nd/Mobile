@@ -60,6 +60,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         setupValidation()
         
         prepareTextFieldsForInput()
+        
     }
 
     /// Helpers

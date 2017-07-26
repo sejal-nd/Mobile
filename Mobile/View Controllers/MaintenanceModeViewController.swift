@@ -26,6 +26,7 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var bodyLabel: DataDetectorTextView!
     @IBOutlet weak var BGEStackView: UIStackView!
+    @IBOutlet weak var BGEInquiriesLabel: DataDetectorTextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,9 @@ class MaintenanceModeViewController: UIViewController {
         bodyLabel.textColor = .black
         bodyLabel.textContainerInset = .zero
         bodyLabel.textContainer.lineFragmentPadding = 0
+        
+        BGEInquiriesLabel.textContainerInset = .zero
+        BGEInquiriesLabel.textContainer.lineFragmentPadding = 0
         
         BGEStackView.isHidden = !viewModel.isBGE()
         
