@@ -71,7 +71,7 @@
         <!--Alerts-->
         <scene sceneID="xkn-nT-BRd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="coO-LU-Nds" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="alertsTab" automaticallyAdjustsScrollViewInsets="NO" id="coO-LU-Nds" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="4" title="Alerts" image="ic_nav_alerts" id="DvY-zh-7M0"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LRe-IY-ItP">

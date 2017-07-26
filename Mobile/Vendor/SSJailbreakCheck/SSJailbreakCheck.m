@@ -265,6 +265,7 @@ enum {
 + (int)systemCheck {
     @try {
         // See if the system call can be used
+        #pragma GCC diagnostic ignored "-Wdeprecated-declarations" // Silence warning
         if (system(0)) {
             // Jailbroken
             return KFSystem;
