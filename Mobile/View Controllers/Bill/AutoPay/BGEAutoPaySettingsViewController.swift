@@ -420,7 +420,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedDetailsLabel.setContentHuggingPriority(999, for: .vertical)
         amountNotToExceedDetailsLabel.numberOfLines = 0
         amountNotToExceedDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the bill is created, and you will be responsible for manually scheduling a payment of the remaining amount. \n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in your service being disconnected.", comment: "")
+        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the payment is created, and you will be responsible for manually scheduling a payment of the remaining amount. \n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in your service being disconnected.", comment: "")
         
         // adding details for second button to second button stack view
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedDetailsLabel)
@@ -645,7 +645,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         untilDateDetailsLabel.setContentHuggingPriority(999, for: .vertical)
         untilDateDetailsLabel.numberOfLines = 0
         untilDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        untilDateDetailsLabel.text = NSLocalizedString("AutoPay will schedule each month's payment until the date you choose, after which AutoPay will automatically stop and you will be responsible for restarting AutoPay or manual payments on your account.", comment: "")
+        untilDateDetailsLabel.text = NSLocalizedString("AutoPay will schedule each month’s payment until the date you choose, after which AutoPay will automatically stop and you will be responsible for restarting AutoPay or resuming manual payments on your account.", comment: "")
         
         untilDateButtonStackView.addArrangedSubview(untilDateDetailsLabel)
         
