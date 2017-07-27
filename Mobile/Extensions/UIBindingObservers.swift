@@ -1,5 +1,5 @@
 //
-//  Accessibility+Rx.swift
+//  UIBindingObservers.swift
 //  Mobile
 //
 //  Created by Sam Francis on 7/27/17.
