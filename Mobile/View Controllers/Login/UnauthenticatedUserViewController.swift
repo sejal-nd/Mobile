@@ -10,10 +10,11 @@ import Foundation
 import Lottie
 
 class UnauthenticatedUserViewController: UIViewController {
-    @IBOutlet weak var lottieView: UIView!
     
-    @IBOutlet weak var LoginRegisterButton: UIButton!
+    @IBOutlet weak var lottieView: UIView!
     @IBOutlet weak var textLabel: UILabel!
+
+    @IBOutlet weak var LoginRegisterButton: UIButton!
     
     @IBOutlet weak var reportAnOutageButton: DisclosureButton!
     @IBOutlet weak var checkMyOutageStatusButton: DisclosureButton!
@@ -61,6 +62,7 @@ class UnauthenticatedUserViewController: UIViewController {
         viewOutageMapButton.isHidden = true
         
         view.backgroundColor = .primaryColor
+        accessibilitySetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,10 +85,20 @@ class UnauthenticatedUserViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         
         LoginRegisterButton.titleLabel!.font =  OpenSans.bold.of(textStyle: .title1)
-        LoginRegisterButton.titleLabel!.font =  OpenSans.bold.of(size: 18)
-        
         textLabel.font =  OpenSans.regular.of(textStyle: .subheadline)
-        textLabel.font =  OpenSans.regular.of(size: 14)
+    }
+    
+    private func accessibilitySetup() {
+        lottieView.isAccessibilityElement = true
+        lottieView.accessibilityLabel = NSLocalizedString("Animation showing One Touch Pay", comment: "")
+        
+        textLabel.isAccessibilityElement = true
+        textLabel.accessibilityLabel = textLabel.text
+        
+        contactUsButton.isAccessibilityElement = true
+        contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
+        TermPoliciesButton.isAccessibilityElement = true
+        TermPoliciesButton.accessibilityLabel = NSLocalizedString("Terms and Policies", comment: "")
     }
     
     @IBAction func onContactUsPress(_ sender: UIButton) {
