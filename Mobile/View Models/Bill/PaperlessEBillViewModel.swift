@@ -138,9 +138,9 @@ class PaperlessEBillViewModel {
         case .bge:
             return nil
         case .comEd:
-            return NSLocalizedString("If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through PECO.com, you will be automatically unenrolled from MyCheckFree.", comment: "")
-        case .peco:
             return NSLocalizedString("If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through ComEd.com, you will be automatically unenrolled from MyCheckFree.", comment: "")
+        case .peco:
+            return NSLocalizedString("If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through PECO.com, you will be automatically unenrolled from MyCheckFree.", comment: "")
         }
     }
     
