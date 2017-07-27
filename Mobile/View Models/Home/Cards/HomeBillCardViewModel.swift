@@ -269,7 +269,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showDueAmountAndDate: Driver<Bool> = self.titleState.map {
         switch $0 {
-        case .avoidShutoff, .pastDueNotTotal, .catchUp, .avoidShutoffBGEMultipremise:
+        case .avoidShutoff, .pastDueNotTotal, .catchUp, .avoidShutoffBGEMultipremise, .restoreService:
             return true
         default:
             return false
