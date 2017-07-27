@@ -9,6 +9,17 @@
 import RxSwift
 import RxCocoa
 
+extension Reactive where Base: NSObject {
+    
+    /// Bindable sink for `accessibilityLabel` property.
+    public var accessibilityLabel: UIBindingObserver<Base, String?> {
+        return UIBindingObserver(UIElement: self.base) { object, text in
+            object.accessibilityLabel = text
+        }
+    }
+    
+}
+
 extension Reactive where Base: UIView {
     
     /// Bindable sink for `backgroundColor` property.
@@ -22,13 +33,6 @@ extension Reactive where Base: UIView {
 
 extension Reactive where Base: UILabel {
     
-    /// Bindable sink for `accessibilityLabel` property.
-    public var accessibilityLabel: UIBindingObserver<Base, String?> {
-        return UIBindingObserver(UIElement: self.base) { label, text in
-            label.accessibilityLabel = text
-        }
-    }
-    
     /// Bindable sink for `textColor` property.
     public var textColor: UIBindingObserver<Base, UIColor?> {
         return UIBindingObserver(UIElement: self.base) { label, color in
@@ -40,28 +44,6 @@ extension Reactive where Base: UILabel {
     public var font: UIBindingObserver<Base, UIFont?> {
         return UIBindingObserver(UIElement: self.base) { label, font in
             label.font = font
-        }
-    }
-    
-}
-
-extension Reactive where Base: UIImageView {
-    
-    /// Bindable sink for `accessibilityLabel` property.
-    public var accessibilityLabel: UIBindingObserver<Base, String?> {
-        return UIBindingObserver(UIElement: self.base) { imageView, text in
-            imageView.accessibilityLabel = text
-        }
-    }
-    
-}
-
-extension Reactive where Base: UIControl {
-    
-    /// Bindable sink for `accessibilityLabel` property.
-    public var accessibilityLabel: UIBindingObserver<Base, String?> {
-        return UIBindingObserver(UIElement: self.base) { control, text in
-            control.accessibilityLabel = text
         }
     }
     
