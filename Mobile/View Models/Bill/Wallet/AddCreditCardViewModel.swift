@@ -36,7 +36,7 @@ class AddCreditCardViewModel {
                                              addCardFormViewModel.cvvIsCorrectLength(),
                                              addCardFormViewModel.zipCodeIs5Digits(),
                                              addCardFormViewModel.nicknameHasText(),
-                                             addCardFormViewModel.nicknameIsValid()]) {
+                                             addCardFormViewModel.nicknameErrorString().map{ $0 == nil }]) {
                 return !$0.contains(false)
             }
         } else {
@@ -48,7 +48,7 @@ class AddCreditCardViewModel {
                                              addCardFormViewModel.expYearIsNotInPast(),
                                              addCardFormViewModel.cvvIsCorrectLength(),
                                              addCardFormViewModel.zipCodeIs5Digits(),
-                                             addCardFormViewModel.nicknameIsValid()]) {
+                                             addCardFormViewModel.nicknameErrorString().map{ $0 == nil }]) {
                 return !$0.contains(false)
             }
         }

@@ -164,7 +164,7 @@ class AddCreditCardViewController: UIViewController {
             self.accessibilityErrorLabel()
         }).addDisposableTo(disposeBag)
         
-        viewModel.addCardFormViewModel.nicknameIsValid().subscribe(onNext: { valid in
+        viewModel.addCardFormViewModel.nicknameErrorString().map{ $0 == nil }.subscribe(onNext: { valid in
             self.accessibilityErrorLabel()
         }).addDisposableTo(disposeBag)
     }

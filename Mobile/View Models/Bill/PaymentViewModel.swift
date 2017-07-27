@@ -364,12 +364,13 @@ class PaymentViewModel {
     
     var saveToWalletBankFormValidBGE: Driver<Bool> {
         return Driver.combineLatest([addBankFormViewModel.accountHolderNameHasText().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.accountHolderNameIsValid().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.routingNumberIsValid().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberHasText().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberIsValid().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.confirmAccountNumberMatches().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.nicknameHasText().asDriver(onErrorJustReturn: false),
-                                     addBankFormViewModel.nicknameIsValid().asDriver(onErrorJustReturn: false)]) {
+                                     addBankFormViewModel.nicknameErrorString().map{ $0 == nil }.asDriver(onErrorJustReturn: false)]) {
             return !$0.contains(false)
         }
     }
@@ -379,13 +380,14 @@ class PaymentViewModel {
                                      addBankFormViewModel.accountNumberHasText().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberIsValid().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.confirmAccountNumberMatches().asDriver(onErrorJustReturn: false),
-                                     addBankFormViewModel.nicknameIsValid().asDriver(onErrorJustReturn: false)]) {
+                                     addBankFormViewModel.nicknameErrorString().map{ $0 == nil }.asDriver(onErrorJustReturn: false)]) {
             return !$0.contains(false)
         }
     }
     
     var noSaveToWalletBankFormValidBGE: Driver<Bool> {
         return Driver.combineLatest([addBankFormViewModel.accountHolderNameHasText().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.accountHolderNameIsValid().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.routingNumberIsValid().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberHasText().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberIsValid().asDriver(onErrorJustReturn: false),
@@ -416,7 +418,7 @@ class PaymentViewModel {
                                      addCardFormViewModel.cvvIsCorrectLength().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.zipCodeIs5Digits().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.nicknameHasText().asDriver(onErrorJustReturn: false),
-                                     addCardFormViewModel.nicknameIsValid().asDriver(onErrorJustReturn: false)]) {
+                                     addCardFormViewModel.nicknameErrorString().map{ $0 == nil }.asDriver(onErrorJustReturn: false)]) {
             return !$0.contains(false)
         }
     }
@@ -430,7 +432,7 @@ class PaymentViewModel {
                                      addCardFormViewModel.expYearIsNotInPast().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.cvvIsCorrectLength().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.zipCodeIs5Digits().asDriver(onErrorJustReturn: false),
-                                     addCardFormViewModel.nicknameIsValid().asDriver(onErrorJustReturn: false)]) {
+                                     addCardFormViewModel.nicknameErrorString().map{ $0 == nil }.asDriver(onErrorJustReturn: false)]) {
             return !$0.contains(false)
         }
     }

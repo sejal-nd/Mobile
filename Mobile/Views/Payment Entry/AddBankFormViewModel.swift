@@ -56,6 +56,12 @@ class AddBankFormViewModel {
         }
     }
     
+    func accountHolderNameIsValid() -> Observable<Bool> {
+        return accountHolderName.asObservable().map {
+            return $0.characters.count >= 3
+        }
+    }
+    
     func routingNumberIsValid() -> Observable<Bool> {
         return routingNumber.asObservable().map {
             return $0.characters.count == 9
@@ -94,11 +100,17 @@ class AddBankFormViewModel {
         }
     }
     
-    func nicknameIsValid() -> Observable<Bool> {
+    func nicknameErrorString() -> Observable<String?> {
         return nickname.asObservable().map {
+            if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.characters.count < 3 {
+                return NSLocalizedString("Must be longer than 3 characters", comment: "")
+            }
             var trimString = $0.components(separatedBy: CharacterSet.whitespaces).joined(separator: "")
             trimString = trimString.components(separatedBy: CharacterSet.alphanumerics).joined(separator: "")
-            return trimString.isEmpty
+            if !trimString.isEmpty {
+                return NSLocalizedString("Can only contain letters, numbers, and spaces", comment: "")
+            }
+            return nil
         }
     }
     

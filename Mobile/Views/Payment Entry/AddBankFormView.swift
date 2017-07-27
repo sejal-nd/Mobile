@@ -138,6 +138,20 @@ class AddBankFormView: UIView {
     }
     
     func bindValidation() {
+        accountHolderNameTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            if !self.viewModel.accountHolderName.value.isEmpty {
+                self.viewModel.accountHolderNameIsValid().single().subscribe(onNext: { valid in
+                    if !valid {
+                        self.accountHolderNameTextField.setError(NSLocalizedString("Must be longer than 3 characters", comment: ""))
+                    }
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
+        
+        accountHolderNameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.accountHolderNameTextField.setError(nil)
+        }).addDisposableTo(disposeBag)
+        
         routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.routingNumber.value.isEmpty {
                 self.viewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
@@ -186,8 +200,8 @@ class AddBankFormView: UIView {
             }
         }).addDisposableTo(disposeBag)
         
-        viewModel.nicknameIsValid().subscribe(onNext: { valid in
-            self.nicknameTextField.setError(valid ? nil : NSLocalizedString("Can only contain letters, numbers, and spaces", comment: ""))
+        viewModel.nicknameErrorString().subscribe(onNext: { errMessage in
+            self.nicknameTextField.setError(errMessage)
         }).addDisposableTo(disposeBag)
     }
     

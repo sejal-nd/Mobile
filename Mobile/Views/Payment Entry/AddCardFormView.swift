@@ -239,8 +239,8 @@ class AddCardFormView: UIView {
             self.zipCodeTextField.setError(nil)
         }).addDisposableTo(disposeBag)
         
-        viewModel.nicknameIsValid().subscribe(onNext: { valid in
-            self.nicknameTextField.setError(valid ? nil : NSLocalizedString("Can only contain letters, numbers, and spaces", comment: ""))
+        viewModel.nicknameErrorString().subscribe(onNext: { errMessage in
+            self.nicknameTextField.setError(errMessage)
         }).addDisposableTo(disposeBag)
     }
     

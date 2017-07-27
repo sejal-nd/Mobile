@@ -148,7 +148,7 @@ class AddBankAccountViewController: UIViewController {
             self.accessibilityErrorLabel()
         }).addDisposableTo(disposeBag)
         
-        viewModel.addBankFormViewModel.nicknameIsValid().subscribe(onNext: { valid in
+        viewModel.addBankFormViewModel.nicknameErrorString().subscribe(onNext: { valid in
             self.accessibilityErrorLabel()
         }).addDisposableTo(disposeBag)
     }
