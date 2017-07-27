@@ -36,6 +36,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         agreeLabel.font = SystemFont.regular.of(textStyle: .headline)
         agreeLabel.text = viewModel.agreeLabelText;
+        accessibilitySetup()
     }
     
     override func viewDidLayoutSubviews() {
@@ -66,6 +67,13 @@ class LoginTermsPoliciesViewController: UIViewController {
         super.viewDidAppear(animated)
         
         viewAppeared = true
+    }
+    
+    private func accessibilitySetup() {
+        agreeLabel.isAccessibilityElement = false
+        
+        agreeSwitch.isAccessibilityElement = true
+        agreeSwitch.accessibilityLabel = agreeLabel.text
     }
     
     @IBAction func onContinuePress() {
