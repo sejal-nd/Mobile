@@ -125,6 +125,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
                 }
             }
         }).addDisposableTo(disposeBag)
+        
         numberOfPaymentsTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: { _ in
             if let text = self.numberOfPaymentsTextField.textField.text {
                 if !text.isEmpty {
@@ -419,7 +420,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedDetailsLabel.setContentHuggingPriority(999, for: .vertical)
         amountNotToExceedDetailsLabel.numberOfLines = 0
         amountNotToExceedDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the bill is created, and you will be responsible for manually scheduling a payment of the remaining amount. \n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in your service being disconnected.", comment: "")
+        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the payment is created, and you will be responsible for manually scheduling a payment of the remaining amount. \n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in your service being disconnected.", comment: "")
         
         // adding details for second button to second button stack view
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedDetailsLabel)
@@ -609,7 +610,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsDetailsLabel.setContentHuggingPriority(999, for: .vertical)
         numberOfPaymentsDetailsLabel.numberOfLines = 0
         numberOfPaymentsDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        viewModel.numberOfPaymentsLabelText.drive(numberOfPaymentsDetailsLabel.rx.text).addDisposableTo(disposeBag)
+        numberOfPaymentsDetailsLabel.text = NSLocalizedString("After your selected number of payments have been created, AutoPay will automatically stop and you will be responsible for restarting AutoPay or resuming manual payments on your accounts.", comment: "")
+        
+        
         
         numberOfPaymentsButtonStackView.addArrangedSubview(numberOfPaymentsDetailsLabel)
         
@@ -644,7 +647,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         untilDateDetailsLabel.setContentHuggingPriority(999, for: .vertical)
         untilDateDetailsLabel.numberOfLines = 0
         untilDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        untilDateDetailsLabel.text = NSLocalizedString("AutoPay will schedule each month's payment until the date you choose, after which AutoPay will automatically stop and you will be responsible for restarting AutoPay or manual payments on your account.", comment: "")
+        untilDateDetailsLabel.text = NSLocalizedString("AutoPay will schedule each month’s payment until the date you choose, after which AutoPay will automatically stop and you will be responsible for restarting AutoPay or resuming manual payments on your account.", comment: "")
         
         untilDateButtonStackView.addArrangedSubview(untilDateDetailsLabel)
         
@@ -784,6 +787,15 @@ extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let characterSet = CharacterSet(charactersIn: string)
+        if textField == numberOfPaymentsTextField.textField {
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+        }
         return true
     }
 }

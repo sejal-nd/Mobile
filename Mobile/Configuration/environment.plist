@@ -5,9 +5,9 @@
 	<key>environment</key>
 	<string>TEST</string>
 	<key>appName</key>
-	<string>ComEd_TEST</string>
+	<string>BGE_TEST</string>
 	<key>opco</key>
-	<string>ComEd</string>
+	<string>BGE</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
@@ -15,6 +15,14 @@
 	<key>fiservUrl</key>
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
 	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
+	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
+	<key>templateCardUrlResidentNotEnrolled</key>
+	<string>https://bgesavings.com/enroll</string>
+	<key>templateCardUrlLegacyTstat</key>
+	<string>https://secure.bge.com/Peakrewards/Pages/default.aspx</string>
+	<key>templateCardUrlWiFiTstat</key>
+	<string>https://www.ecobee.com/home/ecobeeLogin.jsp</string>
+	<key>templateCardUrlCommericalUser</key>
+	<string>http://bgesmartenergy.com/business</string>
 </dict>
 </plist>
