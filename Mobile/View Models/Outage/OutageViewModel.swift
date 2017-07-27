@@ -86,7 +86,7 @@ class OutageViewModel {
     func getFooterTextViewText() -> String {
         switch Environment.sharedInstance.opco {
             case .bge:
-                return NSLocalizedString("To report a gas emergency, please call 1-800-685-0123\nFor downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222", comment: "")
+                return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
             case .comEd:
                 return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
             case .peco:
