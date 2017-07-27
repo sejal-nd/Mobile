@@ -95,7 +95,6 @@ class HomeViewController: AccountPickerViewController {
         
         styleViews()
         bindLoadingStates()
-        configureAccessibility()
         
         NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
     }
@@ -144,8 +143,10 @@ class HomeViewController: AccountPickerViewController {
         viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).addDisposableTo(bag)
         
         viewModel.weatherTemp.drive(temperatureLabel.rx.text).addDisposableTo(bag)
+        viewModel.weatherTemp.drive(temperatureLabel.rx.accessibilityLabel).addDisposableTo(bag)
         viewModel.weatherIcon.drive(weatherIconImage.rx.image).addDisposableTo(bag)
         viewModel.greeting.drive(greetingLabel.rx.text).addDisposableTo(bag)
+        viewModel.greeting.drive(greetingLabel.rx.accessibilityLabel).addDisposableTo(bag)
         
         noNetworkConnectionView.reload
             .map { FetchingAccountState.switchAccount }
@@ -179,18 +180,6 @@ class HomeViewController: AccountPickerViewController {
             })
             .addDisposableTo(bag)
         
-    }
-    
-    func configureAccessibility() {
-        guard let greetingString = greetingLabel.text,
-            let temperatureString = temperatureLabel.text else {
-                greetingLabel.accessibilityLabel = NSLocalizedString("Greetings", comment: "")
-                temperatureLabel.accessibilityLabel = NSLocalizedString("Temperature not available", comment: "") //TODO: not sure about these
-                return
-        }
-        
-        greetingLabel.accessibilityLabel = NSLocalizedString(greetingString, comment: "")
-        temperatureLabel.accessibilityLabel = NSLocalizedString(temperatureString, comment: "")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

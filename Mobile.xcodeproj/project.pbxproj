@@ -232,6 +232,9 @@
 		82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
 		82156F221F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
 		82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
+		8218988E1F2A30C00077D7A1 /* Accessibility+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* Accessibility+Rx.swift */; };
+		8218988F1F2A30C00077D7A1 /* Accessibility+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* Accessibility+Rx.swift */; };
+		821898901F2A30C00077D7A1 /* Accessibility+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* Accessibility+Rx.swift */; };
 		822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		822BBB951EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
@@ -1164,6 +1167,7 @@
 		54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCWalletService.swift; sourceTree = "<group>"; };
 		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoNetworkConnectionView.swift; sourceTree = "<group>"; };
 		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoNetworkConnectionView.xib; sourceTree = "<group>"; };
+		8218988D1F2A30C00077D7A1 /* Accessibility+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Accessibility+Rx.swift"; sourceTree = "<group>"; };
 		822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewModel.swift; sourceTree = "<group>"; };
 		822BBB9F1EFC1A01004EBBAB /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		822BBBA01EFC1A01004EBBAB /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -2096,6 +2100,7 @@
 		8FDF8C651E550459000B7BD0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8218988D1F2A30C00077D7A1 /* Accessibility+Rx.swift */,
 				82A18F071EBD12D600BE9F21 /* Control.swift */,
 				8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */,
 				8FDF8C661E550502000B7BD0 /* BGEColor.swift */,
@@ -3200,7 +3205,6 @@
 				385AF2281F27915A001E3619 /* img_1.png in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
-				387E5C451F1FABCB00D6710D /* UU_OTP_animation_PECO.json in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
@@ -3596,6 +3600,7 @@
 				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
+				8218988E1F2A30C00077D7A1 /* Accessibility+Rx.swift in Sources */,
 				2FA7B9FA1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				2F3FA6371F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
@@ -3809,6 +3814,7 @@
 				545784B41EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFF1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
+				821898901F2A30C00077D7A1 /* Accessibility+Rx.swift in Sources */,
 				E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
@@ -4022,6 +4028,7 @@
 				545784B31EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFE1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
+				8218988F1F2A30C00077D7A1 /* Accessibility+Rx.swift in Sources */,
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
