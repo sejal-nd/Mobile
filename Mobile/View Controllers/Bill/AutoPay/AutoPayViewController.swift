@@ -102,9 +102,7 @@ class AutoPayViewController: UIViewController {
         Driver.combineLatest(viewModel.enrollmentStatus.asDriver(), isScrollOffsetLessThanZero)
             .map { $0 == .unenrolling || $1 }
             .map { $0 ? UIColor.softGray: UIColor.white }
-            .drive(onNext: { [weak self] color in
-                self?.view.backgroundColor = color
-            })
+            .drive(view.rx.backgroundColor)
             .addDisposableTo(bag)
         
     }

@@ -502,16 +502,15 @@ class BillViewController: AccountPickerViewController {
         viewBillButton.accessibilityLabel = NSLocalizedString("PDF, View bill", comment: "")
         activityButton.accessibilityLabel = NSLocalizedString("Activity", comment: "")
         walletButton.accessibilityLabel = NSLocalizedString("My Wallet", comment: "")
-
-        viewModel.autoPayButtonText.drive(onNext: { attrString in
-            self.autoPayButton.accessibilityLabel = attrString?.string
-        }).addDisposableTo(bag)
-        viewModel.paperlessButtonText.drive(onNext: { attrString in
-            self.paperlessButton.accessibilityLabel = attrString?.string.replacingOccurrences(of: "eBill", with: "e-bill")
-        }).addDisposableTo(bag)
-        viewModel.budgetButtonText.drive(onNext: { attrString in
-            self.budgetButton.accessibilityLabel = attrString?.string
-        }).addDisposableTo(bag)
+        
+        viewModel.autoPayButtonText.map { $0?.string }.drive(autoPayButton.rx.accessibilityLabel).addDisposableTo(bag)
+        
+        viewModel.paperlessButtonText
+            .map { $0?.string.replacingOccurrences(of: "eBill", with: "e-bill") }
+            .drive(paperlessButton.rx.accessibilityLabel)
+            .addDisposableTo(bag)
+        
+        viewModel.budgetButtonText.map { $0?.string }.drive(budgetButton.rx.accessibilityLabel).addDisposableTo(bag)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
