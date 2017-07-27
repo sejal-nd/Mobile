@@ -195,22 +195,15 @@ class HomeBillCardView: UIView {
         
         // Subview States
         viewModel.titleText.drive(titleLabel.rx.text).addDisposableTo(bag)
-        viewModel.titleFont.drive(onNext: { [weak self] font in
-            self?.titleLabel.font = font
-        }).addDisposableTo(bag)
-        viewModel.amountFont.drive(onNext: { [weak self] font in
-            self?.amountLabel.font = font
-        }).addDisposableTo(bag)
+        viewModel.titleFont.drive(titleLabel.rx.font).addDisposableTo(bag)
+        viewModel.amountFont.drive(amountLabel.rx.font).addDisposableTo(bag)
         viewModel.amountPaidText.drive(amountPaidLabel.rx.text).addDisposableTo(bag)
         viewModel.amountText.drive(amountLabel.rx.text).addDisposableTo(bag)
         viewModel.dueDateText.drive(dueDateLabel.rx.attributedText).addDisposableTo(bag)
         viewModel.dueAmountAndDateText.drive(dueAmountAndDateLabel.rx.text).addDisposableTo(bag)
         viewModel.bankCreditCardNumberText.drive(bankCreditCardNumberLabel.rx.text).addDisposableTo(bag)
         viewModel.bankCreditCardImage.drive(bankCreditCardImageView.rx.image).addDisposableTo(bag)
-        viewModel.bankCreditCardImageAccessibilityLabel
-            .drive(onNext: { [weak self] accessibilityLabel in
-                self?.bankCreditCardImageView.accessibilityLabel = accessibilityLabel
-            }).addDisposableTo(bag)
+        viewModel.bankCreditCardImageAccessibilityLabel.drive(bankCreditCardImageView.rx.accessibilityLabel).addDisposableTo(bag)
         viewModel.minPaymentAllowedText.drive(minimumPaymentLabel.rx.text).addDisposableTo(bag)
         viewModel.convenienceFeeText.drive(convenienceFeeLabel.rx.text).addDisposableTo(bag)
         viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).addDisposableTo(bag)
@@ -218,9 +211,7 @@ class HomeBillCardView: UIView {
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButtonLabel.rx.text).addDisposableTo(bag)
         viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButtonLabel.rx.text).addDisposableTo(bag)
         viewModel.enableOneTouchPayTCButton.drive(oneTouchPayTCButton.rx.isEnabled).addDisposableTo(bag)
-        viewModel.oneTouchPayTCButtonTextColor.drive(onNext: { [weak self] color in
-            self?.oneTouchPayTCButtonLabel.textColor = color
-        }).addDisposableTo(bag)
+        viewModel.oneTouchPayTCButtonTextColor.drive(oneTouchPayTCButtonLabel.rx.textColor).addDisposableTo(bag)
         
         // Actions
         oneTouchSlider.didFinishSwipe
