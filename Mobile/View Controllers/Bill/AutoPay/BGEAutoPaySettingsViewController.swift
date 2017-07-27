@@ -125,6 +125,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
                 }
             }
         }).addDisposableTo(disposeBag)
+        
         numberOfPaymentsTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: { _ in
             if let text = self.numberOfPaymentsTextField.textField.text {
                 if !text.isEmpty {
@@ -784,6 +785,15 @@ extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let characterSet = CharacterSet(charactersIn: string)
+        if textField == numberOfPaymentsTextField.textField {
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+        }
         return true
     }
 }
