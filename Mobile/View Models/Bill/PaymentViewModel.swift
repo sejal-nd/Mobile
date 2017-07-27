@@ -154,11 +154,11 @@ class PaymentViewModel {
             }).addDisposableTo(disposeBag)
     }
     
-    func schedulePayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func schedulePayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         if inlineBank.value {
-            scheduleInlineBankPayment(onSuccess: onSuccess, onError: onError)
+            scheduleInlineBankPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
         } else if inlineCard.value {
-            scheduleInlineCardPayment(onSuccess: onSuccess, onError: onError)
+            scheduleInlineCardPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
         } else { // Existing wallet item
             self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
                 let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
@@ -183,7 +183,7 @@ class PaymentViewModel {
         return Double(String(paymentAmount.value.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
     }
     
-    private func scheduleInlineBankPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    private func scheduleInlineBankPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var accountType: String?
         if Environment.sharedInstance.opco == .bge {
             accountType = addBankFormViewModel.selectedSegmentIndex.value == 0 ? "checking" : "saving"
@@ -230,12 +230,17 @@ class PaymentViewModel {
                         }).addDisposableTo(self.disposeBag)
                 }).addDisposableTo(self.disposeBag)
             }, onError: { (error: Error) in
-                onError(error.localizedDescription)
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
+                    onDuplicate(NSLocalizedString("Duplicate Bank Account", comment: ""), error.localizedDescription)
+                } else {
+                    onError(error.localizedDescription)
+                }
             })
             .addDisposableTo(disposeBag)
     }
     
-    private func scheduleInlineCardPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    private func scheduleInlineCardPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var nickname = addCardFormViewModel.nickname.value
         if nickname.isEmpty && Environment.sharedInstance.opco == .bge {
             nickname = "Credit Card" // Doesn't matter because we won't be saving it to the Wallet
@@ -274,9 +279,13 @@ class PaymentViewModel {
                         }).addDisposableTo(self.disposeBag)
                 }).addDisposableTo(self.disposeBag)
                 
-
-            }, onError: { err in
-                onError(err.localizedDescription)
+            }, onError: { error in
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
+                    onDuplicate(NSLocalizedString("Duplicate Credit Card", comment: ""), error.localizedDescription)
+                } else {
+                    onError(error.localizedDescription)
+                }
             })
             .addDisposableTo(disposeBag)
     }
