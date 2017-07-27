@@ -165,21 +165,19 @@ class HomeBillCardViewModel {
                 let billingInfo = accountDetail.billingInfo
                 let opco = Environment.sharedInstance.opco
                 
-                // ComEd/PECO
                 if opco != .bge && (billingInfo.restorationAmount ?? 0) > 0 {
                     return .restoreService
                 }
                 
-                if opco != .bge && (billingInfo.amtDpaReinst ?? 0 > 0) {
-                    return .catchUp
-                }
-                
-                // All OpCos
                 if billingInfo.disconnectNoticeArrears > 0 && billingInfo.isDisconnectNotice {
                     if opco == .bge && account.isMultipremise {
                         return .avoidShutoffBGEMultipremise
                     }
                     return .avoidShutoff
+                }
+                
+                if opco != .bge && (billingInfo.amtDpaReinst ?? 0 > 0) {
+                    return .catchUp
                 }
                 
                 if let pastDueAmount = billingInfo.pastDueAmount,

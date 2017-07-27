@@ -95,24 +95,24 @@ class BillViewModel {
         return $0?.billingInfo.restorationAmount ?? 0 > 0
     }
     
-    lazy var shouldShowCatchUpAmount: Driver<Bool> = {
-        let showCatchup = self.currentAccountDetail.asDriver().map {
-            $0?.billingInfo.amtDpaReinst ?? 0 > 0
-        }
-        return Driver.zip(self.shouldShowRestoreService, showCatchup) { !$0 && $1 }
-    }()
-    
-    lazy var shouldShowCatchUpDisclaimer: Driver<Bool> = self.shouldShowCatchUpAmount.map {
-        $0 && Environment.sharedInstance.opco == .comEd
-    }
-    
     lazy var shouldShowAvoidShutoff: Driver<Bool> = {
         let showAvoidShutoff = self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
             guard let billingInfo = accountDetail?.billingInfo else { return false }
             return billingInfo.disconnectNoticeArrears > 0 && billingInfo.isDisconnectNotice
         }
-        return Driver.zip(self.shouldShowCatchUpAmount, showAvoidShutoff) { !$0 && $1 }
+        return Driver.zip(self.shouldShowRestoreService, showAvoidShutoff) { !$0 && $1 }
     }()
+    
+    lazy var shouldShowCatchUpAmount: Driver<Bool> = {
+        let showCatchup = self.currentAccountDetail.asDriver().map {
+            $0?.billingInfo.amtDpaReinst ?? 0 > 0
+        }
+        return Driver.zip(self.shouldShowAvoidShutoff, showCatchup) { !$0 && $1 }
+    }()
+    
+    lazy var shouldShowCatchUpDisclaimer: Driver<Bool> = self.shouldShowCatchUpAmount.map {
+        $0 && Environment.sharedInstance.opco == .comEd
+    }
     
     lazy var shouldShowPastDue: Driver<Bool> = {
         let showPastDue = self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
