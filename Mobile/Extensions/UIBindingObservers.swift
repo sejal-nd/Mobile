@@ -60,8 +60,8 @@ extension Reactive where Base: UIControl {
     
     /// Bindable sink for `accessibilityLabel` property.
     public var accessibilityLabel: UIBindingObserver<Base, String?> {
-        return UIBindingObserver(UIElement: self.base) { imageView, text in
-            imageView.accessibilityLabel = text
+        return UIBindingObserver(UIElement: self.base) { control, text in
+            control.accessibilityLabel = text
         }
     }
     
