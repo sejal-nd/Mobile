@@ -20,7 +20,6 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if (elementName as String == "item") {
             FiservErrorMapper.fiservError = FiservError()
-            
             FiservErrorMapper.fiservError?.context = attributeDict["context"]!
             FiservErrorMapper.fiservError?.id = attributeDict["id"]!
         }
@@ -38,7 +37,7 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
         FiservErrorMapper.fiservError?.text += string
     }
     
-    public func getError(message : String, context : String?) -> FiservError {
+    public func getError(message : String, context : String?) -> FiservError? {
         if self.items.count == 0 {
             var parser: XMLParser?
             let path = Bundle.main.path(forResource: "fiserv_errors", ofType: "xml")
@@ -57,18 +56,16 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
         
         guard let err = error else {
             if context != nil {
-                return getError(message: message, context: nil)
+                return getError(message: message, context: context)
             }
-            return FiservError(text: message)
+            return nil
         }
         
         if !err.text.isEmpty {
             return err
         }
-        
-        // Assuming the first error will be the general one if the parser could not find a specific Fiserv Error
-        // If there is no specific error message handled in xml, the general error message will display
-        return items[0]
+
+        return nil
     }
 }
 

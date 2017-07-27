@@ -318,12 +318,11 @@ struct FiservApi {
     private func parseResponse(with value: [String:Any]) -> WalletItemResult {
         let code = value[ResponseKey.ResponseCode.rawValue] as? Int
         let statusMessage = value[ResponseKey.StatusMessage.rawValue] as? String
-        let fiservError = FiservErrorMapper.sharedInstance.getError(message: statusMessage ?? "", context: nil)
-        
+
         var walletItemIdString = ""
         if let walletItemId = value[ResponseKey.WalletItemId.rawValue] as? Int {
             walletItemIdString = String(walletItemId)
         }
-        return WalletItemResult(responseCode: code ?? -1, statusMessage: fiservError.text, walletItemId: walletItemIdString)
+        return WalletItemResult(responseCode: code ?? -1, statusMessage: statusMessage ?? "", walletItemId: walletItemIdString)
     }
 }

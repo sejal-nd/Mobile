@@ -64,24 +64,6 @@ protocol WalletService {
                           nickname: String?,
                           completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
-    
-    /// Update a bank account in the users wallet.
-    ///
-    /// - Parameters:
-    ///   - walletItemID: the wallet item id to update
-    ///   - bankAccountNumber: the new bank account number
-    ///   - routingNumber: the routing number
-    ///   - accountType: the account type
-    ///   - nickname: the account nickname
-    ///   - accountName; the account name
-    func updateBankAccount(_ walletItemID: String,
-                           bankAccountNumber: String,
-                           routingNumber: String,
-                           accountType: BankAccountType,
-                           nickname: String?,
-                           accountName: String?,
-                           completion: @escaping (_ result: ServiceResult<Void>) -> Void)
-    
     /// Delete wallet payment method.
     ///
     /// - Parameters:
@@ -211,36 +193,6 @@ extension WalletService {
                                         observer.onNext()
                                         observer.onCompleted()
                                             
-                                    case ServiceResult.Failure(let err):
-                                        observer.onError(err)
-                                    }
-            })
-            
-            return Disposables.create()
-        }
-    }
-
-    func updateBankAccount(_ walletItemID: String,
-                           bankAccountNumber: String,
-                           routingNumber: String,
-                           accountType: BankAccountType,
-                           nickname: String,
-                           accountName: String) -> Observable<Void> {
-        
-        return Observable.create { observer in
-            self.updateBankAccount(walletItemID,
-                                  bankAccountNumber: bankAccountNumber,
-                                  routingNumber: routingNumber,
-                                  accountType: accountType,
-                                  nickname: nickname,
-                                  accountName: accountName,
-                                  completion: { (result: ServiceResult<Void>) in
-                                    //
-                                    switch (result) {
-                                    case ServiceResult.Success:
-                                        observer.onNext()
-                                        observer.onCompleted()
-                                        
                                     case ServiceResult.Failure(let err):
                                         observer.onError(err)
                                     }
