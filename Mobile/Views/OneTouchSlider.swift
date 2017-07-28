@@ -138,7 +138,7 @@ class OneTouchSlider: UIControl {
         addGestureRecognizer(pan)
         
         //Accessibility button
-        if UIAccessibilityIsVoiceOverRunning() {
+        if UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning() {
             let accessibilityButton = UIButton(type: UIButtonType.system)
             accessibilityButton.backgroundColor = UIColor.clear
             accessibilityButton.isAccessibilityElement = true
