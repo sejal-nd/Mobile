@@ -129,7 +129,7 @@ class AuthTokenParser : NSObject {
                         primary = item[ProfileStatusKey.Value.rawValue] as! Bool
                     case ProfileStatusNameValue.TempPassword.rawValue:
                         tempPassword = item[ProfileStatusKey.Value.rawValue] as! Bool
-                        expiredTempPassword = item[ProfileStatusKey.TempPasswordFailReason.rawValue] as! String == "expired"
+                        expiredTempPassword = item[ProfileStatusKey.TempPasswordFailReason.rawValue] as? String == "expired"
                     default:
                         break
                     }
