@@ -170,9 +170,19 @@ class HomeViewController: AccountPickerViewController {
                 guard let `self` = self else { return }
                 
                 if let vc = viewController as? WalletViewController {
+                    vc.shouldPopToRootOnSave = true
+                    
                     vc.didUpdate
-                        .map { FetchingAccountState.switchAccount }
+                        .map { _ in FetchingAccountState.switchAccount }
                         .bind(to: self.viewModel.fetchData)
+                        .addDisposableTo(self.bag)
+                    
+                    vc.didUpdate
+                        .delay(0.5, scheduler: MainScheduler.instance)
+                        .observeOn(MainScheduler.instance)
+                        .subscribe(onNext: { [weak self] toastMessage in
+                            self?.view.showToast(toastMessage)
+                        })
                         .addDisposableTo(self.bag)
                 }
                 
@@ -182,15 +192,6 @@ class HomeViewController: AccountPickerViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
-    
-    func showDelayedToast(withMessage message: String) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(message)
-        })
-    }
 }
 
 extension HomeViewController: AccountPickerDelegate {

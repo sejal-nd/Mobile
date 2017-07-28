@@ -54,6 +54,8 @@ class EditCreditCardViewController: UIViewController {
     
     var viewModel = EditCreditCardViewModel(walletService: ServiceFactory.createWalletService())
     var saveButton = UIBarButtonItem()
+    
+    var shouldPopToRootOnSave = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -388,7 +390,11 @@ class EditCreditCardViewController: UIViewController {
             let handleSuccess = {
                 LoadingView.hide()
                 self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
-                _ = self.navigationController?.popViewController(animated: true)
+                if self.shouldPopToRootOnSave {
+                    self.navigationController?.popToRootViewController(animated: true)
+                } else {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
             
             if changed {
@@ -497,7 +503,11 @@ class EditCreditCardViewController: UIViewController {
             self.viewModel.deleteCreditCard(onSuccess: {
                 LoadingView.hide()
                 self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Card deleted", comment: ""))
-                _ = self.navigationController?.popViewController(animated: true)
+                if self.shouldPopToRootOnSave {
+                    self.navigationController?.popToRootViewController(animated: true)
+                } else {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }, onError: { errMessage in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)

@@ -46,6 +46,8 @@ class EditBankAccountViewController: UIViewController {
     
     var viewModel = EditBankAccountViewModel(walletService: ServiceFactory.createWalletService())
     
+    var shouldPopToRootOnSave = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -213,7 +215,11 @@ class EditBankAccountViewController: UIViewController {
                 self.viewModel.enableOneTouchPay(onSuccess: { 
                     LoadingView.hide()
                     self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
-                    _ = self.navigationController?.popViewController(animated: true)
+                    if self.shouldPopToRootOnSave {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    } else {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }, onError: { (errMessage: String) in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
@@ -224,7 +230,11 @@ class EditBankAccountViewController: UIViewController {
                 self.viewModel.deleteOneTouchPay(onSuccess: { 
                     LoadingView.hide()
                     self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
-                    _ = self.navigationController?.popViewController(animated: true)
+                    if self.shouldPopToRootOnSave {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    } else {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }, onError: { (errMessage: String) in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
@@ -269,7 +279,11 @@ class EditBankAccountViewController: UIViewController {
             self.viewModel.deleteBankAccount(onSuccess: {
                 LoadingView.hide()
                 self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Bank Account deleted", comment: ""))
-                _ = self.navigationController?.popViewController(animated: true)
+                if self.shouldPopToRootOnSave {
+                    self.navigationController?.popToRootViewController(animated: true)
+                } else {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }, onError: { errMessage in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
