@@ -32,6 +32,7 @@ class EditBankAccountViewController: UIViewController {
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var bottomBarLabel: UILabel!
     
+    @IBOutlet weak var oneTouchPayView: UIView!
     @IBOutlet weak var oneTouchPayDescriptionLabel: UILabel!
     @IBOutlet weak var oneTouchPaySwitch: Switch!
     @IBOutlet weak var oneTouchPayLabel: UILabel!
@@ -66,6 +67,10 @@ class EditBankAccountViewController: UIViewController {
         deleteAccountButton.accessibilityLabel = NSLocalizedString("Delete bank account", comment: "")
         deleteBankAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
         deleteBankAccountLabel.textColor = .actionBlue
+        
+        if viewModel.accountDetail.isCashOnly {
+            oneTouchPayView.isHidden = true
+        }
         
         bindWalletItemToViewElements()
     }
