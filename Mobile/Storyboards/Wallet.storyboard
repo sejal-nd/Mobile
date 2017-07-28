@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4aX-NF-dKM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4aX-NF-dKM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -84,7 +84,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SectionHeaderCell" id="txx-el-6XG" customClass="MiniWalletSectionHeaderCell" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="136" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="135.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="txx-el-6XG" id="PI4-xw-ry3">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -113,7 +113,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MiniWalletItemCell" rowHeight="74" id="BMr-Pc-hrR" customClass="MiniWalletTableViewCell" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="180" width="375" height="74"/>
+                                        <rect key="frame" x="0.0" y="179.5" width="375" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BMr-Pc-hrR" id="AUf-2g-qNH">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
@@ -182,7 +182,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddAccountCell" rowHeight="74" id="DOP-FZ-v3P" customClass="MiniWalletAddAccountCell" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="254" width="375" height="74"/>
+                                        <rect key="frame" x="0.0" y="253.5" width="375" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DOP-FZ-v3P" id="jjz-hu-qsu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
@@ -1724,7 +1724,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LR6-Vf-nPn" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="642"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="644.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="e2s-4x-2db">
                                                 <rect key="frame" x="23" y="10" width="329" height="528"/>
@@ -1740,13 +1740,13 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Thank you for your payment" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLs-KE-i9s">
-                                                                <rect key="frame" x="6" y="156" width="305" height="19"/>
+                                                                <rect key="frame" x="6" y="156" width="305" height="22"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="HbP-oB-Ayo">
-                                                                <rect key="frame" x="0.0" y="193" width="317" height="129.5"/>
+                                                                <rect key="frame" x="0.0" y="196" width="317" height="126.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YW9-9L-psT" userLabel="Payment Info View">
                                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="103"/>
@@ -1824,7 +1824,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wq-Nz-oMr">
-                                                                        <rect key="frame" x="6" y="115.5" width="305" height="14"/>
+                                                                        <rect key="frame" x="6" y="110" width="305" height="16.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1923,10 +1923,10 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ig6-sS-lcX">
-                                                <rect key="frame" x="0.0" y="568" width="375" height="74"/>
+                                                <rect key="frame" x="0.0" y="568" width="375" height="76.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxi-oC-Yo1">
-                                                        <rect key="frame" x="29" y="30" width="317" height="14"/>
+                                                        <rect key="frame" x="29" y="30" width="317" height="16.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="9kp-tU-9qO"/>
                                                         </constraints>
@@ -2082,21 +2082,21 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NICKNAME" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IT-eh-TEG">
-                                                        <rect key="frame" x="110" y="14" width="167" height="14"/>
+                                                        <rect key="frame" x="110" y="14" width="167" height="16.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Fu-ft-w8b">
-                                                        <rect key="frame" x="110" y="57" width="70.5" height="21"/>
+                                                        <rect key="frame" x="110" y="55" width="86" height="25"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBP-fv-fnn">
-                                                        <rect key="frame" x="110" y="83" width="99" height="15"/>
+                                                        <rect key="frame" x="110" y="85" width="99" height="15"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_one_touch_pay_check" translatesAutoresizingMaskIntoConstraints="NO" id="fft-Tq-AWP">
                                                                 <rect key="frame" x="0.0" y="3" width="11" height="9"/>
@@ -2141,7 +2141,7 @@
                                                 <rect key="frame" x="0.0" y="134" width="305" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Fee Applied" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nS2-9H-MqM">
-                                                        <rect key="frame" x="111" y="7" width="83" height="17"/>
+                                                        <rect key="frame" x="110" y="7" width="85" height="17"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                         <nil key="textColor"/>
@@ -2185,19 +2185,19 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6s-o1-hyp">
-                                <rect key="frame" x="29" y="218" width="317" height="116"/>
+                                <rect key="frame" x="29" y="218" width="317" height="121"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I94-KP-bhd">
-                                        <rect key="frame" x="0.0" y="21" width="317" height="28"/>
+                                        <rect key="frame" x="0.0" y="21" width="317" height="33"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PUk-gN-jvN" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="74" width="51" height="31"/>
+                                        <rect key="frame" x="0.0" y="79" width="51" height="31"/>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One Touch Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9e9-wT-59O">
-                                        <rect key="frame" x="61" y="80" width="109" height="19"/>
+                                        <rect key="frame" x="61" y="85" width="109" height="19"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2279,6 +2279,7 @@
                         <outlet property="oneTouchPayDescriptionLabel" destination="I94-KP-bhd" id="Wdi-pa-hNj"/>
                         <outlet property="oneTouchPayLabel" destination="9e9-wT-59O" id="v5l-9j-qD1"/>
                         <outlet property="oneTouchPaySwitch" destination="PUk-gN-jvN" id="ruU-eC-4jZ"/>
+                        <outlet property="oneTouchPayView" destination="A6s-o1-hyp" id="WTJ-T3-3Nl"/>
                         <outlet property="walletItemBGView" destination="X7D-dX-hPl" id="B0W-53-QmK"/>
                     </connections>
                 </viewController>
@@ -2302,16 +2303,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3NA-SQ-RCf" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="526.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Table header text." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tpi-xJ-KWj">
+                                                <rect key="frame" x="35" y="27" width="305" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a payment account:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zT-VF-3gi">
-                                                <rect key="frame" x="35" y="27" width="305" height="23.5"/>
+                                                <rect key="frame" x="35" y="74.5" width="305" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yob-cP-pis" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="35" y="90.5" width="305" height="178"/>
+                                                <rect key="frame" x="35" y="138" width="305" height="178"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MHd-0M-YSS" userLabel="Clip To Bounds View">
                                                         <rect key="frame" x="125" y="0.0" width="180" height="178"/>
@@ -2379,7 +2386,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDi-3Q-1rL" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="35" y="287.5" width="305" height="178"/>
+                                                <rect key="frame" x="35" y="335" width="305" height="178"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ib-au-2MS" userLabel="Clip To Bounds View">
                                                         <rect key="frame" x="125" y="0.0" width="180" height="178"/>
@@ -2449,7 +2456,7 @@ to your payments.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="opco specific details" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SW1-W3-H68">
-                                                <rect key="frame" x="30" y="497.5" width="315" height="14"/>
+                                                <rect key="frame" x="30" y="545" width="315" height="14"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2459,6 +2466,7 @@ to your payments.</string>
                                             <constraint firstItem="yob-cP-pis" firstAttribute="top" secondItem="4zT-VF-3gi" secondAttribute="bottom" constant="40" id="4Ex-cB-Q1s"/>
                                             <constraint firstAttribute="trailing" secondItem="SW1-W3-H68" secondAttribute="trailing" constant="30" id="6kl-U2-gi4"/>
                                             <constraint firstAttribute="trailing" secondItem="4zT-VF-3gi" secondAttribute="trailing" constant="35" id="86W-Fm-kIJ"/>
+                                            <constraint firstItem="Tpi-xJ-KWj" firstAttribute="leading" secondItem="3NA-SQ-RCf" secondAttribute="leading" constant="35" id="8Uy-9s-KNb"/>
                                             <constraint firstItem="iDi-3Q-1rL" firstAttribute="top" secondItem="yob-cP-pis" secondAttribute="bottom" constant="19" id="97x-6j-0DP"/>
                                             <constraint firstAttribute="bottom" secondItem="SW1-W3-H68" secondAttribute="bottom" constant="15" id="GXw-9y-3S9"/>
                                             <constraint firstAttribute="trailing" secondItem="yob-cP-pis" secondAttribute="trailing" constant="35" id="QB7-2R-t3K"/>
@@ -2466,8 +2474,10 @@ to your payments.</string>
                                             <constraint firstItem="4zT-VF-3gi" firstAttribute="leading" secondItem="3NA-SQ-RCf" secondAttribute="leading" constant="35" id="Uf1-Po-4Sc"/>
                                             <constraint firstItem="yob-cP-pis" firstAttribute="leading" secondItem="3NA-SQ-RCf" secondAttribute="leading" constant="35" id="f0o-5W-op2"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="gNT-Hp-2TH"/>
+                                            <constraint firstItem="4zT-VF-3gi" firstAttribute="top" secondItem="Tpi-xJ-KWj" secondAttribute="bottom" constant="27" id="gcM-Ik-g1k"/>
                                             <constraint firstItem="SW1-W3-H68" firstAttribute="top" secondItem="iDi-3Q-1rL" secondAttribute="bottom" constant="32" id="kq2-W8-hdg"/>
-                                            <constraint firstItem="4zT-VF-3gi" firstAttribute="top" secondItem="3NA-SQ-RCf" secondAttribute="top" constant="27" id="n8W-oV-IW1"/>
+                                            <constraint firstAttribute="trailing" secondItem="Tpi-xJ-KWj" secondAttribute="trailing" constant="35" id="rBN-Va-aRy"/>
+                                            <constraint firstItem="Tpi-xJ-KWj" firstAttribute="top" secondItem="3NA-SQ-RCf" secondAttribute="top" constant="27" id="rwh-jX-Fdo"/>
                                             <constraint firstItem="SW1-W3-H68" firstAttribute="leading" secondItem="3NA-SQ-RCf" secondAttribute="leading" constant="30" id="sfg-yQ-mmt"/>
                                             <constraint firstItem="iDi-3Q-1rL" firstAttribute="leading" secondItem="3NA-SQ-RCf" secondAttribute="leading" constant="35" id="spT-dc-dJc"/>
                                         </constraints>
@@ -2487,8 +2497,31 @@ to your payments.</string>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="131" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="4HA-SU-Q3V">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="471"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <view key="tableHeaderView" contentMode="scaleToFill" id="FPc-5C-1Lx">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Table header text." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnf-t0-NDE">
+                                                    <rect key="frame" x="24" y="0.0" width="327" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="6N6-FU-C2h"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="wnf-t0-NDE" firstAttribute="centerX" secondItem="FPc-5C-1Lx" secondAttribute="centerX" id="9tM-a1-3mH"/>
+                                                <constraint firstAttribute="bottom" secondItem="wnf-t0-NDE" secondAttribute="bottom" constant="20" id="N40-UX-uso"/>
+                                                <constraint firstItem="wnf-t0-NDE" firstAttribute="leading" secondItem="FPc-5C-1Lx" secondAttribute="leading" priority="999" constant="24" id="gV9-Sb-ecV"/>
+                                                <constraint firstAttribute="trailing" secondItem="wnf-t0-NDE" secondAttribute="trailing" priority="999" constant="23" id="hlN-2h-NAO"/>
+                                                <constraint firstItem="wnf-t0-NDE" firstAttribute="top" secondItem="FPc-5C-1Lx" secondAttribute="top" id="yWq-9b-eXe"/>
+                                            </constraints>
+                                        </view>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="anx-sn-8Qe">
-                                            <rect key="frame" x="0.0" y="204.5" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="284.5" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Kk-Ss-GYy">
@@ -2512,7 +2545,7 @@ to your payments.</string>
                                         </view>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WalletCell" id="mro-Ow-aeB" customClass="WalletTableViewCell" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="56" width="375" height="131"/>
+                                                <rect key="frame" x="0.0" y="135.5" width="375" height="131"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mro-Ow-aeB" id="ee7-TU-dxW">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="131"/>
@@ -2532,19 +2565,19 @@ to your payments.</string>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NICKNAME" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sH-2p-GVe">
-                                                                            <rect key="frame" x="110" y="14" width="203" height="14"/>
+                                                                            <rect key="frame" x="110" y="14" width="203" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymG-e3-kmI">
-                                                                            <rect key="frame" x="110" y="40" width="203" height="21"/>
+                                                                            <rect key="frame" x="110" y="38" width="203" height="25"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ObG-jx-YLO">
-                                                                            <rect key="frame" x="110" y="66" width="99" height="15"/>
+                                                                            <rect key="frame" x="110" y="68" width="99" height="15"/>
                                                                             <subviews>
                                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_one_touch_pay_check" translatesAutoresizingMaskIntoConstraints="NO" id="yLB-He-FC3">
                                                                                     <rect key="frame" x="0.0" y="3" width="11" height="9"/>
@@ -2599,7 +2632,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.50 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-Yl-Loj">
-                                                                            <rect key="frame" x="108" y="8.5" width="126.5" height="14"/>
+                                                                            <rect key="frame" x="107" y="8" width="128.5" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -2771,10 +2804,13 @@ to your payments.</string>
                         <outlet property="bankButton" destination="yob-cP-pis" id="HZf-9M-ghH"/>
                         <outlet property="bankButtonLabel" destination="F7h-ih-ezj" id="afC-i9-Qb5"/>
                         <outlet property="bankFeeLabel" destination="Jgw-q3-CeW" id="JHy-Co-Xfu"/>
+                        <outlet property="cashOnlyTableHeaderLabel" destination="wnf-t0-NDE" id="NFb-DT-Lvw"/>
                         <outlet property="choosePaymentAccountLabel" destination="4zT-VF-3gi" id="viH-ez-9H1"/>
                         <outlet property="creditCardButton" destination="iDi-3Q-1rL" id="Fmy-Gb-ihw"/>
                         <outlet property="creditCardButtonLabel" destination="1zh-SQ-WJG" id="jgf-wT-RCs"/>
                         <outlet property="creditCardFeeLabel" destination="HrX-gt-60v" id="HHo-Ua-HSE"/>
+                        <outlet property="emptyStateCashOnlyLabel" destination="Tpi-xJ-KWj" id="Bwx-aG-siX"/>
+                        <outlet property="emptyStateCashOnlyTopConstraint" destination="rwh-jX-Fdo" id="Ckf-1d-Pey"/>
                         <outlet property="emptyStateFooter" destination="SW1-W3-H68" id="jAp-18-Iae"/>
                         <outlet property="emptyStateScrollView" destination="8yJ-Rv-Wa8" id="pER-o7-wlD"/>
                         <outlet property="loadingIndicator" destination="5N7-vK-To4" id="ZA0-Gx-X61"/>
@@ -2884,21 +2920,21 @@ to your payments.</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NICKNAME" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDL-jy-dbQ">
-                                                                <rect key="frame" x="111" y="14" width="167" height="14"/>
+                                                                <rect key="frame" x="111" y="14" width="167" height="16.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrx-aF-2Sd">
-                                                                <rect key="frame" x="111" y="57" width="70.5" height="21"/>
+                                                                <rect key="frame" x="111" y="55" width="86" height="25"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gv1-Sy-SrI">
-                                                                <rect key="frame" x="111" y="83" width="99" height="14.5"/>
+                                                                <rect key="frame" x="111" y="85" width="99" height="14.5"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_one_touch_pay_check" translatesAutoresizingMaskIntoConstraints="NO" id="9ga-jM-JU1">
                                                                         <rect key="frame" x="0.0" y="3" width="11" height="9"/>
@@ -2943,7 +2979,7 @@ to your payments.</string>
                                                         <rect key="frame" x="0.0" y="134" width="306" height="31"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.50 Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPd-Y3-TTP">
-                                                                <rect key="frame" x="90" y="7" width="126.5" height="17"/>
+                                                                <rect key="frame" x="89" y="7" width="128.5" height="17"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                 <nil key="textColor"/>

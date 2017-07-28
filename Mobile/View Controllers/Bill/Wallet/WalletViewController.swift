@@ -17,6 +17,8 @@ class WalletViewController: UIViewController {
     
     // Empty state stuff
     @IBOutlet weak var emptyStateScrollView: UIScrollView!
+    @IBOutlet weak var emptyStateCashOnlyLabel: UILabel!
+    @IBOutlet weak var emptyStateCashOnlyTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var choosePaymentAccountLabel: UILabel!
     @IBOutlet weak var bankButton: ButtonControl!
     @IBOutlet weak var bankButtonLabel: UILabel!
@@ -33,6 +35,7 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var addPaymentAccountLabel: UILabel!
     @IBOutlet weak var miniCreditCardButton: ButtonControl!
     @IBOutlet weak var miniBankButton: ButtonControl!
+    @IBOutlet weak var cashOnlyTableHeaderLabel: UILabel!
     @IBOutlet weak var tableViewFooter: UILabel!
     
     let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService())
@@ -87,12 +90,26 @@ class WalletViewController: UIViewController {
         miniBankButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniBankButton.layer.cornerRadius = 8
 
-        
         tableViewFooter.text = viewModel.footerLabelText
         tableViewFooter.font = SystemFont.regular.of(textStyle: .footnote)
         
         emptyStateScrollView.isHidden = true
         nonEmptyStateView.isHidden = true
+        
+        // Cash only stuff
+        emptyStateCashOnlyLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        emptyStateCashOnlyLabel.textColor = .blackText
+        if viewModel.accountDetail.isCashOnly {
+            emptyStateCashOnlyLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
+        } else {
+            emptyStateCashOnlyLabel.text = nil
+            emptyStateCashOnlyTopConstraint.constant = 0
+        }
+
+        cashOnlyTableHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        cashOnlyTableHeaderLabel.textColor = .white
+        cashOnlyTableHeaderLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
+        cashOnlyTableHeaderLabel.isHidden = !viewModel.accountDetail.isCashOnly
         
         setupBinding()
         setupButtonTaps()
@@ -112,7 +129,6 @@ class WalletViewController: UIViewController {
         creditCardButton.accessibilityLabel = NSLocalizedString("Add Credit Card", comment: "")
         miniCreditCardButton.isAccessibilityElement = true
         miniCreditCardButton.accessibilityLabel = NSLocalizedString("Add Credit card", comment: "")
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,6 +141,23 @@ class WalletViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        // Dynamic sizing for the table header view
+        if let headerView = tableView.tableHeaderView {
+            if viewModel.accountDetail.isCashOnly {
+                let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+                var headerFrame = headerView.frame
+                
+                // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
+                if height != headerFrame.size.height {
+                    headerFrame.size.height = height
+                    headerView.frame = headerFrame
+                    tableView.tableHeaderView = headerView
+                }
+            } else {
+                headerView.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: 0.01) // Must be 0.01 to remove empty space when hidden
+            }
+        }
         
         // Dynamic sizing for the table footer view
         if let footerView = tableView.tableFooterView {
@@ -152,7 +185,8 @@ class WalletViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         
         viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).addDisposableTo(disposeBag)
-        viewModel.bankAccountLimitReached.map(!).drive(miniBankButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.addBankDisabled.map(!).drive(miniBankButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.addBankDisabled.map(!).drive(bankButton.rx.isEnabled).addDisposableTo(disposeBag)
     }
     
     func setupButtonTaps() {
