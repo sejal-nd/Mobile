@@ -290,6 +290,7 @@ class ReviewPaymentViewController: UIViewController {
             })
         } else { // Schedule
             viewModel.schedulePayment(onDuplicate: { (errTitle, errMessage) in
+                LoadingView.hide()
                 let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
