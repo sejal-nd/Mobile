@@ -41,9 +41,10 @@ class WalletViewController: UIViewController {
     let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService())
     
     var selectedWalletItem: WalletItem?
+    var shouldPopToRootOnSave = false
     
-    fileprivate let didUpdateSubject = PublishSubject<Void>()
-    private(set) lazy var didUpdate: Observable<Void> = self.didUpdateSubject.asObservable()
+    fileprivate let didUpdateSubject = PublishSubject<String>()
+    private(set) lazy var didUpdate: Observable<String> = self.didUpdateSubject.asObservable()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -207,20 +208,34 @@ class WalletViewController: UIViewController {
             vc.accountDetail = viewModel.accountDetail
             vc.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
+            vc.shouldPopToRootOnSave = shouldPopToRootOnSave
         } else if let vc = segue.destination as? AddCreditCardViewController {
             vc.accountDetail = viewModel.accountDetail
             vc.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
+            vc.shouldPopToRootOnSave = shouldPopToRootOnSave
         } else if let vc = segue.destination as? EditBankAccountViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail
             vc.viewModel.walletItem = self.selectedWalletItem
             vc.viewModel.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
+            vc.shouldPopToRootOnSave = shouldPopToRootOnSave
         } else if let vc = segue.destination as? EditCreditCardViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail
             vc.viewModel.walletItem = self.selectedWalletItem
             vc.viewModel.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
+            vc.shouldPopToRootOnSave = shouldPopToRootOnSave
+        }
+    }
+    
+    func didChangeAccount(toastMessage: String) {
+        didUpdateSubject.onNext(toastMessage)
+        if !shouldPopToRootOnSave {
+            self.viewModel.fetchWalletItems.onNext()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                self.view.showToast(toastMessage)
+            })
         }
     }
     
@@ -283,11 +298,7 @@ extension WalletViewController: UITableViewDataSource {
 extension WalletViewController: AddBankAccountViewControllerDelegate {
     
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
-        self.viewModel.fetchWalletItems.onNext()
-        didUpdateSubject.onNext()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
-        })
+        didChangeAccount(toastMessage: NSLocalizedString("Bank account added", comment: ""))
     }
     
 }
@@ -295,11 +306,7 @@ extension WalletViewController: AddBankAccountViewControllerDelegate {
 extension WalletViewController: EditBankAccountViewControllerDelegate {
     
     func editBankAccountViewControllerDidEditAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String) {
-        self.viewModel.fetchWalletItems.onNext()
-        didUpdateSubject.onNext()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(message)
-        })
+        didChangeAccount(toastMessage: message)
     }
     
 }
@@ -307,22 +314,14 @@ extension WalletViewController: EditBankAccountViewControllerDelegate {
 extension WalletViewController: AddCreditCardViewControllerDelegate {
     
     func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
-        self.viewModel.fetchWalletItems.onNext()
-        didUpdateSubject.onNext()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Card added", comment: ""))
-        })
+        didChangeAccount(toastMessage: NSLocalizedString("Card added", comment: ""))
     }
 }
 
 extension WalletViewController: EditCreditCardViewControllerDelegate {
     
     func editCreditCardViewControllerDidEditAccount(_ editCreditCardViewController: EditCreditCardViewController, message: String) {
-        self.viewModel.fetchWalletItems.onNext()
-        didUpdateSubject.onNext()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(message)
-        })
+        didChangeAccount(toastMessage: message)
     }
     
 }

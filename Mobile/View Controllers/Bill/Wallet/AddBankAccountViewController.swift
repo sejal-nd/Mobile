@@ -27,6 +27,8 @@ class AddBankAccountViewController: UIViewController {
     var oneTouchPayItem: WalletItem!
     
     var saveButton = UIBarButtonItem()
+    
+    var shouldPopToRootOnSave = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +85,11 @@ class AddBankAccountViewController: UIViewController {
                 let completion = {
                     LoadingView.hide()
                     self.delegate?.addBankAccountViewControllerDidAddAccount(self)
-                    _ = self.navigationController?.popViewController(animated: true)
+                    if self.shouldPopToRootOnSave {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    } else {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
                 if setAsOneTouchPay {
                     self.viewModel.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: completion, onError: { errMessage in
