@@ -26,6 +26,7 @@ class OneTouchSlider: UIControl {
     
     let sliderWidth: CGFloat = 40
     let sliderText = NSLocalizedString("Slide to pay now", comment: "")
+    let accessibilityText = NSLocalizedString("Tap to pay", comment: "")
     let commitToSwipe: CGFloat = 0.95 //swipe percentage point at which we commit to the swipe and call success
     
     private let sliderValueChangedSubject = PublishSubject<CGFloat>()
@@ -135,6 +136,29 @@ class OneTouchSlider: UIControl {
         //Add pan gesture to slide the slider view
         let pan = UIPanGestureRecognizer(target: self, action: #selector(self.panGesture(_:)))
         addGestureRecognizer(pan)
+        
+        //Accessibility button
+        if UIAccessibilityIsVoiceOverRunning() {
+            let accessibilityButton = UIButton(type: UIButtonType.system)
+            accessibilityButton.backgroundColor = UIColor.clear
+            accessibilityButton.isAccessibilityElement = true
+            accessibilityButton.accessibilityLabel = self.accessibilityText
+        
+            let selector = #selector(didPressAccessibilityButton)
+            accessibilityButton.addTarget(self, action: selector, for:.touchUpInside)
+            
+            self.addSubview(accessibilityButton)
+            
+            accessibilityButton.translatesAutoresizingMaskIntoConstraints = false
+            
+            let views = ["button": accessibilityButton, "view": self]
+            
+            let horizontallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[button]-|", options: .alignAllCenterY, metrics: nil, views: views)
+            let verticallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[button]-|", options: .alignAllCenterX, metrics: nil, views: views)
+            
+            self.addConstraints(horizontallayoutContraints)
+            self.addConstraints(verticallayoutContraints)
+        }
     }
     
     //MARK: - Public Methods
@@ -198,6 +222,10 @@ class OneTouchSlider: UIControl {
             })
         default: break
         }
+    }
+    
+    func didPressAccessibilityButton() {
+        self.didFinishSwipeSubject.onNext()
     }
 }
 
