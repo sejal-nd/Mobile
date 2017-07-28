@@ -142,7 +142,7 @@ class AddBankFormView: UIView {
             if !self.viewModel.accountHolderName.value.isEmpty {
                 self.viewModel.accountHolderNameIsValid().single().subscribe(onNext: { valid in
                     if !valid {
-                        self.accountHolderNameTextField.setError(NSLocalizedString("Must be longer than 3 characters", comment: ""))
+                        self.accountHolderNameTextField.setError(NSLocalizedString("Must be at least 3 characters", comment: ""))
                     }
                 }).addDisposableTo(self.disposeBag)
             }

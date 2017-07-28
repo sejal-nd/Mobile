@@ -85,6 +85,12 @@ class WalletViewModel {
         return bankCount >= 3
     }
     
+    var addBankDisabled: Driver<Bool> {
+        return bankAccountLimitReached.map {
+            return $0 || self.accountDetail.isCashOnly
+        }
+    }
+    
     var emptyStateCreditFeeLabelText: String {
         switch Environment.sharedInstance.opco {
         case .bge:
