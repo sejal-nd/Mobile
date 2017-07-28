@@ -36,6 +36,8 @@ class AddCardFormViewModel {
     let paymentWorkflow = Variable(false) // If form is being used on payment screen
     let saveToWallet = Variable(true) // Switch value
     
+    var nicknamesInWallet = [String]()
+    
     required init(walletService: WalletService) {
         self.walletService = walletService
         
@@ -153,14 +155,23 @@ class AddCardFormViewModel {
     
     func nicknameErrorString() -> Observable<String?> {
         return nickname.asObservable().map {
+            // If BGE, check if at least 3 characters
             if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.characters.count < 3 {
                 return NSLocalizedString("Must be at least 3 characters", comment: "")
             }
+            
+            // Check for special characters
             var trimString = $0.components(separatedBy: CharacterSet.whitespaces).joined(separator: "")
             trimString = trimString.components(separatedBy: CharacterSet.alphanumerics).joined(separator: "")
             if !trimString.isEmpty {
                 return NSLocalizedString("Can only contain letters, numbers, and spaces", comment: "")
             }
+            
+            // Check for duplicate nickname
+            if self.nicknamesInWallet.contains($0) {
+                return NSLocalizedString("This nickname is already in use", comment: "")
+            }
+            
             return nil
         }
     }

@@ -25,6 +25,7 @@ class AddBankAccountViewController: UIViewController {
     var viewModel: AddBankAccountViewModel!
     var accountDetail: AccountDetail!
     var oneTouchPayItem: WalletItem!
+    var nicknamesInWallet: [String]!
     
     var saveButton = UIBarButtonItem()
 
@@ -32,6 +33,7 @@ class AddBankAccountViewController: UIViewController {
         super.viewDidLoad()
         
         addBankFormView.delegate = self
+        addBankFormView.viewModel.nicknamesInWallet = nicknamesInWallet
         
         viewModel = AddBankAccountViewModel(walletService: ServiceFactory.createWalletService(), addBankFormViewModel: self.addBankFormView.viewModel)
         viewModel.accountDetail = accountDetail

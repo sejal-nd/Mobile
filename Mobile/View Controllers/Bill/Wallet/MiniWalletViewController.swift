@@ -127,10 +127,16 @@ class MiniWalletViewController: UIViewController {
         if let vc = segue.destination as? AddBankAccountViewController {
             vc.accountDetail = accountDetail
             vc.oneTouchPayItem = oneTouchPayItem
+            if let walletItems = viewModel.walletItems.value {
+                vc.nicknamesInWallet = walletItems.map { $0.nickName ?? "" }.filter { !$0.isEmpty }
+            }
             vc.delegate = self
         } else if let vc = segue.destination as? AddCreditCardViewController {
             vc.accountDetail = accountDetail
             vc.oneTouchPayItem = oneTouchPayItem
+            if let walletItems = viewModel.walletItems.value {
+                vc.nicknamesInWallet = walletItems.map { $0.nickName ?? "" }.filter { !$0.isEmpty }
+            }
             vc.delegate = self
         }
     }
