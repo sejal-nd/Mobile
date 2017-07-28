@@ -287,9 +287,8 @@ class HomeBillCardViewModel {
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.titleState,
                                                                                    self.isPrecariousBillSituation,
                                                                                    self.walletItemDriver,
-                                                                                   self.accountDetailDriver,
-                                                                                   self.showAutoPay)
-        .map { $0 != .credit && !$1 && $2 == nil && !$3.isActiveSeverance && !$3.isCashOnly && !$4 }
+                                                                                   self.showOneTouchPaySlider)
+        .map { $0 != .credit && !$1 && $2 == nil && $3 }
     
     private(set) lazy var showMinimumPaymentAllowed: Driver<Bool> = Driver.combineLatest(self.titleState,
                                                                                self.isPrecariousBillSituation,
