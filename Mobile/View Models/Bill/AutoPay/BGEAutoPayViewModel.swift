@@ -66,44 +66,46 @@ class BGEAutoPayViewModel {
             .subscribe(onNext: { (autoPayInfo: BGEAutoPayInfo) in
                 self.isFetchingAutoPayInfo.value = false
                 
-                // MMS - I'm so, so sorry about this
-                if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4, let nickname = autoPayInfo.paymentAccountNickname {
-                    self.selectedWalletItem.value = WalletItem.from(["walletItemID": walletItemId, "maskedWalletItemAccountNumber": masked4, "nickName": nickname])
-                }
-                if let amountType = autoPayInfo.amountType {
-                    self.amountToPay.value = amountType
-                }
-                if let amountThreshold = autoPayInfo.amountThreshold {
-                    self.amountNotToExceed.value = amountThreshold
-                    self.formatAmountNotToExceed()
-                }
-                if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
-                    self.numberOfDaysBeforeDueDate.value = paymentDaysBeforeDue
-                    self.whenToPay.value = paymentDaysBeforeDue == "0" ? .onDueDate : .beforeDueDate
-                }
-                if let effectivePeriod = autoPayInfo.effectivePeriod {
-                    self.howLongForAutoPay.value = effectivePeriod
-                }
-                if let effectiveEndDate = autoPayInfo.effectiveEndDate {
-                    self.autoPayUntilDate.value = effectiveEndDate
-                }
-                if let effectiveNumPayments = autoPayInfo.effectiveNumPayments {
-                    self.numberOfPayments.value = effectiveNumPayments
-                }
-                
                 // Expired accounts
-                if let effectiveNumberOfPayments = autoPayInfo.effectiveNumPayments,
-                    let numberOfPaymentsScheduled = autoPayInfo.numberOfPaymentsScheduled,
-                    Int(numberOfPaymentsScheduled)! >= Int(effectiveNumberOfPayments)! {
+                var isExpired = false
+                if let effectiveNumberOfPayments = autoPayInfo.effectiveNumPayments, let numberOfPaymentsScheduled = autoPayInfo.numberOfPaymentsScheduled, Int(numberOfPaymentsScheduled)! >= Int(effectiveNumberOfPayments)! {
+                    isExpired = true
                     let localizedString = NSLocalizedString("Enrollment expired due to AutoPay settings - you set enrollment to expire after %d payments.", comment: "")
                     self.expiredReason.value = String(format: localizedString, Int(effectiveNumberOfPayments)!)
                 } else if let effectiveEndDate = autoPayInfo.effectiveEndDate, effectiveEndDate < Date() {
+                    isExpired = true
                     let localizedString = NSLocalizedString("Enrollment expired due to AutoPay settings - you set enrollment to expire on %@.", comment: "")
                     self.expiredReason.value = String(format: localizedString, effectiveEndDate.mmDdYyyyString)
                 } else {
                     self.expiredReason.value = nil
                 }
                 
+                if !isExpired { // Sync up our view model with the existing AutoPay settings
+                    if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4, let nickname = autoPayInfo.paymentAccountNickname {
+                        self.selectedWalletItem.value = WalletItem.from(["walletItemID": walletItemId, "maskedWalletItemAccountNumber": masked4, "nickName": nickname])
+                    }
+                    if let amountType = autoPayInfo.amountType {
+                        self.amountToPay.value = amountType
+                    }
+                    if let amountThreshold = autoPayInfo.amountThreshold {
+                        self.amountNotToExceed.value = amountThreshold
+                        self.formatAmountNotToExceed()
+                    }
+                    if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
+                        self.numberOfDaysBeforeDueDate.value = paymentDaysBeforeDue
+                        self.whenToPay.value = paymentDaysBeforeDue == "0" ? .onDueDate : .beforeDueDate
+                    }
+                    if let effectivePeriod = autoPayInfo.effectivePeriod {
+                        self.howLongForAutoPay.value = effectivePeriod
+                    }
+                    if let effectiveEndDate = autoPayInfo.effectiveEndDate {
+                        self.autoPayUntilDate.value = effectiveEndDate
+                    }
+                    if let effectiveNumPayments = autoPayInfo.effectiveNumPayments {
+                        self.numberOfPayments.value = effectiveNumPayments
+                    }
+                }
+            
                 onSuccess?()
             }, onError: { error in
                 self.isFetchingAutoPayInfo.value = false
