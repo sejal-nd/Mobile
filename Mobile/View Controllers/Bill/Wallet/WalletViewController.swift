@@ -207,11 +207,17 @@ class WalletViewController: UIViewController {
         if let vc = segue.destination as? AddBankAccountViewController {
             vc.accountDetail = viewModel.accountDetail
             vc.oneTouchPayItem = oneTouchPayItem
+            if let walletItems = viewModel.walletItems.value {
+                vc.nicknamesInWallet = walletItems.map { $0.nickName ?? "" }.filter { !$0.isEmpty }
+            }
             vc.delegate = self
             vc.shouldPopToRootOnSave = shouldPopToRootOnSave
         } else if let vc = segue.destination as? AddCreditCardViewController {
             vc.accountDetail = viewModel.accountDetail
             vc.oneTouchPayItem = oneTouchPayItem
+            if let walletItems = viewModel.walletItems.value {
+                vc.nicknamesInWallet = walletItems.map { $0.nickName ?? "" }.filter { !$0.isEmpty }
+            }
             vc.delegate = self
             vc.shouldPopToRootOnSave = shouldPopToRootOnSave
         } else if let vc = segue.destination as? EditBankAccountViewController {

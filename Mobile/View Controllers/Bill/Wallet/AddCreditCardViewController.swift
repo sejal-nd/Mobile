@@ -27,6 +27,7 @@ class AddCreditCardViewController: UIViewController {
     var viewModel: AddCreditCardViewModel!
     var accountDetail: AccountDetail!
     var oneTouchPayItem: WalletItem!
+    var nicknamesInWallet: [String]!
     
     var saveButton = UIBarButtonItem()
     
@@ -36,6 +37,7 @@ class AddCreditCardViewController: UIViewController {
         super.viewDidLoad()
         
         addCardFormView.delegate = self
+        addCardFormView.viewModel.nicknamesInWallet = nicknamesInWallet
         
         viewModel = AddCreditCardViewModel(walletService: ServiceFactory.createWalletService(), addCardFormViewModel: self.addCardFormView.viewModel)
         viewModel.accountDetail = accountDetail

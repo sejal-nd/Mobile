@@ -81,6 +81,10 @@ class PaymentViewModel {
             .map { walletItems in
                 self.walletItems.value = walletItems
                 self.oneTouchPayItem = walletItems.first(where: { $0.isDefault == true })
+                
+                let nicknamesInWallet = walletItems.map { $0.nickName ?? "" }.filter { !$0.isEmpty }
+                self.addBankFormViewModel.nicknamesInWallet = nicknamesInWallet
+                self.addCardFormViewModel.nicknamesInWallet = nicknamesInWallet
             }
     }
     
