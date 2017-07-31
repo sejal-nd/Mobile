@@ -169,7 +169,7 @@ class HomeBillCardViewModel {
                     return .restoreService
                 }
                 
-                if billingInfo.disconnectNoticeArrears > 0 && billingInfo.isDisconnectNotice {
+                if (billingInfo.disconnectNoticeArrears ?? 0) > 0 && billingInfo.isDisconnectNotice {
                     if opco == .bge && account.isMultipremise {
                         return .avoidShutoffBGEMultipremise
                     }
@@ -383,6 +383,8 @@ class HomeBillCardViewModel {
                 return $0.billingInfo.amtDpaReinst?.currencyString
             case .restoreService:
                 return $0.billingInfo.restorationAmount?.currencyString
+            case .avoidShutoff, .avoidShutoffBGEMultipremise:
+                return $0.billingInfo.disconnectNoticeArrears?.currencyString
             case .billPaidIntermediate:
                 if let recentPayment = RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] {
                     return recentPayment.amount.currencyString

@@ -168,7 +168,7 @@ struct BillingInfo: Mappable {
     let restorationAmount: Double?
     let amtDpaReinst: Double?
     let dueByDate: Date?
-    let disconnectNoticeArrears: Int
+    let disconnectNoticeArrears: Double?
     let isDisconnectNotice: Bool
     let billDate: Date?
     let convenienceFee: Double?
@@ -194,7 +194,7 @@ struct BillingInfo: Mappable {
         restorationAmount = map.optionalFrom("restorationAmount")
         amtDpaReinst = map.optionalFrom("amtDpaReinst")
         dueByDate = map.optionalFrom("dueByDate", transformation: extractDate)
-        disconnectNoticeArrears = map.optionalFrom("disconnectNoticeArrears") ?? 0
+        disconnectNoticeArrears = map.optionalFrom("disconnectNoticeArrears")
         isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
         billDate = map.optionalFrom("billDate", transformation: extractDate)
         convenienceFee = map.optionalFrom("convenienceFee")
