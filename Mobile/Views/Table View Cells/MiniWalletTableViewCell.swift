@@ -41,15 +41,29 @@ class MiniWalletTableViewCell: UITableViewCell {
     }
     
     func bindToWalletItem(_ walletItem: WalletItem) {
-        iconImageView.image = walletItem.bankOrCard == .bank ? #imageLiteral(resourceName: "opco_bank_mini") : #imageLiteral(resourceName: "opco_credit_card_mini")
+        var a11yLabel = ""
         
-        if let last4digits = walletItem.maskedWalletItemAccountNumber {
-            accountNumberLabel.text = "**** \(last4digits)"
+        if walletItem.bankOrCard == .bank {
+            iconImageView.image = #imageLiteral(resourceName: "opco_bank_mini")
+            a11yLabel = NSLocalizedString("Bank account", comment: "")
+        } else {
+            iconImageView.image = #imageLiteral(resourceName: "opco_credit_card_mini")
+            a11yLabel = NSLocalizedString("Credit card", comment: "")
+        }
+        
+        nicknameLabel.text = walletItem.nickName
+        if let nicknameText = nicknameLabel.text, !nicknameText.isEmpty {
+            a11yLabel += ", \(nicknameText)"
+        }
+        
+        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
+            accountNumberLabel.text = "**** \(last4Digits)"
+            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
         } else {
             accountNumberLabel.text = ""
         }
         
-        nicknameLabel.text = walletItem.nickName
+        innerContentView.accessibilityLabel = a11yLabel
     }
 
 }

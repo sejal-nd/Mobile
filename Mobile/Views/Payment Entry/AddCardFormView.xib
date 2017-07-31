@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -54,7 +54,7 @@
                             </constraints>
                         </view>
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6oj-e5-VEh" userLabel="Card Number View">
-                            <rect key="frame" x="29" y="100" width="317" height="60"/>
+                            <rect key="frame" x="29" y="99" width="317" height="60"/>
                             <subviews>
                                 <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jH3-TE-BZh" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
@@ -106,7 +106,7 @@
                             </constraints>
                         </view>
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ljP-0Y-qxX" userLabel="Expiration Date View">
-                            <rect key="frame" x="29" y="199.5" width="317" height="99"/>
+                            <rect key="frame" x="29" y="198" width="317" height="99"/>
                             <subviews>
                                 <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Expiration Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZw-2E-5Jx">
                                     <rect key="frame" x="0.0" y="0.0" width="116.5" height="20.5"/>
@@ -146,7 +146,7 @@
                             </constraints>
                         </view>
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n6W-a1-4Qw" userLabel="CVV Zip View">
-                            <rect key="frame" x="29" y="338.5" width="317" height="60"/>
+                            <rect key="frame" x="29" y="336" width="317" height="60"/>
                             <subviews>
                                 <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVS-yv-NzF" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="129" height="60"/>
@@ -191,16 +191,20 @@
                             </constraints>
                         </view>
                         <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="lR0-wB-1Uc">
-                            <rect key="frame" x="29" y="438" width="317" height="73"/>
+                            <rect key="frame" x="29" y="435.5" width="317" height="78"/>
                             <subviews>
                                 <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4gK-pl-XhC">
                                     <rect key="frame" x="0.0" y="0.0" width="317" height="31"/>
                                     <subviews>
                                         <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAK-U0-5tb" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                            <accessibility key="accessibilityConfiguration" label="Save to my wallet"/>
                                         </switch>
                                         <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Save to My Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijN-0B-mFw">
                                             <rect key="frame" x="61" y="0.5" width="129" height="19.5"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <bool key="isElement" value="NO"/>
+                                            </accessibility>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -216,7 +220,7 @@
                                     </constraints>
                                 </view>
                                 <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="By not saving this payment account, you will only be eligible to make an instant payment." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOP-DP-Vy2">
-                                    <rect key="frame" x="0.0" y="45" width="317" height="28"/>
+                                    <rect key="frame" x="0.0" y="45" width="317" height="33"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -224,14 +228,14 @@
                             </subviews>
                         </stackView>
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bIB-Jm-Flu" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                            <rect key="frame" x="29" y="551" width="317" height="60"/>
+                            <rect key="frame" x="29" y="552.5" width="317" height="60"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="hCI-KC-sYQ"/>
                             </constraints>
                         </view>
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pJq-aU-YbT" userLabel="One Touch Pay View">
-                            <rect key="frame" x="29" y="650.5" width="317" height="89"/>
+                            <rect key="frame" x="29" y="651.5" width="317" height="89"/>
                             <subviews>
                                 <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yp-DR-Zk8">
                                     <rect key="frame" x="0.0" y="0.0" width="317" height="28"/>
@@ -241,9 +245,13 @@
                                 </label>
                                 <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ifa-US-KMn" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="53" width="51" height="31"/>
+                                    <accessibility key="accessibilityConfiguration" label="One touch pay"/>
                                 </switch>
                                 <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="One Touch Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8l-D9-9Ct">
                                     <rect key="frame" x="61" y="59" width="109" height="19.5"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <bool key="isElement" value="NO"/>
+                                    </accessibility>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
