@@ -118,10 +118,16 @@ class MakePaymentViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
+        // Inline bank fields
         addBankFormView.delegate = self
         addBankFormView.viewModel.paymentWorkflow.value = true
+        bindInlineBankAccessibility()
+        
+        // Inline card fields
         addCardFormView.delegate = self
         addCardFormView.viewModel.paymentWorkflow.value = true
+        bindInlineCardAccessibility()
+        
         inlinePaymentDividerLine.backgroundColor = .lightGray
         
         activeSeveranceLabel.textColor = .blackText
@@ -153,12 +159,10 @@ class MakePaymentViewController: UIViewController {
                 }).addDisposableTo(self.disposeBag)
             }
             self.accessibilityErrorLabel()
-            
         }).addDisposableTo(disposeBag)
         cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cvvTextField.setError(nil)
             self.accessibilityErrorLabel()
-            
         }).addDisposableTo(disposeBag)
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
@@ -243,19 +247,6 @@ class MakePaymentViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    private func accessibilityErrorLabel() {
-        var message = ""
-        message += cvvTextField.getError()
-        message += paymentAmountTextField.getError()
-        
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
-            self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
-        } else {
-            self.nextButton.accessibilityLabel = errorStr
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -366,6 +357,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).addDisposableTo(disposeBag)
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountAccountNumberLabel.rx.text).addDisposableTo(disposeBag)
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.selectedWalletItemA11yLabel.drive(paymentAccountButton.rx.accessibilityLabel).addDisposableTo(disposeBag)
         
         // CVV (BGE credit card only)
         cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).addDisposableTo(disposeBag)
@@ -387,6 +379,7 @@ class MakePaymentViewController: UIViewController {
         // Payment Date
         viewModel.paymentDateString.asDriver().drive(paymentDateButton.label.rx.text).addDisposableTo(disposeBag)
         viewModel.paymentDateString.asDriver().drive(paymentDateFixedDateLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).addDisposableTo(disposeBag)
         
         // Wallet Footer Label
         viewModel.walletFooterLabelText.drive(walletFooterLabel.rx.text).addDisposableTo(disposeBag)
@@ -446,6 +439,114 @@ class MakePaymentViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         
         privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).addDisposableTo(disposeBag)
+    }
+    
+    func bindInlineBankAccessibility() {
+        addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            if !self.viewModel.addBankFormViewModel.routingNumber.value.isEmpty {
+                self.viewModel.addBankFormViewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
+                    self.accessibilityErrorLabel()
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
+        
+        addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            if !self.viewModel.addBankFormViewModel.accountNumber.value.isEmpty {
+                self.viewModel.addBankFormViewModel.accountNumberIsValid().single().subscribe(onNext: { valid in
+                    self.accessibilityErrorLabel()
+                }).addDisposableTo(self.disposeBag)
+            }
+        }).addDisposableTo(disposeBag)
+        
+        addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.addBankFormViewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.addBankFormViewModel.nicknameErrorString().subscribe(onNext: { valid in
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+    }
+    
+    func bindInlineCardAccessibility() {
+        addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.addCardFormViewModel.nicknameErrorString().map{ $0 == nil }.subscribe(onNext: { valid in
+            self.accessibilityErrorLabel()
+        }).addDisposableTo(disposeBag)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        
+        // Inline Bank
+        message += addBankFormView.routingNumberTextField.getError()
+        message += addBankFormView.accountNumberTextField.getError()
+        message += addBankFormView.confirmAccountNumberTextField.getError()
+        message += addBankFormView.nicknameTextField.getError()
+        
+        // Inline Card
+        message += addCardFormView.cardNumberTextField.getError()
+        message += addCardFormView.expMonthTextField.getError()
+        message += addCardFormView.expYearTextField.getError()
+        message += addCardFormView.cvvTextField.getError()
+        message += addCardFormView.zipCodeTextField.getError()
+        message += addCardFormView.nicknameTextField.getError()
+        
+        // Payment Fields
+        message += cvvTextField.getError()
+        message += paymentAmountTextField.getError()
+        
+        if message.isEmpty {
+            self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+        } else {
+            self.nextButton.accessibilityLabel = message
+        }
     }
     
     func onNextPress() {

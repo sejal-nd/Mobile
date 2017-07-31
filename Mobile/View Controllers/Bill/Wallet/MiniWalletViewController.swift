@@ -270,6 +270,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 }.drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddBankAccountPress), for: .touchUpInside)
+                cell.innerContentView.accessibilityLabel = NSLocalizedString("Add Bank Account", comment: "")
                 return cell
             }
         } else {
@@ -295,6 +296,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 }.drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddCreditCardPress), for: .touchUpInside)
+                cell.innerContentView.accessibilityLabel = NSLocalizedString("Add Credit/Debit Card", comment: "")
                 return cell
             }
         }
