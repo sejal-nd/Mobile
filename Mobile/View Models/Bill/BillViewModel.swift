@@ -98,7 +98,7 @@ class BillViewModel {
     lazy var shouldShowAvoidShutoff: Driver<Bool> = {
         let showAvoidShutoff = self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
             guard let billingInfo = accountDetail?.billingInfo else { return false }
-            return billingInfo.disconnectNoticeArrears > 0 && billingInfo.isDisconnectNotice
+            return (billingInfo.disconnectNoticeArrears ?? 0) > 0 && billingInfo.isDisconnectNotice
         }
         return Driver.zip(self.shouldShowRestoreService, showAvoidShutoff) { !$0 && $1 }
     }()
@@ -218,9 +218,9 @@ class BillViewModel {
     
     lazy var avoidShutoffAlertText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let billingInfo = $0?.billingInfo,
-            let amountText = billingInfo.pastDueAmount?.currencyString,
+            let amountText = billingInfo.disconnectNoticeArrears?.currencyString,
             (!(billingInfo.restorationAmount ?? 0 > 0 && billingInfo.amtDpaReinst ?? 0 > 0) &&
-                billingInfo.disconnectNoticeArrears > 0 &&
+                (billingInfo.disconnectNoticeArrears ?? 0) > 0 &&
                 billingInfo.isDisconnectNotice) else {
                     return nil
         }
@@ -302,7 +302,7 @@ class BillViewModel {
     }
     
     lazy var avoidShutoffAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
-        $0?.billingInfo.pastDueAmount?.currencyString ?? "--"
+        $0?.billingInfo.disconnectNoticeArrears?.currencyString ?? "--"
     }
     
     lazy var avoidShutoffDueDateText: Driver<String?> = self.currentAccountDetail.asDriver().map {
