@@ -110,11 +110,13 @@ class EditCreditCardViewController: UIViewController {
         oneTouchPayCardLabel.textColor = .blackText
         oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         nicknameLabel.textColor = .blackText
+        nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         convenienceFeeLabel.textColor = .blackText
+        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
     }
     
     func buildNavigationButtons() {
