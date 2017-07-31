@@ -183,6 +183,7 @@ class ReviewPaymentViewController: UIViewController {
         
         footerView.backgroundColor = .softGray
         footerLabel.textColor = .blackText
+        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         bindViewHiding()
         bindViewContent()
