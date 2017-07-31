@@ -332,7 +332,13 @@ class EditCreditCardViewController: UIViewController {
         message += expYearTextField.getError()
         message += cvvTextField.getError()
         message += zipCodeTextField.getError()
-        self.saveButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+        
+        let errorStr = NSLocalizedString(message, comment: "")
+        if errorStr.isEmpty {
+            self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
+        } else {
+            self.saveButton.accessibilityLabel = errorStr
+        }
     }
     
     // MARK: - ScrollView

@@ -249,7 +249,13 @@ class MakePaymentViewController: UIViewController {
         var message = ""
         message += cvvTextField.getError()
         message += paymentAmountTextField.getError()
-        self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+        
+        let errorStr = NSLocalizedString(message, comment: "")
+        if errorStr.isEmpty {
+            self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+        } else {
+            self.nextButton.accessibilityLabel = errorStr
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

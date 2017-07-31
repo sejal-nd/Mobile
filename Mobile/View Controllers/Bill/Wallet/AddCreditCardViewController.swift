@@ -185,7 +185,13 @@ class AddCreditCardViewController: UIViewController {
         message += addCardFormView.cvvTextField.getError()
         message += addCardFormView.zipCodeTextField.getError()
         message += addCardFormView.nicknameTextField.getError()
-        self.saveButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+        
+        let errorStr = NSLocalizedString(message, comment: "")
+        if errorStr.isEmpty {
+            self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
+        } else {
+            self.saveButton.accessibilityLabel = errorStr
+        }
     }
     
     func configureCardIO() {

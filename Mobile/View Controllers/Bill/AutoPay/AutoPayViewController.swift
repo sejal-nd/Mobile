@@ -398,6 +398,13 @@ class AutoPayViewController: UIViewController {
         message += accountNumberTextField.getError()
         message += confirmAccountNumberTextField.getError()
         self.submitButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+        
+        let errorStr = NSLocalizedString(message, comment: "")
+        if errorStr.isEmpty {
+            self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+        } else {
+            self.submitButton.accessibilityLabel = errorStr
+        }
     }
     
     

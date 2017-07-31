@@ -33,8 +33,10 @@ class AccountLookupToolViewController: UIViewController {
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         searchButton = UIBarButtonItem(title: NSLocalizedString("Search", comment: ""), style: .done, target: self, action: #selector(onSearchPress))
+        searchButton.accessibilityLabel = NSLocalizedString("Search", comment: "")
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = searchButton
+        navigationItem.rightBarButtonItem?.accessibilityLabel = NSLocalizedString("Search", comment: "")
         viewModel.searchButtonEnabled().bind(to: searchButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -96,7 +98,12 @@ class AccountLookupToolViewController: UIViewController {
     }
     
     private func accessibilityErrorLabel() {
-        self.searchButton.accessibilityLabel = NSLocalizedString(phoneNumberTextField.getError() + identifierTextField.getError(), comment: "")
+        let errorStr = NSLocalizedString(phoneNumberTextField.getError() + identifierTextField.getError(), comment: "")
+        if errorStr.isEmpty {
+            self.searchButton.accessibilityLabel = NSLocalizedString("Search", comment: "")
+        } else {
+            self.searchButton.accessibilityLabel = errorStr
+        }
     }
     
     deinit {
