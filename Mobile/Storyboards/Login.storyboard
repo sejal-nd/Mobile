@@ -386,13 +386,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bsh-bs-Szr">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5c-2w-tbz">
                                 <rect key="frame" x="0.0" y="64" width="375" height="483"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdc-lo-y4f">
                                 <rect key="frame" x="0.0" y="547" width="375" height="60"/>
                                 <subviews>
@@ -430,16 +427,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xdc-lo-y4f" firstAttribute="top" secondItem="bsh-bs-Szr" secondAttribute="bottom" id="HnE-P3-TU5"/>
+                            <constraint firstItem="xdc-lo-y4f" firstAttribute="top" secondItem="E5c-2w-tbz" secondAttribute="bottom" id="5aS-bw-Gmi"/>
+                            <constraint firstAttribute="trailing" secondItem="E5c-2w-tbz" secondAttribute="trailing" id="IHZ-y2-epZ"/>
+                            <constraint firstItem="E5c-2w-tbz" firstAttribute="leading" secondItem="dDU-GJ-Gqf" secondAttribute="leading" id="Met-xQ-1o6"/>
                             <constraint firstItem="T2d-t3-Jmn" firstAttribute="top" secondItem="xdc-lo-y4f" secondAttribute="bottom" id="RmP-ZD-MUR"/>
                             <constraint firstItem="T2d-t3-Jmn" firstAttribute="leading" secondItem="dDU-GJ-Gqf" secondAttribute="leading" id="WrP-0g-9vH"/>
-                            <constraint firstAttribute="trailing" secondItem="bsh-bs-Szr" secondAttribute="trailing" id="YOe-ez-ehe"/>
                             <constraint firstItem="xdc-lo-y4f" firstAttribute="leading" secondItem="dDU-GJ-Gqf" secondAttribute="leading" id="ccK-tF-SJf"/>
                             <constraint firstAttribute="bottomMargin" secondItem="T2d-t3-Jmn" secondAttribute="bottom" id="dx0-vF-DND"/>
                             <constraint firstAttribute="trailing" secondItem="T2d-t3-Jmn" secondAttribute="trailing" id="eIb-MA-wfE"/>
-                            <constraint firstItem="bsh-bs-Szr" firstAttribute="top" secondItem="LV1-2o-5O7" secondAttribute="bottom" id="eQH-BL-HET"/>
-                            <constraint firstItem="bsh-bs-Szr" firstAttribute="leading" secondItem="dDU-GJ-Gqf" secondAttribute="leading" id="gEd-UF-QDe"/>
                             <constraint firstAttribute="trailing" secondItem="xdc-lo-y4f" secondAttribute="trailing" id="kX0-mm-3KP"/>
+                            <constraint firstItem="E5c-2w-tbz" firstAttribute="top" secondItem="LV1-2o-5O7" secondAttribute="bottom" id="rKW-hu-JOT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Terms and Policies" id="EH4-ec-m7z"/>
@@ -448,7 +445,7 @@
                         <outlet property="agreeSwitch" destination="STf-Fi-lUb" id="MBP-U7-G8X"/>
                         <outlet property="agreeView" destination="xdc-lo-y4f" id="lAD-Oa-7dj"/>
                         <outlet property="continueButton" destination="T2d-t3-Jmn" id="Wz7-t5-9NI"/>
-                        <outlet property="textView" destination="bsh-bs-Szr" id="97s-6q-q4f"/>
+                        <outlet property="webView" destination="E5c-2w-tbz" id="H0V-AZ-cRf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuu-u2-aL4" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -865,26 +865,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="u6H-b0-4vD">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOa-7C-xx2">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="u6H-b0-4vD" secondAttribute="bottom" id="8IF-qJ-NuC"/>
-                            <constraint firstAttribute="trailing" secondItem="u6H-b0-4vD" secondAttribute="trailing" id="ONs-63-fAe"/>
-                            <constraint firstItem="u6H-b0-4vD" firstAttribute="top" secondItem="Gll-ha-gZ7" secondAttribute="bottom" id="bfY-2J-eZz"/>
-                            <constraint firstItem="u6H-b0-4vD" firstAttribute="leading" secondItem="MPv-q7-tvM" secondAttribute="leading" id="k0m-nK-OKN"/>
+                            <constraint firstAttribute="trailing" secondItem="eOa-7C-xx2" secondAttribute="trailing" id="Idm-yL-wn5"/>
+                            <constraint firstItem="eOa-7C-xx2" firstAttribute="leading" secondItem="MPv-q7-tvM" secondAttribute="leading" id="LSL-yu-xJh"/>
+                            <constraint firstItem="eOa-7C-xx2" firstAttribute="top" secondItem="Gll-ha-gZ7" secondAttribute="bottom" id="YU1-7e-Gew"/>
+                            <constraint firstItem="GSd-fN-0FS" firstAttribute="top" secondItem="eOa-7C-xx2" secondAttribute="bottom" id="nqi-JP-l6W"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Terms &amp; Policies" id="oZB-iD-zJ4"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="textView" destination="u6H-b0-4vD" id="pd8-D2-UhC"/>
+                        <outlet property="webView" destination="eOa-7C-xx2" id="Ucj-xR-deJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFB-5r-VF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
