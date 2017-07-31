@@ -10,7 +10,7 @@ import UIKit
 
 class TermsPoliciesViewController: UIViewController {
     
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var webView: UIWebView!
     
     let viewModel = TermsPoliciesViewModel()
     var viewAppeared = false
@@ -24,8 +24,8 @@ class TermsPoliciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textView.textContainerInset = UIEdgeInsetsMake(10, 29, 10, 29)
-        textView.attributedText = viewModel.attributedTermsString
+        let url = viewModel.termPoliciesURL!
+        webView.loadRequest(URLRequest(url: url))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,21 +69,6 @@ class TermsPoliciesViewController: UIViewController {
         // This prevent the navigation bar turns white when it goes back
         navigationController?.setNavigationBarHidden(true, animated: true)
 
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        // Content was appearing already scrolled initially so this fixes it
-        if !viewAppeared {
-            textView.setContentOffset(.zero, animated: false)
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        viewAppeared = true
     }
     
 }

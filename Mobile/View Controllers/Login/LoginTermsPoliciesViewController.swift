@@ -14,7 +14,7 @@ class LoginTermsPoliciesViewController: UIViewController {
     
     @IBOutlet weak var agreeSwitch: Switch!
     @IBOutlet weak var continueButton: UIButton!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var agreeView: UIView!
     @IBOutlet weak var agreeLabel: UILabel!
     
@@ -26,8 +26,8 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         self.title = NSLocalizedString("Terms and Policies", comment: "")
         
-        textView.textContainerInset = UIEdgeInsetsMake(10, 29, 10, 29)
-        textView.attributedText = viewModel.attributedTermsString
+        let url = viewModel.termPoliciesURL!
+        webView.loadRequest(URLRequest(url: url))
 
         agreeView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
 
@@ -37,15 +37,6 @@ class LoginTermsPoliciesViewController: UIViewController {
         agreeLabel.font = SystemFont.regular.of(textStyle: .headline)
         agreeLabel.text = viewModel.agreeLabelText;
         accessibilitySetup()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        // Content was appearing already scrolled initially so this fixes it
-        if !viewAppeared {
-            textView.setContentOffset(.zero, animated: false)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
