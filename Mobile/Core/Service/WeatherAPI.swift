@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import CoreLocation
+import Mapper
 
 let baseUrl = "https://api.weather.gov/"
 
@@ -16,15 +17,65 @@ let baseUrl = "https://api.weather.gov/"
 struct WeatherItem {
     let temperature: Int
     let iconName: String
+    let shortForecast: String
+    
+    init?(json: [String: Any]) {
+        guard let properties = json["properties"] as? Dictionary<String, Any>,
+            let periods = properties["periods"] as? Array<[String: Any]>,
+            let temp = periods[0]["temperature"] as? Int,
+            let iconString = periods[0]["icon"] as? String,
+            let isDaytime = periods[0]["isDaytime"] as? Bool,
+            let shortForecast = periods[0]["shortForecast"] as? String else {
+                return nil
+        }
+        
+        let iconNameString = WeatherItem.iconName(iconString: iconString, isDaytime: isDaytime)
+        
+        self.temperature = temp
+        self.iconName = iconNameString
+        self.shortForecast = shortForecast
+    }
+    
+    private static func iconName(iconString: String, isDaytime: Bool) -> String {
+        
+        if let iconName = WeatherIconNames.values.first(where: { iconString.contains($0.rawValue) }) {
+            switch iconName {
+            case .HOT, .SKC, .WIND_SKC:
+                if isDaytime {
+                    return "ic_day_clear"
+                } else {
+                    return "ic_nt_clear"
+                }
+            case .FEW, .SCT, .WIND_FEW, .WIND_SCT, .SMOKE, .HAZE, .DUST:
+                if isDaytime {
+                    return "ic_day_partlycloudy"
+                } else {
+                    return "ic_nt_partlycloudy"
+                }
+            case .BKN, .WIND_BKN, .FOG:
+                if isDaytime {
+                    return "ic_day_mostlycloudy"
+                } else {
+                    return "ic_nt_mostlycloudy"
+                }
+            case .RAIN, .RAIN_SHOWERS, .RAIN_SLEET, .RAIN_SHOWERS_HI, .RAIN_FZRA:
+                return "ic_rain"
+            case .SNOW_SLEET, .FZRA, .RAIN_SNOW, .SNOW_FZRA, .SLEET:
+                return "ic_sleet"
+            case .TSRA, .TSRA_SCT, .TSRA_HI, .TS_HURR_WARN, .TS_WARN, .TS_WATCH, .HURR_WARN, .HURR_WATCH, .TORNADO:
+                return "ic_tstorms"
+            case .OVC, .WIND_OVC:
+                return "ic_cloudy"
+            case .SNOW, .BLIZZARD, .COLD:
+                return "ic_snow"
+            default:
+                return WeatherIconNames.UNKNOWN.rawValue
+            }
+        }
+        return WeatherIconNames.UNKNOWN.rawValue
+    }
 }
 
-private enum ResponseKey : String {
-    case Properties = "properties"
-    case Periods = "periods"
-    case Temperature = "temperature"
-    case Icon = "icon"
-    case IsDaytime = "isDaytime"
-}
 
 //TODO: when swift is refactorable make this more readable 
 enum WeatherIconNames: String { 
@@ -71,6 +122,7 @@ enum WeatherIconNames: String {
 extension WeatherIconNames {
     static let values = [HOT, COLD, TS_WARN, TS_WATCH, TS_HURR_WARN, HURR_WARN, HURR_WATCH, FOG, HAZE, SMOKE, DUST, SKC, WIND_SKC, BKN, WIND_BKN, FEW, SCT, TORNADO, RAIN, RAIN_SHOWERS, RAIN_SHOWERS_HI, RAIN_SLEET, RAIN_FZRA, SNOW_SLEET, FZRA, RAIN_SNOW, SNOW_FZRA, SLEET, TSRA, TSRA_SCT, TSRA_HI, OVC, WIND_OVC, SNOW, BLIZZARD]
 }
+
 struct WeatherAPI: WeatherService { 
     
     func getWeather(address: String, completion: @escaping (_ result: ServiceResult<WeatherItem>) -> Swift.Void) {
@@ -95,8 +147,8 @@ struct WeatherAPI: WeatherService {
                         
                         do {
                             let results = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
-                            guard let resultDictionary = results,
-                                let weatherItem = self.weatherItemFrom(data: resultDictionary) else {
+                            guard let json = results,
+                                let weatherItem = WeatherItem(json: json) else {
                                     let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
                                     completion(ServiceResult.Failure(serviceError))
                                     return
@@ -123,65 +175,4 @@ struct WeatherAPI: WeatherService {
         
     }
     
-    private func weatherItemFrom(data: Dictionary<String, Any?>?) -> WeatherItem? {
-        guard let properties = data?[ResponseKey.Properties.rawValue] as? Dictionary<String, Any>,
-            let periods = properties[ResponseKey.Periods.rawValue] as? Array<[String: Any]>,
-            let temp = periods[0][ResponseKey.Temperature.rawValue] as? Int,
-            let iconString = periods[0][ResponseKey.Icon.rawValue] as? String,
-            let isDaytime = periods[0][ResponseKey.IsDaytime.rawValue] as? Bool else { 
-                return nil 
-        }
-        
-        let iconNameString = iconName(iconString: iconString, isDaytime: isDaytime)
-        
-        return WeatherItem(temperature: temp, iconName: iconNameString)
-        
-    }
-    
-    private func iconName(iconString: String, isDaytime: Bool) -> String {
-        
-        let iconName = WeatherIconNames.values.filter { iconString.contains($0.rawValue) }.first
-        
-        if let iconName = iconName {
-            switch iconName.rawValue {
-            case WeatherIconNames.HOT.rawValue, WeatherIconNames.SKC.rawValue, WeatherIconNames.WIND_SKC.rawValue:
-                if isDaytime {
-                    return "ic_day_clear"
-                } else {
-                    return "ic_nt_clear"
-                }
-            case WeatherIconNames.FEW.rawValue, WeatherIconNames.SCT.rawValue, WeatherIconNames.WIND_FEW.rawValue,
-                 WeatherIconNames.WIND_SCT.rawValue, WeatherIconNames.SMOKE.rawValue, WeatherIconNames.HAZE.rawValue,
-                 WeatherIconNames.DUST.rawValue:
-                if isDaytime {
-                    return "ic_day_partlycloudy"
-                } else {
-                    return "ic_nt_partlycloudy"
-                }
-            case WeatherIconNames.BKN.rawValue, WeatherIconNames.WIND_BKN.rawValue, WeatherIconNames.FOG.rawValue:
-                if isDaytime {
-                    return "ic_day_mostlycloudy"
-                } else {
-                    return "ic_nt_mostlycloudy"
-                }
-            case WeatherIconNames.RAIN.rawValue, WeatherIconNames.RAIN_SHOWERS.rawValue, WeatherIconNames.RAIN_SLEET.rawValue,
-                 WeatherIconNames.RAIN_SHOWERS_HI.rawValue, WeatherIconNames.RAIN_FZRA.rawValue:
-                return "ic_rain"
-            case WeatherIconNames.SNOW_SLEET.rawValue, WeatherIconNames.FZRA.rawValue, WeatherIconNames.RAIN_SNOW.rawValue,
-                 WeatherIconNames.SNOW_FZRA.rawValue, WeatherIconNames.SLEET.rawValue:
-                return "ic_sleet"
-            case WeatherIconNames.TSRA.rawValue, WeatherIconNames.TSRA_SCT.rawValue, WeatherIconNames.TSRA_HI.rawValue,
-                 WeatherIconNames.TS_HURR_WARN.rawValue, WeatherIconNames.TS_WARN.rawValue, WeatherIconNames.TS_WATCH.rawValue,
-                 WeatherIconNames.HURR_WARN.rawValue, WeatherIconNames.HURR_WATCH.rawValue, WeatherIconNames.TORNADO.rawValue:
-                return "ic_tstorms"
-            case WeatherIconNames.OVC.rawValue, WeatherIconNames.WIND_OVC.rawValue:
-                return "ic_cloudy"
-            case WeatherIconNames.SNOW.rawValue, WeatherIconNames.BLIZZARD.rawValue, WeatherIconNames.COLD.rawValue:
-                return "ic_snow"
-            default:
-                return WeatherIconNames.UNKNOWN.rawValue
-            }
-        }
-        return WeatherIconNames.UNKNOWN.rawValue
-    }
 }

@@ -101,13 +101,13 @@
                                                                 <rect key="frame" x="0.0" y="128" width="375" height="100"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyw-91-O7K">
-                                                                        <rect key="frame" x="16" y="0.0" width="249" height="100"/>
+                                                                        <rect key="frame" x="16" y="50" width="0.0" height="0.0"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-co-jWg">
-                                                                        <rect key="frame" x="273" y="0.0" width="44" height="100"/>
+                                                                        <rect key="frame" x="273" y="50" width="44" height="0.0"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="44" id="kvP-Nz-xTB"/>
                                                                         </constraints>
@@ -126,15 +126,13 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstItem="aXQ-xP-rVE" firstAttribute="leading" secondItem="vy3-co-jWg" secondAttribute="trailing" constant="8" id="K95-al-lCb"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="vy3-co-jWg" secondAttribute="bottom" id="N3h-U5-6XQ"/>
-                                                                    <constraint firstItem="uyw-91-O7K" firstAttribute="top" secondItem="ANG-nn-e6w" secondAttribute="top" id="UyZ-Cj-Hre"/>
                                                                     <constraint firstItem="uyw-91-O7K" firstAttribute="leading" secondItem="ANG-nn-e6w" secondAttribute="leading" constant="16" id="WpF-mn-Tae"/>
                                                                     <constraint firstItem="aXQ-xP-rVE" firstAttribute="top" secondItem="ANG-nn-e6w" secondAttribute="top" id="XQ0-tP-fZE"/>
-                                                                    <constraint firstItem="vy3-co-jWg" firstAttribute="leading" secondItem="uyw-91-O7K" secondAttribute="trailing" constant="8" id="dDs-Gx-wn5"/>
+                                                                    <constraint firstItem="vy3-co-jWg" firstAttribute="centerY" secondItem="ANG-nn-e6w" secondAttribute="centerY" id="c9Y-YA-Vlj"/>
+                                                                    <constraint firstItem="vy3-co-jWg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uyw-91-O7K" secondAttribute="trailing" constant="8" id="dDs-Gx-wn5"/>
                                                                     <constraint firstAttribute="trailing" secondItem="aXQ-xP-rVE" secondAttribute="trailing" constant="-30" id="gVU-L5-Pno"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="uyw-91-O7K" secondAttribute="bottom" id="gtp-We-Ntb"/>
                                                                     <constraint firstAttribute="height" constant="100" id="kVB-Rg-sYO"/>
-                                                                    <constraint firstItem="vy3-co-jWg" firstAttribute="top" secondItem="ANG-nn-e6w" secondAttribute="top" id="oZh-3a-Ugh"/>
+                                                                    <constraint firstItem="uyw-91-O7K" firstAttribute="centerY" secondItem="ANG-nn-e6w" secondAttribute="centerY" id="nOM-Ok-yZu"/>
                                                                     <constraint firstAttribute="bottom" secondItem="aXQ-xP-rVE" secondAttribute="bottom" id="tC9-JV-XzP"/>
                                                                 </constraints>
                                                             </view>

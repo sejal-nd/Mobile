@@ -72,7 +72,7 @@ class HomeViewModel {
                                                                                         self.billCardViewModel.workDaysNoNetworkConnection)
         .asDriver(onErrorDriveWith: .empty())
     
-    // Weather
+    //MARK: - Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
         .map { $0.address ?? "" }
         .flatMapLatest(self.fetchWeather)
@@ -91,11 +91,15 @@ class HomeViewModel {
     
     private(set) lazy var weatherTemp: Driver<String?> = self.weatherEvents.elements()
         .map { "\($0.temperature)°" }
-        .asDriver(onErrorDriveWith: .empty())
+        .asDriver(onErrorJustReturn: nil)
     
     private(set) lazy var weatherIcon: Driver<UIImage?> = self.weatherEvents.elements()
         .map { $0.iconName != WeatherIconNames.UNKNOWN.rawValue ? UIImage(named: $0.iconName) : nil }
-        .asDriver(onErrorDriveWith: .empty())
+        .asDriver(onErrorJustReturn: nil)
+    
+    private(set) lazy var shortForecast: Driver<String?> = self.weatherEvents.elements()
+        .map { $0.shortForecast }
+        .asDriver(onErrorJustReturn: nil)
     
     private lazy var weatherSuccess: Driver<Bool> = Observable.merge(self.accountDetailEvents.errors().map { _ in false },
                                                                      self.weatherEvents.errors().map { _ in false },
