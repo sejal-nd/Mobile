@@ -90,10 +90,10 @@ class WalletTableViewCell: UITableViewCell {
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 bottomBarLabel.text = NSLocalizedString(billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
-                a11yLabel =  NSLocalizedString("Credit card", comment: "")
+                a11yLabel = NSLocalizedString("Credit card", comment: "")
             } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                a11yLabel =  NSLocalizedString("Bank account", comment: "")
+                a11yLabel = NSLocalizedString("Bank account", comment: "")
             }
         case .bge:
             if walletItem.bankOrCard == .card {
@@ -125,16 +125,14 @@ class WalletTableViewCell: UITableViewCell {
             }
         }
         
-        if let nicknameText = nicknameLabel.text {
-            if !nicknameText.isEmpty {
-                a11yLabel += ", \(nicknameText)"
-            }
+        if let nicknameText = nicknameLabel.text, !nicknameText.isEmpty {
+            a11yLabel += ", \(nicknameText)"
         }
         
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
             accountNumberLabel.text = "**** \(last4Digits)"
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in %@", comment: ""), last4Digits)
+            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
         } else {
             accountNumberLabel.text = ""
         }
