@@ -69,6 +69,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="accountNumberLabel" destination="DTD-Vd-bLe" id="3fy-vr-fhq"/>
+                <outlet property="accountStackView" destination="XXD-O1-jwe" id="lNZ-vP-Ryp"/>
                 <outlet property="addressLabel" destination="Df8-9B-mWB" id="MjB-h7-RkI"/>
                 <outlet property="enrollStatusLabel" destination="OXj-VC-gLK" id="VOI-kN-IP4"/>
                 <outlet property="enrollSwitch" destination="M9v-zl-oXP" id="br7-aC-Epm"/>
