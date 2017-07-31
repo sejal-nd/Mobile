@@ -150,7 +150,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             .drive(onNext: { matches in
                 if self.confirmPasswordTextField.textField.hasText {
                     if matches {
-                        self.confirmPasswordTextField.setValidated(matches)
+                        self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Minimum password criteria met", comment: ""))
                     } else {
                         self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
                     }
@@ -204,7 +204,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         self.viewModel.usernameMatches().subscribe(onNext: { valid in
             if self.viewModel.confirmUsername.value.characters.count > 0 {
-                self.confirmUsernameTextField.setValidated(valid)
+                self.confirmUsernameTextField.setValidated(valid, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 
                 if !valid {
                     self.confirmUsernameTextField.setError(NSLocalizedString("Email address does not match", comment: ""))
@@ -265,13 +265,13 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 self.passwordStrengthMeterView.setScore(score)
                 
                 if score < 2 {
-                    self.passwordStrengthLabel.text = NSLocalizedString("Weak", comment: "")
+                    self.passwordStrengthLabel.text = NSLocalizedString("Password Strength Weak", comment: "")
                     
                 } else if score < 4 {
-                    self.passwordStrengthLabel.text = NSLocalizedString("Medium", comment: "")
+                    self.passwordStrengthLabel.text = NSLocalizedString("Password Strength Medium", comment: "")
                     
                 } else {
-                    self.passwordStrengthLabel.text = NSLocalizedString("Strong", comment: "")
+                    self.passwordStrengthLabel.text = NSLocalizedString("Password Strength Strong", comment: "")
                 }
             }).addDisposableTo(disposeBag)
         

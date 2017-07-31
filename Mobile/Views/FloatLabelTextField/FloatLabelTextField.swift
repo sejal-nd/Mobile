@@ -185,4 +185,8 @@ class FloatLabelTextField: UIView {
         }
     }
     
+    func setNumberKeyboard() {
+        textField.keyboardType = .decimalPad
+    }
+    
 }
