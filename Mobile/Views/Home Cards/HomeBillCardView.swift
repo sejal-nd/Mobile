@@ -140,6 +140,10 @@ class HomeBillCardView: UIView {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
+        
+        alertImageView.isAccessibilityElement = true
+        alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+        
     }
     
     private func bindViewModel() {
