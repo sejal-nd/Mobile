@@ -61,7 +61,12 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
     }
     
     private func accessibilityErrorLabel() {
-        self.submitButton.accessibilityLabel = NSLocalizedString(answerTextField.getError(), comment: "")
+        let errorStr = NSLocalizedString(answerTextField.getError(), comment: "")
+        if errorStr.isEmpty {
+            self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+        } else {
+            self.submitButton.accessibilityLabel = errorStr
+        }
     }
     
     func onSubmitPress() {
