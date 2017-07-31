@@ -18,6 +18,7 @@ class ForgotUsernameViewController: UIViewController {
     @IBOutlet weak var identifierTextField: FloatLabelTextField?
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField?
     @IBOutlet weak var accountLookupToolButton: UIButton?
+    @IBOutlet weak var accountNumberTooltipButton: UIButton!
     
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     
@@ -116,10 +117,12 @@ class ForgotUsernameViewController: UIViewController {
             
         }).addDisposableTo(disposeBag)
         
+        accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool Tip", comment: "")
+        
         accountLookupToolButton?.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
         accountLookupToolButton?.setTitleColor(.actionBlue, for: .normal)
         accountLookupToolButton?.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
-        accountLookupToolButton?.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
+        accountLookupToolButton?.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")
     }
     
     deinit {
@@ -131,7 +134,13 @@ class ForgotUsernameViewController: UIViewController {
         message += phoneNumberTextField.getError()
         message += identifierTextField != nil ? (identifierTextField?.getError())! : ""
         message += accountNumberTextField != nil ? (accountNumberTextField?.getError())! : ""
-        self.nextButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+        
+        let errorStr = NSLocalizedString(message, comment: "")
+        if errorStr.isEmpty {
+            self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+        } else {
+            self.nextButton.accessibilityLabel = errorStr
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

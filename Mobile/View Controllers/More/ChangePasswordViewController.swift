@@ -149,7 +149,13 @@ class ChangePasswordViewController: UIViewController {
         message += currentPasswordTextField.getError()
         message += newPasswordTextField.getError()
         message += confirmPasswordTextField.getError()
-        self.doneButton?.accessibilityLabel = NSLocalizedString(message, comment: "")
+        
+        let errorStr = NSLocalizedString(message, comment: "")
+        if errorStr.isEmpty {
+            self.doneButton?.accessibilityLabel = NSLocalizedString("Done", comment: "")
+        } else {
+            self.doneButton?.accessibilityLabel = errorStr
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
