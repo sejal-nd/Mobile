@@ -150,11 +150,10 @@ class ChangePasswordViewController: UIViewController {
         message += newPasswordTextField.getError()
         message += confirmPasswordTextField.getError()
         
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
+        if message.isEmpty {
             self.doneButton?.accessibilityLabel = NSLocalizedString("Done", comment: "")
         } else {
-            self.doneButton?.accessibilityLabel = errorStr
+            self.doneButton?.accessibilityLabel = NSLocalizedString(message + " Done", comment: "")
         }
     }
     
