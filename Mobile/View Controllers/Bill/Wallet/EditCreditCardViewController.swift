@@ -28,7 +28,7 @@ class EditCreditCardViewController: UIViewController {
     @IBOutlet weak var bottomBarView: UIView!
     @IBOutlet weak var bottomBarShadowView: UIView!
     
-    @IBOutlet weak var bankImageView: UIImageView!
+    @IBOutlet weak var creditImageView: UIImageView!
     @IBOutlet weak var accountIDLabel: UILabel!
     @IBOutlet weak var oneTouchPayCardView: UIView!
     @IBOutlet weak var oneTouchPayCardLabel: UILabel!
@@ -209,17 +209,18 @@ class EditCreditCardViewController: UIViewController {
             accountIDLabel.text = ""
         }
         
-        bankImageView.image = #imageLiteral(resourceName: "opco_credit_card")
+        creditImageView.image = #imageLiteral(resourceName: "opco_credit_card")
+        creditImageView.isAccessibilityElement = true
         
         convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         convenienceFeeLabel.textColor = .blackText
         switch opco {
         case .comEd, .peco:
             convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
-            bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
+            creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
         case .bge:            
             convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFeeString(isComplete: false), comment: "")
-            bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
+            creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
             break
         }
     }

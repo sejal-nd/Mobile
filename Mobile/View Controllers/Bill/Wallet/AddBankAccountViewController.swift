@@ -171,7 +171,7 @@ class AddBankAccountViewController: UIViewController {
         if message.isEmpty {
             self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            self.saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: <#T##String#>)
+            self.saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
         }
     }
     
