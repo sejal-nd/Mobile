@@ -12,6 +12,7 @@ import RxCocoa
 
 class PaperlessEBillAccountView: UIView {
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var accountStackView: UIStackView!
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var enrollSwitch: Switch!
@@ -80,6 +81,14 @@ class PaperlessEBillAccountView: UIView {
         }
         imageView.isAccessibilityElement = true
         imageView.accessibilityLabel = NSLocalizedString("Residential account", comment: "")
+        enrollSwitch.isAccessibilityElement = true
+        let switchStr = "Enrollment status: " + (enrollSwitch.isOn ? "On" : "Off")
+        enrollSwitch.accessibilityLabel = NSLocalizedString(switchStr,comment: "")
+        if enrollSwitch != nil {
+            self.accessibilityElements = [imageView, accountStackView, enrollSwitch]
+        } else {
+            self.accessibilityElements = [imageView, accountStackView, enrollStatusLabel]
+        }
     }
     
     func toggleSwitch(on: Bool) {
