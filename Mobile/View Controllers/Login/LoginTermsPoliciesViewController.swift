@@ -26,7 +26,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         self.title = NSLocalizedString("Terms and Policies", comment: "")
         
-        let url = viewModel.termPoliciesURL!
+        let url = viewModel.termPoliciesURL
         webView.loadRequest(URLRequest(url: url))
 
         agreeView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)

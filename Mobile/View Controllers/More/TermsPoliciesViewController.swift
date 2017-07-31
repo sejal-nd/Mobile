@@ -24,7 +24,7 @@ class TermsPoliciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let url = viewModel.termPoliciesURL!
+        let url = viewModel.termPoliciesURL
         webView.loadRequest(URLRequest(url: url))
     }
     
