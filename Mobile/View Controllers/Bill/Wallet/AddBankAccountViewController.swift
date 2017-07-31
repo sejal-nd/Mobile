@@ -167,7 +167,13 @@ class AddBankAccountViewController: UIViewController {
         message += addBankFormView.accountNumberTextField.getError()
         message += addBankFormView.confirmAccountNumberTextField.getError()
         message += addBankFormView.nicknameTextField.getError()
-        self.saveButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+        
+        let errorStr = NSLocalizedString(message, comment: "")
+        if errorStr.isEmpty {
+            self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
+        } else {
+            self.saveButton.accessibilityLabel = errorStr
+        }
     }
     
     // MARK: - ScrollView

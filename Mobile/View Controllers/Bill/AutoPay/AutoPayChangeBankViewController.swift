@@ -219,7 +219,13 @@ class AutoPayChangeBankViewController: UIViewController {
         message += routingNumberTextField.getError()
         message += accountNumberTextField.getError()
         message += confirmAccountNumberTextField.getError()
-        self.saveButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+        
+        let errorStr = NSLocalizedString(message, comment: "")
+        if errorStr.isEmpty {
+            self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
+        } else {
+            self.saveButton.accessibilityLabel = errorStr
+        }
     }
 	
 	
