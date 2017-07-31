@@ -57,7 +57,6 @@ class HomeViewModel {
     
     private func fetchAccountDetail(forAccount account: Account) -> Observable<Event<AccountDetail>> {
         return accountService.fetchAccountDetail(account: account)
-            .debug("fetch account detail")
             .trackActivity(self.fetchingTracker)
             .materialize()
     }
@@ -67,10 +66,14 @@ class HomeViewModel {
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
-    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = Observable.merge(self.accountDetailNoNetworkConnection,
-                                                                                        self.billCardViewModel.walletItemNoNetworkConnection,
-                                                                                        self.billCardViewModel.workDaysNoNetworkConnection)
-        .asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = {
+        let noNetworkConnection = Observable.merge(self.accountDetailNoNetworkConnection,
+                                                   self.billCardViewModel.walletItemNoNetworkConnection,
+                                                   self.billCardViewModel.workDaysNoNetworkConnection)
+            .asDriver(onErrorDriveWith: .empty())
+        
+        return Driver.combineLatest(noNetworkConnection, self.isSwitchingAccounts) { $0 && !$1 }
+    }()
     
     //MARK: - Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
@@ -80,7 +83,6 @@ class HomeViewModel {
     
     private func fetchWeather(forAddress address: String) -> Observable<Event<WeatherItem>> {
         return weatherService.fetchWeather(address: address)
-            .debug("fetch weather")
             //.trackActivity(fetchingTracker)
             .materialize()
     }

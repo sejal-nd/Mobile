@@ -132,8 +132,6 @@ class HomeViewController: AccountPickerViewController {
         
         viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).addDisposableTo(bag)
         viewModel.showNoNetworkConnectionState.drive(scrollView.rx.isHidden).addDisposableTo(bag)
-        viewModel.isSwitchingAccounts.not().filter(!).drive(scrollView.rx.isHidden).addDisposableTo(bag)
-        viewModel.isSwitchingAccounts.filter { $0 }.drive(noNetworkConnectionView.rx.isHidden).addDisposableTo(bag)
         
         viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).addDisposableTo(bag)
         viewModel.isSwitchingAccounts.drive(temperatureLabel.rx.isHidden).addDisposableTo(bag)

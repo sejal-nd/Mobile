@@ -164,6 +164,9 @@ struct WeatherAPI: WeatherService {
                     }
                 }).resume()
                 
+            } else {
+                let serviceError = ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: error)
+                completion(ServiceResult.Failure(serviceError))
             }
         })
     }
