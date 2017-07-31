@@ -746,6 +746,10 @@
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <accessibility key="accessibilityConfiguration" label="Delete payment">
+                                                    <accessibilityTraits key="traits" button="YES"/>
+                                                    <bool key="isElement" value="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstItem="ASk-0H-KT7" firstAttribute="centerY" secondItem="yHa-2J-ydC" secondAttribute="centerY" id="AZe-6U-qvh"/>
                                                     <constraint firstItem="yHa-2J-ydC" firstAttribute="top" secondItem="O6F-W0-cJO" secondAttribute="top" constant="4" id="Mqz-ro-5sM"/>
@@ -1029,51 +1033,66 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="opco_bank_mini" translatesAutoresizingMaskIntoConstraints="NO" id="lGl-bY-Yf7">
-                                                                <rect key="frame" x="0.0" y="25" width="50" height="40"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="Nwx-5g-tcn"/>
-                                                                    <constraint firstAttribute="width" constant="50" id="e5j-tQ-aCW"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7u-3A-pnE">
-                                                                <rect key="frame" x="70" y="27" width="72.5" height="37"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPj-1J-M3r">
+                                                                <rect key="frame" x="0.0" y="25" width="317" height="40"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0G-2s-Vz1">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="72.5" height="19.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gray Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhN-Qa-RqA">
-                                                                        <rect key="frame" x="0.0" y="22.5" width="72.5" height="14.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="opco_bank_mini" translatesAutoresizingMaskIntoConstraints="NO" id="lGl-bY-Yf7">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="40" id="Nwx-5g-tcn"/>
+                                                                            <constraint firstAttribute="width" constant="50" id="e5j-tQ-aCW"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7u-3A-pnE">
+                                                                        <rect key="frame" x="70" y="2" width="72.5" height="37"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0G-2s-Vz1">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="72.5" height="19.5"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gray Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhN-Qa-RqA">
+                                                                                <rect key="frame" x="0.0" y="22.5" width="72.5" height="14.5"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="rhN-Qa-RqA" secondAttribute="bottom" id="2wY-Qt-2Il"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="l0G-2s-Vz1" secondAttribute="trailing" id="4Oi-HS-mcx"/>
+                                                                            <constraint firstItem="l0G-2s-Vz1" firstAttribute="leading" secondItem="X7u-3A-pnE" secondAttribute="leading" id="Hye-AG-wcZ"/>
+                                                                            <constraint firstItem="rhN-Qa-RqA" firstAttribute="leading" secondItem="X7u-3A-pnE" secondAttribute="leading" id="Yqf-0M-vbv"/>
+                                                                            <constraint firstItem="rhN-Qa-RqA" firstAttribute="top" secondItem="l0G-2s-Vz1" secondAttribute="bottom" constant="3" id="bCi-00-I1Q"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="rhN-Qa-RqA" secondAttribute="trailing" id="qoM-kI-tUg"/>
+                                                                            <constraint firstItem="l0G-2s-Vz1" firstAttribute="top" secondItem="X7u-3A-pnE" secondAttribute="top" id="r4y-St-h84"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="bottom" secondItem="rhN-Qa-RqA" secondAttribute="bottom" id="2wY-Qt-2Il"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="l0G-2s-Vz1" secondAttribute="trailing" id="4Oi-HS-mcx"/>
-                                                                    <constraint firstItem="l0G-2s-Vz1" firstAttribute="leading" secondItem="X7u-3A-pnE" secondAttribute="leading" id="Hye-AG-wcZ"/>
-                                                                    <constraint firstItem="rhN-Qa-RqA" firstAttribute="leading" secondItem="X7u-3A-pnE" secondAttribute="leading" id="Yqf-0M-vbv"/>
-                                                                    <constraint firstItem="rhN-Qa-RqA" firstAttribute="top" secondItem="l0G-2s-Vz1" secondAttribute="bottom" constant="3" id="bCi-00-I1Q"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="rhN-Qa-RqA" secondAttribute="trailing" id="qoM-kI-tUg"/>
-                                                                    <constraint firstItem="l0G-2s-Vz1" firstAttribute="top" secondItem="X7u-3A-pnE" secondAttribute="top" id="r4y-St-h84"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="lGl-bY-Yf7" secondAttribute="bottom" id="0sy-qQ-flA"/>
+                                                                    <constraint firstItem="lGl-bY-Yf7" firstAttribute="leading" secondItem="xPj-1J-M3r" secondAttribute="leading" id="8p0-ie-MHd"/>
+                                                                    <constraint firstItem="X7u-3A-pnE" firstAttribute="centerY" secondItem="lGl-bY-Yf7" secondAttribute="centerY" id="DnP-ju-IhW"/>
+                                                                    <constraint firstItem="lGl-bY-Yf7" firstAttribute="top" secondItem="xPj-1J-M3r" secondAttribute="top" id="rMZ-2E-XVs"/>
+                                                                    <constraint firstItem="X7u-3A-pnE" firstAttribute="leading" secondItem="lGl-bY-Yf7" secondAttribute="trailing" constant="20" id="tt7-Av-Be7"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstItem="xPj-1J-M3r" firstAttribute="top" secondItem="mzi-pN-jSu" secondAttribute="bottom" constant="8" id="7DN-wK-Uoo"/>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="H4q-g4-cns"/>
-                                                            <constraint firstItem="X7u-3A-pnE" firstAttribute="leading" secondItem="lGl-bY-Yf7" secondAttribute="trailing" constant="20" id="T2P-QF-Fu1"/>
-                                                            <constraint firstItem="lGl-bY-Yf7" firstAttribute="top" secondItem="mzi-pN-jSu" secondAttribute="bottom" constant="8" id="WAp-pr-9qv"/>
-                                                            <constraint firstAttribute="bottom" secondItem="lGl-bY-Yf7" secondAttribute="bottom" id="WeY-u7-hru"/>
                                                             <constraint firstItem="mzi-pN-jSu" firstAttribute="leading" secondItem="5nx-Iu-OP4" secondAttribute="leading" id="YHA-PK-qMd"/>
-                                                            <constraint firstItem="X7u-3A-pnE" firstAttribute="centerY" secondItem="lGl-bY-Yf7" secondAttribute="centerY" id="hVl-cm-hKT"/>
+                                                            <constraint firstItem="xPj-1J-M3r" firstAttribute="leading" secondItem="5nx-Iu-OP4" secondAttribute="leading" id="eBo-Zf-bmr"/>
+                                                            <constraint firstAttribute="bottom" secondItem="xPj-1J-M3r" secondAttribute="bottom" id="s1Y-PG-tXG"/>
+                                                            <constraint firstAttribute="trailing" secondItem="xPj-1J-M3r" secondAttribute="trailing" id="som-vn-8us"/>
                                                             <constraint firstItem="mzi-pN-jSu" firstAttribute="top" secondItem="5nx-Iu-OP4" secondAttribute="top" id="wSL-lR-OB1"/>
-                                                            <constraint firstItem="lGl-bY-Yf7" firstAttribute="leading" secondItem="5nx-Iu-OP4" secondAttribute="leading" id="yGA-rn-f1Z"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Je-Nk-xBx">
@@ -1531,6 +1550,9 @@
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_billmatrix" translatesAutoresizingMaskIntoConstraints="NO" id="iiq-7m-6PE">
                                                                 <rect key="frame" x="0.0" y="0.0" width="118" height="43"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Bill matrix logo">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="43" id="Vgj-cm-jWM"/>
                                                                     <constraint firstAttribute="width" constant="118" id="mhq-eW-2Zj"/>
@@ -1651,6 +1673,7 @@
                         <outlet property="overpayingSwitchLabel" destination="IUx-Sw-DZr" id="ZsY-BP-53h"/>
                         <outlet property="overpayingSwitchView" destination="c9M-pG-8mP" id="XfX-LR-TKo"/>
                         <outlet property="overpaymentLabel" destination="0MJ-oF-6Qv" id="xrI-Rh-OFv"/>
+                        <outlet property="paymentAccountA11yView" destination="xPj-1J-M3r" id="Yrl-i4-eQ3"/>
                         <outlet property="paymentAccountImageView" destination="lGl-bY-Yf7" id="OmH-Zr-KGv"/>
                         <outlet property="paymentAccountMaskedAccountNumberLabel" destination="l0G-2s-Vz1" id="4nw-cM-nKq"/>
                         <outlet property="paymentAccountNicknameLabel" destination="rhN-Qa-RqA" id="b0J-P5-QuA"/>
@@ -1865,6 +1888,7 @@
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QjE-fj-RSI" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="20.5" width="317" height="50"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Enroll in AutoPay"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="50" id="stM-aC-cEC"/>
                                                                 </constraints>
@@ -1890,6 +1914,9 @@
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_billmatrix" translatesAutoresizingMaskIntoConstraints="NO" id="HAf-63-2jE">
                                                                 <rect key="frame" x="0.0" y="0.0" width="118" height="43"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Bill matrix logo">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="118" id="B0l-Gy-Ze0"/>
                                                                     <constraint firstAttribute="height" priority="999" constant="43" id="qa9-im-m42"/>

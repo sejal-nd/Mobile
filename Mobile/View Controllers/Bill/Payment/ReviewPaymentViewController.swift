@@ -22,6 +22,7 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var overpaymentLabel: UILabel!
     
     @IBOutlet weak var paymentAccountTextLabel: UILabel!
+    @IBOutlet weak var paymentAccountA11yView: UIView!
     @IBOutlet weak var paymentAccountImageView: UIImageView!
     @IBOutlet weak var paymentAccountMaskedAccountNumberLabel: UILabel!
     @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
@@ -167,6 +168,8 @@ class ReviewPaymentViewController: UIViewController {
         termsConditionsButton.setTitleColor(.actionBlue, for: .normal)
         termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)
         termsConditionsButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        termsConditionsSwitchLabel.isAccessibilityElement = false
+        termsConditionsSwitch.accessibilityLabel = termsConditionsSwitchLabel.text!
         
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
         privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
@@ -175,11 +178,15 @@ class ReviewPaymentViewController: UIViewController {
         overpayingSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
         overpayingSwitchLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
         overpayingSwitchLabel.setLineHeight(lineHeight: 25)
+        overpayingSwitchLabel.isAccessibilityElement = false
+        overpayingSwitch.accessibilityLabel = overpayingSwitchLabel.text!
         
         activeSeveranceSwitchLabel.textColor = .deepGray
         activeSeveranceSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
         activeSeveranceSwitchLabel.text = NSLocalizedString("I acknowledge I will not be able to edit or delete this payment once submitted.", comment: "")
         activeSeveranceSwitchLabel.setLineHeight(lineHeight: 25)
+        activeSeveranceSwitchLabel.isAccessibilityElement = false
+        activeSeveranceSwitch.accessibilityLabel = activeSeveranceSwitchLabel.text!
         
         footerView.backgroundColor = .softGray
         footerLabel.textColor = .blackText
@@ -217,6 +224,7 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).addDisposableTo(disposeBag)
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountMaskedAccountNumberLabel.rx.text).addDisposableTo(disposeBag)
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.selectedWalletItemA11yLabel.drive(paymentAccountA11yView.rx.accessibilityLabel).addDisposableTo(disposeBag)
         
         // Amount Due
         viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).addDisposableTo(disposeBag)
