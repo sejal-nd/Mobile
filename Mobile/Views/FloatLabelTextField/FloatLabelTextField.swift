@@ -185,8 +185,10 @@ class FloatLabelTextField: UIView {
         }
     }
     
-    func setNumberKeyboard() {
-        textField.keyboardType = .decimalPad
+    func setKeyboardType(type: UIKeyboardType) {
+        textField.keyboardType = type
     }
+    
+    //TODO: add convenience functions for other properties like returnKeyType, placeholder, autocorrectionType, isSecureTextEntry, etc
     
 }

@@ -149,7 +149,7 @@ class MakePaymentViewController: UIViewController {
         
         cvvTextField.textField.placeholder = NSLocalizedString("CVV2*", comment: "")
         cvvTextField.textField.delegate = self
-        cvvTextField.textField.keyboardType = .numberPad
+        cvvTextField.setKeyboardType(type: .numberPad)
         cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.cvv.value.isEmpty {
                 self.viewModel.cvvIsCorrectLength.single().subscribe(onNext: { valid in
@@ -176,7 +176,7 @@ class MakePaymentViewController: UIViewController {
         paymentAmountFeeLabel.textColor = .blackText
         paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
-        paymentAmountTextField.textField.keyboardType = .decimalPad
+        paymentAmountTextField.setKeyboardType(type: .decimalPad)
         viewModel.paymentAmountErrorMessage.asObservable().subscribe(onNext: { errorMessage in
             self.paymentAmountTextField.setError(errorMessage)
             self.accessibilityErrorLabel()
