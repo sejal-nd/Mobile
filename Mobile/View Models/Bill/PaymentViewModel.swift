@@ -423,10 +423,23 @@ class PaymentViewModel {
     
     // MARK: - Inline Card Validation
     
+    var bgeCommercialUserEnteringVisa: Observable<Bool> {
+        return Observable.combineLatest(addCardFormViewModel.cardNumber.asObservable(), accountDetail.asObservable()).map {
+            if Environment.sharedInstance.opco == .bge && !$1.isResidential {
+                let characters = Array($0.characters)
+                if characters.count >= 1 {
+                    return characters[0] == "4"
+                }
+            }
+            return false
+        }
+    }
+    
     var saveToWalletCardFormValidBGE: Driver<Bool> {
         return Driver.combineLatest([addCardFormViewModel.nameOnCardHasText().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.cardNumberHasText().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.cardNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     bgeCommercialUserEnteringVisa.asDriver(onErrorJustReturn: false).map(!),
                                      addCardFormViewModel.expMonthIs2Digits().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.expMonthIsValidMonth().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.expYearIs4Digits().asDriver(onErrorJustReturn: false),
@@ -457,6 +470,7 @@ class PaymentViewModel {
         return Driver.combineLatest([addCardFormViewModel.nameOnCardHasText().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.cardNumberHasText().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.cardNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     bgeCommercialUserEnteringVisa.asDriver(onErrorJustReturn: false).map(!),
                                      addCardFormViewModel.expMonthIs2Digits().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.expMonthIsValidMonth().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.expYearIs4Digits().asDriver(onErrorJustReturn: false),

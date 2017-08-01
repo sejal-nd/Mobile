@@ -352,6 +352,9 @@ class MakePaymentViewController: UIViewController {
         // Inline payment
         viewModel.oneTouchPayDescriptionLabelText.drive(addBankFormView.oneTouchPayDescriptionLabel.rx.text).addDisposableTo(disposeBag)
         viewModel.oneTouchPayDescriptionLabelText.drive(addCardFormView.oneTouchPayDescriptionLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.bgeCommercialUserEnteringVisa.asObservable().subscribe(onNext: { enteringVisa in
+            self.addCardFormView.cardNumberTextField.setError(enteringVisa ? NSLocalizedString("Commercial customers cannot use VISA to make a payment", comment: "") : nil)
+        }).addDisposableTo(disposeBag)
         
         // Selected Wallet Item
         viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).addDisposableTo(disposeBag)
