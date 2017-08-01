@@ -28,7 +28,7 @@ class EditCreditCardViewController: UIViewController {
     @IBOutlet weak var bottomBarView: UIView!
     @IBOutlet weak var bottomBarShadowView: UIView!
     
-    @IBOutlet weak var bankImageView: UIImageView!
+    @IBOutlet weak var creditImageView: UIImageView!
     @IBOutlet weak var accountIDLabel: UILabel!
     @IBOutlet weak var oneTouchPayCardView: UIView!
     @IBOutlet weak var oneTouchPayCardLabel: UILabel!
@@ -110,11 +110,13 @@ class EditCreditCardViewController: UIViewController {
         oneTouchPayCardLabel.textColor = .blackText
         oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         nicknameLabel.textColor = .blackText
+        nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         convenienceFeeLabel.textColor = .blackText
+        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
     }
     
     func buildNavigationButtons() {
@@ -209,17 +211,18 @@ class EditCreditCardViewController: UIViewController {
             accountIDLabel.text = ""
         }
         
-        bankImageView.image = #imageLiteral(resourceName: "opco_credit_card")
+        creditImageView.image = #imageLiteral(resourceName: "opco_credit_card")
+        creditImageView.isAccessibilityElement = true
         
         convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         convenienceFeeLabel.textColor = .blackText
         switch opco {
         case .comEd, .peco:
             convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
-            bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
+            creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
         case .bge:            
             convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFeeString(isComplete: false), comment: "")
-            bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
+            creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
             break
         }
     }
@@ -333,11 +336,10 @@ class EditCreditCardViewController: UIViewController {
         message += cvvTextField.getError()
         message += zipCodeTextField.getError()
         
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
+        if message.isEmpty {
             self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            self.saveButton.accessibilityLabel = errorStr
+            self.saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
         }
     }
     

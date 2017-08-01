@@ -3256,10 +3256,10 @@ to your payments.</string>
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="accountIDLabel" destination="Zrx-aF-2Sd" id="jFB-c3-Oza"/>
-                        <outlet property="bankImageView" destination="dxq-f1-5vH" id="JjA-tk-Dur"/>
                         <outlet property="bottomBarShadowView" destination="vhE-FC-F0K" id="aa5-bs-fV1"/>
                         <outlet property="bottomBarView" destination="EsJ-KP-esf" id="cZI-P6-dWA"/>
                         <outlet property="convenienceFeeLabel" destination="zPd-Y3-TTP" id="fWI-R7-Dqd"/>
+                        <outlet property="creditImageView" destination="dxq-f1-5vH" id="HKm-tP-d08"/>
                         <outlet property="cvvTextField" destination="qIR-re-Ttp" id="Mmf-Zh-lOs"/>
                         <outlet property="cvvTooltipButton" destination="fIV-Yp-Ayk" id="iFp-pD-4Ed"/>
                         <outlet property="deleteCardButton" destination="cgy-ag-ydR" id="qfB-YP-Jt0"/>

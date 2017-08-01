@@ -90,19 +90,19 @@ class WalletTableViewCell: UITableViewCell {
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 bottomBarLabel.text = NSLocalizedString(billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
-                a11yLabel = NSLocalizedString("Credit card", comment: "")
+                a11yLabel = NSLocalizedString("Saved credit card", comment: "")
             } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                a11yLabel = NSLocalizedString("Bank account", comment: "")
+                a11yLabel = NSLocalizedString("Saved bank account", comment: "")
             }
         case .bge:
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 bottomBarLabel.text = NSLocalizedString(billingInfo.convenienceFeeString(isComplete: false), comment: "")
-                a11yLabel = NSLocalizedString("Credit card", comment: "")
+                a11yLabel = NSLocalizedString("Saved credit card", comment: "")
             } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                a11yLabel = NSLocalizedString("Bank account", comment: "")
+                a11yLabel = NSLocalizedString("Saved bank account", comment: "")
             }
         }
         

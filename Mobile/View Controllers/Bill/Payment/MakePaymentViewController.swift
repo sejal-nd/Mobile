@@ -545,7 +545,7 @@ class MakePaymentViewController: UIViewController {
         if message.isEmpty {
             self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            self.nextButton.accessibilityLabel = message
+            self.nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
         }
     }
     

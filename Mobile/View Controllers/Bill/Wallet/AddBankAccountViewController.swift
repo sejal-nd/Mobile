@@ -168,11 +168,10 @@ class AddBankAccountViewController: UIViewController {
         message += addBankFormView.confirmAccountNumberTextField.getError()
         message += addBankFormView.nicknameTextField.getError()
         
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
+        if message.isEmpty {
             self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            self.saveButton.accessibilityLabel = errorStr
+            self.saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
         }
     }
     

@@ -62,13 +62,12 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     private func accessibilityErrorLabel() {
-        let message = NSLocalizedString(usernameTextField.getError(), comment: "")
+        let message = usernameTextField.getError()
         
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
+        if message.isEmpty {
             self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            self.submitButton.accessibilityLabel = errorStr
+            self.submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
         }
     }
     
