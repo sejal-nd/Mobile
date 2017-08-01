@@ -44,19 +44,18 @@ class ChangePasswordViewController: UIViewController {
     
     let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard, authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     
-    var cancelButton: UIBarButtonItem?
-    var doneButton: UIBarButtonItem?
+    lazy var cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
+    lazy var submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("Change Password", comment: "")
         
-        cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDonePress))
-        navigationItem.leftBarButtonItem = sentFromLogin ? nil : cancelButton!
+        navigationItem.leftBarButtonItem = sentFromLogin ? nil : cancelButton
         navigationItem.hidesBackButton = sentFromLogin
-        navigationItem.rightBarButtonItem = doneButton!
+        navigationItem.rightBarButtonItem = submitButton
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -151,9 +150,9 @@ class ChangePasswordViewController: UIViewController {
         message += confirmPasswordTextField.getError()
         
         if message.isEmpty {
-            self.doneButton?.accessibilityLabel = NSLocalizedString("Done", comment: "")
+            self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            self.doneButton?.accessibilityLabel = NSLocalizedString(message + " Done", comment: "")
+            self.submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
         }
     }
     
@@ -179,7 +178,7 @@ class ChangePasswordViewController: UIViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func onDonePress() {
+    func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -267,17 +266,16 @@ class ChangePasswordViewController: UIViewController {
                 if matches {
                     self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 } else {
-                    self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
-                    self.accessibilityErrorLabel()
-                    
+                    self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))                    
                 }
             } else {
                 self.confirmPasswordTextField.setValidated(false)
                 self.confirmPasswordTextField.setError(nil)
             }
+            self.accessibilityErrorLabel()
         }).addDisposableTo(disposeBag)
         
-        viewModel.doneButtonEnabled().bind(to: doneButton!.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.doneButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
     }
     
     // MARK: - ScrollView
@@ -317,8 +315,8 @@ extension ChangePasswordViewController: UITextFieldDelegate {
                 confirmPasswordTextField.textField.becomeFirstResponder()
             }
         } else if textField == confirmPasswordTextField.textField {
-            if self.doneButton!.isEnabled {
-                self.onDonePress()
+            if self.submitButton.isEnabled {
+                self.onSubmitPress()
             }
         }
         return false

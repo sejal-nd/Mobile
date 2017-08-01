@@ -30,13 +30,15 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
         let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
         
         accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
-        accountImageView.isAccessibilityElement = true
+        accountImageView.isAccessibilityElement = false
         accountImageView.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial account", comment: "") : NSLocalizedString("Residential account", comment: "")
         accountNumber.text = account.accountNumber
         accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
         addressLabel.text = account.address
         if let address = account.address {
-            addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
+            addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address: %@.", comment: ""), address)
+        } else {
+            addressLabel.accessibilityLabel = nil
         }
         
         if account.isDefault {
@@ -55,13 +57,20 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
         if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
             separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
             checkMarkImageView.isHidden = false
-            checkMarkImageView.isAccessibilityElement = true
             checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
         } else {
             separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
             checkMarkImageView.isHidden = true
-            checkMarkImageView.isAccessibilityElement = false
         }
+        checkMarkImageView.isAccessibilityElement = false
+        
+        if let text = accountStatusLabel.text {
+            accountStatusLabel.accessibilityLabel = "\(text) account"
+        } else {
+            accountStatusLabel.accessibilityLabel = nil
+        }
+        self.accessibilityLabel = "\(checkMarkImageView.accessibilityLabel ?? ""). \(accountImageView.accessibilityLabel ?? ""). \(accountNumber.accessibilityLabel ?? ""). " +
+        "\(addressLabel.accessibilityLabel ?? "") \(accountStatusLabel.accessibilityLabel ?? "")."
     }
     
 }
