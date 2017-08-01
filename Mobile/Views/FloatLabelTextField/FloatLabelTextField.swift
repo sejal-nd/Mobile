@@ -185,4 +185,10 @@ class FloatLabelTextField: UIView {
         }
     }
     
+    func setKeyboardType(_ type: UIKeyboardType) {
+        textField.keyboardType = type
+    }
+    
+    //TODO: add convenience functions for other properties like returnKeyType, placeholder, autocorrectionType, isSecureTextEntry, etc
+    
 }
