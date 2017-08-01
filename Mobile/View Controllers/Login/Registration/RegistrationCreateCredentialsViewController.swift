@@ -273,9 +273,11 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         createPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { _ in
-                UIView.animate(withDuration: 0.5) {
+                UIView.animate(withDuration: 0.5, animations: { 
                     self.passwordStrengthView.isHidden = false
-                }
+                }, completion: { (result) in
+                    UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.passwordStrengthView)
+                })
             }).addDisposableTo(disposeBag)
         
         createPasswordTextField.textField.rx.text.orEmpty.asDriver()
