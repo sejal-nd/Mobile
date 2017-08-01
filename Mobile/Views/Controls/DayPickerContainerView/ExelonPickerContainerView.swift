@@ -27,10 +27,12 @@ class ExelonPickerContainerView: UIView {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var dataArray: [String]
+    var accessibleElements: [Any]
     var selectedIndex = 0
 
     override init(frame: CGRect) {
         dataArray = []
+        accessibleElements = []
         super.init(frame: frame)
         
         commonInit()
@@ -38,6 +40,7 @@ class ExelonPickerContainerView: UIView {
     
     init(frame: CGRect, dataArray: [String]) {
         self.dataArray = dataArray
+        accessibleElements = []
         super.init(frame: frame)
         
         commonInit()
@@ -45,6 +48,7 @@ class ExelonPickerContainerView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         dataArray = []
+        accessibleElements = []
         super.init(coder: aDecoder)
         
 //        commonInit()
@@ -52,6 +56,14 @@ class ExelonPickerContainerView: UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed(ExelonPickerContainerView.className, owner: self, options: nil)
+        
+        cancelButton.isAccessibilityElement = true
+        cancelButton.accessibilityLabel = NSLocalizedString("Cancel", comment: "")
+        
+        doneButton.isAccessibilityElement = true
+        doneButton.accessibilityLabel = NSLocalizedString("Done", comment: "")
+        
+        accessibleElements = [cancelButton, doneButton, exelonPicker]
         
         //
         containerView.addSubview(exelonPicker)
@@ -70,6 +82,10 @@ class ExelonPickerContainerView: UIView {
         exelonPicker.dataSource = self
         exelonPicker.delegate = self
         exelonPicker.selectRow(0, inComponent: 0, animated: true)
+        
+        exelonPicker.isAccessibilityElement = true
+        exelonPicker.accessibilityLabel = NSLocalizedString("Select premise", comment: "")
+        
     }
     
     func addNewData(dataArray: [String]) {
@@ -94,6 +110,33 @@ class ExelonPickerContainerView: UIView {
 
     @IBAction func doneButtonPressed(_ sender: Any) {
         delegate?.donePressed(selectedIndex: selectedIndex)
+    }
+    
+    override var isAccessibilityElement: Bool {
+        get {
+            return false
+        }
+        
+        set {
+            
+        }
+    }
+    
+    override var accessibilityElements: [Any]? {
+        get {
+            return accessibleElements
+        }
+        set {
+            
+        }
+    }
+    
+    override func accessibilityElementCount() -> Int {
+        return accessibleElements.count
+    }
+    
+    override func accessibilityElement(at index: Int) -> Any? {
+        return accessibleElements[index]
     }
 }
 

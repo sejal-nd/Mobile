@@ -96,11 +96,12 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
         self.premisePickerView.layoutIfNeeded()
         UIView.animate(withDuration: 0.25, animations: {
             self.premisePickerView.layoutIfNeeded()
-            
             self.premisePickerView.backgroundColor =  UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: alpha)
         }, completion: { _ in
             if !showPicker {
                 self.premisePickerView.isHidden = true
+            } else {
+                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.premisePickerView)
             }
             
             completion?()
