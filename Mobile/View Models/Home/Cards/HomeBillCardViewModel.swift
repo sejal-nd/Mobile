@@ -312,6 +312,23 @@ class HomeBillCardViewModel {
                                                                                      self.billPaidOrPending)
         .map { !$0 && !$1 && !$2 && !$3.isActiveSeverance && !$3.isCashOnly && !$4 }
     
+    private(set) lazy var showCommercialBgeOtpVisaLabel: Driver<Bool> = Driver.combineLatest(self.enableOneTouchSlider, self.accountDetailDriver, self.walletItemDriver).map {
+        guard let walletItem = $2 else { return false }
+        if !$0 {
+            // These first two if statements copy logic from self.enableOneTouchSlider - to ensure that we ONLY show the label if the
+            // reason that the slider is disabled is because of the BGE Commercial Visa scenario
+            if let minPaymentAmount = $1.billingInfo.minPaymentAmount, $1.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.sharedInstance.opco != .bge {
+                return false
+            } else if $1.billingInfo.netDueAmount ?? 0 < 0 && Environment.sharedInstance.opco == .bge {
+                return false
+            } else if let cardIssuer = walletItem.cardIssuer, cardIssuer == "Visa", Environment.sharedInstance.opco == .bge, !$1.isResidential {
+                return true
+            }
+        }
+        return false
+    }
+    
+    
     private(set) lazy var showScheduledImageView: Driver<Bool> = {
         let currentDate = Date()
         let isScheduled = self.accountDetailDriver
@@ -508,6 +525,8 @@ class HomeBillCardViewModel {
                 accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.sharedInstance.opco != .bge {
                 return false
             } else if accountDetail.billingInfo.netDueAmount ?? 0 < 0 && Environment.sharedInstance.opco == .bge {
+                return false
+            } else if let cardIssuer = walletItem!.cardIssuer, cardIssuer == "Visa", Environment.sharedInstance.opco == .bge, !accountDetail.isResidential {
                 return false
             } else {
                 return true

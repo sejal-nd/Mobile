@@ -282,7 +282,14 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.innerContentView.tag = indexPath.row
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onCreditCardPress(sender:)), for: .touchUpInside)
-                cell.innerContentView.isEnabled = !self.creditCardsDisabled
+                
+                cell.innerContentView.isEnabled = true
+                if let cardIssuer = cardItem.cardIssuer, cardIssuer == "Visa", sentFromPayment, !accountDetail.isResidential, Environment.sharedInstance.opco == .bge { // BGE Commercial cannot pay with VISA
+                    cell.innerContentView.isEnabled = false
+                }
+                if creditCardsDisabled {
+                    cell.innerContentView.isEnabled = false
+                }
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
