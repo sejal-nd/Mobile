@@ -173,12 +173,6 @@ class BillViewController: AccountPickerViewController {
         view.backgroundColor = .primaryColor
         contentView.backgroundColor = .primaryColor
 
-        scrollView.rx.contentOffset.asDriver()
-            .map { $0.y < 0 ? UIColor.primaryColor: UIColor.white }
-			.distinctUntilChanged()
-            .drive(onNext: { self.scrollView.backgroundColor = $0 })
-            .addDisposableTo(bag)
-
         topView.backgroundColor = .primaryColor
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
 

@@ -140,6 +140,12 @@ class HomeBillCardView: UIView {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
+        
+        // Accessibility
+        alertImageView.isAccessibilityElement = true
+        alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+        bankCreditCardImageView.isAccessibilityElement = true
+        
     }
     
     private func bindViewModel() {
@@ -153,7 +159,7 @@ class HomeBillCardView: UIView {
             .addDisposableTo(bag)
         
         // Show/Hide Subviews
-        Driver.zip(viewModel.billNotReady, viewModel.showErrorState)
+        Driver.combineLatest(viewModel.billNotReady, viewModel.showErrorState)
             .map { $0 && !$1 }
             .not()
             .drive(billNotReadyStack.rx.isHidden)
@@ -161,7 +167,7 @@ class HomeBillCardView: UIView {
         
         viewModel.showErrorState.not().drive(errorStack.rx.isHidden).addDisposableTo(bag)
         
-        Driver.zip(viewModel.billNotReady, viewModel.showErrorState)
+        Driver.combineLatest(viewModel.billNotReady, viewModel.showErrorState)
             .map { $0 || $1 }
             .drive(infoStack.rx.isHidden)
             .addDisposableTo(bag)
