@@ -22,6 +22,8 @@ class DefaultAccountViewController: UIViewController {
         super.viewDidLoad()
         let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_question_white"), style: .plain, target: self, action: #selector(infoButtonPressed))
         navigationItem.rightBarButtonItem = infoButton
+        infoButton.isAccessibilityElement = true
+        infoButton.accessibilityLabel = "Tooltip"
         let nib = UINib(nibName: AdvancedAccountPickerTableViewCell.className, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: AdvancedAccountPickerTableViewCell.className)
         
