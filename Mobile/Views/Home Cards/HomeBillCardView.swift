@@ -141,8 +141,10 @@ class HomeBillCardView: UIView {
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
         
+        // Accessibility
         alertImageView.isAccessibilityElement = true
         alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+        bankCreditCardImageView.isAccessibilityElement = true
         
     }
     
