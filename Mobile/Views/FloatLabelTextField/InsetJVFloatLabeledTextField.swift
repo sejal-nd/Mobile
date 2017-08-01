@@ -35,6 +35,13 @@ class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
         return getRect(forBounds: bounds)
     }
     
+    override var isSecureTextEntry: Bool {
+        didSet {
+            // Hides the caps lock icon that appears, which conflicts with our password eyeball.
+            rightView = isSecureTextEntry ? UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0)) : nil
+        }
+    }
+    
     func getRect(forBounds bounds: CGRect) -> CGRect {
         floatingLabelXPadding = isShowingLeftAccessory ? -51 : 0
         if isShowingAccessory && !isShowingLeftAccessory {

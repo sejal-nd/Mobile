@@ -56,6 +56,7 @@ class ButtonControl: UIControl {
     override var isEnabled: Bool {
         didSet {
             alpha = isEnabled ? 1 : 0.33
+            accessibilityTraits = isEnabled ? UIAccessibilityTraitButton : (UIAccessibilityTraitButton|UIAccessibilityTraitNotEnabled)
         }
     }
 
