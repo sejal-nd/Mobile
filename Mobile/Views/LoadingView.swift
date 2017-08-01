@@ -41,18 +41,14 @@ class LoadingView: UIView {
     public class func show(animated: Bool = true) {
         let loadingView = LoadingView.sharedInstance
         
-        loadingView.updateFrame()
+        loadingView.frame = loadingView.containerView.bounds
         loadingView.isAccessibilityElement = true
         loadingView.accessibilityLabel = "Loading"
         loadingView.accessibilityViewIsModal = true
         if loadingView.superview == nil {
             loadingView.alpha = 0.0
             
-            guard let containerView = containerView() else {
-                fatalError("\n`UIApplication.keyWindow` is `nil`. If you're trying to show a spinner from your view controller's `viewDidLoad` method, do that from `viewWillAppear` instead")
-            }
-            
-            containerView.addSubview(loadingView)
+            loadingView.containerView.addSubview(loadingView)
             
             loadingView.loadingAnimationView.play()
             
@@ -97,20 +93,17 @@ class LoadingView: UIView {
         }
     }
     
-    private static func containerView() -> UIView? {
-        return UIApplication.shared.keyWindow
-    }
-    
-    public func updateFrame() {
-        if let containerView = LoadingView.containerView() {
-            LoadingView.sharedInstance.frame = containerView.bounds
+    private var containerView: UIView {
+        guard let containerView = UIApplication.shared.keyWindow else {
+            fatalError("\n`UIApplication.keyWindow` is `nil`. If you're trying to show a spinner from your view controller's `viewDidLoad` method, do that from `viewWillAppear` instead")
         }
+        return containerView
     }
     
     override public func layoutSubviews() {
         super.layoutSubviews()
         
-        updateFrame()
+        frame = containerView.bounds
     }
     
 }

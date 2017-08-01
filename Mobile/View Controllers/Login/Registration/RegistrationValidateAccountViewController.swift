@@ -195,6 +195,10 @@ class RegistrationValidateAccountViewController: UIViewController {
             self.accessibilityErrorLabel()
             
         }).addDisposableTo(disposeBag)
+        
+        accountNumberTextField.setKeyboardType(.numberPad)
+        phoneNumberTextField.setKeyboardType(.numberPad)
+        ssNumberNumberTextField.setKeyboardType(.numberPad)
     }
     
     deinit {
