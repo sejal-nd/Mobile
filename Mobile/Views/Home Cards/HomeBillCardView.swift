@@ -59,6 +59,8 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
     @IBOutlet weak var oneTouchSlider: OneTouchSlider!
+    @IBOutlet weak var commercialBgeOtpVisaLabelContainer: UIView!
+    @IBOutlet weak var commericalBgeOtpVisaLabel: UILabel!
     
     @IBOutlet weak var scheduledImageContainer: UIView!
     @IBOutlet weak var scheduledImageView: UIImageView!
@@ -124,6 +126,8 @@ class HomeBillCardView: UIView {
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         convenienceFeeLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
+        commericalBgeOtpVisaLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        
         automaticPaymentInfoButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         thankYouForSchedulingButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         oneTouchPayTCButtonLabel.font = OpenSans.semibold.of(textStyle: .footnote)
@@ -187,6 +191,7 @@ class HomeBillCardView: UIView {
         viewModel.showConvenienceFee.not().drive(convenienceFeeContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showMinimumPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showOneTouchPaySlider.not().drive(oneTouchSlider.rx.isHidden).addDisposableTo(bag)
+        viewModel.showCommercialBgeOtpVisaLabel.not().drive(commercialBgeOtpVisaLabelContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showScheduledImageView.not().drive(scheduledImageContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showAutoPayIcon.not().drive(autoPayImageContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showAutomaticPaymentInfoButton.not().drive(automaticPaymentInfoButton.rx.isHidden).addDisposableTo(bag)
