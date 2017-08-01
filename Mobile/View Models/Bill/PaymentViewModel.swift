@@ -128,7 +128,19 @@ class PaymentViewModel {
                             }
                         }
                     } else {
-                        if self.accountDetail.value.isCashOnly {
+                        if Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential {
+                            // Default to One Touch Pay item IF it's not a VISA credit card
+                            if let otpItem = self.oneTouchPayItem, let cardIssuer = otpItem.cardIssuer, cardIssuer != "Visa" {
+                                self.selectedWalletItem.value = otpItem
+                            } else if walletItems.count > 0 { // If no OTP item, default to first non-VISA wallet item
+                                for item in walletItems {
+                                    if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
+                                        self.selectedWalletItem.value = item
+                                        break
+                                    }
+                                }
+                            }
+                        } else if self.accountDetail.value.isCashOnly {
                             // Default to One Touch Pay item IF it's a credit card
                             if let otpItem = self.oneTouchPayItem {
                                 if otpItem.bankOrCard == .card {
@@ -548,6 +560,10 @@ class PaymentViewModel {
         return $0.isActiveSeverance
     }
     
+    lazy var isBGECommercialUser: Driver<Bool> = self.accountDetail.asDriver().map {
+        return Environment.sharedInstance.opco == .bge && !$0.isResidential
+    }
+    
     var shouldShowContent: Driver<Bool> {
         return Driver.combineLatest(isFetching.asDriver(), isError.asDriver()).map {
             return !$0 && !$1
@@ -564,11 +580,18 @@ class PaymentViewModel {
     }
     
     var hasWalletItems: Driver<Bool> {
-        return Driver.combineLatest(walletItems.asDriver(), isCashOnlyUser).map {
+        return Driver.combineLatest(walletItems.asDriver(), isCashOnlyUser, isBGECommercialUser).map {
             guard let walletItems: [WalletItem] = $0 else { return false }
             if $1 { // If only bank accounts, treat cash only user as if they have no wallet items
                 for item in walletItems {
                     if item.bankOrCard == .card {
+                        return true
+                    }
+                }
+                return false
+            } else if $2 { // If BGE Commercial user, ignore VISA credit cards
+                for item in walletItems {
+                    if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
                         return true
                     }
                 }
