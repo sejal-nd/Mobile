@@ -65,6 +65,7 @@ class EditBankAccountViewController: UIViewController {
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         nicknameLabel.textColor = .blackText
+        nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
 
         deleteAccountButton.accessibilityLabel = NSLocalizedString("Delete bank account", comment: "")
         deleteBankAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -97,6 +98,7 @@ class EditBankAccountViewController: UIViewController {
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         bottomBarLabel.textColor = .blackText
+        bottomBarLabel.font = OpenSans.regular.of(textStyle: .footnote)
     }
     
     func buildNavigationButtons() {

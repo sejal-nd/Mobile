@@ -98,11 +98,11 @@ class AccountLookupToolViewController: UIViewController {
     }
     
     private func accessibilityErrorLabel() {
-        let errorStr = NSLocalizedString(phoneNumberTextField.getError() + identifierTextField.getError(), comment: "")
+        let errorStr = phoneNumberTextField.getError() + identifierTextField.getError()
         if errorStr.isEmpty {
             self.searchButton.accessibilityLabel = NSLocalizedString("Search", comment: "")
         } else {
-            self.searchButton.accessibilityLabel = errorStr
+            self.searchButton.accessibilityLabel = NSLocalizedString(errorStr + " Search", comment: "")
         }
     }
     

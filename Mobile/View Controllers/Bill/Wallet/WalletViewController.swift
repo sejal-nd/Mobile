@@ -122,12 +122,12 @@ class WalletViewController: UIViewController {
     
     func addAccessibility() {
         bankButton.isAccessibilityElement = true
-        bankButton.accessibilityLabel = NSLocalizedString("Add Bank Account", comment: "")
+        bankButton.accessibilityLabel = NSLocalizedString("Add Bank Account. " + bankFeeLabel.text!, comment: "")
         miniBankButton.isAccessibilityElement = true
         miniBankButton.accessibilityLabel = NSLocalizedString("Add Bank account", comment: "")
         
         creditCardButton.isAccessibilityElement = true
-        creditCardButton.accessibilityLabel = NSLocalizedString("Add Credit Card", comment: "")
+        creditCardButton.accessibilityLabel = NSLocalizedString("Add Credit Card. " + creditCardFeeLabel.text!, comment: "")
         miniCreditCardButton.isAccessibilityElement = true
         miniCreditCardButton.accessibilityLabel = NSLocalizedString("Add Credit card", comment: "")
     }

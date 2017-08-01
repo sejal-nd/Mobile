@@ -21,7 +21,9 @@
                 <outlet property="cardNumberTextField" destination="jH3-TE-BZh" id="udg-Af-4ct"/>
                 <outlet property="cvvTextField" destination="cVS-yv-NzF" id="zZx-Cx-R7n"/>
                 <outlet property="cvvTooltipButton" destination="Fqf-fs-UTH" id="Cq7-3w-8gl"/>
+                <outlet property="cvvZipView" destination="n6W-a1-4Qw" id="WeA-3z-AOf"/>
                 <outlet property="expDateLabel" destination="aZw-2E-5Jx" id="efV-Ol-GBJ"/>
+                <outlet property="expDateView" destination="ljP-0Y-qxX" id="lqh-8Y-8y2"/>
                 <outlet property="expMonthTextField" destination="v0b-el-Kxw" id="29R-F3-JMc"/>
                 <outlet property="expYearTextField" destination="khG-s2-840" id="w57-1T-ESm"/>
                 <outlet property="footnoteLabel" destination="dSc-CP-IE9" id="dNE-DG-JG4"/>

@@ -81,13 +81,12 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
     }
     
     private func accessibilityErrorLabel() {
-        let message = NSLocalizedString(accountNumberTextField.getError(), comment: "")
+        let message = accountNumberTextField.getError()
         
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
+        if message.isEmpty {
             self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            self.nextButton.accessibilityLabel = errorStr
+            self.nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
         }
     }
 

@@ -24,9 +24,13 @@ class AddCardFormView: UIView {
     @IBOutlet weak var cardNumberTextField: FloatLabelTextField!
     @IBOutlet weak var cardIOButton: UIButton!
     @IBOutlet weak var cardLogoImageView: UIImageView!
+    
+    @IBOutlet weak var expDateView: UIView!
     @IBOutlet weak var expDateLabel: UILabel!
     @IBOutlet weak var expMonthTextField: FloatLabelTextField!
     @IBOutlet weak var expYearTextField: FloatLabelTextField!
+    
+    @IBOutlet weak var cvvZipView: UIView!
     @IBOutlet weak var cvvTextField: FloatLabelTextField!
     @IBOutlet weak var cvvTooltipButton: UIButton!
     @IBOutlet weak var zipCodeTextField: FloatLabelTextField!
@@ -127,6 +131,12 @@ class AddCardFormView: UIView {
         bindViewModel()
         bindViewHiding()
         bindValidation()
+        accessibilityUpdate()
+    }
+    
+    private func accessibilityUpdate() {
+        expDateView.accessibilityElements = [expDateLabel, expMonthTextField, expYearTextField]
+        cvvZipView.accessibilityElements = [cvvTextField, cvvTooltipButton, zipCodeTextField]
     }
     
     func bindViewModel() {
