@@ -36,7 +36,9 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
         accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
         addressLabel.text = account.address
         if let address = account.address {
-            addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address: %@", comment: ""), address)
+            addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address: %@.", comment: ""), address)
+        } else {
+            addressLabel.accessibilityLabel = nil
         }
         
         if account.isDefault {
@@ -68,7 +70,7 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
             accountStatusLabel.accessibilityLabel = nil
         }
         self.accessibilityLabel = "\(checkMarkImageView.accessibilityLabel ?? ""). \(accountImageView.accessibilityLabel ?? ""). \(accountNumber.accessibilityLabel ?? ""). " +
-        "\(addressLabel.accessibilityLabel ?? ""). \(accountStatusLabel.accessibilityLabel ?? "")."
+        "\(addressLabel.accessibilityLabel ?? "") \(accountStatusLabel.accessibilityLabel ?? "")."
     }
     
 }
