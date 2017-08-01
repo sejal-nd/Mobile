@@ -253,7 +253,7 @@ class ChangePasswordViewController: UIViewController {
         // Password cannot match username
         viewModel.passwordMatchesUsername().subscribe(onNext: { matches in
             if matches {
-                self.newPasswordTextField.setError(NSLocalizedString("Passsword cannot match username", comment: ""))
+                self.newPasswordTextField.setError(NSLocalizedString("Password cannot match username", comment: ""))
                 self.accessibilityErrorLabel()
                 
             } else {

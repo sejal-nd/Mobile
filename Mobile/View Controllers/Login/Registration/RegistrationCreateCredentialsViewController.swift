@@ -118,10 +118,30 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         let checkImageOrNil: (Bool) -> UIImage? = { $0 ? #imageLiteral(resourceName: "ic_check"): nil }
         
         viewModel.characterCountValid().map(checkImageOrNil).bind(to: characterCountCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.characterCountValid().subscribe(onNext: { valid in
+            self.characterCountCheck.isAccessibilityElement = valid
+            self.characterCountCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).addDisposableTo(disposeBag)
         viewModel.containsUppercaseLetter().map(checkImageOrNil).bind(to: uppercaseCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsUppercaseLetter().subscribe(onNext: { valid in
+            self.uppercaseCheck.isAccessibilityElement = valid
+            self.uppercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).addDisposableTo(disposeBag)
         viewModel.containsLowercaseLetter().map(checkImageOrNil).bind(to: lowercaseCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsLowercaseLetter().subscribe(onNext: { valid in
+            self.lowercaseCheck.isAccessibilityElement = valid
+            self.lowercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).addDisposableTo(disposeBag)
         viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsNumber().subscribe(onNext: { valid in
+            self.numberCheck.isAccessibilityElement = valid
+            self.numberCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).addDisposableTo(disposeBag)
         viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.containsSpecialCharacter().subscribe(onNext: { valid in
+            self.specialCharacterCheck.isAccessibilityElement = valid
+            self.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).addDisposableTo(disposeBag)
         
         viewModel.newUsernameIsValidBool().asDriver(onErrorJustReturn: false)
             .drive(onNext: { valid in
@@ -150,7 +170,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             .drive(onNext: { matches in
                 if self.confirmPasswordTextField.textField.hasText {
                     if matches {
-                        self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Minimum password criteria met", comment: ""))
+                        self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields Match", comment: ""))
                     } else {
                         self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
                     }
@@ -199,7 +219,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         confirmUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
                 
         self.viewModel.newPasswordIsValid().subscribe(onNext: { valid in
-            self.createPasswordTextField.setValidated(valid)
+            self.createPasswordTextField.setValidated(valid, accessibilityLabel: NSLocalizedString("Minimum password criteria met", comment: ""))
         }).addDisposableTo(disposeBag)
         
         self.viewModel.usernameMatches().subscribe(onNext: { valid in
@@ -254,9 +274,11 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         createPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { _ in
-                UIView.animate(withDuration: 0.5) {
+                UIView.animate(withDuration: 0.5, animations: {
                     self.passwordStrengthView.isHidden = false
-                }
+                }, completion: { (result) in
+                    UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.passwordStrengthView)
+                })
             }).addDisposableTo(disposeBag)
         
         createPasswordTextField.textField.rx.text.orEmpty.asDriver()
