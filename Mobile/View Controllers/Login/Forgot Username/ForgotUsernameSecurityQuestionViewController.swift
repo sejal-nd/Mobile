@@ -36,6 +36,7 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please answer the security question.", comment: "")
+        instructionLabel.font = SystemFont.bold.of(textStyle: .headline)
         
         questionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         questionLabel.text = viewModel.getSecurityQuestion()

@@ -120,6 +120,9 @@
 		2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		2FB9B4601EFC6D77002CBD88 /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
+		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
+		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		385AF21C1F278EFD001E3619 /* uu_otp_peco.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21B1F278EFD001E3619 /* uu_otp_peco.json */; };
 		385AF21E1F278F06001E3619 /* uu_otp_comed.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21D1F278F06001E3619 /* uu_otp_comed.json */; };
 		385AF2201F278F11001E3619 /* uu_otp_bge.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21F1F278F11001E3619 /* uu_otp_bge.json */; };
@@ -136,9 +139,6 @@
 		389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
 		389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
 		389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
-		38D1B2151F2FC73100528F05 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 38D1B2141F2FC73100528F05 /* TermPolicies.html */; };
-		38D1B2161F2FC73100528F05 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 38D1B2141F2FC73100528F05 /* TermPolicies.html */; };
-		38D1B2171F2FC73100528F05 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 38D1B2141F2FC73100528F05 /* TermPolicies.html */; };
 		441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4465DE881F1FD07C0014537F /* TemplateCardView.xib */; };
 		44A373431F211521005E227B /* TemplateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4465DE861F1FD0090014537F /* TemplateCardView.swift */; };
@@ -1133,6 +1133,7 @@
 		2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillingHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryViewModel.swift; path = ../More/BillingHistoryViewModel.swift; sourceTree = "<group>"; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
+		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		385AF21B1F278EFD001E3619 /* uu_otp_peco.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp_peco.json; sourceTree = "<group>"; };
 		385AF21D1F278F06001E3619 /* uu_otp_comed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp_comed.json; sourceTree = "<group>"; };
 		385AF21F1F278F11001E3619 /* uu_otp_bge.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp_bge.json; sourceTree = "<group>"; };
@@ -1140,7 +1141,6 @@
 		385AF2221F27915A001E3619 /* img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_1.png; sourceTree = "<group>"; };
 		387E5C461F1FCC4600D6710D /* Percentage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Percentage.swift; sourceTree = "<group>"; };
 		389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedUserViewController.swift; sourceTree = "<group>"; };
-		38D1B2141F2FC73100528F05 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		4465DE861F1FD0090014537F /* TemplateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardView.swift; sourceTree = "<group>"; };
 		4465DE881F1FD07C0014537F /* TemplateCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateCardView.xib; sourceTree = "<group>"; };
 		54036BAC1EDA12F50028176E /* EditCreditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCreditCardViewController.swift; sourceTree = "<group>"; };
@@ -2412,7 +2412,7 @@
 		B5AC06C61E521B2600BBA4ED /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				38D1B2141F2FC73100528F05 /* TermPolicies.html */,
+				384F86A11F310B8600A85557 /* TermPolicies.html */,
 				E844077B1F16CFB400CB9707 /* XML */,
 				E800431B1E65FF4D005CF531 /* Fonts */,
 				8FD5AE971E54EA8C003F640D /* Lottie Animations */,
@@ -3113,7 +3113,7 @@
 				8FD3C2781E525D84005FB1BB /* environment.plist in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
-				38D1B2151F2FC73100528F05 /* TermPolicies.html in Resources */,
+				384F86A21F310B8600A85557 /* TermPolicies.html in Resources */,
 				385AF2201F278F11001E3619 /* uu_otp_bge.json in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
 				E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
@@ -3176,7 +3176,7 @@
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
 				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
-				38D1B2171F2FC73100528F05 /* TermPolicies.html in Resources */,
+				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				385AF21C1F278EFD001E3619 /* uu_otp_peco.json in Resources */,
@@ -3247,7 +3247,7 @@
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
-				38D1B2161F2FC73100528F05 /* TermPolicies.html in Resources */,
+				384F86A31F310B8600A85557 /* TermPolicies.html in Resources */,
 				8FD5AE951E54EA5E003F640D /* Cartfile in Resources */,
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				2F3FA63C1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,

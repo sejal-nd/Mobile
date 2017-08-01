@@ -100,6 +100,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let bankAccountName: String?
     let isDefault: Bool
     
+    let cardIssuer: String?
+    
     init(map: Mapper) throws {
         walletItemID = map.optionalFrom("walletItemID")
         walletExternalID = map.optionalFrom("walletExternalID")
@@ -118,7 +120,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
         bankAccountNumber = map.optionalFrom("bankAccountNumber")
         bankAccountName = map.optionalFrom("bankAccountName")
         isDefault = map.optionalFrom("isDefault") ?? false
-        bankOrCard = .card
+        cardIssuer = map.optionalFrom("cardIssuer")
+        bankOrCard = .card // default value
         
         if Environment.sharedInstance.opco == .bge {
             walletItemStatusTypeBGE = map.optionalFrom("walletItemStatusType")
@@ -133,7 +136,6 @@ struct WalletItem: Mappable, Equatable, Hashable {
                 bankOrCard = (type == .credit || type == .debit) ? .card : .bank
             }
         }
-
     }
     
     

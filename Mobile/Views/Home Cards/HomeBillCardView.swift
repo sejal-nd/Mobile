@@ -59,6 +59,8 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
     @IBOutlet weak var oneTouchSlider: OneTouchSlider!
+    @IBOutlet weak var commercialBgeOtpVisaLabelContainer: UIView!
+    @IBOutlet weak var commericalBgeOtpVisaLabel: UILabel!
     
     @IBOutlet weak var scheduledImageContainer: UIView!
     @IBOutlet weak var scheduledImageView: UIImageView!
@@ -124,6 +126,8 @@ class HomeBillCardView: UIView {
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         convenienceFeeLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
+        commericalBgeOtpVisaLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        
         automaticPaymentInfoButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         thankYouForSchedulingButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         oneTouchPayTCButtonLabel.font = OpenSans.semibold.of(textStyle: .footnote)
@@ -140,6 +144,12 @@ class HomeBillCardView: UIView {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
+        
+        // Accessibility
+        alertImageView.isAccessibilityElement = true
+        alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+        bankCreditCardImageView.isAccessibilityElement = true
+        
     }
     
     private func bindViewModel() {
@@ -153,7 +163,7 @@ class HomeBillCardView: UIView {
             .addDisposableTo(bag)
         
         // Show/Hide Subviews
-        Driver.zip(viewModel.billNotReady, viewModel.showErrorState)
+        Driver.combineLatest(viewModel.billNotReady, viewModel.showErrorState)
             .map { $0 && !$1 }
             .not()
             .drive(billNotReadyStack.rx.isHidden)
@@ -161,7 +171,7 @@ class HomeBillCardView: UIView {
         
         viewModel.showErrorState.not().drive(errorStack.rx.isHidden).addDisposableTo(bag)
         
-        Driver.zip(viewModel.billNotReady, viewModel.showErrorState)
+        Driver.combineLatest(viewModel.billNotReady, viewModel.showErrorState)
             .map { $0 || $1 }
             .drive(infoStack.rx.isHidden)
             .addDisposableTo(bag)
@@ -187,6 +197,7 @@ class HomeBillCardView: UIView {
         viewModel.showConvenienceFee.not().drive(convenienceFeeContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showMinimumPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showOneTouchPaySlider.not().drive(oneTouchSlider.rx.isHidden).addDisposableTo(bag)
+        viewModel.showCommercialBgeOtpVisaLabel.not().drive(commercialBgeOtpVisaLabelContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showScheduledImageView.not().drive(scheduledImageContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showAutoPayIcon.not().drive(autoPayImageContainer.rx.isHidden).addDisposableTo(bag)
         viewModel.showAutomaticPaymentInfoButton.not().drive(automaticPaymentInfoButton.rx.isHidden).addDisposableTo(bag)
