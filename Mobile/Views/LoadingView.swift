@@ -42,7 +42,9 @@ class LoadingView: UIView {
         let loadingView = LoadingView.sharedInstance
         
         loadingView.updateFrame()
-        
+        loadingView.isAccessibilityElement = true
+        loadingView.accessibilityLabel = "Loading"
+        loadingView.accessibilityViewIsModal = true
         if loadingView.superview == nil {
             loadingView.alpha = 0.0
             
@@ -65,7 +67,8 @@ class LoadingView: UIView {
     public class func hide(animated: Bool = false, _ completion: (() -> Void)? = nil) {
         
         let loadingView = LoadingView.sharedInstance
-        
+        loadingView.accessibilityViewIsModal = false
+        loadingView.isAccessibilityElement = false
         DispatchQueue.main.async(execute: {
             if loadingView.superview == nil {
                 return
