@@ -44,19 +44,18 @@ class ChangePasswordViewController: UIViewController {
     
     let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard, authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     
-    var cancelButton: UIBarButtonItem?
-    var submitButton: UIBarButtonItem?
+    lazy var cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
+    lazy var submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("Change Password", comment: "")
         
-        cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
-        navigationItem.leftBarButtonItem = sentFromLogin ? nil : cancelButton!
+        navigationItem.leftBarButtonItem = sentFromLogin ? nil : cancelButton
         navigationItem.hidesBackButton = sentFromLogin
-        navigationItem.rightBarButtonItem = submitButton!
+        navigationItem.rightBarButtonItem = submitButton
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -151,9 +150,9 @@ class ChangePasswordViewController: UIViewController {
         message += confirmPasswordTextField.getError()
         
         if message.isEmpty {
-            self.submitButton?.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+            self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            self.submitButton?.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
+            self.submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
         }
     }
     
@@ -276,7 +275,7 @@ class ChangePasswordViewController: UIViewController {
             self.accessibilityErrorLabel()
         }).addDisposableTo(disposeBag)
         
-        viewModel.doneButtonEnabled().bind(to: submitButton!.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.doneButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
     }
     
     // MARK: - ScrollView
@@ -316,7 +315,7 @@ extension ChangePasswordViewController: UITextFieldDelegate {
                 confirmPasswordTextField.textField.becomeFirstResponder()
             }
         } else if textField == confirmPasswordTextField.textField {
-            if self.submitButton!.isEnabled {
+            if self.submitButton.isEnabled {
                 self.onSubmitPress()
             }
         }
