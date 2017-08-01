@@ -309,8 +309,9 @@ class BillViewController: AccountPickerViewController {
 		viewModel.shouldShowBudget.not().drive(budgetButton.rx.isHidden).addDisposableTo(bag)
 	}
 
-	func bindViewContent() {
+    func bindViewContent() {
         viewModel.alertBannerText.drive(alertBannerLabel.rx.text).addDisposableTo(bag)
+        viewModel.alertBannerA11yText.drive(alertBannerLabel.rx.accessibilityLabel).addDisposableTo(bag)
 
 		viewModel.totalAmountText.drive(totalAmountLabel.rx.text).addDisposableTo(bag)
         viewModel.totalAmountDescriptionText.drive(totalAmountDescriptionLabel.rx.text).addDisposableTo(bag)
@@ -318,8 +319,9 @@ class BillViewController: AccountPickerViewController {
 		viewModel.restoreServiceAmountText.drive(restoreServiceAmountLabel.rx.text).addDisposableTo(bag)
 		viewModel.catchUpAmountText.drive(catchUpAmountLabel.rx.text).addDisposableTo(bag)
 		viewModel.catchUpDateText.drive(catchUpDateLabel.rx.text).addDisposableTo(bag)
-		viewModel.catchUpDisclaimerText.drive(catchUpDisclaimerLabel.rx.text).addDisposableTo(bag)
-		avoidShutoffLabel.text = viewModel.avoidShutoffText
+        viewModel.catchUpDisclaimerText.drive(catchUpDisclaimerLabel.rx.text).addDisposableTo(bag)
+        avoidShutoffLabel.text = viewModel.avoidShutoffText
+        avoidShutoffLabel.accessibilityLabel = viewModel.avoidShutoffA11yText
 		viewModel.avoidShutoffAmountText.drive(avoidShutoffAmountLabel.rx.text).addDisposableTo(bag)
 		viewModel.avoidShutoffDueDateText.drive(avoidShutoffDateLabel.rx.text).addDisposableTo(bag)
 		viewModel.pastDueAmountText.drive(pastDueAmountLabel.rx.text).addDisposableTo(bag)
