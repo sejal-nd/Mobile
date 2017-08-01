@@ -38,6 +38,7 @@ class ForgotPasswordViewController: UIViewController {
         viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
         instructionLabel.text = viewModel.getInstructionLabelText()
+        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         usernameTextField.textField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
         usernameTextField.textField.autocorrectionType = .no
