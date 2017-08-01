@@ -38,12 +38,16 @@ class AccountInfoBar: UIView {
     }
     
     func update() {
+        var a11y = ""
         if let currentAccount = AccountsStore.sharedInstance.currentAccount {
             var labelText = "ACCOUNT \(currentAccount.accountNumber)"
+            a11y.append("Account number: \(currentAccount.accountNumber). ")
             if let address = currentAccount.address {
                 labelText.append("\n\(address)")
+                a11y.append("\nStreet address: \(address)")
             }
             label.text = labelText
+            label.accessibilityLabel = a11y
         }
     }
     
