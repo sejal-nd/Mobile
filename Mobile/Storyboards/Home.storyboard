@@ -36,7 +36,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="646"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FBk-8O-0Lj" userLabel="Background Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="646"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qur-gf-bcD">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="282"/>
@@ -45,23 +45,9 @@
                                                             <constraint firstAttribute="height" constant="282" id="kYb-gM-91a"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KHs-QI-UoW">
-                                                        <rect key="frame" x="0.0" y="282" width="375" height="364"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTJ-5h-Daq">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
-                                                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1000" id="TpK-CJ-3dE"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KHs-QI-UoW" userLabel="Gray Background">
+                                                        <rect key="frame" x="0.0" y="282" width="375" height="365"/>
                                                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="zTJ-5h-Daq" secondAttribute="trailing" id="Y2B-qo-8Gj"/>
-                                                            <constraint firstItem="zTJ-5h-Daq" firstAttribute="top" secondItem="KHs-QI-UoW" secondAttribute="top" id="YBp-C3-VFo"/>
-                                                            <constraint firstItem="zTJ-5h-Daq" firstAttribute="leading" secondItem="KHs-QI-UoW" secondAttribute="leading" id="rIP-S1-OgP"/>
-                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                             </stackView>
@@ -180,7 +166,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="UPV-GL-s03" firstAttribute="top" secondItem="QgD-go-05Y" secondAttribute="top" id="2VY-xm-wem"/>
-                                            <constraint firstAttribute="bottom" secondItem="FBk-8O-0Lj" secondAttribute="bottom" id="6BL-FG-z3y"/>
                                             <constraint firstItem="FBk-8O-0Lj" firstAttribute="top" secondItem="QgD-go-05Y" secondAttribute="top" id="BzL-CC-dWh"/>
                                             <constraint firstItem="FBk-8O-0Lj" firstAttribute="leading" secondItem="QgD-go-05Y" secondAttribute="leading" id="Gxe-vY-Rwa"/>
                                             <constraint firstAttribute="trailing" secondItem="UPV-GL-s03" secondAttribute="trailing" id="LqA-p0-UNB"/>
@@ -207,6 +192,7 @@
                             <constraint firstItem="dh2-eA-K7U" firstAttribute="top" secondItem="jWa-SC-zWM" secondAttribute="bottom" id="HbX-4w-z3I"/>
                             <constraint firstItem="mzY-0e-rXR" firstAttribute="top" secondItem="jWa-SC-zWM" secondAttribute="bottom" id="Zc0-fs-mhR"/>
                             <constraint firstAttribute="trailing" secondItem="mzY-0e-rXR" secondAttribute="trailing" id="f6Y-5u-y4u"/>
+                            <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="KHs-QI-UoW" secondAttribute="bottom" id="h6u-Ir-0tn"/>
                             <constraint firstItem="mzY-0e-rXR" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="kwX-DU-XYv"/>
                             <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="dh2-eA-K7U" secondAttribute="bottom" id="mSC-yd-SiM"/>
                         </constraints>
