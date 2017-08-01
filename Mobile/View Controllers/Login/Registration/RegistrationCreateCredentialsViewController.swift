@@ -21,6 +21,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     
     @IBOutlet weak var createUsernameTextField: FloatLabelTextField!
     @IBOutlet weak var confirmUsernameTextField: FloatLabelTextField!
+    @IBOutlet weak var createPasswordContainerView: UIView!
     @IBOutlet weak var createPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
     
@@ -273,10 +274,9 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         createPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { _ in
-                UIView.animate(withDuration: 0.5, animations: { 
+                self.scrollView.setContentOffset(self.createPasswordContainerView.frame.origin, animated: true)
+                UIView.animate(withDuration: 0.5, animations: {
                     self.passwordStrengthView.isHidden = false
-                }, completion: { (result) in
-                    UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.passwordStrengthView)
                 })
             }).addDisposableTo(disposeBag)
         

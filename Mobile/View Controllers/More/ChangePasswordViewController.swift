@@ -111,6 +111,7 @@ class ChangePasswordViewController: UIViewController {
         
         newPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { _ in
+                self.scrollView.setContentOffset(self.newPasswordTextField.frame.origin, animated: true)
                 UIView.animate(withDuration: 0.5) {
                     self.passwordStrengthView.isHidden = false
                 }
