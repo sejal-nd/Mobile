@@ -166,21 +166,20 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 
             }).addDisposableTo(disposeBag)
         
-        viewModel.confirmPasswordMatches().asDriver(onErrorJustReturn: false)
-            .drive(onNext: { matches in
-                if self.confirmPasswordTextField.textField.hasText {
-                    if matches {
-                        self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields Match", comment: ""))
-                    } else {
-                        self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
-                    }
+        viewModel.confirmPasswordMatches().subscribe(onNext: { matches in
+            if self.confirmPasswordTextField.textField.hasText {
+                if matches {
+                    self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 } else {
-                    self.confirmPasswordTextField.setValidated(false)
-                    self.confirmPasswordTextField.setError(nil)
+                    self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
+                    self.accessibilityErrorLabel()
+                    
                 }
-                self.accessibilityErrorLabel()
-                
-            }).addDisposableTo(disposeBag)
+            } else {
+                self.confirmPasswordTextField.setValidated(false)
+                self.confirmPasswordTextField.setError(nil)
+            }
+        }).addDisposableTo(disposeBag)
         
         viewModel.doneButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
     }
@@ -274,11 +273,9 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         createPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { _ in
-                UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: 0.5) {
                     self.passwordStrengthView.isHidden = false
-                }, completion: { (result) in
-                    UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.passwordStrengthView)
-                })
+                }
             }).addDisposableTo(disposeBag)
         
         createPasswordTextField.textField.rx.text.orEmpty.asDriver()
