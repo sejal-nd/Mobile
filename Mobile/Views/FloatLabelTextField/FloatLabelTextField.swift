@@ -185,7 +185,7 @@ class FloatLabelTextField: UIView {
         }
     }
     
-    func setKeyboardType(type: UIKeyboardType) {
+    func setKeyboardType(_ type: UIKeyboardType) {
         textField.keyboardType = type
     }
     

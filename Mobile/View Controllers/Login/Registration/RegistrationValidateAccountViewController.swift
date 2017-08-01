@@ -196,9 +196,9 @@ class RegistrationValidateAccountViewController: UIViewController {
             
         }).addDisposableTo(disposeBag)
         
-        accountNumberTextField.setKeyboardType(type: .numberPad)
-        phoneNumberTextField.setKeyboardType(type: .numberPad)
-        ssNumberNumberTextField.setKeyboardType(type: .numberPad)
+        accountNumberTextField.setKeyboardType(.numberPad)
+        phoneNumberTextField.setKeyboardType(.numberPad)
+        ssNumberNumberTextField.setKeyboardType(.numberPad)
     }
     
     deinit {

@@ -400,7 +400,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedTextField.textField.autocorrectionType = .no
         amountNotToExceedTextField.textField.delegate = self
         amountNotToExceedTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        amountNotToExceedTextField.setKeyboardType(type: .decimalPad)
+        amountNotToExceedTextField.setKeyboardType(.decimalPad)
         
         // adding textfield for second button stack view
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedTextField)

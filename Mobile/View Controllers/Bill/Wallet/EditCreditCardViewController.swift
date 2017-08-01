@@ -136,23 +136,23 @@ class EditCreditCardViewController: UIViewController {
         
         expMonthTextField.textField.placeholder = NSLocalizedString("MM", comment: "")
         expMonthTextField.textField.delegate = self
-        expMonthTextField.setKeyboardType(type: .numberPad)
+        expMonthTextField.setKeyboardType(.numberPad)
         expMonthTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         expYearTextField.textField.placeholder = NSLocalizedString("YYYY", comment: "")
         expYearTextField.textField.delegate = self
-        expYearTextField.setKeyboardType(type: .numberPad)
+        expYearTextField.setKeyboardType(.numberPad)
         expYearTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         cvvTextField.textField.placeholder = NSLocalizedString("CVV", comment: "")
         cvvTextField.textField.delegate = self
-        cvvTextField.setKeyboardType(type: .numberPad)
+        cvvTextField.setKeyboardType(.numberPad)
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         zipCodeTextField.textField.placeholder = NSLocalizedString("Zip Code", comment: "")
         zipCodeTextField.textField.delegate = self
-        zipCodeTextField.setKeyboardType(type: .numberPad)
+        zipCodeTextField.setKeyboardType(.numberPad)
         
         deleteCardButton.accessibilityLabel = NSLocalizedString("Delete card", comment: "")
         deleteCardLabel.font = SystemFont.regular.of(textStyle: .headline)

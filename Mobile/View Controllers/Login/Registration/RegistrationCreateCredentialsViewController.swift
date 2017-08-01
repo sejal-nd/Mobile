@@ -286,13 +286,13 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 self.passwordStrengthMeterView.setScore(score)
                 
                 if score < 2 {
-                    self.passwordStrengthLabel.text = NSLocalizedString("weak", comment: "")
+                    self.passwordStrengthLabel.text = NSLocalizedString("Weak", comment: "")
                     self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength weak", comment: "")
                 } else if score < 4 {
-                    self.passwordStrengthLabel.text = NSLocalizedString("medium", comment: "")
+                    self.passwordStrengthLabel.text = NSLocalizedString("Medium", comment: "")
                     self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength medium", comment: "")
                 } else {
-                    self.passwordStrengthLabel.text = NSLocalizedString("strong", comment: "")
+                    self.passwordStrengthLabel.text = NSLocalizedString("Strong", comment: "")
                     self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength strong", comment: "")
                 }
             }).addDisposableTo(disposeBag)
