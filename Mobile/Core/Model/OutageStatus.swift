@@ -38,6 +38,7 @@ struct OutageStatus: Mappable {
     let smartMeterStatus: Bool
     var flagFinaled: Bool
     var flagNoPay: Bool
+    var flagNonService: Bool
     let meterPingInfo: MeterPingInfo?
     var etr: Date?
     let locationId: String?
@@ -50,6 +51,7 @@ struct OutageStatus: Mappable {
         smartMeterStatus = map.optionalFrom("smartMeterStatus") ?? false
         flagFinaled = map.optionalFrom("flagFinaled") ?? false
         flagNoPay = map.optionalFrom("flagNoPay") ?? false
+        flagNonService = map.optionalFrom("flagNonService") ?? false
         meterPingInfo = map.optionalFrom("meterInfo")
         etr = map.optionalFrom("ETR", transformation: extractDate)
         locationId = map.optionalFrom("locationId")
