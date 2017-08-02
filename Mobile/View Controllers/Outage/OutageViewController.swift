@@ -112,6 +112,7 @@ class OutageViewController: AccountPickerViewController {
                 self.gasOnlyView.isHidden = true
                 self.errorLabel.isHidden = true
                 self.loadingView.isHidden = true
+                self.loadingView.accessibilityViewIsModal = false
                 self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
                 if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
@@ -249,7 +250,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(reportedLabel)
             bigButtonView.addSubview(restRestorationLabel)
             bigButtonView.addSubview(timeLabel)
-            bigButtonView.accessibilityLabel = NSLocalizedString("Your outage is reported. Estimated restoration \(viewModel.getEstimatedRestorationDateString()). Outage status", comment: "")
+            bigButtonView.accessibilityLabel = NSLocalizedString("Outage status, button. Your outage is reported. Estimated restoration \(viewModel.getEstimatedRestorationDateString()).", comment: "")
         } else if currentOutageStatus.activeOutage {
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 11, y: 31, width: 22, height: 28))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_out")
@@ -285,7 +286,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(outLabel)
             bigButtonView.addSubview(restRestorationLabel)
             bigButtonView.addSubview(timeLabel)
-            bigButtonView.accessibilityLabel = NSLocalizedString("Your power is out. Estimated restoration \(viewModel.getEstimatedRestorationDateString()). Outage status", comment: "")
+            bigButtonView.accessibilityLabel = NSLocalizedString("Outage status, button. Your power is out. Estimated restoration \(viewModel.getEstimatedRestorationDateString()).", comment: "")
         } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
             let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 14, y: 38, width: bigButtonWidth - 28, height: 120))
             let payBillLabel = UILabel(frame: .zero)
@@ -310,7 +311,7 @@ class OutageViewController: AccountPickerViewController {
 
             bigButtonView.addSubview(nonPayFinaledTextView)
             bigButtonView.bringSubview(toFront: payBillLabel)
-            bigButtonView.accessibilityLabel = NSLocalizedString("\(viewModel.getAccountNonPayFinaledMessage()) Outage status", comment: "")
+            bigButtonView.accessibilityLabel = NSLocalizedString("Outage status, button. \(viewModel.getAccountNonPayFinaledMessage()).", comment: "")
         } else { // Power is on
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 15, y: 49, width: 30, height: 38))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
@@ -330,7 +331,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(icon)
             bigButtonView.addSubview(yourPowerIsLabel)
             bigButtonView.addSubview(onLabel)
-            bigButtonView.accessibilityLabel = NSLocalizedString("Your power is on. Outage status", comment: "")
+            bigButtonView.accessibilityLabel = NSLocalizedString("Outage status, Button. Your power is on.", comment: "")
         }
     }
     
@@ -340,13 +341,18 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyView.isHidden = true
         errorLabel.isHidden = true
         loadingView.isHidden = false
+        loadingView.accessibilityViewIsModal = true
         setRefreshControlEnabled(enabled: false)
         viewModel.getOutageStatus(onSuccess: {
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             self.loadingView.isHidden = true
+            self.loadingView.accessibilityViewIsModal = false
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent()
         }, onError: { error in
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             self.loadingView.isHidden = true
+            self.loadingView.accessibilityViewIsModal = false
             self.setRefreshControlEnabled(enabled: true)
             self.errorLabel.text = error
             self.errorLabel.isHidden = false
