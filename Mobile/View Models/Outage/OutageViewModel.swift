@@ -55,7 +55,7 @@ class OutageViewModel {
                     onSuccess()
                 } else {
                     self.currentOutageStatus = nil
-                    onError(error.localizedDescription)
+                    onError(NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")) // Generic error message from the home bill card
                 }
             })
     }
