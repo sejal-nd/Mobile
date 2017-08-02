@@ -19,10 +19,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var bottomView: UIView!
 	@IBOutlet weak var bottomStackContainerView: UIView!
 
-    @IBOutlet weak var alertBannerView: UIView!
-    @IBOutlet weak var alertBannerIconView: UIView!
-    @IBOutlet weak var alertAnimationView: UIView!
-    @IBOutlet weak var alertBannerLabel: UILabel!
+    @IBOutlet weak var alertBannerView: BillAlertBannerView!
 
     @IBOutlet weak var totalAmountView: UIView!
     @IBOutlet weak var totalAmountLabel: UILabel!
@@ -123,8 +120,6 @@ class BillViewController: AccountPickerViewController {
         }
     }
 
-    var alertLottieAnimation = LOTAnimationView(name: "alert_icon")!
-
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
 
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -176,9 +171,6 @@ class BillViewController: AccountPickerViewController {
         topView.backgroundColor = .primaryColor
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
 
-        alertBannerIconView.superview?.bringSubview(toFront: alertBannerIconView)
-        alertBannerIconView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
-
         totalAmountView.superview?.bringSubview(toFront: totalAmountView)
         totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
 
@@ -196,7 +188,6 @@ class BillViewController: AccountPickerViewController {
         budgetButton.layer.cornerRadius = 2
 
         // Set Fonts
-        alertBannerLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
 
         restoreServiceLabel.font = OpenSans.regular.of(textStyle: .subheadline)
@@ -267,16 +258,8 @@ class BillViewController: AccountPickerViewController {
 	func bindViewHiding() {
         viewModel.shouldShowAlertBanner.not().drive(alertBannerView.rx.isHidden).addDisposableTo(bag)
         viewModel.shouldShowAlertBanner.filter { $0 }
-            .drive(onNext: { _ in
-                self.alertLottieAnimation.removeFromSuperview()
-                self.alertLottieAnimation = LOTAnimationView(name: "alert_icon")!
-                self.alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: self.alertAnimationView.frame.size.width, height: self.alertAnimationView.frame.size.height)
-                self.alertLottieAnimation.contentMode = .scaleAspectFill
-                self.alertAnimationView.addSubview(self.alertLottieAnimation)
-                self.alertAnimationView.isAccessibilityElement = true
-                self.alertAnimationView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
-                self.alertLottieAnimation.play()
-            })
+            .map { _ in () }
+            .drive(alertBannerView.rx.resetAnimation)
             .addDisposableTo(bag)
 
 		questionMarkButton.isHidden = !viewModel.shouldShowAmountDueTooltip
@@ -311,8 +294,8 @@ class BillViewController: AccountPickerViewController {
 	}
 
     func bindViewContent() {
-        viewModel.alertBannerText.drive(alertBannerLabel.rx.text).addDisposableTo(bag)
-        viewModel.alertBannerA11yText.drive(alertBannerLabel.rx.accessibilityLabel).addDisposableTo(bag)
+        viewModel.alertBannerText.drive(alertBannerView.label.rx.text).addDisposableTo(bag)
+        viewModel.alertBannerA11yText.drive(alertBannerView.label.rx.accessibilityLabel).addDisposableTo(bag)
 
 		viewModel.totalAmountText.drive(totalAmountLabel.rx.text).addDisposableTo(bag)
         viewModel.totalAmountDescriptionText.drive(totalAmountDescriptionLabel.rx.text).addDisposableTo(bag)
