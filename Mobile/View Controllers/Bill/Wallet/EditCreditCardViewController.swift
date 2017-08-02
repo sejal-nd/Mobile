@@ -134,23 +134,23 @@ class EditCreditCardViewController: UIViewController {
         expDateLabel.textColor = .blackText
         expDateLabel.text = NSLocalizedString("Expiration Date", comment: "")
         
-        expMonthTextField.textField.placeholder = NSLocalizedString("MM", comment: "")
+        expMonthTextField.textField.placeholder = NSLocalizedString("MM*", comment: "")
         expMonthTextField.textField.delegate = self
         expMonthTextField.setKeyboardType(.numberPad)
         expMonthTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        expYearTextField.textField.placeholder = NSLocalizedString("YYYY", comment: "")
+        expYearTextField.textField.placeholder = NSLocalizedString("YYYY*", comment: "")
         expYearTextField.textField.delegate = self
         expYearTextField.setKeyboardType(.numberPad)
         expYearTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        cvvTextField.textField.placeholder = NSLocalizedString("CVV", comment: "")
+        cvvTextField.textField.placeholder = NSLocalizedString("CVV*", comment: "")
         cvvTextField.textField.delegate = self
         cvvTextField.setKeyboardType(.numberPad)
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        zipCodeTextField.textField.placeholder = NSLocalizedString("Zip Code", comment: "")
+        zipCodeTextField.textField.placeholder = NSLocalizedString("Zip Code*", comment: "")
         zipCodeTextField.textField.delegate = self
         zipCodeTextField.setKeyboardType(.numberPad)
         
@@ -187,11 +187,6 @@ class EditCreditCardViewController: UIViewController {
         let bottomBarMaskLayer = CAShapeLayer()
         bottomBarMaskLayer.path = bottomBarPath.cgPath
         bottomBarView.layer.mask = bottomBarMaskLayer
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
@@ -393,7 +388,7 @@ class EditCreditCardViewController: UIViewController {
             }
         }
         
-        viewModel.webServicesDataChanged().single().subscribe(onNext: { changed in
+        viewModel.cardDataEntered().single().subscribe(onNext: { cardDataEntered in
             
             let handleSuccess = {
                 LoadingView.hide()
@@ -405,10 +400,8 @@ class EditCreditCardViewController: UIViewController {
                 }
             }
             
-            if changed {
-                
+            if cardDataEntered {
                 let editCreditCard = { (oneTouchPay: Bool) in
-                    
                     let editOneTouchPay = {
                         if oneTouchPay {
                             self.viewModel.enableOneTouchPay(onSuccess: {
