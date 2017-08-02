@@ -18,7 +18,7 @@ class TermsPoliciesViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        title = NSLocalizedString("Terms and Policies", comment: "")
+        title = NSLocalizedString("Policies and Terms", comment: "")
     }
 
     override func viewDidLoad() {
