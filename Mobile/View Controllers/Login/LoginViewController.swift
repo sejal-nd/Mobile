@@ -164,6 +164,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
+        Analytics().logScreenView(AnalyticsPageView.LoginOffer.rawValue)
         view.endEditing(true)
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
         
@@ -250,6 +251,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePress() {
+        Analytics().logScreenView(AnalyticsPageView.ForgotUsernameOffer.rawValue)
         if Environment.sharedInstance.opco == .bge {
             performSegue(withIdentifier: "forgotUsernameSegueBGE", sender: self)
         } else {
@@ -258,6 +260,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotPasswordPress() {
+        Analytics().logScreenView(AnalyticsPageView.ForgotPasswordOffer.rawValue)
         performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
     }
     
