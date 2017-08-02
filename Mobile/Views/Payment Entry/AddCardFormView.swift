@@ -84,23 +84,24 @@ class AddCardFormView: UIView {
         
         expMonthTextField.textField.placeholder = NSLocalizedString("MM*", comment: "")
         expMonthTextField.textField.delegate = self
-        expMonthTextField.textField.keyboardType = .numberPad
+        expMonthTextField.setKeyboardType(
+            .numberPad)
         expMonthTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         expYearTextField.textField.placeholder = NSLocalizedString("YYYY*", comment: "")
         expYearTextField.textField.delegate = self
-        expYearTextField.textField.keyboardType = .numberPad
+        expYearTextField.setKeyboardType(.numberPad)
         expYearTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         cvvTextField.textField.placeholder = NSLocalizedString("CVV*", comment: "")
         cvvTextField.textField.delegate = self
-        cvvTextField.textField.keyboardType = .numberPad
+        cvvTextField.setKeyboardType(.numberPad)
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         zipCodeTextField.textField.placeholder = NSLocalizedString("Zip Code*", comment: "")
         zipCodeTextField.textField.delegate = self
-        zipCodeTextField.textField.keyboardType = .numberPad
+        zipCodeTextField.setKeyboardType(.numberPad)
         
         saveToWalletLabel.textColor = .deepGray
         saveToWalletLabel.text = NSLocalizedString("Save to My Wallet", comment: "")

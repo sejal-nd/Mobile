@@ -309,7 +309,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
             self.dayPickerView.backgroundColor =  UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: alpha)
         }, completion: { _ in
             if !showPicker {
+                self.dayPickerView.accessibilityViewIsModal = false
                 self.dayPickerView.isHidden = true
+            } else {
+                self.dayPickerView.accessibilityViewIsModal = true
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.dayPickerView)
             }
             
             completion?()
@@ -400,7 +404,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedTextField.textField.autocorrectionType = .no
         amountNotToExceedTextField.textField.delegate = self
         amountNotToExceedTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        amountNotToExceedTextField.textField.keyboardType = .decimalPad
+        amountNotToExceedTextField.setKeyboardType(.decimalPad)
         
         // adding textfield for second button stack view
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedTextField)
@@ -676,6 +680,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         // Delay here fixes a bug when button is tapped with keyboard up
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
             self.showPickerView(true)
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select number of days", comment: ""))
         })
     }
 

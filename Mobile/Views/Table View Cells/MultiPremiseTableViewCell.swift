@@ -44,7 +44,7 @@ class MultiPremiseTableViewCell: UITableViewCell {
         let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
         
         self.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
-        self.accountImageView.isAccessibilityElement = true
+        self.accountImageView.isAccessibilityElement = false
         self.accountImageView.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial account", comment: "") : NSLocalizedString("Residential account", comment: "")
         self.accountNumber.text = account.accountNumber
         self.accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
@@ -87,6 +87,14 @@ class MultiPremiseTableViewCell: UITableViewCell {
             let showCheck = isCurrentAccount && index == currentPremiseIndex
             let view = MultiPremiseAddressView.instanceFromNib(showsCheck: showCheck, labelText: address)
             view.addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
+            view.checkMark.isAccessibilityElement = showCheck ? true : false
+            if showCheck {
+                view.checkMark.accessibilityLabel = NSLocalizedString("Selected premises. \(address)", comment: "")
+            } else {
+                view.addressLabel.isAccessibilityElement = true
+                view.addressLabel.accessibilityLabel = NSLocalizedString("Premises \(address)", comment: "")
+            }
+            
             self.premiseAddressStackView.addArrangedSubview(view)
             premiseAddressStackView.setNeedsLayout()
             premiseAddressStackView.layoutIfNeeded()
@@ -95,6 +103,9 @@ class MultiPremiseTableViewCell: UITableViewCell {
         
         self.contentView.setNeedsLayout()
         self.contentView.layoutIfNeeded()
+        
+        self.accessibilityLabel = "Multiple premises account.  \(checkMarkImageView.accessibilityLabel ?? ""). \(accountImageView.accessibilityLabel ?? "").  \(accountNumber.accessibilityLabel ?? ""). " +
+        "\(addressLabel.accessibilityLabel ?? "") \(accountStatusLabel.accessibilityLabel ?? "")."
     }
 
 }

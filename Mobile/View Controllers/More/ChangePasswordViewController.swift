@@ -110,6 +110,7 @@ class ChangePasswordViewController: UIViewController {
         
         newPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { _ in
+                self.scrollView.setContentOffset(self.newPasswordTextField.frame.origin, animated: true)
                 UIView.animate(withDuration: 0.5) {
                     self.passwordStrengthView.isHidden = false
                 }
@@ -251,7 +252,7 @@ class ChangePasswordViewController: UIViewController {
         // Password cannot match username
         viewModel.passwordMatchesUsername().subscribe(onNext: { matches in
             if matches {
-                self.newPasswordTextField.setError(NSLocalizedString("Passsword cannot match username", comment: ""))
+                self.newPasswordTextField.setError(NSLocalizedString("Password cannot match username", comment: ""))
                 self.accessibilityErrorLabel()
                 
             } else {

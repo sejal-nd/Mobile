@@ -30,6 +30,7 @@ enum ServiceErrorCode : String {
     case FnProfileExists = "FN-PROF-EXISTS"
     case FnAccountFinaled = "FN-ACCOUNT-FINALED" // Loading outage status for finaled account
     case FnAccountNoPay = "FN-ACCOUNT-NOPAY" // Loading outage status for no-pay account
+    case FnNonService = "FN-NON-SERVICE" // Loading outage status for BGE non-service agreement account
     case FnCustomerNotFound = "FN-CUST-NOTFOUND"
     case FnUserInvalid = "FN-USER-INVALID"
     case FnUserExists = "FN-USER-EXISTS"

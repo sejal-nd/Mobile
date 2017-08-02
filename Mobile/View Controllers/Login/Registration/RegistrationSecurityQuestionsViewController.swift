@@ -222,11 +222,11 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     }
     
     func setupNavigationButtons() {
-        let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         
-        viewModel.allQuestionsAnswered().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.allQuestionsAnswered().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
         
-        navigationItem.rightBarButtonItem = nextButton
+        navigationItem.rightBarButtonItem = submitButton
     }
     
     func populateHelperLabels() {
@@ -263,6 +263,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question1ContentLabel.isHidden = true
         question1ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         question1ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        question1Label.accessibilityTraits = UIAccessibilityTraitButton
         
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(question1Tapped))
         question1ViewWrapper.isUserInteractionEnabled = true
@@ -273,6 +274,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question2ContentLabel.isHidden = true
         question2ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         question2ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        question2Label.accessibilityTraits = UIAccessibilityTraitButton
         
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(question2Tapped))
         question2ViewWrapper.isUserInteractionEnabled = true
@@ -285,6 +287,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             question3ContentLabel.isHidden = true
             question3ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             question3ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+            question3Label.accessibilityTraits = UIAccessibilityTraitButton
             
             let tap3 = UITapGestureRecognizer(target: self, action: #selector(question3Tapped))
             question3ViewWrapper.isUserInteractionEnabled = true
@@ -400,7 +403,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func onNextPress() {
+    func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()

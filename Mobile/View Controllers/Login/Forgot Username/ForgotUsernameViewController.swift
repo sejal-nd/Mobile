@@ -18,7 +18,7 @@ class ForgotUsernameViewController: UIViewController {
     @IBOutlet weak var identifierTextField: FloatLabelTextField?
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField?
     @IBOutlet weak var accountLookupToolButton: UIButton?
-    @IBOutlet weak var accountNumberTooltipButton: UIButton!
+    @IBOutlet weak var accountNumberTooltipButton: UIButton?
     
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     
@@ -117,7 +117,7 @@ class ForgotUsernameViewController: UIViewController {
             
         }).addDisposableTo(disposeBag)
         
-        accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool Tip", comment: "")
+        accountNumberTooltipButton?.accessibilityLabel = NSLocalizedString("Tool Tip", comment: "")
         
         accountLookupToolButton?.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
         accountLookupToolButton?.setTitleColor(.actionBlue, for: .normal)
