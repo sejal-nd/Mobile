@@ -265,6 +265,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         }
         
         dayPickerView = ExelonPickerContainerView(frame: currentWindow.frame, dataArray: dataArray)
+        dayPickerView.setA11yLabel(label: "Please select number of days")
         
         currentWindow.addSubview(dayPickerView)
         

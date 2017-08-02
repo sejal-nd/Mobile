@@ -54,6 +54,7 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
         
         let currentWindow = UIApplication.shared.keyWindow
         premisePickerView = ExelonPickerContainerView(frame: (currentWindow?.frame)!)
+        premisePickerView.setA11yLabel(label: "Please select premises")
         
         currentWindow?.addSubview(premisePickerView)
         
@@ -103,7 +104,7 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
                 self.premisePickerView.isHidden = true
             } else {
                 self.premisePickerView.accessibilityViewIsModal = true
-                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.premisePickerView)
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.premisePickerView)
             }
             
             completion?()

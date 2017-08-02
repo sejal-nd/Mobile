@@ -57,10 +57,7 @@ class ExelonPickerContainerView: UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(ExelonPickerContainerView.className, owner: self, options: nil)
         
-        cancelButton.isAccessibilityElement = true
         cancelButton.accessibilityLabel = NSLocalizedString("Cancel", comment: "")
-        
-        doneButton.isAccessibilityElement = true
         doneButton.accessibilityLabel = NSLocalizedString("Done", comment: "")
         
         accessibleElements = [cancelButton, doneButton, exelonPicker]
@@ -83,16 +80,15 @@ class ExelonPickerContainerView: UIView {
         exelonPicker.delegate = self
         exelonPicker.selectRow(0, inComponent: 0, animated: true)
         
-//        exelonPicker.isAccessibilityElement = true
-//        exelonPicker.accessibilityLabel = NSLocalizedString("Select premise", comment: "")
-        
-        self.accessibilityLabel = NSLocalizedString("Please select a premises", comment: "")
-        
     }
     
     func addNewData(dataArray: [String]) {
         self.dataArray = dataArray
         exelonPicker.reloadAllComponents()
+    }
+    
+    func setA11yLabel(label: String) {
+        self.accessibilityLabel = NSLocalizedString(label, comment: "")
     }
     
     override func layoutSubviews() {

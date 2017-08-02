@@ -89,10 +89,12 @@ class MultiPremiseTableViewCell: UITableViewCell {
             view.addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
             view.checkMark.isAccessibilityElement = showCheck ? true : false
             if showCheck {
-                view.checkMark.accessibilityLabel = NSLocalizedString("Selected", comment: "")
+                view.checkMark.accessibilityLabel = NSLocalizedString("Selected premises. \(address)", comment: "")
+            } else {
+                view.addressLabel.isAccessibilityElement = true
+                view.addressLabel.accessibilityLabel = NSLocalizedString("Premises \(address)", comment: "")
             }
-            view.addressLabel.isAccessibilityElement = true
-            view.addressLabel.accessibilityLabel = NSLocalizedString(address, comment: "")
+            
             self.premiseAddressStackView.addArrangedSubview(view)
             premiseAddressStackView.setNeedsLayout()
             premiseAddressStackView.layoutIfNeeded()
