@@ -413,7 +413,12 @@ class BillViewModel {
             return String(format: localizedText, amountString)
         } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPaymentAmount, let scheduledPaymentDate = accountDetail.billingInfo.scheduledPaymentDate, let amountString = scheduledPaymentAmount.currencyString, scheduledPaymentAmount > 0 {
             return String(format: NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: ""), amountString, scheduledPaymentDate.mmDdYyyyString)
-        } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount, let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate, let amountString = lastPaymentAmount.currencyString, lastPaymentAmount > 0 {
+        } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount,
+            let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate,
+            let amountString = lastPaymentAmount.currencyString,
+            lastPaymentAmount > 0,
+            let billDate = accountDetail.billingInfo.billDate,
+            billDate < lastPaymentDate {
             return String(format: NSLocalizedString("Thank you for %@ payment on %@", comment: ""), amountString, lastPaymentDate.mmDdYyyyString)
         }
         return nil
