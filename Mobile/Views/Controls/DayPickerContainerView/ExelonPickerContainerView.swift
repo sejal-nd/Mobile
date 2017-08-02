@@ -83,8 +83,10 @@ class ExelonPickerContainerView: UIView {
         exelonPicker.delegate = self
         exelonPicker.selectRow(0, inComponent: 0, animated: true)
         
-        exelonPicker.isAccessibilityElement = true
-        exelonPicker.accessibilityLabel = NSLocalizedString("Select premise", comment: "")
+//        exelonPicker.isAccessibilityElement = true
+//        exelonPicker.accessibilityLabel = NSLocalizedString("Select premise", comment: "")
+        
+        self.accessibilityLabel = NSLocalizedString("Please select a premises", comment: "")
         
     }
     

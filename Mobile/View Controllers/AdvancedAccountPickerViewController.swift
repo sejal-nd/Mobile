@@ -120,6 +120,7 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
         let account = accounts[indexPath.row]
         
         if account.isMultipremise {
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, "Please select premises address")
             self.accountIndexToEditPremise = indexPath.row
             
             let dataArray = account.premises.map({ (premise: Premise) -> String in
