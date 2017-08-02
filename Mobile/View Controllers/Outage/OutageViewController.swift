@@ -112,7 +112,7 @@ class OutageViewController: AccountPickerViewController {
                 self.gasOnlyView.isHidden = true
                 self.errorLabel.isHidden = true
                 self.loadingView.isHidden = true
-                self.loadingView.isAccessibilityElement = false
+                self.loadingView.accessibilityViewIsModal = false
                 self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
                 if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
@@ -341,16 +341,16 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyView.isHidden = true
         errorLabel.isHidden = true
         loadingView.isHidden = false
-        loadingView.isAccessibilityElement = true
+        loadingView.accessibilityViewIsModal = true
         setRefreshControlEnabled(enabled: false)
         viewModel.getOutageStatus(onSuccess: {
             self.loadingView.isHidden = true
-            self.loadingView.isAccessibilityElement = false
+            self.loadingView.accessibilityViewIsModal = false
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent()
         }, onError: { error in
             self.loadingView.isHidden = true
-            self.loadingView.isAccessibilityElement = false
+            self.loadingView.accessibilityViewIsModal = false
             self.setRefreshControlEnabled(enabled: true)
             self.errorLabel.text = error
             self.errorLabel.isHidden = false
