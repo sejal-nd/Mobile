@@ -45,7 +45,10 @@ class HomeViewModel {
     
     private(set) lazy var isSwitchingAccounts: Driver<Bool> = Observable.combineLatest(self.fetchingTracker.asObservable(),
                                                                                        self.fetchData.asObservable())
-        .map { $0 && $1 == .switchAccount }
+        .map {
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+            return ($0 && $1 == .switchAccount)
+        }
         .asDriver(onErrorJustReturn: false)
     
     
