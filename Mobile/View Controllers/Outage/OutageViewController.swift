@@ -344,11 +344,13 @@ class OutageViewController: AccountPickerViewController {
         loadingView.accessibilityViewIsModal = true
         setRefreshControlEnabled(enabled: false)
         viewModel.getOutageStatus(onSuccess: {
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             self.loadingView.isHidden = true
             self.loadingView.accessibilityViewIsModal = false
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent()
         }, onError: { error in
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             self.loadingView.isHidden = true
             self.loadingView.accessibilityViewIsModal = false
             self.setRefreshControlEnabled(enabled: true)
