@@ -57,11 +57,10 @@ protocol WalletService {
     ///   - postalCode: the postal code to set
     func updateCreditCard(_ walletItemID: String,
                           customerNumber: String,
-                          expirationMonth: String?,
-                          expirationYear: String?,
-                          securityCode: String?,
-                          postalCode: String?,
-                          nickname: String?,
+                          expirationMonth: String,
+                          expirationYear: String,
+                          securityCode: String,
+                          postalCode: String,
                           completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
     /// Delete wallet payment method.
@@ -172,11 +171,10 @@ extension WalletService {
     
     func updateCreditCard(_ walletItemID: String,
                           customerNumber: String,
-                          expirationMonth: String?,
-                          expirationYear: String?,
-                          securityCode: String?,
-                          postalCode: String?,
-                          nickname: String?) -> Observable<Void> {
+                          expirationMonth: String,
+                          expirationYear: String,
+                          securityCode: String,
+                          postalCode: String) -> Observable<Void> {
     
         return Observable.create { observer in
             self.updateCreditCard(walletItemID,
@@ -185,7 +183,6 @@ extension WalletService {
                                   expirationYear: expirationYear,
                                   securityCode: securityCode,
                                   postalCode: postalCode,
-                                  nickname: nickname,
                                   completion: { (result: ServiceResult<Void>) in
                                     //
                                     switch (result) {
