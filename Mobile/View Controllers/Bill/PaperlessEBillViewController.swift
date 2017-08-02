@@ -103,6 +103,7 @@ class PaperlessEBillViewController: UIViewController {
             self.navigationController?.present(infoModal, animated: true, completion: nil)
         }).addDisposableTo(bag)
         whatIsButton.accessibilityLabel = NSLocalizedString("What is Paperless e-bill", comment: "")
+        enrollAllAccountsSwitch.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
     }
     
     func colorAndShadowSetup() {
