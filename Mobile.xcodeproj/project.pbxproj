@@ -1034,6 +1034,8 @@
 		E8EDC5441F324242006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
 		E8EDC5451F324242006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
 		E8EDC5461F324242006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
+		E8EDC5471F324DEE006DD927 /* SpeedpayErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */; };
+		E8EDC5481F324DFB006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
 		E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
@@ -4166,6 +4168,7 @@
 				E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */,
 				E81CFFF71EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E841F3B51F030EE5007BFA82 /* BillingHistory.swift in Sources */,
+				E8EDC5471F324DEE006DD927 /* SpeedpayErrorMapper.swift in Sources */,
 				E8CA07F71E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
@@ -4196,6 +4199,7 @@
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E887C9D71ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
+				E8EDC5481F324DFB006DD927 /* FiservErrorMapper.swift in Sources */,
 				E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
 				B56DD49B1ED84E6000F0198B /* FiservApi.swift in Sources */,

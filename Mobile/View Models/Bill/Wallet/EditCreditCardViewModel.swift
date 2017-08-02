@@ -32,14 +32,14 @@ class EditCreditCardViewModel {
     }
     
     func saveButtonIsEnabled() -> Observable<Bool> {
-        return Observable.combineLatest(webServicesDataChanged(), oneTouchPayInitialValue.asObservable(), oneTouchPay.asObservable()) {
+        return Observable.combineLatest(cardDataEntered(), oneTouchPayInitialValue.asObservable(), oneTouchPay.asObservable()) {
             return $0 || ($1 != $2)
         }
     }
     
-    func webServicesDataChanged() -> Observable<Bool> {
-        return Observable.combineLatest(expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits()) {
-            return ($0 && $1 && $2 && $3) || $4 || $5
+    func cardDataEntered() -> Observable<Bool> {
+        return Observable.combineLatest([expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits()]) {
+            return !$0.contains(false)
         }
     }
     
@@ -96,9 +96,6 @@ class EditCreditCardViewModel {
                 onError(err.localizedDescription)
             })
             .addDisposableTo(disposeBag)
-        walletService.setOneTouchPayItem(walletItemId: walletItem.walletItemID!, walletId: walletItem.walletExternalID, customerId: AccountsStore.sharedInstance.customerIdentifier) { (result: ServiceResult<Void>) in
-            
-        }
     }
     
     func deleteCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
