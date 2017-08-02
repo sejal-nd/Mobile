@@ -54,7 +54,6 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
         
         let currentWindow = UIApplication.shared.keyWindow
         premisePickerView = ExelonPickerContainerView(frame: (currentWindow?.frame)!)
-        premisePickerView.setA11yLabel(label: "Please select premises")
         
         currentWindow?.addSubview(premisePickerView)
         
@@ -121,7 +120,7 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
         let account = accounts[indexPath.row]
         
         if account.isMultipremise {
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, "Please select premises address")
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select premises address", comment: ""))
             self.accountIndexToEditPremise = indexPath.row
             
             let dataArray = account.premises.map({ (premise: Premise) -> String in

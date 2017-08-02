@@ -265,7 +265,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         }
         
         dayPickerView = ExelonPickerContainerView(frame: currentWindow.frame, dataArray: dataArray)
-        dayPickerView.setA11yLabel(label: "Please select number of days")
         
         currentWindow.addSubview(dayPickerView)
         
@@ -681,6 +680,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         // Delay here fixes a bug when button is tapped with keyboard up
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
             self.showPickerView(true)
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select number of days", comment: ""))
         })
     }
 

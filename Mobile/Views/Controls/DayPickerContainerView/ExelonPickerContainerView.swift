@@ -87,10 +87,6 @@ class ExelonPickerContainerView: UIView {
         exelonPicker.reloadAllComponents()
     }
     
-    func setA11yLabel(label: String) {
-        self.accessibilityLabel = NSLocalizedString(label, comment: "")
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
