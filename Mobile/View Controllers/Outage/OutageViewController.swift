@@ -179,12 +179,12 @@ class OutageViewController: AccountPickerViewController {
         }
         
         // Display either the Lottie animation or draw our own border circles
-        let powerIsOn = !currentOutageStatus.activeOutage && viewModel.getReportedOutage() == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled
+        let powerIsOn = !currentOutageStatus.activeOutage && viewModel.getReportedOutage() == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
         animationView.isHidden = !powerIsOn
         outerCircleView.isHidden = powerIsOn
         innerCircleView.isHidden = powerIsOn
         
-        if viewModel.getReportedOutage() == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled) {
+        if viewModel.getReportedOutage() == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled || currentOutageStatus.flagNonService) {
             outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1) // Special case color - do not change
             innerCircleView.backgroundColor = .middleGray
         } else {
@@ -202,7 +202,7 @@ class OutageViewController: AccountPickerViewController {
         }
         
         // Disable bottom buttons if account is finaled or not paid
-        let bottomButtonsEnabled = !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled
+        let bottomButtonsEnabled = !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
         reportOutageButton.isEnabled = bottomButtonsEnabled
         viewOutageMapButton.isEnabled = bottomButtonsEnabled
     }
@@ -287,7 +287,7 @@ class OutageViewController: AccountPickerViewController {
             bigButtonView.addSubview(restRestorationLabel)
             bigButtonView.addSubview(timeLabel)
             bigButtonView.accessibilityLabel = NSLocalizedString("Outage status, button. Your power is out. Estimated restoration \(viewModel.getEstimatedRestorationDateString()).", comment: "")
-        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay {
+        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
             let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 14, y: 38, width: bigButtonWidth - 28, height: 120))
             let payBillLabel = UILabel(frame: .zero)
             if Environment.sharedInstance.opco != .bge {

@@ -96,11 +96,14 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
         self.premisePickerView.layoutIfNeeded()
         UIView.animate(withDuration: 0.25, animations: {
             self.premisePickerView.layoutIfNeeded()
-            
             self.premisePickerView.backgroundColor =  UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: alpha)
         }, completion: { _ in
             if !showPicker {
+                self.premisePickerView.accessibilityViewIsModal = false
                 self.premisePickerView.isHidden = true
+            } else {
+                self.premisePickerView.accessibilityViewIsModal = true
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.premisePickerView)
             }
             
             completion?()
@@ -117,6 +120,7 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
         let account = accounts[indexPath.row]
         
         if account.isMultipremise {
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select premises address", comment: ""))
             self.accountIndexToEditPremise = indexPath.row
             
             let dataArray = account.premises.map({ (premise: Premise) -> String in
