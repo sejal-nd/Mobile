@@ -8,8 +8,6 @@
 
 import UIKit
 import Lottie
-import RxSwift
-import RxCocoa
 
 class BillAlertBannerView: UIView {
     
@@ -43,9 +41,12 @@ class BillAlertBannerView: UIView {
     }
 }
 
+import RxSwift
+import RxCocoa
+
 extension Reactive where Base: BillAlertBannerView {
     
-    /// Bindable sink for `resetAnimation` property.
+    /// Bindable sink for `resetAnimation` method.
     var resetAnimation: UIBindingObserver<Base, Void> {
         return UIBindingObserver(UIElement: self.base) { view, _ in
             view.resetAnimation()
