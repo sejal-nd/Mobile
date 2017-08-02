@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupUserDefaults()
         setupToastStyles()
         setupAppearance()
+        setupAnalytics()
         jailbreakCheck()
         //printFonts()
         
@@ -127,6 +128,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PDTSimpleCalendarViewCell.appearance().textDisabledColor = UIColor.blackText.withAlphaComponent(0.3)
         PDTSimpleCalendarViewCell.appearance().circleTodayColor = .clear
         PDTSimpleCalendarViewCell.appearance().circleSelectedColor = .actionBlue
+    }
+    
+    func setupAnalytics() {
+        //TODO - add tracking id to environment
+        let gai = GAI.sharedInstance()
+        _ = gai?.tracker(withTrackingId: "UA-76742208-8")
     }
     
     func resetNavigationOnAuthTokenExpire() {
