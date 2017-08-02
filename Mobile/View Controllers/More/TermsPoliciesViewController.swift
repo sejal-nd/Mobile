@@ -18,7 +18,7 @@ class TermsPoliciesViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        title = NSLocalizedString("Terms and Policies", comment: "")
+        title = NSLocalizedString("Policies and Terms", comment: "")
     }
 
     override func viewDidLoad() {
@@ -26,6 +26,7 @@ class TermsPoliciesViewController: UIViewController {
 
         let url = viewModel.termPoliciesURL
         webView.loadRequest(URLRequest(url: url))
+        webView.scalesPageToFit = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

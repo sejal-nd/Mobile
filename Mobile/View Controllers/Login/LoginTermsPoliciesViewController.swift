@@ -24,10 +24,11 @@ class LoginTermsPoliciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Terms and Policies", comment: "")
+        self.title = NSLocalizedString("Policies and Terms", comment: "")
         
         let url = viewModel.termPoliciesURL
         webView.loadRequest(URLRequest(url: url))
+        webView.scalesPageToFit = true
 
         agreeView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
 
@@ -65,6 +66,8 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         agreeSwitch.isAccessibilityElement = true
         agreeSwitch.accessibilityLabel = agreeLabel.text
+        
+        self.view.accessibilityElements = [webView, agreeSwitch, continueButton]
     }
     
     @IBAction func onContinuePress() {
