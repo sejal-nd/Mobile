@@ -310,7 +310,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
             self.dayPickerView.backgroundColor =  UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: alpha)
         }, completion: { _ in
             if !showPicker {
+                self.dayPickerView.accessibilityViewIsModal = false
                 self.dayPickerView.isHidden = true
+            } else {
+                self.dayPickerView.accessibilityViewIsModal = true
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.dayPickerView)
             }
             
             completion?()
