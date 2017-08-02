@@ -386,6 +386,11 @@ class HomeBillCardViewModel {
             }
     }
     
+    private(set) lazy var titleA11yText: Driver<String?> = self.titleText.map {
+        $0?.replacingOccurrences(of: "shutoff", with: "shut-off")
+            .replacingOccurrences(of: "Shutoff", with: "shut-off")
+    }
+    
     private(set) lazy var amountPaidText: Driver<String?> = self.accountDetailDriver.map {
         guard let lastPaymentAmountString = $0.billingInfo.lastPaymentAmount?.currencyString else { return nil }
         return String(format: NSLocalizedString("Amount Paid: %@", comment: ""), lastPaymentAmountString)

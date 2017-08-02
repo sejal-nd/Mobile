@@ -196,7 +196,7 @@ class BillViewController: AccountPickerViewController {
         budgetButton.layer.cornerRadius = 2
 
         // Set Fonts
-        alertBannerLabel.font = OpenSans.italic.of(textStyle: .subheadline)
+        alertBannerLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
 
         restoreServiceLabel.font = OpenSans.regular.of(textStyle: .subheadline)
@@ -240,6 +240,9 @@ class BillViewController: AccountPickerViewController {
 
         billPaidLabel.font = SystemFont.bold.of(textStyle: .title1)
         makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .subheadline)
+        
+        billPaidView.isAccessibilityElement = true
+        billPaidView.accessibilityLabel = NSLocalizedString("Bill Paid, button, dimmed", comment: "")
     }
 
     func bindViews() {
@@ -288,8 +291,6 @@ class BillViewController: AccountPickerViewController {
         viewModel.pendingPaymentAmountDueBoxesAlpha.drive(avoidShutoffView.rx.alpha).addDisposableTo(bag)
 		viewModel.shouldShowPastDue.not().drive(pastDueView.rx.isHidden).addDisposableTo(bag)
         viewModel.pendingPaymentAmountDueBoxesAlpha.drive(pastDueView.rx.alpha).addDisposableTo(bag)
-
-		viewModel.shouldShowPendingPayment.not().drive(paymentStackView.rx.isHidden).addDisposableTo(bag)
 
 		viewModel.shouldShowPendingPayment.not().drive(paymentStackView.rx.isHidden).addDisposableTo(bag)
 		viewModel.shouldShowRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).addDisposableTo(bag)

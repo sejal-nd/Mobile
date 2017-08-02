@@ -306,7 +306,7 @@ class BillViewModel {
     }
     
     var avoidShutoffA11yText: String {
-        return avoidShutoffText.replacingOccurrences(of: "shutoff", with: "shut-off")
+        return avoidShutoffText.replacingOccurrences(of: "Shutoff", with: "shut-off")
     }
     
     lazy var avoidShutoffAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
