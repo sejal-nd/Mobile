@@ -48,8 +48,12 @@ class LoadingIndicator: UIView {
     override var isHidden: Bool {
         didSet {
             if isHidden {
+                lottieAnimationView!.accessibilityViewIsModal = false;
+                lottieAnimationView!.isAccessibilityElement = false;
                 lottieAnimationView!.pause()
             } else {
+                lottieAnimationView!.accessibilityViewIsModal = true;
+                lottieAnimationView!.isAccessibilityElement = true;
                 lottieAnimationView!.play()
             }
         }

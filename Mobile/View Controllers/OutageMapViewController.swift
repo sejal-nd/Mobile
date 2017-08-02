@@ -23,6 +23,8 @@ class OutageMapViewController: UIViewController {
         
         let url = URL(string: Environment.sharedInstance.outageMapUrl)!
         webView.loadRequest(URLRequest(url: url))
+        webView.isAccessibilityElement = false
+        webView.accessibilityLabel = "This is an outage map showing the areas that are currently experiencing an outage."
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +41,8 @@ extension OutageMapViewController: UIWebViewDelegate {
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         loadingIndicator.isHidden = true
+        
+        webView.isAccessibilityElement = true
     }
     
 }

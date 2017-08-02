@@ -79,7 +79,9 @@ class BillViewModel {
             .unwrap()
             .asDriver(onErrorDriveWith: Driver.empty())
 	
-	lazy var isFetchingDifferentAccount: Driver<Bool> = self.currentAccountDetail.asDriver().map { $0 == nil }
+	lazy var isFetchingDifferentAccount: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+        return $0 == nil }
 	
 	
     // MARK: - Show/Hide Views -
