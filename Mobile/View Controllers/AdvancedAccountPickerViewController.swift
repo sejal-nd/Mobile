@@ -99,8 +99,10 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
             self.premisePickerView.backgroundColor =  UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: alpha)
         }, completion: { _ in
             if !showPicker {
+                self.premisePickerView.accessibilityViewIsModal = false
                 self.premisePickerView.isHidden = true
             } else {
+                self.premisePickerView.accessibilityViewIsModal = true
                 UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.premisePickerView)
             }
             

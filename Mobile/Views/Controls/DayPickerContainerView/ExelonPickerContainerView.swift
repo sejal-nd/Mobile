@@ -112,13 +112,15 @@ class ExelonPickerContainerView: UIView {
         delegate?.donePressed(selectedIndex: selectedIndex)
     }
     
+    //MARK: UIA11yContainer functions
+    
     override var isAccessibilityElement: Bool {
         get {
             return false
         }
         
         set {
-            
+            super.isAccessibilityElement = newValue
         }
     }
     
@@ -127,7 +129,7 @@ class ExelonPickerContainerView: UIView {
             return accessibleElements
         }
         set {
-            
+            super.accessibilityElements = newValue
         }
     }
     
