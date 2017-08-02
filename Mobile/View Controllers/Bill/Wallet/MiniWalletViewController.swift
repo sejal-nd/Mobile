@@ -220,6 +220,10 @@ extension MiniWalletViewController: UITableViewDataSource {
             cell.label.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
             if bankAccountsDisabled {
                 cell.label.alpha = 0.33
+                cell.label.isAccessibilityElement = false
+            } else {
+                cell.label.alpha = 1
+                cell.label.isAccessibilityElement = true
             }
         } else {
             var creditCardFeeString: String {
@@ -234,6 +238,10 @@ extension MiniWalletViewController: UITableViewDataSource {
             cell.label.text = creditCardFeeString
             if creditCardsDisabled {
                 cell.label.alpha = 0.33
+                cell.label.isAccessibilityElement = false
+            } else {
+                cell.label.alpha = 1
+                cell.label.isAccessibilityElement = true
             }
         }
         
@@ -251,8 +259,7 @@ extension MiniWalletViewController: UITableViewDataSource {
             if indexPath.row < viewModel.bankAccounts.count {
                 let bankItem = viewModel.bankAccounts[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "MiniWalletItemCell", for: indexPath) as! MiniWalletTableViewCell
-                cell.bindToWalletItem(bankItem)
-                cell.checkmarkImageView.isHidden = bankItem != viewModel.selectedItem.value
+                cell.bindToWalletItem(bankItem, isSelectedItem: bankItem == viewModel.selectedItem.value)
                 cell.innerContentView.tag = indexPath.row
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onBankAccountPress(sender:)), for: .touchUpInside)
@@ -277,8 +284,7 @@ extension MiniWalletViewController: UITableViewDataSource {
             if indexPath.row < viewModel.creditCards.count {
                 let cardItem = viewModel.creditCards[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "MiniWalletItemCell", for: indexPath) as! MiniWalletTableViewCell
-                cell.bindToWalletItem(cardItem)
-                cell.checkmarkImageView.isHidden = cardItem != viewModel.selectedItem.value
+                cell.bindToWalletItem(cardItem, isSelectedItem: cardItem == viewModel.selectedItem.value)
                 cell.innerContentView.tag = indexPath.row
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onCreditCardPress(sender:)), for: .touchUpInside)

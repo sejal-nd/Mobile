@@ -471,7 +471,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         let label = UILabel()
         if accountDetail.isAutoPay {
-            label.text = NSLocalizedString("You currently have AutoPay set up", comment: "")
+            label.text = NSLocalizedString("You are enrolled in AutoPay", comment: "")
         } else {
             label.text = NSLocalizedString("You are enrolled in BGEasy", comment: "")
         }
