@@ -28,6 +28,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         let url = viewModel.termPoliciesURL
         webView.loadRequest(URLRequest(url: url))
+        webView.scalesPageToFit = true
 
         agreeView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
 
