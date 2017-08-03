@@ -126,7 +126,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
                     self.viewModel.formatAmountNotToExceed()
                 }
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         numberOfPaymentsTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: { _ in
             if let text = self.numberOfPaymentsTextField.textField.text {
@@ -134,9 +134,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
                     self.viewModel.userDidChangeSettings.value = true
                 }
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         accessibilitySetup()
+        
     }
     
     deinit {
@@ -423,8 +424,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedSpacerView1 = SeparatorSpaceView.create()
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedSpacerView1)
         
-        viewModel.amountNotToExceed.asDriver().drive(amountNotToExceedTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
-        amountNotToExceedTextField.textField.rx.text.orEmpty.bind(to: viewModel.amountNotToExceed).addDisposableTo(disposeBag)
+        viewModel.amountNotToExceed.asDriver().drive(amountNotToExceedTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
+        amountNotToExceedTextField.textField.rx.text.orEmpty.bind(to: viewModel.amountNotToExceed).disposed(by: disposeBag)
         
         // creating details label for second button
         amountNotToExceedDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -609,8 +610,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsTextField.textField.delegate = self
         numberOfPaymentsTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
-        viewModel.numberOfPayments.asDriver().drive(numberOfPaymentsTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
-        numberOfPaymentsTextField.textField.rx.text.orEmpty.bind(to: viewModel.numberOfPayments).addDisposableTo(disposeBag)
+        viewModel.numberOfPayments.asDriver().drive(numberOfPaymentsTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
+        numberOfPaymentsTextField.textField.rx.text.orEmpty.bind(to: viewModel.numberOfPayments).disposed(by: disposeBag)
         
         numberOfPaymentsButtonStackView.addArrangedSubview(numberOfPaymentsTextField)
         

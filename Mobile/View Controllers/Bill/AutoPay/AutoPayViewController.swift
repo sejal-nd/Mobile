@@ -74,24 +74,24 @@ class AutoPayViewController: UIViewController {
         NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: keyboardWillShow)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         NotificationCenter.default.rx.notification(.UIKeyboardWillHide, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: keyboardWillHide)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         style()
         textFieldSetup()
         bindEnrollingState()
         bindEnrolledState()
         
-        viewModel.footerText.drive(footerLabel.rx.text).addDisposableTo(bag)
-        viewModel.canSubmit.drive(submitButton.rx.isEnabled).addDisposableTo(bag)
+        viewModel.footerText.drive(footerLabel.rx.text).disposed(by: bag)
+        viewModel.canSubmit.drive(submitButton.rx.isEnabled).disposed(by: bag)
         
         learnMoreButton.rx.touchUpInside.asDriver()
             .drive(onNext: onLearnMorePress)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         
         // background color hackery
@@ -103,7 +103,7 @@ class AutoPayViewController: UIViewController {
             .map { $0 == .unenrolling || $1 }
             .map { $0 ? UIColor.softGray: UIColor.white }
             .drive(view.rx.backgroundColor)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         accessibilitySetup()
         
@@ -171,7 +171,7 @@ class AutoPayViewController: UIViewController {
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     strongSelf.present(alertController, animated: true, completion: nil)
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
     }
     
     private func style() {
@@ -251,10 +251,10 @@ class AutoPayViewController: UIViewController {
                     isOn ? .isEnrolled: .unenrolling
                 }
                 .bind(to: viewModel.enrollmentStatus)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
         }
         
-        enrollSwitch.rx.isOn.filter { $0 }.map { _ in nil }.bind(to: viewModel.selectedUnenrollmentReason).addDisposableTo(bag)
+        enrollSwitch.rx.isOn.filter { $0 }.map { _ in nil }.bind(to: viewModel.selectedUnenrollmentReason).disposed(by: bag)
         viewModel.selectedUnenrollmentReason.asDriver()
             .filter { $0 == nil }
             .drive(onNext: { [weak self] _ in
@@ -263,9 +263,9 @@ class AutoPayViewController: UIViewController {
                     else { return }
                 tableView.deselectRow(at: selectedIndexPath, animated: true)
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
-        viewModel.enrollmentStatus.asDriver().map { $0 == .enrolling }.drive(enrolledStackView.rx.isHidden).addDisposableTo(bag)
+        viewModel.enrollmentStatus.asDriver().map { $0 == .enrolling }.drive(enrolledStackView.rx.isHidden).disposed(by: bag)
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (pick one)", comment: "")
         reasonForStoppingTableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReasonForStoppingCell")
         reasonForStoppingTableView.estimatedRowHeight = 51
@@ -281,12 +281,12 @@ class AutoPayViewController: UIViewController {
                     self?.enrolledContentView.isHidden = unenrolling
                 }
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
     }
     
     private func bindEnrollingState() {
         
-        viewModel.enrollmentStatus.asDriver().map { $0 != .enrolling }.drive(enrollStackView.rx.isHidden).addDisposableTo(bag)
+        viewModel.enrollmentStatus.asDriver().map { $0 != .enrolling }.drive(enrollStackView.rx.isHidden).disposed(by: bag)
         
         checkingSavingsSegmentedControl.items = [NSLocalizedString("Checking", comment: ""), NSLocalizedString("Savings", comment: "")]
         
@@ -295,17 +295,17 @@ class AutoPayViewController: UIViewController {
                 selectedIndex == 0 ? .checking: .savings
             }
             .bind(to: viewModel.bankAccountType)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         tacButton.rx.tap.asDriver()
             .drive(onNext: onTermsAndConditionsPress)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
-        nameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nameOnAccount).addDisposableTo(bag)
-        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(bag)
-        routingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.routingNumber).addDisposableTo(bag)
-        confirmAccountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmAccountNumber).addDisposableTo(bag)
-        tacSwitch.rx.isOn.bind(to: viewModel.termsAndConditionsCheck).addDisposableTo(bag)
+        nameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nameOnAccount).disposed(by: bag)
+        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: bag)
+        routingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.routingNumber).disposed(by: bag)
+        confirmAccountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmAccountNumber).disposed(by: bag)
+        tacSwitch.rx.isOn.bind(to: viewModel.termsAndConditionsCheck).disposed(by: bag)
         tacStackView.isHidden = !viewModel.shouldShowTermsAndConditionsCheck
         
         // Name on Account
@@ -315,7 +315,7 @@ class AutoPayViewController: UIViewController {
                 self?.accessibilityErrorLabel()
                 
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         // Routing Number
         let routingNumberErrorTextFocused: Driver<String?> = routingNumberTextField.textField.rx
@@ -325,7 +325,7 @@ class AutoPayViewController: UIViewController {
             self.routingNumberTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
             .controlEvent(.editingDidEnd).asDriver()
@@ -338,7 +338,7 @@ class AutoPayViewController: UIViewController {
                     self.routingNumberTextField.setInfoMessage(nil)
                 })
             }
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
 
         Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
             .distinctUntilChanged(==)
@@ -347,7 +347,7 @@ class AutoPayViewController: UIViewController {
                 self?.accessibilityErrorLabel()
                 
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         // Account Number
         let accountNumberErrorTextFocused: Driver<String?> = accountNumberTextField.textField.rx
@@ -365,7 +365,7 @@ class AutoPayViewController: UIViewController {
                 self?.accessibilityErrorLabel()
                 
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         // Confirm Account Number
         viewModel.confirmAccountNumberErrorText
@@ -374,28 +374,28 @@ class AutoPayViewController: UIViewController {
                 self?.accessibilityErrorLabel()
                 
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.confirmAccountNumberIsValid
             .drive(onNext: { [weak self] validated in
                 self?.confirmAccountNumberTextField.setValidated(validated, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.confirmAccountNumberIsEnabled
             .drive(onNext: { [weak self] enabled in
                 self?.confirmAccountNumberTextField.setEnabled(enabled)
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         
         routingNumberTooltipButton.rx.tap.asDriver()
             .drive(onNext: onRoutingNumberQuestionMarkPress)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         accountNumberTooltipButton.rx.tap.asDriver()
             .drive(onNext: onAccountNumberQuestionMarkPress)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
     }
     
     private func accessibilityErrorLabel() {

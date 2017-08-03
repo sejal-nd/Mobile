@@ -70,7 +70,7 @@ class SettingsViewController: UIViewController {
                     strongSelf.fetchAccounts()
                 }))
                 strongSelf.present(alertVc, animated: true, completion: nil)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - Touch ID Switch Handling
@@ -88,7 +88,7 @@ class SettingsViewController: UIViewController {
         pwAlert.addTextField(configurationHandler: { (textField) in
             textField.placeholder = NSLocalizedString("Password", comment: "")
             textField.isSecureTextEntry = true
-            textField.rx.text.orEmpty.bind(to: self.viewModel.password).addDisposableTo(self.disposeBag)
+            textField.rx.text.orEmpty.bind(to: self.viewModel.password).disposed(by: self.disposeBag)
         })
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (action) -> Void in
             self.touchIdCell?.setSwitch(on: false)

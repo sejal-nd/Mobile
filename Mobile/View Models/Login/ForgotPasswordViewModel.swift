@@ -35,7 +35,7 @@ class ForgotPasswordViewModel {
                 } else {
                     onError(serviceError.localizedDescription)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func submitButtonEnabled() -> Observable<Bool> {

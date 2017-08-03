@@ -29,7 +29,7 @@ class BudgetBillingViewModel {
         currentEnrollment.asObservable().subscribe(onNext: { enrolled in
             self.enrolling.value = !initialEnrollment && enrolled
             self.unenrolling.value = initialEnrollment && !enrolled
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func getBudgetBillingInfo(onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
@@ -40,7 +40,7 @@ class BudgetBillingViewModel {
             }, onError: { error in
                 onError(error.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -51,7 +51,7 @@ class BudgetBillingViewModel {
             }, onError: { error in
                 onError(error.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -62,7 +62,7 @@ class BudgetBillingViewModel {
             }, onError: { error in
                 onError(error.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func submitButtonEnabled() -> Observable<Bool> {

@@ -73,7 +73,6 @@ class SegmentedControl: UIControl {
         
         if let items = items {
             let itemWidth = frame.width / CGFloat(items.count)
-            var selectedLabel = ""
             for (index, item) in items.enumerated() {
                 let xPos = CGFloat(index) * itemWidth
                 
@@ -91,7 +90,6 @@ class SegmentedControl: UIControl {
                 let label = labels[index]
                 label.text = item
                 if index == selectedIndex.value {
-                    selectedLabel = label.text!
                     label.font = SystemFont.bold.of(textStyle: .subheadline)
                 } else {
                     label.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -104,9 +102,9 @@ class SegmentedControl: UIControl {
                 button.frame = view.frame
             }
             
-            for (index, _) in items.enumerated() {
+            for (index, item) in items.enumerated() {
                 let button = buttons[index]
-                button.accessibilityLabel = String(format: NSLocalizedString("%@ of %@ options, %@ selected", comment: ""), String(index + 1), String(self.items!.count), selectedLabel)
+                button.accessibilityLabel = String(format: NSLocalizedString("%@, option %@ of %@ %@", comment: ""), item, String(index + 1), String(self.items!.count), index == selectedIndex.value ? NSLocalizedString(", selected", comment: "") : "")
             }
             
             bigBottomBar!.frame = CGRect(x: 0, y: frame.height - 6, width: frame.width, height: 6)
@@ -121,9 +119,9 @@ class SegmentedControl: UIControl {
         
         selectedIndex.value = index
         sendActions(for: .valueChanged)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             let label = self.items![index]
-            let a11yString = String(format: NSLocalizedString("Selected %@ option, %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
+            let a11yString = String(format: NSLocalizedString("Selected %@, option %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, a11yString)
         })
         

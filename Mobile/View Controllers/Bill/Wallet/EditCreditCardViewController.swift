@@ -91,7 +91,7 @@ class EditCreditCardViewController: UIViewController {
             .map { $0.y < 0 ? UIColor.primaryColor: UIColor.white }
             .distinctUntilChanged()
             .drive(onNext: { self.scrollView.backgroundColor = $0 })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         walletItemBGView.backgroundColor = .primaryColor
         
@@ -126,7 +126,7 @@ class EditCreditCardViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
         
-        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     func buildCCUpdateFields() {
@@ -223,12 +223,12 @@ class EditCreditCardViewController: UIViewController {
     }
     
     func bindViewModel() {
-        expMonthTextField.textField.rx.text.orEmpty.bind(to: viewModel.expMonth).addDisposableTo(disposeBag)
-        expYearTextField.textField.rx.text.orEmpty.bind(to: viewModel.expYear).addDisposableTo(disposeBag)
-        cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).addDisposableTo(disposeBag)
-        zipCodeTextField.textField.rx.text.orEmpty.bind(to: viewModel.zipCode).addDisposableTo(disposeBag)
+        expMonthTextField.textField.rx.text.orEmpty.bind(to: viewModel.expMonth).disposed(by: disposeBag)
+        expYearTextField.textField.rx.text.orEmpty.bind(to: viewModel.expYear).disposed(by: disposeBag)
+        cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).disposed(by: disposeBag)
+        zipCodeTextField.textField.rx.text.orEmpty.bind(to: viewModel.zipCode).disposed(by: disposeBag)
 
-        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
+        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).disposed(by: disposeBag)
         
         oneTouchPayCardView.isHidden = true
         let oneTouchPayWalletItem = viewModel.oneTouchPayItem
@@ -247,22 +247,22 @@ class EditCreditCardViewController: UIViewController {
                     if !valid {
                         self.expMonthTextField.setError(NSLocalizedString("Invalid Month", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 self.viewModel.expMonthIs2Digits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.expMonthTextField.setError(NSLocalizedString("Must be 2 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expMonthTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.expYear.value.isEmpty {
@@ -270,22 +270,22 @@ class EditCreditCardViewController: UIViewController {
                     if !valid {
                         self.expYearTextField.setError(NSLocalizedString("Cannot be in the past", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 self.viewModel.expYearIs4Digits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.expYearTextField.setError(NSLocalizedString("Must be 4 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expYearTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.cvv.value.isEmpty {
@@ -293,17 +293,17 @@ class EditCreditCardViewController: UIViewController {
                     if !valid {
                         self.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cvvTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.zipCode.value.isEmpty {
@@ -311,17 +311,17 @@ class EditCreditCardViewController: UIViewController {
                     if !valid {
                         self.zipCodeTextField.setError(NSLocalizedString("Must be 5 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.zipCodeTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {
@@ -491,7 +491,7 @@ class EditCreditCardViewController: UIViewController {
                     toggleOneTouchPay()
                 }
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
 
     

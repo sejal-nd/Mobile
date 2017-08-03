@@ -25,7 +25,7 @@ class ReportOutageViewModelTests: XCTestCase {
             if !enabled {
                 XCTFail("Submit button should be enabled")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testSubmitButtonDisabled() {
@@ -34,7 +34,7 @@ class ReportOutageViewModelTests: XCTestCase {
             if enabled {
                 XCTFail("Submit button should be disabled")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testReportOutageSuccess() {

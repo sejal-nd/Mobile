@@ -28,7 +28,7 @@ class BudgetBillingViewModelTests: XCTestCase {
                     XCTFail("ComEd/PECO - Submit button should be disabled when toggling switch off because no reason selected")
                 }
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testSubmitButtonUnenrollingWithReason() {
@@ -46,7 +46,7 @@ class BudgetBillingViewModelTests: XCTestCase {
                     XCTFail("ComEd/PECO - Submit button should be enabled when toggling switch off because reason selected")
                 }
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testSubmitButtonEnrolling() {
@@ -57,7 +57,7 @@ class BudgetBillingViewModelTests: XCTestCase {
             if !enabled {
                 XCTFail("Submit button should be enabled because switch toggled 'On'")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testGetBudgetBillingInfoSuccess() {

@@ -60,7 +60,7 @@ class BGEAutoPayViewController: UIViewController {
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
-        viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         
@@ -144,7 +144,7 @@ class BGEAutoPayViewController: UIViewController {
         learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
         bankAccountButton.isAccessibilityElement = true
         if !bankAccountButtonSelectLabel.isHidden {
-            bankAccountButton.accessibilityLabel = "\(bankAccountButtonSelectLabel.text ?? "")
+            bankAccountButton.accessibilityLabel = "\(bankAccountButtonSelectLabel.text ?? "")"
         } else {
             bankAccountButton.accessibilityLabel = "Account number: \(bankAccountButtonAccountNumberLabel.text ?? ""). Nickname: \(bankAccountButtonNicknameLabel.text ?? "")"
         }
@@ -153,31 +153,31 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     func setupBindings() {
-        viewModel.isFetchingAutoPayInfo.asDriver().drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetchingAutoPayInfo.asDriver().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFetchingAutoPayInfo.asObservable().subscribe(onNext: { fetching in
             if self.viewModel.initialEnrollmentStatus.value == .unenrolled {
                 self.bottomLabel.isHidden = fetching
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
-        viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonAccountNumberLabel.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonNicknameLabel.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowWalletItem.drive(bankAccountButtonSelectLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonAccountNumberLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonNicknameLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowWalletItem.drive(bankAccountButtonSelectLabel.rx.isHidden).disposed(by: disposeBag)
         
-        viewModel.bankAccountButtonImage.drive(bankAccountButtonIcon.rx.image).addDisposableTo(disposeBag)
-        viewModel.walletItemAccountNumberText.drive(bankAccountButtonAccountNumberLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.walletItemNicknameText.drive(bankAccountButtonNicknameLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.bankAccountButtonImage.drive(bankAccountButtonIcon.rx.image).disposed(by: disposeBag)
+        viewModel.walletItemAccountNumberText.drive(bankAccountButtonAccountNumberLabel.rx.text).disposed(by: disposeBag)
+        viewModel.walletItemNicknameText.drive(bankAccountButtonNicknameLabel.rx.text).disposed(by: disposeBag)
         viewModel.setAccessibilityLabel.drive(bankAccountButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
-        viewModel.enrollSwitchValue.asDriver().drive(enrollmentSwitch.rx.isOn).addDisposableTo(disposeBag)
-        enrollmentSwitch.rx.isOn.asDriver().drive(viewModel.enrollSwitchValue).addDisposableTo(disposeBag)
+        viewModel.enrollSwitchValue.asDriver().drive(enrollmentSwitch.rx.isOn).disposed(by: disposeBag)
+        enrollmentSwitch.rx.isOn.asDriver().drive(viewModel.enrollSwitchValue).disposed(by: disposeBag)
         
-        viewModel.isUnenrolling.drive(bankAccountContainerStack.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowSettingsButton.map(!).drive(settingsButton.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isUnenrolling.drive(bankAccountContainerStack.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowSettingsButton.map(!).drive(settingsButton.rx.isHidden).disposed(by: disposeBag)
         
-        viewModel.expiredReason.asDriver().drive(expirationLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.shouldShowExpiredReason.map(!).drive(expirationLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.expiredReason.asDriver().drive(expirationLabel.rx.text).disposed(by: disposeBag)
+        viewModel.shouldShowExpiredReason.map(!).drive(expirationLabel.rx.isHidden).disposed(by: disposeBag)
     }
     
     func onCancelPress() {

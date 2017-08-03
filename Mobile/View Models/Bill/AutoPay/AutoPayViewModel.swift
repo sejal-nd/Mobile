@@ -73,7 +73,7 @@ class AutoPayViewModel {
                 onSuccess()
             }, onError: { (error: Error) in
                 onError()
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
     }
 
     lazy var nameOnAccountHasText: Driver<Bool> = self.nameOnAccount.asDriver()
