@@ -102,7 +102,7 @@ class HomeBillCardViewModel {
             return Driver.just(false)
         } else {
             return self.workDayEvents.elements()
-                .map { !$0.filter(NSCalendar.current.isDateInToday).isEmpty }
+                .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty }
                 .asDriver(onErrorDriveWith: .empty())
         }
     }()
@@ -235,7 +235,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showAmountPaid: Driver<Bool> = self.titleState.map { $0 == .billPaid }
     
-    private(set) lazy var showAmount: Driver<Bool> = self.titleState.map { $0 != .billPaid }
+    private(set) lazy var showAmount: Driver<Bool> = self.titleState.map { $0 != .billPaidIntermediate }
     
     private(set) lazy var showConvenienceFee: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation,
                                                                                   self.showAutoPay,
@@ -399,12 +399,8 @@ class HomeBillCardViewModel {
                 return $0.billingInfo.restorationAmount?.currencyString
             case .avoidShutoff, .avoidShutoffBGEMultipremise:
                 return $0.billingInfo.disconnectNoticeArrears?.currencyString
-            case .billPaidIntermediate:
-                if let recentPayment = RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] {
-                    return recentPayment.amount.currencyString
-                } else {
-                    return $0.billingInfo.restorationAmount?.currencyString
-                }
+            case .billPaid:
+                return $0.billingInfo.lastPaymentAmount?.currencyString
             default:
                 return $0.billingInfo.netDueAmount?.currencyString
             }
