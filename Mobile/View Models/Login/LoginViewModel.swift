@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class LoginViewModel {
     
@@ -16,6 +17,7 @@ class LoginViewModel {
     var password = Variable("")
     var touchIDAutofilledPassword: String? = nil
     var keepMeSignedIn = Variable(false)
+    var touchIdEnabled = Variable(false)
     
     private var authService: AuthenticationService
     private var fingerprintService: FingerprintService
@@ -29,6 +31,7 @@ class LoginViewModel {
         if let username = fingerprintService.getStoredUsername() {
             self.username.value = username
         }
+        touchIdEnabled.value = fingerprintService.isTouchIDEnabled()
     }
     
     func isDeviceTouchIDCompatible() -> Bool {
@@ -99,10 +102,7 @@ class LoginViewModel {
     
     func disableTouchID() {
         fingerprintService.disableTouchID()
-    }
-    
-    func isTouchIDEnabled() -> Bool {
-        return fingerprintService.isTouchIDEnabled()
+        touchIdEnabled.value = false
     }
     
     func checkForMaintenance(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
