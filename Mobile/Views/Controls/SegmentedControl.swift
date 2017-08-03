@@ -73,7 +73,6 @@ class SegmentedControl: UIControl {
         
         if let items = items {
             let itemWidth = frame.width / CGFloat(items.count)
-            var selectedLabel = ""
             for (index, item) in items.enumerated() {
                 let xPos = CGFloat(index) * itemWidth
                 
