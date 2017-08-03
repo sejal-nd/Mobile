@@ -72,6 +72,9 @@
 		0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D41F1FE98A004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
+		0D88FB571F337245008CB21E /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB561F337245008CB21E /* MinimumVersion.swift */; };
+		0D88FB581F337245008CB21E /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB561F337245008CB21E /* MinimumVersion.swift */; };
+		0D88FB591F337245008CB21E /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB561F337245008CB21E /* MinimumVersion.swift */; };
 		225FF85A1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85B1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85C1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
@@ -1127,6 +1130,7 @@
 		0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewController.swift; sourceTree = "<group>"; };
 		0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewModel.swift; sourceTree = "<group>"; };
 		0D79C6D01F1FB761004793DD /* Maintenance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maintenance.swift; sourceTree = "<group>"; };
+		0D88FB561F337245008CB21E /* MinimumVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimumVersion.swift; sourceTree = "<group>"; };
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
@@ -2519,6 +2523,7 @@
 				2FEC69401F056EEB00C059DC /* Premise.swift */,
 				B5D07CB11F0EC2F10018B02D /* Payment.swift */,
 				0D79C6D01F1FB761004793DD /* Maintenance.swift */,
+				0D88FB561F337245008CB21E /* MinimumVersion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3563,6 +3568,7 @@
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E8EDC5401F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */,
+				0D88FB571F337245008CB21E /* MinimumVersion.swift in Sources */,
 				E803A0041EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E81F38131ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				E873DA751EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
@@ -3779,6 +3785,7 @@
 				E8039FFA1EFB0420004DB789 /* PaymentService.swift in Sources */,
 				54C1DEFA1F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				E8EDC5421F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */,
+				0D88FB591F337245008CB21E /* MinimumVersion.swift in Sources */,
 				E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				82D5994D1EC36B5500DDB380 /* Currency.swift in Sources */,
 				B5A16F371F0D44110016952C /* SpeedpayApi.swift in Sources */,
@@ -3995,6 +4002,7 @@
 				E8039FF91EFB0420004DB789 /* PaymentService.swift in Sources */,
 				54C1DEF91F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				E8EDC5411F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */,
+				0D88FB581F337245008CB21E /* MinimumVersion.swift in Sources */,
 				B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				B5A16F361F0D44110016952C /* SpeedpayApi.swift in Sources */,

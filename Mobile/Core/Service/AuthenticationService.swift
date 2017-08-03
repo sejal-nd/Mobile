@@ -78,6 +78,8 @@ protocol AuthenticationService {
     
     func getMaintenanceMode(completion: @escaping(_ result: ServiceResult<Maintenance>) -> Void)
     
+    func getMinimumVersion(completion: @escaping(_ result: ServiceResult<MinimumVersion>) -> Void)
+    
     /// Attempt to recover a username by providing a phone number and identifier.
     ///
     /// - Parameters:
@@ -232,15 +234,30 @@ extension AuthenticationService {
     func getMaintenanceMode() -> Observable<Maintenance> {
         return Observable.create { observer in
             self.getMaintenanceMode( completion: { (result: ServiceResult<Maintenance>) in
-            switch(result){
-            case ServiceResult.Success(let maintenanceInfo):
-                observer.onNext(maintenanceInfo)
-                observer.onCompleted()
-            case ServiceResult.Failure(let err):
-                observer.onError(err)
-            }
-        })
-        return Disposables.create()
+                switch(result){
+                case ServiceResult.Success(let maintenanceInfo):
+                    observer.onNext(maintenanceInfo)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func getMinimumVersion() -> Observable<MinimumVersion> {
+        return Observable.create { observer in
+            self.getMinimumVersion( completion: { (result: ServiceResult<MinimumVersion>) in
+                switch(result){
+                case ServiceResult.Success(let minimumVersion):
+                    observer.onNext(minimumVersion)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
         }
     }
     
