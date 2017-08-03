@@ -296,11 +296,6 @@ extension WalletViewController: UITableViewDataSource {
         cell.innerContentView.addTarget(self, action: #selector(onWalletItemPress(sender:)), for: .touchUpInside)
         
         cell.oneTouchPayView.isHidden = !walletItem.isDefault
-        if walletItem.isDefault {
-            if let a11yLabel = cell.innerContentView.accessibilityLabel {
-                cell.innerContentView.accessibilityLabel = a11yLabel + ", One Touch Pay account"
-            }
-        }
         
         return cell
     }
