@@ -58,14 +58,14 @@ class TemplateCardView: UIView {
     
     private func bindViewModel() {
         //grab all the content
-        viewModel.templateImage.drive(imageView.rx.image).addDisposableTo(bag)
-        viewModel.titleString.drive(titleLabel.rx.text).addDisposableTo(bag)
-        viewModel.bodyString.drive(bodyLabel.rx.text).addDisposableTo(bag)
-        viewModel.ctaString.drive(callToActionButton.rx.title()).addDisposableTo(bag)
+        viewModel.templateImage.drive(imageView.rx.image).disposed(by: bag)
+        viewModel.titleString.drive(titleLabel.rx.text).disposed(by: bag)
+        viewModel.bodyString.drive(bodyLabel.rx.text).disposed(by: bag)
+        viewModel.ctaString.drive(callToActionButton.rx.title()).disposed(by: bag)
 
         //show error state if an error is received
-        viewModel.shouldShowErrorState.drive(clippingView.rx.isHidden).addDisposableTo(bag)
-        viewModel.shouldShowErrorState.not().drive(errorStack.rx.isHidden).addDisposableTo(bag)
+        viewModel.shouldShowErrorState.drive(clippingView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
     }
     
     private(set) lazy var callToActionViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()

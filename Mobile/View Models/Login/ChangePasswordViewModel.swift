@@ -134,7 +134,7 @@ class ChangePasswordViewModel {
                         onError(error.localizedDescription)
                     }
                 })
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
         } else {
             authService.changePassword(currentPassword.value, newPassword: newPassword.value)
                 .observeOn(MainScheduler.instance)
@@ -153,7 +153,7 @@ class ChangePasswordViewModel {
                         onError(error.localizedDescription)
                     }
                 })
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
         }
     }
 

@@ -47,7 +47,7 @@ class ButtonControl: UIControl {
                     strongSelf.fadeSubviews(fadeAmount: pressed ? 0.5: 1, animationDuration: 0.1)
                 }
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         isAccessibilityElement = true
         accessibilityTraits = UIAccessibilityTraitButton

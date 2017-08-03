@@ -111,7 +111,7 @@ class BGEAutoPayViewModel {
                 self.isFetchingAutoPayInfo.value = false
                 onError?(error.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func enrollOrUpdate(update: Bool = false, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -123,7 +123,7 @@ class BGEAutoPayViewModel {
             }, onError: { error in
                 onError(error.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -134,7 +134,7 @@ class BGEAutoPayViewModel {
             }, onError: { error in
                 onError(error.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     lazy var submitButtonEnabled: Driver<Bool> = Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),

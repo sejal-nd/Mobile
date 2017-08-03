@@ -54,7 +54,7 @@ class MiniWalletViewController: UIViewController {
             .map { $0.y <= 0 ? .white: .softGray }
             .distinctUntilChanged()
             .drive(onNext: { self.tableView.backgroundColor = $0 })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         tableHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
         tableHeaderLabel.textColor = .blackText
@@ -66,9 +66,9 @@ class MiniWalletViewController: UIViewController {
         
         tableView.estimatedSectionHeaderHeight = 16
         
-        viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowErrorLabel.map(!).drive(errorLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowErrorLabel.map(!).drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         if accountDetail.isCashOnly {
             bankAccountsDisabled = true
@@ -274,7 +274,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                         return false
                     }
                     return !$0
-                }.drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
+                }.drive(cell.innerContentView.rx.isEnabled).disposed(by: disposeBag)
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddBankAccountPress), for: .touchUpInside)
                 cell.innerContentView.accessibilityLabel = NSLocalizedString("Add Bank Account", comment: "")
@@ -306,7 +306,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                         return false
                     }
                     return !$0
-                }.drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
+                }.drive(cell.innerContentView.rx.isEnabled).disposed(by: disposeBag)
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddCreditCardPress), for: .touchUpInside)
                 cell.innerContentView.accessibilityLabel = NSLocalizedString("Add Credit/Debit Card", comment: "")

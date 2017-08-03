@@ -34,7 +34,7 @@ class WalletViewModel {
                     .trackActivity(fetchingWalletItemsTracker)
             }
             .bind(to: walletItems)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     lazy var shouldShowEmptyState: Driver<Bool> = {

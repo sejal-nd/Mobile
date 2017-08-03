@@ -46,7 +46,7 @@ class PaperlessEBillViewModel {
     
         Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
             .drive(enrollStatesChanged)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         enrollAllAccounts = Observable.combineLatest(accountDetails.asObservable(),
                                                      accountsToEnroll.asObservable(),
@@ -130,7 +130,7 @@ class PaperlessEBillViewModel {
             }, onError: { error in
                 onError(error.localizedDescription)
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
     }
     
     var footerText: String? {

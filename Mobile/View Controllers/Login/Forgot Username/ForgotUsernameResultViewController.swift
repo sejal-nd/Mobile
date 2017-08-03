@@ -44,7 +44,7 @@ class ForgotUsernameResultViewController: UIViewController {
             } else {
                 self.tableView.deselectRow(at: indexPath, animated: false)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         backToSignInButton.tintColor = .actionBlue
         backToSignInButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)

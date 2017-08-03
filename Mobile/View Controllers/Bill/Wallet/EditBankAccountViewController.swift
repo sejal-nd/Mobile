@@ -106,7 +106,7 @@ class EditBankAccountViewController: UIViewController {
         let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
-        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     override func viewDidLayoutSubviews() {
@@ -172,7 +172,7 @@ class EditBankAccountViewController: UIViewController {
 
         bankImageView.image = #imageLiteral(resourceName: "opco_bank")
 
-        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
+        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).disposed(by: disposeBag)
         
         oneTouchPayCardView.isHidden = true
         let oneTouchPayWalletItem = viewModel.oneTouchPayItem

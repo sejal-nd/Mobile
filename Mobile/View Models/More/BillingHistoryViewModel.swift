@@ -31,6 +31,6 @@ class BillingHistoryViewModel {
             }, onError: { error in
                 failure(error)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }
