@@ -38,7 +38,7 @@ class MoreViewController: UIViewController {
         contactUsButton.isAccessibilityElement = true
         contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
         termAndPoliciesButton.isAccessibilityElement = true
-        termAndPoliciesButton.accessibilityLabel = NSLocalizedString("Terms and Policies", comment: "")
+        termAndPoliciesButton.accessibilityLabel = NSLocalizedString("Policies and Terms", comment: "")
         signOutButton.isAccessibilityElement = true
         signOutButton.accessibilityLabel = NSLocalizedString("Sign out", comment: "")
     }

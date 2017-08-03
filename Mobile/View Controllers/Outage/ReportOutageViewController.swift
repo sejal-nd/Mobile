@@ -142,7 +142,7 @@ class ReportOutageViewController: UIViewController {
         areYourLightsOutLabel.font = SystemFont.regular.of(textStyle: .headline)
         howCanWeContactYouLabel.font = SystemFont.regular.of(textStyle: .headline)
 
-        phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number *", comment: "")
+        phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.textField.returnKeyType = opco == .bge ? .done:.next
         phoneNumberTextField.textField.delegate = self

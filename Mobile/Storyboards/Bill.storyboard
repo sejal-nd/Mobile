@@ -1216,7 +1216,7 @@ AutoPay</string>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="C0x-OA-H1R" userLabel="Top Stack">
                                                                 <rect key="frame" x="1" y="0.0" width="373" height="1382.5"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICw-AX-5ip">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICw-AX-5ip" customClass="BillAlertBannerView" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="18" y="0.0" width="337" height="62.5"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IKh-wV-SYZ">
@@ -1269,6 +1269,11 @@ AutoPay</string>
                                                                             <constraint firstAttribute="bottom" secondItem="IKh-wV-SYZ" secondAttribute="bottom" priority="999" id="Hac-zO-0FK"/>
                                                                             <constraint firstItem="IKh-wV-SYZ" firstAttribute="leading" secondItem="ICw-AX-5ip" secondAttribute="leading" id="Y0i-5f-Sxp"/>
                                                                         </constraints>
+                                                                        <connections>
+                                                                            <outlet property="animationView" destination="4fe-xL-vCG" id="NNp-6a-5A2"/>
+                                                                            <outlet property="iconView" destination="gcx-bY-hBu" id="qTy-pW-KBC"/>
+                                                                            <outlet property="label" destination="LUM-6w-0Ba" id="0dT-Bd-YVV"/>
+                                                                        </connections>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCi-Kh-nMw">
                                                                         <rect key="frame" x="18" y="72.5" width="337" height="1310"/>
@@ -2152,10 +2157,7 @@ AutoPay</string>
                     <connections>
                         <outlet property="accountPicker" destination="2BY-N0-MzF" id="e3a-0j-c8D"/>
                         <outlet property="activityButton" destination="34x-Le-hLJ" id="NJn-da-isp"/>
-                        <outlet property="alertAnimationView" destination="4fe-xL-vCG" id="qxS-rT-gqp"/>
-                        <outlet property="alertBannerIconView" destination="gcx-bY-hBu" id="kN8-J6-ln7"/>
-                        <outlet property="alertBannerLabel" destination="LUM-6w-0Ba" id="wNX-4e-f9g"/>
-                        <outlet property="alertBannerView" destination="ICw-AX-5ip" id="szz-aG-Gd9"/>
+                        <outlet property="alertBannerView" destination="ICw-AX-5ip" id="glq-MB-qP8"/>
                         <outlet property="autoPayButton" destination="fwF-rQ-7A5" id="J2K-T1-6cd"/>
                         <outlet property="autoPayEnrollmentLabel" destination="d7m-1B-WyC" id="KKA-1x-scP"/>
                         <outlet property="avoidShutoffAmountLabel" destination="1o2-ip-HTl" id="rwa-z1-iqn"/>

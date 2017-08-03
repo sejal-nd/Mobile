@@ -79,7 +79,9 @@ class BillViewModel {
             .unwrap()
             .asDriver(onErrorDriveWith: Driver.empty())
 	
-	lazy var isFetchingDifferentAccount: Driver<Bool> = self.currentAccountDetail.asDriver().map { $0 == nil }
+	lazy var isFetchingDifferentAccount: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+        return $0 == nil }
 	
 	
     // MARK: - Show/Hide Views -
@@ -207,6 +209,10 @@ class BillViewModel {
                                                                      self.avoidShutoffAlertText,
                                                                      self.paymentFailedAlertText) { $0 ?? $1 ?? $2 }
     
+    lazy var alertBannerA11yText: Driver<String?> = self.alertBannerText.map {
+        $0?.replacingOccurrences(of: "shutoff", with: "shut-off")
+    }
+    
     lazy var restoreServiceAlertText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0,
             !(accountDetail.billingInfo.restorationAmount ?? 0 > 0 && accountDetail.billingInfo.amtDpaReinst ?? 0 > 0) &&
@@ -299,6 +305,10 @@ class BillViewModel {
         case .comEd, .peco:
             return NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")
         }
+    }
+    
+    var avoidShutoffA11yText: String {
+        return avoidShutoffText.replacingOccurrences(of: "Shutoff", with: "shut-off")
     }
     
     lazy var avoidShutoffAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
@@ -405,7 +415,12 @@ class BillViewModel {
             return String(format: localizedText, amountString)
         } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPaymentAmount, let scheduledPaymentDate = accountDetail.billingInfo.scheduledPaymentDate, let amountString = scheduledPaymentAmount.currencyString, scheduledPaymentAmount > 0 {
             return String(format: NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: ""), amountString, scheduledPaymentDate.mmDdYyyyString)
-        } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount, let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate, let amountString = lastPaymentAmount.currencyString, lastPaymentAmount > 0 {
+        } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount,
+            let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate,
+            let amountString = lastPaymentAmount.currencyString,
+            lastPaymentAmount > 0,
+            let billDate = accountDetail.billingInfo.billDate,
+            billDate < lastPaymentDate {
             return String(format: NSLocalizedString("Thank you for %@ payment on %@", comment: ""), amountString, lastPaymentDate.mmDdYyyyString)
         }
         return nil
