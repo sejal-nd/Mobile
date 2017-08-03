@@ -14,6 +14,7 @@ class LoginViewModel {
     
     var username = Variable("")
     var password = Variable("")
+    var touchIDAutofilledPassword: String? = nil
     var keepMeSignedIn = Variable(false)
     
     private var authService: AuthenticationService
@@ -88,6 +89,7 @@ class LoginViewModel {
         if let username = fingerprintService.getStoredUsername() {
             if let password = fingerprintService.getStoredPassword() {
                 self.username.value = username
+                self.touchIDAutofilledPassword = password
                 self.password.value = password
                 onLoad()
                 performLogin(onSuccess: onSuccess, onRegistrationNotComplete: {}, onError: onError)
