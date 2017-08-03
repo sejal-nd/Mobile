@@ -28,6 +28,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
 //    @IBOutlet weak var passwordConstraintsTextField: FloatLabelTextField!
     
     @IBOutlet var passwordRequirementLabels: [UILabel]!
+    @IBOutlet var mustAlsoContainLabel: UILabel!
 
     @IBOutlet weak var passwordStrengthLabel: UILabel!
     @IBOutlet weak var passwordStrengthView: UIView!
@@ -79,6 +80,13 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please create your sign in credentials", comment: "")
         instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        
+        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        
+        for label in passwordRequirementLabels {
+            label.font = SystemFont.regular.of(textStyle: .subheadline)
+        }
     }
     
     //
