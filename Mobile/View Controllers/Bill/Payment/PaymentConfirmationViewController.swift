@@ -98,20 +98,20 @@ class PaymentConfirmationViewController: UIViewController {
     }
     
     func bindViewHiding() {
-        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowAutoPayEnrollButton.map(!).drive(autoPayView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowConvenienceFeeLabel.map(!).drive(convenienceFeeLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAutoPayEnrollButton.map(!).drive(autoPayView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowConvenienceFeeLabel.map(!).drive(convenienceFeeLabel.rx.isHidden).disposed(by: disposeBag)
     }
     
     func bindViewContent() {
         // Payment Date
-        viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).disposed(by: disposeBag)
         
         // Total Payment
-        viewModel.totalPaymentDisplayString.asDriver().drive(amountPaidValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.totalPaymentDisplayString.asDriver().drive(amountPaidValueLabel.rx.text).disposed(by: disposeBag)
         
         // Conv. Fee Label
-        viewModel.paymentAmountFeeFooterLabelText.asDriver().drive(convenienceFeeLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.paymentAmountFeeFooterLabelText.asDriver().drive(convenienceFeeLabel.rx.text).disposed(by: disposeBag)
     }
 
     @IBAction func onXButtonPress() {

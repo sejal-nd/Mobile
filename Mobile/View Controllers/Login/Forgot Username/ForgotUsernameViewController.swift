@@ -37,7 +37,7 @@ class ForgotUsernameViewController: UIViewController {
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = nextButton
-        viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .blackText
         instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -49,73 +49,73 @@ class ForgotUsernameViewController: UIViewController {
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.textField.returnKeyType = .next
         phoneNumberTextField.textField.delegate = self
-        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).addDisposableTo(disposeBag)
+        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).disposed(by: disposeBag)
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.phoneNumber.value.characters.count > 0 {
                 self.viewModel.phoneNumberHasTenDigits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.phoneNumberTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         identifierTextField?.textField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
         identifierTextField?.textField.autocorrectionType = .no
         identifierTextField?.textField.returnKeyType = .done
         identifierTextField?.textField.delegate = self
-        identifierTextField?.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).addDisposableTo(disposeBag)
+        identifierTextField?.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
         identifierTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.identifierNumber.value.characters.count > 0 {
                 self.viewModel.identifierHasFourDigits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.identifierTextField?.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 self.viewModel.identifierIsNumeric().single().subscribe(onNext: { numeric in
                     if !numeric {
                         self.identifierTextField?.setError(NSLocalizedString("This number must be numeric.", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         identifierTextField?.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.identifierTextField?.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         accountNumberTextField?.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField?.textField.autocorrectionType = .no
         accountNumberTextField?.textField.returnKeyType = .done
         accountNumberTextField?.textField.delegate = self
         accountNumberTextField?.textField.isShowingAccessory = true
-        accountNumberTextField?.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
+        accountNumberTextField?.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
         accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.accountNumber.value.characters.count > 0 {
                 self.viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         accountNumberTextField?.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.accountNumberTextField?.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         accountNumberTooltipButton?.accessibilityLabel = NSLocalizedString("Tool Tip", comment: "")
         
@@ -314,7 +314,7 @@ extension ForgotUsernameViewController: UITextFieldDelegate {
                 } else {
                     self.view.endEditing(true)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         }
         return false
     }

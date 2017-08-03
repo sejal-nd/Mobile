@@ -36,7 +36,7 @@ class AccountLookupToolViewModel {
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func searchButtonEnabled() -> Observable<Bool> {

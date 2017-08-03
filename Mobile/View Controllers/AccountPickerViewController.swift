@@ -94,7 +94,7 @@ class AccountPickerViewController: UIViewController {
                     })
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
     }
     
@@ -130,7 +130,7 @@ class AccountPickerViewController: UIViewController {
                     self.fetchAccounts()
                 }))
                 self.present(alertVc, animated: true, completion: nil)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     override func viewWillLayoutSubviews() {

@@ -35,7 +35,7 @@ class ForgotPasswordViewController: UIViewController {
         submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.text = viewModel.getInstructionLabelText()
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -44,19 +44,19 @@ class ForgotPasswordViewController: UIViewController {
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .done
         
-        usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).addDisposableTo(disposeBag)
+        usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
                 if enabled {
                     self.onSubmitPress()
                 }
-            }).addDisposableTo(self.disposeBag)
-        }).addDisposableTo(disposeBag)
+            }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
         usernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.usernameTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         forgotUsernameButton.setTitle(NSLocalizedString("Forgot Username?", comment: ""), for: .normal)
         forgotUsernameButton.setTitleColor(.actionBlue, for: .normal)

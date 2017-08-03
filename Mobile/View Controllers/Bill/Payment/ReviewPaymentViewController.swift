@@ -85,7 +85,7 @@ class ReviewPaymentViewController: UIViewController {
         
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         gradientLayer.frame = scrollViewContentView.bounds
         gradientLayer.colors = [
@@ -208,59 +208,59 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func bindViewHiding() {
-        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isOverpaying.map(!).drive(overpaymentLabel.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isOverpayingCard.map(!).drive(cardOverpayingView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isOverpayingBank.map(!).drive(bankOverpayingView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.reviewPaymentShouldShowConvenienceFeeBox.map(!).drive(convenienceFeeView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowTermsConditionsSwitchView.map(!).drive(termsConditionsSwitchView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceSwitchView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isOverpaying.map(!).drive(overpaymentLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isOverpayingCard.map(!).drive(cardOverpayingView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isOverpayingBank.map(!).drive(bankOverpayingView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.reviewPaymentShouldShowConvenienceFeeBox.map(!).drive(convenienceFeeView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowTermsConditionsSwitchView.map(!).drive(termsConditionsSwitchView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceSwitchView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).disposed(by: disposeBag)
     }
     
     func bindViewContent() {
         // Payment Account
-        viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).addDisposableTo(disposeBag)
-        viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountMaskedAccountNumberLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.selectedWalletItemA11yLabel.drive(paymentAccountA11yView.rx.accessibilityLabel).addDisposableTo(disposeBag)
+        viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).disposed(by: disposeBag)
+        viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountMaskedAccountNumberLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemA11yLabel.drive(paymentAccountA11yView.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // Amount Due
-        viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).disposed(by: disposeBag)
         
         // Due Date
-        viewModel.dueDate.asDriver().drive(dueDateValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.dueDate.asDriver().drive(dueDateValueLabel.rx.text).disposed(by: disposeBag)
         
         // Payment Amount
-        viewModel.paymentAmountDisplayString.asDriver().drive(paymentAmountValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.paymentAmountDisplayString.asDriver().drive(paymentAmountValueLabel.rx.text).disposed(by: disposeBag)
         
         // Overpaying
-        viewModel.overpayingValueDisplayString.drive(cardOverpayingValueLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.overpayingValueDisplayString.drive(bankOverpayingValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.overpayingValueDisplayString.drive(cardOverpayingValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.overpayingValueDisplayString.drive(bankOverpayingValueLabel.rx.text).disposed(by: disposeBag)
         
         // Convenience Fee
-        viewModel.convenienceFeeDisplayString.drive(convenienceFeeValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.convenienceFeeDisplayString.drive(convenienceFeeValueLabel.rx.text).disposed(by: disposeBag)
         
         // Payment Date
-        viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).disposed(by: disposeBag)
         
         // Total Payment
-        viewModel.totalPaymentLabelText.drive(totalPaymentTextLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.totalPaymentDisplayString.drive(totalPaymentValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.totalPaymentLabelText.drive(totalPaymentTextLabel.rx.text).disposed(by: disposeBag)
+        viewModel.totalPaymentDisplayString.drive(totalPaymentValueLabel.rx.text).disposed(by: disposeBag)
         
         // Switches
-        termsConditionsSwitch.rx.isOn.bind(to: viewModel.termsConditionsSwitchValue).addDisposableTo(disposeBag)
-        overpayingSwitch.rx.isOn.bind(to: viewModel.overpayingSwitchValue).addDisposableTo(disposeBag)
-        activeSeveranceSwitch.rx.isOn.bind(to: viewModel.activeSeveranceSwitchValue).addDisposableTo(disposeBag)
+        termsConditionsSwitch.rx.isOn.bind(to: viewModel.termsConditionsSwitchValue).disposed(by: disposeBag)
+        overpayingSwitch.rx.isOn.bind(to: viewModel.overpayingSwitchValue).disposed(by: disposeBag)
+        activeSeveranceSwitch.rx.isOn.bind(to: viewModel.activeSeveranceSwitchValue).disposed(by: disposeBag)
         
         // Footer Label
-        viewModel.reviewPaymentFooterLabelText.drive(footerLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.reviewPaymentFooterLabelText.drive(footerLabel.rx.text).disposed(by: disposeBag)
     }
     
     func bindButtonTaps() {
-        termsConditionsButton.rx.touchUpInside.asDriver().drive(onNext: onTermsConditionsPress).addDisposableTo(disposeBag)
-        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).addDisposableTo(disposeBag)
+        termsConditionsButton.rx.touchUpInside.asDriver().drive(onNext: onTermsConditionsPress).disposed(by: disposeBag)
+        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).disposed(by: disposeBag)
     }
     
     func onSubmitPress() {

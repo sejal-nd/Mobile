@@ -113,7 +113,7 @@ class MakePaymentViewController: UIViewController {
         
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
-        viewModel.makePaymentNextButtonEnabled.drive(nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.makePaymentNextButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -156,14 +156,14 @@ class MakePaymentViewController: UIViewController {
                     if !valid {
                         self.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cvvTextField.setError(nil)
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
@@ -181,7 +181,7 @@ class MakePaymentViewController: UIViewController {
             self.paymentAmountTextField.setError(errorMessage)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
         dueDateTextLabel.textColor = .deepGray
@@ -296,100 +296,100 @@ class MakePaymentViewController: UIViewController {
     
     func bindViewHiding() {
         // Loading
-        viewModel.isFetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).disposed(by: disposeBag)
         
         // Inline Bank/Card
-        viewModel.inlineBank.asDriver().map(!).drive(addBankContainerView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.inlineCard.asDriver().map(!).drive(addCardContainerView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowInlinePaymentDivider.map(!).drive(inlinePaymentDividerLine.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.inlineBank.asDriver().map(!).drive(addBankContainerView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.inlineCard.asDriver().map(!).drive(addCardContainerView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowInlinePaymentDivider.map(!).drive(inlinePaymentDividerLine.rx.isHidden).disposed(by: disposeBag)
         
         // Active Severance Label
-        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Cash Only Bank Accounts Unavailable Label
-        viewModel.isCashOnlyUser.map(!).drive(bankAccountsUnavailableLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isCashOnlyUser.map(!).drive(bankAccountsUnavailableLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Account
-        viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).disposed(by: disposeBag)
         
         // CVV (BGE credit card only)
-        viewModel.shouldShowCvvTextField.map(!).drive(cvvView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowCvvTextField.map(!).drive(cvvView.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Amount Text Field
-        viewModel.shouldShowPaymentAmountTextField.map(!).drive(paymentAmountView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowPaymentAmountTextField.map(!).drive(paymentAmountView.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Date
-        viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isFixedPaymentDate.drive(paymentDateButtonView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isFixedPaymentDate.map(!).drive(paymentDateFixedDateLabel.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.isFixedPaymentDatePastDue.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isFixedPaymentDate.drive(paymentDateButtonView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isFixedPaymentDate.map(!).drive(paymentDateFixedDateLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isFixedPaymentDatePastDue.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Add bank/credit card empty wallet state
-        viewModel.shouldShowAddBankAccount.map(!).drive(addBankAccountView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowAddCreditCard.map(!).drive(addCreditCardView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowAddBankAccount.map(!).drive(addBankAccountView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAddCreditCard.map(!).drive(addCreditCardView.rx.isHidden).disposed(by: disposeBag)
         
         // Delete Payment
-        viewModel.shouldShowDeletePaymentButton.map(!).drive(deletePaymentButton.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowDeletePaymentButton.map(!).drive(deletePaymentButton.rx.isHidden).disposed(by: disposeBag)
         
         // Bill Matrix
-        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).disposed(by: disposeBag)
         
         // Wallet empty state info footer
-        viewModel.shouldShowWalletFooterView.map(!).drive(walletFooterView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowWalletFooterView.drive(walletFooterSpacerView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowWalletFooterView.map(!).drive(walletFooterView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowWalletFooterView.drive(walletFooterSpacerView.rx.isHidden).disposed(by: disposeBag)
         
         // Sticky Footer
         viewModel.shouldShowStickyFooterView.drive(onNext: { shouldShow in
             self.stickyPaymentFooterHeightConstraint.constant = shouldShow ? 80 : 0
             // For some reason, just hiding stickyPaymentFooterView was not enough to hide the label...
             self.stickyPaymentFooterTextContainer.isHidden = !shouldShow
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func bindViewContent() {
         // Inline payment
-        viewModel.oneTouchPayDescriptionLabelText.drive(addBankFormView.oneTouchPayDescriptionLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.oneTouchPayDescriptionLabelText.drive(addCardFormView.oneTouchPayDescriptionLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.oneTouchPayDescriptionLabelText.drive(addBankFormView.oneTouchPayDescriptionLabel.rx.text).disposed(by: disposeBag)
+        viewModel.oneTouchPayDescriptionLabelText.drive(addCardFormView.oneTouchPayDescriptionLabel.rx.text).disposed(by: disposeBag)
         viewModel.bgeCommercialUserEnteringVisa.asObservable().subscribe(onNext: { enteringVisa in
             self.addCardFormView.cardNumberTextField.setError(enteringVisa ? NSLocalizedString("Business customers cannot use VISA to make a payment", comment: "") : nil)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         // Selected Wallet Item
-        viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).addDisposableTo(disposeBag)
-        viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountAccountNumberLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.selectedWalletItemA11yLabel.drive(paymentAccountButton.rx.accessibilityLabel).addDisposableTo(disposeBag)
+        viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).disposed(by: disposeBag)
+        viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountAccountNumberLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemA11yLabel.drive(paymentAccountButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // CVV (BGE credit card only)
-        cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).addDisposableTo(disposeBag)
+        cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).disposed(by: disposeBag)
         
         // Amount Due
-        viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).disposed(by: disposeBag)
         
         // Payment Amount Text Field
-        viewModel.paymentAmountFeeLabelText.asDriver().drive(paymentAmountFeeLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.paymentAmount.asDriver().drive(paymentAmountTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
-        paymentAmountTextField.textField.rx.text.orEmpty.bind(to: viewModel.paymentAmount).addDisposableTo(disposeBag)
+        viewModel.paymentAmountFeeLabelText.asDriver().drive(paymentAmountFeeLabel.rx.text).disposed(by: disposeBag)
+        viewModel.paymentAmount.asDriver().drive(paymentAmountTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
+        paymentAmountTextField.textField.rx.text.orEmpty.bind(to: viewModel.paymentAmount).disposed(by: disposeBag)
         paymentAmountTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: {
             self.viewModel.formatPaymentAmount()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         // Due Date
-        viewModel.dueDate.asDriver().drive(dueDateDateLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.dueDate.asDriver().drive(dueDateDateLabel.rx.text).disposed(by: disposeBag)
         
         // Payment Date
-        viewModel.paymentDateString.asDriver().drive(paymentDateButton.label.rx.text).addDisposableTo(disposeBag)
-        viewModel.paymentDateString.asDriver().drive(paymentDateFixedDateLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).addDisposableTo(disposeBag)
+        viewModel.paymentDateString.asDriver().drive(paymentDateButton.label.rx.text).disposed(by: disposeBag)
+        viewModel.paymentDateString.asDriver().drive(paymentDateFixedDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // Wallet Footer Label
-        viewModel.walletFooterLabelText.drive(walletFooterLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.walletFooterLabelText.drive(walletFooterLabel.rx.text).disposed(by: disposeBag)
         
         // Sticky Footer Payment View
-        viewModel.totalPaymentDisplayString.map { String(format: NSLocalizedString("Total Payment: %@", comment: ""), $0) }.drive(stickyPaymentFooterPaymentLabel.rx.text).addDisposableTo(disposeBag)
-        viewModel.paymentAmountFeeFooterLabelText.drive(stickyPaymentFooterFeeLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.totalPaymentDisplayString.map { String(format: NSLocalizedString("Total Payment: %@", comment: ""), $0) }.drive(stickyPaymentFooterPaymentLabel.rx.text).disposed(by: disposeBag)
+        viewModel.paymentAmountFeeFooterLabelText.drive(stickyPaymentFooterFeeLabel.rx.text).disposed(by: disposeBag)
     }
     
     func bindButtonTaps() {
@@ -416,7 +416,7 @@ class MakePaymentViewController: UIViewController {
                 }
             }
             self.navigationController?.pushViewController(miniWalletVC, animated: true)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         paymentDateButton.rx.touchUpInside.subscribe(onNext: {
             self.view.endEditing(true)
@@ -427,21 +427,21 @@ class MakePaymentViewController: UIViewController {
             calendarVC.selectedDate = self.viewModel.paymentDate.value
             
             self.navigationController?.pushViewController(calendarVC, animated: true)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addBankAccountButton.rx.touchUpInside.subscribe(onNext: {
             self.viewModel.inlineBank.value = true
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCreditCardButton.rx.touchUpInside.subscribe(onNext: {
             self.viewModel.inlineCard.value = true
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         deletePaymentButton.rx.touchUpInside.subscribe(onNext: {
             self.onDeletePaymentPress()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
-        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).addDisposableTo(disposeBag)
+        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).disposed(by: disposeBag)
     }
     
     func bindInlineBankAccessibility() {
@@ -449,79 +449,79 @@ class MakePaymentViewController: UIViewController {
             if !self.viewModel.addBankFormViewModel.routingNumber.value.isEmpty {
                 self.viewModel.addBankFormViewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
                     self.accessibilityErrorLabel()
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.addBankFormViewModel.accountNumber.value.isEmpty {
                 self.viewModel.addBankFormViewModel.accountNumberIsValid().single().subscribe(onNext: { valid in
                     self.accessibilityErrorLabel()
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.addBankFormViewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.addBankFormViewModel.nicknameErrorString().subscribe(onNext: { valid in
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func bindInlineCardAccessibility() {
         addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.addCardFormViewModel.nicknameErrorString().map{ $0 == nil }.subscribe(onNext: { valid in
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {

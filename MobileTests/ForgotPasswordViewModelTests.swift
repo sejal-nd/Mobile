@@ -24,14 +24,14 @@ class ForgotPasswordViewModelTests: XCTestCase {
             if !enabled {
                 XCTFail("Username \"aa\" should result in an enabled submit button")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.username.value = ""
         viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
             if enabled {
                 XCTFail("Username \"\" should result in a disabled submit button")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testSubmitForgotPasswordSuccess() {

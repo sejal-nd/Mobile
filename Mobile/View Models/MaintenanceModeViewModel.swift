@@ -60,7 +60,7 @@ class MaintenanceModeViewModel{
                 onSuccess(isMaintenanceMode)
             }, onError: { error in
                 _ = error as! ServiceError
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
 
 }

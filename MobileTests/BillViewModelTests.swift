@@ -25,7 +25,7 @@ class BillViewModelTests: XCTestCase {
             if accountDetail.accountNumber != "1234567890" {
                 XCTFail("current account detail fetch should succeed")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
 }

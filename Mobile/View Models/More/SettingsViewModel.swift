@@ -60,7 +60,7 @@ class SettingsViewModel {
             }, onError: { (error: Error) in
                 onError(error.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
 }

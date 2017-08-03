@@ -67,8 +67,8 @@ class LoginViewController: UIViewController {
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
     
         // Two-way data binding for the username/password fields
-        viewModel.username.asObservable().bind(to: usernameTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
-        viewModel.password.asObservable().bind(to: passwordTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        viewModel.username.asObservable().bind(to: usernameTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
+        viewModel.password.asObservable().bind(to: passwordTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
         viewModel.password.asObservable().subscribe(onNext: { (password) in
             if self.passwordAutofilledFromTouchID {
                 // The password field was successfully auto-filled from Touch ID, but then the user manually changed it,
@@ -79,21 +79,21 @@ class LoginViewController: UIViewController {
                 self.viewModel.setShouldPromptToEnableTouchID(true)
                 self.passwordAutofilledFromTouchID = false
             }
-        }).addDisposableTo(disposeBag)
-        usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).addDisposableTo(disposeBag)
-        passwordTextField.textField.rx.text.orEmpty.bind(to: viewModel.password).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
+        usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
+        passwordTextField.textField.rx.text.orEmpty.bind(to: viewModel.password).disposed(by: disposeBag)
         
         // Update the text field appearance in case data binding autofilled text
         usernameTextField.textField.sendActions(for: .editingDidEnd)
         
-        keepMeSignedInSwitch.rx.isOn.bind(to: viewModel.keepMeSignedIn).addDisposableTo(disposeBag)
+        keepMeSignedInSwitch.rx.isOn.bind(to: viewModel.keepMeSignedIn).disposed(by: disposeBag)
         
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.passwordTextField.textField.becomeFirstResponder()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.onLoginPress()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
 //        // This hack (on editingDidBegin/editingDidEnd) prevents the automatic scrolling that happens when the password field is
 //        // selected on a 4" phone. We want that disabled because of our custom logic in keyboardWillShow.
@@ -103,14 +103,14 @@ class LoginViewController: UIViewController {
 //            self.passwordTextField.textField.superview?.addSubview(wrap)
 //            self.passwordTextField.textField.frame = CGRect(x: 0, y: 0, width: self.passwordTextField.textField.frame.size.width, height: self.passwordTextField.textField.frame.size.height)
 //            wrap.addSubview(self.passwordTextField.textField)
-//        }).addDisposableTo(disposeBag)
+//        }).disposed(by: disposeBag)
 //        passwordTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
 //            if let wrap = self.passwordTextField.textField.superview as? UIScrollView {
 //                self.passwordTextField.textField.frame = CGRect(x: wrap.frame.origin.x, y: wrap.frame.origin.y, width: wrap.frame.size.width, height: wrap.frame.size.height)
 //                wrap.superview?.addSubview(self.passwordTextField.textField)
 //                wrap.removeFromSuperview()
 //            }
-//        }).addDisposableTo(disposeBag)
+//        }).disposed(by: disposeBag)
         
         forgotUsernameButton.tintColor = .actionBlue
         forgotPasswordButton.tintColor = .actionBlue

@@ -47,7 +47,7 @@ class AddCardFormViewModel {
                 self.nickname.value = ""
                 self.oneTouchPay.value = false
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func nameOnCardHasText() -> Observable<Bool> {

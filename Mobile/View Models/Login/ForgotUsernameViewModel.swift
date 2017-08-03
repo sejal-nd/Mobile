@@ -44,7 +44,7 @@ class ForgotUsernameViewModel {
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func submitSecurityQuestionAnswer(onSuccess: @escaping (String) -> Void, onAnswerNoMatch: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
@@ -63,7 +63,7 @@ class ForgotUsernameViewModel {
                 } else {
                     onError(error.localizedDescription)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func getSecurityQuestion() -> String {
