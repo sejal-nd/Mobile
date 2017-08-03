@@ -32,7 +32,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginFormViewHeightConstraint: NSLayoutConstraint!
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService(), registrationService: ServiceFactory.createRegistrationService())
-    var passwordAutofilledFromTouchID = false
     var viewAlreadyAppeared = false
 
     override func viewDidLoad() {
@@ -70,14 +69,14 @@ class LoginViewController: UIViewController {
         viewModel.username.asObservable().bind(to: usernameTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
         viewModel.password.asObservable().bind(to: passwordTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
         viewModel.password.asObservable().subscribe(onNext: { (password) in
-            if self.passwordAutofilledFromTouchID {
+            if let autofilledPw = self.viewModel.touchIDAutofilledPassword, password != autofilledPw {
                 // The password field was successfully auto-filled from Touch ID, but then the user manually changed it,
                 // presumably because the password has been changed and is now different than what's stored in the keychain.
                 // Therefore, we disable Touch ID, and reset the UserDefaults flag to prompt to enable it upon the 
                 // next successful login
                 self.viewModel.disableTouchID()
                 self.viewModel.setShouldPromptToEnableTouchID(true)
-                self.passwordAutofilledFromTouchID = false
+                self.viewModel.touchIDAutofilledPassword = nil
             }
         }).disposed(by: disposeBag)
         usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
@@ -324,10 +323,7 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
             })
-            
             self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
-            self.passwordAutofilledFromTouchID = true // be sure to set this to true after the above line because will send an rx event on the text observer
-            
             self.signInButton.setLoading()
             self.signInButton.accessibilityLabel = "Loading";
             self.signInButton.accessibilityViewIsModal = true;
