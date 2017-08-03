@@ -200,6 +200,17 @@ class WalletViewController: UIViewController {
         }).addDisposableTo(disposeBag)
     }
     
+    func onWalletItemPress(sender: ButtonControl) {
+        if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
+            selectedWalletItem = walletItems[sender.tag]
+            if selectedWalletItem!.bankOrCard == .card {
+                self.performSegue(withIdentifier: "editCreditCardSegue", sender: self)
+            } else {
+                self.performSegue(withIdentifier: "editBankAccountSegue", sender: self)
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let oneTouchPayItem = viewModel.walletItems.value?.first(where: { $0.isDefault == true })
@@ -280,23 +291,18 @@ extension WalletViewController: UITableViewDataSource {
         
         let walletItem = viewModel.walletItems.value![indexPath.section]
         cell.bindToWalletItem(walletItem, billingInfo: viewModel.accountDetail.billingInfo)
+        cell.innerContentView.tag = indexPath.section
+        cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
+        cell.innerContentView.addTarget(self, action: #selector(onWalletItemPress(sender:)), for: .touchUpInside)
         
         cell.oneTouchPayView.isHidden = !walletItem.isDefault
         if walletItem.isDefault {
-            let a11yLabel = cell.accessibilityLabel!
-            cell.accessibilityLabel = a11yLabel + ", One Touch Pay account"
+            if let a11yLabel = cell.innerContentView.accessibilityLabel {
+                cell.innerContentView.accessibilityLabel = a11yLabel + ", One Touch Pay account"
+            }
         }
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedWalletItem = viewModel.walletItems.value![indexPath.section]
-        if selectedWalletItem?.bankOrCard == .card {
-            self.performSegue(withIdentifier: "editCreditCardSegue", sender: self)
-        } else {
-            self.performSegue(withIdentifier: "editBankAccountSegue", sender: self)
-        }
     }
     
 }
