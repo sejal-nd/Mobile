@@ -220,6 +220,7 @@ class AutoPayViewController: UIViewController {
         
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        reasonForStoppingLabel.sizeToFit()
     }
     
     private func textFieldSetup() {
