@@ -149,12 +149,13 @@ class AccountPicker: UIView {
         }
         
         let iconImageView = UIImageView(image: icon)
-        iconImageView.frame = CGRect(x: 0, y: 4, width: 43, height: 43)
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
         iconImageView.isAccessibilityElement = true
         iconImageView.accessibilityLabel = a11yDescription
         
         let accountNumberLabel = UILabel(frame: .zero)
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        accountNumberLabel.setContentHuggingPriority(1000, for: .horizontal)
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
         accountNumberLabel.textColor = tintWhite ? .white: .blackText
         accountNumberLabel.text = account.accountNumber
@@ -164,40 +165,30 @@ class AccountPicker: UIView {
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
         addressLabel.textColor = tintWhite ? .white: .deepGray
-        addressLabel.text = account.address
+        addressLabel.text = account.address ?? " "
         if let address = account.address {
             addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
         }
         
-        let accountView = UIView(frame: .zero)
-        accountView.translatesAutoresizingMaskIntoConstraints = false
-        accountView.addSubview(iconImageView)
-        accountView.addSubview(accountNumberLabel)
-        accountView.addSubview(addressLabel)
+        let accountInfoStackView = UIStackView(arrangedSubviews: [accountNumberLabel, addressLabel])
+        accountInfoStackView.translatesAutoresizingMaskIntoConstraints = false
+        accountInfoStackView.axis = .vertical
+        accountInfoStackView.alignment = .leading
+        accountInfoStackView.distribution = .fill
         
-        pageView.addSubview(accountView)
+        let accountStackView = UIStackView(arrangedSubviews: [iconImageView, accountInfoStackView])
+        accountStackView.translatesAutoresizingMaskIntoConstraints = false
+        accountStackView.axis = .horizontal
+        accountStackView.alignment = .center
+        accountStackView.distribution = .fill
+        accountStackView.spacing = 7
+        
+        pageView.addSubview(accountStackView)
         scrollView.addSubview(pageView)
         
-        self.addConstraints([
-            // accountNumberLabel
-            NSLayoutConstraint(item: accountNumberLabel, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 11),
-            NSLayoutConstraint(item: accountNumberLabel, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
-            NSLayoutConstraint(item: accountNumberLabel, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: accountNumberLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
-            
-            // addressLabel
-            NSLayoutConstraint(item: addressLabel, attribute: .top, relatedBy: .equal, toItem: accountView, attribute: .top, multiplier: 1, constant: 32),
-            NSLayoutConstraint(item: addressLabel, attribute: .leading, relatedBy: .equal, toItem: accountView, attribute: .leading, multiplier: 1, constant: 51),
-            NSLayoutConstraint(item: addressLabel, attribute: .trailing, relatedBy: .equal, toItem: accountView, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: addressLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 14),
-            // REMOVE THIS CONSTRAINT TO NOT LIMIT ADDRESS LENGTH:
-            NSLayoutConstraint(item: addressLabel, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 150),
-            
-            // accountView
-            NSLayoutConstraint(item: accountView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 57),
-            NSLayoutConstraint(item: accountView, attribute: .centerX, relatedBy: .equal, toItem: pageView, attribute: .centerX, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: accountView, attribute: .centerY, relatedBy: .equal, toItem: pageView, attribute: .centerY, multiplier: 1, constant: 0)
-        ])
+        accountStackView.centerXAnchor.constraint(equalTo: pageView.centerXAnchor, constant: 0).isActive = true
+        accountStackView.centerYAnchor.constraint(equalTo: pageView.centerYAnchor, constant: 0).isActive = true
+        addressLabel.widthAnchor.constraint(equalTo: accountNumberLabel.widthAnchor, multiplier: 1.2).isActive = true
         
         if advancedPicker { // Makes area tappable and adds caret icon
             advancedAccountNumberLabel = accountNumberLabel
@@ -260,7 +251,7 @@ class AccountPicker: UIView {
         
         // Update advanced account picker
         advancedAccountNumberLabel?.text = currentAccount.accountNumber
-        advancedAccountAddressLabel?.text = currentAccount.address
+        advancedAccountAddressLabel?.text = currentAccount.address ?? " "
     }
     
 }
@@ -273,9 +264,9 @@ extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
         // Update advanced account picker
         advancedAccountNumberLabel?.text = account.accountNumber
         if account.currentPremise != nil {
-            advancedAccountAddressLabel?.text = account.currentPremise!.addressGeneral
+            advancedAccountAddressLabel?.text = account.currentPremise?.addressGeneral ?? " "
         } else {
-            advancedAccountAddressLabel?.text = account.address
+            advancedAccountAddressLabel?.text = account.address ?? " "
         }
         
         delegate?.accountPickerDidChangeAccount(self)
