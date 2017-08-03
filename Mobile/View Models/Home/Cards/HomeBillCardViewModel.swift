@@ -40,8 +40,13 @@ class HomeBillCardViewModel {
         self.fetchingTracker = fetchingTracker
     }
     
-    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.account.map { _ in () }
-        .flatMapLatest(self.fetchOTPWalletItem)
+    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.account
+        .flatMapLatest { [unowned self] _ in
+            self.walletService.fetchWalletItems()
+                .trackActivity(self.fetchingTracker)
+                .map { $0.first(where: { $0.isDefault }) }
+                .materialize()
+        }
         .shareReplay(1)
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents
@@ -59,35 +64,13 @@ class HomeBillCardViewModel {
             .materialize()
             .share()
     
-    private func fetchOTPWalletItem() -> Observable<Event<WalletItem?>> {
-        return walletService.fetchWalletItems()
-            .debug("fetch wallet item")
-            .trackActivity(fetchingTracker)
-            .map { $0.first(where: { $0.isDefault }) }
-            .materialize()
-    }
-    
-    private func fetchWorkDays() -> Observable<Event<[Date]>> {
-        return paymentService.fetchWorkdays()
-            .debug("fetch work days")
-            .trackActivity(fetchingTracker)
-            .materialize()
-    }
-    
-    private lazy var workDayEvents: Observable<Event<[Date]>> = self.account.map { _ in () }
-        .flatMapLatest(self.fetchWorkDays)
+    private lazy var workDayEvents: Observable<Event<[Date]>> = self.account
+        .flatMapLatest { [unowned self] _ in
+            self.paymentService.fetchWorkdays()
+                .trackActivity(self.fetchingTracker)
+                .materialize()
+        }
         .shareReplay(1)
-    
-    private func schedulePayment(_ payment: Payment) -> Observable<Event<Void>> {
-        let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
-        return paymentService.schedulePayment(payment: payment)
-            .do(onNext: {
-                RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] = paymentDetails
-            })
-            .map { _ in () }
-            .trackActivity(paymentTracker)
-            .materialize()
-    }
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
         .withLatestFrom(Observable.combineLatest(self.accountDetailElements, self.walletItem.unwrap()))
@@ -103,14 +86,23 @@ class HomeBillCardViewModel {
                     walletItemId: walletItem.walletItemID!,
                     cvv: nil)
         }
-        .flatMapLatest(self.schedulePayment)
+        .flatMapLatest { [unowned self] payment in
+            self.paymentService.schedulePayment(payment: payment)
+                .do(onNext: {
+                    let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
+                    RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] = paymentDetails
+                })
+                .map { _ in () }
+                .trackActivity(self.paymentTracker)
+                .materialize()
+    }
     
     private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
         if Environment.sharedInstance.opco != .peco {
             return Driver.just(false)
         } else {
             return self.workDayEvents.elements()
-                .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty }
+                .map { !$0.filter(NSCalendar.current.isDateInToday).isEmpty }
                 .asDriver(onErrorDriveWith: .empty())
         }
     }()
@@ -139,7 +131,7 @@ class HomeBillCardViewModel {
     private(set) lazy var billNotReady: Driver<Bool> = self.accountDetailDriver
         .map { ($0.billingInfo.netDueAmount ?? 0) == 0 && ($0.billingInfo.lastPaymentAmount ?? 0) <= 0 }
     
-    private(set) lazy var showErrorState: Driver<Bool> = Observable.zip(self.accountDetailEvents, self.walletItemEvents)
+    private(set) lazy var showErrorState: Driver<Bool> = Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents)
         .map { $0.0.error != nil || $0.1.error != nil }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -164,6 +156,10 @@ class HomeBillCardViewModel {
             .map { account, accountDetail, walletItem -> TitleState in
                 let billingInfo = accountDetail.billingInfo
                 let opco = Environment.sharedInstance.opco
+                
+                if RecentPaymentsStore.shared[account] != nil {
+                    return .billPaidIntermediate
+                }
                 
                 if opco != .bge && (billingInfo.restorationAmount ?? 0) > 0 {
                     return .restoreService
@@ -202,10 +198,6 @@ class HomeBillCardViewModel {
                     return .billPaid
                 }
                 
-                if RecentPaymentsStore.shared[account] != nil {
-                    return .billPaidIntermediate
-                }
-                
                 if opco == .bge && account.isMultipremise {
                     return .multipremiseReady
                 }
@@ -234,7 +226,7 @@ class HomeBillCardViewModel {
         }
     }
     
-    private lazy var showAutoPay: Driver<Bool> = Driver.zip(self.isPrecariousBillSituation, self.accountDetailDriver, self.billPaidOrPending)
+    private lazy var showAutoPay: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation, self.accountDetailDriver, self.billPaidOrPending)
         .map { !$0 && $1.isAutoPay && !$2 }
     
     private(set) lazy var showPaymentPendingIcon: Driver<Bool> = self.titleState.map { $0 == .paymentPending }
@@ -344,7 +336,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showScheduledPaymentInfoButton: Driver<Bool> = self.showScheduledImageView
     
-    private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.zip(self.showOneTouchPaySlider,
+    private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.combineLatest(self.showOneTouchPaySlider,
                                                                              self.enableOneTouchSlider,
                                                                              self.showScheduledImageView) { $0 && $1 && !$2 }
     

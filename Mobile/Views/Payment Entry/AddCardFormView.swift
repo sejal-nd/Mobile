@@ -83,12 +83,14 @@ class AddCardFormView: UIView {
         expDateLabel.text = NSLocalizedString("Expiration Date", comment: "")
         
         expMonthTextField.textField.placeholder = NSLocalizedString("MM*", comment: "")
+        expMonthTextField.textField.customAccessibilityLabel = NSLocalizedString("Month, two digits", comment: "")
         expMonthTextField.textField.delegate = self
         expMonthTextField.setKeyboardType(
             .numberPad)
         expMonthTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         expYearTextField.textField.placeholder = NSLocalizedString("YYYY*", comment: "")
+        expYearTextField.textField.customAccessibilityLabel = NSLocalizedString("Year, four digits", comment: "")
         expYearTextField.textField.delegate = self
         expYearTextField.setKeyboardType(.numberPad)
         expYearTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
