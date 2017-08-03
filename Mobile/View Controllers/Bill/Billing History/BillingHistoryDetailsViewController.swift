@@ -184,7 +184,7 @@ class BillingHistoryDetailsViewController: DismissableFormSheetViewController {
     
     func bindLoadingStates() {
         
-        viewModel.paymentAccount.drive(self.paymentAccountDetailsLabel.rx.text).addDisposableTo(self.bag)
+        viewModel.paymentAccount.drive(self.paymentAccountDetailsLabel.rx.text).disposed(by: self.bag)
         
         paymentTypeLabel.text = viewModel.paymentTypeLabel
         paymentTypeDetailLabel.text = viewModel.paymentType
@@ -192,11 +192,11 @@ class BillingHistoryDetailsViewController: DismissableFormSheetViewController {
         paymentAmountLabel.text = viewModel.paymentAmountLabel
         paymentAmountDetailsLabel.text = viewModel.amountPaid
         
-        viewModel.fetching.drive(mainStackView.rx.isHidden).addDisposableTo(self.bag)
-        viewModel.fetching.map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(self.bag)
+        viewModel.fetching.drive(mainStackView.rx.isHidden).disposed(by: self.bag)
+        viewModel.fetching.map(!).drive(loadingIndicator.rx.isHidden).disposed(by: self.bag)
         
-        viewModel.convenienceFee.drive(self.convenienceFeeDetailsLabel.rx.text).addDisposableTo(self.bag)
-        viewModel.totalAmountPaid.drive(self.totalAmountPaidDetailsLabel.rx.text).addDisposableTo(self.bag)
+        viewModel.convenienceFee.drive(self.convenienceFeeDetailsLabel.rx.text).disposed(by: self.bag)
+        viewModel.totalAmountPaid.drive(self.totalAmountPaidDetailsLabel.rx.text).disposed(by: self.bag)
         
         paymentStatusDetailsLabel.text = viewModel.paymentStatus
         confirmationNumberDetailsLabel.text = viewModel.confirmationNumber

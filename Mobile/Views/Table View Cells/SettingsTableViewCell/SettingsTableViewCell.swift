@@ -45,7 +45,7 @@ class SettingsTableViewCell: UITableViewCell {
         switchAccessory.isOn = switchOn
         
         // Skip 1 so that the initial state does not trigger a change
-        switchAccessory.rx.isOn.asObservable().skip(1).bind(onNext: switchObserver).addDisposableTo(disposeBag)
+        switchAccessory.rx.isOn.asObservable().skip(1).bind(onNext: switchObserver).disposed(by: disposeBag)
     }
     
     func setSwitch(on: Bool) {

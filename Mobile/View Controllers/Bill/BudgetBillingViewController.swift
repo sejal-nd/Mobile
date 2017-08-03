@@ -81,7 +81,7 @@ class BudgetBillingViewController: UIViewController {
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         view.backgroundColor = .softGray
         
@@ -99,7 +99,7 @@ class BudgetBillingViewController: UIViewController {
         whatIsBudgetBillingButton.backgroundColorOnPress = .softGray
         whatIsBudgetBillingButton.rx.touchUpInside.asDriver().drive(onNext: {
             self.performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         whatIsBudgetBillingButton.accessibilityLabel = NSLocalizedString("What is budget billing?", comment: "")
         
         whatIsBudgetBillingLabel.textColor = .blackText
@@ -129,8 +129,8 @@ class BudgetBillingViewController: UIViewController {
         addressLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
         
-        viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
-        enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).addDisposableTo(disposeBag)
+        viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).disposed(by: disposeBag)
+        enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).disposed(by: disposeBag)
         
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
@@ -143,7 +143,7 @@ class BudgetBillingViewController: UIViewController {
                 UIView.animate(withDuration: 0.3, animations: {
                     self.reasonForStoppingTableView.isHidden = !unenrolling
                 })
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         }
         
         // BGE Footer View when user is enrolled

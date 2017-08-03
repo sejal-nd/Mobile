@@ -72,7 +72,7 @@ class ReportOutageViewController: UIViewController {
         submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -91,8 +91,8 @@ class ReportOutageViewController: UIViewController {
 
             footerContainerView.isHidden = true
             
-            meterPingFuseBoxSwitch.rx.isOn.map(!).bind(to: viewModel.reportFormHidden).addDisposableTo(disposeBag)
-            viewModel.reportFormHidden.asObservable().bind(to: reportFormStackView.rx.isHidden).addDisposableTo(disposeBag)
+            meterPingFuseBoxSwitch.rx.isOn.map(!).bind(to: viewModel.reportFormHidden).disposed(by: disposeBag)
+            viewModel.reportFormHidden.asObservable().bind(to: reportFormStackView.rx.isHidden).disposed(by: disposeBag)
             viewModel.reportFormHidden.asObservable().subscribe(onNext: { hidden in
                 if hidden {
                     self.reportFormStackView.spacing = 0
@@ -100,7 +100,7 @@ class ReportOutageViewController: UIViewController {
                 } else {
                     self.reportFormStackView.spacing = 30
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
             
             viewModel.reportFormHidden.value = true
 
@@ -152,16 +152,16 @@ class ReportOutageViewController: UIViewController {
                     if !valid {
                         self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.phoneNumberTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         phoneExtensionTextField.textField.placeholder = NSLocalizedString("Contact Number Ext. (Optional)", comment: "")
         phoneExtensionTextField.textField.autocorrectionType = .no
         phoneExtensionTextField.textField.returnKeyType = .done
@@ -182,14 +182,14 @@ class ReportOutageViewController: UIViewController {
         footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
         
         // Data binding
-        segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).addDisposableTo(disposeBag)
+        segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
         
         viewModel.phoneNumber.asObservable().bind(to: phoneNumberTextField.textField.rx.text.orEmpty)
-            .addDisposableTo(disposeBag)
-        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
+        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).disposed(by: disposeBag)
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
         
-        phoneExtensionTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneExtension).addDisposableTo(disposeBag)
+        phoneExtensionTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneExtension).disposed(by: disposeBag)
         
         // Format the intial value
         let range = NSMakeRange(0, viewModel.phoneNumber.value.characters.count)

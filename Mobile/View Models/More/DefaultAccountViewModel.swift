@@ -29,7 +29,7 @@ class DefaultAccountViewModel {
         
         changeDefaultAccountResult.elements()
             .bind(to: accounts)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
     }
     
     private lazy var changeDefaultAccountResult: Observable<Event<[Account]>> = self.changeDefaultAccount

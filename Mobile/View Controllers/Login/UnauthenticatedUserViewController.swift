@@ -98,7 +98,7 @@ class UnauthenticatedUserViewController: UIViewController {
         contactUsButton.isAccessibilityElement = true
         contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
         TermPoliciesButton.isAccessibilityElement = true
-        TermPoliciesButton.accessibilityLabel = NSLocalizedString("Terms and Policies", comment: "")
+        TermPoliciesButton.accessibilityLabel = NSLocalizedString("Policies and Terms", comment: "")
     }
     
     @IBAction func onContactUsPress(_ sender: UIButton) {

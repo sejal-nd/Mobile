@@ -57,7 +57,7 @@ class LoginViewModel {
                     self.authService.logout().subscribe(onNext: {
                     }, onError: { (error) in
                         print("Logout Error: \(error)")
-                    }).addDisposableTo(self.disposeBag)
+                    }).disposed(by: self.disposeBag)
                 }
             }, onError: { error in
                 let serviceError = error as! ServiceError
@@ -69,7 +69,7 @@ class LoginViewModel {
                     onError(nil, error.localizedDescription)
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func getStoredUsername() -> String? {
@@ -113,7 +113,7 @@ class LoginViewModel {
                 onSuccess(isMaintenanceMode)
             }, onError: { error in
                 _ = error as! ServiceError
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func validateRegistration(guid: String, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
@@ -128,7 +128,7 @@ class LoginViewModel {
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), err.localizedDescription)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func resendValidationEmail(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -139,7 +139,7 @@ class LoginViewModel {
             }, onError: { err in
                 onError(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
 }

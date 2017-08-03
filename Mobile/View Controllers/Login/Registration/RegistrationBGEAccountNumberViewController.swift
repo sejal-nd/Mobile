@@ -39,7 +39,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
     /// Helpers
     func setupNavigationButtons() {
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
-        viewModel.accountNumberHasTenDigits().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.accountNumberHasTenDigits().bind(to: nextButton.rx.isEnabled).disposed(by: disposeBag)
         navigationItem.rightBarButtonItem = nextButton
     }
 
@@ -55,7 +55,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         accountNumberTextField.textField.returnKeyType = .next
         accountNumberTextField.textField.delegate = self
         accountNumberTextField.textField.isShowingAccessory = true
-        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
+        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
         accountNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
@@ -67,17 +67,17 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
                     } else {
                         
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.accountNumberTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {
@@ -185,7 +185,7 @@ extension RegistrationBGEAccountNumberViewController: UITextFieldDelegate {
             if enabled {
                 self.onNextPress()
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
 
         return true
     }

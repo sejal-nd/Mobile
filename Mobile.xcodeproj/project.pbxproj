@@ -239,6 +239,9 @@
 		8218988F1F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */; };
 		821898901F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */; };
 		821898961F3279AB0077D7A1 /* MockPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898951F3279AB0077D7A1 /* MockPaymentService.swift */; };
+		821898921F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
+		821898931F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
+		821898941F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
 		822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		822BBB951EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
@@ -1181,6 +1184,7 @@
 		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoNetworkConnectionView.xib; sourceTree = "<group>"; };
 		8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBindingObservers.swift; sourceTree = "<group>"; };
 		821898951F3279AB0077D7A1 /* MockPaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPaymentService.swift; sourceTree = "<group>"; };
+		821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillAlertBannerView.swift; sourceTree = "<group>"; };
 		822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewModel.swift; sourceTree = "<group>"; };
 		822BBB9F1EFC1A01004EBBAB /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		822BBBA01EFC1A01004EBBAB /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -2077,6 +2081,7 @@
 				2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */,
 				82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */,
 				82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */,
+				821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3670,6 +3675,7 @@
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				2F5C81FA1F1D4B1B005B35FA /* WeatherAPI.swift in Sources */,
 				E887C9D41ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
+				821898921F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				E8B4F4CB1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
@@ -3885,6 +3891,7 @@
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				821898941F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
 				E887C9D61ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				826DCCEB1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
@@ -4100,6 +4107,7 @@
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B231EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				821898931F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
 				E887C9D51ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				826DCCEA1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,

@@ -33,7 +33,7 @@ class ReportOutageViewModel {
             return !$0 && digitsOnlyString.characters.count == 10
             }
             .bind(to: submitEnabled)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func getFooterTextViewText() -> String {
@@ -71,7 +71,7 @@ class ReportOutageViewModel {
             }, onError: { error in
                 onError(error.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
