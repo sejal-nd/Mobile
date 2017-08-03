@@ -214,17 +214,28 @@ class BGEAutoPayViewModel {
         return ""
     }
     
-    lazy var setAccessibilityLabel: Driver<String> = self.selectedWalletItem.asDriver().map {
-        guard let item = $0 else { return "" }
-        var label = "Select Bank Account"
-        if let last4Digits = item.maskedWalletItemAccountNumber {
-            label = "Bank account: **** \(last4Digits)."
-            if let nickname = item.nickName {
-                label += "\nNickname: " + nickname
+    var selectedWalletItemA11yLabel: Driver<String> {
+        return selectedWalletItem.asDriver().map {
+            guard let walletItem = $0 else { return "" }
+            
+            var a11yLabel = ""
+            
+            if walletItem.bankOrCard == .bank {
+                a11yLabel = NSLocalizedString("Bank account", comment: "")
+            } else {
+                a11yLabel = NSLocalizedString("Credit card", comment: "")
             }
+            
+            if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
+                a11yLabel += ", \(nicknameText)"
+            }
+            
+            if let last4Digits = walletItem.maskedWalletItemAccountNumber {
+                a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
+            }
+            
+            return a11yLabel
         }
-        
-        return label
     }
     
     lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().map { $0 != nil }
