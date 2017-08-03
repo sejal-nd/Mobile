@@ -220,10 +220,10 @@ extension MiniWalletViewController: UITableViewDataSource {
             cell.label.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
             if bankAccountsDisabled {
                 cell.label.alpha = 0.33
-                cell.label.isAccessibilityElement = false
+                cell.accessibilityElementsHidden = true
             } else {
                 cell.label.alpha = 1
-                cell.label.isAccessibilityElement = true
+                cell.accessibilityElementsHidden = false
             }
         } else {
             var creditCardFeeString: String {
@@ -238,10 +238,10 @@ extension MiniWalletViewController: UITableViewDataSource {
             cell.label.text = creditCardFeeString
             if creditCardsDisabled {
                 cell.label.alpha = 0.33
-                cell.label.isAccessibilityElement = false
+                cell.accessibilityElementsHidden = true
             } else {
                 cell.label.alpha = 1
-                cell.label.isAccessibilityElement = true
+                cell.accessibilityElementsHidden = false
             }
         }
         
