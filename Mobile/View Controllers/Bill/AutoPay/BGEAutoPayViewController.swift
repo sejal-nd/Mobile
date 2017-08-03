@@ -107,6 +107,7 @@ class BGEAutoPayViewController: UIViewController {
         settingsButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
         setupBindings()
+        accessibilitySetup()
     
         viewModel.getAutoPayInfo(onSuccess: nil, onError: nil)
     }
@@ -138,6 +139,19 @@ class BGEAutoPayViewController: UIViewController {
         gradientLayer.frame = gradientView.bounds
     }
     
+    private func accessibilitySetup() {
+        learnMoreButton.isAccessibilityElement = true
+        learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
+        bankAccountButton.isAccessibilityElement = true
+        if !bankAccountButtonSelectLabel.isHidden {
+            bankAccountButton.accessibilityLabel = "\(bankAccountButtonSelectLabel.text ?? "")
+        } else {
+            bankAccountButton.accessibilityLabel = "Account number: \(bankAccountButtonAccountNumberLabel.text ?? ""). Nickname: \(bankAccountButtonNicknameLabel.text ?? "")"
+        }
+        settingsButton.isAccessibilityElement = true
+        settingsButton.accessibilityLabel = settingsButtonLabel.text
+    }
+    
     func setupBindings() {
         viewModel.isFetchingAutoPayInfo.asDriver().drive(scrollView.rx.isHidden).addDisposableTo(disposeBag)
         viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
@@ -154,6 +168,7 @@ class BGEAutoPayViewController: UIViewController {
         viewModel.bankAccountButtonImage.drive(bankAccountButtonIcon.rx.image).addDisposableTo(disposeBag)
         viewModel.walletItemAccountNumberText.drive(bankAccountButtonAccountNumberLabel.rx.text).addDisposableTo(disposeBag)
         viewModel.walletItemNicknameText.drive(bankAccountButtonNicknameLabel.rx.text).addDisposableTo(disposeBag)
+        viewModel.setAccessibilityLabel.drive(bankAccountButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         viewModel.enrollSwitchValue.asDriver().drive(enrollmentSwitch.rx.isOn).addDisposableTo(disposeBag)
         enrollmentSwitch.rx.isOn.asDriver().drive(viewModel.enrollSwitchValue).addDisposableTo(disposeBag)

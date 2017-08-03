@@ -214,6 +214,19 @@ class BGEAutoPayViewModel {
         return ""
     }
     
+    lazy var setAccessibilityLabel: Driver<String> = self.selectedWalletItem.asDriver().map {
+        guard let item = $0 else { return "" }
+        var label = "Select Bank Account"
+        if let last4Digits = item.maskedWalletItemAccountNumber {
+            label = "**** \(last4Digits)."
+            if let nickname = item.nickName {
+                label += "\n " + nickname
+            }
+        }
+        
+        return label
+    }
+    
     lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().map { $0 != nil }
     
     func formatAmountNotToExceed() {

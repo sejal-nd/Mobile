@@ -105,6 +105,8 @@ class AutoPayViewController: UIViewController {
             .drive(view.rx.backgroundColor)
             .addDisposableTo(bag)
         
+        accessibilitySetup()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -194,6 +196,11 @@ class AutoPayViewController: UIViewController {
         
         footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         footerLabel.setLineHeight(lineHeight: 16)
+    }
+    
+    private func accessibilitySetup() {
+        learnMoreButton.isAccessibilityElement = true
+        learnMoreButton.accessibilityLabel = learnMoreLabel.text
     }
     
     private func styleNotEnrolled() {

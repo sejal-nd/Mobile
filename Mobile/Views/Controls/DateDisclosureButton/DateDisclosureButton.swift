@@ -32,6 +32,12 @@ class DateDisclosureButton: ButtonControl {
         dateDisclosureLabel.font = SystemFont.regular.of(textStyle: .title2)
         
         selectedDateLabel.text = "Select Date"
+        accessibilityUpdate(dateLabel: selectedDateLabel.text!)
+    }
+    
+    func accessibilityUpdate(dateLabel: String) {
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = "\(dateDisclosureLabel.text ?? ""): \(dateLabel)"
     }
 
 }
