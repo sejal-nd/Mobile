@@ -75,6 +75,9 @@
 		0D88FB571F337245008CB21E /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB561F337245008CB21E /* MinimumVersion.swift */; };
 		0D88FB581F337245008CB21E /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB561F337245008CB21E /* MinimumVersion.swift */; };
 		0D88FB591F337245008CB21E /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB561F337245008CB21E /* MinimumVersion.swift */; };
+		0D88FB5B1F337894008CB21E /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB5A1F337894008CB21E /* SplashViewModel.swift */; };
+		0D88FB5C1F337894008CB21E /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB5A1F337894008CB21E /* SplashViewModel.swift */; };
+		0D88FB5D1F337894008CB21E /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB5A1F337894008CB21E /* SplashViewModel.swift */; };
 		225FF85A1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85B1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85C1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
@@ -1131,6 +1134,7 @@
 		0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewModel.swift; sourceTree = "<group>"; };
 		0D79C6D01F1FB761004793DD /* Maintenance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maintenance.swift; sourceTree = "<group>"; };
 		0D88FB561F337245008CB21E /* MinimumVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimumVersion.swift; sourceTree = "<group>"; };
+		0D88FB5A1F337894008CB21E /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
@@ -2849,6 +2853,7 @@
 				82A18E651EB918D400BE9F21 /* Outage */,
 				82A18E6F1EB9192B00BE9F21 /* More */,
 				0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */,
+				0D88FB5A1F337894008CB21E /* SplashViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -3022,7 +3027,7 @@
 					B58B5AC01E4E28740051FD5F = {
 						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -3609,6 +3614,7 @@
 				82156F1D1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				0D79C6D11F1FB761004793DD /* Maintenance.swift in Sources */,
+				0D88FB5B1F337894008CB21E /* SplashViewModel.swift in Sources */,
 				825171B91F1D25280020A6CA /* HomeBillCardViewModel.swift in Sources */,
 				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				54036BAD1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
@@ -3826,6 +3832,7 @@
 				0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */,
 				54C1DF081F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
 				825171BB1F1D25280020A6CA /* HomeBillCardViewModel.swift in Sources */,
+				0D88FB5D1F337894008CB21E /* SplashViewModel.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -4043,6 +4050,7 @@
 				0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */,
 				54C1DF071F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
 				825171BA1F1D25280020A6CA /* HomeBillCardViewModel.swift in Sources */,
+				0D88FB5C1F337894008CB21E /* SplashViewModel.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -4524,7 +4532,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -4539,8 +4547,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2cd70175-edd9-4bdc-9020-cb29e624a51d";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Develop;
 		};
@@ -4730,9 +4738,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = YU7Y757VB5;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -4747,7 +4755,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Staging;
 		};
@@ -4822,7 +4830,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -4837,7 +4845,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Testing;
 		};

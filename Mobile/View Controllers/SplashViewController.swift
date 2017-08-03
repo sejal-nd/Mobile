@@ -18,9 +18,17 @@ class SplashViewController: UIViewController {
         view.backgroundColor = .primaryColor
     }
     
+    let viewModel = SplashViewModel(authService: ServiceFactory.createAuthenticationService())
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        //doLoginLogic()
+        
+        checkAppVersion()
+    }
+
+    func doLoginLogic() {
         if ServiceFactory.createAuthenticationService().isAuthenticated() {
             ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { (result: ServiceResult<Void>) in
                 switch (result) {
@@ -31,7 +39,7 @@ class SplashViewController: UIViewController {
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }
             })
-
+            
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 if !self.performingDeepLink { // Deep link cold-launched the app, so let our logic below handle it
@@ -41,7 +49,37 @@ class SplashViewController: UIViewController {
                 }
             })
         }
-        
+    }
+    
+    func checkAppVersion() {
+        viewModel.checkAppVersion(onSuccess: { [weak self] isOutOfDate in
+            if isOutOfDate {
+                self?.handleOutOfDate()
+            } else {
+                self?.doLoginLogic()
+            }
+        }, onError: { errorMessage in
+//            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+//            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+//            self.present(alertController, animated: true, completion: nil)
+        })
+    }
+    
+    func handleOutOfDate(){
+        let requireUpdateAlert = UIAlertController(title: nil , message: NSLocalizedString("There is a newer version of this application available. Tap OK to update now.", comment: ""), preferredStyle: .alert)
+        requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { (action) in
+            if let url = URL(string: "itms-apps://itunes.apple.com/app/id927221466"),
+                UIApplication.shared.canOpenURL(url)
+            {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
+            }
+        }))
+
+        present(requireUpdateAlert,animated: true, completion: nil)
     }
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
