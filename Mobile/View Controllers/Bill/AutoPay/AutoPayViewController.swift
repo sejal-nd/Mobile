@@ -215,7 +215,7 @@ class AutoPayViewController: UIViewController {
     
     private func styleEnrolled() {
         enrollmentStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
-        enrolledTopLabel.font = OpenSans.regular.of(textStyle: .body)
+        enrolledTopLabel.font = OpenSans.regular.of(textStyle: .headline)
         enrolledTopLabel.setLineHeight(lineHeight: 16)
         
         reasonForStoppingLabel.textColor = .blackText

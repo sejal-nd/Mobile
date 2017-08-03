@@ -24,6 +24,8 @@ class BGEasyViewController: DismissableFormSheetViewController {
         view.backgroundColor = .primaryColor
         
         xButton.imageView?.tintColor = .actionBlue
+        xButton.isAccessibilityElement = true
+        xButton.accessibilityLabel = "Close"
         
         navBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         
@@ -34,6 +36,7 @@ class BGEasyViewController: DismissableFormSheetViewController {
         descriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
         descriptionLabel.textColor = .deepGray
         descriptionLabel.text = NSLocalizedString("You are currently enrolled in BGEasy, our legacy automatic payment system.", comment: "")
+        descriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
 
         for view in bulletCollection {
             view.backgroundColor = .primaryColor
@@ -43,10 +46,12 @@ class BGEasyViewController: DismissableFormSheetViewController {
         bullet1Label.textColor = .deepGray
         bullet1Label.text = NSLocalizedString("As an existing participant, you may continue to use this plan at no additional charge; however this payment option cannot be managed through an online account.", comment: "")
         bullet1Label.setLineHeight(lineHeight: 25)
+        bullet1Label.font = OpenSans.regular.of(textStyle: .body)
         
         bullet2Label.textColor = .deepGray
         bullet2Label.text = NSLocalizedString("If you would like to take advantage of the more flexible BGE.com payment options or if you would like to manage your BGEasy program enrollment, please contact us.", comment: "")
         bullet2Label.setLineHeight(lineHeight: 25)
+        bullet2Label.font = OpenSans.regular.of(textStyle: .body)
     }
     
     @IBAction func onXPress() {

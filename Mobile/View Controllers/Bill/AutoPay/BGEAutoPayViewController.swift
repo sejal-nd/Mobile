@@ -146,7 +146,7 @@ class BGEAutoPayViewController: UIViewController {
         if !bankAccountButtonSelectLabel.isHidden {
             bankAccountButton.accessibilityLabel = "\(bankAccountButtonSelectLabel.text ?? "")"
         } else {
-            bankAccountButton.accessibilityLabel = "Account number: \(bankAccountButtonAccountNumberLabel.text ?? ""). Nickname: \(bankAccountButtonNicknameLabel.text ?? "")"
+            bankAccountButton.accessibilityLabel = "Bank account: \(bankAccountButtonAccountNumberLabel.text ?? "").\nNickname: \(bankAccountButtonNicknameLabel.text ?? "")"
         }
         settingsButton.isAccessibilityElement = true
         settingsButton.accessibilityLabel = settingsButtonLabel.text
