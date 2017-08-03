@@ -90,7 +90,6 @@ class SegmentedControl: UIControl {
                 let label = labels[index]
                 label.text = item
                 if index == selectedIndex.value {
-                    selectedLabel = label.text!
                     label.font = SystemFont.bold.of(textStyle: .subheadline)
                 } else {
                     label.font = SystemFont.regular.of(textStyle: .subheadline)
