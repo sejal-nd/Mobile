@@ -102,7 +102,7 @@ class HomeBillCardViewModel {
             return Driver.just(false)
         } else {
             return self.workDayEvents.elements()
-                .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty }
+                .map { !$0.filter(NSCalendar.current.isDateInToday).isEmpty }
                 .asDriver(onErrorDriveWith: .empty())
         }
     }()
@@ -131,7 +131,7 @@ class HomeBillCardViewModel {
     private(set) lazy var billNotReady: Driver<Bool> = self.accountDetailDriver
         .map { ($0.billingInfo.netDueAmount ?? 0) == 0 && ($0.billingInfo.lastPaymentAmount ?? 0) <= 0 }
     
-    private(set) lazy var showErrorState: Driver<Bool> = Observable.zip(self.accountDetailEvents, self.walletItemEvents)
+    private(set) lazy var showErrorState: Driver<Bool> = Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents)
         .map { $0.0.error != nil || $0.1.error != nil }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -226,7 +226,7 @@ class HomeBillCardViewModel {
         }
     }
     
-    private lazy var showAutoPay: Driver<Bool> = Driver.zip(self.isPrecariousBillSituation, self.accountDetailDriver, self.billPaidOrPending)
+    private lazy var showAutoPay: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation, self.accountDetailDriver, self.billPaidOrPending)
         .map { !$0 && $1.isAutoPay && !$2 }
     
     private(set) lazy var showPaymentPendingIcon: Driver<Bool> = self.titleState.map { $0 == .paymentPending }
@@ -336,7 +336,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showScheduledPaymentInfoButton: Driver<Bool> = self.showScheduledImageView
     
-    private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.zip(self.showOneTouchPaySlider,
+    private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.combineLatest(self.showOneTouchPaySlider,
                                                                              self.enableOneTouchSlider,
                                                                              self.showScheduledImageView) { $0 && $1 && !$2 }
     
