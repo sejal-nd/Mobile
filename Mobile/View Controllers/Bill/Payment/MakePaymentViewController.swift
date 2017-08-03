@@ -145,7 +145,9 @@ class MakePaymentViewController: UIViewController {
         paymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
         paymentAccountButton.backgroundColorOnPress = .softGray
         paymentAccountAccountNumberLabel.textColor = .blackText
+        paymentAccountAccountNumberLabel.font = SystemFont.medium.of(textStyle: .headline)
         paymentAccountNicknameLabel.textColor = .middleGray
+        paymentAccountNicknameLabel.font = SystemFont.medium.of(textStyle: .footnote)
         
         cvvTextField.textField.placeholder = NSLocalizedString("CVV2*", comment: "")
         cvvTextField.textField.delegate = self
@@ -205,6 +207,7 @@ class MakePaymentViewController: UIViewController {
         addBankAccountFeeLabel.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
         addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
         addBankAccountButton.backgroundColorOnPress = .softGray
+        addBankAccountButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
         addCreditCardFeeLabel.textColor = .blackText
         addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -219,6 +222,7 @@ class MakePaymentViewController: UIViewController {
         }
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
         addCreditCardButton.backgroundColorOnPress = .softGray
+        addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")
         
         deletePaymentButton.accessibilityLabel = NSLocalizedString("Delete payment", comment: "")
         deletePaymentLabel.font = SystemFont.regular.of(textStyle: .headline)

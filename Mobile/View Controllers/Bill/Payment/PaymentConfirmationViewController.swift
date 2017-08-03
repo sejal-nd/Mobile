@@ -55,7 +55,7 @@ class PaymentConfirmationViewController: UIViewController {
             confirmationMessage += NSLocalizedString("Thank you for your payment.", comment: "")
         }
         if Environment.sharedInstance.opco != .bge {
-            confirmationMessage += NSLocalizedString(" A confirmation email will be sent to your shortly.", comment: "")
+            confirmationMessage += NSLocalizedString(" A confirmation email will be sent to you shortly.", comment: "")
         }
         confirmationLabel.text = confirmationMessage
         
@@ -87,6 +87,7 @@ class PaymentConfirmationViewController: UIViewController {
             bgeFooterView.backgroundColor = .softGray
             bgeFooterLabel.textColor = .blackText
             bgeFooterLabel.text = NSLocalizedString("If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.\n\nPlease ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.\n\nIf an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.", comment: "")
+            bgeFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
         } else {
             bgeFooterView.isHidden = true
             bgeFooterLabel.text = ""
