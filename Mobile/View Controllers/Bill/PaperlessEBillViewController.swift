@@ -189,4 +189,8 @@ class PaperlessEBillViewController: UIViewController {
             self.present(alertVc, animated: true, completion: nil)
         })
     }
+    
+    deinit {
+        dLog(message: "deinit - " + className)
+    }
 }
