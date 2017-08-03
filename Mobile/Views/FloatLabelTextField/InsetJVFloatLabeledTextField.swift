@@ -21,8 +21,9 @@ class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
             if let _ = self.text {
                 if let customA11yLabel = customAccessibilityLabel {
                     return customA11yLabel
+                } else if let floatLabelText = self.floatingLabel.text {
+                    return floatLabelText.replacingOccurrences(of: "*", with: NSLocalizedString(", required", comment: ""))
                 }
-                return self.floatingLabel.text
             }
             return ""
         }

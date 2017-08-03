@@ -141,7 +141,7 @@ class EditCreditCardViewController: UIViewController {
         expMonthTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         expYearTextField.textField.placeholder = NSLocalizedString("YYYY*", comment: "")
-        expMonthTextField.textField.customAccessibilityLabel = NSLocalizedString("Year, four digits", comment: "")
+        expYearTextField.textField.customAccessibilityLabel = NSLocalizedString("Year, four digits", comment: "")
         expYearTextField.textField.delegate = self
         expYearTextField.setKeyboardType(.numberPad)
         expYearTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
