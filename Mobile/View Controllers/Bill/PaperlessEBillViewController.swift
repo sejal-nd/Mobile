@@ -79,17 +79,17 @@ class PaperlessEBillViewController: UIViewController {
                     self?.add(accountDetail: $0, animated: true)
                 }
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.enrollAllAccounts.asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] in
                 self?.enrollAllAccountsSwitch.setOn($0, animated: true)
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         Driver.combineLatest(viewModel.accountsToEnroll.asDriver(), viewModel.accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
             .drive(submitButton.rx.isEnabled)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         whatIsButton.backgroundColorOnPress = .softGray
         whatIsButton.rx.touchUpInside.asDriver().drive(onNext: {
@@ -101,7 +101,7 @@ class PaperlessEBillViewController: UIViewController {
             }
             let infoModal = InfoModalViewController(title: NSLocalizedString("Paperless eBill", comment: ""), image: #imageLiteral(resourceName: "paperless_modal"), description: description)
             self.navigationController?.present(infoModal, animated: true, completion: nil)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         whatIsButton.accessibilityLabel = NSLocalizedString("What is Paperless e-bill", comment: "")
         enrollAllAccountsSwitch.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
     }
@@ -150,13 +150,13 @@ class PaperlessEBillViewController: UIViewController {
             .drive(onNext: { [weak self] isOn in
                 self?.viewModel.switched(accountDetail: accountDetail, on: isOn)
             })
-            .addDisposableTo(accountView.bag)
+            .disposed(by: accountView.bag)
         
         enrollAllAccountsSwitch.rx.isOn.asDriver().skip(1)
             .drive(onNext: {
                 accountView.toggleSwitch(on: $0)
             })
-            .addDisposableTo(accountView.bag)
+            .disposed(by: accountView.bag)
         
         self.accountsStackView.addArrangedSubview(accountView)
         

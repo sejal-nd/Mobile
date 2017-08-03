@@ -77,7 +77,7 @@ class AddBankAccountViewModel {
                 }
                 
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
     func enableOneTouchPay(walletItemID: String, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -90,7 +90,7 @@ class AddBankAccountViewModel {
             }, onError: { err in
                 onError(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func getOneTouchDisplayString() -> String {

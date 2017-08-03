@@ -109,7 +109,7 @@ class ContactUsViewController: UIViewController {
                         
                         UIApplication.shared.openURL(url)
                     })
-                    .addDisposableTo(bag)
+                    .disposed(by: bag)
                 return button
         }
         

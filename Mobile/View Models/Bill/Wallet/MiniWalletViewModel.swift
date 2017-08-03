@@ -37,7 +37,7 @@ class MiniWalletViewModel {
                 self.isFetchingWalletItems.value = false
                 self.isError.value = true
                 onError(err.localizedDescription)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     var shouldShowTableView: Driver<Bool> {

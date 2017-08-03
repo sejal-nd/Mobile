@@ -31,7 +31,7 @@ class ChangePasswordTests: XCTestCase {
             if valid {
                 XCTFail("Password \"abc\" should result in an invalid character count")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testTooManyCharacterCount() {
@@ -41,7 +41,7 @@ class ChangePasswordTests: XCTestCase {
             if valid {
                 XCTFail("Password \"abcdefghijklmnopqrstuvwxzy\" should result in an invalid character count")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testWhitespaceCharacterCount() {
@@ -51,7 +51,7 @@ class ChangePasswordTests: XCTestCase {
             if valid {
                 XCTFail("Password \"abc       d\" (with whitespace) should result in an invalid character count")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testValidCharacterCount() {
@@ -61,7 +61,7 @@ class ChangePasswordTests: XCTestCase {
             if !valid {
                 XCTFail("Password \"abcdefgh\" should result in a valid character count")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testMissingUppercaseLetter() {
@@ -71,7 +71,7 @@ class ChangePasswordTests: XCTestCase {
             if contains {
                 XCTFail("Password \"abcdefgh\" should not pass the uppercase letter requirement")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testContainsUppercaseLetter() {
@@ -81,7 +81,7 @@ class ChangePasswordTests: XCTestCase {
             if !contains {
                 XCTFail("Password \"Abcdefgh\" should pass the uppercase letter requirement")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testMissingLowercaseLetter() {
@@ -91,7 +91,7 @@ class ChangePasswordTests: XCTestCase {
             if contains {
                 XCTFail("Password \"ABCDEFGH\" should not pass the lowercase letter requirement")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testContainsLowercaseLetter() {
@@ -101,7 +101,7 @@ class ChangePasswordTests: XCTestCase {
             if !contains {
                 XCTFail("Password \"aBCDEFGH\" should pass the lowercase letter requirement")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testMissingNumber() {
@@ -111,7 +111,7 @@ class ChangePasswordTests: XCTestCase {
             if contains {
                 XCTFail("Password \"abcdefgh\" should not pass the number requirement")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testContainsNumber() {
@@ -121,7 +121,7 @@ class ChangePasswordTests: XCTestCase {
             if !contains {
                 XCTFail("Password \"abcdefg1\" should pass the number requirement")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testMissingSpecialCharacter() {
@@ -131,7 +131,7 @@ class ChangePasswordTests: XCTestCase {
             if contains {
                 XCTFail("Password \"abcd0123\" should not pass the special character requirement")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         // Ensure space doesn't count
         viewModel.newPassword.value = "abcd 1234"
@@ -139,7 +139,7 @@ class ChangePasswordTests: XCTestCase {
             if contains {
                 XCTFail("Password \"abcd 1234\" should not pass the special character requirement")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testContainsSpecialCharacter() {
@@ -149,7 +149,7 @@ class ChangePasswordTests: XCTestCase {
             if !contains {
                 XCTFail("Password \"abcd1234.\" should pass the special character requirement")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testPasswordMatchesUsername() {
@@ -160,7 +160,7 @@ class ChangePasswordTests: XCTestCase {
             if !matches {
                 XCTFail("Password \"multprem02\" should pass the matches username check")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         // Test case mismatch
         viewModel.newPassword.value = "mUltpRem02"
@@ -169,7 +169,7 @@ class ChangePasswordTests: XCTestCase {
             if !matches {
                 XCTFail("Password \"mUltpRem02\" (with capital letters) should pass the matches username check")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testPasswordDoesNotMatchUsername() {
@@ -179,7 +179,7 @@ class ChangePasswordTests: XCTestCase {
             if matches {
                 XCTFail("Password \"abcdefgh\" should fail the matches username check")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testEverythingValid() {
@@ -190,7 +190,7 @@ class ChangePasswordTests: XCTestCase {
             if !valid {
                 XCTFail("Password \"Abcdefg123\" should be a valid password")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         // Does not meet requirements
         viewModel.newPassword.value = "abcdefg123"
@@ -199,7 +199,7 @@ class ChangePasswordTests: XCTestCase {
             if valid {
                 XCTFail("Password \"abcdefg123\" should not be a valid password")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         // Meets requirements but matches username
         viewModel.newPassword.value = "Multprem02"
@@ -208,7 +208,7 @@ class ChangePasswordTests: XCTestCase {
             if valid {
                 XCTFail("Password \"Multprem02\" should not be a valid password because it matches the username")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     // This also effectively tests currentPasswordHasText() and confirmPasswordMatches()
@@ -221,7 +221,7 @@ class ChangePasswordTests: XCTestCase {
             if enabled {
                 XCTFail("Done button should not be enabled because current password is blank")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         // Confirm password does not match -> Disabled
         viewModel.newPassword.value = "Abcdefg123"
@@ -231,7 +231,7 @@ class ChangePasswordTests: XCTestCase {
             if enabled {
                 XCTFail("Done button should not be enabled because confirm password does not match")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.currentPassword.value = "Password2"
         viewModel.newPassword.value = "Abcdefg123"
@@ -241,7 +241,7 @@ class ChangePasswordTests: XCTestCase {
             if !enabled {
                 XCTFail("Done button should be enabled")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func testChangePasswordCurrentPasswordIncorrect() {

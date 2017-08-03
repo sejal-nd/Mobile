@@ -82,7 +82,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func fetchCurrentSelection() {
@@ -107,7 +107,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
                 }, onError: { error in
                     print(error.localizedDescription)
                 })
-                .addDisposableTo(self.disposeBag)
+                .disposed(by: self.disposeBag)
         }
         
         if AccountsStore.sharedInstance.currentAccount == nil {
@@ -119,7 +119,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
                 }, onError: { error in
                     print(error.localizedDescription)
                 })
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
         } else {
             fetchReleaseOfInfo()
         }

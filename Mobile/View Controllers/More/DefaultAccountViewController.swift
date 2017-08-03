@@ -29,13 +29,13 @@ class DefaultAccountViewController: UIViewController {
         
         viewModel.shouldShowLoadingIndicator
             .drive(onNext: showLoadingView)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.accounts.asDriver()
             .drive(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +111,7 @@ extension DefaultAccountViewController: UITableViewDelegate {
             }
             }
             .bind(onNext: { [weak self] account in self?.viewModel.changeDefaultAccount.onNext(account) })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     

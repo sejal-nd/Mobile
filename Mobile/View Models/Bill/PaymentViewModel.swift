@@ -167,7 +167,7 @@ class PaymentViewModel {
             }, onError: { _ in
                 self.isFetching.value = false
                 self.isError.value = true
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -190,8 +190,8 @@ class PaymentViewModel {
                         onSuccess()
                     }, onError: { err in
                         onError(err.localizedDescription)
-                    }).addDisposableTo(self.disposeBag)
-            }).addDisposableTo(disposeBag)
+                    }).disposed(by: self.disposeBag)
+            }).disposed(by: disposeBag)
         }
     }
     
@@ -243,8 +243,8 @@ class PaymentViewModel {
                                 self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
                             }
                             onError(err.localizedDescription)
-                        }).addDisposableTo(self.disposeBag)
-                }).addDisposableTo(self.disposeBag)
+                        }).disposed(by: self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }, onError: { (error: Error) in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
@@ -253,7 +253,7 @@ class PaymentViewModel {
                     onError(error.localizedDescription)
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     private func scheduleInlineCardPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -292,8 +292,8 @@ class PaymentViewModel {
                                 self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
                             }
                             onError(err.localizedDescription)
-                        }).addDisposableTo(self.disposeBag)
-                }).addDisposableTo(self.disposeBag)
+                        }).disposed(by: self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 
             }, onError: { error in
                 let serviceError = error as! ServiceError
@@ -303,7 +303,7 @@ class PaymentViewModel {
                     onError(error.localizedDescription)
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func enableOneTouchPay(walletItemID: String, onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
@@ -316,7 +316,7 @@ class PaymentViewModel {
             }, onError: { err in
                 onError?(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -327,7 +327,7 @@ class PaymentViewModel {
             }, onError: { err in
                 onError(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -344,8 +344,8 @@ class PaymentViewModel {
                     onSuccess()
                 }, onError: { err in
                     onError(err.localizedDescription)
-                }).addDisposableTo(self.disposeBag)
-        }).addDisposableTo(disposeBag)
+                }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     // MARK: - Shared Drivers

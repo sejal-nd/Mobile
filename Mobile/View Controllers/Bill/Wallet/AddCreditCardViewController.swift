@@ -53,7 +53,7 @@ class AddCreditCardViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
-        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).disposed(by: disposeBag)
 
         configureCardIO()
         
@@ -134,47 +134,47 @@ class AddCreditCardViewController: UIViewController {
     func bindAccessibility() {
         addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.addCardFormViewModel.nicknameErrorString().map{ $0 == nil }.subscribe(onNext: { valid in
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {

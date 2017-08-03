@@ -41,7 +41,7 @@ class BillViewModel {
 			.filter { $0 != .refresh }
 			.map { _ in nil }
 			.bind(to: currentAccountDetail)
-			.addDisposableTo(disposeBag)
+			.disposed(by: disposeBag)
 		
         let fetchAccountDetailResult = sharedFetchAccountDetail
             .flatMapLatest { _ in
@@ -54,7 +54,7 @@ class BillViewModel {
             
         fetchAccountDetailResult.elements()
 			.bind(to: currentAccountDetail)
-			.addDisposableTo(disposeBag)
+			.disposed(by: disposeBag)
         
         accountDetailErrorMessage = fetchAccountDetailResult.errors()
             .map { 
