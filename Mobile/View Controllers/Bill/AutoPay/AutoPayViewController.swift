@@ -204,6 +204,7 @@ class AutoPayViewController: UIViewController {
         tacLabel.font = SystemFont.regular.of(textStyle: .headline)
         tacLabel.setLineHeight(lineHeight: 25)
         tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollOffer.rawValue)
     }
     
     private func styleEnrolled() {

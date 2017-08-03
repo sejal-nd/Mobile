@@ -78,8 +78,10 @@ class SettingsViewController: UIViewController {
     func switchObserver(cell: SettingsTableViewCell, isOn: Bool) {
         if isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage())
+            Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
         } else {
             self.viewModel.disableTouchID()
+            Analytics().logScreenView(AnalyticsPageView.TouchIDDisable.rawValue)
         }
     }
     

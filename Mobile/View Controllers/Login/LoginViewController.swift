@@ -200,6 +200,7 @@ class LoginViewController: UIViewController {
                             touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
                                 self.viewModel.storePasswordInTouchIDKeychain()
                                 self.launchMainApp()
+                                Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
                             }))
                             self.present(touchIDAlert, animated: true, completion: nil)
                             self.viewModel.setShouldPromptToEnableTouchID(false)
@@ -214,6 +215,7 @@ class LoginViewController: UIViewController {
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
                                 self.viewModel.storePasswordInTouchIDKeychain()
                                 self.launchMainApp()
+                                Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
                             }))
                             self.present(differentAccountAlert, animated: true, completion: nil)
                         } else {
@@ -243,9 +245,11 @@ class LoginViewController: UIViewController {
                 })
             }))
             self.present(alertVC, animated: true, completion: nil)
+            Analytics().logScreenView(AnalyticsPageView.LoginError.rawValue)
         }, onError: { (title, message) in
             self.navigationController?.view.isUserInteractionEnabled = true
             self.showErrorAlertWith(title: title, message: message)
+            Analytics().logScreenView(AnalyticsPageView.LoginError.rawValue)
         })
     }
     
@@ -307,6 +311,7 @@ class LoginViewController: UIViewController {
     }
     
     func launchMainApp() {
+        Analytics().logScreenView(AnalyticsPageView.LoginComplete.rawValue)
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         self.present(viewController!, animated: true, completion: nil)
     }
@@ -428,6 +433,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
     func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Temporary password sent to your email", comment: ""))
+            Analytics().logScreenView(AnalyticsPageView.ForgotPasswordComplete.rawValue)
         })
     }
 }
@@ -436,6 +442,7 @@ extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDeleg
     
     func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String) {
         self.viewModel.username.value = username
+        Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAutoPopup.rawValue)
     }
 }
 
@@ -444,6 +451,7 @@ extension LoginViewController: ChangePasswordViewControllerDelegate {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
+            Analytics().logScreenView(AnalyticsPageView.ChangePasswordComplete.rawValue)
         })
     }
 }

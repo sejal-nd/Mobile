@@ -216,6 +216,7 @@ class ReportOutageViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthOffer.rawValue)
         
         // METER PING
         if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
@@ -302,6 +303,7 @@ class ReportOutageViewController: UIViewController {
             LoadingView.hide()
             self.delegate?.reportOutageViewControllerDidReportOutage(self)
             _ = self.navigationController?.popViewController(animated: true)
+            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
         }) { errorMessage in
             LoadingView.hide()
             let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
