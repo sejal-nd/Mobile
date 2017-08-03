@@ -102,7 +102,7 @@ class HomeBillCardViewModel {
             return Driver.just(false)
         } else {
             return self.workDayEvents.elements()
-                .map { !$0.filter(NSCalendar.current.isDateInToday).isEmpty }
+                .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty }
                 .asDriver(onErrorDriveWith: .empty())
         }
     }()
