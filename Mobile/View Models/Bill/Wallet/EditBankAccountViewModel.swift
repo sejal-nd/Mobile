@@ -40,7 +40,7 @@ class EditBankAccountViewModel {
             }, onError: { err in
                 onError(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func enableOneTouchPay(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -53,7 +53,7 @@ class EditBankAccountViewModel {
             }, onError: { err in
                 onError(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func deleteOneTouchPay(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -64,7 +64,7 @@ class EditBankAccountViewModel {
             }, onError: { err in
                 onError(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func getOneTouchDisplayString() -> String {

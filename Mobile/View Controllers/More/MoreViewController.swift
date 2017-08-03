@@ -53,22 +53,22 @@ class MoreViewController: UIViewController {
             .drive(onNext: {
                 self.performSegue(withIdentifier: "settingsSegue", sender: self)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         contactUsButton.rx.touchUpInside.asDriver()
             .drive(onNext: {
                 self.performSegue(withIdentifier: "contactUsSegue", sender: self)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         termAndPoliciesButton.rx.touchUpInside.asDriver()
             .drive(onNext: {
                 self.performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         signOutButton.rx.touchUpInside.asDriver()
             .drive(onNext: {
                 self.onSignOutPress()
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     
@@ -86,7 +86,7 @@ class MoreViewController: UIViewController {
             appDelegate.resetNavigation()
         }, onError: { (error) in
             print("Logout Error: \(error)")
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

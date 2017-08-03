@@ -48,7 +48,7 @@ class AddBankFormViewModel {
                 self.nickname.value = ""
                 self.oneTouchPay.value = false
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func accountHolderNameHasText() -> Observable<Bool> {
@@ -132,7 +132,7 @@ class AddBankFormViewModel {
                 onSuccess()
             }, onError: { (error: Error) in
                 onError()
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
 
     

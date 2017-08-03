@@ -10,7 +10,7 @@ import UIKit
 
 class WalletTableViewCell: UITableViewCell {
     
-    @IBOutlet private weak var innerContentView: UIView!
+    @IBOutlet weak var innerContentView: ButtonControl!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var accountNumberLabel: UILabel!
@@ -139,8 +139,7 @@ class WalletTableViewCell: UITableViewCell {
         
         oneTouchPayView.isHidden = true // Calculated in cellForRowAtIndexPath
         
-        accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"
-        accessibilityTraits = UIAccessibilityTraitButton
+        innerContentView.accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"
     }
     
 }

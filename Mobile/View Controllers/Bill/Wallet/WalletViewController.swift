@@ -175,29 +175,40 @@ class WalletViewController: UIViewController {
     }
     
     func setupBinding() {
-        viewModel.isFetchingWalletItems.map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetchingWalletItems.map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         
-        viewModel.shouldShowEmptyState.map(!).drive(emptyStateScrollView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowEmptyState.map(!).drive(emptyStateScrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowWallet.drive(onNext: { shouldShow in
             if shouldShow {
                 self.tableView.reloadData()
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
-        viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).addDisposableTo(disposeBag)
-        viewModel.addBankDisabled.map(!).drive(miniBankButton.rx.isEnabled).addDisposableTo(disposeBag)
-        viewModel.addBankDisabled.map(!).drive(bankButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.addBankDisabled.map(!).drive(miniBankButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.addBankDisabled.map(!).drive(bankButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     func setupButtonTaps() {
         Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver()).drive(onNext: {
             self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver()).drive(onNext: {
             self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
+    }
+    
+    func onWalletItemPress(sender: ButtonControl) {
+        if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
+            selectedWalletItem = walletItems[sender.tag]
+            if selectedWalletItem!.bankOrCard == .card {
+                self.performSegue(withIdentifier: "editCreditCardSegue", sender: self)
+            } else {
+                self.performSegue(withIdentifier: "editBankAccountSegue", sender: self)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -280,23 +291,18 @@ extension WalletViewController: UITableViewDataSource {
         
         let walletItem = viewModel.walletItems.value![indexPath.section]
         cell.bindToWalletItem(walletItem, billingInfo: viewModel.accountDetail.billingInfo)
+        cell.innerContentView.tag = indexPath.section
+        cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
+        cell.innerContentView.addTarget(self, action: #selector(onWalletItemPress(sender:)), for: .touchUpInside)
         
         cell.oneTouchPayView.isHidden = !walletItem.isDefault
         if walletItem.isDefault {
-            let a11yLabel = cell.accessibilityLabel!
-            cell.accessibilityLabel = a11yLabel + ", One Touch Pay account"
+            if let a11yLabel = cell.innerContentView.accessibilityLabel {
+                cell.innerContentView.accessibilityLabel = a11yLabel + ", One Touch Pay account"
+            }
         }
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedWalletItem = viewModel.walletItems.value![indexPath.section]
-        if selectedWalletItem?.bankOrCard == .card {
-            self.performSegue(withIdentifier: "editCreditCardSegue", sender: self)
-        } else {
-            self.performSegue(withIdentifier: "editBankAccountSegue", sender: self)
-        }
     }
     
 }

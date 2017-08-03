@@ -33,7 +33,9 @@ class TemplateCardViewModel {
         case .bge:
             if(accountDetail.isResidential) {
                 switch accountDetail.peakRewards {
-                case "HONEYWELL WIFI"?: //"legacy" account
+                case "HONEYWELL WIFI"?:
+                    fallthrough
+                case "ACTIVE"?: //"legacy" account
                     return #imageLiteral(resourceName: "PeakRewards Legacy Tstat - shutterstock_541239523")
                 case "ECOBEE WIFI"?:
                     return #imageLiteral(resourceName: "PeakRewards WiFi TStat - Ecobee3lite")
