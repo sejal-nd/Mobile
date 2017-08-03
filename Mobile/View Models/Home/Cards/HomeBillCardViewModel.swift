@@ -165,6 +165,10 @@ class HomeBillCardViewModel {
                 let billingInfo = accountDetail.billingInfo
                 let opco = Environment.sharedInstance.opco
                 
+                if RecentPaymentsStore.shared[account] != nil {
+                    return .billPaidIntermediate
+                }
+                
                 if opco != .bge && (billingInfo.restorationAmount ?? 0) > 0 {
                     return .restoreService
                 }
@@ -200,10 +204,6 @@ class HomeBillCardViewModel {
                 
                 if (billingInfo.netDueAmount ?? 0) == 0, let lastPaymentAmount = billingInfo.lastPaymentAmount {
                     return .billPaid
-                }
-                
-                if RecentPaymentsStore.shared[account] != nil {
-                    return .billPaidIntermediate
                 }
                 
                 if opco == .bge && account.isMultipremise {
