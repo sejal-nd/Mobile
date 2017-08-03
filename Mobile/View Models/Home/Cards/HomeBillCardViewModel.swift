@@ -40,8 +40,13 @@ class HomeBillCardViewModel {
         self.fetchingTracker = fetchingTracker
     }
     
-    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.account.map { _ in () }
-        .flatMapLatest(self.fetchOTPWalletItem)
+    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.account
+        .flatMapLatest { [unowned self] _ in
+            self.walletService.fetchWalletItems()
+                .trackActivity(self.fetchingTracker)
+                .map { $0.first(where: { $0.isDefault }) }
+                .materialize()
+        }
         .shareReplay(1)
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents
@@ -59,35 +64,13 @@ class HomeBillCardViewModel {
             .materialize()
             .share()
     
-    private func fetchOTPWalletItem() -> Observable<Event<WalletItem?>> {
-        return walletService.fetchWalletItems()
-            .debug("fetch wallet item")
-            .trackActivity(fetchingTracker)
-            .map { $0.first(where: { $0.isDefault }) }
-            .materialize()
-    }
-    
-    private func fetchWorkDays() -> Observable<Event<[Date]>> {
-        return paymentService.fetchWorkdays()
-            .debug("fetch work days")
-            .trackActivity(fetchingTracker)
-            .materialize()
-    }
-    
-    private lazy var workDayEvents: Observable<Event<[Date]>> = self.account.map { _ in () }
-        .flatMapLatest(self.fetchWorkDays)
+    private lazy var workDayEvents: Observable<Event<[Date]>> = self.account
+        .flatMapLatest { [unowned self] _ in
+            self.paymentService.fetchWorkdays()
+                .trackActivity(self.fetchingTracker)
+                .materialize()
+        }
         .shareReplay(1)
-    
-    private func schedulePayment(_ payment: Payment) -> Observable<Event<Void>> {
-        let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
-        return paymentService.schedulePayment(payment: payment)
-            .do(onNext: {
-                RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] = paymentDetails
-            })
-            .map { _ in () }
-            .trackActivity(paymentTracker)
-            .materialize()
-    }
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
         .withLatestFrom(Observable.combineLatest(self.accountDetailElements, self.walletItem.unwrap()))
@@ -103,7 +86,16 @@ class HomeBillCardViewModel {
                     walletItemId: walletItem.walletItemID!,
                     cvv: nil)
         }
-        .flatMapLatest(self.schedulePayment)
+        .flatMapLatest { [unowned self] payment in
+            self.paymentService.schedulePayment(payment: payment)
+                .do(onNext: {
+                    let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
+                    RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] = paymentDetails
+                })
+                .map { _ in () }
+                .trackActivity(self.paymentTracker)
+                .materialize()
+    }
     
     private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
         if Environment.sharedInstance.opco != .peco {
