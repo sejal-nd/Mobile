@@ -26,8 +26,8 @@ struct Account: Mappable, Equatable, Hashable {
     let isLinked: Bool
     let isDefault: Bool
     let isFinaled: Bool
-    //let isStopped: Bool // Not sure the status of this. Will BGE accounts just send `flagFinaled` or will it be different?
-    
+    let isResidential: Bool
+
     init(map: Mapper) throws {
         accountNumber = try map.from("accountNumber")
         address = map.optionalFrom("address")
@@ -37,7 +37,7 @@ struct Account: Mappable, Equatable, Hashable {
         isLinked = map.optionalFrom("isLinkedProfile") ?? false
         isDefault = map.optionalFrom("isDefaultProfile") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false
-        //isStopped = map.optionalFrom("isStoppedFlag") ?? false
+        isResidential = map.optionalFrom("isResidential") ?? false
         
         currentPremise = isMultipremise ? premises[0] : nil 
     }

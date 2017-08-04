@@ -29,6 +29,7 @@ class AccountPicker: UIView {
 
     var pageViews = [UIView]()
     
+    var advancedAccountIconImageView: UIImageView?
     var advancedAccountNumberLabel: UILabel?
     var advancedAccountAddressLabel: UILabel?
     var advancedAccountButton: UIButton?
@@ -126,7 +127,7 @@ class AccountPicker: UIView {
     }
     
     private func addAccountToScrollView(_ account: Account, advancedPicker: Bool = false) {
-        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
+        let commercialUser = !account.isResidential
         
         let pageView = UIView(frame: .zero)
         pageViews.append(pageView)
@@ -191,6 +192,7 @@ class AccountPicker: UIView {
         addressLabel.widthAnchor.constraint(equalTo: accountNumberLabel.widthAnchor, multiplier: 1.2).isActive = true
         
         if advancedPicker { // Makes area tappable and adds caret icon
+            advancedAccountIconImageView = iconImageView
             advancedAccountNumberLabel = accountNumberLabel
             advancedAccountAddressLabel = addressLabel
             
@@ -262,6 +264,25 @@ extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
         AccountsStore.sharedInstance.currentAccount = account
         
         // Update advanced account picker
+        let icon: UIImage
+        let a11yDescription: String
+        switch (!account.isResidential, tintWhite) {
+        case (true, true):
+            icon = #imageLiteral(resourceName: "ic_commercial_white")
+            a11yDescription = NSLocalizedString("Commercial account", comment: "")
+        case (true, false):
+            icon = #imageLiteral(resourceName: "ic_commercial")
+            a11yDescription = NSLocalizedString("Commercial account", comment: "")
+        case (false, true):
+            icon = #imageLiteral(resourceName: "ic_residential_white")
+            a11yDescription = NSLocalizedString("Residential account", comment: "")
+        case (false, false):
+            icon = #imageLiteral(resourceName: "ic_residential")
+            a11yDescription = NSLocalizedString("Residential account", comment: "")
+        }
+        advancedAccountIconImageView?.image = icon
+        advancedAccountIconImageView?.accessibilityLabel = a11yDescription
+        
         advancedAccountNumberLabel?.text = account.accountNumber
         if account.currentPremise != nil {
             advancedAccountAddressLabel?.text = account.currentPremise?.addressGeneral ?? " "
