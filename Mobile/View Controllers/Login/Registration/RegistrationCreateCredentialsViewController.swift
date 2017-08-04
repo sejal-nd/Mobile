@@ -179,6 +179,8 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             if self.confirmPasswordTextField.textField.hasText {
                 if matches {
                     self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
+                    self.confirmPasswordTextField.setError(nil)
+                    self.accessibilityErrorLabel()
                 } else {
                     self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
                     self.accessibilityErrorLabel()
@@ -322,6 +324,11 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
         primaryProfileSwitch.rx.isOn.bind(to: viewModel.primaryProfile).disposed(by: disposeBag)
+        
+        primaryProfileLabel.isAccessibilityElement = false
+        primaryProfileSwitch.isAccessibilityElement = true
+        primaryProfileSwitch.accessibilityLabel = NSLocalizedString("Set as primary profile for this account", comment: "")
+        
     }
     
     private func accessibilityErrorLabel() {
