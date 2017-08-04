@@ -107,8 +107,10 @@ class EditCreditCardViewController: UIViewController {
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
         accountIDLabel.textColor = .blackText
+        accountIDLabel.font = OpenSans.regular.of(textStyle: .title1)
         oneTouchPayCardLabel.textColor = .blackText
         oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
+        oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .footnote)
         nicknameLabel.textColor = .blackText
         nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
@@ -135,11 +137,13 @@ class EditCreditCardViewController: UIViewController {
         expDateLabel.text = NSLocalizedString("Expiration Date", comment: "")
         
         expMonthTextField.textField.placeholder = NSLocalizedString("MM*", comment: "")
+        expMonthTextField.textField.customAccessibilityLabel = NSLocalizedString("Month, two digits", comment: "")
         expMonthTextField.textField.delegate = self
         expMonthTextField.setKeyboardType(.numberPad)
         expMonthTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         expYearTextField.textField.placeholder = NSLocalizedString("YYYY*", comment: "")
+        expYearTextField.textField.customAccessibilityLabel = NSLocalizedString("Year, four digits", comment: "")
         expYearTextField.textField.delegate = self
         expYearTextField.setKeyboardType(.numberPad)
         expYearTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)

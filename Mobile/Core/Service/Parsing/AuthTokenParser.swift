@@ -91,7 +91,6 @@ class AuthTokenParser : NSObject {
         UserDefaults.standard.set(customerIdentifier, forKey: UserDefaultKeys.CustomerIdentifier)
         AccountsStore.sharedInstance.customerIdentifier = customerIdentifier
         
-        UserDefaults.standard.set(profileType == "commercial", forKey: UserDefaultKeys.IsCommercialUser)
         if profileType != "commercial" && profileType != "residential" {
             return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
         }

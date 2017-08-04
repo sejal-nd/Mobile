@@ -103,7 +103,7 @@ class HomeViewModel {
         .asDriver(onErrorJustReturn: nil)
     
     private(set) lazy var shortForecast: Driver<String?> = self.weatherEvents.elements()
-        .map { $0.shortForecast }
+        .map { $0.accessibilityName }
         .asDriver(onErrorJustReturn: nil)
     
     private lazy var weatherSuccess: Driver<Bool> = Observable.merge(self.accountDetailEvents.errors().map { _ in false },

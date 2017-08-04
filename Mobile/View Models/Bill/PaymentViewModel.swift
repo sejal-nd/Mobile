@@ -298,7 +298,7 @@ class PaymentViewModel {
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
-                    onDuplicate(NSLocalizedString("Duplicate Credit Card", comment: ""), error.localizedDescription)
+                    onDuplicate(NSLocalizedString("Duplicate Card", comment: ""), error.localizedDescription)
                 } else {
                     onError(error.localizedDescription)
                 }

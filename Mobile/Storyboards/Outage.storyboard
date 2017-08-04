@@ -44,7 +44,7 @@
                                                             <rect key="frame" x="0.0" y="11.5" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="3rb-pe-paZ"/>
-                                                                <constraint firstAttribute="width" constant="20" id="JD9-yn-v9B"/>
+                                                                <constraint firstAttribute="width" priority="999" constant="20" id="JD9-yn-v9B"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IyZ-ku-oCt">

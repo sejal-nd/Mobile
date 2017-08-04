@@ -26,9 +26,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var forgotUsernameButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var eyeballButton: UIButton!
-    @IBOutlet weak var touchIDImage: UIImageView!
     @IBOutlet weak var touchIDLabel: UILabel!
-    @IBOutlet weak var touchIDView: UIView!
+    @IBOutlet weak var touchIDButton: ButtonControl!
     @IBOutlet weak var loginFormViewHeightConstraint: NSLayoutConstraint!
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService(), registrationService: ServiceFactory.createRegistrationService())
@@ -42,11 +41,16 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(verifyAccountNotificationReceived), name: NSNotification.Name.DidTapAccountVerificationDeepLink, object: nil)
         
         view.backgroundColor = .primaryColor
-        
-        if !viewModel.isTouchIDEnabled() {
-            touchIDView.isHidden = true
-            loginFormViewHeightConstraint.constant = 390
-        }
+
+        viewModel.touchIdEnabled.asObservable().subscribe(onNext: { touchIDEnabled in
+            if touchIDEnabled {
+                self.touchIDButton.isHidden = false
+                self.loginFormViewHeightConstraint.constant = 420
+            } else {
+                self.touchIDButton.isHidden = true
+                self.loginFormViewHeightConstraint.constant = 390
+            }
+        }).disposed(by: disposeBag)
         
         loginFormView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
         loginFormView.layer.cornerRadius = 2
@@ -115,7 +119,7 @@ class LoginViewController: UIViewController {
         forgotPasswordButton.tintColor = .actionBlue
         
         touchIDLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
-        touchIDLabel.isAccessibilityElement = false // The button itself will read "Touch ID"
+        touchIDButton.accessibilityLabel = NSLocalizedString("Touch ID", comment: "")
 
         checkForMaintenanceMode()
     }
@@ -148,6 +152,8 @@ class LoginViewController: UIViewController {
         self.signInButton.accessibilityViewIsModal = false;
         self.passwordTextField.textField.text = ""
         self.passwordTextField.textField.sendActions(for: .editingChanged)
+        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -294,20 +300,8 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func onTouchIDPress(_ sender: UIButton) {
-        touchIDImage.alpha = 1.0
-        touchIDLabel.alpha = 1.0
+    @IBAction func onTouchIDPress() {
         presentTouchIDPrompt()
-    }
-    
-    @IBAction func onTouchIDTouchDown(_ sender: UIButton) {
-        touchIDImage.alpha = 0.5
-        touchIDLabel.alpha = 0.5
-    }
-    
-    @IBAction func onTouchIDTouchCancel(_ sender: UIButton) {
-        touchIDImage.alpha = 1.0
-        touchIDLabel.alpha = 1.0
     }
     
     func launchMainApp() {

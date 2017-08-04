@@ -136,6 +136,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             self.viewModel.loadAccounts(onSuccess: { _ in
                 let opco = Environment.sharedInstance.opco
                 
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+                
                 if (opco == .peco || opco == .comEd) && self.viewModel.accountType.value == "commercial" {
                     self.scrollView.isHidden = false
                     self.loadingIndicator.isHidden = true

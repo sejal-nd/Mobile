@@ -158,6 +158,7 @@ class WalletViewController: UIViewController {
             } else {
                 headerView.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: 0.01) // Must be 0.01 to remove empty space when hidden
             }
+            tableView.tableHeaderView = tableView.tableHeaderView;
         }
         
         // Dynamic sizing for the table footer view
@@ -296,11 +297,6 @@ extension WalletViewController: UITableViewDataSource {
         cell.innerContentView.addTarget(self, action: #selector(onWalletItemPress(sender:)), for: .touchUpInside)
         
         cell.oneTouchPayView.isHidden = !walletItem.isDefault
-        if walletItem.isDefault {
-            if let a11yLabel = cell.innerContentView.accessibilityLabel {
-                cell.innerContentView.accessibilityLabel = a11yLabel + ", One Touch Pay account"
-            }
-        }
         
         return cell
     }

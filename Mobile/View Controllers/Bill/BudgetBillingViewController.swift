@@ -40,6 +40,8 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var enrollSwitch: Switch!
     @IBOutlet weak var accountIcon: UIImageView!
     
+    @IBOutlet weak var accountInfo: UIView!
+    
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
@@ -103,8 +105,7 @@ class BudgetBillingViewController: UIViewController {
         }).disposed(by: disposeBag)
         whatIsBudgetBillingButton.accessibilityLabel = NSLocalizedString("What is budget billing?", comment: "")
         
-        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
-        accountIcon.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial Account", comment: "") : NSLocalizedString("Residential Account", comment: "")
+        accountIcon.accessibilityLabel = accountDetail.isResidential ? NSLocalizedString("Residential Account", comment: "") : NSLocalizedString("Commercial Account", comment: "")
         
         whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
@@ -148,6 +149,8 @@ class BudgetBillingViewController: UIViewController {
                 })
             }).disposed(by: disposeBag)
         }
+        
+        accountInfo.accessibilityElements = [accountIcon, accountNumberLabel, addressLabel, enrollSwitch]
         
         // BGE Footer View when user is enrolled
         bgeFooterView.isHidden = true // Will be unhidden when the web services call completes
