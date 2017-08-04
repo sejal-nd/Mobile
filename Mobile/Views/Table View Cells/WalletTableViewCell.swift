@@ -28,6 +28,7 @@ class WalletTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
+        backgroundColor = .clear
         contentView.backgroundColor = .clear
         
         innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
@@ -105,7 +106,7 @@ class WalletTableViewCell: UITableViewCell {
                 a11yLabel = NSLocalizedString("Saved bank account", comment: "")
             }
         }
-        
+
         // Nickname
         if let nickname = walletItem.nickName {
             nicknameLabel.text = nickname.uppercased()
@@ -138,6 +139,9 @@ class WalletTableViewCell: UITableViewCell {
         }
         
         oneTouchPayView.isHidden = true // Calculated in cellForRowAtIndexPath
+        if walletItem.isDefault {
+            a11yLabel += NSLocalizedString(", One touch pay account", comment: "")
+        }
         
         innerContentView.accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"
     }

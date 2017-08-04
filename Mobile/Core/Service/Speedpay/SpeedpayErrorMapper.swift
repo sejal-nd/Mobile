@@ -27,7 +27,6 @@ class SpeedpayErrorMapper : NSObject, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if (elementName as String == "item") {
-            SpeedpayErrorMapper.speedpayError!.text = SpeedpayErrorMapper.speedpayError!.text
             items.append(SpeedpayErrorMapper.speedpayError!)
             SpeedpayErrorMapper.speedpayError = nil
         }
