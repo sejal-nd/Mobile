@@ -37,7 +37,7 @@ class DateDisclosureButton: ButtonControl {
     
     func accessibilityUpdate(dateLabel: String) {
         self.isAccessibilityElement = true
-        self.accessibilityLabel = "\(dateDisclosureLabel.text ?? ""): \(dateLabel)"
+        self.accessibilityLabel = NSLocalizedString("\(dateDisclosureLabel.text ?? ""): \(dateLabel)", comment: "")
     }
 
 }

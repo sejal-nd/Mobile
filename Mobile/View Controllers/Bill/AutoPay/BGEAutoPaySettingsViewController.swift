@@ -110,7 +110,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         systemBack.addTarget(self, action: #selector(onBackPress), for: .touchUpInside)
         let backButton = UIBarButtonItem(customView: systemBack)
         backButton.isAccessibilityElement = true
-        backButton.accessibilityLabel = "Back"
+        backButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
         let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         negativeSpacer.width = -8
         navigationItem.leftBarButtonItems = [negativeSpacer, backButton]
@@ -136,15 +136,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        accessibilitySetup()
-        
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    private func accessibilitySetup() {
     }
     
     func loadSettings() {
