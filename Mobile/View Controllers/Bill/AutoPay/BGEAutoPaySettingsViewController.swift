@@ -109,6 +109,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
         let systemBack = Bundle.main.loadNibNamed("UINavigationBackButton", owner: self, options: nil)![0] as! UINavigationBackButton
         systemBack.addTarget(self, action: #selector(onBackPress), for: .touchUpInside)
         let backButton = UIBarButtonItem(customView: systemBack)
+        backButton.isAccessibilityElement = true
+        backButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
         let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         negativeSpacer.width = -8
         navigationItem.leftBarButtonItems = [negativeSpacer, backButton]
@@ -133,6 +135,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
                 }
             }
         }).disposed(by: disposeBag)
+        
     }
     
     deinit {
@@ -182,6 +185,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         if let date = viewModel.autoPayUntilDate.value {
              untilDateButton.selectedDateLabel.text = date.mmDdYyyyString
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM dd, yyyy"
+            untilDateButton.accessibilityUpdate(dateLabel: dateFormatter.string(from: date) + ", selected")
         }
     
         //
@@ -821,6 +827,9 @@ extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
         viewModel.userDidChangeSettings.value = true
         viewModel.autoPayUntilDate.value = date
         untilDateButton.selectedDateLabel.text = date.mmDdYyyyString
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        untilDateButton.accessibilityUpdate(dateLabel: dateFormatter.string(from: date) + ", selected")
     }
 }
 

@@ -105,6 +105,8 @@ class AutoPayViewController: UIViewController {
             .drive(view.rx.backgroundColor)
             .disposed(by: bag)
         
+        accessibilitySetup()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -196,6 +198,11 @@ class AutoPayViewController: UIViewController {
         footerLabel.setLineHeight(lineHeight: 16)
     }
     
+    private func accessibilitySetup() {
+        learnMoreButton.isAccessibilityElement = true
+        learnMoreButton.accessibilityLabel = learnMoreLabel.text
+    }
+    
     private func styleNotEnrolled() {
         topLabel.font = OpenSans.semibold.of(textStyle: .headline)
         topLabel.setLineHeight(lineHeight: 24)
@@ -208,11 +215,12 @@ class AutoPayViewController: UIViewController {
     
     private func styleEnrolled() {
         enrollmentStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
-        enrolledTopLabel.font = OpenSans.regular.of(textStyle: .body)
+        enrolledTopLabel.font = OpenSans.regular.of(textStyle: .headline)
         enrolledTopLabel.setLineHeight(lineHeight: 16)
         
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        reasonForStoppingLabel.sizeToFit()
     }
     
     private func textFieldSetup() {

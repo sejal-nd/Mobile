@@ -42,6 +42,13 @@ class RadioSelectControl: ButtonControl {
 		didSet {
 			selectedImageView.image = isSelected ? #imageLiteral(resourceName: "ic_radiobutton_selected"):#imageLiteral(resourceName: "ic_radiobutton_deselected")
 			detailButton.isHidden = !isSelected || detailButtonTitle == nil
+            if isSelected && !detailButton.isHidden {
+                self.isAccessibilityElement = false
+                detailButton.isAccessibilityElement = true
+                self.accessibilityElements = [titleLabel, detailButton]
+            } else {
+                accessibilitySetup()
+            }
 		}
 	}
     
@@ -91,7 +98,14 @@ class RadioSelectControl: ButtonControl {
 		detailButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
 		
 		detailButton.isHidden = true
+        
+        accessibilitySetup()
 	}
+    
+    private func accessibilitySetup() {
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = titleLabel.text ?? ""
+    }
 	
 	
 	override var intrinsicContentSize: CGSize {
