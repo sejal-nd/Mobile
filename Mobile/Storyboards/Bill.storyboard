@@ -3226,6 +3226,7 @@ Budget Billing?</string>
                         <outlet property="accDifferenceTitleLabel" destination="Ftt-GZ-Ja8" id="8u3-eP-Fwa"/>
                         <outlet property="accountBackgroundView" destination="KdW-Vl-d7M" id="FgI-eB-CMZ"/>
                         <outlet property="accountIcon" destination="kA6-ia-Qtf" id="Ubj-J3-6hs"/>
+                        <outlet property="accountInfo" destination="zan-Py-Jsh" id="AZ6-ab-ogt"/>
                         <outlet property="accountNumberLabel" destination="fjM-47-Thp" id="sQQ-6Y-H3a"/>
                         <outlet property="addressLabel" destination="1AR-tP-Mrr" id="QDr-l4-R7M"/>
                         <outlet property="amountDescriptionLabel" destination="M4h-Cf-jR8" id="sFt-yC-wo5"/>
