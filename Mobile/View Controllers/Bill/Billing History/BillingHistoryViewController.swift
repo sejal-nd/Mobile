@@ -54,6 +54,10 @@ class BillingHistoryViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        Analytics().logScreenView(AnalyticsPageView.BillingOfferComplete.rawValue)
+    }
+    
     func getBillingHistory() {
         self.loadingIndicator.isHidden = false;
         self.tableView.isHidden = true;

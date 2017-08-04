@@ -312,6 +312,12 @@ class ReportOutageViewController: UIViewController {
         }
     }
     
+    @IBAction func switchPressed(sender: AnyObject) {
+        if(sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn) {
+            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthCircuitBreak.rawValue)
+        }
+    }
+    
     // MARK: - ScrollView
     
     func keyboardWillShow(notification: Notification) {

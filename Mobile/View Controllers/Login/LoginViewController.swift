@@ -245,6 +245,7 @@ class LoginViewController: UIViewController {
                 self.viewModel.resendValidationEmail(onSuccess: {
                     LoadingView.hide()
                     self.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
+                    Analytics().logScreenView(AnalyticsPageView.RegisterResendEmail.rawValue)
                 }, onError: { errMessage in
                     LoadingView.hide()
                     self.showErrorAlertWith(title: NSLocalizedString("Error", comment: ""), message: errMessage)
@@ -349,6 +350,7 @@ class LoginViewController: UIViewController {
                 viewModel.validateRegistration(guid: guid, onSuccess: {
                     LoadingView.hide()
                     self.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
+                    Analytics().logScreenView(AnalyticsPageView.RegisterAccountVerify.rawValue)
                 }, onError: { title, message in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)

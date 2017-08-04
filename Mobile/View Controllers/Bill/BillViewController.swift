@@ -533,11 +533,13 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController) {
         viewModel.fetchAccountDetail(isRefresh: false)
         showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
+        Analytics().logScreenView(AnalyticsPageView.BudgetBillEnrollComplete.rawValue)
     }
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
         viewModel.fetchAccountDetail(isRefresh: false)
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
+        Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOffer.rawValue)
     }
 }
 
@@ -548,8 +550,10 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
         switch didChangeStatus {
         case .Enroll:
             toastMessage = NSLocalizedString("Enrolled in Paperless eBill", comment: "")
+            Analytics().logScreenView(AnalyticsPageView.EBillEnrollComplete.rawValue)
         case .Unenroll:
             toastMessage = NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
+            Analytics().logScreenView(AnalyticsPageView.EBillUnEnrollComplete.rawValue)
         case .Mixed:
             toastMessage = NSLocalizedString("Paperless eBill changes saved", comment: "")
         }

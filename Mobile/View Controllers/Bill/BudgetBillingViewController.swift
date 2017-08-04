@@ -296,8 +296,10 @@ class BudgetBillingViewController: UIViewController {
     func onSubmitPress() {
         if viewModel.enrolling.value {
             LoadingView.show()
+            Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOffer.rawValue)
             viewModel.enroll(onSuccess: {
                 LoadingView.hide()
+                Analytics().logScreenView(AnalyticsPageView.BudgetBillEnrollOffer.rawValue)
                 self.delegate?.budgetBillingViewControllerDidEnroll(self)
                 self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
@@ -315,13 +317,15 @@ class BudgetBillingViewController: UIViewController {
                 message = bgeDynamicUnenrollMessage ?? ""
             }
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
+                Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollCancel.rawValue);}))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { _ in
                 LoadingView.show()
                 self.viewModel.unenroll(onSuccess: {
                     LoadingView.hide()
                     self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                     self.navigationController?.popViewController(animated: true)
+                    Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOK.rawValue)
                 }, onError: { errMessage in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
