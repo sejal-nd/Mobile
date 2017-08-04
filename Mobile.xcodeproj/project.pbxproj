@@ -72,12 +72,6 @@
 		0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D41F1FE98A004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
-		0D88FB571F337245008CB21E /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB561F337245008CB21E /* MinimumVersion.swift */; };
-		0D88FB581F337245008CB21E /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB561F337245008CB21E /* MinimumVersion.swift */; };
-		0D88FB591F337245008CB21E /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB561F337245008CB21E /* MinimumVersion.swift */; };
-		0D88FB5B1F337894008CB21E /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB5A1F337894008CB21E /* SplashViewModel.swift */; };
-		0D88FB5C1F337894008CB21E /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB5A1F337894008CB21E /* SplashViewModel.swift */; };
-		0D88FB5D1F337894008CB21E /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D88FB5A1F337894008CB21E /* SplashViewModel.swift */; };
 		225FF85A1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85B1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85C1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
@@ -1048,6 +1042,14 @@
 		E8EDC5461F324242006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
 		E8EDC5471F324DEE006DD927 /* SpeedpayErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */; };
 		E8EDC5481F324DFB006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
+		E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		E8EDC54C1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		E8EDC54D1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
+		E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
+		E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
+		E8EDC5521F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
 		E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
@@ -1136,8 +1138,6 @@
 		0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewController.swift; sourceTree = "<group>"; };
 		0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewModel.swift; sourceTree = "<group>"; };
 		0D79C6D01F1FB761004793DD /* Maintenance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maintenance.swift; sourceTree = "<group>"; };
-		0D88FB561F337245008CB21E /* MinimumVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimumVersion.swift; sourceTree = "<group>"; };
-		0D88FB5A1F337894008CB21E /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
@@ -1589,6 +1589,8 @@
 		E8EDC5391F32405D006DD927 /* speedpay_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speedpay_errors.xml; sourceTree = "<group>"; };
 		E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedpayErrorMapper.swift; sourceTree = "<group>"; };
 		E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservErrorMapper.swift; sourceTree = "<group>"; };
+		E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimumVersion.swift; sourceTree = "<group>"; };
+		E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E8EEF7151E566FD8006804D4 /* FingerprintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
 		E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -2516,6 +2518,7 @@
 		B5AC06ED1E52766A00BBA4ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */,
 				2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */,
 				2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */,
 				E80D2E2B1E72FEC5002626C9 /* Account.swift */,
@@ -2532,7 +2535,6 @@
 				2FEC69401F056EEB00C059DC /* Premise.swift */,
 				B5D07CB11F0EC2F10018B02D /* Payment.swift */,
 				0D79C6D01F1FB761004793DD /* Maintenance.swift */,
-				0D88FB561F337245008CB21E /* MinimumVersion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2852,13 +2854,13 @@
 		E8EEF70B1E565BE7006804D4 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */,
 				2FA5D8671F17DB5400A8B16B /* Home */,
 				82A18E6E1EB9192500BE9F21 /* Login */,
 				82A18E581EB9186000BE9F21 /* Bill */,
 				82A18E651EB918D400BE9F21 /* Outage */,
 				82A18E6F1EB9192B00BE9F21 /* More */,
 				0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */,
-				0D88FB5A1F337894008CB21E /* SplashViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -3030,6 +3032,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3526,6 +3529,7 @@
 				E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				826DCCF21F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
@@ -3577,7 +3581,6 @@
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E8EDC5401F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */,
-				0D88FB571F337245008CB21E /* MinimumVersion.swift in Sources */,
 				E803A0041EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E81F38131ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				E873DA751EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
@@ -3595,6 +3598,7 @@
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B261EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				E887C9F21ED5D367002433A3 /* CardIO.m in Sources */,
+				E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				825171A81F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
@@ -3619,7 +3623,6 @@
 				82156F1D1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				0D79C6D11F1FB761004793DD /* Maintenance.swift in Sources */,
-				0D88FB5B1F337894008CB21E /* SplashViewModel.swift in Sources */,
 				825171B91F1D25280020A6CA /* HomeBillCardViewModel.swift in Sources */,
 				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				54036BAD1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
@@ -3745,6 +3748,7 @@
 				22EBDCCF1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				82A18E6A1EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
+				E8EDC54C1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E801BAD71E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
 				E8BCB9BC1EFAE79700779588 /* BGEAutoPayViewModel.swift in Sources */,
 				E840BD411EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
@@ -3796,7 +3800,6 @@
 				E8039FFA1EFB0420004DB789 /* PaymentService.swift in Sources */,
 				54C1DEFA1F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				E8EDC5421F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */,
-				0D88FB591F337245008CB21E /* MinimumVersion.swift in Sources */,
 				E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				82D5994D1EC36B5500DDB380 /* Currency.swift in Sources */,
 				B5A16F371F0D44110016952C /* SpeedpayApi.swift in Sources */,
@@ -3814,6 +3817,7 @@
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				825171AA1F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */,
+				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				54DF4BD31EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				54036BAF1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
 				82A18EA01EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
@@ -3837,7 +3841,6 @@
 				0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */,
 				54C1DF081F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
 				825171BB1F1D25280020A6CA /* HomeBillCardViewModel.swift in Sources */,
-				0D88FB5D1F337894008CB21E /* SplashViewModel.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -3964,6 +3967,7 @@
 				22EBDCCE1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				82A18E691EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E991EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
+				E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E801BAD61E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
 				E8BCB9BB1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
 				E840BD401EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
@@ -4015,7 +4019,6 @@
 				E8039FF91EFB0420004DB789 /* PaymentService.swift in Sources */,
 				54C1DEF91F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				E8EDC5411F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */,
-				0D88FB581F337245008CB21E /* MinimumVersion.swift in Sources */,
 				B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				B5A16F361F0D44110016952C /* SpeedpayApi.swift in Sources */,
@@ -4033,6 +4036,7 @@
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				825171A91F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */,
+				E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				54DF4BD21EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				54036BAE1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
 				82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
@@ -4056,7 +4060,6 @@
 				0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */,
 				54C1DF071F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
 				825171BA1F1D25280020A6CA /* HomeBillCardViewModel.swift in Sources */,
-				0D88FB5C1F337894008CB21E /* SplashViewModel.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -4210,6 +4213,7 @@
 				E895E9B21EBB84B7003B38A1 /* LoginViewModel.swift in Sources */,
 				E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* MaskedString.swift in Sources */,
+				E8EDC54D1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
 				E895E9AF1EBB8494003B38A1 /* ForgotUsernameViewModel.swift in Sources */,
 				E8BCB9BD1EFAE79A00779588 /* BGEAutoPayViewModel.swift in Sources */,
@@ -4230,6 +4234,7 @@
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E887C9D71ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
+				E8EDC5521F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				E8EDC5481F324DFB006DD927 /* FiservErrorMapper.swift in Sources */,
 				E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
@@ -4539,7 +4544,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LTS485TKXA;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -4554,8 +4559,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "2cd70175-edd9-4bdc-9020-cb29e624a51d";
+				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
 			};
 			name = Develop;
 		};
@@ -4745,9 +4750,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -4762,7 +4767,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging";
 			};
 			name = Staging;
 		};
@@ -4837,7 +4842,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LTS485TKXA;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -4852,7 +4857,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
 			};
 			name = Testing;
 		};

@@ -61,12 +61,11 @@ class SplashViewController: UIViewController{
         viewModel.checkAppVersion(onSuccess: { [weak self] isOutOfDate in
             if isOutOfDate {
                 self?.handleOutOfDate()
-//                
             } else {
                 self?.doLoginLogic()
             }
-        }, onError: { errorMessage in
-
+        }, onError: { [weak self] errorMessage in
+            self?.doLoginLogic()
         })
     }
     
