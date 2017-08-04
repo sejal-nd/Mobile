@@ -40,6 +40,8 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var enrollSwitch: Switch!
     @IBOutlet weak var accountIcon: UIImageView!
     
+    @IBOutlet weak var accountInfo: UIView!
+    
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
@@ -148,6 +150,8 @@ class BudgetBillingViewController: UIViewController {
                 })
             }).disposed(by: disposeBag)
         }
+        
+        accountInfo.accessibilityElements = [accountIcon, accountNumberLabel, addressLabel, enrollSwitch]
         
         // BGE Footer View when user is enrolled
         bgeFooterView.isHidden = true // Will be unhidden when the web services call completes
