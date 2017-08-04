@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -83,47 +83,29 @@
                                         <constraint firstAttribute="bottom" secondItem="ete-Tn-ef4" secondAttribute="bottom" id="y7b-1I-6er"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNJ-Kp-LJW">
-                                    <rect key="frame" x="72" y="254.5" width="189" height="31.5"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Amount Paid: $272.35" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xdn-jH-7gg">
-                                            <rect key="frame" x="0.0" y="10" width="189" height="21.5"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="Xdn-jH-7gg" secondAttribute="bottom" priority="999" id="NWG-Dn-Coy"/>
-                                        <constraint firstAttribute="trailing" secondItem="Xdn-jH-7gg" secondAttribute="trailing" id="OAd-0B-d4h"/>
-                                        <constraint firstItem="Xdn-jH-7gg" firstAttribute="leading" secondItem="hNJ-Kp-LJW" secondAttribute="leading" id="SYY-jV-M95"/>
-                                        <constraint firstItem="Xdn-jH-7gg" firstAttribute="top" secondItem="hNJ-Kp-LJW" secondAttribute="top" priority="999" constant="10" id="nRU-N7-1Z1"/>
-                                    </constraints>
-                                </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="998" verticalCompressionResistancePriority="999" text="$270.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGy-c0-9Sp">
-                                    <rect key="frame" x="97.5" y="286" width="138.5" height="30"/>
+                                    <rect key="frame" x="97.5" y="254.5" width="138.5" height="43"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                     <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XC7-uc-Qn4">
-                                    <rect key="frame" x="107" y="316" width="119" height="17"/>
+                                    <rect key="frame" x="107" y="297.5" width="119" height="22"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="999" text="Due in 13 days" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsu-VT-VAy">
-                                            <rect key="frame" x="0.0" y="0.0" width="94" height="17"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="94" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70d-sW-2bl">
-                                            <rect key="frame" x="102" y="0.0" width="17" height="17"/>
+                                            <rect key="frame" x="102" y="0.0" width="17" height="22"/>
                                             <state key="normal" image="ic_question"/>
                                         </button>
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbP-f4-Ngq">
-                                    <rect key="frame" x="34" y="333" width="265" height="39"/>
+                                    <rect key="frame" x="34" y="319.5" width="265" height="39"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kLM-WH-clG" userLabel="Other Due Date Stack">
                                             <rect key="frame" x="0.0" y="17" width="265" height="22"/>
@@ -150,7 +132,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNO-0Y-K8O">
-                                    <rect key="frame" x="109" y="372" width="115" height="65"/>
+                                    <rect key="frame" x="109" y="358.5" width="115" height="65"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gA-6f-vmQ" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="24" width="115" height="34"/>
@@ -191,13 +173,13 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VQi-zi-eg5">
-                                    <rect key="frame" x="32" y="437" width="269.5" height="58"/>
+                                    <rect key="frame" x="32" y="423.5" width="269.5" height="71.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTc-qG-fne" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="28" width="269.5" height="12"/>
+                                            <rect key="frame" x="0.0" y="28" width="269.5" height="25.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save a payment account to One Touch Pay" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpe-ey-17o">
-                                                    <rect key="frame" x="10" y="6" width="249.5" height="0.0"/>
+                                                    <rect key="frame" x="10" y="6" width="249.5" height="13.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -493,8 +475,6 @@
                 <outlet property="alertContainer" destination="Brl-o6-ZuU" id="Hiw-Pt-RBP"/>
                 <outlet property="alertImageView" destination="XrS-z4-KZg" id="KUO-9J-soY"/>
                 <outlet property="amountLabel" destination="kGy-c0-9Sp" id="jzd-t5-Zsa"/>
-                <outlet property="amountPaidContainer" destination="hNJ-Kp-LJW" id="Cdb-jE-VRe"/>
-                <outlet property="amountPaidLabel" destination="Xdn-jH-7gg" id="fel-Sc-ExC"/>
                 <outlet property="autoPayImageContainer" destination="YYU-NR-HYz" id="OWm-G4-1LR"/>
                 <outlet property="autoPayImageView" destination="Uk6-Fs-NZW" id="afO-1d-TZV"/>
                 <outlet property="automaticPaymentInfoButton" destination="Evf-zb-9Gh" id="JM9-L9-k6w"/>

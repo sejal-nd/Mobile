@@ -30,8 +30,6 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var titleLabelTopConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var amountPaidContainer: UIView!
-    @IBOutlet weak var amountPaidLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     
     @IBOutlet weak var dueDateStack: UIStackView!
@@ -106,8 +104,6 @@ class HomeBillCardView: UIView {
         layer.cornerRadius = 2
         
         alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
-        
-        amountPaidLabel.font = OpenSans.semibold.of(textStyle: .title1)
         
         bankCreditNumberButton.layer.borderColor = UIColor.accentGray.cgColor
         bankCreditNumberButton.layer.borderWidth = 2
@@ -186,7 +182,6 @@ class HomeBillCardView: UIView {
             .drive(titleLabelTopConstraint.rx.constant)
             .disposed(by: bag)
         
-        viewModel.showAmountPaid.not().drive(amountPaidContainer.rx.isHidden).disposed(by: bag)
         viewModel.showAmount.not().drive(amountLabel.rx.isHidden).disposed(by: bag)
         viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).disposed(by: bag)
         viewModel.showDueDateTooltip.not().drive(dueDateTooltip.rx.isHidden).disposed(by: bag)
@@ -208,7 +203,6 @@ class HomeBillCardView: UIView {
         viewModel.titleText.drive(titleLabel.rx.text).disposed(by: bag)
         viewModel.titleFont.drive(titleLabel.rx.font).disposed(by: bag)
         viewModel.amountFont.drive(amountLabel.rx.font).disposed(by: bag)
-        viewModel.amountPaidText.drive(amountPaidLabel.rx.text).disposed(by: bag)
         viewModel.amountText.drive(amountLabel.rx.text).disposed(by: bag)
         viewModel.dueDateText.drive(dueDateLabel.rx.attributedText).disposed(by: bag)
         viewModel.dueAmountAndDateText.drive(dueAmountAndDateLabel.rx.text).disposed(by: bag)
