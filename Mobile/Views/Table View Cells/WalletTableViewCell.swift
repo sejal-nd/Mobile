@@ -28,6 +28,7 @@ class WalletTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
+        backgroundColor = .clear
         contentView.backgroundColor = .clear
         
         innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
