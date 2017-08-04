@@ -107,8 +107,10 @@ class EditCreditCardViewController: UIViewController {
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
         accountIDLabel.textColor = .blackText
+        accountIDLabel.font = OpenSans.regular.of(textStyle: .title1)
         oneTouchPayCardLabel.textColor = .blackText
         oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
+        oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .footnote)
         nicknameLabel.textColor = .blackText
         nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
