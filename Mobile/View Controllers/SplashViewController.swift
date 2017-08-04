@@ -13,7 +13,7 @@ import RxSwift
 class SplashViewController: UIViewController{
     
     var performingDeepLink = false
-    let bag = DisposeBag()
+    var bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,7 @@ class SplashViewController: UIViewController{
     }    
     
     func doLoginLogic() {
+        bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch ID alert prompt is dismissed
         if ServiceFactory.createAuthenticationService().isAuthenticated() {
             ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { (result: ServiceResult<Void>) in
                 switch (result) {
