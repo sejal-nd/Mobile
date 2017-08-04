@@ -233,8 +233,6 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showBillPaidIcon: Driver<Bool> = self.titleState.map { $0 == .billPaid || $0 == .billPaidIntermediate }
     
-    private(set) lazy var showAmountPaid: Driver<Bool> = self.titleState.map { $0 == .billPaid }
-    
     private(set) lazy var showAmount: Driver<Bool> = self.titleState.map { $0 != .billPaidIntermediate }
     
     private(set) lazy var showConvenienceFee: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation,
@@ -381,11 +379,6 @@ class HomeBillCardViewModel {
     private(set) lazy var titleA11yText: Driver<String?> = self.titleText.map {
         $0?.replacingOccurrences(of: "shutoff", with: "shut-off")
             .replacingOccurrences(of: "Shutoff", with: "shut-off")
-    }
-    
-    private(set) lazy var amountPaidText: Driver<String?> = self.accountDetailDriver.map {
-        guard let lastPaymentAmountString = $0.billingInfo.lastPaymentAmount?.currencyString else { return nil }
-        return String(format: NSLocalizedString("Amount Paid: %@", comment: ""), lastPaymentAmountString)
     }
     
     private(set) lazy var amountText: Driver<String?> = Driver.combineLatest(self.accountDetailDriver, self.titleState)
