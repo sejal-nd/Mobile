@@ -103,8 +103,7 @@ class BudgetBillingViewController: UIViewController {
         }).disposed(by: disposeBag)
         whatIsBudgetBillingButton.accessibilityLabel = NSLocalizedString("What is budget billing?", comment: "")
         
-        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
-        accountIcon.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial Account", comment: "") : NSLocalizedString("Residential Account", comment: "")
+        accountIcon.accessibilityLabel = accountDetail.isResidential ? NSLocalizedString("Residential Account", comment: "") : NSLocalizedString("Commercial Account", comment: "")
         
         whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
