@@ -17,62 +17,61 @@ let baseUrl = "https://api.weather.gov/"
 struct WeatherItem {
     let temperature: Int
     let iconName: String
-    let shortForecast: String
+    let accessibilityName: String
     
     init?(json: [String: Any]) {
         guard let properties = json["properties"] as? Dictionary<String, Any>,
             let periods = properties["periods"] as? Array<[String: Any]>,
             let temp = periods[0]["temperature"] as? Int,
             let iconString = periods[0]["icon"] as? String,
-            let isDaytime = periods[0]["isDaytime"] as? Bool,
-            let shortForecast = periods[0]["shortForecast"] as? String else {
+            let isDaytime = periods[0]["isDaytime"] as? Bool else {
                 return nil
         }
         
-        let iconNameString = WeatherItem.iconName(iconString: iconString, isDaytime: isDaytime)
+        let forecastData = WeatherItem.forecastData(iconString: iconString, isDaytime: isDaytime)
         
         self.temperature = temp
-        self.iconName = iconNameString
-        self.shortForecast = shortForecast
+        self.iconName = forecastData.0
+        self.accessibilityName = forecastData.1
     }
     
-    private static func iconName(iconString: String, isDaytime: Bool) -> String {
+    private static func forecastData(iconString: String, isDaytime: Bool) -> (String, String) {
         
         if let iconName = WeatherIconNames.values.first(where: { iconString.contains($0.rawValue) }) {
             switch iconName {
             case .HOT, .SKC, .WIND_SKC:
                 if isDaytime {
-                    return "ic_day_clear"
+                    return ("ic_day_clear", NSLocalizedString("Clear", comment: ""))
                 } else {
-                    return "ic_nt_clear"
+                    return ("ic_nt_clear", NSLocalizedString("Clear", comment: ""))
                 }
             case .FEW, .SCT, .WIND_FEW, .WIND_SCT, .SMOKE, .HAZE, .DUST:
                 if isDaytime {
-                    return "ic_day_partlycloudy"
+                    return ("ic_day_partlycloudy", NSLocalizedString("Partly Cloudy", comment: ""))
                 } else {
-                    return "ic_nt_partlycloudy"
+                    return ("ic_nt_partlycloudy", NSLocalizedString("Partly Cloudy", comment: ""))
                 }
             case .BKN, .WIND_BKN, .FOG:
                 if isDaytime {
-                    return "ic_day_mostlycloudy"
+                    return ("ic_day_mostlycloudy", NSLocalizedString("Mostly Cloudy", comment: ""))
                 } else {
-                    return "ic_nt_mostlycloudy"
+                    return ("ic_nt_mostlycloudy", NSLocalizedString("Mostly Cloudy", comment: ""))
                 }
             case .RAIN, .RAIN_SHOWERS, .RAIN_SLEET, .RAIN_SHOWERS_HI, .RAIN_FZRA:
-                return "ic_rain"
+                return ("ic_rain", NSLocalizedString("Rain", comment: ""))
             case .SNOW_SLEET, .FZRA, .RAIN_SNOW, .SNOW_FZRA, .SLEET:
-                return "ic_sleet"
+                return ("ic_sleet", NSLocalizedString("Sleet", comment: ""))
             case .TSRA, .TSRA_SCT, .TSRA_HI, .TS_HURR_WARN, .TS_WARN, .TS_WATCH, .HURR_WARN, .HURR_WATCH, .TORNADO:
-                return "ic_tstorms"
+                return ("ic_tstorms", NSLocalizedString("Thunderstorm", comment: ""))
             case .OVC, .WIND_OVC:
-                return "ic_cloudy"
+                return ("ic_cloudy", NSLocalizedString("Overcast", comment: ""))
             case .SNOW, .BLIZZARD, .COLD:
-                return "ic_snow"
+                return ("ic_snow", NSLocalizedString("Snow", comment: ""))
             default:
-                return WeatherIconNames.UNKNOWN.rawValue
+                return (WeatherIconNames.UNKNOWN.rawValue, "")
             }
         }
-        return WeatherIconNames.UNKNOWN.rawValue
+        return (WeatherIconNames.UNKNOWN.rawValue, "")
     }
 }
 

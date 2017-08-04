@@ -247,6 +247,9 @@
 		821898921F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
 		821898931F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
 		821898941F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
+		821898961F3279AB0077D7A1 /* MockPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898951F3279AB0077D7A1 /* MockPaymentService.swift */; };
+		821898971F33AB300077D7A1 /* MockPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898951F3279AB0077D7A1 /* MockPaymentService.swift */; };
+		821898981F33AB300077D7A1 /* MockPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898951F3279AB0077D7A1 /* MockPaymentService.swift */; };
 		822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		822BBB951EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
@@ -1191,6 +1194,7 @@
 		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoNetworkConnectionView.xib; sourceTree = "<group>"; };
 		8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBindingObservers.swift; sourceTree = "<group>"; };
 		821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillAlertBannerView.swift; sourceTree = "<group>"; };
+		821898951F3279AB0077D7A1 /* MockPaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPaymentService.swift; sourceTree = "<group>"; };
 		822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewModel.swift; sourceTree = "<group>"; };
 		822BBB9F1EFC1A01004EBBAB /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		822BBBA01EFC1A01004EBBAB /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -2165,6 +2169,7 @@
 				B574BADE1E7837A6001E8A44 /* MockAccountService.swift */,
 				B574BAF61E786473001E8A44 /* MockOutageService.swift */,
 				E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */,
+				821898951F3279AB0077D7A1 /* MockPaymentService.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -3599,6 +3604,7 @@
 				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				821898961F3279AB0077D7A1 /* MockPaymentService.swift in Sources */,
 				82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */,
 				5492E01F1EECC3230088A725 /* RegistrationConfirmationViewController.swift in Sources */,
@@ -3914,6 +3920,7 @@
 				2F5C81FC1F1D5C4B005B35FA /* WeatherAPI.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A41ED87AE200F0198B /* CreditCard.swift in Sources */,
+				821898981F33AB300077D7A1 /* MockPaymentService.swift in Sources */,
 				E89496381EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
@@ -4132,6 +4139,7 @@
 				2F5C81FB1F1D5C4A005B35FA /* WeatherAPI.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A31ED87AE200F0198B /* CreditCard.swift in Sources */,
+				821898971F33AB300077D7A1 /* MockPaymentService.swift in Sources */,
 				E89496371EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,

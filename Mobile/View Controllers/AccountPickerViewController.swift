@@ -24,6 +24,7 @@ class AccountPickerViewController: UIViewController {
     
     var containerView: UIView!
     var innerView: UIView!
+    var iconView: UIImageView!
     var accountNumberLabel: UILabel!
     
     let accountPickerViewControllerWillAppear = PublishSubject<AccountPickerViewControllerState>()
@@ -33,8 +34,6 @@ class AccountPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
-        
         containerView = UIView(frame: CGRect(x: 0, y: -60, width: UIScreen.main.bounds.size.width, height: 60))
         containerView.backgroundColor = .white
         containerView.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: 2), radius: 2)
@@ -42,10 +41,9 @@ class AccountPickerViewController: UIViewController {
         
         innerView = UIView(frame: .zero)
         innerView.translatesAutoresizingMaskIntoConstraints = false
-        let iconView = UIImageView(image: commercialUser ? #imageLiteral(resourceName: "ic_commercial_mini") : #imageLiteral(resourceName: "ic_residential_mini"))
+        iconView = UIImageView(frame: .zero)
         iconView.translatesAutoresizingMaskIntoConstraints = false
         iconView.isAccessibilityElement = true
-        iconView.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial account", comment: "") : NSLocalizedString("Residential account", comment: "")
         
         accountNumberLabel = UILabel(frame: .zero)
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -81,6 +79,8 @@ class AccountPickerViewController: UIViewController {
             .distinctUntilChanged()
             .drive(onNext: { pickerVisible in
                 if let currentAccount = AccountsStore.sharedInstance.currentAccount { // Don't show if accounts not loaded
+                    self.iconView.image = currentAccount.isResidential ? #imageLiteral(resourceName: "ic_residential_mini") : #imageLiteral(resourceName: "ic_commercial_mini")
+                    self.iconView.accessibilityLabel = currentAccount.isResidential ? NSLocalizedString("Residential account", comment: "") : NSLocalizedString("Commercial account", comment: "")
                     self.accountNumberLabel.text = currentAccount.accountNumber
                     self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), currentAccount.accountNumber)
                     self.setNeedsStatusBarAppearanceUpdate()

@@ -26,7 +26,6 @@ class TermsPoliciesViewController: UIViewController {
 
         let url = viewModel.termPoliciesURL
         webView.loadRequest(URLRequest(url: url))
-        webView.scalesPageToFit = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

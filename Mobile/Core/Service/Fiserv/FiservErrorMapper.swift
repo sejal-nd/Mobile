@@ -27,7 +27,6 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if (elementName as String == "item") {
-            FiservErrorMapper.fiservError!.text = FiservErrorMapper.fiservError!.text
             items.append(FiservErrorMapper.fiservError!)
             FiservErrorMapper.fiservError = nil
         }

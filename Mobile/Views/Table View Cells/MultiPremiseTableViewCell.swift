@@ -41,7 +41,7 @@ class MultiPremiseTableViewCell: UITableViewCell {
         let isCurrentAccount = account == AccountsStore.sharedInstance.currentAccount
         
         //top portion is the same as AdvancedAccountPickerTableViewCell
-        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
+        let commercialUser = !account.isResidential
         
         self.accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
         self.accountImageView.isAccessibilityElement = false

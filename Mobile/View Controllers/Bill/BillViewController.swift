@@ -233,7 +233,7 @@ class BillViewController: AccountPickerViewController {
         makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .subheadline)
         
         billPaidView.isAccessibilityElement = true
-        billPaidView.accessibilityLabel = NSLocalizedString("Bill Paid, button, dimmed", comment: "")
+        billPaidView.accessibilityLabel = NSLocalizedString("Bill Paid, dimmed, button", comment: "")
     }
 
     func bindViews() {
