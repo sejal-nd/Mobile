@@ -53,7 +53,7 @@ class AddCreditCardViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
-        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).disposed(by: disposeBag)
 
         configureCardIO()
         
@@ -84,7 +84,7 @@ class AddCreditCardViewController: UIViewController {
             LoadingView.show()
             self.viewModel.addCreditCard(onDuplicate: { message in
                 LoadingView.hide()
-                let alertVc = UIAlertController(title: NSLocalizedString("Duplicate Credit Card", comment: ""), message: message, preferredStyle: .alert)
+                let alertVc = UIAlertController(title: NSLocalizedString("Duplicate Card", comment: ""), message: message, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
             }, onSuccess: { walletItemResult in
@@ -134,47 +134,47 @@ class AddCreditCardViewController: UIViewController {
     func bindAccessibility() {
         addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.addCardFormViewModel.nicknameErrorString().map{ $0 == nil }.subscribe(onNext: { valid in
             self.accessibilityErrorLabel()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {
@@ -186,11 +186,10 @@ class AddCreditCardViewController: UIViewController {
         message += addCardFormView.zipCodeTextField.getError()
         message += addCardFormView.nicknameTextField.getError()
         
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
+        if message.isEmpty {
             self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            self.saveButton.accessibilityLabel = errorStr
+            self.saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
         }
     }
     

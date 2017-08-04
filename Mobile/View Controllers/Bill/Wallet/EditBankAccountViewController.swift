@@ -57,6 +57,7 @@ class EditBankAccountViewController: UIViewController {
         title = NSLocalizedString("Edit Bank Account", comment: "")
         
         accountIDLabel.textColor = .blackText
+        accountIDLabel.font = OpenSans.regular.of(textStyle: .title1)
         oneTouchPayCardLabel.textColor = .blackText
         oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         oneTouchPayDescriptionLabel.textColor = .blackText
@@ -64,7 +65,9 @@ class EditBankAccountViewController: UIViewController {
         oneTouchPayDescriptionLabel.text = viewModel.getOneTouchDisplayString()
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
+        oneTouchPayLabel.font = OpenSans.regular.of(textStyle: .footnote)
         nicknameLabel.textColor = .blackText
+        nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
 
         deleteAccountButton.accessibilityLabel = NSLocalizedString("Delete bank account", comment: "")
         deleteBankAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -97,6 +100,7 @@ class EditBankAccountViewController: UIViewController {
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         bottomBarLabel.textColor = .blackText
+        bottomBarLabel.font = OpenSans.regular.of(textStyle: .footnote)
     }
     
     func buildNavigationButtons() {
@@ -104,7 +108,7 @@ class EditBankAccountViewController: UIViewController {
         let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
-        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     override func viewDidLayoutSubviews() {
@@ -170,7 +174,7 @@ class EditBankAccountViewController: UIViewController {
 
         bankImageView.image = #imageLiteral(resourceName: "opco_bank")
 
-        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
+        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).disposed(by: disposeBag)
         
         oneTouchPayCardView.isHidden = true
         let oneTouchPayWalletItem = viewModel.oneTouchPayItem

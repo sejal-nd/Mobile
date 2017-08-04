@@ -64,7 +64,7 @@ class FloatLabelTextField: UIView {
                 self.bottomColorBar.isHidden = false
             }
             self.textFieldIsFocused = true
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         textField.rx.controlEvent(.editingDidEnd).asObservable().subscribe(onNext: { _ in
             if !self.errorState {
                 if self.textField.hasText {
@@ -75,7 +75,7 @@ class FloatLabelTextField: UIView {
                 }
             }
             self.textFieldIsFocused = false
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         setDefaultStyles()
     }
@@ -184,5 +184,11 @@ class FloatLabelTextField: UIView {
             textField.isShowingAccessory = false
         }
     }
+    
+    func setKeyboardType(_ type: UIKeyboardType) {
+        textField.keyboardType = type
+    }
+    
+    //TODO: add convenience functions for other properties like returnKeyType, placeholder, autocorrectionType, isSecureTextEntry, etc
     
 }

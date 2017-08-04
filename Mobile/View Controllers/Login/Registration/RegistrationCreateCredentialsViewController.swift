@@ -21,12 +21,14 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     
     @IBOutlet weak var createUsernameTextField: FloatLabelTextField!
     @IBOutlet weak var confirmUsernameTextField: FloatLabelTextField!
+    @IBOutlet weak var createPasswordContainerView: UIView!
     @IBOutlet weak var createPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
     
 //    @IBOutlet weak var passwordConstraintsTextField: FloatLabelTextField!
     
     @IBOutlet var passwordRequirementLabels: [UILabel]!
+    @IBOutlet var mustAlsoContainLabel: UILabel!
 
     @IBOutlet weak var passwordStrengthLabel: UILabel!
     @IBOutlet weak var passwordStrengthView: UIView!
@@ -78,6 +80,13 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please create your sign in credentials", comment: "")
         instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        
+        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        
+        for label in passwordRequirementLabels {
+            label.font = SystemFont.regular.of(textStyle: .subheadline)
+        }
     }
     
     //
@@ -117,21 +126,41 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     func setupValidation() {
         let checkImageOrNil: (Bool) -> UIImage? = { $0 ? #imageLiteral(resourceName: "ic_check"): nil }
         
-        viewModel.characterCountValid().map(checkImageOrNil).bind(to: characterCountCheck.rx.image).addDisposableTo(disposeBag)
-        viewModel.containsUppercaseLetter().map(checkImageOrNil).bind(to: uppercaseCheck.rx.image).addDisposableTo(disposeBag)
-        viewModel.containsLowercaseLetter().map(checkImageOrNil).bind(to: lowercaseCheck.rx.image).addDisposableTo(disposeBag)
-        viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).addDisposableTo(disposeBag)
-        viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.characterCountValid().map(checkImageOrNil).bind(to: characterCountCheck.rx.image).disposed(by: disposeBag)
+        viewModel.characterCountValid().subscribe(onNext: { valid in
+            self.characterCountCheck.isAccessibilityElement = valid
+            self.characterCountCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).disposed(by: disposeBag)
+        viewModel.containsUppercaseLetter().map(checkImageOrNil).bind(to: uppercaseCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsUppercaseLetter().subscribe(onNext: { valid in
+            self.uppercaseCheck.isAccessibilityElement = valid
+            self.uppercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).disposed(by: disposeBag)
+        viewModel.containsLowercaseLetter().map(checkImageOrNil).bind(to: lowercaseCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsLowercaseLetter().subscribe(onNext: { valid in
+            self.lowercaseCheck.isAccessibilityElement = valid
+            self.lowercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).disposed(by: disposeBag)
+        viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsNumber().subscribe(onNext: { valid in
+            self.numberCheck.isAccessibilityElement = valid
+            self.numberCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).disposed(by: disposeBag)
+        viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsSpecialCharacter().subscribe(onNext: { valid in
+            self.specialCharacterCheck.isAccessibilityElement = valid
+            self.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).disposed(by: disposeBag)
         
         viewModel.newUsernameIsValidBool().asDriver(onErrorJustReturn: false)
             .drive(onNext: { valid in
                 self.confirmUsernameTextField.setEnabled(valid)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         viewModel.everythingValid().asDriver(onErrorJustReturn: false)
             .drive(onNext: { valid in
                 self.confirmPasswordTextField.setEnabled(valid)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         
         // Password cannot match username
@@ -144,25 +173,24 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 }
                 self.accessibilityErrorLabel()
                 
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
-        viewModel.confirmPasswordMatches().asDriver(onErrorJustReturn: false)
-            .drive(onNext: { matches in
-                if self.confirmPasswordTextField.textField.hasText {
-                    if matches {
-                        self.confirmPasswordTextField.setValidated(matches)
-                    } else {
-                        self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
-                    }
+        viewModel.confirmPasswordMatches().subscribe(onNext: { matches in
+            if self.confirmPasswordTextField.textField.hasText {
+                if matches {
+                    self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 } else {
-                    self.confirmPasswordTextField.setValidated(false)
-                    self.confirmPasswordTextField.setError(nil)
+                    self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
+                    self.accessibilityErrorLabel()
+                    
                 }
-                self.accessibilityErrorLabel()
-                
-            }).addDisposableTo(disposeBag)
+            } else {
+                self.confirmPasswordTextField.setValidated(false)
+                self.confirmPasswordTextField.setError(nil)
+            }
+        }).disposed(by: disposeBag)
         
-        viewModel.doneButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.doneButtonEnabled().bind(to: nextButton.rx.isEnabled).disposed(by: disposeBag)
     }
 
     func prepareTextFieldsForInput() {
@@ -182,7 +210,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             self.createUsernameTextField.setError(errorMessage)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         createUsernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             if self.createUsernameTextField.errorState {
@@ -190,7 +218,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         confirmUsernameTextField.textField.placeholder = NSLocalizedString("Confirm Email Address*", comment: "")
         confirmUsernameTextField.textField.returnKeyType = .next
@@ -199,12 +227,12 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         confirmUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
                 
         self.viewModel.newPasswordIsValid().subscribe(onNext: { valid in
-            self.createPasswordTextField.setValidated(valid)
-        }).addDisposableTo(disposeBag)
+            self.createPasswordTextField.setValidated(valid, accessibilityLabel: NSLocalizedString("Minimum password criteria met", comment: ""))
+        }).disposed(by: disposeBag)
         
         self.viewModel.usernameMatches().subscribe(onNext: { valid in
             if self.viewModel.confirmUsername.value.characters.count > 0 {
-                self.confirmUsernameTextField.setValidated(valid)
+                self.confirmUsernameTextField.setValidated(valid, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 
                 if !valid {
                     self.confirmUsernameTextField.setError(NSLocalizedString("Email address does not match", comment: ""))
@@ -216,7 +244,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
 
         createPasswordTextField.textField.placeholder = NSLocalizedString("Password*", comment: "")
         createPasswordTextField.textField.isSecureTextEntry = true
@@ -231,11 +259,11 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         confirmPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         // Bind to the view model
-        createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).addDisposableTo(disposeBag)
-        confirmUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmUsername).addDisposableTo(disposeBag)
+        createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
+        confirmUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmUsername).disposed(by: disposeBag)
         
-        createPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).addDisposableTo(disposeBag)
-        confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).addDisposableTo(disposeBag)
+        createPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).disposed(by: disposeBag)
+        confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).disposed(by: disposeBag)
         
         createUsernameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { _ in
@@ -245,19 +273,20 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 }
                 self.accessibilityErrorLabel()
                 
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         createUsernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
             .drive(onNext: { _ in
                 self.createPasswordTextField.textField.becomeFirstResponder()
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         createPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { _ in
-                UIView.animate(withDuration: 0.5) {
+                self.scrollView.setContentOffset(self.createPasswordContainerView.frame.origin, animated: true)
+                UIView.animate(withDuration: 0.5, animations: {
                     self.passwordStrengthView.isHidden = false
-                }
-            }).addDisposableTo(disposeBag)
+                })
+            }).disposed(by: disposeBag)
         
         createPasswordTextField.textField.rx.text.orEmpty.asDriver()
             .drive(onNext: { text in
@@ -266,14 +295,15 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 
                 if score < 2 {
                     self.passwordStrengthLabel.text = NSLocalizedString("Weak", comment: "")
-                    
+                    self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength weak", comment: "")
                 } else if score < 4 {
                     self.passwordStrengthLabel.text = NSLocalizedString("Medium", comment: "")
-                    
+                    self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength medium", comment: "")
                 } else {
                     self.passwordStrengthLabel.text = NSLocalizedString("Strong", comment: "")
+                    self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength strong", comment: "")
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         createPasswordTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .drive(onNext: { _ in
@@ -282,7 +312,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                     self.passwordStrengthView.isHidden = true
                     self.view.layoutIfNeeded()
                 })
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         let opCo = Environment.sharedInstance.opco
         
@@ -291,7 +321,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         }
         
         primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
-        primaryProfileSwitch.rx.isOn.bind(to: viewModel.primaryProfile).addDisposableTo(disposeBag)
+        primaryProfileSwitch.rx.isOn.bind(to: viewModel.primaryProfile).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {
@@ -301,11 +331,10 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         message += confirmPasswordTextField.getError()
         message += confirmUsernameTextField.getError()
         
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
+        if message.isEmpty {
             self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            self.nextButton.accessibilityLabel = errorStr
+            self.nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
         }
     }
     
@@ -379,7 +408,7 @@ extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
                 } else {
                     self.view.endEditing(true)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         }
         
         return false

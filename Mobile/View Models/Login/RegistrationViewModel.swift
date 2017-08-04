@@ -59,11 +59,11 @@ class RegistrationViewModel {
 //            $0.map(SecurityQuestion.init)
 //            }
 //            .bind(to:securityQuestions)
-//            .addDisposableTo(disposeBag)
+//            .disposed(by: disposeBag)
 //        
 //        loadAccounts.elements()
 //            .bind(to: accounts)
-//            .addDisposableTo(disposeBag)
+//            .disposed(by: disposeBag)
     }
     
     
@@ -92,7 +92,7 @@ class RegistrationViewModel {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func verifyUniqueUsername(onSuccess: @escaping () -> Void, onEmailAlreadyExists: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
@@ -111,7 +111,7 @@ class RegistrationViewModel {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
@@ -169,7 +169,7 @@ class RegistrationViewModel {
                     onError(NSLocalizedString("Unknown Error", comment: ""), error.localizedDescription)
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func loadSecurityQuestions(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
@@ -188,7 +188,7 @@ class RegistrationViewModel {
             }, onError: { error in
                 onError(NSLocalizedString("Unknown Error", comment: ""), error.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func loadAccounts(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
@@ -212,7 +212,7 @@ class RegistrationViewModel {
                     onError(NSLocalizedString("Unknown Error", comment: ""), error.localizedDescription)
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
 //    lazy var loadSecurityQuestions: Observable<Event<[String]>> = self.loadSecurityQuestionsData
@@ -275,7 +275,7 @@ class RegistrationViewModel {
                 onSuccess(isMaintenanceMode)
             }, onError: { error in
                 _ = error as! ServiceError
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func phoneNumberHasTenDigits() -> Observable<Bool> {

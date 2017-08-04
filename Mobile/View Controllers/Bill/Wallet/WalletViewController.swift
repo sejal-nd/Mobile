@@ -122,12 +122,12 @@ class WalletViewController: UIViewController {
     
     func addAccessibility() {
         bankButton.isAccessibilityElement = true
-        bankButton.accessibilityLabel = NSLocalizedString("Add Bank Account", comment: "")
+        bankButton.accessibilityLabel = NSLocalizedString("Add Bank Account. " + bankFeeLabel.text!, comment: "")
         miniBankButton.isAccessibilityElement = true
         miniBankButton.accessibilityLabel = NSLocalizedString("Add Bank account", comment: "")
         
         creditCardButton.isAccessibilityElement = true
-        creditCardButton.accessibilityLabel = NSLocalizedString("Add Credit Card", comment: "")
+        creditCardButton.accessibilityLabel = NSLocalizedString("Add Credit Card. " + creditCardFeeLabel.text!, comment: "")
         miniCreditCardButton.isAccessibilityElement = true
         miniCreditCardButton.accessibilityLabel = NSLocalizedString("Add Credit card", comment: "")
     }
@@ -158,6 +158,7 @@ class WalletViewController: UIViewController {
             } else {
                 headerView.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: 0.01) // Must be 0.01 to remove empty space when hidden
             }
+            tableView.tableHeaderView = tableView.tableHeaderView;
         }
         
         // Dynamic sizing for the table footer view
@@ -175,29 +176,40 @@ class WalletViewController: UIViewController {
     }
     
     func setupBinding() {
-        viewModel.isFetchingWalletItems.map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetchingWalletItems.map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         
-        viewModel.shouldShowEmptyState.map(!).drive(emptyStateScrollView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.shouldShowEmptyState.map(!).drive(emptyStateScrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowWallet.drive(onNext: { shouldShow in
             if shouldShow {
                 self.tableView.reloadData()
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
-        viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).addDisposableTo(disposeBag)
-        viewModel.addBankDisabled.map(!).drive(miniBankButton.rx.isEnabled).addDisposableTo(disposeBag)
-        viewModel.addBankDisabled.map(!).drive(bankButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.addBankDisabled.map(!).drive(miniBankButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.addBankDisabled.map(!).drive(bankButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     func setupButtonTaps() {
         Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver()).drive(onNext: {
             self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver()).drive(onNext: {
             self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
+    }
+    
+    func onWalletItemPress(sender: ButtonControl) {
+        if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
+            selectedWalletItem = walletItems[sender.tag]
+            if selectedWalletItem!.bankOrCard == .card {
+                self.performSegue(withIdentifier: "editCreditCardSegue", sender: self)
+            } else {
+                self.performSegue(withIdentifier: "editBankAccountSegue", sender: self)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -280,23 +292,13 @@ extension WalletViewController: UITableViewDataSource {
         
         let walletItem = viewModel.walletItems.value![indexPath.section]
         cell.bindToWalletItem(walletItem, billingInfo: viewModel.accountDetail.billingInfo)
+        cell.innerContentView.tag = indexPath.section
+        cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
+        cell.innerContentView.addTarget(self, action: #selector(onWalletItemPress(sender:)), for: .touchUpInside)
         
         cell.oneTouchPayView.isHidden = !walletItem.isDefault
-        if walletItem.isDefault {
-            let a11yLabel = cell.accessibilityLabel!
-            cell.accessibilityLabel = a11yLabel + ", One Touch Pay account"
-        }
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedWalletItem = viewModel.walletItems.value![indexPath.section]
-        if selectedWalletItem?.bankOrCard == .card {
-            self.performSegue(withIdentifier: "editCreditCardSegue", sender: self)
-        } else {
-            self.performSegue(withIdentifier: "editBankAccountSegue", sender: self)
-        }
     }
     
 }

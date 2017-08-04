@@ -32,7 +32,9 @@ private func extractDate(object: Any?) throws -> Date {
 }
 
 private func calculateIsFuture(dateToCompare: Date) -> Bool {
-    return dateToCompare > Date()
+    let calendar = Calendar.current
+    let yesterday = calendar.date(byAdding: .day, value: -1, to: Date())
+    return dateToCompare > yesterday!
 }
 
 struct BillingHistoryItem: Mappable {

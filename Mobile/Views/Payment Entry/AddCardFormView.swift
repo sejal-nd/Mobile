@@ -24,9 +24,13 @@ class AddCardFormView: UIView {
     @IBOutlet weak var cardNumberTextField: FloatLabelTextField!
     @IBOutlet weak var cardIOButton: UIButton!
     @IBOutlet weak var cardLogoImageView: UIImageView!
+    
+    @IBOutlet weak var expDateView: UIView!
     @IBOutlet weak var expDateLabel: UILabel!
     @IBOutlet weak var expMonthTextField: FloatLabelTextField!
     @IBOutlet weak var expYearTextField: FloatLabelTextField!
+    
+    @IBOutlet weak var cvvZipView: UIView!
     @IBOutlet weak var cvvTextField: FloatLabelTextField!
     @IBOutlet weak var cvvTooltipButton: UIButton!
     @IBOutlet weak var zipCodeTextField: FloatLabelTextField!
@@ -79,24 +83,27 @@ class AddCardFormView: UIView {
         expDateLabel.text = NSLocalizedString("Expiration Date", comment: "")
         
         expMonthTextField.textField.placeholder = NSLocalizedString("MM*", comment: "")
+        expMonthTextField.textField.customAccessibilityLabel = NSLocalizedString("Month, two digits", comment: "")
         expMonthTextField.textField.delegate = self
-        expMonthTextField.textField.keyboardType = .numberPad
+        expMonthTextField.setKeyboardType(
+            .numberPad)
         expMonthTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         expYearTextField.textField.placeholder = NSLocalizedString("YYYY*", comment: "")
+        expYearTextField.textField.customAccessibilityLabel = NSLocalizedString("Year, four digits", comment: "")
         expYearTextField.textField.delegate = self
-        expYearTextField.textField.keyboardType = .numberPad
+        expYearTextField.setKeyboardType(.numberPad)
         expYearTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         cvvTextField.textField.placeholder = NSLocalizedString("CVV*", comment: "")
         cvvTextField.textField.delegate = self
-        cvvTextField.textField.keyboardType = .numberPad
+        cvvTextField.setKeyboardType(.numberPad)
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         zipCodeTextField.textField.placeholder = NSLocalizedString("Zip Code*", comment: "")
         zipCodeTextField.textField.delegate = self
-        zipCodeTextField.textField.keyboardType = .numberPad
+        zipCodeTextField.setKeyboardType(.numberPad)
         
         saveToWalletLabel.textColor = .deepGray
         saveToWalletLabel.text = NSLocalizedString("Save to My Wallet", comment: "")
@@ -127,26 +134,32 @@ class AddCardFormView: UIView {
         bindViewModel()
         bindViewHiding()
         bindValidation()
+        accessibilityUpdate()
+    }
+    
+    private func accessibilityUpdate() {
+        expDateView.accessibilityElements = [expDateLabel, expMonthTextField, expYearTextField]
+        cvvZipView.accessibilityElements = [cvvTextField, cvvTooltipButton, zipCodeTextField]
     }
     
     func bindViewModel() {
-        nameOnCardTextField.textField.rx.text.orEmpty.bind(to: viewModel.nameOnCard).addDisposableTo(disposeBag)
-        cardNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.cardNumber).addDisposableTo(disposeBag)
-        expMonthTextField.textField.rx.text.orEmpty.bind(to: viewModel.expMonth).addDisposableTo(disposeBag)
-        expYearTextField.textField.rx.text.orEmpty.bind(to: viewModel.expYear).addDisposableTo(disposeBag)
-        cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).addDisposableTo(disposeBag)
-        zipCodeTextField.textField.rx.text.orEmpty.bind(to: viewModel.zipCode).addDisposableTo(disposeBag)
-        saveToWalletSwitch.rx.isOn.bind(to: viewModel.saveToWallet).addDisposableTo(disposeBag)
-        nicknameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nickname).addDisposableTo(disposeBag)
-        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
+        nameOnCardTextField.textField.rx.text.orEmpty.bind(to: viewModel.nameOnCard).disposed(by: disposeBag)
+        cardNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.cardNumber).disposed(by: disposeBag)
+        expMonthTextField.textField.rx.text.orEmpty.bind(to: viewModel.expMonth).disposed(by: disposeBag)
+        expYearTextField.textField.rx.text.orEmpty.bind(to: viewModel.expYear).disposed(by: disposeBag)
+        cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).disposed(by: disposeBag)
+        zipCodeTextField.textField.rx.text.orEmpty.bind(to: viewModel.zipCode).disposed(by: disposeBag)
+        saveToWalletSwitch.rx.isOn.bind(to: viewModel.saveToWallet).disposed(by: disposeBag)
+        nicknameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nickname).disposed(by: disposeBag)
+        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).disposed(by: disposeBag)
     }
     
     func bindViewHiding() {
-        viewModel.paymentWorkflow.asDriver().map(!).drive(saveToWalletStackView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.saveToWallet.asDriver().drive(byNotSavingLabel.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.saveToWallet.asDriver().map(!).drive(nicknameTextField.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.saveToWallet.asDriver().map(!).drive(oneTouchPayView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.paymentWorkflow.asDriver().drive(footnoteLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.paymentWorkflow.asDriver().map(!).drive(saveToWalletStackView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.saveToWallet.asDriver().drive(byNotSavingLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.saveToWallet.asDriver().map(!).drive(nicknameTextField.rx.isHidden).disposed(by: disposeBag)
+        viewModel.saveToWallet.asDriver().map(!).drive(oneTouchPayView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.paymentWorkflow.asDriver().drive(footnoteLabel.rx.isHidden).disposed(by: disposeBag)
     }
     
     func bindValidation() {
@@ -158,7 +171,7 @@ class AddCardFormView: UIView {
                 self.cardLogoImageView.image = nil
                 self.cardNumberTextField.textField.isShowingLeftAccessory = false
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         expMonthTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.expMonth.value.isEmpty {
@@ -166,18 +179,18 @@ class AddCardFormView: UIView {
                     if !valid {
                         self.expMonthTextField.setError(NSLocalizedString("Invalid Month", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 self.viewModel.expMonthIs2Digits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.expMonthTextField.setError(NSLocalizedString("Must be 2 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expMonthTextField.setError(nil)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.cardNumber.value.isEmpty {
@@ -185,13 +198,13 @@ class AddCardFormView: UIView {
                     if !valid {
                         self.cardNumberTextField.setError(NSLocalizedString("Invalid card number", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cardNumberTextField.setError(nil)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.expYear.value.isEmpty {
@@ -199,18 +212,18 @@ class AddCardFormView: UIView {
                     if !valid {
                         self.expYearTextField.setError(NSLocalizedString("Cannot be in the past", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 self.viewModel.expYearIs4Digits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.expYearTextField.setError(NSLocalizedString("Must be 4 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expYearTextField.setError(nil)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.cvv.value.isEmpty {
@@ -218,13 +231,13 @@ class AddCardFormView: UIView {
                     if !valid {
                         self.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cvvTextField.setError(nil)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.zipCode.value.isEmpty {
@@ -232,16 +245,16 @@ class AddCardFormView: UIView {
                     if !valid {
                         self.zipCodeTextField.setError(NSLocalizedString("Must be 5 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.zipCodeTextField.setError(nil)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.nicknameErrorString().subscribe(onNext: { errMessage in
             self.nicknameTextField.setError(errMessage)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     @IBAction func onCardIOButtonPress() {

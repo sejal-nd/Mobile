@@ -50,9 +50,12 @@ class OutageViewModel {
                 } else if serviceError.serviceCode == ServiceErrorCode.FnAccountNoPay.rawValue {
                     self.currentOutageStatus = OutageStatus.from(["flagNoPay": true])
                     onSuccess()
+                } else if serviceError.serviceCode == ServiceErrorCode.FnNonService.rawValue {
+                    self.currentOutageStatus = OutageStatus.from(["flagNonService": true])
+                    onSuccess()
                 } else {
                     self.currentOutageStatus = nil
-                    onError(error.localizedDescription)
+                    onError(NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")) // Generic error message from the home bill card
                 }
             })
     }

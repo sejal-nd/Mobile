@@ -28,7 +28,7 @@ class EditCreditCardViewController: UIViewController {
     @IBOutlet weak var bottomBarView: UIView!
     @IBOutlet weak var bottomBarShadowView: UIView!
     
-    @IBOutlet weak var bankImageView: UIImageView!
+    @IBOutlet weak var creditImageView: UIImageView!
     @IBOutlet weak var accountIDLabel: UILabel!
     @IBOutlet weak var oneTouchPayCardView: UIView!
     @IBOutlet weak var oneTouchPayCardLabel: UILabel!
@@ -91,7 +91,7 @@ class EditCreditCardViewController: UIViewController {
             .map { $0.y < 0 ? UIColor.primaryColor: UIColor.white }
             .distinctUntilChanged()
             .drive(onNext: { self.scrollView.backgroundColor = $0 })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         walletItemBGView.backgroundColor = .primaryColor
         
@@ -107,14 +107,18 @@ class EditCreditCardViewController: UIViewController {
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
         accountIDLabel.textColor = .blackText
+        accountIDLabel.font = OpenSans.regular.of(textStyle: .title1)
         oneTouchPayCardLabel.textColor = .blackText
         oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
+        oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .footnote)
         nicknameLabel.textColor = .blackText
+        nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         convenienceFeeLabel.textColor = .blackText
+        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
     }
     
     func buildNavigationButtons() {
@@ -124,7 +128,7 @@ class EditCreditCardViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
         
-        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     func buildCCUpdateFields() {
@@ -132,25 +136,27 @@ class EditCreditCardViewController: UIViewController {
         expDateLabel.textColor = .blackText
         expDateLabel.text = NSLocalizedString("Expiration Date", comment: "")
         
-        expMonthTextField.textField.placeholder = NSLocalizedString("MM", comment: "")
+        expMonthTextField.textField.placeholder = NSLocalizedString("MM*", comment: "")
+        expMonthTextField.textField.customAccessibilityLabel = NSLocalizedString("Month, two digits", comment: "")
         expMonthTextField.textField.delegate = self
-        expMonthTextField.textField.keyboardType = .numberPad
+        expMonthTextField.setKeyboardType(.numberPad)
         expMonthTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        expYearTextField.textField.placeholder = NSLocalizedString("YYYY", comment: "")
+        expYearTextField.textField.placeholder = NSLocalizedString("YYYY*", comment: "")
+        expYearTextField.textField.customAccessibilityLabel = NSLocalizedString("Year, four digits", comment: "")
         expYearTextField.textField.delegate = self
-        expYearTextField.textField.keyboardType = .numberPad
+        expYearTextField.setKeyboardType(.numberPad)
         expYearTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        cvvTextField.textField.placeholder = NSLocalizedString("CVV", comment: "")
+        cvvTextField.textField.placeholder = NSLocalizedString("CVV*", comment: "")
         cvvTextField.textField.delegate = self
-        cvvTextField.textField.keyboardType = .numberPad
+        cvvTextField.setKeyboardType(.numberPad)
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        zipCodeTextField.textField.placeholder = NSLocalizedString("Zip Code", comment: "")
+        zipCodeTextField.textField.placeholder = NSLocalizedString("Zip Code*", comment: "")
         zipCodeTextField.textField.delegate = self
-        zipCodeTextField.textField.keyboardType = .numberPad
+        zipCodeTextField.setKeyboardType(.numberPad)
         
         deleteCardButton.accessibilityLabel = NSLocalizedString("Delete card", comment: "")
         deleteCardLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -186,11 +192,6 @@ class EditCreditCardViewController: UIViewController {
         bottomBarMaskLayer.path = bottomBarPath.cgPath
         bottomBarView.layer.mask = bottomBarMaskLayer
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -209,28 +210,29 @@ class EditCreditCardViewController: UIViewController {
             accountIDLabel.text = ""
         }
         
-        bankImageView.image = #imageLiteral(resourceName: "opco_credit_card")
+        creditImageView.image = #imageLiteral(resourceName: "opco_credit_card")
+        creditImageView.isAccessibilityElement = true
         
         convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         convenienceFeeLabel.textColor = .blackText
         switch opco {
         case .comEd, .peco:
             convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
-            bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
+            creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
         case .bge:            
             convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFeeString(isComplete: false), comment: "")
-            bankImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
+            creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
             break
         }
     }
     
     func bindViewModel() {
-        expMonthTextField.textField.rx.text.orEmpty.bind(to: viewModel.expMonth).addDisposableTo(disposeBag)
-        expYearTextField.textField.rx.text.orEmpty.bind(to: viewModel.expYear).addDisposableTo(disposeBag)
-        cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).addDisposableTo(disposeBag)
-        zipCodeTextField.textField.rx.text.orEmpty.bind(to: viewModel.zipCode).addDisposableTo(disposeBag)
+        expMonthTextField.textField.rx.text.orEmpty.bind(to: viewModel.expMonth).disposed(by: disposeBag)
+        expYearTextField.textField.rx.text.orEmpty.bind(to: viewModel.expYear).disposed(by: disposeBag)
+        cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).disposed(by: disposeBag)
+        zipCodeTextField.textField.rx.text.orEmpty.bind(to: viewModel.zipCode).disposed(by: disposeBag)
 
-        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
+        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).disposed(by: disposeBag)
         
         oneTouchPayCardView.isHidden = true
         let oneTouchPayWalletItem = viewModel.oneTouchPayItem
@@ -249,22 +251,22 @@ class EditCreditCardViewController: UIViewController {
                     if !valid {
                         self.expMonthTextField.setError(NSLocalizedString("Invalid Month", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 self.viewModel.expMonthIs2Digits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.expMonthTextField.setError(NSLocalizedString("Must be 2 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expMonthTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.expYear.value.isEmpty {
@@ -272,22 +274,22 @@ class EditCreditCardViewController: UIViewController {
                     if !valid {
                         self.expYearTextField.setError(NSLocalizedString("Cannot be in the past", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 self.viewModel.expYearIs4Digits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.expYearTextField.setError(NSLocalizedString("Must be 4 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.expYearTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.cvv.value.isEmpty {
@@ -295,17 +297,17 @@ class EditCreditCardViewController: UIViewController {
                     if !valid {
                         self.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.cvvTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.zipCode.value.isEmpty {
@@ -313,17 +315,17 @@ class EditCreditCardViewController: UIViewController {
                     if !valid {
                         self.zipCodeTextField.setError(NSLocalizedString("Must be 5 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.zipCodeTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {
@@ -333,11 +335,10 @@ class EditCreditCardViewController: UIViewController {
         message += cvvTextField.getError()
         message += zipCodeTextField.getError()
         
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
+        if message.isEmpty {
             self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            self.saveButton.accessibilityLabel = errorStr
+            self.saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
         }
     }
     
@@ -391,7 +392,7 @@ class EditCreditCardViewController: UIViewController {
             }
         }
         
-        viewModel.webServicesDataChanged().single().subscribe(onNext: { changed in
+        viewModel.cardDataEntered().single().subscribe(onNext: { cardDataEntered in
             
             let handleSuccess = {
                 LoadingView.hide()
@@ -403,10 +404,8 @@ class EditCreditCardViewController: UIViewController {
                 }
             }
             
-            if changed {
-                
+            if cardDataEntered {
                 let editCreditCard = { (oneTouchPay: Bool) in
-                    
                     let editOneTouchPay = {
                         if oneTouchPay {
                             self.viewModel.enableOneTouchPay(onSuccess: {
@@ -496,7 +495,7 @@ class EditCreditCardViewController: UIViewController {
                     toggleOneTouchPay()
                 }
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
 
     

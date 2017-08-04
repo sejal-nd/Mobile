@@ -44,19 +44,18 @@ class ChangePasswordViewController: UIViewController {
     
     let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard, authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
     
-    var cancelButton: UIBarButtonItem?
-    var doneButton: UIBarButtonItem?
+    lazy var cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
+    lazy var submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("Change Password", comment: "")
         
-        cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDonePress))
-        navigationItem.leftBarButtonItem = sentFromLogin ? nil : cancelButton!
+        navigationItem.leftBarButtonItem = sentFromLogin ? nil : cancelButton
         navigationItem.hidesBackButton = sentFromLogin
-        navigationItem.rightBarButtonItem = doneButton!
+        navigationItem.rightBarButtonItem = submitButton
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -91,9 +90,9 @@ class ChangePasswordViewController: UIViewController {
         }
         
         // Bind to the view model
-        currentPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.currentPassword).addDisposableTo(disposeBag)
-        newPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).addDisposableTo(disposeBag)
-        confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).addDisposableTo(disposeBag)
+        currentPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.currentPassword).disposed(by: disposeBag)
+        newPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).disposed(by: disposeBag)
+        confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).disposed(by: disposeBag)
         
         currentPasswordTextField.textField.rx.controlEvent(UIControlEvents.editingChanged).subscribe(onNext: { _ in
             // If we displayed an inline error, clear it when user edits the text
@@ -102,19 +101,20 @@ class ChangePasswordViewController: UIViewController {
                 self.accessibilityErrorLabel()
                 
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         currentPasswordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
             .drive(onNext: { _ in
                 self.newPasswordTextField.textField.becomeFirstResponder()
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         newPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { _ in
+                self.scrollView.setContentOffset(self.newPasswordTextField.frame.origin, animated: true)
                 UIView.animate(withDuration: 0.5) {
                     self.passwordStrengthView.isHidden = false
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         newPasswordTextField.textField.rx.text.orEmpty.subscribe(onNext: { text in
             let score = self.viewModel.getPasswordScore()
@@ -129,7 +129,7 @@ class ChangePasswordViewController: UIViewController {
                 self.passwordStrengthLabel.text = NSLocalizedString("Strong", comment: "")
                 self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength strong", comment: "")
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         newPasswordTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .drive(onNext: { _ in
                 self.view.layoutIfNeeded()
@@ -137,7 +137,7 @@ class ChangePasswordViewController: UIViewController {
                     self.passwordStrengthView.isHidden = true
                     self.view.layoutIfNeeded()
                 })
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     deinit {
@@ -150,11 +150,10 @@ class ChangePasswordViewController: UIViewController {
         message += newPasswordTextField.getError()
         message += confirmPasswordTextField.getError()
         
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
-            self.doneButton?.accessibilityLabel = NSLocalizedString("Done", comment: "")
+        if message.isEmpty {
+            self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            self.doneButton?.accessibilityLabel = errorStr
+            self.submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
         }
     }
     
@@ -180,7 +179,7 @@ class ChangePasswordViewController: UIViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func onDonePress() {
+    func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -220,40 +219,40 @@ class ChangePasswordViewController: UIViewController {
     func setupValidation() {
         let checkImageOrNil: (Bool) -> UIImage? = { $0 ? #imageLiteral(resourceName: "ic_check") : nil }
         
-        viewModel.characterCountValid().map(checkImageOrNil).bind(to: characterCountCheck.rx.image).addDisposableTo(disposeBag)
+        viewModel.characterCountValid().map(checkImageOrNil).bind(to: characterCountCheck.rx.image).disposed(by: disposeBag)
         viewModel.characterCountValid().subscribe(onNext: { valid in
             self.characterCountCheck.isAccessibilityElement = valid
             self.characterCountCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
-        }).addDisposableTo(disposeBag)
-        viewModel.containsUppercaseLetter().map(checkImageOrNil).bind(to: uppercaseCheck.rx.image).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
+        viewModel.containsUppercaseLetter().map(checkImageOrNil).bind(to: uppercaseCheck.rx.image).disposed(by: disposeBag)
         viewModel.containsUppercaseLetter().subscribe(onNext: { valid in
             self.uppercaseCheck.isAccessibilityElement = valid
             self.uppercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
-        }).addDisposableTo(disposeBag)
-        viewModel.containsLowercaseLetter().map(checkImageOrNil).bind(to: lowercaseCheck.rx.image).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
+        viewModel.containsLowercaseLetter().map(checkImageOrNil).bind(to: lowercaseCheck.rx.image).disposed(by: disposeBag)
         viewModel.containsLowercaseLetter().subscribe(onNext: { valid in
             self.lowercaseCheck.isAccessibilityElement = valid
             self.lowercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
-        }).addDisposableTo(disposeBag)
-        viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
+        viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).disposed(by: disposeBag)
         viewModel.containsNumber().subscribe(onNext: { valid in
             self.numberCheck.isAccessibilityElement = valid
             self.numberCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
-        }).addDisposableTo(disposeBag)
-        viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
+        viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).disposed(by: disposeBag)
         viewModel.containsSpecialCharacter().subscribe(onNext: { valid in
             self.specialCharacterCheck.isAccessibilityElement = valid
             self.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         viewModel.everythingValid().subscribe(onNext: { valid in
             self.newPasswordTextField.setValidated(valid, accessibilityLabel: valid ? NSLocalizedString("Minimum password criteria met", comment: "") : nil)
             self.confirmPasswordTextField.setEnabled(valid)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         // Password cannot match username
         viewModel.passwordMatchesUsername().subscribe(onNext: { matches in
             if matches {
-                self.newPasswordTextField.setError(NSLocalizedString("Passsword cannot match username", comment: ""))
+                self.newPasswordTextField.setError(NSLocalizedString("Password cannot match username", comment: ""))
                 self.accessibilityErrorLabel()
                 
             } else {
@@ -261,24 +260,23 @@ class ChangePasswordViewController: UIViewController {
                 self.accessibilityErrorLabel()
                 
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.confirmPasswordMatches().subscribe(onNext: { matches in
             if self.confirmPasswordTextField.textField.hasText {
                 if matches {
                     self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 } else {
-                    self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
-                    self.accessibilityErrorLabel()
-                    
+                    self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))                    
                 }
             } else {
                 self.confirmPasswordTextField.setValidated(false)
                 self.confirmPasswordTextField.setError(nil)
             }
-        }).addDisposableTo(disposeBag)
+            self.accessibilityErrorLabel()
+        }).disposed(by: disposeBag)
         
-        viewModel.doneButtonEnabled().bind(to: doneButton!.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.doneButtonEnabled().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     // MARK: - ScrollView
@@ -318,8 +316,8 @@ extension ChangePasswordViewController: UITextFieldDelegate {
                 confirmPasswordTextField.textField.becomeFirstResponder()
             }
         } else if textField == confirmPasswordTextField.textField {
-            if self.doneButton!.isEnabled {
-                self.onDonePress()
+            if self.submitButton.isEnabled {
+                self.onSubmitPress()
             }
         }
         return false

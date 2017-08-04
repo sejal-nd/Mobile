@@ -37,7 +37,7 @@ class AccountLookupToolViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = searchButton
         navigationItem.rightBarButtonItem?.accessibilityLabel = NSLocalizedString("Search", comment: "")
-        viewModel.searchButtonEnabled().bind(to: searchButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.searchButtonEnabled().bind(to: searchButton.rx.isEnabled).disposed(by: disposeBag)
         
         identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, or Business Tax ID", comment: "")
@@ -47,8 +47,8 @@ class AccountLookupToolViewController: UIViewController {
         phoneNumberTextField.textField.returnKeyType = .next
         phoneNumberTextField.textField.delegate = self
         viewModel.phoneNumber.asObservable().bind(to: phoneNumberTextField.textField.rx.text.orEmpty)
-            .addDisposableTo(disposeBag)
-        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
+        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).disposed(by: disposeBag)
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.phoneNumber.value.characters.count > 0 {
                 self.viewModel.phoneNumberHasTenDigits().single().subscribe(onNext: { valid in
@@ -57,21 +57,21 @@ class AccountLookupToolViewController: UIViewController {
                     }
                     self.accessibilityErrorLabel()
                     
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.phoneNumberTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd) // Load the passed phone number from view model
         
         identifierTextField.textField.placeholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
         identifierTextField.textField.autocorrectionType = .no
         identifierTextField.textField.returnKeyType = .done
         identifierTextField.textField.delegate = self
-        identifierTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).addDisposableTo(disposeBag)
+        identifierTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
         identifierTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.identifierNumber.value.characters.count > 0 {
                 self.viewModel.identifierHasFourDigits().single().subscribe(onNext: { valid in
@@ -80,29 +80,29 @@ class AccountLookupToolViewController: UIViewController {
                     }
                     self.accessibilityErrorLabel()
                     
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 self.viewModel.identifierIsNumeric().single().subscribe(onNext: { numeric in
                     if !numeric {
                         self.identifierTextField.setError(NSLocalizedString("This number must be numeric.", comment: ""))
                     }
                     self.accessibilityErrorLabel()
                     
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         identifierTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.identifierTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {
-        let errorStr = NSLocalizedString(phoneNumberTextField.getError() + identifierTextField.getError(), comment: "")
+        let errorStr = phoneNumberTextField.getError() + identifierTextField.getError()
         if errorStr.isEmpty {
             self.searchButton.accessibilityLabel = NSLocalizedString("Search", comment: "")
         } else {
-            self.searchButton.accessibilityLabel = errorStr
+            self.searchButton.accessibilityLabel = NSLocalizedString(errorStr + " Search", comment: "")
         }
     }
     
@@ -215,7 +215,7 @@ extension AccountLookupToolViewController: UITextFieldDelegate {
                 } else {
                     self.view.endEditing(true)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         }
         return false
     }

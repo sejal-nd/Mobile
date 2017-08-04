@@ -26,13 +26,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var forgotUsernameButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var eyeballButton: UIButton!
-    @IBOutlet weak var touchIDImage: UIImageView!
     @IBOutlet weak var touchIDLabel: UILabel!
-    @IBOutlet weak var touchIDView: UIView!
+    @IBOutlet weak var touchIDButton: ButtonControl!
     @IBOutlet weak var loginFormViewHeightConstraint: NSLayoutConstraint!
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService(), registrationService: ServiceFactory.createRegistrationService())
-    var passwordAutofilledFromTouchID = false
     var viewAlreadyAppeared = false
 
     override func viewDidLoad() {
@@ -43,11 +41,16 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(verifyAccountNotificationReceived), name: NSNotification.Name.DidTapAccountVerificationDeepLink, object: nil)
         
         view.backgroundColor = .primaryColor
-        
-        if !viewModel.isTouchIDEnabled() {
-            touchIDView.isHidden = true
-            loginFormViewHeightConstraint.constant = 390
-        }
+
+        viewModel.touchIdEnabled.asObservable().subscribe(onNext: { touchIDEnabled in
+            if touchIDEnabled {
+                self.touchIDButton.isHidden = false
+                self.loginFormViewHeightConstraint.constant = 420
+            } else {
+                self.touchIDButton.isHidden = true
+                self.loginFormViewHeightConstraint.constant = 390
+            }
+        }).disposed(by: disposeBag)
         
         loginFormView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
         loginFormView.layer.cornerRadius = 2
@@ -67,33 +70,33 @@ class LoginViewController: UIViewController {
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
     
         // Two-way data binding for the username/password fields
-        viewModel.username.asObservable().bind(to: usernameTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
-        viewModel.password.asObservable().bind(to: passwordTextField.textField.rx.text.orEmpty).addDisposableTo(disposeBag)
+        viewModel.username.asObservable().bind(to: usernameTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
+        viewModel.password.asObservable().bind(to: passwordTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
         viewModel.password.asObservable().subscribe(onNext: { (password) in
-            if self.passwordAutofilledFromTouchID {
+            if let autofilledPw = self.viewModel.touchIDAutofilledPassword, password != autofilledPw {
                 // The password field was successfully auto-filled from Touch ID, but then the user manually changed it,
                 // presumably because the password has been changed and is now different than what's stored in the keychain.
                 // Therefore, we disable Touch ID, and reset the UserDefaults flag to prompt to enable it upon the 
                 // next successful login
                 self.viewModel.disableTouchID()
                 self.viewModel.setShouldPromptToEnableTouchID(true)
-                self.passwordAutofilledFromTouchID = false
+                self.viewModel.touchIDAutofilledPassword = nil
             }
-        }).addDisposableTo(disposeBag)
-        usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).addDisposableTo(disposeBag)
-        passwordTextField.textField.rx.text.orEmpty.bind(to: viewModel.password).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
+        usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
+        passwordTextField.textField.rx.text.orEmpty.bind(to: viewModel.password).disposed(by: disposeBag)
         
         // Update the text field appearance in case data binding autofilled text
         usernameTextField.textField.sendActions(for: .editingDidEnd)
         
-        keepMeSignedInSwitch.rx.isOn.bind(to: viewModel.keepMeSignedIn).addDisposableTo(disposeBag)
+        keepMeSignedInSwitch.rx.isOn.bind(to: viewModel.keepMeSignedIn).disposed(by: disposeBag)
         
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.passwordTextField.textField.becomeFirstResponder()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.onLoginPress()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
 //        // This hack (on editingDidBegin/editingDidEnd) prevents the automatic scrolling that happens when the password field is
 //        // selected on a 4" phone. We want that disabled because of our custom logic in keyboardWillShow.
@@ -103,20 +106,20 @@ class LoginViewController: UIViewController {
 //            self.passwordTextField.textField.superview?.addSubview(wrap)
 //            self.passwordTextField.textField.frame = CGRect(x: 0, y: 0, width: self.passwordTextField.textField.frame.size.width, height: self.passwordTextField.textField.frame.size.height)
 //            wrap.addSubview(self.passwordTextField.textField)
-//        }).addDisposableTo(disposeBag)
+//        }).disposed(by: disposeBag)
 //        passwordTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
 //            if let wrap = self.passwordTextField.textField.superview as? UIScrollView {
 //                self.passwordTextField.textField.frame = CGRect(x: wrap.frame.origin.x, y: wrap.frame.origin.y, width: wrap.frame.size.width, height: wrap.frame.size.height)
 //                wrap.superview?.addSubview(self.passwordTextField.textField)
 //                wrap.removeFromSuperview()
 //            }
-//        }).addDisposableTo(disposeBag)
+//        }).disposed(by: disposeBag)
         
         forgotUsernameButton.tintColor = .actionBlue
         forgotPasswordButton.tintColor = .actionBlue
         
         touchIDLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
-        touchIDLabel.isAccessibilityElement = false // The button itself will read "Touch ID"
+        touchIDButton.accessibilityLabel = NSLocalizedString("Touch ID", comment: "")
 
         checkForMaintenanceMode()
     }
@@ -149,6 +152,8 @@ class LoginViewController: UIViewController {
         self.signInButton.accessibilityViewIsModal = false;
         self.passwordTextField.textField.text = ""
         self.passwordTextField.textField.sendActions(for: .editingChanged)
+        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -288,20 +293,8 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func onTouchIDPress(_ sender: UIButton) {
-        touchIDImage.alpha = 1.0
-        touchIDLabel.alpha = 1.0
+    @IBAction func onTouchIDPress() {
         presentTouchIDPrompt()
-    }
-    
-    @IBAction func onTouchIDTouchDown(_ sender: UIButton) {
-        touchIDImage.alpha = 0.5
-        touchIDLabel.alpha = 0.5
-    }
-    
-    @IBAction func onTouchIDTouchCancel(_ sender: UIButton) {
-        touchIDImage.alpha = 1.0
-        touchIDLabel.alpha = 1.0
     }
     
     func launchMainApp() {
@@ -324,10 +317,7 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
             })
-            
             self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
-            self.passwordAutofilledFromTouchID = true // be sure to set this to true after the above line because will send an rx event on the text observer
-            
             self.signInButton.setLoading()
             self.signInButton.accessibilityLabel = "Loading";
             self.signInButton.accessibilityViewIsModal = true;

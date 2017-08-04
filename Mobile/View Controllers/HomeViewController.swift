@@ -75,13 +75,13 @@ class HomeViewController: AccountPickerViewController {
                 }
                 
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         billCardView = HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel)
         billCardView.oneTouchPayFinished.debug("oneTouchPayFinished")
             .map { FetchingAccountState.switchAccount }
             .bind(to: viewModel.fetchData)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         cardStackView.addArrangedSubview(billCardView)
         
         if viewModel.showTemplateCard {
@@ -89,7 +89,7 @@ class HomeViewController: AccountPickerViewController {
             templateCardView.callToActionViewController
                 .drive(onNext: { [weak self] viewController in
                     self?.present(viewController, animated: true, completion: nil)
-                }).addDisposableTo(bag)
+                }).disposed(by: bag)
             cardStackView.addArrangedSubview(templateCardView)
         }
         
@@ -124,46 +124,44 @@ class HomeViewController: AccountPickerViewController {
     
     func bindLoadingStates() {
         topLoadingIndicatorView.isHidden = true
-        viewModel.isRefreshing.filter(!).drive(rx.isRefreshing).addDisposableTo(bag)
-        viewModel.isSwitchingAccounts.not().drive(rx.isPullToRefreshEnabled).addDisposableTo(bag)
-        viewModel.isSwitchingAccounts.drive(homeLoadingIndicator.rx.isAnimating).addDisposableTo(bag)
-        viewModel.isSwitchingAccounts.drive(cardStackView.rx.isHidden).addDisposableTo(bag)
-        viewModel.isSwitchingAccounts.not().drive(loadingView.rx.isHidden).addDisposableTo(bag)
+        viewModel.isRefreshing.filter(!).drive(rx.isRefreshing).disposed(by: bag)
+        viewModel.isSwitchingAccounts.not().drive(rx.isPullToRefreshEnabled).disposed(by: bag)
+        viewModel.isSwitchingAccounts.drive(homeLoadingIndicator.rx.isAnimating).disposed(by: bag)
+        viewModel.isSwitchingAccounts.drive(cardStackView.rx.isHidden).disposed(by: bag)
+        viewModel.isSwitchingAccounts.not().drive(loadingView.rx.isHidden).disposed(by: bag)
         
-        viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).addDisposableTo(bag)
-        viewModel.showNoNetworkConnectionState.drive(scrollView.rx.isHidden).addDisposableTo(bag)
-        viewModel.isSwitchingAccounts.not().filter(!).drive(scrollView.rx.isHidden).addDisposableTo(bag)
-        viewModel.isSwitchingAccounts.filter { $0 }.drive(noNetworkConnectionView.rx.isHidden).addDisposableTo(bag)
+        viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
+        viewModel.showNoNetworkConnectionState.drive(scrollView.rx.isHidden).disposed(by: bag)
         
-        viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).addDisposableTo(bag)
-        viewModel.isSwitchingAccounts.drive(temperatureLabel.rx.isHidden).addDisposableTo(bag)
-        viewModel.isSwitchingAccounts.drive(weatherIconImage.rx.isHidden).addDisposableTo(bag)
+        viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).disposed(by: bag)
+        viewModel.isSwitchingAccounts.drive(temperatureLabel.rx.isHidden).disposed(by: bag)
+        viewModel.isSwitchingAccounts.drive(weatherIconImage.rx.isHidden).disposed(by: bag)
         
-        viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).addDisposableTo(bag)
-        viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).addDisposableTo(bag)
+        viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).disposed(by: bag)
+        viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).disposed(by: bag)
         
-        viewModel.weatherTemp.drive(temperatureLabel.rx.text).addDisposableTo(bag)
-        viewModel.weatherTemp.drive(temperatureLabel.rx.accessibilityLabel).addDisposableTo(bag)
-        viewModel.weatherIcon.drive(weatherIconImage.rx.image).addDisposableTo(bag)
-        viewModel.greeting.drive(greetingLabel.rx.text).addDisposableTo(bag)
-        viewModel.greeting.drive(greetingLabel.rx.accessibilityLabel).addDisposableTo(bag)
+        viewModel.greeting.drive(greetingLabel.rx.text).disposed(by: bag)
+        viewModel.weatherTemp.drive(temperatureLabel.rx.text).disposed(by: bag)
+        viewModel.weatherIcon.drive(weatherIconImage.rx.image).disposed(by: bag)
+        weatherIconImage.isAccessibilityElement = true
+        viewModel.shortForecast.drive(weatherIconImage.rx.accessibilityLabel).disposed(by: bag)
         
         noNetworkConnectionView.reload
             .map { FetchingAccountState.switchAccount }
             .bind(to: viewModel.fetchData)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         billCardView.viewBillPressed
             .drive(onNext: { [weak self] in
                 self?.tabBarController?.selectedIndex = 1
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         billCardView.modalViewControllers
             .drive(onNext: { [weak self] viewController in
                 self?.present(viewController, animated: true, completion: nil)
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         billCardView.pushedViewControllers
             .drive(onNext: { [weak self] viewController in
@@ -175,7 +173,7 @@ class HomeViewController: AccountPickerViewController {
                     vc.didUpdate
                         .map { _ in FetchingAccountState.switchAccount }
                         .bind(to: self.viewModel.fetchData)
-                        .addDisposableTo(self.bag)
+                        .disposed(by: self.bag)
                     
                     vc.didUpdate
                         .delay(0.5, scheduler: MainScheduler.instance)
@@ -183,12 +181,12 @@ class HomeViewController: AccountPickerViewController {
                         .subscribe(onNext: { [weak self] toastMessage in
                             self?.view.showToast(toastMessage)
                         })
-                        .addDisposableTo(self.bag)
+                        .disposed(by: self.bag)
                 }
                 
                 self.navigationController?.pushViewController(viewController, animated: true)
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     

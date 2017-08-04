@@ -22,6 +22,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         super.viewDidLoad()
 
         xButton.tintColor = .actionBlue
+        xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         
         titleLabel.textColor = .blackText
         titleLabel.text = NSLocalizedString("Registration Confirmation", comment: "")
@@ -81,7 +82,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)
                 })
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
         }
     }
 

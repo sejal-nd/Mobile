@@ -40,7 +40,7 @@ class MiniWalletTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func bindToWalletItem(_ walletItem: WalletItem) {
+    func bindToWalletItem(_ walletItem: WalletItem, isSelectedItem: Bool) {
         var a11yLabel = ""
         
         if walletItem.bankOrCard == .bank {
@@ -61,6 +61,13 @@ class MiniWalletTableViewCell: UITableViewCell {
             a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
         } else {
             accountNumberLabel.text = ""
+        }
+        
+        if isSelectedItem {
+            a11yLabel += ", Selected"
+            checkmarkImageView.isHidden = false
+        } else {
+            checkmarkImageView.isHidden = true
         }
         
         innerContentView.accessibilityLabel = a11yLabel

@@ -71,7 +71,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     func setupNavigationButtons() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
-        viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.nextButtonEnabled().bind(to: nextButton.rx.isEnabled).disposed(by: disposeBag)
 
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = nextButton
@@ -106,7 +106,7 @@ class RegistrationValidateAccountViewController: UIViewController {
             accountNumberTextField.textField.returnKeyType = .next
             accountNumberTextField.textField.delegate = self
             accountNumberTextField.textField.isShowingAccessory = true
-            accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
+            accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
             accountNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
             
@@ -116,17 +116,17 @@ class RegistrationValidateAccountViewController: UIViewController {
                         if !valid {
                             self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
                         }
-                    }).addDisposableTo(self.disposeBag)
+                    }).disposed(by: self.disposeBag)
                 }
                 self.accessibilityErrorLabel()
                 
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
             
             accountNumberTextField?.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
                 self.accountNumberTextField?.setError(nil)
                 self.accessibilityErrorLabel()
                 
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         } else {
             accountNumberView.isHidden = true
         }
@@ -136,7 +136,7 @@ class RegistrationValidateAccountViewController: UIViewController {
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.textField.returnKeyType = .next
         phoneNumberTextField.textField.delegate = self
-        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).addDisposableTo(disposeBag)
+        phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).disposed(by: disposeBag)
         phoneNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
@@ -145,17 +145,17 @@ class RegistrationValidateAccountViewController: UIViewController {
                     if !valid {
                         self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.phoneNumberTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //
         var ssString = "SSN/Business Tax ID"
@@ -170,7 +170,7 @@ class RegistrationValidateAccountViewController: UIViewController {
         ssNumberNumberTextField.textField.autocorrectionType = .no
         ssNumberNumberTextField.textField.returnKeyType = .done
         ssNumberNumberTextField.textField.delegate = self
-        ssNumberNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).addDisposableTo(disposeBag)
+        ssNumberNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
         ssNumberNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         ssNumberNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
@@ -179,22 +179,26 @@ class RegistrationValidateAccountViewController: UIViewController {
                     if !valid {
                         self.ssNumberNumberTextField.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 self.viewModel.identifierIsNumeric().single().subscribe(onNext: { numeric in
                     if !numeric {
                         self.ssNumberNumberTextField.setError(NSLocalizedString("This number must be numeric.", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         ssNumberNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.ssNumberNumberTextField?.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
+        
+        accountNumberTextField.setKeyboardType(.numberPad)
+        phoneNumberTextField.setKeyboardType(.numberPad)
+        ssNumberNumberTextField.setKeyboardType(.numberPad)
     }
     
     deinit {
@@ -207,11 +211,10 @@ class RegistrationValidateAccountViewController: UIViewController {
         message += phoneNumberTextField.getError()
         message += ssNumberNumberTextField.getError()
         
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
+        if message.isEmpty {
             self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            self.nextButton.accessibilityLabel = errorStr
+            self.nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
         }
     }
     
@@ -381,7 +384,7 @@ extension RegistrationValidateAccountViewController: UITextFieldDelegate {
                 } else {
                     self.view.endEditing(true)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         }
         return false
     }

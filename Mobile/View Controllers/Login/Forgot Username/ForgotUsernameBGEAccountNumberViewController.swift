@@ -28,7 +28,7 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
-        viewModel.accountNumberHasTenDigits().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.accountNumberHasTenDigits().bind(to: nextButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("The information entered is associated with multiple accounts. Please enter the account number you would like to proceed with.", comment: "")
@@ -38,35 +38,34 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         accountNumberTextField.textField.returnKeyType = .done
         accountNumberTextField?.textField.delegate = self
         accountNumberTextField.textField.isShowingAccessory = true
-        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
+        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.accountNumber.value.characters.count > 0 {
                 self.viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.accountNumberTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
     }
     
     private func accessibilityErrorLabel() {
-        let message = NSLocalizedString(accountNumberTextField.getError(), comment: "")
+        let message = accountNumberTextField.getError()
         
-        let errorStr = NSLocalizedString(message, comment: "")
-        if errorStr.isEmpty {
+        if message.isEmpty {
             self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            self.nextButton.accessibilityLabel = errorStr
+            self.nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
         }
     }
     
@@ -117,7 +116,7 @@ extension ForgotUsernameBGEAccountNumberViewController: UITextFieldDelegate {
             } else {
                 self.view.endEditing(true)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         return false
     }

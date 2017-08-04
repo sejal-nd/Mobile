@@ -14,17 +14,20 @@ class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
     var borderLayers = [CALayer]()
     var isShowingAccessory = false
     var isShowingLeftAccessory = false
+    var customAccessibilityLabel: String?
     
     override var accessibilityLabel: String? {
         get {
             if let _ = self.text {
-                return self.floatingLabel.text
+                if let customA11yLabel = customAccessibilityLabel {
+                    return customA11yLabel
+                } else if let floatLabelText = self.floatingLabel.text {
+                    return floatLabelText.replacingOccurrences(of: "*", with: NSLocalizedString(", required", comment: ""))
+                }
             }
             return ""
         }
-        set {
-            
-        }
+        set { }
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {

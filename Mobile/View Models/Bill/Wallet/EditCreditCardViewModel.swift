@@ -32,14 +32,14 @@ class EditCreditCardViewModel {
     }
     
     func saveButtonIsEnabled() -> Observable<Bool> {
-        return Observable.combineLatest(webServicesDataChanged(), oneTouchPayInitialValue.asObservable(), oneTouchPay.asObservable()) {
+        return Observable.combineLatest(cardDataEntered(), oneTouchPayInitialValue.asObservable(), oneTouchPay.asObservable()) {
             return $0 || ($1 != $2)
         }
     }
     
-    func webServicesDataChanged() -> Observable<Bool> {
-        return Observable.combineLatest(expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits()) {
-            return ($0 && $1 && $2 && $3) || $4 || $5
+    func cardDataEntered() -> Observable<Bool> {
+        return Observable.combineLatest([expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits()]) {
+            return !$0.contains(false)
         }
     }
     
@@ -88,17 +88,14 @@ class EditCreditCardViewModel {
     }
     
     func editCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        walletService.updateCreditCard(walletItem.walletItemID!, customerNumber: AccountsStore.sharedInstance.customerIdentifier, expirationMonth: expMonth.value.isEmpty ? nil : expMonth.value, expirationYear: expYear.value.isEmpty ? nil : expYear.value, securityCode: cvv.value.isEmpty ? nil : cvv.value, postalCode: zipCode.value.isEmpty ? nil : zipCode.value, nickname: nil)
+        walletService.updateCreditCard(walletItem.walletItemID!, customerNumber: AccountsStore.sharedInstance.customerIdentifier, expirationMonth: expMonth.value, expirationYear: expYear.value, securityCode: cvv.value, postalCode: zipCode.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
             }, onError: { err in
                 onError(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
-        walletService.setOneTouchPayItem(walletItemId: walletItem.walletItemID!, walletId: walletItem.walletExternalID, customerId: AccountsStore.sharedInstance.customerIdentifier) { (result: ServiceResult<Void>) in
-            
-        }
+            .disposed(by: disposeBag)
     }
     
     func deleteCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -109,7 +106,7 @@ class EditCreditCardViewModel {
             }, onError: { err in
                 onError(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func enableOneTouchPay(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -122,7 +119,7 @@ class EditCreditCardViewModel {
             }, onError: { err in
                 onError(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func deleteOneTouchPay(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -133,7 +130,7 @@ class EditCreditCardViewModel {
             }, onError: { err in
                 onError(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func getOneTouchDisplayString() -> String {

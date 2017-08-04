@@ -111,18 +111,18 @@ class AddBankFormView: UIView {
     }
     
     func bindViewModel() {
-        checkingSavingsSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).addDisposableTo(disposeBag)
-        accountHolderNameTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountHolderName).addDisposableTo(disposeBag)
-        routingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.routingNumber).addDisposableTo(disposeBag)
-        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
-        confirmAccountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmAccountNumber).addDisposableTo(disposeBag)
-        saveToWalletSwitch.rx.isOn.bind(to: viewModel.saveToWallet).addDisposableTo(disposeBag)
-        nicknameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nickname).addDisposableTo(disposeBag)
-        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).addDisposableTo(disposeBag)
+        checkingSavingsSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
+        accountHolderNameTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountHolderName).disposed(by: disposeBag)
+        routingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.routingNumber).disposed(by: disposeBag)
+        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
+        confirmAccountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmAccountNumber).disposed(by: disposeBag)
+        saveToWalletSwitch.rx.isOn.bind(to: viewModel.saveToWallet).disposed(by: disposeBag)
+        nicknameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nickname).disposed(by: disposeBag)
+        oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).disposed(by: disposeBag)
         
         viewModel.confirmAccountNumberIsEnabled.drive(onNext: { enabled in
             self.confirmAccountNumberTextField.setEnabled(enabled)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func bindViewHiding() {
@@ -131,10 +131,10 @@ class AddBankFormView: UIView {
                 return true
             }
             return !$0
-        }.drive(saveToWalletStackView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.saveToWallet.asDriver().drive(byNotSavingLabel.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.saveToWallet.asDriver().map(!).drive(nicknameTextField.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.saveToWallet.asDriver().map(!).drive(oneTouchPayView.rx.isHidden).addDisposableTo(disposeBag)
+        }.drive(saveToWalletStackView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.saveToWallet.asDriver().drive(byNotSavingLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.saveToWallet.asDriver().map(!).drive(nicknameTextField.rx.isHidden).disposed(by: disposeBag)
+        viewModel.saveToWallet.asDriver().map(!).drive(oneTouchPayView.rx.isHidden).disposed(by: disposeBag)
     }
     
     func bindValidation() {
@@ -144,13 +144,13 @@ class AddBankFormView: UIView {
                     if !valid {
                         self.accountHolderNameTextField.setError(NSLocalizedString("Must be at least 3 characters", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         accountHolderNameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accountHolderNameTextField.setError(nil)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.routingNumber.value.isEmpty {
@@ -164,14 +164,14 @@ class AddBankFormView: UIView {
                             self.routingNumberTextField.setInfoMessage(nil)
                         })
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.routingNumberTextField.setError(nil)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.accountNumber.value.isEmpty {
@@ -179,13 +179,13 @@ class AddBankFormView: UIView {
                     if !valid {
                         self.accountNumberTextField.setError(NSLocalizedString("Must be between 4-17 digits", comment: ""))
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
             self.accountNumberTextField.setError(nil)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
             if !self.viewModel.confirmAccountNumber.value.isEmpty {
@@ -198,11 +198,11 @@ class AddBankFormView: UIView {
                 self.confirmAccountNumberTextField.setValidated(false)
                 self.confirmAccountNumberTextField.setError(nil)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.nicknameErrorString().subscribe(onNext: { errMessage in
             self.nicknameTextField.setError(errMessage)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     @IBAction func onRoutingNumberQuestionMarkPress() {

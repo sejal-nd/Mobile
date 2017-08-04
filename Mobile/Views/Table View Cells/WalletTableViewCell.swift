@@ -10,7 +10,7 @@ import UIKit
 
 class WalletTableViewCell: UITableViewCell {
     
-    @IBOutlet private weak var innerContentView: UIView!
+    @IBOutlet weak var innerContentView: ButtonControl!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var accountNumberLabel: UILabel!
@@ -28,6 +28,7 @@ class WalletTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
+        backgroundColor = .clear
         contentView.backgroundColor = .clear
         
         innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
@@ -90,22 +91,22 @@ class WalletTableViewCell: UITableViewCell {
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 bottomBarLabel.text = NSLocalizedString(billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
-                a11yLabel = NSLocalizedString("Credit card", comment: "")
+                a11yLabel = NSLocalizedString("Saved credit card", comment: "")
             } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                a11yLabel = NSLocalizedString("Bank account", comment: "")
+                a11yLabel = NSLocalizedString("Saved bank account", comment: "")
             }
         case .bge:
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
                 bottomBarLabel.text = NSLocalizedString(billingInfo.convenienceFeeString(isComplete: false), comment: "")
-                a11yLabel = NSLocalizedString("Credit card", comment: "")
+                a11yLabel = NSLocalizedString("Saved credit card", comment: "")
             } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                a11yLabel = NSLocalizedString("Bank account", comment: "")
+                a11yLabel = NSLocalizedString("Saved bank account", comment: "")
             }
         }
-        
+
         // Nickname
         if let nickname = walletItem.nickName {
             nicknameLabel.text = nickname.uppercased()
@@ -138,9 +139,11 @@ class WalletTableViewCell: UITableViewCell {
         }
         
         oneTouchPayView.isHidden = true // Calculated in cellForRowAtIndexPath
+        if walletItem.isDefault {
+            a11yLabel += NSLocalizedString(", One touch pay account", comment: "")
+        }
         
-        accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"
-        accessibilityTraits = UIAccessibilityTraitButton
+        innerContentView.accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"
     }
     
 }

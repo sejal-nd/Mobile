@@ -54,7 +54,7 @@ class MiniWalletViewController: UIViewController {
             .map { $0.y <= 0 ? .white: .softGray }
             .distinctUntilChanged()
             .drive(onNext: { self.tableView.backgroundColor = $0 })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         tableHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
         tableHeaderLabel.textColor = .blackText
@@ -66,9 +66,9 @@ class MiniWalletViewController: UIViewController {
         
         tableView.estimatedSectionHeaderHeight = 16
         
-        viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).addDisposableTo(disposeBag)
-        viewModel.shouldShowErrorLabel.map(!).drive(errorLabel.rx.isHidden).addDisposableTo(disposeBag)
+        viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowErrorLabel.map(!).drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         if accountDetail.isCashOnly {
             bankAccountsDisabled = true
@@ -220,6 +220,10 @@ extension MiniWalletViewController: UITableViewDataSource {
             cell.label.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
             if bankAccountsDisabled {
                 cell.label.alpha = 0.33
+                cell.accessibilityElementsHidden = true
+            } else {
+                cell.label.alpha = 1
+                cell.accessibilityElementsHidden = false
             }
         } else {
             var creditCardFeeString: String {
@@ -234,6 +238,10 @@ extension MiniWalletViewController: UITableViewDataSource {
             cell.label.text = creditCardFeeString
             if creditCardsDisabled {
                 cell.label.alpha = 0.33
+                cell.accessibilityElementsHidden = true
+            } else {
+                cell.label.alpha = 1
+                cell.accessibilityElementsHidden = false
             }
         }
         
@@ -251,8 +259,7 @@ extension MiniWalletViewController: UITableViewDataSource {
             if indexPath.row < viewModel.bankAccounts.count {
                 let bankItem = viewModel.bankAccounts[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "MiniWalletItemCell", for: indexPath) as! MiniWalletTableViewCell
-                cell.bindToWalletItem(bankItem)
-                cell.checkmarkImageView.isHidden = bankItem != viewModel.selectedItem.value
+                cell.bindToWalletItem(bankItem, isSelectedItem: bankItem == viewModel.selectedItem.value)
                 cell.innerContentView.tag = indexPath.row
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onBankAccountPress(sender:)), for: .touchUpInside)
@@ -267,7 +274,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                         return false
                     }
                     return !$0
-                }.drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
+                }.drive(cell.innerContentView.rx.isEnabled).disposed(by: disposeBag)
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddBankAccountPress), for: .touchUpInside)
                 cell.innerContentView.accessibilityLabel = NSLocalizedString("Add Bank Account", comment: "")
@@ -277,12 +284,18 @@ extension MiniWalletViewController: UITableViewDataSource {
             if indexPath.row < viewModel.creditCards.count {
                 let cardItem = viewModel.creditCards[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "MiniWalletItemCell", for: indexPath) as! MiniWalletTableViewCell
-                cell.bindToWalletItem(cardItem)
-                cell.checkmarkImageView.isHidden = cardItem != viewModel.selectedItem.value
+                cell.bindToWalletItem(cardItem, isSelectedItem: cardItem == viewModel.selectedItem.value)
                 cell.innerContentView.tag = indexPath.row
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onCreditCardPress(sender:)), for: .touchUpInside)
-                cell.innerContentView.isEnabled = !self.creditCardsDisabled
+                
+                cell.innerContentView.isEnabled = true
+                if let cardIssuer = cardItem.cardIssuer, cardIssuer == "Visa", sentFromPayment, !accountDetail.isResidential, Environment.sharedInstance.opco == .bge { // BGE Commercial cannot pay with VISA
+                    cell.innerContentView.isEnabled = false
+                }
+                if creditCardsDisabled {
+                    cell.innerContentView.isEnabled = false
+                }
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
@@ -293,7 +306,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                         return false
                     }
                     return !$0
-                }.drive(cell.innerContentView.rx.isEnabled).addDisposableTo(disposeBag)
+                }.drive(cell.innerContentView.rx.isEnabled).disposed(by: disposeBag)
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddCreditCardPress), for: .touchUpInside)
                 cell.innerContentView.accessibilityLabel = NSLocalizedString("Add Credit/Debit Card", comment: "")

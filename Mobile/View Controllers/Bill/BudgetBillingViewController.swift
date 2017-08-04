@@ -38,6 +38,7 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var enrollSwitch: Switch!
+    @IBOutlet weak var accountIcon: UIImageView!
     
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
@@ -81,7 +82,7 @@ class BudgetBillingViewController: UIViewController {
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         view.backgroundColor = .softGray
         
@@ -99,8 +100,11 @@ class BudgetBillingViewController: UIViewController {
         whatIsBudgetBillingButton.backgroundColorOnPress = .softGray
         whatIsBudgetBillingButton.rx.touchUpInside.asDriver().drive(onNext: {
             self.performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         whatIsBudgetBillingButton.accessibilityLabel = NSLocalizedString("What is budget billing?", comment: "")
+        
+        let commercialUser = UserDefaults.standard.bool(forKey: UserDefaultKeys.IsCommercialUser)
+        accountIcon.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial Account", comment: "") : NSLocalizedString("Residential Account", comment: "")
         
         whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
@@ -108,7 +112,6 @@ class BudgetBillingViewController: UIViewController {
         yourPaymentWouldBeLabel.font = SystemFont.medium.of(textStyle: .footnote)
         yourPaymentWouldBeLabel.textColor = .deepGray
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your payment would be:", comment: "")
-        
         paymentAmountLabel.textColor = .deepGray
         monthLabel.textColor = .deepGray
         monthLabel.text = NSLocalizedString("/Month", comment: "")
@@ -129,8 +132,8 @@ class BudgetBillingViewController: UIViewController {
         addressLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
         
-        viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).addDisposableTo(disposeBag)
-        enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).addDisposableTo(disposeBag)
+        viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).disposed(by: disposeBag)
+        enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).disposed(by: disposeBag)
         
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
@@ -143,7 +146,7 @@ class BudgetBillingViewController: UIViewController {
                 UIView.animate(withDuration: 0.3, animations: {
                     self.reasonForStoppingTableView.isHidden = !unenrolling
                 })
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         }
         
         // BGE Footer View when user is enrolled

@@ -128,7 +128,19 @@ class PaymentViewModel {
                             }
                         }
                     } else {
-                        if self.accountDetail.value.isCashOnly {
+                        if Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential {
+                            // Default to One Touch Pay item IF it's not a VISA credit card
+                            if let otpItem = self.oneTouchPayItem, let cardIssuer = otpItem.cardIssuer, cardIssuer != "Visa" {
+                                self.selectedWalletItem.value = otpItem
+                            } else if walletItems.count > 0 { // If no OTP item, default to first non-VISA wallet item
+                                for item in walletItems {
+                                    if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
+                                        self.selectedWalletItem.value = item
+                                        break
+                                    }
+                                }
+                            }
+                        } else if self.accountDetail.value.isCashOnly {
                             // Default to One Touch Pay item IF it's a credit card
                             if let otpItem = self.oneTouchPayItem {
                                 if otpItem.bankOrCard == .card {
@@ -155,7 +167,7 @@ class PaymentViewModel {
             }, onError: { _ in
                 self.isFetching.value = false
                 self.isError.value = true
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -178,8 +190,8 @@ class PaymentViewModel {
                         onSuccess()
                     }, onError: { err in
                         onError(err.localizedDescription)
-                    }).addDisposableTo(self.disposeBag)
-            }).addDisposableTo(disposeBag)
+                    }).disposed(by: self.disposeBag)
+            }).disposed(by: disposeBag)
         }
     }
     
@@ -231,8 +243,8 @@ class PaymentViewModel {
                                 self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
                             }
                             onError(err.localizedDescription)
-                        }).addDisposableTo(self.disposeBag)
-                }).addDisposableTo(self.disposeBag)
+                        }).disposed(by: self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }, onError: { (error: Error) in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
@@ -241,7 +253,7 @@ class PaymentViewModel {
                     onError(error.localizedDescription)
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     private func scheduleInlineCardPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -280,18 +292,18 @@ class PaymentViewModel {
                                 self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
                             }
                             onError(err.localizedDescription)
-                        }).addDisposableTo(self.disposeBag)
-                }).addDisposableTo(self.disposeBag)
+                        }).disposed(by: self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
-                    onDuplicate(NSLocalizedString("Duplicate Credit Card", comment: ""), error.localizedDescription)
+                    onDuplicate(NSLocalizedString("Duplicate Card", comment: ""), error.localizedDescription)
                 } else {
                     onError(error.localizedDescription)
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func enableOneTouchPay(walletItemID: String, onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
@@ -304,7 +316,7 @@ class PaymentViewModel {
             }, onError: { err in
                 onError?(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -315,7 +327,7 @@ class PaymentViewModel {
             }, onError: { err in
                 onError(err.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -332,8 +344,8 @@ class PaymentViewModel {
                     onSuccess()
                 }, onError: { err in
                     onError(err.localizedDescription)
-                }).addDisposableTo(self.disposeBag)
-        }).addDisposableTo(disposeBag)
+                }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     // MARK: - Shared Drivers
@@ -411,10 +423,23 @@ class PaymentViewModel {
     
     // MARK: - Inline Card Validation
     
+    var bgeCommercialUserEnteringVisa: Observable<Bool> {
+        return Observable.combineLatest(addCardFormViewModel.cardNumber.asObservable(), accountDetail.asObservable()).map {
+            if Environment.sharedInstance.opco == .bge && !$1.isResidential {
+                let characters = Array($0.characters)
+                if characters.count >= 1 {
+                    return characters[0] == "4"
+                }
+            }
+            return false
+        }
+    }
+    
     var saveToWalletCardFormValidBGE: Driver<Bool> {
         return Driver.combineLatest([addCardFormViewModel.nameOnCardHasText().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.cardNumberHasText().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.cardNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     bgeCommercialUserEnteringVisa.asDriver(onErrorJustReturn: false).map(!),
                                      addCardFormViewModel.expMonthIs2Digits().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.expMonthIsValidMonth().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.expYearIs4Digits().asDriver(onErrorJustReturn: false),
@@ -445,6 +470,7 @@ class PaymentViewModel {
         return Driver.combineLatest([addCardFormViewModel.nameOnCardHasText().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.cardNumberHasText().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.cardNumberIsValid().asDriver(onErrorJustReturn: false),
+                                     bgeCommercialUserEnteringVisa.asDriver(onErrorJustReturn: false).map(!),
                                      addCardFormViewModel.expMonthIs2Digits().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.expMonthIsValidMonth().asDriver(onErrorJustReturn: false),
                                      addCardFormViewModel.expYearIs4Digits().asDriver(onErrorJustReturn: false),
@@ -548,6 +574,10 @@ class PaymentViewModel {
         return $0.isActiveSeverance
     }
     
+    lazy var isBGECommercialUser: Driver<Bool> = self.accountDetail.asDriver().map {
+        return Environment.sharedInstance.opco == .bge && !$0.isResidential
+    }
+    
     var shouldShowContent: Driver<Bool> {
         return Driver.combineLatest(isFetching.asDriver(), isError.asDriver()).map {
             return !$0 && !$1
@@ -564,11 +594,18 @@ class PaymentViewModel {
     }
     
     var hasWalletItems: Driver<Bool> {
-        return Driver.combineLatest(walletItems.asDriver(), isCashOnlyUser).map {
+        return Driver.combineLatest(walletItems.asDriver(), isCashOnlyUser, isBGECommercialUser).map {
             guard let walletItems: [WalletItem] = $0 else { return false }
             if $1 { // If only bank accounts, treat cash only user as if they have no wallet items
                 for item in walletItems {
                     if item.bankOrCard == .card {
+                        return true
+                    }
+                }
+                return false
+            } else if $2 { // If BGE Commercial user, ignore VISA credit cards
+                for item in walletItems {
+                    if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
                         return true
                     }
                 }

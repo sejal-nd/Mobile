@@ -136,6 +136,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             self.viewModel.loadAccounts(onSuccess: { _ in
                 let opco = Environment.sharedInstance.opco
                 
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+                
                 if (opco == .peco || opco == .comEd) && self.viewModel.accountType.value == "commercial" {
                     self.scrollView.isHidden = false
                     self.loadingIndicator.isHidden = true
@@ -187,7 +189,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
 //                
 //                self.present(alert, animated: true, completion: nil)
 //            })
-//            .addDisposableTo(disposeBag)
+//            .disposed(by: disposeBag)
 //        
 //        viewModel.securityQuestionsDataFinishedLoading.drive(onNext: {
 //            self.scrollView.isHidden = false
@@ -199,7 +201,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
 //                self.hideAccountListing()
 //            }
 //        })
-//        .addDisposableTo(disposeBag)
+//        .disposed(by: disposeBag)
 //                
 //        self.viewModel.loadSecurityQuestionsData.onNext(())
     }
@@ -222,11 +224,11 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     }
     
     func setupNavigationButtons() {
-        let nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         
-        viewModel.allQuestionsAnswered().bind(to: nextButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.allQuestionsAnswered().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
         
-        navigationItem.rightBarButtonItem = nextButton
+        navigationItem.rightBarButtonItem = submitButton
     }
     
     func populateHelperLabels() {
@@ -263,6 +265,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question1ContentLabel.isHidden = true
         question1ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         question1ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        question1Label.accessibilityTraits = UIAccessibilityTraitButton
         
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(question1Tapped))
         question1ViewWrapper.isUserInteractionEnabled = true
@@ -273,6 +276,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question2ContentLabel.isHidden = true
         question2ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         question2ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        question2Label.accessibilityTraits = UIAccessibilityTraitButton
         
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(question2Tapped))
         question2ViewWrapper.isUserInteractionEnabled = true
@@ -285,6 +289,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             question3ContentLabel.isHidden = true
             question3ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             question3ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+            question3Label.accessibilityTraits = UIAccessibilityTraitButton
             
             let tap3 = UITapGestureRecognizer(target: self, action: #selector(question3Tapped))
             question3ViewWrapper.isUserInteractionEnabled = true
@@ -299,7 +304,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question1AnswerTextField.textField.autocorrectionType = .no
         question1AnswerTextField.textField.returnKeyType = .next
         question1AnswerTextField.textField.isShowingAccessory = true
-        question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
+        question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
         question1AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         question1AnswerTextField.setEnabled(false)
         
@@ -307,7 +312,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question2AnswerTextField.textField.autocorrectionType = .no
         question2AnswerTextField.textField.returnKeyType = .next
         question2AnswerTextField.textField.isShowingAccessory = true
-        question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
+        question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
         question2AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         question2AnswerTextField.setEnabled(false)
 
@@ -316,7 +321,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             question3AnswerTextField.textField.autocorrectionType = .no
             question3AnswerTextField.textField.returnKeyType = .next
             question3AnswerTextField.textField.isShowingAccessory = true
-            question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).addDisposableTo(disposeBag)
+            question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
             question3AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             question3AnswerTextField.setEnabled(false)
         } else {
@@ -331,7 +336,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
                 self.question1ContentLabel.text = self.viewModel.securityQuestion1.value
                 
                 self.question1AnswerTextField.setEnabled(valid)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
 
         viewModel.question2Selected().asDriver(onErrorJustReturn: false)
             .drive(onNext: { valid in
@@ -339,7 +344,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
                 self.question2ContentLabel.text = self.viewModel.securityQuestion2.value
                 
                 self.question2AnswerTextField.setEnabled(valid)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         viewModel.question3Selected().asDriver(onErrorJustReturn: false)
             .drive(onNext: { valid in
@@ -347,12 +352,12 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
                 self.question3ContentLabel.text = self.viewModel.securityQuestion3.value
                 
                 self.question3AnswerTextField.setEnabled(valid)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
 
         // Bind to the view model
-        question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer1).addDisposableTo(disposeBag)
-        question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer2).addDisposableTo(disposeBag)
-        question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer3).addDisposableTo(disposeBag)
+        question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer1).disposed(by: disposeBag)
+        question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer2).disposed(by: disposeBag)
+        question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer3).disposed(by: disposeBag)
         
         viewModel.securityQuestionChanged().asDriver(onErrorJustReturn: false)
             .drive(onNext: { valid in
@@ -369,7 +374,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
                 default:
                     break
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func buildAccountListing() {
@@ -387,7 +392,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             self.accountDataStackView.addArrangedSubview(detailView)
         }
         
-        enrollIneBillSwitch.rx.isOn.bind(to: viewModel.paperlessEbill).addDisposableTo(disposeBag)
+        enrollIneBillSwitch.rx.isOn.bind(to: viewModel.paperlessEbill).disposed(by: disposeBag)
     }
     
     func toggleAccountListing(_ isVisible: Bool) {
@@ -400,7 +405,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func onNextPress() {
+    func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()

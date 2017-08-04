@@ -130,28 +130,22 @@ struct FiservApi {
     }
     
     func updateCreditCard(walletItemID: String,
-                          expirationMonth: String?,
-                          expirationYear: String?,
-                          securityCode: String?,
-                          postalCode: String?,
-                          nickname: String?,
+                          expirationMonth: String,
+                          expirationYear: String,
+                          securityCode: String,
+                          postalCode: String,
                           token: String,
                           customerNumber: String,
                           completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Swift.Void) {
-        var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: false)
+        var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nil, oneTimeUse: false)
         
         var cardDetail = [String: String]()
-        if let expMonth = expirationMonth, let expYear = expirationYear {
-            let expiration = "" + expMonth + expYear.substring(from: expYear.index(expYear.startIndex, offsetBy: 2))
-            cardDetail[Parameter.ExpirationDate.rawValue] = expiration
-        }
-        if let cvv = securityCode {
-            cardDetail[Parameter.SecurityCode.rawValue] = cvv
-        }
-        if let zipCode = postalCode {
-            cardDetail[Parameter.PostalCode.rawValue] = zipCode
-        }
-        
+
+        let expiration = "" + expirationMonth + expirationYear.substring(from: expirationYear.index(expirationYear.startIndex, offsetBy: 2))
+        cardDetail[Parameter.ExpirationDate.rawValue] = expiration
+        cardDetail[Parameter.SecurityCode.rawValue] = securityCode
+        cardDetail[Parameter.PostalCode.rawValue] = postalCode
+
         params[Parameter.MessageId.rawValue] = MessageId.updateCredit.rawValue
         params[Parameter.CardDetail.rawValue] = cardDetail
         params[Parameter.WalletItemId.rawValue] = walletItemID

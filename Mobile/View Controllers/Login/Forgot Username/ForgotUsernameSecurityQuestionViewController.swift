@@ -32,10 +32,11 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         
         submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.securityQuestionAnswerNotEmpty().bind(to: submitButton.rx.isEnabled).addDisposableTo(disposeBag)
+        viewModel.securityQuestionAnswerNotEmpty().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please answer the security question.", comment: "")
+        instructionLabel.font = SystemFont.bold.of(textStyle: .headline)
         
         questionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         questionLabel.text = viewModel.getSecurityQuestion()
@@ -43,7 +44,7 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         answerTextField.textField.placeholder = NSLocalizedString("Your Answer*", comment: "")
         answerTextField.textField.autocorrectionType = .no
         answerTextField.textField.returnKeyType = .done
-        answerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityQuestionAnswer).addDisposableTo(disposeBag)
+        answerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityQuestionAnswer).disposed(by: disposeBag)
         answerTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
             self.viewModel.securityQuestionAnswerNotEmpty().single().subscribe(onNext: { notEmpty in
                 if notEmpty {
@@ -51,21 +52,21 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
                 } else {
                     self.view.endEditing(true)
                 }
-            }).addDisposableTo(self.disposeBag)
-        }).addDisposableTo(disposeBag)
+            }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
         answerTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
             self.answerTextField.setError(nil)
             self.accessibilityErrorLabel()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {
-        let errorStr = NSLocalizedString(answerTextField.getError(), comment: "")
-        if errorStr.isEmpty {
+        let message = answerTextField.getError()
+        if message.isEmpty {
             self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            self.submitButton.accessibilityLabel = errorStr
+            self.submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
         }
     }
     

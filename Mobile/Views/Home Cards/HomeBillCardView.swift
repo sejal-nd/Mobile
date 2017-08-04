@@ -59,6 +59,8 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
     @IBOutlet weak var oneTouchSlider: OneTouchSlider!
+    @IBOutlet weak var commercialBgeOtpVisaLabelContainer: UIView!
+    @IBOutlet weak var commericalBgeOtpVisaLabel: UILabel!
     
     @IBOutlet weak var scheduledImageContainer: UIView!
     @IBOutlet weak var scheduledImageView: UIImageView!
@@ -124,6 +126,8 @@ class HomeBillCardView: UIView {
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         convenienceFeeLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
+        commericalBgeOtpVisaLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        
         automaticPaymentInfoButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         thankYouForSchedulingButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         oneTouchPayTCButtonLabel.font = OpenSans.semibold.of(textStyle: .footnote)
@@ -140,6 +144,12 @@ class HomeBillCardView: UIView {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
+        
+        // Accessibility
+        alertImageView.isAccessibilityElement = true
+        alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+        bankCreditCardImageView.isAccessibilityElement = true
+        
     }
     
     private func bindViewModel() {
@@ -150,68 +160,69 @@ class HomeBillCardView: UIView {
                 LoadingView.hide(animated: true)
             }
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         // Show/Hide Subviews
-        Driver.zip(viewModel.billNotReady, viewModel.showErrorState)
+        Driver.combineLatest(viewModel.billNotReady, viewModel.showErrorState)
             .map { $0 && !$1 }
             .not()
             .drive(billNotReadyStack.rx.isHidden)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
-        viewModel.showErrorState.not().drive(errorStack.rx.isHidden).addDisposableTo(bag)
+        viewModel.showErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
         
-        Driver.zip(viewModel.billNotReady, viewModel.showErrorState)
+        Driver.combineLatest(viewModel.billNotReady, viewModel.showErrorState)
             .map { $0 || $1 }
             .drive(infoStack.rx.isHidden)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
-        viewModel.showAlertIcon.not().drive(alertContainer.rx.isHidden).addDisposableTo(bag)
-        viewModel.showPaymentPendingIcon.not().drive(paymentPendingContainer.rx.isHidden).addDisposableTo(bag)
-        viewModel.showBillPaidIcon.not().drive(paymentConfirmationContainer.rx.isHidden).addDisposableTo(bag)
+        viewModel.showAlertIcon.not().drive(alertContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showPaymentPendingIcon.not().drive(paymentPendingContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showBillPaidIcon.not().drive(paymentConfirmationContainer.rx.isHidden).disposed(by: bag)
         
         Driver.zip(viewModel.showAlertIcon, viewModel.showPaymentPendingIcon, viewModel.showBillPaidIcon)
             .map { $0 || $1 || $2 }
             .map { $0 ? 0: 32 }
             .drive(titleLabelTopConstraint.rx.constant)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
-        viewModel.showAmountPaid.not().drive(amountPaidContainer.rx.isHidden).addDisposableTo(bag)
-        viewModel.showAmount.not().drive(amountLabel.rx.isHidden).addDisposableTo(bag)
-        viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).addDisposableTo(bag)
-        viewModel.showDueDateTooltip.not().drive(dueDateTooltip.rx.isHidden).addDisposableTo(bag)
-        viewModel.showDueAmountAndDate.not().drive(dueAmountAndDateContainer.rx.isHidden).addDisposableTo(bag)
+        viewModel.showAmountPaid.not().drive(amountPaidContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showAmount.not().drive(amountLabel.rx.isHidden).disposed(by: bag)
+        viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).disposed(by: bag)
+        viewModel.showDueDateTooltip.not().drive(dueDateTooltip.rx.isHidden).disposed(by: bag)
+        viewModel.showDueAmountAndDate.not().drive(dueAmountAndDateContainer.rx.isHidden).disposed(by: bag)
         dueAmountAndDateTooltip.isHidden = !viewModel.showDueAmountAndDateTooltip
-        viewModel.showBankCreditButton.not().drive(bankCreditNumberContainer.rx.isHidden).addDisposableTo(bag)
-        viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountContainer.rx.isHidden).addDisposableTo(bag)
-        viewModel.showConvenienceFee.not().drive(convenienceFeeContainer.rx.isHidden).addDisposableTo(bag)
-        viewModel.showMinimumPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).addDisposableTo(bag)
-        viewModel.showOneTouchPaySlider.not().drive(oneTouchSlider.rx.isHidden).addDisposableTo(bag)
-        viewModel.showScheduledImageView.not().drive(scheduledImageContainer.rx.isHidden).addDisposableTo(bag)
-        viewModel.showAutoPayIcon.not().drive(autoPayImageContainer.rx.isHidden).addDisposableTo(bag)
-        viewModel.showAutomaticPaymentInfoButton.not().drive(automaticPaymentInfoButton.rx.isHidden).addDisposableTo(bag)
-        viewModel.showScheduledPaymentInfoButton.not().drive(thankYouForSchedulingButton.rx.isHidden).addDisposableTo(bag)
-        viewModel.showOneTouchPayTCButton.not().drive(oneTouchPayTCButton.rx.isHidden).addDisposableTo(bag)
+        viewModel.showBankCreditButton.not().drive(bankCreditNumberContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showConvenienceFee.not().drive(convenienceFeeContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showMinimumPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showOneTouchPaySlider.not().drive(oneTouchSlider.rx.isHidden).disposed(by: bag)
+        viewModel.showCommercialBgeOtpVisaLabel.not().drive(commercialBgeOtpVisaLabelContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showScheduledImageView.not().drive(scheduledImageContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showAutoPayIcon.not().drive(autoPayImageContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showAutomaticPaymentInfoButton.not().drive(automaticPaymentInfoButton.rx.isHidden).disposed(by: bag)
+        viewModel.showScheduledPaymentInfoButton.not().drive(thankYouForSchedulingButton.rx.isHidden).disposed(by: bag)
+        viewModel.showOneTouchPayTCButton.not().drive(oneTouchPayTCButton.rx.isHidden).disposed(by: bag)
         
         // Subview States
-        viewModel.titleText.drive(titleLabel.rx.text).addDisposableTo(bag)
-        viewModel.titleFont.drive(titleLabel.rx.font).addDisposableTo(bag)
-        viewModel.amountFont.drive(amountLabel.rx.font).addDisposableTo(bag)
-        viewModel.amountPaidText.drive(amountPaidLabel.rx.text).addDisposableTo(bag)
-        viewModel.amountText.drive(amountLabel.rx.text).addDisposableTo(bag)
-        viewModel.dueDateText.drive(dueDateLabel.rx.attributedText).addDisposableTo(bag)
-        viewModel.dueAmountAndDateText.drive(dueAmountAndDateLabel.rx.text).addDisposableTo(bag)
-        viewModel.bankCreditCardNumberText.drive(bankCreditCardNumberLabel.rx.text).addDisposableTo(bag)
-        viewModel.bankCreditCardImage.drive(bankCreditCardImageView.rx.image).addDisposableTo(bag)
-        viewModel.bankCreditCardImageAccessibilityLabel.drive(bankCreditCardImageView.rx.accessibilityLabel).addDisposableTo(bag)
-        viewModel.minPaymentAllowedText.drive(minimumPaymentLabel.rx.text).addDisposableTo(bag)
-        viewModel.convenienceFeeText.drive(convenienceFeeLabel.rx.text).addDisposableTo(bag)
-        viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).addDisposableTo(bag)
-        viewModel.automaticPaymentInfoButtonText.drive(automaticPaymentInfoButtonLabel.rx.text).addDisposableTo(bag)
-        viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButtonLabel.rx.text).addDisposableTo(bag)
-        viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButtonLabel.rx.text).addDisposableTo(bag)
-        viewModel.enableOneTouchPayTCButton.drive(oneTouchPayTCButton.rx.isEnabled).addDisposableTo(bag)
-        viewModel.oneTouchPayTCButtonTextColor.drive(oneTouchPayTCButtonLabel.rx.textColor).addDisposableTo(bag)
+        viewModel.titleText.drive(titleLabel.rx.text).disposed(by: bag)
+        viewModel.titleFont.drive(titleLabel.rx.font).disposed(by: bag)
+        viewModel.amountFont.drive(amountLabel.rx.font).disposed(by: bag)
+        viewModel.amountPaidText.drive(amountPaidLabel.rx.text).disposed(by: bag)
+        viewModel.amountText.drive(amountLabel.rx.text).disposed(by: bag)
+        viewModel.dueDateText.drive(dueDateLabel.rx.attributedText).disposed(by: bag)
+        viewModel.dueAmountAndDateText.drive(dueAmountAndDateLabel.rx.text).disposed(by: bag)
+        viewModel.bankCreditCardNumberText.drive(bankCreditCardNumberLabel.rx.text).disposed(by: bag)
+        viewModel.bankCreditCardImage.drive(bankCreditCardImageView.rx.image).disposed(by: bag)
+        viewModel.bankCreditCardImageAccessibilityLabel.drive(bankCreditCardImageView.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.minPaymentAllowedText.drive(minimumPaymentLabel.rx.text).disposed(by: bag)
+        viewModel.convenienceFeeText.drive(convenienceFeeLabel.rx.text).disposed(by: bag)
+        viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).disposed(by: bag)
+        viewModel.automaticPaymentInfoButtonText.drive(automaticPaymentInfoButtonLabel.rx.text).disposed(by: bag)
+        viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButtonLabel.rx.text).disposed(by: bag)
+        viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButtonLabel.rx.text).disposed(by: bag)
+        viewModel.enableOneTouchPayTCButton.drive(oneTouchPayTCButton.rx.isEnabled).disposed(by: bag)
+        viewModel.oneTouchPayTCButtonTextColor.drive(oneTouchPayTCButtonLabel.rx.textColor).disposed(by: bag)
         
         // Actions
         oneTouchSlider.didFinishSwipe
@@ -220,7 +231,7 @@ class HomeBillCardView: UIView {
             .map { _ in () }
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     
@@ -246,7 +257,10 @@ class HomeBillCardView: UIView {
         .map { _ in
             let alertController = UIAlertController(title: NSLocalizedString("Weekend/Holiday Payment", comment: ""),
                                                     message: NSLocalizedString("You are making a payment on a weekend or holiday. Your payment will be scheduled for the next business day.", comment: ""), preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel){ [weak self] _ in
+                self?.oneTouchSlider.reset()
+            })
+
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
                 LoadingView.show(animated: true)
                 self?.viewModel.submitOneTouchPay.onNext()

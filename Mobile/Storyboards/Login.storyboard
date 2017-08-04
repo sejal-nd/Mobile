@@ -583,7 +583,7 @@
                                                                     <constraint firstItem="Nht-BT-lkP" firstAttribute="centerY" secondItem="FT1-51-uLb" secondAttribute="centerY" id="tBP-0N-qEf"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ukc-sT-Unj" userLabel="Touch ID View">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ukc-sT-Unj" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="122.5" y="370" width="84" height="22"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_touchid" translatesAutoresizingMaskIntoConstraints="NO" id="FDv-G1-GdU">
@@ -599,30 +599,22 @@
                                                                         <color key="textColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UN2-8l-zVz" userLabel="Touch ID Button">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="22"/>
-                                                                        <accessibility key="accessibilityConfiguration" label="Touch ID"/>
-                                                                        <connections>
-                                                                            <action selector="onTouchIDPress:" destination="Pib-RC-igc" eventType="touchUpInside" id="icu-aG-nsF"/>
-                                                                            <action selector="onTouchIDTouchCancel:" destination="Pib-RC-igc" eventType="touchDragExit" id="DsG-n3-lp9"/>
-                                                                            <action selector="onTouchIDTouchCancel:" destination="Pib-RC-igc" eventType="touchCancel" id="Xdx-x4-IfF"/>
-                                                                            <action selector="onTouchIDTouchDown:" destination="Pib-RC-igc" eventType="touchDown" id="yxW-43-IPB"/>
-                                                                        </connections>
-                                                                    </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="UN2-8l-zVz" firstAttribute="leading" secondItem="Ukc-sT-Unj" secondAttribute="leading" id="40U-cb-Kdu"/>
                                                                     <constraint firstAttribute="bottom" secondItem="FDv-G1-GdU" secondAttribute="bottom" id="HjG-i5-H5k"/>
                                                                     <constraint firstItem="WVP-LL-Pja" firstAttribute="leading" secondItem="FDv-G1-GdU" secondAttribute="trailing" constant="5" id="Ouw-AL-QNj"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="UN2-8l-zVz" secondAttribute="bottom" id="RKa-hb-QkN"/>
                                                                     <constraint firstItem="FDv-G1-GdU" firstAttribute="leading" secondItem="Ukc-sT-Unj" secondAttribute="leading" id="RZo-xU-hZx"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="UN2-8l-zVz" secondAttribute="trailing" id="aab-GR-ROk"/>
                                                                     <constraint firstAttribute="trailing" secondItem="WVP-LL-Pja" secondAttribute="trailing" id="cAI-7k-ocV"/>
                                                                     <constraint firstItem="WVP-LL-Pja" firstAttribute="centerY" secondItem="FDv-G1-GdU" secondAttribute="centerY" id="qen-fK-5cZ"/>
                                                                     <constraint firstItem="FDv-G1-GdU" firstAttribute="top" secondItem="Ukc-sT-Unj" secondAttribute="top" id="qzZ-iI-hfJ"/>
-                                                                    <constraint firstItem="UN2-8l-zVz" firstAttribute="top" secondItem="Ukc-sT-Unj" secondAttribute="top" id="uGr-Lh-R4Z"/>
                                                                 </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="onTouchIDPress" destination="Pib-RC-igc" eventType="touchUpInside" id="x4F-Qx-M4d"/>
+                                                                </connections>
                                                             </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -708,9 +700,8 @@
                         <outlet property="passwordTextField" destination="Q1I-Rs-9TH" id="HOg-AZ-fuq"/>
                         <outlet property="scrollView" destination="876-Ds-EGF" id="odj-at-Uqx"/>
                         <outlet property="signInButton" destination="K0X-bw-geb" id="SHf-3j-jsZ"/>
-                        <outlet property="touchIDImage" destination="FDv-G1-GdU" id="Njj-kZ-L1y"/>
+                        <outlet property="touchIDButton" destination="Ukc-sT-Unj" id="DcY-Ho-VQV"/>
                         <outlet property="touchIDLabel" destination="WVP-LL-Pja" id="BP1-cj-TpW"/>
-                        <outlet property="touchIDView" destination="Ukc-sT-Unj" id="xpe-PK-qE7"/>
                         <outlet property="usernameTextField" destination="vZj-Ib-Qvv" id="g3Q-tv-LO3"/>
                         <segue destination="QgC-yo-Y9S" kind="show" identifier="forgotPasswordSegue" id="uZk-z4-FlT"/>
                         <segue destination="ICO-HU-AGf" kind="show" identifier="forgotUsernameSegue" id="mNc-Gl-Mlm"/>
@@ -2239,10 +2230,12 @@
                         <outlet property="characterCountCheck" destination="GzV-aF-jxs" id="zS7-UA-bKF"/>
                         <outlet property="confirmPasswordTextField" destination="pFM-ab-DUq" id="eRs-Bc-qxo"/>
                         <outlet property="confirmUsernameTextField" destination="d1o-GW-dbz" id="eBM-at-Bdv"/>
+                        <outlet property="createPasswordContainerView" destination="9HU-Jb-jYP" id="BRh-gP-NU1"/>
                         <outlet property="createPasswordTextField" destination="kbS-fU-Zq2" id="k3A-XG-6vy"/>
                         <outlet property="createUsernameTextField" destination="IOk-EL-M4W" id="TIt-rH-jgw"/>
                         <outlet property="instructionLabel" destination="z0g-Bl-e8v" id="hcI-FZ-8c0"/>
                         <outlet property="lowercaseCheck" destination="HKE-fe-dDq" id="Ol9-LF-Umo"/>
+                        <outlet property="mustAlsoContainLabel" destination="gM1-Qg-oBt" id="uXw-Fo-Hb3"/>
                         <outlet property="numberCheck" destination="zY6-FT-cX1" id="gKy-iF-8AP"/>
                         <outlet property="passwordStrengthLabel" destination="GFQ-8R-m9s" id="693-Kr-hfm"/>
                         <outlet property="passwordStrengthMeterView" destination="qQj-sB-lyb" id="q50-3D-xcZ"/>

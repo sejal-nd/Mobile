@@ -22,18 +22,20 @@ class DefaultAccountViewController: UIViewController {
         super.viewDidLoad()
         let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_question_white"), style: .plain, target: self, action: #selector(infoButtonPressed))
         navigationItem.rightBarButtonItem = infoButton
+        infoButton.isAccessibilityElement = true
+        infoButton.accessibilityLabel = "Tooltip"
         let nib = UINib(nibName: AdvancedAccountPickerTableViewCell.className, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: AdvancedAccountPickerTableViewCell.className)
         
         viewModel.shouldShowLoadingIndicator
             .drive(onNext: showLoadingView)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.accounts.asDriver()
             .drive(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
             })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,7 +111,7 @@ extension DefaultAccountViewController: UITableViewDelegate {
             }
             }
             .bind(onNext: { [weak self] account in self?.viewModel.changeDefaultAccount.onNext(account) })
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     

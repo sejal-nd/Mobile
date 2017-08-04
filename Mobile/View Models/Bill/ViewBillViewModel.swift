@@ -37,7 +37,7 @@ class ViewBillViewModel {
             }, onError: { errMessage in
                 onError(errMessage.localizedDescription)
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
     func downloadPDFToTempDirectory(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
