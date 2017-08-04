@@ -104,11 +104,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setupUserDefaults() {
-        UserDefaults.standard.register(defaults: [
+        let userDefaults = UserDefaults.standard
+        userDefaults.register(defaults: [
             UserDefaultKeys.ShouldPromptToEnableTouchID: true,
             UserDefaultKeys.PaymentDetailsDictionary: [String: NSDictionary]()
         ])
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
+        
+        userDefaults.set(false, forKey: UserDefaultKeys.InMainApp)
+        
+        if userDefaults.bool(forKey: UserDefaultKeys.HasRunBefore) == false {
+            // Clear the Touch ID keychain item on first launch of the app (we found it was persisting after uninstalls)
+            let fingerprintService = ServiceFactory.createFingerprintService()
+            fingerprintService.disableTouchID()
+            userDefaults.set(true, forKey: UserDefaultKeys.HasRunBefore)
+        }
+        
+        userDefaults.synchronize()
     }
     
     func setupToastStyles() {
