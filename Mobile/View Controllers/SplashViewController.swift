@@ -7,20 +7,34 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
-class SplashViewController: UIViewController {
+class SplashViewController: UIViewController{
     
     var performingDeepLink = false
-
+    let bag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .primaryColor
+        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.checkAppVersion()
+            })
+            .disposed(by: bag)
     }
+    
+    let viewModel = SplashViewModel(authService: ServiceFactory.createAuthenticationService())
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        checkAppVersion()
+    }    
+    
+    func doLoginLogic() {
         if ServiceFactory.createAuthenticationService().isAuthenticated() {
             ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { (result: ServiceResult<Void>) in
                 switch (result) {
@@ -31,7 +45,7 @@ class SplashViewController: UIViewController {
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }
             })
-
+            
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 if !self.performingDeepLink { // Deep link cold-launched the app, so let our logic below handle it
@@ -41,7 +55,44 @@ class SplashViewController: UIViewController {
                 }
             })
         }
-        
+    }
+    
+    func checkAppVersion() {
+        viewModel.checkAppVersion(onSuccess: { [weak self] isOutOfDate in
+            if isOutOfDate {
+                self?.handleOutOfDate()
+            } else {
+                self?.doLoginLogic()
+            }
+        }, onError: { [weak self] errorMessage in
+            self?.doLoginLogic()
+        })
+    }
+    
+    func handleOutOfDate(){
+        let requireUpdateAlert = UIAlertController(title: nil , message: NSLocalizedString("There is a newer version of this application available. Tap OK to update now.", comment: ""), preferredStyle: .alert)
+        requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { (action) in
+            let appStoreLink = "https://itunes.apple.com/us/app/apple-store/id927221466?mt=8"
+            
+            /* First create a URL, then check whether there is an installed app that can
+             open it on the device. */
+            if let url = URL(string: appStoreLink), UIApplication.shared.canOpenURL(url) {
+                // Attempt to open the URL.
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: {(success: Bool) in
+                        if success {
+                            print("Launching \(url) was successful")
+                        }})
+                } else {
+                    if let url = URL(string: "https://itunes.apple.com/us/app/exelon-link/id927221466?mt=8"){
+                        print(url)
+                        UIApplication.shared.openURL(url)
+                    }
+                }
+            }
+        }))
+
+        present(requireUpdateAlert,animated: true, completion: nil)
     }
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
