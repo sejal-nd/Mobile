@@ -25,11 +25,9 @@ class SplashViewModel{
         authService.getMinimumVersion()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { versionInfo in
-                OMCApi().setAuthType(.ssoTokenExchange)
                 isOutOfDate = self.checkIfOutOfDate(minVersion: versionInfo.iosObject.minVersion)
                 onSuccess(isOutOfDate)
             }, onError: { error in
-                OMCApi().setAuthType(.ssoTokenExchange)
                 _ = error as! ServiceError
             }).disposed(by: disposeBag)
     }

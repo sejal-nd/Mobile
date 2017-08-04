@@ -7,27 +7,33 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
-class SplashViewController: UIViewController {
+class SplashViewController: UIViewController{
     
     var performingDeepLink = false
-
+    let bag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .primaryColor
+        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.checkAppVersion()
+            })
+            .disposed(by: bag)
     }
     
     let viewModel = SplashViewModel(authService: ServiceFactory.createAuthenticationService())
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        //doLoginLogic()
-        
         checkAppVersion()
-    }
-
+    }    
+    
     func doLoginLogic() {
         if ServiceFactory.createAuthenticationService().isAuthenticated() {
             ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { (result: ServiceResult<Void>) in
@@ -55,26 +61,34 @@ class SplashViewController: UIViewController {
         viewModel.checkAppVersion(onSuccess: { [weak self] isOutOfDate in
             if isOutOfDate {
                 self?.handleOutOfDate()
+//                
             } else {
                 self?.doLoginLogic()
             }
         }, onError: { errorMessage in
-//            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
-//            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-//            self.present(alertController, animated: true, completion: nil)
+
         })
     }
     
     func handleOutOfDate(){
         let requireUpdateAlert = UIAlertController(title: nil , message: NSLocalizedString("There is a newer version of this application available. Tap OK to update now.", comment: ""), preferredStyle: .alert)
         requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { (action) in
-            if let url = URL(string: "itms-apps://itunes.apple.com/app/id927221466"),
-                UIApplication.shared.canOpenURL(url)
-            {
+            let appStoreLink = "https://itunes.apple.com/us/app/apple-store/id927221466?mt=8"
+            
+            /* First create a URL, then check whether there is an installed app that can
+             open it on the device. */
+            if let url = URL(string: appStoreLink), UIApplication.shared.canOpenURL(url) {
+                // Attempt to open the URL.
                 if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(url, options: [:], completionHandler: {(success: Bool) in
+                        if success {
+                            print("Launching \(url) was successful")
+                        }})
                 } else {
-                    UIApplication.shared.openURL(url)
+                    if let url = URL(string: "https://itunes.apple.com/us/app/exelon-link/id927221466?mt=8"){
+                        print(url)
+                        UIApplication.shared.openURL(url)
+                    }
                 }
             }
         }))
