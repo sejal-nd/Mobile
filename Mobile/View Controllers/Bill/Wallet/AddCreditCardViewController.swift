@@ -84,7 +84,7 @@ class AddCreditCardViewController: UIViewController {
             LoadingView.show()
             self.viewModel.addCreditCard(onDuplicate: { message in
                 LoadingView.hide()
-                let alertVc = UIAlertController(title: NSLocalizedString("Duplicate Credit Card", comment: ""), message: message, preferredStyle: .alert)
+                let alertVc = UIAlertController(title: NSLocalizedString("Duplicate Card", comment: ""), message: message, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
             }, onSuccess: { walletItemResult in
