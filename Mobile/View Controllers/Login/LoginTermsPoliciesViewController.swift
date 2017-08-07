@@ -36,7 +36,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         _ = agreeSwitch.rx.isOn.bind(to: continueButton.rx.isEnabled)
         continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)
         
-        agreeLabel.font = SystemFont.regular.of(textStyle: .headline)
+        agreeLabel.font = SystemFont.regular.of(size: 15)
         agreeLabel.text = viewModel.agreeLabelText;
         accessibilitySetup()
     }
