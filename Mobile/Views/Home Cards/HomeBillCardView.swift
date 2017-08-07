@@ -270,14 +270,13 @@ class HomeBillCardView: UIView {
 //    }
     
     private lazy var oneTouchPayErrorAlert: Driver<UIViewController> = self.viewModel.oneTouchPayResult.errors()
-        .debug("oneTouchPayErrorAlert")
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
             self?.oneTouchSlider.reset()
         })
         .map { error in
             let errMessage = error.localizedDescription
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Unable to process your request", comment: ""), preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString(errMessage, comment: ""), preferredStyle: .alert)
             
             // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
             // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
