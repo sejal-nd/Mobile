@@ -25,6 +25,8 @@ class TermsPoliciesViewController: UIViewController {
         super.viewDidLoad()
 
         let url = viewModel.termPoliciesURL
+        webView.delegate = self
+        webView.backgroundColor = .white
         webView.loadRequest(URLRequest(url: url))
     }
     
@@ -32,43 +34,25 @@ class TermsPoliciesViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if let navController = navigationController as? MainBaseNavigationController {
-            navController.setWhiteNavBar()
-        } else {
-            // if it loads from unauthorized user entry screen, then it
-            // needs to explicitly set its style here because it cannot be cast
-            // to MainBaseNavigationController
-            setWhiteNavBar()
+            navController.setColoredNavBar()
         }
     }
     
-    private func setWhiteNavBar() {
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = .actionBlue
-        navigationController?.navigationBar.isTranslucent = false
-        
-        // Re-add the bottom border line (in case it was removed on another screen)
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.shadowImage = nil
-        
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.blackText,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
-        
-        setNeedsStatusBarAppearanceUpdate()
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
+    // Prevents status bar color flash when pushed from MoreViewController
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // some trick when transition from terms and policies back to unauthorized entry screen
-        // This prevent the navigation bar turns white when it goes back
-        navigationController?.setNavigationBarHidden(true, animated: true)
+}
 
+extension TermsPoliciesViewController: UIWebViewDelegate {
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == UIWebViewNavigationType.linkClicked {
+            UIApplication.shared.openURL(request.url!)
+            return false
+        }
+        return true
     }
     
 }

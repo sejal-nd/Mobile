@@ -142,5 +142,10 @@ class ContactUsViewController: UIViewController {
         socialMediaButtonsStack.trailingAnchor.constraint(equalTo: containerStack.trailingAnchor, constant: -22).isActive = true
     }
     
+    // Prevents status bar color flash when pushed from MoreViewController
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 }
 
