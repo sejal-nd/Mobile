@@ -233,19 +233,20 @@ struct BillingInfo: Mappable {
         residentialFee = map.optionalFrom("feeResidential")
         commercialFee = map.optionalFrom("feeCommercial")
         
-        let paymentDicts: [NSDictionary] = try map.from("payments") {
+        let paymentDicts: [NSDictionary]? = map.optionalFrom("payments") {
             guard let array = $0 as? [NSDictionary] else {
                 throw MapperError.convertibleError(value: $0, type: Array<NSDictionary>.self)
             }
             return array
         }
         
-        let paymentItems = paymentDicts.flatMap(PaymentItem.from)
+        let paymentItems = paymentDicts?.flatMap(PaymentItem.from)
         
-        scheduledPayment = paymentItems.first(where: { $0.status == .scheduled })
-        pendingPayments = paymentItems.filter { $0.status == .pending || $0.status == .processing }.sorted {
-            $0.date < $1.date
-        }
+        scheduledPayment = paymentItems?.first(where: { $0.status == .scheduled })
+        pendingPayments = paymentItems?
+            .filter { $0.status == .pending || $0.status == .processing }
+            .sorted { $0.date < $1.date } ?? []
+        
     }
     
     func convenienceFeeString(isComplete: Bool) -> String {
