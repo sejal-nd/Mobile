@@ -27,6 +27,8 @@ class LoginTermsPoliciesViewController: UIViewController {
         self.title = NSLocalizedString("Policies and Terms", comment: "")
         
         let url = viewModel.termPoliciesURL
+        webView.delegate = self
+        webView.backgroundColor = .white
         webView.loadRequest(URLRequest(url: url))
 
         agreeView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
@@ -42,16 +44,19 @@ class LoginTermsPoliciesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
+        navigationController?.navigationBar.barTintColor = .primaryColor
         navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
+        navigationController?.navigationBar.tintColor = .white
+        
+        setNeedsStatusBarAppearanceUpdate()
         
         let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.blackText,
+            NSForegroundColorAttributeName: UIColor.white,
             NSFontAttributeName: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
-        
-        setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,6 +83,16 @@ class LoginTermsPoliciesViewController: UIViewController {
         return .default
     }
     
+}
 
+extension LoginTermsPoliciesViewController: UIWebViewDelegate {
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == UIWebViewNavigationType.linkClicked {
+            UIApplication.shared.openURL(request.url!)
+            return false
+        }
+        return true
+    }
     
 }
