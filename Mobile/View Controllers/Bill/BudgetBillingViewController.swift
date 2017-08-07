@@ -131,7 +131,7 @@ class BudgetBillingViewController: UIViewController {
         addressLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
         
-        if AccountsStore.sharedInstance.currentAccount.isResidential {
+        if accountDetail.isResidential {
             accountIcon.image = #imageLiteral(resourceName: "ic_residential")
             accountIcon.accessibilityLabel = NSLocalizedString("Residential Account", comment: "")
         } else {
@@ -155,9 +155,10 @@ class BudgetBillingViewController: UIViewController {
                 })
             }).disposed(by: disposeBag)
         }
-        
-        accountNumberLabel.accessibilityLabel = "Account number: \(accountNumberLabel.text ?? "")"
-        addressLabel.accessibilityLabel = (addressLabel.text?.isEmpty)! ? "" : "Street address: \(addressLabel.text ?? "")"
+        let localizedText = NSLocalizedString("Account number: %@", comment: "")
+        accountNumberLabel.accessibilityLabel = String(format: localizedText, accountNumberLabel.text ?? "")
+
+        addressLabel.accessibilityLabel = NSLocalizedString((addressLabel.text?.isEmpty)! ? "" : "Street address: \(addressLabel.text ?? "")", comment: "")
         accountInfo.accessibilityElements = [accountIcon, accountNumberLabel, addressLabel, enrollSwitch]
         
         // BGE Footer View when user is enrolled
