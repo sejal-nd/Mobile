@@ -105,8 +105,6 @@ class BudgetBillingViewController: UIViewController {
         }).disposed(by: disposeBag)
         whatIsBudgetBillingButton.accessibilityLabel = NSLocalizedString("What is budget billing?", comment: "")
         
-        accountIcon.accessibilityLabel = accountDetail.isResidential ? NSLocalizedString("Residential Account", comment: "") : NSLocalizedString("Commercial Account", comment: "")
-        
         whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
         
@@ -133,6 +131,14 @@ class BudgetBillingViewController: UIViewController {
         addressLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
         
+        if AccountsStore.sharedInstance.currentAccount.isResidential {
+            accountIcon.image = #imageLiteral(resourceName: "ic_residential")
+            accountIcon.accessibilityLabel = NSLocalizedString("Residential Account", comment: "")
+        } else {
+            accountIcon.image = #imageLiteral(resourceName: "ic_commercial")
+            accountIcon.accessibilityLabel = NSLocalizedString("Commercial Account", comment: "")
+        }
+                
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).disposed(by: disposeBag)
         enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).disposed(by: disposeBag)
         
@@ -150,6 +156,8 @@ class BudgetBillingViewController: UIViewController {
             }).disposed(by: disposeBag)
         }
         
+        accountNumberLabel.accessibilityLabel = "Account number: \(accountNumberLabel.text ?? "")"
+        addressLabel.accessibilityLabel = (addressLabel.text?.isEmpty)! ? "" : "Street address: \(addressLabel.text ?? "")"
         accountInfo.accessibilityElements = [accountIcon, accountNumberLabel, addressLabel, enrollSwitch]
         
         // BGE Footer View when user is enrolled
