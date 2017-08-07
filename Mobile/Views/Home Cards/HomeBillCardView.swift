@@ -350,12 +350,23 @@ class HomeBillCardView: UIView {
                                                                                         self.oneTouchPayErrorAlert)
     
     // Pushed View Controllers
-    private lazy var walletViewController: Driver<UIViewController> = Observable.merge(self.saveAPaymentAccountButton.rx.touchUpInside.asObservable(),
-                                                                                       self.bankCreditNumberButton.rx.touchUpInside.asObservable())
+    private lazy var walletViewController: Driver<UIViewController> = self.bankCreditNumberButton.rx.touchUpInside.asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
             let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
             vc.viewModel.accountDetail = accountDetail
+            vc.shouldPopToRootOnSave = true
+            return vc
+        }
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private lazy var addOTPViewController: Driver<UIViewController> = self.saveAPaymentAccountButton.rx.touchUpInside.asObservable()
+        .withLatestFrom(self.viewModel.accountDetailEvents.elements())
+        .map { accountDetail in
+            let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
+            vc.viewModel.accountDetail = accountDetail
+            vc.shouldPopToRootOnSave = true
+            vc.shouldSetOneTouchPayByDefault = true
             return vc
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -387,6 +398,7 @@ class HomeBillCardView: UIView {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(self.walletViewController,
+                                                                                         self.addOTPViewController,
                                                                                          self.billingHistoryViewController,
                                                                                          self.autoPayViewController)
 

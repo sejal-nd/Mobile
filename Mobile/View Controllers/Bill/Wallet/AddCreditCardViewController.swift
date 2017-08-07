@@ -32,12 +32,15 @@ class AddCreditCardViewController: UIViewController {
     var saveButton = UIBarButtonItem()
     
     var shouldPopToRootOnSave = false
+    var shouldSetOneTouchPayByDefault = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addCardFormView.delegate = self
         addCardFormView.viewModel.nicknamesInWallet = nicknamesInWallet
+        addCardFormView.oneTouchPaySwitch.setOn(shouldSetOneTouchPayByDefault, animated: false)
+        addCardFormView.viewModel.oneTouchPay.value = true
         
         viewModel = AddCreditCardViewModel(walletService: ServiceFactory.createWalletService(), addCardFormViewModel: self.addCardFormView.viewModel)
         viewModel.accountDetail = accountDetail
