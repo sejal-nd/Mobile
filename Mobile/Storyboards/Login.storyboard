@@ -186,7 +186,7 @@
                                             <constraint firstAttribute="height" priority="999" constant="60" id="Chm-Qh-3M3"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Terms and Policies"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Policies and Terms"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="xij-rH-l9D" kind="show" identifier="TermPoliciesSegue" id="JnN-6W-9a7"/>
@@ -374,7 +374,7 @@
             </objects>
             <point key="canvasLocation" x="859" y="90"/>
         </scene>
-        <!--Terms and Policies-->
+        <!--Policies and Terms-->
         <scene sceneID="uIe-sJ-gHd">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="0vR-kF-bp8" customClass="LoginTermsPoliciesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
@@ -439,7 +439,7 @@
                             <constraint firstItem="E5c-2w-tbz" firstAttribute="top" secondItem="LV1-2o-5O7" secondAttribute="bottom" id="rKW-hu-JOT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Terms and Policies" id="EH4-ec-m7z"/>
+                    <navigationItem key="navigationItem" title="Policies and Terms" id="EH4-ec-m7z"/>
                     <connections>
                         <outlet property="agreeLabel" destination="s57-Nu-gGZ" id="dUy-LM-Hqx"/>
                         <outlet property="agreeSwitch" destination="STf-Fi-lUb" id="MBP-U7-G8X"/>
