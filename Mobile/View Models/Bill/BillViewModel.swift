@@ -333,7 +333,8 @@ class BillViewModel {
     
     //MARK: - Pending Payments
     lazy var pendingPaymentAmounts: Driver<[Double]> = self.currentAccountDetail.asDriver().map {
-        [$0?.billingInfo.pendingPayments.first?.amount].flatMap { $0 }
+        // In a later release, we can use the whole pendingPayments array for BGE processing payments
+        [$0?.billingInfo.pendingPayments.first].flatMap { $0?.amount }
     }
     
     //MARK: - Remaining Balance Due
@@ -413,7 +414,7 @@ class BillViewModel {
                 localizedText = NSLocalizedString("You have a pending payment of %@", comment: "")
             }
             return String(format: localizedText, amountString)
-        } else if let scheduledPaymentAmount = accountDetail.billingInfo.pendingPayments.first?.amount,
+        } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount,
             let scheduledPaymentDate = accountDetail.billingInfo.scheduledPayment?.date,
             let amountString = scheduledPaymentAmount.currencyString,
             scheduledPaymentAmount > 0 {
