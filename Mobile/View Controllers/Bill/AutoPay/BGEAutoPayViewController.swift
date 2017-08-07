@@ -180,11 +180,13 @@ class BGEAutoPayViewController: UIViewController {
     
     func onSubmitPress() {
         LoadingView.show()
+        Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
         
         if viewModel.initialEnrollmentStatus.value == .unenrolled {
             viewModel.enrollOrUpdate(onSuccess: {
                 LoadingView.hide()
                 self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Enrolled in AutoPay", comment: ""))
+                Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollComplete.rawValue)
                 self.navigationController?.popViewController(animated: true)
             }, onError: { errMessage in
                 LoadingView.hide()
@@ -197,6 +199,7 @@ class BGEAutoPayViewController: UIViewController {
                 viewModel.enrollOrUpdate(update: true, onSuccess: {
                     LoadingView.hide()
                     self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
+                    Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsComplete.rawValue)
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { errMessage in
                     LoadingView.hide()
@@ -208,6 +211,7 @@ class BGEAutoPayViewController: UIViewController {
                 viewModel.unenroll(onSuccess: {
                     LoadingView.hide()
                     self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Unenrolled from AutoPay", comment: ""))
+                    Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { errMessage in
                     LoadingView.hide()
@@ -231,6 +235,7 @@ class BGEAutoPayViewController: UIViewController {
         miniWalletVC.accountDetail = viewModel.accountDetail
         miniWalletVC.creditCardsDisabled = true
         miniWalletVC.delegate = self
+        Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSelectBank.rawValue)
         navigationController?.pushViewController(miniWalletVC, animated: true)
     }
     

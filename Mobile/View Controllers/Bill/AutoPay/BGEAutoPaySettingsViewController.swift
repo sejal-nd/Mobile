@@ -139,6 +139,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsOffer.rawValue)
+    }
+    
     func loadSettings() {
         // placeholder for now
         switch(viewModel.amountToPay.value) {
@@ -838,6 +842,7 @@ extension BGEAutoPaySettingsViewController: ExelonPickerDelegate {
             self.viewModel.userDidChangeSettings.value = true
             self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"
             self.showPickerView(false, completion: self.modifyBeforeDueDateDetailsLabel)
+            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsSubmit.rawValue)
         }
     }
 }

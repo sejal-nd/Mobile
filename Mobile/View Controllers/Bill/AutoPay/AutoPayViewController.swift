@@ -151,6 +151,7 @@ class AutoPayViewController: UIViewController {
     
     func onSubmitPress() {
         view.endEditing(true)
+        Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
         
         LoadingView.show()
         viewModel.submit()
@@ -495,6 +496,7 @@ extension AutoPayViewController: AutoPayChangeBankViewControllerDelegate {
 	func changedBank() {
 		DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
 			self.view.showToast(NSLocalizedString("AutoPay bank account updated", comment: ""))
+            Analytics().logScreenView(AnalyticsPageView.AutoPayModifyBankComplete.rawValue)
 		})
 	}
 }

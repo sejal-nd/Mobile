@@ -40,6 +40,7 @@ class ViewBillViewController: UIViewController {
     func fetchBillPDFData() {
         loadingIndicator.isHidden = false
         webView.isHidden = true
+        Analytics().logScreenView(AnalyticsPageView.ViewBillBillCard.rawValue)
         viewModel.fetchBillPDFData(onSuccess: {
             self.webView.rx.didFinishLoad.asObservable().subscribe(onNext: {
                 self.loadingIndicator.isHidden = true
