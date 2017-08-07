@@ -198,6 +198,8 @@ class AccountPicker: UIView {
             
             advancedAccountButton = UIButton(frame: scrollView.frame)
             advancedAccountButton!.addTarget(self, action: #selector(onAdvancedAccountButtonPress), for: .touchUpInside)
+            advancedAccountButton?.isAccessibilityElement = true
+            advancedAccountButton?.accessibilityLabel = "Account selector, "
             addSubview(advancedAccountButton!)
             
             let caret = tintWhite ? #imageLiteral(resourceName: "ic_caret_white"): #imageLiteral(resourceName: "ic_caret")
