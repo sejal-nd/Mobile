@@ -410,7 +410,7 @@ class BillViewController: AccountPickerViewController {
         budgetButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.currentAccountDetailUnwrapped)
             .drive(onNext: { accountDetail in
-                if accountDetail.isBudgetBillEligible {
+                if accountDetail.isBudgetBillEligible || accountDetail.isBudgetBillEnrollment {
                     self.performSegue(withIdentifier: "budgetBillingSegue", sender: self)
                 } else {
                     var message = NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: "")
