@@ -33,9 +33,9 @@ class TemplateCardViewModel {
         case .bge:
             if(accountDetail.isResidential) {
                 switch accountDetail.peakRewards {
-                case "HONEYWELL WIFI"?:
+                case "ACTIVE"?:
                     fallthrough
-                case "ACTIVE"?: //"legacy" account
+                case "HONEYWELL WIFI"?: //"legacy" account
                     return #imageLiteral(resourceName: "PeakRewards Legacy Tstat - shutterstock_541239523")
                 case "ECOBEE WIFI"?:
                     return #imageLiteral(resourceName: "PeakRewards WiFi TStat - Ecobee3lite")
@@ -63,6 +63,8 @@ class TemplateCardViewModel {
         case .bge:
             if(accountDetail.isResidential) {
                 switch accountDetail.peakRewards {
+                case "ACTIVE"?:
+                    fallthrough
                 case "HONEYWELL WIFI"?: //"legacy" account
                     return NSLocalizedString("Stay Connected", comment: "")
                 case "ECOBEE WIFI"?:
@@ -91,6 +93,8 @@ class TemplateCardViewModel {
         case .bge:
             if(accountDetail.isResidential) {
                 switch accountDetail.peakRewards {
+                case "ACTIVE"?:
+                    fallthrough
                 case "HONEYWELL WIFI"?: //"legacy" account
                     return NSLocalizedString("Update your contact info to receive email and text alerts related to cycling and Energy Savings Days.", comment: "")
                 case "ECOBEE WIFI"?:
@@ -115,6 +119,8 @@ class TemplateCardViewModel {
         case .bge:
             if(accountDetail.isResidential) {
                 switch accountDetail.peakRewards {
+                case "ACTIVE"?:
+                    fallthrough
                 case "HONEYWELL WIFI"?: //"legacy" account
                     return NSLocalizedString("Update Your Info", comment: "")
                 case "ECOBEE WIFI"?:
@@ -143,6 +149,8 @@ class TemplateCardViewModel {
         case .bge:
             if(accountDetail.isResidential) {
                 switch accountDetail.peakRewards {
+                case "ACTIVE"?:
+                    fallthrough
                 case "HONEYWELL WIFI"?: //"legacy" account
                     return NSLocalizedString("https://secure.bge.com/Peakrewards/Pages/default.aspx", comment: "")
                 case "ECOBEE WIFI"?:
