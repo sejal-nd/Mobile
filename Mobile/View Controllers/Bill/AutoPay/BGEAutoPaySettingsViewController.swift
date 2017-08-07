@@ -602,6 +602,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         numberOfPaymentsTextField.textField.placeholder = NSLocalizedString("Number of Payments*", comment: "")
         numberOfPaymentsTextField.textField.autocorrectionType = .no
+        numberOfPaymentsTextField.setKeyboardType(.numberPad)
         numberOfPaymentsTextField.textField.delegate = self
         numberOfPaymentsTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         

@@ -151,6 +151,8 @@ class BGEAutoPayViewController: UIViewController {
         }
         settingsButton.isAccessibilityElement = true
         settingsButton.accessibilityLabel = settingsButtonLabel.text
+        
+        enrollmentSwitch.accessibilityLabel = "Enrollment status: "
     }
     
     func setupBindings() {
