@@ -39,6 +39,8 @@ class RegistrationViewModel {
     
     var paperlessEbill = Variable<Bool>(true)
     
+    var isPaperlessEbillEligible = false //not making this Rx until this VM is made Rx
+    
     let loadSecurityQuestionsData = PublishSubject<Void>()
     
     var securityQuestions = Variable<[SecurityQuestion]>([])
@@ -77,6 +79,9 @@ class RegistrationViewModel {
             .subscribe(onNext: { data in
                 let types = data["type"] as! [String]
                 self.accountType.value = types[0]
+                let ebil = data["ebill"] as! Bool
+                self.isPaperlessEbillEligible = data["ebill"] as! Bool
+                
                 
                 onSuccess()
             }, onError: { error in
