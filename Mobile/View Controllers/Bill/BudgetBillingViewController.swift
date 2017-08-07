@@ -21,16 +21,15 @@ class BudgetBillingViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var accountBackgroundView: UIView! // For stretching edge to edge on iPad
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var whatIsBudgetBillingButton: ButtonControl!
     @IBOutlet weak var whatIsBudgetBillingLabel: UILabel!
-    @IBOutlet weak var yourPaymentWouldBeView: UIView!
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
     @IBOutlet weak var paymentAmountView: UIView!
-    @IBOutlet weak var paymentAmountLoadingIndicator: LoadingIndicator!
-    @IBOutlet weak var paymentAmountErrorLabel: UILabel!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var amountDescriptionLabel: UILabel!
@@ -49,7 +48,6 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var reasonForStoppingLabel: UILabel!
     
     @IBOutlet weak var bgeFooterView: UIView!
-    @IBOutlet weak var bgeFooterLoadingView: UIView!
     @IBOutlet var bgeFooterCardViews: [UIView]!
     @IBOutlet weak var monthlyAmountTitleLabel: UILabel!
     @IBOutlet weak var monthlyAmountLabel: UILabel!
@@ -83,7 +81,7 @@ class BudgetBillingViewController: UIViewController {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = submitButton
+        // Submit button will be added after successful load
         viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         view.backgroundColor = .softGray
@@ -120,7 +118,8 @@ class BudgetBillingViewController: UIViewController {
         amountDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
         amountDescriptionLabel.textColor = .deepGray
         if accountDetail.isBudgetBillEnrollment {
-            yourPaymentWouldBeView.isHidden = true
+            yourPaymentWouldBeLabel.isHidden = true
+            paymentAmountView.isHidden = true
             amountDescriptionLabel.text = NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly budget billing payment is adjusted periodically based on your actual usage.", comment: "")
         } else {
             amountDescriptionLabel.text = viewModel.getAmountDescriptionText()
@@ -153,10 +152,7 @@ class BudgetBillingViewController: UIViewController {
         accountInfo.accessibilityElements = [accountIcon, accountNumberLabel, addressLabel, enrollSwitch]
         
         // BGE Footer View when user is enrolled
-        bgeFooterView.isHidden = true // Will be unhidden when the web services call completes
         if Environment.sharedInstance.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
-            bgeFooterLoadingView.isHidden = false
-            
             for view in bgeFooterCardViews {
                 view.layer.cornerRadius = 2
                 view.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
@@ -206,24 +202,17 @@ class BudgetBillingViewController: UIViewController {
         } else {
             footerView.isHidden = true
         }
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        self.errorLabel.text = NSLocalizedString("Error Loading Budget Billing Data", comment: "")
         
+        self.scrollView.isHidden = true
+        self.loadingIndicator.isHidden = false
+        self.bgeFooterView.isHidden = true
         viewModel.getBudgetBillingInfo(onSuccess: { (budgetBillingInfo: BudgetBillingInfo) in
+            self.navigationItem.rightBarButtonItem = submitButton
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
-            self.paymentAmountLoadingIndicator.isHidden = true
-            self.paymentAmountView.isHidden = false
+            self.scrollView.isHidden = false
+            self.loadingIndicator.isHidden = true
             
             if Environment.sharedInstance.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
                 self.monthlyAmountLabel.text = budgetBillingInfo.averageMonthlyBill
@@ -231,7 +220,6 @@ class BudgetBillingViewController: UIViewController {
                 self.payoffBalanceLabel.text = budgetBillingInfo.budgetBillPayoff
                 self.currentBalanceLabel.text = budgetBillingInfo.budgetBillBalance
                 self.accDifferenceLabel.text = budgetBillingInfo.budgetBillDifference
-                self.bgeFooterLoadingView.isHidden = true
                 self.bgeFooterView.isHidden = false
                 
                 if let budgetBillDifference = budgetBillingInfo.budgetBillDifference {
@@ -244,14 +232,27 @@ class BudgetBillingViewController: UIViewController {
                     }
                 }
                 
+                if budgetBillingInfo.isUSPPParticipant {
+                    self.navigationItem.rightBarButtonItem = nil
+                    self.accountInfo.isHidden = true // USPP Participants cannot unenroll
+                }
+                
             }
             
         }, onError: { errMessage in
-            self.paymentAmountErrorLabel.text = NSLocalizedString("Error Loading Budget Billing Data", comment: "")
-            self.paymentAmountLoadingIndicator.isHidden = true
-            self.paymentAmountErrorLabel.isHidden = false
-            self.bgeFooterLoadingView.isHidden = true
+            self.scrollView.isHidden = true
+            self.loadingIndicator.isHidden = true
+            self.errorLabel.isHidden = false
         })
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar()
+        }
     }
     
     override func viewDidLayoutSubviews() {

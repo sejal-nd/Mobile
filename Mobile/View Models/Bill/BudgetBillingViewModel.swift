@@ -89,8 +89,7 @@ class BudgetBillingViewModel {
     }
     
     func getFooterText() -> String? {
-        print("yo")
-        print(accountDetail.budgetBillMessage ?? "NO")
+
         switch Environment.sharedInstance.opco {
         case .bge:
             return NSLocalizedString("Budget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
