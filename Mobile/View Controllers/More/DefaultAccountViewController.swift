@@ -94,10 +94,12 @@ extension DefaultAccountViewController: UITableViewDelegate {
                                           preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+                Analytics().logScreenView(AnalyticsPageView.SetDefaultAccountCancel.rawValue)
                 observer.onCompleted()
             })
             
             alert.addAction(UIAlertAction(title: NSLocalizedString("Change", comment: ""), style: .default) { [weak self] _ in
+                Analytics().logScreenView(AnalyticsPageView.SetDefaultAccountChange.rawValue)
                 if let strongSelf = self {
                     observer.onNext(strongSelf.viewModel.accounts.value[indexPath.row])
                 }

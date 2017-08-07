@@ -109,6 +109,12 @@ class BGEAutoPayViewController: UIViewController {
         setupBindings()
     
         viewModel.getAutoPayInfo(onSuccess: nil, onError: nil)
+        
+        if(viewModel.initialEnrollmentStatus.value == .enrolled) {
+            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsOffer.rawValue)
+        } else {
+            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsOfferNew.rawValue)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -208,10 +214,11 @@ class BGEAutoPayViewController: UIViewController {
                     self.present(alertVc, animated: true, completion: nil)
                 })
             } else { // Unenroll
+                Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
                 viewModel.unenroll(onSuccess: {
                     LoadingView.hide()
                     self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Unenrolled from AutoPay", comment: ""))
-                    Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
+                    Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollOffer.rawValue)
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { errMessage in
                     LoadingView.hide()

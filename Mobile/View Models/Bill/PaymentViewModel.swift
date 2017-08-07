@@ -222,6 +222,8 @@ class PaymentViewModel {
                     self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
                 }
                 
+                Analytics().logScreenView(AnalyticsPageView.ECheckOffer.rawValue)
+                
                 self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
                     let paymentType: PaymentType = .check
                     var paymentDate = self.paymentDate.value
@@ -285,6 +287,7 @@ class PaymentViewModel {
                     self.paymentService.schedulePayment(payment: payment)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { _ in
+                            Analytics().logScreenView(AnalyticsPageView.CardOffer.rawValue)
                             onSuccess()
                         }, onError: { err in
                             if !self.addCardFormViewModel.saveToWallet.value {

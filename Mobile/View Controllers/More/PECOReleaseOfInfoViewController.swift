@@ -57,6 +57,10 @@ class PECOReleaseOfInfoViewController: UIViewController {
         fetchCurrentSelection()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        Analytics().logScreenView(AnalyticsPageView.ReleaseInfoOffer.rawValue)
+    }
+    
     func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
@@ -70,6 +74,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
         }
         
         LoadingView.show()
+        Analytics().logScreenView(AnalyticsPageView.ReleaseInfoSubmit.rawValue)
         accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.sharedInstance.currentAccount!, selectedIndex: rowToIntMapping)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
