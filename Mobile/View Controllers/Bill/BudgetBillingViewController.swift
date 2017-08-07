@@ -103,8 +103,6 @@ class BudgetBillingViewController: UIViewController {
         }).disposed(by: disposeBag)
         whatIsBudgetBillingButton.accessibilityLabel = NSLocalizedString("What is budget billing?", comment: "")
         
-        accountIcon.accessibilityLabel = accountDetail.isResidential ? NSLocalizedString("Residential Account", comment: "") : NSLocalizedString("Commercial Account", comment: "")
-        
         whatIsBudgetBillingLabel.textColor = .blackText
         whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
         
@@ -132,6 +130,14 @@ class BudgetBillingViewController: UIViewController {
         addressLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
         
+        if accountDetail.isResidential {
+            accountIcon.image = #imageLiteral(resourceName: "ic_residential")
+            accountIcon.accessibilityLabel = NSLocalizedString("Residential Account", comment: "")
+        } else {
+            accountIcon.image = #imageLiteral(resourceName: "ic_commercial")
+            accountIcon.accessibilityLabel = NSLocalizedString("Commercial Account", comment: "")
+        }
+                
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).disposed(by: disposeBag)
         enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).disposed(by: disposeBag)
         
@@ -148,7 +154,15 @@ class BudgetBillingViewController: UIViewController {
                 })
             }).disposed(by: disposeBag)
         }
-        
+        let localizedText = NSLocalizedString("Account number: %@", comment: "")
+        accountNumberLabel.accessibilityLabel = String(format: localizedText, accountNumberLabel.text ?? "")
+
+        let localizedA11Y = NSLocalizedString("Street address: %@", comment: "")
+        if let a11yAddress = addressLabel.text {
+            addressLabel.accessibilityLabel = String(format: localizedA11Y, a11yAddress)
+        } else {
+            addressLabel.accessibilityLabel = nil
+        }
         accountInfo.accessibilityElements = [accountIcon, accountNumberLabel, addressLabel, enrollSwitch]
         
         // BGE Footer View when user is enrolled

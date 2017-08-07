@@ -27,8 +27,8 @@ class SplashViewModel{
             .subscribe(onNext: { versionInfo in
                 isOutOfDate = self.checkIfOutOfDate(minVersion: versionInfo.iosObject.minVersion)
                 onSuccess(isOutOfDate)
-            }, onError: { error in
-                _ = error as! ServiceError
+            }, onError: { err in
+                onError(err.localizedDescription)
             }).disposed(by: disposeBag)
     }
     
