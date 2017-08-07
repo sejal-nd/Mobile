@@ -362,13 +362,16 @@ class OutageViewController: AccountPickerViewController {
     // MARK: - Actions
     
     func onBigButtonTap() {
+        Analytics().logScreenView(AnalyticsPageView.OutageStatusDetails.rawValue)
         if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != .bge  {
             tabBarController?.selectedIndex = 1 // Jump to Bill tab
+            Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
         } else {
             if let message = viewModel.currentOutageStatus!.outageDescription {
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
+                Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
             }
         }
     }
@@ -394,6 +397,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     @IBAction func onViewOutageMapPress() {
+        Analytics().logScreenView(AnalyticsPageView.ViewMapOfferComplete.rawValue)
         self.performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
