@@ -89,7 +89,6 @@ class BudgetBillingViewModel {
     }
     
     func getFooterText() -> String? {
-
         switch Environment.sharedInstance.opco {
         case .bge:
             return NSLocalizedString("Budget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
@@ -97,7 +96,6 @@ class BudgetBillingViewModel {
             if accountDetail.hasElectricSupplier && accountDetail.isDualBillOption {
                 return NSLocalizedString("Budget Billing is available for your ComEd Delivery charges. Electric Supply charges from your Retail Electric Supplier will not be included in your Budget Billing plan.", comment: "")
             }
-            return nil
         case .peco:
             if accountDetail.hasElectricSupplier && accountDetail.isDualBillOption {
                 return NSLocalizedString("Budget billing option only includes PECO charges. Energy Supply charges are billed by your chosen generation provider.", comment: "")
@@ -107,8 +105,8 @@ class BudgetBillingViewModel {
 
                 }
             }
-            return nil
         }
+        return nil
     }
     
     func getReasonString(forIndex index: Int) -> String {

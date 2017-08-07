@@ -26,8 +26,8 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var accountBackgroundView: UIView! // For stretching edge to edge on iPad
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var whatIsBudgetBillingButton: ButtonControl!
-    @IBOutlet weak var whatIsBudgetBillingLabel: UILabel!
+    @IBOutlet weak var learnMoreAboutBudgetBillingButton: ButtonControl!
+    @IBOutlet weak var learnMoreAboutBudgetBillingLabel: UILabel!
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
     @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet weak var paymentAmountLabel: UILabel!
@@ -95,16 +95,22 @@ class BudgetBillingViewController: UIViewController {
         gradientLayer.locations = [0.0, 1.0]
         gradientView.layer.addSublayer(gradientLayer)
 
-        whatIsBudgetBillingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        whatIsBudgetBillingButton.layer.cornerRadius = 2
-        whatIsBudgetBillingButton.backgroundColorOnPress = .softGray
-        whatIsBudgetBillingButton.rx.touchUpInside.asDriver().drive(onNext: {
+        learnMoreAboutBudgetBillingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        learnMoreAboutBudgetBillingButton.layer.cornerRadius = 2
+        learnMoreAboutBudgetBillingButton.backgroundColorOnPress = .softGray
+        learnMoreAboutBudgetBillingButton.rx.touchUpInside.asDriver().drive(onNext: {
             self.performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
         }).disposed(by: disposeBag)
-        whatIsBudgetBillingButton.accessibilityLabel = NSLocalizedString("What is budget billing?", comment: "")
+        learnMoreAboutBudgetBillingButton.accessibilityLabel = NSLocalizedString("Learn more about budget billing", comment: "")
         
-        whatIsBudgetBillingLabel.textColor = .blackText
-        whatIsBudgetBillingLabel.text = NSLocalizedString("What is\nBudget Billing?", comment: "")
+        learnMoreAboutBudgetBillingLabel.textColor = .blackText
+        let learnMoreString = NSLocalizedString("Learn more about ", comment: "")
+        let budgetBillingString = NSLocalizedString("Budget Billing", comment: "")
+        let learnMoreAboutBudgetBillingString = "\(learnMoreString)\n\(budgetBillingString)"
+        let learnMoreAboutBudgetBillingAttrString = NSMutableAttributedString(string: learnMoreAboutBudgetBillingString, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
+        learnMoreAboutBudgetBillingAttrString.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 18), range: NSMakeRange(0, learnMoreString.characters.count))
+        learnMoreAboutBudgetBillingAttrString.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 18), range: NSMakeRange(learnMoreString.characters.count + 1, budgetBillingString.characters.count))
+        learnMoreAboutBudgetBillingLabel.attributedText = learnMoreAboutBudgetBillingAttrString
         
         yourPaymentWouldBeLabel.font = SystemFont.medium.of(textStyle: .footnote)
         yourPaymentWouldBeLabel.textColor = .deepGray
