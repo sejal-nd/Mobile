@@ -14,11 +14,7 @@ private func extractDate(object: Any?) throws -> Date {
         throw MapperError.convertibleError(value: object, type: Date.self)
     }
     
-    guard let date = dateString.apiFormatDate as? Date else {
-        throw MapperError.convertibleError(value: dateString, type: Date.self)
-    }
-    
-    return date
+    return dateString.apiFormatDate
 }
 
 struct Account: Mappable, Equatable, Hashable {
