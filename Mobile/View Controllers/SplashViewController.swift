@@ -65,7 +65,7 @@ class SplashViewController: UIViewController{
             } else {
                 self?.doLoginLogic()
             }
-        }, onError: { [weak self] errorMessage in
+        }, onError: { [weak self] _ in
             self?.doLoginLogic()
         })
     }
