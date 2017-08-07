@@ -65,10 +65,14 @@ class HomeBillCardViewModel {
             .share()
     
     private lazy var workDayEvents: Observable<Event<[Date]>> = self.account
-        .flatMapLatest { [unowned self] _ in
-            self.paymentService.fetchWorkdays()
-                .trackActivity(self.fetchingTracker)
-                .materialize()
+        .flatMapLatest { [unowned self] _ -> Observable<Event<[Date]>> in
+            if Environment.sharedInstance.opco == .peco {
+                return self.paymentService.fetchWorkdays()
+                    .trackActivity(self.fetchingTracker)
+                    .materialize()
+            } else {
+                return Observable<Event<[Date]>>.never()
+            }
         }
         .shareReplay(1)
     
@@ -98,12 +102,12 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
-        if Environment.sharedInstance.opco != .peco {
-            return Driver.just(false)
-        } else {
+        if Environment.sharedInstance.opco == .peco {
             return self.workDayEvents.elements()
                 .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty }
                 .asDriver(onErrorDriveWith: .empty())
+        } else {
+            return Driver.just(false)
         }
     }()
     
