@@ -158,7 +158,12 @@ class BudgetBillingViewController: UIViewController {
         let localizedText = NSLocalizedString("Account number: %@", comment: "")
         accountNumberLabel.accessibilityLabel = String(format: localizedText, accountNumberLabel.text ?? "")
 
-        addressLabel.accessibilityLabel = NSLocalizedString((addressLabel.text?.isEmpty)! ? "" : "Street address: \(addressLabel.text ?? "")", comment: "")
+        let localizedA11Y = NSLocalizedString("Street address: %@", comment: "")
+        if let a11yAddress = addressLabel.text {
+            addressLabel.accessibilityLabel = String(format: localizedA11Y, a11yAddress)
+        } else {
+            addressLabel.accessibilityLabel = nil
+        }
         accountInfo.accessibilityElements = [accountIcon, accountNumberLabel, addressLabel, enrollSwitch]
         
         // BGE Footer View when user is enrolled
