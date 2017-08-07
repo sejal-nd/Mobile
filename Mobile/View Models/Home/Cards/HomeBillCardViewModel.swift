@@ -190,7 +190,7 @@ class HomeBillCardViewModel {
                     return .credit
                 }
                 
-                if billingInfo.pendingPaymentAmount ?? 0 > 0 {
+                if billingInfo.pendingPayments.first?.amount ?? 0 > 0 {
                     return .paymentPending
                 }
                 
@@ -322,9 +322,9 @@ class HomeBillCardViewModel {
     private(set) lazy var showScheduledImageView: Driver<Bool> = {
         let currentDate = Date()
         let isScheduled = self.accountDetailDriver
-            .map { ($0.billingInfo.scheduledPaymentAmount ?? 0) > 0 &&
-                $0.billingInfo.scheduledPaymentDate ?? currentDate > currentDate &&
-                ($0.billingInfo.pendingPaymentAmount ?? 0) == 0 }
+            .map { ($0.billingInfo.scheduledPayment?.amount ?? 0) > 0 &&
+                $0.billingInfo.scheduledPayment?.date ?? currentDate > currentDate &&
+                ($0.billingInfo.pendingPayments.first?.amount ?? 0) == 0 }
         return Driver.combineLatest(isScheduled, self.showAutoPay, self.isPrecariousBillSituation) { $0 && !$1 && !$2 }
     } ()
     
@@ -544,8 +544,8 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = self.accountDetailDriver.map {
-        guard let paymentAmountText = $0.billingInfo.scheduledPaymentAmount?.currencyString else { return nil }
-        guard let paymentDateText = $0.billingInfo.scheduledPaymentDate?.mmDdYyyyString else { return nil }
+        guard let paymentAmountText = $0.billingInfo.scheduledPayment?.amount.currencyString else { return nil }
+        guard let paymentDateText = $0.billingInfo.scheduledPayment?.date.mmDdYyyyString else { return nil }
         let localizedText = NSLocalizedString("Thank you for scheduling your %@ payment for %@." , comment: "")
         return String(format: localizedText, paymentAmountText, paymentDateText)
     }

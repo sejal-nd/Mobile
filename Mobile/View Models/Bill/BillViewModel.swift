@@ -125,18 +125,18 @@ class BillViewModel {
     }()
     
     lazy var pendingPaymentAmountDueBoxesAlpha: Driver<CGFloat> = self.currentAccountDetail.asDriver().map {
-        guard let pendingPaymentAmount = $0?.billingInfo.pendingPaymentAmount else { return 1.0 }
+        guard let pendingPaymentAmount = $0?.billingInfo.pendingPayments.first?.amount else { return 1.0 }
         return pendingPaymentAmount > 0 ? 0.5 : 1.0
     }
     
     lazy var shouldShowPendingPayment: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         //TODO: Account for web service change when this becomes an array
-        $0?.billingInfo.pendingPaymentAmount ?? 0 > 0
+        $0?.billingInfo.pendingPayments.first?.amount ?? 0 > 0
     }
     
     lazy var shouldShowRemainingBalanceDue: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         guard let billingInfo = $0?.billingInfo else { return false }
-        return billingInfo.pendingPaymentAmount ?? 0 > 0 && billingInfo.remainingBalanceDue ?? 0 > 0
+        return billingInfo.pendingPayments.first?.amount ?? 0 > 0 && billingInfo.remainingBalanceDue ?? 0 > 0
     }
     
     lazy var shouldShowRemainingBalancePastDue: Driver<Bool> = {
@@ -333,7 +333,7 @@ class BillViewModel {
     
     //MARK: - Pending Payments
     lazy var pendingPaymentAmounts: Driver<[Double]> = self.currentAccountDetail.asDriver().map {
-        [$0?.billingInfo.pendingPaymentAmount].flatMap { $0 }
+        [$0?.billingInfo.pendingPayments.first?.amount].flatMap { $0 }
     }
     
     //MARK: - Remaining Balance Due
@@ -404,7 +404,7 @@ class BillViewModel {
             return NSLocalizedString("You are enrolled in BGEasy", comment: "")
         } else if accountDetail.isAutoPay {
             return NSLocalizedString("You are enrolled in AutoPay", comment: "")
-        } else if let pendingPaymentAmount = accountDetail.billingInfo.pendingPaymentAmount, let amountString = pendingPaymentAmount.currencyString, pendingPaymentAmount > 0 {
+        } else if let pendingPaymentAmount = accountDetail.billingInfo.pendingPayments.first?.amount, let amountString = pendingPaymentAmount.currencyString, pendingPaymentAmount > 0 {
             let localizedText: String
             switch Environment.sharedInstance.opco {
             case .bge:
@@ -413,7 +413,10 @@ class BillViewModel {
                 localizedText = NSLocalizedString("You have a pending payment of %@", comment: "")
             }
             return String(format: localizedText, amountString)
-        } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPaymentAmount, let scheduledPaymentDate = accountDetail.billingInfo.scheduledPaymentDate, let amountString = scheduledPaymentAmount.currencyString, scheduledPaymentAmount > 0 {
+        } else if let scheduledPaymentAmount = accountDetail.billingInfo.pendingPayments.first?.amount,
+            let scheduledPaymentDate = accountDetail.billingInfo.scheduledPayment?.date,
+            let amountString = scheduledPaymentAmount.currencyString,
+            scheduledPaymentAmount > 0 {
             return String(format: NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: ""), amountString, scheduledPaymentDate.mmDdYyyyString)
         } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount,
             let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate,
@@ -437,7 +440,9 @@ class BillViewModel {
             } else {
                 return (nil, nil)
             }
-        } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPaymentAmount, let scheduledPaymentDate = accountDetail.billingInfo.scheduledPaymentDate, let amountString = scheduledPaymentAmount.currencyString, scheduledPaymentAmount > 0 {
+        } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount,
+            let scheduledPaymentDate = accountDetail.billingInfo.scheduledPayment?.date,
+            let amountString = scheduledPaymentAmount.currencyString, scheduledPaymentAmount > 0 {
             let localizedTitle = NSLocalizedString("Existing Scheduled Payment", comment: "")
             return (localizedTitle, String(format: NSLocalizedString("You have a payment of %@ scheduled for %@. To avoid a duplicate payment, please review your payment activity before proceeding. Would you like to continue making an additional payment?", comment: ""), amountString, scheduledPaymentDate.mmDdYyyyString))
         }
@@ -447,7 +452,7 @@ class BillViewModel {
     var makePaymentStatusTextTapRouting: Observable<MakePaymentStatusTextRouting> {
         return Observable.combineLatest(currentAccountDetail.asObservable(), self.shouldShowAutoPay.asObservable()).map {
             guard let accountDetail = $0 else { return .nowhere }
-            if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPaymentAmount, scheduledPaymentAmount > 0.0 {
+            if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount, scheduledPaymentAmount > 0.0 {
                 if accountDetail.isAutoPay && $1 {
                     return .autoPay
                 } else {
