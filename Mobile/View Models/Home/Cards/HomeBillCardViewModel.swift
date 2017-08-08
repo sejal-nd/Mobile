@@ -407,9 +407,32 @@ class HomeBillCardViewModel {
     
     private(set) lazy var dueDateText: Driver<NSAttributedString?> = self.accountDetailDriver.map {
         if $0.billingInfo.pastDueAmount ?? 0 > 0 {
+            if let extensionDate = $0.billingInfo.turnOffNoticeExtendedDueDate {
+                let calendar = NSCalendar.current
+                
+                let date1 = calendar.startOfDay(for: Date())
+                let date2 = calendar.startOfDay(for: extensionDate)
+                
+                guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else {
+                    return nil
+                }
+                
+                if days > 0 {
+                    let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
+                    return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
+                                              attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
+                                                           NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                } else {
+                    let localizedText = NSLocalizedString("Due on %@", comment: "")
+                    return NSAttributedString(string: String(format: localizedText, extensionDate.mmDdYyyyString),
+                                              attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
+                                                           NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                }
+            } else {
             return NSAttributedString(string: NSLocalizedString("Due Immediately", comment: ""),
                                       attributes: [NSForegroundColorAttributeName: UIColor.errorRed,
                                                    NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+            }
         } else if let dueByDate = $0.billingInfo.dueByDate {
             let calendar = NSCalendar.current
             
@@ -434,6 +457,29 @@ class HomeBillCardViewModel {
             
         } else {
             return nil
+        }
+    }
+    
+    func getDueInOnText(dueByDate: Date) -> NSAttributedString? {
+        let calendar = NSCalendar.current
+        
+        let date1 = calendar.startOfDay(for: Date())
+        let date2 = calendar.startOfDay(for: dueByDate)
+        
+        guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else {
+            return nil
+        }
+        
+        if days > 0 {
+            let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
+            return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
+                                      attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
+                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+        } else {
+            let localizedText = NSLocalizedString("Due on %@", comment: "")
+            return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
+                                      attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
+                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
         }
     }
     
