@@ -96,9 +96,9 @@ class HomeBillCardViewModel {
         .do(onNext: { _, walletItem, _ in
             switch walletItem.bankOrCard {
             case .bank:
-                Analytics().logScreenView(AnalyticsPageView.OneTouchBankComplete.rawValue, dimensionIndex: nil, dimensionValue: nil)
+                Analytics().logScreenView(AnalyticsPageView.OneTouchBankComplete.rawValue)
             case .card:
-                Analytics().logScreenView(AnalyticsPageView.OneTouchCardComplete.rawValue, dimensionIndex: nil, dimensionValue: nil)
+                Analytics().logScreenView(AnalyticsPageView.OneTouchCardComplete.rawValue)
             }
         })
         .map { accountDetail, walletItem, cvv2 in

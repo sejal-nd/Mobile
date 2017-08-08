@@ -37,7 +37,7 @@ class ViewBillViewModel {
                 }
             }, onError: { errMessage in
                 onError(errMessage.localizedDescription)
-                var screenView = self.isCurrent ? AnalyticsPageView.BillViewCurrentError : AnalyticsPageView.BillViewPastError
+                let screenView = self.isCurrent ? AnalyticsPageView.BillViewCurrentError : AnalyticsPageView.BillViewPastError
                 let serviceError = errMessage as? ServiceError
                 Analytics().logScreenView(screenView.rawValue,
                                           dimensionIndex: Dimensions.DIMENSION_ERROR_CODE.rawValue,

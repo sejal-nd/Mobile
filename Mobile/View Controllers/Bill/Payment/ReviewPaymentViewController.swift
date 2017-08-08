@@ -318,9 +318,8 @@ class ReviewPaymentViewController: UIViewController {
                 if let bankOrCard = self.viewModel.selectedWalletItem.value?.bankOrCard {
                     switch bankOrCard {
                     case .bank:
-                        Analytics().logScreenView(AnalyticsPageView.ECheckComplete.rawValue, dimensionIndex: nil, dimensionValue: nil)
-                    case .card:
-                        Analytics().logScreenView(AnalyticsPageView.CardComplete.rawValue, dimensionIndex: nil, dimensionValue: nil)
+                        Analytics().logScreenView(AnalyticsPageView.ECheckComplete.rawValue)                    case .card:
+                        Analytics().logScreenView(AnalyticsPageView.CardComplete.rawValue)
                     }
                 }
                 
