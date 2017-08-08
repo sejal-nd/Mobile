@@ -21,6 +21,8 @@ class HomeBillCardViewModel {
     private let walletService: WalletService
     private let paymentService: PaymentService
     
+    let cvv2 = Variable<String?>(nil)
+    
     let submitOneTouchPay = PublishSubject<Void>()
     
     private let fetchingTracker: ActivityTracker
@@ -49,11 +51,11 @@ class HomeBillCardViewModel {
         }
         .shareReplay(1)
     
-    private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+    private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents.errors()
+        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
-    private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = self.workDayEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+    private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = self.workDayEvents.errors()
+        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
     private lazy var walletItem: Observable<WalletItem?> = self.walletItemEvents.elements()
 
@@ -77,8 +79,8 @@ class HomeBillCardViewModel {
         .shareReplay(1)
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
-        .withLatestFrom(Observable.combineLatest(self.accountDetailElements, self.walletItem.unwrap()))
-        .map { accountDetail, walletItem in
+        .withLatestFrom(Observable.combineLatest(self.accountDetailElements, self.walletItem.unwrap(), self.cvv2.asObservable()))
+        .map { accountDetail, walletItem, cvv2 in
             Payment(accountNumber: accountDetail.accountNumber,
                     existingAccount: true,
                     saveAccount: true,
@@ -88,7 +90,7 @@ class HomeBillCardViewModel {
                     paymentDate: Date(),
                     walletId: AccountsStore.sharedInstance.customerIdentifier,
                     walletItemId: walletItem.walletItemID!,
-                    cvv: nil)
+                    cvv: cvv2)
         }
         .flatMapLatest { [unowned self] payment in
             self.paymentService.schedulePayment(payment: payment)
