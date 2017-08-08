@@ -140,6 +140,7 @@ class PaymentConfirmationViewController: UIViewController {
     }
     
     @IBAction func onEnrollInAutoPayPress() {
+        Analytics().logScreenView(AnalyticsPageView.ConfirmationScreenAutopayEnroll.rawValue)
         for vc in presentingNavController.viewControllers {
             guard let dest = vc as? BillViewController else {
                 continue

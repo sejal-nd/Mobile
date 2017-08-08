@@ -173,8 +173,10 @@ class PaymentViewModel {
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         if inlineBank.value {
             scheduleInlineBankPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
+            Analytics().logScreenView(AnalyticsPageView.ECheckOffer.rawValue)
         } else if inlineCard.value {
             scheduleInlineCardPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
+            Analytics().logScreenView(AnalyticsPageView.CardOffer.rawValue)
         } else { // Existing wallet item
             self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
                 let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
@@ -221,8 +223,7 @@ class PaymentViewModel {
                 if self.addBankFormViewModel.oneTouchPay.value {
                     self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
                 }
-                
-                Analytics().logScreenView(AnalyticsPageView.ECheckOffer.rawValue)
+                Analytics().logScreenView(AnalyticsPageView.AddBankNewWallet.rawValue)
                 
                 self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
                     let paymentType: PaymentType = .check
@@ -272,6 +273,7 @@ class PaymentViewModel {
                 if self.addCardFormViewModel.oneTouchPay.value {
                     self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
                 }
+                Analytics().logScreenView(AnalyticsPageView.AddCardNewWallet.rawValue)
                 
                 self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
                     let paymentType: PaymentType = .credit
@@ -287,7 +289,6 @@ class PaymentViewModel {
                     self.paymentService.schedulePayment(payment: payment)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { _ in
-                            Analytics().logScreenView(AnalyticsPageView.CardOffer.rawValue)
                             onSuccess()
                         }, onError: { err in
                             if !self.addCardFormViewModel.saveToWallet.value {
