@@ -40,7 +40,7 @@ class AddCreditCardViewController: UIViewController {
         addCardFormView.delegate = self
         addCardFormView.viewModel.nicknamesInWallet = nicknamesInWallet
         addCardFormView.oneTouchPaySwitch.setOn(shouldSetOneTouchPayByDefault, animated: false)
-        addCardFormView.viewModel.oneTouchPay.value = true
+        addCardFormView.viewModel.oneTouchPay.value = shouldSetOneTouchPayByDefault
         
         viewModel = AddCreditCardViewModel(walletService: ServiceFactory.createWalletService(), addCardFormViewModel: self.addCardFormView.viewModel)
         viewModel.accountDetail = accountDetail
