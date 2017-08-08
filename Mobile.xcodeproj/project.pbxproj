@@ -460,7 +460,6 @@
 		B52CA0B01F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B11F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B21F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
-		B52CA0B31F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
@@ -485,7 +484,6 @@
 		B54A4B731EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */; };
 		B54A4B741EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */; };
 		B54A4B751EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */; };
-		B54A4B761EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */; };
 		B54F0FF61E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
 		B54F0FF71E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
 		B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
@@ -531,12 +529,10 @@
 		B55A8AF41F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */; };
 		B55A8AF51F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */; };
 		B55A8AF61F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */; };
-		B55A8AF71F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF21F13E78E00F63AC3 /* SSJailbreakCheck.m */; };
 		B55A8AFA1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
 		B55A8AFB1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
 		B55A8AFC1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
 		B55A8AFD1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
-		B55A8AFE1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A8AF91F1537B900F63AC3 /* DTTJailbreakDetection.m */; };
 		B55A8B0C1F15644800F63AC3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0B1F15644800F63AC3 /* CoreData.framework */; };
 		B55A8B0E1F15646E00F63AC3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0D1F15646E00F63AC3 /* libz.tbd */; };
 		B55A8B101F15647D00F63AC3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */; };
@@ -592,7 +588,6 @@
 		B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF01E785AE3001E8A44 /* OutageStatus.swift */; };
 		B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF01E785AE3001E8A44 /* OutageStatus.swift */; };
 		B574BAF41E785AE3001E8A44 /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF01E785AE3001E8A44 /* OutageStatus.swift */; };
-		B574BAF51E785AE3001E8A44 /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF01E785AE3001E8A44 /* OutageStatus.swift */; };
 		B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF61E786473001E8A44 /* MockOutageService.swift */; };
 		B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF61E786473001E8A44 /* MockOutageService.swift */; };
 		B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF61E786473001E8A44 /* MockOutageService.swift */; };
@@ -601,7 +596,6 @@
 		B574BAFE1E787655001E8A44 /* OutageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAFC1E787655001E8A44 /* OutageInfo.swift */; };
 		B574BAFF1E787655001E8A44 /* OutageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAFC1E787655001E8A44 /* OutageInfo.swift */; };
 		B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAFC1E787655001E8A44 /* OutageInfo.swift */; };
-		B574BB031E79BF7F001E8A44 /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
 		B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
 		B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
@@ -1707,7 +1701,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B54A4B761EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3218,7 +3211,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3681,11 +3674,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B574BB031E79BF7F001E8A44 /* ServiceResult.swift in Sources */,
-				B52CA0B31F311524002B5674 /* Analytics.swift in Sources */,
-				B574BAF51E785AE3001E8A44 /* OutageStatus.swift in Sources */,
-				B55A8AF71F13E78E00F63AC3 /* SSJailbreakCheck.m in Sources */,
-				B55A8AFE1F1537B900F63AC3 /* DTTJailbreakDetection.m in Sources */,
 				087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4549,6 +4537,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -4562,7 +4554,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Mobile/Vendor/GoogleAnalytics/";
 			};
 			name = Develop;
 		};
@@ -4570,6 +4561,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BGEUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -4577,7 +4572,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Mobile/Vendor/GoogleAnalytics/";
 			};
 			name = Testing;
 		};
@@ -4585,13 +4579,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BGEUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Mobile/Vendor/GoogleAnalytics/";
 			};
 			name = Staging;
 		};
@@ -4599,6 +4596,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BGEUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -4606,7 +4607,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Mobile/Vendor/GoogleAnalytics/";
 			};
 			name = Automation;
 		};
@@ -4614,13 +4614,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BGEUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Mobile/Vendor/GoogleAnalytics/";
 			};
 			name = Release;
 		};
