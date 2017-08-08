@@ -234,8 +234,14 @@ class BillViewModel {
         switch Environment.sharedInstance.opco {
         case .bge:
             guard let dateText = billingInfo.dueByDate?.mmDdYyyyString else { return nil }
-            let localizedText = NSLocalizedString("Payment due to avoid service interruption is %@ due by %@.", comment: "")
-            return String(format: localizedText, amountText, dateText)
+            
+            if let extensionDateText = billingInfo.turnOffNoticeExtendedDueDate?.mmDdYyyyString {
+                let localizedExtText = NSLocalizedString("A payment of %@ is due by %@", comment: "")
+                return String(format: localizedExtText, amountText, extensionDateText)
+            } else {
+                let localizedText = NSLocalizedString("Payment due to avoid service interruption is %@ due by %@.", comment: "")
+                return String(format: localizedText, amountText, dateText)
+            }
         case .comEd, .peco:
             let localizedText = NSLocalizedString("Payment due to avoid shutoff is %@ due immediately.", comment: "")
             return String(format: localizedText, amountText)
