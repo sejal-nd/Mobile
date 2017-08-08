@@ -611,7 +611,9 @@ class PaymentViewModel {
                 return false
             } else if $2 { // If BGE Commercial user, ignore VISA credit cards
                 for item in walletItems {
-                    if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
+                    if item.bankOrCard == .bank {
+                        return true
+                    } else if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
                         return true
                     }
                 }
