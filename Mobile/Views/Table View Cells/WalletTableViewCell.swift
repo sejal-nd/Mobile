@@ -107,7 +107,7 @@ class WalletTableViewCell: UITableViewCell {
             }
         }
         
-        a11yLabel += ", Button"
+        a11yLabel += NSLocalizedString(" button", comment: "")
 
         // Nickname
         if let nickname = walletItem.nickName {
