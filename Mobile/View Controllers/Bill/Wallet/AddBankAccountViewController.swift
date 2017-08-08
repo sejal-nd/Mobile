@@ -38,7 +38,7 @@ class AddBankAccountViewController: UIViewController {
         addBankFormView.delegate = self
         addBankFormView.viewModel.nicknamesInWallet = nicknamesInWallet
         addBankFormView.oneTouchPaySwitch.setOn(shouldSetOneTouchPayByDefault, animated: false)
-        addBankFormView.viewModel.oneTouchPay.value = true
+        addBankFormView.viewModel.oneTouchPay.value = shouldSetOneTouchPayByDefault
         
         viewModel = AddBankAccountViewModel(walletService: ServiceFactory.createWalletService(), addBankFormViewModel: self.addBankFormView.viewModel)
         viewModel.accountDetail = accountDetail
