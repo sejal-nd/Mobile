@@ -122,7 +122,8 @@ class HomeBillCardViewModel {
                 .map { _ in () }
                 .trackActivity(self.paymentTracker)
                 .materialize()
-    }
+        }
+        .share()
     
     private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
         if Environment.sharedInstance.opco == .peco {
