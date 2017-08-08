@@ -65,9 +65,9 @@ class RegistrationViewModel {
         registrationService.validateAccountInformation(identifier, phone: extractDigitsFrom(phoneNumber.value), accountNum: acctNum)
         	.observeOn(MainScheduler.instance)
             .subscribe(onNext: { data in
-                let types = data["type"] as! [String]
-                self.accountType.value = types[0]
-                self.isPaperlessEbillEligible = data["ebill"] as! Bool
+                let types = data["type"] as? [String]
+                self.accountType.value = types?.first ?? ""
+                self.isPaperlessEbillEligible = (data["ebill"] as? Bool) ?? false
                 
                 
                 onSuccess()
