@@ -323,6 +323,10 @@ extension MiniWalletViewController: AddBankAccountViewControllerDelegate {
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
         fetchWalletItems()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            //TODO: Add OneTouchPay check to the dimension value
+            Analytics().logScreenView(AnalyticsPageView.ECheckAddNewWallet.rawValue,
+                                      dimensionIndex: Dimensions.DIMENSION_OTP_ENABLED.rawValue, dimensionValue: "true")
+            
             self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
         })
     }
@@ -334,6 +338,10 @@ extension MiniWalletViewController: AddCreditCardViewControllerDelegate {
     func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
         fetchWalletItems()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            //TODO: Add OneTouchPay check to the dimension value
+            Analytics().logScreenView(AnalyticsPageView.CardAddNewWallet.rawValue,
+                                      dimensionIndex: Dimensions.DIMENSION_OTP_ENABLED.rawValue, dimensionValue: "true")
+            
             self.view.showToast(NSLocalizedString("Card added", comment: ""))
         })
     }

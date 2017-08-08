@@ -173,7 +173,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
-        Analytics().logScreenView(AnalyticsPageView.LoginOffer.rawValue)
+        Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
+                              signedIndimensionIndex: Dimensions.DIMENSION_KEEP_ME_SIGNIN_IN.rawValue,
+                              signedIndimensionValue: String(describing: keepMeSignedInLabel.isEnabled),
+                              fingerprintDimensionIndex: Dimensions.DIMENSION_FINGERPRINT_USED.rawValue,
+                              fingerprintDimensionValue: "false")
+        
         view.endEditing(true)
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
         
@@ -256,11 +261,9 @@ class LoginViewController: UIViewController {
                 })
             }))
             self.present(alertVC, animated: true, completion: nil)
-            Analytics().logScreenView(AnalyticsPageView.LoginError.rawValue)
         }, onError: { (title, message) in
             self.navigationController?.view.isUserInteractionEnabled = true
             self.showErrorAlertWith(title: title, message: message)
-            Analytics().logScreenView(AnalyticsPageView.LoginError.rawValue)
         })
     }
     
@@ -327,6 +330,13 @@ class LoginViewController: UIViewController {
     
     func presentTouchIDPrompt() {
         viewModel.attemptLoginWithTouchID(onLoad: { // fingerprint was successful
+            
+            Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
+                                      signedIndimensionIndex: Dimensions.DIMENSION_KEEP_ME_SIGNIN_IN.rawValue,
+                                      signedIndimensionValue: String(describing: self.keepMeSignedInLabel.isEnabled),
+                                      fingerprintDimensionIndex: Dimensions.DIMENSION_FINGERPRINT_USED.rawValue,
+                                      fingerprintDimensionValue: "true")
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
             })
