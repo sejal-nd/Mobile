@@ -19,7 +19,8 @@ class ViewBillViewModel {
     
     var pdfData: Data?
     var pdfFileUrl: URL?
-
+    var isCurrent: Bool = false
+    
     init(billService: BillService) {
         self.billService = billService
     }
@@ -36,6 +37,11 @@ class ViewBillViewModel {
                 }
             }, onError: { errMessage in
                 onError(errMessage.localizedDescription)
+                var screenView = self.isCurrent ? AnalyticsPageView.BillViewCurrentError : AnalyticsPageView.BillViewPastError
+                let serviceError = errMessage as? ServiceError
+                Analytics().logScreenView(screenView.rawValue,
+                                          dimensionIndex: Dimensions.DIMENSION_ERROR_CODE.rawValue,
+                                          dimensionValue: (serviceError?.serviceCode)!)
             })
             .disposed(by: disposeBag)
     }

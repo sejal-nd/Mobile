@@ -56,8 +56,6 @@ class ViewBillViewController: UIViewController {
                 self.fetchBillPDFData()
             }))
             self.present(alertVc, animated: true, completion: nil)
-            
-            //TODO: Add BillViewCurrentError & BillViewPastError analytics calls
         })
     }
     

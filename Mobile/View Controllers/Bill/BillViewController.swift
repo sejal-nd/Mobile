@@ -508,6 +508,7 @@ class BillViewController: AccountPickerViewController {
             vc.initialAccountDetail = viewModel.currentAccountDetail.value!
         } else if let vc = segue.destination as? ViewBillViewController {
             vc.viewModel.billDate = viewModel.currentAccountDetail.value!.billingInfo.billDate
+            vc.viewModel.isCurrent = true
         } else if let vc = segue.destination as? BGEAutoPayViewController {
             vc.delegate = self
             vc.accountDetail = viewModel.currentAccountDetail.value!
