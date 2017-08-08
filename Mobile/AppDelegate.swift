@@ -144,7 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupAnalytics() {
         //TODO - add tracking id to environment
         let gai = GAI.sharedInstance()
-        _ = gai?.tracker(withTrackingId: "UA-76742208-8")
+        _ = gai?.tracker(withTrackingId: Environment.sharedInstance.gaTrackingId)
     }
     
     func resetNavigationOnAuthTokenExpire() {
