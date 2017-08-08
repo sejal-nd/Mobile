@@ -158,4 +158,18 @@ struct Analytics {
             print("Analytics: " + screenName)
         }
     }
+    
+    func logSignIn(_ screenName: String, signedIndimensionIndex: String, signedIndimensionValue: String, fingerprintDimensionIndex: String, fingerprintDimensionValue: String) {
+        if(isAnalyticsEnabled()) {
+            let tracker = GAI.sharedInstance().defaultTracker
+            tracker?.set(kGAIScreenName, value: screenName)
+            tracker?.send(GAIDictionaryBuilder.createScreenView()
+                .set(signedIndimensionIndex, forKey: signedIndimensionValue)
+                .set(fingerprintDimensionIndex, forKey: fingerprintDimensionValue)
+                .build() as! [AnyHashable : Any]!)
+        } else {
+            print("Analytics: " + screenName)
+        }
+    }
+    
 }
