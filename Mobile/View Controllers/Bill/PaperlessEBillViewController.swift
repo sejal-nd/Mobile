@@ -24,7 +24,8 @@ class PaperlessEBillViewController: UIViewController {
     private var gradientLayer: CAGradientLayer!
     
     // Content
-    @IBOutlet weak var whatIsButton: ButtonControl!
+    @IBOutlet weak var learnMoreButton: ButtonControl!
+    @IBOutlet weak var learnMoreLabel: UILabel!
     @IBOutlet weak var emailsWillBeSentToLabel: UILabel!
 	@IBOutlet weak var emailLabel: UILabel!
 	@IBOutlet weak var updateDetailsView: UIView!
@@ -91,8 +92,8 @@ class PaperlessEBillViewController: UIViewController {
             .drive(submitButton.rx.isEnabled)
             .disposed(by: bag)
         
-        whatIsButton.backgroundColorOnPress = .softGray
-        whatIsButton.rx.touchUpInside.asDriver().drive(onNext: {
+        learnMoreButton.backgroundColorOnPress = .softGray
+        learnMoreButton.rx.touchUpInside.asDriver().drive(onNext: {
             let description: String
             if Environment.sharedInstance.opco == .bge {
                 description = NSLocalizedString("Eliminate your paper bill.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  You will receive bill ready email notifications regardless of preference.  Your preference will be updated with your next month’s bill.", comment: "")
@@ -102,7 +103,17 @@ class PaperlessEBillViewController: UIViewController {
             let infoModal = InfoModalViewController(title: NSLocalizedString("Paperless eBill", comment: ""), image: #imageLiteral(resourceName: "paperless_modal"), description: description)
             self.navigationController?.present(infoModal, animated: true, completion: nil)
         }).disposed(by: bag)
-        whatIsButton.accessibilityLabel = NSLocalizedString("What is Paperless e-bill", comment: "")
+        learnMoreButton.accessibilityLabel = NSLocalizedString("Learn more about paperless e-bill", comment: "")
+        
+        learnMoreLabel.textColor = .blackText
+        let learnMoreString = NSLocalizedString("Learn more about ", comment: "")
+        let paperlessEBillString = NSLocalizedString("Paperless eBill", comment: "")
+        let learnMoreAboutPaperlessEBillString = "\(learnMoreString)\n\(paperlessEBillString)"
+        let learnMoreAboutPaperlessEBillAttrString = NSMutableAttributedString(string: learnMoreAboutPaperlessEBillString, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
+        learnMoreAboutPaperlessEBillAttrString.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 18), range: NSMakeRange(0, learnMoreString.characters.count))
+        learnMoreAboutPaperlessEBillAttrString.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 18), range: NSMakeRange(learnMoreString.characters.count + 1, paperlessEBillString.characters.count))
+        learnMoreLabel.attributedText = learnMoreAboutPaperlessEBillAttrString
+        
         enrollAllAccountsSwitch.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
     }
     
@@ -112,8 +123,8 @@ class PaperlessEBillViewController: UIViewController {
         enrollAllAccountsView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 2)
         enrollAllAccountsView.layer.cornerRadius = 2
         
-        whatIsButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        whatIsButton.layer.cornerRadius = 2
+        learnMoreButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        learnMoreButton.layer.cornerRadius = 2
         
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientBackgroundView.bounds
