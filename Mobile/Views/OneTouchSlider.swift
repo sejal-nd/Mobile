@@ -63,7 +63,7 @@ class OneTouchSlider: UIControl {
         didSet {
             if isEnabled {
                 backgroundColor = .primaryColor
-                sliderFinish.backgroundColor = .primaryColorADA
+                sliderFinish.backgroundColor = Environment.sharedInstance.opco == .bge ? .primaryColorDark: .primaryColorADA
                 sliderFinish.alpha = 1
                 alpha = 1
                 imageView.image = #imageLiteral(resourceName: "ic_caret")
@@ -97,7 +97,7 @@ class OneTouchSlider: UIControl {
         
         //Create SliderFinishView
         sliderFinish.translatesAutoresizingMaskIntoConstraints = false
-        sliderFinish.backgroundColor = .primaryColorADA
+        sliderFinish.backgroundColor = Environment.sharedInstance.opco == .bge ? .primaryColorDark: .primaryColorADA
         sliderFinish.layer.masksToBounds = true
         addSubview(sliderFinish)
         sliderFinish.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
