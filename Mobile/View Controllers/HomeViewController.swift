@@ -92,6 +92,7 @@ class HomeViewController: AccountPickerViewController {
                 }).disposed(by: bag)
             cardStackView.addArrangedSubview(templateCardView)
         }
+        cardStackView.isHidden = true
         
         styleViews()
         bindLoadingStates()
