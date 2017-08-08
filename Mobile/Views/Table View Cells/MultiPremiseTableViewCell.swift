@@ -48,11 +48,15 @@ class MultiPremiseTableViewCell: UITableViewCell {
         self.accountImageView.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial account", comment: "") : NSLocalizedString("Residential account", comment: "")
         self.accountNumber.text = account.accountNumber
         self.accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
-        self.addressLabel.text = account.address
-        if let address = account.address {
+        
+        if let currPremise = account.currentPremise, let address = currPremise.addressGeneral {
+            self.addressLabel.text = address
+            self.addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
+        } else if let address = account.address {
+            self.addressLabel.text = address
             self.addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
         }
-        
+
         if account.isDefault {
             self.accountStatusLabel.text = NSLocalizedString("Default", comment: "")
         } else if account.isFinaled {
