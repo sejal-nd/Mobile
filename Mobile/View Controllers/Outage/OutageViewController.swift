@@ -98,6 +98,8 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handlePhoneCallTap(_:)))
+        footerTextView.addGestureRecognizer(tap)
         
         gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
@@ -374,6 +376,10 @@ class OutageViewController: AccountPickerViewController {
                 Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
             }
         }
+    }
+    
+    func handlePhoneCallTap(_ sender: UITapGestureRecognizer) {
+        Analytics().logScreenView(AnalyticsPageView.OutageAuthEmergencyCall.rawValue)
     }
     
     func onPullToRefresh() {

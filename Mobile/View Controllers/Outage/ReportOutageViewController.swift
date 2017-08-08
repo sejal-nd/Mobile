@@ -180,6 +180,8 @@ class ReportOutageViewController: UIViewController {
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
         footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handlePhoneCallTap(_:)))
+        footerTextView.addGestureRecognizer(tap)
         
         // Data binding
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
@@ -316,6 +318,10 @@ class ReportOutageViewController: UIViewController {
         if(sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn) {
             Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthCircuitBreak.rawValue)
         }
+    }
+    
+    func handlePhoneCallTap(_ sender: UITapGestureRecognizer) {
+        Analytics().logScreenView(AnalyticsPageView.OutageAuthEmergencyCall.rawValue)
     }
     
     // MARK: - ScrollView

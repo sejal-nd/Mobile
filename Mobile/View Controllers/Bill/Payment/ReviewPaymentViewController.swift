@@ -266,6 +266,15 @@ class ReviewPaymentViewController: UIViewController {
     func onSubmitPress() {
         LoadingView.show()
         
+        if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
+            switch bankOrCard {
+            case .bank:
+                Analytics().logScreenView(AnalyticsPageView.ECheckOffer.rawValue)
+            case .card:
+                Analytics().logScreenView(AnalyticsPageView.CardOffer.rawValue)
+            }
+        }
+        
         let handleError = { (errMessage: String) in
             LoadingView.hide()
             let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
@@ -305,6 +314,16 @@ class ReviewPaymentViewController: UIViewController {
                 self.present(alertVc, animated: true, completion: nil)
             }, onSuccess: {
                 LoadingView.hide()
+                
+                if let bankOrCard = self.viewModel.selectedWalletItem.value?.bankOrCard {
+                    switch bankOrCard {
+                    case .bank:
+                        Analytics().logScreenView(AnalyticsPageView.ECheckComplete.rawValue, dimensionIndex: nil, dimensionValue: nil)
+                    case .card:
+                        Analytics().logScreenView(AnalyticsPageView.CardComplete.rawValue, dimensionIndex: nil, dimensionValue: nil)
+                    }
+                }
+                
                 self.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
             }, onError: { errMessage in
                 handleError(errMessage)

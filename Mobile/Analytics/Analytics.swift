@@ -119,10 +119,35 @@ enum AnalyticsPageView: String {
     case AddWalletComplete = "AddWalletComplete"
 }
 
+func isAnalyticsEnabled() -> Bool {
+    if(Environment.sharedInstance.environmentName == "STAGE" || "PROD") {
+        return true
+    }
+    
+    return false
+}
+
 struct Analytics {
     func logScreenView(_ screenName: String) {
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: screenName)
-        tracker?.send(GAIDictionaryBuilder.createScreenView().build() as! [AnyHashable : Any]!)
+        if(isAnalyticsEnabled()) {
+            let tracker = GAI.sharedInstance().defaultTracker
+            tracker?.set(kGAIScreenName, value: screenName)
+            tracker?.send(GAIDictionaryBuilder.createScreenView()
+                .build() as! [AnyHashable : Any]!)
+        } else {
+            print("Analytics: " + screenName)
+        }
+    }
+    
+    func logScreenView(_ screenName: String, dimensionIndex: String, dimensionValue: String) {
+        if(isAnalyticsEnabled()) {
+            let tracker = GAI.sharedInstance().defaultTracker
+            tracker?.set(kGAIScreenName, value: screenName)
+            tracker?.send(GAIDictionaryBuilder.createScreenView()
+                .set(dimensionIndex, forKey: dimensionValue)
+                .build() as! [AnyHashable : Any]!)
+        } else {
+            print("Analytics: " + screenName)
+        }
     }
 }
