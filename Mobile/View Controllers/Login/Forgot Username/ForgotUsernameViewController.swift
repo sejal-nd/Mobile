@@ -55,6 +55,8 @@ class ForgotUsernameViewController: UIViewController {
                 self.viewModel.phoneNumberHasTenDigits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
+                    } else {
+                        self.phoneNumberTextField.setError(nil)
                     }
                 }).disposed(by: self.disposeBag)
             }
@@ -77,6 +79,8 @@ class ForgotUsernameViewController: UIViewController {
                 self.viewModel.identifierHasFourDigits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.identifierTextField?.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
+                    } else {
+                        self.identifierTextField?.setError(nil)
                     }
                 }).disposed(by: self.disposeBag)
                 self.viewModel.identifierIsNumeric().single().subscribe(onNext: { numeric in
@@ -105,6 +109,8 @@ class ForgotUsernameViewController: UIViewController {
                 self.viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
                     if !valid {
                         self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
+                    } else {
+                        self.accountNumberTextField?.setError(nil)
                     }
                 }).disposed(by: self.disposeBag)
             }
@@ -244,11 +250,9 @@ class ForgotUsernameViewController: UIViewController {
 extension ForgotUsernameViewController: AccountLookupToolResultViewControllerDelegate {
 
     func accountLookupToolDidSelectAccount(accountNumber: String, phoneNumber: String) {
-        viewModel.phoneNumber.value = phoneNumber
         phoneNumberTextField.textField.text = phoneNumber
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
         
-        viewModel.accountNumber.value = accountNumber
         accountNumberTextField?.textField.text = accountNumber
         accountNumberTextField?.textField.sendActions(for: .editingDidEnd)
     }

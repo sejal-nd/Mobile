@@ -53,6 +53,8 @@ class ChangePasswordViewController: UIViewController {
         
         self.title = NSLocalizedString("Change Password", comment: "")
         
+        cancelButton.target = self
+        submitButton.target = self
         navigationItem.leftBarButtonItem = sentFromLogin ? nil : cancelButton
         navigationItem.hidesBackButton = sentFromLogin
         navigationItem.rightBarButtonItem = submitButton
