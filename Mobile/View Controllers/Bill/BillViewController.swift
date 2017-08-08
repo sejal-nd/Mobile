@@ -373,6 +373,12 @@ class BillViewController: AccountPickerViewController {
                 } else {
                     self.performSegue(withIdentifier: "viewBillSegue", sender: self)
                 }
+                
+                if(self.pastDueView.isHidden) {
+                    Analytics().logScreenView(AnalyticsPageView.BillViewCurrentOfferComplete.rawValue)
+                } else {
+                    Analytics().logScreenView(AnalyticsPageView.BillViewPastOfferComplete.rawValue)
+                }
             })
 			.disposed(by: bag)
 
@@ -502,6 +508,7 @@ class BillViewController: AccountPickerViewController {
             vc.initialAccountDetail = viewModel.currentAccountDetail.value!
         } else if let vc = segue.destination as? ViewBillViewController {
             vc.viewModel.billDate = viewModel.currentAccountDetail.value!.billingInfo.billDate
+            vc.viewModel.isCurrent = true
         } else if let vc = segue.destination as? BGEAutoPayViewController {
             vc.delegate = self
             vc.accountDetail = viewModel.currentAccountDetail.value!
@@ -533,11 +540,13 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController) {
         viewModel.fetchAccountDetail(isRefresh: false)
         showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
+        Analytics().logScreenView(AnalyticsPageView.BudgetBillEnrollComplete.rawValue)
     }
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
         viewModel.fetchAccountDetail(isRefresh: false)
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
+        Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOffer.rawValue)
     }
 }
 
@@ -548,8 +557,10 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
         switch didChangeStatus {
         case .Enroll:
             toastMessage = NSLocalizedString("Enrolled in Paperless eBill", comment: "")
+            Analytics().logScreenView(AnalyticsPageView.EBillEnrollComplete.rawValue)
         case .Unenroll:
             toastMessage = NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
+            Analytics().logScreenView(AnalyticsPageView.EBillUnEnrollComplete.rawValue)
         case .Mixed:
             toastMessage = NSLocalizedString("Paperless eBill changes saved", comment: "")
         }
@@ -563,6 +574,12 @@ extension BillViewController: AutoPayViewControllerDelegate {
         viewModel.fetchAccountDetail(isRefresh: false)
         let message = enrolled ? NSLocalizedString("Enrolled in AutoPay", comment: ""): NSLocalizedString("Unenrolled from AutoPay", comment: "")
         showDelayedToast(withMessage: message)
+        
+        if(enrolled) {
+            Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollComplete.rawValue)
+        } else {
+            Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
+        }
     }
 
 }

@@ -9,6 +9,7 @@
 import UIKit
 import HockeySDK
 import ToastSwiftFramework
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupUserDefaults()
         setupToastStyles()
         setupAppearance()
+        setupAnalytics()
         jailbreakCheck()
         //printFonts()
         
@@ -138,6 +140,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PDTSimpleCalendarViewCell.appearance().textDisabledColor = UIColor.blackText.withAlphaComponent(0.3)
         PDTSimpleCalendarViewCell.appearance().circleTodayColor = .clear
         PDTSimpleCalendarViewCell.appearance().circleSelectedColor = .actionBlue
+    }
+    
+    func setupAnalytics() {
+        let gai = GAI.sharedInstance()
+        _ = gai?.tracker(withTrackingId: Environment.sharedInstance.gaTrackingId)
+        
+        let filePath = Bundle.main.path(forResource: Environment.sharedInstance.firebaseConfigFile, ofType: "plist")
+        if let fileopts = FirebaseOptions.init(contentsOfFile: filePath!) {
+                    FirebaseApp.configure(options: fileopts)
+        } else {
+            dLog(message: "Failed to load Firebase Analytics")
+        }
+
     }
     
     func resetNavigationOnAuthTokenExpire() {

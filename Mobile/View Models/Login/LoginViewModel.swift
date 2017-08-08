@@ -72,6 +72,9 @@ class LoginViewModel {
                 } else {
                     onError(nil, error.localizedDescription)
                 }
+                Analytics().logScreenView(AnalyticsPageView.LoginError.rawValue,
+                                          dimensionIndex: Dimensions.DIMENSION_ERROR_CODE.rawValue,
+                                          dimensionValue: serviceError.serviceCode)
             })
             .disposed(by: disposeBag)
     }

@@ -34,6 +34,7 @@ class ForgotUsernameViewModel {
             .subscribe(onNext: { usernames in
                 self.maskedUsernames = usernames
                 onSuccess()
+                Analytics().logScreenView(AnalyticsPageView.ForgotUsernameAccountValidate.rawValue)
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue ||
@@ -52,6 +53,8 @@ class ForgotUsernameViewModel {
         let cipher = maskedUsername.cipher
         let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
         let identifier: String? = identifierNumber.value.characters.count > 0 ? identifierNumber.value : nil
+        Analytics().logScreenView(AnalyticsPageView.ForgotUsernameSecuritySubmit.rawValue)
+        
         authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value, cipher: cipher)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { username in

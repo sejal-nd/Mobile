@@ -173,6 +173,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
+        Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
+                              signedIndimensionIndex: Dimensions.DIMENSION_KEEP_ME_SIGNIN_IN.rawValue,
+                              signedIndimensionValue: String(describing: keepMeSignedInLabel.isEnabled),
+                              fingerprintDimensionIndex: Dimensions.DIMENSION_FINGERPRINT_USED.rawValue,
+                              fingerprintDimensionValue: "false")
+        
         view.endEditing(true)
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
         
@@ -209,6 +215,7 @@ class LoginViewController: UIViewController {
                             touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
                                 self.viewModel.storePasswordInTouchIDKeychain()
                                 self.launchMainApp()
+                                Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
                             }))
                             self.present(touchIDAlert, animated: true, completion: nil)
                             self.viewModel.setShouldPromptToEnableTouchID(false)
@@ -223,6 +230,7 @@ class LoginViewController: UIViewController {
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
                                 self.viewModel.storePasswordInTouchIDKeychain()
                                 self.launchMainApp()
+                                Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
                             }))
                             self.present(differentAccountAlert, animated: true, completion: nil)
                         } else {
@@ -246,6 +254,7 @@ class LoginViewController: UIViewController {
                 self.viewModel.resendValidationEmail(onSuccess: {
                     LoadingView.hide()
                     self.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
+                    Analytics().logScreenView(AnalyticsPageView.RegisterResendEmail.rawValue)
                 }, onError: { errMessage in
                     LoadingView.hide()
                     self.showErrorAlertWith(title: NSLocalizedString("Error", comment: ""), message: errMessage)
@@ -259,6 +268,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePress() {
+        Analytics().logScreenView(AnalyticsPageView.ForgotUsernameOffer.rawValue)
         if Environment.sharedInstance.opco == .bge {
             performSegue(withIdentifier: "forgotUsernameSegueBGE", sender: self)
         } else {
@@ -267,6 +277,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotPasswordPress() {
+        Analytics().logScreenView(AnalyticsPageView.ForgotPasswordOffer.rawValue)
         performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
     }
     
@@ -302,6 +313,7 @@ class LoginViewController: UIViewController {
     }
     
     func launchMainApp() {
+        Analytics().logScreenView(AnalyticsPageView.LoginComplete.rawValue)
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         self.present(viewController!, animated: true, completion: nil)
     }
@@ -318,6 +330,13 @@ class LoginViewController: UIViewController {
     
     func presentTouchIDPrompt() {
         viewModel.attemptLoginWithTouchID(onLoad: { // fingerprint was successful
+            
+            Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
+                                      signedIndimensionIndex: Dimensions.DIMENSION_KEEP_ME_SIGNIN_IN.rawValue,
+                                      signedIndimensionValue: String(describing: self.keepMeSignedInLabel.isEnabled),
+                                      fingerprintDimensionIndex: Dimensions.DIMENSION_FINGERPRINT_USED.rawValue,
+                                      fingerprintDimensionValue: "true")
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
             })
@@ -345,6 +364,7 @@ class LoginViewController: UIViewController {
                 viewModel.validateRegistration(guid: guid, onSuccess: {
                     LoadingView.hide()
                     self.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
+                    Analytics().logScreenView(AnalyticsPageView.RegisterAccountVerify.rawValue)
                 }, onError: { title, message in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -423,6 +443,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
     func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Temporary password sent to your email", comment: ""))
+            Analytics().logScreenView(AnalyticsPageView.ForgotPasswordComplete.rawValue)
         })
     }
 }
@@ -431,6 +452,7 @@ extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDeleg
     
     func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String) {
         self.viewModel.username.value = username
+        Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAutoPopup.rawValue)
     }
 }
 
@@ -439,6 +461,7 @@ extension LoginViewController: ChangePasswordViewControllerDelegate {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
+            Analytics().logScreenView(AnalyticsPageView.ChangePasswordComplete.rawValue)
         })
     }
 }

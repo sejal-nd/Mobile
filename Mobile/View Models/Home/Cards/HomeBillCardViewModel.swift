@@ -40,6 +40,19 @@ class HomeBillCardViewModel {
         self.walletService = walletService
         self.paymentService = paymentService
         self.fetchingTracker = fetchingTracker
+        
+        self.oneTouchPayResult
+            .withLatestFrom(self.walletItem)
+            .unwrap()
+            .subscribe(onNext: {
+                switch $0.bankOrCard {
+                case .bank:
+                    Analytics().logScreenView(AnalyticsPageView.OneTouchBankComplete.rawValue)
+                case .card:
+                    Analytics().logScreenView(AnalyticsPageView.OneTouchCardComplete.rawValue)
+                }
+            })
+            .disposed(by: bag)
     }
     
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.account
@@ -80,6 +93,14 @@ class HomeBillCardViewModel {
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
         .withLatestFrom(Observable.combineLatest(self.accountDetailElements, self.walletItem.unwrap(), self.cvv2.asObservable()))
+        .do(onNext: { _, walletItem, _ in
+            switch walletItem.bankOrCard {
+            case .bank:
+                Analytics().logScreenView(AnalyticsPageView.OneTouchBankComplete.rawValue)
+            case .card:
+                Analytics().logScreenView(AnalyticsPageView.OneTouchCardComplete.rawValue)
+            }
+        })
         .map { accountDetail, walletItem, cvv2 in
             Payment(accountNumber: accountDetail.accountNumber,
                     existingAccount: true,

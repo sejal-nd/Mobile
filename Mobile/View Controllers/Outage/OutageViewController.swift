@@ -98,6 +98,8 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handlePhoneCallTap(_:)))
+        footerTextView.addGestureRecognizer(tap)
         
         gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
@@ -362,15 +364,22 @@ class OutageViewController: AccountPickerViewController {
     // MARK: - Actions
     
     func onBigButtonTap() {
+        Analytics().logScreenView(AnalyticsPageView.OutageStatusDetails.rawValue)
         if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != .bge  {
             tabBarController?.selectedIndex = 1 // Jump to Bill tab
+            Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
         } else {
             if let message = viewModel.currentOutageStatus!.outageDescription {
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
+                Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
             }
         }
+    }
+    
+    func handlePhoneCallTap(_ sender: UITapGestureRecognizer) {
+        Analytics().logScreenView(AnalyticsPageView.OutageAuthEmergencyCall.rawValue)
     }
     
     func onPullToRefresh() {
@@ -394,6 +403,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     @IBAction func onViewOutageMapPress() {
+        Analytics().logScreenView(AnalyticsPageView.ViewMapOfferComplete.rawValue)
         self.performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
@@ -425,6 +435,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
         updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
+            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthComplete.rawValue)
         })
     }
     

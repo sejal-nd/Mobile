@@ -69,6 +69,9 @@ class TemplateCardView: UIView {
     }
     
     private(set) lazy var callToActionViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()
+        .do(onNext: {
+            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue, dimensionIndex: Dimensions.DIMENSION_LINK.rawValue, dimensionValue: String(describing: self.viewModel.ctaUrl))
+        })
         .withLatestFrom(self.viewModel.ctaUrl)
         .map(SFSafariViewController.init)
     

@@ -18,5 +18,9 @@
 	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
 	<key>templateCardUrl</key>
 	<string>http://www.peco.com/smartideas</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_peco_testing</string>
+	<key>gaTrackingId</key>
+	<string>UA-76742208-8</string>
 </dict>
 </plist>

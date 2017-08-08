@@ -153,6 +153,7 @@ class AutoPayViewController: UIViewController {
     
     func onSubmitPress() {
         view.endEditing(true)
+        Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
         
         LoadingView.show()
         viewModel.submit()
@@ -214,6 +215,7 @@ class AutoPayViewController: UIViewController {
         tacLabel.setLineHeight(lineHeight: 25)
         tacSwitch.accessibilityLabel = "I agree to ComEd’s AutoPay Terms and Conditions"
         tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollOffer.rawValue)
     }
     
     private func styleEnrolled() {
@@ -505,6 +507,7 @@ extension AutoPayViewController: AutoPayChangeBankViewControllerDelegate {
 	func changedBank() {
 		DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
 			self.view.showToast(NSLocalizedString("AutoPay bank account updated", comment: ""))
+            Analytics().logScreenView(AnalyticsPageView.AutoPayModifyBankComplete.rawValue)
 		})
 	}
 }

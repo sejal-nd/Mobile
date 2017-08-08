@@ -105,6 +105,10 @@ class HomeViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        Analytics().logScreenView(AnalyticsPageView.HomeOfferComplete.rawValue)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.contentInset = .zero
