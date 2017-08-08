@@ -100,7 +100,9 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                     } else  {
                         handleBGEUpcomingClick(indexPath: indexPath)
                     }
-                } 
+                }  else {
+                    handleBGEUpcomingClick(indexPath: indexPath)
+                }
             } else {
                 guard let billingItem = self.billingHistory?.upcoming[indexPath.row], 
                     let status = billingItem.status else { return }
