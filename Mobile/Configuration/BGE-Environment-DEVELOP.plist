@@ -26,5 +26,7 @@
 	<string>http://bgesmartenergy.com/business</string>
 	<key>gaTrackingId</key>
 	<string>N/A</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_bge_develop</string>
 </dict>
 </plist>

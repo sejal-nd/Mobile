@@ -47,4 +47,5 @@
 #import "GAIFields.h"
 #import "GAILogger.h"
 
+#import "Firebase.h"
 #endif /* EXBridgingHeader_h */

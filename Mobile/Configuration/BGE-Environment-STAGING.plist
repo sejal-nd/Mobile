@@ -24,6 +24,8 @@
 	<string>https://www.ecobee.com/home/ecobeeLogin.jsp</string>
 	<key>templateCardUrlCommericalUser</key>
 	<string>http://bgesmartenergy.com/business</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_bge_staging</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-1</string>
 </dict>

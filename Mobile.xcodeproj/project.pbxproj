@@ -633,6 +633,46 @@
 		B5D07CB31F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		B5D07CB41F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		B5D07CB51F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
+		B5D415531F3A641100AC32B2 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154C1F3A641100AC32B2 /* FirebaseAnalytics.framework */; };
+		B5D415541F3A641100AC32B2 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154C1F3A641100AC32B2 /* FirebaseAnalytics.framework */; };
+		B5D415551F3A641100AC32B2 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154C1F3A641100AC32B2 /* FirebaseAnalytics.framework */; };
+		B5D415561F3A641100AC32B2 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154C1F3A641100AC32B2 /* FirebaseAnalytics.framework */; };
+		B5D415571F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154D1F3A641100AC32B2 /* FirebaseCore.framework */; };
+		B5D415581F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154D1F3A641100AC32B2 /* FirebaseCore.framework */; };
+		B5D415591F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154D1F3A641100AC32B2 /* FirebaseCore.framework */; };
+		B5D4155A1F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154D1F3A641100AC32B2 /* FirebaseCore.framework */; };
+		B5D4155B1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154E1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework */; };
+		B5D4155C1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154E1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework */; };
+		B5D4155D1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154E1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework */; };
+		B5D4155E1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154E1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework */; };
+		B5D4155F1F3A641100AC32B2 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154F1F3A641100AC32B2 /* FirebaseInstanceID.framework */; };
+		B5D415601F3A641100AC32B2 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154F1F3A641100AC32B2 /* FirebaseInstanceID.framework */; };
+		B5D415611F3A641100AC32B2 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154F1F3A641100AC32B2 /* FirebaseInstanceID.framework */; };
+		B5D415621F3A641100AC32B2 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154F1F3A641100AC32B2 /* FirebaseInstanceID.framework */; };
+		B5D415631F3A641100AC32B2 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415501F3A641100AC32B2 /* FirebaseNanoPB.framework */; };
+		B5D415641F3A641100AC32B2 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415501F3A641100AC32B2 /* FirebaseNanoPB.framework */; };
+		B5D415651F3A641100AC32B2 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415501F3A641100AC32B2 /* FirebaseNanoPB.framework */; };
+		B5D415661F3A641100AC32B2 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415501F3A641100AC32B2 /* FirebaseNanoPB.framework */; };
+		B5D415671F3A641100AC32B2 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415511F3A641100AC32B2 /* GoogleToolboxForMac.framework */; };
+		B5D415681F3A641100AC32B2 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415511F3A641100AC32B2 /* GoogleToolboxForMac.framework */; };
+		B5D415691F3A641100AC32B2 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415511F3A641100AC32B2 /* GoogleToolboxForMac.framework */; };
+		B5D4156A1F3A641100AC32B2 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415511F3A641100AC32B2 /* GoogleToolboxForMac.framework */; };
+		B5D4156B1F3A641100AC32B2 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415521F3A641100AC32B2 /* nanopb.framework */; };
+		B5D4156C1F3A641100AC32B2 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415521F3A641100AC32B2 /* nanopb.framework */; };
+		B5D4156D1F3A641100AC32B2 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415521F3A641100AC32B2 /* nanopb.framework */; };
+		B5D4156E1F3A641100AC32B2 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415521F3A641100AC32B2 /* nanopb.framework */; };
+		B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415711F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist */; };
+		B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415731F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist */; };
+		B5D415761F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415751F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist */; };
+		B5D415781F3A6C6300AC32B2 /* GoogleService-Info_bge.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415771F3A6C6300AC32B2 /* GoogleService-Info_bge.plist */; };
+		B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415791F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist */; };
+		B5D4157C1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D4157B1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist */; };
+		B5D4157E1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D4157D1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist */; };
+		B5D415801F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D4157F1F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist */; };
+		B5D415821F3A6E9000AC32B2 /* GoogleService-Info_peco.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415811F3A6E9000AC32B2 /* GoogleService-Info_peco.plist */; };
+		B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415831F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist */; };
+		B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */; };
+		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
 		E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
@@ -1456,6 +1496,27 @@
 		B5AC073B1E52A2BD00BBA4ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B5D07CB11F0EC2F10018B02D /* Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
+		B5D4154C1F3A641100AC32B2 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		B5D4154D1F3A641100AC32B2 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
+		B5D4154E1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
+		B5D4154F1F3A641100AC32B2 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		B5D415501F3A641100AC32B2 /* FirebaseNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseNanoPB.framework; sourceTree = "<group>"; };
+		B5D415511F3A641100AC32B2 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
+		B5D415521F3A641100AC32B2 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = nanopb.framework; sourceTree = "<group>"; };
+		B5D4156F1F3A653200AC32B2 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
+		B5D415701F3A655900AC32B2 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		B5D415711F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_bge_testing.plist"; sourceTree = "<group>"; };
+		B5D415731F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_bge_develop.plist"; sourceTree = "<group>"; };
+		B5D415751F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_bge_staging.plist"; sourceTree = "<group>"; };
+		B5D415771F3A6C6300AC32B2 /* GoogleService-Info_bge.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_bge.plist"; sourceTree = "<group>"; };
+		B5D415791F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_comed.plist"; sourceTree = "<group>"; };
+		B5D4157B1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_comed_develop.plist"; sourceTree = "<group>"; };
+		B5D4157D1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_comed_staging.plist"; sourceTree = "<group>"; };
+		B5D4157F1F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_comed_testing.plist"; sourceTree = "<group>"; };
+		B5D415811F3A6E9000AC32B2 /* GoogleService-Info_peco.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_peco.plist"; sourceTree = "<group>"; };
+		B5D415831F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_peco_develop.plist"; sourceTree = "<group>"; };
+		B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_peco_staging.plist"; sourceTree = "<group>"; };
+		B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_peco_testing.plist"; sourceTree = "<group>"; };
 		B5EB9EDD1EC3EB390049B586 /* IDMMobileSDKv2Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDMMobileSDKv2Library.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/IDMMobileSDKv2Library.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EDE1EC3EB430049B586 /* NSData+OMBase32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSData+OMBase32.h"; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/NSData+OMBase32.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EDF1EC3EB430049B586 /* NSData+OMBase64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSData+OMBase64.h"; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/NSData+OMBase64.h"; sourceTree = SOURCE_ROOT; };
@@ -1657,7 +1718,11 @@
 				B55A8B101F15647D00F63AC3 /* libsqlite3.tbd in Frameworks */,
 				B55A8B0E1F15646E00F63AC3 /* libz.tbd in Frameworks */,
 				B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B5D4156B1F3A641100AC32B2 /* nanopb.framework in Frameworks */,
+				B5D4155F1F3A641100AC32B2 /* FirebaseInstanceID.framework in Frameworks */,
 				B55A8B0C1F15644800F63AC3 /* CoreData.framework in Frameworks */,
+				B5D4155B1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				B5D415531F3A641100AC32B2 /* FirebaseAnalytics.framework in Frameworks */,
 				E887C9FE1ED5D400002433A3 /* MobileCoreServices.framework in Frameworks */,
 				E887C9FC1ED5D3F9002433A3 /* CoreMedia.framework in Frameworks */,
 				E887C9FA1ED5D3F1002433A3 /* AudioToolbox.framework in Frameworks */,
@@ -1672,12 +1737,15 @@
 				B55735DE1E674089003B9369 /* libOMCLocation.a in Frameworks */,
 				B55735E11E674089003B9369 /* libOMCNotifications.a in Frameworks */,
 				B55735E41E674089003B9369 /* libOMCStorage.a in Frameworks */,
+				B5D415631F3A641100AC32B2 /* FirebaseNanoPB.framework in Frameworks */,
 				B55735E71E674089003B9369 /* libOMCSynchronization.a in Frameworks */,
+				B5D415571F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */,
 				E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D2520E1E6DB78800C90584 /* Lottie.framework in Frameworks */,
 				E801BADD1E8C5A4E00550F99 /* Mapper.framework in Frameworks */,
 				E8C453331EF454B200F5C781 /* PDTSimpleCalendar.framework in Frameworks */,
 				B54F0FFB1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
+				B5D415671F3A641100AC32B2 /* GoogleToolboxForMac.framework in Frameworks */,
 				E887C9E91ED5D367002433A3 /* libopencv_imgproc.a in Frameworks */,
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
@@ -1698,7 +1766,11 @@
 				B55A8B1A1F15650200F63AC3 /* libsqlite3.tbd in Frameworks */,
 				B55A8B191F1564F900F63AC3 /* libz.tbd in Frameworks */,
 				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B5D4156D1F3A641100AC32B2 /* nanopb.framework in Frameworks */,
+				B5D415611F3A641100AC32B2 /* FirebaseInstanceID.framework in Frameworks */,
 				B55A8B181F1564ED00F63AC3 /* CoreData.framework in Frameworks */,
+				B5D4155D1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				B5D415551F3A641100AC32B2 /* FirebaseAnalytics.framework in Frameworks */,
 				E887CA081ED5D474002433A3 /* MobileCoreServices.framework in Frameworks */,
 				E887CA071ED5D46F002433A3 /* CoreMedia.framework in Frameworks */,
 				E887CA061ED5D469002433A3 /* AudioToolbox.framework in Frameworks */,
@@ -1713,12 +1785,15 @@
 				B55735E01E674089003B9369 /* libOMCLocation.a in Frameworks */,
 				B55735E31E674089003B9369 /* libOMCNotifications.a in Frameworks */,
 				B55735E61E674089003B9369 /* libOMCStorage.a in Frameworks */,
+				B5D415651F3A641100AC32B2 /* FirebaseNanoPB.framework in Frameworks */,
 				B55735E91E674089003B9369 /* libOMCSynchronization.a in Frameworks */,
+				B5D415591F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */,
 				E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D252121E6DB82C00C90584 /* Lottie.framework in Frameworks */,
 				E801BADF1E8C5A8A00550F99 /* Mapper.framework in Frameworks */,
 				E8C453351EF4550200F5C781 /* PDTSimpleCalendar.framework in Frameworks */,
 				B54F0FFD1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
+				B5D415691F3A641100AC32B2 /* GoogleToolboxForMac.framework in Frameworks */,
 				E887C9EB1ED5D367002433A3 /* libopencv_imgproc.a in Frameworks */,
 				8FD3C2611E52454D005FB1BB /* RxCocoa.framework in Frameworks */,
 				B55A8B141F1564A400F63AC3 /* libGoogleAnalyticsServices.a in Frameworks */,
@@ -1739,7 +1814,11 @@
 				B55A8B171F1564E500F63AC3 /* libsqlite3.tbd in Frameworks */,
 				B55A8B161F1564DF00F63AC3 /* libz.tbd in Frameworks */,
 				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				B5D4156C1F3A641100AC32B2 /* nanopb.framework in Frameworks */,
+				B5D415601F3A641100AC32B2 /* FirebaseInstanceID.framework in Frameworks */,
 				B55A8B151F1564D200F63AC3 /* CoreData.framework in Frameworks */,
+				B5D4155C1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				B5D415541F3A641100AC32B2 /* FirebaseAnalytics.framework in Frameworks */,
 				E887CA031ED5D448002433A3 /* MobileCoreServices.framework in Frameworks */,
 				E887CA021ED5D440002433A3 /* CoreMedia.framework in Frameworks */,
 				E887CA011ED5D43A002433A3 /* AudioToolbox.framework in Frameworks */,
@@ -1754,12 +1833,15 @@
 				B55735DF1E674089003B9369 /* libOMCLocation.a in Frameworks */,
 				B55735E21E674089003B9369 /* libOMCNotifications.a in Frameworks */,
 				B55735E51E674089003B9369 /* libOMCStorage.a in Frameworks */,
+				B5D415641F3A641100AC32B2 /* FirebaseNanoPB.framework in Frameworks */,
 				B55735E81E674089003B9369 /* libOMCSynchronization.a in Frameworks */,
+				B5D415581F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */,
 				E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */,
 				E8D252101E6DB7B400C90584 /* Lottie.framework in Frameworks */,
 				E801BADE1E8C5A7300550F99 /* Mapper.framework in Frameworks */,
 				E8C453341EF454E400F5C781 /* PDTSimpleCalendar.framework in Frameworks */,
 				B54F0FFC1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
+				B5D415681F3A641100AC32B2 /* GoogleToolboxForMac.framework in Frameworks */,
 				E887C9EA1ED5D367002433A3 /* libopencv_imgproc.a in Frameworks */,
 				8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */,
 				B55A8B131F1564A400F63AC3 /* libGoogleAnalyticsServices.a in Frameworks */,
@@ -1778,14 +1860,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				E80043621E6A11C3005CF531 /* Zxcvbn.framework in Frameworks */,
+				B5D4155A1F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */,
 				E80043611E6A11B7005CF531 /* RxSwift.framework in Frameworks */,
+				B5D415661F3A641100AC32B2 /* FirebaseNanoPB.framework in Frameworks */,
+				B5D4156E1F3A641100AC32B2 /* nanopb.framework in Frameworks */,
 				E80043761E6A1701005CF531 /* RxCocoa.framework in Frameworks */,
 				E800436E1E6A133F005CF531 /* libOMCNotifications.a in Frameworks */,
 				B54F0FFE1E9F0B8B00A9B72B /* Reachability.framework in Frameworks */,
+				B5D4156A1F3A641100AC32B2 /* GoogleToolboxForMac.framework in Frameworks */,
 				E800436D1E6A133D005CF531 /* libOMCLocation.a in Frameworks */,
+				B5D415621F3A641100AC32B2 /* FirebaseInstanceID.framework in Frameworks */,
 				E800436F1E6A1341005CF531 /* libOMCStorage.a in Frameworks */,
 				E800436C1E6A1339005CF531 /* libOMCAnalytics.a in Frameworks */,
+				B5D415561F3A641100AC32B2 /* FirebaseAnalytics.framework in Frameworks */,
 				B54A4B751EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */,
+				B5D4155E1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				E80043701E6A1343005CF531 /* libOMCSynchronization.a in Frameworks */,
 				E800436A1E6A12A3005CF531 /* libOMCCore.a in Frameworks */,
 			);
@@ -2058,6 +2147,13 @@
 			children = (
 				B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */,
 				B55A8B0D1F15646E00F63AC3 /* libz.tbd */,
+				B5D4154C1F3A641100AC32B2 /* FirebaseAnalytics.framework */,
+				B5D4154D1F3A641100AC32B2 /* FirebaseCore.framework */,
+				B5D4154E1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework */,
+				B5D4154F1F3A641100AC32B2 /* FirebaseInstanceID.framework */,
+				B5D415501F3A641100AC32B2 /* FirebaseNanoPB.framework */,
+				B5D415511F3A641100AC32B2 /* GoogleToolboxForMac.framework */,
+				B5D415521F3A641100AC32B2 /* nanopb.framework */,
 				B55A8B0B1F15644800F63AC3 /* CoreData.framework */,
 				E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */,
 				E887C9FD1ED5D400002433A3 /* MobileCoreServices.framework */,
@@ -2406,6 +2502,20 @@
 		B55A8B001F15640A00F63AC3 /* GoogleAnalytics */ = {
 			isa = PBXGroup;
 			children = (
+				B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */,
+				B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */,
+				B5D415831F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist */,
+				B5D415811F3A6E9000AC32B2 /* GoogleService-Info_peco.plist */,
+				B5D4157F1F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist */,
+				B5D4157D1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist */,
+				B5D4157B1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist */,
+				B5D415791F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist */,
+				B5D415771F3A6C6300AC32B2 /* GoogleService-Info_bge.plist */,
+				B5D415751F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist */,
+				B5D415711F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist */,
+				B5D415731F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist */,
+				B5D415701F3A655900AC32B2 /* module.modulemap */,
+				B5D4156F1F3A653200AC32B2 /* Firebase.h */,
 				B55A8B111F1564A400F63AC3 /* libGoogleAnalyticsServices.a */,
 				B55A8B011F15642500F63AC3 /* GAI.h */,
 				B55A8B021F15642500F63AC3 /* GAIDictionaryBuilder.h */,
@@ -3108,7 +3218,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3229,6 +3339,7 @@
 				384F86A21F310B8600A85557 /* TermPolicies.html in Resources */,
 				385AF2201F278F11001E3619 /* uu_otp_bge.json in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
+				B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */,
 				E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
 				E84407841F16CFD800CB9707 /* fiserv_errors.xml in Resources */,
@@ -3236,6 +3347,7 @@
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
 				385AF2231F27915A001E3619 /* img_0.png in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				E8FE30B11E787625009D28B7 /* outage.json in Resources */,
@@ -3245,6 +3357,7 @@
 				01F612211F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
 				B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				82A18ECF1EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
+				B5D415761F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E841F3A71F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
@@ -3278,6 +3391,7 @@
 				54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				B55736411E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
+				B5D415781F3A6C6300AC32B2 /* GoogleService-Info_bge.plist in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3302,6 +3416,7 @@
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
 				822BBBA61EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				825171AE1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */,
+				B5D415821F3A6E9000AC32B2 /* GoogleService-Info_peco.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */,
 				385AF2251F27915A001E3619 /* img_0.png in Resources */,
@@ -3330,10 +3445,12 @@
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
+				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				E8EDC53A1F32405D006DD927 /* speedpay_errors.xml in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
+				B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */,
 				826DCD001F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				E8494F431EBBCB4C0047D6BE /* outage_loading.json in Resources */,
@@ -3348,6 +3465,7 @@
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
+				B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */,
 				E8499CB41EE5CD900062F619 /* Bill.storyboard in Resources */,
 				01F612231F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
 				E8499CB61EE5D5140062F619 /* Bill.storyboard in Resources */,
@@ -3360,6 +3478,7 @@
 			files = (
 				01F612261F1E404F00A4F9DA /* AddBankFormView.xib in Resources */,
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
+				B5D4157E1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				384F86A31F310B8600A85557 /* TermPolicies.html in Resources */,
@@ -3371,6 +3490,7 @@
 				E841F3B01F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				E841F3A01F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				B55736461E6742A6003B9369 /* OMC.plist in Resources */,
+				B5D415801F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist in Resources */,
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				825171AD1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
@@ -3380,6 +3500,7 @@
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */,
 				E841F3A81F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */,
@@ -3403,6 +3524,7 @@
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
+				B5D4157C1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist in Resources */,
 				B55736391E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				E8EDC5381F324054006DD927 /* speedpay_errors.xml in Resources */,
 				441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */,
@@ -4311,7 +4433,6 @@
 				E8039FFE1EFB0427004DB789 /* OMCPaymentService.swift in Sources */,
 				B54F0FF91E9ECCA400A9B72B /* OMCApi.swift in Sources */,
 				82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */,
-				E8C6F29E1F1F995700C4644C /* FiservErrorMapper.swift in Sources */,
 				B52CA0B21F311524002B5674 /* Analytics.swift in Sources */,
 				E841F3B61F030EE7007BFA82 /* BillingHistoryItem.swift in Sources */,
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
@@ -4441,6 +4562,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Mobile/Vendor/GoogleAnalytics/";
 			};
 			name = Develop;
 		};
@@ -4455,6 +4577,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Mobile/Vendor/GoogleAnalytics/";
 			};
 			name = Testing;
 		};
@@ -4468,6 +4591,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Mobile/Vendor/GoogleAnalytics/";
 			};
 			name = Staging;
 		};
@@ -4482,6 +4606,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Mobile/Vendor/GoogleAnalytics/";
 			};
 			name = Automation;
 		};
@@ -4495,6 +4620,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Mobile/Vendor/GoogleAnalytics/";
 			};
 			name = Release;
 		};
@@ -4630,6 +4756,10 @@
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -4657,6 +4787,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.mobile.bge;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -4748,6 +4882,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.automation;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -4841,6 +4979,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -4932,6 +5074,10 @@
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -4958,6 +5104,10 @@
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.develop;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4983,6 +5133,10 @@
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.testing;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5010,6 +5164,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.staging;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5035,6 +5193,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.automation;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5060,6 +5222,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.mobile.peco;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5085,6 +5251,10 @@
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.develop;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5110,6 +5280,10 @@
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.testing;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5137,6 +5311,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.staging;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5162,6 +5340,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.automation;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5187,6 +5369,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.exelon.mobile.comed;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5340,6 +5526,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -5358,6 +5548,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
@@ -5370,6 +5564,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
@@ -5382,6 +5580,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
@@ -5394,6 +5596,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;

@@ -16,6 +16,8 @@
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_comed_testing</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 </dict>
