@@ -250,7 +250,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showDueDate: Driver<Bool> = self.titleState.map {
         switch $0 {
-        case .billPaid, .billPaidIntermediate, .credit:
+        case .billPaid, .billPaidIntermediate, .credit, .paymentPending:
             return false
         default:
             return true
