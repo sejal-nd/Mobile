@@ -120,6 +120,10 @@ class LoginViewController: UIViewController {
         
         touchIDLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         touchIDButton.accessibilityLabel = NSLocalizedString("Touch ID", comment: "")
+        
+        keepMeSignedInLabel.isAccessibilityElement = false
+        keepMeSignedInSwitch.isAccessibilityElement = true
+        keepMeSignedInSwitch.accessibilityLabel = keepMeSignedInLabel.text
 
         checkForMaintenanceMode()
     }
