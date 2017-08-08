@@ -24,5 +24,7 @@
 	<string>https://www.ecobee.com/home/ecobeeLogin.jsp</string>
 	<key>templateCardUrlCommericalUser</key>
 	<string>http://bgesmartenergy.com/business</string>
+	<key>gaTrackingId</key>
+	<string>UA-76742208-8</string>
 </dict>
 </plist>
