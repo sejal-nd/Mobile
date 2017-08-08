@@ -58,6 +58,7 @@ class EditBankAccountViewController: UIViewController {
         
         accountIDLabel.textColor = .blackText
         accountIDLabel.font = OpenSans.regular.of(textStyle: .title1)
+        oneTouchPayCardLabel.font = SystemFont.regular.of(textStyle: .footnote)
         oneTouchPayCardLabel.textColor = .blackText
         oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
         oneTouchPayDescriptionLabel.textColor = .blackText
@@ -65,7 +66,7 @@ class EditBankAccountViewController: UIViewController {
         oneTouchPayDescriptionLabel.text = viewModel.getOneTouchDisplayString()
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
-        oneTouchPayLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
         nicknameLabel.textColor = .blackText
         nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
 

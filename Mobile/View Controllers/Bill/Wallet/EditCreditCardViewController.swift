@@ -108,12 +108,13 @@ class EditCreditCardViewController: UIViewController {
         
         accountIDLabel.textColor = .blackText
         accountIDLabel.font = OpenSans.regular.of(textStyle: .title1)
+        oneTouchPayCardLabel.font = SystemFont.regular.of(textStyle: .footnote)
+
         oneTouchPayCardLabel.textColor = .blackText
         oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
-        oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .footnote)
         nicknameLabel.textColor = .blackText
         nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        
+        oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
         bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
