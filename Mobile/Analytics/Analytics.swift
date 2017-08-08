@@ -119,6 +119,14 @@ enum AnalyticsPageView: String {
     case AddWalletComplete = "AddWalletComplete"
 }
 
+enum Dimensions: String {
+    case DIMENSION_KEEP_ME_SIGNIN_IN = "1";
+    case DIMENSION_FINGERPRINT_USED = "2";
+    case DIMENSION_ERROR_CODE = "3";
+    case DIMENSION_OTP_ENABLED = "4";
+    case DIMENSION_LINK = "5";
+}
+
 func isAnalyticsEnabled() -> Bool {
     if(Environment.sharedInstance.environmentName == "STAGE" || "PROD") {
         return true
