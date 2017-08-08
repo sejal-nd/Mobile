@@ -420,10 +420,18 @@ class HomeBillCardViewModel {
                 return nil
             }
             
-            let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
-            return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                      attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+            if days > 0 {
+                let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
+                return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
+                                          attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
+                                                       NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+            } else {
+                let localizedText = NSLocalizedString("Due on %@", comment: "")
+                return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
+                                          attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
+                                                       NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+            }
+            
         } else {
             return nil
         }
@@ -441,6 +449,9 @@ class HomeBillCardViewModel {
         if days > 0 {
             let localizedText = NSLocalizedString("Your bill total of %@ is due in %d day%@.", comment: "")
             return String(format: localizedText, amountDueString, days, days == 1 ? "": "s")
+        } else if $0.billingInfo.pastDueAmount == nil {
+            let localizedText = NSLocalizedString("Your bill total of %@ is due %@.", comment: "")
+            return String(format: localizedText, amountDueString, dueByDate.mmDdYyyyString)
         } else {
             let localizedText = NSLocalizedString("Your bill total of %@ is due immediately.", comment: "")
             return String(format: localizedText, amountDueString)
@@ -494,10 +505,10 @@ class HomeBillCardViewModel {
                 convenienceFeeString = accountDetail.billingInfo.convenienceFee?.currencyString
             case (true, .card, .bge):
                 localizedText = NSLocalizedString("A %@ convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
-                convenienceFeeString = accountDetail.billingInfo.convenienceFee?.currencyString
+                convenienceFeeString = accountDetail.billingInfo.residentialFee?.currencyString
             case (false, .card, .bge):
                 localizedText = NSLocalizedString("A %@ convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
-                convenienceFeeString = accountDetail.billingInfo.convenienceFee?.percentString
+                convenienceFeeString = accountDetail.billingInfo.commercialFee?.percentString
             case (_, .bank, _):
                 return NSLocalizedString("No fees applied.", comment: "")
             default:
