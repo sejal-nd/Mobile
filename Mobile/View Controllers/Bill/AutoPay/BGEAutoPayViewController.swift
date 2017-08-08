@@ -107,6 +107,7 @@ class BGEAutoPayViewController: UIViewController {
         settingsButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
         setupBindings()
+        accessibilitySetup()
     
         viewModel.getAutoPayInfo(onSuccess: nil, onError: nil)
         
@@ -144,6 +145,22 @@ class BGEAutoPayViewController: UIViewController {
         gradientLayer.frame = gradientView.bounds
     }
     
+    private func accessibilitySetup() {
+        learnMoreButton.isAccessibilityElement = true
+        learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
+        bankAccountButton.isAccessibilityElement = true
+        if !bankAccountButtonSelectLabel.isHidden {
+            bankAccountButton.accessibilityLabel = NSLocalizedString(bankAccountButtonSelectLabel.text ?? "", comment: "")
+        } else {
+            let labelString = NSLocalizedString("Bank account: %@.\nNickname: %@", comment: "")
+            bankAccountButton.accessibilityLabel = String(format: labelString, bankAccountButtonAccountNumberLabel.text ?? "", bankAccountButtonNicknameLabel.text ?? "" )
+        }
+        settingsButton.isAccessibilityElement = true
+        settingsButton.accessibilityLabel = settingsButtonLabel.text
+        
+        enrollmentSwitch.accessibilityLabel = "Enrollment status: "
+    }
+    
     func setupBindings() {
         viewModel.isFetchingAutoPayInfo.asDriver().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
@@ -160,6 +177,7 @@ class BGEAutoPayViewController: UIViewController {
         viewModel.bankAccountButtonImage.drive(bankAccountButtonIcon.rx.image).disposed(by: disposeBag)
         viewModel.walletItemAccountNumberText.drive(bankAccountButtonAccountNumberLabel.rx.text).disposed(by: disposeBag)
         viewModel.walletItemNicknameText.drive(bankAccountButtonNicknameLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemA11yLabel.drive(bankAccountButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         viewModel.enrollSwitchValue.asDriver().drive(enrollmentSwitch.rx.isOn).disposed(by: disposeBag)
         enrollmentSwitch.rx.isOn.asDriver().drive(viewModel.enrollSwitchValue).disposed(by: disposeBag)

@@ -214,6 +214,30 @@ class BGEAutoPayViewModel {
         return ""
     }
     
+    var selectedWalletItemA11yLabel: Driver<String> {
+        return selectedWalletItem.asDriver().map {
+            guard let walletItem = $0 else { return "" }
+            
+            var a11yLabel = ""
+            
+            if walletItem.bankOrCard == .bank {
+                a11yLabel = NSLocalizedString("Bank account", comment: "")
+            } else {
+                a11yLabel = NSLocalizedString("Credit card", comment: "")
+            }
+            
+            if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
+                a11yLabel += ", \(nicknameText)"
+            }
+            
+            if let last4Digits = walletItem.maskedWalletItemAccountNumber {
+                a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
+            }
+            
+            return a11yLabel
+        }
+    }
+    
     lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().map { $0 != nil }
     
     func formatAmountNotToExceed() {

@@ -42,6 +42,7 @@ class WalletViewController: UIViewController {
     
     var selectedWalletItem: WalletItem?
     var shouldPopToRootOnSave = false
+    var shouldSetOneTouchPayByDefault = false
     
     fileprivate let didUpdateSubject = PublishSubject<String>()
     private(set) lazy var didUpdate: Observable<String> = self.didUpdateSubject.asObservable()
@@ -224,6 +225,7 @@ class WalletViewController: UIViewController {
             }
             vc.delegate = self
             vc.shouldPopToRootOnSave = shouldPopToRootOnSave
+            vc.shouldSetOneTouchPayByDefault = shouldSetOneTouchPayByDefault
         } else if let vc = segue.destination as? AddCreditCardViewController {
             vc.accountDetail = viewModel.accountDetail
             vc.oneTouchPayItem = oneTouchPayItem
@@ -232,6 +234,7 @@ class WalletViewController: UIViewController {
             }
             vc.delegate = self
             vc.shouldPopToRootOnSave = shouldPopToRootOnSave
+            vc.shouldSetOneTouchPayByDefault = shouldSetOneTouchPayByDefault
         } else if let vc = segue.destination as? EditBankAccountViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail
             vc.viewModel.walletItem = self.selectedWalletItem

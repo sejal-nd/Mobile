@@ -9,10 +9,11 @@
 
 import Mapper
 
-private func extractDate(object: Any?) throws -> Date? {
+private func extractDate(object: Any?) throws -> Date {
     guard let dateString = object as? String else {
         throw MapperError.convertibleError(value: object, type: Date.self)
     }
+    
     return dateString.apiFormatDate
 }
 
@@ -157,13 +158,39 @@ struct CustomerInfo: Mappable {
     }
 }
 
+struct PaymentItem: Mappable {
+    
+    enum PaymentStatus: String {
+        case scheduled = "scheduled"
+        case pending = "pending"
+        case processing = "processing"
+    }
+    
+    let amount: Double
+    let date: Date
+    let status: PaymentStatus
+    
+    init(map: Mapper) throws {
+        amount = try map.from("paymentAmount")
+        date = try map.from("paymentDate", transformation: extractDate)
+        status = try map.from("status") {
+            guard let statusString = $0 as? String else {
+                throw MapperError.convertibleError(value: $0, type: PaymentStatus.self)
+            }
+            guard let status = PaymentStatus(rawValue: statusString.lowercased()) else {
+                throw MapperError.convertibleError(value: statusString, type: PaymentStatus.self)
+            }
+            return status
+        }
+    }
+}
+
 struct BillingInfo: Mappable {
     let netDueAmount: Double?
     let pastDueAmount: Double?
 	let pastDueRemaining: Double?
 	let lastPaymentAmount: Double?
 	let lastPaymentDate: Date?
-    let pendingPaymentAmount: Double?
     let remainingBalanceDue: Double?
     let restorationAmount: Double?
     let amtDpaReinst: Double?
@@ -172,8 +199,8 @@ struct BillingInfo: Mappable {
     let isDisconnectNotice: Bool
     let billDate: Date?
     let convenienceFee: Double?
-    let scheduledPaymentAmount: Double?
-    let scheduledPaymentDate: Date?
+    let scheduledPayment: PaymentItem?
+    let pendingPayments: [PaymentItem]
     let atReinstateFee: Double?
     let minPaymentAmount: Double?
     let maxPaymentAmount: Double?
@@ -189,7 +216,6 @@ struct BillingInfo: Mappable {
 		pastDueRemaining = map.optionalFrom("pastDueRemaining")
 		lastPaymentAmount = map.optionalFrom("lastPaymentAmount")
 		lastPaymentDate = map.optionalFrom("lastPaymentDate", transformation: extractDate)
-        pendingPaymentAmount = map.optionalFrom("pendingPaymentAmount")
         remainingBalanceDue = map.optionalFrom("remainingBalanceDue")
         restorationAmount = map.optionalFrom("restorationAmount")
         amtDpaReinst = map.optionalFrom("amtDpaReinst")
@@ -198,8 +224,6 @@ struct BillingInfo: Mappable {
         isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
         billDate = map.optionalFrom("billDate", transformation: extractDate)
         convenienceFee = map.optionalFrom("convenienceFee")
-        scheduledPaymentAmount = map.optionalFrom("scheduledPaymentAmount")
-        scheduledPaymentDate = map.optionalFrom("scheduledPaymentDate", transformation: extractDate)
         atReinstateFee = map.optionalFrom("atReinstateFee")
         minPaymentAmount = map.optionalFrom("minimumPaymentAmount")
         maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")
@@ -208,6 +232,21 @@ struct BillingInfo: Mappable {
         currentDueAmount = map.optionalFrom("currentDueAmount")
         residentialFee = map.optionalFrom("feeResidential")
         commercialFee = map.optionalFrom("feeCommercial")
+        
+        let paymentDicts: [NSDictionary]? = map.optionalFrom("payments") {
+            guard let array = $0 as? [NSDictionary] else {
+                throw MapperError.convertibleError(value: $0, type: Array<NSDictionary>.self)
+            }
+            return array
+        }
+        
+        let paymentItems = paymentDicts?.flatMap(PaymentItem.from)
+        
+        scheduledPayment = paymentItems?.first(where: { $0.status == .scheduled })
+        pendingPayments = paymentItems?
+            .filter { $0.status == .pending || $0.status == .processing }
+            .sorted { $0.date < $1.date } ?? []
+        
     }
     
     func convenienceFeeString(isComplete: Bool) -> String {

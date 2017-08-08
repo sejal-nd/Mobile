@@ -21,6 +21,8 @@ class HomeBillCardViewModel {
     private let walletService: WalletService
     private let paymentService: PaymentService
     
+    let cvv2 = Variable<String?>(nil)
+    
     let submitOneTouchPay = PublishSubject<Void>()
     
     private let fetchingTracker: ActivityTracker
@@ -49,11 +51,11 @@ class HomeBillCardViewModel {
         }
         .shareReplay(1)
     
-    private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+    private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents.errors()
+        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
-    private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = self.workDayEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+    private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = self.workDayEvents.errors()
+        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
     private lazy var walletItem: Observable<WalletItem?> = self.walletItemEvents.elements()
 
@@ -65,16 +67,20 @@ class HomeBillCardViewModel {
             .share()
     
     private lazy var workDayEvents: Observable<Event<[Date]>> = self.account
-        .flatMapLatest { [unowned self] _ in
-            self.paymentService.fetchWorkdays()
-                .trackActivity(self.fetchingTracker)
-                .materialize()
+        .flatMapLatest { [unowned self] _ -> Observable<Event<[Date]>> in
+            if Environment.sharedInstance.opco == .peco {
+                return self.paymentService.fetchWorkdays()
+                    .trackActivity(self.fetchingTracker)
+                    .materialize()
+            } else {
+                return Observable<Event<[Date]>>.never()
+            }
         }
         .shareReplay(1)
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
-        .withLatestFrom(Observable.combineLatest(self.accountDetailElements, self.walletItem.unwrap()))
-        .map { accountDetail, walletItem in
+        .withLatestFrom(Observable.combineLatest(self.accountDetailElements, self.walletItem.unwrap(), self.cvv2.asObservable()))
+        .map { accountDetail, walletItem, cvv2 in
             Payment(accountNumber: accountDetail.accountNumber,
                     existingAccount: true,
                     saveAccount: true,
@@ -84,7 +90,7 @@ class HomeBillCardViewModel {
                     paymentDate: Date(),
                     walletId: AccountsStore.sharedInstance.customerIdentifier,
                     walletItemId: walletItem.walletItemID!,
-                    cvv: nil)
+                    cvv: cvv2)
         }
         .flatMapLatest { [unowned self] payment in
             self.paymentService.schedulePayment(payment: payment)
@@ -98,12 +104,12 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
-        if Environment.sharedInstance.opco != .peco {
-            return Driver.just(false)
-        } else {
+        if Environment.sharedInstance.opco == .peco {
             return self.workDayEvents.elements()
                 .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty }
                 .asDriver(onErrorDriveWith: .empty())
+        } else {
+            return Driver.just(false)
         }
     }()
     
@@ -190,7 +196,7 @@ class HomeBillCardViewModel {
                     return .credit
                 }
                 
-                if billingInfo.pendingPaymentAmount ?? 0 > 0 {
+                if billingInfo.pendingPayments.first?.amount ?? 0 > 0 {
                     return .paymentPending
                 }
                 
@@ -322,9 +328,9 @@ class HomeBillCardViewModel {
     private(set) lazy var showScheduledImageView: Driver<Bool> = {
         let currentDate = Date()
         let isScheduled = self.accountDetailDriver
-            .map { ($0.billingInfo.scheduledPaymentAmount ?? 0) > 0 &&
-                $0.billingInfo.scheduledPaymentDate ?? currentDate > currentDate &&
-                ($0.billingInfo.pendingPaymentAmount ?? 0) == 0 }
+            .map { ($0.billingInfo.scheduledPayment?.amount ?? 0) > 0 &&
+                $0.billingInfo.scheduledPayment?.date ?? currentDate > currentDate &&
+                ($0.billingInfo.pendingPayments.first?.amount ?? 0) == 0 }
         return Driver.combineLatest(isScheduled, self.showAutoPay, self.isPrecariousBillSituation) { $0 && !$1 && !$2 }
     } ()
     
@@ -544,8 +550,8 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = self.accountDetailDriver.map {
-        guard let paymentAmountText = $0.billingInfo.scheduledPaymentAmount?.currencyString else { return nil }
-        guard let paymentDateText = $0.billingInfo.scheduledPaymentDate?.mmDdYyyyString else { return nil }
+        guard let paymentAmountText = $0.billingInfo.scheduledPayment?.amount.currencyString else { return nil }
+        guard let paymentDateText = $0.billingInfo.scheduledPayment?.date.mmDdYyyyString else { return nil }
         let localizedText = NSLocalizedString("Thank you for scheduling your %@ payment for %@." , comment: "")
         return String(format: localizedText, paymentAmountText, paymentDateText)
     }

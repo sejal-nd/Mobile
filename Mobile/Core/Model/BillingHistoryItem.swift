@@ -44,7 +44,7 @@ struct BillingHistoryItem: Mappable {
     let date: Date
     let description: String?
     let status: String?
-    let isFuture: Bool
+    var isFuture: Bool
     let confirmationNumber: String?
     let paymentType: String?
     let type: String?
@@ -62,7 +62,6 @@ struct BillingHistoryItem: Mappable {
         try date = map.from("date", transformation: extractDate)
         description = map.optionalFrom("description")
         status = map.optionalFrom("status");
-        isFuture = calculateIsFuture(dateToCompare: date)
         confirmationNumber = map.optionalFrom("confirmation_number")
         paymentType = map.optionalFrom("payment_type")
         paymentMethod = map.optionalFrom("payment_method")
@@ -72,6 +71,11 @@ struct BillingHistoryItem: Mappable {
         flagAllowDeletes = map.optionalFrom("flag_allow_deletes")
         flagAllowEdits = map.optionalFrom("flag_allow_edits")
         encryptedPaymentId = map.optionalFrom("encrypted_payment_id")
+        isFuture = calculateIsFuture(dateToCompare: date)
+        if status == BillingHistoryProperties.StatusPending.rawValue || status == BillingHistoryProperties.StatusProcessing.rawValue {
+            isFuture = true
+        }
+        
     }
     
     func dateString() -> String {

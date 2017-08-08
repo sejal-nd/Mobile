@@ -8,6 +8,8 @@
 
 struct UserDefaultKeys {
     
+    static let HasRunBefore = "kHasRunBefore"
+    
     // Terms & Policies
     static let HasAcceptedTerms = "kHasAcceptedTerms" // Used to determine whether or not to display the Terms screen on first app launch
     

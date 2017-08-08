@@ -105,6 +105,7 @@
 		2F5C81FA1F1D4B1B005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
 		2F5C81FB1F1D5C4A005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
 		2F5C81FC1F1D5C4B005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
+		2F82EBAC1F38D488007EDF6B /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */; };
 		2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
 		2FA5D85F1F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
 		2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
@@ -1059,6 +1060,14 @@
 		E8EDC5461F324242006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
 		E8EDC5471F324DEE006DD927 /* SpeedpayErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */; };
 		E8EDC5481F324DFB006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
+		E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		E8EDC54C1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		E8EDC54D1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
+		E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
+		E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
+		E8EDC5521F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
 		E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
@@ -1613,6 +1622,8 @@
 		E8EDC5391F32405D006DD927 /* speedpay_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speedpay_errors.xml; sourceTree = "<group>"; };
 		E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedpayErrorMapper.swift; sourceTree = "<group>"; };
 		E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservErrorMapper.swift; sourceTree = "<group>"; };
+		E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimumVersion.swift; sourceTree = "<group>"; };
+		E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E8EEF7151E566FD8006804D4 /* FingerprintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
 		E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -2582,6 +2593,7 @@
 		B5AC06ED1E52766A00BBA4ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */,
 				2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */,
 				2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */,
 				E80D2E2B1E72FEC5002626C9 /* Account.swift */,
@@ -2918,6 +2930,7 @@
 		E8EEF70B1E565BE7006804D4 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */,
 				2FA5D8671F17DB5400A8B16B /* Home */,
 				82A18E6E1EB9192500BE9F21 /* Login */,
 				82A18E581EB9186000BE9F21 /* Bill */,
@@ -3593,6 +3606,7 @@
 				E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				826DCCF21F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				E8C4CDCC1E9FE21900D66EC1 /* MockAuthenticationService.swift in Sources */,
@@ -3662,6 +3676,7 @@
 				E8127B261EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				E887C9F21ED5D367002433A3 /* CardIO.m in Sources */,
 				B52CA0AF1F311524002B5674 /* Analytics.swift in Sources */,
+				E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				825171A81F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
@@ -3811,6 +3826,7 @@
 				22EBDCCF1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				82A18E6A1EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
+				E8EDC54C1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E801BAD71E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
 				E8BCB9BC1EFAE79700779588 /* BGEAutoPayViewModel.swift in Sources */,
 				E840BD411EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
@@ -3879,6 +3895,7 @@
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				825171AA1F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */,
+				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				54DF4BD31EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				B52CA0B11F311524002B5674 /* Analytics.swift in Sources */,
 				54036BAF1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
@@ -4029,6 +4046,7 @@
 				22EBDCCE1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				82A18E691EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E991EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
+				E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E801BAD61E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
 				E8BCB9BB1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
 				E840BD401EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
@@ -4097,6 +4115,7 @@
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				825171A91F1D1FA00020A6CA /* HomeBillCardView.swift in Sources */,
+				E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				54DF4BD21EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				B52CA0B01F311524002B5674 /* Analytics.swift in Sources */,
 				54036BAE1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
@@ -4274,6 +4293,7 @@
 				E895E9B21EBB84B7003B38A1 /* LoginViewModel.swift in Sources */,
 				E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* MaskedString.swift in Sources */,
+				E8EDC54D1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
 				E895E9AF1EBB8494003B38A1 /* ForgotUsernameViewModel.swift in Sources */,
 				E8BCB9BD1EFAE79A00779588 /* BGEAutoPayViewModel.swift in Sources */,
@@ -4282,6 +4302,7 @@
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,
 				B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
+				2F82EBAC1F38D488007EDF6B /* BillingHistoryTableViewCell.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
 				E8AD93911EEF2AFB00882444 /* SecurityQuestion.swift in Sources */,
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
@@ -4296,6 +4317,7 @@
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E887C9D71ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
+				E8EDC5521F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				E8EDC5481F324DFB006DD927 /* FiservErrorMapper.swift in Sources */,
 				E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,

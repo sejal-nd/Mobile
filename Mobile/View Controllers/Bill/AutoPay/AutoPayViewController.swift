@@ -105,6 +105,8 @@ class AutoPayViewController: UIViewController {
             .drive(view.rx.backgroundColor)
             .disposed(by: bag)
         
+        accessibilitySetup()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -197,6 +199,13 @@ class AutoPayViewController: UIViewController {
         footerLabel.setLineHeight(lineHeight: 16)
     }
     
+    private func accessibilitySetup() {
+        learnMoreButton.isAccessibilityElement = true
+        learnMoreButton.accessibilityLabel = learnMoreLabel.text
+        enrollSwitch.isAccessibilityElement = true
+        enrollSwitch.accessibilityLabel = "Enrollment status: "
+    }
+    
     private func styleNotEnrolled() {
         topLabel.font = OpenSans.semibold.of(textStyle: .headline)
         topLabel.setLineHeight(lineHeight: 24)
@@ -204,17 +213,19 @@ class AutoPayViewController: UIViewController {
         tacLabel.text = NSLocalizedString("Yes, I have read, understand and agree to the terms and conditions below, and by checking this box, I authorize ComEd to regularly debit the bank account provided.\nI understand that my bank account will be automatically debited each billing period for the total amount due, that these are variable charges, and that my bill being posted in the ComEd mobile app acts as my notification.\nCustomers can see their bill monthly through the ComEd mobile app. Bills are delivered online during each billing cycle. Please note that this will not change your preferred bill delivery method.", comment: "")
         tacLabel.font = SystemFont.regular.of(textStyle: .headline)
         tacLabel.setLineHeight(lineHeight: 25)
+        tacSwitch.accessibilityLabel = "I agree to ComEd’s AutoPay Terms and Conditions"
         tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
         Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollOffer.rawValue)
     }
     
     private func styleEnrolled() {
         enrollmentStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
-        enrolledTopLabel.font = OpenSans.regular.of(textStyle: .body)
+        enrolledTopLabel.font = OpenSans.regular.of(textStyle: .headline)
         enrolledTopLabel.setLineHeight(lineHeight: 16)
         
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        reasonForStoppingLabel.sizeToFit()
     }
     
     private func textFieldSetup() {

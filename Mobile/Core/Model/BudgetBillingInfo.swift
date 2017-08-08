@@ -30,12 +30,19 @@ struct BudgetBillingInfo: Mappable {
     let budgetBillDifferenceDecimal: Double
     let budgetBillBalance: String? // Only used for BGE Footer View
     let budgetBillPayoff: String? // Only used for BGE Footer View
+    let isUSPPParticipant: Bool // BGE only
     
     init(map: Mapper) throws {
         averageMonthlyBill = map.optionalFrom("averageMonthlyBill", transformation: extractDollarAmountString)
         budgetBillDifference = map.optionalFrom("budgetBillDifference", transformation: extractDollarAmountString)
         budgetBillBalance = map.optionalFrom("budgetBillBalance", transformation: extractDollarAmountString)
         budgetBillPayoff = map.optionalFrom("budgetBillPayoff", transformation: extractDollarAmountString)
+        
+        if let programCode: String = map.optionalFrom("programCode"), programCode == "USPPBDPL" {
+            isUSPPParticipant = true
+        } else {
+            isUSPPParticipant = false
+        }
         
         do {
             try budgetBillDifferenceDecimal = map.from("budgetBillDifference")

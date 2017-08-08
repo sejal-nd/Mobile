@@ -172,8 +172,6 @@ class HomeViewController: AccountPickerViewController {
                 guard let `self` = self else { return }
                 
                 if let vc = viewController as? WalletViewController {
-                    vc.shouldPopToRootOnSave = true
-                    
                     vc.didUpdate
                         .map { _ in FetchingAccountState.switchAccount }
                         .bind(to: self.viewModel.fetchData)

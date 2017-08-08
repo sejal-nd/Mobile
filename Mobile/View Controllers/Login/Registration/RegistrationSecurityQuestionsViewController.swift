@@ -84,6 +84,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         prepareTextFieldsForInput()
         
+        setupAccessibility()
+        
 //        createTestAccounts()
 //        
 //        if viewModel.accounts.value.count > displayAccountsIfGreaterThan {
@@ -136,9 +138,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             self.viewModel.loadAccounts(onSuccess: { _ in
                 let opco = Environment.sharedInstance.opco
                 
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-                
                 if (opco == .peco || opco == .comEd) && self.viewModel.accountType.value == "commercial" {
+                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
                     self.scrollView.isHidden = false
                     self.loadingIndicator.isHidden = true
                     
@@ -154,6 +155,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
                 
                 self.toggleAccountListing(self.viewModel.accounts.value.count > self.displayAccountsIfGreaterThan)
                 
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
                 self.scrollView.isHidden = false
                 self.loadingIndicator.isHidden = true
             }, onError: { (accountsTitle, accountsMessage) in
@@ -239,6 +241,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         eBillSwitchInstructions.textColor = .blackText
         eBillSwitchInstructions.text = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
         eBillSwitchInstructions.font = SystemFont.regular.of(textStyle: .headline)
+        
     }
     
     func populateAccountListingLabels() {
@@ -265,7 +268,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question1ContentLabel.isHidden = true
         question1ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         question1ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        question1Label.accessibilityTraits = UIAccessibilityTraitButton
         
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(question1Tapped))
         question1ViewWrapper.isUserInteractionEnabled = true
@@ -276,7 +278,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question2ContentLabel.isHidden = true
         question2ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         question2ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        question2Label.accessibilityTraits = UIAccessibilityTraitButton
         
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(question2Tapped))
         question2ViewWrapper.isUserInteractionEnabled = true
@@ -289,7 +290,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             question3ContentLabel.isHidden = true
             question3ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             question3ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-            question3Label.accessibilityTraits = UIAccessibilityTraitButton
             
             let tap3 = UITapGestureRecognizer(target: self, action: #selector(question3Tapped))
             question3ViewWrapper.isUserInteractionEnabled = true
@@ -393,6 +393,20 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         }
         
         enrollIneBillSwitch.rx.isOn.bind(to: viewModel.paperlessEbill).disposed(by: disposeBag)
+    }
+    
+    func setupAccessibility() {
+        
+        eBillSwitchInstructions.isAccessibilityElement = false
+        enrollIneBillSwitch.isAccessibilityElement = true
+        enrollIneBillSwitch.accessibilityLabel = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
+        question1Label.accessibilityTraits = UIAccessibilityTraitButton
+        question2Label.accessibilityTraits = UIAccessibilityTraitButton
+        
+        if Environment.sharedInstance.opco == .bge {
+           question3Label.accessibilityTraits = UIAccessibilityTraitButton 
+        }
+        
     }
     
     func toggleAccountListing(_ isVisible: Bool) {
