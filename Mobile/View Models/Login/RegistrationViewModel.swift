@@ -79,7 +79,6 @@ class RegistrationViewModel {
             .subscribe(onNext: { data in
                 let types = data["type"] as! [String]
                 self.accountType.value = types[0]
-                let ebil = data["ebill"] as! Bool
                 self.isPaperlessEbillEligible = data["ebill"] as! Bool
                 
                 
