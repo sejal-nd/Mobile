@@ -39,6 +39,8 @@ class RegistrationViewModel {
     
     var paperlessEbill = Variable<Bool>(true)
     
+    var isPaperlessEbillEligible = false //not making this Rx until this VM is made Rx
+    
     let loadSecurityQuestionsData = PublishSubject<Void>()
     
     var securityQuestions = Variable<[SecurityQuestion]>([])
@@ -54,20 +56,8 @@ class RegistrationViewModel {
     required init(registrationService: RegistrationService, authenticationService: AuthenticationService) {
         self.registrationService = registrationService
         self.authenticationService = authenticationService
-
-//        loadSecurityQuestions.elements().map {
-//            $0.map(SecurityQuestion.init)
-//            }
-//            .bind(to:securityQuestions)
-//            .disposed(by: disposeBag)
-//        
-//        loadAccounts.elements()
-//            .bind(to: accounts)
-//            .disposed(by: disposeBag)
     }
     
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////////
     func validateAccount(onSuccess: @escaping () -> Void, onMultipleAccounts: @escaping() -> Void, onError: @escaping (String, String) -> Void) {
         let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
         let identifier: String = identifierNumber.value
@@ -77,6 +67,8 @@ class RegistrationViewModel {
             .subscribe(onNext: { data in
                 let types = data["type"] as! [String]
                 self.accountType.value = types[0]
+                self.isPaperlessEbillEligible = data["ebill"] as! Bool
+                
                 
                 onSuccess()
             }, onError: { error in
@@ -214,34 +206,6 @@ class RegistrationViewModel {
             })
             .disposed(by: disposeBag)
     }
-    
-//    lazy var loadSecurityQuestions: Observable<Event<[String]>> = self.loadSecurityQuestionsData
-//        .flatMapLatest {
-//            self.registrationService.loadSecretQuestions().debug("security").materialize()
-//        }
-//        .shareReplay(1)
-//    
-//    
-//    lazy var loadAccounts: Observable<Event<[AccountLookupResult]>> = self.loadSecurityQuestionsData
-//        .flatMapLatest {
-//            self.authenticationService
-//                .lookupAccount(phone: self.extractDigitsFrom(self.phoneNumber.value) as String, identifier: self.identifierNumber.value as String).debug("accounts")
-//                .materialize()
-//        }
-//        .shareReplay(1)
-//    
-//    lazy var securityQuestionsDataFinishedLoading: Driver<Void> = Observable.zip(self.loadSecurityQuestions.elements(),
-//                                                                                 self.loadAccounts.elements())
-//                                                                                    .map({ _ in () })
-//                                                                                    .asDriver(onErrorJustReturn: ())
-//
-//    lazy var loadAccountsError: Driver<String> = self.loadAccounts.errors()
-//                    .map { $0.localizedDescription }
-//                    .asDriver(onErrorJustReturn: "")
-//    
-//    lazy var loadSecurityQuestionsError: Driver<String> = self.loadSecurityQuestions.errors()
-//                    .map { $0.localizedDescription }
-//                    .asDriver(onErrorJustReturn: "")
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -309,8 +273,6 @@ class RegistrationViewModel {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
     }
     
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////
     func newUsernameHasText() -> Observable<Bool> {
         return username.asObservable().map{ text -> Bool in
