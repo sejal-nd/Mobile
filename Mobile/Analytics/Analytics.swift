@@ -128,7 +128,7 @@ enum Dimensions: String {
 }
 
 func isAnalyticsEnabled() -> Bool {
-    if(Environment.sharedInstance.environmentName == "STAGE" || "PROD") {
+    if(Environment.sharedInstance.environmentName == "STAGE" || Environment.sharedInstance.environmentName == "PROD") {
         return true
     }
     
