@@ -66,7 +66,11 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
-        loadSecurityQuestionsAndAccounts()
+        loadSecurityQuestions()
+        
+        if viewModel.isPaperlessEbillEligible {
+            loadAccounts()
+        }
         
         setupNavigationButtons()
 
@@ -85,12 +89,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         prepareTextFieldsForInput()
         
         setupAccessibility()
-        
-//        createTestAccounts()
-//        
-//        if viewModel.accounts.value.count > displayAccountsIfGreaterThan {
-//            displayAccountListing()
-//        }
         
         viewModel.paperlessEbill.value = true
     }
@@ -124,88 +122,66 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func loadSecurityQuestionsAndAccounts() {
+    func loadSecurityQuestions() {
         loadingIndicator.isHidden = false
         scrollView.isHidden = true
-        
         var messages = ""
         var title = ""
         
-        errorMessageLoaded = false
-        
-        viewModel.loadSecurityQuestions(onSuccess: { _ in
-            
-            self.viewModel.loadAccounts(onSuccess: { _ in
-                let opco = Environment.sharedInstance.opco
-                
-                if (opco == .peco || opco == .comEd) && self.viewModel.accountType.value == "commercial" {
-                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
-                    self.scrollView.isHidden = false
-                    self.loadingIndicator.isHidden = true
-                    
-                    self.toggleAccountListing(false)
-                    self.eBillSwitchView.isHidden = true
-
-                    return
-                }
-                
-//                self.createTestAccounts()
-                
-                self.buildAccountListing()
-                
-                self.toggleAccountListing(self.viewModel.accounts.value.count > self.displayAccountsIfGreaterThan)
-                
+        viewModel.loadSecurityQuestions(onSuccess: { 
+            if !self.viewModel.isPaperlessEbillEligible {
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
                 self.scrollView.isHidden = false
                 self.loadingIndicator.isHidden = true
-            }, onError: { (accountsTitle, accountsMessage) in
-                title = accountsTitle
-                messages = accountsMessage
                 
-                self.loadErrorMessage(title, message: messages)
+                self.toggleAccountListing(false)
+                self.eBillSwitchView.isHidden = true
                 
+            }
+        }, onError: { (securityTitle, securityMessage) in
+            title = securityTitle
+            messages += securityMessage
+            self.loadErrorMessage(title, message: messages)
+        })
+    }
+    
+    func loadAccounts() {
+        var messages = ""
+        var title = ""
+        
+        viewModel.loadAccounts(onSuccess: { 
+            let opco = Environment.sharedInstance.opco
+            
+            if (opco == .peco || opco == .comEd) && self.viewModel.accountType.value == "commercial" {
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
+                self.scrollView.isHidden = false
+                self.loadingIndicator.isHidden = true
+                
+                self.toggleAccountListing(false)
+                self.eBillSwitchView.isHidden = true
+                
+                return
+            }
+            
+            self.buildAccountListing()
+            self.toggleAccountListing(self.viewModel.accounts.value.count > self.displayAccountsIfGreaterThan)
+            
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
+            self.scrollView.isHidden = false
+            self.loadingIndicator.isHidden = true
+            
+        }, onError: { (accountsTitle, accountsMessage) in
+            title = accountsTitle
+            messages = accountsMessage
+            
+            self.loadErrorMessage(title, message: messages)
+            
 //                // MMS - I'm ignoring this error for now - TODO, fix it
 //                self.loadAccountsError = true
 //                self.scrollView.isHidden = false
 //                self.loadingIndicator.isHidden = true
 //                self.toggleAccountListing(false)
-            })
-            
-        }, onError: { (securityTitle, securityMessage) in
-            title = securityTitle
-            messages += securityMessage
-            
-            self.loadErrorMessage(title, message: messages)
         })
-        
-        // GSH - this is the Rx way to do things, but currently not working. Will come back to it.
-//        Driver.merge(viewModel.loadSecurityQuestionsError, viewModel.loadAccountsError)
-//            .drive(onNext: { errorMessage in
-//                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .default) { _ in
-//                    
-//                    self.viewModel.loadSecurityQuestionsData.onNext(())
-//                })
-//                
-//                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
-//                
-//                self.present(alert, animated: true, completion: nil)
-//            })
-//            .disposed(by: disposeBag)
-//        
-//        viewModel.securityQuestionsDataFinishedLoading.drive(onNext: {
-//            self.scrollView.isHidden = false
-//            self.loadingIndicator.isHidden = true
-//            
-//            if self.viewModel.accounts.value.count > displayAccountsIfGreaterThan {
-//                self.displayAccountListing()
-//            } else {
-//                self.hideAccountListing()
-//            }
-//        })
-//        .disposed(by: disposeBag)
-//                
-//        self.viewModel.loadSecurityQuestionsData.onNext(())
     }
     
     func loadErrorMessage(_ title: String, message: String) {
@@ -219,7 +195,11 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default) { _ in
-            self.loadSecurityQuestionsAndAccounts()
+            self.loadSecurityQuestions()
+            
+            if self.viewModel.isPaperlessEbillEligible {
+                self.loadAccounts()
+            }
         })
         
         self.present(alert, animated: true, completion: nil)

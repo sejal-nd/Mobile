@@ -254,7 +254,7 @@ class BudgetBillingViewController: UIViewController {
                 
                 if budgetBillingInfo.isUSPPParticipant {
                     self.navigationItem.rightBarButtonItem = nil
-                    self.accountInfo.isHidden = true // USPP Participants cannot unenroll
+                    self.enrollSwitch.isHidden = true // USPP Participants cannot unenroll
                 }
                 
             }

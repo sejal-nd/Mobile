@@ -223,13 +223,13 @@ struct BillingInfo: Mappable {
         disconnectNoticeArrears = map.optionalFrom("disconnectNoticeArrears")
         isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
         billDate = map.optionalFrom("billDate", transformation: extractDate)
-        convenienceFee = map.optionalFrom("convenienceFee")
         atReinstateFee = map.optionalFrom("atReinstateFee")
         minPaymentAmount = map.optionalFrom("minimumPaymentAmount")
         maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")
         minPaymentAmountACH =  map.optionalFrom("minimumPaymentAmountACH")
         maxPaymentAmountACH = map.optionalFrom("maximumPaymentAmountACH")
         currentDueAmount = map.optionalFrom("currentDueAmount")
+        convenienceFee = map.optionalFrom("convenienceFee")
         residentialFee = map.optionalFrom("feeResidential")
         commercialFee = map.optionalFrom("feeCommercial")
         

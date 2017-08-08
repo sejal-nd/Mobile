@@ -38,17 +38,15 @@ class HomeViewModel {
     
     private(set) lazy var templateCardViewModel: TemplateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents)
     
-    private(set) lazy var isRefreshing: Driver<Bool> = Observable.combineLatest(self.fetchingTracker.asObservable(),
+    private(set) lazy var isRefreshing: Driver<Bool> = Observable.combineLatest(self.fetchingTracker.asObservable().skip(1),
                                                                                 self.fetchData.asObservable())
         .map { $0 && $1 == .refresh }
         .asDriver(onErrorJustReturn: false)
     
-    private(set) lazy var isSwitchingAccounts: Driver<Bool> = Observable.combineLatest(self.fetchingTracker.asObservable(),
+    private(set) lazy var isSwitchingAccounts: Driver<Bool> = Observable.combineLatest(self.fetchingTracker.asObservable().skip(1),
                                                                                        self.fetchData.asObservable())
-        .map {
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-            return ($0 && $1 == .switchAccount)
-        }
+        .do(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+        .map { $0 && $1 == .switchAccount }
         .asDriver(onErrorJustReturn: false)
     
     
