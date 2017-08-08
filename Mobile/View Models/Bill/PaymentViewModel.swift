@@ -130,11 +130,17 @@ class PaymentViewModel {
                     } else {
                         if Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential {
                             // Default to One Touch Pay item IF it's not a VISA credit card
-                            if let otpItem = self.oneTouchPayItem, let cardIssuer = otpItem.cardIssuer, cardIssuer != "Visa" {
-                                self.selectedWalletItem.value = otpItem
+                            if let otpItem = self.oneTouchPayItem {
+                                if otpItem.bankOrCard == .bank {
+                                    self.selectedWalletItem.value = otpItem
+                                } else if let cardIssuer = otpItem.cardIssuer, cardIssuer != "Visa" {
+                                    self.selectedWalletItem.value = otpItem
+                                }
                             } else if walletItems.count > 0 { // If no OTP item, default to first non-VISA wallet item
                                 for item in walletItems {
-                                    if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
+                                    if item.bankOrCard == .bank {
+                                        self.selectedWalletItem.value = item
+                                    } else if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
                                         self.selectedWalletItem.value = item
                                         break
                                     }
