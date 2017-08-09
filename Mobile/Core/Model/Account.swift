@@ -209,6 +209,8 @@ struct BillingInfo: Mappable {
     let currentDueAmount: Double?
     let residentialFee: Double?
     let commercialFee: Double?
+    let turnOffNoticeExtensionStatus: String?
+    let turnOffNoticeExtendedDueDate: Date?
     
     init(map: Mapper) throws {
 		netDueAmount = map.optionalFrom("netDueAmount")
@@ -232,6 +234,8 @@ struct BillingInfo: Mappable {
         convenienceFee = map.optionalFrom("convenienceFee")
         residentialFee = map.optionalFrom("feeResidential")
         commercialFee = map.optionalFrom("feeCommercial")
+        turnOffNoticeExtensionStatus = map.optionalFrom("turnOffNoticeExtensionStatus")
+        turnOffNoticeExtendedDueDate = map.optionalFrom("turnOffNoticeExtendedDueDate", transformation: extractDate)
         
         let paymentDicts: [NSDictionary]? = map.optionalFrom("payments") {
             guard let array = $0 as? [NSDictionary] else {
