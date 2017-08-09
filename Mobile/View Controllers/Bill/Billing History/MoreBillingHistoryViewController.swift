@@ -224,6 +224,8 @@ extension MoreBillingHistoryViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BillingHistoryCell", for: indexPath) as! BillingHistoryTableViewCell
         
+        cell.accessibilityTraits = UIAccessibilityTraitButton
+        
         cell.configureWith(item: billingHistoryItem)
         
         return cell

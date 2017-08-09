@@ -65,11 +65,13 @@ class BillingHistoryViewController: UIViewController {
         viewModel.getBillingHistory(success: { (billingHistory) in
             self.loadingIndicator.isHidden = true
             self.tableView.isHidden = false
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
             self.billingHistory = billingHistory
             
             if self.billingHistory?.upcoming.count == 0 && self.billingHistory?.past.count == 00 {
                 self.tableView.isHidden = true
                 self.empyStateLabel.isHidden = false
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.empyStateLabel)
             } else {
                 self.tableView.reloadData()
             }
@@ -365,6 +367,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BillingHistoryTableViewCell
+        cell.accessibilityTraits = UIAccessibilityTraitButton
         cell.configureWith(item: billingHistoryItem)
         return cell
         
@@ -387,6 +390,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
                 titleText = "View All (\(self.billingHistory!.upcoming.count))"
             } else {
                 button.isEnabled = false
+                button.isAccessibilityElement = false
             }
         } else {
             if let past = billingHistory?.past.count,
@@ -395,6 +399,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
                 titleText = "View More"
             } else {
                 button.isEnabled = false
+                button.isAccessibilityElement = false
             }
             
         }
@@ -474,6 +479,8 @@ extension BillingHistoryViewController: UITableViewDataSource {
     func bgEasyTableViewCell(indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "BgEasyCell")
+        
+        cell.accessibilityTraits = UIAccessibilityTraitButton
         
         let label = UILabel()
         if accountDetail.isAutoPay {
