@@ -432,25 +432,27 @@ class BillViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        makeAPaymentButton.rx.touchUpInside.asDriver()
-            .drive(onNext: {
-                self.viewModel.makePaymentScheduledPaymentAlertInfo.single().subscribe(onNext: { (titleOpt, messageOpt) in
-                    let goToMakePayment = {
-                        let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
-                        paymentVc.accountDetail = self.viewModel.currentAccountDetail.value!
-                        self.navigationController?.pushViewController(paymentVc, animated: true)
-                    }
-                    if let title = titleOpt, let message = messageOpt {
-                        let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { _ in
-                            goToMakePayment()
-                        }))
-                        self.present(alertVc, animated: true, completion: nil)
-                    } else {
+        makeAPaymentButton.rx.touchUpInside.asObservable()
+            .withLatestFrom(viewModel.makePaymentScheduledPaymentAlertInfo)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] titleOpt, messageOpt in
+                guard let `self` = self else { return }
+                let goToMakePayment = {
+                    let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+                    paymentVc.accountDetail = self.viewModel.currentAccountDetail.value!
+                    self.navigationController?.pushViewController(paymentVc, animated: true)
+                }
+                
+                if let title = titleOpt, let message = messageOpt {
+                    let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { _ in
                         goToMakePayment()
-                    }
-                }).disposed(by: self.bag)
+                    }))
+                    self.present(alertVc, animated: true, completion: nil)
+                } else {
+                    goToMakePayment()
+                }
             })
             .disposed(by: bag)
         

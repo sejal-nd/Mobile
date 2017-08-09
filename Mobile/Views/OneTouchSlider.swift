@@ -12,6 +12,8 @@ import RxSwift
 
 class OneTouchSlider: UIControl {
     
+    let bag = DisposeBag()
+    
     //MARK: - Private Variables
     private let slider = UIView()
     private let sliderFinish = UIView()
@@ -134,7 +136,7 @@ class OneTouchSlider: UIControl {
         imageView.setContentHuggingPriority(999, for: .vertical)
         
         //Add pan gesture to slide the slider view
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(self.panGesture(_:)))
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
         addGestureRecognizer(pan)
         
         //Accessibility button
@@ -142,12 +144,11 @@ class OneTouchSlider: UIControl {
             let accessibilityButton = UIButton(type: UIButtonType.system)
             accessibilityButton.backgroundColor = UIColor.clear
             accessibilityButton.isAccessibilityElement = true
-            accessibilityButton.accessibilityLabel = self.accessibilityText
-        
-            let selector = #selector(didPressAccessibilityButton)
-            accessibilityButton.addTarget(self, action: selector, for:.touchUpInside)
+            accessibilityButton.accessibilityLabel = accessibilityText
             
-            self.addSubview(accessibilityButton)
+            accessibilityButton.rx.tap.asDriver().drive(didFinishSwipeSubject).addDisposableTo(bag)
+            
+            addSubview(accessibilityButton)
             
             accessibilityButton.translatesAutoresizingMaskIntoConstraints = false
             
@@ -156,17 +157,23 @@ class OneTouchSlider: UIControl {
             let horizontallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[button]-|", options: .alignAllCenterY, metrics: nil, views: views)
             let verticallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[button]-|", options: .alignAllCenterX, metrics: nil, views: views)
             
-            self.addConstraints(horizontallayoutContraints)
-            self.addConstraints(verticallayoutContraints)
+            addConstraints(horizontallayoutContraints)
+            addConstraints(verticallayoutContraints)
         }
     }
     
     //MARK: - Public Methods
-    func reset() {
+    func reset(animated: Bool) {
         progress = 0
         sliderWidthConstraint.constant = sliderWidth
         setNeedsUpdateConstraints()
-        layoutIfNeeded()
+        UIView.animate(withDuration: 0.45,
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0,
+                       animations: {
+                        self.layoutIfNeeded()
+        })
     }
     
     func panGesture(_ recognizer:UIPanGestureRecognizer) {
@@ -222,10 +229,6 @@ class OneTouchSlider: UIControl {
             })
         default: break
         }
-    }
-    
-    func didPressAccessibilityButton() {
-        self.didFinishSwipeSubject.onNext()
     }
 }
 
