@@ -70,7 +70,6 @@ class PaperlessEBillViewModel {
                     .map { $0 }
                     .catchErrorJustReturn(nil)
                     .unwrap()
-                    .debug("ACCOUNT NUMBER: \(account.accountNumber), INDEX: \(index)")
         }
         
         return Observable.from(accountResults)
@@ -98,12 +97,12 @@ class PaperlessEBillViewModel {
         var enrolled = false //, unenrolled = false
         for account in accountsToEnroll.value {
             enrolled = true
-            requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: initialAccountDetail.value.customerInfo.emailAddress).debug("ACCOUNT NUMBER: \(account), INDEX: \(index)"))
+            requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: initialAccountDetail.value.customerInfo.emailAddress))
             Analytics().logScreenView(AnalyticsPageView.EBillEnrollOffer.rawValue)
         }
         for account in accountsToUnenroll.value {
             //unenrolled = true
-            requestObservables.append(billService.unenrollPaperlessBilling(accountNumber: account).debug("ACCOUNT NUMBER: \(account), INDEX: \(index)"))
+            requestObservables.append(billService.unenrollPaperlessBilling(accountNumber: account))
             Analytics().logScreenView(AnalyticsPageView.EBillUnEnrollOffer.rawValue)
         }
         

@@ -270,8 +270,9 @@ class HomeBillCardViewModel {
                                                                                   self.showAutoPay,
                                                                                   self.walletItemDriver,
                                                                                   self.showScheduledImageView,
-                                                                                  self.showOneTouchPaySlider)
-        .map { !$0 && !$1 && $2 != nil && !$3 && $4 }
+                                                                                  self.showOneTouchPaySlider,
+                                                                                  self.titleState)
+        .map { !$0 && !$1 && $2 != nil && !$3 && $4 && $5 != .credit  }
     
     private(set) lazy var showDueDate: Driver<Bool> = self.titleState.map {
         switch $0 {
