@@ -24,7 +24,7 @@ class OutageMapViewController: UIViewController {
         let url = URL(string: Environment.sharedInstance.outageMapUrl)!
         webView.loadRequest(URLRequest(url: url))
         webView.isAccessibilityElement = false
-        webView.accessibilityLabel = "This is an outage map showing the areas that are currently experiencing an outage."
+        webView.accessibilityLabel = "This is an outage map showing the areas that are currently experiencing an outage. You can check your outage status on the main Outage section of the app."
     }
     
     override func viewWillAppear(_ animated: Bool) {
