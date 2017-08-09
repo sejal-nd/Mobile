@@ -710,6 +710,10 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
                 }
             }
         } else {
+            if paymentId != nil && date == today  { // Modifying payment on ComEd/PECO disables changing date to today
+                return false
+            }
+            
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
                 if Environment.sharedInstance.opco == .peco {
