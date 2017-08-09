@@ -90,18 +90,22 @@ class HomeViewModel {
     
     private(set) lazy var greeting: Driver<String?> = self.fetchData
         .map { _ in Date().localizedGreeting }
+        .startWith(nil)
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var weatherTemp: Driver<String?> = self.weatherEvents.elements()
         .map { "\($0.temperature)°" }
+        .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
     
     private(set) lazy var weatherIcon: Driver<UIImage?> = self.weatherEvents.elements()
         .map { $0.iconName != WeatherIconNames.UNKNOWN.rawValue ? UIImage(named: $0.iconName) : nil }
+        .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
     
     private(set) lazy var shortForecast: Driver<String?> = self.weatherEvents.elements()
         .map { $0.accessibilityName }
+        .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
     
     private lazy var weatherSuccess: Driver<Bool> = Observable.merge(self.accountDetailEvents.errors().map { _ in false },

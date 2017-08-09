@@ -99,10 +99,12 @@ class PaperlessEBillViewModel {
         for account in accountsToEnroll.value {
             enrolled = true
             requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: initialAccountDetail.value.customerInfo.emailAddress).debug("ACCOUNT NUMBER: \(account), INDEX: \(index)"))
+            Analytics().logScreenView(AnalyticsPageView.EBillEnrollOffer.rawValue)
         }
         for account in accountsToUnenroll.value {
             //unenrolled = true
             requestObservables.append(billService.unenrollPaperlessBilling(accountNumber: account).debug("ACCOUNT NUMBER: \(account), INDEX: \(index)"))
+            Analytics().logScreenView(AnalyticsPageView.EBillUnEnrollOffer.rawValue)
         }
         
         var changedStatus: PaperlessEBillChangedStatus

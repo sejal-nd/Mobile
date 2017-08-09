@@ -180,6 +180,8 @@ class ReportOutageViewController: UIViewController {
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.getFooterTextViewText()
         footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handlePhoneCallTap(_:)))
+        footerTextView.addGestureRecognizer(tap)
         
         // Data binding
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
@@ -216,6 +218,7 @@ class ReportOutageViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthOffer.rawValue)
         
         // METER PING
         if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
@@ -302,12 +305,23 @@ class ReportOutageViewController: UIViewController {
             LoadingView.hide()
             self.delegate?.reportOutageViewControllerDidReportOutage(self)
             _ = self.navigationController?.popViewController(animated: true)
+            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
         }) { errorMessage in
             LoadingView.hide()
             let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func switchPressed(sender: AnyObject) {
+        if(sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn) {
+            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthCircuitBreak.rawValue)
+        }
+    }
+    
+    func handlePhoneCallTap(_ sender: UITapGestureRecognizer) {
+        Analytics().logScreenView(AnalyticsPageView.OutageAuthEmergencyCall.rawValue)
     }
     
     // MARK: - ScrollView

@@ -109,6 +109,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         LoadingView.show()
         viewModel.verifyUniqueUsername(onSuccess: {
             LoadingView.hide()
+            Analytics().logScreenView(AnalyticsPageView.RegisterAccountSetup.rawValue)
             self.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
         }, onEmailAlreadyExists: {
             LoadingView.hide()

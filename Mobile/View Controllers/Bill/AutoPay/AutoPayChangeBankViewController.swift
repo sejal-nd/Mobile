@@ -67,6 +67,10 @@ class AutoPayChangeBankViewController: UIViewController {
 		viewModel.canSubmitNewAccount.drive(saveButton.rx.isEnabled).disposed(by: bag)
 	}
 	
+    override func viewDidAppear(_ animated: Bool) {
+        Analytics().logScreenView(AnalyticsPageView.AutoPayModifyBankView.rawValue)
+    }
+    
 	private func style() {
 		tacLabel.text = NSLocalizedString("Yes, I have read, understand and agree to the terms and conditions below, and by checking this box, I authorize ComEd to regularly debit the bank account provided.\n\nI understand that my bank account will be automatically debited each billing period for the total amount due, that these are variable charges, and that my bill being posted in the ComEd mobile app acts as my notification.\n\nCustomers can see their bill monthly through the ComEd mobile app. Bills are delivered online during each billing cycle. Please note that this will not change your preferred bill delivery method.\n", comment: "")
 		tacLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -270,6 +274,7 @@ class AutoPayChangeBankViewController: UIViewController {
     
     func onSavePress() {
         LoadingView.show()
+        Analytics().logScreenView(AnalyticsPageView.AutoPayModifyBankSave.rawValue)
         viewModel.submit()
             .observeOn(MainScheduler.instance)
             .subscribe(

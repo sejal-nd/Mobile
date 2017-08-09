@@ -406,7 +406,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         viewModel.registerUser(onSuccess: {
             LoadingView.hide()
-            
+            Analytics().logScreenView(AnalyticsPageView.RegisterAccountSecurityQuestions.rawValue)
             self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
         }, onError: { (title, message) in
             LoadingView.hide()
@@ -422,6 +422,10 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         viewModel.paperlessEbill.value = !viewModel.paperlessEbill.value
         
         toggleAccountListing(viewModel.paperlessEbill.value && self.viewModel.accounts.value.count > displayAccountsIfGreaterThan)
+        
+        if(enrollIneBillSwitch.isOn) {
+            Analytics().logScreenView(AnalyticsPageView.RegisterEBillEnroll.rawValue)
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

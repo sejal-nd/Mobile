@@ -78,8 +78,10 @@ class SettingsViewController: UIViewController {
     func switchObserver(cell: SettingsTableViewCell, isOn: Bool) {
         if isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage())
+            Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
         } else {
             self.viewModel.disableTouchID()
+            Analytics().logScreenView(AnalyticsPageView.TouchIDDisable.rawValue)
         }
     }
     
@@ -229,6 +231,7 @@ extension SettingsViewController: PECOReleaseOfInfoViewControllerDelegate {
     func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Release of information updated", comment: ""))
+            Analytics().logScreenView(AnalyticsPageView.ReleaseInfoComplete.rawValue)
         })
     }
     

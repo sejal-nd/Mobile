@@ -42,4 +42,10 @@
 #import "SSJailbreakCheck.h"
 #import "DTTJailbreakDetection.h"
 
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+#import "GAILogger.h"
+
+#import "Firebase.h"
 #endif /* EXBridgingHeader_h */

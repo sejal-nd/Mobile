@@ -130,11 +130,17 @@ class PaymentViewModel {
                     } else {
                         if Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential {
                             // Default to One Touch Pay item IF it's not a VISA credit card
-                            if let otpItem = self.oneTouchPayItem, let cardIssuer = otpItem.cardIssuer, cardIssuer != "Visa" {
-                                self.selectedWalletItem.value = otpItem
+                            if let otpItem = self.oneTouchPayItem {
+                                if otpItem.bankOrCard == .bank {
+                                    self.selectedWalletItem.value = otpItem
+                                } else if let cardIssuer = otpItem.cardIssuer, cardIssuer != "Visa" {
+                                    self.selectedWalletItem.value = otpItem
+                                }
                             } else if walletItems.count > 0 { // If no OTP item, default to first non-VISA wallet item
                                 for item in walletItems {
-                                    if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
+                                    if item.bankOrCard == .bank {
+                                        self.selectedWalletItem.value = item
+                                    } else if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
                                         self.selectedWalletItem.value = item
                                         break
                                     }
@@ -173,8 +179,10 @@ class PaymentViewModel {
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         if inlineBank.value {
             scheduleInlineBankPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
+            Analytics().logScreenView(AnalyticsPageView.ECheckOffer.rawValue)
         } else if inlineCard.value {
             scheduleInlineCardPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
+            Analytics().logScreenView(AnalyticsPageView.CardOffer.rawValue)
         } else { // Existing wallet item
             self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
                 let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
@@ -221,6 +229,7 @@ class PaymentViewModel {
                 if self.addBankFormViewModel.oneTouchPay.value {
                     self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
                 }
+                Analytics().logScreenView(AnalyticsPageView.AddBankNewWallet.rawValue)
                 
                 self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
                     let paymentType: PaymentType = .check
@@ -270,6 +279,7 @@ class PaymentViewModel {
                 if self.addCardFormViewModel.oneTouchPay.value {
                     self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
                 }
+                Analytics().logScreenView(AnalyticsPageView.AddCardNewWallet.rawValue)
                 
                 self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { isFixed in
                     let paymentType: PaymentType = .credit
@@ -605,7 +615,9 @@ class PaymentViewModel {
                 return false
             } else if $2 { // If BGE Commercial user, ignore VISA credit cards
                 for item in walletItems {
-                    if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
+                    if item.bankOrCard == .bank {
+                        return true
+                    } else if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
                         return true
                     }
                 }

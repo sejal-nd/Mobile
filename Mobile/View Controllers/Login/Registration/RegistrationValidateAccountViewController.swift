@@ -48,6 +48,10 @@ class RegistrationValidateAccountViewController: UIViewController {
         checkForMaintenanceMode()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        Analytics().logScreenView(AnalyticsPageView.RegisterOffer.rawValue)
+    }
+    
     func checkForMaintenanceMode(){
         viewModel.checkForMaintenance(onSuccess: { isMaintenance in
             if isMaintenance {
@@ -258,11 +262,11 @@ class RegistrationValidateAccountViewController: UIViewController {
         
         viewModel.validateAccount(onSuccess: {
             LoadingView.hide()
-            
+            Analytics().logScreenView(AnalyticsPageView.RegisterAccountValidation.rawValue)
             self.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
         }, onMultipleAccounts:  {
             LoadingView.hide()
-
+            Analytics().logScreenView(AnalyticsPageView.RegisterAccountValidation.rawValue)
             self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { (title, message) in
             LoadingView.hide()

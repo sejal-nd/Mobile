@@ -40,7 +40,10 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, fullString.characters.count))
         
         bodyLabel.attributedText = attrString
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Analytics().logScreenView(AnalyticsPageView.RegisterAccountComplete.rawValue)
     }
     
     private var emailAddress: String {

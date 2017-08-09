@@ -53,6 +53,8 @@ class ChangePasswordViewController: UIViewController {
         
         self.title = NSLocalizedString("Change Password", comment: "")
         
+        cancelButton.target = self
+        submitButton.target = self
         navigationItem.leftBarButtonItem = sentFromLogin ? nil : cancelButton
         navigationItem.hidesBackButton = sentFromLogin
         navigationItem.rightBarButtonItem = submitButton
@@ -175,6 +177,10 @@ class ChangePasswordViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        Analytics().logScreenView(AnalyticsPageView.ChangePasswordOffer.rawValue)
+    }
+    
     func onCancelPress() {
         _ = navigationController?.popViewController(animated: true)
     }
@@ -187,6 +193,7 @@ class ChangePasswordViewController: UIViewController {
             LoadingView.hide()
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
             _ = self.navigationController?.popViewController(animated: true)
+            Analytics().logScreenView(AnalyticsPageView.ChangePasswordDone.rawValue)
         }, onPasswordNoMatch: { _ in
             LoadingView.hide()
             self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))

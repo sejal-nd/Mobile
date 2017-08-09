@@ -20,7 +20,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var homeLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     
-    @IBOutlet weak var weatherWidgetView: UIView!
+    @IBOutlet weak var weatherView: UIView!
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImage: UIImageView!
@@ -105,6 +105,10 @@ class HomeViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        Analytics().logScreenView(AnalyticsPageView.HomeOfferComplete.rawValue)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.contentInset = .zero
@@ -121,6 +125,10 @@ class HomeViewController: AccountPickerViewController {
         primaryColorHeaderView.backgroundColor = .primaryColor
         loadingView.layer.cornerRadius = 2
         loadingView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        greetingLabel.isAccessibilityElement = true
+        temperatureLabel.isAccessibilityElement = true
+        weatherIconImage.isAccessibilityElement = true
+        weatherView.accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage]
     }
     
     func bindLoadingStates() {
@@ -144,7 +152,6 @@ class HomeViewController: AccountPickerViewController {
         viewModel.greeting.drive(greetingLabel.rx.text).disposed(by: bag)
         viewModel.weatherTemp.drive(temperatureLabel.rx.text).disposed(by: bag)
         viewModel.weatherIcon.drive(weatherIconImage.rx.image).disposed(by: bag)
-        weatherIconImage.isAccessibilityElement = true
         viewModel.shortForecast.drive(weatherIconImage.rx.accessibilityLabel).disposed(by: bag)
         
         noNetworkConnectionView.reload

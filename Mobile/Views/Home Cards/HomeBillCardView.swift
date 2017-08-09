@@ -165,6 +165,11 @@ class HomeBillCardView: UIView {
             .drive(billNotReadyStack.rx.isHidden)
             .disposed(by: bag)
         
+        viewModel.showErrorState
+            .filter { $0 }
+            .drive(onNext: { _ in Analytics().logScreenView(AnalyticsPageView.CheckBalanceError.rawValue) })
+            .disposed(by: bag)
+        
         viewModel.showErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
         
         Driver.combineLatest(viewModel.billNotReady, viewModel.showErrorState)
@@ -231,6 +236,9 @@ class HomeBillCardView: UIView {
     
     // Actions
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.tap.asDriver()
+        .do(onNext: {
+            Analytics().logScreenView(AnalyticsPageView.ViewBillBillCard.rawValue)
+        })
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
@@ -239,6 +247,9 @@ class HomeBillCardView: UIView {
     
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
+        .do(onNext: {
+            Analytics().logScreenView(AnalyticsPageView.OneTouchTermsView.rawValue)
+        })
         .map { [weak self] in self?.viewModel.paymentTACUrl }
         .unwrap()
         .map { (NSLocalizedString("Terms and Conditions", comment: ""), $0) }
