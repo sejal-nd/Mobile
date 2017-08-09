@@ -39,9 +39,6 @@
 
 #import <PDTSimpleCalendar/PDTSimpleCalendar.h>
 
-#import "SSJailbreakCheck.h"
-#import "DTTJailbreakDetection.h"
-
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
