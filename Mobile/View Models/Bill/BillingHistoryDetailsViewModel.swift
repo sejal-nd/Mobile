@@ -25,7 +25,6 @@ class BillingHistoryDetailsViewModel {
         .map { $0.paymentId }
         .unwrap()
         .flatMap(self.fetchPaymentDetails)
-        .debug("******")
     
     private(set) lazy var paymentAccount: Driver<String?> = self.paymentDetail.asDriver(onErrorDriveWith: .empty()).map {
         guard let paymentAccount = $0.accountNumber else { return "" }
