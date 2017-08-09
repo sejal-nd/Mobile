@@ -19,7 +19,7 @@ class LoadingView: UIView {
     }
     
     private lazy var animationContainer = UIView()
-    private var loadingAnimationView = LOTAnimationView(name: "full_screen_loading")!
+    private var loadingAnimationView = LOTAnimationView(name: "full_screen_loading")
     
     public override init(frame: CGRect) {
         super.init(frame: frame)

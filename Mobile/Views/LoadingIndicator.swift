@@ -29,16 +29,16 @@ class LoadingIndicator: UIView {
     func commonInit() {
         backgroundColor = .clear
         
-        lottieAnimationView!.frame.size = CGSize(width: 60, height: 12)
-        lottieAnimationView!.loopAnimation = true
-        lottieAnimationView!.play()
+        lottieAnimationView.frame.size = CGSize(width: 60, height: 12)
+        lottieAnimationView.loopAnimation = true
+        lottieAnimationView.play()
         
-        addSubview(lottieAnimationView!)
+        addSubview(lottieAnimationView)
         
         //make accessibility label for loading animation - and make it the only thing tappable
-        lottieAnimationView!.isAccessibilityElement = true;
-        lottieAnimationView!.accessibilityLabel = "Loading";
-        lottieAnimationView!.accessibilityViewIsModal = true;
+        lottieAnimationView.isAccessibilityElement = true;
+        lottieAnimationView.accessibilityLabel = "Loading";
+        lottieAnimationView.accessibilityViewIsModal = true;
     }
     
     override var intrinsicContentSize: CGSize {
@@ -48,13 +48,13 @@ class LoadingIndicator: UIView {
     override var isHidden: Bool {
         didSet {
             if isHidden {
-                lottieAnimationView!.accessibilityViewIsModal = false;
-                lottieAnimationView!.isAccessibilityElement = false;
-                lottieAnimationView!.pause()
+                lottieAnimationView.accessibilityViewIsModal = false;
+                lottieAnimationView.isAccessibilityElement = false;
+                lottieAnimationView.pause()
             } else {
-                lottieAnimationView!.accessibilityViewIsModal = true;
-                lottieAnimationView!.isAccessibilityElement = true;
-                lottieAnimationView!.play()
+                lottieAnimationView.accessibilityViewIsModal = true;
+                lottieAnimationView.isAccessibilityElement = true;
+                lottieAnimationView.play()
             }
         }
     }
