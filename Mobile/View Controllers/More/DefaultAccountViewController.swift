@@ -36,6 +36,20 @@ class DefaultAccountViewController: UIViewController {
                 self?.tableView.reloadData()
             })
             .disposed(by: bag)
+        
+        viewModel.changeDefaultAccountErrorMessage
+            .drive(onNext: { [weak self] errorMessage in
+                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                              message: errorMessage,
+                                              preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
+                    Analytics().logScreenView(AnalyticsPageView.SetDefaultAccountChange.rawValue)
+                })
+                
+                self?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: bag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

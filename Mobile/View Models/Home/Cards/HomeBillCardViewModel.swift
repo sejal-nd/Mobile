@@ -151,6 +151,9 @@ class HomeBillCardViewModel {
         }
     }()
     
+    private(set) lazy var cvvIsValid: Driver<Bool> = self.cvv2.asDriver()
+        .map { 3...4 ~= ($0?.characters.count ?? 0) }
+    
     //MARK: - Loaded States
     
     private lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailElements.asDriver(onErrorDriveWith: .empty())

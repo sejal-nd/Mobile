@@ -88,6 +88,8 @@ class HomeBillCardView: UIView {
         }
     }
     
+    var cvvValidationDisposable: Disposable?
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         styleViews()
@@ -242,7 +244,7 @@ class HomeBillCardView: UIView {
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
-            self?.oneTouchSlider.reset()
+            self?.oneTouchSlider.reset(animated: true)
         }).map { _ in () }
     
     // Modal View Controllers
@@ -263,7 +265,7 @@ class HomeBillCardView: UIView {
             let alertController = UIAlertController(title: NSLocalizedString("Weekend/Holiday Payment", comment: ""),
                                                     message: NSLocalizedString("You are making a payment on a weekend or holiday. Your payment will be scheduled for the next business day.", comment: ""), preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel){ [weak self] _ in
-                self?.oneTouchSlider.reset()
+                self?.oneTouchSlider.reset(animated: true)
             })
 
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
@@ -274,10 +276,6 @@ class HomeBillCardView: UIView {
     }
     
     private lazy var oneTouchPayErrorAlert: Driver<UIViewController> = self.viewModel.oneTouchPayResult.errors()
-        .do(onNext: { [weak self] _ in
-            LoadingView.hide(animated: true)
-            self?.oneTouchSlider.reset()
-        })
         .map { error in
             let errMessage = error.localizedDescription
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString(errMessage, comment: ""), preferredStyle: .alert)
@@ -308,24 +306,33 @@ class HomeBillCardView: UIView {
         .withLatestFrom(self.viewModel.promptForCVV)
         .asObservable()
         .filter { $0 }
-        .flatMap { [weak self] _ in
+        .flatMap { [weak self] _ -> Observable<UIViewController> in
             Observable<UIViewController>.create { [weak self] observer in
+                guard let `self` = self else {
+                    observer.onCompleted()
+                    return Disposables.create()
+                }
                 let alertController = UIAlertController(title: NSLocalizedString("Enter CVV2", comment: ""),
-                                                        message: NSLocalizedString("Enter your 3 digit security code to complete One Touch Pay.", comment: ""),
+                                                        message: NSLocalizedString("Enter your 3-4 digit security code to complete One Touch Pay.", comment: ""),
                                                         preferredStyle: .alert)
                 
-                let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+                let cancelAction = UIAlertAction(title: "Cancel", style: .default) { [weak self] _ in
+                    self?.cvvValidationDisposable?.dispose()
+                    self?.oneTouchSlider.reset(animated: true)
                     observer.onCompleted()
                 }
                 
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+                    self?.cvvValidationDisposable?.dispose()
+                    
                     let textField = alertController.textFields![0]
                     let alertController2 = UIAlertController(title: "",
                                                              message: NSLocalizedString("If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.\n\nPlease ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.\n\nIf an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.", comment: ""), preferredStyle: .alert)
-                    alertController2.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+                    alertController2.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { [weak self] _ in
+                        self?.oneTouchSlider.reset(animated: true)
                         observer.onCompleted()
                     })
-                    alertController2.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
+                    alertController2.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
                         LoadingView.show(animated: true)
                         self?.viewModel.submitOneTouchPay.onNext()
                         observer.onCompleted()
@@ -333,11 +340,13 @@ class HomeBillCardView: UIView {
                     observer.onNext(alertController2)
                 })
                 
-                alertController.addTextField {
+                alertController.addTextField { [weak self] in
                     $0.isSecureTextEntry = true
                     $0.keyboardType = .numberPad
                     $0.delegate = self
                 }
+                
+                self.cvvValidationDisposable = self.viewModel.cvvIsValid.drive(okAction.rx.isEnabled)
                 
                 alertController.addAction(cancelAction)
                 alertController.addAction(okAction)
@@ -347,7 +356,6 @@ class HomeBillCardView: UIView {
                 return Disposables.create()
                 }
                 .do(onCompleted: { [weak self] _ in
-                    self?.oneTouchSlider.reset()
                     self?.viewModel.cvv2.value = nil
                 })
         }
