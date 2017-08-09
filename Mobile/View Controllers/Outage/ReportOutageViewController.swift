@@ -123,7 +123,7 @@ class ReportOutageViewController: UIViewController {
             meterPingFuseBoxLabel.textColor = .middleGray
             meterPingFuseBoxLabel.setLineHeight(lineHeight: 25)
             
-            let lottieAnimation = LOTAnimationView(name: "loading_blue")!
+            let lottieAnimation = LOTAnimationView(name: "loading_blue")
             lottieAnimation.frame = CGRect(x: 0, y: 0, width: 33, height: 33)
             lottieAnimation.loopAnimation = true
             lottieAnimation.contentMode = .scaleToFill

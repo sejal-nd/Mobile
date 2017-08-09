@@ -39,20 +39,20 @@ class UnauthenticatedUserViewController: UIViewController {
             break
         }
         
-        if let animationView = LOTAnimationView(name: lottieName) {
-            animationView.frame = CGRect(x: 0, y: 0, width: 230, height: 180)
-            animationView.contentMode = .scaleAspectFill
-            animationView.loopAnimation = true
-            
-            // put the animation at the center top screen
-            var center = lottieView.center
-            center.x = self.view.center.x;
-            animationView.center = center;
-            
-            lottieView.addSubview(animationView)
-            
-            animationView.play()
-        }
+        let animationView = LOTAnimationView(name: lottieName)
+        animationView.frame = CGRect(x: 0, y: 0, width: 230, height: 180)
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopAnimation = true
+        
+        // put the animation at the center top screen
+        var center = lottieView.center
+        center.x = self.view.center.x;
+        animationView.center = center;
+        
+        lottieView.addSubview(animationView)
+        
+        animationView.play()
+        
         
         
         // For release one, only contact us and term policies button will be shown,

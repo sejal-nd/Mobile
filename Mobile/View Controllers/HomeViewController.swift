@@ -42,7 +42,7 @@ class HomeViewController: AccountPickerViewController {
         }
     }
     
-    var alertLottieAnimation = LOTAnimationView(name: "alert_icon")!
+    var alertLottieAnimation = LOTAnimationView(name: "alert_icon")
     
     let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(),
                                   weatherService: ServiceFactory.createWeatherService(),

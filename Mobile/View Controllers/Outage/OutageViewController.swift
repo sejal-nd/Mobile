@@ -39,8 +39,8 @@ class OutageViewController: AccountPickerViewController {
 
     var gradientLayer: CAGradientLayer!
     
-    var onLottieAnimation = LOTAnimationView(name: "outage")!
-    var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")!
+    var onLottieAnimation = LOTAnimationView(name: "outage")
+    var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")
     var refreshControl: UIRefreshControl?
     
     let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(), outageService: ServiceFactory.createOutageService())
