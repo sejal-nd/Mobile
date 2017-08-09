@@ -169,6 +169,8 @@ class AccountPicker: UIView {
         addressLabel.text = account.address ?? " "
         if let address = account.address {
             addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
+        } else {
+            addressLabel.accessibilityLabel = ""
         }
         
         let accountInfoStackView = UIStackView(arrangedSubviews: [accountNumberLabel, addressLabel])
@@ -286,10 +288,16 @@ extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
         advancedAccountIconImageView?.accessibilityLabel = a11yDescription
         
         advancedAccountNumberLabel?.text = account.accountNumber
+        advancedAccountNumberLabel?.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
         if account.currentPremise != nil {
             advancedAccountAddressLabel?.text = account.currentPremise?.addressGeneral ?? " "
         } else {
             advancedAccountAddressLabel?.text = account.address ?? " "
+        }
+        if advancedAccountAddressLabel?.text == " " {
+            advancedAccountAddressLabel?.accessibilityLabel = ""
+        } else {
+            advancedAccountAddressLabel?.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), advancedAccountAddressLabel?.text ?? "")
         }
         
         delegate?.accountPickerDidChangeAccount(self)
