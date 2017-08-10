@@ -18,20 +18,21 @@ class LoadingView: UIView {
         return Singleton.instance
     }
     
-    private lazy var animationContainer = UIView()
     private var loadingAnimationView = LOTAnimationView(name: "full_screen_loading")
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        animationContainer.frame.size = UIApplication.shared.keyWindow!.bounds.size
-        animationContainer.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
         loadingAnimationView.frame.size = CGSize(width: 72, height: 72)
         loadingAnimationView.loopAnimation = true
+        loadingAnimationView.translatesAutoresizingMaskIntoConstraints = false
         
-        animationContainer.addSubview(loadingAnimationView)
-        addSubview(animationContainer)
+        addSubview(loadingAnimationView)
+        
+        loadingAnimationView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
+        loadingAnimationView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -49,6 +50,11 @@ class LoadingView: UIView {
             loadingView.alpha = 0.0
             
             loadingView.containerView.addSubview(loadingView)
+            
+            loadingView.topAnchor.constraint(equalTo: loadingView.containerView.topAnchor, constant: 0).isActive = true
+            loadingView.bottomAnchor.constraint(equalTo: loadingView.containerView.bottomAnchor, constant: 0).isActive = true
+            loadingView.leadingAnchor.constraint(equalTo: loadingView.containerView.leadingAnchor, constant: 0).isActive = true
+            loadingView.trailingAnchor.constraint(equalTo: loadingView.containerView.trailingAnchor, constant: 0).isActive = true
             
             loadingView.loadingAnimationView.play()
             
@@ -82,28 +88,11 @@ class LoadingView: UIView {
         })
     }
     
-    // Observe the view frame and update the subviews layout
-    public override var frame: CGRect {
-        didSet {
-            if frame == CGRect.zero {
-                return
-            }
-            animationContainer.center = CGPoint(x: frame.width / 2, y: frame.height / 2)
-            loadingAnimationView.center = CGPoint(x: animationContainer.bounds.width / 2, y: animationContainer.bounds.height / 2)
-        }
-    }
-    
     private var containerView: UIView {
         guard let containerView = UIApplication.shared.keyWindow else {
             fatalError("\n`UIApplication.keyWindow` is `nil`. If you're trying to show a spinner from your view controller's `viewDidLoad` method, do that from `viewWillAppear` instead")
         }
         return containerView
-    }
-    
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-        
-        frame = containerView.bounds
     }
     
 }
