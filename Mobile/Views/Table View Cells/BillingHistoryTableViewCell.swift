@@ -66,10 +66,16 @@ class BillingHistoryTableViewCell: UITableViewCell {
     }
     
     private func configurePastCell(item: BillingHistoryItem) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        let dateString = dateFormatter.string(from: item.date)
+        
+        var a11y = ""
         if item.type == BillingHistoryProperties.TypeBilling.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_bill")
             titleLabel.text = BILL_ISSUED
             amountLabel.text = item.totalAmountDue?.currencyString
+            a11y = String(format: NSLocalizedString("%@. %@. %@. View PDF", comment: ""), BILL_ISSUED, dateString, amountLabel.text ?? "")
         } else {
             guard let status = item.status,
                 let amountPaid = item.amountPaid?.currencyString else { return }
@@ -79,13 +85,20 @@ class BillingHistoryTableViewCell: UITableViewCell {
                     iconImageView.image = #imageLiteral(resourceName: "ic_paymentcanceledfailed")
                     titleLabel.text = PAYMENT
                     amountLabel.text = amountPaid
+                if status == BillingHistoryProperties.StatusFailed.rawValue {
+                    a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
+                } else {
+                    a11y = String(format: NSLocalizedString("Cancelled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
+                }
             } else {
                 iconImageView.image = #imageLiteral(resourceName: "ic_paymentcheck")
                 titleLabel.text = PAYMENT
                 amountLabel.text = "-\(String(describing: amountPaid))"
                 amountLabel.textColor = .successGreenText
+                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
             }
         }
+        self.accessibilityLabel = a11y
     }
     
     private func configureUpcomingCell(item: BillingHistoryItem) {

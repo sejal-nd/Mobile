@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class BillingHistoryDetailsViewController: DismissableFormSheetViewController {
+class BillingHistoryDetailsViewController: UIViewController {
 
     var billingHistoryItem: BillingHistoryItem!
     

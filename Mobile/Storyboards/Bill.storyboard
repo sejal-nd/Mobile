@@ -3347,7 +3347,6 @@ Budget Billing?</string>
                         <outlet property="loadingIndicator" destination="3FP-hJ-GKm" id="vbG-v5-AvT"/>
                         <outlet property="tableView" destination="gXN-bS-1R3" id="EKS-Ub-RaX"/>
                         <segue destination="MpQ-Zp-Bed" kind="show" identifier="showBillingHistoryDetailsSegue" id="erR-LQ-U7d"/>
-                        <segue destination="MpQ-Zp-Bed" kind="presentation" identifier="showBillingDetailsIpadSegue" modalPresentationStyle="formSheet" id="lxz-6d-T4J"/>
                         <segue destination="LoQ-Uh-PUl" kind="show" identifier="viewBillSegue" id="c6a-C1-blF"/>
                     </connections>
                 </viewController>
@@ -4254,7 +4253,6 @@ the year</string>
                         <outlet property="tableView" destination="WyA-2k-Kom" id="iwI-Z8-coH"/>
                         <segue destination="tQK-DR-cra" kind="show" identifier="showMoreBillingHistorySegue" id="Tjx-QE-Jag"/>
                         <segue destination="MpQ-Zp-Bed" kind="show" identifier="showBillingDetailsSegue" id="X62-GM-RxQ"/>
-                        <segue destination="MpQ-Zp-Bed" kind="presentation" identifier="showBillingDetailsIpadSegue" modalPresentationStyle="formSheet" id="6Wm-zp-S36"/>
                         <segue destination="VY7-IV-VDc" kind="presentation" identifier="viewBGEasySegue" modalPresentationStyle="formSheet" id="Z6O-TZ-udR"/>
                         <segue destination="LoQ-Uh-PUl" kind="show" identifier="viewBillSegue" id="JxE-Ae-J8n"/>
                         <segue destination="Zhu-5c-ibe" kind="show" identifier="bgeAutoPaySegue" id="Kur-v9-at5"/>
@@ -4287,9 +4285,9 @@ the year</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="i8z-J5-Vom"/>
-        <segue reference="jAa-oL-qHI"/>
-        <segue reference="DmQ-Tj-Ore"/>
         <segue reference="St9-1T-NgU"/>
-        <segue reference="lxz-6d-T4J"/>
+        <segue reference="DmQ-Tj-Ore"/>
+        <segue reference="erR-LQ-U7d"/>
+        <segue reference="c6a-C1-blF"/>
     </inferredMetricsTieBreakers>
 </document>
