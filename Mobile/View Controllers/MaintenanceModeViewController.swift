@@ -19,6 +19,7 @@ class MaintenanceModeViewController: UIViewController {
     let viewModel = MaintenanceModeViewModel(authService: ServiceFactory.createAuthenticationService())
     
     @IBOutlet weak var reloadButton: ButtonControl!
+    @IBOutlet weak var reloadLabel: UILabel!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var opcoLogo: UIImageView!
@@ -30,6 +31,11 @@ class MaintenanceModeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        reloadButton.isAccessibilityElement = true
+        reloadButton.accessibilityLabel = NSLocalizedString("Reload", comment: "")
+        
+        reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
         
         reloadButton.rx.touchUpInside.asDriver()
             .drive(onNext: onReloadPress)
