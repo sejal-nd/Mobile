@@ -148,11 +148,13 @@ class HomeViewController: AccountPickerViewController {
         
         viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).disposed(by: bag)
         viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).disposed(by: bag)
+        viewModel.showWeatherDetails.drive(temperatureLabel.rx.isAccessibilityElement).disposed(by: bag)
+        viewModel.showWeatherDetails.drive(weatherIconImage.rx.isAccessibilityElement).disposed(by: bag)
         
         viewModel.greeting.drive(greetingLabel.rx.text).disposed(by: bag)
         viewModel.weatherTemp.drive(temperatureLabel.rx.text).disposed(by: bag)
         viewModel.weatherIcon.drive(weatherIconImage.rx.image).disposed(by: bag)
-        viewModel.shortForecast.drive(weatherIconImage.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.weatherIconA11yLabel.drive(weatherIconImage.rx.accessibilityLabel).disposed(by: bag)
         
         noNetworkConnectionView.reload
             .map { FetchingAccountState.switchAccount }

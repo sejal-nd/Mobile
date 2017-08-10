@@ -103,7 +103,7 @@ class HomeViewModel {
         .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
     
-    private(set) lazy var shortForecast: Driver<String?> = self.weatherEvents.elements()
+    private(set) lazy var weatherIconA11yLabel: Driver<String?> = self.weatherEvents.elements()
         .map { $0.accessibilityName }
         .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
