@@ -7,22 +7,30 @@
 //
 
 import UIKit
+import WebKit
 
 class OutageMapViewController: UIViewController {
 
-    @IBOutlet weak var webView: UIWebView!
+    let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     let opco = Environment.sharedInstance.opco
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Outage Map", comment: "")
-        
-        webView.delegate = self
-        
+        title = NSLocalizedString("Outage Map", comment: "")
+
+        webView.navigationDelegate = self
+        view.addSubview(webView)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        webView.isHidden = true
+
         let url = URL(string: Environment.sharedInstance.outageMapUrl)!
-        webView.loadRequest(URLRequest(url: url))
+        webView.load(URLRequest(url: url))
         webView.isAccessibilityElement = false
         webView.accessibilityLabel = NSLocalizedString("This is an outage map showing the areas that are currently experiencing an outage. You can check your outage status on the main Outage section of the app.", comment: "")
     }
@@ -37,12 +45,13 @@ class OutageMapViewController: UIViewController {
 
 }
 
-extension OutageMapViewController: UIWebViewDelegate {
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+extension OutageMapViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         loadingIndicator.isHidden = true
         
+        webView.isHidden = false
         webView.isAccessibilityElement = true
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
     }
     
 }
