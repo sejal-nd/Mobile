@@ -187,8 +187,36 @@ class FloatLabelTextField: UIView {
     
     func setKeyboardType(_ type: UIKeyboardType) {
         textField.keyboardType = type
+        if type == .numberPad || type == .decimalPad || type == .phonePad {
+            let done = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(doneButtonAction))
+            addDoneButton(done)
+        }
     }
     
-    //TODO: add convenience functions for other properties like returnKeyType, placeholder, autocorrectionType, isSecureTextEntry, etc
+    func setKeyboardType(_ type: UIKeyboardType, doneActionTarget: Any, doneActionSelector: Selector) {
+        textField.keyboardType = type
+        if type == .numberPad || type == .decimalPad || type == .phonePad {
+            let done = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: doneActionTarget, action: doneActionSelector)
+            addDoneButton(done)
+        }
+    }
+    
+    private func addDoneButton(_ doneButton: UIBarButtonItem) {
+        doneButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.actionBlue], for: .normal)
+        
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle = UIBarStyle.default
+        doneToolbar.items = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            doneButton
+        ]
+        doneToolbar.sizeToFit()
+        
+        textField.inputAccessoryView = doneToolbar
+    }
+    
+    @objc private func doneButtonAction() {
+        textField.resignFirstResponder()
+    }
     
 }
