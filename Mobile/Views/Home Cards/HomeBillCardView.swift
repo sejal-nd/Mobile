@@ -116,6 +116,7 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.layer.borderWidth = 2
         saveAPaymentAccountButton.layer.cornerRadius = 3
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Save a payment account to One Touch Pay", comment: "")
         
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         dueAmountAndDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
@@ -215,13 +216,14 @@ class HomeBillCardView: UIView {
         viewModel.dueAmountAndDateText.drive(dueAmountAndDateLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardNumberText.drive(bankCreditCardNumberLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardImage.drive(bankCreditCardImageView.rx.image).disposed(by: bag)
-        viewModel.bankCreditCardImageAccessibilityLabel.drive(bankCreditCardImageView.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.bankCreditCardButtonAccessibilityLabel.drive(bankCreditNumberButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.minPaymentAllowedText.drive(minimumPaymentLabel.rx.text).disposed(by: bag)
         viewModel.convenienceFeeText.drive(convenienceFeeLabel.rx.text).disposed(by: bag)
         viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).disposed(by: bag)
         viewModel.automaticPaymentInfoButtonText.drive(automaticPaymentInfoButtonLabel.rx.text).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButtonLabel.rx.text).disposed(by: bag)
         viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButtonLabel.rx.text).disposed(by: bag)
+        viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.enableOneTouchPayTCButton.drive(oneTouchPayTCButton.rx.isEnabled).disposed(by: bag)
         viewModel.oneTouchPayTCButtonTextColor.drive(oneTouchPayTCButtonLabel.rx.textColor).disposed(by: bag)
         
