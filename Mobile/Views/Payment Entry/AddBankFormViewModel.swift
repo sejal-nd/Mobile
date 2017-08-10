@@ -116,7 +116,9 @@ class AddBankFormViewModel {
             }
             
             // Check for duplicate nickname
-            if self.nicknamesInWallet.contains($0) {
+            if self.nicknamesInWallet.map({ nickname in
+                return nickname.lowercased()
+            }).contains($0.lowercased()) {
                 return NSLocalizedString("This nickname is already in use", comment: "")
             }
             

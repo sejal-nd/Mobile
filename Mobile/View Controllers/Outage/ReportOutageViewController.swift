@@ -212,7 +212,7 @@ class ReportOutageViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if let navController = navigationController as? MainBaseNavigationController {
-            navController.setWhiteNavBar()
+            navController.setColoredNavBar()
         }
     }
     
