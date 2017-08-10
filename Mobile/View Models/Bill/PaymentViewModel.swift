@@ -786,23 +786,39 @@ class PaymentViewModel {
     }
     
     var selectedWalletItemA11yLabel: Driver<String> {
-        return selectedWalletItem.asDriver().map {
-            guard let walletItem = $0 else { return "" }
+        return Driver.combineLatest(selectedWalletItem.asDriver(), inlineBank.asDriver(), addBankFormViewModel.accountNumber.asDriver(), addBankFormViewModel.nickname.asDriver(), inlineCard.asDriver(), addCardFormViewModel.cardNumber.asDriver(), addCardFormViewModel.nickname.asDriver()).map {
             
             var a11yLabel = ""
             
-            if walletItem.bankOrCard == .bank {
+            if $1 {
                 a11yLabel = NSLocalizedString("Bank account", comment: "")
-            } else {
+                if !$3.isEmpty {
+                    a11yLabel += ", \($3)"
+                }
+                a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), String($2.characters.suffix(4)))
+            } else if $4 {
                 a11yLabel = NSLocalizedString("Credit card", comment: "")
-            }
-            
-            if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
-                a11yLabel += ", \(nicknameText)"
-            }
-            
-            if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-                a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
+                if !$6.isEmpty {
+                    a11yLabel += ", \($6)"
+                }
+                a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), String($5.characters.suffix(4)))
+            } else {
+                if let walletItem: WalletItem = $0 {
+                    if walletItem.bankOrCard == .bank {
+                        a11yLabel = NSLocalizedString("Bank account", comment: "")
+                    } else {
+                        a11yLabel = NSLocalizedString("Credit card", comment: "")
+                    }
+                    
+                    if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
+                        a11yLabel += ", \(nicknameText)"
+                    }
+                    
+                    if let last4Digits = walletItem.maskedWalletItemAccountNumber {
+                        a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
+                    }
+                }
+                
             }
             
             return a11yLabel
