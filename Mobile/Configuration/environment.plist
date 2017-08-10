@@ -5,9 +5,9 @@
 	<key>environment</key>
 	<string>TEST</string>
 	<key>appName</key>
-	<string>BGE_TEST</string>
+	<string>PECO_TEST</string>
 	<key>opco</key>
-	<string>BGE</string>
+	<string>PECO</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
@@ -15,17 +15,11 @@
 	<key>fiservUrl</key>
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
 	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
-	<key>templateCardUrlResidentNotEnrolled</key>
-	<string>https://bgesavings.com/enroll</string>
-	<key>templateCardUrlLegacyTstat</key>
-	<string>https://secure.bge.com/Peakrewards/Pages/default.aspx</string>
-	<key>templateCardUrlWiFiTstat</key>
-	<string>https://www.ecobee.com/home/ecobeeLogin.jsp</string>
-	<key>templateCardUrlCommericalUser</key>
-	<string>http://bgesmartenergy.com/business</string>
+	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
+	<key>templateCardUrl</key>
+	<string>http://www.peco.com/smartideas</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_bge_testing</string>
+	<string>GoogleService-Info_peco_testing</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 </dict>
