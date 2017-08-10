@@ -562,8 +562,15 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zz7-Yi-MtH">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4y-Cq-6p7" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="xNs-4h-0xc"/>
+                                        </constraints>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wj3-R8-PEk">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="938.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="948"/>
                                         <subviews>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-bI-z1O">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
@@ -712,7 +719,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-Bd-NCe">
-                                                <rect key="frame" x="0.0" y="164.5" width="375" height="104"/>
+                                                <rect key="frame" x="0.0" y="164.5" width="375" height="113.5"/>
                                                 <subviews>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Z3B-9b-TVX" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="29" y="32" width="51" height="31"/>
@@ -721,7 +728,7 @@
                                                         </constraints>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="I have checked my circuit breakers or fuse box and I would still like to report an outage." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsO-JP-Q4X">
-                                                        <rect key="frame" x="97" y="24" width="249" height="56"/>
+                                                        <rect key="frame" x="97" y="24" width="249" height="65.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -739,7 +746,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5lr-vG-MUZ">
-                                                <rect key="frame" x="0.0" y="268.5" width="375" height="364"/>
+                                                <rect key="frame" x="0.0" y="278" width="375" height="364"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4L-Ty-VsC" userLabel="Spacer View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -838,7 +845,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6M8-NZ-rW4" userLabel="Footer Container View">
-                                                <rect key="frame" x="0.0" y="632.5" width="375" height="306"/>
+                                                <rect key="frame" x="0.0" y="642" width="375" height="306"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3B-jb-AXr">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -895,11 +902,14 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="c4y-Cq-6p7" firstAttribute="leading" secondItem="Zz7-Yi-MtH" secondAttribute="leading" id="55u-vl-6hW"/>
+                                    <constraint firstItem="c4y-Cq-6p7" firstAttribute="top" secondItem="Zz7-Yi-MtH" secondAttribute="top" id="7i5-5p-VHC"/>
                                     <constraint firstItem="Wj3-R8-PEk" firstAttribute="centerX" secondItem="Zz7-Yi-MtH" secondAttribute="centerX" id="8M5-XA-X7G"/>
+                                    <constraint firstAttribute="trailing" secondItem="c4y-Cq-6p7" secondAttribute="trailing" id="FC3-Ro-D9z"/>
                                     <constraint firstAttribute="bottom" secondItem="Wj3-R8-PEk" secondAttribute="bottom" id="Gyc-Qf-6ma"/>
                                     <constraint firstAttribute="trailing" secondItem="Wj3-R8-PEk" secondAttribute="trailing" id="Zpd-h9-ez2"/>
                                     <constraint firstItem="Wj3-R8-PEk" firstAttribute="leading" secondItem="Zz7-Yi-MtH" secondAttribute="leading" id="iYN-pQ-7pd"/>
-                                    <constraint firstItem="Wj3-R8-PEk" firstAttribute="top" secondItem="Zz7-Yi-MtH" secondAttribute="top" id="uiK-dA-e8b"/>
+                                    <constraint firstItem="Wj3-R8-PEk" firstAttribute="top" secondItem="c4y-Cq-6p7" secondAttribute="bottom" id="lsT-s6-Tf6"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
