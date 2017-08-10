@@ -130,13 +130,13 @@ class BillViewModel {
     }
     
     lazy var shouldShowPendingPayment: Driver<Bool> = self.currentAccountDetail.asDriver().map {
-        //TODO: Account for web service change when this becomes an array
         $0?.billingInfo.pendingPayments.first?.amount ?? 0 > 0
     }
     
     lazy var shouldShowRemainingBalanceDue: Driver<Bool> = self.currentAccountDetail.asDriver().map {
-        guard let billingInfo = $0?.billingInfo else { return false }
-        return billingInfo.pendingPayments.first?.amount ?? 0 > 0 && billingInfo.remainingBalanceDue ?? 0 > 0
+        return $0?.billingInfo.pendingPayments.first?.amount ?? 0 > 0 &&
+            $0?.billingInfo.remainingBalanceDue ?? 0 > 0 &&
+            Environment.sharedInstance.opco != .bge
     }
     
     lazy var shouldShowRemainingBalancePastDue: Driver<Bool> = {
@@ -144,7 +144,7 @@ class BillViewModel {
             guard let billingInfo = accountDetail?.billingInfo else { return false }
             return billingInfo.pastDueRemaining ?? 0 > 0
         }
-        return Driver.zip(showRemainingPastDue, self.shouldShowPastDue) { $0 && $1 }
+        return Driver.zip(showRemainingPastDue, self.shouldShowPastDue) { $0 && $1 && Environment.sharedInstance.opco != .bge }
     }()
     
     lazy var shouldShowBillIssued: Driver<Bool> = self.currentAccountDetail.asDriver().map {
@@ -344,17 +344,21 @@ class BillViewModel {
     }
     
     //MARK: - Remaining Balance Due
-    var remainingBalanceDueText: String {
+    var remainingBalanceDueText: String? {
         switch Environment.sharedInstance.opco {
         case .bge:
-            return NSLocalizedString("Amount Remaining Due", comment: "")
+            return nil
         case .comEd, .peco:
             return NSLocalizedString("Remaining Balance Due", comment: "")
         }
     }
     
     lazy var remainingBalanceDueAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
-        $0?.billingInfo.remainingBalanceDue?.currencyString ?? "--"
+        if $0?.billingInfo.pendingPayments.first?.amount == $0?.billingInfo.netDueAmount {
+            return 0.currencyString
+        } else {
+            return $0?.billingInfo.remainingBalanceDue?.currencyString ?? "--"
+        }
     }
     
     lazy var remainingBalanceDueDateText: Driver<String?> = self.currentAccountDetail.asDriver().map {
@@ -364,10 +368,10 @@ class BillViewModel {
     }
     
     //MARK: - Remaining Balance Past Due
-    var remainingBalancePastDueText: String {
+    var remainingBalancePastDueText: String? {
         switch Environment.sharedInstance.opco {
         case .bge:
-            return NSLocalizedString("Amount Remaining Past Due", comment: "")
+            return nil
         case .comEd, .peco:
             return NSLocalizedString("Remaining Past Balance Due ", comment: "")
         }

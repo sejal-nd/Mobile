@@ -426,6 +426,8 @@ class HomeBillCardViewModel {
                 return $0.billingInfo.disconnectNoticeArrears?.currencyString
             case .billPaid:
                 return $0.billingInfo.lastPaymentAmount?.currencyString
+            case .paymentPending:
+                return $0.billingInfo.pendingPayments.last?.amount.currencyString
             default:
                 return $0.billingInfo.netDueAmount?.currencyString
             }
