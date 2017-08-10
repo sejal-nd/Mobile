@@ -111,7 +111,10 @@
 
 - (BOOL)setString:(NSString *)string forKey:(NSString *)key promptMessage:(NSString *)message {
     NSData *data = key ? [string dataUsingEncoding:NSUTF8StringEncoding] : nil;
-    return [self setData:data forKey:key promptMessage:message];
+    if (data) {
+        return [self setData:data forKey:key promptMessage:message];
+    }
+    return false;
 }
 
 
