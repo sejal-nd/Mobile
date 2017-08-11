@@ -100,7 +100,7 @@ class OutageViewModel {
     func getGasOnlyMessage() -> String {
         switch Environment.sharedInstance.opco {
         case .bge:
-            return NSLocalizedString("This account receives gas service only.  We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency, please call 1-800-685-0123.  For downed or sparking power lines or dim / flickering lights, please call 1-877-778-2222.", comment: "")
+            return NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: "")
         case .peco:
             return NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", comment: "")
         default:
