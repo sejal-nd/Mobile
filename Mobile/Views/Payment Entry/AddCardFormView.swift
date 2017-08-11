@@ -74,7 +74,7 @@ class AddCardFormView: UIView {
         
         cardNumberTextField.textField.placeholder = NSLocalizedString("Card Number*", comment: "")
         cardNumberTextField.textField.delegate = self
-        cardNumberTextField.textField.returnKeyType = .next
+        cardNumberTextField.setKeyboardType(.numberPad)
         cardNumberTextField.textField.isShowingAccessory = true
         cardIOButton.accessibilityLabel = NSLocalizedString("Take a photo to scan credit card number", comment: "")
         
@@ -85,8 +85,7 @@ class AddCardFormView: UIView {
         expMonthTextField.textField.placeholder = NSLocalizedString("MM*", comment: "")
         expMonthTextField.textField.customAccessibilityLabel = NSLocalizedString("Month, two digits", comment: "")
         expMonthTextField.textField.delegate = self
-        expMonthTextField.setKeyboardType(
-            .numberPad)
+        expMonthTextField.setKeyboardType(.numberPad)
         expMonthTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         expYearTextField.textField.placeholder = NSLocalizedString("YYYY*", comment: "")
@@ -300,8 +299,6 @@ extension AddCardFormView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == nameOnCardTextField.textField {
             cardNumberTextField.textField.becomeFirstResponder()
-        } else if textField == cardNumberTextField.textField {
-            expMonthTextField.textField.becomeFirstResponder()
         }
         return false
     }

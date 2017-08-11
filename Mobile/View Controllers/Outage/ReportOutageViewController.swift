@@ -144,7 +144,7 @@ class ReportOutageViewController: UIViewController {
 
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
-        phoneNumberTextField.textField.returnKeyType = opco == .bge ? .done:.next
+        phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
             if self.viewModel.phoneNumber.value.characters.count > 0 {
@@ -164,7 +164,7 @@ class ReportOutageViewController: UIViewController {
         }).disposed(by: disposeBag)
         phoneExtensionTextField.textField.placeholder = NSLocalizedString("Contact Number Ext. (Optional)", comment: "")
         phoneExtensionTextField.textField.autocorrectionType = .no
-        phoneExtensionTextField.textField.returnKeyType = .done
+        phoneExtensionTextField.setKeyboardType(.numberPad)
         phoneExtensionTextField.textField.delegate = self
 
         if opco == .bge {
@@ -380,25 +380,5 @@ extension ReportOutageViewController: UITextFieldDelegate {
         }
         
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == phoneNumberTextField.textField {
-            if phoneExtensionContainerView.isHidden {
-                if viewModel.submitEnabled.value {
-                    onSubmitPress()
-                } else {
-                    view.endEditing(true)
-                }
-            } else {
-                phoneExtensionTextField.textField.becomeFirstResponder()
-            }
-        } else if textField == phoneExtensionTextField?.textField {
-            if viewModel.submitEnabled.value {
-                onSubmitPress()
-            } else {
-                view.endEditing(true)
-            }
-        }
-        return false
-    }
+
 }

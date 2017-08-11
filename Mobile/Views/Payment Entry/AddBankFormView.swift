@@ -69,19 +69,19 @@ class AddBankFormView: UIView {
         
         routingNumberTextField.textField.placeholder = NSLocalizedString("Routing Number*", comment: "")
         routingNumberTextField.textField.delegate = self
-        routingNumberTextField.textField.returnKeyType = .next
+        routingNumberTextField.setKeyboardType(.numberPad)
         routingNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         routingNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.delegate = self
-        accountNumberTextField.textField.returnKeyType = .next
+        accountNumberTextField.setKeyboardType(.numberPad)
         accountNumberTextField.textField.isShowingAccessory = true
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         confirmAccountNumberTextField.textField.placeholder = NSLocalizedString("Confirm Account Number*", comment: "")
         confirmAccountNumberTextField.textField.delegate = self
-        confirmAccountNumberTextField.textField.returnKeyType = .next
+        confirmAccountNumberTextField.setKeyboardType(.numberPad)
         
         saveToWalletLabel.textColor = .deepGray
         saveToWalletLabel.text = NSLocalizedString("Save to My Wallet", comment: "")
@@ -235,28 +235,8 @@ extension AddBankFormView: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if Environment.sharedInstance.opco == .bge {
-            if textField == accountHolderNameTextField.textField {
-                routingNumberTextField.textField.becomeFirstResponder()
-            } else if textField == routingNumberTextField.textField {
-                accountNumberTextField.textField.becomeFirstResponder()
-            } else if textField == accountNumberTextField.textField {
-                if confirmAccountNumberTextField.isUserInteractionEnabled {
-                    confirmAccountNumberTextField.textField.becomeFirstResponder()
-                }
-            } else if textField == confirmAccountNumberTextField.textField {
-                nicknameTextField.textField.becomeFirstResponder()
-            }
-        } else {
-            if textField == routingNumberTextField.textField {
-                accountNumberTextField.textField.becomeFirstResponder()
-            } else if textField == accountNumberTextField.textField {
-                if confirmAccountNumberTextField.isUserInteractionEnabled {
-                    confirmAccountNumberTextField.textField.becomeFirstResponder()
-                }
-            } else if textField == confirmAccountNumberTextField.textField {
-                nicknameTextField.textField.becomeFirstResponder()
-            }
+        if textField == accountHolderNameTextField.textField {
+            routingNumberTextField.textField.becomeFirstResponder()
         }
         return false
     }

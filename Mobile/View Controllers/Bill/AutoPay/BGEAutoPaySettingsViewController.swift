@@ -795,17 +795,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == amountNotToExceedTextField.textField {
-            textField.resignFirstResponder()
-            
-        } else if textField == numberOfPaymentsTextField.textField {
-            textField.resignFirstResponder()
-        }
-        
-        return true
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)

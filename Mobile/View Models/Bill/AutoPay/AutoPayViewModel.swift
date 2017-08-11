@@ -146,7 +146,7 @@ class AutoPayViewModel {
         .map { $0 ? nil : NSLocalizedString("Must be 9 digits", comment: "") }
     
     lazy var accountNumberErrorText: Driver<String?> = self.accountNumber.asDriver()
-        .map { 4...17 ~= $0.characters.count }
+        .map { 4...17 ~= $0.characters.count || $0.isEmpty }
         .distinctUntilChanged()
         .map { $0 ? nil: NSLocalizedString("Must be between 4-17 digits", comment: "") }
     

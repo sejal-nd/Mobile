@@ -107,7 +107,7 @@ class RegistrationValidateAccountViewController: UIViewController {
         if opCo != .bge {
             accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
             accountNumberTextField.textField.autocorrectionType = .no
-            accountNumberTextField.textField.returnKeyType = .next
+            accountNumberTextField.setKeyboardType(.numberPad)
             accountNumberTextField.textField.delegate = self
             accountNumberTextField.textField.isShowingAccessory = true
             accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
@@ -138,7 +138,7 @@ class RegistrationValidateAccountViewController: UIViewController {
         //
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
-        phoneNumberTextField.textField.returnKeyType = .next
+        phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
         phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).disposed(by: disposeBag)
         phoneNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
@@ -172,7 +172,7 @@ class RegistrationValidateAccountViewController: UIViewController {
         
         ssNumberNumberTextField.textField.placeholder = NSLocalizedString(ssString, comment: "")
         ssNumberNumberTextField.textField.autocorrectionType = .no
-        ssNumberNumberTextField.textField.returnKeyType = .done
+        ssNumberNumberTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIdentifierKeyboardDonePress))
         ssNumberNumberTextField.textField.delegate = self
         ssNumberNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
         ssNumberNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
@@ -199,10 +199,7 @@ class RegistrationValidateAccountViewController: UIViewController {
             self.accessibilityErrorLabel()
             
         }).disposed(by: disposeBag)
-        
-        accountNumberTextField.setKeyboardType(.numberPad)
-        phoneNumberTextField.setKeyboardType(.numberPad)
-        ssNumberNumberTextField.setKeyboardType(.numberPad)
+    
     }
     
     deinit {
@@ -248,6 +245,15 @@ class RegistrationValidateAccountViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func onIdentifierKeyboardDonePress() {
+        viewModel.nextButtonEnabled().single().subscribe(onNext: { enabled in
+            if enabled {
+                self.onNextPress()
+            } else {
+                self.view.endEditing(true)
+            }
+        }).disposed(by: disposeBag)
+    }
 
     func onCancelPress() {
         // We do this to cover the case where we push RegistrationViewController from LandingViewController.
@@ -376,21 +382,4 @@ extension RegistrationValidateAccountViewController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == accountNumberTextField.textField {
-            phoneNumberTextField.textField.becomeFirstResponder()
-        } else if textField == phoneNumberTextField.textField {
-            ssNumberNumberTextField.textField.becomeFirstResponder()
-        } else if textField == ssNumberNumberTextField?.textField || textField == accountNumberTextField?.textField {
-            viewModel.nextButtonEnabled().single().subscribe(onNext: { enabled in
-                if enabled {
-                    self.onNextPress()
-                } else {
-                    self.view.endEditing(true)
-                }
-            }).disposed(by: disposeBag)
-        }
-        return false
-    }
-
 }
