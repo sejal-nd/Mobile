@@ -92,8 +92,8 @@ class PaperlessEBillViewController: UIViewController {
             .drive(submitButton.rx.isEnabled)
             .disposed(by: bag)
         
-        whatIsButton.backgroundColorOnPress = .softGray
-        whatIsButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+        learnMoreButton.backgroundColorOnPress = .softGray
+        learnMoreButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             let description: String
             if Environment.sharedInstance.opco == .bge {
                 description = NSLocalizedString("Eliminate your paper bill.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  You will receive bill ready email notifications regardless of preference.  Your preference will be updated with your next month’s bill.", comment: "")
