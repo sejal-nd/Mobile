@@ -41,18 +41,24 @@ class PaymentViewModel {
     
     var oneTouchPayItem: WalletItem?
     
-    let paymentId: Variable<String?>
     let paymentDetail = Variable<PaymentDetail?>(nil)
+    let paymentId = Variable<String?>(nil)
+    let allowEdits = Variable(true)
+    let allowDeletes = Variable(false)
     
-    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentId: String?, paymentDetail: PaymentDetail?) {
+    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
         self.paymentService = paymentService
         self.accountDetail = Variable(accountDetail)
         self.addBankFormViewModel = addBankFormViewModel
         self.addCardFormViewModel = addCardFormViewModel
-        self.paymentId = Variable(paymentId)
         self.paymentDetail.value = paymentDetail
-        
+        if let billingHistoryItem = billingHistoryItem {
+            self.paymentId.value = billingHistoryItem.paymentId
+            self.allowEdits.value = billingHistoryItem.flagAllowEdits
+            self.allowDeletes.value = billingHistoryItem.flagAllowDeletes
+        }
+
         if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
             amountDue = Variable(netDueAmount)
             paymentAmount = Variable(String.init(format: "%.02f", netDueAmount))
@@ -68,7 +74,7 @@ class PaymentViewModel {
             self.paymentDate.value = tomorrow
         }
         if let dueDate = accountDetail.billingInfo.dueByDate {
-            if dueDate >= startOfTodayDate && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true) {
+            if dueDate >= startOfTodayDate && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
                 self.paymentDate.value = dueDate
             }
         }
@@ -588,6 +594,15 @@ class PaymentViewModel {
         return Environment.sharedInstance.opco == .bge && !$0.isResidential
     }
     
+    var shouldShowNextButton: Driver<Bool> {
+        return Driver.combineLatest(paymentId.asDriver(), allowEdits.asDriver()).map {
+            if $0 != nil {
+                return $1
+            }
+            return true
+        }
+    }
+    
     var shouldShowContent: Driver<Bool> {
         return Driver.combineLatest(isFetching.asDriver(), isError.asDriver()).map {
             return !$0 && !$1
@@ -629,7 +644,10 @@ class PaymentViewModel {
     }
     
     var shouldShowCvvTextField: Driver<Bool> {
-        return Driver.combineLatest(cardWorkflow, inlineCard.asDriver()).map {
+        return Driver.combineLatest(cardWorkflow, inlineCard.asDriver(), allowEdits.asDriver()).map {
+            if !$2 {
+                return false
+            }
             if Environment.sharedInstance.opco == .bge && $0 && !$1 {
                 return true
             }
@@ -642,11 +660,14 @@ class PaymentViewModel {
     }
     
     var shouldShowPaymentAmountTextField: Driver<Bool> {
-        return Driver.combineLatest(hasWalletItems, inlineBank.asDriver(), inlineCard.asDriver()).map {
+        return Driver.combineLatest(hasWalletItems, inlineBank.asDriver(), inlineCard.asDriver(), allowEdits.asDriver()).map {
+            if !$3 {
+                return false
+            }
             return $0 || $1 || $2
         }
     }
-    
+        
     var paymentAmountErrorMessage: Driver<String?> {
         return Driver.combineLatest(bankWorkflow, cardWorkflow, accountDetail.asDriver(), paymentAmount.asDriver().map {
             Double(String($0.characters.filter { "0123456789.".characters.contains($0) }))
@@ -889,18 +910,18 @@ class PaymentViewModel {
     }
     
     var isFixedPaymentDate: Driver<Bool> {
-        return Driver.combineLatest(accountDetail.asDriver(), cardWorkflow, inlineCard.asDriver(), addBankFormViewModel.saveToWallet.asDriver(), addCardFormViewModel.saveToWallet.asDriver()).map { (accountDetail, cardWorkflow, inlineCard, saveBank, saveCard) in
-            return self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: cardWorkflow, inlineCard: inlineCard, saveBank: saveBank, saveCard: saveCard)
+        return Driver.combineLatest(accountDetail.asDriver(), cardWorkflow, inlineCard.asDriver(), addBankFormViewModel.saveToWallet.asDriver(), addCardFormViewModel.saveToWallet.asDriver(), allowEdits.asDriver()).map { (accountDetail, cardWorkflow, inlineCard, saveBank, saveCard, allowEdits) in
+            return self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: cardWorkflow, inlineCard: inlineCard, saveBank: saveBank, saveCard: saveCard, allowEdits: allowEdits)
         }
     }
     
-    private func fixedPaymentDateLogic(accountDetail: AccountDetail, cardWorkflow: Bool, inlineCard: Bool, saveBank: Bool, saveCard: Bool) -> Bool {
+    private func fixedPaymentDateLogic(accountDetail: AccountDetail, cardWorkflow: Bool, inlineCard: Bool, saveBank: Bool, saveCard: Bool, allowEdits: Bool) -> Bool {
         if Environment.sharedInstance.opco == .bge {
-            if (inlineCard && !saveCard) || accountDetail.isActiveSeverance {
+            if (inlineCard && !saveCard) || accountDetail.isActiveSeverance || !allowEdits {
                 return true
             }
         } else {
-            if cardWorkflow || inlineCard || !saveBank {
+            if cardWorkflow || inlineCard || !saveBank || !allowEdits {
                 return true
             }
             if accountDetail.billingInfo.pastDueAmount ?? 0 > 0 { // Past due, avoid shutoff
@@ -936,8 +957,13 @@ class PaymentViewModel {
         }
     }
     
-    lazy var shouldShowDeletePaymentButton: Driver<Bool> = self.paymentId.asDriver().map {
-        return $0 != nil
+    var shouldShowDeletePaymentButton: Driver<Bool> {
+        return Driver.combineLatest(paymentId.asDriver(), allowDeletes.asDriver()).map {
+            if $0 != nil {
+                return $1
+            }
+            return false
+        }
     }
     
     var shouldShowBillMatrixView: Driver<Bool> {
