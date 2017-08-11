@@ -25,8 +25,8 @@ class SeparatorSpaceView: UIView {
     }
     
     func commonInit() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        heightConstraint = self.heightAnchor.constraint(equalToConstant: 10.0)
+        translatesAutoresizingMaskIntoConstraints = false
+        heightConstraint = heightAnchor.constraint(equalToConstant: 10.0)
         heightConstraint.priority = 999
         heightConstraint.isActive = true
     }
@@ -35,13 +35,13 @@ class SeparatorSpaceView: UIView {
         return CGSize(width: 312, height: 10)
     }
     
-    static func create(_ heightSpace: CGFloat? = nil) -> SeparatorSpaceView {
+    static func create(withHeight height: CGFloat? = nil) -> SeparatorSpaceView {
         let view = SeparatorSpaceView(frame: .zero)
         
-        if let heightSpace = heightSpace {
+        if let height = height {
             view.removeConstraint(view.heightConstraint)
             
-            view.heightConstraint = view.heightAnchor.constraint(equalToConstant: heightSpace)
+            view.heightConstraint = view.heightAnchor.constraint(equalToConstant: height)
             view.heightConstraint.priority = 999
             view.heightConstraint.isActive = true
         }

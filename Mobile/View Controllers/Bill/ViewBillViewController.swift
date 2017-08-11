@@ -84,4 +84,7 @@ class ViewBillViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .default }
     
+    deinit {
+        dLog(message: className)
+    }
 }

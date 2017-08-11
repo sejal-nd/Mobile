@@ -92,11 +92,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
 
     var viewModel: BGEAutoPayViewModel! // Passed from BGEAutoPayViewController
     
-    var zPositionForWindow:CGFloat = 0.0
+    var zPositionForWindow: CGFloat = 0.0
     
-    let SeparatorIndentLength:CGFloat = 34.0
-    let SpacerHeight10:CGFloat = 10.0
-    let SpacerHeight20:CGFloat = 20.0
+    let separatorInset: CGFloat = 34.0
+    let spacerHeight: CGFloat = 20.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,27 +118,32 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         loadSettings()
         
-        amountNotToExceedTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: { _ in
-            if let text = self.amountNotToExceedTextField.textField.text {
-                if !text.isEmpty {
-                    self.viewModel.userDidChangeSettings.value = true
-                    self.viewModel.formatAmountNotToExceed()
+        amountNotToExceedTextField.textField.rx.controlEvent(.editingChanged)
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                if let text = self.amountNotToExceedTextField.textField.text {
+                    if !text.isEmpty {
+                        self.viewModel.userDidChangeSettings.value = true
+                        self.viewModel.formatAmountNotToExceed()
+                    }
                 }
-            }
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
-        numberOfPaymentsTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: { _ in
-            if let text = self.numberOfPaymentsTextField.textField.text {
-                if !text.isEmpty {
-                    self.viewModel.userDidChangeSettings.value = true
+        numberOfPaymentsTextField.textField.rx.controlEvent(.editingChanged)
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                if let text = self.numberOfPaymentsTextField.textField.text {
+                    if !text.isEmpty {
+                        self.viewModel.userDidChangeSettings.value = true
+                    }
                 }
-            }
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        dLog(message: className)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -191,7 +195,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
              untilDateButton.selectedDateLabel.text = date.mmDdYyyyString
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM dd, yyyy"
-            untilDateButton.accessibilityUpdate(dateLabel: dateFormatter.string(from: date) + ", selected")
+            untilDateButton.accessibilityUpdate(dateText: dateFormatter.string(from: date) + ", selected")
         }
     
         //
@@ -295,14 +299,14 @@ class BGEAutoPaySettingsViewController: UIViewController {
     func showPickerView(_ showPicker: Bool, completion: (() -> ())? = nil) {
         if showPicker {
             let row = viewModel.numberOfDaysBeforeDueDate.value == "0" ? 1 : Int(viewModel.numberOfDaysBeforeDueDate.value)!
-            self.dayPickerView.selectRow(row - 1)
-            self.dayPickerView.isHidden = false
+            dayPickerView.selectRow(row - 1)
+            dayPickerView.isHidden = false
         }
         
-        self.dayPickerView.layer.zPosition = showPicker ? self.zPositionForWindow : -1
-        UIApplication.shared.keyWindow?.layer.zPosition = showPicker ? -1 : self.zPositionForWindow
+        dayPickerView.layer.zPosition = showPicker ? zPositionForWindow : -1
+        UIApplication.shared.keyWindow?.layer.zPosition = showPicker ? -1 : zPositionForWindow
         
-        var bottomAnchorLength = self.dayPickerView.containerView.frame.size.height + 8
+        var bottomAnchorLength = dayPickerView.containerView.frame.size.height + 8
         var alpha:Float = 0.0
         
         if showPicker {
@@ -310,14 +314,15 @@ class BGEAutoPaySettingsViewController: UIViewController {
             bottomAnchorLength = -8
         }
 
-        self.dayPickerView.bottomConstraint.constant = bottomAnchorLength
+        dayPickerView.bottomConstraint.constant = bottomAnchorLength
     
-        self.dayPickerView.layoutIfNeeded()
+        dayPickerView.layoutIfNeeded()
         UIView.animate(withDuration: 0.25, animations: {
             self.dayPickerView.layoutIfNeeded()
             
             self.dayPickerView.backgroundColor =  UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: alpha)
-        }, completion: { _ in
+        }, completion: { [weak self] _ in
+            guard let `self` = self else { return }
             if !showPicker {
                 self.dayPickerView.accessibilityViewIsModal = false
                 self.dayPickerView.isHidden = true
@@ -350,7 +355,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func didTap() {
-        self.amountNotToExceedTextField.resignFirstResponder()
+        amountNotToExceedTextField.resignFirstResponder()
     }
     
     func buildAmountToPayGroup() -> UIStackView {
@@ -393,7 +398,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountDueRadioControlsSet.append(totalAmountDueRadioControl)
         
         // adding divider to first button
-        let separator1 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
+        let separator1 = SeparatorLineView.create(leadingSpace: separatorInset)
         
         totalAmountDueButtonStackView.addArrangedSubview(separator1)
 
@@ -440,12 +445,12 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedDetailsLabel)
         
         // adding spacer between details label and separator
-        amountNotToExceedSpacerView2 = SeparatorSpaceView.create(SpacerHeight20)
+        amountNotToExceedSpacerView2 = SeparatorSpaceView.create(withHeight: spacerHeight)
 
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedSpacerView2)
         
         // adding separator to end of second button stack view
-        let separator2 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
+        let separator2 = SeparatorLineView.create(leadingSpace: separatorInset)
         amountNotToExceedButtonStackView.addArrangedSubview(separator2)
 
         return amountNotToExceedButtonStackView
@@ -496,10 +501,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         onDueDateButtonStackView.addArrangedSubview(onDueDateDetailsLabel)
         
-        onDueDateSpacerView1 = SeparatorSpaceView.create(SpacerHeight20)
+        onDueDateSpacerView1 = SeparatorSpaceView.create(withHeight: spacerHeight)
         onDueDateButtonStackView.addArrangedSubview(onDueDateSpacerView1)
         
-        let separator1 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
+        let separator1 = SeparatorLineView.create(leadingSpace: separatorInset)
         onDueDateButtonStackView.addArrangedSubview(separator1)
 
         return onDueDateButtonStackView
@@ -530,10 +535,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         beforeDueDateButtonStackView.addArrangedSubview(beforeDueDateDetailsLabel)
         
-        beforeDateSpacerView1 = SeparatorSpaceView.create(SpacerHeight20)
+        beforeDateSpacerView1 = SeparatorSpaceView.create(withHeight: spacerHeight)
         beforeDueDateButtonStackView.addArrangedSubview(beforeDateSpacerView1)
         
-        let separator2 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
+        let separator2 = SeparatorLineView.create(leadingSpace: separatorInset)
         beforeDueDateButtonStackView.addArrangedSubview(separator2)
 
         return beforeDueDateButtonStackView
@@ -589,10 +594,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         untilCanceledButtonStackView.addArrangedSubview(untilCanceledDetailsLabel)
         
-        untilCanceledSpacerView = SeparatorSpaceView.create(SpacerHeight20)
+        untilCanceledSpacerView = SeparatorSpaceView.create(withHeight: spacerHeight)
         untilCanceledButtonStackView.addArrangedSubview(untilCanceledSpacerView)
         
-        let separator1 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
+        let separator1 = SeparatorLineView.create(leadingSpace: separatorInset)
         untilCanceledButtonStackView.addArrangedSubview(separator1)
 
         return untilCanceledButtonStackView
@@ -631,10 +636,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         numberOfPaymentsButtonStackView.addArrangedSubview(numberOfPaymentsDetailsLabel)
         
-        numberOfPaymentsSpacerView2 = SeparatorSpaceView.create(SpacerHeight20)
+        numberOfPaymentsSpacerView2 = SeparatorSpaceView.create(withHeight: spacerHeight)
         numberOfPaymentsButtonStackView.addArrangedSubview(numberOfPaymentsSpacerView2)
         
-        let separator2 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
+        let separator2 = SeparatorLineView.create(leadingSpace: separatorInset)
         numberOfPaymentsButtonStackView.addArrangedSubview(separator2)
 
         return numberOfPaymentsButtonStackView
@@ -652,7 +657,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         untilDateButtonStackView.addArrangedSubview(untilDateButton)
         
-        untilDateSpacerView1 = SeparatorSpaceView.create(SpacerHeight20)
+        untilDateSpacerView1 = SeparatorSpaceView.create(withHeight: spacerHeight)
         untilDateButtonStackView.addArrangedSubview(untilDateSpacerView1)
         
         untilDateDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -666,10 +671,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         untilDateButtonStackView.addArrangedSubview(untilDateDetailsLabel)
         
-        untilDateSpacerView2 = SeparatorSpaceView.create(SpacerHeight20)
+        untilDateSpacerView2 = SeparatorSpaceView.create(withHeight: spacerHeight)
         untilDateButtonStackView.addArrangedSubview(untilDateSpacerView2)
         
-        let separator3 = SeparatorLineView.create(leadingSpace: SeparatorIndentLength)
+        let separator3 = SeparatorLineView.create(leadingSpace: separatorInset)
         untilDateButtonStackView.addArrangedSubview(separator3)
 
         return untilDateButtonStackView
@@ -689,7 +694,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
     func beforeDueDateButtonPressed() {
         view.endEditing(true)
         // Delay here fixes a bug when button is tapped with keyboard up
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: { [weak self] in
+            guard let `self` = self else { return }
             self.showPickerView(true)
             UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select number of days", comment: ""))
         })
@@ -697,7 +703,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
 
     
     func onDateButtonSelected() {
-        self.view.endEditing(true)
+        view.endEditing(true)
         
         let calendarVC = PDTSimpleCalendarViewController()
         
@@ -823,7 +829,7 @@ extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
         untilDateButton.selectedDateLabel.text = date.mmDdYyyyString
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd, yyyy"
-        untilDateButton.accessibilityUpdate(dateLabel: dateFormatter.string(from: date) + ", selected")
+        untilDateButton.accessibilityUpdate(dateText: dateFormatter.string(from: date) + ", selected")
     }
 }
 
@@ -836,7 +842,8 @@ extension BGEAutoPaySettingsViewController: ExelonPickerDelegate {
     }
     
     func donePressed(selectedIndex: Int) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
             let day = selectedIndex + 1
             self.viewModel.userDidChangeSettings.value = true
             self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"

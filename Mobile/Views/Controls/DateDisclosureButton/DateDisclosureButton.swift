@@ -9,6 +9,8 @@
 import UIKit
 
 class DateDisclosureButton: ButtonControl {
+    
+    let selectedDateText = NSLocalizedString("Select Date", comment: "")
 
     @IBOutlet weak var dateDisclosureLabel: UILabel!
     @IBOutlet weak var selectedDateLabel: UILabel!
@@ -31,13 +33,14 @@ class DateDisclosureButton: ButtonControl {
         dateDisclosureLabel.text = label
         dateDisclosureLabel.font = SystemFont.regular.of(textStyle: .title2)
         
-        selectedDateLabel.text = "Select Date"
-        accessibilityUpdate(dateLabel: selectedDateLabel.text!)
+        selectedDateLabel.text = selectedDateText
+        
     }
     
-    func accessibilityUpdate(dateLabel: String) {
-        self.isAccessibilityElement = true
-        self.accessibilityLabel = NSLocalizedString("\(dateDisclosureLabel.text ?? ""): \(dateLabel)", comment: "")
+    func accessibilityUpdate(dateText: String) {
+        isAccessibilityElement = true
+        let localizedText = NSLocalizedString("%@: $@", comment: "")
+        accessibilityLabel = String(format: localizedText, selectedDateText, dateText)
     }
 
 }

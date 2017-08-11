@@ -29,14 +29,16 @@ class MiniWalletViewModel {
         isError.value = false
         walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { walletItems in
+            .subscribe(onNext: { [weak self] walletItems in
+                guard let `self` = self else { return }
                 self.isFetchingWalletItems.value = false
                 self.walletItems.value = walletItems
                 onSuccess()
-            }, onError: { err in
-                self.isFetchingWalletItems.value = false
-                self.isError.value = true
-                onError(err.localizedDescription)
+                }, onError: { [weak self] err in
+                    guard let `self` = self else { return }
+                    self.isFetchingWalletItems.value = false
+                    self.isError.value = true
+                    onError(err.localizedDescription)
             }).disposed(by: disposeBag)
     }
     
@@ -54,7 +56,7 @@ class MiniWalletViewModel {
     
     var bankAccounts: [WalletItem]! {
         var banks = [WalletItem]()
-        guard let walletItems = self.walletItems.value else { return banks }
+        guard let walletItems = walletItems.value else { return banks }
         for item in walletItems {
             if item.bankOrCard == .bank {
                 banks.append(item)
@@ -79,7 +81,7 @@ class MiniWalletViewModel {
     
     var creditCards: [WalletItem]! {
         var cards = [WalletItem]()
-        guard let walletItems = self.walletItems.value else { return cards }
+        guard let walletItems = walletItems.value else { return cards }
         for item in walletItems {
             if item.bankOrCard == .card {
                 cards.append(item)

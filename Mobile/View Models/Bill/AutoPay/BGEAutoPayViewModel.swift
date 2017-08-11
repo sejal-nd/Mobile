@@ -63,12 +63,15 @@ class BGEAutoPayViewModel {
         isFetchingAutoPayInfo.value = true
         paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (autoPayInfo: BGEAutoPayInfo) in
+            .subscribe(onNext: { [weak self] (autoPayInfo: BGEAutoPayInfo) in
+                guard let `self` = self else { return }
                 self.isFetchingAutoPayInfo.value = false
                 
                 // Expired accounts
                 var isExpired = false
-                if let effectiveNumberOfPayments = autoPayInfo.effectiveNumPayments, let numberOfPaymentsScheduled = autoPayInfo.numberOfPaymentsScheduled, Int(numberOfPaymentsScheduled)! >= Int(effectiveNumberOfPayments)! {
+                if let effectiveNumberOfPayments = autoPayInfo.effectiveNumPayments,
+                    let numberOfPaymentsScheduled = autoPayInfo.numberOfPaymentsScheduled,
+                    Int(numberOfPaymentsScheduled)! >= Int(effectiveNumberOfPayments)! {
                     isExpired = true
                     let localizedString = NSLocalizedString("Enrollment expired due to AutoPay settings - you set enrollment to expire after %d payments.", comment: "")
                     self.expiredReason.value = String(format: localizedString, Int(effectiveNumberOfPayments)!)
@@ -105,11 +108,12 @@ class BGEAutoPayViewModel {
                         self.numberOfPayments.value = effectiveNumPayments
                     }
                 }
-            
+                
                 onSuccess?()
-            }, onError: { error in
-                self.isFetchingAutoPayInfo.value = false
-                onError?(error.localizedDescription)
+                }, onError: { [weak self] error in
+                    guard let `self` = self else { return }
+                    self.isFetchingAutoPayInfo.value = false
+                    onError?(error.localizedDescription)
             })
             .disposed(by: disposeBag)
     }
@@ -136,6 +140,10 @@ class BGEAutoPayViewModel {
             })
             .disposed(by: disposeBag)
     }
+    
+    private(set) lazy var showBottomLabel: Driver<Bool> = Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(),
+                                                                               self.initialEnrollmentStatus.asDriver())
+        .map { !$0 && $1 == .unenrolled }
     
     lazy var submitButtonEnabled: Driver<Bool> = Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
                                                                       self.selectedWalletItem.asDriver(),
