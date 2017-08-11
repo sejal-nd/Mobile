@@ -22,13 +22,14 @@ class OneTouchSlider: UIControl {
     private var sliderFinishWidthConstraint: NSLayoutConstraint!
     private var shouldSlide: Bool = false
     private let imageView = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
+    private let accessibilityButton = UIButton(type: UIButtonType.system)
     
     //MARK: - Public Variables
     private(set) var progress: CGFloat = 0.0
     
     let sliderWidth: CGFloat = 40
     let sliderText = NSLocalizedString("Slide to pay now", comment: "")
-    let accessibilityText = NSLocalizedString("Tap to pay", comment: "")
+    let accessibilityText = NSLocalizedString("Tap to pay now", comment: "")
     let commitToSwipe: CGFloat = 0.95 //swipe percentage point at which we commit to the swipe and call success
     
     private let sliderValueChangedSubject = PublishSubject<CGFloat>()
@@ -53,6 +54,7 @@ class OneTouchSlider: UIControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = layer.frame.height / 2
+        accessibilityButton.layer.cornerRadius = layer.frame.height / 2
         sliderFinish.layer.cornerRadius = sliderFinish.layer.frame.height / 2
         slider.layer.cornerRadius = slider.layer.frame.height / 2
     }
@@ -76,6 +78,8 @@ class OneTouchSlider: UIControl {
                 alpha = 0.5
                 imageView.image = #imageLiteral(resourceName: "ic_caret_disabled")
             }
+            
+            accessibilityButton.isEnabled = isEnabled
         }
     }
     
@@ -93,6 +97,7 @@ class OneTouchSlider: UIControl {
         sliderLabel.setLineHeight(lineHeight: 16)
         sliderLabel.textColor = .white
         sliderLabel.text = sliderText
+        sliderLabel.isAccessibilityElement = false
         addSubview(sliderLabel)
         sliderLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         sliderLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -140,26 +145,33 @@ class OneTouchSlider: UIControl {
         addGestureRecognizer(pan)
         
         //Accessibility button
-        if UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning() {
-            let accessibilityButton = UIButton(type: UIButtonType.system)
-            accessibilityButton.backgroundColor = UIColor.clear
-            accessibilityButton.isAccessibilityElement = true
-            accessibilityButton.accessibilityLabel = accessibilityText
-            
-            accessibilityButton.rx.tap.asDriver().drive(didFinishSwipeSubject).addDisposableTo(bag)
-            
-            addSubview(accessibilityButton)
-            
-            accessibilityButton.translatesAutoresizingMaskIntoConstraints = false
-            
-            let views = ["button": accessibilityButton, "view": self]
-            
-            let horizontallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[button]-|", options: .alignAllCenterY, metrics: nil, views: views)
-            let verticallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[button]-|", options: .alignAllCenterX, metrics: nil, views: views)
-            
-            addConstraints(horizontallayoutContraints)
-            addConstraints(verticallayoutContraints)
-        }
+        accessibilityButton.backgroundColor = UIColor.clear
+        accessibilityButton.isAccessibilityElement = true
+        accessibilityButton.accessibilityLabel = accessibilityText
+        
+        accessibilityButton.rx.tap.asDriver().drive(didFinishSwipeSubject).addDisposableTo(bag)
+        
+        addSubview(accessibilityButton)
+        
+        accessibilityButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        accessibilityButton.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        accessibilityButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        accessibilityButton.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        accessibilityButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        
+        accessibilityButton.isHidden = !UIAccessibilityIsVoiceOverRunning() && !UIAccessibilityIsSwitchControlRunning()
+        isAccessibilityElement = !UIAccessibilityIsVoiceOverRunning() && !UIAccessibilityIsSwitchControlRunning()
+        accessibilityLabel = sliderText
+        
+        Observable.merge(NotificationCenter.default.rx.notification(.UIAccessibilitySwitchControlStatusDidChange, object: nil),
+                         NotificationCenter.default.rx.notification(Notification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil))
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.accessibilityButton.isHidden = !UIAccessibilityIsVoiceOverRunning() && !UIAccessibilityIsSwitchControlRunning()
+                self?.isAccessibilityElement = !UIAccessibilityIsVoiceOverRunning() && !UIAccessibilityIsSwitchControlRunning()
+            })
+            .disposed(by: bag)
     }
     
     //MARK: - Public Methods
