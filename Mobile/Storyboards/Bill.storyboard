@@ -3347,7 +3347,6 @@ Budget Billing?</string>
                         <outlet property="loadingIndicator" destination="3FP-hJ-GKm" id="vbG-v5-AvT"/>
                         <outlet property="tableView" destination="gXN-bS-1R3" id="EKS-Ub-RaX"/>
                         <segue destination="MpQ-Zp-Bed" kind="show" identifier="showBillingHistoryDetailsSegue" id="erR-LQ-U7d"/>
-                        <segue destination="MpQ-Zp-Bed" kind="presentation" identifier="showBillingDetailsIpadSegue" modalPresentationStyle="formSheet" id="lxz-6d-T4J"/>
                         <segue destination="LoQ-Uh-PUl" kind="show" identifier="viewBillSegue" id="c6a-C1-blF"/>
                     </connections>
                 </viewController>
@@ -3676,6 +3675,7 @@ Budget Billing?</string>
                                                     <constraint firstAttribute="trailing" secondItem="i9u-dE-IeU" secondAttribute="trailing" priority="999" id="0fV-aE-QkC"/>
                                                     <constraint firstAttribute="trailing" secondItem="WyB-Ty-ej0" secondAttribute="trailing" id="0qJ-Uz-KNp"/>
                                                     <constraint firstItem="uAt-gn-Tuy" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" priority="999" id="1My-kh-jve"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="2Xn-fJ-6pf"/>
                                                     <constraint firstAttribute="trailing" secondItem="odx-Zf-mgS" secondAttribute="trailing" id="3cj-sX-9Hg"/>
                                                     <constraint firstItem="vmJ-Jg-QL8" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" priority="999" id="3gL-KY-Bmh"/>
                                                     <constraint firstAttribute="trailing" secondItem="vmJ-Jg-QL8" secondAttribute="trailing" priority="999" id="90m-Ti-7yg"/>
@@ -3708,15 +3708,17 @@ Budget Billing?</string>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="sWB-Do-Lzi" secondAttribute="trailing" id="4j0-Hx-9KB"/>
+                                            <constraint firstAttribute="trailing" secondItem="sWB-Do-Lzi" secondAttribute="trailing" priority="999" id="4j0-Hx-9KB"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Mby-Fb-G5J"/>
                                             <constraint firstAttribute="bottom" secondItem="sWB-Do-Lzi" secondAttribute="bottom" constant="20" id="YXq-Xf-eUE"/>
                                             <constraint firstItem="sWB-Do-Lzi" firstAttribute="top" secondItem="s1I-Xk-I4g" secondAttribute="top" constant="5" id="cXM-e9-oEE"/>
-                                            <constraint firstItem="sWB-Do-Lzi" firstAttribute="leading" secondItem="s1I-Xk-I4g" secondAttribute="leading" constant="20" id="jcO-si-lf6"/>
+                                            <constraint firstItem="sWB-Do-Lzi" firstAttribute="leading" secondItem="s1I-Xk-I4g" secondAttribute="leading" priority="999" constant="20" id="jcO-si-lf6"/>
+                                            <constraint firstItem="sWB-Do-Lzi" firstAttribute="centerX" secondItem="s1I-Xk-I4g" secondAttribute="centerX" constant="10" id="q0g-u2-3kD"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="s1I-Xk-I4g" firstAttribute="centerX" secondItem="844-zQ-P3R" secondAttribute="centerX" id="1Gj-z8-UGy"/>
                                     <constraint firstAttribute="trailing" secondItem="s1I-Xk-I4g" secondAttribute="trailing" id="4Io-ti-RJG"/>
                                     <constraint firstItem="s1I-Xk-I4g" firstAttribute="top" secondItem="844-zQ-P3R" secondAttribute="top" id="FYx-eo-j6i"/>
                                     <constraint firstAttribute="bottom" secondItem="s1I-Xk-I4g" secondAttribute="bottom" constant="1713" id="H3y-4D-inh"/>
@@ -4254,7 +4256,6 @@ the year</string>
                         <outlet property="tableView" destination="WyA-2k-Kom" id="iwI-Z8-coH"/>
                         <segue destination="tQK-DR-cra" kind="show" identifier="showMoreBillingHistorySegue" id="Tjx-QE-Jag"/>
                         <segue destination="MpQ-Zp-Bed" kind="show" identifier="showBillingDetailsSegue" id="X62-GM-RxQ"/>
-                        <segue destination="MpQ-Zp-Bed" kind="presentation" identifier="showBillingDetailsIpadSegue" modalPresentationStyle="formSheet" id="6Wm-zp-S36"/>
                         <segue destination="VY7-IV-VDc" kind="presentation" identifier="viewBGEasySegue" modalPresentationStyle="formSheet" id="Z6O-TZ-udR"/>
                         <segue destination="LoQ-Uh-PUl" kind="show" identifier="viewBillSegue" id="JxE-Ae-J8n"/>
                         <segue destination="Zhu-5c-ibe" kind="show" identifier="bgeAutoPaySegue" id="Kur-v9-at5"/>
@@ -4287,9 +4288,9 @@ the year</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="i8z-J5-Vom"/>
-        <segue reference="jAa-oL-qHI"/>
-        <segue reference="DmQ-Tj-Ore"/>
         <segue reference="St9-1T-NgU"/>
-        <segue reference="lxz-6d-T4J"/>
+        <segue reference="DmQ-Tj-Ore"/>
+        <segue reference="erR-LQ-U7d"/>
+        <segue reference="c6a-C1-blF"/>
     </inferredMetricsTieBreakers>
 </document>

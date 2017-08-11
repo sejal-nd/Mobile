@@ -85,7 +85,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
             if type == BillingHistoryProperties.TypeBilling.rawValue {
                 showBillPdf()
             } else {
-                showBillingDetails()
+                self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
             }
             //upcoming billing history
         } else {
@@ -113,7 +113,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                 } else if status == BillingHistoryProperties.StatusCanceled.rawValue || 
                     status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
                     status == BillingHistoryProperties.StatusFailed.rawValue {
-                    showBillingDetails()
+                    self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
                 }
             }
         }
@@ -125,7 +125,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
         
         if status == BillingHistoryProperties.StatusProcessing.rawValue {
             
-            showBillingDetails()
+            self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
             
         } else { //It's scheduled hopefully
             handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
@@ -146,7 +146,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                     showModifyScheduledItem(billingItem: billingItem)
                 }
                 else {
-                    showBillingDetails()
+                    self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
                 }
                 
             } else {  // recurring/automatic
@@ -171,17 +171,6 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                 showModifyScheduledItem(billingItem: billingItem)
             }
             
-        }
-    }
-    
-    private func showBillingDetails() {
-        switch UIDevice.current.userInterfaceIdiom {
-        case .pad:
-            self.performSegue(withIdentifier: "showBillingDetailsIpadSegue", sender: self)
-            break
-        default:
-            self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
-            break
         }
     }
     
