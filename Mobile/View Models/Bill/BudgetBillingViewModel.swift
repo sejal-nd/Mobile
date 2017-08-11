@@ -26,10 +26,16 @@ class BudgetBillingViewModel {
         
         let initialEnrollment = accountDetail.isBudgetBillEnrollment
         currentEnrollment = Variable(initialEnrollment)
-        currentEnrollment.asObservable().subscribe(onNext: { enrolled in
-            self.enrolling.value = !initialEnrollment && enrolled
-            self.unenrolling.value = initialEnrollment && !enrolled
-        }).disposed(by: disposeBag)
+        
+        currentEnrollment.asObservable()
+            .map { !initialEnrollment && $0 }
+            .bind(to: enrolling)
+            .disposed(by: disposeBag)
+        
+        currentEnrollment.asObservable()
+            .map { initialEnrollment && !$0 }
+            .bind(to: unenrolling)
+            .disposed(by: disposeBag)
     }
     
     func getBudgetBillingInfo(onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {

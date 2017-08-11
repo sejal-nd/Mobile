@@ -98,8 +98,8 @@ class BudgetBillingViewController: UIViewController {
         learnMoreAboutBudgetBillingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         learnMoreAboutBudgetBillingButton.layer.cornerRadius = 2
         learnMoreAboutBudgetBillingButton.backgroundColorOnPress = .softGray
-        learnMoreAboutBudgetBillingButton.rx.touchUpInside.asDriver().drive(onNext: {
-            self.performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
+        learnMoreAboutBudgetBillingButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            self?.performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
         }).disposed(by: disposeBag)
         learnMoreAboutBudgetBillingButton.accessibilityLabel = NSLocalizedString("Learn more about budget billing", comment: "")
         
@@ -154,9 +154,9 @@ class BudgetBillingViewController: UIViewController {
         reasonForStoppingTableView.estimatedRowHeight = 51
         reasonForStoppingTableView.isHidden = true
         if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
-            viewModel.unenrolling.asObservable().subscribe(onNext: { unenrolling in
+            viewModel.unenrolling.asDriver().drive(onNext: { [weak self] unenrolling in
                 UIView.animate(withDuration: 0.3, animations: {
-                    self.reasonForStoppingTableView.isHidden = !unenrolling
+                    self?.reasonForStoppingTableView.isHidden = !unenrolling
                 })
             }).disposed(by: disposeBag)
         }
@@ -172,7 +172,7 @@ class BudgetBillingViewController: UIViewController {
         accountInfo.accessibilityElements = [accountIcon, accountNumberLabel, addressLabel, enrollSwitch]
         
         // BGE Footer View when user is enrolled
-        if Environment.sharedInstance.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
+        if Environment.sharedInstance.opco == .bge && accountDetail.isBudgetBillEnrollment {
             for view in bgeFooterCardViews {
                 view.layer.cornerRadius = 2
                 view.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
@@ -223,12 +223,13 @@ class BudgetBillingViewController: UIViewController {
             footerView.isHidden = true
         }
         
-        self.errorLabel.text = NSLocalizedString("Error Loading Budget Billing Data", comment: "")
+        errorLabel.text = NSLocalizedString("Error Loading Budget Billing Data", comment: "")
         
-        self.scrollView.isHidden = true
-        self.loadingIndicator.isHidden = false
-        self.bgeFooterView.isHidden = true
-        viewModel.getBudgetBillingInfo(onSuccess: { (budgetBillingInfo: BudgetBillingInfo) in
+        scrollView.isHidden = true
+        loadingIndicator.isHidden = false
+        bgeFooterView.isHidden = true
+        viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: BudgetBillingInfo) in
+            guard let `self` = self else { return }
             self.navigationItem.rightBarButtonItem = submitButton
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
             self.scrollView.isHidden = false
@@ -259,10 +260,11 @@ class BudgetBillingViewController: UIViewController {
                 
             }
             
-        }, onError: { errMessage in
-            self.scrollView.isHidden = true
-            self.loadingIndicator.isHidden = true
-            self.errorLabel.isHidden = false
+            }, onError: { [weak self] errMessage in
+                guard let `self` = self else { return }
+                self.scrollView.isHidden = true
+                self.loadingIndicator.isHidden = true
+                self.errorLabel.isHidden = false
         })
 
     }
@@ -305,8 +307,8 @@ class BudgetBillingViewController: UIViewController {
             let message = viewModel.enrolling.value ? NSLocalizedString("Are you sure you want to exit this screen without completing enrollment?", comment: "") : NSLocalizedString("Are you sure you want to exit this screen without completing unenrollment?", comment: "")
             let alertVc = UIAlertController(title: NSLocalizedString("Exit Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default, handler: { _ in
-                self.navigationController?.popViewController(animated: true)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default, handler: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
             }))
             present(alertVc, animated: true, completion: nil)
         } else {
@@ -318,16 +320,18 @@ class BudgetBillingViewController: UIViewController {
         if viewModel.enrolling.value {
             LoadingView.show()
             Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOffer.rawValue)
-            viewModel.enroll(onSuccess: {
+            viewModel.enroll(onSuccess: { [weak self] in
                 LoadingView.hide()
                 Analytics().logScreenView(AnalyticsPageView.BudgetBillEnrollOffer.rawValue)
+                
+                guard let `self` = self else { return }
                 self.delegate?.budgetBillingViewControllerDidEnroll(self)
                 self.navigationController?.popViewController(animated: true)
-            }, onError: { errMessage in
+            }, onError: { [weak self] errMessage in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
+                self?.present(alertVc, animated: true, completion: nil)
             })
 
         } else if viewModel.unenrolling.value {
@@ -340,15 +344,21 @@ class BudgetBillingViewController: UIViewController {
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
                 Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollCancel.rawValue);}))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { _ in
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
                 LoadingView.show()
-                self.viewModel.unenroll(onSuccess: {
+                
+                guard let `self` = self else { return }
+                self.viewModel.unenroll(onSuccess: { [weak self] in
                     LoadingView.hide()
+                    
+                    guard let `self` = self else { return }
                     self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                     self.navigationController?.popViewController(animated: true)
                     Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOK.rawValue)
-                }, onError: { errMessage in
+                }, onError: { [weak self] errMessage in
                     LoadingView.hide()
+                    
+                    guard let `self` = self else { return }
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)

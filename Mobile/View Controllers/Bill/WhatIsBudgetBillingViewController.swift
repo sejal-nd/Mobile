@@ -130,4 +130,8 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
     @IBAction func onXPress() {
         dismiss(animated: true, completion: nil)
     }
+    
+    deinit {
+        dLog(className)
+    }
 }
