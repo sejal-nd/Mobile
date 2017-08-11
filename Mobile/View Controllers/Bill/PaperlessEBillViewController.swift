@@ -92,8 +92,8 @@ class PaperlessEBillViewController: UIViewController {
             .drive(submitButton.rx.isEnabled)
             .disposed(by: bag)
         
-        learnMoreButton.backgroundColorOnPress = .softGray
-        learnMoreButton.rx.touchUpInside.asDriver().drive(onNext: {
+        whatIsButton.backgroundColorOnPress = .softGray
+        whatIsButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             let description: String
             if Environment.sharedInstance.opco == .bge {
                 description = NSLocalizedString("Eliminate your paper bill.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  You will receive bill ready email notifications regardless of preference.  Your preference will be updated with your next month’s bill.", comment: "")
@@ -101,7 +101,7 @@ class PaperlessEBillViewController: UIViewController {
                 description = NSLocalizedString("Eliminate your paper bill and receive an email notification when your bill is ready to view online.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  Your preference will be updated with your next month’s bill.", comment: "")
             }
             let infoModal = InfoModalViewController(title: NSLocalizedString("Paperless eBill", comment: ""), image: #imageLiteral(resourceName: "paperless_modal"), description: description)
-            self.navigationController?.present(infoModal, animated: true, completion: nil)
+            self?.navigationController?.present(infoModal, animated: true, completion: nil)
         }).disposed(by: bag)
         learnMoreButton.accessibilityLabel = NSLocalizedString("Learn more about paperless e-bill", comment: "")
         
@@ -169,7 +169,7 @@ class PaperlessEBillViewController: UIViewController {
             })
             .disposed(by: accountView.bag)
         
-        self.accountsStackView.addArrangedSubview(accountView)
+        accountsStackView.addArrangedSubview(accountView)
         
     }
     
@@ -178,8 +178,8 @@ class PaperlessEBillViewController: UIViewController {
             let message = !viewModel.accountsToEnroll.value.isEmpty ? NSLocalizedString("Are you sure you want to exit this screen without completing enrollment?", comment: "") : NSLocalizedString("Are you sure you want to exit this screen without completing unenrollment?", comment: "")
             let alertVc = UIAlertController(title: NSLocalizedString("Exit Paperless eBill", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default, handler: { _ in
-                self.navigationController?.popViewController(animated: true)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default, handler: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
             }))
             present(alertVc, animated: true, completion: nil)
         } else {
@@ -189,15 +189,20 @@ class PaperlessEBillViewController: UIViewController {
 
     @IBAction func submitAction(_ sender: Any) {
         LoadingView.show()
-        viewModel.submitChanges(onSuccess: { changedStatus in
+        viewModel.submitChanges(onSuccess: { [weak self] changedStatus in
             LoadingView.hide()
+            guard let `self` = self else { return }
             self.delegate?.paperlessEBillViewController(self, didChangeStatus: changedStatus)
             self.navigationController?.popViewController(animated: true)
-        }, onError: { errMessage in
+        }, onError: { [weak self] errMessage in
             LoadingView.hide()
             let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alertVc, animated: true, completion: nil)
+            self?.present(alertVc, animated: true, completion: nil)
         })
+    }
+    
+    deinit {
+        dLog(message: className)
     }
 }
