@@ -171,8 +171,8 @@ struct WeatherAPI: WeatherService {
     }
     
     private func urlString(coordinate: CLLocationCoordinate2D) -> String {
-        let lat = String(coordinate.latitude)
-        let lon = String(coordinate.longitude)
+        let lat = String(format: "%.3f", coordinate.latitude)
+        let lon = String(format: "%.3f", coordinate.longitude)
         return baseUrl + "points/\(lat),\(lon)/forecast/hourly"
         
     }
