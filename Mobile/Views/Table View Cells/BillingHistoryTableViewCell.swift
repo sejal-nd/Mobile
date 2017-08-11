@@ -66,10 +66,16 @@ class BillingHistoryTableViewCell: UITableViewCell {
     }
     
     private func configurePastCell(item: BillingHistoryItem) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        let dateString = dateFormatter.string(from: item.date)
+        
+        var a11y = ""
         if item.type == BillingHistoryProperties.TypeBilling.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_bill")
             titleLabel.text = BILL_ISSUED
             amountLabel.text = item.totalAmountDue?.currencyString
+            a11y = String(format: NSLocalizedString("%@. %@. %@. View PDF", comment: ""), BILL_ISSUED, dateString, amountLabel.text ?? "")
         } else {
             guard let status = item.status,
                 let amountPaid = item.amountPaid?.currencyString else { return }
@@ -79,39 +85,60 @@ class BillingHistoryTableViewCell: UITableViewCell {
                     iconImageView.image = #imageLiteral(resourceName: "ic_paymentcanceledfailed")
                     titleLabel.text = PAYMENT
                     amountLabel.text = amountPaid
+                if status == BillingHistoryProperties.StatusFailed.rawValue {
+                    a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
+                } else {
+                    a11y = String(format: NSLocalizedString("Cancelled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
+                }
             } else {
                 iconImageView.image = #imageLiteral(resourceName: "ic_paymentcheck")
                 titleLabel.text = PAYMENT
                 amountLabel.text = "-\(String(describing: amountPaid))"
                 amountLabel.textColor = .successGreenText
+                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
             }
         }
+        self.accessibilityLabel = a11y
     }
     
     private func configureUpcomingCell(item: BillingHistoryItem) {
         guard let status = item.status,
             let amountPaid = item.amountPaid?.currencyString else { return }
         
+        var a11y = ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        let dateString = dateFormatter.string(from: item.date)
+        
         if status == BillingHistoryProperties.StatusPending.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
             titleLabel.text = PENDING_PAYMENT
             self.amountLabel.text = amountPaid
+            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PENDING_PAYMENT, dateString, amountPaid)
         } else if status == BillingHistoryProperties.StatusProcessing.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PAYMENT_PROCESSING
             self.amountLabel.text = amountPaid
             dateLabel.isHidden = true
-        } else if status == BillingHistoryProperties.StatusCanceled.rawValue || 
+            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT_PROCESSING, dateString, amountPaid)
+        } else if status == BillingHistoryProperties.StatusCanceled.rawValue ||
             status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
             status == BillingHistoryProperties.StatusFailed.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_paymentcanceledfailed")
             titleLabel.text = PAYMENT
             amountLabel.text = amountPaid
+            if status == BillingHistoryProperties.StatusFailed.rawValue {
+                a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
+            } else {
+                a11y = String(format: NSLocalizedString("Cancelled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
+            }
         } else { //status = scheduled?  hopefully
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = SCHEDULED_PAYMENT
             self.amountLabel.text = amountPaid
+            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
         }
+        self.accessibilityLabel = a11y
     }
     
     class var identifier: String{

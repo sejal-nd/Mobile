@@ -47,7 +47,7 @@ class ForgotUsernameViewController: UIViewController {
         
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
-        phoneNumberTextField.textField.returnKeyType = .next
+        phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
         phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).disposed(by: disposeBag)
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
@@ -71,7 +71,7 @@ class ForgotUsernameViewController: UIViewController {
         
         identifierTextField?.textField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
         identifierTextField?.textField.autocorrectionType = .no
-        identifierTextField?.textField.returnKeyType = .done
+        identifierTextField?.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIdentifierAccountNumberKeyboardDonePress))
         identifierTextField?.textField.delegate = self
         identifierTextField?.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
         identifierTextField?.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
@@ -100,7 +100,7 @@ class ForgotUsernameViewController: UIViewController {
         
         accountNumberTextField?.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField?.textField.autocorrectionType = .no
-        accountNumberTextField?.textField.returnKeyType = .done
+        accountNumberTextField?.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIdentifierAccountNumberKeyboardDonePress))
         accountNumberTextField?.textField.delegate = self
         accountNumberTextField?.textField.isShowingAccessory = true
         accountNumberTextField?.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
@@ -209,6 +209,16 @@ class ForgotUsernameViewController: UIViewController {
         self.navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
+    func onIdentifierAccountNumberKeyboardDonePress() {
+        viewModel.nextButtonEnabled().single().subscribe(onNext: { enabled in
+            if enabled {
+                self.onNextPress()
+            } else {
+                self.view.endEditing(true)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -304,23 +314,4 @@ extension ForgotUsernameViewController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == phoneNumberTextField.textField {
-            if let idTextField = identifierTextField {
-                 idTextField.textField.becomeFirstResponder()
-            } else {
-                accountNumberTextField?.textField.becomeFirstResponder()
-            }
-           
-        } else if textField == identifierTextField?.textField || textField == accountNumberTextField?.textField {
-            viewModel.nextButtonEnabled().single().subscribe(onNext: { enabled in
-                if enabled {
-                    self.onNextPress()
-                } else {
-                    self.view.endEditing(true)
-                }
-            }).disposed(by: disposeBag)
-        }
-        return false
-    }
 }

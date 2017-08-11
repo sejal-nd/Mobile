@@ -243,7 +243,6 @@ class MakePaymentViewController: UIViewController {
         bindViewHiding()
         bindViewContent()
         bindButtonTaps()
-        addDoneButtonOnKeyboard()
 
         viewModel.formatPaymentAmount() // Initial formatting
         viewModel.fetchData(onSuccess: nil, onError: nil)
@@ -259,22 +258,6 @@ class MakePaymentViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
         }
-    }
-    
-    func addDoneButtonOnKeyboard() {
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
-        doneToolbar.barStyle       = UIBarStyle.default
-        let flexSpace              = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem  = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(doneButtonAction))
-        done.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.actionBlue], for: .normal)
-        doneToolbar.items = [flexSpace, done]
-        doneToolbar.sizeToFit()
-        paymentAmountTextField.textField.inputAccessoryView = doneToolbar
-        cvvTextField.textField.inputAccessoryView = doneToolbar
-    }
-    
-    func doneButtonAction() {
-        self.view.endEditing(true)
     }
     
     func configureCardIO() {

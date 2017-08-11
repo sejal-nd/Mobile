@@ -44,7 +44,7 @@ class AccountLookupToolViewController: UIViewController {
         
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
-        phoneNumberTextField.textField.returnKeyType = .next
+        phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
         viewModel.phoneNumber.asObservable().bind(to: phoneNumberTextField.textField.rx.text.orEmpty)
             .disposed(by: disposeBag)
@@ -69,7 +69,7 @@ class AccountLookupToolViewController: UIViewController {
         
         identifierTextField.textField.placeholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
         identifierTextField.textField.autocorrectionType = .no
-        identifierTextField.textField.returnKeyType = .done
+        identifierTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIndentifierKeyboardDonePress))
         identifierTextField.textField.delegate = self
         identifierTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
         identifierTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
@@ -133,6 +133,16 @@ class AccountLookupToolViewController: UIViewController {
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         })
+    }
+    
+    func onIndentifierKeyboardDonePress() {
+        viewModel.searchButtonEnabled().single().subscribe(onNext: { enabled in
+            if enabled {
+                self.onSearchPress()
+            } else {
+                self.view.endEditing(true)
+            }
+        }).disposed(by: disposeBag)
     }
     
     // MARK: - ScrollView
@@ -204,19 +214,5 @@ extension AccountLookupToolViewController: UITextFieldDelegate {
         
         return true
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == phoneNumberTextField.textField {
-            identifierTextField.textField.becomeFirstResponder()
-        } else if textField == identifierTextField.textField {
-            viewModel.searchButtonEnabled().single().subscribe(onNext: { enabled in
-                if enabled {
-                    self.onSearchPress()
-                } else {
-                    self.view.endEditing(true)
-                }
-            }).disposed(by: disposeBag)
-        }
-        return false
-    }
+
 }

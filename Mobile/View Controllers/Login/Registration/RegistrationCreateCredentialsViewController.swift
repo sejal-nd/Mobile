@@ -24,9 +24,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     @IBOutlet weak var createPasswordContainerView: UIView!
     @IBOutlet weak var createPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
-    
-//    @IBOutlet weak var passwordConstraintsTextField: FloatLabelTextField!
-    
+        
     @IBOutlet var passwordRequirementLabels: [UILabel]!
     @IBOutlet var mustAlsoContainLabel: UILabel!
 

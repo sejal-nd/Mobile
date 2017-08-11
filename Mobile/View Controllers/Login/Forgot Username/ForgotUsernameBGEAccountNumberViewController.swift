@@ -35,8 +35,8 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
 
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.autocorrectionType = .no
-        accountNumberTextField.textField.returnKeyType = .done
-        accountNumberTextField?.textField.delegate = self
+        accountNumberTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onAccountNumberKeyboardDonePress))
+        accountNumberTextField.textField.delegate = self
         accountNumberTextField.textField.isShowingAccessory = true
         accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
@@ -86,6 +86,16 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         })
     }
     
+    func onAccountNumberKeyboardDonePress() {
+        viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
+            if valid {
+                self.onNextPress()
+            } else {
+                self.view.endEditing(true)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
     @IBAction func onAccountNumberTooltipPress() {
         let infoModal = InfoModalViewController(title: NSLocalizedString("Where to Look for Your Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: NSLocalizedString("Your Customer Account Number can be found in the lower right portion of your bill. Please enter 10-digits including leading zeros.", comment: ""))
         self.navigationController?.present(infoModal, animated: true, completion: nil)
@@ -107,18 +117,6 @@ extension ForgotUsernameBGEAccountNumberViewController: UITextFieldDelegate {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
         return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 10
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
-            if valid {
-                self.onNextPress()
-            } else {
-                self.view.endEditing(true)
-            }
-        }).disposed(by: disposeBag)
-        
-        return false
     }
     
 }

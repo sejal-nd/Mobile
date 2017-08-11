@@ -52,7 +52,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
     func prepareTextFieldsForInput() {
         accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.autocorrectionType = .no
-        accountNumberTextField.textField.returnKeyType = .next
+        accountNumberTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onAccountNumberKeyboardDonePress))
         accountNumberTextField.textField.delegate = self
         accountNumberTextField.textField.isShowingAccessory = true
         accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
@@ -89,8 +89,15 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
             self.nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
         }
     }
-
     
+    func onAccountNumberKeyboardDonePress() {
+        viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { enabled in
+            if enabled {
+                self.onNextPress()
+            }
+        }).disposed(by: disposeBag)
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -180,14 +187,5 @@ extension RegistrationBGEAccountNumberViewController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { enabled in
-            if enabled {
-                self.onNextPress()
-            }
-        }).disposed(by: disposeBag)
-
-        return true
-    }
 }
 

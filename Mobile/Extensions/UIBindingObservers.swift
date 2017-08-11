@@ -18,6 +18,13 @@ extension Reactive where Base: NSObject {
         }
     }
     
+    /// Bindable sink for `isAccessibilityElement` property.
+    public var isAccessibilityElement: UIBindingObserver<Base, Bool> {
+        return UIBindingObserver(UIElement: self.base) { object, isAccessibilityElement in
+            object.isAccessibilityElement = isAccessibilityElement
+        }
+    }
+    
 }
 
 extension Reactive where Base: UIView {
