@@ -16,8 +16,6 @@ class HomeBillCardViewModel {
     
     private let account: Observable<Account>
     let accountDetailEvents: Observable<Event<AccountDetail>>
-    private let accountDetailElements: Observable<AccountDetail>
-    private let accountDetailErrors: Observable<Error>
     private let walletService: WalletService
     private let paymentService: PaymentService
     
@@ -35,8 +33,6 @@ class HomeBillCardViewModel {
                   fetchingTracker: ActivityTracker) {
         self.account = account
         self.accountDetailEvents = accountDetailEvents
-        self.accountDetailElements = accountDetailEvents.elements()
-        self.accountDetailErrors = accountDetailEvents.errors()
         self.walletService = walletService
         self.paymentService = paymentService
         self.fetchingTracker = fetchingTracker
@@ -74,7 +70,7 @@ class HomeBillCardViewModel {
 
     private(set) lazy var data: Observable<Event<(Account, AccountDetail, WalletItem?)>> =
         Observable.combineLatest(self.account,
-                                 self.accountDetailElements,
+                                 self.accountDetailEvents.elements(),
                                  self.walletItem)
             .materialize()
             .share()
@@ -92,7 +88,7 @@ class HomeBillCardViewModel {
         .shareReplay(1)
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
-        .withLatestFrom(Observable.combineLatest(self.accountDetailElements, self.walletItem.unwrap(), self.cvv2.asObservable()))
+        .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(), self.walletItem.unwrap(), self.cvv2.asObservable()))
         .do(onNext: { _, walletItem, _ in
             switch walletItem.bankOrCard {
             case .bank:
@@ -156,11 +152,16 @@ class HomeBillCardViewModel {
     
     //MARK: - Loaded States
     
-    private lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailElements.asDriver(onErrorDriveWith: .empty())
+    private lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
     private lazy var walletItemDriver: Driver<WalletItem?> = self.walletItem.asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var billNotReady: Driver<Bool> = self.accountDetailDriver
-        .map { ($0.billingInfo.netDueAmount ?? 0) == 0 && ($0.billingInfo.lastPaymentAmount ?? 0) <= 0 }
+    private(set) lazy var billNotReady: Driver<Bool> = self.accountDetailEvents
+        .map {
+            guard let accountDetails = $0.element else { return false }
+            return (accountDetails.billingInfo.netDueAmount ?? 0) == 0 &&
+                (accountDetails.billingInfo.lastPaymentAmount ?? 0) <= 0
+        }
+        .asDriver(onErrorJustReturn: false)
     
     private(set) lazy var showErrorState: Driver<Bool> = Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents)
         .map { $0.0.error != nil || $0.1.error != nil }
@@ -257,8 +258,8 @@ class HomeBillCardViewModel {
         }
     }
     
-    private lazy var showAutoPay: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation, self.accountDetailDriver, self.billPaidOrPending)
-        .map { !$0 && $1.isAutoPay && !$2 }
+    private lazy var showAutoPay: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation, self.accountDetailDriver, self.billPaidOrPending, self.titleState)
+        .map { !$0 && $1.isAutoPay && !$2 && $3 != .credit }
     
     private(set) lazy var showPaymentPendingIcon: Driver<Bool> = self.titleState.map { $0 == .paymentPending }
     
@@ -548,14 +549,19 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var bankCreditCardImageAccessibilityLabel: Driver<String?> = self.walletItemDriver.map {
-        guard let walletItem = $0 else { return nil }
+    private(set) lazy var bankCreditCardButtonAccessibilityLabel: Driver<String?> = self.walletItemDriver.map {
+        guard let walletItem = $0,
+            let maskedNumber = walletItem.maskedWalletItemAccountNumber else { return nil }
+        
+        let imageLabel: String
         switch walletItem.bankOrCard {
         case .bank:
-            return NSLocalizedString("Bank account", comment: "")
+            imageLabel = NSLocalizedString("Bank account", comment: "")
         case .card:
-            return NSLocalizedString("Credit card", comment: "")
+            imageLabel = NSLocalizedString("Credit card", comment: "")
         }
+        
+        return imageLabel + ", " + String(format:NSLocalizedString("Account ending in %@", comment: ""), maskedNumber)
     }
     
     private(set) lazy var minPaymentAllowedText: Driver<String?> = self.accountDetailDriver.map {
