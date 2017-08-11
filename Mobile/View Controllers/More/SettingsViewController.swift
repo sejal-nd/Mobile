@@ -61,15 +61,15 @@ class SettingsViewController: UIViewController {
                 self?.tableView.isHidden = false
                 self?.tableView.reloadData()
             }, onError: { [weak self] err in
-                guard let strongSelf = self else { return }
-                strongSelf.loadingIndicator.isHidden = true
-                strongSelf.tableView.isHidden = false
+                guard let `self` = self else { return }
+                self.loadingIndicator.isHidden = true
+                self.tableView.isHidden = false
                 let alertVc = UIAlertController(title: NSLocalizedString("Could Not Load Accounts", comment: ""), message: err.localizedDescription, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default, handler: { _ in
-                    strongSelf.fetchAccounts()
+                    self.fetchAccounts()
                 }))
-                strongSelf.present(alertVc, animated: true, completion: nil)
+                self.present(alertVc, animated: true, completion: nil)
             }).disposed(by: disposeBag)
     }
     

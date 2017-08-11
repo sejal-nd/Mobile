@@ -114,8 +114,8 @@ extension DefaultAccountViewController: UITableViewDelegate {
             
             alert.addAction(UIAlertAction(title: NSLocalizedString("Change", comment: ""), style: .default) { [weak self] _ in
                 Analytics().logScreenView(AnalyticsPageView.SetDefaultAccountChange.rawValue)
-                if let strongSelf = self {
-                    observer.onNext(strongSelf.viewModel.accounts.value[indexPath.row])
+                if let `self` = self {
+                    observer.onNext(self.viewModel.accounts.value[indexPath.row])
                 }
                 observer.onCompleted()
             })
