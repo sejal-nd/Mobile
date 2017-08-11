@@ -130,8 +130,9 @@ class BillViewController: AccountPickerViewController {
         super.viewDidLoad()
         accountPicker.delegate = self
         accountPicker.parentViewController = self
-
-        accountPickerViewControllerWillAppear.subscribe(onNext: { state in
+        
+        accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
+            guard let `self` = self else { return }
             switch(state) {
             case .loadingAccounts:
                 // Sam, do your custom loading here
@@ -415,7 +416,8 @@ class BillViewController: AccountPickerViewController {
 
         budgetButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.currentAccountDetailUnwrapped)
-            .drive(onNext: { accountDetail in
+            .drive(onNext: { [weak self] accountDetail in
+                guard let `self` = self else { return }
                 if accountDetail.isBudgetBillEligible || accountDetail.isBudgetBillEnrollment {
                     self.performSegue(withIdentifier: "budgetBillingSegue", sender: self)
                 } else {
