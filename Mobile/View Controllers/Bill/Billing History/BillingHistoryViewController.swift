@@ -191,22 +191,15 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
-        
-        let opco = Environment.sharedInstance.opco
-        
-        if opco == .bge {
-            guard let paymentMethod = billingItem.paymentMethod,
-                let allowDelete = billingItem.flagAllowDeletes,
-                let allowEdit = billingItem.flagAllowEdits else { return }
-            
+        if Environment.sharedInstance.opco == .bge {
+            guard let paymentMethod = billingItem.paymentMethod else { return }
             if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
-                if allowEdit || allowDelete {
+                if billingItem.flagAllowEdits || billingItem.flagAllowEdits {
                     showModifyScheduledItem(billingItem: billingItem)
                 }
                 else {
                     self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
                 }
-                
             } else {  // recurring/automatic
                 let storyboard = UIStoryboard(name: "Bill", bundle: nil)
                 if Environment.sharedInstance.opco == .bge {
@@ -221,14 +214,11 @@ extension BillingHistoryViewController: UITableViewDelegate {
                     }
                 }
             }
-            
         } else { //PECO/COMED scheduled
             guard let walletItemId = billingItem.walletItemId else { return }
-            
             if walletItemId != "" {
                 showModifyScheduledItem(billingItem: billingItem)
             }
-            
         }
     }
     
@@ -245,7 +235,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
     private func showModifyScheduledItem(billingItem: BillingHistoryItem) {
         let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
         paymentVc.accountDetail = accountDetail
-        paymentVc.paymentId = billingItem.paymentId
+        paymentVc.billingHistoryItem = billingItem
         if let walletItemId = billingItem.walletItemId, let paymentAmount = billingItem.amountPaid {
             let paymentDetail = PaymentDetail(walletItemId: walletItemId, paymentAmount: paymentAmount, paymentDate: billingItem.date)
             paymentVc.paymentDetail = paymentDetail

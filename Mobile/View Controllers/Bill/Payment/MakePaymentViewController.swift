@@ -32,6 +32,10 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAccountImageView: UIImageView!
     @IBOutlet weak var paymentAccountAccountNumberLabel: UILabel!
     @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
+    @IBOutlet weak var fixedPaymentAccountView: UIView!
+    @IBOutlet weak var fixedPaymentAccountImageView: UIImageView!
+    @IBOutlet weak var fixedPaymentAccountAccountNumberLabel: UILabel!
+    @IBOutlet weak var fixedPaymentAccountNicknameLabel: UILabel!
     
     @IBOutlet weak var cvvView: UIView!
     @IBOutlet weak var cvvTextField: FloatLabelTextField!
@@ -44,6 +48,10 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAmountView: UIView! // Contains paymentAmountFeeLabel and paymentAmountTextField
     @IBOutlet weak var paymentAmountFeeLabel: UILabel!
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
+    
+    @IBOutlet weak var fixedPaymentAmountView: UIView!
+    @IBOutlet weak var fixedPaymentAmountTextLabel: UILabel!
+    @IBOutlet weak var fixedPaymentAmountValueLabel: UILabel!
     
     @IBOutlet weak var dueDateView: UIView!
     @IBOutlet weak var dueDateTextLabel: UILabel!
@@ -88,13 +96,13 @@ class MakePaymentViewController: UIViewController {
     
     var viewModel: PaymentViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
-    var paymentId: String? // Passed in from BillingHistoryViewController, indicates we are modifying a payment
     var paymentDetail: PaymentDetail? // Passed in from BillingHistoryViewController IF we had the data already (ComEd/PECO)
+    var billingHistoryItem: BillingHistoryItem? // Passed in from BillingHistoryViewController, indicates we are modifying a payment
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail, addBankFormViewModel: self.addBankFormView.viewModel, addCardFormViewModel: self.addCardFormView.viewModel, paymentId: paymentId, paymentDetail: paymentDetail)
+        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail, addBankFormViewModel: self.addBankFormView.viewModel, addCardFormViewModel: self.addCardFormView.viewModel, paymentDetail: paymentDetail, billingHistoryItem: billingHistoryItem)
         
         view.backgroundColor = .softGray
         
@@ -105,7 +113,7 @@ class MakePaymentViewController: UIViewController {
         stackView.addSubview(bg)
         stackView.sendSubview(toBack: bg)
         
-        if paymentId != nil {
+        if billingHistoryItem != nil {
             title = NSLocalizedString("Modify Payment", comment: "")
         } else {
             title = NSLocalizedString("Make a Payment", comment: "")
@@ -114,6 +122,11 @@ class MakePaymentViewController: UIViewController {
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
         viewModel.makePaymentNextButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.shouldShowNextButton.distinctUntilChanged().drive(onNext: { shouldShow in
+            if !shouldShow { // Hide next button if allowEdits is false
+                self.navigationItem.rightBarButtonItem = nil
+            }
+        }).disposed(by: disposeBag)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -184,6 +197,12 @@ class MakePaymentViewController: UIViewController {
             self.accessibilityErrorLabel()
             
         }).disposed(by: self.disposeBag)
+        
+        fixedPaymentAmountTextLabel.text = NSLocalizedString("Payment Amount", comment: "")
+        fixedPaymentAmountTextLabel.textColor = .deepGray
+        fixedPaymentAmountTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        fixedPaymentAmountValueLabel.textColor = .blackText
+        fixedPaymentAmountValueLabel.font = SystemFont.semibold.of(textStyle: .title1)
         
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
         dueDateTextLabel.textColor = .deepGray
@@ -300,12 +319,17 @@ class MakePaymentViewController: UIViewController {
         
         // Payment Account
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.allowEdits.asDriver().not().drive(paymentAccountButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.allowEdits.asDriver().drive(fixedPaymentAccountView.rx.isHidden).disposed(by: disposeBag)
         
         // CVV (BGE credit card only)
         viewModel.shouldShowCvvTextField.map(!).drive(cvvView.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Amount Text Field
         viewModel.shouldShowPaymentAmountTextField.map(!).drive(paymentAmountView.rx.isHidden).disposed(by: disposeBag)
+        
+        // Fixed Payment Amount - if allowEdits is false
+        viewModel.allowEdits.asDriver().drive(fixedPaymentAmountView.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Date
         viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
@@ -348,6 +372,10 @@ class MakePaymentViewController: UIViewController {
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountAccountNumberLabel.rx.text).disposed(by: disposeBag)
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
         viewModel.selectedWalletItemA11yLabel.drive(paymentAccountButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.selectedWalletItemImage.drive(fixedPaymentAccountImageView.rx.image).disposed(by: disposeBag)
+        viewModel.selectedWalletItemMaskedAccountString.drive(fixedPaymentAccountAccountNumberLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemNickname.drive(fixedPaymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemA11yLabel.drive(fixedPaymentAccountView.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // CVV (BGE credit card only)
         cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).disposed(by: disposeBag)
@@ -362,6 +390,9 @@ class MakePaymentViewController: UIViewController {
         paymentAmountTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: {
             self.viewModel.formatPaymentAmount()
         }).disposed(by: disposeBag)
+        
+        // Fixed Payment Amount - if allowEdits is false
+        viewModel.paymentAmount.asDriver().drive(fixedPaymentAmountValueLabel.rx.text).disposed(by: disposeBag)
         
         // Due Date
         viewModel.dueDate.asDriver().drive(dueDateDateLabel.rx.text).disposed(by: disposeBag)
@@ -388,7 +419,7 @@ class MakePaymentViewController: UIViewController {
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
             miniWalletVC.sentFromPayment = true
             miniWalletVC.delegate = self
-            if self.paymentId != nil, let walletItem = self.viewModel.selectedWalletItem.value {
+            if self.billingHistoryItem != nil, let walletItem = self.viewModel.selectedWalletItem.value {
                 if Environment.sharedInstance.opco == .bge {
                     if walletItem.bankOrCard == .bank {
                         miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a bank account payment, you may only select another bank account as your method of payment.", comment: "")
@@ -693,7 +724,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
                 }
             }
         } else {
-            if paymentId != nil && date == today  { // Modifying payment on ComEd/PECO disables changing date to today
+            if billingHistoryItem != nil && date == today  { // Modifying payment on ComEd/PECO disables changing date to today
                 return false
             }
             
