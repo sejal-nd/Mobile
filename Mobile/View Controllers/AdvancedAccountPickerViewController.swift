@@ -189,7 +189,7 @@ extension AdvancedAccountPickerViewController: ExelonPickerDelegate {
     }
     
     func donePressed(selectedIndex: Int) {
-        dLog(message: "selectedIndex \(selectedIndex)")
+        dLog("selectedIndex \(selectedIndex)")
         
         self.accounts[self.accountIndexToEditPremise].currentPremise = self.accounts[self.accountIndexToEditPremise].premises[selectedIndex]
         

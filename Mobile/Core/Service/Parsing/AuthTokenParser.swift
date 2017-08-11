@@ -36,7 +36,7 @@ class AuthTokenParser : NSObject {
     class func parseAuthTokenResponse(data: Data?, response: URLResponse?, error: Error?) -> ServiceResult<AuthTokenResponse> {
         if let responseData = data {
             
-            dLog(message: String(data: responseData, encoding: String.Encoding.utf8) ?? "No Response Data")
+            dLog(String(data: responseData, encoding: String.Encoding.utf8) ?? "No Response Data")
             
             do {
                 let parsedData = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]

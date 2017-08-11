@@ -142,7 +142,7 @@ struct WeatherAPI: WeatherService {
                         
                     } else {
                         let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
-                        dLog(message: responseString)
+                        dLog(responseString)
                         
                         do {
                             let results = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]

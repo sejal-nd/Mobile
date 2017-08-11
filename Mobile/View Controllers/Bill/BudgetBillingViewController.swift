@@ -358,6 +358,10 @@ class BudgetBillingViewController: UIViewController {
             present(alertVc, animated: true, completion: nil)
         }
     }
+    
+    deinit {
+        dLog(className)
+    }
 
 }
 

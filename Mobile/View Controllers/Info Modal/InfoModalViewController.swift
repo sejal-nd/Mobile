@@ -60,7 +60,7 @@ class InfoModalViewController: DismissableFormSheetViewController {
     }
     
     deinit {
-        dLog(message: className)
+        dLog(className)
     }
 
 }

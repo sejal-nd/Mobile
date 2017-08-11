@@ -8,7 +8,7 @@
 
 import Foundation
 
-func dLog(message: String, filename: String = #file, function: String = #function, line: Int = #line) {
+func dLog(_ message: String, filename: String = #file, function: String = #function, line: Int = #line) {
     #if DEBUG
         NSLog("[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(message)")
     #endif

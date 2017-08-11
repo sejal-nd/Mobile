@@ -149,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let fileopts = FirebaseOptions.init(contentsOfFile: filePath!) {
                     FirebaseApp.configure(options: fileopts)
         } else {
-            dLog(message: "Failed to load Firebase Analytics")
+            dLog("Failed to load Firebase Analytics")
         }
 
     }
