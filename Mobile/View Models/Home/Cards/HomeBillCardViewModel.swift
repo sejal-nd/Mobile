@@ -258,8 +258,8 @@ class HomeBillCardViewModel {
         }
     }
     
-    private lazy var showAutoPay: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation, self.accountDetailDriver, self.billPaidOrPending)
-        .map { !$0 && $1.isAutoPay && !$2 }
+    private lazy var showAutoPay: Driver<Bool> = Driver.combineLatest(self.isPrecariousBillSituation, self.accountDetailDriver, self.billPaidOrPending, self.titleState)
+        .map { !$0 && $1.isAutoPay && !$2 && $3 != .credit }
     
     private(set) lazy var showPaymentPendingIcon: Driver<Bool> = self.titleState.map { $0 == .paymentPending }
     
