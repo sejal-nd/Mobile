@@ -97,6 +97,7 @@ class OneTouchSlider: UIControl {
         sliderLabel.setLineHeight(lineHeight: 16)
         sliderLabel.textColor = .white
         sliderLabel.text = sliderText
+        sliderLabel.isAccessibilityElement = false
         addSubview(sliderLabel)
         sliderLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         sliderLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
