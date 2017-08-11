@@ -45,7 +45,7 @@ class TemplateCardView: UIView {
         titleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         bodyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         bodyLabel.setLineHeight(lineHeight: 18)
-        titleLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
         
         errorLabel.font = OpenSans.regular.of(textStyle: .title1)
         errorLabel.setLineHeight(lineHeight: 26)
