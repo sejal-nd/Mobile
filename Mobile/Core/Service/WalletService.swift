@@ -90,7 +90,7 @@ protocol WalletService {
     /// Disable OneTouch Payment
     ///
     /// - Parameters:
-    ///   - customerId: the customer number to disable one touch
+    ///   - customerId: the customer number to disable one touch pay for
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain nothing on success or a ServiceError on failure.
     func removeOneTouchPayItem(customerId: String,
