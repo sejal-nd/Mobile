@@ -117,6 +117,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Clear the Touch ID keychain item on first launch of the app (we found it was persisting after uninstalls)
             let fingerprintService = ServiceFactory.createFingerprintService()
             fingerprintService.disableTouchID()
+            
+            // Log the user out (Oracle SDK appears to be persisting the auth token through uninstalls)
+            let auth = OMCApi().getBackend().authorization
+            auth.logoutClearCredentials(true, completionBlock: nil)
+            
             userDefaults.set(true, forKey: UserDefaultKeys.HasRunBefore)
         }
         
