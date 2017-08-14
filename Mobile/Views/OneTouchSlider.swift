@@ -145,11 +145,11 @@ class OneTouchSlider: UIControl {
         addGestureRecognizer(pan)
         
         //Accessibility button
-        accessibilityButton.backgroundColor = UIColor.clear
+        accessibilityButton.backgroundColor = .clear
         accessibilityButton.isAccessibilityElement = true
         accessibilityButton.accessibilityLabel = accessibilityText
         
-        accessibilityButton.rx.tap.asDriver().drive(didFinishSwipeSubject).addDisposableTo(bag)
+        accessibilityButton.rx.tap.asDriver().drive(didFinishSwipeSubject).disposed(by: bag)
         
         addSubview(accessibilityButton)
         

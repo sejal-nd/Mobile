@@ -200,7 +200,7 @@ class AddCreditCardViewController: UIViewController {
         CardIOUtilities.preloadCardIO() // Speeds up subsequent launch
         cardIOViewController = CardIOPaymentViewController.init(paymentDelegate: self)
         cardIOViewController.disableManualEntryButtons = true
-        cardIOViewController.guideColor = UIColor.successGreen
+        cardIOViewController.guideColor = .successGreen
         cardIOViewController.hideCardIOLogo = true
         cardIOViewController.collectCardholderName = false
         cardIOViewController.collectExpiry = false

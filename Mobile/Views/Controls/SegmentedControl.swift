@@ -41,7 +41,7 @@ class SegmentedControl: UIControl {
             views.append(view)
             
             let label = UILabel(frame: .zero)
-            label.textColor = UIColor.actionBlue
+            label.textColor = .actionBlue
             label.numberOfLines = 0
             label.textAlignment = .center
             label.isAccessibilityElement = false

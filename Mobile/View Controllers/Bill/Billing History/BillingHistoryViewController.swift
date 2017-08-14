@@ -354,13 +354,13 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func headerView(section: Int) -> UIView {
         let view = UIView() // The width will be the same as the cell, and the height should be set in tableView:heightForRowAtIndexPath:
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         let label = UILabel()
         let button = UIButton(type: UIButtonType.system)
         
         label.text = section == 0 ? NSLocalizedString("UPCOMING", comment: "") : NSLocalizedString("PAST", comment: "")
         label.font = label.font.withSize(14)
-        label.textColor = UIColor.deepGray
+        label.textColor = .deepGray
         
         var titleText = ""
         if section == 0 {
@@ -408,14 +408,12 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func footerView(section: Int) -> UIView {
-        
-        let isabaleneColor = UIColor(red: 233/255.0, green: 235/255.0, blue: 238/255.0, alpha: 1.00)
         let view = UIView() 
         
         if section == 0 {
-           view.backgroundColor = isabaleneColor 
+           view.backgroundColor = .isabelline
         } else {
-            view.backgroundColor = UIColor.clear
+            view.backgroundColor = .clear
         }
         return view
     }

@@ -10,23 +10,17 @@ import UIKit
 
 extension UIColor {
     @nonobjc static var primaryColor: UIColor {
-        get {
-            return UIColor(red: 206/255, green: 17/255, blue: 65/255, alpha: 1)
-        }
+        return UIColor(red: 206/255, green: 17/255, blue: 65/255, alpha: 1)
     }
     
     // ADA compliance color
     @nonobjc static var primaryColorADA: UIColor {
-        get {
-            return UIColor(red: 166/255, green: 13/255, blue: 52/255, alpha: 1)
-        }
+        return UIColor(red: 166/255, green: 13/255, blue: 52/255, alpha: 1)
     }
     
     // Specifically for float label text fields
     @nonobjc static var primaryColorDark: UIColor {
-        get {
-            return UIColor(red: 120/255, green: 12/255, blue: 39/255, alpha: 1)
-        }
+        return UIColor(red: 120/255, green: 12/255, blue: 39/255, alpha: 1)
     }
     
 }

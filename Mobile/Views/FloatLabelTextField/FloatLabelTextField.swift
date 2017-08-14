@@ -163,8 +163,8 @@ class FloatLabelTextField: UIView {
             setValidated(false)
             
             disabledColorBar.isHidden = false
-            textFieldView.backgroundColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 0.08)
-            textField.placeholderColor = UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1) 
+            textFieldView.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
+            textField.placeholderColor = .middleGray
             textField.setPlaceholder(textField.placeholder, floatingTitle: textField.placeholder) // Needed to update the color
         }
     }
