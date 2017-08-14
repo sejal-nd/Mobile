@@ -68,7 +68,7 @@ class AddCardFormViewModel {
             if (Environment.sharedInstance.opco == .peco) {
                 return self.pecoValidCreditCardCheck(cardNumber: $0) && luhnValid
             } else {
-                return self.luhnCheck(cardNumber: $0)
+                return luhnValid
             }
         }
     }
