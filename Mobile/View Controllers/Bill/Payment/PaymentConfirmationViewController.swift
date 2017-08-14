@@ -99,7 +99,7 @@ class PaymentConfirmationViewController: UIViewController {
     }
     
     func bindViewHiding() {
-        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).disposed(by: disposeBag)
+        billMatrixView.isHidden = !viewModel.shouldShowBillMatrixView
         viewModel.shouldShowAutoPayEnrollButton.map(!).drive(autoPayView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowConvenienceFeeLabel.map(!).drive(convenienceFeeLabel.rx.isHidden).disposed(by: disposeBag)
     }

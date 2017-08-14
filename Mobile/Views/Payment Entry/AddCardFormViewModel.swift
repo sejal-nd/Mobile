@@ -42,38 +42,25 @@ class AddCardFormViewModel {
         self.walletService = walletService
         
         // When Save To Wallet switch is toggled off, reset the fields that get hidden
-        saveToWallet.asObservable().subscribe(onNext: { save in
-            if !save {
-                self.nickname.value = ""
-                self.oneTouchPay.value = false
-            }
-        }).disposed(by: disposeBag)
+        saveToWallet.asObservable().filter(!).map { _ in "" }.bind(to: nickname).disposed(by: disposeBag)
+        saveToWallet.asObservable().filter(!).map { _ in false }.bind(to: oneTouchPay).disposed(by: disposeBag)
     }
     
-    func nameOnCardHasText() -> Observable<Bool> {
-        return nameOnCard.asObservable().map {
-            return !$0.isEmpty
+    private(set) lazy var nameOnCardHasText: Driver<Bool> = self.nameOnCard.asDriver().map { !$0.isEmpty }
+    
+    private(set) lazy var cardNumberHasText: Driver<Bool> = self.cardNumber.asDriver().map { !$0.isEmpty }
+    
+    private(set) lazy var cardNumberIsValid: Driver<Bool> = self.cardNumber.asDriver().map { [weak self] in
+        guard let `self` = self else { return false }
+        let luhnValid = self.luhnCheck(cardNumber: $0)
+        if (Environment.sharedInstance.opco == .peco) {
+            return self.pecoValidCreditCardCheck(cardNumber: $0) && luhnValid
+        } else {
+            return self.luhnCheck(cardNumber: $0)
         }
     }
     
-    func cardNumberHasText() -> Observable<Bool> {
-        return cardNumber.asObservable().map {
-            return !$0.isEmpty
-        }
-    }
-    
-    func cardNumberIsValid() -> Observable<Bool> {
-        return cardNumber.asObservable().map {
-            let luhnValid = self.luhnCheck(cardNumber: $0)
-            if (Environment.sharedInstance.opco == .peco) {
-                return self.pecoValidCreditCardCheck(cardNumber: $0) && luhnValid
-            } else {
-                return self.luhnCheck(cardNumber: $0)
-            }
-        }
-    }
-    
-    func getCardIcon() -> UIImage? {
+    var cardIcon: UIImage? {
         let characters = Array(cardNumber.value.characters)
         if characters.count < 2 {
             return nil
@@ -103,79 +90,53 @@ class AddCardFormViewModel {
         }
     }
     
-    func expMonthIs2Digits() -> Observable<Bool> {
-        return expMonth.asObservable().map {
-            return $0.characters.count == 2
-        }
+    private(set) lazy var expMonthIs2Digits: Driver<Bool> = self.expMonth.asDriver().map { $0.characters.count == 2 }
+    
+    private(set) lazy var expMonthIsValidMonth: Driver<Bool> = self.expMonth.asDriver().map {
+        (1...12).map { String(format: "%02d", $0) }.contains($0)
     }
     
-    func expMonthIsValidMonth() -> Observable<Bool> {
-        return expMonth.asObservable().map {
-            return $0 == "01" || $0 == "02" || $0 == "03" || $0 == "04" || $0 == "05" || $0 == "06" || $0 == "07" || $0 == "08" || $0 == "09" || $0 == "10" || $0 == "11" || $0 == "12"
-        }
-    }
+    private(set) lazy var expYearIs4Digits: Driver<Bool> = self.expYear.asDriver().map { $0.characters.count == 4 }
     
-    func expYearIs4Digits() -> Observable<Bool> {
-        return expYear.asObservable().map {
-            return $0.characters.count == 4
+    private(set) lazy var expYearIsNotInPast: Driver<Bool> = self.expYear.asDriver().map {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        let enteredYear = formatter.date(from: $0)
+        let todayYear = formatter.date(from: formatter.string(from: Date()))
+        
+        if let enteredYear = enteredYear, let todayYear = todayYear {
+            return enteredYear >= todayYear
         }
+        return false
     }
+
+    private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.characters.count == 3 || $0.characters.count == 4 }
     
-    func expYearIsNotInPast() -> Observable<Bool> {
-        return expYear.asObservable().map {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy"
-            let enteredYear = formatter.date(from: $0)
-            let todayYear = formatter.date(from: formatter.string(from: Date()))
-            
-            if let enteredYear = enteredYear, let todayYear = todayYear {
-                return enteredYear >= todayYear
-            }
-            return false
-        }
-    }
+    private(set) lazy var zipCodeIs5Digits: Driver<Bool> = self.zipCode.asDriver().map { $0.characters.count == 5 }
     
-    func cvvIsCorrectLength() -> Observable<Bool> {
-        return cvv.asObservable().map {
-            return $0.characters.count == 3 || $0.characters.count == 4
-        }
-    }
+    private(set) lazy var nicknameHasText: Driver<Bool> = self.nickname.asDriver().map { !$0.isEmpty }
     
-    func zipCodeIs5Digits() -> Observable<Bool> {
-        return zipCode.asObservable().map {
-            return $0.characters.count == 5
+    private(set) lazy var nicknameErrorString: Driver<String?> = self.nickname.asDriver().map { [weak self] in
+        // If BGE, check if at least 3 characters
+        if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.characters.count < 3 {
+            return NSLocalizedString("Must be at least 3 characters", comment: "")
         }
-    }
-    
-    func nicknameHasText() -> Observable<Bool> {
-        return nickname.asObservable().map {
-            return !$0.isEmpty
+        
+        // Check for special characters
+        var trimString = $0.components(separatedBy: CharacterSet.whitespaces).joined(separator: "")
+        trimString = trimString.components(separatedBy: CharacterSet.alphanumerics).joined(separator: "")
+        if !trimString.isEmpty {
+            return NSLocalizedString("Can only contain letters, numbers, and spaces", comment: "")
         }
-    }
-    
-    func nicknameErrorString() -> Observable<String?> {
-        return nickname.asObservable().map {
-            // If BGE, check if at least 3 characters
-            if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.characters.count < 3 {
-                return NSLocalizedString("Must be at least 3 characters", comment: "")
-            }
-            
-            // Check for special characters
-            var trimString = $0.components(separatedBy: CharacterSet.whitespaces).joined(separator: "")
-            trimString = trimString.components(separatedBy: CharacterSet.alphanumerics).joined(separator: "")
-            if !trimString.isEmpty {
-                return NSLocalizedString("Can only contain letters, numbers, and spaces", comment: "")
-            }
-            
-            // Check for duplicate nickname
-            if self.nicknamesInWallet.map({ nickname in
-                return nickname.lowercased()
-            }).contains($0.lowercased()) {
-                return NSLocalizedString("This nickname is already in use", comment: "")
-            }
-            
-            return nil
+        
+        // Check for duplicate nickname
+        guard let `self` = self else { return nil }
+        let isDuplicate = self.nicknamesInWallet.map { $0.lowercased() }.contains($0.lowercased())
+        if isDuplicate {
+            return NSLocalizedString("This nickname is already in use", comment: "")
         }
+        
+        return nil
     }
     
     private func luhnCheck(cardNumber: String) -> Bool {

@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 protocol AddCardFormViewDelegate: class {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView)
@@ -162,8 +163,9 @@ class AddCardFormView: UIView {
     }
     
     func bindValidation() {
-        viewModel.cardNumber.asObservable().subscribe(onNext: { _ in
-            if let cardIcon = self.viewModel.getCardIcon() {
+        viewModel.cardNumber.asDriver().drive(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
+            if let cardIcon = self.viewModel.cardIcon {
                 self.cardLogoImageView.image = cardIcon
                 self.cardNumberTextField.textField.isShowingLeftAccessory = true
             } else {
@@ -172,87 +174,74 @@ class AddCardFormView: UIView {
             }
         }).disposed(by: disposeBag)
         
-        expMonthTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.expMonth.value.isEmpty {
-                self.viewModel.expMonthIsValidMonth().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.expMonthTextField.setError(NSLocalizedString("Invalid Month", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-                self.viewModel.expMonthIs2Digits().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.expMonthTextField.setError(NSLocalizedString("Must be 2 digits", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
+        expMonthTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.expMonth.asDriver(), viewModel.expMonthIsValidMonth, viewModel.expMonthIs2Digits))
+            .filter { !$0.0.isEmpty }
+            .drive(onNext: { [weak self] _, expMonthIsValidMonth, expMonthIs2Digits  in
+                guard let `self` = self else { return }
+                if !expMonthIsValidMonth {
+                    self.expMonthTextField.setError(NSLocalizedString("Invalid Month", comment: ""))
+                } else if !expMonthIs2Digits {
+                    self.expMonthTextField.setError(NSLocalizedString("Must be 2 digits", comment: ""))
+                }
+            }).disposed(by: self.disposeBag)
+        
+        
+        expMonthTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.expMonthTextField.setError(nil)
         }).disposed(by: disposeBag)
         
-        expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.expMonthTextField.setError(nil)
+        cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.cardNumber.asDriver(), viewModel.cardNumberIsValid))
+            .filter { !$0.0.isEmpty && !$0.1 }
+            .drive(onNext: { [weak self] _ in
+                self?.cardNumberTextField.setError(NSLocalizedString("Invalid card number", comment: ""))
+            }).disposed(by: disposeBag)
+        
+        cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.cardNumberTextField.setError(nil)
         }).disposed(by: disposeBag)
         
-        cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.cardNumber.value.isEmpty {
-                self.viewModel.cardNumberIsValid().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.cardNumberTextField.setError(NSLocalizedString("Invalid card number", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
+        expYearTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.expYear.asDriver(), viewModel.expYearIsNotInPast, viewModel.expYearIs4Digits))
+            .filter { !$0.0.isEmpty }
+            .drive(onNext: { [weak self] _, expYearIsNotInPast, expYearIs4Digits  in
+                guard let `self` = self else { return }
+                if !expYearIsNotInPast {
+                    self.expYearTextField.setError(NSLocalizedString("Cannot be in the past", comment: ""))
+                } else if !expYearIs4Digits {
+                    self.expYearTextField.setError(NSLocalizedString("Must be 4 digits", comment: ""))
+                }
+            }).disposed(by: self.disposeBag)
+        
+        expYearTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.expYearTextField.setError(nil)
         }).disposed(by: disposeBag)
         
-        cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.cardNumberTextField.setError(nil)
+        cvvTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.cvv.asDriver(), viewModel.cvvIsCorrectLength))
+            .filter { !$0.0.isEmpty && !$0.1 }
+            .drive(onNext: { [weak self] _ in
+                self?.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
+            }).disposed(by: disposeBag)
+        
+        cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.cvvTextField.setError(nil)
         }).disposed(by: disposeBag)
         
-        expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.expYear.value.isEmpty {
-                self.viewModel.expYearIsNotInPast().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.expYearTextField.setError(NSLocalizedString("Cannot be in the past", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-                self.viewModel.expYearIs4Digits().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.expYearTextField.setError(NSLocalizedString("Must be 4 digits", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
+        zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.zipCode.asDriver(), viewModel.zipCodeIs5Digits))
+            .filter { !$0.0.isEmpty && !$0.1 }
+            .drive(onNext: { [weak self] _ in
+                self?.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
+            }).disposed(by: disposeBag)
+        
+        zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.zipCodeTextField.setError(nil)
         }).disposed(by: disposeBag)
         
-        expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.expYearTextField.setError(nil)
-        }).disposed(by: disposeBag)
-        
-        cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.cvv.value.isEmpty {
-                self.viewModel.cvvIsCorrectLength().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
-        }).disposed(by: disposeBag)
-        
-        cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.cvvTextField.setError(nil)
-        }).disposed(by: disposeBag)
-        
-        zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.zipCode.value.isEmpty {
-                self.viewModel.zipCodeIs5Digits().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.zipCodeTextField.setError(NSLocalizedString("Must be 5 digits", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
-        }).disposed(by: disposeBag)
-        zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.zipCodeTextField.setError(nil)
-        }).disposed(by: disposeBag)
-        
-        viewModel.nicknameErrorString().subscribe(onNext: { errMessage in
-            self.nicknameTextField.setError(errMessage)
+        viewModel.nicknameErrorString.drive(onNext: { [weak self] errMessage in
+            self?.nicknameTextField.setError(errMessage)
         }).disposed(by: disposeBag)
     }
     

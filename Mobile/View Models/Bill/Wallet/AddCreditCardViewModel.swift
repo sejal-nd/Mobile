@@ -24,35 +24,35 @@ class AddCreditCardViewModel {
         self.addCardFormViewModel = addCardFormViewModel
     }
     
-    func saveButtonIsEnabled() -> Observable<Bool> {
+    private(set) lazy var saveButtonIsEnabled: Driver<Bool> = {
         if Environment.sharedInstance.opco == .bge {
-            return Observable.combineLatest([addCardFormViewModel.nameOnCardHasText(),
-                                             addCardFormViewModel.cardNumberHasText(),
-                                             addCardFormViewModel.cardNumberIsValid(),
-                                             addCardFormViewModel.expMonthIs2Digits(),
-                                             addCardFormViewModel.expMonthIsValidMonth(),
-                                             addCardFormViewModel.expYearIs4Digits(),
-                                             addCardFormViewModel.expYearIsNotInPast(),
-                                             addCardFormViewModel.cvvIsCorrectLength(),
-                                             addCardFormViewModel.zipCodeIs5Digits(),
-                                             addCardFormViewModel.nicknameHasText(),
-                                             addCardFormViewModel.nicknameErrorString().map{ $0 == nil }]) {
-                return !$0.contains(false)
+            return Driver.combineLatest([self.addCardFormViewModel.nameOnCardHasText,
+                                         self.addCardFormViewModel.cardNumberHasText,
+                                         self.addCardFormViewModel.cardNumberIsValid,
+                                         self.addCardFormViewModel.expMonthIs2Digits,
+                                         self.addCardFormViewModel.expMonthIsValidMonth,
+                                         self.addCardFormViewModel.expYearIs4Digits,
+                                         self.addCardFormViewModel.expYearIsNotInPast,
+                                         self.addCardFormViewModel.cvvIsCorrectLength,
+                                         self.addCardFormViewModel.zipCodeIs5Digits,
+                                         self.addCardFormViewModel.nicknameHasText,
+                                         self.addCardFormViewModel.nicknameErrorString.map{ $0 == nil }]) {
+                                            !$0.contains(false)
             }
         } else {
-            return Observable.combineLatest([addCardFormViewModel.cardNumberHasText(),
-                                             addCardFormViewModel.cardNumberIsValid(),
-                                             addCardFormViewModel.expMonthIs2Digits(),
-                                             addCardFormViewModel.expMonthIsValidMonth(),
-                                             addCardFormViewModel.expYearIs4Digits(),
-                                             addCardFormViewModel.expYearIsNotInPast(),
-                                             addCardFormViewModel.cvvIsCorrectLength(),
-                                             addCardFormViewModel.zipCodeIs5Digits(),
-                                             addCardFormViewModel.nicknameErrorString().map{ $0 == nil }]) {
-                return !$0.contains(false)
+            return Driver.combineLatest([self.addCardFormViewModel.cardNumberHasText,
+                                         self.addCardFormViewModel.cardNumberIsValid,
+                                         self.addCardFormViewModel.expMonthIs2Digits,
+                                         self.addCardFormViewModel.expMonthIsValidMonth,
+                                         self.addCardFormViewModel.expYearIs4Digits,
+                                         self.addCardFormViewModel.expYearIsNotInPast,
+                                         self.addCardFormViewModel.cvvIsCorrectLength,
+                                         self.addCardFormViewModel.zipCodeIs5Digits,
+                                         self.addCardFormViewModel.nicknameErrorString.map{ $0 == nil }]) {
+                                            !$0.contains(false)
             }
         }
-    }
+    }()
     
     func addCreditCard(onDuplicate: @escaping (String) -> Void, onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
         

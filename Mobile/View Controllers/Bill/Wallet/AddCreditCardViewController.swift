@@ -56,7 +56,7 @@ class AddCreditCardViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
-        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.saveButtonIsEnabled.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
 
         configureCardIO()
         
@@ -175,7 +175,7 @@ class AddCreditCardViewController: UIViewController {
             self.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        viewModel.addCardFormViewModel.nicknameErrorString().map{ $0 == nil }.subscribe(onNext: { valid in
+        viewModel.addCardFormViewModel.nicknameErrorString.map{ $0 == nil }.drive(onNext: { valid in
             self.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
     }

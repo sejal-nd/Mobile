@@ -120,8 +120,8 @@ class AddBankFormView: UIView {
         nicknameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nickname).disposed(by: disposeBag)
         oneTouchPaySwitch.rx.isOn.bind(to: viewModel.oneTouchPay).disposed(by: disposeBag)
         
-        viewModel.confirmAccountNumberIsEnabled.drive(onNext: { enabled in
-            self.confirmAccountNumberTextField.setEnabled(enabled)
+        viewModel.confirmAccountNumberIsEnabled.drive(onNext: { [weak self] enabled in
+            self?.confirmAccountNumberTextField.setEnabled(enabled)
         }).disposed(by: disposeBag)
     }
     
@@ -138,56 +138,52 @@ class AddBankFormView: UIView {
     }
     
     func bindValidation() {
-        accountHolderNameTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.accountHolderName.value.isEmpty {
-                self.viewModel.accountHolderNameIsValid().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.accountHolderNameTextField.setError(NSLocalizedString("Must be at least 3 characters", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
+        accountHolderNameTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.accountHolderName.asDriver(), viewModel.accountHolderNameIsValid))
+            .filter { !$0.0.isEmpty && !$0.1 }
+            .drive(onNext: { [weak self] _ in
+                self?.accountHolderNameTextField.setError(NSLocalizedString("Must be at least 3 characters", comment: ""))
+            }).disposed(by: disposeBag)
+        
+        accountHolderNameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.accountHolderNameTextField.setError(nil)
         }).disposed(by: disposeBag)
         
-        accountHolderNameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accountHolderNameTextField.setError(nil)
+        routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.routingNumber.asDriver(), viewModel.routingNumberIsValid))
+            .filter { !$0.0.isEmpty }
+            .drive(onNext: { [weak self] _, valid in
+                guard let `self` = self else { return }
+                if !valid {
+                    self.routingNumberTextField.setError(NSLocalizedString("Must be 9 digits", comment: ""))
+                } else {
+                    self.viewModel.getBankName(onSuccess: { [weak self] in
+                        guard let `self` = self else { return }
+                        self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
+                    }, onError: { [weak self] in
+                        self?.routingNumberTextField.setInfoMessage(nil)
+                    })
+                }
+            }).disposed(by: disposeBag)
+        
+        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
+            .drive(onNext: { [weak self] in
+                self?.routingNumberTextField.setError(nil)
+            }).disposed(by: disposeBag)
+        
+        accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.accountHolderName.asDriver(), viewModel.accountHolderNameIsValid))
+            .filter { !$0.0.isEmpty && !$0.1 }
+            .drive(onNext: { [weak self] _ in
+                self?.accountNumberTextField.setError(NSLocalizedString("Must be between 4-17 digits", comment: ""))
+            }).disposed(by: disposeBag)
+        
+        accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.accountNumberTextField.setError(nil)
         }).disposed(by: disposeBag)
         
-        routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.routingNumber.value.isEmpty {
-                self.viewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.routingNumberTextField.setError(NSLocalizedString("Must be 9 digits", comment: ""))
-                    } else {
-                        self.viewModel.getBankName(onSuccess: {
-                            self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
-                        }, onError: {
-                            self.routingNumberTextField.setInfoMessage(nil)
-                        })
-                    }
-                }).disposed(by: self.disposeBag)
-                
-            }
-        }).disposed(by: disposeBag)
-        
-        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.routingNumberTextField.setError(nil)
-        }).disposed(by: disposeBag)
-        
-        accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.accountNumber.value.isEmpty {
-                self.viewModel.accountNumberIsValid().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.accountNumberTextField.setError(NSLocalizedString("Must be between 4-17 digits", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
-        }).disposed(by: disposeBag)
-        
-        accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accountNumberTextField.setError(nil)
-        }).disposed(by: disposeBag)
-        
-        viewModel.confirmAccountNumberMatches.drive(onNext: { matches in
+        viewModel.confirmAccountNumberMatches.drive(onNext: { [weak self] matches in
+            guard let `self` = self else { return }
             if !self.viewModel.confirmAccountNumber.value.isEmpty {
                 if matches {
                     self.confirmAccountNumberTextField.setValidated(true, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
@@ -200,8 +196,8 @@ class AddBankFormView: UIView {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.nicknameErrorString.drive(onNext: { errMessage in
-            self.nicknameTextField.setError(errMessage)
+        viewModel.nicknameErrorString.drive(onNext: { [weak self] errMessage in
+            self?.nicknameTextField.setError(errMessage)
         }).disposed(by: disposeBag)
     }
     

@@ -165,9 +165,8 @@ class MakePaymentViewController: UIViewController {
         cvvTextField.textField.placeholder = NSLocalizedString("CVV2*", comment: "")
         cvvTextField.textField.delegate = self
         cvvTextField.setKeyboardType(.numberPad)
-        cvvTextField.textField.rx.controlEvent(.editingDidEnd)
-            .withLatestFrom(Observable.zip(viewModel.cvv.asObservable(), viewModel.cvvIsCorrectLength))
-            .asDriver(onErrorDriveWith: .empty())
+        cvvTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.cvv.asDriver(), viewModel.cvvIsCorrectLength))
             .drive(onNext: { [weak self] (cvv, cvvIsCorrectLength) in
                 if !cvv.isEmpty && !cvvIsCorrectLength {
                     self?.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
@@ -264,7 +263,7 @@ class MakePaymentViewController: UIViewController {
         bindButtonTaps()
 
         viewModel.formatPaymentAmount() // Initial formatting
-        viewModel.fetchData(onSuccess: nil, onError: nil)
+        viewModel.fetchData()
     }
     
     deinit {
@@ -346,7 +345,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowDeletePaymentButton.map(!).drive(deletePaymentButton.rx.isHidden).disposed(by: disposeBag)
         
         // Bill Matrix
-        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).disposed(by: disposeBag)
+        billMatrixView.isHidden = !viewModel.shouldShowBillMatrixView
         
         // Wallet empty state info footer
         viewModel.shouldShowWalletFooterView.map(!).drive(walletFooterView.rx.isHidden).disposed(by: disposeBag)
@@ -409,7 +408,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.walletFooterLabelText.drive(walletFooterLabel.rx.text).disposed(by: disposeBag)
         
         // Sticky Footer Payment View
-        viewModel.totalPaymentDisplayString.map { String(format: NSLocalizedString("Total Payment: %@", comment: ""), $0) }
+        viewModel.totalPaymentDisplayString.map { String(format: NSLocalizedString("Total Payment: %@", comment: ""), $0 ?? "--") }
             .drive(stickyPaymentFooterPaymentLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -511,7 +510,7 @@ class MakePaymentViewController: UIViewController {
                       addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
                       addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
                       addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
-                      viewModel.addCardFormViewModel.nicknameErrorString().map{ _ in () }.asDriver(onErrorDriveWith: .empty())])
+                      viewModel.addCardFormViewModel.nicknameErrorString.map { _ in () }])
             .drive(onNext: { [weak self] in
                 self?.accessibilityErrorLabel()
             }).disposed(by: disposeBag)

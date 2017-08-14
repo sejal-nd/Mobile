@@ -58,14 +58,16 @@ class FloatLabelTextField: UIView {
         textField.floatingLabelYPadding = 6
         textField.floatingLabelTextColor = .primaryColorDark
         textField.floatingLabelActiveTextColor = .primaryColorDark
-        textField.rx.controlEvent(.editingDidBegin).asObservable().subscribe(onNext: { _ in
+        textField.rx.controlEvent(.editingDidBegin).asObservable().subscribe(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
             if !self.errorState {
                 self.bottomColorBar.backgroundColor = .primaryColor
                 self.bottomColorBar.isHidden = false
             }
             self.textFieldIsFocused = true
         }).disposed(by: disposeBag)
-        textField.rx.controlEvent(.editingDidEnd).asObservable().subscribe(onNext: { _ in
+        textField.rx.controlEvent(.editingDidEnd).asObservable().subscribe(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
             if !self.errorState {
                 if self.textField.hasText {
                     self.bottomColorBar.backgroundColor = .accentGray

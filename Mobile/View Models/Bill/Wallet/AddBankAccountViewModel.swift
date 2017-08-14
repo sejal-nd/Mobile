@@ -24,28 +24,24 @@ class AddBankAccountViewModel {
         self.addBankFormViewModel = addBankFormViewModel
     }
     
-    func saveButtonIsEnabled() -> Observable<Bool> {
+    private(set) lazy var saveButtonIsEnabled: Driver<Bool> = {
         if Environment.sharedInstance.opco == .bge {
-            return Observable.combineLatest([addBankFormViewModel.accountHolderNameHasText(),
-                                             addBankFormViewModel.accountHolderNameIsValid(),
-                                             addBankFormViewModel.routingNumberIsValid(),
-                                             addBankFormViewModel.accountNumberHasText(),
-                                             addBankFormViewModel.accountNumberIsValid(),
-                                             addBankFormViewModel.confirmAccountNumberMatches.asObservable(),
-                                             addBankFormViewModel.nicknameHasText(),
-                                             addBankFormViewModel.nicknameErrorString.asObservable().map{ $0 == nil }]) {
-                !$0.contains(false)
-            }
+            return Driver.combineLatest([self.addBankFormViewModel.accountHolderNameHasText,
+                                         self.addBankFormViewModel.accountHolderNameIsValid,
+                                         self.addBankFormViewModel.routingNumberIsValid,
+                                         self.addBankFormViewModel.accountNumberHasText,
+                                         self.addBankFormViewModel.accountNumberIsValid,
+                                         self.addBankFormViewModel.confirmAccountNumberMatches.asDriver(),
+                                         self.addBankFormViewModel.nicknameHasText,
+                                         self.addBankFormViewModel.nicknameErrorString.asDriver().map{ $0 == nil }]) { !$0.contains(false) }
         } else {
-            return Observable.combineLatest([addBankFormViewModel.routingNumberIsValid(),
-                                             addBankFormViewModel.accountNumberHasText(),
-                                             addBankFormViewModel.accountNumberIsValid(),
-                                             addBankFormViewModel.confirmAccountNumberMatches.asObservable(),
-                                             addBankFormViewModel.nicknameErrorString.asObservable().map{ $0 == nil }]) {
-                return !$0.contains(false)
-            }
+            return Driver.combineLatest([self.addBankFormViewModel.routingNumberIsValid,
+                                         self.addBankFormViewModel.accountNumberHasText,
+                                         self.addBankFormViewModel.accountNumberIsValid,
+                                         self.addBankFormViewModel.confirmAccountNumberMatches.asDriver(),
+                                         self.addBankFormViewModel.nicknameErrorString.asDriver().map{ $0 == nil }]) { !$0.contains(false) }
         }
-    }
+    }()
     
     func addBankAccount(onDuplicate: @escaping (String) -> Void, onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
         var accountType: String?

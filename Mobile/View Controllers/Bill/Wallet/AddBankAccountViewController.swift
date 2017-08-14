@@ -54,7 +54,7 @@ class AddBankAccountViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
-        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.saveButtonIsEnabled.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         
         addBankFormView.oneTouchPayDescriptionLabel.text = viewModel.getOneTouchDisplayString()
         
@@ -133,7 +133,7 @@ class AddBankAccountViewController: UIViewController {
     func bindAccessibility() {
         addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.addBankFormViewModel.routingNumber.value.isEmpty {
-                self.viewModel.addBankFormViewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
+                self.viewModel.addBankFormViewModel.routingNumberIsValid.drive(onNext: { valid in
                     self.accessibilityErrorLabel()
                 }).disposed(by: self.disposeBag)
             }
@@ -145,7 +145,7 @@ class AddBankAccountViewController: UIViewController {
         
         addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
             if !self.viewModel.addBankFormViewModel.accountNumber.value.isEmpty {
-                self.viewModel.addBankFormViewModel.accountNumberIsValid().single().subscribe(onNext: { valid in
+                self.viewModel.addBankFormViewModel.accountNumberIsValid.drive(onNext: { valid in
                     self.accessibilityErrorLabel()
                 }).disposed(by: self.disposeBag)
             }

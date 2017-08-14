@@ -43,63 +43,33 @@ class AddBankFormViewModel {
         self.walletService = walletService
         
         // When Save To Wallet switch is toggled off, reset the fields that get hidden
-        saveToWallet.asObservable().subscribe(onNext: { save in
-            if !save {
-                self.nickname.value = ""
-                self.oneTouchPay.value = false
-            }
-        }).disposed(by: disposeBag)
+        saveToWallet.asObservable().filter(!).map { _ in "" }.bind(to: nickname).disposed(by: disposeBag)
+        saveToWallet.asObservable().filter(!).map { _ in false }.bind(to: oneTouchPay).disposed(by: disposeBag)
     }
     
-    func accountHolderNameHasText() -> Observable<Bool> {
-        return accountHolderName.asObservable().map {
-            return !$0.isEmpty
-        }
-    }
+    private(set) lazy var accountHolderNameHasText: Driver<Bool> = self.accountHolderName.asDriver().map { !$0.isEmpty }
     
-    func accountHolderNameIsValid() -> Observable<Bool> {
-        return accountHolderName.asObservable().map {
-            return $0.characters.count >= 3
-        }
-    }
+    private(set) lazy var accountHolderNameIsValid: Driver<Bool> = self.accountHolderName.asDriver().map { $0.characters.count >= 3 }
     
-    func routingNumberIsValid() -> Observable<Bool> {
-        return routingNumber.asObservable().map {
-            return $0.characters.count == 9
-        }
-    }
+    private(set) lazy var routingNumberIsValid: Driver<Bool> = self.routingNumber.asDriver().map { $0.characters.count == 9 }
     
-    func accountNumberHasText() -> Observable<Bool> {
-        return accountNumber.asObservable().map {
-            return !$0.isEmpty
-        }
-    }
+    private(set) lazy var accountNumberHasText: Driver<Bool> = self.accountNumber.asDriver().map { !$0.isEmpty }
     
-    func accountNumberIsValid() -> Observable<Bool> {
-        return accountNumber.asObservable().map {
-            return $0.characters.count >= 4 && $0.characters.count <= 17
-        }
+    private(set) lazy var accountNumberIsValid: Driver<Bool> = self.accountNumber.asDriver().map {
+            $0.characters.count >= 4 && $0.characters.count <= 17
     }
     
     private(set) lazy var confirmAccountNumberMatches: Driver<Bool> = Driver.combineLatest(self.accountNumber.asDriver(),
                                                                                            self.confirmAccountNumber.asDriver(),
                                                                                            resultSelector: ==)
     
-    private(set) lazy var confirmRoutingNumberIsEnabled: Driver<Bool> = self.routingNumber.asDriver().map {
-        return !$0.isEmpty
-    }
+    private(set) lazy var confirmRoutingNumberIsEnabled: Driver<Bool> = self.routingNumber.asDriver().map { !$0.isEmpty }
     
-    private(set) lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumber.asDriver().map {
-        return !$0.isEmpty
-    }
+    private(set) lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumber.asDriver().map { !$0.isEmpty }
     
-    func nicknameHasText() -> Observable<Bool> {
-        return nickname.asObservable().map {
-            return !$0.isEmpty
-        }
-    }
+    private(set) lazy var nicknameHasText: Driver<Bool> = self.nickname.asDriver().map { !$0.isEmpty }
     
-    private(set) lazy var nicknameErrorString: Driver<String?> = self.nickname.asDriver().map {
+    private(set) lazy var nicknameErrorString: Driver<String?> = self.nickname.asDriver().map { [weak self] in
         // If BGE, check if at least 3 characters
         if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.characters.count < 3 {
             return NSLocalizedString("Must be at least 3 characters", comment: "")
@@ -113,9 +83,9 @@ class AddBankFormViewModel {
         }
         
         // Check for duplicate nickname
-        if self.nicknamesInWallet.map({ nickname in
-            return nickname.lowercased()
-        }).contains($0.lowercased()) {
+        guard let `self` = self else { return nil }
+        let isDuplicate = self.nicknamesInWallet.map { $0.lowercased() }.contains($0.lowercased())
+        if isDuplicate {
             return NSLocalizedString("This nickname is already in use", comment: "")
         }
         
@@ -125,8 +95,8 @@ class AddBankFormViewModel {
     func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
         walletService.fetchBankName(routingNumber.value)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { bankName in
-                self.bankName = bankName
+            .subscribe(onNext: { [weak self] bankName in
+                self?.bankName = bankName
                 onSuccess()
             }, onError: { (error: Error) in
                 onError()
