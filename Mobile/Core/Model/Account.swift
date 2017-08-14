@@ -167,12 +167,12 @@ struct PaymentItem: Mappable {
     }
     
     let amount: Double
-    let date: Date
+    let date: Date?
     let status: PaymentStatus
     
     init(map: Mapper) throws {
         amount = try map.from("paymentAmount")
-        date = try map.from("paymentDate", transformation: extractDate)
+        
         status = try map.from("status") {
             guard let statusString = $0 as? String else {
                 throw MapperError.convertibleError(value: $0, type: PaymentStatus.self)
@@ -182,6 +182,14 @@ struct PaymentItem: Mappable {
             }
             return status
         }
+        
+        date = map.optionalFrom("paymentDate", transformation: extractDate)
+        
+        // Scheduled payments require dates
+        guard status != .scheduled || date != nil else {
+            throw MapperError.convertibleError(value: "paymentDate", type: PaymentStatus.self)
+        }
+        
     }
 }
 
@@ -248,8 +256,7 @@ struct BillingInfo: Mappable {
         
         scheduledPayment = paymentItems?.first(where: { $0.status == .scheduled })
         pendingPayments = paymentItems?
-            .filter { $0.status == .pending || $0.status == .processing }
-            .sorted { $0.date < $1.date } ?? []
+            .filter { $0.status == .pending || $0.status == .processing } ?? []
         
     }
     
