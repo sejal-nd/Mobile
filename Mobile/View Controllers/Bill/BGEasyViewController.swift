@@ -16,6 +16,7 @@ class BGEasyViewController: DismissableFormSheetViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var bulletCollection: [UIView]!
     @IBOutlet weak var bullet1Label: UILabel!
+    @IBOutlet weak var bullet1LabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bullet2Label: UILabel!
 
     override func viewDidLoad() {
@@ -47,6 +48,11 @@ class BGEasyViewController: DismissableFormSheetViewController {
         bullet1Label.text = NSLocalizedString("As an existing participant, you may continue to use this plan at no additional charge; however this payment option cannot be managed through an online account.", comment: "")
         bullet1Label.setLineHeight(lineHeight: 25)
         bullet1Label.font = OpenSans.regular.of(textStyle: .body)
+        
+        // Resolves an issue where bullet1Label would be cut off on "Plus" sized iPhones
+        if let rect = bullet1Label.attributedText?.boundingRect(with: CGSize(width: bullet1Label.frame.size.width, height: CGFloat.greatestFiniteMagnitude), options: [NSStringDrawingOptions.usesLineFragmentOrigin, NSStringDrawingOptions.usesFontLeading], context: nil) {
+            bullet1LabelHeightConstraint.constant = ceil(rect.integral.size.height + 0.5)
+        }
         
         bullet2Label.textColor = .deepGray
         bullet2Label.text = NSLocalizedString("If you would like to take advantage of the more flexible BGE.com payment options or if you would like to manage your BGEasy program enrollment, please contact us.", comment: "")
