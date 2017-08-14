@@ -39,12 +39,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var amountLabel: UILabel!
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         dateLabel.text = ""
