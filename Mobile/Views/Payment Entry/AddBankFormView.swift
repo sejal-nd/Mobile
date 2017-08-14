@@ -187,7 +187,7 @@ class AddBankFormView: UIView {
             self.accountNumberTextField.setError(nil)
         }).disposed(by: disposeBag)
         
-        viewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
+        viewModel.confirmAccountNumberMatches.drive(onNext: { matches in
             if !self.viewModel.confirmAccountNumber.value.isEmpty {
                 if matches {
                     self.confirmAccountNumberTextField.setValidated(true, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
@@ -200,7 +200,7 @@ class AddBankFormView: UIView {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.nicknameErrorString().subscribe(onNext: { errMessage in
+        viewModel.nicknameErrorString.drive(onNext: { errMessage in
             self.nicknameTextField.setError(errMessage)
         }).disposed(by: disposeBag)
     }

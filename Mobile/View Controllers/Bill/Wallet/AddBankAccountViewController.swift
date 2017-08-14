@@ -155,11 +155,11 @@ class AddBankAccountViewController: UIViewController {
             self.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        viewModel.addBankFormViewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
+        viewModel.addBankFormViewModel.confirmAccountNumberMatches.drive(onNext: { matches in
             self.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        viewModel.addBankFormViewModel.nicknameErrorString().subscribe(onNext: { valid in
+        viewModel.addBankFormViewModel.nicknameErrorString.drive(onNext: { valid in
             self.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
     }

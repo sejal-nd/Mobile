@@ -81,17 +81,15 @@ class AddBankFormViewModel {
         }
     }
     
-    func confirmAccountNumberMatches() -> Observable<Bool> {
-        return Observable.combineLatest(accountNumber.asObservable(), confirmAccountNumber.asObservable()) {
-            return $0 == $1
-        }
-    }
+    private(set) lazy var confirmAccountNumberMatches: Driver<Bool> = Driver.combineLatest(self.accountNumber.asDriver(),
+                                                                                           self.confirmAccountNumber.asDriver(),
+                                                                                           resultSelector: ==)
     
-    lazy var confirmRoutingNumberIsEnabled: Driver<Bool> = self.routingNumber.asDriver().map {
+    private(set) lazy var confirmRoutingNumberIsEnabled: Driver<Bool> = self.routingNumber.asDriver().map {
         return !$0.isEmpty
     }
     
-    lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumber.asDriver().map {
+    private(set) lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumber.asDriver().map {
         return !$0.isEmpty
     }
     
@@ -101,29 +99,27 @@ class AddBankFormViewModel {
         }
     }
     
-    func nicknameErrorString() -> Observable<String?> {
-        return nickname.asObservable().map {
-            // If BGE, check if at least 3 characters
-            if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.characters.count < 3 {
-                return NSLocalizedString("Must be at least 3 characters", comment: "")
-            }
-            
-            // Check for special characters
-            var trimString = $0.components(separatedBy: CharacterSet.whitespaces).joined(separator: "")
-            trimString = trimString.components(separatedBy: CharacterSet.alphanumerics).joined(separator: "")
-            if !trimString.isEmpty {
-                return NSLocalizedString("Can only contain letters, numbers, and spaces", comment: "")
-            }
-            
-            // Check for duplicate nickname
-            if self.nicknamesInWallet.map({ nickname in
-                return nickname.lowercased()
-            }).contains($0.lowercased()) {
-                return NSLocalizedString("This nickname is already in use", comment: "")
-            }
-            
-            return nil
+    private(set) lazy var nicknameErrorString: Driver<String?> = self.nickname.asDriver().map {
+        // If BGE, check if at least 3 characters
+        if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.characters.count < 3 {
+            return NSLocalizedString("Must be at least 3 characters", comment: "")
         }
+        
+        // Check for special characters
+        var trimString = $0.components(separatedBy: CharacterSet.whitespaces).joined(separator: "")
+        trimString = trimString.components(separatedBy: CharacterSet.alphanumerics).joined(separator: "")
+        if !trimString.isEmpty {
+            return NSLocalizedString("Can only contain letters, numbers, and spaces", comment: "")
+        }
+        
+        // Check for duplicate nickname
+        if self.nicknamesInWallet.map({ nickname in
+            return nickname.lowercased()
+        }).contains($0.lowercased()) {
+            return NSLocalizedString("This nickname is already in use", comment: "")
+        }
+        
+        return nil
     }
     
     func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {

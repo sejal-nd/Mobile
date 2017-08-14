@@ -400,9 +400,9 @@ class PaymentViewModel {
                                      addBankFormViewModel.routingNumberIsValid().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberHasText().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberIsValid().asDriver(onErrorJustReturn: false),
-                                     addBankFormViewModel.confirmAccountNumberMatches().asDriver(onErrorJustReturn: false),
+                                     addBankFormViewModel.confirmAccountNumberMatches,
                                      addBankFormViewModel.nicknameHasText().asDriver(onErrorJustReturn: false),
-                                     addBankFormViewModel.nicknameErrorString().map{ $0 == nil }.asDriver(onErrorJustReturn: false)]) {
+                                     addBankFormViewModel.nicknameErrorString.map{ $0 == nil }]) {
             return !$0.contains(false)
         }
     }
@@ -411,8 +411,8 @@ class PaymentViewModel {
         return Driver.combineLatest([addBankFormViewModel.routingNumberIsValid().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberHasText().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberIsValid().asDriver(onErrorJustReturn: false),
-                                     addBankFormViewModel.confirmAccountNumberMatches().asDriver(onErrorJustReturn: false),
-                                     addBankFormViewModel.nicknameErrorString().map{ $0 == nil }.asDriver(onErrorJustReturn: false)]) {
+                                     addBankFormViewModel.confirmAccountNumberMatches,
+                                     addBankFormViewModel.nicknameErrorString.map{ $0 == nil }]) {
             return !$0.contains(false)
         }
     }
@@ -423,7 +423,7 @@ class PaymentViewModel {
                                      addBankFormViewModel.routingNumberIsValid().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberHasText().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberIsValid().asDriver(onErrorJustReturn: false),
-                                     addBankFormViewModel.confirmAccountNumberMatches().asDriver(onErrorJustReturn: false)]) {
+                                     addBankFormViewModel.confirmAccountNumberMatches.asDriver(onErrorJustReturn: false)]) {
             return !$0.contains(false)
         }
     }
@@ -432,41 +432,40 @@ class PaymentViewModel {
         return Driver.combineLatest([addBankFormViewModel.routingNumberIsValid().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberHasText().asDriver(onErrorJustReturn: false),
                                      addBankFormViewModel.accountNumberIsValid().asDriver(onErrorJustReturn: false),
-                                     addBankFormViewModel.confirmAccountNumberMatches().asDriver(onErrorJustReturn: false)]) {
+                                     addBankFormViewModel.confirmAccountNumberMatches]) {
             return !$0.contains(false)
         }
     }
     
     // MARK: - Inline Card Validation
     
-    var bgeCommercialUserEnteringVisa: Observable<Bool> {
-        return Observable.combineLatest(addCardFormViewModel.cardNumber.asObservable(), accountDetail.asObservable()).map {
-            if Environment.sharedInstance.opco == .bge && !$1.isResidential {
-                let characters = Array($0.characters)
-                if characters.count >= 1 {
-                    return characters[0] == "4"
-                }
+    private(set) lazy var bgeCommercialUserEnteringVisa: Observable<Bool> = Observable.combineLatest(self.addCardFormViewModel.cardNumber.asObservable(),
+                                                                                                     self.accountDetail.asObservable())
+    {
+        if Environment.sharedInstance.opco == .bge && !$1.isResidential {
+            let characters = Array($0.characters)
+            if characters.count >= 1 {
+                return characters[0] == "4"
             }
-            return false
         }
+        return false
     }
     
-    var saveToWalletCardFormValidBGE: Driver<Bool> {
-        return Driver.combineLatest([addCardFormViewModel.nameOnCardHasText().asDriver(onErrorJustReturn: false),
-                                     addCardFormViewModel.cardNumberHasText().asDriver(onErrorJustReturn: false),
-                                     addCardFormViewModel.cardNumberIsValid().asDriver(onErrorJustReturn: false),
-                                     bgeCommercialUserEnteringVisa.asDriver(onErrorJustReturn: false).map(!),
-                                     addCardFormViewModel.expMonthIs2Digits().asDriver(onErrorJustReturn: false),
-                                     addCardFormViewModel.expMonthIsValidMonth().asDriver(onErrorJustReturn: false),
-                                     addCardFormViewModel.expYearIs4Digits().asDriver(onErrorJustReturn: false),
-                                     addCardFormViewModel.expYearIsNotInPast().asDriver(onErrorJustReturn: false),
-                                     addCardFormViewModel.cvvIsCorrectLength().asDriver(onErrorJustReturn: false),
-                                     addCardFormViewModel.zipCodeIs5Digits().asDriver(onErrorJustReturn: false),
-                                     addCardFormViewModel.nicknameHasText().asDriver(onErrorJustReturn: false),
-                                     addCardFormViewModel.nicknameErrorString().map{ $0 == nil }.asDriver(onErrorJustReturn: false)]) {
-            return !$0.contains(false)
-        }
-    }
+    private(set) lazy var saveToWalletCardFormValidBGE: Driver<Bool> = Observable
+        .combineLatest([self.addCardFormViewModel.nameOnCardHasText(),
+                        self.addCardFormViewModel.cardNumberHasText(),
+                        self.addCardFormViewModel.cardNumberIsValid(),
+                        self.bgeCommercialUserEnteringVisa.map(!),
+                        self.addCardFormViewModel.expMonthIs2Digits(),
+                        self.addCardFormViewModel.expMonthIsValidMonth(),
+                        self.addCardFormViewModel.expYearIs4Digits(),
+                        self.addCardFormViewModel.expYearIsNotInPast(),
+                        self.addCardFormViewModel.cvvIsCorrectLength(),
+                        self.addCardFormViewModel.zipCodeIs5Digits(),
+                        self.addCardFormViewModel.nicknameHasText(),
+                        self.addCardFormViewModel.nicknameErrorString().map{ $0 == nil }])
+        .map { !$0.contains(false) }
+        .asDriver(onErrorJustReturn: false)
     
     var saveToWalletCardFormValidComEdPECO: Driver<Bool> {
         return Driver.combineLatest([addCardFormViewModel.cardNumberHasText().asDriver(onErrorJustReturn: false),
@@ -655,7 +654,7 @@ class PaymentViewModel {
         }
     }
     
-    lazy var cvvIsCorrectLength: Observable<Bool> = self.cvv.asObservable().map {
+    private(set) lazy var cvvIsCorrectLength: Observable<Bool> = self.cvv.asObservable().map {
         return $0.characters.count == 3 || $0.characters.count == 4
     }
     
@@ -757,11 +756,8 @@ class PaymentViewModel {
         }
     }
     
-    var shouldShowStickyFooterView: Driver<Bool> {
-        return Driver.combineLatest(hasWalletItems, inlineBank.asDriver(), inlineCard.asDriver()).map {
-            return $0 || $1 || $2
-        }
-    }
+    private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver())
+        .map { $0 || $1 || $2 }
     
     var selectedWalletItemImage: Driver<UIImage?> {
         return Driver.combineLatest(selectedWalletItem.asDriver(), inlineBank.asDriver(), inlineCard.asDriver()).map {

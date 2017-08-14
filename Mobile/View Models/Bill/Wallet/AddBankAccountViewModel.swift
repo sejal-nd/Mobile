@@ -31,17 +31,17 @@ class AddBankAccountViewModel {
                                              addBankFormViewModel.routingNumberIsValid(),
                                              addBankFormViewModel.accountNumberHasText(),
                                              addBankFormViewModel.accountNumberIsValid(),
-                                             addBankFormViewModel.confirmAccountNumberMatches(),
+                                             addBankFormViewModel.confirmAccountNumberMatches.asObservable(),
                                              addBankFormViewModel.nicknameHasText(),
-                                             addBankFormViewModel.nicknameErrorString().map{ $0 == nil }]) {
-                return !$0.contains(false)
+                                             addBankFormViewModel.nicknameErrorString.asObservable().map{ $0 == nil }]) {
+                !$0.contains(false)
             }
         } else {
             return Observable.combineLatest([addBankFormViewModel.routingNumberIsValid(),
                                              addBankFormViewModel.accountNumberHasText(),
                                              addBankFormViewModel.accountNumberIsValid(),
-                                             addBankFormViewModel.confirmAccountNumberMatches(),
-                                             addBankFormViewModel.nicknameErrorString().map{ $0 == nil }]) {
+                                             addBankFormViewModel.confirmAccountNumberMatches.asObservable(),
+                                             addBankFormViewModel.nicknameErrorString.asObservable().map{ $0 == nil }]) {
                 return !$0.contains(false)
             }
         }
