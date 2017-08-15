@@ -358,7 +358,8 @@ class HomeBillCardViewModel {
             .map { ($0.billingInfo.scheduledPayment?.amount ?? 0) > 0 &&
                 $0.billingInfo.scheduledPayment?.date ?? currentDate > currentDate &&
                 ($0.billingInfo.pendingPayments.first?.amount ?? 0) == 0 }
-        return Driver.combineLatest(isScheduled, self.showAutoPay, self.isPrecariousBillSituation) { $0 && !$1 && !$2 }
+        return Driver.combineLatest(isScheduled, self.showAutoPay, self.isPrecariousBillSituation, self.titleState)
+        { $0 && !$1 && !$2 && $3 != .billPaidIntermediate }
     } ()
     
     private(set) lazy var showAutoPayIcon: Driver<Bool> = self.showAutoPay
