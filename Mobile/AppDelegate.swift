@@ -191,6 +191,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
             let vcArray = sendToLogin ? [landing, login] : [landing]
             rootNav.setViewControllers(vcArray, animated: false)
+            rootNav.view.isUserInteractionEnabled = true // If 401 occured during Login, we need to re-enable
         }
         
         window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app (or the registration confirmation modal)
