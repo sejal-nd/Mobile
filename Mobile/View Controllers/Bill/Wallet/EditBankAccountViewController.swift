@@ -60,12 +60,12 @@ class EditBankAccountViewController: UIViewController {
         accountIDLabel.font = OpenSans.regular.of(textStyle: .title1)
         oneTouchPayCardLabel.font = SystemFont.regular.of(textStyle: .footnote)
         oneTouchPayCardLabel.textColor = .blackText
-        oneTouchPayCardLabel.text = NSLocalizedString("One Touch Pay", comment: "")
+        oneTouchPayCardLabel.text = NSLocalizedString("Default", comment: "")
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         oneTouchPayDescriptionLabel.text = viewModel.getOneTouchDisplayString()
         oneTouchPayLabel.textColor = .blackText
-        oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
+        oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
         oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
         nicknameLabel.textColor = .blackText
         nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
@@ -250,14 +250,14 @@ class EditBankAccountViewController: UIViewController {
         }
         
         if shouldShowOneTouchPayReplaceWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to replace your current One Touch Pay payment account?", comment: ""), preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
                 saveBankAccountChanges(true)
             }))
             present(alertVc, animated: true, completion: nil)
         } else if shouldShowOneTouchPayDisableWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("One Touch Pay", comment: ""), message: NSLocalizedString("Are you sure you want to turn off One Touch Pay? You will no longer be able to pay from the home screen, and your payment will no longer be set as default.", comment: ""), preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment account? You will no longer be able to pay from the home screen, and your payment will no longer be set as default.", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
                 saveBankAccountChanges(false)

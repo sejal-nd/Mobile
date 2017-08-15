@@ -116,7 +116,7 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.layer.borderWidth = 2
         saveAPaymentAccountButton.layer.cornerRadius = 3
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Save a payment account to One Touch Pay", comment: "")
+        saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment account", comment: "")
         
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         dueAmountAndDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
@@ -317,7 +317,7 @@ class HomeBillCardView: UIView {
                     return Disposables.create()
                 }
                 let alertController = UIAlertController(title: NSLocalizedString("Enter CVV2", comment: ""),
-                                                        message: NSLocalizedString("Enter your 3-4 digit security code to complete One Touch Pay.", comment: ""),
+                                                        message: NSLocalizedString("Enter your 3-4 digit security code to complete your payment.", comment: ""),
                                                         preferredStyle: .alert)
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .default) { [weak self] _ in
