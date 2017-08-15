@@ -494,11 +494,19 @@
                                 <rect key="frame" x="158" y="385" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEG-UV-87v">
+                                <rect key="frame" x="29" y="380" width="317" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LEG-UV-87v" firstAttribute="leading" secondItem="OzL-b3-scW" secondAttribute="leading" constant="29" id="Aoi-eO-Ie0"/>
                             <constraint firstAttribute="trailing" secondItem="RG6-dl-PMp" secondAttribute="trailing" id="FtO-iQ-ue3"/>
                             <constraint firstItem="ieR-AG-WNl" firstAttribute="leading" secondItem="OzL-b3-scW" secondAttribute="leading" priority="999" id="OU7-yJ-yrr"/>
+                            <constraint firstItem="LEG-UV-87v" firstAttribute="centerX" secondItem="ieR-AG-WNl" secondAttribute="centerX" id="aWn-Gw-xBu"/>
                             <constraint firstItem="ieR-AG-WNl" firstAttribute="centerX" secondItem="OzL-b3-scW" secondAttribute="centerX" id="bCA-xg-bXr"/>
                             <constraint firstItem="dvR-dm-UwW" firstAttribute="centerX" secondItem="ieR-AG-WNl" secondAttribute="centerX" id="fCj-Ra-utR"/>
                             <constraint firstItem="dvR-dm-UwW" firstAttribute="centerY" secondItem="ieR-AG-WNl" secondAttribute="centerY" id="goH-e5-wXx"/>
@@ -507,11 +515,14 @@
                             <constraint firstItem="ieR-AG-WNl" firstAttribute="top" secondItem="RG6-dl-PMp" secondAttribute="bottom" id="lI5-GX-t5s"/>
                             <constraint firstItem="TR7-Ua-IPf" firstAttribute="top" secondItem="ieR-AG-WNl" secondAttribute="bottom" id="tKi-ac-xgy"/>
                             <constraint firstItem="RG6-dl-PMp" firstAttribute="leading" secondItem="OzL-b3-scW" secondAttribute="leading" id="x9x-DM-jf1"/>
+                            <constraint firstAttribute="trailing" secondItem="LEG-UV-87v" secondAttribute="trailing" constant="29" id="y72-Wp-QHk"/>
+                            <constraint firstItem="LEG-UV-87v" firstAttribute="centerY" secondItem="ieR-AG-WNl" secondAttribute="centerY" id="znm-Nh-ljf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Release of Information" id="fa1-MI-N4I"/>
                     <connections>
                         <outlet property="accountInfoBar" destination="RG6-dl-PMp" id="n9c-T5-nQe"/>
+                        <outlet property="errorLabel" destination="LEG-UV-87v" id="hds-1t-0Tn"/>
                         <outlet property="loadingIndicator" destination="dvR-dm-UwW" id="dUb-cU-I7p"/>
                         <outlet property="tableView" destination="ieR-AG-WNl" id="1ce-me-mmg"/>
                     </connections>

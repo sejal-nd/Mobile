@@ -106,6 +106,10 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyTextView.tintColor = .actionBlue
         gasOnlyTextView.text = viewModel.getGasOnlyMessage()
         
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
         accountPickerViewControllerWillAppear.subscribe(onNext: { state in
             switch(state) {
             case .loadingAccounts:
@@ -345,19 +349,18 @@ class OutageViewController: AccountPickerViewController {
         loadingView.isHidden = false
         loadingView.accessibilityViewIsModal = true
         setRefreshControlEnabled(enabled: false)
-        viewModel.getOutageStatus(onSuccess: {
+        viewModel.getOutageStatus(onSuccess: { [weak self] in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-            self.loadingView.isHidden = true
-            self.loadingView.accessibilityViewIsModal = false
-            self.setRefreshControlEnabled(enabled: true)
-            self.updateContent()
-        }, onError: { error in
+            self?.loadingView.isHidden = true
+            self?.loadingView.accessibilityViewIsModal = false
+            self?.setRefreshControlEnabled(enabled: true)
+            self?.updateContent()
+        }, onError: { [weak self] in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-            self.loadingView.isHidden = true
-            self.loadingView.accessibilityViewIsModal = false
-            self.setRefreshControlEnabled(enabled: true)
-            self.errorLabel.text = error
-            self.errorLabel.isHidden = false
+            self?.loadingView.isHidden = true
+            self?.loadingView.accessibilityViewIsModal = false
+            self?.setRefreshControlEnabled(enabled: true)
+            self?.errorLabel.isHidden = false
         })
     }
     
@@ -386,9 +389,8 @@ class OutageViewController: AccountPickerViewController {
         viewModel.getOutageStatus(onSuccess: {
             self.refreshControl?.endRefreshing()
             self.updateContent()
-        }, onError: { error in
+        }, onError: {
             self.refreshControl?.endRefreshing()
-            self.errorLabel.text = error
             self.errorLabel.isHidden = false
             
             // Hide everything else

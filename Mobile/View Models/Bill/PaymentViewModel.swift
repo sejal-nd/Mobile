@@ -107,7 +107,7 @@ class PaymentViewModel {
         }
     }
     
-    func fetchData(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
+    func fetchData(onSuccess: (() -> Void)?, onError: (() -> Void)?) {
         var observables = [fetchWalletItems()]
         if Environment.sharedInstance.opco == .peco {
             observables.append(fetchPECOWorkdays())
@@ -176,9 +176,11 @@ class PaymentViewModel {
                         }
                     }
                 }
+                onSuccess?()
             }, onError: { _ in
                 self.isFetching.value = false
                 self.isError.value = true
+                onError?()
             }).disposed(by: disposeBag)
     }
     

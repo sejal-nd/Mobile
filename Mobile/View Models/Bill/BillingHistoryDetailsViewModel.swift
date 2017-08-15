@@ -16,18 +16,13 @@ class BillingHistoryDetailsViewModel {
     private let paymentService: PaymentService
     
     private let billingHistory: BillingHistoryItem
+
+    let fetching = Variable(false)
+    let isError = Variable(false)
+    let paymentDetail = Variable<PaymentDetail?>(nil)
     
-    let fetchingTracker = ActivityTracker()
-    let fetching: Driver<Bool>
-    
-    private lazy var paymentDetail: Observable<PaymentDetail> = Observable.just(self.billingHistory)
-        .filter { $0.encryptedPaymentId != nil }
-        .map { $0.paymentId }
-        .unwrap()
-        .flatMap(self.fetchPaymentDetails)
-    
-    private(set) lazy var paymentAccount: Driver<String?> = self.paymentDetail.asDriver(onErrorDriveWith: .empty()).map {
-        guard let paymentAccount = $0.accountNumber else { return "" }
+    private(set) lazy var paymentAccount: Driver<String?> = self.paymentDetail.asDriver().map {
+        guard let paymentAccount = $0?.accountNumber else { return "" }
         return "**** " + String(paymentAccount.characters.suffix(4))
     }
     
@@ -59,14 +54,15 @@ class BillingHistoryDetailsViewModel {
         }
     }
     
-    private(set) lazy var convenienceFee: Driver<String?> = self.paymentDetail.asDriver(onErrorDriveWith: .empty()).map {
-        guard let convFee = $0.convenienceFee else { return "" }
+    private(set) lazy var convenienceFee: Driver<String?> = self.paymentDetail.asDriver().map {
+        guard let convFee = $0?.convenienceFee else { return "" }
         return convFee.currencyString
     }
     
-    private(set) lazy var totalAmountPaid: Driver<String?> = self.paymentDetail.asDriver(onErrorDriveWith: .empty()).map {
-        guard let convFee = $0.convenienceFee else { return "" }
-        let returnValue = convFee + $0.paymentAmount
+    private(set) lazy var totalAmountPaid: Driver<String?> = self.paymentDetail.asDriver().map {
+        guard let paymentDetail = $0 else { return "" }
+        guard let convFee = paymentDetail.convenienceFee else { return "" }
+        let returnValue = convFee + paymentDetail.paymentAmount
         return returnValue.currencyString
     }
     
@@ -107,14 +103,29 @@ class BillingHistoryDetailsViewModel {
         return isSpeedpay ? "Payment Amount" : "Amount Paid"
     }
     
+    var shouldShowContent: Driver<Bool> {
+        return Driver.combineLatest(fetching.asDriver(), isError.asDriver()).map {
+            return !$0 && !$1
+        }
+    }
+    
     required init(paymentService: PaymentService, billingHistoryItem: BillingHistoryItem) {
         self.paymentService = paymentService
         self.billingHistory = billingHistoryItem
-        self.fetching = self.fetchingTracker.asDriver()
     }
     
-    func fetchPaymentDetails(paymentId: String) -> Observable<PaymentDetail> {
-        return paymentService.fetchPaymentDetails(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, paymentId: paymentId)
-        .trackActivity(fetchingTracker)
+    func fetchPaymentDetails(billingHistoryItem: BillingHistoryItem) {
+        if let paymentId = billingHistoryItem.paymentId, billingHistoryItem.encryptedPaymentId != nil {
+            fetching.value = true
+            self.paymentService.fetchPaymentDetails(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, paymentId: paymentId).subscribe(onNext: { [weak self] paymentDetail in
+                self?.fetching.value = false
+                self?.paymentDetail.value = paymentDetail
+            }, onError: { [weak self] err in
+                self?.fetching.value = false
+                self?.isError.value = true
+            }).disposed(by: disposeBag)
+        } else {
+            self.fetching.value = false
+        }
     }
 }

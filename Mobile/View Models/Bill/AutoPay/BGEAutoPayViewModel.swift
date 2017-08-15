@@ -25,6 +25,7 @@ class BGEAutoPayViewModel {
     private var paymentService: PaymentService
 
     let isFetchingAutoPayInfo = Variable(false)
+    let isError = Variable(false)
     
     var accountDetail: AccountDetail
     let initialEnrollmentStatus: Variable<EnrollmentStatus>
@@ -61,10 +62,12 @@ class BGEAutoPayViewModel {
     
     func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
         isFetchingAutoPayInfo.value = true
+        self.isError.value = false
         paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { (autoPayInfo: BGEAutoPayInfo) in
                 self.isFetchingAutoPayInfo.value = false
+                self.isError.value = false
                 
                 // Expired accounts
                 var isExpired = false
@@ -109,6 +112,7 @@ class BGEAutoPayViewModel {
                 onSuccess?()
             }, onError: { error in
                 self.isFetchingAutoPayInfo.value = false
+                self.isError.value = true
                 onError?(error.localizedDescription)
             })
             .disposed(by: disposeBag)
@@ -162,6 +166,11 @@ class BGEAutoPayViewModel {
         $0 == .enrolled || $1 != nil && !$2
     }
     
+    var shouldShowContent: Driver<Bool> {
+        return Driver.combineLatest(isFetchingAutoPayInfo.asDriver(), isError.asDriver()).map {
+            return !$0 && !$1
+        }
+    }
     
     func getInvalidSettingsMessage() -> String? {
         let defaultString = NSLocalizedString("Complete all required fields before returning to the AutoPay screen. Check your selected settings and complete secondary fields.", comment: "")

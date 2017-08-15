@@ -16,9 +16,10 @@ enum BillingSelection {
 
 class BillingHistoryViewController: UIViewController {
 
-    @IBOutlet var tableView: UITableView!
-    @IBOutlet var loadingIndicator: UIView!
-    @IBOutlet var empyStateLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loadingIndicator: UIView!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var empyStateLabel: UILabel!
     
     var billingSelection: BillingSelection!
     
@@ -40,6 +41,11 @@ class BillingHistoryViewController: UIViewController {
         
         tableView.delegate = self;
         tableView.dataSource = self;
+        
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorLabel.isHidden = true
         
         self.tableView.register(UINib(nibName: BillingHistoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: "Cell")
         
@@ -77,9 +83,8 @@ class BillingHistoryViewController: UIViewController {
             }
             
         }) { (error) in
-            print(error)
+            self.errorLabel.isHidden = false
             self.loadingIndicator.isHidden = true
-            //TODO: handle this error
         }
     }
 
