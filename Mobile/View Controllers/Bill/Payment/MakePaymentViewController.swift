@@ -269,9 +269,11 @@ class MakePaymentViewController: UIViewController {
         bindButtonTaps()
 
         viewModel.formatPaymentAmount() // Initial formatting
-        viewModel.fetchData(onSuccess: {
+        viewModel.fetchData(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
-        }, onError: { _ in
+        }, onError: { [weak self] _ in
+            guard let `self` = self else { return }
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         })
     }

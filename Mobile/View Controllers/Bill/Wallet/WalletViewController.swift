@@ -186,13 +186,15 @@ class WalletViewController: UIViewController {
         viewModel.isError.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowEmptyState.map(!).drive(emptyStateScrollView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowEmptyState.drive(onNext: { shouldShow in
+        viewModel.shouldShowEmptyState.drive(onNext: { [weak self] shouldShow in
+            guard let `self` = self else { return }
             if shouldShow {
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.emptyStateScrollView)
             }
         }).disposed(by: disposeBag)
         viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowWallet.drive(onNext: { shouldShow in
+        viewModel.shouldShowWallet.drive(onNext: { [weak self] shouldShow in
+            guard let `self` = self else { return }
             if shouldShow {
                 self.tableView.reloadData()
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
@@ -205,12 +207,12 @@ class WalletViewController: UIViewController {
     }
     
     func setupButtonTaps() {
-        Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver()).drive(onNext: {
-            self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
+        Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver()).drive(onNext: { [weak self] in
+            self?.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
         }).disposed(by: disposeBag)
         
-        Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver()).drive(onNext: {
-            self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
+        Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver()).drive(onNext: { [weak self] in
+            self?.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
         }).disposed(by: disposeBag)
     }
     

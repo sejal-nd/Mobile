@@ -349,18 +349,18 @@ class OutageViewController: AccountPickerViewController {
         loadingView.isHidden = false
         loadingView.accessibilityViewIsModal = true
         setRefreshControlEnabled(enabled: false)
-        viewModel.getOutageStatus(onSuccess: {
+        viewModel.getOutageStatus(onSuccess: { [weak self] in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-            self.loadingView.isHidden = true
-            self.loadingView.accessibilityViewIsModal = false
-            self.setRefreshControlEnabled(enabled: true)
-            self.updateContent()
-        }, onError: {
+            self?.loadingView.isHidden = true
+            self?.loadingView.accessibilityViewIsModal = false
+            self?.setRefreshControlEnabled(enabled: true)
+            self?.updateContent()
+        }, onError: { [weak self] in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-            self.loadingView.isHidden = true
-            self.loadingView.accessibilityViewIsModal = false
-            self.setRefreshControlEnabled(enabled: true)
-            self.errorLabel.isHidden = false
+            self?.loadingView.isHidden = true
+            self?.loadingView.accessibilityViewIsModal = false
+            self?.setRefreshControlEnabled(enabled: true)
+            self?.errorLabel.isHidden = false
         })
     }
     

@@ -114,9 +114,11 @@ class BGEAutoPayViewController: UIViewController {
         setupBindings()
         accessibilitySetup()
     
-        viewModel.getAutoPayInfo(onSuccess: {
+        viewModel.getAutoPayInfo(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
-        }, onError: { _ in
+        }, onError: { [weak self] _ in
+            guard let `self` = self else { return }
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         })
         

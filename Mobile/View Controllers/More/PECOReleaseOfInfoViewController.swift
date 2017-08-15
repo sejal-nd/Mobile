@@ -83,12 +83,14 @@ class PECOReleaseOfInfoViewController: UIViewController {
         Analytics().logScreenView(AnalyticsPageView.ReleaseInfoSubmit.rawValue)
         accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.sharedInstance.currentAccount!, selectedIndex: rowToIntMapping)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+            .subscribe(onNext: { [weak self] in
                 LoadingView.hide()
+                guard let `self` = self else { return }
                 self.delegate?.pecoReleaseOfInfoViewControllerDidUpdate(self)
                 self.navigationController?.popViewController(animated: true)
-            }, onError: { error in
+            }, onError: { [weak self] error in
                 LoadingView.hide()
+                guard let `self` = self else { return }
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
@@ -100,7 +102,8 @@ class PECOReleaseOfInfoViewController: UIViewController {
         let fetchReleaseOfInfo = {
             self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount!)
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { accountDetail in
+                .subscribe(onNext: { [weak self] accountDetail in
+                    guard let `self` = self else { return }
                     if let selectedRelease = accountDetail.releaseOfInformation {
                         if let releaseOfInfoInt = Int(selectedRelease) {
                             var intToRowMapping = 2 // Address only is mapped correctly
@@ -116,7 +119,8 @@ class PECOReleaseOfInfoViewController: UIViewController {
                     self.loadingIndicator.isHidden = true
                     self.tableView.isHidden = false
                     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
-                }, onError: { error in
+                }, onError: { [weak self] error in
+                    guard let `self` = self else { return }
                     self.errorLabel.isHidden = false
                     self.loadingIndicator.isHidden = true
                     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
@@ -127,11 +131,14 @@ class PECOReleaseOfInfoViewController: UIViewController {
         if AccountsStore.sharedInstance.currentAccount == nil {
             accountService.fetchAccounts()
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { _ in
+                .subscribe(onNext: { [weak self] _ in
+                    guard let `self` = self else { return }
                     self.accountInfoBar.update()
                     fetchReleaseOfInfo()
-                }, onError: { error in
-                    print(error.localizedDescription)
+                }, onError: { [weak self] error in
+                    guard let `self` = self else { return }
+                    self.errorLabel.isHidden = false
+                    self.loadingIndicator.isHidden = true
                 })
                 .disposed(by: disposeBag)
         } else {
