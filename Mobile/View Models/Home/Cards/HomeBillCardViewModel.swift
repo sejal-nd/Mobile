@@ -434,9 +434,14 @@ class HomeBillCardViewModel {
             }
     }
     
-    private(set) lazy var dueDateText: Driver<NSAttributedString?> = self.accountDetailDriver.map {
-        if $0.billingInfo.pastDueAmount ?? 0 > 0 {
-            if let extensionDate = $0.billingInfo.turnOffNoticeExtendedDueDate {
+    private(set) lazy var dueDateText: Driver<NSAttributedString?> = Driver.combineLatest(self.accountDetailDriver, self.isPrecariousBillSituation)
+    { accountDetail, isPrecariousBillSituation in
+        if isPrecariousBillSituation {
+            if Environment.sharedInstance.opco == .bge &&
+                accountDetail.billingInfo.disconnectNoticeArrears ?? 0 > 0 &&
+                accountDetail.billingInfo.isDisconnectNotice,
+                let extensionDate = accountDetail.billingInfo.dueByDate {
+                
                 let calendar = NSCalendar.current
                 
                 let date1 = calendar.startOfDay(for: Date())
@@ -458,11 +463,11 @@ class HomeBillCardViewModel {
                                                            NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
                 }
             } else {
-            return NSAttributedString(string: NSLocalizedString("Due Immediately", comment: ""),
-                                      attributes: [NSForegroundColorAttributeName: UIColor.errorRed,
-                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                return NSAttributedString(string: NSLocalizedString("Due Immediately", comment: ""),
+                                          attributes: [NSForegroundColorAttributeName: UIColor.errorRed,
+                                                       NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
             }
-        } else if let dueByDate = $0.billingInfo.dueByDate {
+        } else if let dueByDate = accountDetail.billingInfo.dueByDate {
             let calendar = NSCalendar.current
             
             let date1 = calendar.startOfDay(for: Date())
