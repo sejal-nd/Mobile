@@ -14,7 +14,7 @@ import RxCocoa
 // Expiration month* / Expiration year*
 // CVV* / Zip*
 // Nickname (optional)
-// One touch pay
+// Default payment account
 
 class AddCardFormViewModel {
     

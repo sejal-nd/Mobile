@@ -15,7 +15,7 @@ import RxCocoa
 // Account number with question mark
 // Confirm account number
 // Nickname (Optional for ComEd/PECO, required for BGE)
-// One touch pay toggle
+// Default account toggle
 
 class AddBankFormViewModel {
     
