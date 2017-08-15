@@ -642,7 +642,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = self.accountDetailDriver.map {
         guard let paymentAmountText = $0.billingInfo.scheduledPayment?.amount.currencyString else { return nil }
-        guard let paymentDateText = $0.billingInfo.scheduledPayment?.date.mmDdYyyyString else { return nil }
+        guard let paymentDateText = $0.billingInfo.scheduledPayment?.date?.mmDdYyyyString else { return nil }
         let localizedText = NSLocalizedString("Thank you for scheduling your %@ payment for %@." , comment: "")
         return String(format: localizedText, paymentAmountText, paymentDateText)
     }
