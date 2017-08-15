@@ -195,7 +195,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.paymentAmountErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in
             self?.paymentAmountTextField.setError(errorMessage)
             self?.accessibilityErrorLabel()
-        }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
         
         fixedPaymentAmountTextLabel.text = NSLocalizedString("Payment Amount", comment: "")
         fixedPaymentAmountTextLabel.textColor = .deepGray
@@ -466,51 +466,42 @@ class MakePaymentViewController: UIViewController {
     }
     
     func bindInlineBankAccessibility() {
-        addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-            .withLatestFrom(viewModel.addBankFormViewModel.routingNumber.asDriver())
-            .filter { !$0.isEmpty }
-            .drive(onNext: { [weak self] _ in
-                self?.accessibilityErrorLabel()
-            }).disposed(by: self.disposeBag)
-        
-        addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
+        Driver.merge(
+            addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+                .withLatestFrom(viewModel.addBankFormViewModel.routingNumber.asDriver())
+                .filter { !$0.isEmpty }
+                .map { _ in () },
+            
+            addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+            
+            addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+                .withLatestFrom(viewModel.addBankFormViewModel.accountNumber.asDriver())
+                .filter { !$0.isEmpty }
+                .map { _ in () },
+            
+            addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+            
+            viewModel.addBankFormViewModel.confirmAccountNumberMatches.map { _ in () },
+            
+            viewModel.addBankFormViewModel.nicknameErrorString.map { _ in () }
+            )
             .drive(onNext: { [weak self] in
                 self?.accessibilityErrorLabel()
-            }).disposed(by: self.disposeBag)
-        
-        addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-            .withLatestFrom(viewModel.addBankFormViewModel.accountNumber.asDriver())
-            .filter { !$0.isEmpty }
-            .drive(onNext: { [weak self] _ in
-                self?.accessibilityErrorLabel()
-            }).disposed(by: self.disposeBag)
-        
-        addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
-            .drive(onNext: { [weak self] in
-                self?.accessibilityErrorLabel()
-            }).disposed(by: self.disposeBag)
-        
-        viewModel.addBankFormViewModel.confirmAccountNumberMatches.drive(onNext: { [weak self] _ in
-            self?.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        viewModel.addBankFormViewModel.nicknameErrorString.drive(onNext: { [weak self] _ in
-            self?.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func bindInlineCardAccessibility() {
-        Driver.merge([addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
-                      addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
-                      addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
-                      addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
-                      addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
-                      addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
-                      addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
-                      addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
-                      addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
-                      addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
-                      viewModel.addCardFormViewModel.nicknameErrorString.map { _ in () }])
+        Driver.merge(addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+                     addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+                     addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+                     addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+                     addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+                     addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+                     addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+                     addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+                     addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+                     addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+                     viewModel.addCardFormViewModel.nicknameErrorString.map { _ in () })
             .drive(onNext: { [weak self] in
                 self?.accessibilityErrorLabel()
             }).disposed(by: disposeBag)
