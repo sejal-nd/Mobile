@@ -14,6 +14,7 @@ class WalletViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
     
     // Empty state stuff
     @IBOutlet weak var emptyStateScrollView: UIScrollView!
@@ -113,6 +114,10 @@ class WalletViewController: UIViewController {
         cashOnlyTableHeaderLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
         cashOnlyTableHeaderLabel.isHidden = !viewModel.accountDetail.isCashOnly
         
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
         setupBinding()
         setupButtonTaps()
         
@@ -178,12 +183,19 @@ class WalletViewController: UIViewController {
     
     func setupBinding() {
         viewModel.isFetchingWalletItems.map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isError.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowEmptyState.map(!).drive(emptyStateScrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowEmptyState.drive(onNext: { shouldShow in
+            if shouldShow {
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.emptyStateScrollView)
+            }
+        }).disposed(by: disposeBag)
         viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowWallet.drive(onNext: { shouldShow in
             if shouldShow {
                 self.tableView.reloadData()
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
             }
         }).disposed(by: disposeBag)
         

@@ -14,6 +14,7 @@ class ViewBillViewController: UIViewController {
     
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
     
     var documentController: UIDocumentInteractionController?
     
@@ -25,6 +26,11 @@ class ViewBillViewController: UIViewController {
         title = NSLocalizedString("View Bill", comment: "")
         
         webView.scalesPageToFit = true // allows pinch zooming
+        
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorLabel.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,12 +56,7 @@ class ViewBillViewController: UIViewController {
             self.webView.load(self.viewModel.pdfData!, mimeType: "application/pdf", textEncodingName: "utf-8", baseURL: URL(string: "https://www.google.com")!)
         }, onError: { errMessage in
             self.loadingIndicator.isHidden = true
-            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default, handler: { _ in
-                self.fetchBillPDFData()
-            }))
-            self.present(alertVc, animated: true, completion: nil)
+            self.errorLabel.isHidden = false
         })
     }
     

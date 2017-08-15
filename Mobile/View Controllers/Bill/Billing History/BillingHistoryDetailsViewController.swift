@@ -15,6 +15,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     var billingHistoryItem: BillingHistoryItem!
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var mainStackView: UIScrollView!
     
     @IBOutlet weak var paymentTypeView: UIView!
@@ -73,23 +74,18 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         viewModel = BillingHistoryDetailsViewModel.init(paymentService: ServiceFactory.createPaymentService(), billingHistoryItem: billingHistoryItem)
         
-//        if viewModel.isSpeedpay {
-//            mainStackView.isHidden = true
-//        }
         formatViews()
         styleViews()
         bindLoadingStates()
+        
+        viewModel.fetchPaymentDetails(billingHistoryItem: billingHistoryItem)
     }
-
+ 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar(hidesBottomBorder: true)
         }
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func formatViews() {
@@ -180,6 +176,10 @@ class BillingHistoryDetailsViewController: UIViewController {
         confirmationNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         confirmationNumberDetailsLabel.textColor = .black
         confirmationNumberDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
+        
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
     
     func bindLoadingStates() {
@@ -192,25 +192,16 @@ class BillingHistoryDetailsViewController: UIViewController {
         paymentAmountLabel.text = viewModel.paymentAmountLabel
         paymentAmountDetailsLabel.text = viewModel.amountPaid
         
-        viewModel.fetching.drive(mainStackView.rx.isHidden).disposed(by: self.bag)
-        viewModel.fetching.map(!).drive(loadingIndicator.rx.isHidden).disposed(by: self.bag)
+        viewModel.shouldShowContent.not().drive(mainStackView.rx.isHidden).disposed(by: self.bag)
+        viewModel.fetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: self.bag)
+        viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: self.bag)
         
         viewModel.convenienceFee.drive(self.convenienceFeeDetailsLabel.rx.text).disposed(by: self.bag)
         viewModel.totalAmountPaid.drive(self.totalAmountPaidDetailsLabel.rx.text).disposed(by: self.bag)
         
         paymentStatusDetailsLabel.text = viewModel.paymentStatus
         confirmationNumberDetailsLabel.text = viewModel.confirmationNumber
+
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

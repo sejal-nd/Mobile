@@ -30,7 +30,7 @@ class OutageViewModel {
         }
     }
     
-    func getOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func getOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
 
         // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
         if let disposable = currentGetOutageStatusDisposable {
@@ -55,7 +55,7 @@ class OutageViewModel {
                     onSuccess()
                 } else {
                     self.currentOutageStatus = nil
-                    onError(NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")) // Generic error message from the home bill card
+                    onError()
                 }
             })
     }

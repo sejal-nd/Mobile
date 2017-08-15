@@ -27,6 +27,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     @IBOutlet weak var accountInfoBar: AccountInfoBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
     
     let accountService = ServiceFactory.createAccountService()
     
@@ -45,6 +46,11 @@ class PECOReleaseOfInfoViewController: UIViewController {
         tableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReleaseOfInfoCell")
         tableView.estimatedRowHeight = 51
         tableView.isHidden = true
+        
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorLabel.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -109,8 +115,11 @@ class PECOReleaseOfInfoViewController: UIViewController {
                     }
                     self.loadingIndicator.isHidden = true
                     self.tableView.isHidden = false
+                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
                 }, onError: { error in
-                    print(error.localizedDescription)
+                    self.errorLabel.isHidden = false
+                    self.loadingIndicator.isHidden = true
+                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
                 })
                 .disposed(by: self.disposeBag)
         }

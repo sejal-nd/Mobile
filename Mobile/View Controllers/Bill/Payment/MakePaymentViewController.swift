@@ -89,6 +89,7 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var stickyPaymentFooterFeeLabel: UILabel!
 
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
     
     var nextButton = UIBarButtonItem()
     
@@ -258,13 +259,21 @@ class MakePaymentViewController: UIViewController {
         stickyPaymentFooterPaymentLabel.textColor = .blackText
         stickyPaymentFooterFeeLabel.textColor = .deepGray
         
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
         configureCardIO()
         bindViewHiding()
         bindViewContent()
         bindButtonTaps()
 
         viewModel.formatPaymentAmount() // Initial formatting
-        viewModel.fetchData(onSuccess: nil, onError: nil)
+        viewModel.fetchData(onSuccess: {
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+        }, onError: { _ in
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+        })
     }
     
     deinit {
@@ -305,6 +314,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.isFetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Inline Bank/Card
         viewModel.inlineBank.asDriver().map(!).drive(addBankContainerView.rx.isHidden).disposed(by: disposeBag)
