@@ -304,7 +304,7 @@ class EditBankAccountViewController: UIViewController {
     }
     
     deinit {
-        dLog(className)
+        dLog("")
     }
     
 }

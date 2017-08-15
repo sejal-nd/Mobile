@@ -263,7 +263,7 @@ class WalletViewController: UIViewController {
     }
     
     deinit {
-        dLog(className)
+        dLog("")
     }
 }
 

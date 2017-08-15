@@ -90,7 +90,7 @@ class EditCreditCardViewController: UIViewController {
         scrollView.rx.contentOffset.asDriver()
             .map { $0.y < 0 ? UIColor.primaryColor: UIColor.white }
             .distinctUntilChanged()
-            .drive(onNext: { self.scrollView.backgroundColor = $0 })
+            .drive(scrollView.rx.backgroundColor)
             .disposed(by: disposeBag)
         
         walletItemBGView.backgroundColor = .primaryColor
@@ -124,12 +124,19 @@ class EditCreditCardViewController: UIViewController {
     
     func buildNavigationButtons() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
+        saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: nil)
 
+        saveButton.rx.tap.asDriver()
+            .withLatestFrom(viewModel.cardDataEntered)
+            .drive(onNext: { [weak self] cardDataEntered in
+                self?.onSavePress(cardDataEntered: cardDataEntered)
+            })
+            .disposed(by: disposeBag)
+        
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
         
-        viewModel.saveButtonIsEnabled().bind(to: saveButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.saveButtonIsEnabled.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     func buildCCUpdateFields() {
@@ -165,7 +172,7 @@ class EditCreditCardViewController: UIViewController {
         
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        oneTouchPayDescriptionLabel.text = viewModel.getOneTouchDisplayString()
+        oneTouchPayDescriptionLabel.text = viewModel.oneTouchDisplayString
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
     }
@@ -246,86 +253,68 @@ class EditCreditCardViewController: UIViewController {
     }
     
     func bindValidation() {
-        expMonthTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.expMonth.value.isEmpty {
-                self.viewModel.expMonthIsValidMonth().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.expMonthTextField.setError(NSLocalizedString("Invalid Month", comment: ""))
+        expMonthTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.expMonth.asDriver(), viewModel.expMonthIsValidMonth, viewModel.expMonthIs2Digits))
+            .drive(onNext: { [weak self] expMonth, expMonthIsValidMonth, expMonthIs2Digits in
+                if !expMonth.isEmpty {
+                    if !expMonthIsValidMonth {
+                        self?.expMonthTextField.setError(NSLocalizedString("Invalid Month", comment: ""))
+                    } else if !expMonthIs2Digits {
+                        self?.expMonthTextField.setError(NSLocalizedString("Must be 2 digits", comment: ""))
                     }
-                }).disposed(by: self.disposeBag)
-                self.viewModel.expMonthIs2Digits().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.expMonthTextField.setError(NSLocalizedString("Must be 2 digits", comment: ""))
+                }
+                self?.accessibilityErrorLabel()
+            }).disposed(by: disposeBag)
+        
+        expMonthTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.expMonthTextField.setError(nil)
+            self?.accessibilityErrorLabel()
+        }).disposed(by: disposeBag)
+        
+        expYearTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.expYear.asDriver(), viewModel.expYearIsNotInPast, viewModel.expYearIs4Digits))
+            .drive(onNext: { [weak self] expYear, expYearIsNotInPast, expYearIs4Digits in
+                if !expYear.isEmpty {
+                    if !expYearIsNotInPast {
+                        self?.expYearTextField.setError(NSLocalizedString("Cannot be in the past", comment: ""))
+                    } else if !expYearIs4Digits {
+                        self?.expYearTextField.setError(NSLocalizedString("Must be 4 digits", comment: ""))
                     }
-                }).disposed(by: self.disposeBag)
-            }
-            self.accessibilityErrorLabel()
-            
+                }
+                self?.accessibilityErrorLabel()
+            }).disposed(by: disposeBag)
+        
+        expYearTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.expYearTextField.setError(nil)
+            self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.expMonthTextField.setError(nil)
-            self.accessibilityErrorLabel()
-            
+        cvvTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.cvv.asDriver(), viewModel.cvvIsCorrectLength))
+            .drive(onNext: { [weak self] cvv, cvvIsCorrectLength in
+                if !cvv.isEmpty && !cvvIsCorrectLength {
+                    self?.expYearTextField.setError(NSLocalizedString("Cannot be in the past", comment: ""))
+                }
+                self?.accessibilityErrorLabel()
+            }).disposed(by: disposeBag)
+        
+        cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.cvvTextField.setError(nil)
+            self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.expYear.value.isEmpty {
-                self.viewModel.expYearIsNotInPast().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.expYearTextField.setError(NSLocalizedString("Cannot be in the past", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-                self.viewModel.expYearIs4Digits().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.expYearTextField.setError(NSLocalizedString("Must be 4 digits", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
-            self.accessibilityErrorLabel()
-            
-        }).disposed(by: disposeBag)
+        zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.zipCode.asDriver(), viewModel.zipCodeIs5Digits))
+            .drive(onNext: { [weak self] zipCode, zipCodeIs5Digits in
+                if !zipCode.isEmpty && !zipCodeIs5Digits {
+                    self?.zipCodeTextField.setError(NSLocalizedString("Must be 5 digits", comment: ""))
+                }
+                self?.accessibilityErrorLabel()
+            }).disposed(by: disposeBag)
         
-        expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.expYearTextField.setError(nil)
-            self.accessibilityErrorLabel()
-            
-        }).disposed(by: disposeBag)
-        
-        cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.cvv.value.isEmpty {
-                self.viewModel.cvvIsCorrectLength().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
-            self.accessibilityErrorLabel()
-            
-        }).disposed(by: disposeBag)
-        
-        cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.cvvTextField.setError(nil)
-            self.accessibilityErrorLabel()
-            
-        }).disposed(by: disposeBag)
-        
-        zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.zipCode.value.isEmpty {
-                self.viewModel.zipCodeIs5Digits().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.zipCodeTextField.setError(NSLocalizedString("Must be 5 digits", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
-            self.accessibilityErrorLabel()
-            
-        }).disposed(by: disposeBag)
-        
-        zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.zipCodeTextField.setError(nil)
-            self.accessibilityErrorLabel()
-            
+        zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.zipCodeTextField.setError(nil)
+            self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
     }
     
@@ -337,9 +326,9 @@ class EditCreditCardViewController: UIViewController {
         message += zipCodeTextField.getError()
         
         if message.isEmpty {
-            self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
+            saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            self.saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
+            saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
         }
     }
     
@@ -377,126 +366,126 @@ class EditCreditCardViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSavePress() {
+    func onSavePress(cardDataEntered: Bool) {
         view.endEditing(true)
         
         var shouldShowOneTouchPayReplaceWarning = false
         var shouldShowOneTouchPayDisableWarning = false
         let otpItem = viewModel.oneTouchPayItem
-        if self.viewModel.oneTouchPay.value {
-            if otpItem != nil && otpItem != self.viewModel.walletItem {
+        if viewModel.oneTouchPay.value {
+            if otpItem != nil && otpItem != viewModel.walletItem {
                 shouldShowOneTouchPayReplaceWarning = true
             }
         } else {
-            if otpItem == self.viewModel.walletItem {
+            if otpItem == viewModel.walletItem {
                 shouldShowOneTouchPayDisableWarning = true
             }
         }
         
-        viewModel.cardDataEntered().single().subscribe(onNext: { cardDataEntered in
-            
-            let handleSuccess = {
-                LoadingView.hide()
-                self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
-                if self.shouldPopToRootOnSave {
-                    self.navigationController?.popToRootViewController(animated: true)
-                } else {
-                    self.navigationController?.popViewController(animated: true)
+        let handleSuccess = { [weak self] in
+            LoadingView.hide()
+            guard let `self` = self else { return }
+            self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
+            if self.shouldPopToRootOnSave {
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        
+        if cardDataEntered {
+            let editCreditCard = { [weak self] (oneTouchPay: Bool) in
+                let editOneTouchPay = { [weak self] in
+                    guard let `self` = self else { return }
+                    if oneTouchPay {
+                        self.viewModel.enableOneTouchPay(onSuccess: {
+                            handleSuccess()
+                        }, onError: { (error: String) in
+                            //In this case, the card was successfully updated, there is no visual
+                            //feedback otherwise that the fields updated successfully so this is the lesser evil.
+                            handleSuccess()
+                        })
+                    } else {
+                        self.viewModel.deleteOneTouchPay(onSuccess: {
+                            handleSuccess()
+                        }, onError: { (error: String) in
+                            //In this case, the card was successfully updated, there is no visual
+                            //feedback otherwise that the fields updated successfully so this is the lesser evil.
+                            handleSuccess()
+                        })
+                    }
                 }
+                
+                LoadingView.show()
+                self?.viewModel.editCreditCard(onSuccess: {
+                    editOneTouchPay()
+                }, onError: { [weak self] errMessage in
+                    LoadingView.hide()
+                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self?.present(alertVc, animated: true, completion: nil)
+                })
             }
             
-            if cardDataEntered {
-                let editCreditCard = { (oneTouchPay: Bool) in
-                    let editOneTouchPay = {
-                        if oneTouchPay {
-                            self.viewModel.enableOneTouchPay(onSuccess: {
-                                handleSuccess()
-                            }, onError: { (error: String) in
-                                //In this case, the card was successfully updated, there is no visual
-                                //feedback otherwise that the fields updated successfully so this is the lesser evil.
-                                handleSuccess()
-                            })
-                        } else {
-                            self.viewModel.deleteOneTouchPay(onSuccess: {
-                                handleSuccess()
-                            }, onError: { (error: String) in
-                                //In this case, the card was successfully updated, there is no visual 
-                                //feedback otherwise that the fields updated successfully so this is the lesser evil.
-                                handleSuccess()
-                            })
-                        }
-                    }
-                    
-                    LoadingView.show()
-                    self.viewModel.editCreditCard(onSuccess: {
-                        editOneTouchPay()
-                    }, onError: { errMessage in
+            if shouldShowOneTouchPayReplaceWarning {
+                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
+                    editCreditCard(true)
+                }))
+                present(alertVc, animated: true, completion: nil)
+            } else if shouldShowOneTouchPayDisableWarning {
+                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment account? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
+                    editCreditCard(false)
+                }))
+                present(alertVc, animated: true, completion: nil)
+            } else {
+                editCreditCard(viewModel.oneTouchPay.value)
+            }
+        } else {
+            let toggleOneTouchPay = { [weak self] in
+                LoadingView.show()
+                guard let `self` = self else { return }
+                if self.viewModel.oneTouchPay.value {
+                    self.viewModel.enableOneTouchPay(onSuccess: {
+                        handleSuccess()
+                    }, onError: { [weak self] (errMessage: String) in
                         LoadingView.hide()
                         let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                         alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                        self.present(alertVc, animated: true, completion: nil)
+                        self?.present(alertVc, animated: true, completion: nil)
+                    })
+                } else {
+                    self.viewModel.deleteOneTouchPay(onSuccess: {
+                        handleSuccess()
+                    }, onError: { [weak self] (errMessage: String) in
+                        let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                        self?.present(alertVc, animated: true, completion: nil)
                     })
                 }
-                
-                if shouldShowOneTouchPayReplaceWarning {
-                    let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
-                        editCreditCard(true)
-                    }))
-                    self.present(alertVc, animated: true, completion: nil)
-                } else if shouldShowOneTouchPayDisableWarning {
-                    let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment account? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
-                        editCreditCard(false)
-                    }))
-                    self.present(alertVc, animated: true, completion: nil)
-                } else {
-                    editCreditCard(self.viewModel.oneTouchPay.value)
-                }
-            } else {
-                let toggleOneTouchPay = {
-                    LoadingView.show()
-                    if self.viewModel.oneTouchPay.value {
-                        self.viewModel.enableOneTouchPay(onSuccess: { 
-                            handleSuccess()
-                        }, onError: { (errMessage: String) in
-                            LoadingView.hide()
-                            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-                            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                            self.present(alertVc, animated: true, completion: nil)
-                        })
-                    } else {
-                        self.viewModel.deleteOneTouchPay(onSuccess: { 
-                            handleSuccess()
-                        }, onError: { (errMessage: String) in
-                            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-                            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                            self.present(alertVc, animated: true, completion: nil)
-                        })
-                    }
-                }
-                
-                if shouldShowOneTouchPayReplaceWarning {
-                    let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
-                        toggleOneTouchPay()
-                    }))
-                    self.present(alertVc, animated: true, completion: nil)
-                } else if shouldShowOneTouchPayDisableWarning {
-                    let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment account? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
-                        toggleOneTouchPay()
-                    }))
-                    self.present(alertVc, animated: true, completion: nil)
-                } else {
-                    toggleOneTouchPay()
-                }
             }
-        }).disposed(by: disposeBag)
+            
+            if shouldShowOneTouchPayReplaceWarning {
+                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
+                    toggleOneTouchPay()
+                }))
+                present(alertVc, animated: true, completion: nil)
+            } else if shouldShowOneTouchPayDisableWarning {
+                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment account? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
+                    toggleOneTouchPay()
+                }))
+                present(alertVc, animated: true, completion: nil)
+            } else {
+                toggleOneTouchPay()
+            }
+        }
     }
 
     
@@ -504,25 +493,30 @@ class EditCreditCardViewController: UIViewController {
     func deleteCreditCard() {
         let alertController = UIAlertController(title: NSLocalizedString("Delete Card", comment: ""), message: NSLocalizedString("Are you sure you want to delete this card?", comment: ""), preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { _ in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { [weak self] _ in
             LoadingView.show()
-            self.viewModel.deleteCreditCard(onSuccess: {
+            self?.viewModel.deleteCreditCard(onSuccess: { [weak self] in
                 LoadingView.hide()
+                guard let `self` = self else { return }
                 self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Card deleted", comment: ""))
                 if self.shouldPopToRootOnSave {
                     self.navigationController?.popToRootViewController(animated: true)
                 } else {
                     self.navigationController?.popViewController(animated: true)
                 }
-            }, onError: { errMessage in
+            }, onError: { [weak self] errMessage in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
+                self?.present(alertVc, animated: true, completion: nil)
             })
         }))
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    deinit {
+        dLog("")
     }
 }
 
