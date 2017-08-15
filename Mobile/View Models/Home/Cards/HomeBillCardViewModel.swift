@@ -358,7 +358,8 @@ class HomeBillCardViewModel {
             .map { ($0.billingInfo.scheduledPayment?.amount ?? 0) > 0 &&
                 $0.billingInfo.scheduledPayment?.date ?? currentDate > currentDate &&
                 ($0.billingInfo.pendingPayments.first?.amount ?? 0) == 0 }
-        return Driver.combineLatest(isScheduled, self.showAutoPay, self.isPrecariousBillSituation) { $0 && !$1 && !$2 }
+        return Driver.combineLatest(isScheduled, self.showAutoPay, self.isPrecariousBillSituation, self.titleState)
+        { $0 && !$1 && !$2 && $3 != .billPaidIntermediate }
     } ()
     
     private(set) lazy var showAutoPayIcon: Driver<Bool> = self.showAutoPay
@@ -434,9 +435,14 @@ class HomeBillCardViewModel {
             }
     }
     
-    private(set) lazy var dueDateText: Driver<NSAttributedString?> = self.accountDetailDriver.map {
-        if $0.billingInfo.pastDueAmount ?? 0 > 0 {
-            if let extensionDate = $0.billingInfo.turnOffNoticeExtendedDueDate {
+    private(set) lazy var dueDateText: Driver<NSAttributedString?> = Driver.combineLatest(self.accountDetailDriver, self.isPrecariousBillSituation)
+    { accountDetail, isPrecariousBillSituation in
+        if isPrecariousBillSituation {
+            if Environment.sharedInstance.opco == .bge &&
+                accountDetail.billingInfo.disconnectNoticeArrears ?? 0 > 0 &&
+                accountDetail.billingInfo.isDisconnectNotice,
+                let extensionDate = accountDetail.billingInfo.dueByDate {
+                
                 let calendar = NSCalendar.current
                 
                 let date1 = calendar.startOfDay(for: Date())
@@ -458,11 +464,11 @@ class HomeBillCardViewModel {
                                                            NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
                 }
             } else {
-            return NSAttributedString(string: NSLocalizedString("Due Immediately", comment: ""),
-                                      attributes: [NSForegroundColorAttributeName: UIColor.errorRed,
-                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                return NSAttributedString(string: NSLocalizedString("Due Immediately", comment: ""),
+                                          attributes: [NSForegroundColorAttributeName: UIColor.errorRed,
+                                                       NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
             }
-        } else if let dueByDate = $0.billingInfo.dueByDate {
+        } else if let dueByDate = accountDetail.billingInfo.dueByDate {
             let calendar = NSCalendar.current
             
             let date1 = calendar.startOfDay(for: Date())
@@ -651,9 +657,9 @@ class HomeBillCardViewModel {
         guard let walletItem = $0 else { return nil }
         switch (Environment.sharedInstance.opco, walletItem.bankOrCard) {
         case (.bge, .bank):
-            return NSLocalizedString("Payments made on the Home screen cannot be canceled." , comment: "")
+            return NSLocalizedString("Payments made on the Home screen cannot be canceled.", comment: "")
         default:
-            return NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to the payment Terms & Conditions." , comment: "")
+            return NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to the payment Terms & Conditions.", comment: "")
         }
     }
     

@@ -25,6 +25,7 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var learnMoreButton: ButtonControl!
     @IBOutlet weak var learnMoreButtonLabel: UILabel!
@@ -106,10 +107,20 @@ class BGEAutoPayViewController: UIViewController {
         settingsButtonLabel.textColor = .actionBlue
         settingsButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
         setupBindings()
         accessibilitySetup()
     
-        viewModel.getAutoPayInfo(onSuccess: nil, onError: nil)
+        viewModel.getAutoPayInfo(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+        }, onError: { [weak self] _ in
+            guard let `self` = self else { return }
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+        })
         
         if(viewModel.initialEnrollmentStatus.value == .enrolled) {
             Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsOffer.rawValue)
@@ -162,7 +173,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     func setupBindings() {
-        viewModel.isFetchingAutoPayInfo.asDriver().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.showBottomLabel.not().drive(bottomLabel.rx.isHidden).disposed(by: disposeBag)
         

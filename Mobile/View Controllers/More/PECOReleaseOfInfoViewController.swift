@@ -27,6 +27,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     @IBOutlet weak var accountInfoBar: AccountInfoBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
     
     let accountService = ServiceFactory.createAccountService()
     
@@ -45,6 +46,11 @@ class PECOReleaseOfInfoViewController: UIViewController {
         tableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReleaseOfInfoCell")
         tableView.estimatedRowHeight = 51
         tableView.isHidden = true
+        
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorLabel.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -77,12 +83,14 @@ class PECOReleaseOfInfoViewController: UIViewController {
         Analytics().logScreenView(AnalyticsPageView.ReleaseInfoSubmit.rawValue)
         accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.sharedInstance.currentAccount!, selectedIndex: rowToIntMapping)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+            .subscribe(onNext: { [weak self] in
                 LoadingView.hide()
+                guard let `self` = self else { return }
                 self.delegate?.pecoReleaseOfInfoViewControllerDidUpdate(self)
                 self.navigationController?.popViewController(animated: true)
-            }, onError: { error in
+            }, onError: { [weak self] error in
                 LoadingView.hide()
+                guard let `self` = self else { return }
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertVc, animated: true, completion: nil)
@@ -94,7 +102,8 @@ class PECOReleaseOfInfoViewController: UIViewController {
         let fetchReleaseOfInfo = {
             self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount!)
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { accountDetail in
+                .subscribe(onNext: { [weak self] accountDetail in
+                    guard let `self` = self else { return }
                     if let selectedRelease = accountDetail.releaseOfInformation {
                         if let releaseOfInfoInt = Int(selectedRelease) {
                             var intToRowMapping = 2 // Address only is mapped correctly
@@ -109,8 +118,12 @@ class PECOReleaseOfInfoViewController: UIViewController {
                     }
                     self.loadingIndicator.isHidden = true
                     self.tableView.isHidden = false
-                }, onError: { error in
-                    print(error.localizedDescription)
+                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
+                }, onError: { [weak self] error in
+                    guard let `self` = self else { return }
+                    self.errorLabel.isHidden = false
+                    self.loadingIndicator.isHidden = true
+                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
                 })
                 .disposed(by: self.disposeBag)
         }
@@ -118,11 +131,14 @@ class PECOReleaseOfInfoViewController: UIViewController {
         if AccountsStore.sharedInstance.currentAccount == nil {
             accountService.fetchAccounts()
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { _ in
+                .subscribe(onNext: { [weak self] _ in
+                    guard let `self` = self else { return }
                     self.accountInfoBar.update()
                     fetchReleaseOfInfo()
-                }, onError: { error in
-                    print(error.localizedDescription)
+                }, onError: { [weak self] error in
+                    guard let `self` = self else { return }
+                    self.errorLabel.isHidden = false
+                    self.loadingIndicator.isHidden = true
                 })
                 .disposed(by: disposeBag)
         } else {

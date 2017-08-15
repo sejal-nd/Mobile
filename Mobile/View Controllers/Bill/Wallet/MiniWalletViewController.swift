@@ -70,6 +70,10 @@ class MiniWalletViewController: UIViewController {
         viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorLabel.map(!).drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
         if accountDetail.isCashOnly {
             bankAccountsDisabled = true
         }
@@ -143,10 +147,13 @@ class MiniWalletViewController: UIViewController {
     
     func fetchWalletItems() {
         viewModel.fetchWalletItems(onSuccess: { [weak self] in
-            self?.tableView.reloadData()
-            self?.view.setNeedsLayout()
+            guard let `self` = self else { return }
+            self.tableView.reloadData()
+            self.view.setNeedsLayout()
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         }, onError: { [weak self] errMessage in
-            self?.errorLabel.text = errMessage
+            guard let `self` = self else { return }
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         })
     }
     

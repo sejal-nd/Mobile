@@ -25,6 +25,7 @@ class BGEAutoPayViewModel {
     private var paymentService: PaymentService
 
     let isFetchingAutoPayInfo = Variable(false)
+    let isError = Variable(false)
     
     var accountDetail: AccountDetail
     let initialEnrollmentStatus: Variable<EnrollmentStatus>
@@ -61,11 +62,13 @@ class BGEAutoPayViewModel {
     
     func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
         isFetchingAutoPayInfo.value = true
+        self.isError.value = false
         paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (autoPayInfo: BGEAutoPayInfo) in
                 guard let `self` = self else { return }
                 self.isFetchingAutoPayInfo.value = false
+                self.isError.value = false
                 
                 // Expired accounts
                 var isExpired = false
@@ -113,6 +116,7 @@ class BGEAutoPayViewModel {
                 }, onError: { [weak self] error in
                     guard let `self` = self else { return }
                     self.isFetchingAutoPayInfo.value = false
+                    self.isError.value = true
                     onError?(error.localizedDescription)
             })
             .disposed(by: disposeBag)
@@ -143,7 +147,8 @@ class BGEAutoPayViewModel {
     
     private(set) lazy var showBottomLabel: Driver<Bool> = Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(),
                                                                                self.initialEnrollmentStatus.asDriver())
-        .map { !$0 && $1 == .unenrolled }
+        .filter { $1 == .unenrolled }
+        .map { !$0.0 }
     
     lazy var submitButtonEnabled: Driver<Bool> = Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
                                                                       self.selectedWalletItem.asDriver(),
@@ -170,6 +175,11 @@ class BGEAutoPayViewModel {
         $0 == .enrolled || $1 != nil && !$2
     }
     
+    var shouldShowContent: Driver<Bool> {
+        return Driver.combineLatest(isFetchingAutoPayInfo.asDriver(), isError.asDriver()).map {
+            return !$0 && !$1
+        }
+    }
     
     func getInvalidSettingsMessage() -> String? {
         let defaultString = NSLocalizedString("Complete all required fields before returning to the AutoPay screen. Check your selected settings and complete secondary fields.", comment: "")

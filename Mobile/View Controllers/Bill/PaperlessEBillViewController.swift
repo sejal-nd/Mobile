@@ -36,7 +36,6 @@ class PaperlessEBillViewController: UIViewController {
     @IBOutlet weak var allAccountsSeparatorView: UIView!
     @IBOutlet weak var accountsStackView: UIStackView!
     @IBOutlet weak var detailsLoadingActivityView: UIView!
-    @IBOutlet weak var detailsLoadingIndicator: LoadingIndicator!
     
     @IBOutlet weak var detailsLabel: UILabel!
     
@@ -76,6 +75,7 @@ class PaperlessEBillViewController: UIViewController {
             .drive(onNext: { [weak self] accountDetails -> () in
                 self?.enrollAllAccountsSwitch.isEnabled = true
                 self?.detailsLoadingActivityView.isHidden = true
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view)
                 accountDetails.forEach {
                     self?.add(accountDetail: $0, animated: true)
                 }

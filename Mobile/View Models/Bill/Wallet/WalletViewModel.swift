@@ -18,24 +18,32 @@ class WalletViewModel {
     var accountDetail: AccountDetail! // Passed from BillViewController
     
     let fetchWalletItems = PublishSubject<Void>()
+    let fetchingWalletItemsTracker = ActivityTracker()
     let walletItems = Variable<[WalletItem]?>(nil)
     let isFetchingWalletItems: Driver<Bool>
     
     required init(walletService: WalletService) {
         self.walletService = walletService
         
-        let fetchingWalletItemsTracker = ActivityTracker()
         isFetchingWalletItems = fetchingWalletItemsTracker.asDriver()
         
-        fetchWalletItems
-            .flatMapLatest { _ in
-                walletService
-                    .fetchWalletItems()
-                    .trackActivity(fetchingWalletItemsTracker)
-            }
+        walletItemEvents
+            .elements()
             .bind(to: walletItems)
             .disposed(by: disposeBag)
     }
+    
+    lazy var walletItemEvents: Observable<Event<[WalletItem]>> = self.fetchWalletItems.flatMapLatest { [unowned self] in
+        self.walletService
+            .fetchWalletItems()
+            .trackActivity(self.fetchingWalletItemsTracker)
+            .materialize()
+            .share()
+    }
+    
+    lazy var isError: Driver<Bool> = self.walletItemEvents.asDriver(onErrorDriveWith: .empty()).map {
+        return $0.error != nil
+    }.startWith(false)
     
     lazy var shouldShowEmptyState: Driver<Bool> = {
         let noWalletItems = self.walletItems.asDriver().map{ walletItems -> Bool in

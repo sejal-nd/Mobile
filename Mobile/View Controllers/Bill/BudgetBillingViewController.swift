@@ -223,7 +223,9 @@ class BudgetBillingViewController: UIViewController {
             footerView.isHidden = true
         }
         
-        errorLabel.text = NSLocalizedString("Error Loading Budget Billing Data", comment: "")
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
         scrollView.isHidden = true
         loadingIndicator.isHidden = false

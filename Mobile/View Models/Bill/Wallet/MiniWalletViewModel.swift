@@ -24,7 +24,7 @@ class MiniWalletViewModel {
         self.walletService = walletService
     }
     
-    func fetchWalletItems(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func fetchWalletItems(onSuccess: @escaping () -> Void, onError: (() -> Void)? = nil) {
         isFetchingWalletItems.value = true
         isError.value = false
         walletService.fetchWalletItems()
@@ -38,7 +38,7 @@ class MiniWalletViewModel {
                     guard let `self` = self else { return }
                     self.isFetchingWalletItems.value = false
                     self.isError.value = true
-                    onError(err.localizedDescription)
+                onError?()
             }).disposed(by: disposeBag)
     }
     
