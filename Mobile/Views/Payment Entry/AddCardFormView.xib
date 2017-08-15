@@ -239,7 +239,7 @@
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pJq-aU-YbT" userLabel="One Touch Pay View">
                             <rect key="frame" x="29" y="651.5" width="317" height="89"/>
                             <subviews>
-                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Turn on One Touch Pay to easily pay from the Home screen and set this payment account as default." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yp-DR-Zk8">
+                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Set this payment account as default to easily pay from the Home and Bill screens." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yp-DR-Zk8">
                                     <rect key="frame" x="0.0" y="0.0" width="317" height="28"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                     <nil key="textColor"/>
@@ -247,10 +247,10 @@
                                 </label>
                                 <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ifa-US-KMn" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="53" width="51" height="31"/>
-                                    <accessibility key="accessibilityConfiguration" label="One touch pay"/>
+                                    <accessibility key="accessibilityConfiguration" label="Default payment account"/>
                                 </switch>
-                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="One Touch Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8l-D9-9Ct">
-                                    <rect key="frame" x="61" y="59" width="109" height="19.5"/>
+                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Default Payment Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8l-D9-9Ct">
+                                    <rect key="frame" x="61" y="59" width="184" height="19.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>

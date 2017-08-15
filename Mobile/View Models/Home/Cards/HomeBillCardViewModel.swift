@@ -651,9 +651,9 @@ class HomeBillCardViewModel {
         guard let walletItem = $0 else { return nil }
         switch (Environment.sharedInstance.opco, walletItem.bankOrCard) {
         case (.bge, .bank):
-            return NSLocalizedString("One Touch Pay cannot be canceled." , comment: "")
+            return NSLocalizedString("Payments made on the Home screen cannot be canceled." , comment: "")
         default:
-            return NSLocalizedString("Payments made using One Touch Pay cannot be canceled. By using One Touch Pay, you agree to the payment Terms & Conditions." , comment: "")
+            return NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to the payment Terms & Conditions." , comment: "")
         }
     }
     

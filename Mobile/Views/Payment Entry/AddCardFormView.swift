@@ -116,7 +116,7 @@ class AddCardFormView: UIView {
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         oneTouchPayLabel.textColor = .blackText
-        oneTouchPayLabel.text = NSLocalizedString("One Touch Pay", comment: "")
+        oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
         
         footnoteLabel.textColor = .blackText
         footnoteLabel.font = OpenSans.regular.of(textStyle: .footnote)

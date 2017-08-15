@@ -142,7 +142,7 @@ class WalletTableViewCell: UITableViewCell {
         
         oneTouchPayView.isHidden = true // Calculated in cellForRowAtIndexPath
         if walletItem.isDefault {
-            a11yLabel += NSLocalizedString(", One touch pay account", comment: "")
+            a11yLabel += NSLocalizedString(", Default payment account", comment: "")
         }
         
         innerContentView.accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"

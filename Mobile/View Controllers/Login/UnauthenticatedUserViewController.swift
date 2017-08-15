@@ -90,7 +90,7 @@ class UnauthenticatedUserViewController: UIViewController {
     
     private func accessibilitySetup() {
         lottieView.isAccessibilityElement = true
-        lottieView.accessibilityLabel = NSLocalizedString("Animation showing One Touch Pay", comment: "")
+        lottieView.accessibilityLabel = NSLocalizedString("Animation showing home screen payment", comment: "")
         
         textLabel.isAccessibilityElement = true
         textLabel.accessibilityLabel = textLabel.text
