@@ -157,7 +157,7 @@ class WalletViewController: UIViewController {
                     tableView.tableHeaderView = headerView
                 }
             } else {
-                headerView.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: 0.01) // Must be 0.01 to remove empty space when hidden
+                headerView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0.01) // Must be 0.01 to remove empty space when hidden
             }
             tableView.tableHeaderView = tableView.tableHeaderView;
         }
@@ -181,10 +181,8 @@ class WalletViewController: UIViewController {
         
         viewModel.shouldShowEmptyState.map(!).drive(emptyStateScrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowWallet.drive(onNext: { shouldShow in
-            if shouldShow {
-                self.tableView.reloadData()
-            }
+        viewModel.shouldShowWallet.filter { $0 }.drive(onNext: { [weak self] _ in
+            self?.tableView.reloadData()
         }).disposed(by: disposeBag)
         
         viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).disposed(by: disposeBag)
@@ -193,22 +191,26 @@ class WalletViewController: UIViewController {
     }
     
     func setupButtonTaps() {
-        Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver()).drive(onNext: {
-            self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
-        }).disposed(by: disposeBag)
+        Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver())
+            .drive(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
+            }).disposed(by: disposeBag)
         
-        Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver()).drive(onNext: {
-            self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
-        }).disposed(by: disposeBag)
+        Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver())
+            .drive(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
+            }).disposed(by: disposeBag)
     }
     
     func onWalletItemPress(sender: ButtonControl) {
         if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
             selectedWalletItem = walletItems[sender.tag]
             if selectedWalletItem!.bankOrCard == .card {
-                self.performSegue(withIdentifier: "editCreditCardSegue", sender: self)
+                performSegue(withIdentifier: "editCreditCardSegue", sender: self)
             } else {
-                self.performSegue(withIdentifier: "editBankAccountSegue", sender: self)
+                performSegue(withIdentifier: "editBankAccountSegue", sender: self)
             }
         }
     }
@@ -237,13 +239,13 @@ class WalletViewController: UIViewController {
             vc.shouldSetOneTouchPayByDefault = shouldSetOneTouchPayByDefault
         } else if let vc = segue.destination as? EditBankAccountViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail
-            vc.viewModel.walletItem = self.selectedWalletItem
+            vc.viewModel.walletItem = selectedWalletItem
             vc.viewModel.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
             vc.shouldPopToRootOnSave = shouldPopToRootOnSave
         } else if let vc = segue.destination as? EditCreditCardViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail
-            vc.viewModel.walletItem = self.selectedWalletItem
+            vc.viewModel.walletItem = selectedWalletItem
             vc.viewModel.oneTouchPayItem = oneTouchPayItem
             vc.delegate = self
             vc.shouldPopToRootOnSave = shouldPopToRootOnSave
@@ -253,13 +255,16 @@ class WalletViewController: UIViewController {
     func didChangeAccount(toastMessage: String) {
         didUpdateSubject.onNext(toastMessage)
         if !shouldPopToRootOnSave {
-            self.viewModel.fetchWalletItems.onNext()
+            viewModel.fetchWalletItems.onNext()
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 self.view.showToast(toastMessage)
             })
         }
     }
     
+    deinit {
+        dLog(className)
+    }
 }
 
 extension WalletViewController: UITableViewDelegate {
