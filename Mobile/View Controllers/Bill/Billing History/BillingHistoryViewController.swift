@@ -194,24 +194,12 @@ extension BillingHistoryViewController: UITableViewDelegate {
         if Environment.sharedInstance.opco == .bge {
             guard let paymentMethod = billingItem.paymentMethod else { return }
             if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
-                if billingItem.flagAllowEdits || billingItem.flagAllowEdits {
-                    showModifyScheduledItem(billingItem: billingItem)
-                }
-                else {
-                    self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
-                }
+                showModifyScheduledItem(billingItem: billingItem)
             } else {  // recurring/automatic
                 let storyboard = UIStoryboard(name: "Bill", bundle: nil)
-                if Environment.sharedInstance.opco == .bge {
-                    if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
-                        vc.accountDetail = self.accountDetail
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                } else {
-                    if let vc = storyboard.instantiateViewController(withIdentifier: "AutoPay") as? AutoPayViewController {
-                        vc.accountDetail = self.accountDetail
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
+                if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
+                    vc.accountDetail = self.accountDetail
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
         } else { //PECO/COMED scheduled
