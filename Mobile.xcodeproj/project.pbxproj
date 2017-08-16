@@ -1234,8 +1234,8 @@
 		54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
 		54EDD2D91ECE236000CAB8A6 /* WalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCWalletService.swift; sourceTree = "<group>"; };
-		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoNetworkConnectionView.swift; sourceTree = "<group>"; };
-		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoNetworkConnectionView.xib; sourceTree = "<group>"; };
+		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoNetworkConnectionView.swift; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.swift; sourceTree = SOURCE_ROOT; };
+		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoNetworkConnectionView.xib; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.xib; sourceTree = SOURCE_ROOT; };
 		8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBindingObservers.swift; sourceTree = "<group>"; };
 		821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillAlertBannerView.swift; sourceTree = "<group>"; };
 		821898951F3279AB0077D7A1 /* MockPaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPaymentService.swift; sourceTree = "<group>"; };
@@ -1930,15 +1930,6 @@
 			name = UnauthenticatedLottieText;
 			sourceTree = "<group>";
 		};
-		4465DE821F1FCF7E0014537F /* Home Cards */ = {
-			isa = PBXGroup;
-			children = (
-				4465DE861F1FD0090014537F /* TemplateCardView.swift */,
-				4465DE881F1FD07C0014537F /* TemplateCardView.xib */,
-			);
-			name = "Home Cards";
-			sourceTree = "<group>";
-		};
 		54C1DEEE1F01A12700290FE5 /* Billing History */ = {
 			isa = PBXGroup;
 			children = (
@@ -1972,6 +1963,8 @@
 			children = (
 				825171A71F1D1FA00020A6CA /* HomeBillCardView.swift */,
 				825171AB1F1D1FAA0020A6CA /* HomeBillCardView.xib */,
+				4465DE861F1FD0090014537F /* TemplateCardView.swift */,
+				4465DE881F1FD07C0014537F /* TemplateCardView.xib */,
 			);
 			path = "Home Cards";
 			sourceTree = "<group>";
@@ -2199,9 +2192,9 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E8B4BFB01F449F6500F334EE /* NoNetworkConnectionView */,
 				825171A61F1D1F210020A6CA /* Home Cards */,
 				01F612171F1E3C0200A4F9DA /* Payment Entry */,
-				4465DE821F1FCF7E0014537F /* Home Cards */,
 				2F3FA63E1F06F10700A1F4BF /* MultiPremiseAddressView */,
 				82A18EB01EBA667900BE9F21 /* Controls */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
@@ -2215,8 +2208,6 @@
 				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
 				E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */,
 				2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */,
-				82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */,
-				82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */,
 				821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */,
 			);
 			path = Views;
@@ -2959,6 +2950,15 @@
 				54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */,
 			);
 			path = "Forgot Username";
+			sourceTree = "<group>";
+		};
+		E8B4BFB01F449F6500F334EE /* NoNetworkConnectionView */ = {
+			isa = PBXGroup;
+			children = (
+				82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */,
+				82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */,
+			);
+			path = NoNetworkConnectionView;
 			sourceTree = "<group>";
 		};
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {

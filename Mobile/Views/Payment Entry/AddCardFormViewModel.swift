@@ -52,12 +52,7 @@ class AddCardFormViewModel {
     
     private(set) lazy var cardNumberIsValid: Driver<Bool> = self.cardNumber.asDriver().map { [weak self] in
         guard let `self` = self else { return false }
-        let luhnValid = self.luhnCheck(cardNumber: $0)
-        if (Environment.sharedInstance.opco == .peco) {
-            return self.pecoValidCreditCardCheck(cardNumber: $0) && luhnValid
-        } else {
-            return luhnValid
-        }
+        return self.firstNumberCheck(cardNumber: $0) && self.luhnCheck(cardNumber: $0)
     }
     
     var cardIcon: UIImage? {
@@ -154,13 +149,11 @@ class AddCardFormViewModel {
         return (oddSum + evenSum) % 10 == 0;
     }
     
-    private func pecoValidCreditCardCheck(cardNumber: String) -> Bool {
-        let charSet = CharacterSet(charactersIn: "23456") //peco cc can only start with these chars
-        
+    private func firstNumberCheck(cardNumber: String) -> Bool {
         guard let firstChar = cardNumber.characters.first?.description else {
             return false
         }
-        
+        let charSet = CharacterSet(charactersIn: "23456")
         return firstChar.trimmingCharacters(in: charSet).characters.count == 0
     }
     
