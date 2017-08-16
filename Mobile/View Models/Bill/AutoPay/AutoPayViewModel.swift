@@ -68,19 +68,19 @@ class AutoPayViewModel {
     func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
         walletService.fetchBankName(routingNumber.value)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { bankName in
-                self.bankName = bankName
+            .subscribe(onNext: { [weak self] bankName in
+                self?.bankName = bankName
                 onSuccess()
             }, onError: { (error: Error) in
                 onError()
             }).disposed(by: bag)
     }
 
-    lazy var nameOnAccountHasText: Driver<Bool> = self.nameOnAccount.asDriver()
+    private(set) lazy var nameOnAccountHasText: Driver<Bool> = self.nameOnAccount.asDriver()
         .map { !$0.isEmpty }
         .distinctUntilChanged()
     
-    lazy var nameOnAccountIsValid: Driver<Bool> = self.nameOnAccount.asDriver()
+    private(set) lazy var nameOnAccountIsValid: Driver<Bool> = self.nameOnAccount.asDriver()
         .map {
             var trimString = $0.components(separatedBy: CharacterSet.whitespaces).joined(separator: "")
             trimString = trimString.components(separatedBy: CharacterSet.alphanumerics).joined(separator: "")
@@ -88,24 +88,24 @@ class AutoPayViewModel {
         }
         .distinctUntilChanged()
     
-    lazy var routingNumberIsValid: Driver<Bool> = self.routingNumber.asDriver()
+    private(set) lazy var routingNumberIsValid: Driver<Bool> = self.routingNumber.asDriver()
         .map { $0.characters.count == 9 }
         .distinctUntilChanged()
     
-    lazy var accountNumberHasText: Driver<Bool> = self.accountNumber.asDriver()
+    private(set) lazy var accountNumberHasText: Driver<Bool> = self.accountNumber.asDriver()
         .map { !$0.isEmpty }
         .distinctUntilChanged()
     
-    lazy var accountNumberIsValid: Driver<Bool> = self.accountNumber.asDriver()
+    private(set) lazy var accountNumberIsValid: Driver<Bool> = self.accountNumber.asDriver()
         .map { 4...17 ~= $0.characters.count }
         .distinctUntilChanged()
     
-    lazy var confirmAccountNumberMatches: Driver<Bool> = Driver.combineLatest(self.accountNumber.asDriver(),
-                                                                              self.confirmAccountNumber.asDriver())
-        .map(==)
+    private(set) lazy var confirmAccountNumberMatches: Driver<Bool> = Driver.combineLatest(self.accountNumber.asDriver(),
+                                                                                           self.confirmAccountNumber.asDriver(),
+                                                                                           resultSelector: ==)
         .distinctUntilChanged()
     
-    lazy var canSubmitNewAccount: Driver<Bool> = {
+    private(set) lazy var canSubmitNewAccount: Driver<Bool> = {
         var validationDrivers = [self.nameOnAccountHasText,
                                  self.routingNumberIsValid,
                                  self.accountNumberHasText,
@@ -121,11 +121,11 @@ class AutoPayViewModel {
             .distinctUntilChanged()
     }()
     
-    lazy var canSubmitUnenroll: Driver<Bool> = self.selectedUnenrollmentReason.asDriver().map { $0 != nil }
+    private(set) lazy var canSubmitUnenroll: Driver<Bool> = self.selectedUnenrollmentReason.asDriver().isNil().not()
     
-    lazy var canSubmit: Driver<Bool> = Driver.combineLatest(self.enrollmentStatus.asDriver(),
-                                                            self.canSubmitNewAccount,
-                                                            self.canSubmitUnenroll)
+    private(set) lazy var canSubmit: Driver<Bool> = Driver.combineLatest(self.enrollmentStatus.asDriver(),
+                                                                         self.canSubmitNewAccount,
+                                                                         self.canSubmitUnenroll)
         .map { status, canSubmitNewAccount, canSubmitUnenroll in
             switch status {
             case .enrolling:
@@ -136,36 +136,36 @@ class AutoPayViewModel {
         }
         .distinctUntilChanged()
     
-    lazy var nameOnAccountErrorText: Driver<String?> = self.nameOnAccountIsValid.asDriver()
+    private(set) lazy var nameOnAccountErrorText: Driver<String?> = self.nameOnAccountIsValid.asDriver()
         .distinctUntilChanged()
         .map { $0 ? nil: NSLocalizedString("Can only contain letters, numbers, and spaces", comment: "") }
     
-    lazy var routingNumberErrorText: Driver<String?> = self.routingNumber.asDriver()
+    private(set) lazy var routingNumberErrorText: Driver<String?> = self.routingNumber.asDriver()
         .map { $0.characters.count == 9 || $0.isEmpty }
         .distinctUntilChanged()
         .map { $0 ? nil : NSLocalizedString("Must be 9 digits", comment: "") }
     
-    lazy var accountNumberErrorText: Driver<String?> = self.accountNumber.asDriver()
+    private(set) lazy var accountNumberErrorText: Driver<String?> = self.accountNumber.asDriver()
         .map { 4...17 ~= $0.characters.count || $0.isEmpty }
         .distinctUntilChanged()
         .map { $0 ? nil: NSLocalizedString("Must be between 4-17 digits", comment: "") }
     
-    lazy var confirmAccountNumberErrorText: Driver<String?> = Driver.combineLatest(self.confirmAccountNumber.asDriver().map { $0.isEmpty },
-                                                                                   self.confirmAccountNumberMatches)
+    private(set) lazy var confirmAccountNumberErrorText: Driver<String?> = Driver.combineLatest(self.confirmAccountNumber.asDriver().map { $0.isEmpty },
+                                                                                                self.confirmAccountNumberMatches)
         .map { $0 || $1 }
         .distinctUntilChanged()
         .map { $0 ? nil: NSLocalizedString("Account numbers do not match", comment: "") }
     
-    lazy var confirmAccountNumberIsValid: Driver<Bool> = Driver.combineLatest(self.confirmAccountNumberErrorText.map { $0 == nil }, self.confirmAccountNumber.asDriver()) {
+    private(set) lazy var confirmAccountNumberIsValid: Driver<Bool> = Driver.combineLatest(self.confirmAccountNumberErrorText.map { $0 == nil }, self.confirmAccountNumber.asDriver()) {
         return $0 && !$1.isEmpty
     }
     
-    lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumberHasText
+    private(set) lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumberHasText
     
     let shouldShowTermsAndConditionsCheck = Environment.sharedInstance.opco == .comEd
     
     var shouldShowThirdPartyLabel: Bool {
-        return Environment.sharedInstance.opco == .peco && (self.accountDetail.isSupplier || self.accountDetail.isDualBillOption)
+        return Environment.sharedInstance.opco == .peco && (accountDetail.isSupplier || accountDetail.isDualBillOption)
     }
     
     let reasonStrings = [String(format: NSLocalizedString("Closing %@ account", comment: ""), Environment.sharedInstance.opco.displayString),
@@ -174,7 +174,8 @@ class AutoPayViewModel {
                          NSLocalizedString("Program no longer meets my needs", comment: ""),
                          NSLocalizedString("Other", comment: "")]
     
-    lazy var footerText: Driver<String> = self.enrollmentStatus.asDriver().map { enrollmentStatus in
+    private(set) lazy var footerText: Driver<String?> = self.enrollmentStatus.asDriver().map { [weak self] enrollmentStatus in
+        guard let `self` = self else { return nil }
 		var footerText: String
         switch (Environment.sharedInstance.opco, enrollmentStatus) {
         case (.peco, .enrolling):

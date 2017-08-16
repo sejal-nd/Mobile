@@ -256,7 +256,7 @@ class BGEAutoPayViewModel {
         }
     }
     
-    lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().map { $0 != nil }
+    lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().isNil().not()
     
     func formatAmountNotToExceed() {
         let textStr = String(amountNotToExceed.value.characters.filter { "0123456789".characters.contains($0) })

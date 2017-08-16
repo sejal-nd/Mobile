@@ -327,21 +327,24 @@ class AutoPayViewController: UIViewController {
         let routingNumberErrorTextFocused: Driver<String?> = routingNumberTextField.textField.rx
             .controlEvent(.editingDidBegin).asDriver()
             .map{ nil }
-        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.routingNumberTextField.setError(nil)
-            self.accessibilityErrorLabel()
+        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.routingNumberTextField.setError(nil)
+            self?.accessibilityErrorLabel()
             
         }).disposed(by: bag)
         
         let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
             .controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(viewModel.routingNumberErrorText)
-        routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+        
+        routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver().drive(onNext: { [weak self] in
+            guard let `self` = self else { return }
             if self.viewModel.routingNumber.value.characters.count == 9 {
-                self.viewModel.getBankName(onSuccess: {
+                self.viewModel.getBankName(onSuccess: { [weak self] in
+                    guard let `self` = self else { return }
                     self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
-                }, onError: {
-                    self.routingNumberTextField.setInfoMessage(nil)
+                }, onError: { [weak self] in
+                    self?.routingNumberTextField.setInfoMessage(nil)
                 })
             }
         }).disposed(by: bag)
@@ -351,7 +354,6 @@ class AutoPayViewController: UIViewController {
             .drive(onNext: { [weak self] errorText in
                 self?.routingNumberTextField.setError(errorText)
                 self?.accessibilityErrorLabel()
-                
             })
             .disposed(by: bag)
         
@@ -369,7 +371,6 @@ class AutoPayViewController: UIViewController {
             .drive(onNext: { [weak self] errorText in
                 self?.accountNumberTextField.setError(errorText)
                 self?.accessibilityErrorLabel()
-                
             })
             .disposed(by: bag)
         
@@ -378,7 +379,6 @@ class AutoPayViewController: UIViewController {
             .drive(onNext: { [weak self] errorText in
                 self?.confirmAccountNumberTextField.setError(errorText)
                 self?.accessibilityErrorLabel()
-                
             })
             .disposed(by: bag)
         
@@ -396,11 +396,15 @@ class AutoPayViewController: UIViewController {
         
         
         routingNumberTooltipButton.rx.tap.asDriver()
-            .drive(onNext: onRoutingNumberQuestionMarkPress)
+            .drive(onNext: { [weak self] in
+                self?.onRoutingNumberQuestionMarkPress()
+            })
             .disposed(by: bag)
         
         accountNumberTooltipButton.rx.tap.asDriver()
-            .drive(onNext: onAccountNumberQuestionMarkPress)
+            .drive(onNext: { [weak self] in
+                self?.onAccountNumberQuestionMarkPress()
+            })
             .disposed(by: bag)
     }
     
@@ -410,12 +414,12 @@ class AutoPayViewController: UIViewController {
         message += routingNumberTextField.getError()
         message += accountNumberTextField.getError()
         message += confirmAccountNumberTextField.getError()
-        self.submitButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+        submitButton.accessibilityLabel = NSLocalizedString(message, comment: "")
         
         if message.isEmpty {
-            self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            self.submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
         }
     }
     
@@ -466,6 +470,10 @@ class AutoPayViewController: UIViewController {
 			vc.delegate = self
 		}
 	}
+    
+    deinit {
+        dLog()
+    }
     
 }
 

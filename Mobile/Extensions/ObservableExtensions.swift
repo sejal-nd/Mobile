@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxSwiftExt
 
 extension ObservableType {
     func toVoid() -> Observable<Void> {
@@ -26,6 +27,14 @@ extension ObservableType {
             dLog("\(message) -> Disposed")
         })
     }
+}
+
+extension ObservableType where E : Optionable {
+    
+    public func isNil() -> Observable<Bool> {
+        return map { $0.isEmpty() }
+    }
+    
 }
 
 
@@ -48,3 +57,12 @@ extension SharedSequenceConvertibleType {
         })
     }
 }
+
+extension SharedSequenceConvertibleType where E : Optionable {
+    
+    public func isNil() -> SharedSequence<SharingStrategy, Bool> {
+        return map { $0.isEmpty() }
+    }
+    
+}
+
