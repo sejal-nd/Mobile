@@ -257,7 +257,7 @@ class EditBankAccountViewController: UIViewController {
             }))
             present(alertVc, animated: true, completion: nil)
         } else if shouldShowOneTouchPayDisableWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment account? You will no longer be able to pay from the home screen, and your payment will no longer be set as default.", comment: ""), preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment account? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
                 saveBankAccountChanges(false)

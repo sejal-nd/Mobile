@@ -15,24 +15,21 @@ enum BillingSelection {
 }
 
 class BillingHistoryViewController: UIViewController {
+    
+    let disposeBag = DisposeBag()
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingIndicator: UIView!
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var empyStateLabel: UILabel!
+    @IBOutlet weak var emptyStateLabel: UILabel!
     
     var billingSelection: BillingSelection!
-    
-    var billingHistory: BillingHistory?
-    
+    var billingHistory: BillingHistory!
     var selectedIndexPath:IndexPath!
-    var historyItem: BillingHistoryItem?
     
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
     
-    let disposeBag = DisposeBag()
-    
-    var accountDetail: AccountDetail!
+    var accountDetail: AccountDetail! // Passed from BillViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +38,11 @@ class BillingHistoryViewController: UIViewController {
         
         tableView.delegate = self;
         tableView.dataSource = self;
+        
+        emptyStateLabel.font = SystemFont.regular.of(textStyle: .headline)
+        emptyStateLabel.textColor = .blackText
+        emptyStateLabel.text = NSLocalizedString("No data currently available.", comment: "")
+        emptyStateLabel.isHidden = true
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -56,7 +58,7 @@ class BillingHistoryViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar(hidesBottomBorder: true)
+            navController.setColoredNavBar()
         }
     }
     
@@ -67,19 +69,18 @@ class BillingHistoryViewController: UIViewController {
     func getBillingHistory() {
         self.loadingIndicator.isHidden = false;
         self.tableView.isHidden = true;
-        self.empyStateLabel.isHidden = true
         viewModel.getBillingHistory(success: { (billingHistory) in
             self.loadingIndicator.isHidden = true
             self.tableView.isHidden = false
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
-            self.billingHistory = billingHistory
             
-            if self.billingHistory?.upcoming.count == 0 && self.billingHistory?.past.count == 00 {
+            self.billingHistory = billingHistory
+            if billingHistory.upcoming.count == 0 && billingHistory.past.count == 0 {
                 self.tableView.isHidden = true
-                self.empyStateLabel.isHidden = false
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.empyStateLabel)
+                self.emptyStateLabel.isHidden = false
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.emptyStateLabel)
             } else {
                 self.tableView.reloadData()
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
             }
             
         }) { (error) in
@@ -103,10 +104,10 @@ class BillingHistoryViewController: UIViewController {
             vc.billingHistory = billingHistory
             
         } else if let vc = segue.destination as? BillingHistoryDetailsViewController {
-            let billingHistoryItem = selectedIndexPath.section == 0 ? (self.billingHistory?.upcoming[selectedIndexPath.row])! : (self.billingHistory?.past[selectedIndexPath.row])!
+            let billingHistoryItem = selectedIndexPath.section == 0 ? self.billingHistory.upcoming[selectedIndexPath.row] : self.billingHistory.past[selectedIndexPath.row]
             vc.billingHistoryItem = billingHistoryItem
         } else if let vc = segue.destination as? ViewBillViewController {
-            let billingHistoryItem = selectedIndexPath.section == 0 ? (self.billingHistory?.upcoming[selectedIndexPath.row])! : (self.billingHistory?.past[selectedIndexPath.row])!
+            let billingHistoryItem = selectedIndexPath.section == 0 ? self.billingHistory.upcoming[selectedIndexPath.row] : self.billingHistory.past[selectedIndexPath.row]
             vc.viewModel.billDate = billingHistoryItem.date.apiFormatDate
         } else if let vc = segue.destination as? BGEAutoPayViewController {
             vc.accountDetail = accountDetail
@@ -131,9 +132,9 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         //past billing history
         if indexPath.section == 1 {
-            guard indexPath.row != billingHistory?.pastSixMonths.count,
-                let billingItem = self.billingHistory?.pastSixMonths[indexPath.row],
-                let type = billingItem.type else { return }
+            guard indexPath.row != billingHistory.mostRecentSixMonths.count, let type = self.billingHistory.mostRecentSixMonths[indexPath.row].type else {
+                return
+            }
             if type == BillingHistoryProperties.TypeBilling.rawValue {
                 showBillPdf()
             } else {
@@ -161,8 +162,8 @@ extension BillingHistoryViewController: UITableViewDelegate {
                 if opco == .bge {
                     handleBGEUpcomingClick(indexPath: selectedIndexPath) 
                 } else {
-                    guard let billingItem = self.billingHistory?.upcoming[selectedIndexPath.row], 
-                        let status = billingItem.status else { return }
+                    let billingItem = self.billingHistory.upcoming[selectedIndexPath.row]
+                    guard let status = billingItem.status else { return }
                     
                     //pending payments do not get a tap so we only handle scheduled/cancelled payments
                     if status == BillingHistoryProperties.StatusProcessing.rawValue || 
@@ -180,8 +181,8 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func handleBGEUpcomingClick(indexPath: IndexPath) {
-        guard let billingItem = self.billingHistory?.upcoming[indexPath.row], 
-            let status = billingItem.status else { return }
+        let billingItem = billingHistory.upcoming[indexPath.row]
+        guard let status = billingItem.status else { return }
         
         if status == BillingHistoryProperties.StatusProcessing.rawValue ||
             status == BillingHistoryProperties.StatusCanceled.rawValue || 
@@ -245,22 +246,22 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if billingHistory == nil {
+            return 0
+        }
+        
         if section == 0 {
-            guard let upcoming = self.billingHistory?.upcoming else {
+            let upcoming = self.billingHistory.upcoming
+            if upcoming.count == 0 {
                 return accountDetail.isBGEasy || accountDetail.isAutoPay ? 1 : 0
             }
-            
             if accountDetail.isBGEasy || accountDetail.isAutoPay {
                 return upcoming.count > 2 ? 3 : upcoming.count + 1
             } else {
                 return upcoming.count > 3 ? 3 : upcoming.count
             }
         } else {
-            guard let pastSixMonths = self.billingHistory?.pastSixMonths,
-                let past = self.billingHistory?.past else {
-                return 0 
-            }
-            return past.count > pastSixMonths.count ? pastSixMonths.count + 1 : pastSixMonths.count
+            return billingHistory.past.count > billingHistory.mostRecentSixMonths.count ? billingHistory.mostRecentSixMonths.count + 1 : billingHistory.mostRecentSixMonths.count
         }
     }
     
@@ -270,9 +271,9 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if self.billingHistory != nil {
-            if section == 0 && self.billingHistory?.upcoming.count == 0 && !accountDetail.isAutoPay && !accountDetail.isBGEasy {
+            if section == 0 && self.billingHistory.upcoming.count == 0 && !accountDetail.isAutoPay && !accountDetail.isBGEasy {
                 return 0.000001
-            } else if section == 1 && self.billingHistory?.past.count == 0 {
+            } else if section == 1 && self.billingHistory.past.count == 0 {
                 return 0.000001
             }
         }
@@ -282,7 +283,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if self.billingHistory != nil {
-            if section == 0 && self.billingHistory?.upcoming.count != 0 {
+            if section == 0 && self.billingHistory.upcoming.count != 0 {
                 return 22
             }
         }
@@ -291,16 +292,15 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? { 
-        
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if self.billingHistory != nil {
             if section == 0 {
                 if accountDetail.isBGEasy || accountDetail.isAutoPay {
                     return headerView(section: section)
                 } else {
-                    return self.billingHistory?.upcoming.count == 0 ? nil : headerView(section: section)
+                    return self.billingHistory.upcoming.count == 0 ? nil : headerView(section: section)
                 }
-            } else if section == 1 && self.billingHistory?.past.count == 0 {
+            } else if section == 1 && self.billingHistory.past.count == 0 {
                 return nil
             } else {
                return headerView(section: section) 
@@ -319,19 +319,17 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let billingHistoryItem: BillingHistoryItem
-        
         if indexPath.section == 0 {
             if (accountDetail.isBGEasy || accountDetail.isAutoPay) && indexPath.row == 0 {
                 return bgEasyTableViewCell(indexPath: indexPath)
             } else {
                 let row = (accountDetail.isBGEasy || accountDetail.isAutoPay) ? indexPath.row - 1 : indexPath.row
-                billingHistoryItem = (billingHistory?.upcoming[row])!
+                billingHistoryItem = billingHistory.upcoming[row]
             }
         } else {
-            if indexPath.row != billingHistory?.pastSixMonths.count {
-                billingHistoryItem =  (billingHistory?.pastSixMonths[indexPath.row])!
+            if indexPath.row != billingHistory.mostRecentSixMonths.count {
+                billingHistoryItem = billingHistory.mostRecentSixMonths[indexPath.row]
             } else {
                 return viewMoreTableViewCell(indexPath: indexPath)
             }
@@ -342,7 +340,6 @@ extension BillingHistoryViewController: UITableViewDataSource {
         cell.accessibilityTraits = UIAccessibilityTraitButton
         cell.configureWith(item: billingHistoryItem)
         return cell
-        
     }
     
     func headerView(section: Int) -> UIView {
@@ -357,17 +354,14 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         var titleText = ""
         if section == 0 {
-            if let upcomingCount = billingHistory?.upcoming.count, 
-                upcomingCount > 3 {
-                titleText = "View All (\(self.billingHistory!.upcoming.count))"
+            if billingHistory.upcoming.count > 3 {
+                titleText = "View All (\(self.billingHistory.upcoming.count))"
             } else {
                 button.isEnabled = false
                 button.isAccessibilityElement = false
             }
         } else {
-            if let past = billingHistory?.past.count,
-                let pastSixMonths = billingHistory?.pastSixMonths.count,
-                past > pastSixMonths {
+            if billingHistory.past.count > billingHistory.mostRecentSixMonths.count {
                 titleText = "View More"
             } else {
                 button.isEnabled = false
@@ -426,24 +420,20 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func viewMoreTableViewCell(indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "ViewMoreCell")
         let button = UIButton(type: UIButtonType.system)
+        button.contentEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitle("View More", for: .normal)
         button.setTitleColor(.actionBlue, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         
+        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "ViewMoreCell")
+        cell.selectionStyle = .none
         cell.contentView.addSubview(button)
         
-        let views = ["button": button, "view": cell.contentView]
-        
-        let horizontallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[button]-|", options: .alignAllCenterY, metrics: nil, views: views)
-        cell.contentView.addConstraints(horizontallayoutContraints)
-        
-        let verticalLayoutContraint = NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: cell.contentView, attribute: .centerY, multiplier: 1, constant: 0)
-        cell.contentView.addConstraint(verticalLayoutContraint)
+        button.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
+        button.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
         
         return cell
     }

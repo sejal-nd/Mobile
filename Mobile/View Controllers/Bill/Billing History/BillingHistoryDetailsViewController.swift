@@ -16,7 +16,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var mainStackView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var paymentTypeView: UIView!
     @IBOutlet weak var paymentTypeLabel: UILabel!
@@ -84,7 +84,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar(hidesBottomBorder: true)
+            navController.setColoredNavBar()
         }
     }
     
@@ -192,7 +192,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         paymentAmountLabel.text = viewModel.paymentAmountLabel
         paymentAmountDetailsLabel.text = viewModel.amountPaid
         
-        viewModel.shouldShowContent.not().drive(mainStackView.rx.isHidden).disposed(by: self.bag)
+        viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: self.bag)
         viewModel.fetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: self.bag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: self.bag)
         

@@ -57,7 +57,7 @@ class MoreBillingHistoryViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar(hidesBottomBorder: true)
+            navController.setColoredNavBar()
         }
     }
     
