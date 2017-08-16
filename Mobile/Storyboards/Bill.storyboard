@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -241,7 +241,7 @@
                                                         <rect key="frame" x="22" y="20" width="43" height="49"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="997" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cmw-wR-EZa">
-                                                        <rect key="frame" x="89" y="20.5" width="161.5" height="49.5"/>
+                                                        <rect key="frame" x="89" y="21" width="161.5" height="49.5"/>
                                                         <string key="text">Learn more about
 AutoPay</string>
                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
@@ -643,11 +643,11 @@ AutoPay</string>
                         <viewControllerLayoutGuide type="bottom" id="T0q-Lt-lev"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eSR-UX-XMD">
-                        <rect key="frame" x="0.0" y="64" width="375" height="686"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6B-ap-FEB">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="686"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="730"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdW-TR-Ok5">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="692"/>
@@ -819,14 +819,14 @@ AutoPay</string>
                         <viewControllerLayoutGuide type="bottom" id="Akc-pJ-7px"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="N6O-j1-G4v">
-                        <rect key="frame" x="0.0" y="64" width="375" height="1436"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ig9-dg-eaf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1436"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="1480"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bK-OS-FDw">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1436"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1480"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1U-SY-HYl">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1274"/>
@@ -858,7 +858,7 @@ AutoPay</string>
                                                                                 <rect key="frame" x="30" y="20.5" width="43" height="49"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="997" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyj-ZX-wjI">
-                                                                                <rect key="frame" x="93" y="21" width="208" height="49.5"/>
+                                                                                <rect key="frame" x="93" y="20.5" width="208" height="49.5"/>
                                                                                 <string key="text">Learn more about
 AutoPay</string>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
@@ -1180,17 +1180,17 @@ AutoPay</string>
                         <viewControllerLayoutGuide type="bottom" id="gE4-MJ-svX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="f8I-LW-4KU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="2200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="2500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DL5-8p-VuX">
-                                <rect key="frame" x="0.0" y="20" width="375" height="2180"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="2480"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdd-pX-9Nn" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="2196"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="2407"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KpR-1V-7N1" userLabel="Main Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="2196"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="2407"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axx-pn-LaG">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="64"/>
@@ -1226,10 +1226,10 @@ AutoPay</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVU-9C-SBY" userLabel="Top View">
-                                                        <rect key="frame" x="0.0" y="138" width="374" height="1382.5"/>
+                                                        <rect key="frame" x="0.0" y="138" width="374" height="1593.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="C0x-OA-H1R" userLabel="Top Stack">
-                                                                <rect key="frame" x="1" y="0.0" width="373" height="1382.5"/>
+                                                                <rect key="frame" x="1" y="0.0" width="373" height="1593.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICw-AX-5ip" customClass="BillAlertBannerView" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="18" y="0.0" width="337" height="62.5"/>
@@ -1241,7 +1241,7 @@ AutoPay</string>
                                                                                         <rect key="frame" x="0.0" y="0.0" width="48" height="62.5"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fe-xL-vCG" userLabel="Alert Animation View">
-                                                                                                <rect key="frame" x="12" y="19" width="26" height="26"/>
+                                                                                                <rect key="frame" x="12" y="18.5" width="26" height="26"/>
                                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="width" constant="26" id="hRk-gG-vgB"/>
@@ -1291,16 +1291,16 @@ AutoPay</string>
                                                                         </connections>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCi-Kh-nMw">
-                                                                        <rect key="frame" x="18" y="72.5" width="337" height="1310"/>
+                                                                        <rect key="frame" x="18" y="72.5" width="337" height="1521"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xef-Jy-u4j">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="337" height="1310"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="337" height="1521"/>
                                                                                 <subviews>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqt-Ck-0Yz">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="337" height="144"/>
                                                                                         <subviews>
                                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gR4-Z3-SoN">
-                                                                                                <rect key="frame" x="68" y="36.5" width="201.5" height="71.5"/>
+                                                                                                <rect key="frame" x="68.5" y="37" width="201.5" height="71.5"/>
                                                                                                 <subviews>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$###.##" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYN-lO-iaJ">
                                                                                                         <rect key="frame" x="27.5" y="0.0" width="147" height="49.5"/>
@@ -1856,8 +1856,59 @@ AutoPay</string>
                                                                                             <constraint firstAttribute="trailing" secondItem="Ggz-ci-rJY" secondAttribute="trailing" constant="18" id="qso-I7-Tv4"/>
                                                                                         </constraints>
                                                                                     </view>
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2C-wO-nPJ">
+                                                                                        <rect key="frame" x="0.0" y="1060" width="337" height="211"/>
+                                                                                        <subviews>
+                                                                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sec-yS-j6Y" userLabel="Not Ready Stack">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="337" height="211"/>
+                                                                                                <subviews>
+                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EW0-8b-8I8">
+                                                                                                        <rect key="frame" x="53" y="0.0" width="231" height="49"/>
+                                                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="height" priority="999" constant="49" id="JPn-id-diX"/>
+                                                                                                        </constraints>
+                                                                                                    </view>
+                                                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_home_billnotready" translatesAutoresizingMaskIntoConstraints="NO" id="8Yv-yf-WpB">
+                                                                                                        <rect key="frame" x="80" y="49" width="177" height="54"/>
+                                                                                                    </imageView>
+                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZt-TD-9lX">
+                                                                                                        <rect key="frame" x="53" y="103" width="231" height="23"/>
+                                                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="height" priority="999" constant="23" id="Esx-K6-820"/>
+                                                                                                        </constraints>
+                                                                                                    </view>
+                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Your bill will be available here once it is ready." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8P-6E-EWi">
+                                                                                                        <rect key="frame" x="31" y="126" width="275" height="43"/>
+                                                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                                                        <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                                        <nil key="highlightedColor"/>
+                                                                                                    </label>
+                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Klk-Wm-XVv">
+                                                                                                        <rect key="frame" x="53" y="169" width="231" height="42"/>
+                                                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="height" priority="999" constant="42" id="JtS-Ni-FYu"/>
+                                                                                                        </constraints>
+                                                                                                    </view>
+                                                                                                </subviews>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="T8P-6E-EWi" secondAttribute="trailing" constant="31" id="Gjd-H3-mdv"/>
+                                                                                                    <constraint firstItem="T8P-6E-EWi" firstAttribute="leading" secondItem="sec-yS-j6Y" secondAttribute="leading" constant="31" id="LMq-Tq-Xgm"/>
+                                                                                                </constraints>
+                                                                                            </stackView>
+                                                                                        </subviews>
+                                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstItem="sec-yS-j6Y" firstAttribute="leading" secondItem="S2C-wO-nPJ" secondAttribute="leading" id="3EI-sf-LXZ"/>
+                                                                                            <constraint firstItem="sec-yS-j6Y" firstAttribute="top" secondItem="S2C-wO-nPJ" secondAttribute="top" id="QnI-Eo-br1"/>
+                                                                                            <constraint firstAttribute="bottom" secondItem="sec-yS-j6Y" secondAttribute="bottom" id="ZRZ-id-APF"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="sec-yS-j6Y" secondAttribute="trailing" id="efJ-RB-y88"/>
+                                                                                        </constraints>
+                                                                                    </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHU-9Z-Ody">
-                                                                                        <rect key="frame" x="0.0" y="1060" width="337" height="250"/>
+                                                                                        <rect key="frame" x="0.0" y="1271" width="337" height="250"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Js2-JQ-YOY" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                                                 <rect key="frame" x="138.5" y="119" width="60" height="12"/>
@@ -1905,10 +1956,10 @@ AutoPay</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xyl-IY-iJM" userLabel="Bottom View">
-                                                        <rect key="frame" x="0.0" y="1520.5" width="374" height="675.5"/>
+                                                        <rect key="frame" x="0.0" y="1731.5" width="374" height="675.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52M-Kq-h1c" userLabel="White Background">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="659.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="748.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EIA-1x-xBh" userLabel="Bottom Container Stack">
@@ -2011,7 +2062,7 @@ AutoPay</string>
                                                                                                         <rect key="frame" x="30" y="20.5" width="43" height="49"/>
                                                                                                     </imageView>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="997" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="Would you like to enroll in AutoPay?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7m-1B-WyC">
-                                                                                                        <rect key="frame" x="93" y="21" width="207" height="49.5"/>
+                                                                                                        <rect key="frame" x="93" y="20.5" width="207" height="49.5"/>
                                                                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                                                         <color key="textColor" red="0.1019607843" green="0.090196078430000007" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                         <nil key="highlightedColor"/>
@@ -2168,7 +2219,7 @@ AutoPay</string>
                         <barButtonItem key="backBarButtonItem" title="Back" id="uJc-vy-HD0"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="2200"/>
+                    <size key="freeformSize" width="375" height="2500"/>
                     <connections>
                         <outlet property="accountPicker" destination="2BY-N0-MzF" id="e3a-0j-c8D"/>
                         <outlet property="activityButton" destination="34x-Le-hLJ" id="NJn-da-isp"/>
@@ -2184,6 +2235,7 @@ AutoPay</string>
                         <outlet property="billIssuedLabel" destination="GwF-yc-hJY" id="uAM-0J-SUP"/>
                         <outlet property="billIssuedView" destination="xBv-G9-64I" id="RSf-zh-wh2"/>
                         <outlet property="billLoadingIndicator" destination="Js2-JQ-YOY" id="4b0-nE-yJc"/>
+                        <outlet property="billNotReadyView" destination="S2C-wO-nPJ" id="PZ1-qz-9mQ"/>
                         <outlet property="billPaidLabel" destination="Lse-qm-kHf" id="3XK-iM-lp8"/>
                         <outlet property="billPaidView" destination="8aR-Al-YnJ" id="cYU-Iu-yK2"/>
                         <outlet property="bottomStackContainerView" destination="9dX-Ei-ghb" id="oxo-vD-tYc"/>
@@ -2467,7 +2519,7 @@ AutoPay</string>
                                                                                 <rect key="frame" x="183" y="0.0" width="126" height="90"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT4-Mw-pfF">
-                                                                                <rect key="frame" x="78.5" y="20.5" width="161.5" height="49.5"/>
+                                                                                <rect key="frame" x="78.5" y="21" width="161.5" height="49.5"/>
                                                                                 <string key="text">Learn more about
 Paperless eBill?</string>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
@@ -2759,7 +2811,7 @@ Paperless eBill?</string>
                                                                 <rect key="frame" x="167" y="0.0" width="126" height="90"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evS-WD-Rt4">
-                                                                <rect key="frame" x="87" y="22" width="152.5" height="46.5"/>
+                                                                <rect key="frame" x="87" y="22.5" width="152.5" height="46.5"/>
                                                                 <string key="text">Learn more about
 Budget Billing?</string>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
@@ -2930,7 +2982,7 @@ Budget Billing?</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="$200.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGk-nZ-2XN">
-                                                                <rect key="frame" x="237.5" y="15.5" width="59.5" height="22"/>
+                                                                <rect key="frame" x="237.5" y="16" width="59.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3001,7 +3053,7 @@ Budget Billing?</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="$200.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEI-fV-Bvl">
-                                                                <rect key="frame" x="237.5" y="15.5" width="59.5" height="22"/>
+                                                                <rect key="frame" x="237.5" y="16" width="59.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3046,7 +3098,7 @@ Budget Billing?</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="$200.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bS-Vv-dO6">
-                                                                <rect key="frame" x="237.5" y="15.5" width="59.5" height="22"/>
+                                                                <rect key="frame" x="237.5" y="16" width="59.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3091,7 +3143,7 @@ Budget Billing?</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="$200.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0iI-cF-GFO">
-                                                                <rect key="frame" x="237.5" y="15.5" width="59.5" height="22"/>
+                                                                <rect key="frame" x="237.5" y="16" width="59.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3334,11 +3386,8 @@ Budget Billing?</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gXN-bS-1R3">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="3VQ-6W-Q7R"/>
-                                </constraints>
                             </tableView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="3FP-hJ-GKm" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="157" y="362" width="60" height="12"/>
@@ -3347,11 +3396,11 @@ Budget Billing?</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gXN-bS-1R3" secondAttribute="trailing" id="24b-4a-uf7"/>
                             <constraint firstItem="3FP-hJ-GKm" firstAttribute="centerX" secondItem="JA2-Zr-ZHX" secondAttribute="centerX" id="9yA-Ag-XZu"/>
                             <constraint firstItem="pxD-bM-dzq" firstAttribute="top" secondItem="gXN-bS-1R3" secondAttribute="bottom" id="Fk1-ZT-yoj"/>
-                            <constraint firstItem="gXN-bS-1R3" firstAttribute="leading" secondItem="JA2-Zr-ZHX" secondAttribute="leadingMargin" constant="-20" id="Izi-lP-a8x"/>
+                            <constraint firstItem="gXN-bS-1R3" firstAttribute="leading" secondItem="JA2-Zr-ZHX" secondAttribute="leading" id="LO8-Nk-m85"/>
                             <constraint firstItem="gXN-bS-1R3" firstAttribute="top" secondItem="sm5-YW-QKI" secondAttribute="bottom" id="LyV-Wg-gjG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gXN-bS-1R3" secondAttribute="trailing" constant="-20" id="VCd-2r-xYn"/>
                             <constraint firstItem="3FP-hJ-GKm" firstAttribute="centerY" secondItem="JA2-Zr-ZHX" secondAttribute="centerY" id="g6p-Oc-nVJ"/>
                         </constraints>
                     </view>
@@ -3384,13 +3433,13 @@ Budget Billing?</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="844-zQ-P3R">
-                                <rect key="frame" x="0.0" y="5" width="379" height="731"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1I-Xk-I4g" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="379" height="544"/>
+                                        <rect key="frame" x="-6" y="10" width="387" height="519"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sWB-Do-Lzi">
-                                                <rect key="frame" x="20" y="5" width="359" height="519"/>
+                                                <rect key="frame" x="28" y="0.0" width="359" height="519"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XjP-e3-T11" userLabel="Payment Type View">
                                                         <rect key="frame" x="0.0" y="0.0" width="359" height="64"/>
@@ -3419,8 +3468,7 @@ Budget Billing?</string>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="FyC-vH-E7I" secondAttribute="trailing" id="5vv-OO-LhC"/>
-                                                            <constraint firstAttribute="height" constant="64" id="9LN-lC-yjN"/>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="T5P-bS-cxV"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="64" id="9LN-lC-yjN"/>
                                                             <constraint firstItem="FyC-vH-E7I" firstAttribute="leading" secondItem="XjP-e3-T11" secondAttribute="leading" id="YXx-YA-loK"/>
                                                             <constraint firstItem="FyC-vH-E7I" firstAttribute="centerY" secondItem="XjP-e3-T11" secondAttribute="centerY" id="dEF-iE-tk7"/>
                                                         </constraints>
@@ -3459,8 +3507,7 @@ Budget Billing?</string>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="Vxm-7B-Nuf" firstAttribute="centerY" secondItem="oQX-th-1K0" secondAttribute="centerY" id="8JN-TI-f6R"/>
-                                                            <constraint firstAttribute="height" constant="64" id="ONb-P8-xO1"/>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="RJR-g9-1Nx"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="64" id="ONb-P8-xO1"/>
                                                             <constraint firstAttribute="trailing" secondItem="Vxm-7B-Nuf" secondAttribute="trailing" id="Uot-zx-3j5"/>
                                                             <constraint firstItem="Vxm-7B-Nuf" firstAttribute="leading" secondItem="oQX-th-1K0" secondAttribute="leading" id="g4o-PX-rg4"/>
                                                         </constraints>
@@ -3495,10 +3542,9 @@ Budget Billing?</string>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="64" id="GAK-F5-prA"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="64" id="GAK-F5-prA"/>
                                                             <constraint firstAttribute="trailing" secondItem="FmK-f8-hfd" secondAttribute="trailing" id="QLS-iZ-XaS"/>
                                                             <constraint firstItem="FmK-f8-hfd" firstAttribute="leading" secondItem="3QE-qF-Ndm" secondAttribute="leading" id="faF-i7-Tf1"/>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="ncf-iz-0D7"/>
                                                             <constraint firstItem="FmK-f8-hfd" firstAttribute="centerY" secondItem="3QE-qF-Ndm" secondAttribute="centerY" id="vpq-dl-kFk"/>
                                                         </constraints>
                                                     </view>
@@ -3532,9 +3578,8 @@ Budget Billing?</string>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="2xz-vd-yqb"/>
                                                             <constraint firstItem="4KJ-ju-rJf" firstAttribute="leading" secondItem="uAt-gn-Tuy" secondAttribute="leading" id="5YA-w9-DAK"/>
-                                                            <constraint firstAttribute="height" constant="64" id="KIZ-bx-C1y"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="64" id="KIZ-bx-C1y"/>
                                                             <constraint firstItem="4KJ-ju-rJf" firstAttribute="centerY" secondItem="uAt-gn-Tuy" secondAttribute="centerY" id="Y3z-rS-QBe"/>
                                                             <constraint firstAttribute="trailing" secondItem="4KJ-ju-rJf" secondAttribute="trailing" id="r43-4p-oTt"/>
                                                         </constraints>
@@ -3569,11 +3614,10 @@ Budget Billing?</string>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="64" id="Kwg-wf-sLj"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="64" id="Kwg-wf-sLj"/>
                                                             <constraint firstItem="oel-4q-rja" firstAttribute="centerY" secondItem="vmJ-Jg-QL8" secondAttribute="centerY" id="YlL-bJ-92v"/>
                                                             <constraint firstAttribute="trailing" secondItem="oel-4q-rja" secondAttribute="trailing" id="ZvC-e6-EKf"/>
                                                             <constraint firstItem="oel-4q-rja" firstAttribute="leading" secondItem="vmJ-Jg-QL8" secondAttribute="leading" id="meJ-X0-Xw3"/>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="xe2-gj-CPl"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF6-3k-Qyp" userLabel="Separator View">
@@ -3606,9 +3650,8 @@ Budget Billing?</string>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="64" id="Eez-AO-KNU"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="64" id="Eez-AO-KNU"/>
                                                             <constraint firstItem="2Dr-w7-ppD" firstAttribute="centerY" secondItem="o3R-WG-mv4" secondAttribute="centerY" id="ftr-nw-O2X"/>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="rEa-ms-Olh"/>
                                                             <constraint firstAttribute="trailing" secondItem="2Dr-w7-ppD" secondAttribute="trailing" id="vuP-AD-jd6"/>
                                                             <constraint firstItem="2Dr-w7-ppD" firstAttribute="leading" secondItem="o3R-WG-mv4" secondAttribute="leading" id="zU3-5z-via"/>
                                                         </constraints>
@@ -3645,9 +3688,8 @@ Budget Billing?</string>
                                                         <constraints>
                                                             <constraint firstItem="bIL-xm-JNF" firstAttribute="centerY" secondItem="NYD-v0-HHW" secondAttribute="centerY" id="8Df-pI-62D"/>
                                                             <constraint firstItem="bIL-xm-JNF" firstAttribute="leading" secondItem="NYD-v0-HHW" secondAttribute="leading" id="Dwt-iE-3n8"/>
-                                                            <constraint firstAttribute="height" constant="64" id="Hw0-pf-doC"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="64" id="Hw0-pf-doC"/>
                                                             <constraint firstAttribute="trailing" secondItem="bIL-xm-JNF" secondAttribute="trailing" id="eyC-df-XgW"/>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="gn2-ac-uXN"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbY-W5-4LA" userLabel="Separator View">
@@ -3681,8 +3723,7 @@ Budget Billing?</string>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="Vvh-Um-xag" firstAttribute="leading" secondItem="i9u-dE-IeU" secondAttribute="leading" id="AFQ-yO-Njp"/>
-                                                            <constraint firstAttribute="height" constant="64" id="ZmB-mS-hns"/>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="aEg-LA-2ja"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="64" id="ZmB-mS-hns"/>
                                                             <constraint firstItem="Vvh-Um-xag" firstAttribute="centerY" secondItem="i9u-dE-IeU" secondAttribute="centerY" id="cRe-9M-Fnj"/>
                                                             <constraint firstAttribute="trailing" secondItem="Vvh-Um-xag" secondAttribute="trailing" id="sLp-jN-MLU"/>
                                                         </constraints>
@@ -3692,7 +3733,6 @@ Budget Billing?</string>
                                                     <constraint firstAttribute="trailing" secondItem="i9u-dE-IeU" secondAttribute="trailing" priority="999" id="0fV-aE-QkC"/>
                                                     <constraint firstAttribute="trailing" secondItem="WyB-Ty-ej0" secondAttribute="trailing" id="0qJ-Uz-KNp"/>
                                                     <constraint firstItem="uAt-gn-Tuy" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" priority="999" id="1My-kh-jve"/>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="2Xn-fJ-6pf"/>
                                                     <constraint firstAttribute="trailing" secondItem="odx-Zf-mgS" secondAttribute="trailing" id="3cj-sX-9Hg"/>
                                                     <constraint firstItem="vmJ-Jg-QL8" firstAttribute="leading" secondItem="sWB-Do-Lzi" secondAttribute="leading" priority="999" id="3gL-KY-Bmh"/>
                                                     <constraint firstAttribute="trailing" secondItem="vmJ-Jg-QL8" secondAttribute="trailing" priority="999" id="90m-Ti-7yg"/>
@@ -3725,22 +3765,20 @@ Budget Billing?</string>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="sWB-Do-Lzi" secondAttribute="trailing" priority="999" id="4j0-Hx-9KB"/>
+                                            <constraint firstAttribute="trailing" secondItem="sWB-Do-Lzi" secondAttribute="trailing" id="4j0-Hx-9KB"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Mby-Fb-G5J"/>
-                                            <constraint firstAttribute="bottom" secondItem="sWB-Do-Lzi" secondAttribute="bottom" constant="20" id="YXq-Xf-eUE"/>
-                                            <constraint firstItem="sWB-Do-Lzi" firstAttribute="top" secondItem="s1I-Xk-I4g" secondAttribute="top" constant="5" id="cXM-e9-oEE"/>
-                                            <constraint firstItem="sWB-Do-Lzi" firstAttribute="leading" secondItem="s1I-Xk-I4g" secondAttribute="leading" priority="999" constant="20" id="jcO-si-lf6"/>
-                                            <constraint firstItem="sWB-Do-Lzi" firstAttribute="centerX" secondItem="s1I-Xk-I4g" secondAttribute="centerX" constant="10" id="q0g-u2-3kD"/>
+                                            <constraint firstAttribute="bottom" secondItem="sWB-Do-Lzi" secondAttribute="bottom" id="YXq-Xf-eUE"/>
+                                            <constraint firstItem="sWB-Do-Lzi" firstAttribute="top" secondItem="s1I-Xk-I4g" secondAttribute="top" id="cXM-e9-oEE"/>
+                                            <constraint firstItem="sWB-Do-Lzi" firstAttribute="leading" secondItem="s1I-Xk-I4g" secondAttribute="leading" constant="28" id="jcO-si-lf6"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="s1I-Xk-I4g" firstAttribute="centerX" secondItem="844-zQ-P3R" secondAttribute="centerX" id="1Gj-z8-UGy"/>
-                                    <constraint firstAttribute="trailing" secondItem="s1I-Xk-I4g" secondAttribute="trailing" id="4Io-ti-RJG"/>
-                                    <constraint firstItem="s1I-Xk-I4g" firstAttribute="top" secondItem="844-zQ-P3R" secondAttribute="top" id="FYx-eo-j6i"/>
-                                    <constraint firstAttribute="bottom" secondItem="s1I-Xk-I4g" secondAttribute="bottom" constant="1713" id="H3y-4D-inh"/>
-                                    <constraint firstItem="s1I-Xk-I4g" firstAttribute="centerX" secondItem="844-zQ-P3R" secondAttribute="centerX" id="ZwC-gz-NYa"/>
-                                    <constraint firstItem="s1I-Xk-I4g" firstAttribute="leading" secondItem="844-zQ-P3R" secondAttribute="leading" id="y3h-8t-nJV"/>
+                                    <constraint firstAttribute="trailing" secondItem="s1I-Xk-I4g" secondAttribute="trailing" priority="999" id="4Io-ti-RJG"/>
+                                    <constraint firstItem="s1I-Xk-I4g" firstAttribute="top" secondItem="844-zQ-P3R" secondAttribute="top" constant="10" id="FYx-eo-j6i"/>
+                                    <constraint firstAttribute="bottom" secondItem="s1I-Xk-I4g" secondAttribute="bottom" constant="10" id="H3y-4D-inh"/>
+                                    <constraint firstItem="s1I-Xk-I4g" firstAttribute="leading" secondItem="844-zQ-P3R" secondAttribute="leading" priority="999" id="y3h-8t-nJV"/>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="MLn-AN-IpM" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
@@ -3757,15 +3795,15 @@ Budget Billing?</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dpy-35-adc" firstAttribute="centerY" secondItem="qyT-bL-ygT" secondAttribute="centerY" id="6CL-EA-T7W"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="844-zQ-P3R" secondAttribute="trailing" constant="-20" id="8VX-IQ-3h3"/>
+                            <constraint firstAttribute="trailing" secondItem="844-zQ-P3R" secondAttribute="trailing" id="6SN-ar-7fY"/>
                             <constraint firstItem="dpy-35-adc" firstAttribute="leading" secondItem="qyT-bL-ygT" secondAttribute="leading" constant="29" id="CgL-ZR-HV1"/>
+                            <constraint firstItem="844-zQ-P3R" firstAttribute="leading" secondItem="qyT-bL-ygT" secondAttribute="leading" id="GhZ-O1-6sp"/>
                             <constraint firstItem="MLn-AN-IpM" firstAttribute="centerX" secondItem="qyT-bL-ygT" secondAttribute="centerX" id="Oae-k1-Xxg"/>
                             <constraint firstItem="bFz-2x-G7g" firstAttribute="top" secondItem="844-zQ-P3R" secondAttribute="bottom" id="XJu-tb-CNt"/>
                             <constraint firstItem="dpy-35-adc" firstAttribute="centerX" secondItem="qyT-bL-ygT" secondAttribute="centerX" id="aWV-2o-2j5"/>
                             <constraint firstItem="MLn-AN-IpM" firstAttribute="centerY" secondItem="qyT-bL-ygT" secondAttribute="centerY" id="hct-k6-BMd"/>
-                            <constraint firstItem="844-zQ-P3R" firstAttribute="leading" secondItem="qyT-bL-ygT" secondAttribute="leadingMargin" constant="-16" id="hzp-R1-Lxz"/>
                             <constraint firstAttribute="trailing" secondItem="dpy-35-adc" secondAttribute="trailing" constant="29" id="kN3-6z-rYc"/>
-                            <constraint firstItem="844-zQ-P3R" firstAttribute="top" secondItem="y0S-zS-DgU" secondAttribute="bottom" constant="5" id="r1C-cI-hRf"/>
+                            <constraint firstItem="844-zQ-P3R" firstAttribute="top" secondItem="y0S-zS-DgU" secondAttribute="bottom" id="r1C-cI-hRf"/>
                         </constraints>
                     </view>
                     <connections>
@@ -3778,7 +3816,6 @@ Budget Billing?</string>
                         <outlet property="convenienceFeeView" destination="vmJ-Jg-QL8" id="4R5-Bw-39t"/>
                         <outlet property="errorLabel" destination="dpy-35-adc" id="igU-w4-5Bv"/>
                         <outlet property="loadingIndicator" destination="MLn-AN-IpM" id="8lR-jy-aUd"/>
-                        <outlet property="mainStackView" destination="844-zQ-P3R" id="bqp-9V-nNY"/>
                         <outlet property="paymentAccountDetailsLabel" destination="AkZ-MO-r7Z" id="rx3-Sf-sSD"/>
                         <outlet property="paymentAccountLabel" destination="XhV-92-nLf" id="oMc-Yw-Zuw"/>
                         <outlet property="paymentAccountSeparatorLine" destination="nka-dH-aZj" id="QVe-3h-yNX"/>
@@ -3799,6 +3836,7 @@ Budget Billing?</string>
                         <outlet property="paymentTypeLabel" destination="sQZ-WB-PVH" id="hSW-P9-MKQ"/>
                         <outlet property="paymentTypeSeparatorLine" destination="odx-Zf-mgS" id="0cd-Vm-qqM"/>
                         <outlet property="paymentTypeView" destination="XjP-e3-T11" id="tpP-g2-HBT"/>
+                        <outlet property="scrollView" destination="844-zQ-P3R" id="Xw0-hr-ug6"/>
                         <outlet property="totalAmountPaidDetailsLabel" destination="bLI-bK-ReK" id="isu-SG-FSM"/>
                         <outlet property="totalAmountPaidLabel" destination="CYL-5t-ePd" id="QyK-Uo-cau"/>
                         <outlet property="totalAmountPaidSeparatorLine" destination="WyB-Ty-ej0" id="BaC-3f-TsZ"/>
@@ -3807,7 +3845,7 @@ Budget Billing?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Io-ob-DW0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5994" y="308"/>
+            <point key="canvasLocation" x="5916" y="481"/>
         </scene>
         <!--What Is Budget Billing View Controller-->
         <scene sceneID="g0H-0E-Iut">
@@ -4161,7 +4199,7 @@ the year</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is Budget Billing?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gos-Aq-4Ke">
-                                        <rect key="frame" x="85.5" y="32.5" width="205" height="25"/>
+                                        <rect key="frame" x="86" y="32.5" width="205" height="25"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -4243,12 +4281,6 @@ the year</string>
                         <rect key="frame" x="0.0" y="64" width="375" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data currently available." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odL-be-XFL">
-                                <rect key="frame" x="0.0" y="358" width="375" height="20.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WyA-2k-Kom">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4257,6 +4289,12 @@ the year</string>
                                 <rect key="frame" x="157" y="362" width="60" height="12"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data currently available." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odL-be-XFL">
+                                <rect key="frame" x="29" y="358" width="317" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8A-sl-oov">
                                 <rect key="frame" x="29" y="357" width="317" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4269,11 +4307,11 @@ the year</string>
                             <constraint firstAttribute="trailing" secondItem="K8A-sl-oov" secondAttribute="trailing" constant="29" id="Bg3-r8-wiI"/>
                             <constraint firstItem="WyA-2k-Kom" firstAttribute="leading" secondItem="TRy-kI-749" secondAttribute="leading" id="CZl-rH-pak"/>
                             <constraint firstAttribute="trailing" secondItem="WyA-2k-Kom" secondAttribute="trailing" id="JuZ-My-Mle"/>
-                            <constraint firstAttribute="trailing" secondItem="odL-be-XFL" secondAttribute="trailing" id="NGt-4X-AVi"/>
+                            <constraint firstAttribute="trailing" secondItem="odL-be-XFL" secondAttribute="trailing" constant="29" id="NGt-4X-AVi"/>
                             <constraint firstItem="odL-be-XFL" firstAttribute="centerX" secondItem="TRy-kI-749" secondAttribute="centerX" id="Ye8-2R-X5v"/>
                             <constraint firstItem="K8A-sl-oov" firstAttribute="centerY" secondItem="TRy-kI-749" secondAttribute="centerY" id="agy-th-izJ"/>
                             <constraint firstItem="K8A-sl-oov" firstAttribute="centerX" secondItem="TRy-kI-749" secondAttribute="centerX" id="d2j-U6-0TY"/>
-                            <constraint firstItem="odL-be-XFL" firstAttribute="leading" secondItem="TRy-kI-749" secondAttribute="leading" id="r5L-cn-dDS"/>
+                            <constraint firstItem="odL-be-XFL" firstAttribute="leading" secondItem="TRy-kI-749" secondAttribute="leading" constant="29" id="r5L-cn-dDS"/>
                             <constraint firstItem="KjS-5f-IeS" firstAttribute="centerX" secondItem="TRy-kI-749" secondAttribute="centerX" id="rji-ui-HLw"/>
                             <constraint firstItem="WyA-2k-Kom" firstAttribute="top" secondItem="XnG-xN-ilv" secondAttribute="bottom" id="ron-CU-qWs"/>
                             <constraint firstItem="K8A-sl-oov" firstAttribute="leading" secondItem="TRy-kI-749" secondAttribute="leading" constant="29" id="ugn-YE-d9z"/>
@@ -4289,7 +4327,7 @@ the year</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
-                        <outlet property="empyStateLabel" destination="odL-be-XFL" id="8fc-Rd-FcV"/>
+                        <outlet property="emptyStateLabel" destination="odL-be-XFL" id="05m-Tv-soK"/>
                         <outlet property="errorLabel" destination="K8A-sl-oov" id="WbD-Uo-pM8"/>
                         <outlet property="loadingIndicator" destination="KjS-5f-IeS" id="hTw-f0-0kd"/>
                         <outlet property="tableView" destination="WyA-2k-Kom" id="iwI-Z8-coH"/>
@@ -4317,6 +4355,7 @@ the year</string>
         <image name="ic_check_mini_white" width="14" height="11"/>
         <image name="ic_close" width="24" height="24"/>
         <image name="ic_email" width="43" height="43"/>
+        <image name="ic_home_billnotready" width="177" height="54"/>
         <image name="ic_invoice" width="53" height="62"/>
         <image name="ic_paperlessleaf" width="55" height="52"/>
         <image name="ic_pdf" width="18" height="20"/>
@@ -4326,10 +4365,14 @@ the year</string>
         <image name="paperless_modal" width="330" height="317"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="St9-1T-NgU"/>
+        <segue reference="i8z-J5-Vom"/>
+        <segue reference="jAa-oL-qHI"/>
+        <segue reference="DmQ-Tj-Ore"/>
         <segue reference="X62-GM-RxQ"/>
         <segue reference="JxE-Ae-J8n"/>
         <segue reference="Kur-v9-at5"/>
-        <segue reference="7KW-Av-o21"/>
         <segue reference="Z6O-TZ-udR"/>
+        <segue reference="7KW-Av-o21"/>
     </inferredMetricsTieBreakers>
 </document>

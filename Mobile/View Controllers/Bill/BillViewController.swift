@@ -13,6 +13,7 @@ import Lottie
 
 class BillViewController: AccountPickerViewController {
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var billNotReadyView: UIView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
     @IBOutlet weak var topLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var topView: UIView!
@@ -251,9 +252,6 @@ class BillViewController: AccountPickerViewController {
         viewModel.isFetchingDifferentAccount.drive(billLoadingIndicator.rx.isAnimating).disposed(by: bag)
 
         viewModel.isFetchingDifferentAccount.not().drive(loadingIndicatorView.rx.isHidden).disposed(by: bag)
-        viewModel.isFetchingDifferentAccount.drive(totalAmountView.rx.isHidden).disposed(by: bag)
-        viewModel.isFetchingDifferentAccount.drive(paymentDetailsView.rx.isHidden).disposed(by: bag)
-        viewModel.isFetchingDifferentAccount.drive(bottomStackContainerView.rx.isHidden).disposed(by: bag)
 	}
 
 	func bindViewHiding() {
@@ -263,16 +261,22 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
 
 		questionMarkButton.isHidden = !viewModel.shouldShowAmountDueTooltip
-
+        
+        viewModel.shouldShowTopContent.not().drive(totalAmountView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowTopContent.not().drive(bottomStackContainerView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowTopContent.not().drive(paymentDetailsView.rx.isHidden).disposed(by: bag)
+        
 		viewModel.shouldShowRestoreService.not().drive(restoreServiceView.rx.isHidden).disposed(by: bag)
         viewModel.pendingPaymentAmountDueBoxesAlpha.drive(restoreServiceView.rx.alpha).disposed(by: bag)
-		viewModel.shouldShowCatchUpAmount.not().drive(catchUpView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowCatchUpAmount.not().drive(catchUpView.rx.isHidden).disposed(by: bag)
         viewModel.pendingPaymentAmountDueBoxesAlpha.drive(catchUpView.rx.alpha).disposed(by: bag)
 		viewModel.shouldShowCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
         viewModel.pendingPaymentAmountDueBoxesAlpha.drive(catchUpDisclaimerView.rx.alpha).disposed(by: bag)
 		viewModel.shouldShowAvoidShutoff.not().drive(avoidShutoffView.rx.isHidden).disposed(by: bag)
         viewModel.pendingPaymentAmountDueBoxesAlpha.drive(avoidShutoffView.rx.alpha).disposed(by: bag)
-		viewModel.shouldShowPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowBillNotReady.not().drive(billNotReadyView.rx.isHidden).disposed(by: bag)
+        
         viewModel.pendingPaymentAmountDueBoxesAlpha.drive(pastDueView.rx.alpha).disposed(by: bag)
 
 		viewModel.shouldShowPendingPayment.not().drive(paymentStackView.rx.isHidden).disposed(by: bag)
