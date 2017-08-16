@@ -474,7 +474,9 @@ class MakePaymentViewController: UIViewController {
             self?.onDeletePaymentPress()
         }).disposed(by: disposeBag)
         
-        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).disposed(by: disposeBag)
+        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            self?.onPrivacyPolicyPress()
+        }).disposed(by: disposeBag)
     }
     
     func bindInlineBankAccessibility() {
