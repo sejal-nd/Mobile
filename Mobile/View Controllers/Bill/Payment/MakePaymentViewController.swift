@@ -482,20 +482,20 @@ class MakePaymentViewController: UIViewController {
             addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
                 .withLatestFrom(viewModel.addBankFormViewModel.routingNumber.asDriver())
                 .filter { !$0.isEmpty }
-                .map { _ in () },
+                .toVoid(),
             
             addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
             
             addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
                 .withLatestFrom(viewModel.addBankFormViewModel.accountNumber.asDriver())
                 .filter { !$0.isEmpty }
-                .map { _ in () },
+                .toVoid(),
             
             addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
             
-            viewModel.addBankFormViewModel.confirmAccountNumberMatches.map { _ in () },
+            viewModel.addBankFormViewModel.confirmAccountNumberMatches.toVoid(),
             
-            viewModel.addBankFormViewModel.nicknameErrorString.map { _ in () }
+            viewModel.addBankFormViewModel.nicknameErrorString.toVoid()
             )
             .drive(onNext: { [weak self] in
                 self?.accessibilityErrorLabel()
@@ -513,7 +513,7 @@ class MakePaymentViewController: UIViewController {
                      addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
                      addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
                      addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
-                     viewModel.addCardFormViewModel.nicknameErrorString.map { _ in () })
+                     viewModel.addCardFormViewModel.nicknameErrorString.toVoid())
             .drive(onNext: { [weak self] in
                 self?.accessibilityErrorLabel()
             }).disposed(by: disposeBag)

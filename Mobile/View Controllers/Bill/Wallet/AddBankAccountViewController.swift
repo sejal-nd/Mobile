@@ -131,38 +131,28 @@ class AddBankAccountViewController: UIViewController {
     }
     
     func bindAccessibility() {
-        addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.addBankFormViewModel.routingNumber.value.isEmpty {
-                self.viewModel.addBankFormViewModel.routingNumberIsValid.drive(onNext: { valid in
-                    self.accessibilityErrorLabel()
-                }).disposed(by: self.disposeBag)
-            }
-        }).disposed(by: disposeBag)
-        
-        addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.addBankFormViewModel.accountNumber.value.isEmpty {
-                self.viewModel.addBankFormViewModel.accountNumberIsValid.drive(onNext: { valid in
-                    self.accessibilityErrorLabel()
-                }).disposed(by: self.disposeBag)
-            }
-        }).disposed(by: disposeBag)
-        
-        addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        viewModel.addBankFormViewModel.confirmAccountNumberMatches.drive(onNext: { matches in
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        viewModel.addBankFormViewModel.nicknameErrorString.drive(onNext: { valid in
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-    }
+        Driver.merge(
+            addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+                .withLatestFrom(viewModel.addBankFormViewModel.routingNumber.asDriver())
+                .filter { !$0.isEmpty }.toVoid(),
+            
+            addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().toVoid(),
+            
+            addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+                .withLatestFrom(viewModel.addBankFormViewModel.accountNumber.asDriver())
+                .filter { !$0.isEmpty }.toVoid(),
+            
+            addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().toVoid(),
+            
+            viewModel.addBankFormViewModel.confirmAccountNumberMatches.toVoid(),
+            
+            viewModel.addBankFormViewModel.nicknameErrorString.toVoid()
+            
+            )
+            .drive(onNext: { [weak self] _ in
+                self?.accessibilityErrorLabel()
+            }).disposed(by: self.disposeBag)
+        }
     
     private func accessibilityErrorLabel() {
         var message = ""

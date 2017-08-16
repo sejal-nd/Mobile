@@ -233,7 +233,7 @@ class HomeBillCardView: UIView {
         oneTouchSlider.didFinishSwipe
             .withLatestFrom(Driver.combineLatest(self.viewModel.shouldShowWeekendWarning, self.viewModel.promptForCVV) { $0 || $1 })
             .filter(!)
-            .map { _ in () }
+            .toVoid()
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
             .disposed(by: bag)
@@ -249,7 +249,7 @@ class HomeBillCardView: UIView {
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
             self?.oneTouchSlider.reset(animated: true)
-        }).map { _ in () }
+        }).toVoid()
     
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
