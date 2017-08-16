@@ -64,12 +64,7 @@ class AddCardFormViewModel {
     
     func cardNumberIsValid() -> Observable<Bool> {
         return cardNumber.asObservable().map {
-            let luhnValid = self.luhnCheck(cardNumber: $0)
-            if (Environment.sharedInstance.opco == .peco) {
-                return self.pecoValidCreditCardCheck(cardNumber: $0) && luhnValid
-            } else {
-                return luhnValid
-            }
+            return self.firstNumberCheck(cardNumber: $0) && self.luhnCheck(cardNumber: $0)
         }
     }
     
@@ -193,13 +188,11 @@ class AddCardFormViewModel {
         return (oddSum + evenSum) % 10 == 0;
     }
     
-    private func pecoValidCreditCardCheck(cardNumber: String) -> Bool {
-        let charSet = CharacterSet(charactersIn: "23456") //peco cc can only start with these chars
-        
+    private func firstNumberCheck(cardNumber: String) -> Bool {
         guard let firstChar = cardNumber.characters.first?.description else {
             return false
         }
-        
+        let charSet = CharacterSet(charactersIn: "23456")
         return firstChar.trimmingCharacters(in: charSet).characters.count == 0
     }
     
