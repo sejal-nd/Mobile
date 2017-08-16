@@ -179,9 +179,9 @@ class PaymentViewModel {
                     }
                 }
                 onSuccess?()
-            }, onError: { _ in
-                self.isFetching.value = false
-                self.isError.value = true
+            }, onError: { [weak self] _ in
+                self?.isFetching.value = false
+                self?.isError.value = true
                 onError?()
             }).disposed(by: disposeBag)
     }
@@ -731,8 +731,9 @@ class PaymentViewModel {
         }
     }()
     
-    private(set) lazy var paymentAmountFeeLabelText: Driver<String> = Driver.combineLatest(self.bankWorkflow, self.cardWorkflow, self.convenienceFee)
-    { (bankWorkflow, cardWorkflow, fee) -> String in
+    private(set) lazy var paymentAmountFeeLabelText: Driver<String?> = Driver.combineLatest(self.bankWorkflow, self.cardWorkflow, self.convenienceFee)
+    { [weak self] (bankWorkflow, cardWorkflow, fee) -> String? in
+        guard let `self` = self else { return nil }
         if bankWorkflow {
             return NSLocalizedString("No convenience fee will be applied.", comment: "")
         } else if cardWorkflow {
@@ -1074,7 +1075,8 @@ class PaymentViewModel {
     private(set) lazy var totalPaymentDisplayString: Driver<String?> = {
         Driver.combineLatest(self.paymentAmount.asDriver().map {
             Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
-        }, self.reviewPaymentShouldShowConvenienceFeeBox, self.convenienceFee).map {
+        }, self.reviewPaymentShouldShowConvenienceFeeBox, self.convenienceFee).map { [weak self] in
+            guard let `self` = self else { return nil }
             if $1 {
                 if (Environment.sharedInstance.opco == .bge) {
                     if (self.accountDetail.value.isResidential) {
