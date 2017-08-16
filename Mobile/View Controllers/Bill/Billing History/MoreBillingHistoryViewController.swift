@@ -108,9 +108,11 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                     let status = billingItem.status else { return }
                 
                 //pending payments do not get a tap so we only handle scheduled/cancelled payments
-                if status == BillingHistoryProperties.StatusProcessing.rawValue || status == BillingHistoryProperties.StatusSCHEDULED.rawValue {
+                if status == BillingHistoryProperties.StatusProcessing.rawValue ||
+                    status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
+                    status == BillingHistoryProperties.StatusPending.rawValue {
                     handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
-                } else if status == BillingHistoryProperties.StatusCanceled.rawValue || 
+                } else if status == BillingHistoryProperties.StatusCanceled.rawValue ||
                     status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
                     status == BillingHistoryProperties.StatusFailed.rawValue {
                     self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
@@ -123,7 +125,10 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
         guard let billingItem = self.billingHistory?.upcoming[indexPath.row], 
             let status = billingItem.status else { return }
         
-        if status == BillingHistoryProperties.StatusProcessing.rawValue {
+        if status == BillingHistoryProperties.StatusProcessing.rawValue ||
+            status == BillingHistoryProperties.StatusCanceled.rawValue ||
+            status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
+            status == BillingHistoryProperties.StatusFailed.rawValue {
             
             self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
             
