@@ -73,12 +73,16 @@ class AutoPayViewController: UIViewController {
         
         NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
-            .drive(onNext: keyboardWillShow)
+            .drive(onNext: { [weak self] in
+                self?.keyboardWillShow(notification: $0)
+            })
             .disposed(by: bag)
         
         NotificationCenter.default.rx.notification(.UIKeyboardWillHide, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
-            .drive(onNext: keyboardWillHide)
+            .drive(onNext: { [weak self] in
+                self?.keyboardWillHide(notification: $0)
+            })
             .disposed(by: bag)
         
         style()
@@ -90,7 +94,9 @@ class AutoPayViewController: UIViewController {
         viewModel.canSubmit.drive(submitButton.rx.isEnabled).disposed(by: bag)
         
         learnMoreButton.rx.touchUpInside.asDriver()
-            .drive(onNext: onLearnMorePress)
+            .drive(onNext: { [weak self] in
+                self?.onLearnMorePress()
+            })
             .disposed(by: bag)
         
         
@@ -304,7 +310,9 @@ class AutoPayViewController: UIViewController {
             .disposed(by: bag)
         
         tacButton.rx.tap.asDriver()
-            .drive(onNext: onTermsAndConditionsPress)
+            .drive(onNext: { [weak self] in
+                self?.onTermsAndConditionsPress()
+            })
             .disposed(by: bag)
         
         nameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nameOnAccount).disposed(by: bag)
