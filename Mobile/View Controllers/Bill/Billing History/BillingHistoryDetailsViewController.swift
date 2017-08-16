@@ -78,7 +78,9 @@ class BillingHistoryDetailsViewController: UIViewController {
         styleViews()
         bindLoadingStates()
         
-        viewModel.fetchPaymentDetails(billingHistoryItem: billingHistoryItem)
+        viewModel.fetchPaymentDetails(billingHistoryItem: billingHistoryItem, onCompletion: {
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
+        })
     }
  
     override func viewWillAppear(_ animated: Bool) {
@@ -91,32 +93,40 @@ class BillingHistoryDetailsViewController: UIViewController {
     func formatViews() {
         if !viewModel.isBGE {
             paymentTypeView.isHidden = true
+            paymentTypeLabel.isAccessibilityElement = false
             paymentTypeSeparatorLine.isHidden = true
             
             paymentAccountView.isHidden = true
+            paymentAccountLabel.isAccessibilityElement = false
             paymentAccountSeparatorLine.isHidden = true
             
             convenienceFeeView.isHidden = true
+            convenienceFeeLabel.isAccessibilityElement = false
             convenienceFeeSeparatorLine.isHidden = true
             
             totalAmountPaidView.isHidden = true
+            totalAmountPaidLabel.isAccessibilityElement = false
             totalAmountPaidSeparatorLine.isHidden = true
             
             confirmationNumberView.isHidden = true
+            confirmationNumberLabel.isAccessibilityElement = false
         } else {
             if viewModel.isSpeedpay {
                 paymentTypeView.isHidden = true
+                paymentTypeLabel.isAccessibilityElement = false
                 paymentTypeSeparatorLine.isHidden = true
             } else {
                 paymentAccountView.isHidden = true
+                paymentAccountLabel.isAccessibilityElement = false
                 paymentAccountSeparatorLine.isHidden = true
                 
                 convenienceFeeView.isHidden = true
+                convenienceFeeLabel.isAccessibilityElement = false
                 convenienceFeeSeparatorLine.isHidden = true
                 
                 totalAmountPaidView.isHidden = true
+                totalAmountPaidLabel.isAccessibilityElement = false
                 totalAmountPaidSeparatorLine.isHidden = true
-                
             }
         }
     }
