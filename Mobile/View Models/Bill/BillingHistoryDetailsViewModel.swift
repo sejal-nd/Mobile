@@ -117,7 +117,7 @@ class BillingHistoryDetailsViewModel {
     func fetchPaymentDetails(billingHistoryItem: BillingHistoryItem) {
         if let paymentId = billingHistoryItem.paymentId, billingHistoryItem.encryptedPaymentId != nil {
             fetching.value = true
-            self.paymentService.fetchPaymentDetails(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, paymentId: paymentId).subscribe(onNext: { [weak self] paymentDetail in
+            paymentService.fetchPaymentDetails(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, paymentId: paymentId).subscribe(onNext: { [weak self] paymentDetail in
                 self?.fetching.value = false
                 self?.paymentDetail.value = paymentDetail
             }, onError: { [weak self] err in
@@ -125,7 +125,7 @@ class BillingHistoryDetailsViewModel {
                 self?.isError.value = true
             }).disposed(by: disposeBag)
         } else {
-            self.fetching.value = false
+            fetching.value = false
         }
     }
 }
