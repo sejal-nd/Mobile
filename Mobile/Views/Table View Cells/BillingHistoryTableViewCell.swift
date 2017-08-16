@@ -92,7 +92,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
             }
         }
-        self.accessibilityLabel = a11y
+        accessibilityLabel = a11y
     }
     
     private func configureUpcomingCell(item: BillingHistoryItem) {
@@ -107,12 +107,12 @@ class BillingHistoryTableViewCell: UITableViewCell {
         if status == BillingHistoryProperties.StatusPending.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
             titleLabel.text = PENDING_PAYMENT
-            self.amountLabel.text = amountPaid
+            amountLabel.text = amountPaid
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PENDING_PAYMENT, dateString, amountPaid)
         } else if status == BillingHistoryProperties.StatusProcessing.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PAYMENT_PROCESSING
-            self.amountLabel.text = amountPaid
+            amountLabel.text = amountPaid
             dateLabel.isHidden = true
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT_PROCESSING, dateString, amountPaid)
         } else if status == BillingHistoryProperties.StatusCanceled.rawValue ||
@@ -129,10 +129,10 @@ class BillingHistoryTableViewCell: UITableViewCell {
         } else { //status = scheduled?  hopefully
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = SCHEDULED_PAYMENT
-            self.amountLabel.text = amountPaid
+            amountLabel.text = amountPaid
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
         }
-        self.accessibilityLabel = a11y
+        accessibilityLabel = a11y
     }
     
     class var identifier: String{
