@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 import AVFoundation
 
 protocol AddCreditCardViewControllerDelegate: class {
@@ -42,7 +43,7 @@ class AddCreditCardViewController: UIViewController {
         addCardFormView.oneTouchPaySwitch.setOn(shouldSetOneTouchPayByDefault, animated: false)
         addCardFormView.viewModel.oneTouchPay.value = shouldSetOneTouchPayByDefault
         
-        viewModel = AddCreditCardViewModel(walletService: ServiceFactory.createWalletService(), addCardFormViewModel: self.addCardFormView.viewModel)
+        viewModel = AddCreditCardViewModel(walletService: ServiceFactory.createWalletService(), addCardFormViewModel: addCardFormView.viewModel)
         viewModel.accountDetail = accountDetail
         viewModel.oneTouchPayItem = oneTouchPayItem
         
@@ -67,6 +68,7 @@ class AddCreditCardViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        dLog("")
     }
     
     func onCancelPress() {
@@ -83,16 +85,17 @@ class AddCreditCardViewController: UIViewController {
             }
         }
         
-        let addCreditCard = { (setAsOneTouchPay: Bool) in
+        let addCreditCard = { [weak self] (setAsOneTouchPay: Bool) in
             LoadingView.show()
-            self.viewModel.addCreditCard(onDuplicate: { message in
+            self?.viewModel.addCreditCard(onDuplicate: { message in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Duplicate Card", comment: ""), message: message, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
+                self?.present(alertVc, animated: true, completion: nil)
             }, onSuccess: { walletItemResult in
                 let completion = {
                     LoadingView.hide()
+                    guard let `self` = self else { return }
                     self.delegate?.addCreditCardViewControllerDidAddAccount(self)
                     if self.shouldPopToRootOnSave {
                         self.navigationController?.popToRootViewController(animated: true)
@@ -101,7 +104,7 @@ class AddCreditCardViewController: UIViewController {
                     }
                 }
                 if setAsOneTouchPay {
-                    self.viewModel.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: completion, onError: { errMessage in
+                    self?.viewModel.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: completion, onError: { errMessage in
                         //In this case, the card was already saved, so not really an error
                         completion()
                     })
@@ -117,7 +120,7 @@ class AddCreditCardViewController: UIViewController {
                     alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 }
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
+                self?.present(alertVc, animated: true, completion: nil)
             })
         }
         
@@ -135,49 +138,22 @@ class AddCreditCardViewController: UIViewController {
     }
     
     func bindAccessibility() {
-        addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        viewModel.addCardFormViewModel.nicknameErrorString.map{ $0 == nil }.drive(onNext: { valid in
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
+        Driver.merge(
+            addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+            addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+            addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+            addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+            addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+            addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+            addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+            addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+            addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+            addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+            viewModel.addCardFormViewModel.nicknameErrorString.toVoid()
+            )
+            .drive(onNext: { [weak self] in
+                self?.accessibilityErrorLabel()
+            }).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {
@@ -190,9 +166,9 @@ class AddCreditCardViewController: UIViewController {
         message += addCardFormView.nicknameTextField.getError()
         
         if message.isEmpty {
-            self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
+            saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            self.saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
+            saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
         }
     }
     
@@ -259,7 +235,7 @@ extension AddCreditCardViewController: AddCardFormViewDelegate {
             }))
             present(alertVC, animated: true, completion: nil)
         } else {
-            present(cardIOViewController!, animated: true, completion: nil)
+            present(cardIOViewController, animated: true, completion: nil)
         }
     }
     
