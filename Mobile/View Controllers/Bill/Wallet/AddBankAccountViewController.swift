@@ -40,7 +40,7 @@ class AddBankAccountViewController: UIViewController {
         addBankFormView.oneTouchPaySwitch.setOn(shouldSetOneTouchPayByDefault, animated: false)
         addBankFormView.viewModel.oneTouchPay.value = shouldSetOneTouchPayByDefault
         
-        viewModel = AddBankAccountViewModel(walletService: ServiceFactory.createWalletService(), addBankFormViewModel: self.addBankFormView.viewModel)
+        viewModel = AddBankAccountViewModel(walletService: ServiceFactory.createWalletService(), addBankFormViewModel: addBankFormView.viewModel)
         viewModel.accountDetail = accountDetail
         viewModel.oneTouchPayItem = oneTouchPayItem
         
@@ -63,6 +63,7 @@ class AddBankAccountViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        dLog("")
     }
     
     func onCancelPress() {
@@ -79,16 +80,18 @@ class AddBankAccountViewController: UIViewController {
             }
         }
         
-        let addBankAccount = { (setAsOneTouchPay: Bool) in
+        let addBankAccount = { [weak self] (setAsOneTouchPay: Bool) in
             LoadingView.show()
-            self.viewModel.addBankAccount(onDuplicate: { message in
+            guard let `self` = self else { return }
+            self.viewModel.addBankAccount(onDuplicate: { [weak self] message in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Duplicate Bank Account", comment: ""), message: message, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
-            }, onSuccess: { walletItemResult in
-                let completion = {
+                self?.present(alertVc, animated: true, completion: nil)
+            }, onSuccess: { [weak self] walletItemResult in
+                let completion = { [weak self] in
                     LoadingView.hide()
+                    guard let `self` = self else { return }
                     self.delegate?.addBankAccountViewControllerDidAddAccount(self)
                     if self.shouldPopToRootOnSave {
                         self.navigationController?.popToRootViewController(animated: true)
@@ -96,15 +99,16 @@ class AddBankAccountViewController: UIViewController {
                         self.navigationController?.popViewController(animated: true)
                     }
                 }
+                
                 if setAsOneTouchPay {
-                    self.viewModel.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: completion, onError: { errMessage in
+                    self?.viewModel.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: completion, onError: { errMessage in
                         //In this case, the card was already saved, so not really an error
                         completion()
                     })
                 } else {
                     completion()
                 }
-            }, onError: { errMessage in
+            }, onError: { [weak self] errMessage in
                 LoadingView.hide()
                 var alertVc: UIAlertController
                 if Environment.sharedInstance.opco == .bge {
@@ -113,7 +117,7 @@ class AddBankAccountViewController: UIViewController {
                     alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 }
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
+                self?.present(alertVc, animated: true, completion: nil)
             })
         }
         
@@ -151,7 +155,7 @@ class AddBankAccountViewController: UIViewController {
             )
             .drive(onNext: { [weak self] _ in
                 self?.accessibilityErrorLabel()
-            }).disposed(by: self.disposeBag)
+            }).disposed(by: disposeBag)
         }
     
     private func accessibilityErrorLabel() {
@@ -162,9 +166,9 @@ class AddBankAccountViewController: UIViewController {
         message += addBankFormView.nicknameTextField.getError()
         
         if message.isEmpty {
-            self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
+            saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            self.saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
+            saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
         }
     }
     
