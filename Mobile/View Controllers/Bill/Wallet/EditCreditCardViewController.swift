@@ -516,7 +516,7 @@ class EditCreditCardViewController: UIViewController {
     }
     
     deinit {
-        dLog("")
+        dLog()
     }
 }
 

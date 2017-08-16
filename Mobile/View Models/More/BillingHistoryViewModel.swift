@@ -27,7 +27,6 @@ class BillingHistoryViewModel {
         billService.fetchBillingHistory(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, startDate: lastYear!, endDate: theFuture)
             .subscribe(onNext: { billingHistory in
                 success(billingHistory)
-                
             }, onError: { error in
                 failure(error)
             })

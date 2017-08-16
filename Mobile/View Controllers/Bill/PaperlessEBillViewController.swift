@@ -203,6 +203,6 @@ class PaperlessEBillViewController: UIViewController {
     }
     
     deinit {
-        dLog("")
+        dLog()
     }
 }

@@ -68,7 +68,7 @@ class AddCreditCardViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        dLog("")
+        dLog()
     }
     
     func onCancelPress() {

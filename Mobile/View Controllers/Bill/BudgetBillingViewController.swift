@@ -372,7 +372,7 @@ class BudgetBillingViewController: UIViewController {
     }
     
     deinit {
-        dLog("")
+        dLog()
     }
 
 }

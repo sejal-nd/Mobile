@@ -279,7 +279,7 @@ class MakePaymentViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        dLog("")
+        dLog()
     }
     
     override func viewWillAppear(_ animated: Bool) {

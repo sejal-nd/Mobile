@@ -132,6 +132,6 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
     }
     
     deinit {
-        dLog("")
+        dLog()
     }
 }

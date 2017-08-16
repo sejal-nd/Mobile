@@ -8,8 +8,12 @@
 
 import Foundation
 
-func dLog(_ message: String, filename: String = #file, function: String = #function, line: Int = #line) {
+func dLog(_ message: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
     #if DEBUG
-        NSLog("[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(message)")
+        var logString = "[\((filename as NSString).lastPathComponent):\(line)] \(function)"
+        if let message = message {
+            logString += " - \(message)"
+        }
+        NSLog(logString)
     #endif
 }

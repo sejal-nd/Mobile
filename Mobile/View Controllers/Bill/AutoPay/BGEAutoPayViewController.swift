@@ -296,7 +296,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     deinit {
-        dLog("")
+        dLog()
     }
 
 }

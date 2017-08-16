@@ -143,7 +143,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        dLog("")
+        dLog()
     }
     
     override func viewDidAppear(_ animated: Bool) {
