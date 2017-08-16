@@ -156,6 +156,7 @@ class HomeBillCardViewModel {
     private lazy var walletItemDriver: Driver<WalletItem?> = self.walletItem.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var billNotReady: Driver<Bool> = self.accountDetailEvents
+        .filter { !$0.isCompleted }
         .map {
             guard let accountDetails = $0.element else { return false }
             return (accountDetails.billingInfo.netDueAmount ?? 0) == 0 &&
@@ -163,9 +164,20 @@ class HomeBillCardViewModel {
         }
         .asDriver(onErrorJustReturn: false)
     
-    private(set) lazy var showErrorState: Driver<Bool> = Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents)
-        .map { $0.0.error != nil || $0.1.error != nil }
-        .asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var showErrorState: Driver<Bool> = {
+        if Environment.sharedInstance.opco == .peco {
+            return Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents, self.workDayEvents)
+                .map { $0.0.error != nil || $0.1.error != nil || $0.2.error != nil }
+                .asDriver(onErrorDriveWith: .empty())
+        } else {
+            return Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents)
+                .map { $0.0.error != nil || $0.1.error != nil }
+                .asDriver(onErrorDriveWith: .empty())
+        }
+        
+    }()
+    
+    private(set) lazy var showInfoStack: Driver<Bool> = Driver.combineLatest(self.billNotReady, self.showErrorState) { $0 || $1 }
     
     // MARK: - Title States
     
