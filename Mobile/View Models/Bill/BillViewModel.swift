@@ -75,29 +75,29 @@ class BillViewModel {
 		fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)
     }
     
-    lazy var currentAccountDetailUnwrapped: Driver<AccountDetail> = self.currentAccountDetail.asObservable()
+    private(set) lazy var currentAccountDetailUnwrapped: Driver<AccountDetail> = self.currentAccountDetail.asObservable()
             .unwrap()
             .asDriver(onErrorDriveWith: Driver.empty())
 	
-	lazy var isFetchingDifferentAccount: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+	private(set) lazy var isFetchingDifferentAccount: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
         return $0 == nil }
 	
 	
     // MARK: - Show/Hide Views -
     
-    lazy var shouldShowAlertBanner: Driver<Bool> = {
+    private(set) lazy var shouldShowAlertBanner: Driver<Bool> = {
         let isCutOutNonPay = self.currentAccountDetail.asDriver().map { $0?.isCutOutNonPay ?? false }
         return Driver.zip(isCutOutNonPay, self.shouldShowRestoreService, self.shouldShowAvoidShutoff) {
             return ($0 && $1) || $2
         }
     }()
     
-    lazy var shouldShowRestoreService: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var shouldShowRestoreService: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         return $0?.billingInfo.restorationAmount ?? 0 > 0
     }
     
-    lazy var shouldShowAvoidShutoff: Driver<Bool> = {
+    private(set) lazy var shouldShowAvoidShutoff: Driver<Bool> = {
         let showAvoidShutoff = self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
             guard let billingInfo = accountDetail?.billingInfo else { return false }
             return (billingInfo.disconnectNoticeArrears ?? 0) > 0 && billingInfo.isDisconnectNotice
@@ -105,18 +105,18 @@ class BillViewModel {
         return Driver.zip(self.shouldShowRestoreService, showAvoidShutoff) { !$0 && $1 }
     }()
     
-    lazy var shouldShowCatchUpAmount: Driver<Bool> = {
+    private(set) lazy var shouldShowCatchUpAmount: Driver<Bool> = {
         let showCatchup = self.currentAccountDetail.asDriver().map {
             $0?.billingInfo.amtDpaReinst ?? 0 > 0
         }
         return Driver.zip(self.shouldShowAvoidShutoff, showCatchup) { !$0 && $1 }
     }()
     
-    lazy var shouldShowCatchUpDisclaimer: Driver<Bool> = self.shouldShowCatchUpAmount.map {
+    private(set) lazy var shouldShowCatchUpDisclaimer: Driver<Bool> = self.shouldShowCatchUpAmount.map {
         $0 && Environment.sharedInstance.opco == .comEd
     }
     
-    lazy var shouldShowPastDue: Driver<Bool> = {
+    private(set) lazy var shouldShowPastDue: Driver<Bool> = {
         let showPastDue = self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
             guard let billingInfo = accountDetail?.billingInfo else { return false }
             return billingInfo.pastDueAmount ?? 0 > 0 && billingInfo.amtDpaReinst ?? 0 == 0
@@ -124,22 +124,34 @@ class BillViewModel {
         return Driver.zip(self.shouldShowAlertBanner, showPastDue) { !$0 && $1 }
     }()
     
-    lazy var pendingPaymentAmountDueBoxesAlpha: Driver<CGFloat> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var shouldShowTopContent: Driver<Bool> = Driver.combineLatest(self.isFetchingDifferentAccount,
+                                                                                    self.shouldShowBillNotReady)
+    { !$0 && !$1 }
+    
+    private(set) lazy var shouldShowBillNotReady: Driver<Bool> = self.currentAccountDetail.asObservable()
+        .map {
+            guard let accountDetails = $0 else { return false }
+            return (accountDetails.billingInfo.netDueAmount ?? 0) == 0 &&
+                (accountDetails.billingInfo.lastPaymentAmount ?? 0) <= 0
+        }
+        .asDriver(onErrorJustReturn: false)
+    
+    private(set) lazy var pendingPaymentAmountDueBoxesAlpha: Driver<CGFloat> = self.currentAccountDetail.asDriver().map {
         guard let pendingPaymentAmount = $0?.billingInfo.pendingPayments.first?.amount else { return 1.0 }
         return pendingPaymentAmount > 0 ? 0.5 : 1.0
     }
     
-    lazy var shouldShowPendingPayment: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var shouldShowPendingPayment: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         $0?.billingInfo.pendingPayments.first?.amount ?? 0 > 0
     }
     
-    lazy var shouldShowRemainingBalanceDue: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var shouldShowRemainingBalanceDue: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         return $0?.billingInfo.pendingPayments.first?.amount ?? 0 > 0 &&
             $0?.billingInfo.remainingBalanceDue ?? 0 > 0 &&
             Environment.sharedInstance.opco != .bge
     }
     
-    lazy var shouldShowRemainingBalancePastDue: Driver<Bool> = {
+    private(set) lazy var shouldShowRemainingBalancePastDue: Driver<Bool> = {
         let showRemainingPastDue = self.currentAccountDetail.asDriver().map { accountDetail -> Bool in
             guard let billingInfo = accountDetail?.billingInfo else { return false }
             return billingInfo.pastDueRemaining ?? 0 > 0
@@ -147,40 +159,40 @@ class BillViewModel {
         return Driver.zip(showRemainingPastDue, self.shouldShowPastDue) { $0 && $1 && Environment.sharedInstance.opco != .bge }
     }()
     
-    lazy var shouldShowBillIssued: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var shouldShowBillIssued: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         guard let billingInfo = $0?.billingInfo else { return false }
         //TODO: Bill Issued
         return false
     }
     
-    lazy var shouldShowPaymentReceived: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var shouldShowPaymentReceived: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         guard let billingInfo = $0?.billingInfo else { return false }
         return billingInfo.lastPaymentAmount ?? 0 > 0 && billingInfo.netDueAmount ?? 0 == 0
     }
     
-    lazy var shouldShowCredit: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var shouldShowCredit: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         guard let netDueAmount = $0?.billingInfo.netDueAmount else { return false }
         return netDueAmount < 0 && Environment.sharedInstance.opco == .bge
     }
     
     let shouldShowAmountDueTooltip = Environment.sharedInstance.opco == .peco
     
-    lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map { _ in
+    private(set) lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map { _ in
         return false // Bill Analysis will be Release 2
 //        guard let accountDetail = $0 else { return false }
 //        return accountDetail.isResidential && !accountDetail.isAMICustomer
     }
     
-    lazy var shouldEnableMakeAPaymentButton: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var shouldEnableMakeAPaymentButton: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         $0?.billingInfo.netDueAmount ?? 0 > 0 || Environment.sharedInstance.opco == .bge
     }
     
-    lazy var shouldShowAutoPay: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var shouldShowAutoPay: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return false }
         return accountDetail.isAutoPay || accountDetail.isBGEasy || accountDetail.isAutoPayEligible
     }
     
-    lazy var shouldShowPaperless: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var shouldShowPaperless: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return false }
         if !accountDetail.isResidential && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
             return true
@@ -192,7 +204,7 @@ class BillViewModel {
         }
     }
     
-    lazy var shouldShowBudget: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var shouldShowBudget: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return false }
         return accountDetail.isBudgetBillEligible ||
             accountDetail.isBudgetBillEnrollment ||
@@ -205,15 +217,15 @@ class BillViewModel {
     
     //MARK: - Banner Alert Text
     
-    lazy var alertBannerText: Driver<String?> = Driver.combineLatest(self.restoreServiceAlertText,
+    private(set) lazy var alertBannerText: Driver<String?> = Driver.combineLatest(self.restoreServiceAlertText,
                                                                      self.avoidShutoffAlertText,
                                                                      self.paymentFailedAlertText) { $0 ?? $1 ?? $2 }
     
-    lazy var alertBannerA11yText: Driver<String?> = self.alertBannerText.map {
+    private(set) lazy var alertBannerA11yText: Driver<String?> = self.alertBannerText.map {
         $0?.replacingOccurrences(of: "shutoff", with: "shut-off")
     }
     
-    lazy var restoreServiceAlertText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var restoreServiceAlertText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0,
             !(accountDetail.billingInfo.restorationAmount ?? 0 > 0 && accountDetail.billingInfo.amtDpaReinst ?? 0 > 0) &&
                 accountDetail.isCutOutNonPay else {
@@ -222,7 +234,7 @@ class BillViewModel {
         return NSLocalizedString("Your service is off due to non-payment.", comment: "")
     }
     
-    lazy var avoidShutoffAlertText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var avoidShutoffAlertText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let billingInfo = $0?.billingInfo,
             let amountText = billingInfo.disconnectNoticeArrears?.currencyString,
             (!(billingInfo.restorationAmount ?? 0 > 0 && billingInfo.amtDpaReinst ?? 0 > 0) &&
@@ -249,7 +261,7 @@ class BillViewModel {
         }
     }
     
-    lazy var paymentFailedAlertText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var paymentFailedAlertText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return nil }
         //TODO: Implement this alert text
         let localizedText = NSLocalizedString("Your payment of %@ made with $@ failed processing. Please select an alternative payment account", comment: "")
@@ -258,7 +270,7 @@ class BillViewModel {
     
     //MARK: - Total Amount Due
     
-    lazy var totalAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var totalAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let netDueAmount = $0?.billingInfo.netDueAmount else { return nil }
         if Environment.sharedInstance.opco == .bge { // BGE should display the negative value if there is a credit
             return netDueAmount.currencyString ?? "--"
@@ -266,7 +278,7 @@ class BillViewModel {
         return max(netDueAmount, 0).currencyString ?? "--"
     }
     
-    lazy var totalAmountDescriptionText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var totalAmountDescriptionText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let billingInfo = $0?.billingInfo else { return nil }
         
         if Double(billingInfo.pastDueAmount!) > 0 && billingInfo.pastDueAmount == billingInfo.netDueAmount { // Confluence Billing 11.10
@@ -284,21 +296,21 @@ class BillViewModel {
     }
     
     //MARK: - Restore Service
-    lazy var restoreServiceAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var restoreServiceAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         $0?.billingInfo.restorationAmount?.currencyString ?? "--"
     }
     
     //MARK: - Catch Up
-    lazy var catchUpAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var catchUpAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         $0?.billingInfo.amtDpaReinst?.currencyString ?? "--"
     }
     
-    lazy var catchUpDateText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var catchUpDateText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         let localizedText = NSLocalizedString("Due by %@", comment: "")
         return String(format: localizedText, $0?.billingInfo.dueByDate?.mmDdYyyyString ?? "")
     }
     
-    lazy var catchUpDisclaimerText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var catchUpDisclaimerText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let billingInfo = $0?.billingInfo else { return nil }
         let localizedText = NSLocalizedString("You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
         return String(format: localizedText, billingInfo.atReinstateFee?.currencyString ?? "--")
@@ -318,11 +330,11 @@ class BillViewModel {
         return avoidShutoffText.replacingOccurrences(of: "Shutoff", with: "shut-off")
     }
     
-    lazy var avoidShutoffAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var avoidShutoffAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         $0?.billingInfo.disconnectNoticeArrears?.currencyString ?? "--"
     }
     
-    lazy var avoidShutoffDueDateText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var avoidShutoffDueDateText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let billingInfo = $0?.billingInfo else { return nil }
         if Environment.sharedInstance.opco == .bge {
             let localizedText = NSLocalizedString("Due by %@", comment: "")
@@ -334,12 +346,12 @@ class BillViewModel {
     }
     
     //MARK: - Past Due
-    lazy var pastDueAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var pastDueAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         $0?.billingInfo.pastDueAmount?.currencyString ?? "--"
     }
     
     //MARK: - Pending Payments
-    lazy var pendingPaymentAmounts: Driver<[Double]> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var pendingPaymentAmounts: Driver<[Double]> = self.currentAccountDetail.asDriver().map {
         // In a later release, we can use the whole pendingPayments array for BGE processing payments
         [$0?.billingInfo.pendingPayments.first].flatMap { $0?.amount }
     }
@@ -354,7 +366,7 @@ class BillViewModel {
         }
     }
     
-    lazy var remainingBalanceDueAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var remainingBalanceDueAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         if $0?.billingInfo.pendingPayments.first?.amount == $0?.billingInfo.netDueAmount {
             return 0.currencyString
         } else {
@@ -362,7 +374,7 @@ class BillViewModel {
         }
     }
     
-    lazy var remainingBalanceDueDateText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var remainingBalanceDueDateText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let dateString = $0?.billingInfo.dueByDate?.mmDdYyyyString else { return nil }
         let localizedText = NSLocalizedString("Due by %@", comment: "")
         return String(format: localizedText, dateString)
@@ -378,38 +390,38 @@ class BillViewModel {
         }
     }
     
-    lazy var remainingBalancePastDueAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var remainingBalancePastDueAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         $0?.billingInfo.pastDueRemaining?.currencyString ?? "--"
     }
     
     //MARK: - Bill Issued
-    lazy var billIssuedAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map { _ in
+    private(set) lazy var billIssuedAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map { _ in
         nil //TODO: Bill Issued
     }
     
-    lazy var billIssuedDateText: Driver<String?> = self.currentAccountDetail.asDriver().map { _ in
+    private(set) lazy var billIssuedDateText: Driver<String?> = self.currentAccountDetail.asDriver().map { _ in
         nil //TODO: Bill Issued
     }
     
     //MARK: - Payment Received
-    lazy var paymentReceivedAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var paymentReceivedAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         $0?.billingInfo.lastPaymentAmount?.currencyString ?? "--"
     }
     
-    lazy var paymentReceivedDateText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var paymentReceivedDateText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let dateString = $0?.billingInfo.lastPaymentDate?.mmDdYyyyString else { return nil }
         let localizedText = NSLocalizedString("Payment Date %@", comment: "")
         return String(format: localizedText, dateString)
     }
     
     //MARK: - Credit
-    lazy var creditAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var creditAmountText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let netDueAmount = $0?.billingInfo.netDueAmount else { return "--" }
         return abs(netDueAmount).currencyString ?? "--"
     }
     
     //MARK: - Payment Status
-    lazy var paymentStatusText: Driver<String?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var paymentStatusText: Driver<String?> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return nil }
     
         if Environment.sharedInstance.opco == .bge && accountDetail.isBGEasy {
@@ -441,7 +453,7 @@ class BillViewModel {
         return nil
     }
     
-    lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?)> = self.currentAccountDetail.asObservable().map {
+    private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?)> = self.currentAccountDetail.asObservable().map {
         guard let accountDetail = $0 else { return (nil, nil) }
         
         if Environment.sharedInstance.opco == .bge && accountDetail.isBGEasy {
@@ -477,7 +489,7 @@ class BillViewModel {
     
     //MARK: - Enrollment
     
-    lazy var autoPayButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var autoPayButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return nil }
         if accountDetail.isAutoPay || accountDetail.isBGEasy {
             let text = NSLocalizedString("AutoPay", comment: "")
@@ -490,7 +502,7 @@ class BillViewModel {
         }
     }
     
-    lazy var paperlessButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var paperlessButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return nil }
         if !accountDetail.isResidential && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
             return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
@@ -511,7 +523,7 @@ class BillViewModel {
         }
     }
     
-    lazy var budgetButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.asDriver().map {
+    private(set) lazy var budgetButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return nil }
         if accountDetail.isBudgetBillEnrollment {
             return BillViewModel.isEnrolledText(topText: NSLocalizedString("Budget Billing", comment: ""),
