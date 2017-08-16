@@ -71,8 +71,10 @@ class BillingHistoryTableViewCell: UITableViewCell {
             amountLabel.text = item.totalAmountDue?.currencyString
             a11y = String(format: NSLocalizedString("%@. %@. %@. View PDF", comment: ""), BILL_ISSUED, dateString, amountLabel.text ?? "")
         } else {
-            guard let status = item.status,
-                let amountPaid = item.amountPaid?.currencyString else { return }
+            guard let status = item.status, let amountPaid = item.amountPaid?.currencyString else {
+                return
+            }
+            
             if status == BillingHistoryProperties.StatusCanceled.rawValue || 
                 status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
                 status == BillingHistoryProperties.StatusFailed.rawValue {
@@ -84,6 +86,11 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 } else {
                     a11y = String(format: NSLocalizedString("Cancelled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
                 }
+            } else if status == BillingHistoryProperties.StatusSCHEDULED.rawValue || status == BillingHistoryProperties.StatusScheduled.rawValue {
+                iconImageView.image = #imageLiteral(resourceName: "ic_pending")
+                titleLabel.text = SCHEDULED_PAYMENT
+                self.amountLabel.text = amountPaid
+                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
             } else {
                 iconImageView.image = #imageLiteral(resourceName: "ic_paymentcheck")
                 titleLabel.text = PAYMENT
