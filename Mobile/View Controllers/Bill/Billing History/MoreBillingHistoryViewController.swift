@@ -39,18 +39,18 @@ class MoreBillingHistoryViewController: UIViewController {
             billingList = billingHistory?.upcoming
         }
         
-        self.title = NSLocalizedString("More Activity", comment: "")
-        self.loadingIndicator.isHidden = false
-        self.tableView.isHidden = true
+        title = NSLocalizedString("More Activity", comment: "")
+        loadingIndicator.isHidden = false
+        tableView.isHidden = true
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        self.tableView.register(UINib(nibName: BillingHistoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: "BillingHistoryCell")
+        tableView.register(UINib(nibName: BillingHistoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: "BillingHistoryCell")
         
-        self.loadingIndicator.isHidden = true
-        self.tableView.isHidden = false
-        self.tableView.reloadData()
+        loadingIndicator.isHidden = true
+        tableView.isHidden = false
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +71,10 @@ class MoreBillingHistoryViewController: UIViewController {
             vc.viewModel.billDate = billingHistoryItem.date.apiFormatDate
         }
     }
+    
+    deinit {
+        dLog()
+    }
 }
 
 extension MoreBillingHistoryViewController: UITableViewDelegate {
@@ -80,12 +84,12 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
         selectedIndexPath = indexPath
 
         if billingSelection == .history {
-            guard let billingItem = self.billingHistory?.past[indexPath.row], 
+            guard let billingItem = billingHistory?.past[indexPath.row],
                 let type = billingItem.type else { return }
             if type == BillingHistoryProperties.TypeBilling.rawValue {
                 showBillPdf()
             } else {
-                self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+                performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
             }
             //upcoming billing history
         } else {
@@ -93,10 +97,10 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
             
             if opco == .bge {
                 if accountDetail.isBGEasy {
-                    if self.billingHistory?.upcoming == nil {
-                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
-                    } else if indexPath.row == self.billingHistory!.upcoming.count + 1 {
-                        self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                    if billingHistory?.upcoming == nil {
+                        performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                    } else if indexPath.row == billingHistory!.upcoming.count + 1 {
+                        performSegue(withIdentifier: "viewBGEasySegue", sender: self)
                     } else  {
                         handleBGEUpcomingClick(indexPath: indexPath)
                     }
@@ -104,7 +108,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                     handleBGEUpcomingClick(indexPath: indexPath)
                 }
             } else {
-                guard let billingItem = self.billingHistory?.upcoming[indexPath.row], 
+                guard let billingItem = billingHistory?.upcoming[indexPath.row],
                     let status = billingItem.status else { return }
                 
                 //pending payments do not get a tap so we only handle scheduled/cancelled payments
@@ -113,19 +117,19 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                 } else if status == BillingHistoryProperties.StatusCanceled.rawValue || 
                     status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
                     status == BillingHistoryProperties.StatusFailed.rawValue {
-                    self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+                    performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
                 }
             }
         }
     }
     
     private func handleBGEUpcomingClick(indexPath: IndexPath) {
-        guard let billingItem = self.billingHistory?.upcoming[indexPath.row], 
+        guard let billingItem = billingHistory?.upcoming[indexPath.row],
             let status = billingItem.status else { return }
         
         if status == BillingHistoryProperties.StatusProcessing.rawValue {
             
-            self.performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+            performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
             
         } else { //It's scheduled hopefully
             handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
@@ -140,8 +144,8 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
             } else {  // recurring/automatic
                 let storyboard = UIStoryboard(name: "Bill", bundle: nil)
                 if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
-                    vc.accountDetail = self.accountDetail
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    vc.accountDetail = accountDetail
+                    navigationController?.pushViewController(vc, animated: true)
                 }
             }
         } else { //PECO/COMED scheduled
@@ -156,9 +160,9 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
         if Environment.sharedInstance.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
             let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
+            present(alertVC, animated: true, completion: nil)
         } else {
-            self.performSegue(withIdentifier: "viewBillSegue", sender: self)
+            performSegue(withIdentifier: "viewBillSegue", sender: self)
         }
     }
     
@@ -170,15 +174,15 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
             let paymentDetail = PaymentDetail(walletItemId: walletItemId, paymentAmount: paymentAmount, paymentDate: billingItem.date)
             paymentVc.paymentDetail = paymentDetail
         }
-        self.navigationController?.pushViewController(paymentVc, animated: true)
+        navigationController?.pushViewController(paymentVc, animated: true)
     }
 }
 
 extension MoreBillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (self.billingList) != nil {
-            return self.billingList!.count
+        if (billingList) != nil {
+            return billingList!.count
         } else {
             return 0
         }
@@ -187,7 +191,7 @@ extension MoreBillingHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let billingHistoryItem: BillingHistoryItem
 
-        billingHistoryItem = (self.billingList![indexPath.row])
+        billingHistoryItem = (billingList![indexPath.row])
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BillingHistoryCell", for: indexPath) as! BillingHistoryTableViewCell
         
