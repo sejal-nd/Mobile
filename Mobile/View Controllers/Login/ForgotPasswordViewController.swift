@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 protocol ForgotPasswordViewControllerDelegate: class {
     func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController)
@@ -29,13 +30,13 @@ class ForgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("Forgot Password", comment: "")
+        title = NSLocalizedString("Forgot Password", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.text = viewModel.getInstructionLabelText()
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -45,17 +46,17 @@ class ForgotPasswordViewController: UIViewController {
         usernameTextField.textField.returnKeyType = .done
         
         usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
-        usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            self.viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
-                if enabled {
-                    self.onSubmitPress()
-                }
-            }).disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
-        usernameTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-            self.usernameTextField.setError(nil)
-            self.accessibilityErrorLabel()
-            
+        usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
+            .withLatestFrom(viewModel.submitButtonEnabled)
+            .filter { $0 }
+            .drive(onNext: { [weak self] _ in
+                self?.onSubmitPress()
+            })
+            .disposed(by: disposeBag)
+        
+        usernameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.usernameTextField.setError(nil)
+            self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
         forgotUsernameButton.setTitle(NSLocalizedString("Forgot Username?", comment: ""), for: .normal)
@@ -66,9 +67,9 @@ class ForgotPasswordViewController: UIViewController {
         let message = usernameTextField.getError()
         
         if message.isEmpty {
-            self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            self.submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
         }
     }
     
@@ -96,17 +97,20 @@ class ForgotPasswordViewController: UIViewController {
         view.endEditing(true)
         
         LoadingView.show()
-        viewModel.submitForgotPassword(onSuccess: {
+        viewModel.submitForgotPassword(onSuccess: { [weak self] in
             LoadingView.hide()
+            guard let `self` = self else { return }
             self.delegate?.forgotPasswordViewControllerDidSubmit(self)
-            _ = self.navigationController?.popViewController(animated: true)
-        }, onProfileNotFound: { error in
+            self.navigationController?.popViewController(animated: true)
+        }, onProfileNotFound: { [weak self] error in
             LoadingView.hide()
+            guard let `self` = self else { return }
             self.usernameTextField.setError(NSLocalizedString(error, comment: ""))
             self.accessibilityErrorLabel()
             
-        }, onError: { errorMessage in
+        }, onError: { [weak self] errorMessage in
             LoadingView.hide()
+            guard let `self` = self else { return }
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -114,7 +118,7 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePress() {
-        for vc in (self.navigationController?.viewControllers)! {
+        for vc in (navigationController?.viewControllers)! {
             guard let loginVC = vc as? LoginViewController else {
                 continue
             }
@@ -127,5 +131,8 @@ class ForgotPasswordViewController: UIViewController {
         return .lightContent
     }
 
+    deinit {
+        dLog()
+    }
 
 }
