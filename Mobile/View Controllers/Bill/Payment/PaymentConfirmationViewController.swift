@@ -147,7 +147,9 @@ class PaymentConfirmationViewController: UIViewController {
             }
             presentingNavController.popToViewController(dest, animated: false)
             //dest.viewModel.fetchAccountDetail(isRefresh: false) // Can't do this because currentAccountDetail will be nil in prepareForSegue
-            dest.navigateToAutoPay()
+            if let accountDetail = dest.viewModel.currentAccountDetail.value {
+                dest.navigateToAutoPay(accountDetail: accountDetail)
+            }
             break
         }
         presentingNavController.dismiss(animated: true, completion: nil)
