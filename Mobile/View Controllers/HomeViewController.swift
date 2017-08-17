@@ -61,7 +61,8 @@ class HomeViewController: AccountPickerViewController {
         accountPickerViewControllerWillAppear
             .withLatestFrom(Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
                                                      viewModel.accountDetailEvents.elements().map { $0 }.startWith(nil)))
-            .subscribe(onNext: { state, accountDetail in
+            .subscribe(onNext: { [weak self] state, accountDetail in
+                guard let `self` = self else { return }
                 switch(state) {
                 case .loadingAccounts:
                     // Sam, do your custom loading here
@@ -77,7 +78,7 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        billCardView = HomeBillCardView.create(withViewModel: self.viewModel.billCardViewModel)
+        billCardView = HomeBillCardView.create(withViewModel: viewModel.billCardViewModel)
         billCardView.oneTouchPayFinished
             .map { FetchingAccountState.switchAccount }
             .bind(to: viewModel.fetchData)
@@ -85,7 +86,7 @@ class HomeViewController: AccountPickerViewController {
         cardStackView.addArrangedSubview(billCardView)
         
         if viewModel.showTemplateCard {
-            templateCardView = TemplateCardView.create(withViewModel: self.viewModel.templateCardViewModel)
+            templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
             templateCardView.callToActionViewController
                 .drive(onNext: { [weak self] viewController in
                     self?.present(viewController, animated: true, completion: nil)
@@ -133,8 +134,32 @@ class HomeViewController: AccountPickerViewController {
     
     func bindLoadingStates() {
         topLoadingIndicatorView.isHidden = true
-        viewModel.isRefreshing.filter(!).drive(rx.isRefreshing).disposed(by: bag)
-        viewModel.isSwitchingAccounts.not().drive(rx.isPullToRefreshEnabled).disposed(by: bag)
+        
+        viewModel.isRefreshing.filter(!).drive(onNext: { [weak self] refresh in
+            if refresh {
+                self?.refreshControl?.beginRefreshing()
+            } else {
+                self?.refreshControl?.endRefreshing()
+            }
+        }).disposed(by: bag)
+        
+        viewModel.isSwitchingAccounts.not().drive(onNext: { [weak self] refresh in
+            guard let `self` = self else { return }
+            if refresh {
+                guard self.refreshControl == nil else { return }
+                let refreshControl = UIRefreshControl()
+                self.refreshControl = refreshControl
+                refreshControl.tintColor = .white
+                self.scrollView.insertSubview(refreshControl, at: 0)
+                self.scrollView.alwaysBounceVertical = true
+            } else {
+                self.refreshControl?.endRefreshing()
+                self.refreshControl?.removeFromSuperview()
+                self.refreshControl = nil
+                self.scrollView.alwaysBounceVertical = false
+            }
+        }).disposed(by: bag)
+        
         viewModel.isSwitchingAccounts.drive(homeLoadingIndicator.rx.isAnimating).disposed(by: bag)
         viewModel.isSwitchingAccounts.drive(cardStackView.rx.isHidden).disposed(by: bag)
         viewModel.isSwitchingAccounts.not().drive(loadingView.rx.isHidden).disposed(by: bag)
@@ -181,7 +206,7 @@ class HomeViewController: AccountPickerViewController {
                     vc.didUpdate
                         .map { _ in FetchingAccountState.switchAccount }
                         .bind(to: self.viewModel.fetchData)
-                        .disposed(by: self.bag)
+                        .disposed(by: vc.disposeBag)
                     
                     vc.didUpdate
                         .delay(0.5, scheduler: MainScheduler.instance)
@@ -189,13 +214,17 @@ class HomeViewController: AccountPickerViewController {
                         .subscribe(onNext: { [weak self] toastMessage in
                             self?.view.showToast(toastMessage)
                         })
-                        .disposed(by: self.bag)
+                        .disposed(by: vc.disposeBag)
                 }
                 
                 self.navigationController?.pushViewController(viewController, animated: true)
             })
             .disposed(by: bag)
         
+    }
+    
+    deinit {
+        dLog()
     }
     
 }
@@ -206,35 +235,4 @@ extension HomeViewController: AccountPickerDelegate {
     }
 }
 
-extension Reactive where Base: HomeViewController {
-    
-    var isPullToRefreshEnabled: UIBindingObserver<Base, Bool> {
-        return UIBindingObserver(UIElement: self.base) { vc, refresh in
-            if refresh {
-                guard vc.refreshControl == nil else { return }
-                let refreshControl = UIRefreshControl()
-                vc.refreshControl = refreshControl
-                refreshControl.tintColor = .white
-                vc.scrollView.insertSubview(refreshControl, at: 0)
-                vc.scrollView.alwaysBounceVertical = true
-            } else {
-                vc.refreshControl?.endRefreshing()
-                vc.refreshControl?.removeFromSuperview()
-                vc.refreshControl = nil
-                vc.scrollView.alwaysBounceVertical = false
-            }
-        }
-    }
-    
-    var isRefreshing: UIBindingObserver<Base, Bool> {
-        return UIBindingObserver(UIElement: self.base) { vc, refresh in
-            if refresh {
-                vc.refreshControl?.beginRefreshing()
-            } else {
-                vc.refreshControl?.endRefreshing()
-            }
-        }
-    }
-    
-}
 

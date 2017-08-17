@@ -69,7 +69,8 @@ class TemplateCardView: UIView {
     }
     
     private(set) lazy var callToActionViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()
-        .do(onNext: {
+        .do(onNext: { [weak self] in
+            guard let `self` = self else { return }
             Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue, dimensionIndex: Dimensions.DIMENSION_LINK.rawValue, dimensionValue: String(describing: self.viewModel.ctaUrl))
         })
         .withLatestFrom(self.viewModel.ctaUrl)

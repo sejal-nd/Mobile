@@ -25,7 +25,7 @@ class AccountPicker: UIView {
     var currentAccount: Account!
     private var loadedAccounts = false
     
-    var parentViewController: UIViewController?
+    weak var parentViewController: UIViewController?
 
     var pageViews = [UIView]()
     
