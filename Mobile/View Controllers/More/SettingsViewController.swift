@@ -25,7 +25,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Settings", comment: "")
+        title = NSLocalizedString("Settings", comment: "")
         
         view.backgroundColor = .softGray
         
@@ -66,8 +66,8 @@ class SettingsViewController: UIViewController {
                 self.tableView.isHidden = false
                 let alertVc = UIAlertController(title: NSLocalizedString("Could Not Load Accounts", comment: ""), message: err.localizedDescription, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default, handler: { _ in
-                    self.fetchAccounts()
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default, handler: { [weak self] _ in
+                    self?.fetchAccounts()
                 }))
                 self.present(alertVc, animated: true, completion: nil)
             }).disposed(by: disposeBag)
@@ -80,28 +80,30 @@ class SettingsViewController: UIViewController {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage())
             Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
         } else {
-            self.viewModel.disableTouchID()
+            viewModel.disableTouchID()
             Analytics().logScreenView(AnalyticsPageView.TouchIDDisable.rawValue)
         }
     }
     
     func presentPasswordAlert(message: String) {
         let pwAlert = UIAlertController(title: NSLocalizedString("Confirm Password", comment: ""), message: message, preferredStyle: .alert)
-        pwAlert.addTextField(configurationHandler: { (textField) in
+        pwAlert.addTextField(configurationHandler: { [weak self] (textField) in
+            guard let `self` = self else { return }
             textField.placeholder = NSLocalizedString("Password", comment: "")
             textField.isSecureTextEntry = true
             textField.rx.text.orEmpty.bind(to: self.viewModel.password).disposed(by: self.disposeBag)
         })
-        pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (action) -> Void in
-            self.touchIdCell?.setSwitch(on: false)
+        pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self] (action) -> Void in
+            self?.touchIdCell?.setSwitch(on: false)
         }))
-        pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) -> Void in
+        pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) -> Void in
             LoadingView.show()
-            self.viewModel.validateCredentials(onSuccess: {
+            self?.viewModel.validateCredentials(onSuccess: { [weak self] in
                 LoadingView.hide()
-                self.view.showToast(NSLocalizedString("Fingerprint Enabled", comment: ""))
-            }, onError: { (error) in
+                self?.view.showToast(NSLocalizedString("Fingerprint Enabled", comment: ""))
+            }, onError: { [weak self] (error) in
                 LoadingView.hide()
+                guard let `self` = self else { return }
                 self.touchIdPasswordRetryCount += 1
                 if self.touchIdPasswordRetryCount < 3 {
                     self.presentPasswordAlert(message: NSLocalizedString("Error", comment: "") + ": \(error)")
@@ -111,7 +113,7 @@ class SettingsViewController: UIViewController {
                 }
             })
         }))
-        self.present(pwAlert, animated: true, completion: nil)
+        present(pwAlert, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
@@ -122,6 +124,10 @@ class SettingsViewController: UIViewController {
         } else if let vc = segue.destination as? PECOReleaseOfInfoViewController {
             vc.delegate = self
         }
+    }
+    
+    deinit {
+        dLog()
     }
 
 }
@@ -192,8 +198,8 @@ extension SettingsViewController: UITableViewDataSource {
             cell.configureWith(label: NSLocalizedString("Change Password", comment: ""), carat: true)
         } else if indexPath.section == 1 {
             if viewModel.isDeviceTouchIDCompatible() {
-                cell.configureWith(label: NSLocalizedString("Touch ID", comment: ""), switchOn: viewModel.isTouchIDEnabled(), switchObserver: { isOn in
-                    self.switchObserver(cell: cell, isOn: isOn)
+                cell.configureWith(label: NSLocalizedString("Touch ID", comment: ""), switchOn: viewModel.isTouchIDEnabled(), switchObserver: { [weak self] isOn in
+                    self?.switchObserver(cell: cell, isOn: isOn)
                 })
                 touchIdCell = cell
             } else {
