@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class ForgotUsernameViewModel {
     let disposeBag = DisposeBag()
@@ -73,50 +74,42 @@ class ForgotUsernameViewModel {
         return maskedUsernames[selectedUsernameIndex].question!
     }
     
-    func nextButtonEnabled() -> Observable<Bool> {
+    private(set) lazy var nextButtonEnabled: Driver<Bool> = {
         if Environment.sharedInstance.opco == .bge {
-            return Observable.combineLatest(phoneNumberHasTenDigits(), identifierHasFourDigits(), identifierIsNumeric()) {
-                return $0 && $1 && $2
-            }
+            return Driver.combineLatest(self.phoneNumberHasTenDigits, self.identifierHasFourDigits, self.identifierIsNumeric)
+            { $0 && $1 && $2 }
         } else {
-            return Observable.combineLatest(phoneNumberHasTenDigits(), accountNumberHasTenDigits()) {
-                return $0 && $1
-            }
+            return Driver.combineLatest(self.phoneNumberHasTenDigits, self.accountNumberHasTenDigits)
+            { $0 && $1 }
         }
-    }
+    }()
     
-    func phoneNumberHasTenDigits() -> Observable<Bool> {
-        return phoneNumber.asObservable().map({ text -> Bool in
+    private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver()
+        .map { [weak self] text -> Bool in
+            guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.characters.count == 10
-        })
-    }
+        }
     
-    func identifierHasFourDigits() -> Observable<Bool> {
-        return identifierNumber.asObservable().map({ text -> Bool in
-            return text.characters.count == 4
-        })
-    }
+    private(set) lazy var identifierHasFourDigits: Driver<Bool> = self.identifierNumber.asDriver()
+        .map { $0.characters.count == 4 }
     
-    func identifierIsNumeric() -> Observable<Bool> {
-        return identifierNumber.asObservable().map({ text -> Bool in
+    private(set) lazy var identifierIsNumeric: Driver<Bool> = self.identifierNumber.asDriver()
+        .map { [weak self] text -> Bool in
+            guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.characters.count == text.characters.count
-        })
-    }
+        }
     
-    func accountNumberHasTenDigits() -> Observable<Bool> {
-        return accountNumber.asObservable().map({ text -> Bool in
+    private(set) lazy var accountNumberHasTenDigits: Driver<Bool> = self.accountNumber.asDriver()
+        .map { [weak self] text -> Bool in
+            guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.characters.count == 10
-        })
-    }
+        }
     
-    func securityQuestionAnswerNotEmpty() -> Observable<Bool> {
-        return securityQuestionAnswer.asObservable().map({ text -> Bool in
-            return text.characters.count > 0
-        })
-    }
+    private(set) lazy var securityQuestionAnswerNotEmpty: Driver<Bool> = self.securityQuestionAnswer.asDriver()
+        .map { $0.characters.count > 0 }
     
     private func extractDigitsFrom(_ string: String) -> String {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")

@@ -32,7 +32,7 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         
         submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         navigationItem.rightBarButtonItem = submitButton
-        viewModel.securityQuestionAnswerNotEmpty().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.securityQuestionAnswerNotEmpty.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("Please answer the security question.", comment: "")
@@ -45,18 +45,21 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         answerTextField.textField.autocorrectionType = .no
         answerTextField.textField.returnKeyType = .done
         answerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityQuestionAnswer).disposed(by: disposeBag)
-        answerTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            self.viewModel.securityQuestionAnswerNotEmpty().single().subscribe(onNext: { notEmpty in
-                if notEmpty {
-                    self.onSubmitPress()
+        
+        answerTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
+            .withLatestFrom(viewModel.securityQuestionAnswerNotEmpty)
+            .drive(onNext: { [weak self] in
+                if $0 {
+                    self?.onSubmitPress()
                 } else {
-                    self.view.endEditing(true)
+                    self?.view.endEditing(true)
                 }
-            }).disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
-        answerTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-            self.answerTextField.setError(nil)
-            self.accessibilityErrorLabel()
+            })
+            .disposed(by: disposeBag)
+        
+        answerTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.answerTextField.setError(nil)
+            self?.accessibilityErrorLabel()
             
         }).disposed(by: disposeBag)
     }
@@ -64,9 +67,9 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
     private func accessibilityErrorLabel() {
         let message = answerTextField.getError()
         if message.isEmpty {
-            self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            self.submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
         }
     }
     
@@ -74,9 +77,10 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         view.endEditing(true)
         
         LoadingView.show()
-        viewModel.submitSecurityQuestionAnswer(onSuccess: { unmaskedUsername in
+        viewModel.submitSecurityQuestionAnswer(onSuccess: { [weak self] unmaskedUsername in
             LoadingView.hide()
-            for vc in (self.navigationController?.viewControllers)! {
+            guard let `self` = self, let viewControllers = self.navigationController?.viewControllers else { return }
+            for vc in viewControllers {
                 guard let dest = vc as? LoginViewController else {
                     continue
                 }
@@ -85,17 +89,21 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
                 self.navigationController?.popToViewController(dest, animated: true)
                 break
             }
-        }, onAnswerNoMatch: { inlineErrorMessage in
+        }, onAnswerNoMatch: { [weak self] inlineErrorMessage in
             LoadingView.hide()
-            self.answerTextField.setError(inlineErrorMessage)
-            self.accessibilityErrorLabel()
+            self?.answerTextField.setError(inlineErrorMessage)
+            self?.accessibilityErrorLabel()
             
-        }, onError: { errorMessage in
+        }, onError: { [weak self] errorMessage in
             LoadingView.hide()
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            self?.present(alertController, animated: true, completion: nil)
         })
+    }
+    
+    deinit {
+        dLog()
     }
 
 }

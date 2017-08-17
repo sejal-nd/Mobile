@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class AccountLookupToolViewController: UIViewController {
     
@@ -37,7 +38,7 @@ class AccountLookupToolViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = searchButton
         navigationItem.rightBarButtonItem?.accessibilityLabel = NSLocalizedString("Search", comment: "")
-        viewModel.searchButtonEnabled().bind(to: searchButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.searchButtonEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
         
         identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, or Business Tax ID", comment: "")
@@ -49,22 +50,22 @@ class AccountLookupToolViewController: UIViewController {
         viewModel.phoneNumber.asObservable().bind(to: phoneNumberTextField.textField.rx.text.orEmpty)
             .disposed(by: disposeBag)
         phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).disposed(by: disposeBag)
-        phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            if self.viewModel.phoneNumber.value.characters.count > 0 {
-                self.viewModel.phoneNumberHasTenDigits().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
-                    }
-                    self.accessibilityErrorLabel()
-                    
-                }).disposed(by: self.disposeBag)
-            }
+        
+        phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.phoneNumber.asDriver(), viewModel.phoneNumberHasTenDigits))
+            .filter { !$0.0.isEmpty }
+            .drive(onNext: { [weak self] in
+                if !$1 {
+                    self?.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
+                }
+                self?.accessibilityErrorLabel()
+            }).disposed(by: disposeBag)
+        
+        phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.phoneNumberTextField.setError(nil)
+            self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
-        phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-            self.phoneNumberTextField.setError(nil)
-            self.accessibilityErrorLabel()
-            
-        }).disposed(by: disposeBag)
+        
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd) // Load the passed phone number from view model
         
         identifierTextField.textField.placeholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
@@ -72,54 +73,51 @@ class AccountLookupToolViewController: UIViewController {
         identifierTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIndentifierKeyboardDonePress))
         identifierTextField.textField.delegate = self
         identifierTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
-        identifierTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            if self.viewModel.identifierNumber.value.characters.count > 0 {
-                self.viewModel.identifierHasFourDigits().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.identifierTextField.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
-                    }
-                    self.accessibilityErrorLabel()
-                    
-                }).disposed(by: self.disposeBag)
-                self.viewModel.identifierIsNumeric().single().subscribe(onNext: { numeric in
-                    if !numeric {
-                        self.identifierTextField.setError(NSLocalizedString("This number must be numeric.", comment: ""))
-                    }
-                    self.accessibilityErrorLabel()
-                    
-                }).disposed(by: self.disposeBag)
-            }
-        }).disposed(by: disposeBag)
-        identifierTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-            self.identifierTextField.setError(nil)
-            self.accessibilityErrorLabel()
-            
+        
+        identifierTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.identifierNumber.asDriver(), viewModel.identifierHasFourDigits, viewModel.identifierIsNumeric))
+            .filter { !$0.0.isEmpty }
+            .drive(onNext: { [weak self] identifierNumber, hasFourDigits, isNumeric in
+                if !hasFourDigits {
+                    self?.identifierTextField.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
+                } else if !isNumeric {
+                    self?.identifierTextField.setError(NSLocalizedString("This number must be numeric.", comment: ""))
+                }
+                self?.accessibilityErrorLabel()
+            })
+            .disposed(by: disposeBag)
+        
+        identifierTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.identifierTextField.setError(nil)
+            self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {
         let errorStr = phoneNumberTextField.getError() + identifierTextField.getError()
         if errorStr.isEmpty {
-            self.searchButton.accessibilityLabel = NSLocalizedString("Search", comment: "")
+            searchButton.accessibilityLabel = NSLocalizedString("Search", comment: "")
         } else {
-            self.searchButton.accessibilityLabel = NSLocalizedString(errorStr + " Search", comment: "")
+            searchButton.accessibilityLabel = NSLocalizedString(errorStr + " Search", comment: "")
         }
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        dLog()
     }
 
     func onCancelPress() {
-        _ = navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     func onSearchPress() {
         view.endEditing(true)
         
         LoadingView.show()
-        viewModel.performSearch(onSuccess: {
+        viewModel.performSearch(onSuccess: { [weak self] in
             LoadingView.hide()
+            guard let `self` = self else { return }
             if self.viewModel.accountLookupResults.count == 1 {
                 let selectedAccount = self.viewModel.accountLookupResults.first!
                 self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
@@ -127,22 +125,25 @@ class AccountLookupToolViewController: UIViewController {
             } else {
                 self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
             }
-        }, onError: { title, message in
+        }, onError: { [weak self] title, message in
             LoadingView.hide()
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            self?.present(alertController, animated: true, completion: nil)
         })
     }
     
     func onIndentifierKeyboardDonePress() {
-        viewModel.searchButtonEnabled().single().subscribe(onNext: { enabled in
-            if enabled {
-                self.onSearchPress()
-            } else {
-                self.view.endEditing(true)
-            }
-        }).disposed(by: disposeBag)
+        viewModel.searchButtonEnabled.asObservable()
+            .take(1)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] enabled in
+                if enabled {
+                    self?.onSearchPress()
+                } else {
+                    self?.view.endEditing(true)
+                }
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - ScrollView

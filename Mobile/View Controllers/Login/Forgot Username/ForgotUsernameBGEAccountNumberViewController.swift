@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class ForgotUsernameBGEAccountNumberViewController: UIViewController {
     
@@ -28,7 +29,7 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
-        viewModel.accountNumberHasTenDigits().bind(to: nextButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.accountNumberHasTenDigits.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .blackText
         instructionLabel.text = NSLocalizedString("The information entered is associated with multiple accounts. Please enter the account number you would like to proceed with.", comment: "")
@@ -39,21 +40,25 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         accountNumberTextField.textField.delegate = self
         accountNumberTextField.textField.isShowingAccessory = true
         accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
-        accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            if self.viewModel.accountNumber.value.characters.count > 0 {
-                self.viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
-                    if !valid {
+        
+        accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
+            .drive(onNext: { [weak self] accountNumber, hasTenDigits in
+                guard let `self` = self else { return }
+                if !accountNumber.isEmpty {
+                    if !hasTenDigits {
                         self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
+                    } else {
+                        self.accountNumberTextField.setError(nil)
                     }
-                }).disposed(by: self.disposeBag)
-            }
-            self.accessibilityErrorLabel()
-            
-        }).disposed(by: disposeBag)
-        accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-            self.accountNumberTextField.setError(nil)
-            self.accessibilityErrorLabel()
-            
+                }
+                self.accessibilityErrorLabel()
+            })
+            .disposed(by: disposeBag)
+        
+        accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] _ in
+            self?.accountNumberTextField.setError(nil)
+            self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
@@ -87,11 +92,11 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
     }
     
     func onAccountNumberKeyboardDonePress() {
-        viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
+        viewModel.accountNumberHasTenDigits.asObservable().take(1).asDriver(onErrorDriveWith: .empty()).drive(onNext: { [weak self] valid in
             if valid {
-                self.onNextPress()
+                self?.onNextPress()
             } else {
-                self.view.endEditing(true)
+                self?.view.endEditing(true)
             }
         }).disposed(by: disposeBag)
     }
@@ -107,6 +112,10 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         if let vc = segue.destination as? ForgotUsernameResultViewController {
             vc.viewModel = viewModel
         }
+    }
+    
+    deinit {
+        dLog()
     }
     
 }
