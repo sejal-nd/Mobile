@@ -28,7 +28,9 @@ class DefaultAccountViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: AdvancedAccountPickerTableViewCell.className)
         
         viewModel.shouldShowLoadingIndicator
-            .drive(onNext: showLoadingView)
+            .drive(onNext: { [weak self] in
+                self?.showLoadingView($0)
+            })
             .disposed(by: bag)
         
         viewModel.accounts.asDriver()
@@ -73,6 +75,10 @@ class DefaultAccountViewController: UIViewController {
                                                 image: #imageLiteral(resourceName: "bge_account_picker"),
                                                 description: NSLocalizedString("Your default account will display automatically when you sign in. You can change your default account at any time.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
+    }
+    
+    deinit {
+        dLog()
     }
 
 }

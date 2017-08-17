@@ -27,29 +27,30 @@ class DefaultAccountViewModel {
         
         shouldShowLoadingIndicator = requestTracker.asDriver()
         
-        changeDefaultAccountResult.elements()
+        accountsResult.elements()
             .bind(to: accounts)
             .disposed(by: bag)
     }
     
-    private lazy var changeDefaultAccountResult: Observable<Event<[Account]>> = self.changeDefaultAccount
-        .flatMapLatest(self.setDefaultAccount)
-        .flatMapLatest(self.fetchAccounts)
-        .materialize()
-        .shareReplay(1)
+    private lazy var changeDefaultAccountResult: Observable<Event<Void>> = self.changeDefaultAccount
+        .flatMapLatest { [unowned self] in
+            self.accountService.setDefaultAccount(account: $0)
+                .trackActivity(self.requestTracker)
+                .materialize()
+        }
+        .share()
+        
+    private lazy var accountsResult: Observable<Event<[Account]>> = self.changeDefaultAccountResult.elements()
+        .flatMapLatest { [unowned self] _ in
+            self.accountService.fetchAccounts()
+                .trackActivity(self.requestTracker)
+                .materialize()
+        }
+        .share()
     
-    lazy var changeDefaultAccountErrorMessage: Driver<String> = self.changeDefaultAccountResult.errors()
+    private(set) lazy var changeDefaultAccountErrorMessage: Driver<String> = Observable.merge(self.changeDefaultAccountResult.errors(),
+                                                                                              self.accountsResult.errors())
         .map { $0.localizedDescription }
         .asDriver(onErrorJustReturn: "")
-    
-    private func setDefaultAccount(account: Account) -> Observable<Void> {
-        return accountService.setDefaultAccount(account: account)
-            .trackActivity(requestTracker)
-    }
-    
-    private func fetchAccounts() -> Observable<[Account]> {
-        return accountService.fetchAccounts()
-            .trackActivity(requestTracker)
-    }
     
 }
