@@ -259,8 +259,13 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func bindButtonTaps() {
-        termsConditionsButton.rx.touchUpInside.asDriver().drive(onNext: onTermsConditionsPress).disposed(by: disposeBag)
-        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).disposed(by: disposeBag)
+        termsConditionsButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            self?.onTermsConditionsPress()
+        }).disposed(by: disposeBag)
+        
+        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            self?.onPrivacyPolicyPress()
+        }).disposed(by: disposeBag)
     }
     
     func onSubmitPress() {
@@ -275,7 +280,7 @@ class ReviewPaymentViewController: UIViewController {
             }
         }
         
-        let handleError = { (errMessage: String) in
+        let handleError = { [weak self] (errMessage: String) in
             LoadingView.hide()
             let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
             
@@ -296,34 +301,35 @@ class ReviewPaymentViewController: UIViewController {
             } else {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             }
-            self.present(alertVc, animated: true, completion: nil)
+            self?.present(alertVc, animated: true, completion: nil)
         }
         
         if viewModel.paymentId.value != nil { // Modify
-            viewModel.modifyPayment(onSuccess: {
+            viewModel.modifyPayment(onSuccess: { [weak self] in
                 LoadingView.hide()
-                self.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+                self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
             }, onError: { errMessage in
                 handleError(errMessage)
             })
         } else { // Schedule
-            viewModel.schedulePayment(onDuplicate: { (errTitle, errMessage) in
+            viewModel.schedulePayment(onDuplicate: { [weak self] (errTitle, errMessage) in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
-            }, onSuccess: {
+                self?.present(alertVc, animated: true, completion: nil)
+            }, onSuccess: { [weak self] in
                 LoadingView.hide()
                 
-                if let bankOrCard = self.viewModel.selectedWalletItem.value?.bankOrCard {
+                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
                     switch bankOrCard {
                     case .bank:
-                        Analytics().logScreenView(AnalyticsPageView.ECheckComplete.rawValue)                    case .card:
+                        Analytics().logScreenView(AnalyticsPageView.ECheckComplete.rawValue)
+                    case .card:
                         Analytics().logScreenView(AnalyticsPageView.CardComplete.rawValue)
                     }
                 }
                 
-                self.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+                self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
             }, onError: { errMessage in
                 handleError(errMessage)
             })
@@ -346,9 +352,13 @@ class ReviewPaymentViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PaymentConfirmationViewController {
-            vc.presentingNavController = self.navigationController!
+            vc.presentingNavController = navigationController
             vc.viewModel = viewModel
         }
+    }
+    
+    deinit {
+        dLog()
     }
 
 }
