@@ -97,20 +97,21 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
-        footerTextView.text = viewModel.getFooterTextViewText()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handlePhoneCallTap(_:)))
+        footerTextView.text = viewModel.footerTextViewText
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handlePhoneCallTap(_:)))
         footerTextView.addGestureRecognizer(tap)
         
         gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
         gasOnlyTextView.tintColor = .actionBlue
-        gasOnlyTextView.text = viewModel.getGasOnlyMessage()
+        gasOnlyTextView.text = viewModel.gasOnlyMessage
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
-        accountPickerViewControllerWillAppear.subscribe(onNext: { state in
+        accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
+            guard let `self` = self else { return }
             switch(state) {
             case .loadingAccounts:
                 self.accountContentView.isHidden = true
@@ -146,8 +147,8 @@ class OutageViewController: AccountPickerViewController {
     }
     
     func killRefresh() -> Void {
-        self.refreshControl?.endRefreshing()
-        self.scrollView.alwaysBounceVertical = false
+        refreshControl?.endRefreshing()
+        scrollView.alwaysBounceVertical = false
     }
     
     func setRefreshControlEnabled(enabled: Bool) {
@@ -185,12 +186,12 @@ class OutageViewController: AccountPickerViewController {
         }
         
         // Display either the Lottie animation or draw our own border circles
-        let powerIsOn = !currentOutageStatus.activeOutage && viewModel.getReportedOutage() == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
+        let powerIsOn = !currentOutageStatus.activeOutage && viewModel.reportedOutage == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
         animationView.isHidden = !powerIsOn
         outerCircleView.isHidden = powerIsOn
         innerCircleView.isHidden = powerIsOn
         
-        if viewModel.getReportedOutage() == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled || currentOutageStatus.flagNonService) {
+        if viewModel.reportedOutage == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled || currentOutageStatus.flagNonService) {
             outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1) // Special case color - do not change
             innerCircleView.backgroundColor = .middleGray
         } else {
@@ -199,9 +200,9 @@ class OutageViewController: AccountPickerViewController {
         }
         
         // Update the Report Outage button
-        if viewModel.getReportedOutage() != nil {
-            reportOutageButton.setDetailLabel(text: viewModel.getOutageReportedDateString(), checkHidden: false)
-            reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.getOutageReportedDateString())
+        if viewModel.reportedOutage != nil {
+            reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
+            reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.outageReportedDateString)
         } else {
             reportOutageButton.setDetailLabel(text: "", checkHidden: true)
             reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
@@ -221,7 +222,7 @@ class OutageViewController: AccountPickerViewController {
         let currentOutageStatus = viewModel.currentOutageStatus!
         let bigButtonWidth = bigButtonView.frame.size.width
         
-        if viewModel.getReportedOutage() != nil {
+        if viewModel.reportedOutage != nil {
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 19, y: 27, width: 38, height: 31))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
             
@@ -313,11 +314,11 @@ class OutageViewController: AccountPickerViewController {
             nonPayFinaledTextView.tintColor = .actionBlue // For the phone numbers
             nonPayFinaledTextView.textColor = .middleGray
             nonPayFinaledTextView.textAlignment = .center
-            nonPayFinaledTextView.text = viewModel.getAccountNonPayFinaledMessage()
+            nonPayFinaledTextView.text = viewModel.accountNonPayFinaledMessage
 
             bigButtonView.addSubview(nonPayFinaledTextView)
             bigButtonView.bringSubview(toFront: payBillLabel)
-            bigButtonView.accessibilityLabel = NSLocalizedString("Outage status, button. \(viewModel.getAccountNonPayFinaledMessage()).", comment: "")
+            bigButtonView.accessibilityLabel = NSLocalizedString("Outage status, button. \(viewModel.accountNonPayFinaledMessage).", comment: "")
         } else { // Power is on
             let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 15, y: 49, width: 30, height: 38))
             icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
@@ -386,10 +387,12 @@ class OutageViewController: AccountPickerViewController {
     }
     
     func onPullToRefresh() {
-        viewModel.getOutageStatus(onSuccess: {
+        viewModel.getOutageStatus(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
             self.updateContent()
-        }, onError: {
+        }, onError: { [weak self] in
+            guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
             self.errorLabel.isHidden = false
             
@@ -406,7 +409,7 @@ class OutageViewController: AccountPickerViewController {
     
     @IBAction func onViewOutageMapPress() {
         Analytics().logScreenView(AnalyticsPageView.ViewMapOfferComplete.rawValue)
-        self.performSegue(withIdentifier: "outageMapSegue", sender: self)
+        performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
     // MARK: - Navigation
@@ -421,6 +424,9 @@ class OutageViewController: AccountPickerViewController {
         }
     }
  
+    deinit {
+        dLog()
+    }
 }
 
 extension OutageViewController: AccountPickerDelegate {
