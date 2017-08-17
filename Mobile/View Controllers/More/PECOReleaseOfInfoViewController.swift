@@ -99,7 +99,8 @@ class PECOReleaseOfInfoViewController: UIViewController {
     }
     
     func fetchCurrentSelection() {
-        let fetchReleaseOfInfo = {
+        let fetchReleaseOfInfo = { [weak self] in
+            guard let `self` = self else { return }
             self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount!)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] accountDetail in
@@ -144,6 +145,10 @@ class PECOReleaseOfInfoViewController: UIViewController {
         } else {
             fetchReleaseOfInfo()
         }
+    }
+    
+    deinit {
+        dLog()
     }
     
 }
