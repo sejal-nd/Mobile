@@ -247,9 +247,31 @@ class BillViewController: AccountPickerViewController {
 
 	func bindLoadingStates() {
         topLoadingIndicatorView.isHidden = true
-		viewModel.isFetchingAccountDetail.filter(!).drive(rx.isRefreshing).disposed(by: bag)
+        viewModel.isFetchingAccountDetail.filter(!).drive(onNext: { [weak self] refresh in
+            if refresh {
+                self?.refreshControl?.beginRefreshing()
+            } else {
+                self?.refreshControl?.endRefreshing()
+            }
+        }).disposed(by: bag)
 
-		viewModel.isFetchingDifferentAccount.not().drive(rx.isPullToRefreshEnabled).disposed(by: bag)
+        viewModel.isFetchingDifferentAccount.not().drive(onNext: { [weak self] refresh in
+            guard let `self` = self else { return }
+            if refresh {
+                guard self.refreshControl == nil else { return }
+                let refreshControl = UIRefreshControl()
+                self.refreshControl = refreshControl
+                refreshControl.tintColor = .white
+                self.scrollView.insertSubview(refreshControl, at: 0)
+                self.scrollView.alwaysBounceVertical = true
+            } else {
+                self.refreshControl?.endRefreshing()
+                self.refreshControl?.removeFromSuperview()
+                self.refreshControl = nil
+                self.scrollView.alwaysBounceVertical = false
+            }
+        }).disposed(by: bag)
+        
         viewModel.isFetchingDifferentAccount.drive(billLoadingIndicator.rx.isAnimating).disposed(by: bag)
 
         viewModel.isFetchingDifferentAccount.not().drive(loadingIndicatorView.rx.isHidden).disposed(by: bag)
@@ -608,36 +630,4 @@ extension BillViewController: BGEAutoPayViewControllerDelegate {
         viewModel.fetchAccountDetail(isRefresh: false)
         showDelayedToast(withMessage: message)
     }
-}
-
-extension Reactive where Base: BillViewController {
-
-    var isPullToRefreshEnabled: UIBindingObserver<Base, Bool> {
-        return UIBindingObserver(UIElement: self.base) { vc, refresh in
-            if refresh {
-                guard vc.refreshControl == nil else { return }
-                let refreshControl = UIRefreshControl()
-                vc.refreshControl = refreshControl
-                refreshControl.tintColor = .white
-                vc.scrollView.insertSubview(refreshControl, at: 0)
-                vc.scrollView.alwaysBounceVertical = true
-            } else {
-                vc.refreshControl?.endRefreshing()
-                vc.refreshControl?.removeFromSuperview()
-                vc.refreshControl = nil
-                vc.scrollView.alwaysBounceVertical = false
-            }
-        }
-    }
-
-    var isRefreshing: UIBindingObserver<Base, Bool> {
-        return UIBindingObserver(UIElement: self.base) { vc, refresh in
-            if refresh {
-                vc.refreshControl?.beginRefreshing()
-            } else {
-                vc.refreshControl?.endRefreshing()
-            }
-        }
-    }
-
 }
