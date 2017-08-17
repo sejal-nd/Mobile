@@ -108,6 +108,10 @@ extension DefaultAccountViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
+        guard !viewModel.accounts.value[indexPath.row].isDefault else {
+            return
+        }
+        
         Observable<Account>.create { [weak self] observer in
             let alert = UIAlertController(title: NSLocalizedString("Change Default", comment: ""),
                                           message: NSLocalizedString("Are you sure you want to change your default account?", comment: ""),
