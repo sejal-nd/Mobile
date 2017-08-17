@@ -20,23 +20,22 @@ class ReportOutageViewModel {
     var phoneNumber = Variable("")
     var phoneExtension = Variable("")
     var reportFormHidden = Variable(false)
-    let submitEnabled = Variable(false)
     
     required init(outageService: OutageService) {
         self.outageService = outageService
         if Environment.sharedInstance.opco == .comEd {
             reportFormHidden.value = true
         }
-        
-        Observable.combineLatest(self.reportFormHidden.asObservable(), self.phoneNumber.asObservable()) {
-            let digitsOnlyString = self.extractDigitsFrom($1)
-            return !$0 && digitsOnlyString.characters.count == 10
-            }
-            .bind(to: submitEnabled)
-            .disposed(by: disposeBag)
     }
     
-    func getFooterTextViewText() -> String {
+    private(set) lazy var submitEnabled: Driver<Bool> = Driver.combineLatest(self.reportFormHidden.asDriver(),
+                                                                             self.phoneNumber.asDriver())
+    {
+        let digitsOnlyString = self.extractDigitsFrom($1)
+        return !$0 && digitsOnlyString.characters.count == 10
+    }
+    
+    var footerTextViewText: String {
         switch Environment.sharedInstance.opco {
         case .bge:
             return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
@@ -102,12 +101,11 @@ class ReportOutageViewModel {
         }
     }
     
-    func phoneNumberHasTenDigits() -> Observable<Bool> {
-        return phoneNumber.asObservable().map({ text -> Bool in
+    private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver()
+        .map { text -> Bool in
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.characters.count == 10
-        })
-    }
+        }
     
     private func extractDigitsFrom(_ string: String) -> String {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
