@@ -215,7 +215,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     func populateHelperLabels() {
         instructionLabel.textColor = .blackText
-        instructionLabel.text = NSLocalizedString("Please select your security questions and enter each corresponding answer. All security answers are strictly case sensitive.", comment: "")
+        instructionLabel.text = NSLocalizedString("Please select your security questions and enter each corresponding answer. All security answers are case insensitive.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         eBillSwitchInstructions.textColor = .blackText
