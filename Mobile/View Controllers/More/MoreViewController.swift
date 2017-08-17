@@ -50,23 +50,26 @@ class MoreViewController: UIViewController {
     
     func bindViews() {
         settingsButton.rx.touchUpInside.asDriver()
-            .drive(onNext: {
-                self.performSegue(withIdentifier: "settingsSegue", sender: self)
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "settingsSegue", sender: self)
             })
             .disposed(by: disposeBag)
+        
         contactUsButton.rx.touchUpInside.asDriver()
-            .drive(onNext: {
-                self.performSegue(withIdentifier: "contactUsSegue", sender: self)
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "contactUsSegue", sender: self)
             })
             .disposed(by: disposeBag)
+        
         termAndPoliciesButton.rx.touchUpInside.asDriver()
-            .drive(onNext: {
-                self.performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
             })
             .disposed(by: disposeBag)
+        
         signOutButton.rx.touchUpInside.asDriver()
-            .drive(onNext: {
-                self.onSignOutPress()
+            .drive(onNext: { [weak self] in
+                self?.onSignOutPress()
             })
             .disposed(by: disposeBag)
     }
@@ -91,6 +94,10 @@ class MoreViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    deinit {
+        dLog()
     }
     
 }

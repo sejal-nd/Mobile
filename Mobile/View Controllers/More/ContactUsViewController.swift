@@ -147,5 +147,9 @@ class ContactUsViewController: UIViewController {
         return .lightContent
     }
     
+    deinit {
+        dLog()
+    }
+    
 }
 
