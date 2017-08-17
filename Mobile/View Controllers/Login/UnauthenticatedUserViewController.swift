@@ -112,4 +112,8 @@ class UnauthenticatedUserViewController: UIViewController {
     @IBAction func onLoginRegisterPress(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
+    
+    deinit {
+        dLog()
+    }
 }

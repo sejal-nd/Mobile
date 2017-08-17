@@ -55,12 +55,12 @@ class LoginViewModel {
         authService.login(username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
-            .subscribe(onNext: { (profileStatus: ProfileStatus) in
+            .subscribe(onNext: { [weak self] (profileStatus: ProfileStatus) in
                 onSuccess(profileStatus.tempPassword)
+                guard let `self` = self else { return }
                 if profileStatus.tempPassword {
-                    self.authService.logout().subscribe(onNext: {
-                    }, onError: { (error) in
-                        print("Logout Error: \(error)")
+                    self.authService.logout().subscribe(onError: { (error) in
+                        dLog("Logout Error: \(error)")
                     }).disposed(by: self.disposeBag)
                 }
             }, onError: { error in
@@ -95,7 +95,7 @@ class LoginViewModel {
         if let username = fingerprintService.getStoredUsername() {
             if let password = fingerprintService.getStoredPassword() {
                 self.username.value = username
-                self.touchIDAutofilledPassword = password
+                touchIDAutofilledPassword = password
                 self.password.value = password
                 onLoad()
                 performLogin(onSuccess: onSuccess, onRegistrationNotComplete: {}, onError: onError)
@@ -109,15 +109,10 @@ class LoginViewModel {
     }
     
     func checkForMaintenance(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
-        var isMaintenanceMode = false
-        
         authService.getMaintenanceMode()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { maintenanceInfo in
-                isMaintenanceMode = maintenanceInfo.allStatus
-                onSuccess(isMaintenanceMode)
-            }, onError: { error in
-                _ = error as! ServiceError
+                onSuccess(maintenanceInfo.allStatus)
             }).disposed(by: disposeBag)
     }
     
