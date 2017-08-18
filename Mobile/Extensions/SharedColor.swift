@@ -58,10 +58,6 @@ extension UIColor {
         return UIColor(red: 0/255, green: 122/255, blue: 51/255, alpha: 1)
     }
     
-    @nonobjc static var isabelline: UIColor {
-        return UIColor(red: 233/255, green: 235/255, blue: 238/255, alpha: 1)
-    }
-    
 //    convenience init(hex: String, alpha: CGFloat = 1) {
 //        assert(hex[hex.startIndex] == "#", "Expected hex string of format #RRGGBB")
 //        

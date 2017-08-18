@@ -404,7 +404,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         let view = UIView() 
         
         if section == 0 {
-           view.backgroundColor = .isabelline
+           view.backgroundColor = .softGray
         } else {
             view.backgroundColor = .clear
         }
