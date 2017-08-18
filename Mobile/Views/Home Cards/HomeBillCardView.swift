@@ -120,7 +120,6 @@ class HomeBillCardView: UIView {
         
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         dueAmountAndDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-        saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         convenienceFeeLabel.font = OpenSans.semibold.of(textStyle: .footnote)
