@@ -110,6 +110,7 @@ class BGEAutoPayViewController: UIViewController {
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorLabel.isHidden = true
         
         setupBindings()
         accessibilitySetup()
@@ -119,6 +120,7 @@ class BGEAutoPayViewController: UIViewController {
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         }, onError: { [weak self] _ in
             guard let `self` = self else { return }
+            self.errorLabel.isHidden = false
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         })
         
