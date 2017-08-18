@@ -208,7 +208,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     func setupNavigationButtons() {
         let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
         
-        viewModel.allQuestionsAnswered().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.allQuestionsAnswered.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         navigationItem.rightBarButtonItem = submitButton
     }
@@ -310,7 +310,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     }
     
     func setupValidation() {
-        viewModel.question1Selected().asDriver(onErrorJustReturn: false)
+        viewModel.question1Selected
             .drive(onNext: { valid in
                 self.question1ContentLabel.isHidden = !valid
                 self.question1ContentLabel.text = self.viewModel.securityQuestion1.value
@@ -318,7 +318,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
                 self.question1AnswerTextField.setEnabled(valid)
             }).disposed(by: disposeBag)
 
-        viewModel.question2Selected().asDriver(onErrorJustReturn: false)
+        viewModel.question2Selected
             .drive(onNext: { valid in
                 self.question2ContentLabel.isHidden = !valid
                 self.question2ContentLabel.text = self.viewModel.securityQuestion2.value
@@ -326,7 +326,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
                 self.question2AnswerTextField.setEnabled(valid)
             }).disposed(by: disposeBag)
         
-        viewModel.question3Selected().asDriver(onErrorJustReturn: false)
+        viewModel.question3Selected
             .drive(onNext: { valid in
                 self.question3ContentLabel.isHidden = !valid
                 self.question3ContentLabel.text = self.viewModel.securityQuestion3.value
@@ -339,7 +339,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer2).disposed(by: disposeBag)
         question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer3).disposed(by: disposeBag)
         
-        viewModel.securityQuestionChanged().asDriver(onErrorJustReturn: false)
+        viewModel.securityQuestionChanged
             .drive(onNext: { valid in
                 switch (self.viewModel.selectedQuestionRow) {
                 case 1:

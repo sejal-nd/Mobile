@@ -125,46 +125,46 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     func setupValidation() {
         let checkImageOrNil: (Bool) -> UIImage? = { $0 ? #imageLiteral(resourceName: "ic_check"): nil }
         
-        viewModel.characterCountValid().map(checkImageOrNil).bind(to: characterCountCheck.rx.image).disposed(by: disposeBag)
-        viewModel.characterCountValid().subscribe(onNext: { valid in
+        viewModel.characterCountValid.map(checkImageOrNil).drive(characterCountCheck.rx.image).disposed(by: disposeBag)
+        viewModel.characterCountValid.drive(onNext: { valid in
             self.characterCountCheck.isAccessibilityElement = valid
             self.characterCountCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
         }).disposed(by: disposeBag)
-        viewModel.containsUppercaseLetter().map(checkImageOrNil).bind(to: uppercaseCheck.rx.image).disposed(by: disposeBag)
-        viewModel.containsUppercaseLetter().subscribe(onNext: { valid in
+        viewModel.containsUppercaseLetter.map(checkImageOrNil).drive(uppercaseCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsUppercaseLetter.drive(onNext: { valid in
             self.uppercaseCheck.isAccessibilityElement = valid
             self.uppercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
         }).disposed(by: disposeBag)
-        viewModel.containsLowercaseLetter().map(checkImageOrNil).bind(to: lowercaseCheck.rx.image).disposed(by: disposeBag)
-        viewModel.containsLowercaseLetter().subscribe(onNext: { valid in
+        viewModel.containsLowercaseLetter.map(checkImageOrNil).drive(lowercaseCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsLowercaseLetter.drive(onNext: { valid in
             self.lowercaseCheck.isAccessibilityElement = valid
             self.lowercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
         }).disposed(by: disposeBag)
-        viewModel.containsNumber().map(checkImageOrNil).bind(to: numberCheck.rx.image).disposed(by: disposeBag)
-        viewModel.containsNumber().subscribe(onNext: { valid in
+        viewModel.containsNumber.map(checkImageOrNil).drive(numberCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsNumber.drive(onNext: { valid in
             self.numberCheck.isAccessibilityElement = valid
             self.numberCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
         }).disposed(by: disposeBag)
-        viewModel.containsSpecialCharacter().map(checkImageOrNil).bind(to: specialCharacterCheck.rx.image).disposed(by: disposeBag)
-        viewModel.containsSpecialCharacter().subscribe(onNext: { valid in
+        viewModel.containsSpecialCharacter.map(checkImageOrNil).drive(specialCharacterCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsSpecialCharacter.drive(onNext: { valid in
             self.specialCharacterCheck.isAccessibilityElement = valid
             self.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
         }).disposed(by: disposeBag)
         
-        viewModel.newUsernameIsValidBool().asDriver(onErrorJustReturn: false)
+        viewModel.newUsernameIsValidBool
             .drive(onNext: { valid in
                 self.confirmUsernameTextField.setEnabled(valid)
             }).disposed(by: disposeBag)
         
-        viewModel.everythingValid().asDriver(onErrorJustReturn: false)
+        viewModel.everythingValid
             .drive(onNext: { valid in
                 self.confirmPasswordTextField.setEnabled(valid)
             }).disposed(by: disposeBag)
         
         
         // Password cannot match username
-        viewModel.passwordMatchesUsername().asDriver(onErrorJustReturn: false)
-            .drive(onNext: { matches in
+        viewModel.passwordMatchesUsername
+			.drive(onNext: { matches in
                 if matches {
                     self.createPasswordTextField.setError(NSLocalizedString("Password cannot match username", comment: ""))
                 } else {
@@ -174,7 +174,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 
             }).disposed(by: disposeBag)
         
-        viewModel.confirmPasswordMatches().subscribe(onNext: { matches in
+        viewModel.confirmPasswordMatches.drive(onNext: { matches in
             if self.confirmPasswordTextField.textField.hasText {
                 if matches {
                     self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
@@ -191,7 +191,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.doneButtonEnabled().bind(to: nextButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.doneButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
     }
 
     func prepareTextFieldsForInput() {
@@ -207,7 +207,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         createUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
-        self.viewModel.newUsernameIsValid().subscribe(onNext: { errorMessage in
+        self.viewModel.newUsernameIsValid.drive(onNext: { errorMessage in
             self.createUsernameTextField.setError(errorMessage)
             self.accessibilityErrorLabel()
             
@@ -227,11 +227,11 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         confirmUsernameTextField.setEnabled(false)
         confirmUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
                 
-        self.viewModel.newPasswordIsValid().subscribe(onNext: { valid in
+        self.viewModel.newPasswordIsValid.drive(onNext: { valid in
             self.createPasswordTextField.setValidated(valid, accessibilityLabel: NSLocalizedString("Minimum password criteria met", comment: ""))
         }).disposed(by: disposeBag)
         
-        self.viewModel.usernameMatches().subscribe(onNext: { valid in
+        self.viewModel.usernameMatches.drive(onNext: { valid in
             if self.viewModel.confirmUsername.value.characters.count > 0 {
                 self.confirmUsernameTextField.setValidated(valid, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
                 
@@ -408,15 +408,16 @@ extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
                 createUsernameTextField.textField.becomeFirstResponder()
             }
         } else if textField == confirmPasswordTextField.textField {
-            viewModel.doneButtonEnabled().single().subscribe(onNext: { enabled in
-                if enabled {
-                    self.onNextPress()
-                } else {
-                    self.view.endEditing(true)
-                }
-            }).disposed(by: disposeBag)
+			viewModel.doneButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+				.drive(onNext: { [weak self] enabled in
+					if enabled {
+						self?.onNextPress()
+					} else {
+						self?.view.endEditing(true)
+					}
+				}).disposed(by: disposeBag)
         }
-        
+		
         return false
     }
 }
