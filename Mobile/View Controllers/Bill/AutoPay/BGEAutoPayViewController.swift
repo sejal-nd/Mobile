@@ -110,7 +110,6 @@ class BGEAutoPayViewController: UIViewController {
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-        errorLabel.isHidden = true
         
         setupBindings()
         accessibilitySetup()
@@ -120,7 +119,6 @@ class BGEAutoPayViewController: UIViewController {
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         }, onError: { [weak self] _ in
             guard let `self` = self else { return }
-            self.errorLabel.isHidden = false
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         })
         
@@ -178,6 +176,7 @@ class BGEAutoPayViewController: UIViewController {
         viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.showBottomLabel.not().drive(bottomLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonAccountNumberLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonNicknameLabel.rx.isHidden).disposed(by: disposeBag)
