@@ -135,7 +135,7 @@ class AccountLookupToolViewController: UIViewController {
     
     func onIndentifierKeyboardDonePress() {
         viewModel.searchButtonEnabled.asObservable()
-            .take(1)
+            .takeLast(1)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] enabled in
                 if enabled {

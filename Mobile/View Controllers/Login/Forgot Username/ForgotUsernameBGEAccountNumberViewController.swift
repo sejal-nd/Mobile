@@ -92,7 +92,7 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
     }
     
     func onAccountNumberKeyboardDonePress() {
-        viewModel.accountNumberHasTenDigits.asObservable().take(1).asDriver(onErrorDriveWith: .empty()).drive(onNext: { [weak self] valid in
+        viewModel.accountNumberHasTenDigits.asObservable().takeLast(1).asDriver(onErrorDriveWith: .empty()).drive(onNext: { [weak self] valid in
             if valid {
                 self?.onNextPress()
             } else {

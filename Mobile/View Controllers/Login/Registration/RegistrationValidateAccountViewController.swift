@@ -232,7 +232,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     }
     
     func onIdentifierKeyboardDonePress() {
-		viewModel.nextButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+		viewModel.nextButtonEnabled.asObservable().takeLast(1).asDriver(onErrorDriveWith: .empty())
 			.drive(onNext: { [weak self] enabled in
 				if enabled {
 					self?.onNextPress()
