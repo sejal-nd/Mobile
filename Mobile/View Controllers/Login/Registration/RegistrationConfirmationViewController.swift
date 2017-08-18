@@ -76,14 +76,14 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
             LoadingView.show()
             registrationService.resendConfirmationEmail(username)
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: {
+                .subscribe(onNext: { [weak self] in
                     LoadingView.hide()
-                    self.view.showToast(NSLocalizedString("Verification email sent", comment: ""))                    
-                }, onError: { err in
+                    self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
+                }, onError: { [weak self] err in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: err.localizedDescription, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertVc, animated: true, completion: nil)
+                    self?.present(alertVc, animated: true, completion: nil)
                 })
                 .disposed(by: disposeBag)
         }

@@ -120,6 +120,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        dLog()
     }
     
     func loadSecurityQuestions() {
@@ -128,7 +129,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         var messages = ""
         var title = ""
         
-        viewModel.loadSecurityQuestions(onSuccess: { 
+        viewModel.loadSecurityQuestions(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
             if !self.viewModel.isPaperlessEbillEligible {
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
                 self.scrollView.isHidden = false
@@ -138,10 +140,10 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
                 self.eBillSwitchView.isHidden = true
                 
             }
-        }, onError: { (securityTitle, securityMessage) in
+        }, onError: { [weak self] (securityTitle, securityMessage) in
             title = securityTitle
             messages += securityMessage
-            self.loadErrorMessage(title, message: messages)
+            self?.loadErrorMessage(title, message: messages)
         })
     }
     
@@ -149,7 +151,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         var messages = ""
         var title = ""
         
-        viewModel.loadAccounts(onSuccess: { 
+        viewModel.loadAccounts(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
             let opco = Environment.sharedInstance.opco
             
             if (opco == .peco || opco == .comEd) && self.viewModel.accountType.value == "commercial" {
@@ -170,11 +173,11 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             self.scrollView.isHidden = false
             self.loadingIndicator.isHidden = true
             
-        }, onError: { (accountsTitle, accountsMessage) in
+        }, onError: { [weak self] (accountsTitle, accountsMessage) in
             title = accountsTitle
             messages = accountsMessage
             
-            self.loadErrorMessage(title, message: messages)
+            self?.loadErrorMessage(title, message: messages)
             
 //                // MMS - I'm ignoring this error for now - TODO, fix it
 //                self.loadAccountsError = true
@@ -194,7 +197,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default) { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default) { [weak self] _ in
+            guard let `self` = self else { return }
             self.loadSecurityQuestions()
             
             if self.viewModel.isPaperlessEbillEligible {
@@ -202,7 +206,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             }
         })
         
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     func setupNavigationButtons() {
@@ -311,7 +315,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     func setupValidation() {
         viewModel.question1Selected
-            .drive(onNext: { valid in
+            .drive(onNext: { [weak self] valid in
+                guard let `self` = self else { return }
                 self.question1ContentLabel.isHidden = !valid
                 self.question1ContentLabel.text = self.viewModel.securityQuestion1.value
                 
@@ -319,7 +324,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             }).disposed(by: disposeBag)
 
         viewModel.question2Selected
-            .drive(onNext: { valid in
+            .drive(onNext: { [weak self] valid in
+                guard let `self` = self else { return }
                 self.question2ContentLabel.isHidden = !valid
                 self.question2ContentLabel.text = self.viewModel.securityQuestion2.value
                 
@@ -327,7 +333,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         viewModel.question3Selected
-            .drive(onNext: { valid in
+            .drive(onNext: { [weak self] valid in
+                guard let `self` = self else { return }
                 self.question3ContentLabel.isHidden = !valid
                 self.question3ContentLabel.text = self.viewModel.securityQuestion3.value
                 
@@ -340,7 +347,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer3).disposed(by: disposeBag)
         
         viewModel.securityQuestionChanged
-            .drive(onNext: { valid in
+            .drive(onNext: { [weak self] valid in
+                guard let `self` = self else { return }
                 switch (self.viewModel.selectedQuestionRow) {
                 case 1:
                     self.question1AnswerTextField.textField.text = ""
@@ -369,7 +377,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         }
         
         for detailView in accountDetailViews {
-            self.accountDataStackView.addArrangedSubview(detailView)
+            accountDataStackView.addArrangedSubview(detailView)
         }
         
         enrollIneBillSwitch.rx.isOn.bind(to: viewModel.paperlessEbill).disposed(by: disposeBag)
@@ -396,7 +404,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     func onCancelPress() {
         // We do this to cover the case where we push RegistrationViewController from LandingViewController.
         // When that happens, we want the cancel action to go straight back to LandingViewController.
-        _ = navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     func onSubmitPress() {
@@ -404,24 +412,24 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         LoadingView.show()
         
-        viewModel.registerUser(onSuccess: {
+        viewModel.registerUser(onSuccess: { [weak self] in
             LoadingView.hide()
             Analytics().logScreenView(AnalyticsPageView.RegisterAccountSecurityQuestions.rawValue)
-            self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
-        }, onError: { (title, message) in
+            self?.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
+        }, onError: { [weak self] (title, message) in
             LoadingView.hide()
             
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
 
-            self.present(alertController, animated: true, completion: nil)
+            self?.present(alertController, animated: true, completion: nil)
         })
     }
     
     @IBAction func enrollIneBillToggle(_ sender: Any) {
         viewModel.paperlessEbill.value = !viewModel.paperlessEbill.value
         
-        toggleAccountListing(viewModel.paperlessEbill.value && self.viewModel.accounts.value.count > displayAccountsIfGreaterThan)
+        toggleAccountListing(viewModel.paperlessEbill.value && viewModel.accounts.value.count > displayAccountsIfGreaterThan)
         
         if(enrollIneBillSwitch.isOn) {
             Analytics().logScreenView(AnalyticsPageView.RegisterEBillEnroll.rawValue)

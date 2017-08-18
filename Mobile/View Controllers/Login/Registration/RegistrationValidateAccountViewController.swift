@@ -231,12 +231,6 @@ class RegistrationValidateAccountViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func onIdentifierKeyboardDonePress() {
 		viewModel.nextButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
 			.drive(onNext: { [weak self] enabled in

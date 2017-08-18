@@ -10,8 +10,9 @@ import RxSwift
 import RxCocoa
 import Zxcvbn
 
+fileprivate let kMaxUsernameChars = 255
+
 class RegistrationViewModel {
-    let MAXUSERNAMECHARS = 255
     
     let disposeBag = DisposeBag()
     
@@ -64,11 +65,11 @@ class RegistrationViewModel {
         
         registrationService.validateAccountInformation(identifier, phone: extractDigitsFrom(phoneNumber.value), accountNum: acctNum)
         	.observeOn(MainScheduler.instance)
-            .subscribe(onNext: { data in
+            .subscribe(onNext: { [weak self] data in
+                guard let `self` = self else { return }
                 let types = data["type"] as? [String]
                 self.accountType.value = types?.first ?? ""
                 self.isPaperlessEbillEligible = (data["ebill"] as? Bool) ?? false
-                
                 
                 onSuccess()
             }, onError: { error in
@@ -88,9 +89,7 @@ class RegistrationViewModel {
     }
     
     func verifyUniqueUsername(onSuccess: @escaping () -> Void, onEmailAlreadyExists: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        let username: String = self.username.value
-        
-        registrationService.checkForDuplicateAccount(username)
+        registrationService.checkForDuplicateAccount(username.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -107,31 +106,18 @@ class RegistrationViewModel {
     }
     
     func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        let username: String = self.username.value
-        let password: String = self.newPassword.value
-        let id: String = self.identifierNumber.value
-        let phone: String = extractDigitsFrom(phoneNumber.value)
-        let question1: String = securityQuestion1.value
-        let answer1: String = securityAnswer1.value
-        let question2: String = securityQuestion2.value
-        let answer2: String = securityAnswer2.value
-        let question3: String = securityQuestion3.value
-        let answer3: String = securityAnswer3.value
-        let primary: String = primaryProfile.value ? "true" : "false"
-        let enrollEbill: String = paperlessEbill.value ? "true" : "false"
-        
-        registrationService.createNewAccount(username,
-                                             password: password,
-                                             identifier: id,
-                                             phone: phone,
-                                             question1: question1,
-                                             answer1: answer1,
-                                             question2: question2,
-                                             answer2: answer2,
-                                             question3: question3,
-                                             answer3: answer3,
-                                             isPrimary: primary,
-                                             isEnrollEBill: enrollEbill)
+        registrationService.createNewAccount(username.value,
+                                             password: newPassword.value,
+                                             identifier: identifierNumber.value,
+                                             phone: extractDigitsFrom(phoneNumber.value),
+                                             question1: securityQuestion1.value,
+                                             answer1: securityAnswer1.value,
+                                             question2: securityQuestion2.value,
+                                             answer2: securityAnswer2.value,
+                                             question3: securityQuestion3.value,
+                                             answer3: securityAnswer3.value,
+                                             isPrimary: primaryProfile.value ? "true" : "false",
+                                             isEnrollEBill: paperlessEbill.value ? "true" : "false")
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -165,17 +151,11 @@ class RegistrationViewModel {
     }
     
     func loadSecurityQuestions(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        self.registrationService.loadSecretQuestions()
+        registrationService.loadSecretQuestions()
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { array in
-                self.securityQuestions = Variable<[SecurityQuestion]>([])
-                
-                for question in array {
-                    let securityQuestion = SecurityQuestion(question: question)
-                    
-                    self.securityQuestions.value.append(securityQuestion)
-                }
-                
+            .subscribe(onNext: { [weak self] array in
+                guard let `self` = self else { return }
+                self.securityQuestions.value = array.map(SecurityQuestion.init)
                 onSuccess()
             }, onError: { error in
                 onError(NSLocalizedString("Unknown Error", comment: ""), error.localizedDescription)
@@ -184,11 +164,10 @@ class RegistrationViewModel {
     }
     
     func loadAccounts(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        self.authenticationService.lookupAccount(phone: self.extractDigitsFrom(self.phoneNumber.value) as String, identifier: self.identifierNumber.value as String)
+        authenticationService.lookupAccount(phone: extractDigitsFrom(phoneNumber.value), identifier: identifierNumber.value)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { array in
-                self.accounts.value = array as [AccountLookupResult]
-                
+            .subscribe(onNext: { [weak self] array in
+                self?.accounts.value = array
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
@@ -238,22 +217,25 @@ class RegistrationViewModel {
             }).disposed(by: disposeBag)
     }
 	
-	private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver().map { text -> Bool in
+	private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver().map { [weak self] text -> Bool in
+        guard let `self` = self else { return false }
 		let digitsOnlyString = self.extractDigitsFrom(text)
 		return digitsOnlyString.characters.count == 10
 	}
 	
     private(set) lazy var identifierHasFourDigits: Driver<Bool> = self.identifierNumber.asDriver().map { $0.characters.count == 4 }
 	
-	private(set) lazy var identifierIsNumeric: Driver<Bool> = self.identifierNumber.asDriver().map { text -> Bool in
-		let digitsOnlyString = self.extractDigitsFrom(text)
-		return digitsOnlyString.characters.count == text.characters.count
-	}
-	
-    private(set) lazy var accountNumberHasTenDigits: Driver<Bool> = self.accountNumber.asDriver().map { text -> Bool in
-            let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.characters.count == 10
-        }
+    private(set) lazy var identifierIsNumeric: Driver<Bool> = self.identifierNumber.asDriver().map { [weak self] text -> Bool in
+        guard let `self` = self else { return false }
+        let digitsOnlyString = self.extractDigitsFrom(text)
+        return digitsOnlyString.characters.count == text.characters.count
+    }
+    
+    private(set) lazy var accountNumberHasTenDigits: Driver<Bool> = self.accountNumber.asDriver().map { [weak self] text -> Bool in
+        guard let `self` = self else { return false }
+        let digitsOnlyString = self.extractDigitsFrom(text)
+        return digitsOnlyString.characters.count == 10
+    }
     
     private func extractDigitsFrom(_ string: String) -> String {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
@@ -263,7 +245,7 @@ class RegistrationViewModel {
     private(set) lazy var newUsernameHasText: Driver<Bool> = self.username.asDriver().map { !$0.isEmpty }
 	
 	private(set) lazy var newUsernameIsValidBool: Driver<Bool> = self.username.asDriver().map { text -> Bool in
-		if text.characters.count > self.MAXUSERNAMECHARS {
+		if text.characters.count > kMaxUsernameChars {
 			return false
 		}
 		
@@ -286,7 +268,7 @@ class RegistrationViewModel {
 	
 	private(set) lazy var newUsernameIsValid: Driver<String?> = self.username.asDriver().map { text -> String? in
 		if !text.isEmpty {
-			if text.characters.count > self.MAXUSERNAMECHARS {
+			if text.characters.count > kMaxUsernameChars {
 				return "Maximum of 255 characters allowed"
 			}
 			
@@ -314,14 +296,10 @@ class RegistrationViewModel {
 	private(set) lazy var newPasswordHasText: Driver<Bool> = self.newPassword.asDriver().map{ !$0.isEmpty }
 	
 	private(set) lazy var characterCountValid: Driver<Bool> = self.newPassword.asDriver()
-		.map{ text -> String in
-			return text.components(separatedBy: .whitespacesAndNewlines).joined()
-		}
-		.map{ text -> Bool in
-			return text.characters.count >= 8 && text.characters.count <= 16
-	}
+		.map{ $0.components(separatedBy: .whitespacesAndNewlines).joined() }
+		.map{ 8...16 ~= $0.characters.count }
 	
-	private(set) lazy var usernameMaxCharacters: Driver<Bool> = self.username.asDriver().map { $0.characters.count > self.MAXUSERNAMECHARS }
+	private(set) lazy var usernameMaxCharacters: Driver<Bool> = self.username.asDriver().map { $0.characters.count > kMaxUsernameChars }
 	
 	private(set) lazy var containsUppercaseLetter: Driver<Bool> = self.newPassword.asDriver().map { text -> Bool in
 		let regex = try! NSRegularExpression(pattern: ".*[A-Z].*", options: NSRegularExpression.Options.useUnixLineSeparators)
@@ -438,4 +416,8 @@ class RegistrationViewModel {
             return otherArray.count == count
         }
     }()
+    
+    deinit {
+        dLog()
+    }
 }
