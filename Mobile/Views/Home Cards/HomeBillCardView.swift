@@ -226,7 +226,7 @@ class HomeBillCardView: UIView {
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButtonLabel.rx.text).disposed(by: bag)
         viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButton.rx.accessibilityLabel).disposed(by: bag)
-        viewModel.enableOneTouchPayTCButton.drive(oneTouchPayTCButton.rx.isEnabled).disposed(by: bag)
+        viewModel.enableOneTouchPayTCButton.drive(oneTouchPayTCButton.rx.isUserInteractionEnabled).disposed(by: bag)
         viewModel.oneTouchPayTCButtonTextColor.drive(oneTouchPayTCButtonLabel.rx.textColor).disposed(by: bag)
         
         // Actions
