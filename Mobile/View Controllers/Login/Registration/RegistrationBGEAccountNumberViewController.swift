@@ -168,6 +168,9 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         self.navigationController?.present(infoModal, animated: true, completion: nil)
     }
 
+	deinit {
+		dLog()
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////

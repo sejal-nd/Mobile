@@ -53,16 +53,16 @@ class RegistrationValidateAccountViewController: UIViewController {
     }
     
     func checkForMaintenanceMode(){
-        viewModel.checkForMaintenance(onSuccess: { isMaintenance in
+        viewModel.checkForMaintenance(onSuccess: { [weak self] isMaintenance in
             if isMaintenance {
-                self.navigationController?.view.isUserInteractionEnabled = true
+                self?.navigationController?.view.isUserInteractionEnabled = true
                 let ad = UIApplication.shared.delegate as! AppDelegate
                 ad.showMaintenanceMode()
             }
-        }, onError: { errorMessage in
+        }, onError: { [weak self] errorMessage in
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            self?.present(alertController, animated: true, completion: nil)
         })
     }
     
@@ -157,12 +157,11 @@ class RegistrationValidateAccountViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         //
-        var ssString = "SSN/Business Tax ID"
-        
+		let ssString: String
         if Environment.sharedInstance.opco == .bge {
-            ssString.append("/BGE Pin*")
-        } else {
-            ssString.append("*")
+			ssString = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
+		} else {
+			ssString = NSLocalizedString("SSN/Business Tax ID*", comment: "")
         }
         
         ssNumberNumberTextField.textField.placeholder = NSLocalizedString(ssString, comment: "")
@@ -260,21 +259,21 @@ class RegistrationValidateAccountViewController: UIViewController {
         
         LoadingView.show()
         
-        viewModel.validateAccount(onSuccess: {
+        viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
             Analytics().logScreenView(AnalyticsPageView.RegisterAccountValidation.rawValue)
-            self.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
-        }, onMultipleAccounts:  {
+            self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
+        }, onMultipleAccounts:  { [weak self] in
             LoadingView.hide()
             Analytics().logScreenView(AnalyticsPageView.RegisterAccountValidation.rawValue)
-            self.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
-        }, onError: { (title, message) in
+            self?.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
+        }, onError: { [weak self] (title, message) in
             LoadingView.hide()
             
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             
-            self.present(alertController, animated: true, completion: nil)
+            self?.present(alertController, animated: true, completion: nil)
         })
     }
     
@@ -323,7 +322,7 @@ class RegistrationValidateAccountViewController: UIViewController {
         }
         let infoModal = InfoModalViewController(title: NSLocalizedString("Where to Look for Your Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
         
-        self.navigationController?.present(infoModal, animated: true, completion: nil)
+        navigationController?.present(infoModal, animated: true, completion: nil)
     }
 }
 
