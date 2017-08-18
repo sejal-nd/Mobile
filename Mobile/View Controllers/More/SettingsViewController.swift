@@ -13,7 +13,6 @@ import ToastSwiftFramework
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
     let viewModel = SettingsViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService(), accountService: ServiceFactory.createAccountService())
     
@@ -44,32 +43,15 @@ class SettingsViewController: UIViewController {
         
         if AccountsStore.sharedInstance.accounts == nil {
             fetchAccounts()
-        } else {
-            loadingIndicator.isHidden = true
-            tableView.isHidden = false
         }
         
     }
     
     func fetchAccounts() {
-        loadingIndicator.isHidden = false
-        tableView.isHidden = true
         viewModel.fetchAccounts()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                self?.loadingIndicator.isHidden = true
-                self?.tableView.isHidden = false
                 self?.tableView.reloadData()
-            }, onError: { [weak self] err in
-                guard let `self` = self else { return }
-                self.loadingIndicator.isHidden = true
-                self.tableView.isHidden = false
-                let alertVc = UIAlertController(title: NSLocalizedString("Could Not Load Accounts", comment: ""), message: err.localizedDescription, preferredStyle: .alert)
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default, handler: { [weak self] _ in
-                    self?.fetchAccounts()
-                }))
-                self.present(alertVc, animated: true, completion: nil)
             }).disposed(by: disposeBag)
     }
     

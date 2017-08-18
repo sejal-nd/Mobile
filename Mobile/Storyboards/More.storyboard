@@ -429,19 +429,13 @@
                                     <outlet property="delegate" destination="TZa-54-G4b" id="y2f-5B-ORt"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="PWn-yi-kgx" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157" y="327" width="60" height="12"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Kgs-F0-aTT" firstAttribute="centerX" secondItem="hPW-e7-Nyg" secondAttribute="centerX" id="0bu-O2-lSC"/>
-                            <constraint firstItem="PWn-yi-kgx" firstAttribute="centerX" secondItem="hPW-e7-Nyg" secondAttribute="centerX" id="2DR-ON-zvz"/>
                             <constraint firstAttribute="topMargin" secondItem="Kgs-F0-aTT" secondAttribute="top" id="G95-7k-KWW"/>
                             <constraint firstAttribute="trailing" secondItem="Kgs-F0-aTT" secondAttribute="trailing" priority="999" id="Gf9-Ne-rIG"/>
                             <constraint firstItem="Kgs-F0-aTT" firstAttribute="leading" secondItem="hPW-e7-Nyg" secondAttribute="leading" priority="999" id="IKt-PT-eYu"/>
-                            <constraint firstItem="PWn-yi-kgx" firstAttribute="centerY" secondItem="hPW-e7-Nyg" secondAttribute="centerY" id="TGb-Yg-g7m"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Kgs-F0-aTT" secondAttribute="bottom" id="w6d-dv-wH4"/>
                         </constraints>
                     </view>
@@ -449,7 +443,6 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="eDV-TV-iCm"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="loadingIndicator" destination="PWn-yi-kgx" id="jsR-n7-hX1"/>
                         <outlet property="tableView" destination="Kgs-F0-aTT" id="WFr-EB-9gY"/>
                         <segue destination="9Ug-ji-Hni" kind="show" identifier="changePasswordSegue" id="QyS-Fx-oWs"/>
                         <segue destination="lU0-dY-1fs" kind="show" identifier="releaseOfInfoSegue" id="ASX-9l-r2l"/>
