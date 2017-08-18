@@ -122,6 +122,10 @@ class AccountPicker: UIView {
         } else { // Advanced Account Picker
             addAccountToScrollView(pagedAccounts[0], advancedPicker: true)
         }
+        
+        if 2...MAX_ACCOUNTS ~= allAccounts.count && !isMultiPremise {
+            accessibilityElements = [scrollView, pageControl]
+        }
 
         setNeedsLayout()
     }

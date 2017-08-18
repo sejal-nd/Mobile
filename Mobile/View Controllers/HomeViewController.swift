@@ -30,7 +30,6 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var loadingView: UIView!
     
     var billCardView: HomeBillCardView!
-    var templateCardView: TemplateCardView!
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl? {
@@ -86,7 +85,7 @@ class HomeViewController: AccountPickerViewController {
         cardStackView.addArrangedSubview(billCardView)
         
         if viewModel.showTemplateCard {
-            templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
+            let templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
             templateCardView.callToActionViewController
                 .drive(onNext: { [weak self] viewController in
                     self?.present(viewController, animated: true, completion: nil)
