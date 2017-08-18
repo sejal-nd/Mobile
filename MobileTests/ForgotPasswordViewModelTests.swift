@@ -20,14 +20,14 @@ class ForgotPasswordViewModelTests: XCTestCase {
     
     func testSubmitButtonEnabled() {
         viewModel.username.value = "aa"
-        viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
+        viewModel.submitButtonEnabled.asObservable().single().subscribe(onNext: { enabled in
             if !enabled {
                 XCTFail("Username \"aa\" should result in an enabled submit button")
             }
         }).disposed(by: disposeBag)
         
         viewModel.username.value = ""
-        viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
+        viewModel.submitButtonEnabled.asObservable().single().subscribe(onNext: { enabled in
             if enabled {
                 XCTFail("Username \"\" should result in a disabled submit button")
             }

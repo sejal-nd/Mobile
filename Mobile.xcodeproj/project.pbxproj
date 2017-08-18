@@ -757,6 +757,7 @@
 		E803A0051EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E803A0031EFC12BB004DB789 /* MiniWalletViewModel.swift */; };
 		E803A0061EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E803A0031EFC12BB004DB789 /* MiniWalletViewModel.swift */; };
 		E803A0071EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E803A0031EFC12BB004DB789 /* MiniWalletViewModel.swift */; };
+		E8052D911F477CBC00410D64 /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
 		E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
 		E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
 		E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
@@ -4378,6 +4379,7 @@
 				E841F3B51F030EE5007BFA82 /* BillingHistory.swift in Sources */,
 				E8EDC5471F324DEE006DD927 /* SpeedpayErrorMapper.swift in Sources */,
 				E8CA07F71E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
+				E8052D911F477CBC00410D64 /* ObservableExtensions.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
 				E8D340941EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
