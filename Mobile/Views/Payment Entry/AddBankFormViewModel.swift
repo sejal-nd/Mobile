@@ -55,9 +55,7 @@ class AddBankFormViewModel {
     
     private(set) lazy var accountNumberHasText: Driver<Bool> = self.accountNumber.asDriver().map { !$0.isEmpty }
     
-    private(set) lazy var accountNumberIsValid: Driver<Bool> = self.accountNumber.asDriver().map {
-            $0.characters.count >= 4 && $0.characters.count <= 17
-    }
+    private(set) lazy var accountNumberIsValid: Driver<Bool> = self.accountNumber.asDriver().map { 4...17 ~= $0.characters.count }
     
     private(set) lazy var confirmAccountNumberMatches: Driver<Bool> = Driver.combineLatest(self.accountNumber.asDriver(),
                                                                                            self.confirmAccountNumber.asDriver(),
@@ -103,5 +101,7 @@ class AddBankFormViewModel {
             }).disposed(by: disposeBag)
     }
 
-    
+    deinit {
+        dLog()
+    }
 }

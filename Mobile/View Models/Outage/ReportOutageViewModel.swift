@@ -30,7 +30,8 @@ class ReportOutageViewModel {
     
     private(set) lazy var submitEnabled: Driver<Bool> = Driver.combineLatest(self.reportFormHidden.asDriver(),
                                                                              self.phoneNumber.asDriver())
-    {
+    { [weak self] in
+        guard let `self` = self else { return false }
         let digitsOnlyString = self.extractDigitsFrom($1)
         return !$0 && digitsOnlyString.characters.count == 10
     }
@@ -102,12 +103,17 @@ class ReportOutageViewModel {
     }
     
     private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver()
-        .map { text -> Bool in
+        .map { [weak self] text -> Bool in
+            guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.characters.count == 10
         }
     
     private func extractDigitsFrom(_ string: String) -> String {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+    }
+    
+    deinit {
+        dLog()
     }
 }

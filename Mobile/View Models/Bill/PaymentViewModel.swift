@@ -1054,10 +1054,13 @@ class PaymentViewModel {
         Driver.combineLatest(self.convenienceFee, self.paymentAmount.asDriver().map {
             Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
             })
-        {
-            (Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential) ?
-                (($0 / 100) * $1).currencyString :
-                $0.currencyString
+        { [weak self] in
+            guard let `self` = self else { return nil }
+            if Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential {
+                return (($0 / 100) * $1).currencyString
+            } else {
+                return $0.currencyString
+            }
         }
     }()
     
@@ -1126,4 +1129,7 @@ class PaymentViewModel {
         }
     }
     
+    deinit {
+        dLog()
+    }
 }
