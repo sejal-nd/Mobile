@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 import ToastSwiftFramework
 
 class RegistrationSecurityQuestionListViewController: UITableViewController {
@@ -39,8 +37,8 @@ class RegistrationSecurityQuestionListViewController: UITableViewController {
             viewableQuestions.append(question)
         }
         
-        self.tableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "RadioSelectionCell")
-        self.tableView.estimatedRowHeight = 51
+        tableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "RadioSelectionCell")
+        tableView.estimatedRowHeight = 51
         
     }
 
@@ -101,11 +99,15 @@ class RegistrationSecurityQuestionListViewController: UITableViewController {
             viewModel.securityQuestion1.value = securityQuestion
         }
         
-        _ = navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    deinit {
+        dLog()
     }
 
 }

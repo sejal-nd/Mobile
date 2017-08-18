@@ -53,7 +53,7 @@ class MiniWalletViewController: UIViewController {
         tableView.rx.contentOffset.asDriver()
             .map { $0.y <= 0 ? .white: .softGray }
             .distinctUntilChanged()
-            .drive(onNext: { self.tableView.backgroundColor = $0 })
+            .drive(tableView.rx.backgroundColor)
             .disposed(by: disposeBag)
         
         tableHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
@@ -146,11 +146,13 @@ class MiniWalletViewController: UIViewController {
     }
     
     func fetchWalletItems() {
-        viewModel.fetchWalletItems(onSuccess: {
+        viewModel.fetchWalletItems(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
             self.tableView.reloadData()
             self.view.setNeedsLayout()
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
-        }, onError: { _ in
+        }, onError: { [weak self] errMessage in
+            guard let `self` = self else { return }
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         })
     }
@@ -184,7 +186,11 @@ class MiniWalletViewController: UIViewController {
             performSegue(withIdentifier: "miniWalletAddCreditCardSegue", sender: self)
         }
     }
-
+    
+    
+    deinit {
+        dLog()
+    }
 }
 
 
@@ -219,7 +225,7 @@ extension MiniWalletViewController: UITableViewDelegate {
 extension MiniWalletViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "SectionHeaderCell") as! MiniWalletSectionHeaderCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SectionHeaderCell") as! MiniWalletSectionHeaderCell
         
         if section == 0 {
             cell.label.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
@@ -268,14 +274,14 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.innerContentView.tag = indexPath.row
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onBankAccountPress(sender:)), for: .touchUpInside)
-                cell.innerContentView.isEnabled = !self.bankAccountsDisabled
+                cell.innerContentView.isEnabled = !bankAccountsDisabled
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
                 cell.iconImageView.image = #imageLiteral(resourceName: "bank_building_mini")
                 cell.label.text = NSLocalizedString("Add Bank Account", comment: "")
-                viewModel.bankAccountLimitReached.map {
-                    if self.bankAccountsDisabled {
+                viewModel.bankAccountLimitReached.map { [weak self] in
+                    if self?.bankAccountsDisabled ?? false {
                         return false
                     }
                     return !$0
@@ -306,8 +312,8 @@ extension MiniWalletViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
                 cell.iconImageView.image = #imageLiteral(resourceName: "credit_card_mini")
                 cell.label.text = NSLocalizedString("Add Credit/Debit Card", comment: "")
-                viewModel.creditCardLimitReached.map {
-                    if self.creditCardsDisabled {
+                viewModel.creditCardLimitReached.map { [weak self] in
+                    if self?.creditCardsDisabled ?? false {
                         return false
                     }
                     return !$0

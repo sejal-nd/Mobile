@@ -120,7 +120,6 @@ class HomeBillCardView: UIView {
         
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         dueAmountAndDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-        saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         convenienceFeeLabel.font = OpenSans.semibold.of(textStyle: .footnote)
@@ -231,9 +230,9 @@ class HomeBillCardView: UIView {
         
         // Actions
         oneTouchSlider.didFinishSwipe
-            .withLatestFrom(Driver.combineLatest(self.viewModel.shouldShowWeekendWarning, self.viewModel.promptForCVV) { $0 || $1 })
+            .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV) { $0 || $1 })
             .filter(!)
-            .map { _ in () }
+            .toVoid()
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
             .disposed(by: bag)
@@ -249,7 +248,7 @@ class HomeBillCardView: UIView {
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
             self?.oneTouchSlider.reset(animated: true)
-        }).map { _ in () }
+        }).toVoid()
     
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
@@ -265,7 +264,7 @@ class HomeBillCardView: UIView {
     private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
         .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
         .filter { $0 }
-        .map { _ in
+        .map { [weak self] _ in
             let alertController = UIAlertController(title: NSLocalizedString("Weekend/Holiday Payment", comment: ""),
                                                     message: NSLocalizedString("You are making a payment on a weekend or holiday. Your payment will be scheduled for the next business day.", comment: ""), preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel){ [weak self] _ in
@@ -280,7 +279,7 @@ class HomeBillCardView: UIView {
     }
     
     private lazy var oneTouchPayErrorAlert: Driver<UIViewController> = self.viewModel.oneTouchPayResult.errors()
-        .map { error in
+        .map { [weak self] error in
             let errMessage = error.localizedDescription
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString(errMessage, comment: ""), preferredStyle: .alert)
             
@@ -433,6 +432,10 @@ class HomeBillCardView: UIView {
                                                                                          self.billingHistoryViewController,
                                                                                          self.autoPayViewController)
 
+    deinit {
+        cvvValidationDisposable?.dispose()
+        dLog()
+    }
 }
 
 extension HomeBillCardView: UITextFieldDelegate {

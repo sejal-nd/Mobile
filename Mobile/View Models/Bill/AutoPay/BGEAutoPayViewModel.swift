@@ -65,13 +65,16 @@ class BGEAutoPayViewModel {
         self.isError.value = false
         paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (autoPayInfo: BGEAutoPayInfo) in
+            .subscribe(onNext: { [weak self] (autoPayInfo: BGEAutoPayInfo) in
+                guard let `self` = self else { return }
                 self.isFetchingAutoPayInfo.value = false
                 self.isError.value = false
                 
                 // Expired accounts
                 var isExpired = false
-                if let effectiveNumberOfPayments = autoPayInfo.effectiveNumPayments, let numberOfPaymentsScheduled = autoPayInfo.numberOfPaymentsScheduled, Int(numberOfPaymentsScheduled)! >= Int(effectiveNumberOfPayments)! {
+                if let effectiveNumberOfPayments = autoPayInfo.effectiveNumPayments,
+                    let numberOfPaymentsScheduled = autoPayInfo.numberOfPaymentsScheduled,
+                    Int(numberOfPaymentsScheduled)! >= Int(effectiveNumberOfPayments)! {
                     isExpired = true
                     let localizedString = NSLocalizedString("Enrollment expired due to AutoPay settings - you set enrollment to expire after %d payments.", comment: "")
                     self.expiredReason.value = String(format: localizedString, Int(effectiveNumberOfPayments)!)
@@ -108,12 +111,13 @@ class BGEAutoPayViewModel {
                         self.numberOfPayments.value = effectiveNumPayments
                     }
                 }
-            
+                
                 onSuccess?()
-            }, onError: { error in
-                self.isFetchingAutoPayInfo.value = false
-                self.isError.value = true
-                onError?(error.localizedDescription)
+                }, onError: { [weak self] error in
+                    guard let `self` = self else { return }
+                    self.isFetchingAutoPayInfo.value = false
+                    self.isError.value = true
+                    onError?(error.localizedDescription)
             })
             .disposed(by: disposeBag)
     }
@@ -140,6 +144,11 @@ class BGEAutoPayViewModel {
             })
             .disposed(by: disposeBag)
     }
+    
+    private(set) lazy var showBottomLabel: Driver<Bool> = Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(),
+                                                                               self.initialEnrollmentStatus.asDriver())
+        .filter { $1 == .unenrolled }
+        .map { !$0.0 }
     
     lazy var submitButtonEnabled: Driver<Bool> = Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
                                                                       self.selectedWalletItem.asDriver(),
@@ -247,7 +256,7 @@ class BGEAutoPayViewModel {
         }
     }
     
-    lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().map { $0 != nil }
+    lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().isNil().not()
     
     func formatAmountNotToExceed() {
         let textStr = String(amountNotToExceed.value.characters.filter { "0123456789".characters.contains($0) })

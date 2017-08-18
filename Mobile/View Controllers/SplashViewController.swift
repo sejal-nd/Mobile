@@ -37,7 +37,8 @@ class SplashViewController: UIViewController{
     func doLoginLogic() {
         bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch ID alert prompt is dismissed
         if ServiceFactory.createAuthenticationService().isAuthenticated() {
-            ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { (result: ServiceResult<Void>) in
+            ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { [weak self] (result: ServiceResult<Void>) in
+                guard let `self` = self else { return }
                 switch (result) {
                 case .Success:
                     let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
@@ -98,7 +99,7 @@ class SplashViewController: UIViewController{
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         if activity.activityType == NSUserActivityTypeBrowsingWeb { // Universal Link from Reset Password email
-            self.performingDeepLink = true
+            performingDeepLink = true
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
             let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")

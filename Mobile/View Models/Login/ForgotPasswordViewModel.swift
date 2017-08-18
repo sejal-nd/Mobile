@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class ForgotPasswordViewModel {
     let disposeBag = DisposeBag()
@@ -38,9 +39,5 @@ class ForgotPasswordViewModel {
             }).disposed(by: disposeBag)
     }
     
-    func submitButtonEnabled() -> Observable<Bool> {
-        return username.asObservable().map({ text -> Bool in
-            return text.characters.count > 0
-        })
-    }    
+    private(set) lazy var submitButtonEnabled: Driver<Bool> = self.username.asDriver().map { $0.characters.count > 0 }
 }

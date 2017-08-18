@@ -291,6 +291,9 @@
 		82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
 		82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
 		82837D161F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
+		8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
+		8291DD4F1F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
+		8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
 		82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
 		82A18E561EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
 		82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
@@ -1254,6 +1257,7 @@
 		826DCCF11F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerTableViewCell.swift; sourceTree = "<group>"; };
 		826DCCFA1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedAccountPickerTableViewCell.xib; sourceTree = "<group>"; };
 		82837D131F20677700C31E1C /* RecentPaymentsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPaymentsStore.swift; sourceTree = "<group>"; };
+		8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableExtensions.swift; sourceTree = "<group>"; };
 		82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillCommercialViewController.swift; sourceTree = "<group>"; };
 		82A18E591EB918C900BE9F21 /* BillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModel.swift; sourceTree = "<group>"; };
 		82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewModel.swift; sourceTree = "<group>"; };
@@ -2266,6 +2270,7 @@
 				82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */,
 				E8C453141EF3293600F5C781 /* ToastView.swift */,
 				387E5C461F1FCC4600D6710D /* Percentage.swift */,
+				8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3860,6 +3865,7 @@
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				2F5C81FA1F1D4B1B005B35FA /* WeatherAPI.swift in Sources */,
+				8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				E887C9D41ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				821898921F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
@@ -4078,6 +4084,7 @@
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				821898941F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
 				E887C9D61ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				826DCCEB1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
@@ -4296,6 +4303,7 @@
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E8127B231EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				8291DD4F1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				821898931F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
 				E887C9D51ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				826DCCEA1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,

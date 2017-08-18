@@ -41,7 +41,7 @@ class SegmentedControl: UIControl {
             views.append(view)
             
             let label = UILabel(frame: .zero)
-            label.textColor = UIColor.actionBlue
+            label.textColor = .actionBlue
             label.numberOfLines = 0
             label.textAlignment = .center
             label.isAccessibilityElement = false
@@ -104,7 +104,7 @@ class SegmentedControl: UIControl {
             
             for (index, item) in items.enumerated() {
                 let button = buttons[index]
-                button.accessibilityLabel = String(format: NSLocalizedString("%@, option %@ of %@ %@", comment: ""), item, String(index + 1), String(self.items!.count), index == selectedIndex.value ? NSLocalizedString(", selected", comment: "") : "")
+                button.accessibilityLabel = String(format: NSLocalizedString("%@, option %@ of %@ %@", comment: ""), item, String(index + 1), String(items.count), index == selectedIndex.value ? NSLocalizedString(", selected", comment: "") : "")
             }
             
             bigBottomBar!.frame = CGRect(x: 0, y: frame.height - 6, width: frame.width, height: 6)

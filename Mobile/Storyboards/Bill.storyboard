@@ -2007,12 +2007,27 @@ AutoPay</string>
                                                                                                     <constraint firstItem="1Fx-0T-LFv" firstAttribute="centerY" secondItem="Lse-qm-kHf" secondAttribute="centerY" id="qGk-nu-MtQ"/>
                                                                                                 </constraints>
                                                                                             </view>
-                                                                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="You have a pending payment of $100.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoK-OV-hPp">
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hcr-PO-NuQ" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                                                 <rect key="frame" x="0.0" y="140" width="316" height="19.5"/>
-                                                                                                <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="14"/>
-                                                                                                <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                                <nil key="highlightedColor"/>
-                                                                                            </label>
+                                                                                                <subviews>
+                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="You have a pending payment of $100.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoK-OV-hPp">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="316" height="19.5"/>
+                                                                                                        <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="14"/>
+                                                                                                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                                        <nil key="highlightedColor"/>
+                                                                                                    </label>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="AoK-OV-hPp" secondAttribute="trailing" id="4mx-3a-8bl"/>
+                                                                                                    <constraint firstItem="AoK-OV-hPp" firstAttribute="top" secondItem="Hcr-PO-NuQ" secondAttribute="top" priority="999" id="Dkh-HP-xYj"/>
+                                                                                                    <constraint firstItem="AoK-OV-hPp" firstAttribute="leading" secondItem="Hcr-PO-NuQ" secondAttribute="leading" id="NFX-vS-CCA"/>
+                                                                                                    <constraint firstAttribute="bottom" secondItem="AoK-OV-hPp" secondAttribute="bottom" priority="999" id="bRt-CG-IWx"/>
+                                                                                                </constraints>
+                                                                                                <userDefinedRuntimeAttributes>
+                                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="NO"/>
+                                                                                                </userDefinedRuntimeAttributes>
+                                                                                            </view>
                                                                                         </subviews>
                                                                                     </stackView>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yBr-Ha-ice">
@@ -2250,6 +2265,7 @@ AutoPay</string>
                         <outlet property="creditView" destination="EcT-zQ-sYK" id="0LE-uT-NCR"/>
                         <outlet property="loadingIndicatorView" destination="qHU-9Z-Ody" id="Lm4-gM-Kvw"/>
                         <outlet property="makeAPaymentButton" destination="5kP-03-nkd" id="fM0-dK-iK8"/>
+                        <outlet property="makeAPaymentStatusButton" destination="Hcr-PO-NuQ" id="F8X-PO-sq8"/>
                         <outlet property="makeAPaymentStatusLabel" destination="AoK-OV-hPp" id="v0y-Bq-sX6"/>
                         <outlet property="needHelpUnderstandingButton" destination="2Mz-YL-zAT" id="8Xx-cx-wVY"/>
                         <outlet property="paperlessButton" destination="nSe-Oh-dqm" id="U55-jj-93f"/>
@@ -4361,6 +4377,11 @@ the year</string>
         <image name="paperless_modal" width="330" height="317"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="i8z-J5-Vom"/>
+        <segue reference="jAa-oL-qHI"/>
+        <segue reference="DmQ-Tj-Ore"/>
+        <segue reference="St9-1T-NgU"/>
+        <segue reference="X62-GM-RxQ"/>
         <segue reference="JxE-Ae-J8n"/>
         <segue reference="Kur-v9-at5"/>
         <segue reference="Z6O-TZ-udR"/>

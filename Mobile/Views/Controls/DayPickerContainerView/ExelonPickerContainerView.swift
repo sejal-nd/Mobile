@@ -8,15 +8,14 @@
 
 import UIKit
 
-protocol ExelonPickerDelegate {
+protocol ExelonPickerDelegate: class {
     func donePressed(selectedIndex: Int)
-    
     func cancelPressed()
 }
 
 class ExelonPickerContainerView: UIView {
     
-    var delegate: ExelonPickerDelegate?
+    weak var delegate: ExelonPickerDelegate?
 
     @IBOutlet weak var containerView: UIView!
     
@@ -70,9 +69,9 @@ class ExelonPickerContainerView: UIView {
         addSubview(containerView)
         
         //
-        containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8).isActive = true
-        bottomConstraint = containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8)
+        containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        bottomConstraint = containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         bottomConstraint.isActive = true
         
         //
@@ -141,7 +140,7 @@ class ExelonPickerContainerView: UIView {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 extension ExelonPickerContainerView: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.dataArray[row]
+        return dataArray[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

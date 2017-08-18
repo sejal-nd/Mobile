@@ -31,6 +31,14 @@ class ViewBillViewController: UIViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.isHidden = true
+        
+        webView.rx.didFinishLoad.asDriver(onErrorJustReturn: ()).drive(onNext: { [weak self] in
+            guard let `self` = self else { return }
+            self.loadingIndicator.isHidden = true
+            self.webView.isHidden = false
+            let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.onSharePress))
+            self.navigationItem.rightBarButtonItem = shareButton
+        }).disposed(by: self.disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,15 +54,11 @@ class ViewBillViewController: UIViewController {
     func fetchBillPDFData() {
         loadingIndicator.isHidden = false
         webView.isHidden = true
-        viewModel.fetchBillPDFData(onSuccess: {
-            self.webView.rx.didFinishLoad.asObservable().subscribe(onNext: {
-                self.loadingIndicator.isHidden = true
-                self.webView.isHidden = false
-                let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.onSharePress))
-                self.navigationItem.rightBarButtonItem = shareButton
-            }).disposed(by: self.disposeBag)
+        viewModel.fetchBillPDFData(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
             self.webView.load(self.viewModel.pdfData!, mimeType: "application/pdf", textEncodingName: "utf-8", baseURL: URL(string: "https://www.google.com")!)
-        }, onError: { errMessage in
+        }, onError: { [weak self] errMessage in
+            guard let `self` = self else { return }
             self.loadingIndicator.isHidden = true
             self.errorLabel.isHidden = false
         })
@@ -65,24 +69,27 @@ class ViewBillViewController: UIViewController {
             presentDocumentController()
         } else {
             LoadingView.show()
-            viewModel.downloadPDFToTempDirectory(onSuccess: {
+            viewModel.downloadPDFToTempDirectory(onSuccess: { [weak self] in
                 LoadingView.hide()
-                self.presentDocumentController()
-            }, onError: { errMessage in
+                self?.presentDocumentController()
+            }, onError: { [weak self] errMessage in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
+                self?.present(alertVc, animated: true, completion: nil)
             })
         }
 
     }
     
     func presentDocumentController() {
-        self.documentController = UIDocumentInteractionController(url: self.viewModel.pdfFileUrl!)
-        self.documentController!.presentOptionsMenu(from: self.view.frame, in: self.view, animated: true)
+        documentController = UIDocumentInteractionController(url: viewModel.pdfFileUrl!)
+        documentController!.presentOptionsMenu(from: view.frame, in: view, animated: true)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .default }
     
+    deinit {
+        dLog()
+    }
 }

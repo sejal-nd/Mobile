@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class AccountLookupToolViewModel {
     let disposeBag = DisposeBag()
@@ -26,8 +27,8 @@ class AccountLookupToolViewModel {
         authService.lookupAccount(phone: phoneNumber.value, identifier: identifierNumber.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
-            .subscribe(onNext: { accounts in
-                self.accountLookupResults = accounts
+            .subscribe(onNext: { [weak self] accounts in
+                self?.accountLookupResults = accounts
                 onSuccess()
             }, onError: { (error: Error) in
                 let serviceError = error as! ServiceError
@@ -39,30 +40,26 @@ class AccountLookupToolViewModel {
             }).disposed(by: disposeBag)
     }
     
-    func searchButtonEnabled() -> Observable<Bool> {
-        return Observable.combineLatest(phoneNumberHasTenDigits(), identifierHasFourDigits(), identifierIsNumeric()) {
-            return $0 && $1 && $2
-        }
-    }
+    private(set) lazy var searchButtonEnabled: Driver<Bool> = Driver.combineLatest(self.phoneNumberHasTenDigits,
+                                                                                   self.identifierHasFourDigits,
+                                                                                   self.identifierIsNumeric)
+    { $0 && $1 && $2 }
     
-    func phoneNumberHasTenDigits() -> Observable<Bool> {
-        return phoneNumber.asObservable().map({ text -> Bool in
+    private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver()
+        .map { [weak self] text -> Bool in
+            guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.characters.count == 10
-        })
     }
     
-    func identifierHasFourDigits() -> Observable<Bool> {
-        return identifierNumber.asObservable().map({ text -> Bool in
-            return text.characters.count == 4
-        })
-    }
+    private(set) lazy var identifierHasFourDigits: Driver<Bool> = self.identifierNumber.asDriver()
+        .map { $0.characters.count == 4 }
     
-    func identifierIsNumeric() -> Observable<Bool> {
-        return identifierNumber.asObservable().map({ text -> Bool in
+    private(set) lazy var identifierIsNumeric: Driver<Bool> = self.identifierNumber.asDriver()
+        .map { [weak self] text -> Bool in
+            guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.characters.count == text.characters.count
-        })
     }
     
     private func extractDigitsFrom(_ string: String) -> String {

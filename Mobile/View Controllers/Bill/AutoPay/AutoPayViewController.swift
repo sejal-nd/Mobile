@@ -73,12 +73,16 @@ class AutoPayViewController: UIViewController {
         
         NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
-            .drive(onNext: keyboardWillShow)
+            .drive(onNext: { [weak self] in
+                self?.keyboardWillShow(notification: $0)
+            })
             .disposed(by: bag)
         
         NotificationCenter.default.rx.notification(.UIKeyboardWillHide, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
-            .drive(onNext: keyboardWillHide)
+            .drive(onNext: { [weak self] in
+                self?.keyboardWillHide(notification: $0)
+            })
             .disposed(by: bag)
         
         style()
@@ -90,7 +94,9 @@ class AutoPayViewController: UIViewController {
         viewModel.canSubmit.drive(submitButton.rx.isEnabled).disposed(by: bag)
         
         learnMoreButton.rx.touchUpInside.asDriver()
-            .drive(onNext: onLearnMorePress)
+            .drive(onNext: { [weak self] in
+                self?.onLearnMorePress()
+            })
             .disposed(by: bag)
         
         
@@ -161,16 +167,16 @@ class AutoPayViewController: UIViewController {
             .subscribe(
                 onNext: { [weak self] enrolled in
                     LoadingView.hide()
-                    guard let strongSelf = self else { return }
-                    strongSelf.delegate?.autoPayViewController(strongSelf, enrolled: enrolled)
-                    strongSelf.navigationController?.popViewController(animated: true)
+                    guard let `self` = self else { return }
+                    self.delegate?.autoPayViewController(self, enrolled: enrolled)
+                    self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] error in
                     LoadingView.hide()
-                    guard let strongSelf = self else { return }
+                    guard let `self` = self else { return }
                     let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
                                                             message: error.localizedDescription, preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    strongSelf.present(alertController, animated: true, completion: nil)
+                    self.present(alertController, animated: true, completion: nil)
             })
             .disposed(by: bag)
     }
@@ -304,7 +310,9 @@ class AutoPayViewController: UIViewController {
             .disposed(by: bag)
         
         tacButton.rx.tap.asDriver()
-            .drive(onNext: onTermsAndConditionsPress)
+            .drive(onNext: { [weak self] in
+                self?.onTermsAndConditionsPress()
+            })
             .disposed(by: bag)
         
         nameTextField.textField.rx.text.orEmpty.bind(to: viewModel.nameOnAccount).disposed(by: bag)
@@ -327,21 +335,24 @@ class AutoPayViewController: UIViewController {
         let routingNumberErrorTextFocused: Driver<String?> = routingNumberTextField.textField.rx
             .controlEvent(.editingDidBegin).asDriver()
             .map{ nil }
-        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.routingNumberTextField.setError(nil)
-            self.accessibilityErrorLabel()
+        routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.routingNumberTextField.setError(nil)
+            self?.accessibilityErrorLabel()
             
         }).disposed(by: bag)
         
         let routingNumberErrorTextUnfocused: Driver<String?> = routingNumberTextField.textField.rx
             .controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(viewModel.routingNumberErrorText)
-        routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
+        
+        routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver().drive(onNext: { [weak self] in
+            guard let `self` = self else { return }
             if self.viewModel.routingNumber.value.characters.count == 9 {
-                self.viewModel.getBankName(onSuccess: {
+                self.viewModel.getBankName(onSuccess: { [weak self] in
+                    guard let `self` = self else { return }
                     self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
-                }, onError: {
-                    self.routingNumberTextField.setInfoMessage(nil)
+                }, onError: { [weak self] in
+                    self?.routingNumberTextField.setInfoMessage(nil)
                 })
             }
         }).disposed(by: bag)
@@ -351,7 +362,6 @@ class AutoPayViewController: UIViewController {
             .drive(onNext: { [weak self] errorText in
                 self?.routingNumberTextField.setError(errorText)
                 self?.accessibilityErrorLabel()
-                
             })
             .disposed(by: bag)
         
@@ -369,7 +379,6 @@ class AutoPayViewController: UIViewController {
             .drive(onNext: { [weak self] errorText in
                 self?.accountNumberTextField.setError(errorText)
                 self?.accessibilityErrorLabel()
-                
             })
             .disposed(by: bag)
         
@@ -378,7 +387,6 @@ class AutoPayViewController: UIViewController {
             .drive(onNext: { [weak self] errorText in
                 self?.confirmAccountNumberTextField.setError(errorText)
                 self?.accessibilityErrorLabel()
-                
             })
             .disposed(by: bag)
         
@@ -396,11 +404,15 @@ class AutoPayViewController: UIViewController {
         
         
         routingNumberTooltipButton.rx.tap.asDriver()
-            .drive(onNext: onRoutingNumberQuestionMarkPress)
+            .drive(onNext: { [weak self] in
+                self?.onRoutingNumberQuestionMarkPress()
+            })
             .disposed(by: bag)
         
         accountNumberTooltipButton.rx.tap.asDriver()
-            .drive(onNext: onAccountNumberQuestionMarkPress)
+            .drive(onNext: { [weak self] in
+                self?.onAccountNumberQuestionMarkPress()
+            })
             .disposed(by: bag)
     }
     
@@ -410,12 +422,12 @@ class AutoPayViewController: UIViewController {
         message += routingNumberTextField.getError()
         message += accountNumberTextField.getError()
         message += confirmAccountNumberTextField.getError()
-        self.submitButton.accessibilityLabel = NSLocalizedString(message, comment: "")
+        submitButton.accessibilityLabel = NSLocalizedString(message, comment: "")
         
         if message.isEmpty {
-            self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            self.submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
         }
     }
     
@@ -466,6 +478,10 @@ class AutoPayViewController: UIViewController {
 			vc.delegate = self
 		}
 	}
+    
+    deinit {
+        dLog()
+    }
     
 }
 

@@ -7,8 +7,6 @@
 //
 
 import Lottie
-import RxSwift
-import RxCocoa
 
 class LoadingIndicator: UIView {
     
@@ -59,6 +57,9 @@ class LoadingIndicator: UIView {
         }
     }
 }
+
+import RxSwift
+import RxCocoa
 
 extension Reactive where Base: LoadingIndicator {
     

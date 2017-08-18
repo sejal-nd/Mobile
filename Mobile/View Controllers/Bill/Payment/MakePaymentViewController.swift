@@ -103,7 +103,7 @@ class MakePaymentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail, addBankFormViewModel: self.addBankFormView.viewModel, addCardFormViewModel: self.addCardFormView.viewModel, paymentDetail: paymentDetail, billingHistoryItem: billingHistoryItem)
+        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormView.viewModel, addCardFormViewModel: addCardFormView.viewModel, paymentDetail: paymentDetail, billingHistoryItem: billingHistoryItem)
         
         view.backgroundColor = .softGray
         
@@ -123,11 +123,11 @@ class MakePaymentViewController: UIViewController {
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
         viewModel.makePaymentNextButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
-        viewModel.shouldShowNextButton.distinctUntilChanged().drive(onNext: { shouldShow in
-            if !shouldShow { // Hide next button if allowEdits is false
-                self.navigationItem.rightBarButtonItem = nil
-            }
-        }).disposed(by: disposeBag)
+        viewModel.shouldShowNextButton.distinctUntilChanged()
+            .filter(!)
+            .drive(onNext: { [weak self] _ in
+                self?.navigationItem.rightBarButtonItem = nil
+            }).disposed(by: disposeBag)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -166,20 +166,20 @@ class MakePaymentViewController: UIViewController {
         cvvTextField.textField.placeholder = NSLocalizedString("CVV2*", comment: "")
         cvvTextField.textField.delegate = self
         cvvTextField.setKeyboardType(.numberPad)
-        cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.cvv.value.isEmpty {
-                self.viewModel.cvvIsCorrectLength.single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.cvvTextField.setError(nil)
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
+        cvvTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.cvv.asDriver(), viewModel.cvvIsCorrectLength))
+            .drive(onNext: { [weak self] (cvv, cvvIsCorrectLength) in
+                if !cvv.isEmpty && !cvvIsCorrectLength {
+                    self?.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
+                }
+                self?.accessibilityErrorLabel()
+            }).disposed(by: disposeBag)
+        
+        cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.cvvTextField.setError(nil)
+                self?.accessibilityErrorLabel()
+            }).disposed(by: disposeBag)
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
@@ -193,11 +193,10 @@ class MakePaymentViewController: UIViewController {
         paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.setKeyboardType(.decimalPad)
-        viewModel.paymentAmountErrorMessage.asObservable().subscribe(onNext: { errorMessage in
-            self.paymentAmountTextField.setError(errorMessage)
-            self.accessibilityErrorLabel()
-            
-        }).disposed(by: self.disposeBag)
+        viewModel.paymentAmountErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in
+            self?.paymentAmountTextField.setError(errorMessage)
+            self?.accessibilityErrorLabel()
+        }).disposed(by: disposeBag)
         
         fixedPaymentAmountTextLabel.text = NSLocalizedString("Payment Amount", comment: "")
         fixedPaymentAmountTextLabel.textColor = .deepGray
@@ -280,6 +279,7 @@ class MakePaymentViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        dLog()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -294,7 +294,7 @@ class MakePaymentViewController: UIViewController {
         CardIOUtilities.preloadCardIO() // Speeds up subsequent launch
         cardIOViewController = CardIOPaymentViewController.init(paymentDelegate: self)
         cardIOViewController.disableManualEntryButtons = true
-        cardIOViewController.guideColor = UIColor.successGreen
+        cardIOViewController.guideColor = .successGreen
         cardIOViewController.hideCardIOLogo = true
         cardIOViewController.collectCardholderName = false
         cardIOViewController.collectExpiry = false
@@ -357,17 +357,17 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowDeletePaymentButton.map(!).drive(deletePaymentButton.rx.isHidden).disposed(by: disposeBag)
         
         // Bill Matrix
-        viewModel.shouldShowBillMatrixView.map(!).drive(billMatrixView.rx.isHidden).disposed(by: disposeBag)
+        billMatrixView.isHidden = !viewModel.shouldShowBillMatrixView
         
         // Wallet empty state info footer
         viewModel.shouldShowWalletFooterView.map(!).drive(walletFooterView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowWalletFooterView.drive(walletFooterSpacerView.rx.isHidden).disposed(by: disposeBag)
         
         // Sticky Footer
-        viewModel.shouldShowStickyFooterView.drive(onNext: { shouldShow in
-            self.stickyPaymentFooterHeightConstraint.constant = shouldShow ? 80 : 0
+        viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
+            self?.stickyPaymentFooterHeightConstraint.constant = shouldShow ? 80 : 0
             // For some reason, just hiding stickyPaymentFooterView was not enough to hide the label...
-            self.stickyPaymentFooterTextContainer.isHidden = !shouldShow
+            self?.stickyPaymentFooterTextContainer.isHidden = !shouldShow
         }).disposed(by: disposeBag)
     }
     
@@ -375,8 +375,9 @@ class MakePaymentViewController: UIViewController {
         // Inline payment
         viewModel.oneTouchPayDescriptionLabelText.drive(addBankFormView.oneTouchPayDescriptionLabel.rx.text).disposed(by: disposeBag)
         viewModel.oneTouchPayDescriptionLabelText.drive(addCardFormView.oneTouchPayDescriptionLabel.rx.text).disposed(by: disposeBag)
-        viewModel.bgeCommercialUserEnteringVisa.asObservable().subscribe(onNext: { enteringVisa in
-            self.addCardFormView.cardNumberTextField.setError(enteringVisa ? NSLocalizedString("Business customers cannot use VISA to make a payment", comment: "") : nil)
+        viewModel.bgeCommercialUserEnteringVisa.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] enteringVisa in
+                self?.addCardFormView.cardNumberTextField.setError(enteringVisa ? NSLocalizedString("Business customers cannot use VISA to make a payment", comment: "") : nil)
         }).disposed(by: disposeBag)
         
         // Selected Wallet Item
@@ -399,9 +400,10 @@ class MakePaymentViewController: UIViewController {
         viewModel.paymentAmountFeeLabelText.asDriver().drive(paymentAmountFeeLabel.rx.text).disposed(by: disposeBag)
         viewModel.paymentAmount.asDriver().drive(paymentAmountTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
         paymentAmountTextField.textField.rx.text.orEmpty.bind(to: viewModel.paymentAmount).disposed(by: disposeBag)
-        paymentAmountTextField.textField.rx.controlEvent(.editingChanged).subscribe(onNext: {
-            self.viewModel.formatPaymentAmount()
-        }).disposed(by: disposeBag)
+        paymentAmountTextField.textField.rx.controlEvent(.editingChanged).asDriver()
+            .drive(onNext: { [weak self] in
+                self?.viewModel.formatPaymentAmount()
+            }).disposed(by: disposeBag)
         
         // Fixed Payment Amount - if allowEdits is false
         viewModel.paymentAmount.asDriver().drive(fixedPaymentAmountValueLabel.rx.text).disposed(by: disposeBag)
@@ -418,12 +420,16 @@ class MakePaymentViewController: UIViewController {
         viewModel.walletFooterLabelText.drive(walletFooterLabel.rx.text).disposed(by: disposeBag)
         
         // Sticky Footer Payment View
-        viewModel.totalPaymentDisplayString.map { String(format: NSLocalizedString("Total Payment: %@", comment: ""), $0) }.drive(stickyPaymentFooterPaymentLabel.rx.text).disposed(by: disposeBag)
+        viewModel.totalPaymentDisplayString.map { String(format: NSLocalizedString("Total Payment: %@", comment: ""), $0 ?? "--") }
+            .drive(stickyPaymentFooterPaymentLabel.rx.text)
+            .disposed(by: disposeBag)
+        
         viewModel.paymentAmountFeeFooterLabelText.drive(stickyPaymentFooterFeeLabel.rx.text).disposed(by: disposeBag)
     }
     
     func bindButtonTaps() {
-        paymentAccountButton.rx.touchUpInside.subscribe(onNext: {
+        paymentAccountButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            guard let `self` = self else { return }
             self.view.endEditing(true)
             let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
             miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
@@ -448,7 +454,8 @@ class MakePaymentViewController: UIViewController {
             self.navigationController?.pushViewController(miniWalletVC, animated: true)
         }).disposed(by: disposeBag)
         
-        paymentDateButton.rx.touchUpInside.subscribe(onNext: {
+        paymentDateButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            guard let `self` = self else { return }
             self.view.endEditing(true)
             
             let calendarVC = PDTSimpleCalendarViewController()
@@ -459,99 +466,59 @@ class MakePaymentViewController: UIViewController {
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).disposed(by: disposeBag)
         
-        addBankAccountButton.rx.touchUpInside.subscribe(onNext: {
-            self.viewModel.inlineBank.value = true
+        addBankAccountButton.rx.touchUpInside.map { _ in true }.bind(to: viewModel.inlineBank).disposed(by: disposeBag)
+        
+        addCreditCardButton.rx.touchUpInside.map { _ in true }.bind(to: viewModel.inlineCard).disposed(by: disposeBag)
+        
+        deletePaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            self?.onDeletePaymentPress()
         }).disposed(by: disposeBag)
         
-        addCreditCardButton.rx.touchUpInside.subscribe(onNext: {
-            self.viewModel.inlineCard.value = true
+        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            self?.onPrivacyPolicyPress()
         }).disposed(by: disposeBag)
-        
-        deletePaymentButton.rx.touchUpInside.subscribe(onNext: {
-            self.onDeletePaymentPress()
-        }).disposed(by: disposeBag)
-        
-        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: onPrivacyPolicyPress).disposed(by: disposeBag)
     }
     
     func bindInlineBankAccessibility() {
-        addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.addBankFormViewModel.routingNumber.value.isEmpty {
-                self.viewModel.addBankFormViewModel.routingNumberIsValid().single().subscribe(onNext: { valid in
-                    self.accessibilityErrorLabel()
-                }).disposed(by: self.disposeBag)
-            }
-        }).disposed(by: disposeBag)
-        
-        addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if !self.viewModel.addBankFormViewModel.accountNumber.value.isEmpty {
-                self.viewModel.addBankFormViewModel.accountNumberIsValid().single().subscribe(onNext: { valid in
-                    self.accessibilityErrorLabel()
-                }).disposed(by: self.disposeBag)
-            }
-        }).disposed(by: disposeBag)
-        
-        addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        viewModel.addBankFormViewModel.confirmAccountNumberMatches().subscribe(onNext: { matches in
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        viewModel.addBankFormViewModel.nicknameErrorString().subscribe(onNext: { valid in
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
+        Driver.merge(
+            addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+                .withLatestFrom(viewModel.addBankFormViewModel.routingNumber.asDriver())
+                .filter { !$0.isEmpty }
+                .toVoid(),
+            
+            addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+            
+            addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+                .withLatestFrom(viewModel.addBankFormViewModel.accountNumber.asDriver())
+                .filter { !$0.isEmpty }
+                .toVoid(),
+            
+            addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+            
+            viewModel.addBankFormViewModel.confirmAccountNumberMatches.toVoid(),
+            
+            viewModel.addBankFormViewModel.nicknameErrorString.toVoid()
+            )
+            .drive(onNext: { [weak self] in
+                self?.accessibilityErrorLabel()
+            }).disposed(by: disposeBag)
     }
     
     func bindInlineCardAccessibility() {
-        addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: {
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
-        viewModel.addCardFormViewModel.nicknameErrorString().map{ $0 == nil }.subscribe(onNext: { valid in
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
+        Driver.merge(addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+                     addCardFormView.expMonthTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+                     addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+                     addCardFormView.cardNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+                     addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+                     addCardFormView.expYearTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+                     addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+                     addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+                     addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
+                     addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
+                     viewModel.addCardFormViewModel.nicknameErrorString.toVoid())
+            .drive(onNext: { [weak self] in
+                self?.accessibilityErrorLabel()
+            }).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {
@@ -576,14 +543,14 @@ class MakePaymentViewController: UIViewController {
         message += paymentAmountTextField.getError()
         
         if message.isEmpty {
-            self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+            nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            self.nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
+            nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
         }
     }
     
     func onNextPress() {
-        self.view.endEditing(true)
+        view.endEditing(true)
         
         var shouldShowOneTouchPayWarning = false
         if viewModel.inlineBank.value {
@@ -603,7 +570,8 @@ class MakePaymentViewController: UIViewController {
         if shouldShowOneTouchPayWarning {
             let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { [weak self] _ in
+                guard let `self` = self else { return }
                 self.performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
             }))
             present(alertVc, animated: true, completion: nil)
@@ -621,26 +589,27 @@ class MakePaymentViewController: UIViewController {
     func onDeletePaymentPress() {
         let confirmAlert = UIAlertController(title: NSLocalizedString("Delete Scheduled Payment", comment: ""), message: NSLocalizedString("Are you sure you want to delete this scheduled payment?", comment: ""), preferredStyle: .alert)
         confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { _ in
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { [weak self] _ in
             LoadingView.show()
-            self.viewModel.cancelPayment(onSuccess: { 
+            self?.viewModel.cancelPayment(onSuccess: { [weak self] in
                 LoadingView.hide()
 
+                guard let `self` = self, let navigationController = self.navigationController else { return }
                 // Always pop back to the root billing history screen here (because MoreBillingHistoryViewController does not refetch data)
-                for vc in (self.navigationController?.viewControllers)! {
+                for vc in navigationController.viewControllers {
                     guard let dest = vc as? BillingHistoryViewController else {
                         continue
                     }
                     dest.onPaymentDelete()
-                    self.navigationController?.popToViewController(dest, animated: true)
+                    navigationController.popToViewController(dest, animated: true)
                     return
                 }
-                self.navigationController?.popViewController(animated: true)
-            }, onError: { errMessage in
+                navigationController.popViewController(animated: true)
+            }, onError: { [weak self] errMessage in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
+                self?.present(alertVc, animated: true, completion: nil)
             })
         }))
         present(confirmAlert, animated: true, completion: nil)

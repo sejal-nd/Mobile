@@ -70,7 +70,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Payment Details", comment: "")
+        title = NSLocalizedString("Payment Details", comment: "")
         
         viewModel = BillingHistoryDetailsViewModel.init(paymentService: ServiceFactory.createPaymentService(), billingHistoryItem: billingHistoryItem)
         
@@ -194,7 +194,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     
     func bindLoadingStates() {
         
-        viewModel.paymentAccount.drive(self.paymentAccountDetailsLabel.rx.text).disposed(by: self.bag)
+        viewModel.paymentAccount.drive(paymentAccountDetailsLabel.rx.text).disposed(by: bag)
         
         paymentTypeLabel.text = viewModel.paymentTypeLabel
         paymentTypeDetailLabel.text = viewModel.paymentType
@@ -202,16 +202,19 @@ class BillingHistoryDetailsViewController: UIViewController {
         paymentAmountLabel.text = viewModel.paymentAmountLabel
         paymentAmountDetailsLabel.text = viewModel.amountPaid
         
-        viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: self.bag)
-        viewModel.fetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: self.bag)
-        viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: self.bag)
+        viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: bag)
+        viewModel.fetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: bag)
+        viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: bag)
         
-        viewModel.convenienceFee.drive(self.convenienceFeeDetailsLabel.rx.text).disposed(by: self.bag)
-        viewModel.totalAmountPaid.drive(self.totalAmountPaidDetailsLabel.rx.text).disposed(by: self.bag)
+        viewModel.convenienceFee.drive(convenienceFeeDetailsLabel.rx.text).disposed(by: bag)
+        viewModel.totalAmountPaid.drive(totalAmountPaidDetailsLabel.rx.text).disposed(by: bag)
         
         paymentStatusDetailsLabel.text = viewModel.paymentStatus
         confirmationNumberDetailsLabel.text = viewModel.confirmationNumber
 
     }
     
+    deinit {
+        dLog()
+    }
 }

@@ -31,61 +31,43 @@ class EditCreditCardViewModel {
         self.walletService = walletService
     }
     
-    func saveButtonIsEnabled() -> Observable<Bool> {
-        return Observable.combineLatest(cardDataEntered(), oneTouchPayInitialValue.asObservable(), oneTouchPay.asObservable()) {
-            return $0 || ($1 != $2)
+    private(set) lazy var saveButtonIsEnabled: Driver<Bool> = Driver.combineLatest(self.cardDataEntered,
+                                                                                   self.oneTouchPayInitialValue.asDriver(),
+                                                                                   self.oneTouchPay.asDriver())
+    { $0 || ($1 != $2) }
+    
+    private(set) lazy var cardDataEntered: Driver<Bool> = Driver.combineLatest([self.expMonthIs2Digits,
+                                                                                self.expMonthIsValidMonth,
+                                                                                self.expYearIs4Digits,
+                                                                                self.expYearIsNotInPast,
+                                                                                self.cvvIsCorrectLength,
+                                                                                self.zipCodeIs5Digits])
+    { !$0.contains(false) }
+    
+    private(set) lazy var expMonthIs2Digits: Driver<Bool> = self.expMonth.asDriver().map { $0.characters.count == 2 }
+    
+    private(set) lazy var expMonthIsValidMonth: Driver<Bool> = self.expMonth.asDriver().map {
+            (1...12).map { String(format: "%02d", $0) }.contains($0)
         }
+    
+    private(set) lazy var expYearIs4Digits: Driver<Bool> = self.expYear.asDriver().map { $0.characters.count == 4
+        }
+    
+    private(set) lazy var expYearIsNotInPast: Driver<Bool> = self.expYear.asDriver().map {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        let enteredYear = formatter.date(from: $0)
+        let todayYear = formatter.date(from: formatter.string(from: Date()))
+        
+        if let enteredYear = enteredYear, let todayYear = todayYear {
+            return enteredYear >= todayYear
+        }
+        return false
     }
     
-    func cardDataEntered() -> Observable<Bool> {
-        return Observable.combineLatest([expMonthIs2Digits(), expMonthIsValidMonth(), expYearIs4Digits(), expYearIsNotInPast(), cvvIsCorrectLength(), zipCodeIs5Digits()]) {
-            return !$0.contains(false)
-        }
-    }
+    private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.characters.count == 3 || $0.characters.count == 4 }
     
-    func expMonthIs2Digits() -> Observable<Bool> {
-        return expMonth.asObservable().map {
-            return $0.characters.count == 2
-        }
-    }
-    
-    func expMonthIsValidMonth() -> Observable<Bool> {
-        return expMonth.asObservable().map {
-            return $0 == "01" || $0 == "02" || $0 == "03" || $0 == "04" || $0 == "05" || $0 == "06" || $0 == "07" || $0 == "08" || $0 == "09" || $0 == "10" || $0 == "11" || $0 == "12"
-        }
-    }
-    
-    func expYearIs4Digits() -> Observable<Bool> {
-        return expYear.asObservable().map {
-            return $0.characters.count == 4
-        }
-    }
-    
-    func expYearIsNotInPast() -> Observable<Bool> {
-        return expYear.asObservable().map {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy"
-            let enteredYear = formatter.date(from: $0)
-            let todayYear = formatter.date(from: formatter.string(from: Date()))
-            
-            if let enteredYear = enteredYear, let todayYear = todayYear {
-                return enteredYear >= todayYear
-            }
-            return false
-        }
-    }
-    
-    func cvvIsCorrectLength() -> Observable<Bool> {
-        return cvv.asObservable().map {
-            return $0.characters.count == 3 || $0.characters.count == 4
-        }
-    }
-    
-    func zipCodeIs5Digits() -> Observable<Bool> {
-        return zipCode.asObservable().map {
-            return $0.characters.count == 5
-        }
-    }
+    private(set) lazy var zipCodeIs5Digits: Driver<Bool> = self.zipCode.asDriver().map { $0.characters.count == 5 }
     
     func editCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         walletService.updateCreditCard(walletItem.walletItemID!, customerNumber: AccountsStore.sharedInstance.customerIdentifier, expirationMonth: expMonth.value, expirationYear: expYear.value, securityCode: cvv.value, postalCode: zipCode.value)
@@ -133,7 +115,7 @@ class EditCreditCardViewModel {
             .disposed(by: disposeBag)
     }
     
-    func getOneTouchDisplayString() -> String {
+    var oneTouchDisplayString: String {
         if let item = oneTouchPayItem {
             switch item.bankOrCard {
             case .bank:

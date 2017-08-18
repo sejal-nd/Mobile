@@ -34,7 +34,7 @@ class BillingHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Activity", comment: "")
+        title = NSLocalizedString("Activity", comment: "")
         
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -49,7 +49,7 @@ class BillingHistoryViewController: UIViewController {
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.isHidden = true
         
-        self.tableView.register(UINib(nibName: BillingHistoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: "Cell")
+        tableView.register(UINib(nibName: BillingHistoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: "Cell")
         
         getBillingHistory()
     }
@@ -67,9 +67,10 @@ class BillingHistoryViewController: UIViewController {
     }
     
     func getBillingHistory() {
-        self.loadingIndicator.isHidden = false;
-        self.tableView.isHidden = true;
-        viewModel.getBillingHistory(success: { (billingHistory) in
+        loadingIndicator.isHidden = false;
+        tableView.isHidden = true;
+        viewModel.getBillingHistory(success: { [weak self] (billingHistory) in
+            guard let `self` = self else { return }
             self.loadingIndicator.isHidden = true
             self.tableView.isHidden = false
             
@@ -83,9 +84,9 @@ class BillingHistoryViewController: UIViewController {
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
             }
             
-        }) { (error) in
-            self.errorLabel.isHidden = false
-            self.loadingIndicator.isHidden = true
+        }) { [weak self] (error) in
+            self?.errorLabel.isHidden = false
+            self?.loadingIndicator.isHidden = true
         }
     }
 
@@ -98,16 +99,16 @@ class BillingHistoryViewController: UIViewController {
         view.endEditing(true)
         
         if let vc = segue.destination as? MoreBillingHistoryViewController {
-            vc.accountDetail = self.accountDetail
+            vc.accountDetail = accountDetail
             
-            vc.billingSelection = self.billingSelection
+            vc.billingSelection = billingSelection
             vc.billingHistory = billingHistory
             
         } else if let vc = segue.destination as? BillingHistoryDetailsViewController {
-            let billingHistoryItem = selectedIndexPath.section == 0 ? self.billingHistory.upcoming[selectedIndexPath.row] : self.billingHistory.past[selectedIndexPath.row]
+            let billingHistoryItem = selectedIndexPath.section == 0 ? billingHistory.upcoming[selectedIndexPath.row] : billingHistory.past[selectedIndexPath.row]
             vc.billingHistoryItem = billingHistoryItem
         } else if let vc = segue.destination as? ViewBillViewController {
-            let billingHistoryItem = selectedIndexPath.section == 0 ? self.billingHistory.upcoming[selectedIndexPath.row] : self.billingHistory.past[selectedIndexPath.row]
+            let billingHistoryItem = selectedIndexPath.section == 0 ? billingHistory.upcoming[selectedIndexPath.row] : billingHistory.past[selectedIndexPath.row]
             vc.viewModel.billDate = billingHistoryItem.date.apiFormatDate
         } else if let vc = segue.destination as? BGEAutoPayViewController {
             vc.accountDetail = accountDetail
@@ -121,6 +122,10 @@ class BillingHistoryViewController: UIViewController {
             self.view.showToast(message)
         })
     }
+    
+    deinit {
+        dLog()
+    }
 }
 
 extension BillingHistoryViewController: UITableViewDelegate {
@@ -132,13 +137,13 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         //past billing history
         if indexPath.section == 1 {
-            guard indexPath.row != billingHistory.mostRecentSixMonths.count, let type = self.billingHistory.mostRecentSixMonths[indexPath.row].type else {
+            guard indexPath.row != billingHistory.mostRecentSixMonths.count, let type = billingHistory.mostRecentSixMonths[indexPath.row].type else {
                 return
             }
             if type == BillingHistoryProperties.TypeBilling.rawValue {
                 showBillPdf()
             } else {
-                self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+                performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
             }
         //upcoming billing history
         } else {
@@ -151,18 +156,18 @@ extension BillingHistoryViewController: UITableViewDelegate {
             if indexPath.row == 0 && (accountDetail.isBGEasy || accountDetail.isAutoPay) {
                 if accountDetail.isAutoPay {
                     if opco == .bge {
-                        self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
+                        performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
                     } else {
-                        self.performSegue(withIdentifier: "autoPaySegue", sender: self)
+                        performSegue(withIdentifier: "autoPaySegue", sender: self)
                     }
                 } else if accountDetail.isBGEasy {
-                    self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                    performSegue(withIdentifier: "viewBGEasySegue", sender: self)
                 }
             } else {
                 if opco == .bge {
                     handleBGEUpcomingClick(indexPath: selectedIndexPath) 
                 } else {
-                    let billingItem = self.billingHistory.upcoming[selectedIndexPath.row]
+                    let billingItem = billingHistory.upcoming[selectedIndexPath.row]
                     guard let status = billingItem.status else { return }
                     
                     //pending payments do not get a tap so we only handle scheduled/cancelled payments
@@ -173,7 +178,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
                     } else if status == BillingHistoryProperties.StatusCanceled.rawValue || 
                         status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
                         status == BillingHistoryProperties.StatusFailed.rawValue {
-                        self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+                        performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
                     }
                 }
             }
@@ -189,7 +194,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
             status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
             status == BillingHistoryProperties.StatusFailed.rawValue {
             
-            self.performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+            performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
             
         } else { //It's scheduled hopefully
             handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
@@ -204,8 +209,8 @@ extension BillingHistoryViewController: UITableViewDelegate {
             } else {  // recurring/automatic
                 let storyboard = UIStoryboard(name: "Bill", bundle: nil)
                 if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
-                    vc.accountDetail = self.accountDetail
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    vc.accountDetail = accountDetail
+                    navigationController?.pushViewController(vc, animated: true)
                 }
             }
         } else { //PECO/COMED scheduled
@@ -220,9 +225,9 @@ extension BillingHistoryViewController: UITableViewDelegate {
         if Environment.sharedInstance.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
             let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
+            present(alertVC, animated: true, completion: nil)
         } else {
-            self.performSegue(withIdentifier: "viewBillSegue", sender: self)
+            performSegue(withIdentifier: "viewBillSegue", sender: self)
         }
     }
     
@@ -234,7 +239,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
             let paymentDetail = PaymentDetail(walletItemId: walletItemId, paymentAmount: paymentAmount, paymentDate: billingItem.date)
             paymentVc.paymentDetail = paymentDetail
         }
-        self.navigationController?.pushViewController(paymentVc, animated: true)
+        navigationController?.pushViewController(paymentVc, animated: true)
     }
     
 }
@@ -251,7 +256,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         }
         
         if section == 0 {
-            let upcoming = self.billingHistory.upcoming
+            let upcoming = billingHistory.upcoming
             if upcoming.count == 0 {
                 return accountDetail.isBGEasy || accountDetail.isAutoPay ? 1 : 0
             }
@@ -271,9 +276,9 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if self.billingHistory != nil {
-            if section == 0 && self.billingHistory.upcoming.count == 0 && !accountDetail.isAutoPay && !accountDetail.isBGEasy {
+            if section == 0 && billingHistory.upcoming.count == 0 && !accountDetail.isAutoPay && !accountDetail.isBGEasy {
                 return 0.000001
-            } else if section == 1 && self.billingHistory.past.count == 0 {
+            } else if section == 1 && billingHistory.past.count == 0 {
                 return 0.000001
             }
         }
@@ -283,7 +288,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if self.billingHistory != nil {
-            if section == 0 && self.billingHistory.upcoming.count != 0 {
+            if section == 0 && billingHistory.upcoming.count != 0 {
                 return 22
             }
         }
@@ -292,8 +297,9 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if self.billingHistory != nil {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? { 
+        
+        if billingHistory != nil {
             if section == 0 {
                 if accountDetail.isBGEasy || accountDetail.isAutoPay {
                     return headerView(section: section)
@@ -311,7 +317,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if self.billingHistory != nil {
+        if billingHistory != nil {
             return footerView(section: section)
         }
         
@@ -344,18 +350,18 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func headerView(section: Int) -> UIView {
         let view = UIView() // The width will be the same as the cell, and the height should be set in tableView:heightForRowAtIndexPath:
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         let label = UILabel()
         let button = UIButton(type: UIButtonType.system)
         
         label.text = section == 0 ? NSLocalizedString("UPCOMING", comment: "") : NSLocalizedString("PAST", comment: "")
         label.font = label.font.withSize(14)
-        label.textColor = UIColor.deepGray
+        label.textColor = .deepGray
         
         var titleText = ""
         if section == 0 {
             if billingHistory.upcoming.count > 3 {
-                titleText = "View All (\(self.billingHistory.upcoming.count))"
+                titleText = "View All (\(billingHistory.upcoming.count))"
             } else {
                 button.isEnabled = false
                 button.isAccessibilityElement = false
@@ -395,28 +401,26 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func footerView(section: Int) -> UIView {
-        
-        let isabaleneColor = UIColor(red: 233/255.0, green: 235/255.0, blue: 238/255.0, alpha: 1.00)
         let view = UIView() 
         
         if section == 0 {
-           view.backgroundColor = isabaleneColor 
+           view.backgroundColor = .softGray
         } else {
-            view.backgroundColor = UIColor.clear
+            view.backgroundColor = .clear
         }
         return view
     }
     
     func viewAllUpcoming() {
-        self.billingSelection = .upcoming
+        billingSelection = .upcoming
         
-        self.performSegue(withIdentifier: "showMoreBillingHistorySegue", sender: self)
+        performSegue(withIdentifier: "showMoreBillingHistorySegue", sender: self)
     }
     
     func viewMorePast() {
-        self.billingSelection = .history
+        billingSelection = .history
         
-        self.performSegue(withIdentifier: "showMoreBillingHistorySegue", sender: self)
+        performSegue(withIdentifier: "showMoreBillingHistorySegue", sender: self)
     }
     
     func viewMoreTableViewCell(indexPath: IndexPath) -> UITableViewCell {
@@ -475,7 +479,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func onPaymentDelete() { // Called by MakePaymentViewController to display toast and refresh the data
-        self.getBillingHistory()
+        getBillingHistory()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Scheduled payment deleted", comment: ""))
         })

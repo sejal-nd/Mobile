@@ -28,20 +28,21 @@ class ViewBillViewModel {
     func fetchBillPDFData(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         billService.fetchBillPdf(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, billDate: billDate)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { billDataString in
+            .subscribe(onNext: { [weak self] billDataString in
                 if let pdfData = Data(base64Encoded: billDataString, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) {
-                    self.pdfData = pdfData
+                    self?.pdfData = pdfData
                     onSuccess()
                 } else {
                     onError("Could not parse PDF Data")
                 }
-            }, onError: { errMessage in
-                onError(errMessage.localizedDescription)
-                let screenView = self.isCurrent ? AnalyticsPageView.BillViewCurrentError : AnalyticsPageView.BillViewPastError
-                let serviceError = errMessage as? ServiceError
-                Analytics().logScreenView(screenView.rawValue,
-                                          dimensionIndex: Dimensions.DIMENSION_ERROR_CODE.rawValue,
-                                          dimensionValue: (serviceError?.serviceCode)!)
+                }, onError: { [weak self] errMessage in
+                    onError(errMessage.localizedDescription)
+                    guard let `self` = self else { return }
+                    let screenView = self.isCurrent ? AnalyticsPageView.BillViewCurrentError : AnalyticsPageView.BillViewPastError
+                    let serviceError = errMessage as? ServiceError
+                    Analytics().logScreenView(screenView.rawValue,
+                                              dimensionIndex: Dimensions.DIMENSION_ERROR_CODE.rawValue,
+                                              dimensionValue: (serviceError?.serviceCode)!)
             })
             .disposed(by: disposeBag)
     }

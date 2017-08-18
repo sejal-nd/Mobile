@@ -42,7 +42,8 @@ class LoginViewController: UIViewController {
         
         view.backgroundColor = .primaryColor
 
-        viewModel.touchIdEnabled.asObservable().subscribe(onNext: { touchIDEnabled in
+        viewModel.touchIdEnabled.asDriver().drive(onNext: { [weak self] touchIDEnabled in
+            guard let `self` = self else { return }
             if touchIDEnabled {
                 self.touchIDButton.isHidden = false
                 self.loginFormViewHeightConstraint.constant = 420
@@ -70,9 +71,10 @@ class LoginViewController: UIViewController {
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
     
         // Two-way data binding for the username/password fields
-        viewModel.username.asObservable().bind(to: usernameTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
-        viewModel.password.asObservable().bind(to: passwordTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
-        viewModel.password.asObservable().subscribe(onNext: { (password) in
+        viewModel.username.asDriver().drive(usernameTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
+        viewModel.password.asDriver().drive(passwordTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
+        viewModel.password.asDriver().drive(onNext: { [weak self] (password) in
+            guard let `self` = self else { return }
             if let autofilledPw = self.viewModel.touchIDAutofilledPassword, password != autofilledPw {
                 // The password field was successfully auto-filled from Touch ID, but then the user manually changed it,
                 // presumably because the password has been changed and is now different than what's stored in the keychain.
@@ -91,11 +93,11 @@ class LoginViewController: UIViewController {
         
         keepMeSignedInSwitch.rx.isOn.bind(to: viewModel.keepMeSignedIn).disposed(by: disposeBag)
         
-        usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            self.passwordTextField.textField.becomeFirstResponder()
+        usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver().drive(onNext: { [weak self] _ in
+            self?.passwordTextField.textField.becomeFirstResponder()
         }).disposed(by: disposeBag)
-        passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { _ in
-            self.onLoginPress()
+        passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver().drive(onNext: { [weak self] _ in
+            self?.onLoginPress()
         }).disposed(by: disposeBag)
         
 //        // This hack (on editingDidBegin/editingDidEnd) prevents the automatic scrolling that happens when the password field is
@@ -151,11 +153,11 @@ class LoginViewController: UIViewController {
         
         
         // Reset the view for when user pops back from ChangePasswordViewController
-        self.signInButton.reset()
-        self.signInButton.accessibilityLabel = "Sign In";
-        self.signInButton.accessibilityViewIsModal = false;
-        self.passwordTextField.textField.text = ""
-        self.passwordTextField.textField.sendActions(for: .editingChanged)
+        signInButton.reset()
+        signInButton.accessibilityLabel = "Sign In";
+        signInButton.accessibilityViewIsModal = false;
+        passwordTextField.textField.text = ""
+        passwordTextField.textField.sendActions(for: .editingChanged)
         
 
     }
@@ -190,9 +192,11 @@ class LoginViewController: UIViewController {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
         })
         
-        viewModel.performLogin(onSuccess: { (loggedInWithTempPassword: Bool) in
+        viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
-            self.signInButton.setSuccess(animationCompletion: { () in
+            guard let `self` = self else { return }
+            self.signInButton.setSuccess(animationCompletion: { [weak self] in
+                guard let `self` = self else { return }
                 self.navigationController?.view.isUserInteractionEnabled = true
                 
                 // Get the last username that logged in first, and then store the one currently logging in
@@ -209,12 +213,12 @@ class LoginViewController: UIViewController {
                     if self.viewModel.isDeviceTouchIDCompatible() {
                         if self.viewModel.shouldPromptToEnableTouchID() {
                             let touchIDAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: NSLocalizedString("Would you like to use Touch ID to sign in from now on?", comment: ""), preferredStyle: .alert)
-                            touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { (action) in
-                                self.launchMainApp()
+                            touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
+                                self?.launchMainApp()
                             }))
-                            touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
-                                self.viewModel.storePasswordInTouchIDKeychain()
-                                self.launchMainApp()
+                            touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
+                                self?.viewModel.storePasswordInTouchIDKeychain()
+                                self?.launchMainApp()
                                 Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
                             }))
                             self.present(touchIDAlert, animated: true, completion: nil)
@@ -223,13 +227,13 @@ class LoginViewController: UIViewController {
                             let message = String(format: NSLocalizedString("Touch ID settings for %@ will be disabled upon signing in as %@. Would you like to enable Touch ID for %@ at this time?", comment: ""), lastLoggedInUsername!, self.viewModel.username.value, self.viewModel.username.value)
                             
                             let differentAccountAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: message, preferredStyle: .alert)
-                            differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { (action) in
-                                self.viewModel.disableTouchID()
-                                self.launchMainApp()
+                            differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
+                                self?.viewModel.disableTouchID()
+                                self?.launchMainApp()
                             }))
-                            differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { (action) in
-                                self.viewModel.storePasswordInTouchIDKeychain()
-                                self.launchMainApp()
+                            differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
+                                self?.viewModel.storePasswordInTouchIDKeychain()
+                                self?.launchMainApp()
                                 Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
                             }))
                             self.present(differentAccountAlert, animated: true, completion: nil)
@@ -241,7 +245,8 @@ class LoginViewController: UIViewController {
                     }
                 }
             })
-        }, onRegistrationNotComplete: {
+        }, onRegistrationNotComplete: { [weak self] in
+            guard let `self` = self else { return }
             self.navigationController?.view.isUserInteractionEnabled = true
             self.signInButton.reset()
             self.signInButton.accessibilityLabel = "Sign In";
@@ -249,21 +254,22 @@ class LoginViewController: UIViewController {
             
             let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertVC.addAction(UIAlertAction(title: NSLocalizedString("Resend", comment: ""), style: .default, handler: { (action) in
+            alertVC.addAction(UIAlertAction(title: NSLocalizedString("Resend", comment: ""), style: .default, handler: { [weak self] (action) in
                 LoadingView.show()
-                self.viewModel.resendValidationEmail(onSuccess: {
+                guard let `self` = self else { return }
+                self.viewModel.resendValidationEmail(onSuccess: { [weak self] in
                     LoadingView.hide()
-                    self.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
+                    self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
                     Analytics().logScreenView(AnalyticsPageView.RegisterResendEmail.rawValue)
-                }, onError: { errMessage in
+                }, onError: { [weak self] errMessage in
                     LoadingView.hide()
-                    self.showErrorAlertWith(title: NSLocalizedString("Error", comment: ""), message: errMessage)
+                    self?.showErrorAlertWith(title: NSLocalizedString("Error", comment: ""), message: errMessage)
                 })
             }))
             self.present(alertVC, animated: true, completion: nil)
-        }, onError: { (title, message) in
-            self.navigationController?.view.isUserInteractionEnabled = true
-            self.showErrorAlertWith(title: title, message: message)
+        }, onError: { [weak self] (title, message) in
+            self?.navigationController?.view.isUserInteractionEnabled = true
+            self?.showErrorAlertWith(title: title, message: message)
         })
     }
     
@@ -315,7 +321,7 @@ class LoginViewController: UIViewController {
     func launchMainApp() {
         Analytics().logScreenView(AnalyticsPageView.LoginComplete.rawValue)
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        self.present(viewController!, animated: true, completion: nil)
+        present(viewController!, animated: true, completion: nil)
     }
     
     func showErrorAlertWith(title: String?, message: String) {
@@ -325,11 +331,12 @@ class LoginViewController: UIViewController {
         
         let errorAlert = UIAlertController(title: title != nil ? title : NSLocalizedString("Sign In Error", comment: ""), message: message, preferredStyle: .alert)
         errorAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-        self.present(errorAlert, animated: true, completion: nil)
+        present(errorAlert, animated: true, completion: nil)
     }
     
     func presentTouchIDPrompt() {
-        viewModel.attemptLoginWithTouchID(onLoad: { // fingerprint was successful
+        viewModel.attemptLoginWithTouchID(onLoad: { [weak self] in // fingerprint was successful
+            guard let `self` = self else { return }
             
             Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
                                       signedIndimensionIndex: Dimensions.DIMENSION_KEEP_ME_SIGNIN_IN.rawValue,
@@ -345,15 +352,16 @@ class LoginViewController: UIViewController {
             self.signInButton.accessibilityLabel = "Loading";
             self.signInButton.accessibilityViewIsModal = true;
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
-        }, onSuccess: { (loggedInWithTempPassword: Bool) in // fingerprint and subsequent login successful
+        }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in // fingerprint and subsequent login successful
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            guard let `self` = self else { return }
             self.signInButton.setSuccess(animationCompletion: { () in
                 self.navigationController?.view.isUserInteractionEnabled = true
                 self.launchMainApp()
             })
-        }, onError: { (title, message) in // fingerprint successful but login failed
-            self.navigationController?.view.isUserInteractionEnabled = true
-            self.showErrorAlertWith(title: title, message: message + "\n\n" + NSLocalizedString("If you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
+        }, onError: { [weak self] (title, message) in // fingerprint successful but login failed
+            self?.navigationController?.view.isUserInteractionEnabled = true
+            self?.showErrorAlertWith(title: title, message: message + "\n\n" + NSLocalizedString("If you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
         })
     }
     
@@ -361,15 +369,15 @@ class LoginViewController: UIViewController {
         if let userInfo = notification.userInfo {
             if let guid = userInfo["guid"] as? String {
                 LoadingView.show()
-                viewModel.validateRegistration(guid: guid, onSuccess: {
+                viewModel.validateRegistration(guid: guid, onSuccess: { [weak self] in
                     LoadingView.hide()
-                    self.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
+                    self?.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
                     Analytics().logScreenView(AnalyticsPageView.RegisterAccountVerify.rawValue)
-                }, onError: { title, message in
+                }, onError: { [weak self] title, message in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertVc, animated: true, completion: nil)
+                    self?.present(alertVc, animated: true, completion: nil)
                 })
             }
         }
@@ -394,16 +402,16 @@ class LoginViewController: UIViewController {
     }
     
     func checkForMaintenanceMode(){
-        viewModel.checkForMaintenance(onSuccess: { isMaintenance in
+        viewModel.checkForMaintenance(onSuccess: { [weak self] isMaintenance in
             if isMaintenance {
-                self.navigationController?.view.isUserInteractionEnabled = true
+                self?.navigationController?.view.isUserInteractionEnabled = true
                 let ad = UIApplication.shared.delegate as! AppDelegate
                 ad.showMaintenanceMode()
             }
-        }, onError: { errorMessage in
+        }, onError: { [weak self] errorMessage in
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            self?.present(alertController, animated: true, completion: nil)
         })
     }
     
@@ -426,6 +434,10 @@ class LoginViewController: UIViewController {
         if let vc = segue.destination as? ForgotPasswordViewController {
             vc.delegate = self
         }
+    }
+    
+    deinit {
+        dLog()
     }
     
 }
@@ -451,7 +463,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
 extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDelegate {
     
     func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String) {
-        self.viewModel.username.value = username
+        viewModel.username.value = username
         Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAutoPopup.rawValue)
     }
 }

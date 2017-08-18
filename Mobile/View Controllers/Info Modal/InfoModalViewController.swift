@@ -58,5 +58,9 @@ class InfoModalViewController: DismissableFormSheetViewController {
     @IBAction func xAction(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    
+    deinit {
+        dLog()
+    }
 
 }

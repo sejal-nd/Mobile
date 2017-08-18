@@ -53,14 +53,12 @@ class HomeViewModel {
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.fetchData
         .map { _ in AccountsStore.sharedInstance.currentAccount }
         .unwrap()
-        .flatMapLatest(self.fetchAccountDetail)
+        .flatMapLatest { [unowned self] in
+            self.accountService.fetchAccountDetail(account: $0)
+                .trackActivity(self.fetchingTracker)
+                .materialize()
+        }
         .shareReplay(1)
-    
-    private func fetchAccountDetail(forAccount account: Account) -> Observable<Event<AccountDetail>> {
-        return accountService.fetchAccountDetail(account: account)
-            .trackActivity(self.fetchingTracker)
-            .materialize()
-    }
     
     let showTemplateCard = Environment.sharedInstance.opco != .comEd
     
@@ -79,14 +77,12 @@ class HomeViewModel {
     //MARK: - Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
         .map { $0.address ?? "" }
-        .flatMapLatest(self.fetchWeather)
+        .flatMapLatest { [unowned self] in
+            self.weatherService.fetchWeather(address: $0)
+                //.trackActivity(fetchingTracker)
+                .materialize()
+        }
         .shareReplay(1)
-    
-    private func fetchWeather(forAddress address: String) -> Observable<Event<WeatherItem>> {
-        return weatherService.fetchWeather(address: address)
-            //.trackActivity(fetchingTracker)
-            .materialize()
-    }
     
     private(set) lazy var greeting: Driver<String?> = self.fetchData
         .map { _ in Date().localizedGreeting }

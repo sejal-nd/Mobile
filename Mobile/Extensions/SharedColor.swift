@@ -11,75 +11,51 @@ import UIKit
 extension UIColor {
     
     @nonobjc static var blackText: UIColor {
-        get {
-            return UIColor(red: 35/255, green: 31/255, blue: 32/255, alpha: 1)
-        }
+        return UIColor(red: 35/255, green: 31/255, blue: 32/255, alpha: 1)
     }
     
     @nonobjc static var deepGray: UIColor {
-        get {
-            return UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
-        }
+        return UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
     }
     
     @nonobjc static var middleGray: UIColor {
-        get {
-            return UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1)
-        }
+        return UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1)
     }
     
     @nonobjc static var accentGray: UIColor {
-        get {
-            return UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
-        }
+        return UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
     }
     
     @nonobjc static var softGray: UIColor {
-        get {
-            return UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
-        }
+        return UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
     }
     
     @nonobjc static var ctaBlue: UIColor {
-        get {
-            return UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
-        }
+        return UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
     }
     
     @nonobjc static var actionBlue: UIColor {
-        get {
-            return UIColor(red: 0/255, green: 89/255, blue: 164/255, alpha: 1)
-        }
+        return UIColor(red: 0/255, green: 89/255, blue: 164/255, alpha: 1)
     }
     
     @nonobjc static var errorRed: UIColor {
-        get {
-            return UIColor(red: 113/255, green: 0/255, blue: 28/255, alpha: 1)
-        }
+        return UIColor(red: 113/255, green: 0/255, blue: 28/255, alpha: 1)
     }
     
     @nonobjc static var attentionOrange: UIColor {
-        get {
-            return UIColor(red: 254/255, green: 114/255, blue: 18/255, alpha: 1)
-        }
+        return UIColor(red: 254/255, green: 114/255, blue: 18/255, alpha: 1)
     }
     
     @nonobjc static var lightbulbYellow: UIColor {
-        get {
-            return UIColor(red: 255/255, green: 173/255, blue: 40/255, alpha: 1)
-        }
+        return UIColor(red: 255/255, green: 173/255, blue: 40/255, alpha: 1)
     }
     
     @nonobjc static var successGreen: UIColor {
-        get {
-            return UIColor(red: 120/255, green: 190/255, blue: 32/255, alpha: 1)
-        }
+        return UIColor(red: 120/255, green: 190/255, blue: 32/255, alpha: 1)
     }
     
     @nonobjc static var successGreenText: UIColor {
-        get {
-            return UIColor(red: 0/255, green: 122/255, blue: 51/255, alpha: 1)
-        }
+        return UIColor(red: 0/255, green: 122/255, blue: 51/255, alpha: 1)
     }
     
 //    convenience init(hex: String, alpha: CGFloat = 1) {

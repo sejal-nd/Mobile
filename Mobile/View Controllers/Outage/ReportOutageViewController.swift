@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import Lottie
 
 protocol ReportOutageViewControllerDelegate: class {
@@ -66,7 +67,7 @@ class ReportOutageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Report Outage", comment: "")
+        title = NSLocalizedString("Report Outage", comment: "")
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
@@ -91,14 +92,14 @@ class ReportOutageViewController: UIViewController {
 
             footerContainerView.isHidden = true
             
-            meterPingFuseBoxSwitch.rx.isOn.map(!).bind(to: viewModel.reportFormHidden).disposed(by: disposeBag)
-            viewModel.reportFormHidden.asObservable().bind(to: reportFormStackView.rx.isHidden).disposed(by: disposeBag)
-            viewModel.reportFormHidden.asObservable().subscribe(onNext: { hidden in
+            meterPingFuseBoxSwitch.rx.isOn.asDriver().map(!).drive(viewModel.reportFormHidden).disposed(by: disposeBag)
+            viewModel.reportFormHidden.asDriver().drive(reportFormStackView.rx.isHidden).disposed(by: disposeBag)
+            viewModel.reportFormHidden.asDriver().drive(onNext: { [weak self] hidden in
                 if hidden {
-                    self.reportFormStackView.spacing = 0
-                    self.reportFormStackView.endEditing(true)
+                    self?.reportFormStackView.spacing = 0
+                    self?.reportFormStackView.endEditing(true)
                 } else {
-                    self.reportFormStackView.spacing = 30
+                    self?.reportFormStackView.spacing = 30
                 }
             }).disposed(by: disposeBag)
             
@@ -146,22 +147,28 @@ class ReportOutageViewController: UIViewController {
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
-        phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            if self.viewModel.phoneNumber.value.characters.count > 0 {
-                self.viewModel.phoneNumberHasTenDigits().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
-                    }
-                }).disposed(by: self.disposeBag)
-            }
-            self.accessibilityErrorLabel()
-            
+        
+        phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .drive(onNext: { [weak self] in
+                self?.accessibilityErrorLabel()
+            })
+            .disposed(by: disposeBag)
+        
+        phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(viewModel.phoneNumber.asDriver())
+            .filter { !$0.isEmpty }
+            .withLatestFrom(viewModel.phoneNumberHasTenDigits)
+            .filter(!)
+            .drive(onNext: { [weak self] _ in
+                self?.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
+            })
+            .disposed(by: disposeBag)
+        
+        phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] _ in
+            self?.phoneNumberTextField.setError(nil)
+            self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
-        phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-            self.phoneNumberTextField.setError(nil)
-            self.accessibilityErrorLabel()
-            
-        }).disposed(by: disposeBag)
+        
         phoneExtensionTextField.textField.placeholder = NSLocalizedString("Contact Number Ext. (Optional)", comment: "")
         phoneExtensionTextField.textField.autocorrectionType = .no
         phoneExtensionTextField.setKeyboardType(.numberPad)
@@ -178,15 +185,15 @@ class ReportOutageViewController: UIViewController {
         footerTextView.font = OpenSans.regular.of(textStyle: .footnote)
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
-        footerTextView.text = viewModel.getFooterTextViewText()
+        footerTextView.text = viewModel.footerTextViewText
         footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handlePhoneCallTap(_:)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handlePhoneCallTap(_:)))
         footerTextView.addGestureRecognizer(tap)
         
         // Data binding
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
         
-        viewModel.phoneNumber.asObservable().bind(to: phoneNumberTextField.textField.rx.text.orEmpty)
+        viewModel.phoneNumber.asDriver().drive(phoneNumberTextField.textField.rx.text.orEmpty)
             .disposed(by: disposeBag)
         phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).disposed(by: disposeBag)
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
@@ -202,9 +209,9 @@ class ReportOutageViewController: UIViewController {
         let message = phoneNumberTextField.getError()
         
         if message.isEmpty {
-            self.submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            self.submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
         }
     }
     
@@ -291,26 +298,28 @@ class ReportOutageViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        dLog()
     }
     
     func onCancelPress() {
-        _ = navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()
-        viewModel.reportOutage(onSuccess: {
+        viewModel.reportOutage(onSuccess: { [weak self] in
             LoadingView.hide()
+            guard let `self` = self else { return }
             self.delegate?.reportOutageViewControllerDidReportOutage(self)
-            _ = self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
             Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
-        }) { errorMessage in
+        }) { [weak self] errorMessage in
             LoadingView.hide()
             let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self?.present(alert, animated: true, completion: nil)
         }
     }
     

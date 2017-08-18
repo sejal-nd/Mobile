@@ -39,7 +39,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
     /// Helpers
     func setupNavigationButtons() {
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
-        viewModel.accountNumberHasTenDigits().bind(to: nextButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.accountNumberHasTenDigits.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
         navigationItem.rightBarButtonItem = nextButton
     }
 
@@ -57,26 +57,22 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         accountNumberTextField.textField.isShowingAccessory = true
         accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
         accountNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
+		questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
+		
+		accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+			.withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
+			.drive(onNext: { [weak self] accountNumber, hasTenDigits in
+				guard let `self` = self else { return }
+				if !accountNumber.isEmpty && !hasTenDigits {
+					self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
+				}
+				self.accessibilityErrorLabel()
+			})
+			.disposed(by: disposeBag)
         
-        accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-            if self.viewModel.accountNumber.value.characters.count > 0 {
-                self.viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { valid in
-                    if !valid {
-                        self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
-                    } else {
-                        
-                    }
-                }).disposed(by: self.disposeBag)
-            }
-            self.accessibilityErrorLabel()
-            
-        }).disposed(by: disposeBag)
-        
-        accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-            self.accountNumberTextField.setError(nil)
-            self.accessibilityErrorLabel()
-            
+        accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.accountNumberTextField.setError(nil)
+            self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
     }
     
@@ -84,19 +80,20 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         let message = accountNumberTextField.getError()
         
         if message.isEmpty {
-            self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+            nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            self.nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
+            nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
         }
     }
     
-    func onAccountNumberKeyboardDonePress() {
-        viewModel.accountNumberHasTenDigits().single().subscribe(onNext: { enabled in
-            if enabled {
-                self.onNextPress()
-            }
-        }).disposed(by: disposeBag)
-    }
+	func onAccountNumberKeyboardDonePress() {
+		viewModel.accountNumberHasTenDigits.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+			.drive(onNext: { [weak self] enabled in
+				if enabled {
+					self?.onNextPress()
+				}
+			}).disposed(by: disposeBag)
+	}
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -171,6 +168,9 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         self.navigationController?.present(infoModal, animated: true, completion: nil)
     }
 
+	deinit {
+		dLog()
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////

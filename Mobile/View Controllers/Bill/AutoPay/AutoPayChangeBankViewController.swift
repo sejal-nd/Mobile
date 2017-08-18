@@ -280,16 +280,16 @@ class AutoPayChangeBankViewController: UIViewController {
             .subscribe(
                 onNext: { [weak self] enrolled in
                     LoadingView.hide()
-                    guard let strongSelf = self else { return }
-                    strongSelf.delegate?.changedBank()
-                    strongSelf.navigationController?.popViewController(animated: true)
+                    guard let `self` = self else { return }
+                    self.delegate?.changedBank()
+                    self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] error in
                     LoadingView.hide()
-                    guard let strongSelf = self else { return }
+                    guard let `self` = self else { return }
                     let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
                                                             message: error.localizedDescription, preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    strongSelf.present(alertController, animated: true, completion: nil)
+                    self.present(alertController, animated: true, completion: nil)
             })
             .disposed(by: bag)
     }

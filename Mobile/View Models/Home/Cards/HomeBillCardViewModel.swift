@@ -115,7 +115,7 @@ class HomeBillCardViewModel {
                     let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
                     RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] = paymentDetails
                 })
-                .map { _ in () }
+                .toVoid()
                 .trackActivity(self.paymentTracker)
                 .materialize()
         }

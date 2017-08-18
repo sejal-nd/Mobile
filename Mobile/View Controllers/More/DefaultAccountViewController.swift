@@ -28,7 +28,9 @@ class DefaultAccountViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: AdvancedAccountPickerTableViewCell.className)
         
         viewModel.shouldShowLoadingIndicator
-            .drive(onNext: showLoadingView)
+            .drive(onNext: { [weak self] in
+                self?.showLoadingView($0)
+            })
             .disposed(by: bag)
         
         viewModel.accounts.asDriver()
@@ -74,6 +76,10 @@ class DefaultAccountViewController: UIViewController {
                                                 description: NSLocalizedString("Your default account will display automatically when you sign in. You can change your default account at any time.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
+    
+    deinit {
+        dLog()
+    }
 
 }
 
@@ -102,6 +108,10 @@ extension DefaultAccountViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
+        guard !viewModel.accounts.value[indexPath.row].isDefault else {
+            return
+        }
+        
         Observable<Account>.create { [weak self] observer in
             let alert = UIAlertController(title: NSLocalizedString("Change Default", comment: ""),
                                           message: NSLocalizedString("Are you sure you want to change your default account?", comment: ""),
@@ -114,8 +124,8 @@ extension DefaultAccountViewController: UITableViewDelegate {
             
             alert.addAction(UIAlertAction(title: NSLocalizedString("Change", comment: ""), style: .default) { [weak self] _ in
                 Analytics().logScreenView(AnalyticsPageView.SetDefaultAccountChange.rawValue)
-                if let strongSelf = self {
-                    observer.onNext(strongSelf.viewModel.accounts.value[indexPath.row])
+                if let `self` = self {
+                    observer.onNext(self.viewModel.accounts.value[indexPath.row])
                 }
                 observer.onCompleted()
             })

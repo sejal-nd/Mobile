@@ -204,47 +204,50 @@ class EditBankAccountViewController: UIViewController {
         var shouldShowOneTouchPayReplaceWarning = false
         var shouldShowOneTouchPayDisableWarning = false
         let otpItem = viewModel.oneTouchPayItem
-        if self.viewModel.oneTouchPay.value {
-            if otpItem != nil && otpItem != self.viewModel.walletItem {
+        if viewModel.oneTouchPay.value {
+            if otpItem != nil && otpItem != viewModel.walletItem {
                 shouldShowOneTouchPayReplaceWarning = true
             }
         } else {
-            if otpItem == self.viewModel.walletItem {
+            if otpItem == viewModel.walletItem {
                 shouldShowOneTouchPayDisableWarning = true
             }
         }
         
-        let saveBankAccountChanges = { (oneTouchPay: Bool) in
+        let saveBankAccountChanges = { [weak self] (oneTouchPay: Bool) in
             LoadingView.show()
+            guard let `self` = self else { return }
             if oneTouchPay {
-                self.viewModel.enableOneTouchPay(onSuccess: { 
+                self.viewModel.enableOneTouchPay(onSuccess: { [weak self] in
                     LoadingView.hide()
+                    guard let `self` = self else { return }
                     self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
                     if self.shouldPopToRootOnSave {
                         self.navigationController?.popToRootViewController(animated: true)
                     } else {
                         self.navigationController?.popViewController(animated: true)
                     }
-                }, onError: { (errMessage: String) in
+                }, onError: { [weak self] (errMessage: String) in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertVc, animated: true, completion: nil)
+                    self?.present(alertVc, animated: true, completion: nil)
                 })
             } else {
-                self.viewModel.deleteOneTouchPay(onSuccess: { 
+                self.viewModel.deleteOneTouchPay(onSuccess: { [weak self] in
                     LoadingView.hide()
+                    guard let `self` = self else { return }
                     self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
                     if self.shouldPopToRootOnSave {
                         self.navigationController?.popToRootViewController(animated: true)
                     } else {
                         self.navigationController?.popViewController(animated: true)
                     }
-                }, onError: { (errMessage: String) in
+                }, onError: { [weak self] (errMessage: String) in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertVc, animated: true, completion: nil)
+                    self?.present(alertVc, animated: true, completion: nil)
                 })
             }
         }
@@ -262,7 +265,7 @@ class EditBankAccountViewController: UIViewController {
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
                 saveBankAccountChanges(false)
             }))
-            self.present(alertVc, animated: true, completion: nil)
+            present(alertVc, animated: true, completion: nil)
         } else {
             saveBankAccountChanges(viewModel.oneTouchPay.value)
         }
@@ -279,25 +282,29 @@ class EditBankAccountViewController: UIViewController {
         let alertController = UIAlertController(title: NSLocalizedString("Delete Bank Account", comment: ""), message: messageString, preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { _ in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { [weak self] _ in
             LoadingView.show()
-            self.viewModel.deleteBankAccount(onSuccess: {
+            self?.viewModel.deleteBankAccount(onSuccess: { [weak self] in
                 LoadingView.hide()
+                guard let `self` = self else { return }
                 self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Bank Account deleted", comment: ""))
                 if self.shouldPopToRootOnSave {
                     self.navigationController?.popToRootViewController(animated: true)
                 } else {
                     self.navigationController?.popViewController(animated: true)
                 }
-            }, onError: { errMessage in
+            }, onError: { [weak self] errMessage in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
+                self?.present(alertVc, animated: true, completion: nil)
             })
         }))
         present(alertController, animated: true, completion: nil)
     }
     
+    deinit {
+        dLog()
+    }
     
 }

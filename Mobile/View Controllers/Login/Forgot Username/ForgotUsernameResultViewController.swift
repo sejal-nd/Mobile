@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class ForgotUsernameResultViewController: UIViewController {
     
@@ -37,7 +38,8 @@ class ForgotUsernameResultViewController: UIViewController {
         tableViewHeightConstraint.constant = CGFloat(53 * viewModel.maskedUsernames.count) - 1
         
         answerSecurityQuestionButton.isEnabled = viewModel.maskedUsernames.count <= 1
-        tableView.rx.itemSelected.asObservable().subscribe(onNext: { indexPath in
+        tableView.rx.itemSelected.asDriver().drive(onNext: { [weak self] indexPath in
+            guard let `self` = self else { return }
             if self.viewModel.maskedUsernames.count > 1 {
                 self.viewModel.selectedUsernameIndex = indexPath.row
                 self.answerSecurityQuestionButton.isEnabled = true
@@ -83,7 +85,7 @@ class ForgotUsernameResultViewController: UIViewController {
     @IBAction func onBackToSignInPress() {
         for vc in (navigationController?.viewControllers)! {
             if let dest = vc as? LoginViewController {
-                self.navigationController?.popToViewController(dest, animated: true)
+                navigationController?.popToViewController(dest, animated: true)
                 break
             }
         }
@@ -99,6 +101,10 @@ class ForgotUsernameResultViewController: UIViewController {
             vc.viewModel.maskedUsernames = viewModel.maskedUsernames
             vc.viewModel.selectedUsernameIndex = viewModel.selectedUsernameIndex
         }
+    }
+    
+    deinit {
+        dLog()
     }
 
 }

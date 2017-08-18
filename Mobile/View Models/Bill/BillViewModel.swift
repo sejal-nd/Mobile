@@ -473,18 +473,18 @@ class BillViewModel {
         return (nil, nil)
     }
     
-    var makePaymentStatusTextTapRouting: Observable<MakePaymentStatusTextRouting> {
-        return Observable.combineLatest(currentAccountDetail.asObservable(), self.shouldShowAutoPay.asObservable()).map {
-            guard let accountDetail = $0 else { return .nowhere }
-            if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount, scheduledPaymentAmount > 0.0 {
-                if accountDetail.isAutoPay && $1 {
-                    return .autoPay
-                } else {
-                    return .activity
-                }
+    private(set) lazy var makePaymentStatusTextTapRouting: Driver<MakePaymentStatusTextRouting> = Driver.combineLatest(self.currentAccountDetail.asDriver(),
+                                                                                                                       self.shouldShowAutoPay.asDriver())
+    {
+        guard let accountDetail = $0 else { return .nowhere }
+        if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount, scheduledPaymentAmount > 0.0 {
+            if accountDetail.isAutoPay && $1 {
+                return .autoPay
+            } else {
+                return .activity
             }
-            return .nowhere
         }
+        return .nowhere
     }
     
     //MARK: - Enrollment
