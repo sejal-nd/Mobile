@@ -53,8 +53,6 @@ class UnauthenticatedUserViewController: UIViewController {
         
         animationView.play()
         
-        
-        
         // For release one, only contact us and term policies button will be shown,
         // so, hide the other 3 buttons
         reportAnOutageButton.isHidden = true
@@ -68,21 +66,16 @@ class UnauthenticatedUserViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.view.backgroundColor = .primaryColor
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = true
         
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
+        setNeedsStatusBarAppearanceUpdate()
         
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: true)
         
         LoginRegisterButton.titleLabel!.font =  OpenSans.bold.of(textStyle: .title1)
         textLabel.font =  OpenSans.regular.of(textStyle: .subheadline)
@@ -111,6 +104,10 @@ class UnauthenticatedUserViewController: UIViewController {
     
     @IBAction func onLoginRegisterPress(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     deinit {
