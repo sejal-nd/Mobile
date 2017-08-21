@@ -157,11 +157,11 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         
-        // Password cannot match username
+        // Password cannot match email
         viewModel.passwordMatchesUsername
 			.drive(onNext: { [weak self] matches in
                 if matches {
-                    self?.createPasswordTextField.setError(NSLocalizedString("Password cannot match username", comment: ""))
+                    self?.createPasswordTextField.setError(NSLocalizedString("Password cannot match email", comment: ""))
                 } else {
                     self?.createPasswordTextField.setError(nil)
                 }
