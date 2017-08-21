@@ -2176,7 +2176,6 @@
 		8FD5AE7C1E54EA04003F640D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2FA5D8621F17D85A00A8B16B /* Home */,
 				E8067C901EC3C257004C2724 /* SplashViewController.swift */,
 				0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */,
 				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
@@ -2184,6 +2183,7 @@
 				E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */,
 				E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */,
 				9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */,
+				2FA5D8621F17D85A00A8B16B /* Home */,
 				8FD5AE821E54EA39003F640D /* Login */,
 				E882B7E21EA7FE6300EA3C13 /* Bill */,
 				E80D2E301E730180002626C9 /* Outage */,
@@ -3201,7 +3201,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3211,7 +3211,7 @@
 						};
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3221,7 +3221,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {

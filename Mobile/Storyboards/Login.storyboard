@@ -96,7 +96,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="a53-WZ-2ae" userLabel="LottieTopView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="227"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="227"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yrY-DD-kdB" userLabel="LottieView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
@@ -125,7 +125,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLB-ga-RSd" userLabel="Sign In / Register Button">
-                                <rect key="frame" x="53" y="247" width="269" height="30"/>
+                                <rect key="frame" x="53" y="267" width="269" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="54N-G8-hYn"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="YeA-Fx-3eC"/>
@@ -139,7 +139,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9i4-Zy-CXL" userLabel="Button Stack">
-                                <rect key="frame" x="29" y="307" width="317" height="340"/>
+                                <rect key="frame" x="29" y="327" width="317" height="340"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAa-0X-AbV" userLabel="Report an outage Button" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
@@ -207,8 +207,8 @@
                             <constraint firstAttribute="trailing" secondItem="a53-WZ-2ae" secondAttribute="trailing" id="TXl-6n-Fr6"/>
                             <constraint firstItem="9i4-Zy-CXL" firstAttribute="centerX" secondItem="nOo-uk-Fx2" secondAttribute="centerX" id="UaX-hG-0fo"/>
                             <constraint firstItem="a53-WZ-2ae" firstAttribute="centerX" secondItem="nOo-uk-Fx2" secondAttribute="centerX" id="d2t-Nh-MIR"/>
+                            <constraint firstItem="a53-WZ-2ae" firstAttribute="top" secondItem="PwO-ox-psG" secondAttribute="bottom" id="iQx-bo-0IO"/>
                             <constraint firstItem="TLB-ga-RSd" firstAttribute="leading" secondItem="nOo-uk-Fx2" secondAttribute="leadingMargin" priority="999" constant="37" id="inO-8l-Bs2"/>
-                            <constraint firstItem="a53-WZ-2ae" firstAttribute="top" secondItem="nOo-uk-Fx2" secondAttribute="top" id="lLX-uH-15L"/>
                             <constraint firstAttribute="trailing" secondItem="9i4-Zy-CXL" secondAttribute="trailing" priority="999" constant="29" id="olD-q6-uu0"/>
                             <constraint firstItem="TLB-ga-RSd" firstAttribute="top" secondItem="a53-WZ-2ae" secondAttribute="bottom" constant="20" id="waa-81-NsU"/>
                             <constraint firstItem="9i4-Zy-CXL" firstAttribute="leading" secondItem="nOo-uk-Fx2" secondAttribute="leading" priority="999" constant="29" id="y4k-eF-dfE"/>

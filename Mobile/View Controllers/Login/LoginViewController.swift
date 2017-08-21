@@ -148,9 +148,7 @@ class LoginViewController: UIViewController {
         
         setNeedsStatusBarAppearanceUpdate()
         
-        
         navigationController?.setNavigationBarHidden(false, animated: true)
-        
         
         // Reset the view for when user pops back from ChangePasswordViewController
         signInButton.reset()
@@ -158,8 +156,6 @@ class LoginViewController: UIViewController {
         signInButton.accessibilityViewIsModal = false;
         passwordTextField.textField.text = ""
         passwordTextField.textField.sendActions(for: .editingChanged)
-        
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
