@@ -106,6 +106,10 @@ class UnauthenticatedUserViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     deinit {
         dLog()
     }
