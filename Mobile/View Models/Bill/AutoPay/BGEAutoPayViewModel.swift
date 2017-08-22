@@ -201,6 +201,9 @@ class BGEAutoPayViewModel {
         if howLongForAutoPay.value == .maxPayments && numberOfPayments.value.isEmpty {
             return defaultString
         }
+        if howLongForAutoPay.value == .endDate && autoPayUntilDate.value == nil {
+            return defaultString
+        }
         return nil
     }
     
