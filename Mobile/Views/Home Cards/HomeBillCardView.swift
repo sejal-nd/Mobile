@@ -161,7 +161,7 @@ class HomeBillCardView: UIView {
             .disposed(by: bag)
         
         // Show/Hide Subviews
-        Driver.combineLatest(viewModel.billNotReady, viewModel.showErrorState)
+        Driver.combineLatest(viewModel.billNotReady.startWith(false), viewModel.showErrorState)
             .map { $0 && !$1 }
             .not()
             .drive(billNotReadyStack.rx.isHidden)
@@ -174,8 +174,9 @@ class HomeBillCardView: UIView {
         
         viewModel.showErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
         
-        Driver.combineLatest(viewModel.billNotReady, viewModel.showErrorState)
+        Driver.combineLatest(viewModel.billNotReady.startWith(false), viewModel.showErrorState)
             .map { $0 || $1 }
+            .startWith(false)
             .drive(infoStack.rx.isHidden)
             .disposed(by: bag)
         
