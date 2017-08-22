@@ -454,7 +454,7 @@ class BillViewController: AccountPickerViewController {
                 } else {
                     var message = NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: "")
                     if let budgetBillMessage = accountDetail.budgetBillMessage {
-                        if budgetBillMessage.contains("Your account has not yet been open for a year") {
+                        if budgetBillMessage.contains("not enough billing history") {
                             message = NSLocalizedString("There is insufficient billing history to calculate your Budget Billing amount at this location. If you would like your Budget Billing amount to be manually calculated, please contact BGE customer service at myhomerep@bge.com.", comment: "")
                         }
                     }
