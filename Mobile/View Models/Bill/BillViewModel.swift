@@ -465,16 +465,14 @@ class BillViewModel {
         return (nil, nil)
     }
     
-    private(set) lazy var makePaymentStatusTextTapRouting: Driver<MakePaymentStatusTextRouting> = Driver.combineLatest(self.currentAccountDetail.asDriver(),
-                                                                                                                       self.shouldShowAutoPay.asDriver())
-    {
+    private(set) lazy var makePaymentStatusTextTapRouting: Driver<MakePaymentStatusTextRouting> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return .nowhere }
-        if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount, scheduledPaymentAmount > 0.0 {
-            if accountDetail.isAutoPay && $1 {
-                return .autoPay
-            } else {
-                return .activity
-            }
+        guard !accountDetail.isBGEasy else { return .nowhere }
+        
+        if accountDetail.isAutoPay {
+            return .autoPay
+        } else if accountDetail.billingInfo.scheduledPayment?.amount ?? 0 > 0.0 {
+            return .activity
         }
         return .nowhere
     }
