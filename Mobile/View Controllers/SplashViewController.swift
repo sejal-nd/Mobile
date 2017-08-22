@@ -71,10 +71,21 @@ class SplashViewController: UIViewController{
         })
     }
     
+    func getAppStoreLink() -> String{
+        if Environment.sharedInstance.opco == .bge {
+            return "https://itunes.apple.com/us/app/bge-an-exelon-company/id1274170174?ls=1&mt=8"
+        } else if Environment.sharedInstance.opco == .peco {
+            return "https://itunes.apple.com/us/app/peco-an-exelon-company/id1274171957?ls=1&mt=8"
+        } else {
+            //TODO once we get ComEd link
+        }
+        return ""
+    }
+    
     func handleOutOfDate(){
         let requireUpdateAlert = UIAlertController(title: nil , message: NSLocalizedString("There is a newer version of this application available. Tap OK to update now.", comment: ""), preferredStyle: .alert)
         requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { (action) in
-            let appStoreLink = "https://itunes.apple.com/us/app/apple-store/id927221466?mt=8"
+            let appStoreLink = self.getAppStoreLink()
             
             /* First create a URL, then check whether there is an installed app that can
              open it on the device. */
