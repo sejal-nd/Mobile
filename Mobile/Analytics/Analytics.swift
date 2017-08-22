@@ -17,10 +17,10 @@ enum AnalyticsPageView: String {
     case AutoPayUnenrollOffer = "AutoPayUnEnrollOffer"
     case AutoPayUnenrollComplete = "AutoPayUnEnrollComplete"
     
-    case AutoPayModifySettingsOffer = "AutoPayModifySettingsOffer"
-    case AutoPayModifySettingsOfferNew = "AutoPayModifySettingsOfferNew"
-    case AutoPayModifySettingsSubmit = "AutoPayModifySettingsSubmit"
-    case AutoPayModifySettingsComplete = "AutoPayModifySettingsComplete"
+    case AutoPayModifySettingsOffer = "AutoPayModifySettingOffer"
+    case AutoPayModifySettingsOfferNew = "AutoPayModifySettingOfferNew"
+    case AutoPayModifySettingsSubmit = "AutoPayModifySettingSubmit"
+    case AutoPayModifySettingsComplete = "AutoPayModifySettingComplete"
     case AutoPayModifySettingsCompleteNew = "AutoPayModifySettingCompleteNew"
 
     case AutoPayModifyWallet = "AutoPayModifyWallet"
@@ -137,6 +137,7 @@ func isAnalyticsEnabled() -> Bool {
 
 struct Analytics {
     func logScreenView(_ screenName: String) {
+        print("Analytics: " + screenName)
         if(isAnalyticsEnabled()) {
             let tracker = GAI.sharedInstance().defaultTracker
             tracker?.set(kGAIScreenName, value: screenName)
@@ -149,6 +150,7 @@ struct Analytics {
     
     func logScreenView(_ screenName: String, dimensionIndex: String, dimensionValue: String) {
         if(isAnalyticsEnabled()) {
+            print("Analytics: " + screenName)
             let tracker = GAI.sharedInstance().defaultTracker
             tracker?.set(kGAIScreenName, value: screenName)
             tracker?.send(GAIDictionaryBuilder.createScreenView()
@@ -161,6 +163,7 @@ struct Analytics {
     
     func logSignIn(_ screenName: String, signedIndimensionIndex: String, signedIndimensionValue: String, fingerprintDimensionIndex: String, fingerprintDimensionValue: String) {
         if(isAnalyticsEnabled()) {
+            print("Analytics: " + screenName)
             let tracker = GAI.sharedInstance().defaultTracker
             tracker?.set(kGAIScreenName, value: screenName)
             tracker?.send(GAIDictionaryBuilder.createScreenView()
