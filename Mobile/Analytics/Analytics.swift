@@ -120,11 +120,11 @@ enum AnalyticsPageView: String {
 }
 
 enum Dimensions: String {
-    case DIMENSION_KEEP_ME_SIGNIN_IN = "1";
-    case DIMENSION_FINGERPRINT_USED = "2";
-    case DIMENSION_ERROR_CODE = "3";
-    case DIMENSION_OTP_ENABLED = "4";
-    case DIMENSION_LINK = "5";
+    case DIMENSION_KEEP_ME_SIGNIN_IN = "3";
+    case DIMENSION_FINGERPRINT_USED = "4";
+    case DIMENSION_ERROR_CODE = "5";
+    case DIMENSION_OTP_ENABLED = "6";
+    case DIMENSION_LINK = "7";
 }
 
 func isAnalyticsEnabled() -> Bool {
