@@ -86,6 +86,7 @@ struct AccountDetail: Mappable {
 	let isBGEasy: Bool
 	let isAutoPayEligible: Bool
     let isCutOutNonPay: Bool
+    let isLowIncome: Bool
 	
 	let isAMICustomer: Bool
     let isResidential: Bool
@@ -120,6 +121,7 @@ struct AccountDetail: Mappable {
         isBGEasy = map.optionalFrom("isBGEasy") ?? false
 		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
 		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+        isLowIncome = map.optionalFrom("isLowIncome") ?? false
 		
 		isAMICustomer = map.optionalFrom("isAMICustomer") ?? false
         isResidential = map.optionalFrom("isResidential") ?? false

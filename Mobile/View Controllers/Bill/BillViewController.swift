@@ -13,7 +13,6 @@ import Lottie
 
 class BillViewController: AccountPickerViewController {
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var billNotReadyView: UIView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
     @IBOutlet weak var topLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var topView: UIView!
@@ -173,7 +172,7 @@ class BillViewController: AccountPickerViewController {
 
         topView.backgroundColor = .primaryColor
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
-
+        
         totalAmountView.superview?.bringSubview(toFront: totalAmountView)
         totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
 
@@ -273,8 +272,8 @@ class BillViewController: AccountPickerViewController {
         }).disposed(by: bag)
         
         viewModel.isFetchingDifferentAccount.drive(billLoadingIndicator.rx.isAnimating).disposed(by: bag)
-
         viewModel.isFetchingDifferentAccount.not().drive(loadingIndicatorView.rx.isHidden).disposed(by: bag)
+        viewModel.isFetchingDifferentAccount.drive(bottomStackContainerView.rx.isHidden).disposed(by: bag)
 	}
 
 	func bindViewHiding() {
@@ -286,7 +285,6 @@ class BillViewController: AccountPickerViewController {
 		questionMarkButton.isHidden = !viewModel.shouldShowAmountDueTooltip
         
         viewModel.shouldShowTopContent.not().drive(totalAmountView.rx.isHidden).disposed(by: bag)
-        viewModel.shouldShowTopContent.not().drive(bottomStackContainerView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowTopContent.not().drive(paymentDetailsView.rx.isHidden).disposed(by: bag)
         
 		viewModel.shouldShowRestoreService.not().drive(restoreServiceView.rx.isHidden).disposed(by: bag)
@@ -298,7 +296,6 @@ class BillViewController: AccountPickerViewController {
 		viewModel.shouldShowAvoidShutoff.not().drive(avoidShutoffView.rx.isHidden).disposed(by: bag)
         viewModel.pendingPaymentAmountDueBoxesAlpha.drive(avoidShutoffView.rx.alpha).disposed(by: bag)
         viewModel.shouldShowPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)
-        viewModel.shouldShowBillNotReady.not().drive(billNotReadyView.rx.isHidden).disposed(by: bag)
         
         viewModel.pendingPaymentAmountDueBoxesAlpha.drive(pastDueView.rx.alpha).disposed(by: bag)
 
