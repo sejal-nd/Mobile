@@ -45,6 +45,8 @@ class PaperlessEBillAccountView: UIView {
         if let address = accountDetail.address {
             addressLabel.text = address
             addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), address)
+        } else {
+            addressLabel.text = ""
         }
         
         switch accountDetail.eBillEnrollStatus {
