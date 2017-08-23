@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("Environment %@", Environment.sharedInstance.environmentName)
         NSLog("AppName %@", Environment.sharedInstance.appName)
         
-        if Environment.sharedInstance.environmentName == "STAGE" {
+        if Environment.sharedInstance.environmentName == "STAGE" || Environment.sharedInstance.environmentName == "PROD" {
             switch Environment.sharedInstance.opco {
                 case .bge: BITHockeyManager.shared().configure(withIdentifier: "bec696e55dec44239187ffc959dec386")
                 case .comEd: BITHockeyManager.shared().configure(withIdentifier: "7399eb2b4dc44f91ac86e219d947b7b5")

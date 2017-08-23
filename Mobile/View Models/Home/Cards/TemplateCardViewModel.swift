@@ -133,17 +133,13 @@ class TemplateCardViewModel {
     private(set) lazy var ctaUrl: Driver<URL> = self.accountDetailElements.map { accountDetail -> String? in
         switch Environment.sharedInstance.opco {
         case .peco:
-            if(accountDetail.isResidential) {
-                return NSLocalizedString("http://www.peco.com/smartideas", comment: "")
-            } else {
-                return NSLocalizedString("http://www.peco.com/smartideas", comment: "")
-            }
+            return NSLocalizedString("http://www.peco.com/smartideas", comment: "")
         case .bge:
-            if(accountDetail.isResidential) {
-                switch accountDetail.peakRewards {
-                case "ACTIVE"?: //"legacy" account
+            if accountDetail.isResidential, let peakRewards = accountDetail.peakRewards {
+                switch peakRewards {
+                case "ACTIVE": //"legacy" account
                     return NSLocalizedString("https://secure.bge.com/Peakrewards/Pages/default.aspx", comment: "")
-                case "ECOBEE WIFI"?:
+                case "ECOBEE WIFI":
                     return NSLocalizedString("https://www.ecobee.com/home/ecobeeLogin.jsp", comment: "")
                 default: //user is not enrolled in PeakRewards
                     return NSLocalizedString("https://bgesavings.com/enroll", comment: "")

@@ -24,8 +24,6 @@
 					<string>YW5vbl9kZXY6QDNEdGx0ZiQ3VVF4YUdTYTZESCo=</string>
 				</dict>
 			</dict>
-			<key>networkConnectionTimeout</key>
-			<integer>60</integer>
 		</dict>
 		<key>Testing</key>
 		<dict>
@@ -45,8 +43,6 @@
 					<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 				</dict>
 			</dict>
-			<key>networkConnectionTimeout</key>
-			<integer>60</integer>
 		</dict>
 		<key>Staging</key>
 		<dict>
@@ -66,8 +62,63 @@
 					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 				</dict>
 			</dict>
-			<key>networkConnectionTimeout</key>
-			<integer>60</integer>
+		</dict>
+		<key>ProdBGE</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>appKey</key>
+			<string>ef7078b3-38f5-4583-a369-9013f9129524</string>
+			<key>authorization</key>
+			<dict>
+				<key>authenticationType</key>
+				<string>SSOTokenExchange</string>
+				<key>SSOTokenExchange</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>53f99819-b870-4466-95e0-ffb1a85548a4</string>
+					<key>anonymousKey</key>
+					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+				</dict>
+			</dict>
+		</dict>
+		<key>ProdComEd</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>appKey</key>
+			<string>ef7078b3-38f5-4583-a369-9013f9129524</string>
+			<key>authorization</key>
+			<dict>
+				<key>authenticationType</key>
+				<string>SSOTokenExchange</string>
+				<key>SSOTokenExchange</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>d8115280-a300-4682-9891-1385e2e374d1</string>
+					<key>anonymousKey</key>
+					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+				</dict>
+			</dict>
+		</dict>
+		<key>ProdPECO</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>appKey</key>
+			<string>ef7078b3-38f5-4583-a369-9013f9129524</string>
+			<key>authorization</key>
+			<dict>
+				<key>authenticationType</key>
+				<string>SSOTokenExchange</string>
+				<key>SSOTokenExchange</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>ca989d22-c9da-4a9e-9418-fddbaa40aa2c</string>
+					<key>anonymousKey</key>
+					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+				</dict>
+			</dict>
 		</dict>
 	</dict>
 	<key>logLevel</key>

@@ -14,6 +14,8 @@
 	<string>Dev</string>
 	<key>fiservUrl</key>
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
+	<key>speedpayUrl</key>
+	<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>gaTrackingId</key>
