@@ -209,6 +209,7 @@ extension SettingsViewController: ChangePasswordViewControllerDelegate {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
+            Analytics().logScreenView(AnalyticsPageView.ChangePasswordComplete.rawValue)
         })
     }
     
