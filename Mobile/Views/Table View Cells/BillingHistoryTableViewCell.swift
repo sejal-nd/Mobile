@@ -87,7 +87,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
                     a11y = String(format: NSLocalizedString("Cancelled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
                 }
             } else if status == BillingHistoryProperties.StatusSCHEDULED.rawValue || status == BillingHistoryProperties.StatusScheduled.rawValue {
-                iconImageView.image = #imageLiteral(resourceName: "ic_pending")
+                iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
                 titleLabel.text = SCHEDULED_PAYMENT
                 self.amountLabel.text = amountPaid
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
@@ -112,7 +112,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
         let dateString = dateFormatter.string(from: item.date)
         
         if status == BillingHistoryProperties.StatusPending.rawValue {
-            iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
+            iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PENDING_PAYMENT
             amountLabel.text = amountPaid
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PENDING_PAYMENT, dateString, amountPaid)
@@ -134,7 +134,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 a11y = String(format: NSLocalizedString("Cancelled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
             }
         } else { //status = scheduled?  hopefully
-            iconImageView.image = #imageLiteral(resourceName: "ic_pending")
+            iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
             titleLabel.text = SCHEDULED_PAYMENT
             amountLabel.text = amountPaid
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
