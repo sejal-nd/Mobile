@@ -85,6 +85,13 @@ protocol PaymentService {
     ///   - completion: the completion block to execute upon completion.
     func schedulePayment(payment: Payment, completion: @escaping (_ result: ServiceResult<String>) -> Void)
     
+    /// Schedule a payment
+    ///
+    /// - Parameters:
+    ///   - creditCard: the card details
+    ///   - completion: the completion block to execute upon completion.
+    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard, completion: @escaping (ServiceResult<String>) -> Void)
+    
     /// Gets full details of an one time payment transaction
     ///
     /// - Parameters:
@@ -221,6 +228,23 @@ extension PaymentService {
         
         return Observable.create { observer in
             self.schedulePayment(payment: payment)
+            { (result: ServiceResult<String>) in
+                switch (result) {
+                case ServiceResult.Success(_):
+                    observer.onNext()
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<Void> {
+        
+        return Observable.create { observer in
+            self.scheduleBGEOneTimeCardPayment(accountNumber: accountNumber, paymentAmount: paymentAmount, paymentDate: paymentDate, creditCard: creditCard)
             { (result: ServiceResult<String>) in
                 switch (result) {
                 case ServiceResult.Success(_):

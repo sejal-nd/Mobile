@@ -295,69 +295,83 @@ class PaymentViewModel {
     }
     
     private func scheduleInlineCardPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        var nickname = addCardFormViewModel.nickname.value
-        if nickname.isEmpty && Environment.sharedInstance.opco == .bge {
-            nickname = "Credit Card" // Doesn't matter because we won't be saving it to the Wallet
-        }
-        let card = CreditCard(cardNumber: addCardFormViewModel.cardNumber.value, securityCode: addCardFormViewModel.cvv.value, firstName: "", lastName: "", expirationMonth: addCardFormViewModel.expMonth.value, expirationYear: addCardFormViewModel.expYear.value, postalCode: addCardFormViewModel.zipCode.value, nickname: nickname)
+        let card = CreditCard(cardNumber: addCardFormViewModel.cardNumber.value, securityCode: addCardFormViewModel.cvv.value, firstName: "", lastName: "", expirationMonth: addCardFormViewModel.expMonth.value, expirationYear: addCardFormViewModel.expYear.value, postalCode: addCardFormViewModel.zipCode.value, nickname: addCardFormViewModel.nickname.value)
         
-        walletService
-            .addCreditCard(card, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] walletItemResult in
+        if Environment.sharedInstance.opco == .bge && !addCardFormViewModel.saveToWallet.value {
+            self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
                 guard let `self` = self else { return }
-                
-                if self.addCardFormViewModel.oneTouchPay.value {
-                    self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
+                var paymentDate = self.paymentDate.value
+                if isFixed {
+                    paymentDate = Calendar.opCoTime.startOfDay(for: Date())
                 }
-                Analytics().logScreenView(AnalyticsPageView.AddCardNewWallet.rawValue)
-                
-                self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
+                self.paymentService.scheduleBGEOneTimeCardPayment(accountNumber: self.accountDetail.value.accountNumber, paymentAmount: self.paymentAmountDouble(), paymentDate: paymentDate, creditCard: card)
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onNext: { _ in
+                        onSuccess()
+                    }, onError: { err in
+                        onError(err.localizedDescription)
+                    }).disposed(by: self.disposeBag)
+            }).disposed(by: self.disposeBag)
+            
+        } else {
+            walletService
+                .addCreditCard(card, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { [weak self] walletItemResult in
                     guard let `self` = self else { return }
                     
-                    let paymentType: PaymentType = .credit
-                    var paymentDate = self.paymentDate.value
-                    if isFixed {
-                        paymentDate = Calendar.opCoTime.startOfDay(for: Date())
+                    if self.addCardFormViewModel.oneTouchPay.value {
+                        self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
                     }
+                    Analytics().logScreenView(AnalyticsPageView.AddCardNewWallet.rawValue)
                     
-                    let cardNum = self.addCardFormViewModel.cardNumber.value
-                    let maskedAccountNumber = cardNum.substring(from: cardNum.index(cardNum.endIndex, offsetBy: -4))
+                    self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
+                        guard let `self` = self else { return }
+                        
+                        let paymentType: PaymentType = .credit
+                        var paymentDate = self.paymentDate.value
+                        if isFixed {
+                            paymentDate = Calendar.opCoTime.startOfDay(for: Date())
+                        }
+                        
+                        let cardNum = self.addCardFormViewModel.cardNumber.value
+                        let maskedAccountNumber = cardNum.substring(from: cardNum.index(cardNum.endIndex, offsetBy: -4))
+                        
+                        let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
+                                              existingAccount: false,
+                                              saveAccount: self.addCardFormViewModel.saveToWallet.value,
+                                              maskedWalletAccountNumber: maskedAccountNumber,
+                                              paymentAmount: self.paymentAmountDouble(),
+                                              paymentType: paymentType,
+                                              paymentDate: paymentDate,
+                                              walletId: AccountsStore.sharedInstance.customerIdentifier,
+                                              walletItemId: walletItemResult.walletItemId,
+                                              cvv: self.addCardFormViewModel.cvv.value)
+                        
+                        self.paymentService.schedulePayment(payment: payment)
+                            .observeOn(MainScheduler.instance)
+                            .subscribe(onNext: { _ in
+                                onSuccess()
+                            }, onError: { [weak self] err in
+                                guard let `self` = self else { return }
+                                if !self.addCardFormViewModel.saveToWallet.value {
+                                    // Rollback the wallet add
+                                    self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
+                                }
+                                onError(err.localizedDescription)
+                            }).disposed(by: self.disposeBag)
+                    }).disposed(by: self.disposeBag)
                     
-                    let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                                          existingAccount: false,
-                                          saveAccount: self.addCardFormViewModel.saveToWallet.value,
-                                          maskedWalletAccountNumber: maskedAccountNumber,
-                                          paymentAmount: self.paymentAmountDouble(),
-                                          paymentType: paymentType,
-                                          paymentDate: paymentDate,
-                                          walletId: AccountsStore.sharedInstance.customerIdentifier,
-                                          walletItemId: walletItemResult.walletItemId,
-                                          cvv: self.addCardFormViewModel.cvv.value)
-                    
-                    self.paymentService.schedulePayment(payment: payment)
-                        .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { _ in
-                            onSuccess()
-                        }, onError: { [weak self] err in
-                            guard let `self` = self else { return }
-                            if !self.addCardFormViewModel.saveToWallet.value {
-                                // Rollback the wallet add
-                                self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
-                            }
-                            onError(err.localizedDescription)
-                        }).disposed(by: self.disposeBag)
-                }).disposed(by: self.disposeBag)
-                
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
-                    onDuplicate(NSLocalizedString("Duplicate Card", comment: ""), error.localizedDescription)
-                } else {
-                    onError(error.localizedDescription)
-                }
-            })
-            .disposed(by: disposeBag)
+                }, onError: { error in
+                    let serviceError = error as! ServiceError
+                    if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
+                        onDuplicate(NSLocalizedString("Duplicate Card", comment: ""), error.localizedDescription)
+                    } else {
+                        onError(error.localizedDescription)
+                    }
+                })
+                .disposed(by: disposeBag)
+        }
     }
     
     func enableOneTouchPay(walletItemID: String, onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {

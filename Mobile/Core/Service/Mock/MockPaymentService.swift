@@ -63,6 +63,12 @@ class MockPaymentService: PaymentService {
         }
     }
     
+    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard, completion: @escaping (ServiceResult<String>) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            completion(ServiceResult.Success(""))
+        }
+    }
+    
     func fetchPaymentDetails(accountNumber: String, paymentId: String, completion: @escaping (_ result: ServiceResult<PaymentDetail>) -> Void) {
         completion(ServiceResult.Failure(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil)))
         
