@@ -26,10 +26,8 @@
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-                <key>NSExceptionRequiresForwardSecrecy</key>
-                <false/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
 			</dict>
 		</dict>
 	</dict>
