@@ -65,16 +65,10 @@ struct OutageInfo {
 }
 
 struct ReportedOutageResult: Mappable {
-    let reportedTime: Date
+    let reportedTime = Date()
     let etr: Date?
     
     init(map: Mapper) throws {
-        reportedTime = Date()
-        
-        do {
-            try etr = map.from("etr", transformation: extractDate)
-        } catch {
-            etr = nil
-        }
+        etr = map.optionalFrom("etr", transformation: extractDate)
     }
 }

@@ -693,10 +693,10 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        let today = Calendar.current.startOfDay(for: Date())
+        let today = Calendar.opCoTime.startOfDay(for: Date())
         if Environment.sharedInstance.opco == .bge {
-            let todayPlus90 = Calendar.current.date(byAdding: .day, value: 90, to: today)!
-            let todayPlus180 = Calendar.current.date(byAdding: .day, value: 180, to: today)!
+            let todayPlus90 = Calendar.opCoTime.date(byAdding: .day, value: 90, to: today)!
+            let todayPlus180 = Calendar.opCoTime.date(byAdding: .day, value: 180, to: today)!
             if viewModel.inlineCard.value {
                 return date >= today && date <= todayPlus90
             } else if viewModel.inlineBank.value {
@@ -714,7 +714,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
             }
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
-                let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
+                let startOfDueDate = Calendar.opCoTime.startOfDay(for: dueDate)
                 if Environment.sharedInstance.opco == .peco {
                     let isInWorkdaysArray = viewModel.workdayArray.contains(date)
                     return date >= today && date <= startOfDueDate && isInWorkdaysArray
