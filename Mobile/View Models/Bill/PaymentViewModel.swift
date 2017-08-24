@@ -68,10 +68,12 @@ class PaymentViewModel {
             paymentAmount = Variable("")
         }
         
-        let startOfTodayDate = Calendar.current.startOfDay(for: Date())
+        let startOfTodayDate = Calendar.opCoTime.startOfDay(for: Date())
         self.paymentDate = Variable(startOfTodayDate)
-        if Environment.sharedInstance.opco == .bge && Calendar.current.component(.hour, from: Date()) >= 20 && !accountDetail.isActiveSeverance {
-            let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
+        if Environment.sharedInstance.opco == .bge &&
+            Calendar.opCoTime.component(.hour, from: Date()) >= 20 &&
+            !accountDetail.isActiveSeverance {
+            let tomorrow =  Calendar.opCoTime.date(byAdding: .day, value: 1, to: startOfTodayDate)!
             self.paymentDate.value = tomorrow
         }
         if let dueDate = accountDetail.billingInfo.dueByDate {
@@ -199,7 +201,7 @@ class PaymentViewModel {
                 let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
                 var paymentDate = self.paymentDate.value
                 if isFixed {
-                    paymentDate = Calendar.current.startOfDay(for: Date())
+                    paymentDate = Calendar.opCoTime.startOfDay(for: Date())
                 }
                 
                 let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
@@ -261,7 +263,7 @@ class PaymentViewModel {
                     let paymentType: PaymentType = .check
                     var paymentDate = self.paymentDate.value
                     if isFixed {
-                        paymentDate = Calendar.current.startOfDay(for: Date())
+                        paymentDate = Calendar.opCoTime.startOfDay(for: Date())
                     }
                     
                     let accountNum = self.addBankFormViewModel.accountNumber.value
@@ -316,7 +318,7 @@ class PaymentViewModel {
                     let paymentType: PaymentType = .credit
                     var paymentDate = self.paymentDate.value
                     if isFixed {
-                        paymentDate = Calendar.current.startOfDay(for: Date())
+                        paymentDate = Calendar.opCoTime.startOfDay(for: Date())
                     }
                     
                     let cardNum = self.addCardFormViewModel.cardNumber.value
@@ -388,7 +390,7 @@ class PaymentViewModel {
             let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
             var paymentDate = self.paymentDate.value
             if isFixed {
-                paymentDate = Calendar.current.startOfDay(for: Date())
+                paymentDate = Calendar.opCoTime.startOfDay(for: Date())
             }
             let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: self.paymentAmountDouble(), paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: self.selectedWalletItem.value!.walletItemID!, cvv: self.cvv.value)
             self.paymentService.updatePayment(paymentId: self.paymentId.value!, payment: payment)
@@ -946,7 +948,7 @@ class PaymentViewModel {
             if (accountDetail.billingInfo.restorationAmount ?? 0 > 0 || accountDetail.billingInfo.amtDpaReinst ?? 0 > 0) || accountDetail.isCutOutNonPay { // Cut for non-pay
                 return true
             }
-            let startOfTodayDate = Calendar.current.startOfDay(for: Date())
+            let startOfTodayDate = Calendar.opCoTime.startOfDay(for: Date())
             if let dueDate = accountDetail.billingInfo.dueByDate {
                 if dueDate < startOfTodayDate {
                     return true
@@ -962,9 +964,9 @@ class PaymentViewModel {
     
     private(set) lazy var paymentDateString: Driver<String> = Driver.combineLatest(self.paymentDate.asDriver(), self.isFixedPaymentDate).map {
         if $1 {
-            let startOfTodayDate = Calendar.current.startOfDay(for: Date())
-            if Environment.sharedInstance.opco == .bge && Calendar.current.component(.hour, from: Date()) >= 20 {
-                return Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!.mmDdYyyyString
+            let startOfTodayDate = Calendar.opCoTime.startOfDay(for: Date())
+            if Environment.sharedInstance.opco == .bge && Calendar.opCoTime.component(.hour, from: Date()) >= 20 {
+                return Calendar.opCoTime.date(byAdding: .day, value: 1, to: startOfTodayDate)!.mmDdYyyyString
             }
             return startOfTodayDate.mmDdYyyyString
         }

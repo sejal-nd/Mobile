@@ -61,3 +61,18 @@ extension String {
     }
 
 }
+
+extension Calendar {
+    static let opCoTime: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        switch Environment.sharedInstance.opco {
+        case .bge, .peco :
+            calendar.timeZone = TimeZone(identifier: "America/New_York")!
+        case .comEd:
+            calendar.timeZone = TimeZone(identifier: "America/Chicago")!
+        }
+        return calendar
+    }()
+}
+
+

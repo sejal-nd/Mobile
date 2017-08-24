@@ -32,6 +32,7 @@ class LoginViewController: UIViewController {
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService(), registrationService: ServiceFactory.createRegistrationService())
     var viewAlreadyAppeared = false
+    var forgotUsernamePopulated = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,6 +178,10 @@ class LoginViewController: UIViewController {
                               fingerprintDimensionIndex: Dimensions.DIMENSION_FINGERPRINT_USED.rawValue,
                               fingerprintDimensionValue: "false")
         
+        if forgotUsernamePopulated {
+            Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAccountValidation.rawValue)
+        }
+        
         view.endEditing(true)
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
         
@@ -256,7 +261,6 @@ class LoginViewController: UIViewController {
                 self.viewModel.resendValidationEmail(onSuccess: { [weak self] in
                     LoadingView.hide()
                     self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
-                    Analytics().logScreenView(AnalyticsPageView.RegisterResendEmail.rawValue)
                 }, onError: { [weak self] errMessage in
                     LoadingView.hide()
                     self?.showErrorAlertWith(title: NSLocalizedString("Error", comment: ""), message: errMessage)
@@ -461,6 +465,7 @@ extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDeleg
     func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String) {
         viewModel.username.value = username
         Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAutoPopup.rawValue)
+        forgotUsernamePopulated = true
     }
 }
 
@@ -469,7 +474,6 @@ extension LoginViewController: ChangePasswordViewControllerDelegate {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
-            Analytics().logScreenView(AnalyticsPageView.ChangePasswordComplete.rawValue)
         })
     }
 }

@@ -263,15 +263,15 @@ struct BillingInfo: Mappable {
     }
     
     func convenienceFeeString(isComplete: Bool) -> String {
-        var conveienceFeeStr = ""
+        var convenienceFeeStr = ""
         if isComplete {
-            conveienceFeeStr = String(format: "A convenience fee will be applied by Western Union Speedpay, our payment partner.\nResidential accounts: %@. Business accounts: %@",
+            convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@",
                                       residentialFee!.currencyString!, commercialFee!.percentString!)
         } else {
-            conveienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",
+            convenienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",
                                       residentialFee!.currencyString!, commercialFee!.percentString!)
         }
-        return conveienceFeeStr
+        return convenienceFeeStr
     }
 }
 

@@ -88,26 +88,41 @@ class HomeBillCardViewModel {
         .shareReplay(1)
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
-        .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(), self.walletItem.unwrap(), self.cvv2.asObservable()))
-        .do(onNext: { _, walletItem, _ in
+        .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(),
+                                                 self.walletItem.unwrap(),
+                                                 self.cvv2.asObservable(),
+                                                 self.shouldShowWeekendWarning.asObservable(),
+                                                 self.workDayEvents.elements()))
+        .do(onNext: { _, walletItem, _, _, _ in
             switch walletItem.bankOrCard {
             case .bank:
-                Analytics().logScreenView(AnalyticsPageView.OneTouchBankComplete.rawValue)
+                Analytics().logScreenView(AnalyticsPageView.OneTouchBankOffer.rawValue)
             case .card:
-                Analytics().logScreenView(AnalyticsPageView.OneTouchCardComplete.rawValue)
+                Analytics().logScreenView(AnalyticsPageView.OneTouchCardOffer.rawValue)
             }
         })
-        .map { accountDetail, walletItem, cvv2 in
-            Payment(accountNumber: accountDetail.accountNumber,
-                    existingAccount: true,
-                    saveAccount: true,
-                    maskedWalletAccountNumber: walletItem.maskedWalletItemAccountNumber!,
-                    paymentAmount: accountDetail.billingInfo.netDueAmount!,
-                    paymentType: (walletItem.paymentCategoryType == .check) ? .check : .credit,
-                    paymentDate: Date(),
-                    walletId: AccountsStore.sharedInstance.customerIdentifier,
-                    walletItemId: walletItem.walletItemID!,
-                    cvv: cvv2)
+        .map { accountDetail, walletItem, cvv2, isWeekendOrHoliday, workDays in
+            let startOfToday = Calendar.opCoTime.startOfDay(for: Date())
+            let paymentDate: Date
+            if isWeekendOrHoliday, let nextWorkDay = workDays.sorted().first(where: { $0 > Date() }) {
+                paymentDate = nextWorkDay
+            } else if Environment.sharedInstance.opco == .bge &&
+                Calendar.opCoTime.component(.hour, from: Date()) >= 20,
+                let tomorrow = Calendar.opCoTime.date(byAdding: .day, value: 1, to: startOfToday) {
+                paymentDate = tomorrow
+            } else {
+                paymentDate = Date()
+            }
+            return Payment(accountNumber: accountDetail.accountNumber,
+                           existingAccount: true,
+                           saveAccount: true,
+                           maskedWalletAccountNumber: walletItem.maskedWalletItemAccountNumber!,
+                           paymentAmount: accountDetail.billingInfo.netDueAmount!,
+                           paymentType: (walletItem.paymentCategoryType == .check) ? .check : .credit,
+                           paymentDate: paymentDate,
+                           walletId: AccountsStore.sharedInstance.customerIdentifier,
+                           walletItemId: walletItem.walletItemID!,
+                           cvv: cvv2)
         }
         .flatMapLatest { [unowned self] payment in
             self.paymentService.schedulePayment(payment: payment)
@@ -124,7 +139,7 @@ class HomeBillCardViewModel {
     private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
         if Environment.sharedInstance.opco == .peco {
             return self.workDayEvents.elements()
-                .map { $0.filter(NSCalendar.current.isDateInToday).isEmpty }
+                .map { $0.filter(Calendar.opCoTime.isDateInToday).isEmpty }
                 .asDriver(onErrorDriveWith: .empty())
         } else {
             return Driver.just(false)
@@ -436,7 +451,7 @@ class HomeBillCardViewModel {
                 accountDetail.billingInfo.isDisconnectNotice,
                 let extensionDate = accountDetail.billingInfo.dueByDate {
                 
-                let calendar = NSCalendar.current
+                let calendar = Calendar.opCoTime
                 
                 let date1 = calendar.startOfDay(for: Date())
                 let date2 = calendar.startOfDay(for: extensionDate)
@@ -462,7 +477,7 @@ class HomeBillCardViewModel {
                                                        NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
             }
         } else if let dueByDate = accountDetail.billingInfo.dueByDate {
-            let calendar = NSCalendar.current
+            let calendar = Calendar.opCoTime
             
             let date1 = calendar.startOfDay(for: Date())
             let date2 = calendar.startOfDay(for: dueByDate)
@@ -489,7 +504,7 @@ class HomeBillCardViewModel {
     }
     
     func getDueInOnText(dueByDate: Date) -> NSAttributedString? {
-        let calendar = NSCalendar.current
+        let calendar = Calendar.opCoTime
         
         let date1 = calendar.startOfDay(for: Date())
         let date2 = calendar.startOfDay(for: dueByDate)
@@ -515,7 +530,7 @@ class HomeBillCardViewModel {
         guard let amountDueString = $0.billingInfo.netDueAmount?.currencyString else { return nil }
         guard let dueByDate = $0.billingInfo.dueByDate else { return nil }
         
-        let calendar = NSCalendar.current
+        let calendar = Calendar.opCoTime
         let date1 = calendar.startOfDay(for: Date())
         let date2 = calendar.startOfDay(for: dueByDate)
         guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else { return nil }
@@ -583,10 +598,10 @@ class HomeBillCardViewModel {
                 localizedText = NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
                 convenienceFeeString = accountDetail.billingInfo.convenienceFee?.currencyString
             case (true, .card, .bge):
-                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
+                localizedText = NSLocalizedString("A %@ convenience fee will be applied.", comment: "")
                 convenienceFeeString = accountDetail.billingInfo.residentialFee?.currencyString
             case (false, .card, .bge):
-                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
+                localizedText = NSLocalizedString("A %@ convenience fee will be applied.", comment: "")
                 convenienceFeeString = accountDetail.billingInfo.commercialFee?.percentString
             case (_, .bank, _):
                 return NSLocalizedString("No fees applied.", comment: "")

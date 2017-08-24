@@ -62,7 +62,11 @@ class OutageViewModel {
     }
     
     var reportedOutage: ReportedOutageResult? {
-        return outageService.outageMap[AccountsStore.sharedInstance.currentAccount.accountNumber]
+        return outageService.getReportedOutageResult(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
+    }
+    
+    func clearReportedOutage() {
+        outageService.clearReportedOutageStatus(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
     }
     
     func getEstimatedRestorationDateString() -> String {
