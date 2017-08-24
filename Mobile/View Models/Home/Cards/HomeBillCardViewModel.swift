@@ -96,9 +96,9 @@ class HomeBillCardViewModel {
         .do(onNext: { _, walletItem, _, _, _ in
             switch walletItem.bankOrCard {
             case .bank:
-                Analytics().logScreenView(AnalyticsPageView.OneTouchBankComplete.rawValue)
+                Analytics().logScreenView(AnalyticsPageView.OneTouchBankOffer.rawValue)
             case .card:
-                Analytics().logScreenView(AnalyticsPageView.OneTouchCardComplete.rawValue)
+                Analytics().logScreenView(AnalyticsPageView.OneTouchCardOffer.rawValue)
             }
         })
         .map { accountDetail, walletItem, cvv2, isWeekendOrHoliday, workDays in
