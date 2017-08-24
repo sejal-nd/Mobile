@@ -3,24 +3,24 @@
 <plist version="1.0">
 <dict>
 	<key>environment</key>
-	<string>TEST</string>
+	<string>STAGE</string>
 	<key>appName</key>
-	<string>PECO_TEST</string>
+	<string>PECO_STAGE</string>
 	<key>opco</key>
 	<string>PECO</string>
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>Testing</string>
+	<string>Staging</string>
 	<key>fiservUrl</key>
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
+	<key>speedpayUrl</key>
+	<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
-	<key>templateCardUrl</key>
-	<string>http://www.peco.com/smartideas</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_peco_testing</string>
+	<string>GoogleService-Info_peco_staging</string>
 	<key>gaTrackingId</key>
-	<string>UA-76742208-8</string>
+	<string>UA-76742208-2</string>
 </dict>
 </plist>
