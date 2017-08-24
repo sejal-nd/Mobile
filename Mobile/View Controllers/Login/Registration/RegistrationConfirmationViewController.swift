@@ -79,6 +79,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
                 .subscribe(onNext: { [weak self] in
                     LoadingView.hide()
                     self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
+                    Analytics().logScreenView(AnalyticsPageView.RegisterResendEmail.rawValue)
                 }, onError: { [weak self] err in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: err.localizedDescription, preferredStyle: .alert)

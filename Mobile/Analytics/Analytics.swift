@@ -17,10 +17,10 @@ enum AnalyticsPageView: String {
     case AutoPayUnenrollOffer = "AutoPayUnEnrollOffer"
     case AutoPayUnenrollComplete = "AutoPayUnEnrollComplete"
     
-    case AutoPayModifySettingsOffer = "AutoPayModifySettingsOffer"
-    case AutoPayModifySettingsOfferNew = "AutoPayModifySettingsOfferNew"
-    case AutoPayModifySettingsSubmit = "AutoPayModifySettingsSubmit"
-    case AutoPayModifySettingsComplete = "AutoPayModifySettingsComplete"
+    case AutoPayModifySettingsOffer = "AutoPayModifySettingOffer"
+    case AutoPayModifySettingsOfferNew = "AutoPayModifySettingOfferNew"
+    case AutoPayModifySettingsSubmit = "AutoPayModifySettingSubmit"
+    case AutoPayModifySettingsComplete = "AutoPayModifySettingComplete"
     case AutoPayModifySettingsCompleteNew = "AutoPayModifySettingCompleteNew"
 
     case AutoPayModifyWallet = "AutoPayModifyWallet"
