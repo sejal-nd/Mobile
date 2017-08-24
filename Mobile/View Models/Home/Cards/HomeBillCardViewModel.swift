@@ -88,8 +88,12 @@ class HomeBillCardViewModel {
         .shareReplay(1)
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
-        .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(), self.walletItem.unwrap(), self.cvv2.asObservable()))
-        .do(onNext: { _, walletItem, _ in
+        .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(),
+                                                 self.walletItem.unwrap(),
+                                                 self.cvv2.asObservable(),
+                                                 self.shouldShowWeekendWarning.asObservable(),
+                                                 self.workDayEvents.elements()))
+        .do(onNext: { _, walletItem, _, _, _ in
             switch walletItem.bankOrCard {
             case .bank:
                 Analytics().logScreenView(AnalyticsPageView.OneTouchBankComplete.rawValue)
@@ -97,17 +101,23 @@ class HomeBillCardViewModel {
                 Analytics().logScreenView(AnalyticsPageView.OneTouchCardComplete.rawValue)
             }
         })
-        .map { accountDetail, walletItem, cvv2 in
-            Payment(accountNumber: accountDetail.accountNumber,
-                    existingAccount: true,
-                    saveAccount: true,
-                    maskedWalletAccountNumber: walletItem.maskedWalletItemAccountNumber!,
-                    paymentAmount: accountDetail.billingInfo.netDueAmount!,
-                    paymentType: (walletItem.paymentCategoryType == .check) ? .check : .credit,
-                    paymentDate: Date(),
-                    walletId: AccountsStore.sharedInstance.customerIdentifier,
-                    walletItemId: walletItem.walletItemID!,
-                    cvv: cvv2)
+        .map { accountDetail, walletItem, cvv2, isWeekendOrHoliday, workDays in
+            let paymentDate: Date
+            if isWeekendOrHoliday, let nextWorkDay = workDays.sorted().first(where: { $0 > Date() }) {
+                paymentDate = nextWorkDay
+            } else {
+                paymentDate = Date()
+            }
+            return Payment(accountNumber: accountDetail.accountNumber,
+                           existingAccount: true,
+                           saveAccount: true,
+                           maskedWalletAccountNumber: walletItem.maskedWalletItemAccountNumber!,
+                           paymentAmount: accountDetail.billingInfo.netDueAmount!,
+                           paymentType: (walletItem.paymentCategoryType == .check) ? .check : .credit,
+                           paymentDate: paymentDate,
+                           walletId: AccountsStore.sharedInstance.customerIdentifier,
+                           walletItemId: walletItem.walletItemID!,
+                           cvv: cvv2)
         }
         .flatMapLatest { [unowned self] payment in
             self.paymentService.schedulePayment(payment: payment)
