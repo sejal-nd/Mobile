@@ -593,10 +593,10 @@ class HomeBillCardViewModel {
                 localizedText = NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
                 convenienceFeeString = accountDetail.billingInfo.convenienceFee?.currencyString
             case (true, .card, .bge):
-                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
+                localizedText = NSLocalizedString("A %@ convenience fee will be applied.", comment: "")
                 convenienceFeeString = accountDetail.billingInfo.residentialFee?.currencyString
             case (false, .card, .bge):
-                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Western Union Speedpay, our payment partner.", comment: "")
+                localizedText = NSLocalizedString("A %@ convenience fee will be applied.", comment: "")
                 convenienceFeeString = accountDetail.billingInfo.commercialFee?.percentString
             case (_, .bank, _):
                 return NSLocalizedString("No fees applied.", comment: "")
