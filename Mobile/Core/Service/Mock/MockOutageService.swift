@@ -10,7 +10,7 @@ import Foundation
 
 class MockOutageService : OutageService {
     
-    var outageMap = [String: ReportedOutageResult]()
+    private var outageMap = [String: ReportedOutageResult]()
     
     func fetchOutageStatus(account: Account, completion: @escaping (ServiceResult<OutageStatus>) -> Void) {
         let outageStatus = getOutageStatus(account: account)
@@ -114,6 +114,18 @@ class MockOutageService : OutageService {
             }
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, serviceMessage: "Invalid Account")))
+        }
+    }
+    
+    func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult? {
+        return self.outageMap[accountNumber]
+    }
+    
+    func clearReportedOutageStatus(accountNumber: String?) {
+        if let accountNumber = accountNumber {
+            self.outageMap[accountNumber] = nil
+        } else {
+            self.outageMap.removeAll()
         }
     }
 }

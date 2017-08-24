@@ -82,7 +82,8 @@ class PaperlessEBillViewController: UIViewController {
             })
             .disposed(by: bag)
         
-        viewModel.enrollAllAccounts.asDriver(onErrorJustReturn: false)
+        viewModel.enrollAllAccounts.distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] in
                 self?.enrollAllAccountsSwitch.setOn($0, animated: true)
             })
@@ -200,6 +201,11 @@ class PaperlessEBillViewController: UIViewController {
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self?.present(alertVc, animated: true, completion: nil)
         })
+    }
+    
+    // Prevents status bar color flash when pushed
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     deinit {

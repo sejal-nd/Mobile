@@ -235,8 +235,7 @@ class MakePaymentViewController: UIViewController {
             addCreditCardFeeLabel.text = String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill matrix, our payment partner.", comment: ""), accountDetail.billingInfo.convenienceFee!.currencyString!)
             break
         case .bge:
-            //let feeString = String(format: "Your payment includes a %@ convenience fee. ", accountDetail.isResidential ? accountDetail.billingInfo.residentialFee!.currencyString! : accountDetail.billingInfo.commercialFee!.percentString!)
-            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A convenience fee will be applied by Western Union Speedpay, our payment partner. Residential accounts: %@. Business accounts: %@.", comment: ""), accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
+            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.", comment: ""), accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
             break
         }
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
@@ -641,6 +640,11 @@ class MakePaymentViewController: UIViewController {
         let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""), image: #imageLiteral(resourceName: "cvv_info"), description: NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
+    
+    // Prevents status bar color flash when pushed
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
 }
 
@@ -689,10 +693,10 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        let today = Calendar.current.startOfDay(for: Date())
+        let today = Calendar.opCoTime.startOfDay(for: Date())
         if Environment.sharedInstance.opco == .bge {
-            let todayPlus90 = Calendar.current.date(byAdding: .day, value: 90, to: today)!
-            let todayPlus180 = Calendar.current.date(byAdding: .day, value: 180, to: today)!
+            let todayPlus90 = Calendar.opCoTime.date(byAdding: .day, value: 90, to: today)!
+            let todayPlus180 = Calendar.opCoTime.date(byAdding: .day, value: 180, to: today)!
             if viewModel.inlineCard.value {
                 return date >= today && date <= todayPlus90
             } else if viewModel.inlineBank.value {
@@ -710,7 +714,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
             }
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
-                let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
+                let startOfDueDate = Calendar.opCoTime.startOfDay(for: dueDate)
                 if Environment.sharedInstance.opco == .peco {
                     let isInWorkdaysArray = viewModel.workdayArray.contains(date)
                     return date >= today && date <= startOfDueDate && isInWorkdaysArray

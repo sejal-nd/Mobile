@@ -13,8 +13,6 @@ import RxSwift
 /// the currently logged in customer and their accounts.
 protocol OutageService {
     
-    var outageMap: [String: ReportedOutageResult] { get set }
-    
     /// Fetch the outage status for a given Account.
     ///
     /// - Parameters:
@@ -31,6 +29,10 @@ protocol OutageService {
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain a ServiceError on failure.
     func reportOutage(outageInfo: OutageInfo, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult?
+    
+    func clearReportedOutageStatus(accountNumber: String?)
 }
 
 // MARK: - Reactive Extension to OutageService

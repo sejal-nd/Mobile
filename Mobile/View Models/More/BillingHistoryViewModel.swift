@@ -21,10 +21,10 @@ class BillingHistoryViewModel {
     }
     
     func getBillingHistory(success: @escaping (BillingHistory) -> Void, failure: @escaping (Error) -> Void) {
-        let calendar = Calendar.current
-        let lastYear = calendar.date(byAdding: .month, value: months, to: Date())
-        let theFuture = Date().addingTimeInterval(TimeInterval(157700000))
-        billService.fetchBillingHistory(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, startDate: lastYear!, endDate: theFuture)
+        let calendar = Calendar.opCoTime
+        let lastYear = calendar.date(byAdding: .month, value: months, to: Date())!
+        let theFuture = Calendar.opCoTime.date(byAdding: .year, value: 5, to: Date())!
+        billService.fetchBillingHistory(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, startDate: lastYear, endDate: theFuture)
             .subscribe(onNext: { billingHistory in
                 success(billingHistory)
             }, onError: { error in

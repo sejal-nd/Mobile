@@ -137,6 +137,8 @@ class OutageViewController: AccountPickerViewController {
         
         navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        updateContent()
     }
     
     override func viewDidLayoutSubviews() {
@@ -167,50 +169,50 @@ class OutageViewController: AccountPickerViewController {
     }
     
     func updateContent() {
-        layoutBigButtonContent()
-        
-        let currentOutageStatus = viewModel.currentOutageStatus!
-        
-        errorLabel.isHidden = true
-        
-        // Show/hide the top level container views
-        if currentOutageStatus.flagGasOnly {
-            gasOnlyTextViewBottomSpaceConstraint.isActive = true
-            gasOnlyView.isHidden = false
-            accountContentView.isHidden = true
-        } else {
-            gasOnlyTextViewBottomSpaceConstraint.isActive = false
-            gasOnlyView.isHidden = true
-            accountContentView.isHidden = false
+        if let currentOutageStatus = viewModel.currentOutageStatus {
+            layoutBigButtonContent()
+            
+            errorLabel.isHidden = true
+            
+            // Show/hide the top level container views
+            if currentOutageStatus.flagGasOnly {
+                gasOnlyTextViewBottomSpaceConstraint.isActive = true
+                gasOnlyView.isHidden = false
+                accountContentView.isHidden = true
+            } else {
+                gasOnlyTextViewBottomSpaceConstraint.isActive = false
+                gasOnlyView.isHidden = true
+                accountContentView.isHidden = false
+            }
+            
+            // Display either the Lottie animation or draw our own border circles
+            let powerIsOn = !currentOutageStatus.activeOutage && viewModel.reportedOutage == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
+            animationView.isHidden = !powerIsOn
+            outerCircleView.isHidden = powerIsOn
+            innerCircleView.isHidden = powerIsOn
+            
+            if viewModel.reportedOutage == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled || currentOutageStatus.flagNonService) {
+                outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1) // Special case color - do not change
+                innerCircleView.backgroundColor = .middleGray
+            } else {
+                outerCircleView.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.7)
+                innerCircleView.backgroundColor = .primaryColor
+            }
+            
+            // Update the Report Outage button
+            if viewModel.reportedOutage != nil {
+                reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
+                reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.outageReportedDateString)
+            } else {
+                reportOutageButton.setDetailLabel(text: "", checkHidden: true)
+                reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
+            }
+            
+            // Disable bottom buttons if account is finaled or not paid
+            let bottomButtonsEnabled = !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
+            reportOutageButton.isEnabled = bottomButtonsEnabled
+            viewOutageMapButton.isEnabled = bottomButtonsEnabled
         }
-        
-        // Display either the Lottie animation or draw our own border circles
-        let powerIsOn = !currentOutageStatus.activeOutage && viewModel.reportedOutage == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
-        animationView.isHidden = !powerIsOn
-        outerCircleView.isHidden = powerIsOn
-        innerCircleView.isHidden = powerIsOn
-        
-        if viewModel.reportedOutage == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled || currentOutageStatus.flagNonService) {
-            outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1) // Special case color - do not change
-            innerCircleView.backgroundColor = .middleGray
-        } else {
-            outerCircleView.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.7)
-            innerCircleView.backgroundColor = .primaryColor
-        }
-        
-        // Update the Report Outage button
-        if viewModel.reportedOutage != nil {
-            reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
-            reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.outageReportedDateString)
-        } else {
-            reportOutageButton.setDetailLabel(text: "", checkHidden: true)
-            reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
-        }
-        
-        // Disable bottom buttons if account is finaled or not paid
-        let bottomButtonsEnabled = !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
-        reportOutageButton.isEnabled = bottomButtonsEnabled
-        viewOutageMapButton.isEnabled = bottomButtonsEnabled
     }
     
     func layoutBigButtonContent() {
@@ -385,6 +387,7 @@ class OutageViewController: AccountPickerViewController {
         viewModel.getOutageStatus(onSuccess: { [weak self] in
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
+            self.viewModel.clearReportedOutage()
             self.updateContent()
         }, onError: { [weak self] in
             guard let `self` = self else { return }

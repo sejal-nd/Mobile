@@ -276,6 +276,11 @@ class WalletViewController: UIViewController {
         }
     }
     
+    // Prevents status bar color flash when pushed
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     deinit {
         dLog()
     }

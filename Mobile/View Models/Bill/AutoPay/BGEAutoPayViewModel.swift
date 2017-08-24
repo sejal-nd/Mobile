@@ -57,7 +57,7 @@ class BGEAutoPayViewModel {
     }
     
     private func amountNotToExceedDouble() -> String {
-        return String(amountNotToExceed.value.characters.filter { "0123456789".characters.contains($0) })
+        return String(amountNotToExceed.value.characters.filter { "0123456789.".characters.contains($0) })
     }
     
     func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
