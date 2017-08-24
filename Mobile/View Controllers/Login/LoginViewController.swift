@@ -178,7 +178,7 @@ class LoginViewController: UIViewController {
                               fingerprintDimensionIndex: Dimensions.DIMENSION_FINGERPRINT_USED.rawValue,
                               fingerprintDimensionValue: "false")
         
-        if(forgotUsernamePopulated) {
+        if forgotUsernamePopulated {
             Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAccountValidation.rawValue)
         }
         

@@ -122,7 +122,7 @@ class BGEAutoPayViewController: UIViewController {
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         })
         
-        if(viewModel.initialEnrollmentStatus.value == .unenrolled) {
+        if viewModel.initialEnrollmentStatus.value == .unenrolled {
             Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollOffer.rawValue)
         }
     }
