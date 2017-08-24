@@ -401,6 +401,7 @@ class HomeBillCardView: UIView {
             vc.viewModel.accountDetail = accountDetail
             vc.shouldPopToRootOnSave = true
             vc.shouldSetOneTouchPayByDefault = true
+            Analytics().logScreenView(AnalyticsPageView.OneTouchEnabledBillCard.rawValue)
             return vc
         }
         .asDriver(onErrorDriveWith: .empty())
