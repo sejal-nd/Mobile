@@ -11,8 +11,7 @@ import Foundation
 struct CreditCard {
     var cardNumber: String
     var securityCode: String
-    var firstName: String?
-    var lastName: String?
+    var cardHolderName: String?
     var expirationMonth: String
     var expirationYear: String
     var postalCode: String
@@ -21,8 +20,7 @@ struct CreditCard {
     
     init(cardNumber: String,
          securityCode: String,
-         firstName: String? = nil,
-         lastName: String? = nil,
+         cardHolderName: String? = nil,
          expirationMonth: String,
          expirationYear: String,
          postalCode: String,
@@ -30,8 +28,7 @@ struct CreditCard {
          oneTimeUse: Bool = false) {
         self.cardNumber = cardNumber
         self.securityCode = securityCode
-        self.firstName = firstName
-        self.lastName = lastName
+        self.cardHolderName = cardHolderName
         self.expirationMonth = expirationMonth
         self.expirationYear = expirationYear
         self.postalCode = postalCode

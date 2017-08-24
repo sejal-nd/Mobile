@@ -56,7 +56,7 @@ class AddCreditCardViewModel {
     
     func addCreditCard(onDuplicate: @escaping (String) -> Void, onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
         
-        let card = CreditCard(cardNumber: addCardFormViewModel.cardNumber.value, securityCode: addCardFormViewModel.cvv.value, firstName: "", lastName: "", expirationMonth: addCardFormViewModel.expMonth.value, expirationYear: addCardFormViewModel.expYear.value, postalCode: addCardFormViewModel.zipCode.value, nickname: addCardFormViewModel.nickname.value)
+        let card = CreditCard(cardNumber: addCardFormViewModel.cardNumber.value, securityCode: addCardFormViewModel.cvv.value, cardHolderName: addCardFormViewModel.nameOnCard.value, expirationMonth: addCardFormViewModel.expMonth.value, expirationYear: addCardFormViewModel.expYear.value, postalCode: addCardFormViewModel.zipCode.value, nickname: addCardFormViewModel.nickname.value)
         
         walletService
             .addCreditCard(card, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)

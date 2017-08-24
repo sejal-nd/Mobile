@@ -295,7 +295,7 @@ class PaymentViewModel {
     }
     
     private func scheduleInlineCardPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        let card = CreditCard(cardNumber: addCardFormViewModel.cardNumber.value, securityCode: addCardFormViewModel.cvv.value, firstName: "", lastName: "", expirationMonth: addCardFormViewModel.expMonth.value, expirationYear: addCardFormViewModel.expYear.value, postalCode: addCardFormViewModel.zipCode.value, nickname: addCardFormViewModel.nickname.value)
+        let card = CreditCard(cardNumber: addCardFormViewModel.cardNumber.value, securityCode: addCardFormViewModel.cvv.value, cardHolderName: addCardFormViewModel.nameOnCard.value, expirationMonth: addCardFormViewModel.expMonth.value, expirationYear: addCardFormViewModel.expYear.value, postalCode: addCardFormViewModel.zipCode.value, nickname: addCardFormViewModel.nickname.value)
         
         if Environment.sharedInstance.opco == .bge && !addCardFormViewModel.saveToWallet.value {
             self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
