@@ -11,10 +11,9 @@ import Foundation
 struct SpeedpayApi {
     func fetchTokenizedCardNumber(cardNumber: String, completion: @escaping (_ result: ServiceResult<String>) -> Swift.Void) {
         do {
-            let url = "https://sptest144aa.speedpay.com/api/token/GetToken"
             let params = ["DEBIT_ACCOUNT":cardNumber] as [String : Any]
             
-            var urlRequest = URLRequest(url: URL(string: url)!)
+            var urlRequest = URLRequest(url: URL(string: Environment.sharedInstance.speedpayUrl)!)
             urlRequest.httpMethod = "POST"
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             let jsonData: NSData = try JSONSerialization.data(withJSONObject: params) as NSData

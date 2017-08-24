@@ -9,21 +9,15 @@
 	<key>opco</key>
 	<string>BGE</string>
 	<key>oauthEndpoint</key>
-	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+	<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>Dev</string>
+	<string>ProdBGE</string>
 	<key>fiservUrl</key>
-	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
+	<string>https://billerdirectui.onefiserv.com/BillerDirectUI/Mobile</string>
+	<key>speedpayUrl</key>
+	<string>https://tokenservice.speedpay.com/api/token/GetToken</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
-	<key>templateCardUrlResidentNotEnrolled</key>
-	<string>https://bgesavings.com/enroll</string>
-	<key>templateCardUrlLegacyTstat</key>
-	<string>https://secure.bge.com/Peakrewards/Pages/default.aspx</string>
-	<key>templateCardUrlWiFiTstat</key>
-	<string>https://www.ecobee.com/home/ecobeeLogin.jsp</string>
-	<key>templateCardUrlCommericalUser</key>
-	<string>http://bgesmartenergy.com/business</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_bge</string>
 	<key>gaTrackingId</key>
