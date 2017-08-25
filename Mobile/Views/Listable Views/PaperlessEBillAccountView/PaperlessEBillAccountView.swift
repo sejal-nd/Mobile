@@ -53,7 +53,7 @@ class PaperlessEBillAccountView: UIView {
         case .canEnroll:
             enrollSwitch.isOn = false
             isOn = enrollSwitch.rx.isOn
-            imageView.image = #imageLiteral(resourceName: "ic_residential")
+            imageView.image = accountDetail.isResidential ? #imageLiteral(resourceName: "ic_residential") : #imageLiteral(resourceName: "ic_commercial")
             accountNumberLabel.textColor = .blackText
             addressLabel.textColor = .deepGray
             enrollStatusLabel.removeFromSuperview()
@@ -61,21 +61,21 @@ class PaperlessEBillAccountView: UIView {
         case .canUnenroll:
             enrollSwitch.isOn = true
             isOn = enrollSwitch.rx.isOn
-            imageView.image = #imageLiteral(resourceName: "ic_residential")
+            imageView.image = accountDetail.isResidential ? #imageLiteral(resourceName: "ic_residential") : #imageLiteral(resourceName: "ic_commercial")
             accountNumberLabel.textColor = .blackText
             addressLabel.textColor = .deepGray
             enrollStatusLabel.removeFromSuperview()
             enrollStatusLabel = nil
         case .finaled:
             enrollStatusLabel.text = "Finaled"
-            imageView.image = #imageLiteral(resourceName: "ic_residential_disabled")
+            imageView.image = accountDetail.isResidential ? #imageLiteral(resourceName: "ic_residential_disabled") : #imageLiteral(resourceName: "ic_commercial_disabled")
             accountNumberLabel.textColor = .middleGray
             addressLabel.textColor = .middleGray
             enrollSwitch.removeFromSuperview()
             enrollSwitch = nil
         case .ineligible:
             enrollStatusLabel.text = "Ineligible"
-            imageView.image = #imageLiteral(resourceName: "ic_residential_disabled")
+            imageView.image = accountDetail.isResidential ? #imageLiteral(resourceName: "ic_residential_disabled") : #imageLiteral(resourceName: "ic_commercial_disabled")
             accountNumberLabel.textColor = .middleGray
             addressLabel.textColor = .middleGray
             enrollSwitch.removeFromSuperview()

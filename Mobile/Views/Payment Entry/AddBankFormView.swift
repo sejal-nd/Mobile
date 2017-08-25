@@ -172,7 +172,7 @@ class AddBankFormView: UIView {
             }).disposed(by: disposeBag)
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-            .withLatestFrom(Driver.zip(viewModel.accountHolderName.asDriver(), viewModel.accountHolderNameIsValid))
+            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberIsValid))
             .filter { !$0.0.isEmpty && !$0.1 }
             .drive(onNext: { [weak self] _ in
                 self?.accountNumberTextField.setError(NSLocalizedString("Must be between 4-17 digits", comment: ""))
