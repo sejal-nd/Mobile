@@ -35,6 +35,14 @@ class TermsPoliciesViewController: UIViewController {
         
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
+        } else { // Sent from unauthenticated user experience
+            view.backgroundColor = .primaryColor // Required for nav bar background
+            
+            let titleDict: [String: Any] = [
+                NSForegroundColorAttributeName: UIColor.white,
+                NSFontAttributeName: OpenSans.bold.of(size: 18)
+            ]
+            navigationController?.navigationBar.titleTextAttributes = titleDict
         }
     }
     
