@@ -388,7 +388,12 @@ class PaymentViewModel {
     }
     
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, bankOrCard: selectedWalletItem.value!.bankOrCard, paymentDetail: paymentDetail.value!)
+        var bankOrCard: BankOrCard?
+        if let selectedWalletItem = selectedWalletItem.value {
+            bankOrCard = selectedWalletItem.bankOrCard
+        }
+        
+        paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, bankOrCard: bankOrCard, paymentDetail: paymentDetail.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
