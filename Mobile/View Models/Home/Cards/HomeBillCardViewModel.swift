@@ -332,7 +332,7 @@ class HomeBillCardViewModel {
                                                                                self.showOneTouchPaySlider,
                                                                                self.minMaxPaymentAllowedText)
     { billState, walletItem, accountDetail, showOneTouchPaySlider, minMaxPaymentAllowedText in
-        return billState != .credit &&
+        return billState == .billReady &&
             walletItem != nil &&
             Environment.sharedInstance.opco != .bge &&
             showOneTouchPaySlider &&
@@ -588,13 +588,13 @@ class HomeBillCardViewModel {
         let maxPayment: Double
         switch (walletItem.bankOrCard, Environment.sharedInstance.opco) {
         case (.bank, .bge):
-            minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 0.01
+            minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 0
             maxPayment = accountDetail.billingInfo.maxPaymentAmountACH ?? (accountDetail.isResidential ? 9999.99 : 99999.99)
         case (.bank, _):
             minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 5
             maxPayment = accountDetail.billingInfo.maxPaymentAmountACH ?? 90000
         case (.card, .bge):
-            minPayment = accountDetail.billingInfo.minPaymentAmount ?? 0.01
+            minPayment = accountDetail.billingInfo.minPaymentAmount ?? 0
             maxPayment = accountDetail.billingInfo.maxPaymentAmount ?? (accountDetail.isResidential ? 600 : 25000)
         case (.card, _):
             minPayment = accountDetail.billingInfo.minPaymentAmount ?? 5
