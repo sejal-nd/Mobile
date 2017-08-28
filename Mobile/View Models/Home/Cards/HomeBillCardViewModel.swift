@@ -286,8 +286,9 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showConvenienceFee: Driver<Bool> = Driver.combineLatest(self.walletItemDriver,
                                                                                   self.showOneTouchPaySlider,
-                                                                                  self.billState)
-        .map { $0 != nil && $1 && $2 != .credit && !$2.isPrecariousBillSituation && $2 != .paymentScheduled && $2 != .billReadyAutoPay }
+                                                                                  self.billState,
+                                                                                  self.enableOneTouchSlider)
+        .map { $0 != nil && $1 && $2 != .credit && !$2.isPrecariousBillSituation && $2 != .paymentScheduled && $2 != .billReadyAutoPay && $3 }
     
     private(set) lazy var showDueDate: Driver<Bool> = Driver.combineLatest(self.billState, self.accountDetailDriver)
     {
@@ -316,26 +317,26 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showBankCreditButton: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                           self.walletItemDriver,
-                                                                          self.showOneTouchPaySlider)
-        { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .billReadyAutoPay && $1 != nil && $2 }
+                                                                          self.showOneTouchPaySlider,
+                                                                          self.enableOneTouchSlider)
+        { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .billReadyAutoPay && $1 != nil && $2 && $3 }
     
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                                    self.walletItemDriver,
                                                                                    self.showOneTouchPaySlider)
         { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .paymentScheduled && $1 == nil && $2 }
     
-    private(set) lazy var showMinimumPaymentAllowed: Driver<Bool> = Driver.combineLatest(self.billState,
+    private(set) lazy var showMinMaxPaymentAllowed: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                                self.walletItemDriver,
                                                                                self.accountDetailDriver,
-                                                                               self.showOneTouchPaySlider)
-    { billState, walletItem, accountDetail, showOneTouchPaySlider in
-        guard let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount else { return false }
-        return billState != .credit &&
-            !billState.isPrecariousBillSituation &&
+                                                                               self.showOneTouchPaySlider,
+                                                                               self.minMaxPaymentAllowedText)
+    { billState, walletItem, accountDetail, showOneTouchPaySlider, minMaxPaymentAllowedText in
+        return billState == .billReady &&
             walletItem != nil &&
-            (accountDetail.billingInfo.netDueAmount ?? 0) < minPaymentAmount &&
             Environment.sharedInstance.opco != .bge &&
-            showOneTouchPaySlider
+            showOneTouchPaySlider &&
+            minMaxPaymentAllowedText != nil
     }
     
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(self.billState,
@@ -578,14 +579,41 @@ class HomeBillCardViewModel {
         return imageLabel + ", " + String(format:NSLocalizedString("Account ending in %@", comment: ""), maskedNumber)
     }
     
-    private(set) lazy var minPaymentAllowedText: Driver<String?> = self.accountDetailDriver.map {
-        guard let minPaymentAmountText = $0.billingInfo.minPaymentAmount?.currencyString else { return nil }
-        let localizedText = NSLocalizedString("Minimum payment allowed is %@.", comment: "")
-        return String(format: localizedText, minPaymentAmountText)
+    private(set) lazy var minMaxPaymentAllowedText: Driver<String?> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver)
+    { accountDetail, walletItemOptional in
+        guard let walletItem = walletItemOptional else { return nil }
+        guard let paymentAmount = accountDetail.billingInfo.netDueAmount else { return nil }
+        
+        let minPayment: Double
+        let maxPayment: Double
+        switch (walletItem.bankOrCard, Environment.sharedInstance.opco) {
+        case (.bank, .bge):
+            minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 0
+            maxPayment = accountDetail.billingInfo.maxPaymentAmountACH ?? (accountDetail.isResidential ? 9999.99 : 99999.99)
+        case (.bank, _):
+            minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 5
+            maxPayment = accountDetail.billingInfo.maxPaymentAmountACH ?? 90000
+        case (.card, .bge):
+            minPayment = accountDetail.billingInfo.minPaymentAmount ?? 0
+            maxPayment = accountDetail.billingInfo.maxPaymentAmount ?? (accountDetail.isResidential ? 600 : 25000)
+        case (.card, _):
+            minPayment = accountDetail.billingInfo.minPaymentAmount ?? 5
+            maxPayment = accountDetail.billingInfo.maxPaymentAmount ?? 5000
+        }
+        
+        if paymentAmount < minPayment, let amountText = minPayment.currencyString {
+            let minLocalizedText = NSLocalizedString("Minimum payment allowed is %@", comment: "")
+            return String(format: minLocalizedText, amountText)
+        } else if paymentAmount > maxPayment, let amountText = maxPayment.currencyString {
+            let maxLocalizedText = NSLocalizedString("Maximum payment allowed is %@", comment: "")
+            return String(format: maxLocalizedText, amountText)
+        } else {
+            return nil
+        }
     }
     
     private(set) lazy var convenienceFeeText: Driver<String?> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver)
-        .map { accountDetail, walletItem in
+        { accountDetail, walletItem in
             guard let walletItem = walletItem else { return nil }
             
             var localizedText: String? = nil
@@ -614,9 +642,11 @@ class HomeBillCardViewModel {
             
     }
     
-    private(set) lazy var enableOneTouchSlider: Driver<Bool> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver)
-        .map { accountDetail, walletItem in
-            if walletItem == nil {
+    private(set) lazy var enableOneTouchSlider: Driver<Bool> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver, self.showMinMaxPaymentAllowed)
+        { accountDetail, walletItem, showMinMaxPaymentAllowed in
+            if showMinMaxPaymentAllowed {
+                return false
+            } else if walletItem == nil {
                 return false
             } else if let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount,
                 accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.sharedInstance.opco != .bge {
