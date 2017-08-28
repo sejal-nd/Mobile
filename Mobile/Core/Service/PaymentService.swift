@@ -102,7 +102,7 @@ protocol PaymentService {
     
     func updatePayment(paymentId: String, payment: Payment, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
-    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard, paymentDetail: PaymentDetail, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
 }
 
 // MARK: - Reactive Extension to PaymentService
@@ -292,7 +292,7 @@ extension PaymentService {
         }
     }
     
-    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard, paymentDetail: PaymentDetail) -> Observable<Void> {
+    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail) -> Observable<Void> {
         
         return Observable.create { observer in
             self.cancelPayment(accountNumber: accountNumber, paymentId: paymentId, bankOrCard: bankOrCard, paymentDetail: paymentDetail)

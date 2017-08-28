@@ -78,7 +78,7 @@ class MockPaymentService: PaymentService {
         completion(ServiceResult.Failure(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil)))
     }
     
-    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard, paymentDetail: PaymentDetail, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
+    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
         completion(ServiceResult.Failure(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil)))
     }
     
