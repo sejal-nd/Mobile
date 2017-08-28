@@ -60,10 +60,9 @@ class RegistrationViewModel {
     }
     
     func validateAccount(onSuccess: @escaping () -> Void, onMultipleAccounts: @escaping() -> Void, onError: @escaping (String, String) -> Void) {
-        let acctNum: String? = !accountNumber.value.isEmpty ? accountNumber.value : nil
         let identifier: String = identifierNumber.value
         
-        registrationService.validateAccountInformation(identifier, phone: extractDigitsFrom(phoneNumber.value), accountNum: acctNum)
+        registrationService.validateAccountInformation(identifier, phone: extractDigitsFrom(phoneNumber.value), accountNum: accountNumber.value)
         	.observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] data in
                 guard let `self` = self else { return }
@@ -106,8 +105,9 @@ class RegistrationViewModel {
     }
     
     func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        registrationService.createNewAccount(username.value,
+        registrationService.createNewAccount(username: username.value,
                                              password: newPassword.value,
+                                             accountNum: accountNumber.value,
                                              identifier: identifierNumber.value,
                                              phone: extractDigitsFrom(phoneNumber.value),
                                              question1: securityQuestion1.value,

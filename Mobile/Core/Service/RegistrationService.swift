@@ -11,22 +11,23 @@ import RxSwift
 protocol RegistrationService {
     
     /*
-     opco			String	The OpCo for the request.
-     username		String	Username to register. Must be a valid email address.
-     password		String	Account password
-     identifier		String	Last4ofSSN,TaxIDorBGEPin
-     phone			String	Account phone number
-     question1		String	First security question
-     answer1		String	Answer to first security question
-     question2		String	Second security question
-     answer2		String	Answer to second security question
-     question3		String	Third security question
-     answer3		String	Answer to third security question
-     set_primary	String	Certain commercial accounts are allowed to have multiple profiles.
-     enroll_ebill	String	Set this to true when the customer has elected to enroll in Electronic Billing.
+     username       String  Username to register. Must be a valid email address.
+     password       String  Account password
+     accountNum     String  Account number
+     identifier     String  Last4ofSSN,TaxIDorBGEPin
+     phone          String  Account phone number
+     question1      String  First security question
+     answer1        String  Answer to first security question
+     question2      String  Second security question
+     answer2        String  Answer to second security question
+     question3      String  Third security question
+     answer3        String  Answer to third security question
+     set_primary    String  Certain commercial accounts are allowed to have multiple profiles.
+     enroll_ebill   String  Set this to true when the customer has elected to enroll in Electronic Billing.
      */
-    func createNewAccount(_ username: String,
+    func createNewAccount(username: String,
                           password: String,
+                          accountNum: String?,
                           identifier: String,
                           phone: String,
                           question1: String,
@@ -91,8 +92,9 @@ protocol RegistrationService {
 extension RegistrationService {
     
     //
-    func createNewAccount(_ username: String,
+    func createNewAccount(username: String,
                           password: String,
+                          accountNum: String?,
                           identifier: String,
                           phone: String,
                           question1: String,
@@ -105,8 +107,9 @@ extension RegistrationService {
                           isEnrollEBill: String) -> Observable<Void> {
         //
         return Observable.create { observer in
-            self.createNewAccount(username,
+            self.createNewAccount(username: username,
                                   password: password,
+                                  accountNum: accountNum,
                                   identifier: identifier,
                                   phone: phone,
                                   question1: question1,

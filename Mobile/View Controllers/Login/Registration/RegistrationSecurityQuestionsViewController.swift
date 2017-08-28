@@ -93,31 +93,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         viewModel.paperlessEbill.value = true
     }
     
-    func createTestAccounts() {
-        var account1: AccountLookupResult
-        var account2: AccountLookupResult
-
-        let acct1 = ["AccountNumber": "0123", "StreetNumber": "456", "ApartmentUnitNumber": "789"]
-        let acct2 = ["AccountNumber": "3210", "StreetNumber": "654", "ApartmentUnitNumber": "987"]
-
-        let map1 = Mapper(JSON: acct1 as NSDictionary)
-        let map2 = Mapper(JSON: acct2 as NSDictionary)
-
-        do {
-            try account1 = AccountLookupResult(map: map1)
-            try account2 = AccountLookupResult(map: map2)
-
-            viewModel.accounts.value.removeAll()
-
-            viewModel.accounts.value.append(account1)
-            viewModel.accounts.value.append(account2)
-        } catch {
-            
-        }
-        
-    }
-
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
         dLog()
@@ -288,7 +263,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question1AnswerTextField.textField.autocorrectionType = .no
         question1AnswerTextField.textField.returnKeyType = .next
         question1AnswerTextField.textField.isShowingAccessory = true
-        question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
         question1AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         question1AnswerTextField.setEnabled(false)
         
@@ -296,7 +270,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question2AnswerTextField.textField.autocorrectionType = .no
         question2AnswerTextField.textField.returnKeyType = .next
         question2AnswerTextField.textField.isShowingAccessory = true
-        question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
         question2AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         question2AnswerTextField.setEnabled(false)
 
@@ -305,7 +278,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             question3AnswerTextField.textField.autocorrectionType = .no
             question3AnswerTextField.textField.returnKeyType = .next
             question3AnswerTextField.textField.isShowingAccessory = true
-            question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
             question3AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             question3AnswerTextField.setEnabled(false)
         } else {
