@@ -1010,6 +1010,7 @@
 		E8BCB9BB1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		E8BCB9BC1EFAE79700779588 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		E8BCB9BD1EFAE79A00779588 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
+		E8C0B4C91F55F692006DC694 /* BGEAutoPayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */; };
 		E8C453151EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
 		E8C453161EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
 		E8C453171EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
@@ -1645,6 +1646,7 @@
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
 		E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
 		E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModel.swift; sourceTree = "<group>"; };
+		E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModelTests.swift; sourceTree = "<group>"; };
 		E8C453141EF3293600F5C781 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		E8C453181EF4154000F5C781 /* AccountInfoBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoBar.swift; sourceTree = "<group>"; };
 		E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewController.swift; sourceTree = "<group>"; };
@@ -2636,6 +2638,7 @@
 				E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */,
 				E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */,
 				E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */,
+				E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */,
 			);
 			path = MobileTests;
 			sourceTree = "<group>";
@@ -3211,7 +3214,7 @@
 						};
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -4376,6 +4379,7 @@
 				E8F51EEA1ECA40870080AB3E /* PaperlessEBillViewModelTests.swift in Sources */,
 				E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */,
 				E81CFFF71EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
+				E8C0B4C91F55F692006DC694 /* BGEAutoPayViewModelTests.swift in Sources */,
 				E841F3B51F030EE5007BFA82 /* BillingHistory.swift in Sources */,
 				E8EDC5471F324DEE006DD927 /* SpeedpayErrorMapper.swift in Sources */,
 				E8CA07F71E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
