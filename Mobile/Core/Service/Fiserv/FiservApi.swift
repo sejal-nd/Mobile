@@ -246,19 +246,19 @@ struct FiservApi {
         let time = Int(NSDate().timeIntervalSince1970)
         let billerId = "\(opCo.rawValue)Registered"
         
-        var params = [Parameter.RequestTimestamp.rawValue:"/Date(" + String(time) + ")/",
-                      Parameter.AppId.rawValue:"FiservProxy",
-                      Parameter.ProcessingRegionCode.rawValue:2,
-                      Parameter.BillerId.rawValue:billerId,
-                      Parameter.ConsumerId.rawValue:customerNumber,
-                      Parameter.SessionToken.rawValue:token,
-                      Parameter.DeviceProfile.rawValue:[Parameter.UserAgentString.rawValue : "MobileApp"],
-                      Parameter.WalletExternalId.rawValue:customerNumber,
-                      Parameter.OneTimeUse.rawValue:oneTimeUse,
-                      Parameter.IsDefaultFunding.rawValue:false] as [String : Any]
+        var params = [Parameter.RequestTimestamp.rawValue: "/Date(" + String(time) + ")/",
+                      Parameter.AppId.rawValue: "FiservProxy",
+                      Parameter.ProcessingRegionCode.rawValue: Environment.sharedInstance.environmentName == "PROD" ? 5 : 2,
+                      Parameter.BillerId.rawValue: billerId,
+                      Parameter.ConsumerId.rawValue: customerNumber,
+                      Parameter.SessionToken.rawValue: token,
+                      Parameter.DeviceProfile.rawValue:[Parameter.UserAgentString.rawValue: "MobileApp"],
+                      Parameter.WalletExternalId.rawValue: customerNumber,
+                      Parameter.OneTimeUse.rawValue: oneTimeUse,
+                      Parameter.IsDefaultFunding.rawValue: false] as [String : Any]
         
-        if(!(nickname ?? "").isEmpty) {
-            params[Parameter.NickName.rawValue] = nickname
+        if let nick = nickname, !nick.isEmpty {
+            params[Parameter.NickName.rawValue] = nick
         }
         
         return params
