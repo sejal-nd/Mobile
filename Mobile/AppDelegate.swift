@@ -67,20 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-            let url = userActivity.webpageURL,
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-                return false
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else {
+            return false
         }
-        
-        var guid: String?
-        if let queryString = components.query {
-            if queryString.contains("guid=") {
-                let splitArray = queryString.components(separatedBy: "=")
-                guid = splitArray[1]
-            }
-        }
-        
+                
         // For now, no deep links require being logged in. So if the user is already in the app, don't do anything special
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
             return false
@@ -94,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             resetNavigation(sendToLogin: true)
         }
         
-        if let guid = guid {
+        if let guid = getQueryStringParameter(url: url, param: "guid") {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 // Need delay here for the notification to be properly received by LoginViewController
                 NotificationCenter.default.post(name: NSNotification.Name.DidTapAccountVerificationDeepLink, object: self, userInfo: ["guid": guid])
@@ -102,6 +92,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
+    }
+    
+    private func getQueryStringParameter(url: URL, param: String) -> String? {
+        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true), let queryItems = urlComponents.queryItems {
+            return queryItems.filter({ item in
+                item.name == param
+            }).first?.value!
+        }
+        return nil
     }
     
     func setupUserDefaults() {
