@@ -233,7 +233,7 @@ class AddCardFormView: UIView {
             .withLatestFrom(Driver.zip(viewModel.zipCode.asDriver(), viewModel.zipCodeIs5Digits))
             .filter { !$0.0.isEmpty && !$0.1 }
             .drive(onNext: { [weak self] _ in
-                self?.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
+                self?.zipCodeTextField.setError(NSLocalizedString("Must be 5 digits", comment: ""))
             }).disposed(by: disposeBag)
         
         zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
