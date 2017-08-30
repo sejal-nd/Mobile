@@ -234,8 +234,8 @@ class HomeBillCardView: UIView {
         
         // Actions
         oneTouchSlider.didFinishSwipe
-            .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV) { $0 || $1 })
-            .filter(!)
+            .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV))
+            .filter { !($0 || $1 || Environment.sharedInstance.opco == .bge) }
             .toVoid()
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
@@ -309,7 +309,40 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var oneTouchSliderBGEAlert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
+    func oneTouchBGELegalAlert(observer: AnyObserver<UIViewController>) -> UIAlertController {
+        let alertController2 = UIAlertController(title: "",
+                                                 message: NSLocalizedString("If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.\n\nPlease ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.\n\nIf an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.", comment: ""), preferredStyle: .alert)
+        alertController2.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { [weak self] _ in
+            self?.oneTouchSlider.reset(animated: true)
+            observer.onCompleted()
+        })
+        alertController2.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
+            LoadingView.show(animated: true)
+            self?.viewModel.submitOneTouchPay.onNext()
+            observer.onCompleted()
+        })
+        return alertController2
+    }
+    
+    private(set) lazy var oneTouchSliderBGELegalAlert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
+        .withLatestFrom(self.viewModel.promptForCVV)
+        .asObservable()
+        .filter { !$0 && Environment.sharedInstance.opco == .bge }
+        .flatMap { [weak self] _ in
+            Observable<UIViewController>.create { [weak self] observer in
+                guard let `self` = self else {
+                    observer.onCompleted()
+                    return Disposables.create()
+                }
+                let alert = self.oneTouchBGELegalAlert(observer: observer)
+                observer.onNext(alert)
+                return Disposables.create()
+            }
+        }
+        .asDriver(onErrorDriveWith: .empty())
+    
+    
+    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
         .withLatestFrom(self.viewModel.promptForCVV)
         .asObservable()
         .filter { $0 }
@@ -330,20 +363,10 @@ class HomeBillCardView: UIView {
                 }
                 
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-                    self?.cvvValidationDisposable?.dispose()
-                    
+                    guard let `self` = self else { return }
+                    self.cvvValidationDisposable?.dispose()
                     let textField = alertController.textFields![0]
-                    let alertController2 = UIAlertController(title: "",
-                                                             message: NSLocalizedString("If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.\n\nPlease ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.\n\nIf an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.", comment: ""), preferredStyle: .alert)
-                    alertController2.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { [weak self] _ in
-                        self?.oneTouchSlider.reset(animated: true)
-                        observer.onCompleted()
-                    })
-                    alertController2.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
-                        LoadingView.show(animated: true)
-                        self?.viewModel.submitOneTouchPay.onNext()
-                        observer.onCompleted()
-                    })
+                    let alertController2 = self.oneTouchBGELegalAlert(observer: observer)
                     observer.onNext(alertController2)
                 })
                 
@@ -381,7 +404,8 @@ class HomeBillCardView: UIView {
                                                                                         self.oneTouchSliderWeekendAlert,
                                                                                         self.paymentTACModal,
                                                                                         self.oneTouchPayErrorAlert,
-                                                                                        self.oneTouchSliderBGEAlert)
+                                                                                        self.oneTouchSliderCVV2Alert,
+                                                                                        self.oneTouchSliderBGELegalAlert)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = self.bankCreditNumberButton.rx.touchUpInside.asObservable()
