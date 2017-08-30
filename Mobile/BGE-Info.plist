@@ -50,6 +50,8 @@
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen-BGE</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Would you like to enable GPS/Location Services to interact with the Outage Map relative to your current location?</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Login</string>
 	<key>UIRequiredDeviceCapabilities</key>
