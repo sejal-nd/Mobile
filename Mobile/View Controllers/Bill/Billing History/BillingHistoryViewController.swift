@@ -360,20 +360,21 @@ extension BillingHistoryViewController: UITableViewDataSource {
         let button = UIButton(type: UIButtonType.system)
         
         label.text = section == 0 ? NSLocalizedString("UPCOMING", comment: "") : NSLocalizedString("PAST", comment: "")
-        label.font = label.font.withSize(14)
+        label.font = SystemFont.regular.of(textStyle: .subheadline)
         label.textColor = .deepGray
         
         var titleText = ""
         if section == 0 {
-            if billingHistory.upcoming.count > 3 {
-                titleText = "View All (\(billingHistory.upcoming.count))"
+            if billingHistory.upcoming.count > (accountDetail.isBGEasy || accountDetail.isAutoPay ? 2 : 3) {
+                let localizedText = NSLocalizedString("View All (%d)", comment: "")
+                titleText = String(format: localizedText, billingHistory.upcoming.count)
             } else {
                 button.isEnabled = false
                 button.isAccessibilityElement = false
             }
         } else {
             if billingHistory.past.count > billingHistory.mostRecentSixMonths.count {
-                titleText = "View More"
+                titleText = NSLocalizedString("View More", comment: "")
             } else {
                 button.isEnabled = false
                 button.isAccessibilityElement = false
@@ -382,7 +383,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         }
         
         button.setTitle(titleText, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
         button.setTitleColor(.actionBlue, for: .normal)
         
         let selector = section == 0 ? #selector(BillingHistoryViewController.viewAllUpcoming) : #selector(BillingHistoryViewController.viewMorePast)
@@ -431,7 +432,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     func viewMoreTableViewCell(indexPath: IndexPath) -> UITableViewCell {
         let button = UIButton(type: UIButtonType.system)
         button.contentEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = SystemFont.semibold.of(size: 18)
         button.setTitle("View More", for: .normal)
         button.setTitleColor(.actionBlue, for: .normal)
         button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
@@ -460,7 +461,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
             label.text = NSLocalizedString("You are enrolled in BGEasy", comment: "")
         }
         
-        label.font = SystemFont.medium.of(textStyle: .subheadline).withSize(17)
+        label.font = SystemFont.medium.of(textStyle: .headline)
         
         let carat = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
         carat.contentMode = .scaleAspectFit
