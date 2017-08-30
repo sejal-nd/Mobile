@@ -82,7 +82,7 @@ class HomeBillCardViewModel {
                     .trackActivity(self.fetchingTracker)
                     .materialize()
             } else {
-                return Observable<Event<[Date]>>.never()
+                return Observable<[Date]>.just([]).materialize()
             }
         }
         .shareReplay(1)
