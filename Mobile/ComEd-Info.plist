@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Would you like to enable GPS/Location Services to interact with the Outage Map relative to your current location?</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -19,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0.17</string>
 	<key>CFBundleVersion</key>
-	<string>20170829</string>
+	<string>20170830</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -37,6 +35,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow camera access to scan your credit/debit card.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Would you like to enable GPS/Location Services to interact with the Outage Map relative to your current location?</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans-Bold.ttf</string>
