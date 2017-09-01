@@ -3214,7 +3214,7 @@
 						};
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
