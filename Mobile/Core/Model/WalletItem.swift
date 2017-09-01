@@ -92,8 +92,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let walletItemStatusType: WalletItemStatusType?
     let walletItemStatusTypeBGE: WalletItemStatusTypeBGE?
     
-    let paymentCategoryType: PaymentCategoryType?
-    let bankAccountType: BankAccountType?
+    let paymentCategoryType: PaymentCategoryType? // Do not use this for determining bank vs card - use bankOrCard
+    let bankAccountType: BankAccountType? // Do not use this for determining bank vs card - use bankOrCard
     var bankOrCard: BankOrCard
     
     let bankAccountNumber: String?

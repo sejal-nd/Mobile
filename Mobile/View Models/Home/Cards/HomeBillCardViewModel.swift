@@ -118,7 +118,7 @@ class HomeBillCardViewModel {
                            saveAccount: true,
                            maskedWalletAccountNumber: walletItem.maskedWalletItemAccountNumber!,
                            paymentAmount: accountDetail.billingInfo.netDueAmount!,
-                           paymentType: (walletItem.paymentCategoryType == .check) ? .check : .credit,
+                           paymentType: (walletItem.bankOrCard == .bank) ? .check : .credit,
                            paymentDate: paymentDate,
                            walletId: AccountsStore.sharedInstance.customerIdentifier,
                            walletItemId: walletItem.walletItemID!,
