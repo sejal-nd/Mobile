@@ -1,0 +1,117 @@
+//
+//  ForgotUsernameViewModel.swift
+//  Mobile
+//
+//  Created by Marc Shilling on 4/7/17.
+//  Copyright © 2017 Exelon Corporation. All rights reserved.
+//
+
+import RxSwift
+import RxCocoa
+
+class ForgotUsernameViewModel {
+    let disposeBag = DisposeBag()
+    
+    private var authService: AuthenticationService
+    
+    let phoneNumber = Variable("")
+    let identifierNumber = Variable("")
+    let accountNumber = Variable("")
+    
+    var maskedUsernames = [ForgotUsernameMasked]()
+    var selectedUsernameIndex = 0
+    
+    let securityQuestionAnswer = Variable("")
+    
+    required init(authService: AuthenticationService) {
+        self.authService = authService
+    }
+    
+    func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+        let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
+        let identifier: String? = identifierNumber.value.characters.count > 0 ? identifierNumber.value : nil
+        authService.recoverMaskedUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { usernames in
+                self.maskedUsernames = usernames
+                onSuccess()
+                Analytics().logScreenView(AnalyticsPageView.ForgotUsernameAccountValidate.rawValue)
+            }, onError: { error in
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue ||
+                    serviceError.serviceCode == ServiceErrorCode.FnProfNotFound.rawValue {
+                    onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
+                } else if serviceError.serviceCode == ServiceErrorCode.FnMultiAccountFound.rawValue {
+                    onNeedAccountNumber()
+                } else {
+                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                }
+            }).disposed(by: disposeBag)
+    }
+    
+    func submitSecurityQuestionAnswer(onSuccess: @escaping (String) -> Void, onAnswerNoMatch: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
+        let maskedUsername = maskedUsernames[selectedUsernameIndex]
+        let cipher = maskedUsername.cipher
+        let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
+        let identifier: String? = identifierNumber.value.characters.count > 0 ? identifierNumber.value : nil
+        Analytics().logScreenView(AnalyticsPageView.ForgotUsernameSecuritySubmit.rawValue)
+        
+        authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value, cipher: cipher)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { username in
+                onSuccess(username)
+            }, onError: { error in
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.FnProfBadSecurity.rawValue {
+                    onAnswerNoMatch(serviceError.localizedDescription)
+                } else {
+                    onError(error.localizedDescription)
+                }
+            }).disposed(by: disposeBag)
+    }
+    
+    func getSecurityQuestion() -> String {
+        return maskedUsernames[selectedUsernameIndex].question!
+    }
+    
+    private(set) lazy var nextButtonEnabled: Driver<Bool> = {
+        if Environment.sharedInstance.opco == .bge {
+            return Driver.combineLatest(self.phoneNumberHasTenDigits, self.identifierHasFourDigits, self.identifierIsNumeric)
+            { $0 && $1 && $2 }
+        } else {
+            return Driver.combineLatest(self.phoneNumberHasTenDigits, self.accountNumberHasTenDigits)
+            { $0 && $1 }
+        }
+    }()
+    
+    private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver()
+        .map { [weak self] text -> Bool in
+            guard let `self` = self else { return false }
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.characters.count == 10
+        }
+    
+    private(set) lazy var identifierHasFourDigits: Driver<Bool> = self.identifierNumber.asDriver()
+        .map { $0.characters.count == 4 }
+    
+    private(set) lazy var identifierIsNumeric: Driver<Bool> = self.identifierNumber.asDriver()
+        .map { [weak self] text -> Bool in
+            guard let `self` = self else { return false }
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.characters.count == text.characters.count
+        }
+    
+    private(set) lazy var accountNumberHasTenDigits: Driver<Bool> = self.accountNumber.asDriver()
+        .map { [weak self] text -> Bool in
+            guard let `self` = self else { return false }
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.characters.count == 10
+        }
+    
+    private(set) lazy var securityQuestionAnswerNotEmpty: Driver<Bool> = self.securityQuestionAnswer.asDriver()
+        .map { $0.characters.count > 0 }
+    
+    private func extractDigitsFrom(_ string: String) -> String {
+        return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+    }
+}

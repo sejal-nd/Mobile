@@ -1,0 +1,21 @@
+/* 
+  ErrorMessages.strings
+  Mobile
+
+  Created by Kenny Roethel on 3/10/17.
+  Copyright © 2017 Exelon Corporation. All rights reserved.
+*/
+
+"FN-ACCT-LOCKED-LOGIN" = "You cannot access your account because you have exceeded the limit of login attempts. Your account may be locked out for the next 15 minutes. Please try again later.";
+"FN-FAIL-LOGIN" = "We're sorry, this combination of username and password is invalid. Please try again.";
+"INVALID-PROFILE-TYPE" = "This profile type does not have access to the mobile app. Access your account on our responsive website.";
+"FN-NOT-FOUND" = "Account not found.";
+"ERR-NO-NETWORK-CONNECTION" = "No network available, please try again later.";
+"FN-PROF-BADSECURITY" = "The security answer does not match our records.";
+"FN-PROF-NOTFOUND" = "The information entered does not match our records. Please try again.";
+"FN-ACCT-NOTFOUND" = "The information entered does not match our records. Please try again.";
+"FN-NOT-FOUND" = "The information entered does not match our records. Please try again.";
+"FN-ACCT-PROTECTED" = "Your account is password protected and cannot be accessed through this app.";
+"DUPLICATE_PAYMENT_ACCOUNT" = "A payment account saved in your Wallet matches this payment account.";
+"TC-UNKNOWN" = "We’re sorry, we could not process your request at this time. Please try again later or contact our Customer Care Center for assistance.";
+"EXPIRED-TEMP-PASSWORD" = "Your temporary password has expired. Please request a new temporary password.";

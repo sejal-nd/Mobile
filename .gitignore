@@ -1,7 +1,5 @@
+.DS_Store
 
-# Created by https://www.gitignore.io/api/xcode,swift,swiftpackagemanager,swiftpm
-
-### Swift ###
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
@@ -25,23 +23,13 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+Mobile/Configuration/environment_preprocess.h
 
 ## Obj-C/Swift specific
 *.hmap
 *.ipa
 *.dSYM.zip
 *.dSYM
-
-## Playgrounds
-timeline.xctimeline
-playground.xcworkspace
-
-# Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
-.build/
 
 # CocoaPods
 #
@@ -53,10 +41,14 @@ playground.xcworkspace
 
 # Carthage
 #
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
-
-Carthage/Build
+Carthage/Checkouts
+!Carthage/Build
+!Carthage/Build/iOS/*.dSYM
+Carthage/Build/Mac
+Carthage/Build/tvOS
+Carthage/Build/watchOS
+Carthage/Build/iOS/*.bcsymbolmap
+Carthage/Build/*.version
 
 # fastlane
 #
@@ -70,19 +62,12 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
-### SwiftPackageManager ###
-Packages
-.build
-xcuserdata
-*.xcodeproj
+# Code Injection
+#
+# After new code Injection tools there's a generated folder /iOSInjectionProject
+# https://github.com/johnno1962/injectionforxcode
 
-### SwiftPM ###
+iOSInjectionProject/
 
-### Xcode ###
-build
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcworkspace/contents.xcworkspacedata
-/*.gcno
-
-# End of https://www.gitignore.io/api/xcode,swift,swiftpackagemanager,swiftpm
+# AppCode files
+.idea
