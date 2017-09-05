@@ -51,8 +51,9 @@ class HomeBillCardViewModel {
             .disposed(by: bag)
     }
     
-    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.account
-        .flatMapLatest { [unowned self] _ in
+    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = Observable.merge(self.account.mapTo(()),
+                                                                                         RxNotifications.shared.walletUpdated)
+        .flatMapLatest { [unowned self] in
             self.walletService.fetchWalletItems()
                 .trackActivity(self.fetchingTracker)
                 .map { $0.first(where: { $0.isDefault }) }
