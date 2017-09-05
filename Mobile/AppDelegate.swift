@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case .peco: BITHockeyManager.shared().configure(withIdentifier: "51e89ca780064447b2373609c35e5b68")
             }
             BITHockeyManager.shared().crashManager.crashManagerStatus = .autoSend
+            BITHockeyManager.shared().isFeedbackManagerDisabled = true
             BITHockeyManager.shared().start()
             BITHockeyManager.shared().authenticator.authenticateInstallation()
         }
