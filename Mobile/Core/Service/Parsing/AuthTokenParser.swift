@@ -69,38 +69,43 @@ class AuthTokenParser : NSObject {
         let data: NSDictionary = parsedData["data"] as! NSDictionary
         var profileStatus: ProfileStatus = ProfileStatus()
         
-        if let statusData = data["profileStatus"] as? [String:Any] {
-            profileStatus = parseProfileStatus(profileStatus: statusData)
-            
-            if profileStatus.passwordLocked {
-                return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
-            } else if profileStatus.inactive {
-                return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctNotActivated.rawValue))
-            } else if profileStatus.expiredTempPassword {
-                return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.ExpiredTempPassword.rawValue))
-            }
+        guard let profileType = data["profileType"] as? String,
+            (profileType == "commercial" || profileType == "residential") else {
+            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
         }
         
-        guard let profileType = data["profileType"] as? String else {
-           return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
+        guard let statusData = data["profileStatus"] as? [String:Any] else {
+            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue))
+        }
+        
+        profileStatus = parseProfileStatus(profileStatus: statusData)
+        
+        guard !profileStatus.inactive else {
+            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctNotActivated.rawValue))
         }
         
         guard let customerIdentifier = data["customerIdentifier"] as? String else {
             return ServiceResult.Failure(ServiceError(serviceMessage: NSLocalizedString("Customer Identifier not found", comment: "")))
         }
+        
         UserDefaults.standard.set(customerIdentifier, forKey: UserDefaultKeys.CustomerIdentifier)
         AccountsStore.sharedInstance.customerIdentifier = customerIdentifier
         
-        if profileType != "commercial" && profileType != "residential" {
-            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
-        }
-        
         if let assertion = data["assertion"] as? String {
+            // SUCCESS
             return ServiceResult.Success(AuthTokenResponse(token: assertion, profileStatus: profileStatus))
-        } else {
-            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue))
         }
         
+        guard !profileStatus.passwordLocked else {
+            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
+        }
+        
+        guard !profileStatus.expiredTempPassword else {
+            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.ExpiredTempPassword.rawValue))
+        }
+        
+        
+        return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue))
     }
     
     
