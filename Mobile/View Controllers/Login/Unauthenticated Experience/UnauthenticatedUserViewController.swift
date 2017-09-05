@@ -11,20 +11,26 @@ import Lottie
 
 class UnauthenticatedUserViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var lottieView: UIView!
     @IBOutlet weak var textLabel: UILabel!
 
-    @IBOutlet weak var LoginRegisterButton: UIButton!
+    @IBOutlet weak var loginRegisterButton: UIButton!
     
     @IBOutlet weak var reportAnOutageButton: DisclosureButton!
     @IBOutlet weak var checkMyOutageStatusButton: DisclosureButton!
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
     
-    
     @IBOutlet weak var contactUsButton: DisclosureButton!
     @IBOutlet weak var TermPoliciesButton: DisclosureButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .primaryColor
+        
+        scrollView.indicatorStyle = .white
+        loginRegisterButton.titleLabel!.font =  OpenSans.bold.of(textStyle: .title1)
+        textLabel.font =  OpenSans.regular.of(textStyle: .subheadline)
         
         var lottieName = ""
         switch Environment.sharedInstance.opco {
@@ -50,16 +56,8 @@ class UnauthenticatedUserViewController: UIViewController {
         animationView.center = center;
         
         lottieView.addSubview(animationView)
-        
         animationView.play()
         
-        // For release one, only contact us and term policies button will be shown,
-        // so, hide the other 3 buttons
-        reportAnOutageButton.isHidden = true
-        checkMyOutageStatusButton.isHidden = true
-        viewOutageMapButton.isHidden = true
-        
-        view.backgroundColor = .primaryColor
         accessibilitySetup()
     }
     
@@ -76,9 +74,6 @@ class UnauthenticatedUserViewController: UIViewController {
         setNeedsStatusBarAppearanceUpdate()
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        LoginRegisterButton.titleLabel!.font =  OpenSans.bold.of(textStyle: .title1)
-        textLabel.font =  OpenSans.regular.of(textStyle: .subheadline)
     }
     
     private func accessibilitySetup() {
@@ -92,14 +87,6 @@ class UnauthenticatedUserViewController: UIViewController {
         contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
         TermPoliciesButton.isAccessibilityElement = true
         TermPoliciesButton.accessibilityLabel = NSLocalizedString("Policies and Terms", comment: "")
-    }
-    
-    @IBAction func onContactUsPress(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "ContactUsSegue", sender: self)
-    }
-    
-    @IBAction func onTermPoliciesPress(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "TermPoliciesSegue", sender: self)
     }
     
     @IBAction func onLoginRegisterPress(_ sender: UIButton) {

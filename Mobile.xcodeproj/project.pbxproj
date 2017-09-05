@@ -904,6 +904,9 @@
 		E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */; };
 		E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */; };
 		E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */; };
+		E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
+		E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
+		E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
 		E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E31EA8009500EA3C13 /* BillViewController.swift */; };
 		E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E31EA8009500EA3C13 /* BillViewController.swift */; };
 		E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E31EA8009500EA3C13 /* BillViewController.swift */; };
@@ -1604,6 +1607,7 @@
 		E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolViewController.swift; sourceTree = "<group>"; };
 		E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultViewController.swift; sourceTree = "<group>"; };
+		E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageValidateAccountViewController.swift; sourceTree = "<group>"; };
 		E882B7E31EA8009500EA3C13 /* BillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
 		E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewController.swift; sourceTree = "<group>"; };
 		E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsBudgetBillingViewController.swift; sourceTree = "<group>"; };
@@ -2223,6 +2227,7 @@
 		8FD5AE821E54EA39003F640D /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				E881B1491F5F189900067BA1 /* Unauthenticated Experience */,
 				E891885E1EF1DA6B00987922 /* Forgot Username */,
 				E8B8A9F41EE2132D0002328C /* Registration */,
 				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
@@ -2231,7 +2236,6 @@
 				E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */,
 				E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */,
 				E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */,
-				389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2913,6 +2917,15 @@
 			path = Wallet;
 			sourceTree = "<group>";
 		};
+		E881B1491F5F189900067BA1 /* Unauthenticated Experience */ = {
+			isa = PBXGroup;
+			children = (
+				389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */,
+				E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */,
+			);
+			path = "Unauthenticated Experience";
+			sourceTree = "<group>";
+		};
 		E882B7E21EA7FE6300EA3C13 /* Bill */ = {
 			isa = PBXGroup;
 			children = (
@@ -3204,7 +3217,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3858,6 +3871,7 @@
 				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				01F6122D1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
 				54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */,
+				E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */,
 				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
@@ -4077,6 +4091,7 @@
 				54C1DEFC1F02B8E300290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				01F6122F1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
+				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				E876A85D1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
@@ -4296,6 +4311,7 @@
 				54C1DEFB1F02B8E200290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				01F6122E1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
+				E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,

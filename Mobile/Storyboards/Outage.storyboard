@@ -507,17 +507,17 @@
         <!--Outage Map-->
         <scene sceneID="YcY-ED-hEl">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="eVa-ie-cL3" customClass="OutageMapViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OutageMapViewController" hidesBottomBarWhenPushed="YES" id="eVa-ie-cL3" customClass="OutageMapViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kEU-7E-uds"/>
                         <viewControllerLayoutGuide type="bottom" id="sh0-jw-fzi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VPU-dC-Rn2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="RA2-uD-xmP" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157" y="303" width="60" height="12"/>
+                                <rect key="frame" x="157" y="327.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -528,6 +528,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Outage Map" id="cMi-NI-f6h"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
