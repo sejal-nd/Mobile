@@ -907,6 +907,10 @@
 		E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
 		E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
 		E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
+		E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */; };
+		E881B1541F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */; };
+		E881B1551F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */; };
+		E881B1561F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */; };
 		E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E31EA8009500EA3C13 /* BillViewController.swift */; };
 		E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E31EA8009500EA3C13 /* BillViewController.swift */; };
 		E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7E31EA8009500EA3C13 /* BillViewController.swift */; };
@@ -1608,6 +1612,7 @@
 		E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolViewController.swift; sourceTree = "<group>"; };
 		E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultViewController.swift; sourceTree = "<group>"; };
 		E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageValidateAccountViewController.swift; sourceTree = "<group>"; };
+		E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageViewModel.swift; sourceTree = "<group>"; };
 		E882B7E31EA8009500EA3C13 /* BillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
 		E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewController.swift; sourceTree = "<group>"; };
 		E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatIsBudgetBillingViewController.swift; sourceTree = "<group>"; };
@@ -2030,6 +2035,7 @@
 				82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */,
 				54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */,
 				82A18E941EB919B300BE9F21 /* LoginViewModel.swift */,
+				E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -3778,6 +3784,7 @@
 				E8BCB9BA1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
 				822BBBA11EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
+				E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				E841F3B21F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -3998,6 +4005,7 @@
 				B5A16F371F0D44110016952C /* SpeedpayApi.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				54AE06B21ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
+				E881B1551F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				E873DA771EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
@@ -4218,6 +4226,7 @@
 				B5A16F361F0D44110016952C /* SpeedpayApi.swift in Sources */,
 				82D5994C1EC36B5500DDB380 /* Currency.swift in Sources */,
 				E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
+				E881B1541F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
@@ -4390,6 +4399,7 @@
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
 				824004CD1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
+				E881B1561F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				387E5C4A1F1FCDB800D6710D /* Percentage.swift in Sources */,
 				E840BD421EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8F51EEA1ECA40870080AB3E /* PaperlessEBillViewModelTests.swift in Sources */,
