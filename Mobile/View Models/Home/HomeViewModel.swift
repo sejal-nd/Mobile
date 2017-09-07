@@ -50,8 +50,9 @@ class HomeViewModel {
         .asDriver(onErrorJustReturn: false)
     
     
-    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.fetchData
-        .map { _ in AccountsStore.sharedInstance.currentAccount }
+    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = Observable.merge(self.fetchData.mapTo(()),
+                                                                                                   RxNotifications.shared.accountDetailUpdated)
+        .map { AccountsStore.sharedInstance.currentAccount }
         .unwrap()
         .flatMapLatest { [unowned self] in
             self.accountService.fetchAccountDetail(account: $0)

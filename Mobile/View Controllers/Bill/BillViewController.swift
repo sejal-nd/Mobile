@@ -506,12 +506,12 @@ class BillViewController: AccountPickerViewController {
     func navigateToAutoPay(accountDetail: AccountDetail) {
         if Environment.sharedInstance.opco == .bge {
             if accountDetail.isBGEasy {
-                self.performSegue(withIdentifier: "viewBGEasySegue", sender: self)
+                self.performSegue(withIdentifier: "viewBGEasySegue", sender: accountDetail)
             } else {
-                self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
+                self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: accountDetail)
             }
         } else {
-            self.performSegue(withIdentifier: "autoPaySegue", sender: self)
+            self.performSegue(withIdentifier: "autoPaySegue", sender: accountDetail)
         }
     }
 
@@ -542,12 +542,12 @@ class BillViewController: AccountPickerViewController {
         } else if let vc = segue.destination as? ViewBillViewController {
             vc.viewModel.billDate = viewModel.currentAccountDetail.value!.billingInfo.billDate
             vc.viewModel.isCurrent = true
-        } else if let vc = segue.destination as? BGEAutoPayViewController {
+        } else if let vc = segue.destination as? BGEAutoPayViewController, let accountDetail = sender as? AccountDetail {
             vc.delegate = self
-            vc.accountDetail = viewModel.currentAccountDetail.value!
-        } else if let vc = segue.destination as? AutoPayViewController {
+            vc.accountDetail = accountDetail
+        } else if let vc = segue.destination as? AutoPayViewController, let accountDetail = sender as? AccountDetail {
             vc.delegate = self
-            vc.accountDetail = viewModel.currentAccountDetail.value!
+            vc.accountDetail = accountDetail
         } else if let vc = segue.destination as? BillingHistoryViewController {
             vc.accountDetail = viewModel.currentAccountDetail.value!
         }
@@ -575,13 +575,11 @@ extension BillViewController: AccountPickerDelegate {
 extension BillViewController: BudgetBillingViewControllerDelegate {
 
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController) {
-        viewModel.fetchAccountDetail(isRefresh: false)
         showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
         Analytics().logScreenView(AnalyticsPageView.BudgetBillEnrollComplete.rawValue)
     }
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
-        viewModel.fetchAccountDetail(isRefresh: false)
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
         Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOffer.rawValue)
     }
@@ -589,7 +587,6 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
 
 extension BillViewController: PaperlessEBillViewControllerDelegate {
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
-        viewModel.fetchAccountDetail(isRefresh: false)
         var toastMessage: String
         switch didChangeStatus {
         case .Enroll:
@@ -608,7 +605,6 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
 extension BillViewController: AutoPayViewControllerDelegate {
 
     func autoPayViewController(_ autoPayViewController: AutoPayViewController, enrolled: Bool) {
-        viewModel.fetchAccountDetail(isRefresh: false)
         let message = enrolled ? NSLocalizedString("Enrolled in AutoPay", comment: ""): NSLocalizedString("Unenrolled from AutoPay", comment: "")
         showDelayedToast(withMessage: message)
         
@@ -624,7 +620,6 @@ extension BillViewController: AutoPayViewControllerDelegate {
 extension BillViewController: BGEAutoPayViewControllerDelegate {
     
     func BGEAutoPayViewController(_ BGEAutoPayViewController: BGEAutoPayViewController, didUpdateWithToastMessage message: String) {
-        viewModel.fetchAccountDetail(isRefresh: false)
         showDelayedToast(withMessage: message)
     }
 }
