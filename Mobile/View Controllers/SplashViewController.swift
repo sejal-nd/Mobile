@@ -15,10 +15,12 @@ class SplashViewController: UIViewController{
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var imageView: UIView!
     
-    var performingDeepLink = false
+    var performDeepLink = false
     var bag = DisposeBag()
     var lottieAnimation: LOTAnimationView?
     var animate: Bool = false
+    
+    let viewModel = SplashViewModel(authService: ServiceFactory.createAuthenticationService())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,12 @@ class SplashViewController: UIViewController{
         animate = !ServiceFactory.createAuthenticationService().isAuthenticated()
         imageView.isHidden = animate
         animationView.isHidden = !animate
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        checkAppVersion(callback:{self.doLoginLogic()})
     }
 
     override func viewDidLayoutSubviews() {
@@ -51,13 +59,6 @@ class SplashViewController: UIViewController{
 
     }
 
-    let viewModel = SplashViewModel(authService: ServiceFactory.createAuthenticationService())
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        checkAppVersion(callback:{self.doLoginLogic()})
-    }    
-    
     func doLoginLogic() {
         bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch ID alert prompt is dismissed
         if ServiceFactory.createAuthenticationService().isAuthenticated() {
@@ -72,19 +73,30 @@ class SplashViewController: UIViewController{
                 }
             })
         } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                if !self.performingDeepLink { // Deep link cold-launched the app, so let our logic below handle it
-                    if self.lottieAnimation == nil || !self.lottieAnimation!.isAnimationPlaying {
-                        self.performSegue(withIdentifier: "landingSegue", sender: self)
-                    } else {
-                        self.lottieAnimation!.completionBlock = { (value:Bool) in
-                            self.performSegue(withIdentifier: "landingSegue", sender: self)
-                        }
-                    }
+            if !self.performDeepLink { // Deep link cold-launched the app, so let our logic below handle it
+                if self.lottieAnimation == nil || !self.lottieAnimation!.isAnimationPlaying {
+                    UIView.animate(withDuration: 0.33, animations: {
+                        self.animationView.alpha = 0
+                    }, completion: { [weak self] _ in
+                        self?.performSegue(withIdentifier: "landingSegue", sender: self)
+                    })
+                    
                 } else {
-                    self.performingDeepLink = false // Reset state
+                    self.lottieAnimation!.completionBlock = { (value:Bool) in
+                        UIView.animate(withDuration: 0.33, animations: {
+                            self.animationView.alpha = 0
+                        }, completion: { [weak self] _ in
+                            self?.performSegue(withIdentifier: "landingSegue", sender: self)
+                        })
+                    }
                 }
-            })
+            } else {
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
+                let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+                self.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
+                self.performDeepLink = false // Reset state
+            }
         }
     }
     
@@ -123,11 +135,10 @@ class SplashViewController: UIViewController{
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(url, options: [:], completionHandler: {(success: Bool) in
                         if success {
-                            print("Launching \(url) was successful")
+                            dLog("Launching \(url) was successful")
                         }})
                 } else {
                     if let url = URL(string: "https://itunes.apple.com/us/app/exelon-link/id927221466?mt=8"){
-                        print(url)
                         UIApplication.shared.openURL(url)
                     }
                 }
@@ -139,13 +150,13 @@ class SplashViewController: UIViewController{
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         if activity.activityType == NSUserActivityTypeBrowsingWeb { // Universal Link from Reset Password email
-            checkAppVersion(callback: { [weak self] in
-                self?.performingDeepLink = true
-                let storyboard = UIStoryboard(name: "Login", bundle: nil)
-                let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
-                let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-                self?.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
-            })
+            self.performDeepLink = true
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? LandingViewController {
+            vc.fadeIn = animate
         }
     }
     

@@ -15,6 +15,8 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var registerButton: SecondaryButton!
     @IBOutlet weak var continueAsGuestButon: UIButton!
     @IBOutlet weak var tabletView: UIView!
+    
+    var fadeIn = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,10 @@ class LandingViewController: UIViewController {
         continueAsGuestButon.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
         
         view.backgroundColor = .primaryColor
-        tabletView.alpha = 0
+        
+        if fadeIn {
+            tabletView.alpha = 0
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +49,7 @@ class LandingViewController: UIViewController {
             performSegue(withIdentifier: "termsPoliciesModalSegue", sender: self)
         }
 
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.33, animations: {
             self.tabletView.alpha = 1
         })
     }
