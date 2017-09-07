@@ -76,7 +76,7 @@ class HomeViewModel {
     
     //MARK: - Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
-        .map { $0.zipCode ?? "" }
+        .map { $0.zipCode ?? "20201" }
         .flatMapLatest { [unowned self] in
             self.weatherService.fetchWeather(address: $0)
                 //.trackActivity(fetchingTracker)
