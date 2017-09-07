@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,20 +23,9 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OTP-JD-h7E" userLabel="Tablet View">
                                 <rect key="frame" x="29" y="198" width="317" height="80"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="1Lc-Dq-0EF">
-                                        <rect key="frame" x="54" y="0.0" width="263" height="80"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="2AA-vG-wOq"/>
-                                            <constraint firstAttribute="width" constant="263" id="4b0-dO-wl5"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Jjo-Pv-YXX"/>
-                                    <constraint firstItem="1Lc-Dq-0EF" firstAttribute="top" secondItem="OTP-JD-h7E" secondAttribute="top" id="MtB-k1-2js"/>
-                                    <constraint firstAttribute="trailing" secondItem="1Lc-Dq-0EF" secondAttribute="trailing" id="Zz5-Fj-olE"/>
                                     <constraint firstAttribute="height" constant="80" id="gF5-Ch-BcK"/>
                                 </constraints>
                             </view>
@@ -55,7 +44,4 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="img_logo_white" width="251" height="80"/>
-    </resources>
 </document>

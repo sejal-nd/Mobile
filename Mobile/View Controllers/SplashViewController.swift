@@ -9,12 +9,17 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Lottie
 
 class SplashViewController: UIViewController{
+    @IBOutlet weak var animationView: UIView!
+    @IBOutlet weak var imageView: UIView!
     
     var performingDeepLink = false
     var bag = DisposeBag()
-    
+    var lottieAnimation: LOTAnimationView?
+    var animate: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,16 +27,35 @@ class SplashViewController: UIViewController{
         NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
-                self?.checkAppVersion()
+                self?.checkAppVersion(callback:{self?.doLoginLogic()})
             })
             .disposed(by: bag)
+
+        animate = !ServiceFactory.createAuthenticationService().isAuthenticated()
+        imageView.isHidden = animate
+        animationView.isHidden = !animate
     }
-    
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if animate && lottieAnimation == nil {
+            lottieAnimation = LOTAnimationView(name: "splash")
+            lottieAnimation!.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
+            lottieAnimation!.loopAnimation = false
+            lottieAnimation!.contentMode = .scaleAspectFit
+            lottieAnimation!.center = self.view.center
+            animationView.addSubview(lottieAnimation!)
+            lottieAnimation!.play()
+        }
+
+    }
+
     let viewModel = SplashViewModel(authService: ServiceFactory.createAuthenticationService())
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        checkAppVersion()
+        checkAppVersion(callback:{self.doLoginLogic()})
     }    
     
     func doLoginLogic() {
@@ -47,11 +71,16 @@ class SplashViewController: UIViewController{
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }
             })
-            
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 if !self.performingDeepLink { // Deep link cold-launched the app, so let our logic below handle it
-                    self.performSegue(withIdentifier: "landingSegue", sender: self)
+                    if self.lottieAnimation == nil || !self.lottieAnimation!.isAnimationPlaying {
+                        self.performSegue(withIdentifier: "landingSegue", sender: self)
+                    } else {
+                        self.lottieAnimation!.completionBlock = { (value:Bool) in
+                            self.performSegue(withIdentifier: "landingSegue", sender: self)
+                        }
+                    }
                 } else {
                     self.performingDeepLink = false // Reset state
                 }
@@ -59,15 +88,15 @@ class SplashViewController: UIViewController{
         }
     }
     
-    func checkAppVersion() {
+    func checkAppVersion(callback:@escaping()->Void) {
         viewModel.checkAppVersion(onSuccess: { [weak self] isOutOfDate in
             if isOutOfDate {
                 self?.handleOutOfDate()
             } else {
-                self?.doLoginLogic()
+                callback()
             }
-        }, onError: { [weak self] _ in
-            self?.doLoginLogic()
+        }, onError: { _ in
+            callback()
         })
     }
     
@@ -110,11 +139,13 @@ class SplashViewController: UIViewController{
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         if activity.activityType == NSUserActivityTypeBrowsingWeb { // Universal Link from Reset Password email
-            performingDeepLink = true
-            let storyboard = UIStoryboard(name: "Login", bundle: nil)
-            let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
-            let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-            navigationController?.setViewControllers([landingVC, loginVC], animated: false)
+            checkAppVersion(callback: { [weak self] in
+                self?.performingDeepLink = true
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
+                let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+                self?.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
+            })
         }
     }
     
