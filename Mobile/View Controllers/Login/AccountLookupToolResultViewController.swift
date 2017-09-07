@@ -53,7 +53,13 @@ class AccountLookupToolResultViewController: UIViewController {
     func onCancelPress() {
         _ = navigationController?.popViewController(animated: true)
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.reloadData() // To properly set the width constraints
+    }
+    
 }
 
 extension AccountLookupToolResultViewController: UITableViewDelegate {
@@ -74,8 +80,11 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
         cell.accountNumberLabel.text = account.accountNumber?.maskAllButLast4Digits()
         cell.streetNumberLabel.text = account.streetNumber
         cell.unitNumberLabel.text = account.unitNumber
-        
-        
+
+        cell.accountNumberLabelWidthConstraint.constant = accountNumberHeaderLabel.frame.size.width
+        cell.streetNumberLabelWidthConstraint.constant = streetNumberHeaderLabel.frame.size.width
+        cell.unitNumberLabelWidthConstraint.constant = unitNumberHeaderLabel.frame.size.width
+
         return cell
     }
     
