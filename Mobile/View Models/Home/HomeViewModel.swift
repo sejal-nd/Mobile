@@ -20,7 +20,7 @@ class HomeViewModel {
     private let paymentService: PaymentService
     
     let fetchData = PublishSubject<FetchingAccountState>()
-    
+
     let fetchingTracker = ActivityTracker()
     
     required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService) {
@@ -59,6 +59,8 @@ class HomeViewModel {
                 .materialize()
         }
         .shareReplay(1)
+
+
     
     let showTemplateCard = Environment.sharedInstance.opco != .comEd
     
@@ -75,15 +77,17 @@ class HomeViewModel {
     }()
     
     //MARK: - Weather
-    private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
-        .map { $0.zipCode ?? "20201" }
-        .flatMapLatest { [unowned self] in
-            self.weatherService.fetchWeather(address: $0)
-                //.trackActivity(fetchingTracker)
-                .materialize()
-        }
-        .shareReplay(1)
-    
+    private lazy var weatherEvents: Observable<Event<WeatherItem>> = Observable.combineLatest(
+                    self.fetchData.map{ _ in AccountsStore.sharedInstance.currentAccount }.unwrap().map {
+                        $0.currentPremise?.zipCode
+                    },
+                    self.accountDetailEvents.elements().map { $0.zipCode ?? "20201" } // TODO: Get default zip for current opco
+            ).debug("DEBUG").flatMapLatest { [unowned self] in
+                self.weatherService.fetchWeather(address: $0 ?? $1)
+                        //.trackActivity(fetchingTracker)
+                        .materialize()
+            }.shareReplay(1)
+
     private(set) lazy var greeting: Driver<String?> = self.fetchData
         .map { _ in Date().localizedGreeting }
         .startWith(nil)
