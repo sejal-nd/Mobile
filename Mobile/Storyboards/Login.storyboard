@@ -414,11 +414,54 @@
                         <outlet property="headerLabel" destination="1k8-cb-p98" id="2BT-zY-CR7"/>
                         <outlet property="phoneNumberTextField" destination="zcw-mP-0oB" id="65Y-CO-onM"/>
                         <outlet property="scrollView" destination="pTa-i1-tMy" id="umu-wz-b6o"/>
+                        <segue destination="Qkc-QN-Mot" kind="show" identifier="outageValidateAccountResultSegue" id="QX9-7H-mNK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A7q-g3-d5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2548" y="-1401.4992503748126"/>
+        </scene>
+        <!--Select an Account-->
+        <scene sceneID="TyI-oe-0cO">
+            <objects>
+                <viewController id="Qkc-QN-Mot" customClass="UnauthenticatedOutageValidateAccountResultViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MzH-Xd-xyt"/>
+                        <viewControllerLayoutGuide type="bottom" id="VXg-Tk-zKF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KP5-Hb-Gwj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c4a-oT-1Ur">
+                                <rect key="frame" x="0.0" y="64" width="375" height="736"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="lx7-UF-dbM"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="Qkc-QN-Mot" id="qGD-SI-5Ta"/>
+                                    <outlet property="delegate" destination="Qkc-QN-Mot" id="PFs-tB-8kZ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="c4a-oT-1Ur" firstAttribute="top" secondItem="MzH-Xd-xyt" secondAttribute="bottom" id="85s-Ng-R5r"/>
+                            <constraint firstItem="c4a-oT-1Ur" firstAttribute="centerX" secondItem="KP5-Hb-Gwj" secondAttribute="centerX" id="EzH-qR-twh"/>
+                            <constraint firstItem="c4a-oT-1Ur" firstAttribute="leading" secondItem="KP5-Hb-Gwj" secondAttribute="leading" priority="999" id="HMH-Mq-1ZC"/>
+                            <constraint firstItem="VXg-Tk-zKF" firstAttribute="top" secondItem="c4a-oT-1Ur" secondAttribute="bottom" id="HnW-KQ-4i4"/>
+                            <constraint firstAttribute="trailing" secondItem="c4a-oT-1Ur" secondAttribute="trailing" priority="999" id="rsR-bW-MIU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Select an Account" id="M8R-wg-5uX"/>
+                    <connections>
+                        <outlet property="tableView" destination="c4a-oT-1Ur" id="xsc-C4-xZU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HWJ-RW-mSm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3342" y="-1401"/>
         </scene>
         <!--ContactUsViewController-->
         <scene sceneID="vEs-1y-YfA">

@@ -166,8 +166,10 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         view.endEditing(true)
         
         LoadingView.show()
-        viewModel.fetchOutageStatus(onSuccess: { 
+        viewModel.fetchOutageStatus(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
             LoadingView.hide()
+            self.performSegue(withIdentifier: "outageValidateAccountResultSegue", sender: self)
         }, onError: { errMessage in
             LoadingView.hide()
         })
@@ -201,6 +203,12 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? UnauthenticatedOutageValidateAccountResultViewController {
+            vc.viewModel = viewModel
+        }
     }
 
     
