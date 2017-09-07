@@ -22,7 +22,7 @@
         <scene sceneID="Qff-1Z-8Qt">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RbL-iO-8ib" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hjm-LC-WA0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hjm-LC-WA0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -351,13 +351,21 @@
                                     <constraint firstItem="oHs-4V-Y7S" firstAttribute="top" secondItem="oRl-ty-kRc" secondAttribute="bottom" constant="52" id="vUm-20-LZG"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version x.x.x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwh-jf-fVT">
+                                <rect key="frame" x="275" y="629" width="71" height="17"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.43137254899999999" green="0.72156862749999995" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="cn2-ei-69X" secondAttribute="trailing" priority="999" constant="29" id="BDh-Bo-Wi8"/>
+                            <constraint firstAttribute="trailing" secondItem="Rwh-jf-fVT" secondAttribute="trailing" constant="29" id="C7m-hU-WlY"/>
                             <constraint firstItem="cn2-ei-69X" firstAttribute="centerX" secondItem="V4v-xx-mGY" secondAttribute="centerX" id="JwI-sL-3Uu"/>
                             <constraint firstItem="cn2-ei-69X" firstAttribute="leading" secondItem="V4v-xx-mGY" secondAttribute="leading" priority="999" constant="29" id="ZEj-6f-u1p"/>
                             <constraint firstItem="cn2-ei-69X" firstAttribute="top" secondItem="V4v-xx-mGY" secondAttribute="topMargin" constant="119" id="aSu-Z9-XuU"/>
+                            <constraint firstItem="cVZ-In-Wc5" firstAttribute="top" secondItem="Rwh-jf-fVT" secondAttribute="bottom" constant="21" id="cuz-Tk-enC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iC8-QL-izm"/>
@@ -366,6 +374,7 @@
                         <outlet property="orLabel" destination="cRy-eH-SXJ" id="5NA-Uz-AHa"/>
                         <outlet property="registerButton" destination="Mtv-0B-6Rn" id="niA-n6-3Nw"/>
                         <outlet property="signInButton" destination="oHs-4V-Y7S" id="S4e-LI-eWW"/>
+                        <outlet property="versionLabel" destination="Rwh-jf-fVT" id="YV5-3t-76z"/>
                         <segue destination="Sli-Tt-vCb" kind="presentation" identifier="termsPoliciesModalSegue" id="CiC-oU-f3I"/>
                         <segue destination="Pib-RC-igc" kind="show" identifier="loginSegue" id="l5Z-IJ-Ywz"/>
                     </connections>
@@ -785,7 +794,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sli-Tt-vCb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xPE-hv-B2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xPE-hv-B2n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -397,6 +397,10 @@
 		82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
+		82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
+		82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
+		82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
 		82BE057F1ED8D14D00BC06EE /* FadeSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */; };
 		82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */; };
 		82BE05811ED8D14D00BC06EE /* FadeSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */; };
@@ -1293,6 +1297,7 @@
 		82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingPaymentView.swift; sourceTree = "<group>"; };
 		82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingPaymentView.xib; sourceTree = "<group>"; };
 		82A18F171EC0E83800BE9F21 /* NibViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViews.swift; sourceTree = "<group>"; };
+		82AEF2E31F618F560057E7ED /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeSubviews.swift; sourceTree = "<group>"; };
 		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		82D599411EC2374500DDB380 /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
@@ -2567,6 +2572,7 @@
 				8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */,
 				E8B4F4CE1E5CE21D0031D934 /* Bridging-Header.h */,
 				B55736441E6742A6003B9369 /* OMC.plist */,
+				82AEF2E31F618F560057E7ED /* Settings.bundle */,
 			);
 			path = Mobile;
 			sourceTree = "<group>";
@@ -3360,6 +3366,7 @@
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
+				82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				B55736381E6740A8003B9369 /* OMLocalizable.strings in Resources */,
@@ -3448,6 +3455,7 @@
 				E8494F3A1EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
+				82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
@@ -3524,6 +3532,7 @@
 				E873DA791EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				54DF4BDF1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
+				82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */,
 				E8494F3C1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736421E6740C9003B9369 /* VersionInfo.plist in Resources */,
@@ -3539,6 +3548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
 				82A18F161EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
