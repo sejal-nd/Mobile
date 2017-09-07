@@ -34,7 +34,7 @@ private func extractDate(object: Any?) throws -> Date? {
 /// Representation of an outage to be reported
 struct OutageInfo {
     
-    let account: Account
+    let accountNumber: String
     var locationId: String?
     let reportedTime: Date
     let issue: OutageIssue
@@ -44,7 +44,7 @@ struct OutageInfo {
     var unusualMessage: String? //ComEd
     var isNeighbor: OutageTrivalent? //ComEd
     
-    init(account: Account,
+    init(accountNumber: String,
          locationId: String?=nil,
          issue: OutageIssue,
          phoneNumber: String,
@@ -52,7 +52,7 @@ struct OutageInfo {
          isUnusual: OutageTrivalent?=nil,
          unusualMessage: String?=nil,
          isNeighbor: OutageTrivalent?=nil) {
-        self.account = account
+        self.accountNumber = accountNumber
         self.locationId = locationId
         self.reportedTime = Date()
         self.issue = issue

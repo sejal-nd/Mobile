@@ -166,23 +166,11 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         view.endEditing(true)
         
         LoadingView.show()
-//        viewModel.submit()
-//            .observeOn(MainScheduler.instance)
-//            .subscribe(
-//                onNext: { [weak self] enrolled in
-//                    LoadingView.hide()
-//                    guard let `self` = self else { return }
-//                    self.delegate?.autoPayViewController(self, enrolled: enrolled)
-//                    self.navigationController?.popViewController(animated: true)
-//                }, onError: { [weak self] error in
-//                    LoadingView.hide()
-//                    guard let `self` = self else { return }
-//                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
-//                                                            message: error.localizedDescription, preferredStyle: .alert)
-//                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-//                    self.present(alertController, animated: true, completion: nil)
-//            })
-//            .disposed(by: bag)
+        viewModel.fetchOutageStatus(onSuccess: { 
+            LoadingView.hide()
+        }, onError: { errMessage in
+            LoadingView.hide()
+        })
     }
     
     @IBAction func onAccountNumberTooltipPress() {

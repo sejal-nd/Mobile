@@ -16,10 +16,40 @@ class UnauthenticatedOutageViewModel {
     let phoneNumber = Variable("")
     let accountNumber = Variable("")
     
+    var outageStatusArray: [OutageStatus]?
+    var selectedOutageStatus: OutageStatus?
+    
     let outageService: OutageService!
     
     required init(outageService: OutageService) {
         self.outageService = outageService
+    }
+    
+    func fetchOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        let phone: String? = phoneNumber.value.isEmpty ? nil : phoneNumber.value
+        let accountNum: String? = accountNumber.value.isEmpty ? nil : accountNumber.value
+        outageService.fetchOutageStatusAnon(phoneNumber: phone, accountNumber: accountNum)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] outageStatusArray in
+                self?.outageStatusArray = outageStatusArray
+                onSuccess()
+            }, onError: { [weak self] error in
+                guard let `self` = self else { return }
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.FnAccountFinaled.rawValue {
+                    self.selectedOutageStatus = OutageStatus.from(["flagFinaled": true])
+                    onSuccess()
+                } else if serviceError.serviceCode == ServiceErrorCode.FnAccountNoPay.rawValue {
+                    self.selectedOutageStatus = OutageStatus.from(["flagNoPay": true])
+                    onSuccess()
+                } else if serviceError.serviceCode == ServiceErrorCode.FnNonService.rawValue {
+                    self.selectedOutageStatus = OutageStatus.from(["flagNonService": true])
+                    onSuccess()
+                } else {
+                    self.selectedOutageStatus = nil
+                    onError(error.localizedDescription)
+                }
+            }).disposed(by: disposeBag)
     }
     
     var submitButtonEnabled: Driver<Bool> {

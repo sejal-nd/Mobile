@@ -41,7 +41,7 @@ class ReportOutageViewModel {
         case .bge:
             return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
         case .comEd:
-            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
+            return NSLocalizedString("To report a downed or sparking power line, please call 1-800-334-7661", comment: "")
         case .peco:
             return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
         }
@@ -55,7 +55,7 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.Flickering
         }
 
-        var outageInfo = OutageInfo(account: AccountsStore.sharedInstance.currentAccount, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value))
+        var outageInfo = OutageInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value))
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }

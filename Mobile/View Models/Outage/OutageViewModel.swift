@@ -93,12 +93,12 @@ class OutageViewModel {
     
     var footerTextViewText: String {
         switch Environment.sharedInstance.opco {
-            case .bge:
-                return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
-            case .comEd:
-                return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
-            case .peco:
-                return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
+        case .bge:
+            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
+        case .comEd:
+            return NSLocalizedString("To report a downed or sparking power line, please call 1-800-334-7661", comment: "")
+        case .peco:
+            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
         }
     }
     
