@@ -73,6 +73,12 @@
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" priority="999" constant="460" id="YW8-A8-bUo"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version x.x.x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DmN-en-OHs">
+                                <rect key="frame" x="275.5" y="629.5" width="70.5" height="16.5"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -80,6 +86,8 @@
                             <constraint firstItem="uGQ-Yo-dnh" firstAttribute="leading" secondItem="Lqc-KX-YW0" secondAttribute="leading" priority="999" constant="29" id="3Cp-By-dYH"/>
                             <constraint firstItem="uGQ-Yo-dnh" firstAttribute="centerX" secondItem="Lqc-KX-YW0" secondAttribute="centerX" id="jNg-hG-p7v"/>
                             <constraint firstAttribute="trailing" secondItem="uGQ-Yo-dnh" secondAttribute="trailing" priority="999" constant="29" id="yQm-Do-N6A"/>
+                            <constraint firstAttribute="trailing" secondItem="DmN-en-OHs" secondAttribute="trailing" constant="29" id="z54-fw-XdD"/>
+                            <constraint firstItem="Idb-9j-ygX" firstAttribute="top" secondItem="DmN-en-OHs" secondAttribute="bottom" constant="21" id="zSu-6Q-joZ"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -88,6 +96,7 @@
                         <outlet property="settingsButton" destination="Ryq-Ih-8NH" id="x87-mp-1Q5"/>
                         <outlet property="signOutButton" destination="oov-GC-Mrn" id="0Um-jj-jYL"/>
                         <outlet property="termAndPoliciesButton" destination="mJl-6h-Rms" id="5x4-LT-hC4"/>
+                        <outlet property="versionLabel" destination="DmN-en-OHs" id="9Td-wv-gZ3"/>
                         <segue destination="6Py-2X-RBq" kind="show" identifier="termsPoliciesSegue" id="ydh-Rl-VlF"/>
                         <segue destination="TZa-54-G4b" kind="show" identifier="settingsSegue" id="dL8-lh-q4P"/>
                         <segue destination="TYr-cP-fT5" kind="show" identifier="contactUsSegue" id="nKe-SQ-2Cl"/>
@@ -95,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fO-a1-RXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2369.5" y="1405.5"/>
+            <point key="canvasLocation" x="2368.8000000000002" y="1404.6476761619192"/>
         </scene>
         <!--Contact Us-->
         <scene sceneID="yYj-Mn-8mS">

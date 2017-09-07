@@ -14,6 +14,7 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var orLabel: UILabel!
     @IBOutlet weak var registerButton: SecondaryButton!
     @IBOutlet weak var continueAsGuestButon: UIButton!
+    @IBOutlet weak var versionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,14 @@ class LandingViewController: UIViewController {
         continueAsGuestButon.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
         
         view.backgroundColor = .primaryColor
+        
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
+        } else {
+            versionLabel.text = nil
+        }
+        
+        versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
     }
     
     override func viewWillAppear(_ animated: Bool) {
