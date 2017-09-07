@@ -3210,7 +3210,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -4607,7 +4607,7 @@
 			};
 			name = Release;
 		};
-		82AEF2E91F61E8A70057E7ED /* Testing-MS */ = {
+		82AEF2E91F61E8A70057E7ED /* Testing-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -4675,12 +4675,12 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics";
 			};
-			name = "Testing-MS";
+			name = "Testing-Support";
 		};
-		82AEF2EA1F61E8A70057E7ED /* Testing-MS */ = {
+		82AEF2EA1F61E8A70057E7ED /* Testing-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-MS";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LTS485TKXA;
@@ -4696,12 +4696,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
 			};
-			name = "Testing-MS";
+			name = "Testing-Support";
 		};
-		82AEF2EB1F61E8A70057E7ED /* Testing-MS */ = {
+		82AEF2EB1F61E8A70057E7ED /* Testing-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-MS";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LTS485TKXA;
@@ -4716,18 +4716,18 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
 			};
-			name = "Testing-MS";
+			name = "Testing-Support";
 		};
-		82AEF2EC1F61E8A70057E7ED /* Testing-MS */ = {
+		82AEF2EC1F61E8A70057E7ED /* Testing-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-MS";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LTS485TKXA;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.testing;
-				EXM_ENVIRONMENT = "TESTING-MS";
+				EXM_ENVIRONMENT = TESTING;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4737,9 +4737,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
 			};
-			name = "Testing-MS";
+			name = "Testing-Support";
 		};
-		82AEF2ED1F61E8A70057E7ED /* Testing-MS */ = {
+		82AEF2ED1F61E8A70057E7ED /* Testing-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = "";
@@ -4747,23 +4747,23 @@
 				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
-			name = "Testing-MS";
+			name = "Testing-Support";
 		};
-		82AEF2EE1F61E8A70057E7ED /* Testing-MS */ = {
+		82AEF2EE1F61E8A70057E7ED /* Testing-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
-			name = "Testing-MS";
+			name = "Testing-Support";
 		};
-		82AEF2EF1F61E8A70057E7ED /* Testing-MS */ = {
+		82AEF2EF1F61E8A70057E7ED /* Testing-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
-			name = "Testing-MS";
+			name = "Testing-Support";
 		};
-		82AEF2F01F61E8A70057E7ED /* Testing-MS */ = {
+		82AEF2F01F61E8A70057E7ED /* Testing-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -4773,9 +4773,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
-			name = "Testing-MS";
+			name = "Testing-Support";
 		};
-		82AEF2F11F61E8A70057E7ED /* Testing-MS */ = {
+		82AEF2F11F61E8A70057E7ED /* Testing-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -4787,9 +4787,9 @@
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
 			};
-			name = "Testing-MS";
+			name = "Testing-Support";
 		};
-		82AEF2F21F61E8C70057E7ED /* Staging-MS */ = {
+		82AEF2F21F61E8C70057E7ED /* Staging-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -4857,12 +4857,12 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics";
 			};
-			name = "Staging-MS";
+			name = "Staging-Support";
 		};
-		82AEF2F31F61E8C70057E7ED /* Staging-MS */ = {
+		82AEF2F31F61E8C70057E7ED /* Staging-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-MS";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -4880,12 +4880,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging";
 			};
-			name = "Staging-MS";
+			name = "Staging-Support";
 		};
-		82AEF2F41F61E8C70057E7ED /* Staging-MS */ = {
+		82AEF2F41F61E8C70057E7ED /* Staging-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-MS";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/ComEd-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -4902,12 +4902,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "ComEd Staging";
 			};
-			name = "Staging-MS";
+			name = "Staging-Support";
 		};
-		82AEF2F51F61E8C70057E7ED /* Staging-MS */ = {
+		82AEF2F51F61E8C70057E7ED /* Staging-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-MS";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/PECO-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -4915,7 +4915,7 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.staging;
-				EXM_ENVIRONMENT = "STAGING-MS";
+				EXM_ENVIRONMENT = STAGING;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4925,9 +4925,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging";
 			};
-			name = "Staging-MS";
+			name = "Staging-Support";
 		};
-		82AEF2F61F61E8C70057E7ED /* Staging-MS */ = {
+		82AEF2F61F61E8C70057E7ED /* Staging-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = "";
@@ -4935,23 +4935,23 @@
 				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
-			name = "Staging-MS";
+			name = "Staging-Support";
 		};
-		82AEF2F71F61E8C70057E7ED /* Staging-MS */ = {
+		82AEF2F71F61E8C70057E7ED /* Staging-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
-			name = "Staging-MS";
+			name = "Staging-Support";
 		};
-		82AEF2F81F61E8C70057E7ED /* Staging-MS */ = {
+		82AEF2F81F61E8C70057E7ED /* Staging-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
-			name = "Staging-MS";
+			name = "Staging-Support";
 		};
-		82AEF2F91F61E8C70057E7ED /* Staging-MS */ = {
+		82AEF2F91F61E8C70057E7ED /* Staging-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -4961,9 +4961,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
-			name = "Staging-MS";
+			name = "Staging-Support";
 		};
-		82AEF2FA1F61E8C70057E7ED /* Staging-MS */ = {
+		82AEF2FA1F61E8C70057E7ED /* Staging-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -4974,7 +4974,7 @@
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = BGE;
 			};
-			name = "Staging-MS";
+			name = "Staging-Support";
 		};
 		B58B5AE71E4E28740051FD5F /* Develop */ = {
 			isa = XCBuildConfiguration;
@@ -5839,9 +5839,9 @@
 			buildConfigurations = (
 				087630E51E72F5D000FA7020 /* Develop */,
 				087630E61E72F5D000FA7020 /* Testing */,
-				82AEF2F11F61E8A70057E7ED /* Testing-MS */,
+				82AEF2F11F61E8A70057E7ED /* Testing-Support */,
 				087630E71E72F5D000FA7020 /* Staging */,
-				82AEF2FA1F61E8C70057E7ED /* Staging-MS */,
+				82AEF2FA1F61E8C70057E7ED /* Staging-Support */,
 				087630E81E72F5D000FA7020 /* Automation */,
 				087630E91E72F5D000FA7020 /* Release */,
 			);
@@ -5853,9 +5853,9 @@
 			buildConfigurations = (
 				B58B5AE71E4E28740051FD5F /* Develop */,
 				B58B5AFA1E51497F0051FD5F /* Testing */,
-				82AEF2E91F61E8A70057E7ED /* Testing-MS */,
+				82AEF2E91F61E8A70057E7ED /* Testing-Support */,
 				B58B5AF61E51497B0051FD5F /* Staging */,
-				82AEF2F21F61E8C70057E7ED /* Staging-MS */,
+				82AEF2F21F61E8C70057E7ED /* Staging-Support */,
 				B58B5AF21E5149770051FD5F /* Automation */,
 				B58B5AE81E4E28740051FD5F /* Release */,
 			);
@@ -5867,9 +5867,9 @@
 			buildConfigurations = (
 				B58B5AEA1E4E28740051FD5F /* Develop */,
 				B58B5AFB1E51497F0051FD5F /* Testing */,
-				82AEF2EA1F61E8A70057E7ED /* Testing-MS */,
+				82AEF2EA1F61E8A70057E7ED /* Testing-Support */,
 				B58B5AF71E51497B0051FD5F /* Staging */,
-				82AEF2F31F61E8C70057E7ED /* Staging-MS */,
+				82AEF2F31F61E8C70057E7ED /* Staging-Support */,
 				B58B5AF31E5149770051FD5F /* Automation */,
 				B58B5AEB1E4E28740051FD5F /* Release */,
 			);
@@ -5881,9 +5881,9 @@
 			buildConfigurations = (
 				B58B5B191E515BD50051FD5F /* Develop */,
 				B58B5B1A1E515BD50051FD5F /* Testing */,
-				82AEF2EC1F61E8A70057E7ED /* Testing-MS */,
+				82AEF2EC1F61E8A70057E7ED /* Testing-Support */,
 				B58B5B1B1E515BD50051FD5F /* Staging */,
-				82AEF2F51F61E8C70057E7ED /* Staging-MS */,
+				82AEF2F51F61E8C70057E7ED /* Staging-Support */,
 				B58B5B1C1E515BD50051FD5F /* Automation */,
 				B58B5B1D1E515BD50051FD5F /* Release */,
 			);
@@ -5895,9 +5895,9 @@
 			buildConfigurations = (
 				B58B5B2A1E515C840051FD5F /* Develop */,
 				B58B5B2B1E515C840051FD5F /* Testing */,
-				82AEF2EB1F61E8A70057E7ED /* Testing-MS */,
+				82AEF2EB1F61E8A70057E7ED /* Testing-Support */,
 				B58B5B2C1E515C840051FD5F /* Staging */,
-				82AEF2F41F61E8C70057E7ED /* Staging-MS */,
+				82AEF2F41F61E8C70057E7ED /* Staging-Support */,
 				B58B5B2D1E515C840051FD5F /* Automation */,
 				B58B5B2E1E515C840051FD5F /* Release */,
 			);
@@ -5909,9 +5909,9 @@
 			buildConfigurations = (
 				B58B5B621E516EEE0051FD5F /* Develop */,
 				B58B5B631E516EEE0051FD5F /* Testing */,
-				82AEF2ED1F61E8A70057E7ED /* Testing-MS */,
+				82AEF2ED1F61E8A70057E7ED /* Testing-Support */,
 				B58B5B641E516EEE0051FD5F /* Staging */,
-				82AEF2F61F61E8C70057E7ED /* Staging-MS */,
+				82AEF2F61F61E8C70057E7ED /* Staging-Support */,
 				B58B5B651E516EEE0051FD5F /* Automation */,
 				B58B5B661E516EEE0051FD5F /* Release */,
 			);
@@ -5923,9 +5923,9 @@
 			buildConfigurations = (
 				B5AC06AC1E5216C300BBA4ED /* Develop */,
 				B5AC06AD1E5216C300BBA4ED /* Testing */,
-				82AEF2EE1F61E8A70057E7ED /* Testing-MS */,
+				82AEF2EE1F61E8A70057E7ED /* Testing-Support */,
 				B5AC06AE1E5216C300BBA4ED /* Staging */,
-				82AEF2F71F61E8C70057E7ED /* Staging-MS */,
+				82AEF2F71F61E8C70057E7ED /* Staging-Support */,
 				B5AC06AF1E5216C300BBA4ED /* Automation */,
 				B5AC06B01E5216C300BBA4ED /* Release */,
 			);
@@ -5937,9 +5937,9 @@
 			buildConfigurations = (
 				B5AC06B51E52171800BBA4ED /* Develop */,
 				B5AC06B61E52171800BBA4ED /* Testing */,
-				82AEF2EF1F61E8A70057E7ED /* Testing-MS */,
+				82AEF2EF1F61E8A70057E7ED /* Testing-Support */,
 				B5AC06B71E52171800BBA4ED /* Staging */,
-				82AEF2F81F61E8C70057E7ED /* Staging-MS */,
+				82AEF2F81F61E8C70057E7ED /* Staging-Support */,
 				B5AC06B81E52171800BBA4ED /* Automation */,
 				B5AC06B91E52171800BBA4ED /* Release */,
 			);
@@ -5951,9 +5951,9 @@
 			buildConfigurations = (
 				B5AC06DD1E52238900BBA4ED /* Develop */,
 				B5AC06DE1E52238900BBA4ED /* Testing */,
-				82AEF2F01F61E8A70057E7ED /* Testing-MS */,
+				82AEF2F01F61E8A70057E7ED /* Testing-Support */,
 				B5AC06DF1E52238900BBA4ED /* Staging */,
-				82AEF2F91F61E8C70057E7ED /* Staging-MS */,
+				82AEF2F91F61E8C70057E7ED /* Staging-Support */,
 				B5AC06E01E52238900BBA4ED /* Automation */,
 				B5AC06E11E52238900BBA4ED /* Release */,
 			);
