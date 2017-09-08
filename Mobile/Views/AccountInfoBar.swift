@@ -37,14 +37,17 @@ class AccountInfoBar: UIView {
         addSubview(label)
     }
     
-    func update() {
-        var a11y = ""
-        if let currentAccount = AccountsStore.sharedInstance.currentAccount {
+    func update(accountNumber: String? = nil, address: String? = nil) {
+        if let overrideAccount = accountNumber, let overrideAddress = address {
+            label.text = "ACCOUNT \(overrideAccount)\n\(overrideAddress)"
+            label.accessibilityLabel = "Account number: \(overrideAccount), Street address: \(overrideAddress)"
+        } else if let currentAccount = AccountsStore.sharedInstance.currentAccount {
+            var a11y = ""
             var labelText = "ACCOUNT \(currentAccount.accountNumber)"
-            a11y.append("Account number: \(currentAccount.accountNumber). ")
+            a11y.append("Account number: \(currentAccount.accountNumber)")
             if let address = currentAccount.address {
                 labelText.append("\n\(address)")
-                a11y.append("\nStreet address: \(address)")
+                a11y.append(", Street address: \(address)")
             }
             label.text = labelText
             label.accessibilityLabel = a11y

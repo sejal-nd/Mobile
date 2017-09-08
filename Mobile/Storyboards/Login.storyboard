@@ -617,13 +617,108 @@
                     <view key="view" contentMode="scaleToFill" id="Kt2-qb-mrB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwp-HU-286">
+                                <rect key="frame" x="0.0" y="64" width="375" height="736"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYw-aP-xdY" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="584"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLD-E0-iMr" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="64"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="64" id="P95-lV-oyR"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kuy-ht-Q3x" customClass="OutageStatusButton" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="37" y="73" width="300" height="300"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="ttT-E4-JCq"/>
+                                                    <constraint firstAttribute="width" constant="300" id="uKe-wq-KAx"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zjr-tL-pFh" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="29" y="383" width="316" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <accessibility key="accessibilityConfiguration" label="Report outage"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="L3e-Jr-USw"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Report Outage"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="of0-TU-uY3" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="29" y="453" width="316" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <accessibility key="accessibilityConfiguration" label="View outage map"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="SqT-eT-eHx"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="View Outage Map"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NCZ-xQ-xbF" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="29" y="523" width="316" height="49"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="2Ui-Ux-qrG"/>
+                                            <constraint firstItem="Zjr-tL-pFh" firstAttribute="leading" secondItem="XYw-aP-xdY" secondAttribute="leading" constant="29" id="AvQ-is-RiR"/>
+                                            <constraint firstItem="Kuy-ht-Q3x" firstAttribute="top" secondItem="LLD-E0-iMr" secondAttribute="bottom" constant="9" id="DCp-H1-hfC"/>
+                                            <constraint firstAttribute="bottom" secondItem="NCZ-xQ-xbF" secondAttribute="bottom" constant="12" id="DFH-b5-49f"/>
+                                            <constraint firstItem="Zjr-tL-pFh" firstAttribute="top" secondItem="Kuy-ht-Q3x" secondAttribute="bottom" constant="10" id="F8s-Ao-NAu"/>
+                                            <constraint firstItem="NCZ-xQ-xbF" firstAttribute="leading" secondItem="XYw-aP-xdY" secondAttribute="leading" constant="29" id="JPg-pO-BTu"/>
+                                            <constraint firstAttribute="trailing" secondItem="of0-TU-uY3" secondAttribute="trailing" constant="29" id="NDr-Ee-zva"/>
+                                            <constraint firstAttribute="trailing" secondItem="LLD-E0-iMr" secondAttribute="trailing" id="Oeh-JS-FPE"/>
+                                            <constraint firstItem="of0-TU-uY3" firstAttribute="leading" secondItem="XYw-aP-xdY" secondAttribute="leading" constant="29" id="PrF-ST-xbr"/>
+                                            <constraint firstAttribute="trailing" secondItem="NCZ-xQ-xbF" secondAttribute="trailing" constant="29" id="Uvr-IL-C6W"/>
+                                            <constraint firstItem="NCZ-xQ-xbF" firstAttribute="top" secondItem="of0-TU-uY3" secondAttribute="bottom" constant="10" id="YnF-0D-jLw"/>
+                                            <constraint firstItem="LLD-E0-iMr" firstAttribute="leading" secondItem="XYw-aP-xdY" secondAttribute="leading" id="ZVK-Y1-E1B"/>
+                                            <constraint firstAttribute="trailing" secondItem="Zjr-tL-pFh" secondAttribute="trailing" constant="29" id="c8T-3j-aUU"/>
+                                            <constraint firstItem="Kuy-ht-Q3x" firstAttribute="centerX" secondItem="XYw-aP-xdY" secondAttribute="centerX" id="lRd-H3-4ub"/>
+                                            <constraint firstItem="LLD-E0-iMr" firstAttribute="top" secondItem="XYw-aP-xdY" secondAttribute="top" id="osS-yb-LYt"/>
+                                            <constraint firstItem="of0-TU-uY3" firstAttribute="top" secondItem="Zjr-tL-pFh" secondAttribute="bottom" constant="10" id="xkv-yx-HLn"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="XYw-aP-xdY" secondAttribute="bottom" id="0IL-rj-wtA"/>
+                                    <constraint firstItem="XYw-aP-xdY" firstAttribute="centerX" secondItem="mwp-HU-286" secondAttribute="centerX" id="DPk-np-uAY"/>
+                                    <constraint firstAttribute="trailing" secondItem="XYw-aP-xdY" secondAttribute="trailing" priority="999" id="iZQ-k9-LSf"/>
+                                    <constraint firstItem="XYw-aP-xdY" firstAttribute="leading" secondItem="mwp-HU-286" secondAttribute="leading" priority="999" id="mEa-AF-Ugy"/>
+                                    <constraint firstItem="XYw-aP-xdY" firstAttribute="top" secondItem="mwp-HU-286" secondAttribute="top" id="v8p-H0-8E9"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Jm-mp-Nv7" firstAttribute="top" secondItem="mwp-HU-286" secondAttribute="bottom" id="GWq-Ms-lig"/>
+                            <constraint firstAttribute="trailing" secondItem="mwp-HU-286" secondAttribute="trailing" id="I8P-XT-oXa"/>
+                            <constraint firstItem="mwp-HU-286" firstAttribute="top" secondItem="0Oj-yM-fNP" secondAttribute="bottom" id="LgL-lL-mt1"/>
+                            <constraint firstItem="mwp-HU-286" firstAttribute="leading" secondItem="Kt2-qb-mrB" secondAttribute="leading" id="PRz-qk-3ii"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Outage" id="EVM-zc-P4J"/>
+                    <connections>
+                        <outlet property="accountInfoBar" destination="LLD-E0-iMr" id="Qa4-q7-Y5H"/>
+                        <outlet property="footerTextView" destination="NCZ-xQ-xbF" id="ejo-uB-rU8"/>
+                        <outlet property="outageStatusButton" destination="Kuy-ht-Q3x" id="fHd-O4-oxQ"/>
+                        <outlet property="reportOutageButton" destination="Zjr-tL-pFh" id="PGM-rR-XFV"/>
+                        <outlet property="viewOutageMapButton" destination="of0-TU-uY3" id="4X9-VW-lcy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLN-d8-EtJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4051" y="-1401"/>
+            <point key="canvasLocation" x="4050.4000000000001" y="-1401.4992503748126"/>
         </scene>
         <!--ContactUsViewController-->
         <scene sceneID="vEs-1y-YfA">

@@ -60,24 +60,29 @@ class OutageStatusButton: UIView {
 
     }
     
-    func setPowerIsOn(_ powerIsOn: Bool = true) {
-        animationView.isHidden = !powerIsOn
-        outerCircleView.isHidden = powerIsOn
-        innerCircleView.isHidden = powerIsOn
-    }
+//    func setPowerIsOn(_ powerIsOn: Bool = true) {
+//        animationView.isHidden = !powerIsOn
+//        outerCircleView.isHidden = powerIsOn
+//        innerCircleView.isHidden = powerIsOn
+//    }
     
-    func setGrayCircles() {
+    private func setGrayCircles() {
         outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1) // Special case color - do not change
         innerCircleView.backgroundColor = .middleGray
     }
     
-    func setColoredCircles() {
+    private func setColoredCircles() {
         outerCircleView.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.7)
         innerCircleView.backgroundColor = .primaryColor
     }
     
     func setReportedState(estimatedRestorationDateString: String) {
         clearSubviews()
+        
+        animationView.isHidden = true
+        outerCircleView.isHidden = false
+        innerCircleView.isHidden = false
+        setColoredCircles()
         
         let bigButtonWidth = bigButtonImageView.frame.size.width
         
@@ -121,6 +126,11 @@ class OutageStatusButton: UIView {
     func setOutageState(estimatedRestorationDateString: String) {
         clearSubviews()
         
+        animationView.isHidden = true
+        outerCircleView.isHidden = false
+        innerCircleView.isHidden = false
+        setGrayCircles()
+        
         let bigButtonWidth = bigButtonImageView.frame.size.width
         
         let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 11, y: 84, width: 22, height: 28))
@@ -163,6 +173,11 @@ class OutageStatusButton: UIView {
     func setIneligibleState(flagFinaled: Bool, nonPayFinaledMessage: String) {
         clearSubviews()
         
+        animationView.isHidden = true
+        outerCircleView.isHidden = false
+        innerCircleView.isHidden = false
+        setGrayCircles()
+        
         let bigButtonWidth = 194 // The old width of the button prior to the redesign
         
         let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 67, y: 91, width: bigButtonWidth - 28, height: 120))
@@ -195,6 +210,10 @@ class OutageStatusButton: UIView {
     
     func setPowerOnState() {
         clearSubviews()
+        
+        animationView.isHidden = false
+        outerCircleView.isHidden = true
+        innerCircleView.isHidden = true
         
         let bigButtonWidth = bigButtonImageView.frame.size.width
         

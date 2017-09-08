@@ -107,6 +107,8 @@ class OutageViewController: AccountPickerViewController {
             }
         }).disposed(by: disposeBag)
         
+        updateContent()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
     }
     
@@ -115,8 +117,6 @@ class OutageViewController: AccountPickerViewController {
         
         navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        updateContent()
     }
     
     override func viewDidLayoutSubviews() {
@@ -161,16 +161,6 @@ class OutageViewController: AccountPickerViewController {
                 gasOnlyTextViewBottomSpaceConstraint.isActive = false
                 gasOnlyView.isHidden = true
                 accountContentView.isHidden = false
-            }
-            
-            // Display either the Lottie animation or draw our own border circles
-            let powerIsOn = !currentOutageStatus.activeOutage && viewModel.reportedOutage == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
-            outageStatusButton.setPowerIsOn(powerIsOn)
-            
-            if viewModel.reportedOutage == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled || currentOutageStatus.flagNonService) {
-                outageStatusButton.setGrayCircles()
-            } else {
-                outageStatusButton.setColoredCircles()
             }
             
             // Update the Report Outage button

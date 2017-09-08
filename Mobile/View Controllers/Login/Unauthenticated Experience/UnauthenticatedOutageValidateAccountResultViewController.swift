@@ -54,6 +54,11 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         tableView.reloadData() // To properly set the width constraints
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? UnauthenticatedOutageStatusViewController {
+            vc.viewModel = viewModel
+        }
+    }
     
 
 }
@@ -85,7 +90,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let outageStatus = viewModel.outageStatusArray![indexPath.row]
-        print(outageStatus)
+        viewModel.selectedOutageStatus = viewModel.outageStatusArray![indexPath.row]
+        performSegue(withIdentifier: "outageStatusSegue", sender: self)
     }
 }

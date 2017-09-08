@@ -213,6 +213,8 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UnauthenticatedOutageValidateAccountResultViewController {
             vc.viewModel = viewModel
+        } else if let vc = segue.destination as? UnauthenticatedOutageStatusViewController {
+            vc.viewModel = viewModel
         }
     }
 

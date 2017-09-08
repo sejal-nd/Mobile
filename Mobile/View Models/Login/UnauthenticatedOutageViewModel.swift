@@ -18,6 +18,7 @@ class UnauthenticatedOutageViewModel {
     
     var outageStatusArray: [OutageStatus]?
     var selectedOutageStatus: OutageStatus?
+    var reportedOutage: ReportedOutageResult?
     
     let outageService: OutageService!
     
@@ -82,6 +83,38 @@ class UnauthenticatedOutageViewModel {
         return self.accountNumber.asDriver().map {
             $0.characters.count == 10
         }
+    }
+    
+    var outageReportedDateString: String {
+        if let reportedOutage = reportedOutage {
+            let timeString = Environment.sharedInstance.opcoDateFormatter.string(from: reportedOutage.reportedTime)
+            return String(format: NSLocalizedString("Reported %@", comment: ""), timeString)
+        }
+        return NSLocalizedString("Reported", comment: "")
+    }
+    
+    var estimatedRestorationDateString: String {
+        if let reportedOutage = reportedOutage {
+            if let reportedETR = reportedOutage.etr {
+                return Environment.sharedInstance.opcoDateFormatter.string(from: reportedETR)
+            }
+        } else if let statusETR = selectedOutageStatus!.etr {
+            return Environment.sharedInstance.opcoDateFormatter.string(from: statusETR)
+        }
+        return NSLocalizedString("Assessing Damage", comment: "")
+    }
+    
+    var accountNonPayFinaledMessage: String {
+        if Environment.sharedInstance.opco == .bge {
+            return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
+        } else {
+            if selectedOutageStatus!.flagFinaled {
+                return NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
+            } else if selectedOutageStatus!.flagNoPay {
+                return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
+            }
+        }
+        return ""
     }
     
     var footerText: String {
