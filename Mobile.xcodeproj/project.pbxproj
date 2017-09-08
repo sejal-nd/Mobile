@@ -3216,7 +3216,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3648,7 +3648,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/BGE-Environment-$env.plist $dir/Configuration/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/Configuration/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}/Configuration\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/BGE-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/BGE-Info.plist\n \n# done\necho \"Done.\"\n";
+			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/BGE-Environment-$env.plist $dir/Configuration/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/Configuration/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}/Configuration\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/BGE-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/BGE-Info.plist\n \n# done\necho \"Done.\"\n";
 		};
 		B5AC06B11E5216E300BBA4ED /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3661,7 +3661,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/ComEd-Environment-$env.plist $dir/Configuration/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/Configuration/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}/Configuration\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/ComEd-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/ComEd-Info.plist\n \n# done\necho \"Done.\"\n";
+			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/ComEd-Environment-$env.plist $dir/Configuration/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/Configuration/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}/Configuration\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/ComEd-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/ComEd-Info.plist\n \n# done\necho \"Done.\"\n";
 		};
 		B5AC06B31E52171800BBA4ED /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3674,7 +3674,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/PECO-Environment-$env.plist $dir/Configuration/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/Configuration/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}/Configuration\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/Peco-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/Peco-Info.plist\n \n# done\necho \"Done.\"\n";
+			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n \n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${EXM_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n \n# copy the environment-specific file\ncp $dir/Configuration/PECO-Environment-$env.plist $dir/Configuration/environment.plist\n \n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\n \n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/Configuration/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n \nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n \n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}/Configuration\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n \necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define EXM_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n \n# dump out file to build log\ncat $preprocessFile\n \n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/Peco-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/Peco-Info.plist\n \n# done\necho \"Done.\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4617,6 +4617,375 @@
 			};
 			name = Release;
 		};
+		82AEF2E91F61E8A70057E7ED /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXM_ENVIRONMENT = TESTING;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/OMC",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics";
+			};
+			name = "Testing-Support";
+		};
+		82AEF2EA1F61E8A70057E7ED /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+			};
+			name = "Testing-Support";
+		};
+		82AEF2EB1F61E8A70057E7ED /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.comed.testing;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+			};
+			name = "Testing-Support";
+		};
+		82AEF2EC1F61E8A70057E7ED /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = LTS485TKXA;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.peco.testing;
+				EXM_ENVIRONMENT = TESTING;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+			};
+			name = "Testing-Support";
+		};
+		82AEF2ED1F61E8A70057E7ED /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_PREFIX_HEADER = "";
+				INFOPLIST_PREPROCESS = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Testing-Support";
+		};
+		82AEF2EE1F61E8A70057E7ED /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Testing-Support";
+		};
+		82AEF2EF1F61E8A70057E7ED /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Testing-Support";
+		};
+		82AEF2F01F61E8A70057E7ED /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
+			};
+			name = "Testing-Support";
+		};
+		82AEF2F11F61E8A70057E7ED /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = BGEUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = BGE;
+			};
+			name = "Testing-Support";
+		};
+		82AEF2F21F61E8C70057E7ED /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXM_ENVIRONMENT = STAGING;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/OMC",
+					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics";
+			};
+			name = "Staging-Support";
+		};
+		82AEF2F31F61E8C70057E7ED /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging";
+			};
+			name = "Staging-Support";
+		};
+		82AEF2F41F61E8C70057E7ED /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ComEd-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.comed.staging;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "ComEd Staging";
+			};
+			name = "Staging-Support";
+		};
+		82AEF2F51F61E8C70057E7ED /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/PECO-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.peco.staging;
+				EXM_ENVIRONMENT = STAGING;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging";
+			};
+			name = "Staging-Support";
+		};
+		82AEF2F61F61E8C70057E7ED /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_PREFIX_HEADER = "";
+				INFOPLIST_PREPROCESS = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Staging-Support";
+		};
+		82AEF2F71F61E8C70057E7ED /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Staging-Support";
+		};
+		82AEF2F81F61E8C70057E7ED /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Staging-Support";
+		};
+		82AEF2F91F61E8C70057E7ED /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
+			};
+			name = "Staging-Support";
+		};
+		82AEF2FA1F61E8C70057E7ED /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = BGEUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = BGE;
+			};
+			name = "Staging-Support";
+		};
 		B58B5AE71E4E28740051FD5F /* Develop */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -5480,7 +5849,9 @@
 			buildConfigurations = (
 				087630E51E72F5D000FA7020 /* Develop */,
 				087630E61E72F5D000FA7020 /* Testing */,
+				82AEF2F11F61E8A70057E7ED /* Testing-Support */,
 				087630E71E72F5D000FA7020 /* Staging */,
+				82AEF2FA1F61E8C70057E7ED /* Staging-Support */,
 				087630E81E72F5D000FA7020 /* Automation */,
 				087630E91E72F5D000FA7020 /* Release */,
 			);
@@ -5492,7 +5863,9 @@
 			buildConfigurations = (
 				B58B5AE71E4E28740051FD5F /* Develop */,
 				B58B5AFA1E51497F0051FD5F /* Testing */,
+				82AEF2E91F61E8A70057E7ED /* Testing-Support */,
 				B58B5AF61E51497B0051FD5F /* Staging */,
+				82AEF2F21F61E8C70057E7ED /* Staging-Support */,
 				B58B5AF21E5149770051FD5F /* Automation */,
 				B58B5AE81E4E28740051FD5F /* Release */,
 			);
@@ -5504,7 +5877,9 @@
 			buildConfigurations = (
 				B58B5AEA1E4E28740051FD5F /* Develop */,
 				B58B5AFB1E51497F0051FD5F /* Testing */,
+				82AEF2EA1F61E8A70057E7ED /* Testing-Support */,
 				B58B5AF71E51497B0051FD5F /* Staging */,
+				82AEF2F31F61E8C70057E7ED /* Staging-Support */,
 				B58B5AF31E5149770051FD5F /* Automation */,
 				B58B5AEB1E4E28740051FD5F /* Release */,
 			);
@@ -5516,7 +5891,9 @@
 			buildConfigurations = (
 				B58B5B191E515BD50051FD5F /* Develop */,
 				B58B5B1A1E515BD50051FD5F /* Testing */,
+				82AEF2EC1F61E8A70057E7ED /* Testing-Support */,
 				B58B5B1B1E515BD50051FD5F /* Staging */,
+				82AEF2F51F61E8C70057E7ED /* Staging-Support */,
 				B58B5B1C1E515BD50051FD5F /* Automation */,
 				B58B5B1D1E515BD50051FD5F /* Release */,
 			);
@@ -5528,7 +5905,9 @@
 			buildConfigurations = (
 				B58B5B2A1E515C840051FD5F /* Develop */,
 				B58B5B2B1E515C840051FD5F /* Testing */,
+				82AEF2EB1F61E8A70057E7ED /* Testing-Support */,
 				B58B5B2C1E515C840051FD5F /* Staging */,
+				82AEF2F41F61E8C70057E7ED /* Staging-Support */,
 				B58B5B2D1E515C840051FD5F /* Automation */,
 				B58B5B2E1E515C840051FD5F /* Release */,
 			);
@@ -5540,7 +5919,9 @@
 			buildConfigurations = (
 				B58B5B621E516EEE0051FD5F /* Develop */,
 				B58B5B631E516EEE0051FD5F /* Testing */,
+				82AEF2ED1F61E8A70057E7ED /* Testing-Support */,
 				B58B5B641E516EEE0051FD5F /* Staging */,
+				82AEF2F61F61E8C70057E7ED /* Staging-Support */,
 				B58B5B651E516EEE0051FD5F /* Automation */,
 				B58B5B661E516EEE0051FD5F /* Release */,
 			);
@@ -5552,7 +5933,9 @@
 			buildConfigurations = (
 				B5AC06AC1E5216C300BBA4ED /* Develop */,
 				B5AC06AD1E5216C300BBA4ED /* Testing */,
+				82AEF2EE1F61E8A70057E7ED /* Testing-Support */,
 				B5AC06AE1E5216C300BBA4ED /* Staging */,
+				82AEF2F71F61E8C70057E7ED /* Staging-Support */,
 				B5AC06AF1E5216C300BBA4ED /* Automation */,
 				B5AC06B01E5216C300BBA4ED /* Release */,
 			);
@@ -5564,7 +5947,9 @@
 			buildConfigurations = (
 				B5AC06B51E52171800BBA4ED /* Develop */,
 				B5AC06B61E52171800BBA4ED /* Testing */,
+				82AEF2EF1F61E8A70057E7ED /* Testing-Support */,
 				B5AC06B71E52171800BBA4ED /* Staging */,
+				82AEF2F81F61E8C70057E7ED /* Staging-Support */,
 				B5AC06B81E52171800BBA4ED /* Automation */,
 				B5AC06B91E52171800BBA4ED /* Release */,
 			);
@@ -5576,7 +5961,9 @@
 			buildConfigurations = (
 				B5AC06DD1E52238900BBA4ED /* Develop */,
 				B5AC06DE1E52238900BBA4ED /* Testing */,
+				82AEF2F01F61E8A70057E7ED /* Testing-Support */,
 				B5AC06DF1E52238900BBA4ED /* Staging */,
+				82AEF2F91F61E8C70057E7ED /* Staging-Support */,
 				B5AC06E01E52238900BBA4ED /* Automation */,
 				B5AC06E11E52238900BBA4ED /* Release */,
 			);
