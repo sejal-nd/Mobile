@@ -31,7 +31,11 @@ class UnauthenticatedOutageViewModel {
         outageService.fetchOutageStatusAnon(phoneNumber: phone, accountNumber: accountNum)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] outageStatusArray in
-                self?.outageStatusArray = outageStatusArray
+                if outageStatusArray.count == 1 {
+                    self?.selectedOutageStatus = outageStatusArray[0]
+                } else {
+                    self?.outageStatusArray = outageStatusArray
+                }
                 onSuccess()
             }, onError: { [weak self] error in
                 guard let `self` = self else { return }

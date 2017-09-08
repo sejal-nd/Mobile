@@ -169,7 +169,12 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         viewModel.fetchOutageStatus(onSuccess: { [weak self] in
             guard let `self` = self else { return }
             LoadingView.hide()
-            self.performSegue(withIdentifier: "outageValidateAccountResultSegue", sender: self)
+            
+            if self.viewModel.selectedOutageStatus != nil {
+                self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
+            } else {
+                self.performSegue(withIdentifier: "outageValidateAccountResultSegue", sender: self)
+            }
         }, onError: { errMessage in
             LoadingView.hide()
         })
