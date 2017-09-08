@@ -52,7 +52,6 @@ class SplashViewController: UIViewController{
             lottieAnimation!.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
             lottieAnimation!.loopAnimation = false
             lottieAnimation!.contentMode = .scaleAspectFit
-            lottieAnimation!.center = self.view.center
             animationView.addSubview(lottieAnimation!)
             lottieAnimation!.play()
         }
