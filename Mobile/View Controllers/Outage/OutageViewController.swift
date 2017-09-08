@@ -21,11 +21,7 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var loadingAnimationView: UIView!
     @IBOutlet weak var loadingBigButtonView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
-    //@IBOutlet weak var bigButtonShadowView: UIView!
-    @IBOutlet weak var animationView: UIView!
-    @IBOutlet weak var outerCircleView: UIView!
-    @IBOutlet weak var innerCircleView: UIView!
-    @IBOutlet weak var bigButtonImageView: UIImageView!
+    @IBOutlet weak var outageStatusButton: OutageStatusButton!
     @IBOutlet weak var reportOutageButton: DisclosureButton!
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
@@ -39,7 +35,6 @@ class OutageViewController: AccountPickerViewController {
 
     var gradientLayer: CAGradientLayer!
     
-    var onLottieAnimation = LOTAnimationView(name: "outage")
     var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")
     var refreshControl: UIRefreshControl?
     
@@ -63,32 +58,18 @@ class OutageViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        onLottieAnimation.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
-        onLottieAnimation.loopAnimation = true
-        onLottieAnimation.contentMode = .scaleAspectFill
-        animationView.addSubview(onLottieAnimation)
-        onLottieAnimation.play()
-        
         loadingLottieAnimation.frame = CGRect(x: 0, y: 0, width: loadingAnimationView.frame.size.width, height: loadingAnimationView.frame.size.height)
         loadingLottieAnimation.loopAnimation = true
         loadingLottieAnimation.contentMode = .scaleAspectFill
         loadingAnimationView.addSubview(loadingLottieAnimation)
         loadingLottieAnimation.play()
         
-        outerCircleView.layer.cornerRadius = outerCircleView.bounds.size.width / 2
-        innerCircleView.layer.cornerRadius = innerCircleView.bounds.size.width / 2
-        
-        var radius = bigButtonImageView.bounds.size.width / 2
-        bigButtonImageView.layer.cornerRadius = radius
-        bigButtonImageView.clipsToBounds = true // So text doesn't overflow
-        bigButtonImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
-        bigButtonImageView.isAccessibilityElement = true
-        bigButtonImageView.accessibilityTraits = UIAccessibilityTraitButton
-        
-        radius = loadingBigButtonView.bounds.size.width / 2
+        let radius = loadingBigButtonView.bounds.size.width / 2
         loadingBigButtonView.layer.cornerRadius = radius
         loadingBigButtonView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
         loadingBigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
+        
+        outageStatusButton.delegate = self
         
         footerTextView.font = SystemFont.regular.of(textStyle: .headline)
         footerTextView.textContainerInset = .zero
@@ -184,16 +165,12 @@ class OutageViewController: AccountPickerViewController {
             
             // Display either the Lottie animation or draw our own border circles
             let powerIsOn = !currentOutageStatus.activeOutage && viewModel.reportedOutage == nil && !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
-            animationView.isHidden = !powerIsOn
-            outerCircleView.isHidden = powerIsOn
-            innerCircleView.isHidden = powerIsOn
+            outageStatusButton.setPowerIsOn(powerIsOn)
             
             if viewModel.reportedOutage == nil && (currentOutageStatus.activeOutage || currentOutageStatus.flagNoPay || currentOutageStatus.flagFinaled || currentOutageStatus.flagNonService) {
-                outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1) // Special case color - do not change
-                innerCircleView.backgroundColor = .middleGray
+                outageStatusButton.setGrayCircles()
             } else {
-                outerCircleView.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.7)
-                innerCircleView.backgroundColor = .primaryColor
+                outageStatusButton.setColoredCircles()
             }
             
             // Update the Report Outage button
@@ -213,130 +190,16 @@ class OutageViewController: AccountPickerViewController {
     }
     
     func layoutBigButtonContent() {
-        for subview in bigButtonImageView.subviews {
-            subview.removeFromSuperview()
-        }
-        
         let currentOutageStatus = viewModel.currentOutageStatus!
-        let bigButtonWidth = bigButtonImageView.frame.size.width
-        
-        if viewModel.reportedOutage != nil {
-            let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 19, y: 80, width: 38, height: 31))
-            icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
-            
-            let yourOutageIsLabel = UILabel(frame: CGRect(x: 30, y: 114, width: bigButtonWidth - 60, height: 20))
-            yourOutageIsLabel.font = OpenSans.regular.of(size: 16)
-            yourOutageIsLabel.textColor = .actionBlue
-            yourOutageIsLabel.textAlignment = .center
-            yourOutageIsLabel.text = NSLocalizedString("Your outage is", comment: "")
-            
-            let reportedLabel = UILabel(frame: CGRect(x: 30, y: 134, width: bigButtonWidth - 60, height: 25))
-            reportedLabel.font = OpenSans.bold.of(size: 22)
-            reportedLabel.textColor = .actionBlue
-            reportedLabel.textAlignment = .center
-            reportedLabel.text = NSLocalizedString("REPORTED", comment: "")
-            
-            let restRestorationLabel = UILabel(frame: CGRect(x: 30, y: 170, width: bigButtonWidth - 60, height: 14))
-            restRestorationLabel.font = OpenSans.regular.of(size: 12)
-            restRestorationLabel.textColor = .deepGray
-            restRestorationLabel.textAlignment = .center
-            restRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
-            
-            let timeLabel = UILabel(frame: CGRect(x: 22, y: 187, width: bigButtonWidth - 44, height: 20))
-            timeLabel.font = OpenSans.bold.of(size: 15)
-            timeLabel.textColor = .deepGray
-            timeLabel.textAlignment = .center
-            timeLabel.adjustsFontSizeToFitWidth = true
-            timeLabel.minimumScaleFactor = 0.5
-            timeLabel.text = viewModel.getEstimatedRestorationDateString()
-            
-            bigButtonImageView.addSubview(icon)
-            bigButtonImageView.addSubview(yourOutageIsLabel)
-            bigButtonImageView.addSubview(reportedLabel)
-            bigButtonImageView.addSubview(restRestorationLabel)
-            bigButtonImageView.addSubview(timeLabel)
-            bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, button. Your outage is reported. Estimated restoration \(viewModel.getEstimatedRestorationDateString()).", comment: "")
-        } else if currentOutageStatus.activeOutage {
-            let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 11, y: 84, width: 22, height: 28))
-            icon.image = #imageLiteral(resourceName: "ic_outagestatus_out")
-            
-            let yourPowerIsLabel = UILabel(frame: CGRect(x: 30, y: 115, width: bigButtonWidth - 60, height: 20))
-            yourPowerIsLabel.font = OpenSans.regular.of(size: 16)
-            yourPowerIsLabel.textColor = .actionBlue
-            yourPowerIsLabel.textAlignment = .center
-            yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
-            
-            let outLabel = UILabel(frame: CGRect(x: 44, y: 135, width: bigButtonWidth - 88, height: 25))
-            outLabel.font = OpenSans.bold.of(size: 22)
-            outLabel.textColor = .actionBlue
-            outLabel.textAlignment = .center
-            outLabel.text = NSLocalizedString("OUT", comment: "")
-            
-            let restRestorationLabel = UILabel(frame: CGRect(x: 30, y: 170, width: bigButtonWidth - 60, height: 14))
-            restRestorationLabel.font = OpenSans.regular.of(size: 12)
-            restRestorationLabel.textColor = .deepGray
-            restRestorationLabel.textAlignment = .center
-            restRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
-            
-            let timeLabel = UILabel(frame: CGRect(x: 22, y: 187, width: bigButtonWidth - 44, height: 20))
-            timeLabel.font = OpenSans.bold.of(size: 15)
-            timeLabel.textColor = .deepGray
-            timeLabel.textAlignment = .center
-            timeLabel.adjustsFontSizeToFitWidth = true
-            timeLabel.minimumScaleFactor = 0.5
-            timeLabel.text = viewModel.getEstimatedRestorationDateString()
-            
-            bigButtonImageView.addSubview(icon)
-            bigButtonImageView.addSubview(yourPowerIsLabel)
-            bigButtonImageView.addSubview(outLabel)
-            bigButtonImageView.addSubview(restRestorationLabel)
-            bigButtonImageView.addSubview(timeLabel)
-            bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, button. Your power is out. Estimated restoration \(viewModel.getEstimatedRestorationDateString()).", comment: "")
-        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
-            let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 14, y: 91, width: bigButtonWidth - 28, height: 120))
-            let payBillLabel = UILabel(frame: .zero)
-            if Environment.sharedInstance.opco != .bge {
-                if currentOutageStatus.flagFinaled {
-                    nonPayFinaledTextView.frame = CGRect(x: 14, y: 121, width: bigButtonWidth - 28, height: 84)
-                } else { // accountPaid = false
-                    payBillLabel.frame = CGRect(x: 23, y: 203, width: bigButtonWidth - 46, height: 19)
-                    payBillLabel.font = SystemFont.semibold.of(size: 16)
-                    payBillLabel.textColor = .actionBlue
-                    payBillLabel.textAlignment = .center
-                    payBillLabel.text = NSLocalizedString("Pay Bill", comment: "")
-                    bigButtonImageView.addSubview(payBillLabel)
-                }
-            }
-            nonPayFinaledTextView.textContainerInset = .zero
-            nonPayFinaledTextView.font = SystemFont.light.of(size: 14)
-            nonPayFinaledTextView.tintColor = .actionBlue // For the phone numbers
-            nonPayFinaledTextView.textColor = .middleGray
-            nonPayFinaledTextView.textAlignment = .center
-            nonPayFinaledTextView.text = viewModel.accountNonPayFinaledMessage
 
-            bigButtonImageView.addSubview(nonPayFinaledTextView)
-            bigButtonImageView.bringSubview(toFront: payBillLabel)
-            bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, button. \(viewModel.accountNonPayFinaledMessage).", comment: "")
+        if viewModel.reportedOutage != nil {
+            outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+        } else if currentOutageStatus.activeOutage {
+            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
+            outageStatusButton.setIneligibleState(flagFinaled: currentOutageStatus.flagFinaled, nonPayFinaledMessage: viewModel.accountNonPayFinaledMessage)
         } else { // Power is on
-            let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 15, y: 102, width: 30, height: 38))
-            icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
-            
-            let yourPowerIsLabel = UILabel(frame: CGRect(x: 40, y: 142, width: bigButtonWidth - 80, height: 20))
-            yourPowerIsLabel.font = OpenSans.regular.of(size: 16)
-            yourPowerIsLabel.textColor = .actionBlue
-            yourPowerIsLabel.textAlignment = .center
-            yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
-            
-            let onLabel = UILabel(frame: CGRect(x: 40, y: 162, width: bigButtonWidth - 80, height: 25))
-            onLabel.font = OpenSans.bold.of(size: 22)
-            onLabel.textColor = .actionBlue
-            onLabel.textAlignment = .center
-            onLabel.text = NSLocalizedString("ON", comment: "")
-            
-            bigButtonImageView.addSubview(icon)
-            bigButtonImageView.addSubview(yourPowerIsLabel)
-            bigButtonImageView.addSubview(onLabel)
-            bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, Button. Your power is on.", comment: "")
+            outageStatusButton.setPowerOnState()
         }
     }
     
@@ -364,21 +227,6 @@ class OutageViewController: AccountPickerViewController {
     }
     
     // MARK: - Actions
-    
-    func onBigButtonTap() {
-        Analytics().logScreenView(AnalyticsPageView.OutageStatusDetails.rawValue)
-        if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != .bge  {
-            tabBarController?.selectedIndex = 1 // Jump to Bill tab
-            Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
-        } else {
-            if let message = viewModel.currentOutageStatus!.outageDescription {
-                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
-                Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
-            }
-        }
-    }
     
     func onPullToRefresh() {
         viewModel.getOutageStatus(onSuccess: { [weak self] in
@@ -448,5 +296,22 @@ extension OutageViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         Analytics().logScreenView(AnalyticsPageView.OutageAuthEmergencyCall.rawValue)
         return true
+    }
+}
+
+extension OutageViewController: OutageStatusButtonDelegate {
+    func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
+        Analytics().logScreenView(AnalyticsPageView.OutageStatusDetails.rawValue)
+        if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != .bge  {
+            tabBarController?.selectedIndex = 1 // Jump to Bill tab
+            Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
+        } else {
+            if let message = viewModel.currentOutageStatus!.outageDescription {
+                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+                Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
+            }
+        }
     }
 }

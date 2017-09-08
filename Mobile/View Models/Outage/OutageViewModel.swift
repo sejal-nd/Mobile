@@ -69,7 +69,7 @@ class OutageViewModel {
         outageService.clearReportedOutageStatus(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
     }
     
-    func getEstimatedRestorationDateString() -> String {
+    var estimatedRestorationDateString: String {
         if let reportedOutage = reportedOutage {
             if let reportedETR = reportedOutage.etr {
                 return Environment.sharedInstance.opcoDateFormatter.string(from: reportedETR)
