@@ -11,7 +11,8 @@ import RxCocoa
 import RxSwiftExt
 
 class HomeViewModel {
-    
+    let defaultZip : String? = Environment.sharedInstance.opco == OpCo.bge ? "20201" : nil;
+
     let disposeBag = DisposeBag()
     
     private let accountService: AccountService
@@ -81,9 +82,9 @@ class HomeViewModel {
                     self.fetchData.map{ _ in AccountsStore.sharedInstance.currentAccount }.unwrap().map {
                         $0.currentPremise?.zipCode
                     },
-                    self.accountDetailEvents.elements().map { $0.zipCode ?? "20201" } // TODO: Get default zip for current opco
-            ).debug("DEBUG").flatMapLatest { [unowned self] in
-                self.weatherService.fetchWeather(address: $0 ?? $1)
+                    self.accountDetailEvents.elements().map { [unowned self] in $0.zipCode ?? self.defaultZip } // TODO: Get default zip for current opco
+            ).map{ $0 ?? $1 }.unwrap().flatMapLatest { [unowned self] in
+                self.weatherService.fetchWeather(address: $0)
                         //.trackActivity(fetchingTracker)
                         .materialize()
             }.shareReplay(1)
@@ -107,7 +108,8 @@ class HomeViewModel {
         .map { $0.accessibilityName }
         .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
-    
+
+
     private lazy var weatherSuccess: Driver<Bool> = Observable.merge(self.accountDetailEvents.errors().map { _ in false },
                                                                      self.weatherEvents.errors().map { _ in false },
                                                                      self.accountDetailEvents.elements().map { _ in true },
