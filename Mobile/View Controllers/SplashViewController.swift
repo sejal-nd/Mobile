@@ -74,19 +74,10 @@ class SplashViewController: UIViewController{
         } else {
             if !self.performDeepLink { // Deep link cold-launched the app, so let our logic below handle it
                 if self.lottieAnimation == nil || !self.lottieAnimation!.isAnimationPlaying {
-                    UIView.animate(withDuration: 0.33, animations: {
-                        self.animationView.alpha = 0
-                    }, completion: { [weak self] _ in
-                        self?.performSegue(withIdentifier: "landingSegue", sender: self)
-                    })
-                    
+                    self.performSegue(withIdentifier: "landingSegue", sender: self)
                 } else {
-                    self.lottieAnimation!.completionBlock = { (value:Bool) in
-                        UIView.animate(withDuration: 0.33, animations: {
-                            self.animationView.alpha = 0
-                        }, completion: { [weak self] _ in
-                            self?.performSegue(withIdentifier: "landingSegue", sender: self)
-                        })
+                    self.lottieAnimation!.completionBlock = { [weak self] (value:Bool) in
+                        self?.performSegue(withIdentifier: "landingSegue", sender: self)
                     }
                 }
             } else {
