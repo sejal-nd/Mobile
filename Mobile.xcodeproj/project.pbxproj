@@ -397,14 +397,14 @@
 		82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
-		82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
-		82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
-		82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
-		82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
 		82AEF2DF1F5F50F40057E7ED /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
 		82AEF2E01F5F50F40057E7ED /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
 		82AEF2E11F5F50F40057E7ED /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
 		82AEF2E21F6054910057E7ED /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
+		82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
+		82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
+		82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
+		82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
 		82BE057F1ED8D14D00BC06EE /* FadeSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */; };
 		82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */; };
 		82BE05811ED8D14D00BC06EE /* FadeSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */; };
@@ -1301,8 +1301,8 @@
 		82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingPaymentView.swift; sourceTree = "<group>"; };
 		82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingPaymentView.xib; sourceTree = "<group>"; };
 		82A18F171EC0E83800BE9F21 /* NibViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViews.swift; sourceTree = "<group>"; };
-		82AEF2E31F618F560057E7ED /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxNotifications.swift; sourceTree = "<group>"; };
+		82AEF2E31F618F560057E7ED /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeSubviews.swift; sourceTree = "<group>"; };
 		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
 		82D599411EC2374500DDB380 /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
@@ -3216,7 +3216,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -5433,6 +5433,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9620f6c0-fb05-4197-aacf-40775b56478e";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
 			};
 			name = Testing;
