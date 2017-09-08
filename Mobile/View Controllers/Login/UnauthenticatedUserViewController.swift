@@ -25,21 +25,8 @@ class UnauthenticatedUserViewController: UIViewController {
     @IBOutlet weak var TermPoliciesButton: DisclosureButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var lottieName = ""
-        switch Environment.sharedInstance.opco {
-        case .bge:
-            lottieName = "uu_otp_bge"
-            break
-        case .comEd:
-            lottieName = "uu_otp_comed"
-            break
-        case .peco:
-            lottieName = "uu_otp_peco"
-            break
-        }
-        
-        let animationView = LOTAnimationView(name: lottieName)
+                
+        let animationView = LOTAnimationView(name: "uu_otp")
         animationView.frame = CGRect(x: 0, y: 0, width: 230, height: 180)
         animationView.contentMode = .scaleAspectFill
         animationView.loopAnimation = true
