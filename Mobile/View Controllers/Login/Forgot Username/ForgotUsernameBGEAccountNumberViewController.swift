@@ -102,7 +102,7 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
     }
     
     @IBAction func onAccountNumberTooltipPress() {
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Where to Look for Your Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: NSLocalizedString("Your Customer Account Number can be found in the lower right portion of your bill. Please enter 10-digits including leading zeros.", comment: ""))
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Where to Look for Your Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: NSLocalizedString("It is located in the upper right portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts.", comment: ""))
         self.navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
