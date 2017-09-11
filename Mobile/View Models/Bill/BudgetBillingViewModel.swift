@@ -90,7 +90,7 @@ class BudgetBillingViewModel {
         case .comEd:
             return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. After 12 months, any credit/debit balances will be included in the calculation for the following year’s Budget Billing payment.", comment: "")
         case .peco:
-            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage. After 12 months, the difference between your budget bill amount and actual use for the previous 12 months will be applied to your bill.", comment: "")
+            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage. After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage.", comment: "")
         }
     }
     
