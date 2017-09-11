@@ -94,7 +94,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
             } else {
                 iconImageView.image = #imageLiteral(resourceName: "ic_paymentcheck")
                 titleLabel.text = PAYMENT
-                amountLabel.text = "-\(String(describing: amountPaid))"
+                amountLabel.text = "\(String(describing: amountPaid))"
                 amountLabel.textColor = .successGreenText
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
             }
