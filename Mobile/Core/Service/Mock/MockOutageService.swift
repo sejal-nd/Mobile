@@ -132,7 +132,7 @@ class MockOutageService : OutageService {
         // not implemented
     }
     
-    func reportOutageAnon(outageInfo: OutageInfo, completion: @escaping (ServiceResult<Void>) -> Void) {
+    func reportOutageAnon(outageInfo: OutageInfo, completion: @escaping (ServiceResult<ReportedOutageResult>) -> Void) {
         // not implemented
     }
 }

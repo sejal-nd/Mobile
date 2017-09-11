@@ -21,6 +21,8 @@ class ReportOutageViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
+    
     // Meter Ping
     @IBOutlet weak var meterPingStackView: UIStackView!
     
@@ -63,6 +65,8 @@ class ReportOutageViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var submitButton = UIBarButtonItem()
+    
+    var unauthenticatedExperience = false // `true` passed from UnauthenticatedOutageStatusViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +81,10 @@ class ReportOutageViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
+        if unauthenticatedExperience {
+            accountInfoBar.update(accountNumber: viewModel.outageStatus!.maskedAccountNumber, address: viewModel.outageStatus!.maskedAddress)
+        }
         
         // METER PING
         if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {

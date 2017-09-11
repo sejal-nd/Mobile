@@ -35,7 +35,7 @@ protocol OutageService {
     
     func fetchOutageStatusAnon(phoneNumber: String?, accountNumber: String?, completion: @escaping (_ result: ServiceResult<[OutageStatus]>) -> Void)
     
-    func reportOutageAnon(outageInfo: OutageInfo, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func reportOutageAnon(outageInfo: OutageInfo, completion: @escaping (_ result: ServiceResult<ReportedOutageResult>) -> Void)
 }
 
 // MARK: - Reactive Extension to OutageService
@@ -88,12 +88,12 @@ extension OutageService {
         }
     }
     
-    func reportOutageAnon(outageInfo: OutageInfo) -> Observable<Void> {
+    func reportOutageAnon(outageInfo: OutageInfo) -> Observable<ReportedOutageResult> {
         return Observable.create { observer in
-            self.reportOutageAnon(outageInfo: outageInfo, completion: { (result: ServiceResult<Void>) in
+            self.reportOutageAnon(outageInfo: outageInfo, completion: { (result: ServiceResult<ReportedOutageResult>) in
                 switch result {
-                case ServiceResult.Success:
-                    observer.onNext()
+                case ServiceResult.Success(let reportedOutageResult):
+                    observer.onNext(reportedOutageResult)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

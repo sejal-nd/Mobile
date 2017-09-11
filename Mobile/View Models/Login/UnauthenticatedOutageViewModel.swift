@@ -26,7 +26,7 @@ class UnauthenticatedOutageViewModel {
         self.outageService = outageService
     }
     
-    func fetchOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func fetchOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let phone: String? = phoneNumber.value.isEmpty ? nil : phoneNumber.value
         let accountNum: String? = accountNumber.value.isEmpty ? nil : accountNumber.value
         outageService.fetchOutageStatusAnon(phoneNumber: phone, accountNumber: accountNum)
@@ -38,21 +38,25 @@ class UnauthenticatedOutageViewModel {
                     self?.outageStatusArray = outageStatusArray
                 }
                 onSuccess()
-            }, onError: { [weak self] error in
-                guard let `self` = self else { return }
+            }, onError: { error in
+                //guard let `self` = self else { return }
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.FnAccountFinaled.rawValue {
-                    self.selectedOutageStatus = OutageStatus.from(["flagFinaled": true])
-                    onSuccess()
+                    //self.selectedOutageStatus = OutageStatus.from(["flagFinaled": true])
+                    onError(NSLocalizedString("Finaled Account", comment: ""), NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: ""))
                 } else if serviceError.serviceCode == ServiceErrorCode.FnAccountNoPay.rawValue {
-                    self.selectedOutageStatus = OutageStatus.from(["flagNoPay": true])
-                    onSuccess()
+                    //self.selectedOutageStatus = OutageStatus.from(["flagNoPay": true])
+                    if Environment.sharedInstance.opco == .bge {
+                        onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: ""))
+                    } else {
+                        onError(NSLocalizedString("Cut for non pay", comment: ""), NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: ""))
+                    }
                 } else if serviceError.serviceCode == ServiceErrorCode.FnNonService.rawValue {
-                    self.selectedOutageStatus = OutageStatus.from(["flagNonService": true])
-                    onSuccess()
+                    //self.selectedOutageStatus = OutageStatus.from(["flagNonService": true])
+                    onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: ""))
                 } else {
-                    self.selectedOutageStatus = nil
-                    onError(error.localizedDescription)
+                    //self.selectedOutageStatus = nil
+                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
             }).disposed(by: disposeBag)
     }

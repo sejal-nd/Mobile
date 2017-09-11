@@ -34,7 +34,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5uv-tk-M2B" id="MPd-zX-etf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="RrS-8S-WG1">
@@ -106,7 +106,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A4b-qi-G2Y" id="idt-a8-aFn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="grR-CI-YW3">
@@ -498,7 +498,7 @@
         <!--Report Outage-->
         <scene sceneID="aWI-55-Z7u">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="ZQH-GI-7Fc" customClass="ReportOutageViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReportOutageViewController" hidesBottomBarWhenPushed="YES" id="ZQH-GI-7Fc" customClass="ReportOutageViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uai-aw-duU"/>
                         <viewControllerLayoutGuide type="bottom" id="iy0-uF-6Qi"/>
@@ -874,6 +874,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="accountInfoBar" destination="c4y-Cq-6p7" id="4In-f8-uAi"/>
                         <outlet property="areYourLightsOutLabel" destination="Nce-RI-YJq" id="LUb-jj-jLA"/>
                         <outlet property="areYourLightsOutView" destination="DUq-7C-7A4" id="OIx-MK-EPX"/>
                         <outlet property="footerBackgroundView" destination="z3B-jb-AXr" id="vQE-ck-4iG"/>
