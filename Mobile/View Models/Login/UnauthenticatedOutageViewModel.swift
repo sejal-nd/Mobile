@@ -47,7 +47,9 @@ class UnauthenticatedOutageViewModel {
                         }
                     }
                 } else {
-                    self.outageStatusArray = outageStatusArray
+                    if overrideAccountNumber == nil { // Don't replace our original array when fetching again from Results screen
+                        self.outageStatusArray = outageStatusArray
+                    }
                 }
                 onSuccess()
             }, onError: { error in

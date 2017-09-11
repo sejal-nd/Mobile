@@ -96,7 +96,9 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
             viewModel.fetchOutageStatus(overrideAccountNumber: accountNumber, onSuccess: { [weak self] in
                 guard let `self` = self else { return }
                 LoadingView.hide()
-                self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
+                if self.viewModel.selectedOutageStatus != nil {
+                    self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
+                }
             }, onError: { [weak self] errTitle, errMessage in
                 guard let `self` = self else { return }
                 LoadingView.hide()
