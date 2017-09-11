@@ -34,7 +34,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5uv-tk-M2B" id="MPd-zX-etf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="RrS-8S-WG1">
@@ -106,7 +106,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A4b-qi-G2Y" id="idt-a8-aFn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="grR-CI-YW3">
@@ -302,20 +302,20 @@
                                                 <rect key="frame" x="0.0" y="64" width="375" height="520"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="rwO-5r-SUq">
-                                                        <rect key="frame" x="89" y="42" width="197" height="197"/>
+                                                        <rect key="frame" x="72.5" y="42" width="230" height="230"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="197" id="A7K-SS-GAG"/>
-                                                            <constraint firstAttribute="height" constant="197" id="cBX-H2-SpU"/>
+                                                            <constraint firstAttribute="width" constant="230" id="A7K-SS-GAG"/>
+                                                            <constraint firstAttribute="height" constant="230" id="cBX-H2-SpU"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This account receives gas service only" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZQw-Ul-DsT">
-                                                        <rect key="frame" x="46" y="253" width="283" height="57.5"/>
+                                                        <rect key="frame" x="46" y="286" width="283" height="57.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                         <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-Ah-Ffw" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="46" y="333.5" width="283" height="157.5"/>
+                                                        <rect key="frame" x="46" y="366.5" width="283" height="124.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" red="0.38039215686274508" green="0.3803921569" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -518,33 +518,33 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wj3-R8-PEk">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="948"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="670"/>
                                         <subviews>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-bI-z1O">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfI-UU-K4K" userLabel="Spacer View">
-                                                        <rect key="frame" x="67.5" y="0.0" width="240" height="7"/>
+                                                        <rect key="frame" x="67.5" y="0.0" width="240" height="0.0"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="999" constant="7" id="aaT-xj-ksF"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dFa-Qw-aDA">
-                                                        <rect key="frame" x="29" y="7" width="317" height="49"/>
+                                                        <rect key="frame" x="29" y="0.0" width="317" height="0.0"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zzw-9g-k7M">
-                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="49"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="0.0"/>
                                                                 <subviews>
                                                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_meterping" translatesAutoresizingMaskIntoConstraints="NO" id="6af-Vg-Ogp">
-                                                                        <rect key="frame" x="21" y="17" width="18" height="14"/>
+                                                                        <rect key="frame" x="21" y="-7.5" width="18" height="14"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="18" id="dgH-PS-liW"/>
                                                                             <constraint firstAttribute="height" constant="14" id="fYT-6u-usa"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7JT-kt-C8S">
-                                                                        <rect key="frame" x="14" y="8" width="33" height="33"/>
+                                                                        <rect key="frame" x="14" y="-16.5" width="33" height="33"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="33" id="8Ph-jl-3Bd"/>
@@ -562,7 +562,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifying meter has power..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afw-hD-sE0">
-                                                                <rect key="frame" x="60" y="15.5" width="241" height="19.5"/>
+                                                                <rect key="frame" x="60" y="-9" width="241" height="19.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -581,17 +581,17 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKm-Ee-71t">
-                                                        <rect key="frame" x="29" y="56" width="317" height="30"/>
+                                                        <rect key="frame" x="29" y="0.0" width="317" height="0.0"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_graycircle" translatesAutoresizingMaskIntoConstraints="NO" id="ZTg-SF-6yF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                                <rect key="frame" x="0.0" y="-15" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="JrH-Dh-oHn"/>
                                                                     <constraint firstAttribute="width" constant="30" id="aO8-zq-zYb"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb8-Vg-S1A">
-                                                                <rect key="frame" x="46" y="4" width="115.5" height="23"/>
+                                                                <rect key="frame" x="46" y="-11" width="115.5" height="23"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -608,17 +608,17 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2N-zO-4eI">
-                                                        <rect key="frame" x="29" y="86" width="317" height="30"/>
+                                                        <rect key="frame" x="29" y="0.0" width="317" height="0.0"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_graycircle" translatesAutoresizingMaskIntoConstraints="NO" id="kDu-NL-o8r">
-                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                                <rect key="frame" x="0.0" y="-15" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="6vy-FZ-bwK"/>
                                                                     <constraint firstAttribute="height" constant="30" id="a4e-Vc-avI"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voltage Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIB-MD-rE5">
-                                                                <rect key="frame" x="46" y="4" width="127.5" height="23"/>
+                                                                <rect key="frame" x="46" y="-11" width="127.5" height="23"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -635,7 +635,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Problems Found. Please tap &quot;Submit&quot; to report an outage." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AG-9d-VBi">
-                                                        <rect key="frame" x="29" y="116" width="317" height="38.5"/>
+                                                        <rect key="frame" x="29" y="0.0" width="317" height="0.0"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="f6s-a5-fkD"/>
                                                         </constraints>
@@ -644,7 +644,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TL3-7s-njY" userLabel="Spacer View">
-                                                        <rect key="frame" x="67.5" y="154.5" width="240" height="10"/>
+                                                        <rect key="frame" x="67.5" y="0.0" width="240" height="0.0"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="999" constant="10" id="o2S-we-IbY"/>
@@ -667,7 +667,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-Bd-NCe">
-                                                <rect key="frame" x="0.0" y="164.5" width="375" height="113.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                 <subviews>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Z3B-9b-TVX" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="29" y="32" width="51" height="31"/>
@@ -676,7 +676,7 @@
                                                         </constraints>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="I have checked my circuit breakers or fuse box and I would still like to report an outage." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsO-JP-Q4X">
-                                                        <rect key="frame" x="97" y="24" width="249" height="65.5"/>
+                                                        <rect key="frame" x="97" y="24" width="249" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -694,7 +694,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5lr-vG-MUZ">
-                                                <rect key="frame" x="0.0" y="278" width="375" height="364"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="364"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4L-Ty-VsC" userLabel="Spacer View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -793,7 +793,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6M8-NZ-rW4" userLabel="Footer Container View">
-                                                <rect key="frame" x="0.0" y="642" width="375" height="306"/>
+                                                <rect key="frame" x="0.0" y="364" width="375" height="306"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3B-jb-AXr">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -909,7 +909,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gasonly_graphic" width="197" height="197"/>
+        <image name="gasonly_graphic" width="230" height="230"/>
         <image name="ic_check_meterping" width="18" height="14"/>
         <image name="ic_graycircle" width="30" height="30"/>
         <image name="icon_slash_check" width="20" height="20"/>
