@@ -18,6 +18,7 @@ class LoginViewModel {
     var touchIDAutofilledPassword: String? = nil
     var keepMeSignedIn = Variable(false)
     var touchIdEnabled = Variable(false)
+    var isLoggingIn = false
     
     private var authService: AuthenticationService
     private var fingerprintService: FingerprintService
@@ -52,10 +53,12 @@ class LoginViewModel {
             return;
         }
         
+        isLoggingIn = true
         authService.login(username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { [weak self] (profileStatus: ProfileStatus) in
+                self?.isLoggingIn = false
                 onSuccess(profileStatus.tempPassword)
                 guard let `self` = self else { return }
                 if profileStatus.tempPassword {
@@ -63,18 +66,19 @@ class LoginViewModel {
                         dLog("Logout Error: \(error)")
                     }).disposed(by: self.disposeBag)
                 }
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnAccountProtected.rawValue {
-                    onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
-                } else if serviceError.serviceCode == ServiceErrorCode.FnAcctNotActivated.rawValue {
-                    onRegistrationNotComplete()
-                } else {
-                    onError(nil, error.localizedDescription)
-                }
-                Analytics().logScreenView(AnalyticsPageView.LoginError.rawValue,
-                                          dimensionIndex: Dimensions.DIMENSION_ERROR_CODE.rawValue,
-                                          dimensionValue: serviceError.serviceCode)
+                }, onError: { [weak self] error in
+                    self?.isLoggingIn = false
+                    let serviceError = error as! ServiceError
+                    if serviceError.serviceCode == ServiceErrorCode.FnAccountProtected.rawValue {
+                        onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
+                    } else if serviceError.serviceCode == ServiceErrorCode.FnAcctNotActivated.rawValue {
+                        onRegistrationNotComplete()
+                    } else {
+                        onError(nil, error.localizedDescription)
+                    }
+                    Analytics().logScreenView(AnalyticsPageView.LoginError.rawValue,
+                                              dimensionIndex: Dimensions.DIMENSION_ERROR_CODE.rawValue,
+                                              dimensionValue: serviceError.serviceCode)
             })
             .disposed(by: disposeBag)
     }
@@ -91,15 +95,16 @@ class LoginViewModel {
         fingerprintService.setStoredPassword(password: password.value)
     }
     
-    func attemptLoginWithTouchID(onLoad: @escaping () -> Void, onSuccess: @escaping (Bool) -> Void, onError: @escaping (String?, String) -> Void) {
-        if let username = fingerprintService.getStoredUsername() {
-            if let password = fingerprintService.getStoredPassword() {
-                self.username.value = username
-                touchIDAutofilledPassword = password
-                self.password.value = password
-                onLoad()
-                performLogin(onSuccess: onSuccess, onRegistrationNotComplete: {}, onError: onError)
-            }
+    func attemptLoginWithTouchID(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool) -> Void, onError: @escaping (String?, String) -> Void) {
+        if let username = fingerprintService.getStoredUsername(), let password = fingerprintService.getStoredPassword() {
+            self.username.value = username
+            touchIDAutofilledPassword = password
+            self.password.value = password
+            onLoad()
+            isLoggingIn = true
+            performLogin(onSuccess: onSuccess, onRegistrationNotComplete: {}, onError: onError)
+        } else {
+            onDidNotLoad()
         }
     }
     
