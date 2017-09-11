@@ -49,6 +49,7 @@ struct OutageStatus: Mappable {
     let maskedAddress: String?
     let addressNumber: String?
     let unitNumber: String?
+    var multipremiseAccount: Bool = false // Set locally for use in unauthenticated logic
     
     init(map: Mapper) throws {
         flagGasOnly = map.optionalFrom("flagGasOnly") ?? false
