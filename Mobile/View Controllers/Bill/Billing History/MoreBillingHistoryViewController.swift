@@ -86,8 +86,15 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
         if billingSelection == .history {
             guard let billingItem = billingHistory?.past[indexPath.row],
                 let type = billingItem.type else { return }
+            
+            let status = billingItem.status
             if type == BillingHistoryProperties.TypeBilling.rawValue {
                 showBillPdf()
+            } else if status == BillingHistoryProperties.StatusProcessing.rawValue ||
+                status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
+                status == BillingHistoryProperties.StatusScheduled.rawValue ||
+                status == BillingHistoryProperties.StatusPending.rawValue {
+                handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
             } else {
                 performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
             }
