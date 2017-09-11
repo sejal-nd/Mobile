@@ -258,7 +258,7 @@ class HomeBillCardViewModel {
                 }
                 
                 if billingInfo.netDueAmount ?? 0 > 0 {
-                    if accountDetail.isAutoPay {
+                    if accountDetail.isAutoPay || accountDetail.isBGEasy {
                         return .billReadyAutoPay
                     } else {
                         return .billReady
