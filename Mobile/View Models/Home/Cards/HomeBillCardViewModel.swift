@@ -721,7 +721,7 @@ class HomeBillCardViewModel {
     var paymentTACUrl: URL {
         switch Environment.sharedInstance.opco {
         case .bge:
-            return URL(string: "https://www.speedpay.com/westernuniontac_cf.asp")!
+            return URL(string: "https://www.speedpay.com/terms/")!
         case .comEd, .peco:
             return URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
         }
