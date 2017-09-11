@@ -112,7 +112,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
             card1Bullet3Label.text = NSLocalizedString("You may enroll at any time and your Budget Billing plan will begin with your next bill.", comment: "")
             
             card2Bullet1Label.text = NSLocalizedString("Your monthly Budget Bill payment will be adjusted every four (4) months to keep the payment in line with your actual usage.", comment: "")
-            card2Bullet2Label.text = NSLocalizedString("After 12 months of Budget Billing, the difference between your budget bill amount and actual use for the previous 12 months will be applied to your bill. If you have used more than what you have been charged for, the difference will be added to your bill. If you use less your bill will be credited the difference.", comment: "")
+            card2Bullet2Label.text = NSLocalizedString("After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage. This Budget Bill amount will be adjusted every four months to stay in line with your usage.", comment: "")
             card2Bullet3Label.text = NSLocalizedString("If you unenroll from Budget Billing, you will see your regular bill amount and any past differences between your Budget Billing amount and your actual charges on your next bill.", comment: "")
         }
         
