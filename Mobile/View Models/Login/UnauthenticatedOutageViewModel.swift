@@ -26,9 +26,11 @@ class UnauthenticatedOutageViewModel {
         self.outageService = outageService
     }
     
-    func fetchOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+    func fetchOutageStatus(overrideAccountNumber: String? = nil, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let phone: String? = phoneNumber.value.isEmpty ? nil : phoneNumber.value
-        let accountNum: String? = accountNumber.value.isEmpty ? nil : accountNumber.value
+        let accountNum: String? = overrideAccountNumber ?? (accountNumber.value.isEmpty ? nil : accountNumber.value)
+        
+        selectedOutageStatus = nil
         outageService.fetchOutageStatusAnon(phoneNumber: phone, accountNumber: accountNum)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] outageStatusArray in

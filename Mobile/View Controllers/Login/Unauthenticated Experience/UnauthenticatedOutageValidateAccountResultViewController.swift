@@ -54,47 +54,6 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         tableView.reloadData() // To properly set the width constraints
     }
     
-    func fetchOutageStatus() {
-        LoadingView.show()
-        viewModel.fetchOutageStatus(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
-            LoadingView.hide()
-            self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
-        }, onError: { [weak self] errTitle, errMessage in
-            guard let `self` = self else { return }
-            LoadingView.hide()
-            
-            let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
-            
-            if errTitle == NSLocalizedString("Cut for non pay", comment: "") {
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Pay Bill", comment: ""), style: .default, handler: { [weak self] _ in
-                    let storyboard = UIStoryboard(name: "Login", bundle: nil)
-                    let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
-                    let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-                    self?.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
-                }))
-            } else if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
-                // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
-                // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Call", comment: ""), style: .default, handler: { _ in
-                    if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
-                        if #available(iOS 10, *) {
-                            UIApplication.shared.open(url)
-                        } else {
-                            UIApplication.shared.openURL(url)
-                        }
-                    }
-                }))
-            } else {
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            }
-            
-            self.present(alertVc, animated: true, completion: nil)
-        })
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UnauthenticatedOutageStatusViewController {
             vc.viewModel = viewModel
@@ -132,9 +91,45 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedOutageStatus = viewModel.outageStatusArray![indexPath.row]
-        viewModel.accountNumber.value = selectedOutageStatus.accountNumber ?? ""
-        fetchOutageStatus()
-        //viewModel.selectedOutageStatus = viewModel.outageStatusArray![indexPath.row]
-        //performSegue(withIdentifier: "outageStatusSegue", sender: self)
+        if let accountNumber = selectedOutageStatus.accountNumber {
+            LoadingView.show()
+            viewModel.fetchOutageStatus(overrideAccountNumber: accountNumber, onSuccess: { [weak self] in
+                guard let `self` = self else { return }
+                LoadingView.hide()
+                self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
+            }, onError: { [weak self] errTitle, errMessage in
+                guard let `self` = self else { return }
+                LoadingView.hide()
+                
+                let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
+                
+                if errTitle == NSLocalizedString("Cut for non pay", comment: "") {
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Pay Bill", comment: ""), style: .default, handler: { [weak self] _ in
+                        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                        let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
+                        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+                        self?.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
+                    }))
+                } else if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
+                    // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
+                    // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Call", comment: ""), style: .default, handler: { _ in
+                        if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
+                            if #available(iOS 10, *) {
+                                UIApplication.shared.open(url)
+                            } else {
+                                UIApplication.shared.openURL(url)
+                            }
+                        }
+                    }))
+                } else {
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                }
+                
+                self.present(alertVc, animated: true, completion: nil)
+            })
+        }
     }
 }
