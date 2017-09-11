@@ -12,7 +12,7 @@ import RxCocoa
 import Lottie
 
 protocol ReportOutageViewControllerDelegate: class {
-    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController)
+    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController, reportedOutage: ReportedOutageResult?)
 }
 
 class ReportOutageViewController: UIViewController {
@@ -315,19 +315,33 @@ class ReportOutageViewController: UIViewController {
     func onSubmitPress() {
         view.endEditing(true)
         
-        LoadingView.show()
-        viewModel.reportOutage(onSuccess: { [weak self] in
-            LoadingView.hide()
-            guard let `self` = self else { return }
-            self.delegate?.reportOutageViewControllerDidReportOutage(self)
-            self.navigationController?.popViewController(animated: true)
-            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
-        }) { [weak self] errorMessage in
+        let errorBlock = { [weak self] (errorMessage: String) in
             LoadingView.hide()
             let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self?.present(alert, animated: true, completion: nil)
         }
+        
+        LoadingView.show()
+        if unauthenticatedExperience {
+            viewModel.reportOutageAnon(onSuccess: { [weak self] reportedOutage in
+                LoadingView.hide()
+                guard let `self` = self else { return }
+                self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: reportedOutage)
+                self.navigationController?.popViewController(animated: true)
+                //Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
+            }, onError: errorBlock)
+        } else {
+            viewModel.reportOutage(onSuccess: { [weak self] in
+                LoadingView.hide()
+                guard let `self` = self else { return }
+                self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: nil)
+                self.navigationController?.popViewController(animated: true)
+                Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
+            }, onError: errorBlock)
+        }
+        
+
     }
     
     @IBAction func switchPressed(sender: AnyObject) {

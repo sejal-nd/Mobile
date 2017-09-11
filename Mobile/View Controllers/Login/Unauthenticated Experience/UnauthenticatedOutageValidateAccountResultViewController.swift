@@ -55,14 +55,20 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         firstSeparatorView.backgroundColor = tableView.separatorColor
     }
     
-    func onCancelPress() {
-        navigationController?.popViewController(animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.reportedOutage = nil // Clear reported outage when user leaves UnauthenticatedOutageStatusViewController
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         tableView.reloadData() // To properly set the width constraints
+    }
+    
+    func onCancelPress() {
+        navigationController?.popViewController(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

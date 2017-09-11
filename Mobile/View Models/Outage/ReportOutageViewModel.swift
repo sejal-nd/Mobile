@@ -59,7 +59,7 @@ class ReportOutageViewModel {
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
-        if let locationId = self.outageStatus?.locationId {
+        if let locationId = self.outageStatus!.locationId {
             outageInfo.locationId = locationId
         }
         
@@ -68,6 +68,33 @@ class ReportOutageViewModel {
             .asObservable()
             .subscribe(onNext: { _ in
                 onSuccess()
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func reportOutageAnon(onSuccess: @escaping (ReportedOutageResult) -> Void, onError: @escaping (String) -> Void) {
+        var outageIssue = OutageIssue.AllOut
+        if selectedSegmentIndex.value == 1 {
+            outageIssue = OutageIssue.PartOut
+        } else if selectedSegmentIndex.value == 2 {
+            outageIssue = OutageIssue.Flickering
+        }
+        
+        var outageInfo = OutageInfo(accountNumber: outageStatus!.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value))
+        if phoneExtension.value.characters.count > 0 {
+            outageInfo.phoneExtension = phoneExtension.value
+        }
+        if let locationId = self.outageStatus!.locationId {
+            outageInfo.locationId = locationId
+        }
+        
+        outageService.reportOutageAnon(outageInfo: outageInfo)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { reportedOutage in
+                onSuccess(reportedOutage)
             }, onError: { error in
                 onError(error.localizedDescription)
             })

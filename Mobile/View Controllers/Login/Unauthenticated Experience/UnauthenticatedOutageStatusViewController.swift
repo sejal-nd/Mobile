@@ -124,8 +124,9 @@ extension UnauthenticatedOutageStatusViewController: OutageStatusButtonDelegate 
 
 extension UnauthenticatedOutageStatusViewController: ReportOutageViewControllerDelegate {
     
-    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
-        //updateContent()
+    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController, reportedOutage: ReportedOutageResult?) {
+        viewModel.reportedOutage = reportedOutage
+        outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
             //Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthComplete.rawValue)

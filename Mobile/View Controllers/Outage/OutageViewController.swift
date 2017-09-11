@@ -272,7 +272,7 @@ extension OutageViewController: AccountPickerDelegate {
 
 extension OutageViewController: ReportOutageViewControllerDelegate {
     
-    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController) {
+    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController, reportedOutage: ReportedOutageResult?) {
         updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
