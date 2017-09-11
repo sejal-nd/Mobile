@@ -159,8 +159,10 @@ class AccountPicker: UIView {
         iconImageView.accessibilityLabel = a11yDescription
         
         let accountNumberLabel = UILabel(frame: .zero)
-        let postfix = account.isFinaled ? "(\(NSLocalizedString("Finaled", comment:"")))" : "";
-        let accountNumberText = "\(account.accountNumber) \(postfix)"
+        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == OpCo.bge ?
+                "Stopped" : "Finaled",
+                comment: "");
+        let accountNumberText = "\(account.accountNumber) \(account.isFinaled ? "(\(finaledString))" : "")"
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         accountNumberLabel.setContentHuggingPriority(1000, for: .horizontal)
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
