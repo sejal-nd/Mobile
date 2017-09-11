@@ -195,7 +195,7 @@ class AccountPicker: UIView {
         
         accountStackView.centerXAnchor.constraint(equalTo: pageView.centerXAnchor, constant: 0).isActive = true
         accountStackView.centerYAnchor.constraint(equalTo: pageView.centerYAnchor, constant: 0).isActive = true
-//        addressLabel.widthAnchor.constraint(equalTo: accountNumberLabel.widthAnchor, multiplier: 1.2).isActive = true
+        //addressLabel.widthAnchor.constraint(equalTo: accountNumberLabel.widthAnchor, multiplier: 1.2).isActive = true
         addressLabel.widthAnchor.constraint(equalToConstant: 220).isActive = true
         
         if advancedPicker { // Makes area tappable and adds caret icon
