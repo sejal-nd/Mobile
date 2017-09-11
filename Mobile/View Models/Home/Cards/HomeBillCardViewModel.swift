@@ -700,7 +700,7 @@ class HomeBillCardViewModel {
         case (.bge, .bank):
             return NSLocalizedString("Payments made on the Home screen cannot be canceled.", comment: "")
         default:
-            return NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to the payment Terms & Conditions.", comment: "")
+            return NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to these payment Terms & Conditions.", comment: "")
         }
     }
     
