@@ -32,10 +32,20 @@ class UnauthenticatedOutageViewModel {
         outageService.fetchOutageStatusAnon(phoneNumber: phone, accountNumber: accountNum)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] outageStatusArray in
+                guard let `self` = self else { return }
                 if outageStatusArray.count == 1 {
-                    self?.selectedOutageStatus = outageStatusArray[0]
+                    self.selectedOutageStatus = outageStatusArray[0]
+                    if self.selectedOutageStatus!.flagGasOnly {
+                        if Environment.sharedInstance.opco == .bge {
+                            onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: ""))
+                            return
+                        } else if Environment.sharedInstance.opco == .peco {
+                            onError(NSLocalizedString("Gas Only Account", comment: ""), NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", comment: ""))
+                            return
+                        }
+                    }
                 } else {
-                    self?.outageStatusArray = outageStatusArray
+                    self.outageStatusArray = outageStatusArray
                 }
                 onSuccess()
             }, onError: { error in
