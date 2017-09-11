@@ -1026,25 +1026,20 @@ class PaymentViewModel {
     private(set) lazy var reviewPaymentShouldShowConvenienceFeeBox: Driver<Bool> = self.cardWorkflow
     
     private(set) lazy var isOverpaying: Driver<Bool> = {
-        Driver.combineLatest(self.amountDue.asDriver(), self.paymentAmount.asDriver().map {
-            Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
-        })
-        { $1 > $0 }
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            return Driver.combineLatest(self.amountDue.asDriver(), self.paymentAmount.asDriver().map {
+                Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
+            }, resultSelector: <)
+        case .comEd, .peco:
+            return Driver.just(false)
+        }
+        
     }()
     
-    private(set) lazy var isOverpayingCard: Driver<Bool> = {
-        Driver.combineLatest(self.amountDue.asDriver(), self.paymentAmount.asDriver().map {
-            Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
-        }, self.cardWorkflow)
-        { $1 > $0 && $2 }
-    }()
+    private(set) lazy var isOverpayingCard: Driver<Bool> = Driver.combineLatest(self.isOverpaying, self.cardWorkflow) { $0 && $1 }
     
-    private(set) lazy var isOverpayingBank: Driver<Bool> = {
-        Driver.combineLatest(self.amountDue.asDriver(), self.paymentAmount.asDriver().map {
-            Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
-        }, self.bankWorkflow)
-        { $1 > $0 && $2 }
-    }()
+    private(set) lazy var isOverpayingBank: Driver<Bool> = Driver.combineLatest(self.isOverpaying, self.bankWorkflow) { $0 && $1 }
     
     private(set) lazy var overpayingValueDisplayString: Driver<String?> = {
         Driver.combineLatest(self.amountDue.asDriver(), self.paymentAmount.asDriver().map {
@@ -1083,11 +1078,8 @@ class PaymentViewModel {
         !$0.isAutoPay && $0.isAutoPayEligible
     }
     
-    private(set) lazy var totalPaymentLabelText: Driver<String> = Driver.combineLatest(self.bankWorkflow, self.isOverpaying).map {
-        if $0 && !$1 {
-            return NSLocalizedString("Payment Amount", comment: "")
-        }
-        return NSLocalizedString("Total Payment", comment: "")
+    private(set) lazy var totalPaymentLabelText: Driver<String> = self.isOverpayingBank.map {
+        $0 ? NSLocalizedString("Payment Amount", comment: ""): NSLocalizedString("Total Payment", comment: "")
     }
     
     private(set) lazy var totalPaymentDisplayString: Driver<String?> = {
