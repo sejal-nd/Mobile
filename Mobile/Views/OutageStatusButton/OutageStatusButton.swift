@@ -137,16 +137,16 @@ class OutageStatusButton: UIView {
         icon.image = #imageLiteral(resourceName: "ic_outagestatus_out")
         
         let yourPowerIsLabel = UILabel(frame: CGRect(x: 30, y: 115, width: bigButtonWidth - 60, height: 20))
-        yourPowerIsLabel.font = OpenSans.regular.of(size: 16)
+        yourPowerIsLabel.font = OpenSans.regular.of(size: 14)
         yourPowerIsLabel.textColor = .actionBlue
         yourPowerIsLabel.textAlignment = .center
-        yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
+        yourPowerIsLabel.text = NSLocalizedString("Our records indicate your", comment: "")
         
         let outLabel = UILabel(frame: CGRect(x: 44, y: 135, width: bigButtonWidth - 88, height: 25))
         outLabel.font = OpenSans.bold.of(size: 22)
         outLabel.textColor = .actionBlue
         outLabel.textAlignment = .center
-        outLabel.text = NSLocalizedString("OUT", comment: "")
+        outLabel.text = NSLocalizedString("POWER IS OUT", comment: "")
         
         let restRestorationLabel = UILabel(frame: CGRect(x: 30, y: 170, width: bigButtonWidth - 60, height: 14))
         restRestorationLabel.font = OpenSans.regular.of(size: 12)
@@ -154,7 +154,7 @@ class OutageStatusButton: UIView {
         restRestorationLabel.textAlignment = .center
         restRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
         
-        let timeLabel = UILabel(frame: CGRect(x: 22, y: 187, width: bigButtonWidth - 44, height: 20))
+        let timeLabel = UILabel(frame: CGRect(x: 22, y: 184, width: bigButtonWidth - 44, height: 20))
         timeLabel.font = OpenSans.bold.of(size: 15)
         timeLabel.textColor = .deepGray
         timeLabel.textAlignment = .center
@@ -167,7 +167,7 @@ class OutageStatusButton: UIView {
         bigButtonImageView.addSubview(outLabel)
         bigButtonImageView.addSubview(restRestorationLabel)
         bigButtonImageView.addSubview(timeLabel)
-        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, button. Your power is out. Estimated restoration \(estimatedRestorationDateString).", comment: "")
+        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, button. Our records indicate your power is out. Estimated restoration \(estimatedRestorationDateString).", comment: "")
     }
     
     func setIneligibleState(flagFinaled: Bool, nonPayFinaledMessage: String) {
@@ -221,21 +221,21 @@ class OutageStatusButton: UIView {
         icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
         
         let yourPowerIsLabel = UILabel(frame: CGRect(x: 40, y: 142, width: bigButtonWidth - 80, height: 20))
-        yourPowerIsLabel.font = OpenSans.regular.of(size: 16)
+        yourPowerIsLabel.font = OpenSans.regular.of(size: 14)
         yourPowerIsLabel.textColor = .actionBlue
         yourPowerIsLabel.textAlignment = .center
-        yourPowerIsLabel.text = NSLocalizedString("Your power is", comment: "")
+        yourPowerIsLabel.text = NSLocalizedString("Our records indicate your", comment: "")
         
         let onLabel = UILabel(frame: CGRect(x: 40, y: 162, width: bigButtonWidth - 80, height: 25))
         onLabel.font = OpenSans.bold.of(size: 22)
         onLabel.textColor = .actionBlue
         onLabel.textAlignment = .center
-        onLabel.text = NSLocalizedString("ON", comment: "")
+        onLabel.text = NSLocalizedString("POWER IS ON", comment: "")
         
         bigButtonImageView.addSubview(icon)
         bigButtonImageView.addSubview(yourPowerIsLabel)
         bigButtonImageView.addSubview(onLabel)
-        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, Button. Your power is on.", comment: "")
+        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, Button. Our records indicate your power is on.", comment: "")
     }
     
     private func clearSubviews() {
