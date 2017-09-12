@@ -49,6 +49,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         accountNumberTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onKeyboardDonePress))
         accountNumberTextField.textField.delegate = self
         accountNumberTextField.textField.isShowingAccessory = true
+        accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         footerView.backgroundColor = .softGray
         footerTextView.font = SystemFont.regular.of(textStyle: .headline)
@@ -145,9 +146,9 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         message += accountNumberTextField.getError()
         
         if message.isEmpty {
-            submitButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            submitButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
         }
     }
     

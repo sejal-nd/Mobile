@@ -20,9 +20,9 @@ class UnauthenticatedUserViewController: UIViewController {
     @IBOutlet weak var reportAnOutageButton: DisclosureButton!
     @IBOutlet weak var checkMyOutageStatusButton: DisclosureButton!
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
-
     @IBOutlet weak var contactUsButton: DisclosureButton!
-    @IBOutlet weak var TermPoliciesButton: DisclosureButton!
+    @IBOutlet weak var policiesTermsButton: DisclosureButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,13 +67,13 @@ class UnauthenticatedUserViewController: UIViewController {
         lottieView.isAccessibilityElement = true
         lottieView.accessibilityLabel = NSLocalizedString("Animation showing home screen payment", comment: "")
 
-        textLabel.isAccessibilityElement = true
         textLabel.accessibilityLabel = textLabel.text
-
-        contactUsButton.isAccessibilityElement = true
+        
+        reportAnOutageButton.accessibilityLabel = NSLocalizedString("Report an outage", comment: "")
+        checkMyOutageStatusButton.accessibilityLabel = NSLocalizedString("Check my outage status", comment: "")
+        viewOutageMapButton.accessibilityLabel = NSLocalizedString("View outage map", comment: "")
         contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
-        TermPoliciesButton.isAccessibilityElement = true
-        TermPoliciesButton.accessibilityLabel = NSLocalizedString("Policies and Terms", comment: "")
+        policiesTermsButton.accessibilityLabel = NSLocalizedString("Policies and terms", comment: "")
     }
 
     @IBAction func onLoginRegisterPress(_ sender: UIButton) {

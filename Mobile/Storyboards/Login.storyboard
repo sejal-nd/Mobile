@@ -262,11 +262,11 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
-                        <outlet property="TermPoliciesButton" destination="fJk-6t-qHv" id="i1D-za-0DB"/>
                         <outlet property="checkMyOutageStatusButton" destination="MxD-jC-DFh" id="3Ux-Gp-Ezw"/>
                         <outlet property="contactUsButton" destination="ba3-EE-aBt" id="YU7-Kv-xrz"/>
                         <outlet property="loginRegisterButton" destination="TLB-ga-RSd" id="mZF-OY-Kry"/>
                         <outlet property="lottieView" destination="yrY-DD-kdB" id="7ER-NP-uUc"/>
+                        <outlet property="policiesTermsButton" destination="fJk-6t-qHv" id="sg3-El-x68"/>
                         <outlet property="reportAnOutageButton" destination="jAa-0X-AbV" id="XYl-hX-lvh"/>
                         <outlet property="scrollView" destination="wsh-Do-aMa" id="rx0-Si-kaA"/>
                         <outlet property="textLabel" destination="5CE-lL-rQJ" id="8P8-6r-jol"/>
