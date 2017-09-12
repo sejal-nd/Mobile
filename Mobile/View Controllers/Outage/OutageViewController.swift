@@ -172,10 +172,7 @@ class OutageViewController: AccountPickerViewController {
                 reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
             }
             
-            // Disable bottom buttons if account is finaled or not paid
-            let bottomButtonsEnabled = !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
-            reportOutageButton.isEnabled = bottomButtonsEnabled
-            viewOutageMapButton.isEnabled = bottomButtonsEnabled
+            reportOutageButton.isEnabled = !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
         }
     }
     
