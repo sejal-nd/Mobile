@@ -159,12 +159,16 @@ class AccountPicker: UIView {
         iconImageView.accessibilityLabel = a11yDescription
         
         let accountNumberLabel = UILabel(frame: .zero)
+        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == OpCo.bge ?
+                "Stopped" : "Finaled",
+                comment: "");
+        let accountNumberText = "\(account.accountNumber) \(account.isFinaled ? "(\(finaledString))" : "")"
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         accountNumberLabel.setContentHuggingPriority(1000, for: .horizontal)
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
         accountNumberLabel.textColor = tintWhite ? .white: .blackText
-        accountNumberLabel.text = account.accountNumber
-        accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
+        accountNumberLabel.text = accountNumberText
+        accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
         
         let addressLabel = UILabel(frame: .zero)
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -195,7 +199,8 @@ class AccountPicker: UIView {
         
         accountStackView.centerXAnchor.constraint(equalTo: pageView.centerXAnchor, constant: 0).isActive = true
         accountStackView.centerYAnchor.constraint(equalTo: pageView.centerYAnchor, constant: 0).isActive = true
-        addressLabel.widthAnchor.constraint(equalTo: accountNumberLabel.widthAnchor, multiplier: 1.2).isActive = true
+        //addressLabel.widthAnchor.constraint(equalTo: accountNumberLabel.widthAnchor, multiplier: 1.2).isActive = true
+        addressLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 220).isActive = true
         
         if advancedPicker { // Makes area tappable and adds caret icon
             advancedAccountIconImageView = iconImageView

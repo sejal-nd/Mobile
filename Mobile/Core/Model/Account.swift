@@ -94,7 +94,8 @@ struct AccountDetail: Mappable {
     let releaseOfInformation: String?
     
     let peakRewards: String?
-	
+    let zipCode: String?
+
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
         address = map.optionalFrom("address")
@@ -129,6 +130,7 @@ struct AccountDetail: Mappable {
         releaseOfInformation = map.optionalFrom("releaseOfInformation")
         
         peakRewards = map.optionalFrom("peakRewards")
+        zipCode = map.optionalFrom("zipCode")
     }
 	
     var eBillEnrollStatus: EBillEnrollStatus {

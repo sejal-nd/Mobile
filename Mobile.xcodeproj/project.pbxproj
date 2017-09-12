@@ -124,9 +124,9 @@
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
-		385AF21C1F278EFD001E3619 /* uu_otp_peco.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21B1F278EFD001E3619 /* uu_otp_peco.json */; };
-		385AF21E1F278F06001E3619 /* uu_otp_comed.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21D1F278F06001E3619 /* uu_otp_comed.json */; };
-		385AF2201F278F11001E3619 /* uu_otp_bge.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21F1F278F11001E3619 /* uu_otp_bge.json */; };
+		385AF21C1F278EFD001E3619 /* uu_otp.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21B1F278EFD001E3619 /* uu_otp.json */; };
+		385AF21E1F278F06001E3619 /* uu_otp.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21D1F278F06001E3619 /* uu_otp.json */; };
+		385AF2201F278F11001E3619 /* uu_otp.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21F1F278F11001E3619 /* uu_otp.json */; };
 		385AF2231F27915A001E3619 /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2211F27915A001E3619 /* img_0.png */; };
 		385AF2241F27915A001E3619 /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2211F27915A001E3619 /* img_0.png */; };
 		385AF2251F27915A001E3619 /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2211F27915A001E3619 /* img_0.png */; };
@@ -230,6 +230,9 @@
 		54EDD2E01ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
 		54EDD2E11ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
 		54EDD2E21ECE244100CAB8A6 /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
+		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
+		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
+		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
 		82156F1D1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
 		82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
 		82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
@@ -1204,9 +1207,9 @@
 		2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryViewModel.swift; path = ../More/BillingHistoryViewModel.swift; sourceTree = "<group>"; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
-		385AF21B1F278EFD001E3619 /* uu_otp_peco.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp_peco.json; sourceTree = "<group>"; };
-		385AF21D1F278F06001E3619 /* uu_otp_comed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp_comed.json; sourceTree = "<group>"; };
-		385AF21F1F278F11001E3619 /* uu_otp_bge.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp_bge.json; sourceTree = "<group>"; };
+		385AF21B1F278EFD001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
+		385AF21D1F278F06001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
+		385AF21F1F278F11001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
 		385AF2211F27915A001E3619 /* img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_0.png; sourceTree = "<group>"; };
 		385AF2221F27915A001E3619 /* img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_1.png; sourceTree = "<group>"; };
 		387E5C461F1FCC4600D6710D /* Percentage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Percentage.swift; sourceTree = "<group>"; };
@@ -1239,6 +1242,9 @@
 		54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
 		54EDD2D91ECE236000CAB8A6 /* WalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCWalletService.swift; sourceTree = "<group>"; };
+		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
+		6A4FD80B62F03A415062F85E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
+		6A4FDA6DF9787E9CA31227BD /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoNetworkConnectionView.swift; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.swift; sourceTree = SOURCE_ROOT; };
 		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoNetworkConnectionView.xib; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.xib; sourceTree = SOURCE_ROOT; };
 		8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBindingObservers.swift; sourceTree = "<group>"; };
@@ -3064,9 +3070,10 @@
 		E8FE30AD1E7875E5009D28B7 /* BGE */ = {
 			isa = PBXGroup;
 			children = (
-				385AF21F1F278F11001E3619 /* uu_otp_bge.json */,
+				385AF21F1F278F11001E3619 /* uu_otp.json */,
 				E8494F3E1EBBCB3A0047D6BE /* outage_loading.json */,
 				E8FE30B01E787625009D28B7 /* outage.json */,
+				6A4FDA6DF9787E9CA31227BD /* splash.json */,
 			);
 			path = BGE;
 			sourceTree = "<group>";
@@ -3074,9 +3081,10 @@
 		E8FE30AE1E7875EA009D28B7 /* ComEd */ = {
 			isa = PBXGroup;
 			children = (
-				385AF21D1F278F06001E3619 /* uu_otp_comed.json */,
+				385AF21D1F278F06001E3619 /* uu_otp.json */,
 				E8494F401EBBCB430047D6BE /* outage_loading.json */,
 				E8FE30B21E78762B009D28B7 /* outage.json */,
+				6A4FD80B62F03A415062F85E /* splash.json */,
 			);
 			path = ComEd;
 			sourceTree = "<group>";
@@ -3084,9 +3092,10 @@
 		E8FE30AF1E7875F0009D28B7 /* PECO */ = {
 			isa = PBXGroup;
 			children = (
-				385AF21B1F278EFD001E3619 /* uu_otp_peco.json */,
+				385AF21B1F278EFD001E3619 /* uu_otp.json */,
 				E8494F421EBBCB4C0047D6BE /* outage_loading.json */,
 				E8FE30B41E78762F009D28B7 /* outage.json */,
+				6A4FD46F61FB1F534F49F74E /* splash.json */,
 			);
 			path = PECO;
 			sourceTree = "<group>";
@@ -3204,7 +3213,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3214,7 +3223,7 @@
 						};
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3323,7 +3332,7 @@
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				384F86A21F310B8600A85557 /* TermPolicies.html in Resources */,
-				385AF2201F278F11001E3619 /* uu_otp_bge.json in Resources */,
+				385AF2201F278F11001E3619 /* uu_otp.json in Resources */,
 				B55736451E6742A6003B9369 /* OMC.plist in Resources */,
 				B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */,
 				E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
@@ -3379,6 +3388,7 @@
 				82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				B5D415781F3A6C6300AC32B2 /* GoogleService-Info_bge.plist in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
+				6A4FD35CACD849817177444C /* splash.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3393,7 +3403,7 @@
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
-				385AF21C1F278EFD001E3619 /* uu_otp_peco.json in Resources */,
+				385AF21C1F278EFD001E3619 /* uu_otp.json in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				E841F3B11F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				E841F3A11F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
@@ -3455,6 +3465,7 @@
 				E8499CB41EE5CD900062F619 /* Bill.storyboard in Resources */,
 				01F612231F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
 				E8499CB61EE5D5140062F619 /* Bill.storyboard in Resources */,
+				6A4FD31E23F701334D2D37CE /* splash.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3480,7 +3491,7 @@
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				825171AD1F1D1FAA0020A6CA /* HomeBillCardView.xib in Resources */,
 				8FD3C2771E525D80005FB1BB /* environment.plist in Resources */,
-				385AF21E1F278F06001E3619 /* uu_otp_comed.json in Resources */,
+				385AF21E1F278F06001E3619 /* uu_otp.json in Resources */,
 				385AF2241F27915A001E3619 /* img_0.png in Resources */,
 				822BBBA51EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
@@ -3531,6 +3542,7 @@
 				E8499CB31EE5CD8F0062F619 /* Bill.storyboard in Resources */,
 				01F612221F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
 				E8499CB51EE5D5140062F619 /* Bill.storyboard in Resources */,
+				6A4FD21032155AD85505077D /* splash.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
