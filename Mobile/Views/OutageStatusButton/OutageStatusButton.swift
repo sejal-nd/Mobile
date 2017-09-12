@@ -107,7 +107,7 @@ class OutageStatusButton: UIView {
         restRestorationLabel.textAlignment = .center
         restRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
         
-        let timeLabel = UILabel(frame: CGRect(x: 22, y: 187, width: bigButtonWidth - 44, height: 20))
+        let timeLabel = UILabel(frame: CGRect(x: 22, y: 184, width: bigButtonWidth - 44, height: 20))
         timeLabel.font = OpenSans.bold.of(size: 15)
         timeLabel.textColor = .deepGray
         timeLabel.textAlignment = .center
