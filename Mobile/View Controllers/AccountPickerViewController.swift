@@ -92,7 +92,7 @@ class AccountPickerViewController: UIViewController {
                         self.accountNumberLabel.text = currentAccount.accountNumber
                         self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), currentAccount.accountNumber)
                     } else {
-                        self.accountNumberLabel.text = "\(currentAccount.address!) PADDING PADDING PADDING"
+                        self.accountNumberLabel.text = currentAccount.address!
                         self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), currentAccount.address!)
                     }
                     self.setNeedsStatusBarAppearanceUpdate()
