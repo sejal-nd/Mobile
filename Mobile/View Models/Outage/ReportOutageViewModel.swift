@@ -59,7 +59,7 @@ class ReportOutageViewModel {
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
-        if let locationId = self.outageStatus!.locationId {
+        if let locationId = self.outageStatus?.locationId {
             outageInfo.locationId = locationId
         }
         
