@@ -34,7 +34,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5uv-tk-M2B" id="MPd-zX-etf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="RrS-8S-WG1">
@@ -106,7 +106,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A4b-qi-G2Y" id="idt-a8-aFn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="grR-CI-YW3">
@@ -225,7 +225,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LE-Ih-Txu" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="584"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="580"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FN2-AG-tRU" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
@@ -235,7 +235,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lx-Wl-bvy">
-                                                <rect key="frame" x="0.0" y="64" width="375" height="520"/>
+                                                <rect key="frame" x="0.0" y="64" width="375" height="516"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8h-b7-uBN" customClass="OutageStatusButton" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="37" y="9" width="300" height="300"/>
@@ -274,7 +274,7 @@
                                                         </connections>
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QN1-1Y-eoZ" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="29" y="459" width="317" height="49"/>
+                                                        <rect key="frame" x="29" y="459" width="317" height="45"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -299,23 +299,23 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0L-QG-hAo">
-                                                <rect key="frame" x="0.0" y="64" width="375" height="520"/>
+                                                <rect key="frame" x="0.0" y="64" width="375" height="516"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="rwO-5r-SUq">
-                                                        <rect key="frame" x="72.5" y="42" width="230" height="230"/>
+                                                        <rect key="frame" x="72.5" y="9" width="230" height="230"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="230" id="A7K-SS-GAG"/>
                                                             <constraint firstAttribute="height" constant="230" id="cBX-H2-SpU"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This account receives gas service only" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZQw-Ul-DsT">
-                                                        <rect key="frame" x="46" y="286" width="283" height="57.5"/>
+                                                        <rect key="frame" x="46" y="253" width="283" height="57.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                         <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-Ah-Ffw" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="46" y="366.5" width="283" height="124.5"/>
+                                                        <rect key="frame" x="46" y="333.5" width="283" height="153.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" red="0.38039215686274508" green="0.3803921569" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -333,13 +333,13 @@
                                                     <constraint firstItem="nUe-Ah-Ffw" firstAttribute="centerX" secondItem="H0L-QG-hAo" secondAttribute="centerX" id="PzE-7q-dZU"/>
                                                     <constraint firstItem="nUe-Ah-Ffw" firstAttribute="leading" secondItem="H0L-QG-hAo" secondAttribute="leading" constant="46" id="TAH-2i-DpL"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="TgD-mh-N0a"/>
-                                                    <constraint firstItem="rwO-5r-SUq" firstAttribute="top" secondItem="H0L-QG-hAo" secondAttribute="top" constant="42" id="UCt-mA-vhT"/>
+                                                    <constraint firstItem="rwO-5r-SUq" firstAttribute="top" secondItem="H0L-QG-hAo" secondAttribute="top" constant="9" id="UCt-mA-vhT"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZQw-Ul-DsT" secondAttribute="trailing" constant="46" id="Vab-Ds-KK6"/>
                                                     <constraint firstItem="ZQw-Ul-DsT" firstAttribute="top" secondItem="rwO-5r-SUq" secondAttribute="bottom" constant="14" id="xsP-tc-thr"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NzH-9I-b9u">
-                                                <rect key="frame" x="0.0" y="64" width="375" height="520"/>
+                                                <rect key="frame" x="0.0" y="64" width="375" height="516"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-Vb-1pp">
                                                         <rect key="frame" x="52" y="24" width="270" height="270"/>
