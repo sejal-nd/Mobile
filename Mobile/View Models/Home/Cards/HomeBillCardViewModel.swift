@@ -550,7 +550,10 @@ class HomeBillCardViewModel {
             result.append(String(format: localizedText, amountDueString))
         }
 
-        if $0.billingInfo.amtDpaReinst ?? 0 > 0 && $0.billingInfo.atReinstateFee ?? 0 > 0 && !$0.isLowIncome {
+        if Environment.sharedInstance.opco == OpCo.ComEd &&
+                   $0.billingInfo.amtDpaReinst ?? 0 > 0 &&
+                   $0.billingInfo.atReinstateFee ?? 0 > 0 &&
+                   !$0.isLowIncome {
             let reinstatementText = NSLocalizedString("\n\nYou are entitled to one free reinstatement per plan. " +
                     "Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
             result.append(String(format: reinstatementText, reinstateFee))
