@@ -23,8 +23,8 @@ class OutageMapViewController: UIViewController {
         webView.navigationDelegate = self
         view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        webView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
         webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         webView.isHidden = true
@@ -40,6 +40,16 @@ class OutageMapViewController: UIViewController {
         
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar(hidesBottomBorder: true)
+        } else { // Sent from unauthenticated user experience
+            navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
+            navigationController?.navigationBar.barTintColor = .primaryColor
+            navigationController?.navigationBar.isTranslucent = false
+            
+            let titleDict: [String: Any] = [
+                NSForegroundColorAttributeName: UIColor.white,
+                NSFontAttributeName: OpenSans.bold.of(size: 18)
+            ]
+            navigationController?.navigationBar.titleTextAttributes = titleDict
         }
     }
 

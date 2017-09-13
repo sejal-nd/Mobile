@@ -9,6 +9,7 @@
 import UIKit
 import JVFloatLabeledText
 import RxSwift
+import RxCocoa
 
 class FloatLabelTextField: UIView {
     @IBOutlet weak var view: UIView!
@@ -219,6 +220,16 @@ class FloatLabelTextField: UIView {
     
     @objc private func doneButtonAction() {
         textField.resignFirstResponder()
+    }
+    
+}
+
+extension Reactive where Base: FloatLabelTextField {
+    
+    var isEnabled: UIBindingObserver<Base, Bool> {
+        return UIBindingObserver(UIElement: self.base) { floatLabelTextField, enabled in
+            floatLabelTextField.setEnabled(enabled)
+        }
     }
     
 }

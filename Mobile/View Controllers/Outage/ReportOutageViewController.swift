@@ -12,7 +12,7 @@ import RxCocoa
 import Lottie
 
 protocol ReportOutageViewControllerDelegate: class {
-    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController)
+    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController, reportedOutage: ReportedOutageResult?)
 }
 
 class ReportOutageViewController: UIViewController {
@@ -20,6 +20,8 @@ class ReportOutageViewController: UIViewController {
     weak var delegate: ReportOutageViewControllerDelegate?
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     
     // Meter Ping
     @IBOutlet weak var meterPingStackView: UIStackView!
@@ -63,6 +65,8 @@ class ReportOutageViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var submitButton = UIBarButtonItem()
+    
+    var unauthenticatedExperience = false // `true` passed from UnauthenticatedOutageStatusViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +81,10 @@ class ReportOutageViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
+        if unauthenticatedExperience {
+            accountInfoBar.update(accountNumber: viewModel.outageStatus!.maskedAccountNumber, address: viewModel.outageStatus!.maskedAddress)
+        }
         
         // METER PING
         if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
@@ -307,19 +315,33 @@ class ReportOutageViewController: UIViewController {
     func onSubmitPress() {
         view.endEditing(true)
         
-        LoadingView.show()
-        viewModel.reportOutage(onSuccess: { [weak self] in
-            LoadingView.hide()
-            guard let `self` = self else { return }
-            self.delegate?.reportOutageViewControllerDidReportOutage(self)
-            self.navigationController?.popViewController(animated: true)
-            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
-        }) { [weak self] errorMessage in
+        let errorBlock = { [weak self] (errorMessage: String) in
             LoadingView.hide()
             let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self?.present(alert, animated: true, completion: nil)
         }
+        
+        LoadingView.show()
+        if unauthenticatedExperience {
+            viewModel.reportOutageAnon(onSuccess: { [weak self] reportedOutage in
+                LoadingView.hide()
+                guard let `self` = self else { return }
+                self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: reportedOutage)
+                self.navigationController?.popViewController(animated: true)
+                //Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
+            }, onError: errorBlock)
+        } else {
+            viewModel.reportOutage(onSuccess: { [weak self] in
+                LoadingView.hide()
+                guard let `self` = self else { return }
+                self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: nil)
+                self.navigationController?.popViewController(animated: true)
+                Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
+            }, onError: errorBlock)
+        }
+        
+
     }
     
     @IBAction func switchPressed(sender: AnyObject) {
