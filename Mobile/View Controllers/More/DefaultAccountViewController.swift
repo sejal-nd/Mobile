@@ -95,6 +95,17 @@ extension DefaultAccountViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedAccountPickerTableViewCell.className, for: indexPath) as! AdvancedAccountPickerTableViewCell
         cell.configure(withAccount: viewModel.accounts.value[indexPath.row])
+        
+        if viewModel.accounts.value[indexPath.row].address == nil {
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.isUserInteractionEnabled = false
+            cell.contentView.alpha = 0.2
+        } else {
+            cell.selectionStyle = UITableViewCellSelectionStyle.default
+            cell.isUserInteractionEnabled = true
+            cell.contentView.alpha = 1
+        }
+        
         return cell
     }
     
