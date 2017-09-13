@@ -18,7 +18,7 @@ class SplashViewController: UIViewController{
     var performDeepLink = false
     var bag = DisposeBag()
     var lottieAnimation: LOTAnimationView?
-    var animate: Bool = false
+    var keepMeSignedIn: Bool = false
     
     let viewModel = SplashViewModel(authService: ServiceFactory.createAuthenticationService())
 
@@ -26,28 +26,46 @@ class SplashViewController: UIViewController{
         super.viewDidLoad()
 
         view.backgroundColor = .primaryColor
+        
         NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 self?.checkAppVersion(callback:{self?.doLoginLogic()})
             })
             .disposed(by: bag)
+        
+        if ServiceFactory.createAuthenticationService().isAuthenticated() {
+            ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { [weak self] (result: ServiceResult<Void>) in
+                guard let `self` = self else { return }
+                switch (result) {
+                case .Success:
+                    self.keepMeSignedIn = true
+                    self.imageView.isHidden = false
+                    self.animationView.isHidden = true
+                case .Failure:
+                    self.keepMeSignedIn = false
+                    self.imageView.isHidden = true
+                    self.animationView.isHidden = false
+                }
+            })
+        } else {
+            imageView.isHidden = true
+        }
 
-        animate = !ServiceFactory.createAuthenticationService().isAuthenticated()
-        imageView.isHidden = animate
-        animationView.isHidden = !animate
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        checkAppVersion(callback:{self.doLoginLogic()})
+        checkAppVersion(callback:{
+            self.doLoginLogic()
+        })
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if animate && lottieAnimation == nil {
+        if !keepMeSignedIn && lottieAnimation == nil {
             lottieAnimation = LOTAnimationView(name: "splash")
             lottieAnimation!.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
             lottieAnimation!.loopAnimation = false
@@ -55,38 +73,28 @@ class SplashViewController: UIViewController{
             animationView.addSubview(lottieAnimation!)
             lottieAnimation!.play()
         }
-
     }
 
     func doLoginLogic() {
         bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch ID alert prompt is dismissed
-        if ServiceFactory.createAuthenticationService().isAuthenticated() {
-            ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { [weak self] (result: ServiceResult<Void>) in
-                guard let `self` = self else { return }
-                switch (result) {
-                case .Success:
-                    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-                    self.present(viewController!, animated: true, completion: nil)
-                case .Failure:
-                    self.performSegue(withIdentifier: "landingSegue", sender: self)
-                }
-            })
-        } else {
-            if !self.performDeepLink { // Deep link cold-launched the app, so let our logic below handle it
-                if self.lottieAnimation == nil || !self.lottieAnimation!.isAnimationPlaying {
-                    self.performSegue(withIdentifier: "landingSegue", sender: self)
-                } else {
-                    self.lottieAnimation!.completionBlock = { [weak self] (value:Bool) in
-                        self?.performSegue(withIdentifier: "landingSegue", sender: self)
-                    }
-                }
+        
+        if keepMeSignedIn {
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            self.present(viewController!, animated: true, completion: nil)
+        } else if !self.performDeepLink { // Deep link cold-launched the app, so let our logic below handle it
+            if self.lottieAnimation == nil || !self.lottieAnimation!.isAnimationPlaying {
+                self.performSegue(withIdentifier: "landingSegue", sender: self)
             } else {
-                let storyboard = UIStoryboard(name: "Login", bundle: nil)
-                let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
-                let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-                self.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
-                self.performDeepLink = false // Reset state
+                self.lottieAnimation!.completionBlock = { [weak self] (value: Bool) in
+                    self?.performSegue(withIdentifier: "landingSegue", sender: self)
+                }
             }
+        } else {
+            let storyboard = UIStoryboard(name: "Login", bundle: nil)
+            let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
+            let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+            self.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
+            self.performDeepLink = false // Reset state
         }
     }
     
@@ -146,7 +154,7 @@ class SplashViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? LandingViewController {
-            vc.fadeIn = animate
+            vc.fadeIn = !keepMeSignedIn
         }
     }
     
