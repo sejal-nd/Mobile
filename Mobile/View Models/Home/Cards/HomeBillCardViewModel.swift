@@ -550,7 +550,7 @@ class HomeBillCardViewModel {
             result.append(String(format: localizedText, amountDueString))
         }
 
-        if Environment.sharedInstance.opco == OpCo.ComEd &&
+        if Environment.sharedInstance.opco == .comEd &&
                    $0.billingInfo.amtDpaReinst ?? 0 > 0 &&
                    $0.billingInfo.atReinstateFee ?? 0 > 0 &&
                    !$0.isLowIncome {
