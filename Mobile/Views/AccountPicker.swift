@@ -159,7 +159,7 @@ class AccountPicker: UIView {
         iconImageView.accessibilityLabel = a11yDescription
         
         let accountNumberLabel = UILabel(frame: .zero)
-        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == OpCo.bge ?
+        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == .bge ?
                 "Stopped" : "Finaled",
                 comment: "");
         let accountNumberText = "\(account.accountNumber) \(account.isFinaled ? "(\(finaledString))" : "")"
