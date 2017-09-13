@@ -19,7 +19,6 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var gasOnlyView: UIView!
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var loadingAnimationView: UIView!
-    @IBOutlet weak var loadingBigButtonView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
     @IBOutlet weak var reportOutageButton: DisclosureButton!
@@ -63,11 +62,6 @@ class OutageViewController: AccountPickerViewController {
         loadingLottieAnimation.contentMode = .scaleAspectFill
         loadingAnimationView.addSubview(loadingLottieAnimation)
         loadingLottieAnimation.play()
-        
-        let radius = loadingBigButtonView.bounds.size.width / 2
-        loadingBigButtonView.layer.cornerRadius = radius
-        loadingBigButtonView.addShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 10), radius: 10) // Blur of 20pt
-        loadingBigButtonView.layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: (radius + 2) * 2, height: (radius + 2) * 2), cornerRadius: radius).cgPath // Spread of 2pt
         
         outageStatusButton.delegate = self
         
