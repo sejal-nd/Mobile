@@ -35,7 +35,9 @@ class UnauthenticatedOutageViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] outageStatusArray in
                 guard let `self` = self else { return }
-                if outageStatusArray.count == 1 {
+                if outageStatusArray.isEmpty { // Should never happen, but just in case
+                    onError(NSLocalizedString("Error", comment: ""), NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: ""))
+                } else if outageStatusArray.count == 1 {
                     self.selectedOutageStatus = outageStatusArray[0]
                     if self.selectedOutageStatus!.flagGasOnly {
                         if Environment.sharedInstance.opco == .bge {
@@ -49,6 +51,8 @@ class UnauthenticatedOutageViewModel {
                 } else {
                     if overrideAccountNumber == nil { // Don't replace our original array when fetching again from Results screen
                         self.outageStatusArray = outageStatusArray
+                    } else { // Should never happen, but if we call again from result screen and still get multiple results, just use the first
+                        self.selectedOutageStatus = outageStatusArray[0]
                     }
                 }
                 onSuccess()
