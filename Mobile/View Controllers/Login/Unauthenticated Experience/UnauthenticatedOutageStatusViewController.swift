@@ -41,27 +41,14 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
         outageStatusButton.delegate = self
         
         let currentOutageStatus = viewModel.selectedOutageStatus!
-        if viewModel.reportedOutage != nil {
-            outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-        } else if currentOutageStatus.activeOutage {
+        if currentOutageStatus.activeOutage {
             outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
-            // TODO: Handle with modals on the previous screen
-            //outageStatusButton.setIneligibleState(flagFinaled: currentOutageStatus.flagFinaled, nonPayFinaledMessage: viewModel.accountNonPayFinaledMessage)
         } else { // Power is on
             outageStatusButton.setPowerOnState()
         }
         
-        // Update the Report Outage button
-        if viewModel.reportedOutage != nil {
-            reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
-            reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.outageReportedDateString)
-        } else {
-            reportOutageButton.setDetailLabel(text: "", checkHidden: true)
-            reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
-        }
-        
-        reportOutageButton.isEnabled = !currentOutageStatus.flagNoPay && !currentOutageStatus.flagFinaled && !currentOutageStatus.flagNonService
+        reportOutageButton.setDetailLabel(text: "", checkHidden: true)
+        reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
         
         footerTextView.font = SystemFont.regular.of(textStyle: .headline)
         footerTextView.textContainerInset = .zero
@@ -124,6 +111,8 @@ extension UnauthenticatedOutageStatusViewController: ReportOutageViewControllerD
     func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController, reportedOutage: ReportedOutageResult?) {
         viewModel.reportedOutage = reportedOutage
         outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+        reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
+        reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.outageReportedDateString)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
             //Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthComplete.rawValue)
