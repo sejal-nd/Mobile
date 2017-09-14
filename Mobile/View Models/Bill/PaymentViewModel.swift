@@ -899,13 +899,15 @@ class PaymentViewModel {
     private(set) lazy var shouldShowAddBankAccount: Driver<Bool> = Driver.combineLatest(self.isCashOnlyUser,
                                                                                         self.hasWalletItems,
                                                                                         self.inlineBank.asDriver(),
-                                                                                        self.inlineCard.asDriver())
-    { !$0 && !$1 && !$2 && !$3 }
+                                                                                        self.inlineCard.asDriver(),
+                                                                                        self.allowEdits.asDriver())
+    { !$0 && !$1 && !$2 && !$3 && $4 }
     
     private(set) lazy var shouldShowAddCreditCard: Driver<Bool> = Driver.combineLatest(self.hasWalletItems,
                                                                                        self.inlineBank.asDriver(),
-                                                                                       self.inlineCard.asDriver())
-    { !$0 && !$1 && !$2 }
+                                                                                       self.inlineCard.asDriver(),
+                                                                                       self.allowEdits.asDriver())
+    { !$0 && !$1 && !$2 && $3 }
     
     private(set) lazy var shouldShowWalletFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems,
                                                                                           self.inlineBank.asDriver(),

@@ -400,12 +400,19 @@ class HomeBillCardView: UIView {
             return alertController
     }
     
+    private lazy var bgeasyViewController: Driver<UIViewController> = self.automaticPaymentInfoButton.rx.touchUpInside.asObservable()
+        .withLatestFrom(self.viewModel.accountDetailEvents.elements())
+        .filter { $0.isBGEasy }
+        .map { _ in UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "BGEasy") }
+        .asDriver(onErrorDriveWith: .empty())
+    
     private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(self.tooltipModal,
                                                                                         self.oneTouchSliderWeekendAlert,
                                                                                         self.paymentTACModal,
                                                                                         self.oneTouchPayErrorAlert,
                                                                                         self.oneTouchSliderCVV2Alert,
-                                                                                        self.oneTouchSliderBGELegalAlert)
+                                                                                        self.oneTouchSliderBGELegalAlert,
+                                                                                        self.bgeasyViewController)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = self.bankCreditNumberButton.rx.touchUpInside.asObservable()
@@ -441,6 +448,7 @@ class HomeBillCardView: UIView {
     
     private lazy var autoPayViewController: Driver<UIViewController> = self.automaticPaymentInfoButton.rx.touchUpInside.asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
+        .filter { !$0.isBGEasy }
         .map { accountDetail in
             switch Environment.sharedInstance.opco {
             case .bge:
@@ -452,7 +460,6 @@ class HomeBillCardView: UIView {
                 vc.accountDetail = accountDetail
                 return vc
             }
-            
         }
         .asDriver(onErrorDriveWith: .empty())
     
