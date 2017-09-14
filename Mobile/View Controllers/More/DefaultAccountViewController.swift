@@ -96,15 +96,6 @@ extension DefaultAccountViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedAccountPickerTableViewCell.className, for: indexPath) as! AdvancedAccountPickerTableViewCell
         cell.configure(withAccount: viewModel.accounts.value[indexPath.row])
         
-        if viewModel.accounts.value[indexPath.row].address == nil {
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-            cell.isUserInteractionEnabled = false
-            cell.contentView.alpha = 0.2
-        } else {
-            cell.selectionStyle = UITableViewCellSelectionStyle.default
-            cell.isUserInteractionEnabled = true
-            cell.contentView.alpha = 1
-        }
         
         return cell
     }
@@ -119,7 +110,7 @@ extension DefaultAccountViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        guard !viewModel.accounts.value[indexPath.row].isDefault else {
+        guard !viewModel.accounts.value[indexPath.row].isDefault, let _ = viewModel.accounts.value[indexPath.row].address else {
             return
         }
         
