@@ -310,9 +310,8 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var showDueDateTooltip: Driver<Bool> = self.showDueAmountAndDate.map {
-        !$0 && Environment.sharedInstance.opco == .peco
-    }
+    private(set) lazy var showDueDateTooltip: Driver<Bool> = Driver.zip(self.showDueAmountAndDate, self.billState)
+    { !$0 && !$1.isPrecariousBillSituation && Environment.sharedInstance.opco == .peco }
     
     let showDueAmountAndDateTooltip = Environment.sharedInstance.opco == .peco
     
