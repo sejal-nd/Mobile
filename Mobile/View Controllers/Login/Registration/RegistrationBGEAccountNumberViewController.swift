@@ -64,7 +64,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
 			.drive(onNext: { [weak self] accountNumber, hasTenDigits in
 				guard let `self` = self else { return }
 				if !accountNumber.isEmpty && !hasTenDigits {
-					self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
+					self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
 				}
 				self.accessibilityErrorLabel()
 			})

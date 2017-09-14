@@ -56,7 +56,7 @@ class AccountLookupToolViewController: UIViewController {
             .filter { !$0.0.isEmpty }
             .drive(onNext: { [weak self] in
                 if !$1 {
-                    self?.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
+                    self?.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long", comment: ""))
                 }
                 self?.accessibilityErrorLabel()
             }).disposed(by: disposeBag)
@@ -79,9 +79,9 @@ class AccountLookupToolViewController: UIViewController {
             .filter { !$0.0.isEmpty }
             .drive(onNext: { [weak self] identifierNumber, hasFourDigits, isNumeric in
                 if !hasFourDigits {
-                    self?.identifierTextField.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
+                    self?.identifierTextField.setError(NSLocalizedString("This number must be 4 digits long", comment: ""))
                 } else if !isNumeric {
-                    self?.identifierTextField.setError(NSLocalizedString("This number must be numeric.", comment: ""))
+                    self?.identifierTextField.setError(NSLocalizedString("This number must be numeric", comment: ""))
                 }
                 self?.accessibilityErrorLabel()
             })
