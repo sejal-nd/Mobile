@@ -161,8 +161,11 @@ class AccountPicker: UIView {
         let accountNumberLabel = UILabel(frame: .zero)
         let finaledString = NSLocalizedString(Environment.sharedInstance.opco == .bge ?
                 "Stopped" : "Finaled",
-                comment: "");
-        let accountNumberText = "\(account.accountNumber) \(account.isFinaled ? "(\(finaledString))" : "")"
+                comment: "")
+        let linkedString = NSLocalizedString("Linked", comment: "")
+
+        let accountNumberText = "\(account.accountNumber) " +
+                "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         accountNumberLabel.setContentHuggingPriority(1000, for: .horizontal)
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
