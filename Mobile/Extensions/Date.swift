@@ -46,6 +46,7 @@ extension DateFormatter {
     
     @nonobjc static let apiFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(identifier: "GMT")!
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         return dateFormatter
     }()
