@@ -68,6 +68,8 @@ class UnauthenticatedOutageViewModel {
                     }
                 } else if serviceError.serviceCode == ServiceErrorCode.FnNonService.rawValue {
                     onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: ""))
+                } else if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue {
+                    onError(NSLocalizedString("Error", comment: ""), self.accountNotFoundMessage)
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
@@ -132,6 +134,16 @@ class UnauthenticatedOutageViewModel {
             }
         }
         return ""
+    }
+    
+    var accountNotFoundMessage: String {
+        if Environment.sharedInstance.opco == .bge {
+            return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at 1-877-778-2222 for further assistance.", comment: "")
+        } else if Environment.sharedInstance.opco == .peco {
+            return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at 1-800-494-4000 for further assistance.", comment: "")
+        } else {
+            return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at 1-800-334-7661 for further assistance.", comment: "")
+        }
     }
     
     var footerText: String {
