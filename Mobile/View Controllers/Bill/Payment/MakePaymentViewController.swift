@@ -729,8 +729,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
-        let now = Date()
-        viewModel.paymentDate.value = date < now ? now : date
+        viewModel.paymentDate.value = Calendar.current.isDateInToday(date) ? Date() : date
     }
 }
 

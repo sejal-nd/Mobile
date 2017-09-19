@@ -35,6 +35,14 @@ extension Date {
         }
         
     }
+    
+    @nonobjc var paymentFormatString: String {
+        if Calendar.current.isDateInToday(self) {
+            return DateFormatter.apiFormatter.string(from: self)
+        } else {
+            return DateFormatter.noonApiFormatter.string(from: self)
+        }
+    }
 }
 
 extension DateFormatter {
@@ -48,6 +56,12 @@ extension DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(identifier: "GMT")!
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let noonApiFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'12:00:00"
         return dateFormatter
     }()
 }
