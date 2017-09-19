@@ -298,8 +298,17 @@ extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
         }
         advancedAccountIconImageView?.image = icon
         advancedAccountIconImageView?.accessibilityLabel = a11yDescription
-        
-        advancedAccountNumberLabel?.text = account.accountNumber
+
+        let accountNumberLabel = UILabel(frame: .zero)
+        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == .bge ?
+                "Stopped" : "Finaled",
+                comment: "")
+        let linkedString = NSLocalizedString("Linked", comment: "")
+
+        let accountNumberText = "\(account.accountNumber) " +
+                "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
+
+        advancedAccountNumberLabel?.text = accountNumberText
         advancedAccountNumberLabel?.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
         if account.currentPremise != nil {
             advancedAccountAddressLabel?.text = account.currentPremise?.addressGeneral ?? " "
