@@ -268,7 +268,14 @@ class AccountPicker: UIView {
         }
         
         // Update advanced account picker
-        advancedAccountNumberLabel?.text = currentAccount.accountNumber
+        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == .bge ?
+                "Stopped" : "Finaled",
+                comment: "")
+        let linkedString = NSLocalizedString("Linked", comment: "")
+
+        let accountNumberText = "\(currentAccount.accountNumber) " +
+                "\(currentAccount.isFinaled ? "(\(finaledString))" : currentAccount.isLinked ? "(\(linkedString))":"")"
+        advancedAccountNumberLabel?.text = accountNumberText
         advancedAccountAddressLabel?.text = currentAccount.address ?? " "
     }
     
