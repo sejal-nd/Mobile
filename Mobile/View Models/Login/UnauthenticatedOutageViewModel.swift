@@ -138,7 +138,7 @@ class UnauthenticatedOutageViewModel {
     
     var accountNotFoundMessage: String {
         if Environment.sharedInstance.opco == .bge {
-            return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at 1-877-778-2222 for further assistance.", comment: "")
+            return NSLocalizedString("The information entered does not match our records. Please double check that the information entered is correct and try again. Still not working? Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further assistance.", comment: "")
         } else if Environment.sharedInstance.opco == .peco {
             return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at 1-800-494-4000 for further assistance.", comment: "")
         } else {
