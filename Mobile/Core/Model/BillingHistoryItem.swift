@@ -77,6 +77,9 @@ struct BillingHistoryItem: Mappable {
         } else if status == BillingHistoryProperties.StatusCanceled.rawValue || status == BillingHistoryProperties.StatusCANCELLED.rawValue {
             // EM-2638: Cancelled payments should always be in the past
             isFuture = false
+        } else if type == BillingHistoryProperties.TypeBilling.rawValue {
+            // EM-2638: Bills should always be in the past
+            isFuture = false
         }
     }
     
