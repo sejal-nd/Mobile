@@ -196,7 +196,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
                 // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
                 // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Call", comment: ""), style: .default, handler: { _ in
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
                     if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
                         if #available(iOS 10, *) {
                             UIApplication.shared.open(url)

@@ -123,7 +123,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
             if selectedOutageStatus.flagGasOnly {
                 let alertVc = UIAlertController(title: NSLocalizedString("Outage status unavailable", comment: ""), message: NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: ""), preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Call", comment: ""), style: .default, handler: { _ in
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
                     if let url = URL(string: "tel://1-800-685-0123"), UIApplication.shared.canOpenURL(url) {
                         if #available(iOS 10, *) {
                             UIApplication.shared.open(url)
@@ -163,7 +163,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
                     // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
                     // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Call", comment: ""), style: .default, handler: { _ in
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
                         if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
                             if #available(iOS 10, *) {
                                 UIApplication.shared.open(url)
