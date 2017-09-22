@@ -16,7 +16,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoModalViewController" customModule="BGE" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialModalViewController" customModule="BGE" customModuleProvider="target">
             <connections>
                 <outlet property="descriptionLabel" destination="sDT-tq-9ma" id="foH-f7-Ks4"/>
                 <outlet property="imageView" destination="Ks8-qC-Oj8" id="Mcu-cP-bJi"/>

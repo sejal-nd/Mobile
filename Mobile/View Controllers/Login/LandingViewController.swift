@@ -20,20 +20,24 @@ class LandingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
         orLabel.text = NSLocalizedString("OR", comment: "")
         registerButton.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
         continueAsGuestButon.setTitle(NSLocalizedString("CONTINUE AS GUEST", comment: ""), for: .normal)
-        
+
         orLabel.font = SystemFont.regular.of(textStyle: .headline)
         continueAsGuestButon.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
-        
+
         view.backgroundColor = .primaryColor
-        
+
         if fadeIn {
             tabletView.alpha = 0
         }
+
+        // TODO: Remove test code
+        let infoModal = TutorialModalViewController()
+        self.navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
