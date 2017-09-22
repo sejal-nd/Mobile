@@ -15,7 +15,7 @@ class TutorialView : UIView {
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var messageText: UILabel!
     
-    var lottieView: LOTAnimationView? = nil
+    var lottieView: LOTAnimationView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,20 +32,15 @@ class TutorialView : UIView {
         self.init(frame: frame)
         titleText.text = title
         messageText.text = message
-        titleText.sizeToFit()
-        messageText.sizeToFit()
         
         lottieView = LOTAnimationView(name: animation)
+        lottieView?.contentMode = .scaleAspectFit
+        lottieView?.frame = CGRect(x: 0, y: 0, width: lottieHost.frame.width, height: lottieHost.frame.height)
+        lottieView?.translatesAutoresizingMaskIntoConstraints = true
+        lottieView?.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         lottieView!.loopAnimation = true
         lottieHost.addSubview(lottieView!)
         lottieView!.play()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        lottieView?.frame = CGRect(x: 0, y: 0,
-                                   width: lottieHost.frame.width,
-                                   height: lottieHost.frame.height)
     }
     
     func cinit() {
