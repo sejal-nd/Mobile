@@ -6,8 +6,10 @@
 import UIKit
 
 class TutorialModalViewController: DismissableFormSheetViewController {
+    @IBOutlet weak var pagerContent: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var rootView: UIView!
+    @IBOutlet var templateView: UIView!
     
     init() {
         super.init(nibName: "TutorialModal", bundle: nil)
@@ -21,6 +23,20 @@ class TutorialModalViewController: DismissableFormSheetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         rootView.backgroundColor = .primaryColor
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        addView()
+        addView()
+        addView()
+    }
+    
+    func addView() {
+        let viewCopy = NSKeyedUnarchiver.unarchiveObject(with:
+            NSKeyedArchiver .archivedData(withRootObject: templateView)) as! UIView;
+        viewCopy.widthAnchor.constraint(equalToConstant: scrollView.frame.width).isActive = true
+        pagerContent.addArrangedSubview(viewCopy)
+        scrollView.contentSize = pagerContent.frame.size
     }
 
     @IBAction func xAction(_ sender: Any) {
