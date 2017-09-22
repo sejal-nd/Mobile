@@ -22,40 +22,37 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0w-DH-xDF">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0w-DH-xDF">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="552"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="center" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="NMd-vo-4jP">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NMd-vo-4jP">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="552"/>
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="NMd-vo-4jP" firstAttribute="top" secondItem="u0w-DH-xDF" secondAttribute="top" id="0VA-Od-4ca"/>
-                        <constraint firstAttribute="trailing" secondItem="NMd-vo-4jP" secondAttribute="trailing" id="BFe-Vl-kEx"/>
-                        <constraint firstAttribute="bottom" secondItem="NMd-vo-4jP" secondAttribute="bottom" id="DSu-Fy-35S"/>
-                        <constraint firstItem="NMd-vo-4jP" firstAttribute="leading" secondItem="u0w-DH-xDF" secondAttribute="leading" id="JSi-jm-Www"/>
-                        <constraint firstItem="NMd-vo-4jP" firstAttribute="height" secondItem="u0w-DH-xDF" secondAttribute="height" id="l6R-71-HGG"/>
-                        <constraint firstItem="NMd-vo-4jP" firstAttribute="width" secondItem="u0w-DH-xDF" secondAttribute="width" priority="250" id="pXc-1e-tNN"/>
+                        <constraint firstItem="NMd-vo-4jP" firstAttribute="top" secondItem="u0w-DH-xDF" secondAttribute="top" id="5jf-mq-sgO"/>
+                        <constraint firstItem="NMd-vo-4jP" firstAttribute="height" secondItem="u0w-DH-xDF" secondAttribute="height" id="6io-WY-QXu"/>
+                        <constraint firstItem="NMd-vo-4jP" firstAttribute="width" secondItem="u0w-DH-xDF" secondAttribute="width" priority="250" id="FPw-7J-xCM"/>
+                        <constraint firstItem="NMd-vo-4jP" firstAttribute="leading" secondItem="u0w-DH-xDF" secondAttribute="leading" id="Ff8-JR-Y4e"/>
+                        <constraint firstAttribute="trailing" secondItem="NMd-vo-4jP" secondAttribute="trailing" id="fVi-bV-3ZP"/>
+                        <constraint firstAttribute="bottom" secondItem="NMd-vo-4jP" secondAttribute="bottom" id="nCn-aj-LDg"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAG-Ri-eoo">
+                <pageControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="wvI-kX-bVu">
+                    <rect key="frame" x="0.0" y="568" width="375" height="37"/>
+                    <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </pageControl>
+                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAG-Ri-eoo">
                     <rect key="frame" x="167" y="613" width="40" height="34"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                     <state key="normal" title="Next">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="wvI-kX-bVu">
-                    <rect key="frame" x="0.0" y="605" width="375" height="0.0"/>
-                    <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </pageControl>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0S-aT-HYK" userLabel="XButton">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0S-aT-HYK" userLabel="XButton">
                     <rect key="frame" x="0.0" y="8" width="44" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="bjj-o5-jvu"/>
-                        <constraint firstAttribute="width" constant="44" id="pmo-FD-sxp"/>
-                    </constraints>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" image="ic_close_white"/>
                     <connections>
@@ -65,17 +62,15 @@
             </subviews>
             <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="AAG-Ri-eoo" firstAttribute="top" secondItem="wvI-kX-bVu" secondAttribute="bottom" constant="8" id="Gci-Ns-G86"/>
-                <constraint firstItem="u0w-DH-xDF" firstAttribute="leading" secondItem="TqM-X4-uPx" secondAttribute="leading" id="Pui-Oz-Bnb"/>
-                <constraint firstItem="wvI-kX-bVu" firstAttribute="leading" secondItem="TqM-X4-uPx" secondAttribute="leading" id="QF8-Gj-Q2p"/>
-                <constraint firstItem="h0S-aT-HYK" firstAttribute="leading" secondItem="TqM-X4-uPx" secondAttribute="leading" id="Vzi-Xi-4Pk"/>
-                <constraint firstAttribute="trailing" secondItem="wvI-kX-bVu" secondAttribute="trailing" id="a0b-H1-AyK"/>
-                <constraint firstItem="AAG-Ri-eoo" firstAttribute="centerX" secondItem="TqM-X4-uPx" secondAttribute="centerX" id="cub-CN-N7k"/>
-                <constraint firstItem="wvI-kX-bVu" firstAttribute="top" secondItem="u0w-DH-xDF" secondAttribute="bottom" constant="8" id="cwH-kJ-ylL"/>
-                <constraint firstItem="u0w-DH-xDF" firstAttribute="top" secondItem="TqM-X4-uPx" secondAttribute="top" id="e0y-7m-D6N"/>
-                <constraint firstAttribute="trailing" secondItem="u0w-DH-xDF" secondAttribute="trailing" id="gdO-gm-TjW"/>
-                <constraint firstItem="h0S-aT-HYK" firstAttribute="top" secondItem="TqM-X4-uPx" secondAttribute="top" constant="8" id="uGC-QN-dmG"/>
-                <constraint firstAttribute="bottom" secondItem="AAG-Ri-eoo" secondAttribute="bottom" constant="20" id="wF3-IF-0hJ"/>
+                <constraint firstItem="u0w-DH-xDF" firstAttribute="top" secondItem="TqM-X4-uPx" secondAttribute="top" id="2V8-GQ-arA"/>
+                <constraint firstItem="u0w-DH-xDF" firstAttribute="leading" secondItem="TqM-X4-uPx" secondAttribute="leading" id="3ul-ii-rhE"/>
+                <constraint firstItem="AAG-Ri-eoo" firstAttribute="centerX" secondItem="TqM-X4-uPx" secondAttribute="centerX" id="Fkm-8F-M2j"/>
+                <constraint firstAttribute="trailing" secondItem="wvI-kX-bVu" secondAttribute="trailing" id="UPU-P0-0c1"/>
+                <constraint firstItem="AAG-Ri-eoo" firstAttribute="top" secondItem="wvI-kX-bVu" secondAttribute="bottom" constant="8" id="YBi-f0-Jgr"/>
+                <constraint firstItem="wvI-kX-bVu" firstAttribute="top" secondItem="u0w-DH-xDF" secondAttribute="bottom" constant="16" id="bMS-G6-1Dd"/>
+                <constraint firstItem="wvI-kX-bVu" firstAttribute="leading" secondItem="TqM-X4-uPx" secondAttribute="leading" id="cZt-at-ZOY"/>
+                <constraint firstAttribute="trailing" secondItem="u0w-DH-xDF" secondAttribute="trailing" id="gbk-3l-c3y"/>
+                <constraint firstAttribute="bottom" secondItem="AAG-Ri-eoo" secondAttribute="bottom" constant="20" id="pMl-6C-fWY"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="-346.5" y="45.5"/>

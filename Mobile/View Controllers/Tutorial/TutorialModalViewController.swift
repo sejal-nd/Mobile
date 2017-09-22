@@ -32,39 +32,33 @@ class TutorialModalViewController: DismissableFormSheetViewController {
         addSlide(title: "Set Up Default Payment Account",
                  text: "You can easily pay your bill in full from the Home " +
             "screen by setting a payment account as default.",
-                 animation: "tutorial_otp/step1/step1.json",
-                 imageRoot: "tutorial_otp/step1/images/")
+                 animation: "otp_step1")
         addSlide(title: "Tap On My Wallet",
                  text: "Navigate to the Bill screen and tap \"My Wallet.\" " +
             "You can also tap the \"Set a default payment account\" button " +
             "on Home.",
-                 animation: "tutorial_otp/step2/step2.json",
-                 imageRoot: "tutorial_otp/step2/images/")
+                 animation: "otp_step2")
         addSlide(title: "Turn On The Default Toggle",
                  text: "Create or edit a payment account and turn on the " +
                     "\"Default Payment Account\" toggle.",
-                 animation: "tutorial_otp/step3/step3.json",
-                 imageRoot: "tutorial_otp/step3/images/")
+                 animation: "otp_step3")
         addSlide(title: "Pay From The Home Screen!",
                  text: "You can now easily pay from the Home screen. This " +
             "type of payment cannot be canceled and will pay your account " +
             "balance in full.",
-                 animation: "tutorial_otp/step4/step4.json",
-                 imageRoot: "tutorial_otp/step4/images/")
+                 animation: "otp_step4")
     }
 
     func addSlide(title:String,
                  text:String,
-                 animation:String,
-                 imageRoot:String) {
+                 animation:String) {
         let viewCopy = TutorialView(frame: scrollView.frame,
                                     title: title,
                                     message: text,
-                                    animation: animation,
-                                    imagesRoot: imageRoot)
-        viewCopy.view.widthAnchor.constraint(equalToConstant: scrollView.frame.width).isActive = true
+                                    animation: animation)
         pagerContent.addArrangedSubview(viewCopy.view)
         pageControl.numberOfPages = pagerContent.subviews.count
+        viewCopy.view.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
     }
 
     @IBAction func xAction(_ sender: Any) {
