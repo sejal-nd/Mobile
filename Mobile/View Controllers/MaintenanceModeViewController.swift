@@ -49,14 +49,17 @@ class MaintenanceModeViewController: UIViewController {
         
         bodyLabel.attributedText = viewModel.getLabelBody()
 
-        bodyLabel.textColor = .black
+        bodyLabel.textColor = .blackText
         bodyLabel.textContainerInset = .zero
         bodyLabel.textContainer.lineFragmentPadding = 0
+        bodyLabel.tintColor = .actionBlue // Color of the phone numbers
         
         BGEInquiriesLabel.textContainerInset = .zero
         BGEInquiriesLabel.textContainer.lineFragmentPadding = 0
+        BGEInquiriesLabel.tintColor = .actionBlue
+        BGEInquiriesLabel.attributedText = viewModel.bgeInquiriesLabelText
         
-        BGEStackView.isHidden = !viewModel.isBGE()
+        BGEStackView.isHidden = !viewModel.isBGE() // Color of the phone numbers
         
         view.backgroundColor = .primaryColor
     }
