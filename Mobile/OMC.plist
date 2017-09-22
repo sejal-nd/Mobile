@@ -122,6 +122,6 @@
 		</dict>
 	</dict>
 	<key>logLevel</key>
-	<string>debug</string>
+	<string>none</string>
 </dict>
 </plist>
