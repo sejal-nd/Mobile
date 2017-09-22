@@ -707,6 +707,12 @@
 		B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415831F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist */; };
 		B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */; };
 		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
+		CE16F6F71F74D9E500B59F27 /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE16F6F61F74D9E500B59F27 /* TutorialView.xib */; };
+		CE16F6F91F74DA7A00B59F27 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16F6F81F74DA7A00B59F27 /* TutorialView.swift */; };
+		CE16F6FA1F74DC1900B59F27 /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE16F6F61F74D9E500B59F27 /* TutorialView.xib */; };
+		CE16F6FB1F74DC1900B59F27 /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE16F6F61F74D9E500B59F27 /* TutorialView.xib */; };
+		CE16F6FC1F74DC1D00B59F27 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16F6F81F74DA7A00B59F27 /* TutorialView.swift */; };
+		CE16F6FD1F74DC1D00B59F27 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16F6F81F74DA7A00B59F27 /* TutorialView.swift */; };
 		E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
@@ -1629,6 +1635,8 @@
 		B5EB9EED1EC3EB430049B586 /* OMObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMObject.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMObject.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EEE1EC3EB430049B586 /* OMOTPService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMOTPService.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMOTPService.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EEF1EC3EB430049B586 /* OMToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMToken.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMToken.h"; sourceTree = SOURCE_ROOT; };
+		CE16F6F61F74D9E500B59F27 /* TutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialView.xib; sourceTree = "<group>"; };
+		CE16F6F81F74DA7A00B59F27 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialView.swift; path = Tutorial/TutorialView.swift; sourceTree = "<group>"; };
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E80043081E64DEE2005CF531 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Carthage/Build/iOS/ToastSwiftFramework.framework; sourceTree = "<group>"; };
@@ -3088,6 +3096,8 @@
 			children = (
 				6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */,
 				6A4FD90DC1399F0D3296706D /* TutorialModalViewController.swift */,
+				CE16F6F61F74D9E500B59F27 /* TutorialView.xib */,
+				CE16F6F81F74DA7A00B59F27 /* TutorialView.swift */,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -3737,6 +3747,7 @@
 				E8FE30B11E787625009D28B7 /* outage.json in Resources */,
 				B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736321E6740A8003B9369 /* INFO.txt in Resources */,
+				CE16F6F71F74D9E500B59F27 /* TutorialView.xib in Resources */,
 				01F612251F1E404F00A4F9DA /* AddBankFormView.xib in Resources */,
 				01F612211F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
 				B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
@@ -3864,6 +3875,7 @@
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
+				CE16F6FB1F74DC1900B59F27 /* TutorialView.xib in Resources */,
 				82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */,
 				E8499CB41EE5CD900062F619 /* Bill.storyboard in Resources */,
@@ -3955,6 +3967,7 @@
 				54DF4BDF1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				E8494F3C1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
+				CE16F6FA1F74DC1900B59F27 /* TutorialView.xib in Resources */,
 				B55736421E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				E8499CB31EE5CD8F0062F619 /* Bill.storyboard in Resources */,
@@ -4164,6 +4177,7 @@
 				54DF4BD51EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				E80D2E171E721668002626C9 /* MaskedString.swift in Sources */,
 				E8F51EE61EC9F8560080AB3E /* MockBillService.swift in Sources */,
+				CE16F6F91F74DA7A00B59F27 /* TutorialView.swift in Sources */,
 				E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
 				E8C29C731F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
@@ -4389,6 +4403,7 @@
 				387E5C491F1FCDAD00D6710D /* Percentage.swift in Sources */,
 				E803A0061EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
+				CE16F6FC1F74DC1D00B59F27 /* TutorialView.swift in Sources */,
 				E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E81F38151ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				E8C29C751F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
@@ -4614,6 +4629,7 @@
 				387E5C481F1FCDAD00D6710D /* Percentage.swift in Sources */,
 				E803A0051EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
+				CE16F6FD1F74DC1D00B59F27 /* TutorialView.swift in Sources */,
 				E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E81F38141ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				E8C29C741F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,

@@ -10,10 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialModalViewController" customModule="BGE" customModuleProvider="target">
             <connections>
+                <outlet property="pageControl" destination="wvI-kX-bVu" id="4Lz-n2-kaT"/>
                 <outlet property="pagerContent" destination="NMd-vo-4jP" id="nxf-Qd-wqQ"/>
                 <outlet property="rootView" destination="TqM-X4-uPx" id="BJb-AX-aLB"/>
                 <outlet property="scrollView" destination="u0w-DH-xDF" id="Xw7-Oi-RSx"/>
-                <outlet property="templateView" destination="wy2-KA-oEc" id="wQd-Gh-ir8"/>
                 <outlet property="view" destination="TqM-X4-uPx" id="hDs-7O-kyz"/>
             </connections>
         </placeholder>
@@ -22,11 +22,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0w-DH-xDF">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="560"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0w-DH-xDF">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="center" ambiguous="YES" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="NMd-vo-4jP">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="560"/>
+                        <stackView opaque="NO" contentMode="center" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="NMd-vo-4jP">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
                         </stackView>
                     </subviews>
                     <constraints>
@@ -35,10 +35,8 @@
                         <constraint firstAttribute="bottom" secondItem="NMd-vo-4jP" secondAttribute="bottom" id="DSu-Fy-35S"/>
                         <constraint firstItem="NMd-vo-4jP" firstAttribute="leading" secondItem="u0w-DH-xDF" secondAttribute="leading" id="JSi-jm-Www"/>
                         <constraint firstItem="NMd-vo-4jP" firstAttribute="height" secondItem="u0w-DH-xDF" secondAttribute="height" id="l6R-71-HGG"/>
+                        <constraint firstItem="NMd-vo-4jP" firstAttribute="width" secondItem="u0w-DH-xDF" secondAttribute="width" priority="250" id="pXc-1e-tNN"/>
                     </constraints>
-                    <connections>
-                        <outlet property="delegate" destination="wvI-kX-bVu" id="pHz-Uo-1OJ"/>
-                    </connections>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAG-Ri-eoo">
                     <rect key="frame" x="167" y="613" width="40" height="34"/>
@@ -47,10 +45,10 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="wvI-kX-bVu">
-                    <rect key="frame" x="0.0" y="568" width="375" height="37"/>
-                    <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <color key="currentPageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="wvI-kX-bVu">
+                    <rect key="frame" x="0.0" y="605" width="375" height="0.0"/>
+                    <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </pageControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0S-aT-HYK" userLabel="XButton">
                     <rect key="frame" x="0.0" y="8" width="44" height="44"/>
@@ -81,44 +79,6 @@
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="-346.5" y="45.5"/>
-        </view>
-        <view contentMode="scaleToFill" id="wy2-KA-oEc">
-            <rect key="frame" x="0.0" y="0.0" width="276" height="556"/>
-            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tro-Fl-cVG">
-                    <rect key="frame" x="8" y="8" width="260" height="378.5"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can now easily pay from the home screen. This type of payment cannot be canceled and will pay your account balance in full." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qdx-sg-ydb">
-                    <rect key="frame" x="52" y="439.5" width="172" height="100.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Up Default Payment Account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPp-ru-nto">
-                    <rect key="frame" x="52" y="402.5" width="172" height="21"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="tro-Fl-cVG" secondAttribute="trailing" constant="8" id="Av3-PV-lPB"/>
-                <constraint firstItem="tro-Fl-cVG" firstAttribute="leading" secondItem="wy2-KA-oEc" secondAttribute="leading" constant="8" id="JDn-b1-HKr"/>
-                <constraint firstAttribute="trailing" secondItem="xPp-ru-nto" secondAttribute="trailing" constant="52" id="JjJ-ee-up9"/>
-                <constraint firstItem="xPp-ru-nto" firstAttribute="top" secondItem="tro-Fl-cVG" secondAttribute="bottom" constant="16" id="N2L-jl-olo"/>
-                <constraint firstAttribute="trailing" secondItem="Qdx-sg-ydb" secondAttribute="trailing" constant="52" id="dB8-iE-QGD"/>
-                <constraint firstItem="tro-Fl-cVG" firstAttribute="top" secondItem="wy2-KA-oEc" secondAttribute="top" constant="8" id="hBt-Uf-Fn7"/>
-                <constraint firstAttribute="bottom" secondItem="Qdx-sg-ydb" secondAttribute="bottom" constant="16" id="iTQ-fO-6v9"/>
-                <constraint firstItem="Qdx-sg-ydb" firstAttribute="leading" secondItem="wy2-KA-oEc" secondAttribute="leading" constant="52" id="nVU-3f-4Xg"/>
-                <constraint firstItem="xPp-ru-nto" firstAttribute="top" secondItem="tro-Fl-cVG" secondAttribute="bottom" constant="16" id="tTJ-Bb-FfX"/>
-                <constraint firstItem="Qdx-sg-ydb" firstAttribute="top" secondItem="xPp-ru-nto" secondAttribute="bottom" constant="16" id="v90-jO-TuI"/>
-                <constraint firstItem="xPp-ru-nto" firstAttribute="leading" secondItem="wy2-KA-oEc" secondAttribute="leading" constant="52" id="zYK-vJ-7Wk"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="37" y="75"/>
         </view>
     </objects>
     <resources>

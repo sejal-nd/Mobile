@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Slide to Pay Tutorial</key>
+	<dict>
+		<key>Slides</key>
+		<array>
+			<dict>
+				<key>Title</key>
+				<string></string>
+                <key>Text</key>
+                <string></string>
+                <key>Animation</key>
+                <string></string>
+                <key>ImagesRoot</key>
+                <string></string>
+			</dict>
+            <dict>
+                <key>Title</key>
+                <string></string>
+                <key>Text</key>
+                <string></string>
+                <key>Animation</key>
+                <string>tutorial_otp/step2/step2.json</string>
+                <key>ImagesRoot</key>
+                <string>tutorial_otp/step2/images/</string>
+            </dict>
+            <dict>
+                <key>Title</key>
+                <string></string>
+                <key>Text</key>
+                <string></string>
+                <key>Animation</key>
+                <string>tutorial_otp/step3/step3.json</string>
+                <key>ImagesRoot</key>
+                <string>tutorial_otp/step3/images/</string>
+            </dict>
+            <dict>
+                <key>Title</key>
+                <string></string>
+                <key>Text</key>
+                <string></string>
+                <key>Animation</key>
+                <string>tutorial_otp/step4/step4.json</string>
+                <key>ImagesRoot</key>
+                <string>tutorial_otp/step4/images/</string>
+            </dict>
+		</array>
+	</dict>
+</dict>
+</plist>
