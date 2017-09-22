@@ -41,12 +41,12 @@ class MaintenanceModeViewModel{
             localizedString = String(format: NSLocalizedString("If you smell natural gas or see downed power lines, %@ and then call BGE at %@\n\nIf your power is out, call %@", comment: ""), leaveAreaString, phone1, phone2)
         case .comEd:
             phone1 = "1-800-334-7661"
-            phone2 = "1-800-334-7661"
-            localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd at %@ Representatives are available 24 hours a day, 7 days a week.\nFor all other inquiries, please call %@ M-F 7AM to 7PM\n\n", comment: ""), leaveAreaString, phone1, phone2)
+            phone2 = "\n1-800-334-7661" // Included the line break in the second number so the range(of:) method could find it, and bold it. Not hacky at all 👀
+            localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd at %@ Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call%@ M-F 7AM to 7PM\n\n", comment: ""), leaveAreaString, phone1, phone2)
         case .peco:
             phone1 = "1-800-841-4141"
             phone2 = "1-800-494-4000"
-            localizedString = String(format: NSLocalizedString("If you smell natural gas or see downed power lines, %@ and then call PECO at %@ Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call %@ M-F 7AM to 7PM\n\n", comment: ""), leaveAreaString, phone1, phone2)
+            localizedString = String(format: NSLocalizedString("If you smell natural gas or see downed power lines, %@ and then call PECO at %@ Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n%@ M-F 7AM to 7PM\n\n", comment: ""), leaveAreaString, phone1, phone2)
         }
         
         emergencyAttrString = NSMutableAttributedString(string: localizedString)
