@@ -400,13 +400,13 @@ class BillViewController: AccountPickerViewController {
                     alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVC, animated: true, completion: nil)
                 } else {
-                    if self.viewModel.currentAccountDetail.value!.billingInfo.billDate != nil {
-                        self.performSegue(withIdentifier: "viewBillSegue", sender: self)
-                    } else {
+                    guard let _ = self.viewModel.currentAccountDetail.value?.billingInfo.billDate else {
                         let alertVC = UIAlertController(title: NSLocalizedString("You will be able to view the PDF of your bill once its ready.", comment: ""), message: nil, preferredStyle: .alert)
                         alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                         self.present(alertVC, animated: true, completion: nil)
+                        return
                     }
+                    self.performSegue(withIdentifier: "viewBillSegue", sender: self)
                 }
                 
                 if(self.pastDueView.isHidden) {
