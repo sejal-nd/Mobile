@@ -160,7 +160,7 @@ class ReportOutageViewController: UIViewController {
             .withLatestFrom(viewModel.phoneNumberHasTenDigits)
             .filter(!)
             .drive(onNext: { [weak self] _ in
-                self?.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
+                self?.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long", comment: ""))
             })
             .disposed(by: disposeBag)
         

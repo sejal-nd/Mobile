@@ -106,7 +106,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             self?.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
             }, onEmailAlreadyExists: { [weak self] in
                 LoadingView.hide()
-                self?.createUsernameTextField.setError(NSLocalizedString("Email already exists. Please select a different email to login to view your account.", comment: ""))
+                self?.createUsernameTextField.setError(NSLocalizedString("Email already exists. Please select a different email to login to view your account", comment: ""))
                 self?.accessibilityErrorLabel()
                 
             }, onError: { [weak self] (title, message) in
