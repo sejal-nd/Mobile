@@ -72,14 +72,6 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
         self.accessibilityLabel = "\(checkMarkImageView.accessibilityLabel ?? ""). \(accountImageView.accessibilityLabel ?? ""). \(accountNumber.accessibilityLabel ?? ""). " +
         "\(addressLabel.accessibilityLabel ?? "") \(accountStatusLabel.accessibilityLabel ?? "")."
         
-        
-        if let _ = account.address {
-            selectionStyle = .default
-            contentView.alpha = 1
-        } else {
-            selectionStyle = .none
-            contentView.alpha = 0.2
-        }
     }
     
 }
