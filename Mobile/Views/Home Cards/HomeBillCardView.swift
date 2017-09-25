@@ -56,6 +56,7 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var convenienceFeeContainer: UIView!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
+    @IBOutlet weak var oneTouchSliderContainer: UIView!
     @IBOutlet weak var oneTouchSlider: OneTouchSlider!
     @IBOutlet weak var commercialBgeOtpVisaLabelContainer: UIView!
     @IBOutlet weak var commericalBgeOtpVisaLabel: UILabel!
@@ -80,7 +81,7 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var billNotReadyLabel: UILabel!
     @IBOutlet weak var errorStack: UIStackView!
     @IBOutlet weak var errorLabel: UILabel!
-    
+
     fileprivate var viewModel: HomeBillCardViewModel! {
         didSet {
             bag = DisposeBag() // Clear all pre-existing bindings
@@ -240,10 +241,25 @@ class HomeBillCardView: UIView {
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
             .disposed(by: bag)
-        
+    
     }
     
     // Actions
+    var slideTap: Driver<UIViewController> {
+        get {
+            let tapGesture = UITapGestureRecognizer()
+            
+            oneTouchSliderContainer.addGestureRecognizer(tapGesture)
+            return tapGesture.rx.event.asObservable()
+                .filter({ [weak self] _ in
+                    return !self!.saveAPaymentAccountButton.isHidden &&
+                        !self!.oneTouchSlider.isEnabled
+                }).map { [weak self] _ in
+                    return self!.viewModel.oneTouchPayDisabledClick
+                }.asDriver(onErrorDriveWith: .empty())
+        }
+    }
+    
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.tap.asDriver()
         .do(onNext: {
             Analytics().logScreenView(AnalyticsPageView.ViewBillBillCard.rawValue)
@@ -405,7 +421,8 @@ class HomeBillCardView: UIView {
                                                                                         self.paymentTACModal,
                                                                                         self.oneTouchPayErrorAlert,
                                                                                         self.oneTouchSliderCVV2Alert,
-                                                                                        self.oneTouchSliderBGELegalAlert)
+                                                                                        self.oneTouchSliderBGELegalAlert,
+                                                                                        self.slideTap)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = self.bankCreditNumberButton.rx.touchUpInside.asObservable()
