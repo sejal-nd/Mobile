@@ -81,7 +81,9 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var billNotReadyLabel: UILabel!
     @IBOutlet weak var errorStack: UIStackView!
     @IBOutlet weak var errorLabel: UILabel!
-
+    
+    let tutorialTap = UITapGestureRecognizer()
+    
     fileprivate var viewModel: HomeBillCardViewModel! {
         didSet {
             bag = DisposeBag() // Clear all pre-existing bindings
@@ -241,25 +243,12 @@ class HomeBillCardView: UIView {
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
             .disposed(by: bag)
-    
+        
+        oneTouchSliderContainer.removeGestureRecognizer(tutorialTap)
+        oneTouchSliderContainer.addGestureRecognizer(tutorialTap)
     }
     
     // Actions
-    var slideTap: Driver<UIViewController> {
-        get {
-            let tapGesture = UITapGestureRecognizer()
-            
-            oneTouchSliderContainer.addGestureRecognizer(tapGesture)
-            return tapGesture.rx.event.asObservable()
-                .filter({ [weak self] _ in
-                    return !self!.saveAPaymentAccountButton.isHidden &&
-                        !self!.oneTouchSlider.isEnabled
-                }).map { [weak self] _ in
-                    return self!.viewModel.oneTouchPayDisabledClick
-                }.asDriver(onErrorDriveWith: .empty())
-        }
-    }
-    
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.tap.asDriver()
         .do(onNext: {
             Analytics().logScreenView(AnalyticsPageView.ViewBillBillCard.rawValue)
@@ -416,13 +405,19 @@ class HomeBillCardView: UIView {
             return alertController
     }
     
+    private(set) lazy var tutorialViewController: Driver<UIViewController> = self.tutorialTap.rx.event.asDriver()
+        .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
+        .filter { $0 && !$1 }
+        .mapTo(())
+        .map(OneTouchTutorialViewController.init)
+    
     private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(self.tooltipModal,
                                                                                         self.oneTouchSliderWeekendAlert,
                                                                                         self.paymentTACModal,
                                                                                         self.oneTouchPayErrorAlert,
                                                                                         self.oneTouchSliderCVV2Alert,
                                                                                         self.oneTouchSliderBGELegalAlert,
-                                                                                        self.slideTap)
+                                                                                        self.tutorialViewController)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = self.bankCreditNumberButton.rx.touchUpInside.asObservable()

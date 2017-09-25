@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -246,7 +246,7 @@
                                     <rect key="frame" x="46.5" y="721" width="240" height="50"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-nz-bzd" customClass="OneTouchSlider" customModule="BGE" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="220" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
@@ -255,7 +255,7 @@
                                         <constraint firstItem="Myo-nz-bzd" firstAttribute="top" secondItem="T3N-2i-LNu" secondAttribute="top" priority="999" id="I23-Fw-HJ7"/>
                                         <constraint firstAttribute="bottom" secondItem="Myo-nz-bzd" secondAttribute="bottom" priority="999" id="Lkr-gA-uhh"/>
                                         <constraint firstItem="Myo-nz-bzd" firstAttribute="leading" secondItem="T3N-2i-LNu" secondAttribute="leading" priority="999" id="NYP-m0-4zo"/>
-                                        <constraint firstAttribute="trailing" secondItem="Myo-nz-bzd" secondAttribute="trailing" priority="999" constant="20" symbolic="YES" id="Ucx-gN-1Nl"/>
+                                        <constraint firstAttribute="trailing" secondItem="Myo-nz-bzd" secondAttribute="trailing" priority="999" id="Ucx-gN-1Nl"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-ep-YjG">

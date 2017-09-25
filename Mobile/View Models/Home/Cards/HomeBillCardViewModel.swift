@@ -739,30 +739,6 @@ class HomeBillCardViewModel {
         }
     }
     
-    var oneTouchPayDisabledClick: TutorialModalViewController {
-        get {
-            let infoModal = TutorialModalViewController()
-            infoModal.addSlide(title: "Set Up Default Payment Account",
-                    text: "You can easily pay your bill in full from the Home " +
-                            "screen by setting a payment account as default.",
-                    animation: "otp_step1")
-            infoModal.addSlide(title: "Tap On My Wallet",
-                    text: "Navigate to the Bill screen and tap \"My Wallet.\" " +
-                            "You can also tap the \"Set a default payment account\" button " +
-                            "on Home.",
-                    animation: "otp_step2")
-            infoModal.addSlide(title: "Turn On The Default Toggle",
-                    text: "Create or edit a payment account and turn on the " +
-                            "\"Default Payment Account\" toggle.",
-                    animation: "otp_step3")
-            infoModal.addSlide(title: "Pay From The Home Screen!",
-                    text: "You can now easily pay from the Home screen. This " +
-                            "type of payment cannot be canceled and will pay your account " +
-                            "balance in full.",
-                    animation: "otp_step4")
-            return infoModal
-        }
-    }
 }
 
 

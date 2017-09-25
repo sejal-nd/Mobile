@@ -283,6 +283,9 @@
 		820125431F75991C00FE4771 /* otp_step3.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD7C40F42086D316B331A /* otp_step3.json */; };
 		820125441F75992200FE4771 /* otp_step4.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6C78F5098995DBEC42 /* otp_step4.json */; };
 		820125451F75992300FE4771 /* otp_step4.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6C78F5098995DBEC42 /* otp_step4.json */; };
+		820125471F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
+		820125481F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
+		820125491F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
 		82156F1D1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
 		82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
 		82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
@@ -1358,6 +1361,7 @@
 		6A4FDE4FB49A2918375DF12B /* otp_step3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step3.json; sourceTree = "<group>"; };
 		6A4FDFDC5B607067767A0DE4 /* img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_1.png; sourceTree = "<group>"; };
 		6A4FDFE2B58E816579B4676D /* img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_0.png; sourceTree = "<group>"; };
+		820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OneTouchTutorialViewController.swift; path = Tutorial/OneTouchTutorialViewController.swift; sourceTree = "<group>"; };
 		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoNetworkConnectionView.swift; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.swift; sourceTree = SOURCE_ROOT; };
 		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoNetworkConnectionView.xib; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.xib; sourceTree = SOURCE_ROOT; };
 		8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBindingObservers.swift; sourceTree = "<group>"; };
@@ -3106,6 +3110,7 @@
 				6A4FD90DC1399F0D3296706D /* TutorialModalViewController.swift */,
 				CE16F6F61F74D9E500B59F27 /* TutorialView.xib */,
 				CE16F6F81F74DA7A00B59F27 /* TutorialView.swift */,
+				820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -4150,6 +4155,7 @@
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
+				820125471F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				E841F3AA1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
@@ -4376,6 +4382,7 @@
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				54C1DEF81F01EBFA00290FE5 /* BGEasyViewController.swift in Sources */,
 				824004CC1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
+				820125491F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF21EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
@@ -4602,6 +4609,7 @@
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				54C1DEF71F01EBF900290FE5 /* BGEasyViewController.swift in Sources */,
 				E857C5221F269FF6002A8E94 /* TemplateCardView.swift in Sources */,
+				820125481F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,

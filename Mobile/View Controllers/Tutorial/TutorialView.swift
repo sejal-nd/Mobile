@@ -19,12 +19,12 @@ class TutorialView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        cinit()
+        commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        cinit()
+        commonInit()
     }
     
     convenience init(frame: CGRect, title: String, message: String,
@@ -43,7 +43,7 @@ class TutorialView : UIView {
         lottieView!.play()
     }
     
-    func cinit() {
+    func commonInit() {
         Bundle.main.loadNibNamed("TutorialView", owner: self, options: nil)
         addSubview(view)
         view.frame = self.bounds
