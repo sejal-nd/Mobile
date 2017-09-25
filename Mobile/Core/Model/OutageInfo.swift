@@ -43,6 +43,7 @@ struct OutageInfo {
     var isUnusual: OutageTrivalent? //ComEd
     var unusualMessage: String? //ComEd
     var isNeighbor: OutageTrivalent? //ComEd
+    var comment: String?
     
     init(accountNumber: String,
          locationId: String?=nil,
@@ -51,7 +52,8 @@ struct OutageInfo {
          phoneExtension: String?=nil,
          isUnusual: OutageTrivalent?=nil,
          unusualMessage: String?=nil,
-         isNeighbor: OutageTrivalent?=nil) {
+         isNeighbor: OutageTrivalent?=nil,
+         comment: String?=nil) {
         self.accountNumber = accountNumber
         self.locationId = locationId
         self.reportedTime = Date()
@@ -61,6 +63,7 @@ struct OutageInfo {
         self.isUnusual = isUnusual
         self.unusualMessage = unusualMessage
         self.isNeighbor = isNeighbor
+        self.comment = comment
     }
 }
 

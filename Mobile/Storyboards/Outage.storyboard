@@ -34,7 +34,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5uv-tk-M2B" id="MPd-zX-etf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="RrS-8S-WG1">
@@ -106,7 +106,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A4b-qi-G2Y" id="idt-a8-aFn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="grR-CI-YW3">
@@ -510,11 +510,11 @@
                         <viewControllerLayoutGuide type="bottom" id="iy0-uF-6Qi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="obc-d4-nlp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zz7-Yi-MtH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4y-Cq-6p7" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -524,7 +524,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wj3-R8-PEk">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="948"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="1198.5"/>
                                         <subviews>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-bI-z1O">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
@@ -568,7 +568,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifying meter has power..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afw-hD-sE0">
-                                                                <rect key="frame" x="60" y="15.5" width="241" height="19.5"/>
+                                                                <rect key="frame" x="60" y="15" width="241" height="19.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -673,7 +673,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-Bd-NCe">
-                                                <rect key="frame" x="0.0" y="164.5" width="375" height="113.5"/>
+                                                <rect key="frame" x="0.0" y="164.5" width="375" height="114"/>
                                                 <subviews>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Z3B-9b-TVX" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="29" y="32" width="51" height="31"/>
@@ -682,7 +682,7 @@
                                                         </constraints>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="I have checked my circuit breakers or fuse box and I would still like to report an outage." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsO-JP-Q4X">
-                                                        <rect key="frame" x="97" y="24" width="249" height="65.5"/>
+                                                        <rect key="frame" x="97" y="24" width="249" height="66"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -700,7 +700,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5lr-vG-MUZ">
-                                                <rect key="frame" x="0.0" y="278" width="375" height="364"/>
+                                                <rect key="frame" x="0.0" y="278.5" width="375" height="614"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4L-Ty-VsC" userLabel="Spacer View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -786,8 +786,36 @@
                                                             <constraint firstItem="FCi-Ha-Xvr" firstAttribute="top" secondItem="zeq-ft-dgR" secondAttribute="top" priority="999" id="jrQ-db-XUE"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3VT-8h-lDw">
+                                                        <rect key="frame" x="0.0" y="364" width="375" height="220"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omN-Iy-wr2" customClass="FloatLabelTextView" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="29" y="77" width="317" height="142"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="142" id="Cd1-If-uIt"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please provide any unusual observations and the location of the issue (up to 250 characters)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKG-QO-eKb">
+                                                                <rect key="frame" x="29" y="0.0" width="317" height="67"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="omN-Iy-wr2" secondAttribute="bottom" constant="1" id="AmJ-St-Yc0"/>
+                                                            <constraint firstAttribute="trailing" secondItem="omN-Iy-wr2" secondAttribute="trailing" constant="29" id="DSf-f2-4dx"/>
+                                                            <constraint firstItem="uKG-QO-eKb" firstAttribute="top" secondItem="3VT-8h-lDw" secondAttribute="top" id="Knx-q4-3om"/>
+                                                            <constraint firstItem="omN-Iy-wr2" firstAttribute="top" secondItem="uKG-QO-eKb" secondAttribute="bottom" constant="10" id="PNy-eE-FRg"/>
+                                                            <constraint firstItem="omN-Iy-wr2" firstAttribute="leading" secondItem="3VT-8h-lDw" secondAttribute="leading" constant="29" id="Q1b-aQ-8RB"/>
+                                                            <constraint firstItem="omN-Iy-wr2" firstAttribute="leading" secondItem="uKG-QO-eKb" secondAttribute="leading" id="d90-Rd-Ziq"/>
+                                                            <constraint firstItem="omN-Iy-wr2" firstAttribute="trailing" secondItem="uKG-QO-eKb" secondAttribute="trailing" id="lLu-ZH-qZk"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5Q-bu-jBI" userLabel="Spacer View">
-                                                        <rect key="frame" x="0.0" y="364" width="375" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="614" width="375" height="0.0"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="999" id="t5J-Ed-ry1"/>
@@ -799,7 +827,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6M8-NZ-rW4" userLabel="Footer Container View">
-                                                <rect key="frame" x="0.0" y="642" width="375" height="306"/>
+                                                <rect key="frame" x="0.0" y="892.5" width="375" height="306"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3B-jb-AXr">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -878,11 +906,13 @@
                     <navigationItem key="navigationItem" title="Report Outage" id="IsK-az-qit"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="1000"/>
+                    <size key="freeformSize" width="375" height="1200"/>
                     <connections>
                         <outlet property="accountInfoBar" destination="c4y-Cq-6p7" id="4In-f8-uAi"/>
                         <outlet property="areYourLightsOutLabel" destination="Nce-RI-YJq" id="LUb-jj-jLA"/>
                         <outlet property="areYourLightsOutView" destination="DUq-7C-7A4" id="OIx-MK-EPX"/>
+                        <outlet property="commentTextView" destination="omN-Iy-wr2" id="Bky-as-fuU"/>
+                        <outlet property="commentView" destination="3VT-8h-lDw" id="s9R-b0-Nso"/>
                         <outlet property="footerBackgroundView" destination="z3B-jb-AXr" id="vQE-ck-4iG"/>
                         <outlet property="footerContainerView" destination="6M8-NZ-rW4" id="Dev-EO-jFF"/>
                         <outlet property="footerTextView" destination="doS-PF-4Ay" id="TxS-EY-DqF"/>
@@ -911,7 +941,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vjy-S2-E4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2297" y="345"/>
+            <point key="canvasLocation" x="2296.8000000000002" y="344.52773613193403"/>
         </scene>
     </scenes>
     <resources>
