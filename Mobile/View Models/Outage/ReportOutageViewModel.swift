@@ -19,6 +19,7 @@ class ReportOutageViewModel {
     var selectedSegmentIndex = Variable(0)
     var phoneNumber = Variable("")
     var phoneExtension = Variable("")
+    var comments = Variable("")
     var reportFormHidden = Variable(false)
     
     required init(outageService: OutageService) {
@@ -55,7 +56,7 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.Flickering
         }
 
-        var outageInfo = OutageInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value))
+        var outageInfo = OutageInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
@@ -82,7 +83,7 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.Flickering
         }
         
-        var outageInfo = OutageInfo(accountNumber: outageStatus!.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value))
+        var outageInfo = OutageInfo(accountNumber: outageStatus!.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }

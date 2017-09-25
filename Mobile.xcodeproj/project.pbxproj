@@ -641,6 +641,12 @@
 		B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
 		B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
 		B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
+		B59EFA9D1F72E62A001490A1 /* FloatLabelTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B59EFA9C1F72E62A001490A1 /* FloatLabelTextView.xib */; };
+		B59EFAA21F72E67E001490A1 /* FloatLabelTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B59EFA9C1F72E62A001490A1 /* FloatLabelTextView.xib */; };
+		B59EFAA31F72E67F001490A1 /* FloatLabelTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B59EFA9C1F72E62A001490A1 /* FloatLabelTextView.xib */; };
+		B59EFAA51F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59EFAA41F72E9A2001490A1 /* FloatLabelTextView.swift */; };
+		B59EFAA61F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59EFAA41F72E9A2001490A1 /* FloatLabelTextView.swift */; };
+		B59EFAA71F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59EFAA41F72E9A2001490A1 /* FloatLabelTextView.swift */; };
 		B5A16F351F0D44110016952C /* SpeedpayApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A16F341F0D44110016952C /* SpeedpayApi.swift */; };
 		B5A16F361F0D44110016952C /* SpeedpayApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A16F341F0D44110016952C /* SpeedpayApi.swift */; };
 		B5A16F371F0D44110016952C /* SpeedpayApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A16F341F0D44110016952C /* SpeedpayApi.swift */; };
@@ -1578,6 +1584,8 @@
 		B58B5B5C1E516C360051FD5F /* BGE-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
 		B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-STAGING.plist"; sourceTree = "<group>"; };
 		B58B5B6B1E51737F0051FD5F /* environment_preprocess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
+		B59EFA9C1F72E62A001490A1 /* FloatLabelTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatLabelTextView.xib; sourceTree = "<group>"; };
+		B59EFAA41F72E9A2001490A1 /* FloatLabelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextView.swift; sourceTree = "<group>"; };
 		B5A16F341F0D44110016952C /* SpeedpayApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedpayApi.swift; sourceTree = "<group>"; };
 		B5AC06781E51763200BBA4ED /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		B5AC067C1E5178AB00BBA4ED /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
@@ -3258,6 +3266,8 @@
 				E86334661E5F6A150091E6FE /* FloatLabelTextField.xib */,
 				E863346A1E5F6A320091E6FE /* FloatLabelTextField.swift */,
 				E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */,
+				B59EFA9C1F72E62A001490A1 /* FloatLabelTextView.xib */,
+				B59EFAA41F72E9A2001490A1 /* FloatLabelTextView.swift */,
 			);
 			path = FloatLabelTextField;
 			sourceTree = "<group>";
@@ -3754,6 +3764,7 @@
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
+				B59EFA9D1F72E62A001490A1 /* FloatLabelTextView.xib in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
 				385AF2231F27915A001E3619 /* img_0.png in Resources */,
@@ -3897,6 +3908,7 @@
 				B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */,
 				E8499CB41EE5CD900062F619 /* Bill.storyboard in Resources */,
 				01F612231F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
+				B59EFAA31F72E67F001490A1 /* FloatLabelTextView.xib in Resources */,
 				E8499CB61EE5D5140062F619 /* Bill.storyboard in Resources */,
 				6A4FD31E23F701334D2D37CE /* splash.json in Resources */,
 				6A4FD2D560C81F27B81D2748 /* otps1_img_0.png in Resources */,
@@ -3993,6 +4005,7 @@
 				82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				E8499CB31EE5CD8F0062F619 /* Bill.storyboard in Resources */,
 				01F612221F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
+				B59EFAA21F72E67E001490A1 /* FloatLabelTextView.xib in Resources */,
 				E8499CB51EE5D5140062F619 /* Bill.storyboard in Resources */,
 				6A4FD21032155AD85505077D /* splash.json in Resources */,
 				6A4FD9B658A06B0878472526 /* img_0.png in Resources */,
@@ -4340,6 +4353,7 @@
 				54930DC81EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
 				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				01F6122D1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
+				B59EFAA51F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */,
 				E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
@@ -4567,6 +4581,7 @@
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				54C1DEFC1F02B8E300290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
+				B59EFAA71F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				01F6122F1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
 				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
@@ -4794,6 +4809,7 @@
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				54C1DEFB1F02B8E200290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
+				B59EFAA61F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				01F6122E1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
 				E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,

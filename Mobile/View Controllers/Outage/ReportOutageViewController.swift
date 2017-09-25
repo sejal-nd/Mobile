@@ -53,11 +53,14 @@ class ReportOutageViewController: UIViewController {
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneExtensionContainerView: UIView!
     @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
+    @IBOutlet weak var commentView: UIView!
+    @IBOutlet weak var commentTextView: FloatLabelTextView!
     
     // Footer View
     @IBOutlet weak var footerContainerView: UIView!
     @IBOutlet weak var footerBackgroundView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
+    
     
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
     let opco = Environment.sharedInstance.opco
@@ -142,6 +145,10 @@ class ReportOutageViewController: UIViewController {
             viewModel.reportFormHidden.value = false
         }
 
+        if opco != .comEd {
+            commentView.isHidden = true
+        }
+        
         if opco == .peco {
             segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: ""), NSLocalizedString("Dim/Flickering", comment: "")]
         } else {
@@ -182,6 +189,7 @@ class ReportOutageViewController: UIViewController {
         phoneExtensionTextField.setKeyboardType(.numberPad)
         phoneExtensionTextField.textField.delegate = self
 
+        
         if opco == .bge {
             phoneExtensionContainerView.isHidden = true
         }
@@ -197,6 +205,8 @@ class ReportOutageViewController: UIViewController {
         footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
         footerTextView.delegate = self
         
+        commentTextView.textView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
+        
         // Data binding
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
         
@@ -206,6 +216,7 @@ class ReportOutageViewController: UIViewController {
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
         
         phoneExtensionTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneExtension).disposed(by: disposeBag)
+        commentTextView.textView.rx.text.orEmpty.bind(to: viewModel.comments).disposed(by: disposeBag)
         
         // Format the intial value
         let range = NSMakeRange(0, viewModel.phoneNumber.value.characters.count)
