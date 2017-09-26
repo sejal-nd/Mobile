@@ -28,6 +28,7 @@ struct Account: Mappable, Equatable, Hashable {
     let isDefault: Bool
     let isFinaled: Bool
     let isResidential: Bool
+    let serviceType: String?
 
     init(map: Mapper) throws {
         accountNumber = try map.from("accountNumber")
@@ -39,6 +40,7 @@ struct Account: Mappable, Equatable, Hashable {
         isDefault = map.optionalFrom("isDefaultProfile") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false
         isResidential = map.optionalFrom("isResidential") ?? false
+        serviceType = map.optionalFrom("serviceType")
         
         currentPremise = isMultipremise ? premises[0] : nil 
     }
