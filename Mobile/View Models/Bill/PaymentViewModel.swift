@@ -68,16 +68,17 @@ class PaymentViewModel {
             paymentAmount = Variable("")
         }
         
-        let startOfTodayDate = Calendar.opCoTime.startOfDay(for: Date())
-        self.paymentDate = Variable(startOfTodayDate)
+        let now = Date()
+        self.paymentDate = Variable(now)
         if Environment.sharedInstance.opco == .bge &&
             Calendar.opCoTime.component(.hour, from: Date()) >= 20 &&
             !accountDetail.isActiveSeverance {
+            let startOfTodayDate = Calendar.opCoTime.startOfDay(for: now)
             let tomorrow =  Calendar.opCoTime.date(byAdding: .day, value: 1, to: startOfTodayDate)!
             self.paymentDate.value = tomorrow
         }
         if let dueDate = accountDetail.billingInfo.dueByDate {
-            if dueDate >= startOfTodayDate && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
+            if dueDate >= now && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
                 self.paymentDate.value = dueDate
             }
         }
@@ -201,7 +202,7 @@ class PaymentViewModel {
                 let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
                 var paymentDate = self.paymentDate.value
                 if isFixed {
-                    paymentDate = Calendar.opCoTime.startOfDay(for: Date())
+                    paymentDate = Date()
                 }
                 
                 let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
@@ -263,7 +264,7 @@ class PaymentViewModel {
                     let paymentType: PaymentType = .check
                     var paymentDate = self.paymentDate.value
                     if isFixed {
-                        paymentDate = Calendar.opCoTime.startOfDay(for: Date())
+                        paymentDate = Date()
                     }
                     
                     let accountNum = self.addBankFormViewModel.accountNumber.value
@@ -302,7 +303,7 @@ class PaymentViewModel {
                 guard let `self` = self else { return }
                 var paymentDate = self.paymentDate.value
                 if isFixed {
-                    paymentDate = Calendar.opCoTime.startOfDay(for: Date())
+                    paymentDate = Date()
                 }
                 self.paymentService.scheduleBGEOneTimeCardPayment(accountNumber: self.accountDetail.value.accountNumber, paymentAmount: self.paymentAmountDouble(), paymentDate: paymentDate, creditCard: card)
                     .observeOn(MainScheduler.instance)
@@ -331,7 +332,7 @@ class PaymentViewModel {
                         let paymentType: PaymentType = .credit
                         var paymentDate = self.paymentDate.value
                         if isFixed {
-                            paymentDate = Calendar.opCoTime.startOfDay(for: Date())
+                            paymentDate = Date()
                         }
                         
                         let cardNum = self.addCardFormViewModel.cardNumber.value
@@ -409,7 +410,7 @@ class PaymentViewModel {
             let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
             var paymentDate = self.paymentDate.value
             if isFixed {
-                paymentDate = Calendar.opCoTime.startOfDay(for: Date())
+                paymentDate = Date()
             }
             let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: self.paymentAmountDouble(), paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: self.selectedWalletItem.value!.walletItemID!, cvv: self.cvv.value)
             self.paymentService.updatePayment(paymentId: self.paymentId.value!, payment: payment)
