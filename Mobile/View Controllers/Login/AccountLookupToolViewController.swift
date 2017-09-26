@@ -104,7 +104,6 @@ class AccountLookupToolViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        dLog()
     }
 
     func onCancelPress() {

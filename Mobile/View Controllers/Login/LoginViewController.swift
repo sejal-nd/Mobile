@@ -455,10 +455,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    deinit {
-        dLog()
-    }
-    
 }
 
 extension LoginViewController: UIScrollViewDelegate {

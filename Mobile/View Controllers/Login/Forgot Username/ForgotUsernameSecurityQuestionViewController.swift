@@ -101,9 +101,5 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
             self?.present(alertController, animated: true, completion: nil)
         })
     }
-    
-    deinit {
-        dLog()
-    }
 
 }

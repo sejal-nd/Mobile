@@ -131,7 +131,4 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    deinit {
-        dLog()
-    }
 }

@@ -217,10 +217,6 @@ class HomeViewController: AccountPickerViewController {
         
     }
     
-    deinit {
-        dLog()
-    }
-    
 }
 
 extension HomeViewController: AccountPickerDelegate {

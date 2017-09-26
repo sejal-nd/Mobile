@@ -484,10 +484,6 @@ class AutoPayViewController: UIViewController {
         return .lightContent
     }
     
-    deinit {
-        dLog()
-    }
-    
 }
 
 extension AutoPayViewController: UITextFieldDelegate {

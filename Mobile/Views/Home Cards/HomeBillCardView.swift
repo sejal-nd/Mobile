@@ -482,7 +482,6 @@ class HomeBillCardView: UIView {
 
     deinit {
         cvvValidationDisposable?.dispose()
-        dLog()
     }
 }
 

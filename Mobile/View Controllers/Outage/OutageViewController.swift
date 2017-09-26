@@ -247,10 +247,7 @@ class OutageViewController: AccountPickerViewController {
             vc.delegate = self
         }
     }
- 
-    deinit {
-        dLog()
-    }
+    
 }
 
 extension OutageViewController: AccountPickerDelegate {

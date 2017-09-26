@@ -208,7 +208,4 @@ class PaperlessEBillViewController: UIViewController {
         return .lightContent
     }
     
-    deinit {
-        dLog()
-    }
 }

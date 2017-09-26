@@ -84,7 +84,4 @@ class UnauthenticatedUserViewController: UIViewController {
         return .lightContent
     }
 
-    deinit {
-        dLog()
-    }
 }

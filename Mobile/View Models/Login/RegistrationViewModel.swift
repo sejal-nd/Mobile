@@ -416,8 +416,4 @@ class RegistrationViewModel {
             return otherArray.count == count
         }
     }()
-    
-    deinit {
-        dLog()
-    }
 }

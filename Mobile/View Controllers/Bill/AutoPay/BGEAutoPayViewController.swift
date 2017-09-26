@@ -298,10 +298,6 @@ class BGEAutoPayViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-    deinit {
-        dLog()
-    }
 
 }
 

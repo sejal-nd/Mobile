@@ -107,10 +107,6 @@ class SettingsViewController: UIViewController {
             vc.delegate = self
         }
     }
-    
-    deinit {
-        dLog()
-    }
 
 }
 
