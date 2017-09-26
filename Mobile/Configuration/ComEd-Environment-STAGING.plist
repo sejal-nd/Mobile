@@ -5,7 +5,7 @@
 	<key>environment</key>
 	<string>STAGE</string>
 	<key>appName</key>
-	<string>ComEd_STAGE</string>
+	<string>ComEd</string>
 	<key>opco</key>
 	<string>ComEd</string>
 	<key>oauthEndpoint</key>

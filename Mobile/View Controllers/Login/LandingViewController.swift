@@ -15,6 +15,7 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var registerButton: SecondaryButton!
     @IBOutlet weak var continueAsGuestButon: UIButton!
     @IBOutlet weak var tabletView: UIView!
+    @IBOutlet weak var versionLabel: UILabel!
     
     var fadeIn = false
 
@@ -34,6 +35,14 @@ class LandingViewController: UIViewController {
         if fadeIn {
             tabletView.alpha = 0
         }
+        
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
+        } else {
+            versionLabel.text = nil
+        }
+        
+        versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
     }
     
     override func viewWillAppear(_ animated: Bool) {

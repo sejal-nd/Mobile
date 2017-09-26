@@ -35,14 +35,17 @@ class BillViewModel {
         let fetchingAccountDetailTracker = ActivityTracker()
         isFetchingAccountDetail = fetchingAccountDetailTracker.asDriver()
 		
-		let sharedFetchAccountDetail = fetchAccountDetail.share()
+		let sharedFetchAccountDetail = Observable.merge(fetchAccountDetail,
+		                                                RxNotifications.shared.accountDetailUpdated
+                                                            .mapTo(FetchingAccountState.switchAccount))
+            .share()
 		
 		sharedFetchAccountDetail
 			.filter { $0 != .refresh }
 			.map { _ in nil }
 			.bind(to: currentAccountDetail)
 			.disposed(by: disposeBag)
-		
+        
         let fetchAccountDetailResult = sharedFetchAccountDetail
             .flatMapLatest { _ in
                 accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
@@ -79,9 +82,9 @@ class BillViewModel {
             .unwrap()
             .asDriver(onErrorDriveWith: Driver.empty())
 	
-	private(set) lazy var isFetchingDifferentAccount: Driver<Bool> = self.currentAccountDetail.asDriver().map {
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-        return $0 == nil }
+    private(set) lazy var isFetchingDifferentAccount: Driver<Bool> = self.currentAccountDetail.asDriver()
+        .do(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+        .isNil()
 	
 	
     // MARK: - Show/Hide Views -

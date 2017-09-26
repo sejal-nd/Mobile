@@ -68,7 +68,7 @@
 			<key>baseURL</key>
 			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
 			<key>appKey</key>
-			<string>ef7078b3-38f5-4583-a369-9013f9129524</string>
+			<string>319d175e-594f-4c44-a510-a0d8e18f2be5</string>
 			<key>authorization</key>
 			<dict>
 				<key>authenticationType</key>
@@ -76,9 +76,9 @@
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>
-					<string>53f99819-b870-4466-95e0-ffb1a85548a4</string>
+					<string>6681b1e8-bf86-40c2-8faf-66b140c76cea</string>
 					<key>anonymousKey</key>
-					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+					<string>QTQ1MzU3Nl9FWEVMT05NT0JJTEVBUFBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDprc282Z3Robi5sT2UzZg==</string>
 				</dict>
 			</dict>
 		</dict>
@@ -87,7 +87,7 @@
 			<key>baseURL</key>
 			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
 			<key>appKey</key>
-			<string>ef7078b3-38f5-4583-a369-9013f9129524</string>
+			<string>5b1b69b9-c006-45aa-9ef5-edfafc10726e</string>
 			<key>authorization</key>
 			<dict>
 				<key>authenticationType</key>
@@ -95,9 +95,9 @@
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>
-					<string>d8115280-a300-4682-9891-1385e2e374d1</string>
+					<string>e4018111-369f-418e-9d31-e95377170d0e</string>
 					<key>anonymousKey</key>
-					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+					<string>QTQ1MzU3Nl9FWEVMT05NT0JJTEVBUFBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDprc282Z3Robi5sT2UzZg==</string>
 				</dict>
 			</dict>
 		</dict>
@@ -106,7 +106,7 @@
 			<key>baseURL</key>
 			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
 			<key>appKey</key>
-			<string>ef7078b3-38f5-4583-a369-9013f9129524</string>
+			<string>dcf520c1-8533-4914-bd6e-fd223a26116c</string>
 			<key>authorization</key>
 			<dict>
 				<key>authenticationType</key>
@@ -114,14 +114,14 @@
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>
-					<string>ca989d22-c9da-4a9e-9418-fddbaa40aa2c</string>
+					<string>b7990531-b75c-4345-91c1-1c2ff9b81612</string>
 					<key>anonymousKey</key>
-					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+					<string>QTQ1MzU3Nl9FWEVMT05NT0JJTEVBUFBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDprc282Z3Robi5sT2UzZg==</string>
 				</dict>
 			</dict>
 		</dict>
 	</dict>
 	<key>logLevel</key>
-	<string>debug</string>
+	<string>none</string>
 </dict>
 </plist>

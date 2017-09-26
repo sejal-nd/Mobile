@@ -15,8 +15,13 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        if let appInfo = Bundle.main.infoDictionary,
+            let shortVersionString = appInfo["CFBundleShortVersionString"] as? String {
+            UserDefaults.standard.set(shortVersionString, forKey: "version")
+        }
+        
         NSLog("Environment %@", Environment.sharedInstance.environmentName)
         NSLog("AppName %@", Environment.sharedInstance.appName)
         

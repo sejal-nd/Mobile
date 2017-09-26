@@ -41,6 +41,15 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(verifyAccountNotificationReceived), name: NSNotification.Name.DidTapAccountVerificationDeepLink, object: nil)
         
+        // This is necessary to handle Touch ID prompt's cancel action -- do not remove
+        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                self.navigationController?.view.isUserInteractionEnabled = !self.viewModel.isLoggingIn
+            })
+            .disposed(by: disposeBag)
+        
         view.backgroundColor = .primaryColor
 
         viewModel.touchIdEnabled.asDriver().drive(onNext: { [weak self] touchIDEnabled in
@@ -164,6 +173,7 @@ class LoginViewController: UIViewController {
         
         if !viewAlreadyAppeared {
             viewAlreadyAppeared = true
+            navigationController?.view.isUserInteractionEnabled = false
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
                 // This delay is necessary to prevent deep link complications -- do not remove
                 self.presentTouchIDPrompt()
@@ -315,7 +325,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onTouchIDPress() {
-        presentTouchIDPrompt()
+        navigationController?.view.isUserInteractionEnabled = false
+        
+        // This delay is necessary to make setting isUserInteractionEnabled work properly -- do not remove
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+            self.presentTouchIDPrompt()
+        })
     }
     
     func launchMainApp() {
@@ -339,10 +354,10 @@ class LoginViewController: UIViewController {
             guard let `self` = self else { return }
             
             Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
-                                      signedIndimensionIndex: Dimensions.DIMENSION_KEEP_ME_SIGNIN_IN.rawValue,
-                                      signedIndimensionValue: String(describing: self.keepMeSignedInLabel.isEnabled),
-                                      fingerprintDimensionIndex: Dimensions.DIMENSION_FINGERPRINT_USED.rawValue,
-                                      fingerprintDimensionValue: "true")
+                                  signedIndimensionIndex: Dimensions.DIMENSION_KEEP_ME_SIGNIN_IN.rawValue,
+                                  signedIndimensionValue: String(describing: self.keepMeSignedInLabel.isEnabled),
+                                  fingerprintDimensionIndex: Dimensions.DIMENSION_FINGERPRINT_USED.rawValue,
+                                  fingerprintDimensionValue: "true")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
@@ -351,17 +366,21 @@ class LoginViewController: UIViewController {
             self.signInButton.setLoading()
             self.signInButton.accessibilityLabel = "Loading";
             self.signInButton.accessibilityViewIsModal = true;
+            self.touchIDButton.isEnabled = true
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
-        }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in // fingerprint and subsequent login successful
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
-            guard let `self` = self else { return }
-            self.signInButton.setSuccess(animationCompletion: { () in
-                self.navigationController?.view.isUserInteractionEnabled = true
-                self.launchMainApp()
-            })
-        }, onError: { [weak self] (title, message) in // fingerprint successful but login failed
-            self?.navigationController?.view.isUserInteractionEnabled = true
-            self?.showErrorAlertWith(title: title, message: message + "\n\n" + NSLocalizedString("If you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
+            }, onDidNotLoad:  { [weak self] in
+                self?.touchIDButton.isEnabled = true
+                self?.navigationController?.view.isUserInteractionEnabled = true
+            }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in // fingerprint and subsequent login successful
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+                guard let `self` = self else { return }
+                self.signInButton.setSuccess(animationCompletion: { [weak self] in
+                    self?.navigationController?.view.isUserInteractionEnabled = true
+                    self?.launchMainApp()
+                })
+            }, onError: { [weak self] (title, message) in // fingerprint successful but login failed
+                self?.navigationController?.view.isUserInteractionEnabled = true
+                self?.showErrorAlertWith(title: title, message: message + "\n\n" + NSLocalizedString("If you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
         })
     }
     

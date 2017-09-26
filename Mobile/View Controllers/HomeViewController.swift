@@ -203,14 +203,9 @@ class HomeViewController: AccountPickerViewController {
                 
                 if let vc = viewController as? WalletViewController {
                     vc.didUpdate
-                        .map { _ in FetchingAccountState.switchAccount }
-                        .bind(to: self.viewModel.fetchData)
-                        .disposed(by: vc.disposeBag)
-                    
-                    vc.didUpdate
-                        .delay(0.5, scheduler: MainScheduler.instance)
-                        .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { [weak self] toastMessage in
+                        .asDriver(onErrorDriveWith: .empty())
+                        .delay(0.5)
+                        .drive(onNext: { [weak self] toastMessage in
                             self?.view.showToast(toastMessage)
                         })
                         .disposed(by: vc.disposeBag)
