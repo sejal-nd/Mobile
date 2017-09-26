@@ -84,7 +84,7 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
         UIApplication.shared.keyWindow?.layer.zPosition = showPicker ? -1 : self.zPositionForWindow
         
         var bottomAnchorLength = self.premisePickerView.containerView.frame.size.height + 8
-        var alpha:Float = 0.0
+        var alpha: CGFloat = 0.0
         
         if showPicker {
             alpha = 0.6
@@ -96,7 +96,7 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
         self.premisePickerView.layoutIfNeeded()
         UIView.animate(withDuration: 0.25, animations: {
             self.premisePickerView.layoutIfNeeded()
-            self.premisePickerView.backgroundColor =  UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: alpha)
+            self.premisePickerView.backgroundColor = UIColor.black.withAlphaComponent(alpha)
         }, completion: { _ in
             if !showPicker {
                 self.premisePickerView.accessibilityViewIsModal = false
