@@ -659,18 +659,21 @@ class HomeBillCardViewModel {
         { accountDetail, walletItem, showMinMaxPaymentAllowed in
             if showMinMaxPaymentAllowed {
                 return false
-            } else if walletItem == nil {
+            }
+            if walletItem == nil {
                 return false
-            } else if let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount,
+            }
+            if let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount,
                 accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.sharedInstance.opco != .bge {
                 return false
-            } else if accountDetail.billingInfo.netDueAmount ?? 0 < 0 && Environment.sharedInstance.opco == .bge {
-                return false
-            } else if let cardIssuer = walletItem?.cardIssuer, cardIssuer == "Visa", Environment.sharedInstance.opco == .bge, !accountDetail.isResidential {
-                return false
-            } else {
-                return true
             }
+            if accountDetail.billingInfo.netDueAmount ?? 0 < 0 && Environment.sharedInstance.opco == .bge {
+                return false
+            }
+            if let cardIssuer = walletItem?.cardIssuer, cardIssuer == "Visa", Environment.sharedInstance.opco == .bge, !accountDetail.isResidential {
+                return false
+            }
+            return true
         }
     
     private(set) lazy var titleFont: Driver<UIFont> = self.billState
