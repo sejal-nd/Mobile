@@ -39,7 +39,7 @@ class OneTouchSlider: UIControl {
     private(set) lazy var sliderValueChanged: Driver<CGFloat> = self.sliderValueChangedSubject.asDriver(onErrorDriveWith: .empty())
     private(set) lazy var didFinishSwipe: Driver<Void> = self.didFinishSwipeSubject.asDriver(onErrorDriveWith: .empty())
     private(set) lazy var didCancelSwipe: Driver<Void> = self.didCancelSwipeSubject.asDriver(onErrorDriveWith: .empty())
-    
+
     //MARK: - UIControl
     public override init(frame: CGRect) {
         super.init(frame: frame)

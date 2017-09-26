@@ -242,9 +242,21 @@
                                         <constraint firstAttribute="bottom" secondItem="URg-hW-5L8" secondAttribute="bottom" priority="999" constant="10" id="ukg-kr-ge5"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-nz-bzd" customClass="OneTouchSlider" customModule="BGE" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="721" width="333" height="50"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3N-2i-LNu">
+                                    <rect key="frame" x="46.5" y="721" width="240" height="50"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-nz-bzd" customClass="OneTouchSlider" customModule="BGE" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="Myo-nz-bzd" firstAttribute="top" secondItem="T3N-2i-LNu" secondAttribute="top" priority="999" id="I23-Fw-HJ7"/>
+                                        <constraint firstAttribute="bottom" secondItem="Myo-nz-bzd" secondAttribute="bottom" priority="999" id="Lkr-gA-uhh"/>
+                                        <constraint firstItem="Myo-nz-bzd" firstAttribute="leading" secondItem="T3N-2i-LNu" secondAttribute="leading" priority="999" id="NYP-m0-4zo"/>
+                                        <constraint firstAttribute="trailing" secondItem="Myo-nz-bzd" secondAttribute="trailing" priority="999" id="Ucx-gN-1Nl"/>
+                                    </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-ep-YjG">
                                     <rect key="frame" x="0.0" y="771" width="333" height="49"/>
@@ -377,10 +389,6 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="Myo-nz-bzd" secondAttribute="trailing" id="L0E-Rm-CdG"/>
-                                <constraint firstItem="Myo-nz-bzd" firstAttribute="leading" secondItem="VyQ-uF-pu2" secondAttribute="leading" id="QjC-1i-KMc"/>
-                            </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ah8-rf-Pem" userLabel="Not Ready Stack">
                             <rect key="frame" x="0.0" y="1177" width="333" height="211"/>
@@ -505,6 +513,7 @@
                 <outlet property="oneTouchPayTCButton" destination="k9h-HI-p4C" id="jIj-1y-8yT"/>
                 <outlet property="oneTouchPayTCButtonLabel" destination="UTQ-3f-TRE" id="c9x-4V-Ybk"/>
                 <outlet property="oneTouchSlider" destination="Myo-nz-bzd" id="oyx-Yd-7bs"/>
+                <outlet property="oneTouchSliderContainer" destination="T3N-2i-LNu" id="mCC-kz-qcr"/>
                 <outlet property="paymentConfirmationContainer" destination="mM5-q1-nIy" id="1uj-s9-aLK"/>
                 <outlet property="paymentConfirmationImageView" destination="ddg-ci-PCE" id="jzD-x4-XAH"/>
                 <outlet property="paymentPendingContainer" destination="89L-lP-FW8" id="WyD-mK-XdM"/>

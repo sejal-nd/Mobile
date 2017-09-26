@@ -741,6 +741,7 @@ class HomeBillCardViewModel {
             return URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
         }
     }
+    
 }
 
 

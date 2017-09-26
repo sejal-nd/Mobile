@@ -56,6 +56,7 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var convenienceFeeContainer: UIView!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
+    @IBOutlet weak var oneTouchSliderContainer: UIView!
     @IBOutlet weak var oneTouchSlider: OneTouchSlider!
     @IBOutlet weak var commercialBgeOtpVisaLabelContainer: UIView!
     @IBOutlet weak var commericalBgeOtpVisaLabel: UILabel!
@@ -80,6 +81,8 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var billNotReadyLabel: UILabel!
     @IBOutlet weak var errorStack: UIStackView!
     @IBOutlet weak var errorLabel: UILabel!
+    
+    let tutorialTap = UITapGestureRecognizer()
     
     fileprivate var viewModel: HomeBillCardViewModel! {
         didSet {
@@ -199,7 +202,7 @@ class HomeBillCardView: UIView {
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountContainer.rx.isHidden).disposed(by: bag)
         viewModel.showConvenienceFee.not().drive(convenienceFeeContainer.rx.isHidden).disposed(by: bag)
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showOneTouchPaySlider.not().drive(oneTouchSlider.rx.isHidden).disposed(by: bag)
+        viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
         viewModel.showCommercialBgeOtpVisaLabel.not().drive(commercialBgeOtpVisaLabelContainer.rx.isHidden).disposed(by: bag)
         viewModel.showScheduledImageView.not().drive(scheduledImageContainer.rx.isHidden).disposed(by: bag)
         viewModel.showAutoPayIcon.not().drive(autoPayImageContainer.rx.isHidden).disposed(by: bag)
@@ -241,6 +244,8 @@ class HomeBillCardView: UIView {
             .drive(viewModel.submitOneTouchPay)
             .disposed(by: bag)
         
+        oneTouchSliderContainer.removeGestureRecognizer(tutorialTap)
+        oneTouchSliderContainer.addGestureRecognizer(tutorialTap)
     }
     
     // Actions
@@ -400,12 +405,19 @@ class HomeBillCardView: UIView {
             return alertController
     }
     
+    private(set) lazy var tutorialViewController: Driver<UIViewController> = self.tutorialTap.rx.event.asDriver()
+        .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
+        .filter { $0 && !$1 }
+        .mapTo(())
+        .map(OneTouchTutorialViewController.init)
+    
     private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(self.tooltipModal,
                                                                                         self.oneTouchSliderWeekendAlert,
                                                                                         self.paymentTACModal,
                                                                                         self.oneTouchPayErrorAlert,
                                                                                         self.oneTouchSliderCVV2Alert,
-                                                                                        self.oneTouchSliderBGELegalAlert)
+                                                                                        self.oneTouchSliderBGELegalAlert,
+                                                                                        self.tutorialViewController)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = self.bankCreditNumberButton.rx.touchUpInside.asObservable()
