@@ -115,7 +115,11 @@ class WalletTableViewCell: UITableViewCell {
             if Environment.sharedInstance.opco == .bge {
                 if walletItem.bankOrCard == .bank {
                     if let bankAccountType = walletItem.bankAccountType {
-                        nicknameLabel.text = "\(nickname), \(bankAccountType.rawValue.uppercased())"
+                        if bankAccountType.rawValue.uppercased() == "SAVING"{
+                            nicknameLabel.text = NSLocalizedString(String(format:"%@, SAVINGS", nickname),comment: "")
+                        } else {
+                            nicknameLabel.text = NSLocalizedString(String(format:"%@, CHECKING", nickname),comment: "")
+                        }
                     }
                 }
             }

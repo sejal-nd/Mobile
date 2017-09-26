@@ -142,11 +142,21 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         //past billing history
         if indexPath.section == 1 {
-            guard indexPath.row != billingHistory.mostRecentSixMonths.count, let type = billingHistory.mostRecentSixMonths[indexPath.row].type else {
+            let billingItem = billingHistory.mostRecentSixMonths[indexPath.row]
+            
+            guard indexPath.row < billingHistory.mostRecentSixMonths.count, let type = billingItem.type else {
                 return
             }
+            
+            let status = billingItem.status
+            
             if type == BillingHistoryProperties.TypeBilling.rawValue {
                 showBillPdf()
+            } else if status == BillingHistoryProperties.StatusProcessing.rawValue ||
+                status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
+                status == BillingHistoryProperties.StatusScheduled.rawValue ||
+                status == BillingHistoryProperties.StatusPending.rawValue {
+                handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
             } else {
                 performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
             }
@@ -177,7 +187,8 @@ extension BillingHistoryViewController: UITableViewDelegate {
                     
                     //pending payments do not get a tap so we only handle scheduled/cancelled payments
                     if status == BillingHistoryProperties.StatusProcessing.rawValue || 
-                        status == BillingHistoryProperties.StatusSCHEDULED.rawValue || 
+                        status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
+                        status == BillingHistoryProperties.StatusScheduled.rawValue ||
                         status == BillingHistoryProperties.StatusPending.rawValue {
                         handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
                     } else if status == BillingHistoryProperties.StatusCanceled.rawValue || 

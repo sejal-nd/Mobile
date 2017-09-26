@@ -51,8 +51,9 @@ class HomeBillCardViewModel {
             .disposed(by: bag)
     }
     
-    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.account
-        .flatMapLatest { [unowned self] _ in
+    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = Observable.merge(self.account.mapTo(()),
+                                                                                         RxNotifications.shared.defaultWalletItemUpdated)
+        .flatMapLatest { [unowned self] in
             self.walletService.fetchWalletItems()
                 .trackActivity(self.fetchingTracker)
                 .map { $0.first(where: { $0.isDefault }) }
@@ -257,7 +258,7 @@ class HomeBillCardViewModel {
                 }
                 
                 if billingInfo.netDueAmount ?? 0 > 0 {
-                    if accountDetail.isAutoPay {
+                    if accountDetail.isAutoPay || accountDetail.isBGEasy {
                         return .billReadyAutoPay
                     } else {
                         return .billReady
@@ -699,7 +700,7 @@ class HomeBillCardViewModel {
         case (.bge, .bank):
             return NSLocalizedString("Payments made on the Home screen cannot be canceled.", comment: "")
         default:
-            return NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to the payment Terms & Conditions.", comment: "")
+            return NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to these payment Terms & Conditions.", comment: "")
         }
     }
     
@@ -720,7 +721,7 @@ class HomeBillCardViewModel {
     var paymentTACUrl: URL {
         switch Environment.sharedInstance.opco {
         case .bge:
-            return URL(string: "https://www.speedpay.com/westernuniontac_cf.asp")!
+            return URL(string: "https://www.speedpay.com/terms/")!
         case .comEd, .peco:
             return URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
         }

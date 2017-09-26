@@ -15,12 +15,20 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var contactUsButton: DisclosureButton!
     @IBOutlet weak var termAndPoliciesButton: DisclosureButton!
     @IBOutlet weak var signOutButton: DisclosureButton!
-
+    @IBOutlet weak var versionLabel: UILabel!
     
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
+        } else {
+            versionLabel.text = nil
+        }
+        
+        versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         addAccessibility()
         styleViews()
