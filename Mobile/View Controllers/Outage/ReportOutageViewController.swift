@@ -55,6 +55,7 @@ class ReportOutageViewController: UIViewController {
     @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
     @IBOutlet weak var commentView: UIView!
     @IBOutlet weak var commentTextView: FloatLabelTextView!
+    @IBOutlet weak var commentLabel: UILabel!
     
     // Footer View
     @IBOutlet weak var footerContainerView: UIView!
@@ -157,7 +158,8 @@ class ReportOutageViewController: UIViewController {
         
         areYourLightsOutLabel.font = SystemFont.regular.of(textStyle: .headline)
         howCanWeContactYouLabel.font = SystemFont.regular.of(textStyle: .headline)
-
+        commentLabel.font = SystemFont.regular.of(textStyle: .headline)
+        
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)

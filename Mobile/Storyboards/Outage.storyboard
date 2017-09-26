@@ -911,6 +911,7 @@
                         <outlet property="accountInfoBar" destination="c4y-Cq-6p7" id="4In-f8-uAi"/>
                         <outlet property="areYourLightsOutLabel" destination="Nce-RI-YJq" id="LUb-jj-jLA"/>
                         <outlet property="areYourLightsOutView" destination="DUq-7C-7A4" id="OIx-MK-EPX"/>
+                        <outlet property="commentLabel" destination="uKG-QO-eKb" id="oaC-ZH-Mr8"/>
                         <outlet property="commentTextView" destination="omN-Iy-wr2" id="Bky-as-fuU"/>
                         <outlet property="commentView" destination="3VT-8h-lDw" id="s9R-b0-Nso"/>
                         <outlet property="footerBackgroundView" destination="z3B-jb-AXr" id="vQE-ck-4iG"/>
