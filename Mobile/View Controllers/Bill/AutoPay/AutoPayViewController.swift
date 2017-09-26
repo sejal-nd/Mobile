@@ -50,6 +50,7 @@ class AutoPayViewController: UIViewController {
     @IBOutlet weak var reasonForStoppingTableView: IntrinsicHeightTableView!
     @IBOutlet weak var reasonForStoppingLabel: UILabel!
 	
+    @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
     weak var delegate: AutoPayViewControllerDelegate?
@@ -90,6 +91,7 @@ class AutoPayViewController: UIViewController {
         bindEnrollingState()
         bindEnrolledState()
         
+        footerView.backgroundColor = .softGray
         viewModel.footerText.drive(footerLabel.rx.text).disposed(by: bag)
         viewModel.canSubmit.drive(submitButton.rx.isEnabled).disposed(by: bag)
         
@@ -99,17 +101,18 @@ class AutoPayViewController: UIViewController {
             })
             .disposed(by: bag)
         
+        view.backgroundColor = .softGray
         
-        // background color hackery
-        let isScrollOffsetLessThanZero = scrollView.rx.contentOffset.asDriver()
-            .map { $0.y < 0 }
-            .distinctUntilChanged()
-        
-        Driver.combineLatest(viewModel.enrollmentStatus.asDriver(), isScrollOffsetLessThanZero)
-            .map { $0 == .unenrolling || $1 }
-            .map { $0 ? UIColor.softGray: UIColor.white }
-            .drive(view.rx.backgroundColor)
-            .disposed(by: bag)
+//        // background color hackery
+//        let isScrollOffsetLessThanZero = scrollView.rx.contentOffset.asDriver()
+//            .map { $0.y < 0 }
+//            .distinctUntilChanged()
+//
+//        Driver.combineLatest(viewModel.enrollmentStatus.asDriver(), isScrollOffsetLessThanZero)
+//            .map { $0 == .unenrolling || $1 }
+//            .map { $0 ? UIColor.softGray: UIColor.white }
+//            .drive(view.rx.backgroundColor)
+//            .disposed(by: bag)
         
         accessibilitySetup()
         
@@ -128,7 +131,8 @@ class AutoPayViewController: UIViewController {
         gradientLayer.removeFromSuperlayer()
         
         let gLayer = CAGradientLayer()
-        gLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/2)
+        gLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: footerView.frame.origin.y + 64)
+        //gLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/2)
         gLayer.colors = [UIColor.softGray.cgColor, UIColor.white.cgColor]
         
         gradientLayer = gLayer
@@ -150,7 +154,8 @@ class AutoPayViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/2)
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: footerView.frame.origin.y + 64)
+        //gradientLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/2)
     }
     
     func onCancelPress() {
@@ -182,21 +187,8 @@ class AutoPayViewController: UIViewController {
     }
     
     private func style() {
-        learnMoreButton.addShadow(color: .black, opacity: 0.12, offset: .zero, radius: 3)
-        let learnMoreString = NSLocalizedString("Learn more about ", comment: "")
-        let autoPayString = NSLocalizedString("AutoPay", comment: "")
-        let learnMoreAboutAutoPayString = learnMoreString + "\n" + autoPayString
-        let learnMoreAboutAutoPayAttrString = NSMutableAttributedString(string: learnMoreAboutAutoPayString, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
-        
-        learnMoreAboutAutoPayAttrString.addAttribute(NSFontAttributeName,
-                                                     value: OpenSans.regular.of(size: 18),
-                                                     range: NSMakeRange(0, learnMoreString.characters.count))
-        
-        learnMoreAboutAutoPayAttrString.addAttribute(NSFontAttributeName,
-                                                     value: OpenSans.bold.of(size: 18),
-                                                     range: NSMakeRange(learnMoreString.characters.count + 1, autoPayString.characters.count))
-        
-        learnMoreLabel.attributedText = learnMoreAboutAutoPayAttrString
+        learnMoreLabel.textColor = .actionBlue
+        learnMoreLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
         
         styleNotEnrolled()
         styleEnrolled()
@@ -286,7 +278,7 @@ class AutoPayViewController: UIViewController {
             .map { $0 == .unenrolling }
             .drive(onNext: { [weak self] unenrolling in
                 
-                self?.view.backgroundColor = unenrolling ? .softGray: .white
+                //self?.view.backgroundColor = unenrolling ? .softGray: .white
                 UIView.animate(withDuration: 0.3) {
                     self?.reasonForStoppingContainerView.isHidden = !unenrolling
                     self?.enrolledContentView.alpha = unenrolling ? 0:1
