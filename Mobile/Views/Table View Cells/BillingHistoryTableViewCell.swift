@@ -38,6 +38,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var amountLabel: UILabel!
+    @IBOutlet weak var caretImageView: UIImageView!
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -115,12 +116,16 @@ class BillingHistoryTableViewCell: UITableViewCell {
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PENDING_PAYMENT
             amountLabel.text = amountPaid
+            caretImageView.isHidden = true
+            selectionStyle = .none
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PENDING_PAYMENT, dateString, amountPaid)
         } else if status == BillingHistoryProperties.StatusProcessing.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PAYMENT_PROCESSING
             amountLabel.text = amountPaid
             dateLabel.isHidden = true
+            caretImageView.isHidden = true
+            selectionStyle = .none
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT_PROCESSING, dateString, amountPaid)
         } else if status == BillingHistoryProperties.StatusCanceled.rawValue ||
             status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
@@ -128,6 +133,8 @@ class BillingHistoryTableViewCell: UITableViewCell {
             iconImageView.image = #imageLiteral(resourceName: "ic_paymentcanceledfailed")
             titleLabel.text = PAYMENT
             amountLabel.text = amountPaid
+            caretImageView.isHidden = false
+            selectionStyle = .default
             if status == BillingHistoryProperties.StatusFailed.rawValue {
                 a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
             } else {
@@ -137,6 +144,8 @@ class BillingHistoryTableViewCell: UITableViewCell {
             iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
             titleLabel.text = SCHEDULED_PAYMENT
             amountLabel.text = amountPaid
+            caretImageView.isHidden = false
+            selectionStyle = .default
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
         }
         accessibilityLabel = a11y
