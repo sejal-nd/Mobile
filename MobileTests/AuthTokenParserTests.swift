@@ -20,9 +20,9 @@ class AuthTokenParserTests: XCTestCase {
         "meta":["code":"FN-CRED-INVALID","description":"Invalid user name or password"]
     ]
     
-    let validSucessResponse: [String:Any] = [
+    let validSuccessResponse: [String:Any] = [
         "success" : true,
-        "data":["assertion":"token_value", "profileType": "residential", "customerIdentifier": "1234"]
+        "data":["assertion":"token_value", "profileType": "residential", "profileStatus": [:], "customerIdentifier": "1234"]
     ]
     
     let noProfileTypeResponse: [String: Any] = [
@@ -73,7 +73,7 @@ class AuthTokenParserTests: XCTestCase {
     
     func testValidSuccessResponse() {
         do {
-            let jsonData = try JSONSerialization.data(withJSONObject: validSucessResponse)
+            let jsonData = try JSONSerialization.data(withJSONObject: validSuccessResponse)
             let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
             
             switch result {
