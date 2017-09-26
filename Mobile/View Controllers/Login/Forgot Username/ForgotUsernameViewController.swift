@@ -58,7 +58,7 @@ class ForgotUsernameViewController: UIViewController {
                 guard let `self` = self else { return }
                 if !phoneNumber.isEmpty {
                     if !hasTenDigits {
-                        self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
+                        self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long", comment: ""))
                     } else {
                         self.phoneNumberTextField.setError(nil)
                     }
@@ -84,9 +84,9 @@ class ForgotUsernameViewController: UIViewController {
                 guard let `self` = self else { return }
                 if !identifierNumber.isEmpty {
                     if !hasFourDigits {
-                        self.identifierTextField?.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
+                        self.identifierTextField?.setError(NSLocalizedString("This number must be 4 digits long", comment: ""))
                     } else if !isNumeric {
-                        self.identifierTextField?.setError(NSLocalizedString("This number must be numeric.", comment: ""))
+                        self.identifierTextField?.setError(NSLocalizedString("This number must be numeric", comment: ""))
                     } else {
                         self.identifierTextField?.setError(nil)
                     }
@@ -113,7 +113,7 @@ class ForgotUsernameViewController: UIViewController {
                 guard let `self` = self else { return }
                 if !accountNumber.isEmpty {
                     if !hasTenDigits {
-                        self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
+                        self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
                     } else {
                         self.accountNumberTextField?.setError(nil)
                     }
