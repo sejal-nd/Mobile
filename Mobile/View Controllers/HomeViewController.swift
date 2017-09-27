@@ -84,14 +84,12 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
         cardStackView.addArrangedSubview(billCardView)
         
-        if viewModel.showTemplateCard {
-            let templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
-            templateCardView.callToActionViewController
-                .drive(onNext: { [weak self] viewController in
-                    self?.present(viewController, animated: true, completion: nil)
-                }).disposed(by: bag)
-            cardStackView.addArrangedSubview(templateCardView)
-        }
+        let templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
+        templateCardView.callToActionViewController
+            .drive(onNext: { [weak self] viewController in
+                self?.present(viewController, animated: true, completion: nil)
+            }).disposed(by: bag)
+        cardStackView.addArrangedSubview(templateCardView)
         cardStackView.isHidden = true
         
         styleViews()
