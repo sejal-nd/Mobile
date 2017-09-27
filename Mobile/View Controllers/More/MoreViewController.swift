@@ -104,8 +104,4 @@ class MoreViewController: UIViewController {
         return .lightContent
     }
     
-    deinit {
-        dLog()
-    }
-    
 }

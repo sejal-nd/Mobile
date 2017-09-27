@@ -114,10 +114,6 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         }
     }
     
-    deinit {
-        dLog()
-    }
-    
 }
 
 extension ForgotUsernameBGEAccountNumberViewController: UITextFieldDelegate {

@@ -100,8 +100,4 @@ class AddBankFormViewModel {
                 onError()
             }).disposed(by: disposeBag)
     }
-
-    deinit {
-        dLog()
-    }
 }

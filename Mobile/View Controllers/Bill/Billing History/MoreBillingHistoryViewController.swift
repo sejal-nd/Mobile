@@ -72,9 +72,6 @@ class MoreBillingHistoryViewController: UIViewController {
         }
     }
     
-    deinit {
-        dLog()
-    }
 }
 
 extension MoreBillingHistoryViewController: UITableViewDelegate {

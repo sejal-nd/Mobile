@@ -565,9 +565,6 @@ class BillViewController: AccountPickerViewController {
         })
     }
     
-    deinit {
-        dLog()
-    }
 }
 
 extension BillViewController: AccountPickerDelegate {

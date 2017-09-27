@@ -1139,7 +1139,4 @@ class PaymentViewModel {
         }
     }
     
-    deinit {
-        dLog()
-    }
 }

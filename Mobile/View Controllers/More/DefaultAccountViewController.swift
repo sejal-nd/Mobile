@@ -76,10 +76,6 @@ class DefaultAccountViewController: UIViewController {
                                                 description: NSLocalizedString("Your default account will display automatically when you sign in. You can change your default account at any time.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
-    
-    deinit {
-        dLog()
-    }
 
 }
 

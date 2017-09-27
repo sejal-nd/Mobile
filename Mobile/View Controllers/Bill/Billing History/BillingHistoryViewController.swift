@@ -128,9 +128,6 @@ class BillingHistoryViewController: UIViewController {
         return .lightContent
     }
     
-    deinit {
-        dLog()
-    }
 }
 
 extension BillingHistoryViewController: UITableViewDelegate {

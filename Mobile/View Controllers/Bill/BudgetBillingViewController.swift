@@ -375,10 +375,6 @@ class BudgetBillingViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-    deinit {
-        dLog()
-    }
 
 }
 

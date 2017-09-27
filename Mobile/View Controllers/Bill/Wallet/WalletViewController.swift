@@ -281,9 +281,6 @@ class WalletViewController: UIViewController {
         return .lightContent
     }
     
-    deinit {
-        dLog()
-    }
 }
 
 extension WalletViewController: UITableViewDelegate {

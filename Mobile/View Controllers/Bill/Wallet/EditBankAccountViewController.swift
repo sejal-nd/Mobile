@@ -307,8 +307,4 @@ class EditBankAccountViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    deinit {
-        dLog()
-    }
-    
 }

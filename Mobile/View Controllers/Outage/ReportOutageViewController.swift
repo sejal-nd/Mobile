@@ -318,7 +318,6 @@ class ReportOutageViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        dLog()
     }
     
     func onCancelPress() {

@@ -53,9 +53,6 @@ class TermsPoliciesViewController: UIViewController {
         return .lightContent
     }
     
-    deinit {
-        dLog()
-    }
 }
 
 extension TermsPoliciesViewController: UIWebViewDelegate {
