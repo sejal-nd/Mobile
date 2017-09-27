@@ -170,7 +170,9 @@ class BillViewModel {
         return netDueAmount < 0 && Environment.sharedInstance.opco == .bge
     }
     
-    let shouldShowAmountDueTooltip = Environment.sharedInstance.opco == .peco
+    private(set) lazy var shouldShowAmountDueTooltip: Driver<Bool> = self.currentAccountDetailUnwrapped.map {
+        $0.billingInfo.pastDueAmount ?? 0 <= 0 && Environment.sharedInstance.opco == .peco
+    }
     
     private(set) lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map { _ in
         return false // Bill Analysis will be Release 2
