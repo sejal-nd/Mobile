@@ -470,7 +470,8 @@ class BillViewModel {
         
         if accountDetail.isAutoPay {
             return .autoPay
-        } else if accountDetail.billingInfo.scheduledPayment?.amount ?? 0 > 0.0 {
+        } else if accountDetail.billingInfo.scheduledPayment?.amount ?? 0 > 0 &&
+            accountDetail.billingInfo.pendingPayments.first?.amount ?? 0 <= 0 {
             return .activity
         }
         return .nowhere
