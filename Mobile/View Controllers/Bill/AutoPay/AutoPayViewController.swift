@@ -132,7 +132,6 @@ class AutoPayViewController: UIViewController {
         
         let gLayer = CAGradientLayer()
         gLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: footerView.frame.origin.y + 64)
-        //gLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/2)
         gLayer.colors = [UIColor.softGray.cgColor, UIColor.white.cgColor]
         
         gradientLayer = gLayer
@@ -155,7 +154,6 @@ class AutoPayViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         gradientLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: footerView.frame.origin.y + 64)
-        //gradientLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/2)
     }
     
     func onCancelPress() {
