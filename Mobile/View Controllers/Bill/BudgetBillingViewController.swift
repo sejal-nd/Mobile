@@ -24,7 +24,6 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var gradientView: UIView!
-    @IBOutlet weak var accountBackgroundView: UIView! // For stretching edge to edge on iPad
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var learnMoreAboutBudgetBillingButton: ButtonControl!
     @IBOutlet weak var learnMoreAboutBudgetBillingLabel: UILabel!
@@ -34,16 +33,15 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var amountDescriptionLabel: UILabel!
     
-    @IBOutlet weak var accountNumberLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var enrollmentLabel: UILabel!
     @IBOutlet weak var enrollSwitch: Switch!
-    @IBOutlet weak var accountIcon: UIImageView!
     
     @IBOutlet weak var accountInfo: UIView!
     
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
+    @IBOutlet weak var reasonForStoppingContainer: UIView!
     @IBOutlet weak var reasonForStoppingTableView: IntrinsicHeightTableView!
     @IBOutlet weak var reasonForStoppingLabel: UILabel!
     
@@ -84,8 +82,6 @@ class BudgetBillingViewController: UIViewController {
         // Submit button will be added after successful load
         viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
         
-        view.backgroundColor = .softGray
-        
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
@@ -95,22 +91,13 @@ class BudgetBillingViewController: UIViewController {
         gradientLayer.locations = [0.0, 1.0]
         gradientView.layer.addSublayer(gradientLayer)
 
-        learnMoreAboutBudgetBillingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        learnMoreAboutBudgetBillingButton.layer.cornerRadius = 2
-        learnMoreAboutBudgetBillingButton.backgroundColorOnPress = .softGray
         learnMoreAboutBudgetBillingButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
         }).disposed(by: disposeBag)
         learnMoreAboutBudgetBillingButton.accessibilityLabel = NSLocalizedString("Learn more about budget billing", comment: "")
         
-        learnMoreAboutBudgetBillingLabel.textColor = .blackText
-        let learnMoreString = NSLocalizedString("Learn more about ", comment: "")
-        let budgetBillingString = NSLocalizedString("Budget Billing", comment: "")
-        let learnMoreAboutBudgetBillingString = "\(learnMoreString)\n\(budgetBillingString)"
-        let learnMoreAboutBudgetBillingAttrString = NSMutableAttributedString(string: learnMoreAboutBudgetBillingString, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
-        learnMoreAboutBudgetBillingAttrString.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 18), range: NSMakeRange(0, learnMoreString.characters.count))
-        learnMoreAboutBudgetBillingAttrString.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 18), range: NSMakeRange(learnMoreString.characters.count + 1, budgetBillingString.characters.count))
-        learnMoreAboutBudgetBillingLabel.attributedText = learnMoreAboutBudgetBillingAttrString
+        learnMoreAboutBudgetBillingLabel.textColor = .actionBlue
+        learnMoreAboutBudgetBillingLabel.text = NSLocalizedString("Learn more about Budget Billing", comment: "")
         
         yourPaymentWouldBeLabel.font = SystemFont.medium.of(textStyle: .footnote)
         yourPaymentWouldBeLabel.textColor = .deepGray
@@ -129,21 +116,10 @@ class BudgetBillingViewController: UIViewController {
             amountDescriptionLabel.text = viewModel.getAmountDescriptionText()
         }
         
-        accountNumberLabel.textColor = .blackText
-        accountNumberLabel.text = AccountsStore.sharedInstance.currentAccount.accountNumber
-        accountNumberLabel.font = SystemFont.medium.of(textStyle: .title1)
-        addressLabel.textColor = .middleGray
-        addressLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        addressLabel.text = AccountsStore.sharedInstance.currentAccount.address
+        enrollmentLabel.textColor = .blackText
+        enrollmentLabel.font = OpenSans.regular.of(size: 16)
+        enrollmentLabel.text = NSLocalizedString("Budget Billing Enrollment Status", comment: "")
         
-        if accountDetail.isResidential {
-            accountIcon.image = #imageLiteral(resourceName: "ic_residential")
-            accountIcon.accessibilityLabel = NSLocalizedString("Residential Account", comment: "")
-        } else {
-            accountIcon.image = #imageLiteral(resourceName: "ic_commercial")
-            accountIcon.accessibilityLabel = NSLocalizedString("Commercial Account", comment: "")
-        }
-                
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).disposed(by: disposeBag)
         enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).disposed(by: disposeBag)
         
@@ -152,25 +128,15 @@ class BudgetBillingViewController: UIViewController {
         reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
         reasonForStoppingTableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReasonForStoppingCell")
         reasonForStoppingTableView.estimatedRowHeight = 51
-        reasonForStoppingTableView.isHidden = true
+        reasonForStoppingContainer.isHidden = true
         if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
             viewModel.unenrolling.asDriver().drive(onNext: { [weak self] unenrolling in
                 UIView.animate(withDuration: 0.3, animations: {
-                    self?.reasonForStoppingTableView.isHidden = !unenrolling
+                    self?.reasonForStoppingContainer.isHidden = !unenrolling
                 })
             }).disposed(by: disposeBag)
         }
-        let localizedText = NSLocalizedString("Account number: %@", comment: "")
-        accountNumberLabel.accessibilityLabel = String(format: localizedText, accountNumberLabel.text ?? "")
 
-        let localizedA11Y = NSLocalizedString("Street address: %@", comment: "")
-        if let a11yAddress = addressLabel.text {
-            addressLabel.accessibilityLabel = String(format: localizedA11Y, a11yAddress)
-        } else {
-            addressLabel.accessibilityLabel = nil
-        }
-        accountInfo.accessibilityElements = [accountIcon, accountNumberLabel, addressLabel, enrollSwitch]
-        
         // BGE Footer View when user is enrolled
         if Environment.sharedInstance.opco == .bge && accountDetail.isBudgetBillEnrollment {
             for view in bgeFooterCardViews {
@@ -216,12 +182,9 @@ class BudgetBillingViewController: UIViewController {
             accDifferenceDescriptionLabel.text = NSLocalizedString("The difference between your Payoff Balance and your Current Balance for BGE Service.", comment: "")
         }
 
+        footerView.backgroundColor = .softGray
+        bgeFooterView.backgroundColor = .softGray
         footerLabel.textColor = .blackText
-        if let footerText = viewModel.getFooterText() {
-            footerLabel.text = footerText
-        } else {
-            footerView.isHidden = true
-        }
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -232,6 +195,14 @@ class BudgetBillingViewController: UIViewController {
         bgeFooterView.isHidden = true
         viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: BudgetBillingInfo) in
             guard let `self` = self else { return }
+            
+            if let footerText = self.viewModel.getFooterText() {
+                self.footerLabel.text = footerText
+                self.view.backgroundColor = .softGray
+            } else {
+                self.footerView.isHidden = true
+            }
+            
             self.navigationItem.rightBarButtonItem = submitButton
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
             self.scrollView.isHidden = false
@@ -283,7 +254,6 @@ class BudgetBillingViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         gradientLayer.frame = gradientView.frame
-        accountBackgroundView.addBottomBorder(color: .softGray, width: 0.5)
         
         // Dynamic sizing for the table header view
         if let headerView = reasonForStoppingTableView.tableHeaderView {
@@ -301,7 +271,6 @@ class BudgetBillingViewController: UIViewController {
     
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         gradientLayer.frame = gradientView.frame
-        accountBackgroundView.addBottomBorder(color: .softGray, width: 0.5)
     }
         
     func onCancelPress() {
