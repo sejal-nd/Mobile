@@ -28,7 +28,7 @@ class OneTouchTutorialViewController: TutorialModalViewController {
                 "otp_step3")
             ,
             (
-                NSLocalizedString("Pay From The Home Screen!", comment: ""),
+                NSLocalizedString("Success!", comment: ""),
                 NSLocalizedString("You can now easily pay from the Home screen. This type of payment cannot be canceled and will pay your account balance in full.", comment: ""),
                 "otp_step4"
             )

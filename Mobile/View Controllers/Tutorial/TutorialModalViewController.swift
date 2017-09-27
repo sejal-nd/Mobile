@@ -37,7 +37,7 @@ class TutorialModalViewController: DismissableFormSheetViewController {
     func setCurrentPage(_ page: Int) {
         pageControl.currentPage = page
         let lastPage = scrollView.currentPage == pageControl.numberOfPages - 1
-        nextButton.setTitle(lastPage ? NSLocalizedString("Got It!", comment: "") : NSLocalizedString("Next", comment: ""), for: .normal)
+        nextButton.setTitle(lastPage ? NSLocalizedString("Got It", comment: "") : NSLocalizedString("Next", comment: ""), for: .normal)
     }
     
     @IBAction func onNext(_ sender: Any) {
