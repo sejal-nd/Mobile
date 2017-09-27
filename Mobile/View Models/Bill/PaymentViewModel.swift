@@ -832,7 +832,7 @@ class PaymentViewModel {
             return $4
         } else {
             guard let walletItem: WalletItem = $0 else { return "" }
-            return walletItem.nickName ?? ""
+            return walletItem.nickName ?? "" //TODO: comed/peco check for == last 4
         }
     }
     

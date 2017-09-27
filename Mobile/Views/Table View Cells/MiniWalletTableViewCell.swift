@@ -51,9 +51,19 @@ class MiniWalletTableViewCell: UITableViewCell {
             a11yLabel = NSLocalizedString("Credit card", comment: "")
         }
         
-        nicknameLabel.text = walletItem.nickName
-        if let nicknameText = nicknameLabel.text, !nicknameText.isEmpty {
-            a11yLabel += ", \(nicknameText)"
+        if let nickname = walletItem.nickName {
+            let displayNickname: String
+            if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
+                let last4 = maskedNumber.substring(from:maskedNumber.index(maskedNumber.endIndex, offsetBy: -4))
+                displayNickname = nickname == last4 ? "" : nickname
+            } else {
+                displayNickname = nickname
+            }
+            
+            nicknameLabel.text = displayNickname
+            if let nicknameText = nicknameLabel.text, !nicknameText.isEmpty {
+                a11yLabel += ", \(nicknameText)"
+            }
         }
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
