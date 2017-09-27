@@ -303,10 +303,8 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if self.billingHistory != nil {
-            if section == 0 && billingHistory.upcoming.count != 0 {
-                return 22
-            }
+        if billingHistory != nil && section == 0 && (!billingHistory.upcoming.isEmpty || accountDetail.isAutoPay || accountDetail.isBGEasy) {
+            return 22
         }
         
         return 0.000001 
