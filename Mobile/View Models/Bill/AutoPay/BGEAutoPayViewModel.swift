@@ -145,10 +145,12 @@ class BGEAutoPayViewModel {
             .disposed(by: disposeBag)
     }
     
-    private(set) lazy var showBottomLabel: Driver<Bool> = Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(),
-                                                                               self.initialEnrollmentStatus.asDriver())
-        .filter { $1 == .unenrolled }
-        .map { !$0.0 }
+    var showBottomLabel: Driver<Bool> {
+        return Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(), self.initialEnrollmentStatus.asDriver())
+            .map { isFetching, enrollmentStatus in
+                return !isFetching && enrollmentStatus != .enrolled
+            }
+    }
     
     lazy var submitButtonEnabled: Driver<Bool> = Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
                                                                       self.selectedWalletItem.asDriver(),
