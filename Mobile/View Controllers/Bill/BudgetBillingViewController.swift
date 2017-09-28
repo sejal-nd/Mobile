@@ -193,6 +193,7 @@ class BudgetBillingViewController: UIViewController {
         scrollView.isHidden = true
         loadingIndicator.isHidden = false
         bgeFooterView.isHidden = true
+        gradientView.isHidden = true
         viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: BudgetBillingInfo) in
             guard let `self` = self else { return }
             
@@ -207,6 +208,7 @@ class BudgetBillingViewController: UIViewController {
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
             self.scrollView.isHidden = false
             self.loadingIndicator.isHidden = true
+            self.gradientView.isHidden = false
             
             if Environment.sharedInstance.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
                 self.monthlyAmountLabel.text = budgetBillingInfo.averageMonthlyBill

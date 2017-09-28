@@ -31,12 +31,18 @@ class PaperlessEBillViewController: UIViewController {
 	@IBOutlet weak var emailLabel: UILabel!
 	@IBOutlet weak var updateDetailsView: UIView!
     @IBOutlet weak var updateDetailsLabel: UILabel!
+    @IBOutlet weak var singleAccountEnrollView: UIView!
+    @IBOutlet weak var singleAccountEnrollLabel: UILabel!
+    @IBOutlet weak var singleAccountEnrollSwitch: Switch!
+    @IBOutlet weak var enrollAllAccountsHeaderView: UIView!
+    @IBOutlet weak var enrollAllAccountsHeaderLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsView: UIView!
     @IBOutlet weak var allAccountsLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsSwitch: UISwitch!
     @IBOutlet weak var allAccountsSeparatorView: UIView!
     @IBOutlet weak var accountsStackView: UIStackView!
     @IBOutlet weak var detailsLoadingActivityView: UIView!
+    @IBOutlet weak var bottomView: UIView!
     
     @IBOutlet weak var detailsLabel: UILabel!
     
@@ -57,7 +63,6 @@ class PaperlessEBillViewController: UIViewController {
         
         colorAndShadowSetup()
         
-        enrollAllAccountsView.isHidden = viewModel.accounts.value.count <= 1
 		updateDetailsView.isHidden = Environment.sharedInstance.opco == .bge
         
         emailsWillBeSentToLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -74,11 +79,21 @@ class PaperlessEBillViewController: UIViewController {
         viewModel.accountDetails
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self] accountDetails -> () in
-                self?.enrollAllAccountsSwitch.isEnabled = true
-                self?.detailsLoadingActivityView.isHidden = true
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view)
-                accountDetails.forEach {
-                    self?.add(accountDetail: $0, animated: true)
+                guard let `self` = self else { return }
+                
+                self.enrollAllAccountsSwitch.isEnabled = true
+                self.detailsLoadingActivityView.isHidden = true
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+                if self.viewModel.accounts.value.count == 1 {
+                    let accountDetail = accountDetails.first!
+                    self.singleAccountEnrollSwitch.isOn = accountDetail.eBillEnrollStatus == .canUnenroll
+                    self.singleAccountEnrollSwitch.rx.isOn.asDriver().drive(onNext: { [weak self] isOn in
+                        self?.viewModel.switched(accountDetail: accountDetail, on: isOn)
+                    }).disposed(by: self.bag)
+                } else {
+                    accountDetails.forEach {
+                        self.add(accountDetail: $0, animated: true)
+                    }
                 }
             })
             .disposed(by: bag)
@@ -94,7 +109,14 @@ class PaperlessEBillViewController: UIViewController {
             .drive(submitButton.rx.isEnabled)
             .disposed(by: bag)
         
-        viewModel.isSingleAccount.not().drive(accountInfoBar.rx.isHidden).disposed(by: bag)
+        if viewModel.accounts.value.count == 1 {
+            enrollAllAccountsHeaderView.isHidden = true
+            enrollAllAccountsView.isHidden = true
+            accountsStackView.isHidden = true
+        } else {
+            accountInfoBar.isHidden = true
+            singleAccountEnrollView.isHidden = true
+        }
         
         learnMoreButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             let description: String
@@ -115,10 +137,13 @@ class PaperlessEBillViewController: UIViewController {
     }
     
     func colorAndShadowSetup() {
-        topBackgroundView.backgroundColor = .white
-        topBackgroundView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0, height: 2), radius: 1)
-        enrollAllAccountsView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 2)
-        enrollAllAccountsView.layer.cornerRadius = 2
+        singleAccountEnrollLabel.textColor = .blackText
+        singleAccountEnrollLabel.font = OpenSans.regular.of(size: 16)
+        singleAccountEnrollLabel.text = NSLocalizedString("Paperless eBill Enrollment Status", comment: "")
+        
+        enrollAllAccountsHeaderLabel.textColor = .blackText
+        enrollAllAccountsHeaderLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        enrollAllAccountsHeaderLabel.text = NSLocalizedString("Enrollment Status:", comment: "")
         
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientBackgroundView.bounds
@@ -128,6 +153,8 @@ class PaperlessEBillViewController: UIViewController {
         ]
         gradientLayer.locations = [0.0, 1.0]
         gradientBackgroundView.layer.addSublayer(gradientLayer)
+        
+        bottomView.backgroundColor = .softGray
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,11 +168,11 @@ class PaperlessEBillViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        gradientLayer.frame = gradientBackgroundView.frame
+        gradientLayer.frame = gradientBackgroundView.bounds
     }
     
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        gradientLayer.frame = gradientBackgroundView.frame
+        gradientLayer.frame = gradientBackgroundView.bounds
     }
     
     func add(accountDetail: AccountDetail, animated: Bool) {
