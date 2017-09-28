@@ -12,7 +12,6 @@ import Foundation
 /// track when to prompt the user to rate the app.
 struct AppRating {
    
-    static let EventKey = "rating_event"
     static let EventThreshold = 2
     
     /// Log an event that should contribute to event count
@@ -20,8 +19,8 @@ struct AppRating {
     /// user to rate the app.
     static func logRatingEvent() {
         let defaults = UserDefaults.standard
-        let value = defaults.integer(forKey: EventKey)
-        defaults.set(value+1, forKey: EventKey)
+        let value = defaults.integer(forKey: UserDefaultKeys.AppRatingEventCount)
+        defaults.set(value+1, forKey: UserDefaultKeys.AppRatingEventCount)
     }
     
     /// Reset the event count, after calling this
@@ -29,7 +28,7 @@ struct AppRating {
     /// the event threshold has been reached again.
     static func clearEventCount() {
         let defaults = UserDefaults.standard
-        defaults.set(0, forKey: EventKey)
+        defaults.set(0, forKey: UserDefaultKeys.AppRatingEventCount)
     }
     
     /// Check if the event threshold has been met
@@ -42,7 +41,7 @@ struct AppRating {
         let isTest = environment.uppercased() == "TEST"
         
         let defaults = UserDefaults.standard
-        let value = defaults.integer(forKey: EventKey)
+        let value = defaults.integer(forKey: UserDefaultKeys.AppRatingEventCount)
         return value >= EventThreshold && !isTest;
     }
 }
