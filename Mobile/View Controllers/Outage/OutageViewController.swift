@@ -8,6 +8,7 @@
 
 import RxSwift
 import Lottie
+import StoreKit
 
 class OutageViewController: AccountPickerViewController {
     
@@ -111,6 +112,13 @@ class OutageViewController: AccountPickerViewController {
         
         navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
+            SKStoreReviewController.requestReview()
+        }
     }
     
     override func viewDidLayoutSubviews() {
