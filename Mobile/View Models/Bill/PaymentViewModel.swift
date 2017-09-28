@@ -820,7 +820,7 @@ class PaymentViewModel {
         }
     }
     
-    private(set) lazy var selectedWalletItemNickname: Driver<String> = Driver.combineLatest(self.selectedWalletItem.asDriver(),
+    private(set) lazy var selectedWalletItemNickname: Driver<String?> = Driver.combineLatest(self.selectedWalletItem.asDriver(),
                                                                                             self.inlineBank.asDriver(),
                                                                                             self.addBankFormViewModel.nickname.asDriver(),
                                                                                             self.inlineCard.asDriver(),
@@ -831,10 +831,18 @@ class PaymentViewModel {
         } else if $3 {
             return $4
         } else {
-            guard let walletItem: WalletItem = $0 else { return "" }
-            return walletItem.nickName ?? ""
+            guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
+            
+            if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
+                let last4 = maskedNumber.substring(from:maskedNumber.index(maskedNumber.endIndex, offsetBy: -4))
+                return nickname == last4 ? nil : nickname
+            } else {
+                return nickname
+            }
         }
     }
+    
+    private(set) lazy var showSelectedWalletItemNickname: Driver<Bool> = self.selectedWalletItemNickname.isNil().not()
     
     private(set) lazy var selectedWalletItemA11yLabel: Driver<String> = Driver.combineLatest(self.selectedWalletItem.asDriver(),
                                                                                              self.inlineBank.asDriver(),
