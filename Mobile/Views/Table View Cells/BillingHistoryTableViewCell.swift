@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 enum BillingHistoryProperties: String {
     case TypeBilling = "billing"
@@ -34,11 +36,21 @@ class BillingHistoryTableViewCell: UITableViewCell {
     let BILL_ISSUED = NSLocalizedString("Bill Issued", comment: "")
     let PENDING_PAYMENT = NSLocalizedString("Pending Payment", comment: "")
 
-    @IBOutlet var iconImageView: UIImageView!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var amountLabel: UILabel!
+    @IBOutlet weak var innerContentView: ButtonControl!
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var caretImageView: UIImageView!
+    
+    let disposeBag = DisposeBag()
+    
+    private(set) lazy var didSelect: Driver<Void> = self.innerContentView.rx.touchUpInside.asDriver()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -117,7 +129,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
             titleLabel.text = PENDING_PAYMENT
             amountLabel.text = amountPaid
             caretImageView.isHidden = true
-            selectionStyle = .none
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PENDING_PAYMENT, dateString, amountPaid)
         } else if status == BillingHistoryProperties.StatusProcessing.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
@@ -125,7 +136,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
             amountLabel.text = amountPaid
             dateLabel.isHidden = true
             caretImageView.isHidden = true
-            selectionStyle = .none
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT_PROCESSING, dateString, amountPaid)
         } else if status == BillingHistoryProperties.StatusCanceled.rawValue ||
             status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
@@ -134,7 +144,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
             titleLabel.text = PAYMENT
             amountLabel.text = amountPaid
             caretImageView.isHidden = false
-            selectionStyle = .default
             if status == BillingHistoryProperties.StatusFailed.rawValue {
                 a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
             } else {
@@ -145,7 +154,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
             titleLabel.text = SCHEDULED_PAYMENT
             amountLabel.text = amountPaid
             caretImageView.isHidden = false
-            selectionStyle = .default
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
         }
         accessibilityLabel = a11y

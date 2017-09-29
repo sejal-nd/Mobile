@@ -359,6 +359,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BillingHistoryTableViewCell
         cell.accessibilityTraits = UIAccessibilityTraitButton
         cell.configureWith(item: billingHistoryItem)
+        cell.didSelect.
         return cell
     }
     
