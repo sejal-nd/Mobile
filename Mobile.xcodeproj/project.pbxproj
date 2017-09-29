@@ -1222,6 +1222,7 @@
 		E8FE30B11E787625009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B01E787625009D28B7 /* outage.json */; };
 		E8FE30B61E787632009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B41E78762F009D28B7 /* outage.json */; };
 		E8FE30B71E787635009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B21E78762B009D28B7 /* outage.json */; };
+		E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59606291F7C1F4A00515B72 /* AppRating.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3642,7 +3643,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -4888,6 +4889,7 @@
 				E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */,
 				E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
+				E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */,
 				54EDD2E21ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
 				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
