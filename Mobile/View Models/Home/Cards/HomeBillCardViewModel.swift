@@ -334,7 +334,6 @@ class HomeBillCardViewModel {
     { billState, walletItem, accountDetail, showOneTouchPaySlider, minMaxPaymentAllowedText in
         return billState == .billReady &&
             walletItem != nil &&
-            Environment.sharedInstance.opco != .bge &&
             showOneTouchPaySlider &&
             minMaxPaymentAllowedText != nil
     }
