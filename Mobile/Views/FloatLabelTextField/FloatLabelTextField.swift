@@ -40,6 +40,8 @@ class FloatLabelTextField: UIView {
     }
     
     func commonInit() {
+        self.backgroundColor = .clear
+        
         Bundle.main.loadNibNamed(FloatLabelTextField.className, owner: self, options: nil)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
