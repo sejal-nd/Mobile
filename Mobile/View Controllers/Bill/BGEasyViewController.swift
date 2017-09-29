@@ -10,6 +10,7 @@ import UIKit
 
 class BGEasyViewController: DismissableFormSheetViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var xButton: UIButton!
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,13 +22,13 @@ class BGEasyViewController: DismissableFormSheetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .primaryColor
+        scrollView.backgroundColor = .primaryColor
         
         xButton.imageView?.tintColor = .actionBlue
         xButton.isAccessibilityElement = true
         xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         
-        navBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        navBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 3), radius: 1)
         
         titleLabel.textColor = .blackText
         titleLabel.text = NSLocalizedString("BGEasy Customer", comment: "")

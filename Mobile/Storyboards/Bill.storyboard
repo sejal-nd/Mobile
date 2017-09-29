@@ -188,6 +188,7 @@
                         <outlet property="bullet2Label" destination="mST-RI-C02" id="eBr-h5-OPV"/>
                         <outlet property="descriptionLabel" destination="RTB-2K-2Jd" id="QEz-cA-yiy"/>
                         <outlet property="navBar" destination="buj-mn-TKo" id="VRO-Jj-8qA"/>
+                        <outlet property="scrollView" destination="Ag7-4H-wgn" id="jJQ-Rb-jIR"/>
                         <outlet property="titleLabel" destination="Xrr-61-f7U" id="ho2-9T-lRo"/>
                         <outlet property="xButton" destination="cYA-cb-a4v" id="zxZ-ET-gja"/>
                         <outletCollection property="bulletCollection" destination="cba-oC-PNq" collectionClass="NSMutableArray" id="J1D-Hv-Lnd"/>
