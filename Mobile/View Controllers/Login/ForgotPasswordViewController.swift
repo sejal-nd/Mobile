@@ -131,8 +131,4 @@ class ForgotPasswordViewController: UIViewController {
         return .lightContent
     }
 
-    deinit {
-        dLog()
-    }
-
 }

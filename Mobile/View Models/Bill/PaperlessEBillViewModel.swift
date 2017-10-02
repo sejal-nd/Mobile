@@ -159,4 +159,7 @@ class PaperlessEBillViewModel {
             break
         }
     }
+    
+    private(set) lazy var isSingleAccount: Driver<Bool> = self.accounts.asDriver().map { $0.count == 1 }
+
 }

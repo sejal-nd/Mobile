@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import Lottie
+import StoreKit
 
 class HomeViewController: AccountPickerViewController {
     
@@ -105,6 +106,9 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         Analytics().logScreenView(AnalyticsPageView.HomeOfferComplete.rawValue)
+        if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
+            SKStoreReviewController.requestReview()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -213,10 +217,6 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-    }
-    
-    deinit {
-        dLog()
     }
     
 }

@@ -15,6 +15,8 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
     @IBOutlet weak var navTitleLabel: UILabel!
     @IBOutlet weak var navDescriptionLabel: UILabel!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet var bulletCollection: [UIView]!
     
     // Card 1
@@ -37,12 +39,12 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .primaryColor
+        scrollView.backgroundColor = .primaryColor
 
         xButton.imageView?.tintColor = .actionBlue
         xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         
-        navBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        navBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 3), radius: 1)
         
         navTitleLabel.textColor = .blackText
         navTitleLabel.text = NSLocalizedString("What is Budget Billing?", comment: "")
@@ -131,7 +133,4 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    deinit {
-        dLog()
-    }
 }

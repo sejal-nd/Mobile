@@ -157,8 +157,4 @@ class AddCardFormViewModel {
         return firstChar.trimmingCharacters(in: charSet).characters.count == 0
     }
     
-    deinit {
-        dLog()
-    }
-    
 }

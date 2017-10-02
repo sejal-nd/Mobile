@@ -141,7 +141,4 @@ class ReportOutageViewModel {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
     }
     
-    deinit {
-        dLog()
-    }
 }

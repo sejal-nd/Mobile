@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import Lottie
+import StoreKit
 
 class BillViewController: AccountPickerViewController {
     @IBOutlet weak var contentView: UIView!
@@ -161,6 +162,13 @@ class BillViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
+            SKStoreReviewController.requestReview()
+        }
+    }
+    
     func killRefresh() -> Void {
         self.refreshControl?.endRefreshing()
         self.scrollView.alwaysBounceVertical = false
@@ -282,7 +290,7 @@ class BillViewController: AccountPickerViewController {
             .drive(alertBannerView.rx.resetAnimation)
             .disposed(by: bag)
 
-		questionMarkButton.isHidden = !viewModel.shouldShowAmountDueTooltip
+        viewModel.shouldShowAmountDueTooltip.not().drive(questionMarkButton.rx.isHidden).disposed(by: bag)
         
         viewModel.shouldShowTopContent.not().drive(totalAmountView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowTopContent.not().drive(paymentDetailsView.rx.isHidden).disposed(by: bag)
@@ -565,9 +573,6 @@ class BillViewController: AccountPickerViewController {
         })
     }
     
-    deinit {
-        dLog()
-    }
 }
 
 extension BillViewController: AccountPickerDelegate {
