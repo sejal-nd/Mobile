@@ -23,8 +23,10 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     
     var submitButton: UIBarButtonItem!
     
-    let viewModel = UnauthenticatedOutageViewModel(outageService: ServiceFactory.createOutageService())
-    
+    let viewModel = UnauthenticatedOutageViewModel(
+            authService: ServiceFactory.createAuthenticationService(),
+            outageService: ServiceFactory.createOutageService())
+
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -73,6 +75,18 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         
         bindViewModel()
         bindValidation()
+
+        viewModel.checkForMaintenance(onSuccess: { [weak self] isMaintenance in
+            if isMaintenance {
+                self?.navigationController?.view.isUserInteractionEnabled = true
+                let ad = UIApplication.shared.delegate as! AppDelegate
+                ad.showMaintenanceMode()
+            }
+        }, onError: { [weak self] errorMessage in
+            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self?.present(alertController, animated: true, completion: nil)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -250,8 +264,6 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
             vc.viewModel = viewModel
         }
     }
-
-    
 
 }
 
