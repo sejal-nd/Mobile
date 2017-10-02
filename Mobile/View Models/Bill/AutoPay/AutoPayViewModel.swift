@@ -100,10 +100,11 @@ class AutoPayViewModel {
         .map { 4...17 ~= $0.characters.count }
         .distinctUntilChanged()
     
-    private(set) lazy var confirmAccountNumberMatches: Driver<Bool> = Driver.combineLatest(self.accountNumber.asDriver(),
-                                                                                           self.confirmAccountNumber.asDriver(),
-                                                                                           resultSelector: ==)
-        .distinctUntilChanged()
+    private(set) lazy var confirmAccountNumberMatches: Driver<Bool> =
+        Driver.combineLatest(self.accountNumber.asDriver(),
+                             self.confirmAccountNumber.asDriver(),
+                             resultSelector: ==)
+            .distinctUntilChanged()
     
     private(set) lazy var canSubmitNewAccount: Driver<Bool> = {
         var validationDrivers = [self.nameOnAccountHasText,
