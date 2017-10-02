@@ -83,5 +83,18 @@ class UnauthenticatedUserViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch(segue.identifier) {
+        case "reportOutageValidateAccount"?:
+            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthOffer.rawValue)
+            break
+        case "checkOutageValidateAccount"?:
+            Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthOffer.rawValue)
+            break
+        default:
+            break
+        
+        }
+    }
 }

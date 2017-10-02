@@ -117,6 +117,20 @@ enum AnalyticsPageView: String {
     case HomePromoCard = "HomePromoCard"
     case AddWalletCameraOffer = "AddWalletCameraOffer"
     case AddWalletComplete = "AddWalletComplete"
+    
+    case OutageStatusUnAuthOffer = "OutageStatusUnAuthOffer"
+    case OutageStatusUnAuthComplete = "OutageStatusUnAuthComplete"
+    case OutageStatusUnAuthAcctValidate = "OutageStatusUnAuthAcctValidate"
+    case OutageStatusUnAuthAcctSelect = "OutageStatusUnAuthAcctSelect"
+    case OutageStatusUnAuthStatusButton = "OutageStatusUnAuthStatusButton"
+    case OutageStatusUnAuthAcctValEmergencyPhone = "OutageStatusUnAuthAcctValEmergencyPhone"
+    case ViewOutageMapUnAuthOfferComplete = "ViewOutageMapUnAuthOfferComplete"
+    case ViewOutageMapGuestMenu = "ViewOutageMapGuestMenu"
+    case ViewOutageUnAuthMenu = "ViewOutageUnAuthMenu"
+    case ReportAnOutageUnAuthOffer = "ReportAnOutageUnAuthOffer"
+    case ReportAnOutageUnAuthOutScreen = "ReportAnOutageUnAuthOutScreen"
+    case ReportAnOutageUnAuthSubmitAcctVal = "ReportAnOutageUnAuthSubmitAcctVal"
+    
 }
 
 enum Dimensions: String {
