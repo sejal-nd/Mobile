@@ -136,8 +136,6 @@ class BillingHistoryViewController: UIViewController {
 extension BillingHistoryViewController: UITableViewDelegate {
     
     func selectedRow(at indexPath: IndexPath, tableView: UITableView) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        
         selectedIndexPath = indexPath
         
         //past billing history

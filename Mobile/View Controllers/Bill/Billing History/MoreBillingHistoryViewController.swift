@@ -80,7 +80,6 @@ class MoreBillingHistoryViewController: UIViewController {
 extension MoreBillingHistoryViewController: UITableViewDelegate {
     
     func selectedRow(at indexPath: IndexPath, tableView: UITableView) {
-        tableView.deselectRow(at: indexPath, animated: false)
         
         selectedIndexPath = indexPath
 
