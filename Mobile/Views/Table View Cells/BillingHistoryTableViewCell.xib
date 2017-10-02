@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                         <subviews>
                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="cw8-pM-dtj">
-                                <rect key="frame" x="15" y="0.0" width="334" height="65.5"/>
+                                <rect key="frame" x="15" y="0.0" width="338" height="65.5"/>
                                 <subviews>
                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="D8J-CN-oIG">
                                         <rect key="frame" x="0.0" y="13" width="227" height="39.5"/>
@@ -59,12 +59,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="1" verticalHuggingPriority="251" image="ic_caret" translatesAutoresizingMaskIntoConstraints="NO" id="z4I-YT-a8d">
-                                        <rect key="frame" x="301" y="26.5" width="33" height="13"/>
+                                        <rect key="frame" x="301" y="26.5" width="37" height="13"/>
                                     </imageView>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKT-Of-ANt" userLabel="Separator">
-                                <rect key="frame" x="0.0" y="64.5" width="375" height="1"/>
+                                <rect key="frame" x="55" y="64.5" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="AgA-s3-Bj2"/>
@@ -74,11 +74,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cw8-pM-dtj" firstAttribute="leading" secondItem="dPf-UL-glO" secondAttribute="leading" constant="15" id="19R-wu-RQZ"/>
-                            <constraint firstAttribute="trailing" secondItem="cw8-pM-dtj" secondAttribute="trailing" constant="26" id="7e6-fv-i09"/>
+                            <constraint firstAttribute="trailing" secondItem="cw8-pM-dtj" secondAttribute="trailing" constant="22" id="7e6-fv-i09"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="8KZ-m0-mw8"/>
                             <constraint firstAttribute="width" priority="750" constant="460" id="MQT-zE-PqE"/>
                             <constraint firstAttribute="trailing" secondItem="EKT-Of-ANt" secondAttribute="trailing" id="R02-rV-qvO"/>
-                            <constraint firstItem="EKT-Of-ANt" firstAttribute="leading" secondItem="dPf-UL-glO" secondAttribute="leading" id="S4e-5L-8y0"/>
+                            <constraint firstItem="EKT-Of-ANt" firstAttribute="leading" secondItem="dPf-UL-glO" secondAttribute="leading" constant="55" id="S4e-5L-8y0"/>
                             <constraint firstAttribute="bottom" secondItem="cw8-pM-dtj" secondAttribute="bottom" id="XKT-9Y-aeb"/>
                             <constraint firstItem="cw8-pM-dtj" firstAttribute="top" secondItem="dPf-UL-glO" secondAttribute="top" id="Zst-3f-KL9"/>
                             <constraint firstAttribute="bottom" secondItem="EKT-Of-ANt" secondAttribute="bottom" id="xjb-Sy-oJU"/>
@@ -86,7 +86,7 @@
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="NO"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorOnPress">
-                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="value" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>

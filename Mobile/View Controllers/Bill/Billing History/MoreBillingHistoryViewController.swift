@@ -78,7 +78,8 @@ class MoreBillingHistoryViewController: UIViewController {
 }
 
 extension MoreBillingHistoryViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    func selectedRow(at indexPath: IndexPath, tableView: UITableView) {
         tableView.deselectRow(at: indexPath, animated: false)
         
         selectedIndexPath = indexPath
@@ -207,9 +208,14 @@ extension MoreBillingHistoryViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BillingHistoryCell", for: indexPath) as! BillingHistoryTableViewCell
         
-        cell.accessibilityTraits = UIAccessibilityTraitButton
-        
         cell.configureWith(item: billingHistoryItem)
+        
+        cell.didSelect
+            .drive(onNext: { [weak self, weak tableView] in
+                guard let tableView = tableView else { return }
+                self?.selectedRow(at: indexPath, tableView: tableView)
+            })
+            .disposed(by: cell.disposeBag)
         
         return cell
     }

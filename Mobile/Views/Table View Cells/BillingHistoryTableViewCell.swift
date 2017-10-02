@@ -43,7 +43,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var caretImageView: UIImageView!
     
-    let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     private(set) lazy var didSelect: Driver<Void> = self.innerContentView.rx.touchUpInside.asDriver()
     
@@ -57,8 +57,9 @@ class BillingHistoryTableViewCell: UITableViewCell {
         dateLabel.text = ""
         titleLabel.text = ""
         amountLabel.text = ""
-        amountLabel.textColor = UIColor.black
+        amountLabel.textColor = .black
         iconImageView.image = nil
+        disposeBag = DisposeBag()
     }
     
     func configureWith(item: BillingHistoryItem) {
@@ -112,7 +113,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
             }
         }
-        accessibilityLabel = a11y
+        innerContentView.accessibilityLabel = a11y
     }
     
     private func configureUpcomingCell(item: BillingHistoryItem) {
@@ -156,7 +157,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
             caretImageView.isHidden = false
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
         }
-        accessibilityLabel = a11y
+        innerContentView.accessibilityLabel = a11y
     }
     
     class var identifier: String{

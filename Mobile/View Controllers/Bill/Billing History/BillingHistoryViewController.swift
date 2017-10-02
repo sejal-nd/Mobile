@@ -135,7 +135,7 @@ class BillingHistoryViewController: UIViewController {
 
 extension BillingHistoryViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func selectedRow(at indexPath: IndexPath, tableView: UITableView) {
         tableView.deselectRow(at: indexPath, animated: false)
         
         selectedIndexPath = indexPath
@@ -357,14 +357,20 @@ extension BillingHistoryViewController: UITableViewDataSource {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BillingHistoryTableViewCell
-        cell.accessibilityTraits = UIAccessibilityTraitButton
+        
         cell.configureWith(item: billingHistoryItem)
-        cell.didSelect.
+        cell.didSelect
+            .drive(onNext: { [weak self, weak tableView] in
+                guard let tableView = tableView else { return }
+                self?.selectedRow(at: indexPath, tableView: tableView)
+            })
+            .disposed(by: cell.disposeBag)
         return cell
     }
     
     func headerView(section: Int) -> UIView {
-        let view = UIView() // The width will be the same as the cell, and the height should be set in tableView:heightForRowAtIndexPath:
+        let view = UIView()
+        
         view.backgroundColor = .white
         let label = UILabel()
         let button = UIButton(type: UIButtonType.system)
@@ -399,20 +405,33 @@ extension BillingHistoryViewController: UITableViewDataSource {
         let selector = section == 0 ? #selector(BillingHistoryViewController.viewAllUpcoming) : #selector(BillingHistoryViewController.viewMorePast)
         button.addTarget(self, action: selector, for:.touchUpInside)
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
+        let leadingSpace = UIView()
+        leadingSpace.widthAnchor.constraint(equalToConstant: 19).isActive = true
+        let trailingSpace = UIView()
+        trailingSpace.widthAnchor.constraint(equalToConstant: 12).isActive = true
         
-        view.addSubview(label)
-        view.addSubview(button)
+        let stackView = UIStackView(arrangedSubviews: [leadingSpace, label, UIView(), button, trailingSpace])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        let views = ["label": label, "button": button, "view": view]
+        stackView.axis = .horizontal
+        stackView.alignment = .center
         
-        let horizontallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-19-[label]-60-[button]-22-|", options: .alignAllCenterY, metrics: nil, views: views)
-        view.addConstraints(horizontallayoutContraints)
+        view.addSubview(stackView)
         
-        let verticalLayoutContraint = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
-        view.addConstraint(verticalLayoutContraint)
-            
+        let leadingConstraint = stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
+        leadingConstraint.priority = 750
+        leadingConstraint.isActive = true
+        let trailingConstraint = stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+        trailingConstraint.priority = 750
+        trailingConstraint.isActive = true
+        
+        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        stackView.widthAnchor.constraint(lessThanOrEqualToConstant: 460)
+        let widthConstraint = stackView.widthAnchor.constraint(equalToConstant: 460)
+        widthConstraint.priority = 750
+        widthConstraint.isActive = true
+        
         return view
     }
     
@@ -462,7 +481,18 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "BgEasyCell")
         
-        cell.accessibilityTraits = UIAccessibilityTraitButton
+        cell.selectionStyle = .none
+        
+        let innerContentView = ButtonControl(frame: .zero)
+        innerContentView.translatesAutoresizingMaskIntoConstraints = false
+        innerContentView.backgroundColorOnPress = .accentGray
+        
+        innerContentView.rx.touchUpInside.asDriver()
+            .drive(onNext: { [weak self, weak tableView] in
+                guard let tableView = tableView else { return }
+                self?.selectedRow(at: indexPath, tableView: tableView)
+            })
+            .disposed(by: disposeBag)
         
         let label = UILabel()
         if accountDetail.isAutoPay {
@@ -475,20 +505,47 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         let carat = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
         carat.contentMode = .scaleAspectFit
-    
-        label.translatesAutoresizingMaskIntoConstraints = false
-        carat.translatesAutoresizingMaskIntoConstraints = false
         
-        cell.contentView.addSubview(label)
-        cell.contentView.addSubview(carat)
+        let stackView = UIStackView(arrangedSubviews: [label, UIView(), carat])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.isUserInteractionEnabled = false
         
-        let views = ["label": label, "carat": carat, "view": cell.contentView]
+        innerContentView.addSubview(stackView)
         
-        let horizontallayoutContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-19-[label]-8-[carat]-22-|", options: .alignAllCenterY, metrics: nil, views: views)
-        cell.contentView.addConstraints(horizontallayoutContraints)
+        stackView.topAnchor.constraint(equalTo: innerContentView.topAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: innerContentView.bottomAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: innerContentView.leadingAnchor, constant: 19).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: innerContentView.trailingAnchor, constant: -22).isActive = true
         
-        let verticalLayoutContraint = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: cell.contentView, attribute: .centerY, multiplier: 1, constant: 0)
-        cell.contentView.addConstraint(verticalLayoutContraint)
+        let separatorView = UIView()
+        separatorView.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        separatorView.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        
+        innerContentView.addSubview(separatorView)
+        
+        separatorView.leadingAnchor.constraint(equalTo: innerContentView.leadingAnchor).isActive = true
+        separatorView.trailingAnchor.constraint(equalTo: innerContentView.trailingAnchor).isActive = true
+        separatorView.bottomAnchor.constraint(equalTo: innerContentView.bottomAnchor).isActive = true
+        
+        cell.contentView.addSubview(innerContentView)
+        
+        innerContentView.topAnchor.constraint(equalTo: cell.contentView.topAnchor).isActive = true
+        innerContentView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
+        let leadingConstraint = innerContentView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 0)
+        leadingConstraint.priority = 750
+        leadingConstraint.isActive = true
+        let trailingConstraint = innerContentView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: 0)
+        trailingConstraint.priority = 750
+        trailingConstraint.isActive = true
+        
+        innerContentView.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor).isActive = true
+        innerContentView.widthAnchor.constraint(lessThanOrEqualToConstant: 460)
+        let widthConstraint = innerContentView.widthAnchor.constraint(equalToConstant: 460)
+        widthConstraint.priority = 750
+        widthConstraint.isActive = true
         
         return cell
         
