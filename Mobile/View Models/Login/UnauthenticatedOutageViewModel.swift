@@ -21,8 +21,12 @@ class UnauthenticatedOutageViewModel {
     var reportedOutage: ReportedOutageResult?
     
     let outageService: OutageService!
-    
-    required init(outageService: OutageService) {
+    private var authService: AuthenticationService
+
+
+    required init(authService: AuthenticationService,
+                  outageService: OutageService) {
+        self.authService = authService
         self.outageService = outageService
     }
     
@@ -159,5 +163,13 @@ class UnauthenticatedOutageViewModel {
     
     private func extractDigitsFrom(_ string: String) -> String {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+    }
+
+    func checkForMaintenance(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
+        authService.getMaintenanceMode()
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { maintenanceInfo in
+                    onSuccess(maintenanceInfo.allStatus)
+                }).disposed(by: disposeBag)
     }
 }
