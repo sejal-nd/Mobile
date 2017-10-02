@@ -74,7 +74,8 @@ struct AccountDetail: Mappable {
     let isCashOnly: Bool
     let isSupplier: Bool
     let isActiveSeverance: Bool
-    
+    let isHourlyPricing: Bool
+
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
     let budgetBillMessage: String?
@@ -117,7 +118,8 @@ struct AccountDetail: Mappable {
         isCashOnly = map.optionalFrom("isCashOnly") ?? false
         isSupplier = map.optionalFrom("isSupplier") ?? false
         isActiveSeverance = map.optionalFrom("activeSeverance") ?? false
-        
+        isHourlyPricing = map.optionalFrom("isHourlyPricing") ?? false
+
         status = map.optionalFrom("status")
         
 		isAutoPay = map.optionalFrom("isAutoPay") ?? false

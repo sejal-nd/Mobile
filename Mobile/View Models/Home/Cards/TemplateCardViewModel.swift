@@ -44,7 +44,13 @@ class TemplateCardViewModel {
                 return #imageLiteral(resourceName: "SmallBusiness")
             }
         case .comEd:
-            return nil
+            if accountDetail.isResidential {
+                return accountDetail.isHourlyPricing ?
+                        #imageLiteral(resourceName: "EnrolledImage") :
+                        #imageLiteral(resourceName: "UnenrolledImage")
+            } else {
+                return #imageLiteral(resourceName: "Commercial")
+            }
         }
     }.asDriver(onErrorDriveWith: .empty())
     
@@ -71,7 +77,13 @@ class TemplateCardViewModel {
                 return NSLocalizedString("Lower your Business’s energy costs", comment: "")
             }
         case .comEd:
-            return nil
+            if accountDetail.isResidential {
+                return accountDetail.isHourlyPricing ?
+                        NSLocalizedString("Check Up On Your Hourly Pricing Savings", comment: "") :
+                        NSLocalizedString("Get Instant Rebates on Energy-Related Products", comment: "")
+            } else {
+                return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
+            }
         }
     }.asDriver(onErrorDriveWith: .empty())
     
@@ -98,7 +110,14 @@ class TemplateCardViewModel {
                 return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
             }
         case .comEd:
-            return nil
+            if accountDetail.isResidential {
+                return accountDetail.isHourlyPricing ?
+                        NSLocalizedString("Check Up On Your Hourly Pricing Savings", comment: "") :
+                        NSLocalizedString("Shop the ComEd Marketplace and receive instant savings on smart " +
+                        "thermostats, energy-efficient LEDs and more.", comment: "")
+            } else {
+                return NSLocalizedString("A FREE facility assessment can help you save money and energy", comment: "")
+            }
         }
     }.asDriver(onErrorDriveWith: .empty())
     
@@ -121,7 +140,13 @@ class TemplateCardViewModel {
                 return NSLocalizedString("Learn More", comment: "")
             }
         case .comEd:
-            return nil
+            if accountDetail.isResidential {
+                return accountDetail.isHourlyPricing ?
+                        NSLocalizedString("View My Savings!", comment: "") :
+                        NSLocalizedString("Shop Now", comment: "")
+            } else {
+                return NSLocalizedString("Get started today", comment: "")
+            }
         }
     }.asDriver(onErrorDriveWith: .empty())
     
@@ -144,7 +169,14 @@ class TemplateCardViewModel {
                 return NSLocalizedString("http://bgesmartenergy.com/business", comment: "")
             }
         case .comEd:
-            return nil
+            if accountDetail.isResidential {
+                 return accountDetail.isHourlyPricing ?
+                        String(format: NSLocalizedString("http://rrtp.comed.com/rrtpmobile/servlet?type=home&account=%@", comment: ""),
+                        accountDetail.accountNumber) :
+                        NSLocalizedString("https://www.comedmarketplace.com/", comment: "")
+            } else {
+                return NSLocalizedString("http://comed.com/BusinessSavings", comment: "")
+            }
         }
     }.unwrap().map { URL(string: $0) }.unwrap().asDriver(onErrorDriveWith: .empty())
     

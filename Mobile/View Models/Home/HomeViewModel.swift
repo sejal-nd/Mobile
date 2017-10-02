@@ -62,10 +62,6 @@ class HomeViewModel {
         }
         .shareReplay(1)
 
-
-    
-    let showTemplateCard = Environment.sharedInstance.opco != .comEd
-    
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
