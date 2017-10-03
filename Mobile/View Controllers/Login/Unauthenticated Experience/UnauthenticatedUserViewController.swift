@@ -85,16 +85,24 @@ class UnauthenticatedUserViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch(segue.identifier) {
-        case "reportOutageValidateAccount"?:
-            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthOffer.rawValue)
-            break
-        case "checkOutageValidateAccount"?:
-            Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthOffer.rawValue)
-            break
-        default:
-            break
-        
+        if let vc = segue.destination as? UnauthenticatedOutageValidateAccountViewController {
+            switch(segue.identifier) {
+            case "reportOutageValidateAccount"?:
+                Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthOffer.rawValue)
+                vc.analyticsSource = AnalyticsOutageSource.Report
+                break
+            case "checkOutageValidateAccount"?:
+                Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthOffer.rawValue)
+                vc.analyticsSource = AnalyticsOutageSource.Status
+                break
+            default:
+                break
+            }
+        } else if let vc = segue.destination as? OutageMapViewController {
+            vc.unauthenticatedExperience = true
+            Analytics().logScreenView(AnalyticsPageView.ViewOutageMapGuestMenu.rawValue)
+        } else if let vc = segue.destination as? ContactUsViewController {
+            vc.unauthenticatedExperience = true
         }
     }
 }

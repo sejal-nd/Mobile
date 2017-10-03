@@ -19,6 +19,7 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
     
     var gradientLayer: CAGradientLayer!
     
+    var analyticsSource: AnalyticsOutageSource!
     var viewModel: UnauthenticatedOutageViewModel! // Passed from screen that pushes this
     
     override func viewDidLoad() {
@@ -58,6 +59,18 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
         footerTextView.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        switch analyticsSource {
+        case .Report:
+            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthOutScreen.rawValue)
+        case .Status:
+            Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthComplete.rawValue)
+        default:
+            break
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -69,7 +82,7 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
     }
     
     @IBAction func onViewOutageMapPress() {
-        //Analytics().logScreenView(AnalyticsPageView.ViewMapOfferComplete.rawValue)
+        Analytics().logScreenView(AnalyticsPageView.ViewOutageUnAuthMenu.rawValue)
         performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
@@ -81,6 +94,8 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
                 vc.viewModel.phoneNumber.value = phone
             }
             vc.delegate = self
+        } else if let vc = segue.destination as? OutageMapViewController {
+            vc.unauthenticatedExperience = true
         }
     }
 
@@ -89,14 +104,14 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
 
 extension UnauthenticatedOutageStatusViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        //Analytics().logScreenView(AnalyticsPageView.OutageAuthEmergencyCall.rawValue)
+        Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthAcctValEmergencyPhone.rawValue)
         return true
     }
 }
 
 extension UnauthenticatedOutageStatusViewController: OutageStatusButtonDelegate {
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
-        //Analytics().logScreenView(AnalyticsPageView.OutageStatusDetails.rawValue)
+        Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthStatusButton.rawValue)
         if let message = viewModel.selectedOutageStatus!.outageDescription {
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
@@ -115,7 +130,7 @@ extension UnauthenticatedOutageStatusViewController: ReportOutageViewControllerD
         reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.outageReportedDateString)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-            //Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthComplete.rawValue)
+            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthComplete.rawValue)
         })
     }
     

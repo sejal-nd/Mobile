@@ -22,6 +22,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
     var submitButton: UIBarButtonItem!
+    var analyticsSource: AnalyticsOutageSource!
     
     let viewModel = UnauthenticatedOutageViewModel(outageService: ServiceFactory.createOutageService())
     
@@ -56,6 +57,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.delegate = self
         
         NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
@@ -211,6 +213,15 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
             
             self.present(alertVc, animated: true, completion: nil)
         })
+        
+        switch analyticsSource {
+        case .Report:
+            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthSubmitAcctVal.rawValue)
+        case .Status:
+            Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthAcctValidate.rawValue)
+        default:
+            break
+        }
     }
     
     @IBAction func onAccountNumberTooltipPress() {
@@ -246,8 +257,10 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UnauthenticatedOutageValidateAccountResultViewController {
             vc.viewModel = viewModel
+            vc.analyticsSource = analyticsSource
         } else if let vc = segue.destination as? UnauthenticatedOutageStatusViewController {
             vc.viewModel = viewModel
+            vc.analyticsSource = analyticsSource
         }
     }
 
@@ -299,4 +312,11 @@ extension UnauthenticatedOutageValidateAccountViewController: UITextFieldDelegat
         return true
     }
     
+}
+
+extension UnauthenticatedOutageValidateAccountViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthAcctValEmergencyPhone.rawValue)
+        return true
+    }
 }

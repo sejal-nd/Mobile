@@ -15,6 +15,8 @@ class OutageMapViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     let opco = Environment.sharedInstance.opco
     
+    var unauthenticatedExperience = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +52,13 @@ class OutageMapViewController: UIViewController {
                 NSFontAttributeName: OpenSans.bold.of(size: 18)
             ]
             navigationController?.navigationBar.titleTextAttributes = titleDict
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if(unauthenticatedExperience) {
+            Analytics().logScreenView(AnalyticsPageView.ViewOutageMapUnAuthOfferComplete.rawValue)
         }
     }
 
