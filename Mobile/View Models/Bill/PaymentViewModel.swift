@@ -77,7 +77,9 @@ class PaymentViewModel {
             let tomorrow =  Calendar.opCoTime.date(byAdding: .day, value: 1, to: startOfTodayDate)!
             self.paymentDate.value = tomorrow
         }
-        if let dueDate = accountDetail.billingInfo.dueByDate {
+        if Environment.sharedInstance.opco == .bge && !accountDetail.isActiveSeverance && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
+            self.paymentDate.value = now
+        } else if let dueDate = accountDetail.billingInfo.dueByDate {
             if dueDate >= now && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
                 self.paymentDate.value = dueDate
             }
