@@ -97,8 +97,6 @@
 		2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
 		2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
-		2F5A3F871EFD977F00B9E49E /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */; };
-		2F5A3F881EFD978000B9E49E /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */; };
 		2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */; };
 		2F5A3F8A1EFD979F00B9E49E /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */; };
 		2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
@@ -119,7 +117,6 @@
 		2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		2FB9B45D1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */; };
 		2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
-		2FB9B4601EFC6D77002CBD88 /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
@@ -718,12 +715,6 @@
 		B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415831F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist */; };
 		B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */; };
 		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
-		CE16F6F71F74D9E500B59F27 /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE16F6F61F74D9E500B59F27 /* TutorialView.xib */; };
-		CE16F6F91F74DA7A00B59F27 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16F6F81F74DA7A00B59F27 /* TutorialView.swift */; };
-		CE16F6FA1F74DC1900B59F27 /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE16F6F61F74D9E500B59F27 /* TutorialView.xib */; };
-		CE16F6FB1F74DC1900B59F27 /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE16F6F61F74D9E500B59F27 /* TutorialView.xib */; };
-		CE16F6FC1F74DC1D00B59F27 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16F6F81F74DA7A00B59F27 /* TutorialView.swift */; };
-		CE16F6FD1F74DC1D00B59F27 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE16F6F81F74DA7A00B59F27 /* TutorialView.swift */; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
@@ -1222,6 +1213,18 @@
 		E8FE30B11E787625009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B01E787625009D28B7 /* outage.json */; };
 		E8FE30B61E787632009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B41E78762F009D28B7 /* outage.json */; };
 		E8FE30B71E787635009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B21E78762B009D28B7 /* outage.json */; };
+		E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59606291F7C1F4A00515B72 /* AppRating.swift */; };
+		E8FF085A1F7EDC160030F1BF /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
+		E8FF085B1F7EDC240030F1BF /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
+		E8FF085C1F7EDC250030F1BF /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
+		E8FF08601F7EDD790030F1BF /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8FF085E1F7EDD790030F1BF /* TutorialView.xib */; };
+		E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8FF085E1F7EDD790030F1BF /* TutorialView.xib */; };
+		E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8FF085E1F7EDD790030F1BF /* TutorialView.xib */; };
+		E8FF08631F7EDD790030F1BF /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF085F1F7EDD790030F1BF /* TutorialView.swift */; };
+		E8FF08641F7EDD790030F1BF /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF085F1F7EDD790030F1BF /* TutorialView.swift */; };
+		E8FF08651F7EDD790030F1BF /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF085F1F7EDD790030F1BF /* TutorialView.swift */; };
+		E8FF08661F7EDE330030F1BF /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
+		E8FF08671F7EDE360030F1BF /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1289,7 +1292,6 @@
 		2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryItem.swift; sourceTree = "<group>"; };
 		2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryTableViewCell.swift; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BillingHistoryTableViewCell.xib; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
-		2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryViewModel.swift; path = ../More/BillingHistoryViewModel.swift; sourceTree = "<group>"; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		385AF21B1F278EFD001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
@@ -1322,8 +1324,8 @@
 		54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameSecurityQuestionViewController.swift; sourceTree = "<group>"; };
 		54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestion.swift; sourceTree = "<group>"; };
 		54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionListViewController.swift; sourceTree = "<group>"; };
-		54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountDetailsView.swift; path = Registration/AccountDetailsView.swift; sourceTree = "<group>"; };
-		54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountDetailsView.xib; path = Registration/AccountDetailsView.xib; sourceTree = "<group>"; };
+		54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsView.swift; sourceTree = "<group>"; };
+		54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountDetailsView.xib; sourceTree = "<group>"; };
 		54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
 		54EDD2D91ECE236000CAB8A6 /* WalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCWalletService.swift; sourceTree = "<group>"; };
@@ -1340,7 +1342,7 @@
 		6A4FD59A72B7C52BB420841B /* otps4_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps4_img_1.png; sourceTree = "<group>"; };
 		6A4FD60DDD6041BD50C937EE /* otps4_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps4_img_0.png; sourceTree = "<group>"; };
 		6A4FD61142816F21220B99AC /* otp_step2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step2.json; sourceTree = "<group>"; };
-		6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TutorialModal.xib; path = Tutorial/TutorialModal.xib; sourceTree = "<group>"; };
+		6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialModal.xib; sourceTree = "<group>"; };
 		6A4FD6DF66C665DBE50007D0 /* otps3_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps3_img_1.png; sourceTree = "<group>"; };
 		6A4FD6E44082C2479E900018 /* otps2_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps2_img_0.png; sourceTree = "<group>"; };
 		6A4FD7AD8F54E3629276558A /* otps2_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps2_img_1.png; sourceTree = "<group>"; };
@@ -1349,7 +1351,7 @@
 		6A4FD83C81C2FC97064FA20C /* otp_step4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step4.json; sourceTree = "<group>"; };
 		6A4FD8BC0C4DC3A8B03B4519 /* otps3_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps3_img_1.png; sourceTree = "<group>"; };
 		6A4FD8D975DA427384C5D874 /* otps4_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps4_img_0.png; sourceTree = "<group>"; };
-		6A4FD90DC1399F0D3296706D /* TutorialModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialModalViewController.swift; path = Tutorial/TutorialModalViewController.swift; sourceTree = "<group>"; };
+		6A4FD90DC1399F0D3296706D /* TutorialModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialModalViewController.swift; sourceTree = "<group>"; };
 		6A4FD938D1597E4FD73D4F70 /* otps2_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps2_img_1.png; sourceTree = "<group>"; };
 		6A4FD9AB2B7C002CD73F3147 /* otp_step3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step3.json; sourceTree = "<group>"; };
 		6A4FD9CCBDC02D4AB4E199CA /* otps3_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps3_img_1.png; sourceTree = "<group>"; };
@@ -1368,7 +1370,7 @@
 		6A4FDE4FB49A2918375DF12B /* otp_step3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step3.json; sourceTree = "<group>"; };
 		6A4FDFDC5B607067767A0DE4 /* otps1_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps1_img_1.png; sourceTree = "<group>"; };
 		6A4FDFE2B58E816579B4676D /* otps2_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps2_img_0.png; sourceTree = "<group>"; };
-		820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OneTouchTutorialViewController.swift; path = Tutorial/OneTouchTutorialViewController.swift; sourceTree = "<group>"; };
+		820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchTutorialViewController.swift; sourceTree = "<group>"; };
 		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoNetworkConnectionView.swift; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.swift; sourceTree = SOURCE_ROOT; };
 		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoNetworkConnectionView.xib; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.xib; sourceTree = SOURCE_ROOT; };
 		8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBindingObservers.swift; sourceTree = "<group>"; };
@@ -1656,8 +1658,6 @@
 		B5EB9EED1EC3EB430049B586 /* OMObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMObject.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMObject.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EEE1EC3EB430049B586 /* OMOTPService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMOTPService.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMOTPService.h"; sourceTree = SOURCE_ROOT; };
 		B5EB9EEF1EC3EB430049B586 /* OMToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OMToken.h; path = "Mobile/OMC/oamms_sdk_for_ios/Public Headers/OMToken.h"; sourceTree = SOURCE_ROOT; };
-		CE16F6F61F74D9E500B59F27 /* TutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialView.xib; sourceTree = "<group>"; };
-		CE16F6F81F74DA7A00B59F27 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialView.swift; path = Tutorial/TutorialView.swift; sourceTree = "<group>"; };
 		CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardViewModel.swift; sourceTree = "<group>"; };
 		CEA215201F7900CC00689422 /* HomeBillCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardView.swift; sourceTree = "<group>"; };
 		CEA215211F7900CC00689422 /* HomeBillCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeBillCardView.xib; sourceTree = "<group>"; };
@@ -1732,7 +1732,7 @@
 		E863346E1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetJVFloatLabeledTextField.swift; sourceTree = "<group>"; };
 		E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		E867A8FE1F054BC6007F4FD9 /* MakePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakePaymentViewController.swift; sourceTree = "<group>"; };
-		E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewModel.swift; path = ../PaymentViewModel.swift; sourceTree = "<group>"; };
+		E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PECOReleaseOfInfoViewController.swift; sourceTree = "<group>"; };
 		E873DA731EE8699600020D1B /* RadioSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		E873DA741EE8699600020D1B /* RadioSelectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioSelectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -1832,6 +1832,9 @@
 		E8FE30B01E787625009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 		E8FE30B21E78762B009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 		E8FE30B41E78762F009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
+		E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryViewModel.swift; sourceTree = "<group>"; };
+		E8FF085E1F7EDD790030F1BF /* TutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialView.xib; sourceTree = "<group>"; };
+		E8FF085F1F7EDD790030F1BF /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2048,10 +2051,10 @@
 		2F86FB771F2661B100F1A55A /* History */ = {
 			isa = PBXGroup;
 			children = (
-				2FB9B45F1EFC6D77002CBD88 /* BillingHistoryViewModel.swift */,
 				2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */,
+				E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */,
 			);
-			name = History;
+			path = History;
 			sourceTree = "<group>";
 		};
 		2FA5D8621F17D85A00A8B16B /* Home */ = {
@@ -2059,7 +2062,7 @@
 			children = (
 				2FA5D8631F17D88500A8B16B /* HomeViewController.swift */,
 			);
-			name = Home;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		2FA5D8671F17DB5400A8B16B /* Home */ = {
@@ -2096,7 +2099,7 @@
 				54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */,
 				54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */,
 			);
-			name = Registration;
+			path = Registration;
 			sourceTree = "<group>";
 		};
 		6A4FD01F41569B9443AA6FFD /* step3 */ = {
@@ -2389,12 +2392,13 @@
 		82A18E581EB9186000BE9F21 /* Bill */ = {
 			isa = PBXGroup;
 			children = (
-				2F86FB771F2661B100F1A55A /* History */,
 				E8C4531D1EF42E8200F5C781 /* AutoPay */,
+				2F86FB771F2661B100F1A55A /* History */,
 				E876A8591ECF372600CA63BF /* Wallet */,
 				82A18E591EB918C900BE9F21 /* BillViewModel.swift */,
 				82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */,
 				82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */,
+				E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */,
 				E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */,
 			);
 			path = Bill;
@@ -2427,9 +2431,9 @@
 			isa = PBXGroup;
 			children = (
 				82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */,
+				826DCCEC1F0E7E410063D47E /* DefaultAccountViewModel.swift */,
 				82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */,
 				82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */,
-				826DCCEC1F0E7E410063D47E /* DefaultAccountViewModel.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -2602,6 +2606,7 @@
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				82A18EB11EBA667F00BE9F21 /* Listable Views */,
 				82A18EB21EBA668500BE9F21 /* Table View Cells */,
+				E8FF085D1F7EDD2F0030F1BF /* TutorialView */,
 				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
 				E80D2E261E72FC2C002626C9 /* AccountPicker.swift */,
 				E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */,
@@ -3123,11 +3128,9 @@
 			children = (
 				6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */,
 				6A4FD90DC1399F0D3296706D /* TutorialModalViewController.swift */,
-				CE16F6F61F74D9E500B59F27 /* TutorialView.xib */,
-				CE16F6F81F74DA7A00B59F27 /* TutorialView.swift */,
 				820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */,
 			);
-			name = Tutorial;
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		E800431B1E65FF4D005CF531 /* Fonts */ = {
@@ -3314,7 +3317,6 @@
 		E876A8591ECF372600CA63BF /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */,
 				E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */,
 				E887C9D31ED4CDDE002433A3 /* AddBankAccountViewModel.swift */,
 				548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */,
@@ -3449,8 +3451,8 @@
 		E8C4531D1EF42E8200F5C781 /* AutoPay */ = {
 			isa = PBXGroup;
 			children = (
-				E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */,
 				822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */,
+				E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */,
 			);
 			path = AutoPay;
 			sourceTree = "<group>";
@@ -3527,6 +3529,15 @@
 				6A4FD70300E4B36BC01D3FDF /* tutorial_otp */,
 			);
 			path = PECO;
+			sourceTree = "<group>";
+		};
+		E8FF085D1F7EDD2F0030F1BF /* TutorialView */ = {
+			isa = PBXGroup;
+			children = (
+				E8FF085F1F7EDD790030F1BF /* TutorialView.swift */,
+				E8FF085E1F7EDD790030F1BF /* TutorialView.xib */,
+			);
+			path = TutorialView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3642,7 +3653,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3779,7 +3790,6 @@
 				E8FE30B11E787625009D28B7 /* outage.json in Resources */,
 				B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				B55736321E6740A8003B9369 /* INFO.txt in Resources */,
-				CE16F6F71F74D9E500B59F27 /* TutorialView.xib in Resources */,
 				01F612251F1E404F00A4F9DA /* AddBankFormView.xib in Resources */,
 				01F612211F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
 				B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
@@ -3795,6 +3805,7 @@
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				385AF2261F27915A001E3619 /* img_1.png in Resources */,
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
+				E8FF08601F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E8EDC5361F32403A006DD927 /* speedpay_errors.xml in Resources */,
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
@@ -3888,6 +3899,7 @@
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				CEA215271F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
+				E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
@@ -3908,7 +3920,6 @@
 				82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
-				CE16F6FB1F74DC1900B59F27 /* TutorialView.xib in Resources */,
 				82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */,
 				E8499CB41EE5CD900062F619 /* Bill.storyboard in Resources */,
@@ -3981,6 +3992,7 @@
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
+				E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				B5D4157C1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist in Resources */,
@@ -4001,7 +4013,6 @@
 				82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */,
 				E8494F3C1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
-				CE16F6FA1F74DC1900B59F27 /* TutorialView.xib in Resources */,
 				B55736421E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				E8499CB31EE5CD8F0062F619 /* Bill.storyboard in Resources */,
@@ -4174,7 +4185,6 @@
 				E841F3AA1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
-				2FB9B4601EFC6D77002CBD88 /* BillingHistoryViewModel.swift in Sources */,
 				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
@@ -4195,6 +4205,7 @@
 				82A18E681EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				E801BAD51E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
+				E8FF08631F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				E840BD3F1EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E51E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
@@ -4213,7 +4224,6 @@
 				54DF4BD51EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				E80D2E171E721668002626C9 /* MaskedString.swift in Sources */,
 				E8F51EE61EC9F8560080AB3E /* MockBillService.swift in Sources */,
-				CE16F6F91F74DA7A00B59F27 /* TutorialView.swift in Sources */,
 				E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
 				E8C29C731F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
@@ -4222,6 +4232,7 @@
 				54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				E873DA7C1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				CEA215221F7900CC00689422 /* HomeBillCardView.swift in Sources */,
+				E8FF085A1F7EDC160030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				82A18EDA1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				826DCCED1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
@@ -4424,6 +4435,7 @@
 				2FA5D8611F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
+				E8FF08651F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				82A18EC01EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
 				E803A0021EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
 				E89518751F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
@@ -4443,7 +4455,6 @@
 				387E5C491F1FCDAD00D6710D /* Percentage.swift in Sources */,
 				E803A0061EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
-				CE16F6FC1F74DC1D00B59F27 /* TutorialView.swift in Sources */,
 				E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E81F38151ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				E8C29C751F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
@@ -4451,6 +4462,7 @@
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				82A18EA31EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				825171B71F1D25130020A6CA /* HomeViewModel.swift in Sources */,
+				E8FF085C1F7EDC250030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				CEA215241F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				E80D2E191E721668002626C9 /* MaskedString.swift in Sources */,
 				E86DE4B91F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
@@ -4606,7 +4618,6 @@
 				826DCCEB1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
 				E8B4F4CD1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				225FF85C1EC56B480079010C /* Date.swift in Sources */,
-				2F5A3F881EFD978000B9E49E /* BillingHistoryViewModel.swift in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				82A18E9D1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				825171A51F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
@@ -4654,6 +4665,7 @@
 				2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
+				E8FF08641F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				82A18EBF1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
 				E803A0011EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
 				E89518741F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
@@ -4673,7 +4685,6 @@
 				387E5C481F1FCDAD00D6710D /* Percentage.swift in Sources */,
 				E803A0051EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
-				CE16F6FD1F74DC1D00B59F27 /* TutorialView.swift in Sources */,
 				E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E81F38141ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				E8C29C741F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
@@ -4681,6 +4692,7 @@
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				825171B61F1D25130020A6CA /* HomeViewModel.swift in Sources */,
+				E8FF085B1F7EDC240030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				CEA215231F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				E86DE4B81F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
@@ -4836,7 +4848,6 @@
 				826DCCEA1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
 				E8B4F4CC1E5CE1BA0031D934 /* A0SimpleKeychain.m in Sources */,
 				225FF85B1EC56B480079010C /* Date.swift in Sources */,
-				2F5A3F871EFD977F00B9E49E /* BillingHistoryViewModel.swift in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				82A18E9C1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				825171A41F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
@@ -4870,12 +4881,14 @@
 				0D79C6D41F1FE98A004793DD /* Maintenance.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				E8F51EEF1ECA5AE40080AB3E /* Fonts.swift in Sources */,
+				E8FF08671F7EDE360030F1BF /* BillingHistoryDetailsViewModel.swift in Sources */,
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				54EDD2D81ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				E8F51EE31EC9F7F90080AB3E /* BudgetBillingViewModel.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
 				B574BAF41E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
+				E8FF08661F7EDE330030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				E81F38161ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
 				E8C6F2A51F1FEB7300C4644C /* AddBankFormViewModel.swift in Sources */,
@@ -4888,6 +4901,7 @@
 				E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */,
 				E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
+				E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */,
 				54EDD2E21ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
 				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
