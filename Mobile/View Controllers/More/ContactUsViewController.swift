@@ -34,6 +34,8 @@ class ContactUsViewController: UIViewController {
     
     let bag = DisposeBag()
     
+    var unauthenticatedExperience = false;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,6 +78,7 @@ class ContactUsViewController: UIViewController {
         firstNumberTextView.text = contactUsViewModel.phoneNumber2
         firstNumberTextView.textContainerInset = .zero
         firstNumberTextView.tintColor = .actionBlue // Color of the phone numbers
+        firstNumberTextView.delegate = self
         
         if let label2 = contactUsViewModel.label2,
             let phoneNumber3 = contactUsViewModel.phoneNumber3 {
@@ -153,5 +156,18 @@ class ContactUsViewController: UIViewController {
         return .lightContent
     }
     
+}
+
+extension ContactUsViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        if let linkName = firstLabel.text {
+            let screenName = unauthenticatedExperience ?
+                AnalyticsPageView.ContactUsUnAuthCall.rawValue :
+                AnalyticsPageView.ContactUsAuthCall.rawValue
+            Analytics().logScreenView(screenName, dimensionIndex: Dimensions.DIMENSION_LINK.rawValue, dimensionValue: linkName)
+        }
+        
+        return true
+    }
 }
 

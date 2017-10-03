@@ -245,7 +245,13 @@ class ReportOutageViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthOffer.rawValue)
+        
+        if unauthenticatedExperience {
+            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthScreenView.rawValue)
+        } else {
+            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthOffer.rawValue)
+        }
+        
         
         // METER PING
         if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
@@ -341,16 +347,16 @@ class ReportOutageViewController: UIViewController {
                 guard let `self` = self else { return }
                 self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: reportedOutage)
                 self.navigationController?.popViewController(animated: true)
-                //Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
             }, onError: errorBlock)
+            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthSubmit.rawValue)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 LoadingView.hide()
                 guard let `self` = self else { return }
                 self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: nil)
                 self.navigationController?.popViewController(animated: true)
-                Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
             }, onError: errorBlock)
+            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
         }
         
 
@@ -358,7 +364,12 @@ class ReportOutageViewController: UIViewController {
     
     @IBAction func switchPressed(sender: AnyObject) {
         if(sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn) {
-            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthCircuitBreak.rawValue)
+            if unauthenticatedExperience {
+                Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthCircuitBreakCheck.rawValue)
+            } else {
+                Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthCircuitBreak.rawValue)
+            }
+            
         }
     }
     
@@ -423,7 +434,12 @@ extension ReportOutageViewController: UITextFieldDelegate {
 
 extension ReportOutageViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        Analytics().logScreenView(AnalyticsPageView.ReportOutageEmergencyCall.rawValue)
+        if unauthenticatedExperience {
+            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthEmergencyPhone.rawValue)
+        } else {
+            Analytics().logScreenView(AnalyticsPageView.ReportOutageEmergencyCall.rawValue)
+        }
+        
         return true
     }
 }

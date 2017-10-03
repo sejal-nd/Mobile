@@ -17,6 +17,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     @IBOutlet weak var col3HeaderLabel: UILabel!
     @IBOutlet weak var firstSeparatorView: UIView!
     
+    var analyticsSource: AnalyticsOutageSource!
     var viewModel: UnauthenticatedOutageViewModel! // Passed from UnauthenticatedOutageValidateAccountViewController
     
     var singleMultipremiseAccount = false
@@ -74,6 +75,16 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UnauthenticatedOutageStatusViewController {
             vc.viewModel = viewModel
+            vc.analyticsSource = analyticsSource
+            
+            switch analyticsSource {
+            case .Report:
+                Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthSubmitAcctSelection.rawValue)
+            case .Status:
+                Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthAcctSelect.rawValue)
+            default:
+                break
+            }
         }
     }
     
@@ -181,3 +192,4 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
         }
     }
 }
+
