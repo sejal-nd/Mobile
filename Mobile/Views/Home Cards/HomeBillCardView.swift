@@ -83,6 +83,7 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var errorLabel: UILabel!
     
     let tutorialTap = UITapGestureRecognizer()
+    let tutorialSwipe = UISwipeGestureRecognizer()
     
     fileprivate var viewModel: HomeBillCardViewModel! {
         didSet {
@@ -245,7 +246,9 @@ class HomeBillCardView: UIView {
             .disposed(by: bag)
         
         oneTouchSliderContainer.removeGestureRecognizer(tutorialTap)
+        oneTouchSliderContainer.removeGestureRecognizer(tutorialSwipe)
         oneTouchSliderContainer.addGestureRecognizer(tutorialTap)
+        oneTouchSliderContainer.addGestureRecognizer(tutorialSwipe)
     }
     
     // Actions
@@ -405,7 +408,7 @@ class HomeBillCardView: UIView {
             return alertController
     }
     
-    private(set) lazy var tutorialViewController: Driver<UIViewController> = self.tutorialTap.rx.event.asDriver()
+    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver.merge(self.tutorialTap.rx.event.asDriver().mapTo(()), self.tutorialSwipe.rx.event.asDriver().mapTo(()))
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
         .mapTo(())
@@ -498,4 +501,3 @@ extension HomeBillCardView: UITextFieldDelegate {
         }
     }
 }
-
