@@ -1316,9 +1316,9 @@
 		54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationCreateCredentialsViewController.swift; sourceTree = "<group>"; };
 		54B31A6D1EE065E20002E657 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
-		54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryDetailsViewController.swift; path = "Billing History/BillingHistoryDetailsViewController.swift"; sourceTree = "<group>"; };
-		54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryViewController.swift; path = "Billing History/BillingHistoryViewController.swift"; sourceTree = "<group>"; };
-		54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreBillingHistoryViewController.swift; path = "Billing History/MoreBillingHistoryViewController.swift"; sourceTree = "<group>"; };
+		54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryDetailsViewController.swift; sourceTree = "<group>"; };
+		54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryViewController.swift; sourceTree = "<group>"; };
+		54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreBillingHistoryViewController.swift; sourceTree = "<group>"; };
 		54C1DF011F02EF2800290FE5 /* SeparatorSpaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorSpaceView.swift; sourceTree = "<group>"; };
 		54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionsViewController.swift; sourceTree = "<group>"; };
 		54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameSecurityQuestionViewController.swift; sourceTree = "<group>"; };
@@ -2074,13 +2074,13 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		385AF2291F2791A5001E3619 /* UnauthenticatedLottieText */ = {
+		385AF2291F2791A5001E3619 /* Unauthenticated OTP Animation Text */ = {
 			isa = PBXGroup;
 			children = (
 				385AF2211F27915A001E3619 /* img_0.png */,
 				385AF2221F27915A001E3619 /* img_1.png */,
 			);
-			name = UnauthenticatedLottieText;
+			path = "Unauthenticated OTP Animation Text";
 			sourceTree = "<group>";
 		};
 		54C1DEEE1F01A12700290FE5 /* Billing History */ = {
@@ -2090,7 +2090,7 @@
 				54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */,
 				54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */,
 			);
-			name = "Billing History";
+			path = "Billing History";
 			sourceTree = "<group>";
 		};
 		54DF4BD81EE9CB39008CF7AD /* Registration */ = {
@@ -2639,7 +2639,7 @@
 		8FD5AE971E54EA8C003F640D /* Lottie Animations */ = {
 			isa = PBXGroup;
 			children = (
-				385AF2291F2791A5001E3619 /* UnauthenticatedLottieText */,
+				385AF2291F2791A5001E3619 /* Unauthenticated OTP Animation Text */,
 				E8FE30AD1E7875E5009D28B7 /* BGE */,
 				E8FE30AE1E7875EA009D28B7 /* ComEd */,
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
@@ -3653,7 +3653,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
