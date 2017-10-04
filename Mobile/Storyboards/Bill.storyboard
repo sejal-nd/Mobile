@@ -2321,7 +2321,7 @@
                         <constraints>
                             <constraint firstItem="gE4-MJ-svX" firstAttribute="top" secondItem="DL5-8p-VuX" secondAttribute="bottom" id="3bz-1B-EnB"/>
                             <constraint firstItem="DL5-8p-VuX" firstAttribute="top" secondItem="Oxu-3h-4ZB" secondAttribute="bottom" id="KQG-OV-czU"/>
-                            <constraint firstItem="gE4-MJ-svX" firstAttribute="top" secondItem="52M-Kq-h1c" secondAttribute="bottom" id="LwD-Fz-UH1"/>
+                            <constraint firstItem="gE4-MJ-svX" firstAttribute="top" secondItem="52M-Kq-h1c" secondAttribute="bottom" priority="750" id="LwD-Fz-UH1"/>
                             <constraint firstItem="DL5-8p-VuX" firstAttribute="leading" secondItem="f8I-LW-4KU" secondAttribute="leading" id="da8-tO-DCY"/>
                             <constraint firstAttribute="trailing" secondItem="DL5-8p-VuX" secondAttribute="trailing" id="osR-Xv-yKg"/>
                         </constraints>
