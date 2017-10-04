@@ -958,6 +958,12 @@
 		E876A8601ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */; };
 		E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */; };
 		E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */; };
+		E87926D61F85580300794CA9 /* BillAnalysisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87926D51F85580300794CA9 /* BillAnalysisViewController.xib */; };
+		E87926D71F85580300794CA9 /* BillAnalysisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87926D51F85580300794CA9 /* BillAnalysisViewController.xib */; };
+		E87926D81F85580300794CA9 /* BillAnalysisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87926D51F85580300794CA9 /* BillAnalysisViewController.xib */; };
+		E87926DA1F8558AE00794CA9 /* BillAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87926D91F8558AE00794CA9 /* BillAnalysisViewController.swift */; };
+		E87926DB1F8558AE00794CA9 /* BillAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87926D91F8558AE00794CA9 /* BillAnalysisViewController.swift */; };
+		E87926DC1F8558AE00794CA9 /* BillAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87926D91F8558AE00794CA9 /* BillAnalysisViewController.swift */; };
 		E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
 		E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
 		E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */; };
@@ -1739,6 +1745,8 @@
 		E876A8551ECDEF6800CA63BF /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
+		E87926D51F85580300794CA9 /* BillAnalysisViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillAnalysisViewController.xib; sourceTree = "<group>"; };
+		E87926D91F8558AE00794CA9 /* BillAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillAnalysisViewController.swift; sourceTree = "<group>"; };
 		E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolViewController.swift; sourceTree = "<group>"; };
 		E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultViewController.swift; sourceTree = "<group>"; };
 		E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageValidateAccountViewController.swift; sourceTree = "<group>"; };
@@ -3327,6 +3335,15 @@
 			path = Wallet;
 			sourceTree = "<group>";
 		};
+		E87926D41F8557D300794CA9 /* Bill Analysis */ = {
+			isa = PBXGroup;
+			children = (
+				E87926D51F85580300794CA9 /* BillAnalysisViewController.xib */,
+				E87926D91F8558AE00794CA9 /* BillAnalysisViewController.swift */,
+			);
+			path = "Bill Analysis";
+			sourceTree = "<group>";
+		};
 		E881B1491F5F189900067BA1 /* Unauthenticated Experience */ = {
 			isa = PBXGroup;
 			children = (
@@ -3341,6 +3358,7 @@
 		E882B7E21EA7FE6300EA3C13 /* Bill */ = {
 			isa = PBXGroup;
 			children = (
+				E87926D41F8557D300794CA9 /* Bill Analysis */,
 				E867A8FD1F054BA1007F4FD9 /* Payment */,
 				54C1DEEE1F01A12700290FE5 /* Billing History */,
 				E8C4531C1EF42E7800F5C781 /* AutoPay */,
@@ -3808,6 +3826,7 @@
 				E8FF08601F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E8EDC5361F32403A006DD927 /* speedpay_errors.xml in Resources */,
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
+				E87926D61F85580300794CA9 /* BillAnalysisViewController.xib in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
@@ -3901,6 +3920,7 @@
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
+				E87926D81F85580300794CA9 /* BillAnalysisViewController.xib in Resources */,
 				2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				E8EDC53A1F32405D006DD927 /* speedpay_errors.xml in Resources */,
@@ -3994,6 +4014,7 @@
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
+				E87926D71F85580300794CA9 /* BillAnalysisViewController.xib in Resources */,
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				B5D4157C1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist in Resources */,
 				B55736391E6740A8003B9369 /* OMLocalizable.strings in Resources */,
@@ -4275,6 +4296,7 @@
 				CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				E841F3B21F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
+				E87926DA1F8558AE00794CA9 /* BillAnalysisViewController.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
@@ -4505,6 +4527,7 @@
 				E881B1551F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				E873DA771EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
+				E87926DC1F8558AE00794CA9 /* BillAnalysisViewController.swift in Sources */,
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -4735,6 +4758,7 @@
 				E881B1541F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
+				E87926DB1F8558AE00794CA9 /* BillAnalysisViewController.swift in Sources */,
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,

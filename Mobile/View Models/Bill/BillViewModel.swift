@@ -174,10 +174,9 @@ class BillViewModel {
         $0.billingInfo.pastDueAmount ?? 0 <= 0 && Environment.sharedInstance.opco == .peco
     }
     
-    private(set) lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map { _ in
-        return false // Bill Analysis will be Release 2
-//        guard let accountDetail = $0 else { return false }
-//        return accountDetail.isResidential && !accountDetail.isAMICustomer
+    private(set) lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+        guard let accountDetail = $0 else { return false }
+        return accountDetail.isResidential && !accountDetail.isAMICustomer
     }
     
     private(set) lazy var shouldEnableMakeAPaymentButton: Driver<Bool> = self.currentAccountDetail.asDriver().map {
