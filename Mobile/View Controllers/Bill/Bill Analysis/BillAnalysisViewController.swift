@@ -15,6 +15,11 @@ class BillAnalysisViewController: UIViewController {
     @IBOutlet weak var electricGasSegmentView: UIView!
     @IBOutlet weak var electricGasSegmentedControl: SegmentedControl!
     
+    @IBOutlet weak var barDescriptionView: UIView!
+    @IBOutlet weak var barDescriptionDateLabel: UILabel!
+    @IBOutlet weak var barDescriptionDetailLabel: UILabel!
+    
+    
     init() {
         super.init(nibName: BillAnalysisViewController.className, bundle: nil)
     }
@@ -28,9 +33,7 @@ class BillAnalysisViewController: UIViewController {
         
         title = NSLocalizedString("Bill Analysis", comment: "")
         
-        scrollView.backgroundColor = .softGray
-        
-        electricGasSegmentedControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
+        styleViews()
         
     }
     
@@ -42,9 +45,19 @@ class BillAnalysisViewController: UIViewController {
         }
     }
     
-    @IBAction func onXButtonPress() {
-        self.dismiss(animated: true, completion: nil)
+    func styleViews() {
+        scrollView.backgroundColor = .softGray
+        
+        electricGasSegmentedControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
+        
+        barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
+        barDescriptionDateLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        barDescriptionDateLabel.textColor = .blackText
+        barDescriptionDetailLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        barDescriptionDetailLabel.textColor = .blackText
     }
+    
+    
     
     
 
