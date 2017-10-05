@@ -48,6 +48,7 @@ class BillAnalysisViewController: UIViewController {
     @IBOutlet weak var barDescriptionView: UIView!
     @IBOutlet weak var barDescriptionDateLabel: UILabel!
     @IBOutlet weak var barDescriptionDetailLabel: UILabel!
+    @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
     
     init() {
@@ -69,11 +70,14 @@ class BillAnalysisViewController: UIViewController {
         
         previousContainerButton.isHidden = true
         currentContainerButton.isHidden = true
+        //projectionNotAvailableContainerButton.isHidden = true
         stackViewWidthConstraint.constant = 460
         
         if UIScreen.main.bounds.size.width < 375 { // If smaller than iPhone 6 width
             stackView.spacing = 11
         }
+        
+        stackView.layoutIfNeeded() // Needed for the initial selection triangle position
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,6 +86,9 @@ class BillAnalysisViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setWhiteNavBar()
         }
+        
+        onBarPress(sender: projectedContainerButton) // Initial selection
+        
     }
     
     func styleViews() {
@@ -106,6 +113,20 @@ class BillAnalysisViewController: UIViewController {
         barDescriptionDateLabel.textColor = .blackText
         barDescriptionDetailLabel.font = OpenSans.regular.of(textStyle: .footnote)
         barDescriptionDetailLabel.textColor = .blackText
+    }
+    
+    @IBAction func onBarPress(sender: ButtonControl) {
+        let centerPoint = sender.center
+        let convertedPoint = stackView.convert(centerPoint, to: barDescriptionView)
+
+        let centerXOffset = (barDescriptionView.bounds.width / 2)
+        if convertedPoint.x < centerXOffset {
+            barDescriptionTriangleCenterXConstraint.constant = -1 * (centerXOffset - convertedPoint.x)
+        } else if convertedPoint.x > centerXOffset {
+            barDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
+        } else {
+            barDescriptionTriangleCenterXConstraint.constant = 0
+        }
     }
     
     

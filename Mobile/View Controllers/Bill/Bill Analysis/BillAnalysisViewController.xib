@@ -22,6 +22,7 @@
             <connections>
                 <outlet property="barDescriptionDateLabel" destination="B4X-Uq-gEf" id="GfK-De-kXm"/>
                 <outlet property="barDescriptionDetailLabel" destination="bz4-0K-pIh" id="rtX-V0-xu1"/>
+                <outlet property="barDescriptionTriangleCenterXConstraint" destination="THa-AE-bbv" id="xNl-he-EHX"/>
                 <outlet property="barDescriptionView" destination="yp9-9y-dS6" id="fkr-gq-4cx"/>
                 <outlet property="billComparisonSegmentedControl" destination="Myv-uq-31T" id="p3N-0n-PSa"/>
                 <outlet property="currentBarView" destination="tLh-Bg-dzy" id="2PQ-jW-VkT"/>
@@ -91,12 +92,12 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="bottom" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bd7-UX-7LW">
-                                            <rect key="frame" x="33.5" y="104" width="512" height="182.5"/>
+                                            <rect key="frame" x="33.5" y="104" width="512" height="177"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvJ-Yi-2q5" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="63.5" width="80" height="119"/>
+                                                    <rect key="frame" x="0.0" y="58" width="80" height="119"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eeY-ob-nfI">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eeY-ob-nfI">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="98"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmd-7O-2aB">
@@ -133,9 +134,12 @@
                                                         <constraint firstAttribute="bottom" secondItem="c0X-gj-btl" secondAttribute="bottom" id="lmE-r9-e0W"/>
                                                         <constraint firstItem="c0X-gj-btl" firstAttribute="top" secondItem="eeY-ob-nfI" secondAttribute="bottom" constant="4" id="lpm-5v-b91"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="onBarPressWithSender:" destination="-1" eventType="touchUpInside" id="lRX-L1-xKh"/>
+                                                    </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fF-sR-6WQ" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="108" y="5.5" width="80" height="177"/>
+                                                    <rect key="frame" x="108" y="0.0" width="80" height="177"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ON7-wi-2oU">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="17"/>
@@ -143,7 +147,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QR-E8-sa2">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QR-E8-sa2">
                                                             <rect key="frame" x="0.0" y="22" width="80" height="134"/>
                                                             <color key="backgroundColor" red="0.80784313730000001" green="0.066666666669999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -171,9 +175,12 @@
                                                         <constraint firstItem="iNP-wb-yg4" firstAttribute="top" secondItem="9QR-E8-sa2" secondAttribute="bottom" constant="4" id="mpu-ha-UBB"/>
                                                         <constraint firstAttribute="bottom" secondItem="iNP-wb-yg4" secondAttribute="bottom" id="uUR-7G-XCs"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="onBarPressWithSender:" destination="-1" eventType="touchUpInside" id="PUb-dF-BAZ"/>
+                                                    </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFN-aN-96W" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="216" y="5.5" width="80" height="177"/>
+                                                    <rect key="frame" x="216" y="0.0" width="80" height="177"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLI-Vv-tfj">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="17"/>
@@ -181,7 +188,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLh-Bg-dzy">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLh-Bg-dzy">
                                                             <rect key="frame" x="0.0" y="22" width="80" height="134"/>
                                                             <color key="backgroundColor" red="0.80784313730000001" green="0.066666666669999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -210,9 +217,12 @@
                                                         <constraint firstItem="tLh-Bg-dzy" firstAttribute="leading" secondItem="XFN-aN-96W" secondAttribute="leading" id="uMX-sC-QAY"/>
                                                         <constraint firstAttribute="width" constant="80" id="zm7-hT-Tzu"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="onBarPressWithSender:" destination="-1" eventType="touchUpInside" id="zTg-bJ-YD5"/>
+                                                    </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4EN-qc-tEH" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="324" y="5.5" width="80" height="177"/>
+                                                    <rect key="frame" x="324" y="0.0" width="80" height="177"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXo-cN-yAH">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="17"/>
@@ -247,11 +257,14 @@
                                                         <constraint firstItem="l9j-cL-beM" firstAttribute="leading" secondItem="4EN-qc-tEH" secondAttribute="leading" id="o9i-H8-jPS"/>
                                                         <constraint firstItem="l9j-cL-beM" firstAttribute="top" secondItem="LXo-cN-yAH" secondAttribute="bottom" constant="5" id="yOI-u3-u0l"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="onBarPressWithSender:" destination="-1" eventType="touchUpInside" id="6Pk-X9-yl5"/>
+                                                    </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eqd-w5-z4G" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="432" y="63.5" width="80" height="119"/>
+                                                    <rect key="frame" x="432" y="58" width="80" height="119"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0WV-6c-w9C">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0WV-6c-w9C">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="98"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xeX-I1-rJm">
@@ -309,23 +322,26 @@
                                                         <constraint firstItem="0WV-6c-w9C" firstAttribute="leading" secondItem="Eqd-w5-z4G" secondAttribute="leading" id="g8s-yu-OrT"/>
                                                         <constraint firstItem="8Cx-aB-RGo" firstAttribute="top" secondItem="0WV-6c-w9C" secondAttribute="bottom" constant="4" id="hK9-mN-BBe"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="onBarPressWithSender:" destination="-1" eventType="touchUpInside" id="YgK-it-wuS"/>
+                                                    </connections>
                                                 </view>
                                             </subviews>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHO-A0-9t1">
-                                            <rect key="frame" x="29" y="294.5" width="521" height="107.5"/>
+                                            <rect key="frame" x="29" y="289" width="521" height="113"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yp9-9y-dS6">
-                                                    <rect key="frame" x="0.0" y="22" width="521" height="85.5"/>
+                                                    <rect key="frame" x="0.0" y="22" width="521" height="91"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMM dd, YYYY - MMM dd, YYYY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4X-Uq-gEf">
-                                                            <rect key="frame" x="16" y="21" width="216" height="16.5"/>
+                                                            <rect key="frame" x="16" y="21" width="212.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your bill was $X. You used an average of Y kWh per day." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bz4-0K-pIh">
-                                                            <rect key="frame" x="16" y="49.5" width="489" height="14"/>
+                                                            <rect key="frame" x="16" y="52.5" width="489" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
