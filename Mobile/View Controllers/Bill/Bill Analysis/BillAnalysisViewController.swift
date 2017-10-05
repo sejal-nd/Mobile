@@ -12,7 +12,7 @@ class BillAnalysisViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var stackViewWidthConstraint: NSLayoutConstraint! // So that we can design every bar in IB but set it to 460 in viewDidLoad
+    //@IBOutlet weak var stackViewWidthConstraint: NSLayoutConstraint! // So that we can design every bar in IB but set it to 460 in viewDidLoad
     
     @IBOutlet weak var electricGasSegmentView: UIView!
     @IBOutlet weak var electricGasSegmentedControl: SegmentedControl!
@@ -71,7 +71,7 @@ class BillAnalysisViewController: UIViewController {
         previousContainerButton.isHidden = true
         currentContainerButton.isHidden = true
         //projectionNotAvailableContainerButton.isHidden = true
-        stackViewWidthConstraint.constant = 460
+        //stackViewWidthConstraint.constant = 460
         
         if UIScreen.main.bounds.size.width < 375 { // If smaller than iPhone 6 width
             stackView.spacing = 11
