@@ -124,7 +124,7 @@ class BillAnalysisViewController: UIViewController {
         }
         
         onBarPress(sender: projectedContainerButton) // Initial selection
-        
+        onLikelyReasonPress(sender: billPeriodContainerButton)
     }
     
     private func styleViews() {
@@ -149,6 +149,14 @@ class BillAnalysisViewController: UIViewController {
         
         styleLikelyReasonsButtons()
         
+        likelyReasonsDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
+        likelyReasonsDescriptionTitleLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        likelyReasonsDescriptionTitleLabel.textColor = .blackText
+        likelyReasonsDescriptionDetailLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        likelyReasonsDescriptionDetailLabel.textColor = .blackText
+        
+        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        footerLabel.textColor = .blackText
     }
     
     private func styleBarGraph() {
@@ -180,17 +188,17 @@ class BillAnalysisViewController: UIViewController {
         
         // Bar Graph Text Fonts
         noDataLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-        viewModel.noDataLabelFont.drive(noDataDateLabel.rx.font).disposed(by: disposeBag)
-        viewModel.previousLabelFont.drive(previousDollarLabel.rx.font).disposed(by: disposeBag)
-        viewModel.previousLabelFont.drive(previousDateLabel.rx.font).disposed(by: disposeBag)
-        viewModel.currentLabelFont.drive(currentDollarLabel.rx.font).disposed(by: disposeBag)
-        viewModel.currentLabelFont.drive(currentDateLabel.rx.font).disposed(by: disposeBag)
-        viewModel.projectedLabelFont.drive(projectedDollarLabel.rx.font).disposed(by: disposeBag)
-        viewModel.projectedLabelFont.drive(projectedDateLabel.rx.font).disposed(by: disposeBag)
+        noDataLabelFont.drive(noDataDateLabel.rx.font).disposed(by: disposeBag)
+        previousLabelFont.drive(previousDollarLabel.rx.font).disposed(by: disposeBag)
+        previousLabelFont.drive(previousDateLabel.rx.font).disposed(by: disposeBag)
+        currentLabelFont.drive(currentDollarLabel.rx.font).disposed(by: disposeBag)
+        currentLabelFont.drive(currentDateLabel.rx.font).disposed(by: disposeBag)
+        projectedLabelFont.drive(projectedDollarLabel.rx.font).disposed(by: disposeBag)
+        projectedLabelFont.drive(projectedDateLabel.rx.font).disposed(by: disposeBag)
        
         projectionNotAvailableDaysRemainingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         projectionNotAvailableUntilNextForecastLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        viewModel.projectionNotAvailableLabelFont.drive(projectionNotAvailableDateLabel.rx.font).disposed(by: disposeBag)
+        projectionNotAvailableLabelFont.drive(projectionNotAvailableDateLabel.rx.font).disposed(by: disposeBag)
     }
     
     private func styleLikelyReasonsButtons() {
@@ -198,7 +206,7 @@ class BillAnalysisViewController: UIViewController {
         billPeriodTitleLabel.textColor = .deepGray
         billPeriodBubbleView.layer.cornerRadius = 17.5
         billPeriodBubbleView.layer.borderWidth = 2
-        viewModel.billPeriodBorderColor.drive(billPeriodBubbleView.rx.borderColor).disposed(by: disposeBag)
+        billPeriodBorderColor.drive(billPeriodBubbleView.rx.borderColor).disposed(by: disposeBag)
         billPeriodBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         billPeriodDollarLabel.font = SystemFont.medium.of(size: 16)
         billPeriodDollarLabel.textColor = .deepGray
@@ -207,7 +215,7 @@ class BillAnalysisViewController: UIViewController {
         weatherTitleLabel.textColor = .deepGray
         weatherBubbleView.layer.cornerRadius = 17.5
         weatherBubbleView.layer.borderWidth = 2
-        viewModel.weatherBorderColor.drive(weatherBubbleView.rx.borderColor).disposed(by: disposeBag)
+        weatherBorderColor.drive(weatherBubbleView.rx.borderColor).disposed(by: disposeBag)
         weatherBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         weatherDollarLabel.font = SystemFont.medium.of(size: 16)
         weatherDollarLabel.textColor = .deepGray
@@ -216,7 +224,7 @@ class BillAnalysisViewController: UIViewController {
         otherTitleLabel.textColor = .deepGray
         otherBubbleView.layer.cornerRadius = 17.5
         otherBubbleView.layer.borderWidth = 2
-        viewModel.otherBorderColor.drive(otherBubbleView.rx.borderColor).disposed(by: disposeBag)
+        otherBorderColor.drive(otherBubbleView.rx.borderColor).disposed(by: disposeBag)
         otherBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         otherDollarLabel.font = SystemFont.medium.of(size: 16)
         otherDollarLabel.textColor = .deepGray
@@ -239,14 +247,53 @@ class BillAnalysisViewController: UIViewController {
     }
     
     @IBAction func onLikelyReasonPress(sender: ButtonControl) {
+        let centerPoint = sender.center
+        let convertedPoint = likelyReasonsStackView.convert(centerPoint, to: likelyReasonsDescriptionView)
+        
+        let centerXOffset = (likelyReasonsDescriptionView.bounds.width / 2)
+        if convertedPoint.x < centerXOffset {
+            likelyReasonsDescriptionTriangleCenterXConstraint.constant = -1 * (centerXOffset - convertedPoint.x)
+        } else if convertedPoint.x > centerXOffset {
+            likelyReasonsDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
+        } else {
+            likelyReasonsDescriptionTriangleCenterXConstraint.constant = 0
+        }
         
         viewModel.setLikelyReasonSelected(tag: sender.tag)
     }
     
+    // MARK: Bill Comparison Bar Graph Drivers
+    private(set) lazy var noDataLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates[0].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
     
+    private(set) lazy var previousLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates[1].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
     
+    private(set) lazy var currentLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates[2].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
     
-
-
-
+    private(set) lazy var projectedLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates[3].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
+    
+    private(set) lazy var projectionNotAvailableLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates[4].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
+    
+    // MARK: Likely Reasons Border Color Drivers
+    private(set) lazy var billPeriodBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates[0].asDriver().map {
+        $0 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+    }
+    
+    private(set) lazy var weatherBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates[1].asDriver().map {
+        $0 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+    }
+    
+    private(set) lazy var otherBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates[2].asDriver().map {
+        $0 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+    }
+    
 }
