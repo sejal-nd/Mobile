@@ -54,6 +54,17 @@ class AccountLookupToolResultViewController: UIViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // TODO: Discovered an iOS 11 only bug where the table view cells would initially
+        // be blank until they were scrolled off screen and reused. This reloadData() is the
+        // workaround. We should remove it if/when this gets fixed.
+        if #available(iOS 11, *) {
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
