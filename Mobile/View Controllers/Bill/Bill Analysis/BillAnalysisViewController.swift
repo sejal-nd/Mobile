@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import Charts
 
 class BillAnalysisViewController: UIViewController {
     
@@ -17,6 +18,12 @@ class BillAnalysisViewController: UIViewController {
     
     @IBOutlet weak var electricGasSegmentView: UIView!
     @IBOutlet weak var electricGasSegmentedControl: SegmentedControl!
+    
+    // Current Charges Summary
+    @IBOutlet weak var currentChargesSummaryView: UIView!
+    @IBOutlet weak var currentChargesSummaryLabel: UILabel!
+    @IBOutlet weak var currentChargesPieChartView: PieChartView!
+    @IBOutlet weak var currentChargesBreakdownView: UIView!
     
     // Bill Comparison
     @IBOutlet weak var billComparisonTitleLabel: UILabel!
@@ -55,6 +62,7 @@ class BillAnalysisViewController: UIViewController {
     @IBOutlet weak var barDescriptionDetailLabel: UILabel!
     @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
+    // Likely Reasons
     @IBOutlet weak var likelyReasonsLabel: UILabel!
     
     @IBOutlet weak var likelyReasonsStackView: UIStackView!
@@ -83,6 +91,7 @@ class BillAnalysisViewController: UIViewController {
     @IBOutlet weak var likelyReasonsDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var footerLabel: UILabel!
+    
     
     let viewModel = BillAnalysisViewModel(usageService: ServiceFactory.createUsageService())
     
@@ -132,7 +141,16 @@ class BillAnalysisViewController: UIViewController {
         
         electricGasSegmentedControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
         
+        currentChargesSummaryLabel.font = OpenSans.bold.of(textStyle: .title1)
+        currentChargesSummaryLabel.textColor = .blackText
+        currentChargesSummaryLabel.text = NSLocalizedString("Current Charges Summary", comment: "")
+        
+        stylePieChart()
+        styleCurrentChargesBreakdownView()
+        
         billComparisonTitleLabel.font = OpenSans.bold.of(textStyle: .title1)
+        billComparisonTitleLabel.textColor = .blackText
+        billComparisonTitleLabel.text = NSLocalizedString("Bill Comparison", comment: "")
         
         styleBarGraph()
         
@@ -157,6 +175,37 @@ class BillAnalysisViewController: UIViewController {
         
         footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         footerLabel.textColor = .blackText
+    }
+    
+    private func styleCurrentChargesBreakdownView() {
+        currentChargesBreakdownView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
+    }
+    
+    private func stylePieChart() {
+        let entry1 = PieChartDataEntry(value: Double(25.98))
+        let entry2 = PieChartDataEntry(value: Double(6.46))
+        let entry3 = PieChartDataEntry(value: Double(30.96))
+        let dataSet = PieChartDataSet(values: [entry1, entry2, entry3], label: "Current Charges")
+        dataSet.colors = [.accentGray, .blackText, .primaryColor]
+        dataSet.drawValuesEnabled = false
+        dataSet.highlightEnabled = false // Disable selection
+        let data = PieChartData(dataSet: dataSet)
+        currentChargesPieChartView.data = data
+        
+        currentChargesPieChartView.legend.enabled = false // Hide the legend because we'll draw our own
+        //currentChargesPieChartView.drawSlicesUnderHoleEnabled = false
+        currentChargesPieChartView.chartDescription?.enabled = false // Hides the chart description
+        currentChargesPieChartView.holeColor = UIColor(red: 89/255, green: 103/255, blue: 113/255, alpha: 1)
+        currentChargesPieChartView.holeRadiusPercent = 0.70
+        currentChargesPieChartView.transparentCircleRadiusPercent = 0.75
+        currentChargesPieChartView.transparentCircleColor = .softGray
+
+        let centerAttrText = NSMutableAttributedString(string:"$63.40")
+        centerAttrText.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSRange(location: 0, length: 6))
+        centerAttrText.addAttribute(NSFontAttributeName, value: OpenSans.semibold.of(size: 24), range: NSRange(location: 0, length: 6))
+        currentChargesPieChartView.centerAttributedText = centerAttrText
+
+        currentChargesPieChartView.notifyDataSetChanged()
     }
     
     private func styleBarGraph() {

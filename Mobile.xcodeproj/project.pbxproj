@@ -1100,6 +1100,9 @@
 		E8B9BD8A1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
 		E8B9BD8B1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
 		E8B9BD901F882196007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
+		E8B9BD921F8826FD007C824C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B9BD911F8826FD007C824C /* Charts.framework */; };
+		E8B9BD931F882732007C824C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B9BD911F8826FD007C824C /* Charts.framework */; };
+		E8B9BD941F882742007C824C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B9BD911F8826FD007C824C /* Charts.framework */; };
 		E8BCB9BA1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		E8BCB9BB1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		E8BCB9BC1EFAE79700779588 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
@@ -1821,6 +1824,7 @@
 		E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
 		E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
+		E8B9BD911F8826FD007C824C /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModel.swift; sourceTree = "<group>"; };
 		E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModelTests.swift; sourceTree = "<group>"; };
 		E8C29C721F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageStatusViewController.swift; sourceTree = "<group>"; };
@@ -1886,6 +1890,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B9BD921F8826FD007C824C /* Charts.framework in Frameworks */,
 				B55A8B101F15647D00F63AC3 /* libsqlite3.tbd in Frameworks */,
 				B55A8B0E1F15646E00F63AC3 /* libz.tbd in Frameworks */,
 				B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */,
@@ -1934,6 +1939,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B9BD941F882742007C824C /* Charts.framework in Frameworks */,
 				B55A8B1A1F15650200F63AC3 /* libsqlite3.tbd in Frameworks */,
 				B55A8B191F1564F900F63AC3 /* libz.tbd in Frameworks */,
 				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
@@ -1982,6 +1988,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B9BD931F882732007C824C /* Charts.framework in Frameworks */,
 				B55A8B171F1564E500F63AC3 /* libsqlite3.tbd in Frameworks */,
 				B55A8B161F1564DF00F63AC3 /* libz.tbd in Frameworks */,
 				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
@@ -2561,6 +2568,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8B9BD911F8826FD007C824C /* Charts.framework */,
 				B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */,
 				B55A8B0D1F15646E00F63AC3 /* libz.tbd */,
 				B5D4154C1F3A641100AC32B2 /* FirebaseAnalytics.framework */,
@@ -4133,6 +4141,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -4158,6 +4167,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -4183,6 +4193,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
