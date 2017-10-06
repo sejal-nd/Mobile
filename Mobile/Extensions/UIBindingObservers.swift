@@ -36,6 +36,12 @@ extension Reactive where Base: UIView {
         }
     }
     
+    public var borderColor: UIBindingObserver<Base, CGColor?> {
+        return UIBindingObserver(UIElement: self.base) { view, color in
+            view.layer.borderColor = color
+        }
+    }
+    
 }
 
 extension Reactive where Base: UILabel {
