@@ -125,10 +125,13 @@ class BillAnalysisViewController: UIViewController {
         billComparisonSegmentedControl.setItems(leftLabel: NSLocalizedString("Last Year", comment: ""), rightLabel: NSLocalizedString("Previous Bill", comment: ""), initialSelectedIndex: 1)
         
         styleViews()
+        bindViewModel()
         
-        previousContainerButton.isHidden = true
-        currentContainerButton.isHidden = true
-        //projectionNotAvailableContainerButton.isHidden = true
+        noDataContainerButton.isHidden = true
+//        previousContainerButton.isHidden = true
+//        currentContainerButton.isHidden = true
+        projectedContainerButton.isHidden = true
+        projectionNotAvailableContainerButton.isHidden = true
         
         if UIScreen.main.bounds.size.width < 375 { // If smaller than iPhone 6 width
             barGraphStackView.spacing = 11
@@ -146,7 +149,7 @@ class BillAnalysisViewController: UIViewController {
             navController.setWhiteNavBar()
         }
         
-        onBarPress(sender: projectedContainerButton) // Initial selection
+        onBarPress(sender: currentContainerButton) // Initial selection
         onLikelyReasonPress(sender: billPeriodContainerButton)
     }
     
@@ -154,13 +157,20 @@ class BillAnalysisViewController: UIViewController {
         scrollView.backgroundColor = .softGray
         
         electricGasSegmentedControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
+        if !viewModel.shouldShowElectricGasToggle {
+            electricGasSegmentView.isHidden = true
+        }
         
         currentChargesSummaryLabel.font = OpenSans.bold.of(textStyle: .title1)
         currentChargesSummaryLabel.textColor = .blackText
         currentChargesSummaryLabel.text = NSLocalizedString("Current Charges Summary", comment: "")
         
-        stylePieChart()
-        styleCurrentChargesBreakdownView()
+        if viewModel.shouldShowCurrentChargesSection {
+            styleCurrentChargesSection()
+        } else {
+            currentChargesSummaryView.isHidden = true
+        }
+        
         
         billComparisonTitleLabel.font = OpenSans.bold.of(textStyle: .title1)
         billComparisonTitleLabel.textColor = .blackText
@@ -191,7 +201,37 @@ class BillAnalysisViewController: UIViewController {
         footerLabel.textColor = .blackText
     }
     
-    private func styleCurrentChargesBreakdownView() {
+    private func styleCurrentChargesSection() {
+        let supplyCharges = viewModel.billingInfo.supplyCharges ?? 0
+        let taxesAndFees = viewModel.billingInfo.taxesAndFees ?? 0
+        let deliveryCharges = viewModel.billingInfo.deliveryCharges ?? 0
+        let totalCharges = supplyCharges + taxesAndFees + deliveryCharges
+        
+        // Pie Chart
+        currentChargesPieChartView.legend.enabled = false // Hide the legend because we'll draw our own
+        currentChargesPieChartView.chartDescription?.enabled = false // Hides the chart description
+        currentChargesPieChartView.holeColor = centerPieChartColor
+        currentChargesPieChartView.holeRadiusPercent = 0.71
+        currentChargesPieChartView.transparentCircleRadiusPercent = 0.75
+        currentChargesPieChartView.transparentCircleColor = .softGray
+        
+        let centerAttrText = NSMutableAttributedString(string: totalCharges.currencyString ?? "$0.00")
+        centerAttrText.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSRange(location: 0, length: centerAttrText.length))
+        centerAttrText.addAttribute(NSFontAttributeName, value: OpenSans.semibold.of(size: 24), range: NSRange(location: 0, length: centerAttrText.length))
+        currentChargesPieChartView.centerAttributedText = centerAttrText
+        
+        let supplyEntry = PieChartDataEntry(value: supplyCharges)
+        let taxesEntry = PieChartDataEntry(value: taxesAndFees)
+        let deliveryEntry = PieChartDataEntry(value: deliveryCharges)
+        let dataSet = PieChartDataSet(values: [deliveryEntry, taxesEntry, supplyEntry], label: "Current Charges")
+        dataSet.colors = [.primaryColor, .blackText, .accentGray]
+        dataSet.drawValuesEnabled = false
+        dataSet.sliceSpace = 4
+        let data = PieChartData(dataSet: dataSet)
+        currentChargesPieChartView.data = data
+        currentChargesPieChartView.notifyDataSetChanged()
+        
+        // Legend View
         currentChargesLegendView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
         
         supplyLegendBox.backgroundColor = .accentGray
@@ -200,6 +240,7 @@ class BillAnalysisViewController: UIViewController {
         supplyLegendLabel.text = NSLocalizedString("Supply", comment: "")
         supplyValueLabel.textColor = .blackText
         supplyValueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        supplyValueLabel.text = supplyCharges.currencyString
         
         taxesFeesLegendBox.backgroundColor = .blackText
         taxesFeesLegendLabel.textColor = .blackText
@@ -207,6 +248,7 @@ class BillAnalysisViewController: UIViewController {
         taxesFeesLegendLabel.text = NSLocalizedString("Taxes & Fees", comment: "")
         taxesFeesValueLabel.textColor = .blackText
         taxesFeesValueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        taxesFeesValueLabel.text = taxesAndFees.currencyString
         
         deliveryLegendBox.backgroundColor = .primaryColor
         deliveryLegendLabel.textColor = .blackText
@@ -214,6 +256,7 @@ class BillAnalysisViewController: UIViewController {
         deliveryLegendLabel.text = NSLocalizedString("Delivery", comment: "")
         deliveryValueLabel.textColor = .blackText
         deliveryValueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        deliveryValueLabel.text = deliveryCharges.currencyString
         
         totalChargesLegendBox.backgroundColor = centerPieChartColor
         totalChargesLegendLabel.textColor = .deepGray
@@ -221,34 +264,7 @@ class BillAnalysisViewController: UIViewController {
         totalChargesLegendLabel.text = NSLocalizedString("TOTAL CHARGES", comment: "")
         totalChargesValueLabel.textColor = .deepGray
         totalChargesValueLabel.font = OpenSans.bold.of(textStyle: .subheadline)
-    }
-    
-    private func stylePieChart() {
-        let entry1 = PieChartDataEntry(value: Double(25.98))
-        let entry2 = PieChartDataEntry(value: Double(6.46))
-        let entry3 = PieChartDataEntry(value: Double(30.96))
-        let dataSet = PieChartDataSet(values: [entry1, entry2, entry3], label: "Current Charges")
-        dataSet.colors = [.accentGray, .blackText, .primaryColor]
-        dataSet.drawValuesEnabled = false
-        dataSet.highlightEnabled = false // Disable selection
-        dataSet.sliceSpace = 4
-        let data = PieChartData(dataSet: dataSet)
-        currentChargesPieChartView.data = data
-        
-        currentChargesPieChartView.legend.enabled = false // Hide the legend because we'll draw our own
-        //currentChargesPieChartView.drawSlicesUnderHoleEnabled = false
-        currentChargesPieChartView.chartDescription?.enabled = false // Hides the chart description
-        currentChargesPieChartView.holeColor = centerPieChartColor
-        currentChargesPieChartView.holeRadiusPercent = 0.71
-        currentChargesPieChartView.transparentCircleRadiusPercent = 0.75
-        currentChargesPieChartView.transparentCircleColor = .softGray
-
-        let centerAttrText = NSMutableAttributedString(string:"$63.40")
-        centerAttrText.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSRange(location: 0, length: 6))
-        centerAttrText.addAttribute(NSFontAttributeName, value: OpenSans.semibold.of(size: 24), range: NSRange(location: 0, length: 6))
-        currentChargesPieChartView.centerAttributedText = centerAttrText
-
-        currentChargesPieChartView.notifyDataSetChanged()
+        totalChargesValueLabel.text = totalCharges.currencyString
     }
     
     private func styleBarGraph() {
@@ -320,6 +336,10 @@ class BillAnalysisViewController: UIViewController {
         otherBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         otherDollarLabel.font = SystemFont.medium.of(size: 16)
         otherDollarLabel.textColor = .deepGray
+    }
+    
+    private func bindViewModel() {
+
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {

@@ -28,10 +28,32 @@ class BillAnalysisViewModel {
      * 2 = Other
      */
     let likelyReasonsSelectionStates = [Variable(true), Variable(false), Variable(false)]
-
     
-    required init(usageService: UsageService) {
+    var billingInfo: BillingInfo! // Passed from BillViewController, used for displaying ComEd pie chart
+    var serviceType: String! // Passed from BillViewController, used for displaying Gas/Electric segmented control
+    
+    let usageService: UsageService
 
+    required init(usageService: UsageService) {
+        self.usageService = usageService
+    }
+    
+    var shouldShowElectricGasToggle: Bool {
+        if Environment.sharedInstance.opco != .comEd {
+            return serviceType.uppercased() == "GAS/ELECTRIC"
+        }
+        return false
+    }
+    
+    var shouldShowCurrentChargesSection: Bool {
+        if Environment.sharedInstance.opco == .comEd {
+            let supplyCharges = billingInfo.supplyCharges ?? 0
+            let taxesAndFees = billingInfo.taxesAndFees ?? 0
+            let deliveryCharges = billingInfo.deliveryCharges ?? 0
+            let totalCharges = supplyCharges + taxesAndFees + deliveryCharges
+            return totalCharges > 0
+        }
+        return false
     }
     
     func setBarSelected(tag: Int) {
