@@ -62,6 +62,7 @@ struct Account: Mappable, Equatable, Hashable {
 
 struct AccountDetail: Mappable {
     let accountNumber: String
+    let premiseNumber: String?
     let address: String?
     
     let serviceType: String?
@@ -105,6 +106,7 @@ struct AccountDetail: Mappable {
 
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
+        premiseNumber = map.optionalFrom("premiseNumber")
         address = map.optionalFrom("address")
         
         serviceType = map.optionalFrom("serviceType")

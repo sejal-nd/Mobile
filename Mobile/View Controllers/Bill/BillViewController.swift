@@ -397,8 +397,7 @@ class BillViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in
                 let billAnalysis = BillAnalysisViewController()
                 billAnalysis.hidesBottomBarWhenPushed = true
-                billAnalysis.viewModel.billingInfo = $0.billingInfo
-                billAnalysis.viewModel.serviceType = $0.serviceType! // We can force unwrap here because the button will be hidden by viewModel if it's null
+                billAnalysis.viewModel.accountDetail = $0
                 self?.navigationController?.pushViewController(billAnalysis, animated: true)
             })
             .disposed(by: bag)

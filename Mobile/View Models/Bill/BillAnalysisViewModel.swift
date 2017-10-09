@@ -12,6 +12,9 @@ import RxCocoa
 class BillAnalysisViewModel {
     
     let disposeBag = DisposeBag()
+    let usageService: UsageService
+    
+    var accountDetail: AccountDetail! // Passed from BillViewController
     
     /*
      * 0 = No Data
@@ -29,32 +32,81 @@ class BillAnalysisViewModel {
      */
     let likelyReasonsSelectionStates = [Variable(true), Variable(false), Variable(false)]
     
-    var billingInfo: BillingInfo! // Passed from BillViewController, used for displaying ComEd pie chart
-    var serviceType: String! // Passed from BillViewController, used for displaying Gas/Electric segmented control
+    private var currentFetchDisposable: Disposable?
+    let isFetching = Variable(false)
+    let isError = Variable(false)
     
-    let usageService: UsageService
-
+    let electricGasSelectedSegmentIndex = Variable(0)
+    let lastYearPreviousBillSelectedSegmentIndex = Variable(1)
+    
     required init(usageService: UsageService) {
         self.usageService = usageService
     }
     
+    deinit {
+        if let disposable = currentFetchDisposable {
+            disposable.dispose()
+        }
+    }
+    
+    func fetchBillComparison() {
+        isFetching.value = true
+        isError.value = false
+        
+        var gas = false // Default to electric
+        if accountDetail.serviceType!.uppercased() == "GAS" { // If account is gas only
+            gas = true
+        } else if shouldShowElectricGasToggle { // Use value of segmented control
+            gas = electricGasSelectedSegmentIndex.value == 1
+        }
+        
+        // Unsubscribe before starting a new request to prevent race condition when quickly toggling segmented controls
+        if let disposable = currentFetchDisposable {
+            disposable.dispose()
+        }
+        
+        let yearAgo = lastYearPreviousBillSelectedSegmentIndex.value == 0
+        
+        print("Request for yearAgo = \(yearAgo): START")
+        currentFetchDisposable =
+            usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
+                                             premiseNumber: accountDetail.premiseNumber!,
+                                             billDate: accountDetail.billingInfo.billDate!,
+                                             yearAgo: lastYearPreviousBillSelectedSegmentIndex.value == 0,
+                                             gas: gas)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] billComparison in
+                self?.isFetching.value = false
+                print("Request for yearAgo = \(yearAgo): COMPLETE")
+            }, onError: { [weak self] err in
+                self?.isFetching.value = false
+                self?.isError.value = true
+            })
+    }
+    
     var shouldShowElectricGasToggle: Bool {
         if Environment.sharedInstance.opco != .comEd {
-            return serviceType.uppercased() == "GAS/ELECTRIC"
+            // We can force unwrap here because this view is unreachable if it's null
+            return accountDetail.serviceType!.uppercased() == "GAS/ELECTRIC"
         }
         return false
     }
     
     var shouldShowCurrentChargesSection: Bool {
         if Environment.sharedInstance.opco == .comEd {
-            let supplyCharges = billingInfo.supplyCharges ?? 0
-            let taxesAndFees = billingInfo.taxesAndFees ?? 0
-            let deliveryCharges = billingInfo.deliveryCharges ?? 0
+            let supplyCharges = accountDetail.billingInfo.supplyCharges ?? 0
+            let taxesAndFees = accountDetail.billingInfo.taxesAndFees ?? 0
+            let deliveryCharges = accountDetail.billingInfo.deliveryCharges ?? 0
             let totalCharges = supplyCharges + taxesAndFees + deliveryCharges
             return totalCharges > 0
         }
         return false
     }
+    
+    private(set) lazy var shouldShowBillComparisonContentView: Driver<Bool> =
+        Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver()).map {
+            !$0 && !$1
+        }
     
     func setBarSelected(tag: Int) {
         for i in stride(from: 0, to: barGraphSelectionStates.count, by: 1) {

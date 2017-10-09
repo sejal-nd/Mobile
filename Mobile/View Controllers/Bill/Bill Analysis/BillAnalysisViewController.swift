@@ -41,6 +41,12 @@ class BillAnalysisViewController: UIViewController {
     // Bill Comparison
     @IBOutlet weak var billComparisonTitleLabel: UILabel!
     @IBOutlet weak var billComparisonSegmentedControl: BillAnalysisSegmentedControl!
+    
+    @IBOutlet weak var billComparisonContentView: UIView!
+    @IBOutlet weak var billComparisonLoadingView: UIView!
+    @IBOutlet weak var billComparisonErrorView: UIView!
+    @IBOutlet weak var billComparisonErrorLabel: UILabel!
+    
     @IBOutlet weak var barGraphStackView: UIStackView!
     
     @IBOutlet weak var noDataContainerButton: ButtonControl!
@@ -140,6 +146,8 @@ class BillAnalysisViewController: UIViewController {
         
         barGraphStackView.layoutIfNeeded() // Needed for the initial selection triangle position
         likelyReasonsStackView.layoutIfNeeded()
+        
+        viewModel.fetchBillComparison()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -176,6 +184,10 @@ class BillAnalysisViewController: UIViewController {
         billComparisonTitleLabel.textColor = .blackText
         billComparisonTitleLabel.text = NSLocalizedString("Bill Comparison", comment: "")
         
+        billComparisonErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        billComparisonErrorLabel.textColor = .blackText
+        billComparisonErrorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
         styleBarGraph()
         
         barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
@@ -202,9 +214,9 @@ class BillAnalysisViewController: UIViewController {
     }
     
     private func styleCurrentChargesSection() {
-        let supplyCharges = viewModel.billingInfo.supplyCharges ?? 0
-        let taxesAndFees = viewModel.billingInfo.taxesAndFees ?? 0
-        let deliveryCharges = viewModel.billingInfo.deliveryCharges ?? 0
+        let supplyCharges = viewModel.accountDetail.billingInfo.supplyCharges ?? 0
+        let taxesAndFees = viewModel.accountDetail.billingInfo.taxesAndFees ?? 0
+        let deliveryCharges = viewModel.accountDetail.billingInfo.deliveryCharges ?? 0
         let totalCharges = supplyCharges + taxesAndFees + deliveryCharges
         
         // Pie Chart
@@ -270,6 +282,8 @@ class BillAnalysisViewController: UIViewController {
     private func styleBarGraph() {
         let dashedBorderColor = UIColor(red: 0, green: 80/255, blue: 125/255, alpha: 0.24)
         noDataBarView.addDashedBorder(color: dashedBorderColor)
+        previousBarView.backgroundColor = .primaryColor
+        currentBarView.backgroundColor = .primaryColor
         projectionNotAvailableBarView.addDashedBorder(color: dashedBorderColor)
         
         switch Environment.sharedInstance.opco {
@@ -339,7 +353,19 @@ class BillAnalysisViewController: UIViewController {
     }
     
     private func bindViewModel() {
-
+        // Loading/Error/Content States
+        viewModel.shouldShowBillComparisonContentView.not().drive(billComparisonContentView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isFetching.asDriver().not().drive(billComparisonLoadingView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isError.asDriver().not().drive(billComparisonErrorView.rx.isHidden).disposed(by: disposeBag)
+        
+        electricGasSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
+        electricGasSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] _ in
+            self?.viewModel.fetchBillComparison()
+        }).addDisposableTo(disposeBag)
+        billComparisonSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.lastYearPreviousBillSelectedSegmentIndex).disposed(by: disposeBag)
+        billComparisonSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] _ in
+            self?.viewModel.fetchBillComparison()
+        }).addDisposableTo(disposeBag)
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {
