@@ -25,6 +25,10 @@ struct BillComparison: Mappable {
     let reference: UsageBillPeriod
     let compared: UsageBillPeriod
     
+    var billPeriodCostDifference: Double = 0
+    var weatherCostDifference: Double = 0
+    var otherCostDifference: Double = 0
+    
     init(map: Mapper) throws {
         try meterUnit = map.from("meterUnit")
         try currencySymbol = map.from("currencySymbol")
@@ -32,6 +36,17 @@ struct BillComparison: Mappable {
         try analysisResults = map.from("analysisResults")
         try reference = map.from("reference")
         try compared = map.from("compared")
+        
+        // Parse out the analysis results for easier use
+        for result in analysisResults {
+            if result.analysisName == "NUM_DAYS" {
+                billPeriodCostDifference = result.costDifferenceExplained
+            } else if result.analysisName == "WEATHER" {
+                weatherCostDifference = result.costDifferenceExplained
+            } else if result.analysisName == "OTHER" {
+                otherCostDifference = result.costDifferenceExplained
+            }
+        }
     }
 }
 

@@ -198,9 +198,9 @@ class BillAnalysisViewController: UIViewController {
         styleBarGraph()
         
         barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
-        barDescriptionDateLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        barDescriptionDateLabel.font = OpenSans.bold.of(textStyle: .subheadline)
         barDescriptionDateLabel.textColor = .blackText
-        barDescriptionTempLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        barDescriptionTempLabel.font = OpenSans.regular.of(textStyle: .footnote)
         barDescriptionTempLabel.textColor = .blackText
         barDescriptionDetailLabel.font = OpenSans.regular.of(textStyle: .footnote)
         barDescriptionDetailLabel.textColor = .blackText
@@ -339,6 +339,7 @@ class BillAnalysisViewController: UIViewController {
         billPeriodBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         billPeriodDollarLabel.font = SystemFont.medium.of(size: 16)
         billPeriodDollarLabel.textColor = .deepGray
+        billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
         
         weatherTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
         weatherTitleLabel.textColor = .deepGray
@@ -348,6 +349,7 @@ class BillAnalysisViewController: UIViewController {
         weatherBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         weatherDollarLabel.font = SystemFont.medium.of(size: 16)
         weatherDollarLabel.textColor = .deepGray
+        weatherArrowImage.drive(weatherUpDownImageView.rx.image).disposed(by: disposeBag)
         
         otherTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
         otherTitleLabel.textColor = .deepGray
@@ -357,6 +359,7 @@ class BillAnalysisViewController: UIViewController {
         otherBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         otherDollarLabel.font = SystemFont.medium.of(size: 16)
         otherDollarLabel.textColor = .deepGray
+        otherArrowImage.drive(otherUpDownImageView.rx.image).disposed(by: disposeBag)
     }
     
     private func bindViewModel() {
@@ -389,6 +392,12 @@ class BillAnalysisViewController: UIViewController {
         viewModel.barDescriptionDateLabelText.drive(barDescriptionDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionAvgTempLabelText.drive(barDescriptionTempLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionDetailLabelText.drive(barDescriptionDetailLabel.rx.text).disposed(by: disposeBag)
+        
+        // Likely reasons
+        viewModel.likelyReasonsLabelText.drive(likelyReasonsLabel.rx.text).disposed(by: disposeBag)
+        viewModel.billPeriodDollarLabelText.drive(billPeriodDollarLabel.rx.text).disposed(by: disposeBag)
+        viewModel.weatherDollarLabelText.drive(weatherDollarLabel.rx.text).disposed(by: disposeBag)
+        viewModel.otherDollarLabelText.drive(otherDollarLabel.rx.text).disposed(by: disposeBag)
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {
@@ -455,6 +464,40 @@ class BillAnalysisViewController: UIViewController {
     
     private(set) lazy var otherBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates.value[2].asDriver().map {
         $0 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+    }
+    
+    // MARK: Up/Down Arrow Image Drivers
+    private(set) lazy var billPeriodArrowImage: Driver<UIImage?> = self.viewModel.currentBillComparison.asDriver().map {
+        guard let billComparison = $0 else { return nil }
+        if billComparison.billPeriodCostDifference > 0 {
+            return #imageLiteral(resourceName: "ic_billanalysis_positive")
+        } else if billComparison.billPeriodCostDifference < 0 {
+            return #imageLiteral(resourceName: "ic_billanalysis_negative")
+        } else {
+            return #imageLiteral(resourceName: "ic_billanalysis_negative") // TODO: Replace with the dash image
+        }
+    }
+    
+    private(set) lazy var weatherArrowImage: Driver<UIImage?> = self.viewModel.currentBillComparison.asDriver().map {
+        guard let billComparison = $0 else { return nil }
+        if billComparison.weatherCostDifference > 0 {
+            return #imageLiteral(resourceName: "ic_billanalysis_positive")
+        } else if billComparison.weatherCostDifference < 0 {
+            return #imageLiteral(resourceName: "ic_billanalysis_negative")
+        } else {
+            return #imageLiteral(resourceName: "ic_billanalysis_negative") // TODO: Replace with the dash image
+        }
+    }
+    
+    private(set) lazy var otherArrowImage: Driver<UIImage?> = self.viewModel.currentBillComparison.asDriver().map {
+        guard let billComparison = $0 else { return nil }
+        if billComparison.otherCostDifference > 0 {
+            return #imageLiteral(resourceName: "ic_billanalysis_positive")
+        } else if billComparison.otherCostDifference < 0 {
+            return #imageLiteral(resourceName: "ic_billanalysis_negative")
+        } else {
+            return #imageLiteral(resourceName: "ic_billanalysis_negative") // TODO: Replace with the dash image
+        }
     }
     
 }

@@ -202,13 +202,17 @@ class BillAnalysisViewModel {
     private(set) lazy var barDescriptionDetailLabelText: Driver<String?> =
         Driver.combineLatest(self.currentBillComparison.asDriver(), self.barGraphSelectionStates.asDriver()) { currentBillComparison, selectionStates in
             guard let billComparison = currentBillComparison else { return nil }
-            let localizedPrevCurrString = NSLocalizedString("Your bill was %@. You used an average of %d %@/per.", comment: "")
+            let localizedPrevCurrString = NSLocalizedString("Your bill was %@. You used an average of %d %@ per day.", comment: "")
             if selectionStates[0].value { // No data
                 return NSLocalizedString("Not enough data available.", comment: "")
             } else if selectionStates[1].value { // Previous
-                return String(format: localizedPrevCurrString, billComparison.compared.charges.currencyString!, Int(billComparison.compared.usage), billComparison.meterUnit)
+                let daysInBillPeriod = abs(billComparison.compared.startDate.interval(ofComponent: .day, fromDate: billComparison.compared.endDate))
+                let avgUsagePerDay = billComparison.compared.usage / Double(daysInBillPeriod)
+                return String(format: localizedPrevCurrString, billComparison.compared.charges.currencyString!, Int(avgUsagePerDay), billComparison.meterUnit)
             } else if selectionStates[2].value { // Current
-                return String(format: localizedPrevCurrString, billComparison.reference.charges.currencyString!, Int(billComparison.reference.usage), billComparison.meterUnit)
+                let daysInBillPeriod = abs(billComparison.reference.startDate.interval(ofComponent: .day, fromDate: billComparison.reference.endDate))
+                let avgUsagePerDay = billComparison.reference.usage / Double(daysInBillPeriod)
+                return String(format: localizedPrevCurrString, billComparison.reference.charges.currencyString!, Int(avgUsagePerDay), billComparison.meterUnit)
             } else if selectionStates[3].value { // Projected
                 
             } else if selectionStates[4].value { // Projection Not Available
@@ -216,6 +220,62 @@ class BillAnalysisViewModel {
             }
             return nil
         }
+    
+    // MARK: Likely Reasons Drivers
+    
+    private(set) lazy var likelyReasonsLabelText: Driver<String?> =
+        Driver.combineLatest(self.currentBillComparison.asDriver(), self.lastYearPreviousBillSelectedSegmentIndex.asDriver()) { [weak self] currentBillComparison, segmentIndex in
+            guard let `self` = self else { return nil }
+            guard let billComparison = currentBillComparison else { return nil }
+            let currentCharges = billComparison.reference.charges
+            let prevCharges = billComparison.compared.charges
+            let difference = abs(currentCharges - prevCharges)
+            
+            if difference < 1 { // About the same
+                if segmentIndex == 0 { // Last Year
+                    let localizedString = NSLocalizedString("Likely reasons your %@ charges are about the same as last year.", comment: "")
+                    return String(format: localizedString, self.gasOrElectricString)
+                } else { // Previous Bill
+                    let localizedString = NSLocalizedString("Likely reasons your %@ charges are about the same as your previous bill.", comment: "")
+                    return String(format: localizedString, self.gasOrElectricString)
+                }
+            } else {
+                if currentCharges > prevCharges {
+                    if segmentIndex == 0 { // Last Year
+                        let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ more than last year.", comment: "")
+                        return String(format: localizedString, self.gasOrElectricString, difference.currencyString!)
+                    } else { // Previous Bill
+                        let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ more than your previous bill.", comment: "")
+                        return String(format: localizedString, self.gasOrElectricString, difference.currencyString!)
+                    }
+                } else {
+                    if segmentIndex == 0 { // Last Year
+                        let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ less than last year.", comment: "")
+                        return String(format: localizedString, self.gasOrElectricString, difference.currencyString!)
+                    } else { // Previous Bill
+                        let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ less than your previous bill.", comment: "")
+                        return String(format: localizedString, self.gasOrElectricString, difference.currencyString!)
+                    }
+                }
+            }
+        }
+    
+    private(set) lazy var billPeriodDollarLabelText: Driver<String?> = self.currentBillComparison.asDriver().map {
+        guard let billComparison = $0 else { return nil }
+        return billComparison.billPeriodCostDifference.currencyString
+    }
+    
+    private(set) lazy var weatherDollarLabelText: Driver<String?> = self.currentBillComparison.asDriver().map {
+        guard let billComparison = $0 else { return nil }
+        return billComparison.weatherCostDifference.currencyString
+    }
+    
+    private(set) lazy var otherDollarLabelText: Driver<String?> = self.currentBillComparison.asDriver().map {
+        guard let billComparison = $0 else { return nil }
+        return billComparison.otherCostDifference.currencyString
+    }
+    
+    // MARK: Selection States
     
     func setBarSelected(tag: Int) {
         for i in stride(from: 0, to: barGraphSelectionStates.value.count, by: 1) {
@@ -233,4 +293,15 @@ class BillAnalysisViewModel {
         likelyReasonsSelectionStates.value = likelyReasonsSelectionStates.value // Trigger Variable onNext
     }
     
+    // MARK: Random helpers
+    
+    private var gasOrElectricString: String {
+        var gas = false // Default to electric
+        if accountDetail.serviceType!.uppercased() == "GAS" { // If account is gas only
+            gas = true
+        } else if shouldShowElectricGasToggle { // Use value of segmented control
+            gas = electricGasSelectedSegmentIndex.value == 1
+        }
+        return gas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electric", comment: "")
+    }
 }
