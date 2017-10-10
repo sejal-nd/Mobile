@@ -62,3 +62,14 @@ extension Reactive where Base: UILabel {
     
 }
 
+extension Reactive where Base: NSLayoutConstraint {
+    
+    /// Bindable sink for `constant` property.
+    public var constant: UIBindingObserver<Base, CGFloat> {
+        return UIBindingObserver(UIElement: self.base) { constraint, constant in
+            constraint.constant = constant
+        }
+    }
+
+}
+

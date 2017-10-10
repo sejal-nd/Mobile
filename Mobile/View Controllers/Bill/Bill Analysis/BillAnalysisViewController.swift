@@ -58,16 +58,19 @@ class BillAnalysisViewController: UIViewController {
     @IBOutlet weak var previousDollarLabel: UILabel!
     @IBOutlet weak var previousBarView: UIView!
     @IBOutlet weak var previousDateLabel: UILabel!
+    @IBOutlet weak var previousBarHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var currentContainerButton: ButtonControl!
     @IBOutlet weak var currentDollarLabel: UILabel!
     @IBOutlet weak var currentBarView: UIView!
     @IBOutlet weak var currentDateLabel: UILabel!
+    @IBOutlet weak var currentBarHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var projectedContainerButton: ButtonControl!
     @IBOutlet weak var projectedDollarLabel: UILabel!
     @IBOutlet weak var projectedBarImage: UIImageView!
     @IBOutlet weak var projectedDateLabel: UILabel!
+    @IBOutlet weak var projectedBarHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var projectionNotAvailableContainerButton: ButtonControl!
     @IBOutlet weak var projectionNotAvailableBarView: UIView!
@@ -147,7 +150,7 @@ class BillAnalysisViewController: UIViewController {
         barGraphStackView.layoutIfNeeded() // Needed for the initial selection triangle position
         likelyReasonsStackView.layoutIfNeeded()
         
-        viewModel.fetchBillComparison()
+        fetchBillComparison()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -159,6 +162,10 @@ class BillAnalysisViewController: UIViewController {
         
         onBarPress(sender: currentContainerButton) // Initial selection
         onLikelyReasonPress(sender: billPeriodContainerButton)
+    }
+    
+    private func fetchBillComparison() {
+        viewModel.fetchBillComparison()
     }
     
     private func styleViews() {
@@ -358,14 +365,30 @@ class BillAnalysisViewController: UIViewController {
         viewModel.isFetching.asDriver().not().drive(billComparisonLoadingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(billComparisonErrorView.rx.isHidden).disposed(by: disposeBag)
         
+        // Segmented Controls
         electricGasSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
         electricGasSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] _ in
-            self?.viewModel.fetchBillComparison()
+            self?.fetchBillComparison()
         }).addDisposableTo(disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.lastYearPreviousBillSelectedSegmentIndex).disposed(by: disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] _ in
-            self?.viewModel.fetchBillComparison()
+            self?.fetchBillComparison()
         }).addDisposableTo(disposeBag)
+        
+        // Bar graph height constraints
+        viewModel.previousBarHeightConstraintValue.drive(previousBarHeightConstraint.rx.constant).disposed(by: disposeBag)
+        viewModel.currentBarHeightConstraintValue.drive(currentBarHeightConstraint.rx.constant).disposed(by: disposeBag)
+        
+        // Bar labels
+        viewModel.previousBarDollarLabelText.drive(previousDollarLabel.rx.text).disposed(by: disposeBag)
+        viewModel.previousBarDateLabelText.drive(previousDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.currentBarDollarLabelText.drive(currentDollarLabel.rx.text).disposed(by: disposeBag)
+        viewModel.currentBarDateLabelText.drive(currentDateLabel.rx.text).disposed(by: disposeBag)
+        
+        // Bar description labels
+        viewModel.barDescriptionDateLabelText.drive(barDescriptionDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.barDescriptionAvgTempLabelText.drive(barDescriptionTempLabel.rx.text).disposed(by: disposeBag)
+        viewModel.barDescriptionDetailLabelText.drive(barDescriptionDetailLabel.rx.text).disposed(by: disposeBag)
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {
@@ -401,36 +424,36 @@ class BillAnalysisViewController: UIViewController {
     }
     
     // MARK: Bill Comparison Bar Graph Drivers
-    private(set) lazy var noDataLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates[0].asDriver().map {
+    private(set) lazy var noDataLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[0].asDriver().map {
         $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
     }
     
-    private(set) lazy var previousLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates[1].asDriver().map {
+    private(set) lazy var previousLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[1].asDriver().map {
         $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
     }
     
-    private(set) lazy var currentLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates[2].asDriver().map {
+    private(set) lazy var currentLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[2].asDriver().map {
         $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
     }
     
-    private(set) lazy var projectedLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates[3].asDriver().map {
+    private(set) lazy var projectedLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[3].asDriver().map {
         $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
     }
     
-    private(set) lazy var projectionNotAvailableLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates[4].asDriver().map {
+    private(set) lazy var projectionNotAvailableLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[4].asDriver().map {
         $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
     }
     
     // MARK: Likely Reasons Border Color Drivers
-    private(set) lazy var billPeriodBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates[0].asDriver().map {
+    private(set) lazy var billPeriodBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates.value[0].asDriver().map {
         $0 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
     }
     
-    private(set) lazy var weatherBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates[1].asDriver().map {
+    private(set) lazy var weatherBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates.value[1].asDriver().map {
         $0 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
     }
     
-    private(set) lazy var otherBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates[2].asDriver().map {
+    private(set) lazy var otherBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates.value[2].asDriver().map {
         $0 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
     }
     

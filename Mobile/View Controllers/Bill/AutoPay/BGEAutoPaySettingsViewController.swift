@@ -195,10 +195,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
         }
         
         if let date = viewModel.autoPayUntilDate.value {
-             untilDateButton.selectedDateLabel.text = date.mmDdYyyyString
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM dd, yyyy"
-            untilDateButton.accessibilityUpdate(dateText: dateFormatter.string(from: date) + ", selected")
+            untilDateButton.selectedDateLabel.text = date.mmDdYyyyString
+            untilDateButton.accessibilityUpdate(dateText: date.shortMonthDayAndYearString + ", selected")
         }
     
         //
@@ -828,9 +826,7 @@ extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
         viewModel.userDidChangeSettings.value = true
         viewModel.autoPayUntilDate.value = date
         untilDateButton.selectedDateLabel.text = date.mmDdYyyyString
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd, yyyy"
-        untilDateButton.accessibilityUpdate(dateText: dateFormatter.string(from: date) + ", selected")
+        untilDateButton.accessibilityUpdate(dateText: date.shortMonthDayAndYearString + ", selected")
     }
 }
 

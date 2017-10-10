@@ -21,6 +21,15 @@ protocol UsageService {
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain a BillComparison object on success, or a ServiceError on failure.
     func fetchBillComparison(accountNumber: String, premiseNumber: String, billDate: Date, yearAgo: Bool, gas: Bool, completion: @escaping (_ result: ServiceResult<BillComparison>) -> Void)
+    
+    /// Fetches your projected usage
+    ///
+    /// - Parameters:
+    ///   - accountNumber: the account to fetch data for
+    ///   - premiseNumber: the premise to fetch data for
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain a TODO object on success, or a ServiceError on failure.
+    func fetchBillForecast(accountNumber: String, premiseNumber: String, completion: @escaping (_ result: ServiceResult<[NSDictionary]>) -> Void)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,4 +50,21 @@ extension UsageService {
             return Disposables.create()
         }
     }
+    
+    func fetchBillForecast(accountNumber: String, premiseNumber: String) -> Observable<[NSDictionary]> {
+        return Observable.create { observer in
+            self.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber, completion: { (result: ServiceResult<[NSDictionary]>) in
+                switch (result) {
+                case ServiceResult.Success(let billForecast):
+                    observer.onNext(billForecast)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    
 }

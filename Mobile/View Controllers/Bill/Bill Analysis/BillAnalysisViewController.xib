@@ -40,6 +40,7 @@
                 <outlet property="billPeriodDollarLabel" destination="h2m-jQ-oF4" id="ZJr-CW-aLh"/>
                 <outlet property="billPeriodTitleLabel" destination="PSE-aq-wyx" id="m26-Sz-xUR"/>
                 <outlet property="billPeriodUpDownImageView" destination="UfL-Ha-Lcg" id="t5n-dR-Zhm"/>
+                <outlet property="currentBarHeightConstraint" destination="V8t-b9-gHD" id="8pr-AU-abI"/>
                 <outlet property="currentBarView" destination="tLh-Bg-dzy" id="2PQ-jW-VkT"/>
                 <outlet property="currentChargesLegendView" destination="XTe-Vl-I5N" id="Gr0-ce-er6"/>
                 <outlet property="currentChargesPieChartView" destination="25q-ge-5Gp" id="xkT-4i-RlJ"/>
@@ -69,10 +70,12 @@
                 <outlet property="otherDollarLabel" destination="eDv-Bs-a3O" id="oJR-vw-nJ7"/>
                 <outlet property="otherTitleLabel" destination="dGf-31-AtR" id="mMv-8T-mC9"/>
                 <outlet property="otherUpDownImageView" destination="liP-62-LgE" id="geT-GK-gfP"/>
+                <outlet property="previousBarHeightConstraint" destination="0BW-XL-Vvu" id="kVN-o0-cTa"/>
                 <outlet property="previousBarView" destination="9QR-E8-sa2" id="ZtT-ke-apc"/>
                 <outlet property="previousContainerButton" destination="6fF-sR-6WQ" id="DzW-fL-86f"/>
                 <outlet property="previousDateLabel" destination="iNP-wb-yg4" id="uJ6-bb-DJH"/>
                 <outlet property="previousDollarLabel" destination="ON7-wi-2oU" id="HY7-QZ-0IU"/>
+                <outlet property="projectedBarHeightConstraint" destination="hQ2-i4-nLu" id="Ml7-ng-Vcg"/>
                 <outlet property="projectedBarImage" destination="l9j-cL-beM" id="5hy-1o-hrN"/>
                 <outlet property="projectedContainerButton" destination="4EN-qc-tEH" id="uem-Nb-1dd"/>
                 <outlet property="projectedDateLabel" destination="4YU-BV-OEa" id="z2L-9q-MzE"/>
