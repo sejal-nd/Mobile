@@ -3653,7 +3653,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3663,7 +3663,7 @@
 						};
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -5703,8 +5703,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "012e3645-803e-4f27-8c09-432f1e37b261";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE App Store";
+				PROVISIONING_PROFILE = "710d12a5-b1c0-4b5d-99ce-ea4a0235c3a2";
+				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta";
 			};
 			name = Release;
 		};
@@ -6109,8 +6109,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c1e2480f-5585-486c-99f7-35d40d4fef47";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO App Store";
+				PROVISIONING_PROFILE = "71d091af-1e17-4508-bc0f-2974a4a19094";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Production Beta";
 			};
 			name = Release;
 		};
