@@ -28,7 +28,7 @@ class OneTouchSlider: UIControl {
     private(set) var progress: CGFloat = 0.0
     
     let sliderWidth: CGFloat = 40
-    let sliderText = NSLocalizedString("Slide to pay now", comment: "")
+    let sliderText = NSLocalizedString("Slide to pay today", comment: "")
     let accessibilityText = NSLocalizedString("Tap to pay now", comment: "")
     let commitToSwipe: CGFloat = 0.95 //swipe percentage point at which we commit to the swipe and call success
     
