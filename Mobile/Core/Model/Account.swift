@@ -96,7 +96,7 @@ struct AccountDetail: Mappable {
     let isCutOutNonPay: Bool
     let isLowIncome: Bool
 	
-	let isAMICustomer: Bool
+	let isAMIAccount: Bool
     let isResidential: Bool
     
     let releaseOfInformation: String?
@@ -143,7 +143,7 @@ struct AccountDetail: Mappable {
 		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
         isLowIncome = map.optionalFrom("isLowIncome") ?? false
 		
-		isAMICustomer = map.optionalFrom("isAMICustomer") ?? false
+		isAMIAccount = map.optionalFrom("isAMIAccount") ?? false
         isResidential = map.optionalFrom("isResidential") ?? false
         
         releaseOfInformation = map.optionalFrom("releaseOfInformation")

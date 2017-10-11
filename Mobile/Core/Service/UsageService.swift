@@ -29,7 +29,7 @@ protocol UsageService {
     ///   - premiseNumber: the premise to fetch data for
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain a TODO object on success, or a ServiceError on failure.
-    func fetchBillForecast(accountNumber: String, premiseNumber: String, completion: @escaping (_ result: ServiceResult<[NSDictionary]>) -> Void)
+    func fetchBillForecast(accountNumber: String, premiseNumber: String, completion: @escaping (_ result: ServiceResult<[BillForecast?]>) -> Void)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,9 +51,9 @@ extension UsageService {
         }
     }
     
-    func fetchBillForecast(accountNumber: String, premiseNumber: String) -> Observable<[NSDictionary]> {
+    func fetchBillForecast(accountNumber: String, premiseNumber: String) -> Observable<[BillForecast?]> {
         return Observable.create { observer in
-            self.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber, completion: { (result: ServiceResult<[NSDictionary]>) in
+            self.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber, completion: { (result: ServiceResult<[BillForecast?]>) in
                 switch (result) {
                 case ServiceResult.Success(let billForecast):
                     observer.onNext(billForecast)

@@ -21,10 +21,10 @@ struct BillComparison: Mappable {
     let meterUnit: String
     let currencySymbol: String
     let temperatureUnit: String
-    let analysisResults: [AnalysisResult]?
     let reference: UsageBillPeriod?
     let compared: UsageBillPeriod?
     
+    private let analysisResults: [AnalysisResult]?
     var billPeriodCostDifference: Double = 0
     var weatherCostDifference: Double = 0
     var otherCostDifference: Double = 0

@@ -40,6 +40,9 @@ class BillAnalysisViewModel {
     let electricGasSelectedSegmentIndex = Variable(0)
     let lastYearPreviousBillSelectedSegmentIndex = Variable(1)
     let currentBillComparison = Variable<BillComparison?>(nil)
+    let electricForecast = Variable<BillForecast?>(nil)
+    let gasForecast = Variable<BillForecast?>(nil)
+    var fetchedForecast = false // Used so that we only fetch it the first load
     
     required init(usageService: UsageService) {
         self.usageService = usageService
@@ -54,14 +57,10 @@ class BillAnalysisViewModel {
     func fetchBillComparison(onSuccess: (() -> Void)?) {
         isFetching.value = true
         isError.value = false
-        noPreviousData.value = false
-        currentBillComparison.value = nil
         
-        var gas = false // Default to electric
-        if accountDetail.serviceType!.uppercased() == "GAS" { // If account is gas only
-            gas = true
-        } else if shouldShowElectricGasToggle { // Use value of segmented control
-            gas = electricGasSelectedSegmentIndex.value == 1
+        var observables = [fetchBillComparison()]
+        if !fetchedForecast, accountDetail.isAMIAccount {
+            observables.append(fetchBillForecast())
         }
         
         // Unsubscribe before starting a new request to prevent race condition when quickly toggling segmented controls
@@ -69,46 +68,48 @@ class BillAnalysisViewModel {
             disposable.dispose()
         }
         
-        // The premiseNumber/billDate force unwraps are safe because they are checked in BillViewModel: shouldShowNeedHelpUnderstanding
-        currentFetchDisposable =
-            usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
-                                             premiseNumber: accountDetail.premiseNumber!,
-                                             billDate: accountDetail.billingInfo.billDate!,
-                                             yearAgo: lastYearPreviousBillSelectedSegmentIndex.value == 0,
-                                             gas: gas)
+        currentFetchDisposable = Observable.zip(observables)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] billComparison in
+            .subscribe(onNext: { [weak self] _ in
                 onSuccess?() // Fire this off first so we can update barGraphSelectionStates
+                self?.fetchedForecast = true
                 self?.isFetching.value = false
-                self?.currentBillComparison.value = billComparison
-                if billComparison.reference == nil {
-                    self?.isError.value = true // Screen is useless without reference data
-                } else if billComparison.compared == nil {
-                    self?.noPreviousData.value = true
-                }
+//                self?.gasForecast.value = self?.gasForecast.value
+//                self?.electricForecast.value = self?.electricForecast.value
             }, onError: { [weak self] err in
                 self?.isFetching.value = false
                 self?.isError.value = true
             })
     }
     
-    var shouldShowElectricGasToggle: Bool {
-        if Environment.sharedInstance.opco != .comEd {
-            // We can force unwrap here because this view is unreachable if it's null
-            return accountDetail.serviceType!.uppercased() == "GAS/ELECTRIC"
+    func fetchBillComparison() -> Observable<Void> {
+        noPreviousData.value = false
+        currentBillComparison.value = nil
+        
+        // The premiseNumber/billDate force unwraps are safe because they are checked in BillViewModel: shouldShowNeedHelpUnderstanding
+        return usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
+                                                premiseNumber: accountDetail.premiseNumber!,
+                                                billDate: accountDetail.billingInfo.billDate!,
+                                                yearAgo: lastYearPreviousBillSelectedSegmentIndex.value == 0,
+                                                gas: isGas).map { [weak self] billComparison in
+            self?.currentBillComparison.value = billComparison
+            if billComparison.reference == nil {
+                self?.isError.value = true // Screen is useless without reference data
+            } else if billComparison.compared == nil {
+                self?.noPreviousData.value = true
+            }
         }
-        return false
     }
     
-    var shouldShowCurrentChargesSection: Bool {
-        if Environment.sharedInstance.opco == .comEd {
-            let supplyCharges = accountDetail.billingInfo.supplyCharges ?? 0
-            let taxesAndFees = accountDetail.billingInfo.taxesAndFees ?? 0
-            let deliveryCharges = accountDetail.billingInfo.deliveryCharges ?? 0
-            let totalCharges = supplyCharges + taxesAndFees + deliveryCharges
-            return totalCharges > 0
+    func fetchBillForecast() -> Observable<Void> {
+        return usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!).map { [weak self] forecastResults in
+            if let elecResult = forecastResults[0] {
+                self?.electricForecast.value = elecResult
+            }
+            if let gasResult = forecastResults[1] {
+                self?.gasForecast.value = gasResult
+            }
         }
-        return false
     }
     
     private(set) lazy var shouldShowBillComparisonContentView: Driver<Bool> =
@@ -118,15 +119,26 @@ class BillAnalysisViewModel {
     
     // MARK: Previous Bar Drivers
     
-    private(set) lazy var previousBarHeightConstraintValue: Driver<CGFloat> = self.currentBillComparison.asDriver().map {
-        guard let reference = $0?.reference else { return 79 }
-        guard let compared = $0?.compared else { return 0 }
-        if compared.charges >= reference.charges {
-            return 134
-        } else {
-            return CGFloat(134.0 * (compared.charges / reference.charges))
+    private(set) lazy var previousBarHeightConstraintValue: Driver<CGFloat> =
+        Driver.combineLatest(self.currentBillComparison.asDriver(), self.projectedCost) { billComparison, projectedCost in
+            guard let reference = billComparison?.reference else { return 79 }
+            guard let compared = billComparison?.compared else { return 0 }
+            if let projectedCost = projectedCost { // We are displaying a projection
+                if max(projectedCost, reference.charges, compared.charges) == compared.charges {
+                    return 134
+                } else if max(projectedCost, reference.charges) == projectedCost {
+                    return CGFloat(134.0 * (compared.charges / projectedCost))
+                } else {
+                    return CGFloat(134.0 * (compared.charges / reference.charges))
+                }
+            } else {
+                if compared.charges >= reference.charges {
+                    return 134
+                } else {
+                    return CGFloat(134.0 * (compared.charges / reference.charges))
+                }
+            }
         }
-    }
     
     private(set) lazy var previousBarDollarLabelText: Driver<String?> = self.currentBillComparison.asDriver().map {
         guard let compared = $0?.compared else { return nil }
@@ -145,15 +157,26 @@ class BillAnalysisViewModel {
     
     // MARK: Current Bar Drivers
     
-    private(set) lazy var currentBarHeightConstraintValue: Driver<CGFloat> = self.currentBillComparison.asDriver().map {
-        guard let reference = $0?.reference else { return 0 }
-        guard let compared = $0?.compared else { return 79 }
-        if reference.charges >= compared.charges {
-            return 134
-        } else {
-            return CGFloat(134.0 * (reference.charges / compared.charges))
+    private(set) lazy var currentBarHeightConstraintValue: Driver<CGFloat> =
+        Driver.combineLatest(self.currentBillComparison.asDriver(), self.projectedCost) { billComparison, projectedCost in
+            guard let reference = billComparison?.reference else { return 0 }
+            guard let compared = billComparison?.compared else { return 79 }
+            if let projectedCost = projectedCost { // We are displaying a projection
+                if max(projectedCost, reference.charges, compared.charges) == reference.charges {
+                    return 134
+                } else if max(projectedCost, compared.charges) == projectedCost {
+                    return CGFloat(134.0 * (reference.charges / projectedCost))
+                } else {
+                    return CGFloat(134.0 * (reference.charges / compared.charges))
+                }
+            } else {
+                if reference.charges >= compared.charges {
+                    return 134
+                } else {
+                    return CGFloat(134.0 * (reference.charges / compared.charges))
+                }
+            }
         }
-    }
     
     private(set) lazy var currentBarDollarLabelText: Driver<String?> = self.currentBillComparison.asDriver().map {
         guard let reference = $0?.reference else { return nil }
@@ -170,12 +193,95 @@ class BillAnalysisViewModel {
             }
         }
     
+    // MARK: Projection Bar Drivers
+    
+    private(set) lazy var projectedCost: Driver<Double?> =
+        Driver.combineLatest(self.electricForecast.asDriver(),
+                             self.gasForecast.asDriver(),
+                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] elecForecast, gasForecast, segmentIndex in
+            guard let `self` = self else { return nil }
+            if let gasForecast = gasForecast, self.isGas {
+                return gasForecast.projectedCost
+            }
+            if let elecForecast = elecForecast, !self.isGas {
+                return elecForecast.projectedCost
+            }
+            return nil
+        }
+    
+    private(set) lazy var shouldShowProjectedBar: Driver<Bool> =
+        Driver.combineLatest(self.lastYearPreviousBillSelectedSegmentIndex.asDriver(), self.projectedCost, self.shouldShowProjectionNotAvailableBar) {
+            $0 == 1 && $1 != nil && !$2
+        }
+    
+    private(set) lazy var projectedBarHeightConstraintValue: Driver<CGFloat> =
+        Driver.combineLatest(self.currentBillComparison.asDriver(), self.projectedCost) { billComparison, projectedCost in
+            guard let projectedCost = projectedCost else { return 0 }
+            let reference = billComparison?.reference?.charges ?? 0
+            let compared = billComparison?.compared?.charges ?? 0
+
+            if max(projectedCost, reference, compared) == projectedCost {
+                return 134
+            } else if max(reference, compared) == reference {
+                return CGFloat(134.0 * (projectedCost / reference))
+            } else {
+                return CGFloat(134.0 * (projectedCost / compared))
+            }
+        }
+
+    private(set) lazy var projectedBarDollarLabelText: Driver<String?> = self.projectedCost.map {
+        guard let cost = $0 else { return nil }
+        return cost.currencyString!
+    }
+
+    private(set) lazy var projectedBarDateLabelText: Driver<String?> =
+        Driver.combineLatest(self.electricForecast.asDriver(),
+                             self.gasForecast.asDriver(),
+                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] elecForecast, gasForecast, segmentIndex in
+            guard let `self` = self else { return nil }
+            if let gasForecast = gasForecast, self.isGas {
+                if let endDate = gasForecast.billingEndDate {
+                    return endDate.shortMonthAndDayString.uppercased()
+                }
+            }
+            if let elecForecast = elecForecast, !self.isGas {
+                if let endDate = elecForecast.billingEndDate {
+                    return endDate.shortMonthAndDayString.uppercased()
+                }
+            }
+            return nil
+        }
+    
+    // MARK: Projection Not Available Bar Drivers
+    private(set) lazy var shouldShowProjectionNotAvailableBar: Driver<Bool> =
+        Driver.combineLatest(self.electricForecast.asDriver(),
+                             self.gasForecast.asDriver(),
+                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] elecForecast, gasForecast, segmentIndex in
+            guard let `self` = self else { return false }
+            if let gasForecast = gasForecast, self.isGas {
+                if let startDate = gasForecast.billingStartDate {
+                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
+                    return daysSinceBillingStart < 7
+                }
+            }
+            if let elecForecast = elecForecast, !self.isGas {
+                if let startDate = elecForecast.billingStartDate {
+                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
+                    return daysSinceBillingStart < 7
+                }
+            }
+            return false
+        }
+    
+
     // MARK: Bar Description Box Drivers
     
     private(set) lazy var barDescriptionDateLabelText: Driver<String?> =
         Driver.combineLatest(self.currentBillComparison.asDriver(),
                              self.lastYearPreviousBillSelectedSegmentIndex.asDriver(),
-                             self.barGraphSelectionStates.asDriver()) { currentBillComparison, segmentIndex, selectionStates in
+                             self.barGraphSelectionStates.asDriver(),
+                             self.isFetching.asDriver()) { currentBillComparison, segmentIndex, selectionStates, isFetching in
+            if isFetching { return nil }
             guard let billComparison = currentBillComparison else { return nil }
             if selectionStates[0].value { // No data
                 if segmentIndex == 0 {
@@ -196,7 +302,10 @@ class BillAnalysisViewModel {
         }
     
     private(set) lazy var barDescriptionAvgTempLabelText: Driver<String?> =
-        Driver.combineLatest(self.currentBillComparison.asDriver(), self.barGraphSelectionStates.asDriver()) { currentBillComparison, selectionStates in
+        Driver.combineLatest(self.currentBillComparison.asDriver(),
+                             self.barGraphSelectionStates.asDriver(),
+                             self.isFetching.asDriver()) { currentBillComparison, selectionStates, isFetching in
+            if isFetching { return nil }
             guard let billComparison = currentBillComparison else { return nil }
             let localizedString = NSLocalizedString("Avg. Temp %d° F", comment: "")
             if selectionStates[1].value { // Previous
@@ -208,7 +317,10 @@ class BillAnalysisViewModel {
         }
     
     private(set) lazy var barDescriptionDetailLabelText: Driver<String?> =
-        Driver.combineLatest(self.currentBillComparison.asDriver(), self.barGraphSelectionStates.asDriver()) { currentBillComparison, selectionStates in
+        Driver.combineLatest(self.currentBillComparison.asDriver(),
+                             self.barGraphSelectionStates.asDriver(),
+                             self.isFetching.asDriver()) { currentBillComparison, selectionStates, isFetching in
+            if isFetching { return nil }
             guard let billComparison = currentBillComparison else { return nil }
             let localizedPrevCurrString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
             if selectionStates[0].value { // No data
@@ -349,23 +461,41 @@ class BillAnalysisViewModel {
     
     // MARK: Random helpers
     
-    private var gasOrElectricString: String {
+    var shouldShowElectricGasToggle: Bool {
+        if Environment.sharedInstance.opco != .comEd {
+            // We can force unwrap here because this view is unreachable if it's null
+            return accountDetail.serviceType!.uppercased() == "GAS/ELECTRIC"
+        }
+        return false
+    }
+    
+    var shouldShowCurrentChargesSection: Bool {
+        if Environment.sharedInstance.opco == .comEd {
+            let supplyCharges = accountDetail.billingInfo.supplyCharges ?? 0
+            let taxesAndFees = accountDetail.billingInfo.taxesAndFees ?? 0
+            let deliveryCharges = accountDetail.billingInfo.deliveryCharges ?? 0
+            let totalCharges = supplyCharges + taxesAndFees + deliveryCharges
+            return totalCharges > 0
+        }
+        return false
+    }
+    
+    // If a gas only account, return true, if an electric only account, returns false, if both gas/electric, returns selected segemented control
+    private var isGas: Bool {
         var gas = false // Default to electric
         if accountDetail.serviceType!.uppercased() == "GAS" { // If account is gas only
             gas = true
         } else if shouldShowElectricGasToggle { // Use value of segmented control
             gas = electricGasSelectedSegmentIndex.value == 1
         }
-        return gas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electric", comment: "")
+        return gas
+    }
+    
+    private var gasOrElectricString: String {
+        return isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electric", comment: "")
     }
     
     private var gasOrElectricityString: String {
-        var gas = false // Default to electric
-        if accountDetail.serviceType!.uppercased() == "GAS" { // If account is gas only
-            gas = true
-        } else if shouldShowElectricGasToggle { // Use value of segmented control
-            gas = electricGasSelectedSegmentIndex.value == 1
-        }
-        return gas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
+        return isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
     }
 }

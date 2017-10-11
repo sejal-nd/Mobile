@@ -863,6 +863,10 @@
 		E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */; };
 		E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */; };
 		E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */; };
+		E827F18F1F8E9D620090C5A5 /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
+		E827F1901F8E9D620090C5A5 /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
+		E827F1911F8E9D620090C5A5 /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
+		E827F1921F8E9D620090C5A5 /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
 		E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */; };
 		E82FA1371EA541D100C2DABC /* ForgotPasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */; };
 		E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
@@ -1741,6 +1745,7 @@
 		E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBankAccountViewController.swift; sourceTree = "<group>"; };
 		E827D2371ED490A0004DA1D6 /* InfoModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoModal.xib; sourceTree = "<group>"; };
 		E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoModalViewController.swift; sourceTree = "<group>"; };
+		E827F18E1F8E9D620090C5A5 /* BillForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillForecast.swift; sourceTree = "<group>"; };
 		E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModelTests.swift; sourceTree = "<group>"; };
 		E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModelTests.swift; sourceTree = "<group>"; };
 		E840BD391EB3C91D00812DD0 /* BillService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillService.swift; sourceTree = "<group>"; };
@@ -3158,6 +3163,7 @@
 				B5D07CB11F0EC2F10018B02D /* Payment.swift */,
 				0D79C6D01F1FB761004793DD /* Maintenance.swift */,
 				E8790BE61F8C18C20067BE85 /* BillComparison.swift */,
+				E827F18E1F8E9D620090C5A5 /* BillForecast.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4376,6 +4382,7 @@
 				E8C29C7C1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				B52CA0AF1F311524002B5674 /* Analytics.swift in Sources */,
 				E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */,
+				E827F18F1F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
@@ -4613,6 +4620,7 @@
 				E8C29C7E1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				54DF4BD31EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
+				E827F1911F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				B52CA0B11F311524002B5674 /* Analytics.swift in Sources */,
 				54036BAF1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
 				82A18EA01EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
@@ -4850,6 +4858,7 @@
 				E8C29C7D1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				54DF4BD21EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
+				E827F1901F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				B52CA0B01F311524002B5674 /* Analytics.swift in Sources */,
 				54036BAE1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
 				82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
@@ -5016,6 +5025,7 @@
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
 				B56DD4A51ED87AE200F0198B /* CreditCard.swift in Sources */,
+				E827F1921F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				B5D07CB51F0EC2F10018B02D /* Payment.swift in Sources */,
 				E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
