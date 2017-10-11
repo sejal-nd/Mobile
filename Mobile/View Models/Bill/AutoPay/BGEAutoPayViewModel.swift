@@ -113,7 +113,7 @@ class BGEAutoPayViewModel {
                 }
                 
                 onSuccess?()
-                }, onError: { [weak self] error in
+            }, onError: { [weak self] error in
                     guard let `self` = self else { return }
                     self.isFetchingAutoPayInfo.value = false
                     self.isError.value = true
