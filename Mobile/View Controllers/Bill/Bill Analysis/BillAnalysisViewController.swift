@@ -93,19 +93,16 @@ class BillAnalysisViewController: UIViewController {
     @IBOutlet weak var billPeriodTitleLabel: UILabel!
     @IBOutlet weak var billPeriodBubbleView: UIView!
     @IBOutlet weak var billPeriodUpDownImageView: UIImageView!
-    @IBOutlet weak var billPeriodDollarLabel: UILabel!
     
     @IBOutlet weak var weatherContainerButton: ButtonControl!
     @IBOutlet weak var weatherTitleLabel: UILabel!
     @IBOutlet weak var weatherBubbleView: UIView!
     @IBOutlet weak var weatherUpDownImageView: UIImageView!
-    @IBOutlet weak var weatherDollarLabel: UILabel!
     
     @IBOutlet weak var otherContainerButton: ButtonControl!
     @IBOutlet weak var otherTitleLabel: UILabel!
     @IBOutlet weak var otherBubbleView: UIView!
     @IBOutlet weak var otherUpDownImageView: UIImageView!
-    @IBOutlet weak var otherDollarLabel: UILabel!
     
     @IBOutlet weak var likelyReasonsDescriptionView: UIView!
     @IBOutlet weak var likelyReasonsDescriptionTitleLabel: UILabel!
@@ -131,7 +128,9 @@ class BillAnalysisViewController: UIViewController {
         
         title = NSLocalizedString("Bill Analysis", comment: "")
         
-        billComparisonSegmentedControl.setItems(leftLabel: NSLocalizedString("Last Year", comment: ""), rightLabel: NSLocalizedString("Previous Bill", comment: ""), initialSelectedIndex: 1)
+        billComparisonSegmentedControl.setItems(leftLabel: NSLocalizedString("Last Year", comment: ""),
+                                                rightLabel: NSLocalizedString("Previous Bill", comment: ""),
+                                                initialSelectedIndex: 1)
         
         styleViews()
         bindViewModel()
@@ -147,7 +146,8 @@ class BillAnalysisViewController: UIViewController {
             likelyReasonsStackView.spacing = 8
         }
         
-        barGraphStackView.layoutIfNeeded() // Needed for the initial selection triangle position
+        // layoutIfNeeded() for the initial selection triangle positions
+        barGraphStackView.layoutIfNeeded()
         likelyReasonsStackView.layoutIfNeeded()
         
         fetchBillComparison()
@@ -218,6 +218,8 @@ class BillAnalysisViewController: UIViewController {
         
         footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         footerLabel.textColor = .blackText
+        footerLabel.text = NSLocalizedString("The amounts shown are usage-related charges and may not include credits and other adjustments. " +
+            "Amounts for Budget Billing customers are based on actual usage in the period, not on your monthly budget payment.", comment: "")
     }
     
     private func styleCurrentChargesSection() {
@@ -337,8 +339,6 @@ class BillAnalysisViewController: UIViewController {
         billPeriodBubbleView.layer.borderWidth = 2
         billPeriodBorderColor.drive(billPeriodBubbleView.rx.borderColor).disposed(by: disposeBag)
         billPeriodBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
-        billPeriodDollarLabel.font = SystemFont.medium.of(size: 16)
-        billPeriodDollarLabel.textColor = .deepGray
         billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
         
         weatherTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
@@ -347,8 +347,6 @@ class BillAnalysisViewController: UIViewController {
         weatherBubbleView.layer.borderWidth = 2
         weatherBorderColor.drive(weatherBubbleView.rx.borderColor).disposed(by: disposeBag)
         weatherBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
-        weatherDollarLabel.font = SystemFont.medium.of(size: 16)
-        weatherDollarLabel.textColor = .deepGray
         weatherArrowImage.drive(weatherUpDownImageView.rx.image).disposed(by: disposeBag)
         
         otherTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
@@ -357,8 +355,6 @@ class BillAnalysisViewController: UIViewController {
         otherBubbleView.layer.borderWidth = 2
         otherBorderColor.drive(otherBubbleView.rx.borderColor).disposed(by: disposeBag)
         otherBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
-        otherDollarLabel.font = SystemFont.medium.of(size: 16)
-        otherDollarLabel.textColor = .deepGray
         otherArrowImage.drive(otherUpDownImageView.rx.image).disposed(by: disposeBag)
     }
     
@@ -395,9 +391,8 @@ class BillAnalysisViewController: UIViewController {
         
         // Likely reasons
         viewModel.likelyReasonsLabelText.drive(likelyReasonsLabel.rx.text).disposed(by: disposeBag)
-        viewModel.billPeriodDollarLabelText.drive(billPeriodDollarLabel.rx.text).disposed(by: disposeBag)
-        viewModel.weatherDollarLabelText.drive(weatherDollarLabel.rx.text).disposed(by: disposeBag)
-        viewModel.otherDollarLabelText.drive(otherDollarLabel.rx.text).disposed(by: disposeBag)
+        viewModel.likelyReasonsDescriptionTitleText.drive(likelyReasonsDescriptionTitleLabel.rx.text).disposed(by: disposeBag)
+        viewModel.likelyReasonsDescriptionDetailText.drive(likelyReasonsDescriptionDetailLabel.rx.text).disposed(by: disposeBag)
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {
@@ -469,34 +464,34 @@ class BillAnalysisViewController: UIViewController {
     // MARK: Up/Down Arrow Image Drivers
     private(set) lazy var billPeriodArrowImage: Driver<UIImage?> = self.viewModel.currentBillComparison.asDriver().map {
         guard let billComparison = $0 else { return nil }
-        if billComparison.billPeriodCostDifference > 0 {
+        if billComparison.billPeriodCostDifference >= 1 {
             return #imageLiteral(resourceName: "ic_billanalysis_positive")
-        } else if billComparison.billPeriodCostDifference < 0 {
+        } else if billComparison.billPeriodCostDifference <= -1 {
             return #imageLiteral(resourceName: "ic_billanalysis_negative")
         } else {
-            return #imageLiteral(resourceName: "ic_billanalysis_negative") // TODO: Replace with the dash image
+            return #imageLiteral(resourceName: "no_change_icon")
         }
     }
     
     private(set) lazy var weatherArrowImage: Driver<UIImage?> = self.viewModel.currentBillComparison.asDriver().map {
         guard let billComparison = $0 else { return nil }
-        if billComparison.weatherCostDifference > 0 {
+        if billComparison.weatherCostDifference >= 1 {
             return #imageLiteral(resourceName: "ic_billanalysis_positive")
-        } else if billComparison.weatherCostDifference < 0 {
+        } else if billComparison.weatherCostDifference <= -1 {
             return #imageLiteral(resourceName: "ic_billanalysis_negative")
         } else {
-            return #imageLiteral(resourceName: "ic_billanalysis_negative") // TODO: Replace with the dash image
+            return #imageLiteral(resourceName: "no_change_icon")
         }
     }
     
     private(set) lazy var otherArrowImage: Driver<UIImage?> = self.viewModel.currentBillComparison.asDriver().map {
         guard let billComparison = $0 else { return nil }
-        if billComparison.otherCostDifference > 0 {
+        if billComparison.otherCostDifference >= 1 {
             return #imageLiteral(resourceName: "ic_billanalysis_positive")
-        } else if billComparison.otherCostDifference < 0 {
+        } else if billComparison.otherCostDifference <= -1 {
             return #imageLiteral(resourceName: "ic_billanalysis_negative")
         } else {
-            return #imageLiteral(resourceName: "ic_billanalysis_negative") // TODO: Replace with the dash image
+            return #imageLiteral(resourceName: "no_change_icon")
         }
     }
     

@@ -177,6 +177,7 @@ class BillViewModel {
     private(set) lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map {
         guard let accountDetail = $0 else { return false }
         guard let serviceType = accountDetail.serviceType else { return false }
+        guard let premiseNumber = accountDetail.premiseNumber else { return false }
         
         if !accountDetail.isResidential { // Residential customers only
             return false
@@ -190,7 +191,7 @@ class BillViewModel {
         if let status = accountDetail.status, status.lowercased() == "finaled" { // No finaled accounts
             return false
         }
-
+        
         return true
     }
     

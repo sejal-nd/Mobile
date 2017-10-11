@@ -68,7 +68,7 @@ class BillAnalysisViewModel {
         
         currentFetchDisposable =
             usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
-                                             premiseNumber: accountDetail.premiseNumber!,
+                                             premiseNumber: accountDetail.premiseNumber!, // Force unwrap is safe because checked in BillViewModel
                                              billDate: accountDetail.billingInfo.billDate!,
                                              yearAgo: lastYearPreviousBillSelectedSegmentIndex.value == 0,
                                              gas: gas)
@@ -260,20 +260,63 @@ class BillAnalysisViewModel {
             }
         }
     
-    private(set) lazy var billPeriodDollarLabelText: Driver<String?> = self.currentBillComparison.asDriver().map {
-        guard let billComparison = $0 else { return nil }
-        return billComparison.billPeriodCostDifference.currencyString
+    private(set) lazy var likelyReasonsDescriptionTitleText: Driver<String?> = self.likelyReasonsSelectionStates.asDriver().map {
+        if $0[0].value {
+            return NSLocalizedString("Bill Period", comment: "")
+        } else if $0[1].value {
+            return NSLocalizedString("Weather", comment: "")
+        } else if $0[2].value {
+            return NSLocalizedString("Other", comment: "")
+        }
+        return nil
     }
     
-    private(set) lazy var weatherDollarLabelText: Driver<String?> = self.currentBillComparison.asDriver().map {
-        guard let billComparison = $0 else { return nil }
-        return billComparison.weatherCostDifference.currencyString
-    }
-    
-    private(set) lazy var otherDollarLabelText: Driver<String?> = self.currentBillComparison.asDriver().map {
-        guard let billComparison = $0 else { return nil }
-        return billComparison.otherCostDifference.currencyString
-    }
+    private(set) lazy var likelyReasonsDescriptionDetailText: Driver<String?> =
+        Driver.combineLatest(self.currentBillComparison.asDriver(), self.likelyReasonsSelectionStates.asDriver()) { [weak self] currentBillComparison, selectionStates in
+            guard let `self` = self else { return nil }
+            guard let billComparison = currentBillComparison else { return nil }
+            if selectionStates[0].value { // Bill Period
+                let daysInCurrentBillPeriod = abs(billComparison.reference.startDate.interval(ofComponent: .day, fromDate: billComparison.reference.endDate))
+                let daysInPreviousBillPeriod = abs(billComparison.compared.startDate.interval(ofComponent: .day, fromDate: billComparison.compared.endDate))
+                let billPeriodDiff = abs(daysInCurrentBillPeriod - daysInPreviousBillPeriod)
+                
+                var localizedString: String!
+                if billComparison.billPeriodCostDifference >= 1 {
+                    localizedString = NSLocalizedString("Your bill was about %@ more. You used more %@ because this bill period was %d days longer.", comment: "")
+                } else if billComparison.billPeriodCostDifference <= -1 {
+                    localizedString = NSLocalizedString("Your bill was about %@ less. You used less %@ because this bill period was %d days shorter.", comment: "")
+                } else {
+                    return NSLocalizedString("You spent about the same based on the number of days in your billing period.", comment: "")
+                }
+                return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString!, self.gasOrElectricityString, billPeriodDiff)
+            } else if selectionStates[1].value { // Weather
+                var localizedString: String!
+                if billComparison.weatherCostDifference >= 1 {
+                    localizedString = NSLocalizedString("Your bill was about %@ more. You used more %@ due to changes in weather.", comment: "")
+                } else if billComparison.weatherCostDifference <= -1 {
+                    localizedString = NSLocalizedString("Your bill was about %@ less. You used less %@ due to changes in weather.", comment: "")
+                } else {
+                    return NSLocalizedString("You spent about the same based on weather conditions.", comment: "")
+                }
+                return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString!, self.gasOrElectricityString)
+            } else if selectionStates[2].value { // Other
+                var localizedString: String!
+                if billComparison.otherCostDifference >= 1 {
+                    localizedString = NSLocalizedString("Your bill was about %@ more. Your charges increased based on how you used energy. Your bill may be different for " +
+                        "a variety of reasons, including:\n• Number of people and amount of time spent in your home\n• New appliances or electronics\n• Differences in rate " +
+                        "plans or cost of energy", comment: "")
+                } else if billComparison.otherCostDifference <= -1 {
+                    localizedString = NSLocalizedString("Your bill was about %@ less. Your charges decreased based on how you used energy. Your bill may be different for " +
+                        "a variety of reasons, including:\n• Number of people and amount of time spent in your home\n• New appliances or electronics\n• Differences in rate " +
+                        "plans or cost of energy", comment: "")
+                } else {
+                    return NSLocalizedString("You spent about the same based on a variety reasons, including:\n• Number of people and amount of time spent in your home\n" +
+                        "• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
+                }
+                return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString!, self.gasOrElectricityString)
+            }
+            return nil
+        }
     
     // MARK: Selection States
     
@@ -303,5 +346,15 @@ class BillAnalysisViewModel {
             gas = electricGasSelectedSegmentIndex.value == 1
         }
         return gas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electric", comment: "")
+    }
+    
+    private var gasOrElectricityString: String {
+        var gas = false // Default to electric
+        if accountDetail.serviceType!.uppercased() == "GAS" { // If account is gas only
+            gas = true
+        } else if shouldShowElectricGasToggle { // Use value of segmented control
+            gas = electricGasSelectedSegmentIndex.value == 1
+        }
+        return gas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
     }
 }
