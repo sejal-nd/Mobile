@@ -89,6 +89,8 @@ class BillAnalysisViewController: UIViewController {
     
     @IBOutlet weak var likelyReasonsStackView: UIStackView!
     
+    @IBOutlet var likelyReasonsNoDataLabels: [UILabel]!
+    
     @IBOutlet weak var billPeriodContainerButton: ButtonControl!
     @IBOutlet weak var billPeriodTitleLabel: UILabel!
     @IBOutlet weak var billPeriodBubbleView: UIView!
@@ -104,6 +106,7 @@ class BillAnalysisViewController: UIViewController {
     @IBOutlet weak var otherBubbleView: UIView!
     @IBOutlet weak var otherUpDownImageView: UIImageView!
     
+    @IBOutlet weak var likelyReasonsDescriptionContainerView: UIView!
     @IBOutlet weak var likelyReasonsDescriptionView: UIView!
     @IBOutlet weak var likelyReasonsDescriptionTitleLabel: UILabel!
     @IBOutlet weak var likelyReasonsDescriptionDetailLabel: UILabel!
@@ -135,9 +138,6 @@ class BillAnalysisViewController: UIViewController {
         styleViews()
         bindViewModel()
         
-        noDataContainerButton.isHidden = true
-//        previousContainerButton.isHidden = true
-//        currentContainerButton.isHidden = true
         projectedContainerButton.isHidden = true
         projectionNotAvailableContainerButton.isHidden = true
         
@@ -165,7 +165,10 @@ class BillAnalysisViewController: UIViewController {
     }
     
     private func fetchBillComparison() {
-        viewModel.fetchBillComparison()
+        viewModel.fetchBillComparison(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
+            self.onBarPress(sender: self.currentContainerButton)
+        })
     }
     
     private func styleViews() {
@@ -356,6 +359,12 @@ class BillAnalysisViewController: UIViewController {
         otherBorderColor.drive(otherBubbleView.rx.borderColor).disposed(by: disposeBag)
         otherBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         otherArrowImage.drive(otherUpDownImageView.rx.image).disposed(by: disposeBag)
+        
+        for label in likelyReasonsNoDataLabels {
+            label.textColor = .deepGray
+            label.font = SystemFont.medium.of(size: 16)
+            label.text = NSLocalizedString("No data", comment: "")
+        }
     }
     
     private func bindViewModel() {
@@ -378,6 +387,10 @@ class BillAnalysisViewController: UIViewController {
         viewModel.previousBarHeightConstraintValue.drive(previousBarHeightConstraint.rx.constant).disposed(by: disposeBag)
         viewModel.currentBarHeightConstraintValue.drive(currentBarHeightConstraint.rx.constant).disposed(by: disposeBag)
         
+        // Bar show/hide
+        viewModel.noPreviousData.asDriver().not().drive(noDataContainerButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().drive(previousContainerButton.rx.isHidden).disposed(by: disposeBag)
+        
         // Bar labels
         viewModel.previousBarDollarLabelText.drive(previousDollarLabel.rx.text).disposed(by: disposeBag)
         viewModel.previousBarDateLabelText.drive(previousDateLabel.rx.text).disposed(by: disposeBag)
@@ -393,6 +406,13 @@ class BillAnalysisViewController: UIViewController {
         viewModel.likelyReasonsLabelText.drive(likelyReasonsLabel.rx.text).disposed(by: disposeBag)
         viewModel.likelyReasonsDescriptionTitleText.drive(likelyReasonsDescriptionTitleLabel.rx.text).disposed(by: disposeBag)
         viewModel.likelyReasonsDescriptionDetailText.drive(likelyReasonsDescriptionDetailLabel.rx.text).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().drive(likelyReasonsDescriptionContainerView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().drive(billPeriodUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().drive(weatherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().drive(otherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+        for label in likelyReasonsNoDataLabels {
+            viewModel.noPreviousData.asDriver().not().drive(label.rx.isHidden).disposed(by: disposeBag)
+        }
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {
@@ -449,17 +469,20 @@ class BillAnalysisViewController: UIViewController {
     }
     
     // MARK: Likely Reasons Border Color Drivers
-    private(set) lazy var billPeriodBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates.value[0].asDriver().map {
-        $0 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
-    }
+    private(set) lazy var billPeriodBorderColor: Driver<CGColor> =
+        Driver.combineLatest(self.viewModel.likelyReasonsSelectionStates.value[0].asDriver(), self.viewModel.noPreviousData.asDriver()) {
+            $0 && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+        }
     
-    private(set) lazy var weatherBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates.value[1].asDriver().map {
-        $0 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
-    }
+    private(set) lazy var weatherBorderColor: Driver<CGColor> =
+        Driver.combineLatest(self.viewModel.likelyReasonsSelectionStates.value[1].asDriver(), self.viewModel.noPreviousData.asDriver()) {
+            $0 && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+        }
     
-    private(set) lazy var otherBorderColor: Driver<CGColor> = self.viewModel.likelyReasonsSelectionStates.value[2].asDriver().map {
-        $0 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
-    }
+    private(set) lazy var otherBorderColor: Driver<CGColor> =
+        Driver.combineLatest(self.viewModel.likelyReasonsSelectionStates.value[2].asDriver(), self.viewModel.noPreviousData.asDriver()) {
+            $0 && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+        }
     
     // MARK: Up/Down Arrow Image Drivers
     private(set) lazy var billPeriodArrowImage: Driver<UIImage?> = self.viewModel.currentBillComparison.asDriver().map {

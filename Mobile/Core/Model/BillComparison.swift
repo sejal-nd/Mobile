@@ -21,9 +21,9 @@ struct BillComparison: Mappable {
     let meterUnit: String
     let currencySymbol: String
     let temperatureUnit: String
-    let analysisResults: [AnalysisResult]
-    let reference: UsageBillPeriod
-    let compared: UsageBillPeriod
+    let analysisResults: [AnalysisResult]?
+    let reference: UsageBillPeriod?
+    let compared: UsageBillPeriod?
     
     var billPeriodCostDifference: Double = 0
     var weatherCostDifference: Double = 0
@@ -33,18 +33,20 @@ struct BillComparison: Mappable {
         try meterUnit = map.from("meterUnit")
         try currencySymbol = map.from("currencySymbol")
         try temperatureUnit = map.from("temperatureUnit")
-        try analysisResults = map.from("analysisResults")
-        try reference = map.from("reference")
-        try compared = map.from("compared")
+        analysisResults = map.optionalFrom("analysisResults")
+        reference = map.optionalFrom("reference")
+        compared = map.optionalFrom("compared")
         
         // Parse out the analysis results for easier use
-        for result in analysisResults {
-            if result.analysisName == "NUM_DAYS" {
-                billPeriodCostDifference = result.costDifferenceExplained
-            } else if result.analysisName == "WEATHER" {
-                weatherCostDifference = result.costDifferenceExplained
-            } else if result.analysisName == "OTHER" {
-                otherCostDifference = result.costDifferenceExplained
+        if let results = analysisResults {
+            for result in results {
+                if result.analysisName == "NUM_DAYS" {
+                    billPeriodCostDifference = result.costDifferenceExplained
+                } else if result.analysisName == "WEATHER" {
+                    weatherCostDifference = result.costDifferenceExplained
+                } else if result.analysisName == "OTHER" {
+                    otherCostDifference = result.costDifferenceExplained
+                }
             }
         }
     }
@@ -66,7 +68,7 @@ struct UsageBillPeriod: Mappable {
     let startDate: Date
     let endDate: Date
     let averageTemperature: Double
-    let ratePlan: String
+    let ratePlan: String?
     
     init(map: Mapper) throws {
         try charges = map.from("charges")
@@ -74,6 +76,6 @@ struct UsageBillPeriod: Mappable {
         try startDate = map.from("startDate", transformation: extractDate)
         try endDate = map.from("endDate", transformation: extractDate)
         try averageTemperature = map.from("averageTemperature")
-        try ratePlan = map.from("ratePlan")
+        ratePlan = map.optionalFrom("ratePlan")
     }
 }
