@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -95,13 +96,13 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="76°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-co-jWg">
-                                                                <rect key="frame" x="273" y="31.5" width="44" height="38.5"/>
+                                                                <rect key="frame" x="263" y="31.5" width="44" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1000" image="ic_cloudy" translatesAutoresizingMaskIntoConstraints="NO" id="aXQ-xP-rVE">
-                                                                <rect key="frame" x="325" y="0.0" width="50" height="100"/>
+                                                                <rect key="frame" x="315" y="0.0" width="60" height="100"/>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -111,7 +112,7 @@
                                                             <constraint firstAttribute="width" priority="999" constant="492" id="CHR-Yt-xhB"/>
                                                             <constraint firstItem="vy3-co-jWg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uyw-91-O7K" secondAttribute="trailing" constant="8" id="Irr-Cu-tit"/>
                                                             <constraint firstItem="aXQ-xP-rVE" firstAttribute="leading" secondItem="vy3-co-jWg" secondAttribute="trailing" constant="8" id="K95-al-lCb"/>
-                                                            <constraint firstAttribute="trailing" secondItem="vy3-co-jWg" secondAttribute="trailing" constant="58" id="Ruf-0g-ZuJ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="vy3-co-jWg" secondAttribute="trailing" constant="68" id="Ruf-0g-ZuJ"/>
                                                             <constraint firstItem="uyw-91-O7K" firstAttribute="leading" secondItem="ANG-nn-e6w" secondAttribute="leading" constant="16" id="WpF-mn-Tae"/>
                                                             <constraint firstItem="vy3-co-jWg" firstAttribute="centerY" secondItem="ANG-nn-e6w" secondAttribute="centerY" id="c9Y-YA-Vlj"/>
                                                             <constraint firstItem="uyw-91-O7K" firstAttribute="centerY" secondItem="ANG-nn-e6w" secondAttribute="centerY" id="nOM-Ok-yZu"/>
