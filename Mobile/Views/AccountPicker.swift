@@ -120,6 +120,7 @@ class AccountPicker: UIView {
                 addAccountToScrollView(account)
             }
         } else { // Advanced Account Picker
+            pageControl.isHidden = true
             addAccountToScrollView(pagedAccounts[0], advancedPicker: true)
         }
         
