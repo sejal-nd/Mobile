@@ -397,8 +397,12 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
 
         needHelpUnderstandingButton.rx.touchUpInside.asDriver()
-            .drive(onNext: {
-                dLog("need help tapped")
+            .withLatestFrom(viewModel.currentAccountDetailUnwrapped)
+            .drive(onNext: { [weak self] in
+                let billAnalysis = BillAnalysisViewController()
+                billAnalysis.hidesBottomBarWhenPushed = true
+                billAnalysis.viewModel.accountDetail = $0
+                self?.navigationController?.pushViewController(billAnalysis, animated: true)
             })
             .disposed(by: bag)
 

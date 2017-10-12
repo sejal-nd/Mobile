@@ -17,8 +17,6 @@ protocol AccountService {
     /// Fetch a page of accounts for the current customer.
     ///
     /// - Parameters:
-    ///   - page: the page number to fetch
-    ///   - offset: the page offset
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain an AccountPage on success, or a ServiceError on failure.
     func fetchAccounts(completion: @escaping (_ result: ServiceResult<[Account]>) -> Void)

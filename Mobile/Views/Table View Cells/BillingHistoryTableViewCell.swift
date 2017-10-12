@@ -60,9 +60,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
     }
     
     private func configurePastCell(item: BillingHistoryItem) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd, yyyy"
-        let dateString = dateFormatter.string(from: item.date)
+        let dateString = item.date.shortMonthDayAndYearString
         
         var a11y = ""
         if item.type == BillingHistoryProperties.TypeBilling.rawValue {
@@ -107,9 +105,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
             let amountPaid = item.amountPaid?.currencyString else { return }
         
         var a11y = ""
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd, yyyy"
-        let dateString = dateFormatter.string(from: item.date)
+        let dateString = item.date.shortMonthDayAndYearString
         
         if status == BillingHistoryProperties.StatusPending.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")

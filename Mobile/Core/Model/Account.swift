@@ -62,10 +62,14 @@ struct Account: Mappable, Equatable, Hashable {
 
 struct AccountDetail: Mappable {
     let accountNumber: String
+    let premiseNumber: String?
     let address: String?
+    
+    let serviceType: String?
     
     let customerInfo: CustomerInfo
     let billingInfo: BillingInfo
+    let SERInfo: SERInfo
     
     let isPasswordProtected: Bool
     let hasElectricSupplier: Bool
@@ -75,6 +79,7 @@ struct AccountDetail: Mappable {
     let isSupplier: Bool
     let isActiveSeverance: Bool
     let isHourlyPricing: Bool
+    let isBGEControlGroup: Bool
 
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
@@ -91,7 +96,7 @@ struct AccountDetail: Mappable {
     let isCutOutNonPay: Bool
     let isLowIncome: Bool
 	
-	let isAMICustomer: Bool
+	let isAMIAccount: Bool
     let isResidential: Bool
     
     let releaseOfInformation: String?
@@ -101,10 +106,20 @@ struct AccountDetail: Mappable {
 
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
+        premiseNumber = map.optionalFrom("premiseNumber")
         address = map.optionalFrom("address")
+        
+        serviceType = map.optionalFrom("serviceType")
         
         try customerInfo = map.from("CustomerInfo")
         try billingInfo = map.from("BillingInfo")
+        
+        try SERInfo = map.from("SERInfo")
+        if let controlGroupFlag = SERInfo.controlGroupFlag, controlGroupFlag.uppercased() == "CONTROL" {
+            isBGEControlGroup = true
+        } else {
+            isBGEControlGroup = false
+        }
         
         isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
         isBudgetBillEnrollment = map.optionalFrom("isBudgetBill") ?? false
@@ -128,7 +143,7 @@ struct AccountDetail: Mappable {
 		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
         isLowIncome = map.optionalFrom("isLowIncome") ?? false
 		
-		isAMICustomer = map.optionalFrom("isAMICustomer") ?? false
+		isAMIAccount = map.optionalFrom("isAMIAccount") ?? false
         isResidential = map.optionalFrom("isResidential") ?? false
         
         releaseOfInformation = map.optionalFrom("releaseOfInformation")
@@ -138,7 +153,7 @@ struct AccountDetail: Mappable {
     }
 	
     var eBillEnrollStatus: EBillEnrollStatus {
-		switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "Finaled".lowercased()) {
+		switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "finaled") {
 		case (true, _, _):
 			return .canUnenroll
         case (false, _, true):
@@ -148,6 +163,14 @@ struct AccountDetail: Mappable {
         case (false, true, false):
             return .canEnroll
         }
+    }
+}
+
+struct SERInfo: Mappable {
+    let controlGroupFlag: String?
+    
+    init(map: Mapper) throws {
+        controlGroupFlag = map.optionalFrom("ControlGroupFlag")
     }
 }
 
@@ -227,7 +250,10 @@ struct BillingInfo: Mappable {
     let commercialFee: Double?
     let turnOffNoticeExtensionStatus: String?
     let turnOffNoticeExtendedDueDate: Date?
-    
+    let deliveryCharges: Double?
+    let supplyCharges: Double?
+    let taxesAndFees: Double?
+
     init(map: Mapper) throws {
 		netDueAmount = map.optionalFrom("netDueAmount")
 		pastDueAmount = map.optionalFrom("pastDueAmount")
@@ -252,6 +278,9 @@ struct BillingInfo: Mappable {
         commercialFee = map.optionalFrom("feeCommercial")
         turnOffNoticeExtensionStatus = map.optionalFrom("turnOffNoticeExtensionStatus")
         turnOffNoticeExtendedDueDate = map.optionalFrom("turnOffNoticeExtendedDueDate", transformation: extractDate)
+        deliveryCharges = map.optionalFrom("deliveryCharges")
+        supplyCharges = map.optionalFrom("supplyCharges")
+        taxesAndFees = map.optionalFrom("taxesAndFees")
         
         let paymentDicts: [NSDictionary]? = map.optionalFrom("payments") {
             guard let array = $0 as? [NSDictionary] else {

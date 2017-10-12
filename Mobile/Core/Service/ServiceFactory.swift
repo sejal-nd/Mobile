@@ -53,4 +53,8 @@ class ServiceFactory {
     class func createWeatherService() -> WeatherService {
         return WeatherAPI()
     }
+    
+    class func createUsageService() -> UsageService {
+        return OMCUsageService()
+    }
 }

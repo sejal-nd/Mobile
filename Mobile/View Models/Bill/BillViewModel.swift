@@ -174,10 +174,28 @@ class BillViewModel {
         $0.billingInfo.pastDueAmount ?? 0 <= 0 && Environment.sharedInstance.opco == .peco
     }
     
-    private(set) lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map { _ in
-        return false // Bill Analysis will be Release 2
-//        guard let accountDetail = $0 else { return false }
-//        return accountDetail.isResidential && !accountDetail.isAMICustomer
+    private(set) lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail.asDriver().map {
+        guard let accountDetail = $0 else { return false }
+        guard let serviceType = accountDetail.serviceType else { return false }
+        
+        // We need premiseNumber/billDate to make the usage API calls, so hide the button if we don't have them
+        guard let premiseNumber = accountDetail.premiseNumber else { return false }
+        guard let billDate = accountDetail.billingInfo.billDate else { return false }
+        
+        if !accountDetail.isResidential { // Residential customers only
+            return false
+        }
+        
+        // Must have valid serviceType
+        if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
+            return false
+        }
+        
+        if let status = accountDetail.status, status.lowercased() == "finaled" { // No finaled accounts
+            return false
+        }
+
+        return true
     }
     
     private(set) lazy var shouldEnableMakeAPaymentButton: Driver<Bool> = self.currentAccountDetail.asDriver().map {
