@@ -61,7 +61,7 @@ struct BillingHistoryItem: Mappable {
         totalAmountDue = map.optionalFrom("total_amount_due", transformation: dollarAmount)
         try date = map.from("date", transformation: extractDate)
         description = map.optionalFrom("description")
-        status = map.optionalFrom("status");
+        status = map.optionalFrom("status")
         confirmationNumber = map.optionalFrom("confirmation_number")
         paymentType = map.optionalFrom("payment_type")
         paymentMethod = map.optionalFrom("payment_method")
@@ -74,8 +74,13 @@ struct BillingHistoryItem: Mappable {
         isFuture = calculateIsFuture(dateToCompare: date)
         if status == BillingHistoryProperties.StatusPending.rawValue || status == BillingHistoryProperties.StatusProcessing.rawValue {
             isFuture = true
+        } else if status == BillingHistoryProperties.StatusCanceled.rawValue || status == BillingHistoryProperties.StatusCANCELLED.rawValue {
+            // EM-2638: Cancelled payments should always be in the past
+            isFuture = false
+        } else if type == BillingHistoryProperties.TypeBilling.rawValue {
+            // EM-2638: Bills should always be in the past
+            isFuture = false
         }
-        
     }
     
     func dateString() -> String {

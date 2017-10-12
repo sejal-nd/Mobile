@@ -39,7 +39,7 @@ class OneTouchSlider: UIControl {
     private(set) lazy var sliderValueChanged: Driver<CGFloat> = self.sliderValueChangedSubject.asDriver(onErrorDriveWith: .empty())
     private(set) lazy var didFinishSwipe: Driver<Void> = self.didFinishSwipeSubject.asDriver(onErrorDriveWith: .empty())
     private(set) lazy var didCancelSwipe: Driver<Void> = self.didCancelSwipeSubject.asDriver(onErrorDriveWith: .empty())
-    
+
     //MARK: - UIControl
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,13 +69,11 @@ class OneTouchSlider: UIControl {
                 backgroundColor = .primaryColor
                 sliderFinish.backgroundColor = Environment.sharedInstance.opco == .bge ? .primaryColorDark: .primaryColorADA
                 sliderFinish.alpha = 1
-                alpha = 1
                 imageView.image = #imageLiteral(resourceName: "ic_caret")
             } else {
                 backgroundColor = .accentGray
                 sliderFinish.backgroundColor = .middleGray
                 sliderFinish.alpha = 0.5
-                alpha = 0.5
                 imageView.image = #imageLiteral(resourceName: "ic_caret_disabled")
             }
             

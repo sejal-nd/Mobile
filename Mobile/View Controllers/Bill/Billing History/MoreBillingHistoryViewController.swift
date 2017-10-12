@@ -69,12 +69,10 @@ class MoreBillingHistoryViewController: UIViewController {
             vc.billingHistoryItem = billingHistoryItem
         } else if let vc = segue.destination as? ViewBillViewController {
             vc.viewModel.billDate = billingHistoryItem.date.apiFormatDate
+            AppRating.logRatingEvent()
         }
     }
     
-    deinit {
-        dLog()
-    }
 }
 
 extension MoreBillingHistoryViewController: UITableViewDelegate {

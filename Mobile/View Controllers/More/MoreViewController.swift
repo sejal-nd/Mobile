@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import StoreKit
 
 class MoreViewController: UIViewController {
     
@@ -38,6 +39,13 @@ class MoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
+            SKStoreReviewController.requestReview()
+        }
     }
     
     func addAccessibility() {
@@ -102,10 +110,6 @@ class MoreViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-    
-    deinit {
-        dLog()
     }
     
 }

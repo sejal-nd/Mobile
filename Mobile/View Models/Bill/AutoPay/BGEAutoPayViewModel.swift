@@ -145,16 +145,17 @@ class BGEAutoPayViewModel {
             .disposed(by: disposeBag)
     }
     
-    private(set) lazy var showBottomLabel: Driver<Bool> = Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(),
-                                                                               self.initialEnrollmentStatus.asDriver())
-        .filter { $1 == .unenrolled }
-        .map { !$0.0 }
+    private(set) lazy var showBottomLabel: Driver<Bool> =
+        Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(), self.initialEnrollmentStatus.asDriver()) {
+            return !$0 && $1 != .enrolled
+        }
     
-    lazy var submitButtonEnabled: Driver<Bool> = Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
-                                                                      self.selectedWalletItem.asDriver(),
-                                                                      self.enrollSwitchValue.asDriver(),
-                                                                      self.userDidChangeSettings.asDriver(),
-                                                                      self.userDidChangeBankAccount.asDriver()) {
+    private(set) lazy var submitButtonEnabled: Driver<Bool> =
+        Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
+                             self.selectedWalletItem.asDriver(),
+                             self.enrollSwitchValue.asDriver(),
+                             self.userDidChangeSettings.asDriver(),
+                             self.userDidChangeBankAccount.asDriver()) {
             if $0 == .unenrolled && $1 != nil { // Unenrolled with bank account selected
                 return true
             }
@@ -167,18 +168,20 @@ class BGEAutoPayViewModel {
             return false
         }
     
-    lazy var isUnenrolling: Driver<Bool> = Driver.combineLatest(self.initialEnrollmentStatus.asDriver(), self.enrollSwitchValue.asDriver()) {
+    private(set) lazy var isUnenrolling: Driver<Bool> =
+        Driver.combineLatest(self.initialEnrollmentStatus.asDriver(), self.enrollSwitchValue.asDriver()) {
             $0 == .enrolled && !$1
         }
     
-    lazy var shouldShowSettingsButton: Driver<Bool> = Driver.combineLatest(self.initialEnrollmentStatus.asDriver(), self.selectedWalletItem.asDriver(), self.isUnenrolling) {
-        $0 == .enrolled || $1 != nil && !$2
-    }
-    
-    var shouldShowContent: Driver<Bool> {
-        return Driver.combineLatest(isFetchingAutoPayInfo.asDriver(), isError.asDriver()).map {
-            return !$0 && !$1
+    private(set) lazy var shouldShowSettingsButton: Driver<Bool> =
+        Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
+                             self.selectedWalletItem.asDriver(),
+                             self.isUnenrolling) {
+            $0 == .enrolled || $1 != nil && !$2
         }
+    
+    private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(), self.isError.asDriver()) {
+        return !$0 && !$1
     }
     
     func getInvalidSettingsMessage() -> String? {
@@ -207,11 +210,11 @@ class BGEAutoPayViewModel {
         return nil
     }
     
-    lazy var shouldShowWalletItem: Driver<Bool> = self.selectedWalletItem.asDriver().map {
+    private(set) lazy var shouldShowWalletItem: Driver<Bool> = self.selectedWalletItem.asDriver().map {
         return $0 != nil
     }
     
-    lazy var bankAccountButtonImage: Driver<UIImage> = self.selectedWalletItem.asDriver().map {
+    private(set) lazy var bankAccountButtonImage: Driver<UIImage> = self.selectedWalletItem.asDriver().map {
         if $0 != nil {
             return #imageLiteral(resourceName: "opco_bank_mini")
         } else {
@@ -219,7 +222,7 @@ class BGEAutoPayViewModel {
         }
     }
     
-    lazy var walletItemAccountNumberText: Driver<String> = self.selectedWalletItem.asDriver().map {
+    private(set) lazy var walletItemAccountNumberText: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let item = $0 else { return "" }
         if let last4Digits = item.maskedWalletItemAccountNumber {
             return "**** \(last4Digits)"
@@ -227,7 +230,7 @@ class BGEAutoPayViewModel {
         return ""
     }
     
-    lazy var walletItemNicknameText: Driver<String> = self.selectedWalletItem.asDriver().map {
+    private(set) lazy var walletItemNicknameText: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let item = $0 else { return "" }
         if let nickname = item.nickName {
             return nickname
@@ -235,31 +238,29 @@ class BGEAutoPayViewModel {
         return ""
     }
     
-    var selectedWalletItemA11yLabel: Driver<String> {
-        return selectedWalletItem.asDriver().map {
-            guard let walletItem = $0 else { return "" }
-            
-            var a11yLabel = ""
-            
-            if walletItem.bankOrCard == .bank {
-                a11yLabel = NSLocalizedString("Bank account", comment: "")
-            } else {
-                a11yLabel = NSLocalizedString("Credit card", comment: "")
-            }
-            
-            if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
-                a11yLabel += ", \(nicknameText)"
-            }
-            
-            if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-                a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
-            }
-            
-            return a11yLabel
+    private(set) lazy var selectedWalletItemA11yLabel: Driver<String> = self.selectedWalletItem.asDriver().map {
+        guard let walletItem = $0 else { return "" }
+        
+        var a11yLabel = ""
+        
+        if walletItem.bankOrCard == .bank {
+            a11yLabel = NSLocalizedString("Bank account", comment: "")
+        } else {
+            a11yLabel = NSLocalizedString("Credit card", comment: "")
         }
+        
+        if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
+            a11yLabel += ", \(nicknameText)"
+        }
+        
+        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
+            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
+        }
+        
+        return a11yLabel
     }
     
-    lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().isNil().not()
+    private(set) lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().isNil().not()
     
     func formatAmountNotToExceed() {
         let textStr = String(amountNotToExceed.value.characters.filter { "0123456789".characters.contains($0) })

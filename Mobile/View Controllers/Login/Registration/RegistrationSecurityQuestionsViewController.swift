@@ -95,7 +95,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        dLog()
     }
     
     func loadSecurityQuestions() {

@@ -214,7 +214,4 @@ class BillingHistoryDetailsViewController: UIViewController {
 
     }
     
-    deinit {
-        dLog()
-    }
 }

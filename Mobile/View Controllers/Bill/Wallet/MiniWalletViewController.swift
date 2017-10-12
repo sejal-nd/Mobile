@@ -187,10 +187,6 @@ class MiniWalletViewController: UIViewController {
         }
     }
     
-    
-    deinit {
-        dLog()
-    }
 }
 
 

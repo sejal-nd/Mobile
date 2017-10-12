@@ -53,7 +53,24 @@ class AccountLookupToolResultViewController: UIViewController {
     func onCancelPress() {
         _ = navigationController?.popViewController(animated: true)
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // TODO: Discovered an iOS 11 only bug where the table view cells would initially
+        // be blank until they were scrolled off screen and reused. This reloadData() is the
+        // workaround. We should remove it if/when this gets fixed.
+        if #available(iOS 11, *) {
+            tableView.reloadData()
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.reloadData() // To properly set the width constraints
+    }
+    
 }
 
 extension AccountLookupToolResultViewController: UITableViewDelegate {
@@ -74,8 +91,11 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
         cell.accountNumberLabel.text = account.accountNumber?.maskAllButLast4Digits()
         cell.streetNumberLabel.text = account.streetNumber
         cell.unitNumberLabel.text = account.unitNumber
-        
-        
+
+        cell.accountNumberLabelWidthConstraint.constant = accountNumberHeaderLabel.frame.size.width
+        cell.streetNumberLabelWidthConstraint.constant = streetNumberHeaderLabel.frame.size.width
+        cell.unitNumberLabelWidthConstraint.constant = unitNumberHeaderLabel.frame.size.width
+
         return cell
     }
     

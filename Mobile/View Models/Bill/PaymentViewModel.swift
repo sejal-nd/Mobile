@@ -70,14 +70,19 @@ class PaymentViewModel {
         
         let now = Date()
         self.paymentDate = Variable(now)
+        let startOfTodayDate = Calendar.current.startOfDay(for: now)
+        let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
+        
         if Environment.sharedInstance.opco == .bge &&
             Calendar.opCoTime.component(.hour, from: Date()) >= 20 &&
             !accountDetail.isActiveSeverance {
-            let startOfTodayDate = Calendar.opCoTime.startOfDay(for: now)
-            let tomorrow =  Calendar.opCoTime.date(byAdding: .day, value: 1, to: startOfTodayDate)!
             self.paymentDate.value = tomorrow
         }
-        if let dueDate = accountDetail.billingInfo.dueByDate {
+        if Environment.sharedInstance.opco == .bge &&
+            !accountDetail.isActiveSeverance &&
+            !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
+            self.paymentDate.value = Calendar.opCoTime.component(.hour, from: Date()) < 20 ? now: tomorrow
+        } else if let dueDate = accountDetail.billingInfo.dueByDate {
             if dueDate >= now && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
                 self.paymentDate.value = dueDate
             }
@@ -1147,7 +1152,4 @@ class PaymentViewModel {
         }
     }
     
-    deinit {
-        dLog()
-    }
 }

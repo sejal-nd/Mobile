@@ -159,12 +159,19 @@ class AccountPicker: UIView {
         iconImageView.accessibilityLabel = a11yDescription
         
         let accountNumberLabel = UILabel(frame: .zero)
+        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == .bge ?
+                "Stopped" : "Finaled",
+                comment: "")
+        let linkedString = NSLocalizedString("Linked", comment: "")
+
+        let accountNumberText = "\(account.accountNumber) " +
+                "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         accountNumberLabel.setContentHuggingPriority(1000, for: .horizontal)
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
         accountNumberLabel.textColor = tintWhite ? .white: .blackText
-        accountNumberLabel.text = account.accountNumber
-        accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
+        accountNumberLabel.text = accountNumberText
+        accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
         
         let addressLabel = UILabel(frame: .zero)
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -195,7 +202,8 @@ class AccountPicker: UIView {
         
         accountStackView.centerXAnchor.constraint(equalTo: pageView.centerXAnchor, constant: 0).isActive = true
         accountStackView.centerYAnchor.constraint(equalTo: pageView.centerYAnchor, constant: 0).isActive = true
-        addressLabel.widthAnchor.constraint(equalTo: accountNumberLabel.widthAnchor, multiplier: 1.2).isActive = true
+        //addressLabel.widthAnchor.constraint(equalTo: accountNumberLabel.widthAnchor, multiplier: 1.2).isActive = true
+        addressLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 220).isActive = true
         
         if advancedPicker { // Makes area tappable and adds caret icon
             advancedAccountIconImageView = iconImageView
@@ -260,7 +268,14 @@ class AccountPicker: UIView {
         }
         
         // Update advanced account picker
-        advancedAccountNumberLabel?.text = currentAccount.accountNumber
+        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == .bge ?
+                "Stopped" : "Finaled",
+                comment: "")
+        let linkedString = NSLocalizedString("Linked", comment: "")
+
+        let accountNumberText = "\(currentAccount.accountNumber) " +
+                "\(currentAccount.isFinaled ? "(\(finaledString))" : currentAccount.isLinked ? "(\(linkedString))":"")"
+        advancedAccountNumberLabel?.text = accountNumberText
         advancedAccountAddressLabel?.text = currentAccount.address ?? " "
     }
     
@@ -290,8 +305,16 @@ extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
         }
         advancedAccountIconImageView?.image = icon
         advancedAccountIconImageView?.accessibilityLabel = a11yDescription
-        
-        advancedAccountNumberLabel?.text = account.accountNumber
+
+        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == .bge ?
+                "Stopped" : "Finaled",
+                comment: "")
+        let linkedString = NSLocalizedString("Linked", comment: "")
+
+        let accountNumberText = "\(account.accountNumber) " +
+                "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
+
+        advancedAccountNumberLabel?.text = accountNumberText
         advancedAccountNumberLabel?.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
         if account.currentPremise != nil {
             advancedAccountAddressLabel?.text = account.currentPremise?.addressGeneral ?? " "

@@ -106,9 +106,8 @@ class MockOutageService : OutageService {
     
     func reportOutage(outageInfo: OutageInfo, completion: @escaping (ServiceResult<Void>) -> Void) {
         
-        if(outageInfo.account.accountNumber != "5591032201" &&
-            outageInfo.account.accountNumber != "5591032202") {
-            outageMap[outageInfo.account.accountNumber] = ReportedOutageResult.from(NSDictionary())
+        if(outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202") {
+            outageMap[outageInfo.accountNumber] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
                 completion(ServiceResult.Success())
             }
@@ -127,5 +126,13 @@ class MockOutageService : OutageService {
         } else {
             self.outageMap.removeAll()
         }
+    }
+    
+    func fetchOutageStatusAnon(phoneNumber: String?, accountNumber: String?, completion: @escaping (ServiceResult<[OutageStatus]>) -> Void) {
+        // not implemented
+    }
+    
+    func reportOutageAnon(outageInfo: OutageInfo, completion: @escaping (ServiceResult<ReportedOutageResult>) -> Void) {
+        // not implemented
     }
 }

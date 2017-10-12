@@ -33,6 +33,8 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var enrollmentSwitchView: UIView!
     @IBOutlet weak var enrollmentSwitch: Switch!
     
+    @IBOutlet weak var topSpacerView: UIView!
+    
     @IBOutlet weak var expirationLabel: UILabel!
     
     @IBOutlet weak var selectBankAccountLabel: UILabel!
@@ -45,9 +47,11 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var bankAccountButtonAccountNumberLabel: UILabel!
     @IBOutlet weak var bankAccountButtonNicknameLabel: UILabel!
     
+    @IBOutlet weak var settingsButtonView: UIView!
     @IBOutlet weak var settingsButton: ButtonControl!
     @IBOutlet weak var settingsButtonLabel: UILabel!
     
+    @IBOutlet weak var bottomLabelView: UIView!
     @IBOutlet weak var bottomLabel: UILabel!
     
     var accountDetail: AccountDetail! // Passed from BillViewController
@@ -72,14 +76,8 @@ class BGEAutoPayViewController: UIViewController {
         ]
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
-        learnMoreButton.backgroundColorOnPress = .softGray
-        learnMoreButton.addShadow(color: .black, opacity: 0.12, offset: CGSize(width: 0, height: 0), radius: 3)
-        learnMoreButtonLabel.textColor = .blackText
-        learnMoreButtonLabel.font = OpenSans.regular.of(size: 18)
-        let autoPayString = NSLocalizedString("AutoPay", comment: "")
-        let attrString = NSMutableAttributedString(string: String(format: NSLocalizedString("Learn more about\n%@", comment: ""), autoPayString))
-        attrString.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 18), range: (attrString.string as NSString).range(of: autoPayString))
-        learnMoreButtonLabel.attributedText = attrString
+        learnMoreButtonLabel.textColor = .actionBlue
+        learnMoreButtonLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
         
         expirationLabel.textColor = .blackText
         
@@ -101,11 +99,13 @@ class BGEAutoPayViewController: UIViewController {
         bankAccountButtonAccountNumberLabel.textColor = .blackText
         bankAccountButtonNicknameLabel.textColor = .middleGray
         
+        bottomLabelView.backgroundColor = .softGray
         bottomLabel.textColor = .blackText
         bottomLabel.text = NSLocalizedString("Your recurring payment will apply to the next BGE bill you receive. You will need to submit a payment for your current BGE bill if you have not already done so.", comment: "")
         
         settingsButtonLabel.textColor = .actionBlue
         settingsButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        settingsButtonLabel.text = NSLocalizedString("AutoPay Settings", comment: "")
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -135,8 +135,8 @@ class BGEAutoPayViewController: UIViewController {
         }
         
         if viewModel.initialEnrollmentStatus.value == .enrolled {
-            bottomLabel.isHidden = true
             selectBankAccountLabel.isHidden = true
+            topSpacerView.isHidden = true
         } else {
             enrollmentSwitchView.isHidden = true
             enrolledPaymentAccountLabel.isHidden = true
@@ -172,8 +172,12 @@ class BGEAutoPayViewController: UIViewController {
     
     func setupBindings() {
         viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowContent.not().drive(gradientView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showBottomLabel.not().drive(bottomLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showBottomLabel.not().drive(bottomLabelView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showBottomLabel.asObservable().subscribe(onNext: { [weak self] show in
+            self?.view.backgroundColor = show ? .softGray : .white
+        }).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonAccountNumberLabel.rx.isHidden).disposed(by: disposeBag)
@@ -189,7 +193,7 @@ class BGEAutoPayViewController: UIViewController {
         enrollmentSwitch.rx.isOn.asDriver().drive(viewModel.enrollSwitchValue).disposed(by: disposeBag)
         
         viewModel.isUnenrolling.drive(bankAccountContainerStack.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowSettingsButton.map(!).drive(settingsButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowSettingsButton.map(!).drive(settingsButtonView.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.expiredReason.asDriver().drive(expirationLabel.rx.text).disposed(by: disposeBag)
         viewModel.shouldShowExpiredReason.map(!).drive(expirationLabel.rx.isHidden).disposed(by: disposeBag)
@@ -297,10 +301,6 @@ class BGEAutoPayViewController: UIViewController {
     // Prevents status bar color flash when pushed
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-    
-    deinit {
-        dLog()
     }
 
 }

@@ -21,7 +21,6 @@ protocol OutageService {
     ///     that is provided will contain the OutageStatus on success, or a ServiceError on failure.
     func fetchOutageStatus(account: Account, completion: @escaping (_ result: ServiceResult<OutageStatus>) -> Void)
     
-    
     /// Report an outage for the current customer.
     ///
     /// - Parameters:
@@ -33,6 +32,10 @@ protocol OutageService {
     func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult?
     
     func clearReportedOutageStatus(accountNumber: String?)
+    
+    func fetchOutageStatusAnon(phoneNumber: String?, accountNumber: String?, completion: @escaping (_ result: ServiceResult<[OutageStatus]>) -> Void)
+    
+    func reportOutageAnon(outageInfo: OutageInfo, completion: @escaping (_ result: ServiceResult<ReportedOutageResult>) -> Void)
 }
 
 // MARK: - Reactive Extension to OutageService
@@ -60,6 +63,37 @@ extension OutageService {
                 switch result {
                 case ServiceResult.Success:
                     observer.onNext()
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func fetchOutageStatusAnon(phoneNumber: String?, accountNumber: String?) -> Observable<[OutageStatus]> {
+        return Observable.create { observer in
+            self.fetchOutageStatusAnon(phoneNumber: phoneNumber, accountNumber: accountNumber, completion: { (result: ServiceResult<[OutageStatus]>) in
+                switch result {
+                case ServiceResult.Success(let outageStatusArray):
+                    observer.onNext(outageStatusArray)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+                
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func reportOutageAnon(outageInfo: OutageInfo) -> Observable<ReportedOutageResult> {
+        return Observable.create { observer in
+            self.reportOutageAnon(outageInfo: outageInfo, completion: { (result: ServiceResult<ReportedOutageResult>) in
+                switch result {
+                case ServiceResult.Success(let reportedOutageResult):
+                    observer.onNext(reportedOutageResult)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

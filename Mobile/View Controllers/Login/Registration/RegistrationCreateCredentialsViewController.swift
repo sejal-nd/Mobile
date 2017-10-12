@@ -89,7 +89,6 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        dLog()
     }
     
     @IBAction func primaryProfileSwitchToggled(_ sender: Any) {

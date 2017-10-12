@@ -14,20 +14,27 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var orLabel: UILabel!
     @IBOutlet weak var registerButton: SecondaryButton!
     @IBOutlet weak var continueAsGuestButon: UIButton!
+    @IBOutlet weak var tabletView: UIView!
     @IBOutlet weak var versionLabel: UILabel!
     
+    var fadeIn = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
         orLabel.text = NSLocalizedString("OR", comment: "")
         registerButton.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
         continueAsGuestButon.setTitle(NSLocalizedString("CONTINUE AS GUEST", comment: ""), for: .normal)
-        
+
         orLabel.font = SystemFont.regular.of(textStyle: .headline)
         continueAsGuestButon.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
-        
+
         view.backgroundColor = .primaryColor
+
+        if fadeIn {
+            tabletView.alpha = 0
+        }
         
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
@@ -50,7 +57,10 @@ class LandingViewController: UIViewController {
         if (!UserDefaults.standard.bool(forKey: UserDefaultKeys.HasAcceptedTerms)) {
             performSegue(withIdentifier: "termsPoliciesModalSegue", sender: self)
         }
-        
+
+        UIView.animate(withDuration: 0.33, animations: {
+            self.tabletView.alpha = 1
+        })
     }
     
     @IBAction func onContinueAsGuestPress(_ sender: UIButton) {

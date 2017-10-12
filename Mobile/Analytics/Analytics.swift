@@ -117,6 +117,34 @@ enum AnalyticsPageView: String {
     case HomePromoCard = "HomePromoCard"
     case AddWalletCameraOffer = "AddWalletCameraOffer"
     case AddWalletComplete = "AddWalletComplete"
+    
+    case OutageStatusUnAuthOffer = "OutageStatusUnAuthOffer"
+    case OutageStatusUnAuthComplete = "OutageStatusUnAuthComplete"
+    case OutageStatusUnAuthAcctValidate = "OutageStatusUnAuthAcctValidate"
+    case OutageStatusUnAuthAcctSelect = "OutageStatusUnAuthAcctSelect"
+    case OutageStatusUnAuthStatusButton = "OutageStatusUnAuthStatusButton"
+    case OutageStatusUnAuthAcctValEmergencyPhone = "OutageStatusUnAuthAcctValEmergencyPhone"
+    case ViewOutageMapUnAuthOfferComplete = "ViewOutageMapUnAuthOfferComplete"
+    case ViewOutageMapGuestMenu = "ViewOutageMapGuestMenu"
+    case ViewOutageUnAuthMenu = "ViewOutageUnAuthMenu"
+    case ReportAnOutageUnAuthOffer = "ReportAnOutageUnAuthOffer"
+    case ReportAnOutageUnAuthOutScreen = "ReportAnOutageUnAuthOutScreen"
+    case ReportAnOutageUnAuthSubmitAcctVal = "ReportAnOutageUnAuthSubmitAcctVal"
+    case ReportAnOutageUnAuthSubmitAcctSelection = "ReportAnOutageUnAuthSubmitAcctSelection"
+    case ReportAnOutageUnAuthSubmit = "ReportAnOutageUnAuthSubmit"
+    case ReportAnOutageUnAuthCircuitBreakCheck = "ReportAnOutageUnAuthCircuitBreakCheck"
+    case ReportAnOutageUnAuthEmergencyPhone = "ReportAnOutageUnAuthEmergencyPhone"
+    case ReportAnOutageUnAuthComplete = "ReportAnOutageUnAuthComplete"
+    case ReportAnOutageUnAuthScreenView = "ReportAnOutageUnAuthScreenView"
+    case OutageScreenUnAuthEmergencyPhone = "OutageScreenUnAuthEmergencyPhone"
+    
+    case ContactUsAuthCall = "ContactUsAuthCall"
+    case ContactUsUnAuthCall = "ContactUsUnAuthCall"
+}
+
+enum AnalyticsOutageSource {
+    case Report
+    case Status
 }
 
 enum Dimensions: String {

@@ -92,7 +92,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
             if status == BillingHistoryProperties.StatusCanceled.rawValue || 
                 status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
                 status == BillingHistoryProperties.StatusFailed.rawValue {
-                    iconImageView.image = #imageLiteral(resourceName: "ic_paymentcanceledfailed")
+                    iconImageView.image = status == BillingHistoryProperties.StatusFailed.rawValue ? #imageLiteral(resourceName: "ic_activity_failed") : #imageLiteral(resourceName: "ic_activity_canceled")
                     titleLabel.text = PAYMENT
                     amountLabel.text = amountPaid
                 if status == BillingHistoryProperties.StatusFailed.rawValue {
@@ -106,9 +106,9 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 self.amountLabel.text = amountPaid
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
             } else {
-                iconImageView.image = #imageLiteral(resourceName: "ic_paymentcheck")
+                iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
                 titleLabel.text = PAYMENT
-                amountLabel.text = "-\(String(describing: amountPaid))"
+                amountLabel.text = "\(String(describing: amountPaid))"
                 amountLabel.textColor = .successGreenText
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
             }

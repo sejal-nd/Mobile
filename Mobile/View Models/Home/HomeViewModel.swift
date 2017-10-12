@@ -11,7 +11,8 @@ import RxCocoa
 import RxSwiftExt
 
 class HomeViewModel {
-    
+    let defaultZip : String? = Environment.sharedInstance.opco == .bge ? "20201" : nil;
+
     let disposeBag = DisposeBag()
     
     private let accountService: AccountService
@@ -20,7 +21,7 @@ class HomeViewModel {
     private let paymentService: PaymentService
     
     let fetchData = PublishSubject<FetchingAccountState>()
-    
+
     let fetchingTracker = ActivityTracker()
     
     required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService) {
@@ -60,9 +61,7 @@ class HomeViewModel {
                 .materialize()
         }
         .shareReplay(1)
-    
-    let showTemplateCard = Environment.sharedInstance.opco != .comEd
-    
+
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
@@ -76,15 +75,17 @@ class HomeViewModel {
     }()
     
     //MARK: - Weather
-    private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
-        .map { $0.address ?? "" }
-        .flatMapLatest { [unowned self] in
-            self.weatherService.fetchWeather(address: $0)
-                //.trackActivity(fetchingTracker)
-                .materialize()
-        }
-        .shareReplay(1)
-    
+    private lazy var weatherEvents: Observable<Event<WeatherItem>> = Observable.combineLatest(
+                    self.fetchData.map{ _ in AccountsStore.sharedInstance.currentAccount }.unwrap().map {
+                        $0.currentPremise?.zipCode
+                    },
+                    self.accountDetailEvents.elements().map { [unowned self] in $0.zipCode ?? self.defaultZip } // TODO: Get default zip for current opco
+            ).map{ $0 ?? $1 }.unwrap().flatMapLatest { [unowned self] in
+                self.weatherService.fetchWeather(address: $0)
+                        //.trackActivity(fetchingTracker)
+                        .materialize()
+            }.shareReplay(1)
+
     private(set) lazy var greeting: Driver<String?> = self.fetchData
         .map { _ in Date().localizedGreeting }
         .startWith(nil)
@@ -104,7 +105,8 @@ class HomeViewModel {
         .map { $0.accessibilityName }
         .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
-    
+
+
     private lazy var weatherSuccess: Driver<Bool> = Observable.merge(self.accountDetailEvents.errors().map { _ in false },
                                                                      self.weatherEvents.errors().map { _ in false },
                                                                      self.accountDetailEvents.elements().map { _ in true },
