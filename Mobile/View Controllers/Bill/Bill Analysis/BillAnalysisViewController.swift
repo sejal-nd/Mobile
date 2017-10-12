@@ -333,8 +333,10 @@ class BillAnalysisViewController: UIViewController {
         noDataLabelFont.drive(noDataDateLabel.rx.font).disposed(by: disposeBag)
         previousLabelFont.drive(previousDollarLabel.rx.font).disposed(by: disposeBag)
         previousLabelFont.drive(previousDateLabel.rx.font).disposed(by: disposeBag)
+        previousDollarLabelTextColor.drive(previousDollarLabel.rx.textColor).disposed(by: disposeBag)
         currentLabelFont.drive(currentDollarLabel.rx.font).disposed(by: disposeBag)
         currentLabelFont.drive(currentDateLabel.rx.font).disposed(by: disposeBag)
+        currentDollarLabelTextColor.drive(currentDollarLabel.rx.textColor).disposed(by: disposeBag)
         projectedLabelFont.drive(projectedDollarLabel.rx.font).disposed(by: disposeBag)
         projectedLabelFont.drive(projectedDateLabel.rx.font).disposed(by: disposeBag)
        
@@ -471,8 +473,18 @@ class BillAnalysisViewController: UIViewController {
         $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
     }
     
+    private(set) lazy var previousDollarLabelTextColor: Driver<UIColor> = self.viewModel.currentBillComparison.asDriver().map {
+        guard let compared = $0?.compared else { return .blackText }
+        return compared.charges < 0 ? .successGreenText : .blackText
+    }
+    
     private(set) lazy var currentLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[2].asDriver().map {
         $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
+    
+    private(set) lazy var currentDollarLabelTextColor: Driver<UIColor> = self.viewModel.currentBillComparison.asDriver().map {
+        guard let reference = $0?.reference else { return .blackText }
+        return reference.charges < 0 ? .successGreenText : .blackText
     }
     
     private(set) lazy var projectedLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[3].asDriver().map {

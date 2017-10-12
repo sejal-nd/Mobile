@@ -125,7 +125,9 @@ class BillAnalysisViewModel {
         Driver.combineLatest(self.currentBillComparison.asDriver(), self.projectedCost) { billComparison, projectedCost in
             guard let reference = billComparison?.reference else { return 134 }
             guard let compared = billComparison?.compared else { return 0 }
-            if let projectedCost = projectedCost { // We are displaying a projection
+            if compared.charges < 0 {
+                return 3
+            } else if let projectedCost = projectedCost { // We are displaying a projection
                 if max(projectedCost, reference.charges, compared.charges) == compared.charges {
                     return 134
                 } else if max(projectedCost, reference.charges) == projectedCost {
@@ -163,7 +165,9 @@ class BillAnalysisViewModel {
         Driver.combineLatest(self.currentBillComparison.asDriver(), self.projectedCost) { billComparison, projectedCost in
             guard let reference = billComparison?.reference else { return 0 }
             guard let compared = billComparison?.compared else { return 134 }
-            if let projectedCost = projectedCost { // We are displaying a projection
+            if reference.charges < 0 {
+                return 3
+            } else if let projectedCost = projectedCost { // We are displaying a projection
                 if max(projectedCost, reference.charges, compared.charges) == reference.charges {
                     return 134
                 } else if max(projectedCost, compared.charges) == projectedCost {
@@ -379,11 +383,21 @@ class BillAnalysisViewModel {
             } else if selectionStates[1].value { // Previous
                 let daysInBillPeriod = abs(billComparison.compared!.startDate.interval(ofComponent: .day, fromDate: billComparison.compared!.endDate))
                 let avgUsagePerDay = billComparison.compared!.usage / Double(daysInBillPeriod)
-                return String(format: localizedPrevCurrString, billComparison.compared!.charges.currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+                if billComparison.compared!.charges < 0 {
+                    let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
+                    return String(format: billCreditString, abs(billComparison.compared!.charges).currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+                } else {
+                    return String(format: localizedPrevCurrString, billComparison.compared!.charges.currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+                }
             } else if selectionStates[2].value { // Current
                 let daysInBillPeriod = abs(billComparison.reference!.startDate.interval(ofComponent: .day, fromDate: billComparison.reference!.endDate))
                 let avgUsagePerDay = billComparison.reference!.usage / Double(daysInBillPeriod)
-                return String(format: localizedPrevCurrString, billComparison.reference!.charges.currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+                if billComparison.reference!.charges < 0 {
+                    let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
+                    return String(format: billCreditString, abs(billComparison.reference!.charges).currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+                } else {
+                    return String(format: localizedPrevCurrString, billComparison.reference!.charges.currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+                }
             } else if selectionStates[3].value { // Projected
                 let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
                     "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
