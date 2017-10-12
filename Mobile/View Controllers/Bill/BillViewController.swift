@@ -155,6 +155,10 @@ class BillViewController: AccountPickerViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
 
+        NotificationCenter.default.rx.notification(.DidSelectEnrollInAutoPay, object: nil)
+        .subscribe(onNext: { notification in
+            self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: notification.object)
+        }).disposed(by: bag)
     }
 
     override func viewWillAppear(_ animated: Bool) {

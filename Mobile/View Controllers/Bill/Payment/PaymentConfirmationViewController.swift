@@ -142,15 +142,25 @@ class PaymentConfirmationViewController: UIViewController {
     @IBAction func onEnrollInAutoPayPress() {
         Analytics().logScreenView(AnalyticsPageView.ConfirmationScreenAutopayEnroll.rawValue)
         for vc in presentingNavController.viewControllers {
-            guard let dest = vc as? BillViewController else {
-                continue
+            if let dest = vc as? BillViewController {
+                presentingNavController.popToViewController(dest, animated: false)
+                //dest.viewModel.fetchAccountDetail(isRefresh: false) // Can't do this because currentAccountDetail will be nil in prepareForSegue
+                presentingNavController.dismiss(animated: true, completion: { [weak self] in
+                    NotificationCenter.default.post(name: .DidSelectEnrollInAutoPay, object: self?.viewModel.accountDetail.value)
+                })
+                break
+            } else if let dest = vc as? HomeViewController {
+                Analytics().logScreenView(AnalyticsPageView.ConfirmationScreenAutopayEnroll.rawValue)
+                presentingNavController.popToViewController(dest, animated: false)
+                let tabController = presentingNavController.tabBarController as! MainTabBarController
+                tabController.selectedIndex = 1
+                presentingNavController.setNavigationBarHidden(true, animated: true)
+                presentingNavController.dismiss(animated: true, completion: { [weak self] in
+                    NotificationCenter.default.post(name: .DidSelectEnrollInAutoPay, object: self?.viewModel.accountDetail.value)
+                })
+                break
             }
-            presentingNavController.popToViewController(dest, animated: false)
-            //dest.viewModel.fetchAccountDetail(isRefresh: false) // Can't do this because currentAccountDetail will be nil in prepareForSegue
-            dest.navigateToAutoPay(accountDetail: viewModel.accountDetail.value)
-            break
         }
-        presentingNavController.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onPrivacyPolicyPress(_ sender: Any) {
