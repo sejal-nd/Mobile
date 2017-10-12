@@ -66,6 +66,9 @@ class BillAnalysisSegmentedControl: UIControl {
         leftSelection.map { [weak self] in
             $0 ? String(format: "%@, option 2 of 2", self?.rightLabel.text ?? "") : String(format: "%@, option 2 of 2, selected", self?.rightLabel.text ?? "")
         }.drive(rightButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        
+        leftButton.accessibilityTraits = UIAccessibilityTraitNone
+        rightButton.accessibilityTraits = UIAccessibilityTraitNone
     }
     
     func setItems(leftLabel: String, rightLabel: String, initialSelectedIndex: Int) {

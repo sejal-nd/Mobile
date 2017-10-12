@@ -350,7 +350,6 @@ class BillAnalysisViewController: UIViewController {
         billPeriodBubbleView.layer.borderWidth = 2
         billPeriodBorderColor.drive(billPeriodBubbleView.rx.borderColor).disposed(by: disposeBag)
         billPeriodBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
-        billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
         
         weatherTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
         weatherTitleLabel.textColor = .deepGray
@@ -358,7 +357,6 @@ class BillAnalysisViewController: UIViewController {
         weatherBubbleView.layer.borderWidth = 2
         weatherBorderColor.drive(weatherBubbleView.rx.borderColor).disposed(by: disposeBag)
         weatherBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
-        weatherArrowImage.drive(weatherUpDownImageView.rx.image).disposed(by: disposeBag)
         
         otherTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
         otherTitleLabel.textColor = .deepGray
@@ -366,7 +364,6 @@ class BillAnalysisViewController: UIViewController {
         otherBubbleView.layer.borderWidth = 2
         otherBorderColor.drive(otherBubbleView.rx.borderColor).disposed(by: disposeBag)
         otherBubbleView.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
-        otherArrowImage.drive(otherUpDownImageView.rx.image).disposed(by: disposeBag)
         
         for label in likelyReasonsNoDataLabels {
             label.textColor = .deepGray
@@ -403,6 +400,7 @@ class BillAnalysisViewController: UIViewController {
         viewModel.shouldShowProjectionNotAvailableBar.not().drive(projectionNotAvailableContainerButton.rx.isHidden).disposed(by: disposeBag)
         
         // Bar labels
+        viewModel.noDataBarDateLabelText.drive(noDataDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.previousBarDollarLabelText.drive(previousDollarLabel.rx.text).disposed(by: disposeBag)
         viewModel.previousBarDateLabelText.drive(previousDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.currentBarDollarLabelText.drive(currentDollarLabel.rx.text).disposed(by: disposeBag)
@@ -412,12 +410,43 @@ class BillAnalysisViewController: UIViewController {
         viewModel.projectedBarDateLabelText.drive(projectionNotAvailableDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.projectionNotAvailableDaysRemainingText.drive(projectionNotAvailableDaysRemainingLabel.rx.text).disposed(by: disposeBag)
         
+        // Bar accessibility
+        viewModel.noDataBarA11yLabel.drive(noDataContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.previousBarA11yLabel.drive(previousContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.currentBarA11yLabel.drive(currentContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.projectedBarA11yLabel.drive(projectedContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.projectionNotAvailableA11yLabel.drive(projectionNotAvailableContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        Observable.combineLatest(viewModel.noPreviousData.asObservable(), viewModel.shouldShowProjectedBar.asObservable(), viewModel.shouldShowProjectionNotAvailableBar.asObservable()).map { [weak self] in
+            guard let `self` = self else { return }
+            var a11yElementArray: [ButtonControl] = []
+            if $0.0 {
+                a11yElementArray.append(self.noDataContainerButton)
+            } else {
+                a11yElementArray.append(self.previousContainerButton)
+            }
+            a11yElementArray.append(self.currentContainerButton)
+            if $0.1 {
+                a11yElementArray.append(self.projectedContainerButton)
+            }
+            if $0.2 {
+                a11yElementArray.append(self.projectionNotAvailableContainerButton)
+            }
+            self.barGraphStackView.accessibilityElements = a11yElementArray
+        }.subscribe().disposed(by: disposeBag)
+        
         // Bar description labels
         viewModel.barDescriptionDateLabelText.drive(barDescriptionDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionAvgTempLabelText.drive(barDescriptionTempLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionDetailLabelText.drive(barDescriptionDetailLabel.rx.text).disposed(by: disposeBag)
         
         // Likely reasons
+        viewModel.billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
+        viewModel.billPeriodA11yLabel.drive(billPeriodContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.weatherArrowImage.drive(weatherUpDownImageView.rx.image).disposed(by: disposeBag)
+        viewModel.weatherA11yLabel.drive(weatherContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.otherArrowImage.drive(otherUpDownImageView.rx.image).disposed(by: disposeBag)
+        viewModel.otherA11yLabel.drive(otherContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        
         viewModel.likelyReasonsLabelText.drive(likelyReasonsLabel.rx.text).disposed(by: disposeBag)
         viewModel.likelyReasonsDescriptionTitleText.drive(likelyReasonsDescriptionTitleLabel.rx.text).disposed(by: disposeBag)
         viewModel.likelyReasonsDescriptionDetailText.drive(likelyReasonsDescriptionDetailLabel.rx.text).disposed(by: disposeBag)
@@ -461,6 +490,9 @@ class BillAnalysisViewController: UIViewController {
         
         viewModel.setLikelyReasonSelected(tag: sender.tag)
     }
+    
+    // NOTE: I've put the color drivers in the view controller because our custom colors (i.e. `primaryColor`) are not included
+    // in the test target, but the viewModel needs to be included in the test target
     
     // MARK: Bill Comparison Bar Graph Drivers
     private(set) lazy var noDataLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[0].asDriver().map {
@@ -508,39 +540,5 @@ class BillAnalysisViewController: UIViewController {
         Driver.combineLatest(self.viewModel.likelyReasonsSelectionStates.value[2].asDriver(), self.viewModel.noPreviousData.asDriver()) {
             $0 && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
         }
-    
-    // MARK: Up/Down Arrow Image Drivers
-    private(set) lazy var billPeriodArrowImage: Driver<UIImage?> = self.viewModel.currentBillComparison.asDriver().map {
-        guard let billComparison = $0 else { return nil }
-        if billComparison.billPeriodCostDifference >= 1 {
-            return #imageLiteral(resourceName: "ic_billanalysis_positive")
-        } else if billComparison.billPeriodCostDifference <= -1 {
-            return #imageLiteral(resourceName: "ic_billanalysis_negative")
-        } else {
-            return #imageLiteral(resourceName: "no_change_icon")
-        }
-    }
-    
-    private(set) lazy var weatherArrowImage: Driver<UIImage?> = self.viewModel.currentBillComparison.asDriver().map {
-        guard let billComparison = $0 else { return nil }
-        if billComparison.weatherCostDifference >= 1 {
-            return #imageLiteral(resourceName: "ic_billanalysis_positive")
-        } else if billComparison.weatherCostDifference <= -1 {
-            return #imageLiteral(resourceName: "ic_billanalysis_negative")
-        } else {
-            return #imageLiteral(resourceName: "no_change_icon")
-        }
-    }
-    
-    private(set) lazy var otherArrowImage: Driver<UIImage?> = self.viewModel.currentBillComparison.asDriver().map {
-        guard let billComparison = $0 else { return nil }
-        if billComparison.otherCostDifference >= 1 {
-            return #imageLiteral(resourceName: "ic_billanalysis_positive")
-        } else if billComparison.otherCostDifference <= -1 {
-            return #imageLiteral(resourceName: "ic_billanalysis_negative")
-        } else {
-            return #imageLiteral(resourceName: "no_change_icon")
-        }
-    }
     
 }
