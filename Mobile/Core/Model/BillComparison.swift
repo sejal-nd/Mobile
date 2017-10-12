@@ -18,7 +18,7 @@ private func extractDate(object: Any?) throws -> Date {
 }
 
 struct BillComparison: Mappable {
-    let meterUnit: String
+    var meterUnit: String
     let currencySymbol: String
     let temperatureUnit: String
     let reference: UsageBillPeriod?
@@ -31,6 +31,12 @@ struct BillComparison: Mappable {
     
     init(map: Mapper) throws {
         try meterUnit = map.from("meterUnit")
+        if meterUnit == "KWH" {
+            meterUnit = "kWh"
+        } else if meterUnit == "THERM" {
+            meterUnit = "Therm"
+        }
+            
         try currencySymbol = map.from("currencySymbol")
         try temperatureUnit = map.from("temperatureUnit")
         analysisResults = map.optionalFrom("analysisResults")
@@ -67,7 +73,7 @@ struct UsageBillPeriod: Mappable {
     let usage: Double
     let startDate: Date
     let endDate: Date
-    let averageTemperature: Double
+    let averageTemperature: Double?
     let ratePlan: String?
     
     init(map: Mapper) throws {
@@ -75,7 +81,7 @@ struct UsageBillPeriod: Mappable {
         try usage = map.from("usage")
         try startDate = map.from("startDate", transformation: extractDate)
         try endDate = map.from("endDate", transformation: extractDate)
-        try averageTemperature = map.from("averageTemperature")
+        averageTemperature = map.optionalFrom("averageTemperature")
         ratePlan = map.optionalFrom("ratePlan")
     }
 }

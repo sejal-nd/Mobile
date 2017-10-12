@@ -213,19 +213,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="$00.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j30-gL-8oC">
-                                                    <rect key="frame" x="99.5" y="23" width="333.5" height="18"/>
+                                                    <rect key="frame" x="99.5" y="20" width="333.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="$00.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rz-Nr-Gkc">
-                                                    <rect key="frame" x="145.5" y="53" width="287.5" height="18"/>
+                                                    <rect key="frame" x="145.5" y="50" width="287.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="$00.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAc-EC-CsX">
-                                                    <rect key="frame" x="111.5" y="83" width="321.5" height="18"/>
+                                                    <rect key="frame" x="111.5" y="80" width="321.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -248,12 +248,12 @@
                                                 <constraint firstItem="j30-gL-8oC" firstAttribute="leading" secondItem="ZBo-zW-BrL" secondAttribute="trailing" constant="8" id="HRT-pb-Lk7"/>
                                                 <constraint firstItem="IyV-lH-9to" firstAttribute="top" secondItem="p69-Ks-y29" secondAttribute="bottom" constant="17" id="HU2-xS-zeg"/>
                                                 <constraint firstItem="Bd7-9b-emV" firstAttribute="leading" secondItem="4hw-XC-rZJ" secondAttribute="trailing" constant="11" id="Hcn-cp-h7D"/>
-                                                <constraint firstItem="6Rz-Nr-Gkc" firstAttribute="bottom" secondItem="Bd7-9b-emV" secondAttribute="bottom" constant="3" id="Imm-Sd-crm"/>
+                                                <constraint firstItem="6Rz-Nr-Gkc" firstAttribute="bottom" secondItem="Bd7-9b-emV" secondAttribute="bottom" id="Imm-Sd-crm"/>
                                                 <constraint firstItem="ZBo-zW-BrL" firstAttribute="leading" secondItem="xyK-PK-mbT" secondAttribute="trailing" constant="11" id="J0C-hB-7Xj"/>
-                                                <constraint firstItem="j30-gL-8oC" firstAttribute="bottom" secondItem="ZBo-zW-BrL" secondAttribute="bottom" constant="3" id="JY3-M2-f5O"/>
+                                                <constraint firstItem="j30-gL-8oC" firstAttribute="bottom" secondItem="ZBo-zW-BrL" secondAttribute="bottom" id="JY3-M2-f5O"/>
                                                 <constraint firstItem="hmC-iy-mqO" firstAttribute="leading" secondItem="XTe-Vl-I5N" secondAttribute="leading" constant="14" id="QOp-Lr-L72"/>
                                                 <constraint firstItem="6Rz-Nr-Gkc" firstAttribute="leading" secondItem="Bd7-9b-emV" secondAttribute="trailing" constant="8" id="QzF-uh-B4B"/>
-                                                <constraint firstItem="XAc-EC-CsX" firstAttribute="bottom" secondItem="p69-Ks-y29" secondAttribute="bottom" constant="3" id="bYH-j2-H95"/>
+                                                <constraint firstItem="XAc-EC-CsX" firstAttribute="bottom" secondItem="p69-Ks-y29" secondAttribute="bottom" id="bYH-j2-H95"/>
                                                 <constraint firstItem="p69-Ks-y29" firstAttribute="top" secondItem="Bd7-9b-emV" secondAttribute="bottom" constant="8" id="clL-mi-DYn"/>
                                                 <constraint firstAttribute="trailing" secondItem="6Rz-Nr-Gkc" secondAttribute="trailing" constant="27" id="fbn-5Q-kGQ"/>
                                                 <constraint firstItem="xyK-PK-mbT" firstAttribute="centerY" secondItem="ZBo-zW-BrL" secondAttribute="centerY" id="fda-0e-L3g"/>

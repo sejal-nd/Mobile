@@ -138,8 +138,6 @@ class BillAnalysisViewController: UIViewController {
         styleViews()
         bindViewModel()
         
-        projectionNotAvailableContainerButton.isHidden = true
-        
         if UIScreen.main.bounds.size.width < 375 { // If smaller than iPhone 6 width
             barGraphStackView.spacing = 11
             likelyReasonsStackView.spacing = 8
@@ -149,7 +147,7 @@ class BillAnalysisViewController: UIViewController {
         barGraphStackView.layoutIfNeeded()
         likelyReasonsStackView.layoutIfNeeded()
         
-        fetchBillComparison()
+        fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -163,10 +161,22 @@ class BillAnalysisViewController: UIViewController {
         onLikelyReasonPress(sender: billPeriodContainerButton)
     }
     
-    private func fetchBillComparison() {
-        viewModel.fetchBillComparison(onSuccess: { [weak self] in
+    private func fetchData() {
+        viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
-            self.onBarPress(sender: self.currentContainerButton)
+            self.viewModel.shouldShowProjectedBar.asObservable()
+                .observeOn(MainScheduler.instance)
+                .take(1)
+                .subscribe(onNext: { [weak self] shouldShow in
+                    guard let `self` = self else { return }
+                    if shouldShow {
+                        print("select projected button")
+                        self.onBarPress(sender: self.projectedContainerButton)
+                    } else {
+                        print("select current button")
+                        self.onBarPress(sender: self.currentContainerButton)
+                    }
+                }).disposed(by: self.disposeBag)
         })
     }
     
@@ -187,7 +197,6 @@ class BillAnalysisViewController: UIViewController {
         } else {
             currentChargesSummaryView.isHidden = true
         }
-        
         
         billComparisonTitleLabel.font = OpenSans.bold.of(textStyle: .title1)
         billComparisonTitleLabel.textColor = .blackText
@@ -375,11 +384,11 @@ class BillAnalysisViewController: UIViewController {
         // Segmented Controls
         electricGasSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
         electricGasSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] _ in
-            self?.fetchBillComparison()
+            self?.fetchData()
         }).addDisposableTo(disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.lastYearPreviousBillSelectedSegmentIndex).disposed(by: disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] _ in
-            self?.fetchBillComparison()
+            self?.fetchData()
         }).addDisposableTo(disposeBag)
         
         // Bar graph height constraints
@@ -400,6 +409,8 @@ class BillAnalysisViewController: UIViewController {
         viewModel.currentBarDateLabelText.drive(currentDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.projectedBarDollarLabelText.drive(projectedDollarLabel.rx.text).disposed(by: disposeBag)
         viewModel.projectedBarDateLabelText.drive(projectedDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.projectedBarDateLabelText.drive(projectionNotAvailableDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.projectionNotAvailableDaysRemainingText.drive(projectionNotAvailableDaysRemainingLabel.rx.text).disposed(by: disposeBag)
         
         // Bar description labels
         viewModel.barDescriptionDateLabelText.drive(barDescriptionDateLabel.rx.text).disposed(by: disposeBag)
