@@ -15,7 +15,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     
     func testShowBottomLabel() {
-        var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:]])!
+        var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail)
         viewModel.showBottomLabel.asObservable().take(1).subscribe(onNext: { show in
             if !show {
@@ -23,7 +23,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:]])!
+        accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail)
         viewModel.showBottomLabel.asObservable().take(1).subscribe(onNext: { show in
             if show {
@@ -33,7 +33,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
     }
     
     func testSubmitButtonEnabled() {
-        var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:]])!
+        var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail)
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.submitButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
@@ -42,7 +42,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:]])!
+        accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail)
         viewModel.enrollSwitchValue.value = false
         viewModel.submitButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
@@ -51,7 +51,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:]])!
+        accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail)
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.userDidChangeSettings.value = true
@@ -71,7 +71,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
     }
     
     func testIsUnenrolling() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:]])!
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail)
         viewModel.enrollSwitchValue.value = false
         viewModel.isUnenrolling.asObservable().take(1).subscribe(onNext: { isUnenrolling in
@@ -82,7 +82,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
     }
     
     func testShouldShowSettingsButton() {
-        var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:]])!
+        var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail)
         viewModel.shouldShowSettingsButton.asObservable().take(1).subscribe(onNext: { show in
             if !show {
@@ -90,7 +90,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:]])!
+        accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail)
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.shouldShowSettingsButton.asObservable().take(1).subscribe(onNext: { show in

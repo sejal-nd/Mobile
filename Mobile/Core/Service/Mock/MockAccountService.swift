@@ -24,7 +24,7 @@ struct MockAccountService : AccountService {
     }
     
     func fetchAccountDetail(account: Account, completion: @escaping (ServiceResult<AccountDetail>) -> Void) {
-        let accountDetail = AccountDetail.from(["accountNumber": account.accountNumber, "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])!
+        let accountDetail = AccountDetail.from(["accountNumber": account.accountNumber, "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
         completion(ServiceResult.Success(accountDetail))
     }
     

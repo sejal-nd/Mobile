@@ -16,7 +16,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
     
     func testSingleEnrollSuccess() {
         AccountsStore.sharedInstance.accounts = [Account.from(["accountNumber": "1234567890"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
+        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: true)
         viewModel.submitChanges(onSuccess: { status in
@@ -31,7 +31,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
     
     func testSingleEnrollFailure() {
         AccountsStore.sharedInstance.accounts = [Account.from(["accountNumber": "0000"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "0000", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
+        let accountDetail = AccountDetail.from(["accountNumber": "0000", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: true)
         viewModel.submitChanges(onSuccess: { status in
@@ -43,7 +43,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
     
     func testSingleUnenrollSuccess() {
         AccountsStore.sharedInstance.accounts = [Account.from(["accountNumber": "1234567890"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
+        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: false)
         viewModel.submitChanges(onSuccess: { status in
@@ -58,7 +58,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
     
     func testSingleUnenrollFailure() {
         AccountsStore.sharedInstance.accounts = [Account.from(["accountNumber": "0000"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "0000", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
+        let accountDetail = AccountDetail.from(["accountNumber": "0000", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: false)
         viewModel.submitChanges(onSuccess: { status in
@@ -70,8 +70,8 @@ class PaperlessEBillViewModelTests: XCTestCase {
     
     func testMultiEnrollSuccess() {
         AccountsStore.sharedInstance.accounts = [Account.from(["accountNumber": "1234567890"])!, Account.from(["accountNumber": "0987654321"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
-        let accountDetail2 = AccountDetail.from(["accountNumber": "0987654321", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
+        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
+        let accountDetail2 = AccountDetail.from(["accountNumber": "0987654321", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: true)
         viewModel.switched(accountDetail: accountDetail2!, on: true)
@@ -87,8 +87,8 @@ class PaperlessEBillViewModelTests: XCTestCase {
     
     func testMultiEnrollFailure() {
         AccountsStore.sharedInstance.accounts = [Account.from(["accountNumber": "1234567890"])!, Account.from(["accountNumber": "0000"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
-        let accountDetail2 = AccountDetail.from(["accountNumber": "0000", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
+        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
+        let accountDetail2 = AccountDetail.from(["accountNumber": "0000", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: true)
         viewModel.switched(accountDetail: accountDetail2!, on: true)
@@ -101,8 +101,8 @@ class PaperlessEBillViewModelTests: XCTestCase {
     
     func testMultiUnenrollSuccess() {
         AccountsStore.sharedInstance.accounts = [Account.from(["accountNumber": "1234567890"])!, Account.from(["accountNumber": "0987654321"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
-        let accountDetail2 = AccountDetail.from(["accountNumber": "0987654321", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
+        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
+        let accountDetail2 = AccountDetail.from(["accountNumber": "0987654321", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: false)
         viewModel.switched(accountDetail: accountDetail2!, on: false)
@@ -118,8 +118,8 @@ class PaperlessEBillViewModelTests: XCTestCase {
     
     func testMultiUnenrollFailure() {
         AccountsStore.sharedInstance.accounts = [Account.from(["accountNumber": "1234567890"])!, Account.from(["accountNumber": "0000"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
-        let accountDetail2 = AccountDetail.from(["accountNumber": "0000", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
+        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
+        let accountDetail2 = AccountDetail.from(["accountNumber": "0000", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: false)
         viewModel.switched(accountDetail: accountDetail2!, on: false)
@@ -132,8 +132,8 @@ class PaperlessEBillViewModelTests: XCTestCase {
     
     func testMixedEnrollSuccess() {
         AccountsStore.sharedInstance.accounts = [Account.from(["accountNumber": "1234567890"])!, Account.from(["accountNumber": "0987654321"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
-        let accountDetail2 = AccountDetail.from(["accountNumber": "0987654321", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
+        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
+        let accountDetail2 = AccountDetail.from(["accountNumber": "0987654321", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: true)
         viewModel.switched(accountDetail: accountDetail2!, on: false)
@@ -149,8 +149,8 @@ class PaperlessEBillViewModelTests: XCTestCase {
     
     func testMixedEnrollFailure() {
         AccountsStore.sharedInstance.accounts = [Account.from(["accountNumber": "1234567890"])!, Account.from(["accountNumber": "0000"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
-        let accountDetail2 = AccountDetail.from(["accountNumber": "0000", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:]])
+        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
+        let accountDetail2 = AccountDetail.from(["accountNumber": "0000", "isEBillEligible": true, "isEBillEnrollment": true, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
         viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
         viewModel.switched(accountDetail: accountDetail!, on: true)
         viewModel.switched(accountDetail: accountDetail2!, on: false)

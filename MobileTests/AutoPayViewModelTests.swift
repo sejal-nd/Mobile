@@ -15,7 +15,7 @@ class AutoPayViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     
     func testNameOnAccountHasText() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:]])!
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: accountDetail)
         viewModel.nameOnAccountHasText.asObservable().take(1).subscribe(onNext: { hasText in
             if hasText {
@@ -32,7 +32,7 @@ class AutoPayViewModelTests: XCTestCase {
     }
     
     func testNameOnAccountIsValid() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:]])!
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: accountDetail)
         viewModel.nameOnAccountIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if !isValid {
@@ -56,7 +56,7 @@ class AutoPayViewModelTests: XCTestCase {
     }
 
     func testRoutingNumberIsValid() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:]])!
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: accountDetail)
         viewModel.routingNumberIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if isValid {
@@ -73,7 +73,7 @@ class AutoPayViewModelTests: XCTestCase {
     }
     
     func testAccountNumberHasText() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:]])!
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: accountDetail)
         viewModel.accountNumberHasText.asObservable().take(1).subscribe(onNext: { hasText in
             if hasText {
@@ -90,7 +90,7 @@ class AutoPayViewModelTests: XCTestCase {
     }
     
     func testAccountNumberIsValid() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:]])!
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: accountDetail)
         viewModel.accountNumberIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if isValid {
@@ -121,7 +121,7 @@ class AutoPayViewModelTests: XCTestCase {
     }
     
     func testConfirmAccountNumberMatches() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:]])!
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         viewModel = AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: accountDetail)
         
         viewModel.accountNumber.value = "Match"
