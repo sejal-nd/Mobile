@@ -170,10 +170,8 @@ class BillAnalysisViewController: UIViewController {
                 .subscribe(onNext: { [weak self] shouldShow in
                     guard let `self` = self else { return }
                     if shouldShow {
-                        print("select projected button")
                         self.onBarPress(sender: self.projectedContainerButton)
                     } else {
-                        print("select current button")
                         self.onBarPress(sender: self.currentContainerButton)
                     }
                 }).disposed(by: self.disposeBag)
