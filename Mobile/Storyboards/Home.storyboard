@@ -90,13 +90,13 @@
                                                         <rect key="frame" x="0.0" y="128" width="375" height="100"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="751" text="Good Evening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uyw-91-O7K">
-                                                                <rect key="frame" x="16" y="34.5" width="177.5" height="33"/>
+                                                                <rect key="frame" x="16" y="31.5" width="175" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="76°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-co-jWg">
-                                                                <rect key="frame" x="274.5" y="34.5" width="42.5" height="33"/>
+                                                                <rect key="frame" x="273" y="31.5" width="44" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -121,7 +121,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Opk-mo-Gnw" userLabel="Card Stack View">
                                                         <rect key="frame" x="16" y="228" width="343" height="0.0"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" priority="999" constant="460" id="b4e-Ff-Dp9"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="b4e-Ff-Dp9"/>
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uhp-nq-HuH">
@@ -134,7 +134,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" priority="999" constant="460" id="FgP-7p-fRj"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="FgP-7p-fRj"/>
                                                             <constraint firstAttribute="height" priority="999" constant="398" id="Vjk-VM-5Hb"/>
                                                             <constraint firstItem="MHH-Vr-MxZ" firstAttribute="centerY" secondItem="Uhp-nq-HuH" secondAttribute="centerY" id="tNz-wb-gQg"/>
                                                             <constraint firstItem="MHH-Vr-MxZ" firstAttribute="centerX" secondItem="Uhp-nq-HuH" secondAttribute="centerX" id="ybe-2s-vwC"/>
@@ -143,16 +143,18 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="Opk-mo-Gnw" firstAttribute="centerX" secondItem="UPV-GL-s03" secondAttribute="centerX" id="7Je-Sl-Xyd"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Opk-mo-Gnw" secondAttribute="trailing" constant="16" id="D8p-TS-VMZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Opk-mo-Gnw" secondAttribute="trailing" priority="999" constant="16" id="D8p-TS-VMZ"/>
                                                     <constraint firstItem="Rxw-UV-VRQ" firstAttribute="leading" secondItem="UPV-GL-s03" secondAttribute="leading" id="IHA-du-AaV"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ANG-nn-e6w" secondAttribute="trailing" id="InO-J6-uL8"/>
                                                     <constraint firstItem="ANG-nn-e6w" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UPV-GL-s03" secondAttribute="leading" id="TS7-Vc-gWi"/>
                                                     <constraint firstItem="Uhp-nq-HuH" firstAttribute="centerX" secondItem="UPV-GL-s03" secondAttribute="centerX" id="YXy-Zu-8yQ"/>
-                                                    <constraint firstItem="Uhp-nq-HuH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UPV-GL-s03" secondAttribute="leading" constant="16" id="Ynt-tS-KIm"/>
+                                                    <constraint firstItem="Uhp-nq-HuH" firstAttribute="leading" secondItem="UPV-GL-s03" secondAttribute="leading" priority="999" constant="16" id="Ynt-tS-KIm"/>
                                                     <constraint firstItem="ANG-nn-e6w" firstAttribute="centerX" secondItem="UPV-GL-s03" secondAttribute="centerX" id="asM-bl-D4S"/>
-                                                    <constraint firstItem="Opk-mo-Gnw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UPV-GL-s03" secondAttribute="leading" constant="16" id="fgh-lg-jhF"/>
+                                                    <constraint firstItem="Opk-mo-Gnw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UPV-GL-s03" secondAttribute="leading" constant="16" id="dST-qt-i1H"/>
+                                                    <constraint firstItem="Opk-mo-Gnw" firstAttribute="leading" secondItem="UPV-GL-s03" secondAttribute="leading" priority="999" constant="16" id="fgh-lg-jhF"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Opk-mo-Gnw" secondAttribute="trailing" constant="16" id="k67-3X-mgH"/>
                                                     <constraint firstAttribute="trailing" secondItem="Rxw-UV-VRQ" secondAttribute="trailing" id="sTe-8d-mU8"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Uhp-nq-HuH" secondAttribute="trailing" constant="16" id="wNg-bn-8DW"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Uhp-nq-HuH" secondAttribute="trailing" priority="999" constant="16" id="wNg-bn-8DW"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -170,6 +172,7 @@
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="QgD-go-05Y" firstAttribute="centerX" secondItem="mzY-0e-rXR" secondAttribute="centerX" id="4jD-EH-NEU"/>
                                     <constraint firstItem="QgD-go-05Y" firstAttribute="top" secondItem="mzY-0e-rXR" secondAttribute="top" id="8KW-mN-Fyx"/>
                                     <constraint firstAttribute="bottom" secondItem="QgD-go-05Y" secondAttribute="bottom" id="JQM-lF-IHN"/>
                                     <constraint firstItem="QgD-go-05Y" firstAttribute="leading" secondItem="mzY-0e-rXR" secondAttribute="leading" id="K6g-CC-77a"/>
@@ -180,7 +183,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dh2-eA-K7U" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="5Cn-0L-f8J"/>
-                            <constraint firstItem="QgD-go-05Y" firstAttribute="width" secondItem="5uc-ch-d5G" secondAttribute="width" id="Am4-Xm-502"/>
                             <constraint firstAttribute="trailing" secondItem="dh2-eA-K7U" secondAttribute="trailing" id="Dav-Ba-dta"/>
                             <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="mzY-0e-rXR" secondAttribute="bottom" id="HBG-DW-3ss"/>
                             <constraint firstItem="dh2-eA-K7U" firstAttribute="top" secondItem="jWa-SC-zWM" secondAttribute="bottom" id="HbX-4w-z3I"/>

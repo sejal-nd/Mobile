@@ -27,7 +27,7 @@ class BillViewModel {
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let currentAccountDetail = Variable<AccountDetail?>(nil)
     let isFetchingAccountDetail: Driver<Bool>
-    let accountDetailErrorMessage: Driver<String>
+    let accountDetailError: Driver<ServiceError?>
     
     required init(accountService: AccountService) {
         self.accountService = accountService
@@ -59,19 +59,9 @@ class BillViewModel {
 			.bind(to: currentAccountDetail)
 			.disposed(by: disposeBag)
         
-        accountDetailErrorMessage = fetchAccountDetailResult.errors()
-            .map { 
-                if let serviceError = $0 as? ServiceError {
-                    if serviceError.serviceCode == ServiceErrorCode.FnNotFound.rawValue {
-                        return NSLocalizedString(ServiceErrorCode.TcUnknown.rawValue, comment: "")
-                    } else {
-                        return serviceError.localizedDescription
-                    }
-                } else {
-                    return $0.localizedDescription
-                }
-            }
-            .asDriver(onErrorJustReturn: "")
+        accountDetailError = fetchAccountDetailResult.errors()
+            .map { $0 as? ServiceError }
+            .asDriver(onErrorJustReturn: ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue))
     }
 	
 	func fetchAccountDetail(isRefresh: Bool) {

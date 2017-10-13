@@ -112,6 +112,9 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var paperlessEnrollmentLabel: UILabel!
 	@IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
 
+    @IBOutlet weak var customErrorView: UIView!
+    @IBOutlet weak var customErrorTitleLabel: UILabel!
+    @IBOutlet weak var customErrorDetailLabel: UILabel!
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl? {
         didSet {
@@ -248,6 +251,10 @@ class BillViewController: AccountPickerViewController {
         
         billPaidView.isAccessibilityElement = true
         billPaidView.accessibilityLabel = NSLocalizedString("Bill Paid, dimmed, button", comment: "")
+    
+        customErrorTitleLabel.text = NSLocalizedString("Account Ineligible", comment: "")
+        customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to the mobile app. " +
+            "Access your account on our responsive website.", comment: "")
     }
 
     func bindViews() {
@@ -276,6 +283,8 @@ class BillViewController: AccountPickerViewController {
                 self.scrollView.insertSubview(refreshControl, at: 0)
                 self.scrollView.alwaysBounceVertical = true
             } else {
+                self.topView.isHidden = false
+                self.bottomView.isHidden = false
                 self.refreshControl?.endRefreshing()
                 self.refreshControl?.removeFromSuperview()
                 self.refreshControl = nil
@@ -377,11 +386,23 @@ class BillViewController: AccountPickerViewController {
 		viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).disposed(by: bag)
 		viewModel.budgetButtonText.drive(budgetBillingEnrollmentLabel.rx.attributedText).disposed(by: bag)
 
-        viewModel.accountDetailErrorMessage
-            .drive(onNext: { [weak self] errorMessage in
-                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self?.present(alert, animated: true, completion: nil)
+        viewModel.accountDetailError
+            .drive(onNext: { [weak self] error in
+                if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+                    self?.topView.isHidden = true
+                    self?.bottomView.isHidden = true
+                    self?.customErrorView.isHidden = false
+                } else {
+                    var errorMessage: String!
+                    if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.FnNotFound.rawValue {
+                        errorMessage = ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue).localizedDescription
+                    } else {
+                        errorMessage = error?.localizedDescription
+                    }
+                    let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self?.present(alert, animated: true, completion: nil)
+                }
             })
             .disposed(by: bag)
 	}
