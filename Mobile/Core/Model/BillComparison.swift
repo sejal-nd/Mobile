@@ -34,7 +34,7 @@ struct BillComparison: Mappable {
         if meterUnit == "KWH" {
             meterUnit = "kWh"
         } else if meterUnit == "THERM" {
-            meterUnit = "Therm"
+            meterUnit = "therms"
         }
             
         try currencySymbol = map.from("currencySymbol")

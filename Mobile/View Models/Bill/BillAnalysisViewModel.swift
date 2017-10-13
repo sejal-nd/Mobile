@@ -145,15 +145,18 @@ class BillAnalysisViewModel {
                 if max(projectedCost, reference.charges, compared.charges) == compared.charges {
                     return 134
                 } else if max(projectedCost, reference.charges) == projectedCost {
-                    return CGFloat(134.0 * (compared.charges / projectedCost))
+                    let fraction = CGFloat(134.0 * (compared.charges / projectedCost))
+                    return fraction > 3 ? fraction : 3
                 } else {
-                    return CGFloat(134.0 * (compared.charges / reference.charges))
+                    let fraction = CGFloat(134.0 * (compared.charges / reference.charges))
+                    return fraction > 3 ? fraction : 3
                 }
             } else {
                 if compared.charges >= reference.charges {
                     return 134
                 } else {
-                    return CGFloat(134.0 * (compared.charges / reference.charges))
+                    let fraction = CGFloat(134.0 * (compared.charges / reference.charges))
+                    return fraction > 3 ? fraction : 3
                 }
             }
         }
@@ -185,15 +188,18 @@ class BillAnalysisViewModel {
                 if max(projectedCost, reference.charges, compared.charges) == reference.charges {
                     return 134
                 } else if max(projectedCost, compared.charges) == projectedCost {
-                    return CGFloat(134.0 * (reference.charges / projectedCost))
+                    let fraction = CGFloat(134.0 * (reference.charges / projectedCost))
+                    return fraction > 3 ? fraction : 3
                 } else {
-                    return CGFloat(134.0 * (reference.charges / compared.charges))
+                    let fraction = CGFloat(134.0 * (reference.charges / compared.charges))
+                    return fraction > 3 ? fraction : 3
                 }
             } else {
                 if reference.charges >= compared.charges {
                     return 134
                 } else {
-                    return CGFloat(134.0 * (reference.charges / compared.charges))
+                    let fraction = CGFloat(134.0 * (reference.charges / compared.charges))
+                    return fraction > 3 ? fraction : 3
                 }
             }
         }
@@ -244,9 +250,11 @@ class BillAnalysisViewModel {
             if max(projectedCost, reference, compared) == projectedCost {
                 return 134
             } else if max(reference, compared) == reference {
-                return CGFloat(134.0 * (projectedCost / reference))
+                let fraction = CGFloat(134.0 * (projectedCost / reference))
+                return fraction > 3 ? fraction : 3
             } else {
-                return CGFloat(134.0 * (projectedCost / compared))
+                let fraction = CGFloat(134.0 * (projectedCost / compared))
+                return fraction > 3 ? fraction : 3
             }
         }
 
