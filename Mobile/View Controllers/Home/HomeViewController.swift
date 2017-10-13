@@ -164,13 +164,10 @@ class HomeViewController: AccountPickerViewController {
         viewModel.isSwitchingAccounts.drive(homeLoadingIndicator.rx.isAnimating).disposed(by: bag)
         viewModel.isSwitchingAccounts.drive(cardStackView.rx.isHidden).disposed(by: bag)
         viewModel.isSwitchingAccounts.not().drive(loadingView.rx.isHidden).disposed(by: bag)
+        viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).disposed(by: bag)
         
         viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
         viewModel.showNoNetworkConnectionState.drive(scrollView.rx.isHidden).disposed(by: bag)
-        
-        viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).disposed(by: bag)
-        viewModel.isSwitchingAccounts.drive(temperatureLabel.rx.isHidden).disposed(by: bag)
-        viewModel.isSwitchingAccounts.drive(weatherIconImage.rx.isHidden).disposed(by: bag)
         
         viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).disposed(by: bag)
         viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).disposed(by: bag)
