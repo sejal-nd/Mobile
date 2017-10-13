@@ -81,6 +81,8 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var billNotReadyLabel: UILabel!
     @IBOutlet weak var errorStack: UIStackView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var customErrorView: UIView!
+    @IBOutlet weak var customErrorDetailLabel: UILabel!
     
     let tutorialTap = UITapGestureRecognizer()
     let tutorialSwipe = UISwipeGestureRecognizer()
@@ -146,6 +148,11 @@ class HomeBillCardView: UIView {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
+        customErrorDetailLabel.font = OpenSans.regular.of(textStyle: .title1)
+        customErrorDetailLabel.setLineHeight(lineHeight: 26)
+        customErrorDetailLabel.textAlignment = .center
+        customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to billing information. " +
+            "Access your account on our responsive website.", comment: "")
         
         // Accessibility
         alertImageView.isAccessibilityElement = true
@@ -176,7 +183,12 @@ class HomeBillCardView: UIView {
             .drive(onNext: { _ in Analytics().logScreenView(AnalyticsPageView.CheckBalanceError.rawValue) })
             .disposed(by: bag)
         
-        viewModel.showErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
+        Driver.combineLatest(viewModel.showErrorState, viewModel.showCustomErrorState)
+            .map { $0 && !$1 }
+            .not()
+            .drive(errorStack.rx.isHidden)
+            .disposed(by: bag)
+        viewModel.showCustomErrorState.not().drive(customErrorView.rx.isHidden).disposed(by: bag)
         
         Driver.combineLatest(viewModel.billNotReady.startWith(false), viewModel.showErrorState)
             .map { $0 || $1 }
