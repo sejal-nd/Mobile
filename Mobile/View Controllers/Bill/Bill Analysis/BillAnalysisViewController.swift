@@ -457,6 +457,9 @@ class BillAnalysisViewController: UIViewController {
         for label in likelyReasonsNoDataLabels {
             viewModel.noPreviousData.asDriver().not().drive(label.rx.isHidden).disposed(by: disposeBag)
         }
+        viewModel.noPreviousData.asDriver().not().drive(billPeriodContainerButton.rx.isAccessibilityElement).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().not().drive(weatherContainerButton.rx.isAccessibilityElement).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().not().drive(otherContainerButton.rx.isAccessibilityElement).disposed(by: disposeBag)
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {

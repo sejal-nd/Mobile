@@ -304,17 +304,28 @@ class BillAnalysisViewModel {
                              self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] elecForecast, gasForecast, segmentIndex in
             // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
             guard let `self` = self else { return nil }
+            
             let localizedString = NSLocalizedString("%@ days", comment: "")
             if let gasForecast = gasForecast, self.isGas {
                 if let startDate = gasForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
-                    return String(format: localizedString, "\(7 - daysSinceBillingStart)")
+                    let daysRemaining = 7 - daysSinceBillingStart
+                    if daysRemaining == 1 {
+                        return NSLocalizedString("1 day", comment: "")
+                    } else {
+                        return String(format: localizedString, "\(daysRemaining)")
+                    }
                 }
             }
             if let elecForecast = elecForecast, !self.isGas {
                 if let startDate = elecForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
-                    return String(format: localizedString, "\(7 - daysSinceBillingStart)")
+                    let daysRemaining = 7 - daysSinceBillingStart
+                    if daysRemaining == 1 {
+                        return NSLocalizedString("1 day", comment: "")
+                    } else {
+                        return String(format: localizedString, "\(daysRemaining)")
+                    }
                 }
             }
             return nil
@@ -430,13 +441,23 @@ class BillAnalysisViewModel {
             if let gasForecast = gasForecast, self.isGas {
                 if let startDate = gasForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
-                    daysRemainingString = String(format: localizedDaysRemaining, "\(7 - daysSinceBillingStart)")
+                    let daysRemaining = 7 - daysSinceBillingStart
+                    if daysRemaining == 1 {
+                        daysRemainingString = NSLocalizedString("1 day until next forecast.", comment: "")
+                    } else {
+                        daysRemainingString = String(format: localizedDaysRemaining, "\(daysRemaining)")
+                    }
                 }
             }
             if let elecForecast = elecForecast, !self.isGas {
                 if let startDate = elecForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
-                    daysRemainingString = String(format: localizedDaysRemaining, "\(7 - daysSinceBillingStart)")
+                    let daysRemaining = 7 - daysSinceBillingStart
+                    if daysRemaining == 1 {
+                        daysRemainingString = NSLocalizedString("1 day until next forecast.", comment: "")
+                    } else {
+                        daysRemainingString = String(format: localizedDaysRemaining, "\(daysRemaining)")
+                    }
                 }
             }
             
