@@ -50,10 +50,6 @@ class TemplateCardView: UIView {
         errorLabel.font = OpenSans.regular.of(textStyle: .title1)
         errorLabel.setLineHeight(lineHeight: 26)
         errorLabel.textAlignment = .center
-        if let errorLabelText = errorLabel.text {
-            let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
-            errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.sharedInstance.opco.displayString, errorLabelText)
-        }
     }
     
     private func bindViewModel() {
@@ -66,6 +62,12 @@ class TemplateCardView: UIView {
         //show error state if an error is received
         viewModel.shouldShowErrorState.drive(clippingView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
+        //viewModel.errorLabelText.drive(errorLabel.rx.text).disposed(by: bag)
+        viewModel.errorLabelText.drive(onNext: { [weak self] errorText in
+            self?.errorLabel.text = errorText
+            let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
+            self?.errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.sharedInstance.opco.displayString, errorText ?? "")
+        }).disposed(by: bag)
     }
     
     private(set) lazy var callToActionViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()

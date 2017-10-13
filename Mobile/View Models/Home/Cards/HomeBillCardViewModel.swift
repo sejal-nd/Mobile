@@ -187,7 +187,12 @@ class HomeBillCardViewModel {
         
     }()
     
-    private(set) lazy var showInfoStack: Driver<Bool> = Driver.combineLatest(self.billNotReady, self.showErrorState) { $0 || $1 }
+    private(set) lazy var showCustomErrorState: Driver<Bool> = self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()).map {
+        if let serviceError = $0.error as? ServiceError {
+            return serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue
+        }
+        return false
+    }
     
     // MARK: - Title States
     

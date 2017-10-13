@@ -30,7 +30,7 @@ class OutageViewModel {
         }
     }
     
-    func getOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
+    func getOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
 
         // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
         if let disposable = currentGetOutageStatusDisposable {
@@ -56,7 +56,7 @@ class OutageViewModel {
                     onSuccess()
                 } else {
                     self.currentOutageStatus = nil
-                    onError()
+                    onError(serviceError)
                 }
             })
     }
