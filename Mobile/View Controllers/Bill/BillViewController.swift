@@ -162,8 +162,11 @@ class BillViewController: AccountPickerViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
 
         NotificationCenter.default.rx.notification(.DidSelectEnrollInAutoPay, object: nil)
-        .subscribe(onNext: { notification in
-            self.performSegue(withIdentifier: "bgeAutoPaySegue", sender: notification.object)
+        .subscribe(onNext: { [weak self] notification in
+            guard let `self` = self else { return }
+            if let accountDetail = notification.object as? AccountDetail {
+                self.navigateToAutoPay(accountDetail: accountDetail)
+            }
         }).disposed(by: bag)
     }
 
