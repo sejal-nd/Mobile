@@ -217,9 +217,11 @@ class OutageViewController: AccountPickerViewController {
             self?.setRefreshControlEnabled(enabled: true)
             
             if serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+                self?.errorLabel.isHidden = true
                 self?.customErrorView.isHidden = false
             } else {
                 self?.errorLabel.isHidden = false
+                self?.customErrorView.isHidden = true
             }
         })
     }
@@ -237,9 +239,11 @@ class OutageViewController: AccountPickerViewController {
             self.refreshControl?.endRefreshing()
 
             if serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+                self.errorLabel.isHidden = true
                 self.customErrorView.isHidden = false
             } else {
                 self.errorLabel.isHidden = false
+                self.customErrorView.isHidden = true
             }
             
             // Hide everything else

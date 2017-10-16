@@ -393,7 +393,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SgL-GX-Dgb">
-                                                <rect key="frame" x="0.0" y="183" width="375" height="216"/>
+                                                <rect key="frame" x="0.0" y="191" width="375" height="216"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_opco" translatesAutoresizingMaskIntoConstraints="NO" id="ih2-NM-40p">
                                                         <rect key="frame" x="125.5" y="0.0" width="125" height="126"/>
@@ -433,7 +433,6 @@
                                             <constraint firstAttribute="bottom" secondItem="NzH-9I-b9u" secondAttribute="bottom" id="6LF-5K-16F"/>
                                             <constraint firstItem="H0L-QG-hAo" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="71k-D6-8tq"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lL0-H1-J9Q" secondAttribute="trailing" constant="29" id="7Fw-pZ-4rP"/>
-                                            <constraint firstItem="SgL-GX-Dgb" firstAttribute="centerY" secondItem="4LE-Ih-Txu" secondAttribute="centerY" id="Etc-WV-Hyr"/>
                                             <constraint firstItem="lL0-H1-J9Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4LE-Ih-Txu" secondAttribute="leading" constant="29" id="GRK-en-gko"/>
                                             <constraint firstAttribute="trailing" secondItem="H0L-QG-hAo" secondAttribute="trailing" priority="999" id="I2D-Oy-CUP"/>
                                             <constraint firstAttribute="trailing" secondItem="FN2-AG-tRU" secondAttribute="trailing" id="LrU-ih-gyC"/>
@@ -450,7 +449,6 @@
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="fjI-oh-c9e"/>
                                             <constraint firstAttribute="trailing" secondItem="NzH-9I-b9u" secondAttribute="trailing" priority="999" id="iDt-mo-dyn"/>
                                             <constraint firstAttribute="trailing" secondItem="0lx-Wl-bvy" secondAttribute="trailing" priority="999" id="pSB-NR-AKC"/>
-                                            <constraint firstItem="SgL-GX-Dgb" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="qFU-UC-4zu"/>
                                             <constraint firstItem="NzH-9I-b9u" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="vi6-G2-Afs"/>
                                             <constraint firstAttribute="trailing" secondItem="SgL-GX-Dgb" secondAttribute="trailing" priority="999" id="zY4-qe-7eA"/>
                                         </constraints>
@@ -460,9 +458,11 @@
                                     <constraint firstItem="lL0-H1-J9Q" firstAttribute="centerX" secondItem="qSc-mq-7Vd" secondAttribute="centerX" id="EEz-Ld-jI2"/>
                                     <constraint firstItem="4LE-Ih-Txu" firstAttribute="leading" secondItem="qSc-mq-7Vd" secondAttribute="leading" id="GaG-cN-W3a"/>
                                     <constraint firstItem="4LE-Ih-Txu" firstAttribute="centerX" secondItem="qSc-mq-7Vd" secondAttribute="centerX" id="JTc-xg-NWS"/>
+                                    <constraint firstItem="SgL-GX-Dgb" firstAttribute="centerY" secondItem="qSc-mq-7Vd" secondAttribute="centerY" id="M2P-Cv-vP3"/>
                                     <constraint firstAttribute="bottom" secondItem="4LE-Ih-Txu" secondAttribute="bottom" id="Qxc-Q6-KYP"/>
                                     <constraint firstItem="lL0-H1-J9Q" firstAttribute="centerY" secondItem="qSc-mq-7Vd" secondAttribute="centerY" id="WlI-FY-Qjx"/>
                                     <constraint firstItem="4LE-Ih-Txu" firstAttribute="top" secondItem="qSc-mq-7Vd" secondAttribute="top" id="Zdg-5w-9y3"/>
+                                    <constraint firstItem="SgL-GX-Dgb" firstAttribute="centerX" secondItem="qSc-mq-7Vd" secondAttribute="centerX" id="k07-li-7FM"/>
                                     <constraint firstAttribute="trailing" secondItem="4LE-Ih-Txu" secondAttribute="trailing" id="mIU-TM-htn"/>
                                 </constraints>
                             </scrollView>
