@@ -49,7 +49,6 @@ class BillViewModel {
         let fetchAccountDetailResult = sharedFetchAccountDetail
             .flatMapLatest { _ in
                 accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
-                    .retry(.exponentialDelayed(maxCount: 2, initial: 2.0, multiplier: 1.5))
                     .trackActivity(fetchingAccountDetailTracker)
                     .materialize()
             }

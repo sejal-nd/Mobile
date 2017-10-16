@@ -112,6 +112,9 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var paperlessEnrollmentLabel: UILabel!
 	@IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
 
+    @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var genericErrorView: UIView!
+    @IBOutlet weak var genericErrorLabel: UILabel!
     @IBOutlet weak var customErrorView: UIView!
     @IBOutlet weak var customErrorTitleLabel: UILabel!
     @IBOutlet weak var customErrorDetailLabel: UILabel!
@@ -174,6 +177,15 @@ class BillViewController: AccountPickerViewController {
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
+    }
+    
+    func enableRefresh() -> Void {
+        guard self.refreshControl == nil else { return }
+        let refreshControl = UIRefreshControl()
+        self.refreshControl = refreshControl
+        refreshControl.tintColor = .white
+        self.scrollView.insertSubview(refreshControl, at: 0)
+        self.scrollView.alwaysBounceVertical = true
     }
     
     func killRefresh() -> Void {
@@ -252,6 +264,9 @@ class BillViewController: AccountPickerViewController {
         billPaidView.isAccessibilityElement = true
         billPaidView.accessibilityLabel = NSLocalizedString("Bill Paid, dimmed, button", comment: "")
     
+        genericErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        genericErrorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
         customErrorTitleLabel.text = NSLocalizedString("Account Ineligible", comment: "")
         customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to the mobile app. " +
             "Access your account on our responsive website.", comment: "")
@@ -275,16 +290,12 @@ class BillViewController: AccountPickerViewController {
 
         viewModel.isFetchingDifferentAccount.not().drive(onNext: { [weak self] refresh in
             guard let `self` = self else { return }
+            self.topView.isHidden = false
+            self.bottomView.isHidden = false
+            self.errorView.isHidden = true
             if refresh {
-                guard self.refreshControl == nil else { return }
-                let refreshControl = UIRefreshControl()
-                self.refreshControl = refreshControl
-                refreshControl.tintColor = .white
-                self.scrollView.insertSubview(refreshControl, at: 0)
-                self.scrollView.alwaysBounceVertical = true
+                self.enableRefresh()
             } else {
-                self.topView.isHidden = false
-                self.bottomView.isHidden = false
                 self.refreshControl?.endRefreshing()
                 self.refreshControl?.removeFromSuperview()
                 self.refreshControl = nil
@@ -389,20 +400,16 @@ class BillViewController: AccountPickerViewController {
         viewModel.accountDetailError
             .drive(onNext: { [weak self] error in
                 if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
-                    self?.topView.isHidden = true
-                    self?.bottomView.isHidden = true
+                    self?.genericErrorView.isHidden = true
                     self?.customErrorView.isHidden = false
                 } else {
-                    var errorMessage: String!
-                    if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.FnNotFound.rawValue {
-                        errorMessage = ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue).localizedDescription
-                    } else {
-                        errorMessage = error?.localizedDescription
-                    }
-                    let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self?.present(alert, animated: true, completion: nil)
+                    self?.genericErrorView.isHidden = false
+                    self?.customErrorView.isHidden = true
                 }
+                self?.topView.isHidden = true
+                self?.bottomView.isHidden = true
+                self?.errorView.isHidden = false
+                self?.enableRefresh()
             })
             .disposed(by: bag)
 	}
