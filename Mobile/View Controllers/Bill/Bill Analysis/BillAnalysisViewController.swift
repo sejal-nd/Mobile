@@ -250,11 +250,23 @@ class BillAnalysisViewController: UIViewController {
         centerAttrText.addAttribute(NSFontAttributeName, value: OpenSans.semibold.of(size: 24), range: NSRange(location: 0, length: centerAttrText.length))
         currentChargesPieChartView.centerAttributedText = centerAttrText
         
-        let supplyEntry = PieChartDataEntry(value: supplyCharges)
-        let taxesEntry = PieChartDataEntry(value: taxesAndFees)
-        let deliveryEntry = PieChartDataEntry(value: deliveryCharges)
-        let dataSet = PieChartDataSet(values: [deliveryEntry, taxesEntry, supplyEntry], label: "Current Charges")
-        dataSet.colors = [.primaryColor, .blackText, .accentGray]
+        var pieChartValues = [PieChartDataEntry]()
+        var pieChartColors = [UIColor]()
+        if supplyCharges > 0 {
+            pieChartValues.append(PieChartDataEntry(value: supplyCharges))
+            pieChartColors.append(.primaryColor)
+        }
+        if taxesAndFees > 0 {
+            pieChartValues.append(PieChartDataEntry(value: taxesAndFees))
+            pieChartColors.append(.blackText)
+        }
+        if deliveryCharges > 0 {
+            pieChartValues.append(PieChartDataEntry(value: deliveryCharges))
+            pieChartColors.append(.accentGray)
+        }
+
+        let dataSet = PieChartDataSet(values: pieChartValues, label: "Current Charges")
+        dataSet.colors = pieChartColors
         dataSet.drawValuesEnabled = false
         dataSet.sliceSpace = 4
         let data = PieChartData(dataSet: dataSet)
