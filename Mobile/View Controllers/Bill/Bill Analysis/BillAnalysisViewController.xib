@@ -831,7 +831,7 @@
                                                                             <rect key="frame" x="0.0" y="22" width="460" height="91"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Bill Period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4ar-Wk-4jA">
-                                                                                    <rect key="frame" x="16" y="21" width="68.5" height="19.5"/>
+                                                                                    <rect key="frame" x="196" y="21" width="68.5" height="19.5"/>
                                                                                     <accessibility key="accessibilityConfiguration">
                                                                                         <bool key="isElement" value="NO"/>
                                                                                     </accessibility>
@@ -855,8 +855,8 @@
                                                                                 <constraint firstItem="Crv-a0-Jdz" firstAttribute="leading" secondItem="bDR-VJ-6qA" secondAttribute="leading" constant="16" id="Bp0-yR-kHc"/>
                                                                                 <constraint firstItem="Crv-a0-Jdz" firstAttribute="top" secondItem="4ar-Wk-4jA" secondAttribute="bottom" constant="12" id="FzU-pK-ZgE"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="Crv-a0-Jdz" secondAttribute="trailing" constant="16" id="Qd8-sn-GPF"/>
-                                                                                <constraint firstItem="4ar-Wk-4jA" firstAttribute="leading" secondItem="bDR-VJ-6qA" secondAttribute="leading" constant="16" id="RaC-g0-b1u"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="Crv-a0-Jdz" secondAttribute="bottom" constant="22" id="hbV-xu-efW"/>
+                                                                                <constraint firstItem="4ar-Wk-4jA" firstAttribute="centerX" secondItem="bDR-VJ-6qA" secondAttribute="centerX" id="typ-pN-Ax3"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bill_analysis_shadow_triangle" translatesAutoresizingMaskIntoConstraints="NO" id="hqO-QB-YjO">
