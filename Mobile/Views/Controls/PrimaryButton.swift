@@ -74,7 +74,7 @@ class PrimaryButton: UIButton {
         loadingAnimationView.play()
     }
     
-    func setSuccess(animationCompletion: @escaping (Void) -> Void) {
+    func setSuccess(animationCompletion: @escaping () -> Void) {
         setTitle("", for: .normal)
         
         loadingAnimationView.removeFromSuperview()

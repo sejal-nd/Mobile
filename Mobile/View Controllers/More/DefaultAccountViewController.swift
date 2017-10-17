@@ -76,10 +76,6 @@ class DefaultAccountViewController: UIViewController {
                                                 description: NSLocalizedString("Your default account will display automatically when you sign in. You can change your default account at any time.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
-    
-    deinit {
-        dLog()
-    }
 
 }
 
@@ -94,7 +90,18 @@ extension DefaultAccountViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedAccountPickerTableViewCell.className, for: indexPath) as! AdvancedAccountPickerTableViewCell
-        cell.configure(withAccount: viewModel.accounts.value[indexPath.row])
+        let account = viewModel.accounts.value[indexPath.row]
+        cell.configure(withAccount: account)
+        
+        
+        if account.address == nil || (account.serviceType ?? "").isEmpty {
+            cell.selectionStyle = .none
+            cell.contentView.alpha = 0.2
+        } else {
+            cell.selectionStyle = .default
+            cell.contentView.alpha = 1
+        }
+        
         return cell
     }
     
@@ -108,7 +115,8 @@ extension DefaultAccountViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        guard !viewModel.accounts.value[indexPath.row].isDefault else {
+        let account = viewModel.accounts.value[indexPath.row]
+        guard !account.isDefault, let _ = account.address, !(account.serviceType ?? "").isEmpty else {
             return
         }
         

@@ -12,7 +12,7 @@ import RxCocoa
 import Lottie
 
 protocol ReportOutageViewControllerDelegate: class {
-    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController)
+    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController, reportedOutage: ReportedOutageResult?)
 }
 
 class ReportOutageViewController: UIViewController {
@@ -20,6 +20,8 @@ class ReportOutageViewController: UIViewController {
     weak var delegate: ReportOutageViewControllerDelegate?
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     
     // Meter Ping
     @IBOutlet weak var meterPingStackView: UIStackView!
@@ -51,11 +53,15 @@ class ReportOutageViewController: UIViewController {
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneExtensionContainerView: UIView!
     @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
+    @IBOutlet weak var commentView: UIView!
+    @IBOutlet weak var commentTextView: FloatLabelTextView!
+    @IBOutlet weak var commentLabel: UILabel!
     
     // Footer View
     @IBOutlet weak var footerContainerView: UIView!
     @IBOutlet weak var footerBackgroundView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
+    
     
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
     let opco = Environment.sharedInstance.opco
@@ -63,6 +69,8 @@ class ReportOutageViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var submitButton = UIBarButtonItem()
+    
+    var unauthenticatedExperience = false // `true` passed from UnauthenticatedOutageStatusViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +85,10 @@ class ReportOutageViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
+        if unauthenticatedExperience {
+            accountInfoBar.update(accountNumber: viewModel.outageStatus!.maskedAccountNumber, address: viewModel.outageStatus!.maskedAddress)
+        }
         
         // METER PING
         if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
@@ -134,6 +146,10 @@ class ReportOutageViewController: UIViewController {
             viewModel.reportFormHidden.value = false
         }
 
+        if opco != .comEd {
+            commentView.isHidden = true
+        }
+        
         if opco == .peco {
             segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: ""), NSLocalizedString("Dim/Flickering", comment: "")]
         } else {
@@ -142,7 +158,8 @@ class ReportOutageViewController: UIViewController {
         
         areYourLightsOutLabel.font = SystemFont.regular.of(textStyle: .headline)
         howCanWeContactYouLabel.font = SystemFont.regular.of(textStyle: .headline)
-
+        commentLabel.font = SystemFont.regular.of(textStyle: .headline)
+        
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
@@ -160,7 +177,7 @@ class ReportOutageViewController: UIViewController {
             .withLatestFrom(viewModel.phoneNumberHasTenDigits)
             .filter(!)
             .drive(onNext: { [weak self] _ in
-                self?.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
+                self?.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long", comment: ""))
             })
             .disposed(by: disposeBag)
         
@@ -174,6 +191,7 @@ class ReportOutageViewController: UIViewController {
         phoneExtensionTextField.setKeyboardType(.numberPad)
         phoneExtensionTextField.textField.delegate = self
 
+        
         if opco == .bge {
             phoneExtensionContainerView.isHidden = true
         }
@@ -189,6 +207,8 @@ class ReportOutageViewController: UIViewController {
         footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
         footerTextView.delegate = self
         
+        commentTextView.textView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
+        
         // Data binding
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
         
@@ -198,6 +218,7 @@ class ReportOutageViewController: UIViewController {
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
         
         phoneExtensionTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneExtension).disposed(by: disposeBag)
+        commentTextView.textView.rx.text.orEmpty.bind(to: viewModel.comments).disposed(by: disposeBag)
         
         // Format the intial value
         let range = NSMakeRange(0, viewModel.phoneNumber.value.characters.count)
@@ -224,7 +245,13 @@ class ReportOutageViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthOffer.rawValue)
+        
+        if unauthenticatedExperience {
+            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthScreenView.rawValue)
+        } else {
+            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthOffer.rawValue)
+        }
+        
         
         // METER PING
         if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
@@ -297,7 +324,6 @@ class ReportOutageViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        dLog()
     }
     
     func onCancelPress() {
@@ -307,24 +333,43 @@ class ReportOutageViewController: UIViewController {
     func onSubmitPress() {
         view.endEditing(true)
         
-        LoadingView.show()
-        viewModel.reportOutage(onSuccess: { [weak self] in
-            LoadingView.hide()
-            guard let `self` = self else { return }
-            self.delegate?.reportOutageViewControllerDidReportOutage(self)
-            self.navigationController?.popViewController(animated: true)
-            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
-        }) { [weak self] errorMessage in
+        let errorBlock = { [weak self] (errorMessage: String) in
             LoadingView.hide()
             let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self?.present(alert, animated: true, completion: nil)
         }
+        
+        LoadingView.show()
+        if unauthenticatedExperience {
+            viewModel.reportOutageAnon(onSuccess: { [weak self] reportedOutage in
+                LoadingView.hide()
+                guard let `self` = self else { return }
+                self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: reportedOutage)
+                self.navigationController?.popViewController(animated: true)
+            }, onError: errorBlock)
+            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthSubmit.rawValue)
+        } else {
+            viewModel.reportOutage(onSuccess: { [weak self] in
+                LoadingView.hide()
+                guard let `self` = self else { return }
+                self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: nil)
+                self.navigationController?.popViewController(animated: true)
+            }, onError: errorBlock)
+            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
+        }
+        
+
     }
     
     @IBAction func switchPressed(sender: AnyObject) {
         if(sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn) {
-            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthCircuitBreak.rawValue)
+            if unauthenticatedExperience {
+                Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthCircuitBreakCheck.rawValue)
+            } else {
+                Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthCircuitBreak.rawValue)
+            }
+            
         }
     }
     
@@ -389,7 +434,12 @@ extension ReportOutageViewController: UITextFieldDelegate {
 
 extension ReportOutageViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        Analytics().logScreenView(AnalyticsPageView.ReportOutageEmergencyCall.rawValue)
+        if unauthenticatedExperience {
+            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthEmergencyPhone.rawValue)
+        } else {
+            Analytics().logScreenView(AnalyticsPageView.ReportOutageEmergencyCall.rawValue)
+        }
+        
         return true
     }
 }

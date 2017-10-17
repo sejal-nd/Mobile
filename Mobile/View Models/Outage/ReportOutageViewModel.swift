@@ -19,6 +19,7 @@ class ReportOutageViewModel {
     var selectedSegmentIndex = Variable(0)
     var phoneNumber = Variable("")
     var phoneExtension = Variable("")
+    var comments = Variable("")
     var reportFormHidden = Variable(false)
     
     required init(outageService: OutageService) {
@@ -41,7 +42,7 @@ class ReportOutageViewModel {
         case .bge:
             return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
         case .comEd:
-            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-EDISON-1", comment: "")
+            return NSLocalizedString("To report a downed or sparking power line, please call 1-800-334-7661", comment: "")
         case .peco:
             return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
         }
@@ -55,7 +56,7 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.Flickering
         }
 
-        var outageInfo = OutageInfo(account: AccountsStore.sharedInstance.currentAccount, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value))
+        var outageInfo = OutageInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
         if phoneExtension.value.characters.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
@@ -68,6 +69,33 @@ class ReportOutageViewModel {
             .asObservable()
             .subscribe(onNext: { _ in
                 onSuccess()
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func reportOutageAnon(onSuccess: @escaping (ReportedOutageResult) -> Void, onError: @escaping (String) -> Void) {
+        var outageIssue = OutageIssue.AllOut
+        if selectedSegmentIndex.value == 1 {
+            outageIssue = OutageIssue.PartOut
+        } else if selectedSegmentIndex.value == 2 {
+            outageIssue = OutageIssue.Flickering
+        }
+        
+        var outageInfo = OutageInfo(accountNumber: outageStatus!.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
+        if phoneExtension.value.characters.count > 0 {
+            outageInfo.phoneExtension = phoneExtension.value
+        }
+        if let locationId = self.outageStatus!.locationId {
+            outageInfo.locationId = locationId
+        }
+        
+        outageService.reportOutageAnon(outageInfo: outageInfo)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { reportedOutage in
+                onSuccess(reportedOutage)
             }, onError: { error in
                 onError(error.localizedDescription)
             })
@@ -113,7 +141,4 @@ class ReportOutageViewModel {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
     }
     
-    deinit {
-        dLog()
-    }
 }

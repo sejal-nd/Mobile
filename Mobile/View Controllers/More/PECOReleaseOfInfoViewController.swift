@@ -147,10 +147,6 @@ class PECOReleaseOfInfoViewController: UIViewController {
         }
     }
     
-    deinit {
-        dLog()
-    }
-    
 }
 
 extension PECOReleaseOfInfoViewController: UITableViewDelegate {

@@ -356,9 +356,5 @@ class ReviewPaymentViewController: UIViewController {
             vc.viewModel = viewModel
         }
     }
-    
-    deinit {
-        dLog()
-    }
 
 }

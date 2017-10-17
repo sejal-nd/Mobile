@@ -119,7 +119,7 @@ class RegistrationValidateAccountViewController: UIViewController {
 				.drive(onNext: { [weak self] accountNumber, hasTenDigits in
 					guard let `self` = self else { return }
 					if !accountNumber.isEmpty && !hasTenDigits {
-						self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
+						self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
 					}
 					self.accessibilityErrorLabel()
 				}).disposed(by: disposeBag)
@@ -146,7 +146,7 @@ class RegistrationValidateAccountViewController: UIViewController {
 			.drive(onNext: { [weak self] phoneNumber, hasTenDigits in
 				guard let `self` = self else { return }
 				if !phoneNumber.isEmpty && !hasTenDigits {
-					self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
+					self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long", comment: ""))
 				}
 				self.accessibilityErrorLabel()
 			}).disposed(by: disposeBag)
@@ -177,9 +177,9 @@ class RegistrationValidateAccountViewController: UIViewController {
 				guard let `self` = self else { return }
 				if !identifierNumber.isEmpty {
 					if !hasFourDigits {
-						self.ssNumberNumberTextField.setError(NSLocalizedString("This number must be 4 digits long.", comment: ""))
+						self.ssNumberNumberTextField.setError(NSLocalizedString("This number must be 4 digits long", comment: ""))
 					} else if !isNumeric {
-						self.ssNumberNumberTextField.setError(NSLocalizedString("This number must be numeric.", comment: ""))
+						self.ssNumberNumberTextField.setError(NSLocalizedString("This number must be numeric", comment: ""))
 					}
 				}
 				self.accessibilityErrorLabel()
@@ -195,7 +195,6 @@ class RegistrationValidateAccountViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-		dLog()
     }
     
     private func accessibilityErrorLabel() {

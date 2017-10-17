@@ -1,7 +1,7 @@
 github "ReactiveX/RxSwift" "3.6.1"
 github "RxSwiftCommunity/RxSwiftExt" "2.5.1"
 github "airbnb/lottie-ios" "2.0.3"
-github "ashleymills/Reachability.swift" "v3"
+github "ashleymills/Reachability.swift" "v3.0"
 github "bitstadium/HockeySDK-iOS" "4.1.6"
 github "dropbox/zxcvbn-ios" "v1.0.4"
 github "jivesoftware/PDTSimpleCalendar" "0.9.1"

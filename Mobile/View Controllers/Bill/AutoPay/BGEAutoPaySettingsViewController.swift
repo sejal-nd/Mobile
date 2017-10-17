@@ -143,7 +143,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        dLog()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -311,7 +310,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         UIApplication.shared.keyWindow?.layer.zPosition = showPicker ? -1 : zPositionForWindow
         
         var bottomAnchorLength = dayPickerView.containerView.frame.size.height + 8
-        var alpha:Float = 0.0
+        var alpha: CGFloat = 0.0
         
         if showPicker {
             alpha = 0.6
@@ -324,7 +323,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         UIView.animate(withDuration: 0.25, animations: {
             self.dayPickerView.layoutIfNeeded()
             
-            self.dayPickerView.backgroundColor =  UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: alpha)
+            self.dayPickerView.backgroundColor = UIColor.black.withAlphaComponent(alpha)
         }, completion: { [weak self] _ in
             guard let `self` = self else { return }
             if !showPicker {

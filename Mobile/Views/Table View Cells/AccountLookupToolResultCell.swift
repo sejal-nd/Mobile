@@ -13,6 +13,10 @@ class AccountLookupToolResultCell: UITableViewCell {
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var streetNumberLabel: UILabel!
     @IBOutlet weak var unitNumberLabel: UILabel!
+    
+    @IBOutlet weak var accountNumberLabelWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var streetNumberLabelWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var unitNumberLabelWidthConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()

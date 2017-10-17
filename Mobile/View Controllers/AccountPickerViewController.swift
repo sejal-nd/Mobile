@@ -50,21 +50,24 @@ class AccountPickerViewController: UIViewController {
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         accountNumberLabel.textColor = .deepGray
         accountNumberLabel.numberOfLines = 1
-        
+        accountNumberLabel.lineBreakMode = .byTruncatingTail
+
         innerView.addSubview(iconView)
         innerView.addSubview(accountNumberLabel)
         containerView.addSubview(innerView)
         view.addSubview(containerView)
-        
+
         view.addConstraints([
             // innerView
             NSLayoutConstraint(item: innerView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: innerView, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 10),
-            
+            NSLayoutConstraint(item: innerView, attribute: .leading, relatedBy: .greaterThanOrEqual, toItem: containerView, attribute: .leading, multiplier: 1, constant: 16),
+            NSLayoutConstraint(item: innerView, attribute: .trailing, relatedBy: .lessThanOrEqual, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -16),
+
             // iconView
             NSLayoutConstraint(item: iconView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
             NSLayoutConstraint(item: iconView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
-            NSLayoutConstraint(item: iconView, attribute: .leading, relatedBy: .equal, toItem: innerView, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: iconView, attribute: .leading, relatedBy: .greaterThanOrEqual, toItem: innerView, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: iconView, attribute: .centerY, relatedBy: .equal, toItem: innerView, attribute: .centerY, multiplier: 1, constant: 0),
             
             // accountNumberLabel
@@ -85,8 +88,13 @@ class AccountPickerViewController: UIViewController {
                 if let currentAccount = AccountsStore.sharedInstance.currentAccount { // Don't show if accounts not loaded
                     self.iconView.image = currentAccount.isResidential ? #imageLiteral(resourceName: "ic_residential_mini") : #imageLiteral(resourceName: "ic_commercial_mini")
                     self.iconView.accessibilityLabel = currentAccount.isResidential ? NSLocalizedString("Residential account", comment: "") : NSLocalizedString("Commercial account", comment: "")
-                    self.accountNumberLabel.text = currentAccount.accountNumber
-                    self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), currentAccount.accountNumber)
+                    if currentAccount.address?.isEmpty ?? true {
+                        self.accountNumberLabel.text = currentAccount.accountNumber
+                        self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), currentAccount.accountNumber)
+                    } else {
+                        self.accountNumberLabel.text = currentAccount.address!
+                        self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), currentAccount.address!)
+                    }
                     self.setNeedsStatusBarAppearanceUpdate()
                     
                     // 2 separate animations here so that the icon/text are completely transparent by the time they animate under the status bar

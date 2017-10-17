@@ -148,7 +148,6 @@ class ChangePasswordViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        dLog()
     }
     
     private func accessibilityErrorLabel() {

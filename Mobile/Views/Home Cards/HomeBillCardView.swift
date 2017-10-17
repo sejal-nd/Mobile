@@ -56,6 +56,7 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var convenienceFeeContainer: UIView!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
+    @IBOutlet weak var oneTouchSliderContainer: UIView!
     @IBOutlet weak var oneTouchSlider: OneTouchSlider!
     @IBOutlet weak var commercialBgeOtpVisaLabelContainer: UIView!
     @IBOutlet weak var commericalBgeOtpVisaLabel: UILabel!
@@ -80,6 +81,9 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var billNotReadyLabel: UILabel!
     @IBOutlet weak var errorStack: UIStackView!
     @IBOutlet weak var errorLabel: UILabel!
+    
+    let tutorialTap = UITapGestureRecognizer()
+    let tutorialSwipe = UISwipeGestureRecognizer()
     
     fileprivate var viewModel: HomeBillCardViewModel! {
         didSet {
@@ -199,7 +203,7 @@ class HomeBillCardView: UIView {
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountContainer.rx.isHidden).disposed(by: bag)
         viewModel.showConvenienceFee.not().drive(convenienceFeeContainer.rx.isHidden).disposed(by: bag)
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showOneTouchPaySlider.not().drive(oneTouchSlider.rx.isHidden).disposed(by: bag)
+        viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
         viewModel.showCommercialBgeOtpVisaLabel.not().drive(commercialBgeOtpVisaLabelContainer.rx.isHidden).disposed(by: bag)
         viewModel.showScheduledImageView.not().drive(scheduledImageContainer.rx.isHidden).disposed(by: bag)
         viewModel.showAutoPayIcon.not().drive(autoPayImageContainer.rx.isHidden).disposed(by: bag)
@@ -241,6 +245,10 @@ class HomeBillCardView: UIView {
             .drive(viewModel.submitOneTouchPay)
             .disposed(by: bag)
         
+        oneTouchSliderContainer.removeGestureRecognizer(tutorialTap)
+        oneTouchSliderContainer.removeGestureRecognizer(tutorialSwipe)
+        oneTouchSliderContainer.addGestureRecognizer(tutorialTap)
+        oneTouchSliderContainer.addGestureRecognizer(tutorialSwipe)
     }
     
     // Actions
@@ -400,6 +408,12 @@ class HomeBillCardView: UIView {
             return alertController
     }
     
+    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver.merge(self.tutorialTap.rx.event.asDriver().mapTo(()), self.tutorialSwipe.rx.event.asDriver().mapTo(()))
+        .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
+        .filter { $0 && !$1 }
+        .mapTo(())
+        .map(OneTouchTutorialViewController.init)
+    
     private lazy var bgeasyViewController: Driver<UIViewController> = self.automaticPaymentInfoButton.rx.touchUpInside.asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { $0.isBGEasy }
@@ -412,6 +426,7 @@ class HomeBillCardView: UIView {
                                                                                         self.oneTouchPayErrorAlert,
                                                                                         self.oneTouchSliderCVV2Alert,
                                                                                         self.oneTouchSliderBGELegalAlert,
+                                                                                        self.tutorialViewController,
                                                                                         self.bgeasyViewController)
     
     // Pushed View Controllers
@@ -470,7 +485,6 @@ class HomeBillCardView: UIView {
 
     deinit {
         cvvValidationDisposable?.dispose()
-        dLog()
     }
 }
 
@@ -487,4 +501,3 @@ extension HomeBillCardView: UITextFieldDelegate {
         }
     }
 }
-

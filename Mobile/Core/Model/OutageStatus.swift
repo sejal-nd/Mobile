@@ -43,6 +43,14 @@ struct OutageStatus: Mappable {
     var etr: Date?
     let locationId: String?
     
+    // Unauthenticated fields
+    let accountNumber: String?
+    let maskedAccountNumber: String?
+    let maskedAddress: String?
+    let addressNumber: String?
+    let unitNumber: String?
+    var multipremiseAccount: Bool = false // Set locally for use in unauthenticated logic
+    
     init(map: Mapper) throws {
         flagGasOnly = map.optionalFrom("flagGasOnly") ?? false
         contactHomeNumber = map.optionalFrom("contactHomeNumber")
@@ -55,6 +63,12 @@ struct OutageStatus: Mappable {
         meterPingInfo = map.optionalFrom("meterInfo")
         etr = map.optionalFrom("ETR", transformation: extractDate)
         locationId = map.optionalFrom("locationId")
+        
+        accountNumber = map.optionalFrom("accountNumber")
+        maskedAccountNumber = map.optionalFrom("maskedAccountNumber")
+        maskedAddress = map.optionalFrom("maskedAddress")
+        addressNumber = map.optionalFrom("addressNumber")
+        unitNumber = map.optionalFrom("apartmentUnitNumber")
     }
     
 }

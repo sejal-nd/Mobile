@@ -102,10 +102,6 @@ class ForgotUsernameResultViewController: UIViewController {
             vc.viewModel.selectedUsernameIndex = viewModel.selectedUsernameIndex
         }
     }
-    
-    deinit {
-        dLog()
-    }
 
 }
 

@@ -310,9 +310,8 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var showDueDateTooltip: Driver<Bool> = self.showDueAmountAndDate.map {
-        !$0 && Environment.sharedInstance.opco == .peco
-    }
+    private(set) lazy var showDueDateTooltip: Driver<Bool> = Driver.zip(self.showDueAmountAndDate, self.billState)
+    { !$0 && !$1.isPrecariousBillSituation && Environment.sharedInstance.opco == .peco }
     
     let showDueAmountAndDateTooltip = Environment.sharedInstance.opco == .peco
     
@@ -335,7 +334,6 @@ class HomeBillCardViewModel {
     { billState, walletItem, accountDetail, showOneTouchPaySlider, minMaxPaymentAllowedText in
         return billState == .billReady &&
             walletItem != nil &&
-            Environment.sharedInstance.opco != .bge &&
             showOneTouchPaySlider &&
             minMaxPaymentAllowedText != nil
     }
@@ -531,23 +529,36 @@ class HomeBillCardViewModel {
     private(set) lazy var dueAmountAndDateText: Driver<String?> = self.accountDetailDriver.map {
         guard let amountDueString = $0.billingInfo.netDueAmount?.currencyString else { return nil }
         guard let dueByDate = $0.billingInfo.dueByDate else { return nil }
-        
+        guard let reinstateFee = $0.billingInfo.atReinstateFee?.currencyString else { return nil }
+
         let calendar = Calendar.opCoTime
         let date1 = calendar.startOfDay(for: Date())
         let date2 = calendar.startOfDay(for: dueByDate)
         guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else { return nil }
-        
+
+        var result = ""
+
         if days > 0 {
             let localizedText = NSLocalizedString("Your bill total of %@ is due in %d day%@.", comment: "")
-            return String(format: localizedText, amountDueString, days, days == 1 ? "": "s")
+            result.append(String(format: localizedText, amountDueString, days, days == 1 ? "": "s"))
         } else if $0.billingInfo.pastDueAmount == nil {
             let localizedText = NSLocalizedString("Your bill total of %@ is due %@.", comment: "")
-            return String(format: localizedText, amountDueString, dueByDate.mmDdYyyyString)
+            result.append(String(format: localizedText, amountDueString, dueByDate.mmDdYyyyString))
         } else {
             let localizedText = NSLocalizedString("Your bill total of %@ is due immediately.", comment: "")
-            return String(format: localizedText, amountDueString)
+            result.append(String(format: localizedText, amountDueString))
         }
-        
+
+        if Environment.sharedInstance.opco == .comEd &&
+                   $0.billingInfo.amtDpaReinst ?? 0 > 0 &&
+                   $0.billingInfo.atReinstateFee ?? 0 > 0 &&
+                   !$0.isLowIncome {
+            let reinstatementText = NSLocalizedString("\n\nYou are entitled to one free reinstatement per plan. " +
+                    "Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
+            result.append(String(format: reinstatementText, reinstateFee))
+        }
+
+        return result
     }
     
     private(set) lazy var bankCreditCardNumberText: Driver<String?> = self.walletItemDriver.map {
@@ -647,18 +658,21 @@ class HomeBillCardViewModel {
         { accountDetail, walletItem, showMinMaxPaymentAllowed in
             if showMinMaxPaymentAllowed {
                 return false
-            } else if walletItem == nil {
+            }
+            if walletItem == nil {
                 return false
-            } else if let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount,
+            }
+            if let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount,
                 accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.sharedInstance.opco != .bge {
                 return false
-            } else if accountDetail.billingInfo.netDueAmount ?? 0 < 0 && Environment.sharedInstance.opco == .bge {
-                return false
-            } else if let cardIssuer = walletItem?.cardIssuer, cardIssuer == "Visa", Environment.sharedInstance.opco == .bge, !accountDetail.isResidential {
-                return false
-            } else {
-                return true
             }
+            if accountDetail.billingInfo.netDueAmount ?? 0 < 0 && Environment.sharedInstance.opco == .bge {
+                return false
+            }
+            if let cardIssuer = walletItem?.cardIssuer, cardIssuer == "Visa", Environment.sharedInstance.opco == .bge, !accountDetail.isResidential {
+                return false
+            }
+            return true
         }
     
     private(set) lazy var titleFont: Driver<UIFont> = self.billState
@@ -726,6 +740,7 @@ class HomeBillCardViewModel {
             return URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
         }
     }
+    
 }
 
 

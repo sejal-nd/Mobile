@@ -5,7 +5,7 @@
 	<key>environment</key>
 	<string>STAGE</string>
 	<key>appName</key>
-	<string>BGE</string>
+	<string>BGE_STAGE</string>
 	<key>opco</key>
 	<string>BGE</string>
 	<key>oauthEndpoint</key>

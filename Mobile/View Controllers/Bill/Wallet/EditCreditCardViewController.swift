@@ -515,9 +515,6 @@ class EditCreditCardViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    deinit {
-        dLog()
-    }
 }
 
 extension EditCreditCardViewController: UITextFieldDelegate {
