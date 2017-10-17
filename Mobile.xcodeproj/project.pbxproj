@@ -1081,6 +1081,7 @@
 		E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
 		E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
 		E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
+		E89F493E1F9685120060D084 /* BillAnalysisViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */; };
 		E8AD93911EEF2AFB00882444 /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
 		E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
 		E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
@@ -1826,6 +1827,7 @@
 		E89C16291F87D6AE0023DC02 /* UsageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageService.swift; sourceTree = "<group>"; };
 		E89D07A01E609DC900F87F87 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JVFloatLabeledText.framework; path = Carthage/Build/iOS/JVFloatLabeledText.framework; sourceTree = "<group>"; };
+		E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillAnalysisViewModelTests.swift; sourceTree = "<group>"; };
 		E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBaseNavigationController.swift; sourceTree = "<group>"; };
 		E8B4F4AE1E5C957A0031D934 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		E8B4F4B21E5C99380031D934 /* Alerts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
@@ -3091,6 +3093,7 @@
 				B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */,
 				E840CB371F82D13A00357780 /* AutoPayViewModelTests.swift */,
 				E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */,
+				E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */,
 				E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */,
 				E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */,
 				E800435E1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift */,
@@ -3739,7 +3742,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3749,7 +3752,7 @@
 						};
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -5009,6 +5012,7 @@
 				E89399401F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
 				E8FF08661F7EDE330030F1BF /* BillingHistoryViewModel.swift in Sources */,
+				E89F493E1F9685120060D084 /* BillAnalysisViewModelTests.swift in Sources */,
 				E81F38161ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
 				E8C6F2A51F1FEB7300C4644C /* AddBankFormViewModel.swift in Sources */,
