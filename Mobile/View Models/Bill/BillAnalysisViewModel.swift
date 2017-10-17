@@ -365,10 +365,10 @@ class BillAnalysisViewModel {
         let avgUsagePerDay = compared.usage / Double(daysInBillPeriod)
         if compared.charges < 0 {
             let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-            detailString = String(format: billCreditString, abs(compared.charges).currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+            detailString = String(format: billCreditString, abs(compared.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
         } else {
             let localizedString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
-            detailString = String(format: localizedString, compared.charges.currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+            detailString = String(format: localizedString, compared.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
         }
         
         return "\(dateString). \(tempString). \(detailString)"
@@ -391,10 +391,10 @@ class BillAnalysisViewModel {
         let avgUsagePerDay = reference.usage / Double(daysInBillPeriod)
         if reference.charges < 0 {
             let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-            return String(format: billCreditString, abs(reference.charges).currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+            return String(format: billCreditString, abs(reference.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
         } else {
             let localizedString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
-            return String(format: localizedString, reference.charges.currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+            return String(format: localizedString, reference.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
         }
     }
     
@@ -552,18 +552,18 @@ class BillAnalysisViewModel {
                 let avgUsagePerDay = billComparison.compared!.usage / Double(daysInBillPeriod)
                 if billComparison.compared!.charges < 0 {
                     let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-                    return String(format: billCreditString, abs(billComparison.compared!.charges).currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+                    return String(format: billCreditString, abs(billComparison.compared!.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
                 } else {
-                    return String(format: localizedPrevCurrString, billComparison.compared!.charges.currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+                    return String(format: localizedPrevCurrString, billComparison.compared!.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
                 }
             } else if selectionStates[2].value { // Current
                 let daysInBillPeriod = abs(billComparison.reference!.startDate.interval(ofComponent: .day, fromDate: billComparison.reference!.endDate))
                 let avgUsagePerDay = billComparison.reference!.usage / Double(daysInBillPeriod)
                 if billComparison.reference!.charges < 0 {
                     let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-                    return String(format: billCreditString, abs(billComparison.reference!.charges).currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+                    return String(format: billCreditString, abs(billComparison.reference!.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
                 } else {
-                    return String(format: localizedPrevCurrString, billComparison.reference!.charges.currencyString!, String(format: "%.1f", avgUsagePerDay), billComparison.meterUnit)
+                    return String(format: localizedPrevCurrString, billComparison.reference!.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
                 }
             } else if selectionStates[3].value { // Projected
                 let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
