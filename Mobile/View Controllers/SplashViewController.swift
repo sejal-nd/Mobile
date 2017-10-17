@@ -28,9 +28,12 @@ class SplashViewController: UIViewController{
         view.backgroundColor = .primaryColor
         
         NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
+            .skip(1) // Ignore the initial notification that fires, causing a double call to checkAppVersion
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
-                self?.checkAppVersion(callback:{self?.doLoginLogic()})
+                self?.checkAppVersion(callback: {
+                    self?.doLoginLogic()
+                })
             })
             .disposed(by: bag)
         
@@ -57,7 +60,7 @@ class SplashViewController: UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        checkAppVersion(callback:{
+        checkAppVersion(callback: {
             self.doLoginLogic()
         })
     }
