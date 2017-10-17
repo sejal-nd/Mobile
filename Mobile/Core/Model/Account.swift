@@ -86,7 +86,7 @@ struct AccountDetail: Mappable {
     let budgetBillMessage: String?
     
     let isEBillEnrollment: Bool
-    let isEBillEligible:Bool
+    let isEBillEligible: Bool
     
     let status: String?
 	
