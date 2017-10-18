@@ -88,10 +88,9 @@ class BillAnalysisViewModel {
         noPreviousData.value = false
         currentBillComparison.value = nil
         
-        // The premiseNumber/billDate force unwraps are safe because they are checked in BillViewModel: shouldShowNeedHelpUnderstanding
+        // The premiseNumber force unwrap is safe because it's checked in BillViewModel: shouldShowNeedHelpUnderstanding
         return usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
                                                 premiseNumber: accountDetail.premiseNumber!,
-                                                billDate: accountDetail.billingInfo.billDate!,
                                                 yearAgo: lastYearPreviousBillSelectedSegmentIndex.value == 0,
                                                 gas: isGas).map { [weak self] billComparison in
             self?.currentBillComparison.value = billComparison

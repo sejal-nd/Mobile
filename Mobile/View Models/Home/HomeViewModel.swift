@@ -39,8 +39,7 @@ class HomeViewModel {
                                                                                            paymentService: self.paymentService,
                                                                                            fetchingTracker: self.fetchingTracker)
     
-    private(set) lazy var usageCardViewModel = HomeUsageCardViewModel(withAccount: self.fetchData.map { _ in AccountsStore.sharedInstance.currentAccount },
-                                                                      accountDetailEvents: self.accountDetailEvents,
+    private(set) lazy var usageCardViewModel = HomeUsageCardViewModel(accountDetailEvents: self.accountDetailEvents,
                                                                       usageService: self.usageService,
                                                                       fetchingTracker: self.fetchingTracker)
     
