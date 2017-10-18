@@ -19,16 +19,18 @@ class HomeViewModel {
     private let weatherService: WeatherService
     private let walletService: WalletService
     private let paymentService: PaymentService
+    private let usageService: UsageService
     
     let fetchData = PublishSubject<FetchingAccountState>()
 
     let fetchingTracker = ActivityTracker()
     
-    required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService) {
+    required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService, usageService: UsageService) {
         self.accountService = accountService
         self.weatherService = weatherService
         self.walletService = walletService
         self.paymentService = paymentService
+        self.usageService = usageService
     }
     
     private(set) lazy var billCardViewModel: HomeBillCardViewModel = HomeBillCardViewModel(withAccount: self.fetchData.map { _ in AccountsStore.sharedInstance.currentAccount },
@@ -36,6 +38,11 @@ class HomeViewModel {
                                                                                            walletService: self.walletService,
                                                                                            paymentService: self.paymentService,
                                                                                            fetchingTracker: self.fetchingTracker)
+    
+    private(set) lazy var usageCardViewModel = HomeUsageCardViewModel(withAccount: self.fetchData.map { _ in AccountsStore.sharedInstance.currentAccount },
+                                                                      accountDetailEvents: self.accountDetailEvents,
+                                                                      usageService: self.usageService,
+                                                                      fetchingTracker: self.fetchingTracker)
     
     private(set) lazy var templateCardViewModel: TemplateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents)
     

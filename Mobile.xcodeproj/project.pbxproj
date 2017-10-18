@@ -869,6 +869,18 @@
 		E827F1921F8E9D620090C5A5 /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
 		E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */; };
 		E82FA1371EA541D100C2DABC /* ForgotPasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */; };
+		E82FF1E61F97CB8D00C50F8F /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E51F97CB8D00C50F8F /* UsageViewController.swift */; };
+		E82FF1E71F97CB8D00C50F8F /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E51F97CB8D00C50F8F /* UsageViewController.swift */; };
+		E82FF1E81F97CB8D00C50F8F /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E51F97CB8D00C50F8F /* UsageViewController.swift */; };
+		E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E91F97CC6A00C50F8F /* HomeUsageCardView.swift */; };
+		E82FF1EB1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E91F97CC6A00C50F8F /* HomeUsageCardView.swift */; };
+		E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E91F97CC6A00C50F8F /* HomeUsageCardView.swift */; };
+		E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82FF1ED1F97CC7900C50F8F /* HomeUsageCardView.xib */; };
+		E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82FF1ED1F97CC7900C50F8F /* HomeUsageCardView.xib */; };
+		E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82FF1ED1F97CC7900C50F8F /* HomeUsageCardView.xib */; };
+		E82FF1F21F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */; };
+		E82FF1F31F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */; };
+		E82FF1F41F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */; };
 		E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
 		E840BD3B1EB3C91D00812DD0 /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
 		E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
@@ -1751,6 +1763,10 @@
 		E827F18E1F8E9D620090C5A5 /* BillForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillForecast.swift; sourceTree = "<group>"; };
 		E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModelTests.swift; sourceTree = "<group>"; };
 		E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModelTests.swift; sourceTree = "<group>"; };
+		E82FF1E51F97CB8D00C50F8F /* UsageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewController.swift; sourceTree = "<group>"; };
+		E82FF1E91F97CC6A00C50F8F /* HomeUsageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUsageCardView.swift; sourceTree = "<group>"; };
+		E82FF1ED1F97CC7900C50F8F /* HomeUsageCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeUsageCardView.xib; sourceTree = "<group>"; };
+		E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUsageCardViewModel.swift; sourceTree = "<group>"; };
 		E840BD391EB3C91D00812DD0 /* BillService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillService.swift; sourceTree = "<group>"; };
 		E840BD3E1EB3CAA100812DD0 /* BudgetBillingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingInfo.swift; sourceTree = "<group>"; };
 		E840BD431EB3D4B300812DD0 /* OMCBillService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCBillService.swift; sourceTree = "<group>"; };
@@ -2424,6 +2440,8 @@
 			children = (
 				CEA215201F7900CC00689422 /* HomeBillCardView.swift */,
 				CEA215211F7900CC00689422 /* HomeBillCardView.xib */,
+				E82FF1E91F97CC6A00C50F8F /* HomeUsageCardView.swift */,
+				E82FF1ED1F97CC7900C50F8F /* HomeUsageCardView.xib */,
 				4465DE861F1FD0090014537F /* TemplateCardView.swift */,
 				4465DE881F1FD07C0014537F /* TemplateCardView.xib */,
 			);
@@ -2434,6 +2452,7 @@
 			isa = PBXGroup;
 			children = (
 				CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */,
+				E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */,
 				824004C91F25F4970012A288 /* TemplateCardViewModel.swift */,
 			);
 			path = Cards;
@@ -2645,6 +2664,7 @@
 				E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */,
 				9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */,
 				2FA5D8621F17D85A00A8B16B /* Home */,
+				E82FF1E41F97CB6B00C50F8F /* Usage */,
 				8FD5AE821E54EA39003F640D /* Login */,
 				E882B7E21EA7FE6300EA3C13 /* Bill */,
 				E80D2E301E730180002626C9 /* Outage */,
@@ -3264,6 +3284,14 @@
 				E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */,
 			);
 			path = "Info Modal";
+			sourceTree = "<group>";
+		};
+		E82FF1E41F97CB6B00C50F8F /* Usage */ = {
+			isa = PBXGroup;
+			children = (
+				E82FF1E51F97CB8D00C50F8F /* UsageViewController.swift */,
+			);
+			path = Usage;
 			sourceTree = "<group>";
 		};
 		E841F39A1F02F2A0007BFA82 /* DateDisclosureButton */ = {
@@ -3929,6 +3957,7 @@
 				6A4FDC511CBF8CE0C50F4E71 /* otp_step1.json in Resources */,
 				6A4FD491800F5449E3E9FE28 /* otps2_img_0.png in Resources */,
 				6A4FD42BB85151D3C5A08A7C /* otps2_img_1.png in Resources */,
+				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				6A4FD91EB0591B1C2C63040C /* otp_step2.json in Resources */,
 				6A4FD8F40311B79006BEA4D7 /* otps3_img_0.png in Resources */,
 				6A4FDCC9FBA97FEF77672BED /* otps3_img_1.png in Resources */,
@@ -4024,6 +4053,7 @@
 				6A4FD41C5B2744DEBEF4D69E /* otp_step1.json in Resources */,
 				6A4FDDD10550ECC33F36ECCD /* otps2_img_0.png in Resources */,
 				6A4FD076CD353CDDE34631AE /* otps2_img_1.png in Resources */,
+				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				6A4FD2E76D3407C06AB404C7 /* otp_step2.json in Resources */,
 				6A4FD3C6912E27F3EB5CCA96 /* otps3_img_0.png in Resources */,
 				6A4FDEB37967D5B806CE00FC /* otps3_img_1.png in Resources */,
@@ -4119,6 +4149,7 @@
 				6A4FD7193000B9082AA1B6E3 /* otp_step1.json in Resources */,
 				6A4FD2B09E6DFABE5CAA9485 /* otps2_img_0.png in Resources */,
 				6A4FD0AC1745C8701566B7E7 /* otps2_img_1.png in Resources */,
+				E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				6A4FD8AE71A963B756050DD9 /* otp_step2.json in Resources */,
 				6A4FD323AF99726FB2158A2E /* otps3_img_0.png in Resources */,
 				6A4FDF0D523DED06D1465E99 /* otps3_img_1.png in Resources */,
@@ -4418,6 +4449,7 @@
 				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD441EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E88B8DA11F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
+				E82FF1F21F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				54DF4BD11EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
@@ -4432,6 +4464,7 @@
 				E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
 				54C1DEF61F01A1D000290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
+				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				B56DD4A21ED87AE200F0198B /* CreditCard.swift in Sources */,
@@ -4467,6 +4500,7 @@
 				54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				826DCCE91F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
+				E82FF1E61F97CB8D00C50F8F /* UsageViewController.swift in Sources */,
 				54930DC81EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
 				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				01F6122D1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
@@ -4656,6 +4690,7 @@
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				826DCCEF1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
 				E841F3AC1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */,
+				E82FF1F41F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				0D79C6CB1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
@@ -4670,6 +4705,7 @@
 				E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
+				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				826DCCF41F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				2F3FA6391F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
@@ -4705,6 +4741,7 @@
 				E8C453291EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */,
 				54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */,
+				E82FF1E81F97CB8D00C50F8F /* UsageViewController.swift in Sources */,
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				54C1DEFC1F02B8E300290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
@@ -4894,6 +4931,7 @@
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				826DCCEE1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
 				E841F3AB1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */,
+				E82FF1F31F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				0D79C6CA1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DB1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				E8CA07DE1E9BD10000A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
@@ -4908,6 +4946,7 @@
 				E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
+				E82FF1EB1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				826DCCF31F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				2F3FA6381F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
@@ -4943,6 +4982,7 @@
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				2F5A3F811EFD870200B9E49E /* BillingHistory.swift in Sources */,
 				54AE06951ECF7809004A1FDA /* RegistrationService.swift in Sources */,
+				E82FF1E71F97CB8D00C50F8F /* UsageViewController.swift in Sources */,
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				54C1DEFB1F02B8E200290FE5 /* MoreBillingHistoryViewController.swift in Sources */,

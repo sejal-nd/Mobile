@@ -47,7 +47,8 @@ class HomeViewController: AccountPickerViewController {
     let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(),
                                   weatherService: ServiceFactory.createWeatherService(),
                                   walletService: ServiceFactory.createWalletService(),
-                                  paymentService: ServiceFactory.createPaymentService())
+                                  paymentService: ServiceFactory.createPaymentService(),
+                                  usageService: ServiceFactory.createUsageService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -84,6 +85,12 @@ class HomeViewController: AccountPickerViewController {
             .bind(to: viewModel.fetchData)
             .disposed(by: bag)
         cardStackView.addArrangedSubview(billCardView)
+        
+        let usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
+        usageCardView.viewUsageButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            self?.performSegue(withIdentifier: "usageSegue", sender: self)
+        }).disposed(by: bag)
+        cardStackView.addArrangedSubview(usageCardView)
         
         let templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
         templateCardView.callToActionViewController
