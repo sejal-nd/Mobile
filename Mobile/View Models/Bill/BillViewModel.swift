@@ -167,11 +167,14 @@ class BillViewModel {
         guard let accountDetail = $0 else { return false }
         guard let serviceType = accountDetail.serviceType else { return false }
         
-        // We need premiseNumber/billDate to make the usage API calls, so hide the button if we don't have them
+        // We need premiseNumber to make the usage API calls, so hide the button if we don't have it
         guard let premiseNumber = accountDetail.premiseNumber else { return false }
-        guard let billDate = accountDetail.billingInfo.billDate else { return false }
         
         if !accountDetail.isResidential { // Residential customers only
+            return false
+        }
+        
+        if accountDetail.isBGEControlGroup { // No BGE Control group customers
             return false
         }
         
