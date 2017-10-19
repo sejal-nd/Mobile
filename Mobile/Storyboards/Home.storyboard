@@ -94,7 +94,7 @@
                                                         <rect key="frame" x="0.0" y="128" width="375" height="100"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="751" text="Good Evening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uyw-91-O7K">
-                                                                <rect key="frame" x="16" y="34" width="177.5" height="33"/>
+                                                                <rect key="frame" x="16" y="31.5" width="175" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -103,7 +103,7 @@
                                                                 <rect key="frame" x="315" y="0.0" width="60" height="100"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="76°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-co-jWg">
-                                                                <rect key="frame" x="264.5" y="34" width="42.5" height="33"/>
+                                                                <rect key="frame" x="263" y="31.5" width="44" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -514,7 +514,7 @@
             </objects>
             <point key="canvasLocation" x="3225" y="-767"/>
         </scene>
-        <!--Total Peak Time Savings-->
+        <!--Hourly Pricing-->
         <scene sceneID="5d3-m7-Gff">
             <objects>
                 <viewController id="0D0-c9-YsT" customClass="TotalPeakTimeSavingsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
@@ -552,7 +552,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="jVf-Ks-foU" secondAttribute="trailing" priority="750" constant="29" id="gtP-TQ-h15"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Total Peak Time Savings" id="dJe-pN-P7W"/>
+                    <navigationItem key="navigationItem" title="Hourly Pricing" id="dJe-pN-P7W"/>
                     <connections>
                         <outlet property="errorLabel" destination="jVf-Ks-foU" id="fiF-2G-caA"/>
                         <outlet property="loadingIndicator" destination="4hL-ig-Y4j" id="ehK-yi-v8x"/>
