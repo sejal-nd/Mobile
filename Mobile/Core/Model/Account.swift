@@ -95,6 +95,7 @@ struct AccountDetail: Mappable {
 	let isAutoPayEligible: Bool
     let isCutOutNonPay: Bool
     let isLowIncome: Bool
+    let isFinaled: Bool
 	
 	let isAMIAccount: Bool
     let isResidential: Bool
@@ -142,6 +143,7 @@ struct AccountDetail: Mappable {
 		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
 		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
         isLowIncome = map.optionalFrom("isLowIncome") ?? false
+        isFinaled = map.optionalFrom("flagFinaled") ?? false
 		
 		isAMIAccount = map.optionalFrom("isAMIAccount") ?? false
         isResidential = map.optionalFrom("isResidential") ?? false
