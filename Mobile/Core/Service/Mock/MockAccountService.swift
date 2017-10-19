@@ -10,7 +10,6 @@ import Foundation
 
 struct MockAccountService : AccountService {
 
-    
     let testAccounts = [
         Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"]),
         Account.from(["accountNumber": "9836621902", "address": "E. Fort Ave, Ste. 200"]),
@@ -34,5 +33,10 @@ struct MockAccountService : AccountService {
     
     func setDefaultAccount(account: Account, completion: @escaping (ServiceResult<Void>) -> Void) {
         completion(ServiceResult.Success())
+    }
+    
+    func fetchSSOData(accountNumber: String, premiseNumber: String, completion: @escaping (ServiceResult<SSOData>) -> Void) {
+        let ssoData = SSOData.from(["utilityCustomerId": "1234", "ssoPostURL": "https://google.com", "relayState": "https://google.com", "samlResponse": "test"])!
+        completion(ServiceResult.Success(ssoData))
     }
 }
