@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -93,7 +94,7 @@
                                                         <rect key="frame" x="0.0" y="128" width="375" height="100"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="751" text="Good Evening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uyw-91-O7K">
-                                                                <rect key="frame" x="16" y="31.5" width="175" height="38.5"/>
+                                                                <rect key="frame" x="16" y="34" width="177.5" height="33"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -102,7 +103,7 @@
                                                                 <rect key="frame" x="315" y="0.0" width="60" height="100"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="76°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-co-jWg">
-                                                                <rect key="frame" x="263" y="31.5" width="44" height="38.5"/>
+                                                                <rect key="frame" x="264.5" y="34" width="42.5" height="33"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -285,7 +286,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Rdg-fP-HLY">
                                                                 <rect key="frame" x="15" y="18" width="287" height="113.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Hourly Pricing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0W-jh-rBj">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Hourly Pricing" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0W-jh-rBj">
                                                                         <rect key="frame" x="0.0" y="0.0" width="287" height="16.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                                                                         <nil key="textColor"/>
@@ -395,15 +396,15 @@
                         <viewControllerLayoutGuide type="bottom" id="d05-yb-hPc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="983-2g-V1a">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="LmV-Pd-KdV" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157" y="293" width="60" height="12"/>
+                                <rect key="frame" x="157" y="295.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mT7-3U-pey">
-                                <rect key="frame" x="29" y="289" width="317" height="21"/>
+                                <rect key="frame" x="29" y="291" width="317" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Zk4-7M-c4f"/>
                                 </constraints>
@@ -524,9 +525,38 @@
                     <view key="view" contentMode="scaleToFill" id="PhB-Bt-bd8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="4hL-ig-Y4j" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="157.5" y="327.5" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVf-Ks-foU">
+                                <rect key="frame" x="45" y="323" width="285" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="vAV-sT-KHq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jVf-Ks-foU" firstAttribute="centerY" secondItem="PhB-Bt-bd8" secondAttribute="centerY" id="8Yu-Fu-taB"/>
+                            <constraint firstItem="4hL-ig-Y4j" firstAttribute="centerY" secondItem="PhB-Bt-bd8" secondAttribute="centerY" id="9E2-za-cOT"/>
+                            <constraint firstItem="jVf-Ks-foU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PhB-Bt-bd8" secondAttribute="leading" constant="29" id="Eaa-bz-y1e"/>
+                            <constraint firstItem="4hL-ig-Y4j" firstAttribute="centerX" secondItem="PhB-Bt-bd8" secondAttribute="centerX" id="GLi-EC-BlG"/>
+                            <constraint firstItem="jVf-Ks-foU" firstAttribute="centerX" secondItem="PhB-Bt-bd8" secondAttribute="centerX" id="Jno-ON-nnB"/>
+                            <constraint firstItem="jVf-Ks-foU" firstAttribute="leading" secondItem="PhB-Bt-bd8" secondAttribute="leadingMargin" priority="750" constant="29" id="W6K-cW-xWk"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jVf-Ks-foU" secondAttribute="trailing" constant="29" id="bOn-f7-8MZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jVf-Ks-foU" secondAttribute="trailing" priority="750" constant="29" id="gtP-TQ-h15"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Total Peak Time Savings" id="dJe-pN-P7W"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="jVf-Ks-foU" id="fiF-2G-caA"/>
+                        <outlet property="loadingIndicator" destination="4hL-ig-Y4j" id="ehK-yi-v8x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yro-au-gbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

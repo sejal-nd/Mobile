@@ -42,7 +42,17 @@ class UsageViewController: UIViewController {
     func styleViews() {
         hourlyPricingCard.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         hourlyPricingCard.layer.cornerRadius = 2
-        hourlyPricingCard.isHidden = Environment.sharedInstance.opco != .comEd
+        hourlyPricingCard.isHidden = Environment.sharedInstance.opco != .comEd && accountDetail.isResidential
+        
+        if accountDetail.isHourlyPricing {
+            hourlyPricingTitleLabel.text = NSLocalizedString("Hourly Pricing", comment: "")
+            hourlyPricingBodyLabel.text = NSLocalizedString("See how your savings stack up, view your usage, check real-time prices, and more.", comment: "")
+            takeMeToSavingsButton.setTitle(NSLocalizedString("Take Me to Savings!", comment: ""), for: .normal)
+        } else {
+            hourlyPricingTitleLabel.text = NSLocalizedString("Consider ComEd’s Other Rate – Hourly Pricing", comment: "")
+            hourlyPricingBodyLabel.text = NSLocalizedString("Save on ComEd’s Hourly Pricing program. It’s simple: shift your usage to times when the price of energy is lower to reduce your bill.", comment: "")
+            takeMeToSavingsButton.setTitle(NSLocalizedString("Enroll Me Now", comment: ""), for: .normal)
+        }
         
         hourlyPricingTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
         hourlyPricingTitleLabel.textColor = .blackText
@@ -51,7 +61,6 @@ class UsageViewController: UIViewController {
         
         takeMeToSavingsButton.setTitleColor(.actionBlue, for: .normal)
         takeMeToSavingsButton.titleLabel?.font = SystemFont.medium.of(textStyle: .headline)
-        
     }
     
     func buttonTapSetup() {
@@ -71,7 +80,8 @@ class UsageViewController: UIViewController {
             vc.accountDetail = accountDetail
         case _ as Top5EnergyTipsViewController: break
         case _ as MyHomeProfileViewController: break
-        case _ as TotalPeakTimeSavingsViewController: break
+        case let vc as TotalPeakTimeSavingsViewController:
+            vc.accountDetail = accountDetail
         default: break
         }
     }
