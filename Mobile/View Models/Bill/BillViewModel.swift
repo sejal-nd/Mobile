@@ -167,20 +167,15 @@ class BillViewModel {
         guard let accountDetail = $0 else { return false }
         guard let serviceType = accountDetail.serviceType else { return false }
         
-        // We need premiseNumber/billDate to make the usage API calls, so hide the button if we don't have them
+        // We need premiseNumber to make the usage API calls, so hide the button if we don't have it
         guard let premiseNumber = accountDetail.premiseNumber else { return false }
-        guard let billDate = accountDetail.billingInfo.billDate else { return false }
         
-        if !accountDetail.isResidential { // Residential customers only
+        if !accountDetail.isResidential || accountDetail.isBGEControlGroup || accountDetail.isFinaled {
             return false
         }
         
         // Must have valid serviceType
         if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-            return false
-        }
-        
-        if let status = accountDetail.status, status.lowercased() == "finaled" { // No finaled accounts
             return false
         }
 
