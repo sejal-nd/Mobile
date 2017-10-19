@@ -170,20 +170,12 @@ class BillViewModel {
         // We need premiseNumber to make the usage API calls, so hide the button if we don't have it
         guard let premiseNumber = accountDetail.premiseNumber else { return false }
         
-        if !accountDetail.isResidential { // Residential customers only
-            return false
-        }
-        
-        if accountDetail.isBGEControlGroup { // No BGE Control group customers
+        if !accountDetail.isResidential || accountDetail.isBGEControlGroup || accountDetail.isFinaled {
             return false
         }
         
         // Must have valid serviceType
         if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-            return false
-        }
-        
-        if let status = accountDetail.status, status.lowercased() == "finaled" { // No finaled accounts
             return false
         }
 
