@@ -20,6 +20,7 @@ class HomeUsageCardView: UIView {
     @IBOutlet weak var errorView: UIView!
     
     @IBOutlet weak var viewUsageButton: UIButton!
+    @IBOutlet weak var stackView: UIStackView!
     
     fileprivate var viewModel: HomeUsageCardViewModel! {
         didSet {
@@ -42,6 +43,8 @@ class HomeUsageCardView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        stackView.bringSubview(toFront: segmentedControl)
+        
         styleViews()
     }
     
@@ -49,7 +52,13 @@ class HomeUsageCardView: UIView {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         layer.cornerRadius = 2
         
+        titleLabel.textColor = .blackText
+        titleLabel.font = OpenSans.semibold.of(size: 18)
+        
+        billComparisonContentView.backgroundColor = .softGray
 
+        viewUsageButton.setTitleColor(.actionBlue, for: .normal)
+        viewUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
 
     }
     
