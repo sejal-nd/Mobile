@@ -87,9 +87,12 @@ class HomeViewController: AccountPickerViewController {
         cardStackView.addArrangedSubview(billCardView)
         
         let usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
-        usageCardView.viewUsageButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            self?.performSegue(withIdentifier: "usageSegue", sender: self)
-        }).disposed(by: bag)
+        usageCardView.viewUsageButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.accountDetailEvents.elements()
+            .asDriver(onErrorDriveWith: .empty()))
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "usageSegue", sender: $0)
+            }).disposed(by: bag)
         cardStackView.addArrangedSubview(usageCardView)
         
         let templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
@@ -221,6 +224,12 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? UsageViewController, let accountDetail = sender as? AccountDetail {
+            vc.accountDetail = accountDetail
+        }
     }
     
 }
