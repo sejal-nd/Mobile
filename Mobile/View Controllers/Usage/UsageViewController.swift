@@ -14,18 +14,18 @@ class UsageViewController: UIViewController {
     
     let disposeBag = DisposeBag()
 
-    @IBOutlet weak var accountPicker: AccountPicker!
     @IBOutlet weak var usageGraphPlaceholderButton: DisclosureButton!
     @IBOutlet weak var top5EnergyTipsButton: DisclosureButton!
     @IBOutlet weak var updateYourHomeProfileButton: DisclosureButton!
+    @IBOutlet weak var hourlyPricingCard: UIView!
+    @IBOutlet weak var hourlyPricingTitleLabel: UILabel!
+    @IBOutlet weak var hourlyPricingBodyLabel: UILabel!
     @IBOutlet weak var takeMeToSavingsButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        accountPicker.loadAccounts()
-        accountPicker.updateCurrentAccount()
-        
+        styleViews()
         buttonTapSetup()
     }
     
@@ -35,6 +35,21 @@ class UsageViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setWhiteNavBar()
         }
+    }
+    
+    func styleViews() {
+        hourlyPricingCard.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        hourlyPricingCard.layer.cornerRadius = 2
+        hourlyPricingCard.isHidden = Environment.sharedInstance.opco != .comEd
+        
+        hourlyPricingTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
+        hourlyPricingTitleLabel.textColor = .blackText
+        hourlyPricingBodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        hourlyPricingBodyLabel.textColor = .deepGray
+        
+        takeMeToSavingsButton.setTitleColor(.actionBlue, for: .normal)
+        takeMeToSavingsButton.titleLabel?.font = SystemFont.medium.of(textStyle: .headline)
+        
     }
     
     func buttonTapSetup() {
