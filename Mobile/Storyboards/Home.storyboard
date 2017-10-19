@@ -94,7 +94,7 @@
                                                         <rect key="frame" x="0.0" y="128" width="375" height="100"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="751" text="Good Evening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uyw-91-O7K">
-                                                                <rect key="frame" x="16" y="31.5" width="175" height="38.5"/>
+                                                                <rect key="frame" x="16" y="34" width="177.5" height="33"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -103,7 +103,7 @@
                                                                 <rect key="frame" x="315" y="0.0" width="60" height="100"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="76°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-co-jWg">
-                                                                <rect key="frame" x="263" y="31.5" width="44" height="38.5"/>
+                                                                <rect key="frame" x="264.5" y="34" width="42.5" height="33"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -380,7 +380,7 @@
                         <segue destination="bou-Sk-Huo" kind="show" identifier="usageWebViewSegue" id="QcF-jX-z2y"/>
                         <segue destination="ElB-Na-CUh" kind="presentation" identifier="top5EnergyTipsSegue" modalPresentationStyle="formSheet" id="LcQ-ez-2gC"/>
                         <segue destination="HGo-e4-8Tq" kind="show" identifier="updateYourHomeProfileSegue" id="oip-LV-cyT"/>
-                        <segue destination="0D0-c9-YsT" kind="show" identifier="takeMeToSavingsSegue" id="Pp6-ns-mZg"/>
+                        <segue destination="0D0-c9-YsT" kind="show" identifier="hourlyPricingSegue" id="Pp6-ns-mZg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yss-Hv-HTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -400,7 +400,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="LmV-Pd-KdV" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157" y="295.5" width="60" height="12"/>
+                                <rect key="frame" x="157.5" y="295.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mT7-3U-pey">
@@ -517,7 +517,7 @@
         <!--Hourly Pricing-->
         <scene sceneID="5d3-m7-Gff">
             <objects>
-                <viewController id="0D0-c9-YsT" customClass="TotalPeakTimeSavingsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0D0-c9-YsT" customClass="HourlyPricingViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m3c-yy-y7a"/>
                         <viewControllerLayoutGuide type="bottom" id="nku-DY-Rbp"/>

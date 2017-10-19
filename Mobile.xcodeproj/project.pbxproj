@@ -470,9 +470,9 @@
 		82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */; };
 		82EAB33D1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */; };
 		82EAB33E1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */; };
-		82EAB3401F97EFF8008B55B1 /* TotalPeakTimeSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33F1F97EFF8008B55B1 /* TotalPeakTimeSavingsViewController.swift */; };
-		82EAB3411F97EFF8008B55B1 /* TotalPeakTimeSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33F1F97EFF8008B55B1 /* TotalPeakTimeSavingsViewController.swift */; };
-		82EAB3421F97EFF8008B55B1 /* TotalPeakTimeSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33F1F97EFF8008B55B1 /* TotalPeakTimeSavingsViewController.swift */; };
+		82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */; };
+		82EAB3411F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */; };
+		82EAB3421F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */; };
 		82EAB3441F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3431F97F01B008B55B1 /* MyHomeProfileViewController.swift */; };
 		82EAB3451F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3431F97F01B008B55B1 /* MyHomeProfileViewController.swift */; };
 		82EAB3461F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3431F97F01B008B55B1 /* MyHomeProfileViewController.swift */; };
@@ -1506,7 +1506,7 @@
 		82EAB3331F97E078008B55B1 /* UsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModel.swift; sourceTree = "<group>"; };
 		82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageWebViewController.swift; sourceTree = "<group>"; };
 		82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5EnergyTipsViewController.swift; sourceTree = "<group>"; };
-		82EAB33F1F97EFF8008B55B1 /* TotalPeakTimeSavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalPeakTimeSavingsViewController.swift; sourceTree = "<group>"; };
+		82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyPricingViewController.swift; sourceTree = "<group>"; };
 		82EAB3431F97F01B008B55B1 /* MyHomeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeProfileViewController.swift; sourceTree = "<group>"; };
 		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -3326,7 +3326,7 @@
 				E82FF1E51F97CB8D00C50F8F /* UsageViewController.swift */,
 				82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */,
 				82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */,
-				82EAB33F1F97EFF8008B55B1 /* TotalPeakTimeSavingsViewController.swift */,
+				82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */,
 				82EAB3431F97F01B008B55B1 /* MyHomeProfileViewController.swift */,
 			);
 			path = Usage;
@@ -4354,7 +4354,7 @@
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				E841F3AA1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
-				82EAB3401F97EFF8008B55B1 /* TotalPeakTimeSavingsViewController.swift in Sources */,
+				82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
@@ -4601,7 +4601,7 @@
 				82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF21EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
-				82EAB3421F97EFF8008B55B1 /* TotalPeakTimeSavingsViewController.swift in Sources */,
+				82EAB3421F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				E827D2331ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
@@ -4848,7 +4848,7 @@
 				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
-				82EAB3411F97EFF8008B55B1 /* TotalPeakTimeSavingsViewController.swift in Sources */,
+				82EAB3411F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				E827D2321ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,

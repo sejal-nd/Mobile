@@ -1,5 +1,5 @@
 //
-//  TotalPeakTimeSavingsViewController.swift
+//  HourlyPricingViewController.swift
 //  Mobile
 //
 //  Created by Sam Francis on 10/18/17.
@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class TotalPeakTimeSavingsViewController: UIViewController {
+class HourlyPricingViewController: UIViewController {
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
@@ -61,7 +61,7 @@ class TotalPeakTimeSavingsViewController: UIViewController {
     
 }
 
-extension TotalPeakTimeSavingsViewController: WKNavigationDelegate {
+extension HourlyPricingViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         loadingIndicator.isHidden = true
         webView.isHidden = false
