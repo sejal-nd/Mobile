@@ -838,6 +838,10 @@
 		E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
 		E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
 		E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
+		E80CBD0F1F98EC930039D9E7 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
+		E80CBD101F98EC930039D9E7 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
+		E80CBD111F98EC930039D9E7 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
+		E80CBD121F98EC930039D9E7 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
 		E80D2E171E721668002626C9 /* MaskedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* MaskedString.swift */; };
 		E80D2E181E721668002626C9 /* MaskedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* MaskedString.swift */; };
 		E80D2E191E721668002626C9 /* MaskedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* MaskedString.swift */; };
@@ -1762,6 +1766,7 @@
 		E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniWalletTableViewCell.swift; sourceTree = "<group>"; };
 		E803A0031EFC12BB004DB789 /* MiniWalletViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniWalletViewModel.swift; sourceTree = "<group>"; };
 		E8067C901EC3C257004C2724 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		E80CBD0E1F98EC930039D9E7 /* SSOData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSOData.swift; sourceTree = "<group>"; };
 		E80D2E161E721668002626C9 /* MaskedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedString.swift; sourceTree = "<group>"; };
 		E80D2E261E72FC2C002626C9 /* AccountPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPicker.swift; sourceTree = "<group>"; };
 		E80D2E2B1E72FEC5002626C9 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -3219,6 +3224,7 @@
 				0D79C6D01F1FB761004793DD /* Maintenance.swift */,
 				E8790BE61F8C18C20067BE85 /* BillComparison.swift */,
 				E827F18E1F8E9D620090C5A5 /* BillForecast.swift */,
+				E80CBD0E1F98EC930039D9E7 /* SSOData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4378,6 +4384,7 @@
 				E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				826DCCF21F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				E80CBD0F1F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
@@ -4624,6 +4631,7 @@
 				22EBDCCF1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				82A18E6A1EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
+				E80CBD111F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8EDC54C1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E801BAD71E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
 				E8BCB9BC1EFAE79700779588 /* BGEAutoPayViewModel.swift in Sources */,
@@ -4870,6 +4878,7 @@
 				22EBDCCE1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				82A18E691EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E991EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
+				E80CBD101F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E801BAD61E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
 				E8BCB9BB1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
@@ -5116,6 +5125,7 @@
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
 				E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */,
 				54EDD2E21ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
+				E80CBD121F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8790BEA1F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,

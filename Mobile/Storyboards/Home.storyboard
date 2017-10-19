@@ -365,7 +365,9 @@
                             <constraint firstItem="Wz6-M2-3es" firstAttribute="leading" secondItem="MbZ-y6-3Ph" secondAttribute="leading" id="oXB-kF-cKO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Usage" id="Eaz-ez-xP8"/>
+                    <navigationItem key="navigationItem" title="Usage" id="Eaz-ez-xP8">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="YTz-e5-ciM"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="hourlyPricingBodyLabel" destination="dZQ-n7-DZ4" id="NXo-p5-Ahj"/>
                         <outlet property="hourlyPricingCard" destination="kvX-CQ-gj0" id="aoc-Yj-Q3W"/>
@@ -393,15 +395,43 @@
                         <viewControllerLayoutGuide type="bottom" id="d05-yb-hPc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="983-2g-V1a">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="LmV-Pd-KdV" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="157" y="293" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mT7-3U-pey">
+                                <rect key="frame" x="29" y="289" width="317" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Zk4-7M-c4f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LmV-Pd-KdV" firstAttribute="centerX" secondItem="983-2g-V1a" secondAttribute="centerX" id="35G-GH-IYo"/>
+                            <constraint firstItem="mT7-3U-pey" firstAttribute="centerY" secondItem="983-2g-V1a" secondAttribute="centerY" id="3KF-gz-ygX"/>
+                            <constraint firstAttribute="trailing" secondItem="mT7-3U-pey" secondAttribute="trailing" priority="999" constant="29" id="9E4-ho-Kfg"/>
+                            <constraint firstItem="mT7-3U-pey" firstAttribute="centerX" secondItem="983-2g-V1a" secondAttribute="centerX" id="WgG-ca-9hU"/>
+                            <constraint firstItem="mT7-3U-pey" firstAttribute="leading" secondItem="983-2g-V1a" secondAttribute="leading" priority="999" constant="29" id="pab-Dr-oUf"/>
+                            <constraint firstItem="LmV-Pd-KdV" firstAttribute="centerY" secondItem="983-2g-V1a" secondAttribute="centerY" id="t2S-zJ-D0k"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Usage" id="1ew-Xq-Hgm"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="mT7-3U-pey" id="ul3-Gy-JK4"/>
+                        <outlet property="loadingIndicator" destination="LmV-Pd-KdV" id="QzT-rY-ap8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7A-jf-feU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3225" y="-2207"/>
+            <point key="canvasLocation" x="3225" y="-2289"/>
         </scene>
         <!--Top5 Energy Tips View Controller-->
         <scene sceneID="GFy-KX-of7">

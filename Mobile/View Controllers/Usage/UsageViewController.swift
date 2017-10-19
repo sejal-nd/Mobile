@@ -22,6 +22,8 @@ class UsageViewController: UIViewController {
     @IBOutlet weak var hourlyPricingBodyLabel: UILabel!
     @IBOutlet weak var takeMeToSavingsButton: UIButton!
     
+    var accountDetail: AccountDetail! // Passed from HomeViewController
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,8 +67,8 @@ class UsageViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.destination {
-        //case let usageVC as UsageWebViewController:
-        case _ as UsageWebViewController:
+        case let vc as UsageWebViewController:
+            vc.accountDetail = accountDetail
             break
         case _ as Top5EnergyTipsViewController:
             break
