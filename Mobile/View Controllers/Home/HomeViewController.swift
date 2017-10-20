@@ -95,6 +95,7 @@ class HomeViewController: AccountPickerViewController {
                 self?.performSegue(withIdentifier: "usageSegue", sender: $0)
             }).disposed(by: bag)
         cardStackView.addArrangedSubview(usageCardView)
+        viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: bag)
         
         let templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
         templateCardView.callToActionViewController

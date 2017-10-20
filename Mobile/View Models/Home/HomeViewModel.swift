@@ -122,4 +122,24 @@ class HomeViewModel {
     private(set) lazy var showWeatherDetails: Driver<Bool> = Driver.combineLatest(self.isSwitchingAccounts, self.weatherSuccess)
         .map { !$0 && $1 }
     
+    private(set) lazy var shouldShowUsageCard: Driver<Bool> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()).map { accountDetail in
+        guard let serviceType = accountDetail.serviceType else { return false }
+        guard let premiseNumber = accountDetail.premiseNumber else { return false }
+        
+        if accountDetail.isBGEControlGroup {
+            return accountDetail.isSERAccount // BGE Control Group + SER enrollment get the SER graph on usage card
+        }
+        
+        if !accountDetail.isResidential || accountDetail.isFinaled {
+            return false
+        }
+        
+        // Must have valid serviceType
+        if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
+            return false
+        }
+        
+        return true
+    }
+    
 }

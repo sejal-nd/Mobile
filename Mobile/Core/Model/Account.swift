@@ -20,7 +20,7 @@ private func extractDate(object: Any?) throws -> Date {
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
-    let premises: Array<Premise>
+    let premises: [Premise]
     var currentPremise: Premise?
     
     let status: String?
@@ -70,6 +70,7 @@ struct AccountDetail: Mappable {
     let customerInfo: CustomerInfo
     let billingInfo: BillingInfo
     let SERInfo: SERInfo
+    let premiseInfo: [Premise]
     
     let isPasswordProtected: Bool
     let hasElectricSupplier: Bool
@@ -80,6 +81,8 @@ struct AccountDetail: Mappable {
     let isActiveSeverance: Bool
     let isHourlyPricing: Bool
     let isBGEControlGroup: Bool
+    let isPTSAccount: Bool // ComEd only - Peak Time Savings enrollment status
+    let isSERAccount: Bool // BGE only - Smart Energy Rewards enrollment status
 
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
@@ -120,6 +123,19 @@ struct AccountDetail: Mappable {
             isBGEControlGroup = true
         } else {
             isBGEControlGroup = false
+        }
+        isPTSAccount = map.optionalFrom("isPTSAccount") ?? false
+        
+        premiseInfo = map.optionalFrom("PremiseInfo") ?? []
+        if !premiseInfo.isEmpty {
+            let premise = premiseInfo[0]
+            if let smartEnergyRewards = premise.smartEnergyRewards, smartEnergyRewards == "ENROLLED" {
+                isSERAccount = true
+            } else {
+                isSERAccount = false
+            }
+        } else {
+            isSERAccount = false
         }
         
         isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
