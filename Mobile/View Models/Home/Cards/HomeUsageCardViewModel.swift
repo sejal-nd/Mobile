@@ -18,7 +18,6 @@ class HomeUsageCardViewModel {
     
     let fetchingTracker: ActivityTracker
     let loadingTracker = ActivityTracker()
-    //var switchingSegment = false
     
     let electricGasSelectedSegmentIndex = Variable(0)
     
@@ -180,66 +179,46 @@ class HomeUsageCardViewModel {
             if selectionStates[0].value { // No data
                 return NSLocalizedString("Previous Bill", comment: "")
             } else if selectionStates[1].value { // Previous
-                return "\(billComparison.compared!.startDate.fullMonthAndDayString) - \(billComparison.compared!.endDate.fullMonthAndDayString)"
+                if let compared = billComparison.compared {
+                    return "\(compared.startDate.fullMonthAndDayString) - \(compared.endDate.fullMonthAndDayString)"
+                }
             } else if selectionStates[2].value { // Current
-                return "\(billComparison.reference!.startDate.fullMonthAndDayString) - \(billComparison.reference!.endDate.fullMonthAndDayString)"
+                if let reference = billComparison.reference {
+                    return "\(reference.startDate.fullMonthAndDayString) - \(reference.endDate.fullMonthAndDayString)"
+                }
             }
             return nil
-    }
+        }
     
-//    private(set) lazy var barDescriptionTotalBillLabelText: Driver<String?> =
-//
-//    private(set) lazy var barDescriptionDetailLabelText: Driver<String?> =
-//        Driver.combineLatest(self.currentBillComparison.asDriver(),
-//                             self.barGraphSelectionStates.asDriver(),
-//                             self.electricForecast.asDriver(),
-//                             self.gasForecast.asDriver(),
-//                             self.electricGasSelectedSegmentIndex.asDriver(),
-//                             self.isFetching.asDriver()) { [weak self] currentBillComparison, selectionStates, elecForecast, gasForecast, dontUseThis, isFetching in
-//                                // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-//                                guard let `self` = self else { return nil }
-//                                if isFetching { return nil }
-//                                guard let billComparison = currentBillComparison else { return nil }
-//                                let localizedPrevCurrString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
-//                                if selectionStates[0].value { // No data
-//                                    return NSLocalizedString("Not enough data available.", comment: "")
-//                                } else if selectionStates[1].value { // Previous
-//                                    let daysInBillPeriod = abs(billComparison.compared!.startDate.interval(ofComponent: .day, fromDate: billComparison.compared!.endDate))
-//                                    let avgUsagePerDay = billComparison.compared!.usage / Double(daysInBillPeriod)
-//                                    if billComparison.compared!.charges < 0 {
-//                                        let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-//                                        return String(format: billCreditString, abs(billComparison.compared!.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
-//                                    } else {
-//                                        return String(format: localizedPrevCurrString, billComparison.compared!.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
-//                                    }
-//                                } else if selectionStates[2].value { // Current
-//                                    let daysInBillPeriod = abs(billComparison.reference!.startDate.interval(ofComponent: .day, fromDate: billComparison.reference!.endDate))
-//                                    let avgUsagePerDay = billComparison.reference!.usage / Double(daysInBillPeriod)
-//                                    if billComparison.reference!.charges < 0 {
-//                                        let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-//                                        return String(format: billCreditString, abs(billComparison.reference!.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
-//                                    } else {
-//                                        return String(format: localizedPrevCurrString, billComparison.reference!.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
-//                                    }
-//                                } else if selectionStates[3].value { // Projected
-//                                    let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
-//                                        "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
-//                                    if let gasForecast = gasForecast, self.isGas {
-//                                        if let projectedCost = gasForecast.projectedCost, let toDateCost = gasForecast.toDateCost {
-//                                            return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
-//                                        }
-//                                    }
-//                                    if let elecForecast = elecForecast, !self.isGas {
-//                                        if let projectedCost = elecForecast.projectedCost, let toDateCost = elecForecast.toDateCost {
-//                                            return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
-//                                        }
-//                                    }
-//                                } else if selectionStates[4].value { // Projection Not Available
-//                                    return NSLocalizedString("Data becomes available once you are more than 7 days into the billing cycle.", comment: "")
-//                                }
-//                                return nil
-//    }
-//
+    private(set) lazy var barDescriptionTotalBillValueLabelText: Driver<String?> =
+        Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
+            guard let `self` = self else { return nil }
+            if selectionStates[1].value { // Previous
+                if let compared = billComparison.compared {
+                    return compared.charges.currencyString!
+                }
+            } else if selectionStates[2].value { // Current
+                if let reference = billComparison.reference {
+                    return reference.charges.currencyString!
+                }
+            }
+            return nil
+        }
+    
+    private(set) lazy var barDescriptionUsageValueLabelText: Driver<String?> =
+        Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
+            guard let `self` = self else { return nil }
+            if selectionStates[1].value { // Previous
+                if let compared = billComparison.compared {
+                    return "\(Int(compared.usage)) \(billComparison.meterUnit)"
+                }
+            } else if selectionStates[2].value { // Current
+                if let reference = billComparison.reference {
+                    return "\(Int(reference.usage)) \(billComparison.meterUnit)"
+                }
+            }
+            return nil
+        }
     
     // MARK: Selection States
     
