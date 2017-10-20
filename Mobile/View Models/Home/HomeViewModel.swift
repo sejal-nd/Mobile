@@ -123,4 +123,66 @@ class HomeViewModel {
     private(set) lazy var showWeatherDetails: Driver<Bool> = Driver.combineLatest(self.isSwitchingAccounts, self.weatherSuccess)
         .map { !$0 && $1 }
     
+    private(set) lazy var isTemperatureTipEligible: Observable<Bool> = Observable.combineLatest(self.weatherEvents.elements().asObservable(),
+                                                                                                self.accountDetailEvents.elements())
+        {
+            if !$1.isResidential {
+                return false
+            }
+            
+            let opco = Environment.sharedInstance.opco
+            
+            if (opco == .comEd || opco == .peco) && $1.isFinaled {
+                return false
+            }
+            
+            if $1.isBGEControlGroup {
+                return false
+            }
+            
+            if opco == .bge && ($1.serviceType ?? "").isEmpty {
+                return false
+            }
+            
+            return true
+        }
+    
+    private(set) lazy var isHighTemperature: Observable<Bool> = self.weatherEvents.elements()
+        .map {
+            switch Environment.sharedInstance.opco {
+            case .bge:
+                return $0.temperature >= 86
+            case .comEd:
+                return $0.temperature >= 81
+            case .peco:
+                return $0.temperature >= 80
+            }
+        }
+    
+    private(set) lazy var isLowTemperature: Observable<Bool> = self.weatherEvents.elements()
+        .map {
+            switch Environment.sharedInstance.opco {
+            case .bge:
+                return $0.temperature <= 32
+            case .comEd:
+                return $0.temperature <= 21
+            case .peco:
+                return $0.temperature <= 27
+            }
+        }
+    
+    private(set) lazy var temperatureTipText: Driver<String?> = Observable.combineLatest(self.isTemperatureTipEligible,
+                                                                                         self.isHighTemperature,
+                                                                                         self.isLowTemperature)
+    {
+        guard $0 else { return nil }
+        if $1 {
+            return NSLocalizedString("High Temperature Tip", comment: "")
+        } else if $2 {
+            return NSLocalizedString("Low Temperature Tip", comment: "")
+        } else {
+            return nil
+        }
+    }
+        .asDriver(onErrorDriveWith: .empty())
 }

@@ -26,6 +26,10 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImage: UIImageView!
     
+    @IBOutlet weak var temperatureTipContainer: UIStackView!
+    @IBOutlet weak var temperatureTipImageView: UIImageView!
+    @IBOutlet weak var temperatureTipLabel: UILabel!
+    
     @IBOutlet weak var cardStackView: UIStackView!
     
     @IBOutlet weak var loadingView: UIView!
@@ -188,6 +192,8 @@ class HomeViewController: AccountPickerViewController {
         viewModel.weatherTemp.drive(temperatureLabel.rx.text).disposed(by: bag)
         viewModel.weatherIcon.drive(weatherIconImage.rx.image).disposed(by: bag)
         viewModel.weatherIconA11yLabel.drive(weatherIconImage.rx.accessibilityLabel).disposed(by: bag)
+        
+        
         
         noNetworkConnectionView.reload
             .map { FetchingAccountState.switchAccount }
