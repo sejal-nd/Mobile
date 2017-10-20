@@ -169,7 +169,16 @@ class HomeViewModel {
             case .peco:
                 return $0.temperature <= 27
             }
-        }
+    }
+    
+    private(set) lazy var showTemperatureTip: Driver<Bool> = Observable.combineLatest(self.showWeatherDetails.asObservable(),
+                                                                                      self.isTemperatureTipEligible,
+                                                                                      self.isHighTemperature,
+                                                                                      self.isLowTemperature)
+    { $0 && $1 && ($2 || $3) }
+        .startWith(false)
+        .asDriver(onErrorDriveWith: .empty())
+    
     
     private(set) lazy var temperatureTipText: Driver<String?> = Observable.combineLatest(self.isTemperatureTipEligible,
                                                                                          self.isHighTemperature,
@@ -183,6 +192,39 @@ class HomeViewModel {
         } else {
             return nil
         }
+        }
+        .startWith(nil)
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var temperatureTipImage: Driver<UIImage?> = Observable.combineLatest(self.isTemperatureTipEligible,
+                                                                                           self.isHighTemperature,
+                                                                                           self.isLowTemperature)
+    {
+        guard $0 else { return nil }
+        if $1 {
+            return #imageLiteral(resourceName: "ic_home_hightemp")
+        } else if $2 {
+            return #imageLiteral(resourceName: "ic_home_lowtemp")
+        } else {
+            return nil
+        }
+        }
+        .startWith(nil)
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var temperatureTipModalData: Driver<(title: String, image: UIImage, body: String)> = Observable
+        .combineLatest(self.isHighTemperature,
+                       self.temperatureTipText.asObservable().unwrap())
+        {
+            let title = $1
+            let image = $0 ? #imageLiteral(resourceName: "img_hightemp") : #imageLiteral(resourceName: "img_lowtemp")
+            let body = """
+                Depending where you live in the country, cooling can account for a significant portion of your home's energy bill. In some southern climates, it can easily account for half of the cost, particularly in homes having air conditioning.
+                
+                The type of cooling system and the amount of energy it uses depends largely on local climate. However, the home's characteristics and the resident's personal needs play roles as well.
+                """
+            
+            return (title, image, body)
     }
         .asDriver(onErrorDriveWith: .empty())
 }
