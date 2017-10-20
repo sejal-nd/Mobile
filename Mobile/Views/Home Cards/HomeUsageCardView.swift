@@ -13,7 +13,6 @@ class HomeUsageCardView: UIView {
     
     var disposeBag = DisposeBag()
     
-    @IBOutlet weak var titleContainerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var stackView: UIStackView!
@@ -108,6 +107,18 @@ class HomeUsageCardView: UIView {
         billComparisonContentView.backgroundColor = .softGray
         
         styleBarGraph()
+        
+        barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
+        barDescriptionDateLabel.textColor = .blackText
+        barDescriptionDateLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        barDescriptionTotalBillTitleLabel.textColor = .blackText
+        barDescriptionTotalBillTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        barDescriptionTotalBillValueLabel.textColor = .blackText
+        barDescriptionTotalBillValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        barDescriptionUsageTitleLabel.textColor = .blackText
+        barDescriptionUsageTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        barDescriptionUsageValueLabel.textColor = .blackText
+        barDescriptionUsageValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
 
         viewUsageButton.setTitleColor(.actionBlue, for: .normal)
         viewUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
@@ -137,12 +148,16 @@ class HomeUsageCardView: UIView {
         viewModel.shouldShowBillComparisonContentView.not().drive(billComparisonContentView.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.loadingTracker.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowErrorView.drive(titleContainerView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorView.not().drive(errorView.rx.isHidden).disposed(by: disposeBag)
         
         // Segmented Controls
         viewModel.shouldShowElectricGasSegmentedControl.not().drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
+        viewModel.billComparisonEvents.subscribe({ [weak self] _ in
+            guard let `self` = self else { return }
+            self.moveTriangleTo(centerPoint: self.currentContainerButton.center)
+            self.viewModel.setBarSelected(tag: 2)
+        }).disposed(by: disposeBag)
         
         // Bar graph height constraints
         viewModel.previousBarHeightConstraintValue.drive(previousBarHeightConstraint.rx.constant).disposed(by: disposeBag)
@@ -165,6 +180,9 @@ class HomeUsageCardView: UIView {
         currentLabelFont.drive(currentDollarLabel.rx.font).disposed(by: disposeBag)
         currentLabelFont.drive(currentDateLabel.rx.font).disposed(by: disposeBag)
         currentDollarLabelTextColor.drive(currentDollarLabel.rx.textColor).disposed(by: disposeBag)
+        
+        // Bar description
+        viewModel.barDescriptionDateLabelText.drive(barDescriptionDateLabel.rx.text).disposed(by: disposeBag)
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {
