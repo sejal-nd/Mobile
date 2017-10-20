@@ -44,6 +44,11 @@ class HomeUsageCardViewModel {
         .flatMapLatest { [unowned self] accountDetail, segmentIndex -> Observable<Event<BillComparison>> in
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             guard let serviceType = accountDetail.serviceType else { return .empty() }
+
+            if !accountDetail.isResidential || accountDetail.isBGEControlGroup || accountDetail.isFinaled {
+                return .empty()
+            }
+            
             if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
                 return .empty()
             }
@@ -92,6 +97,12 @@ class HomeUsageCardViewModel {
 //        }
 //        return false
 //    }
+    
+    // MARK: Bill Comparison
+    
+    private(set) lazy var shouldShowBillComparison: Driver<Bool> = Driver.combineLatest(self.shouldShowSmartEnergyRewards, self.shouldShowSmartEnergyEmptyState) {
+        return !$0 && !$1
+    }
     
     private(set) lazy var shouldShowErrorView: Driver<Bool> =
         Observable.combineLatest(self.loadingTracker.asObservable(), self.billComparisonEvents) {
@@ -228,6 +239,22 @@ class HomeUsageCardViewModel {
             boolVar.value = i == tag
         }
         barGraphSelectionStates.value = barGraphSelectionStates.value // Trigger Variable onNext
+    }
+    
+    // MARK: Smart Energy Rewards
+    
+    private(set) lazy var shouldShowSmartEnergyRewards: Driver<Bool> = self.accountDetailDriver.map {
+        if $0.isBGEControlGroup && $0.isSERAccount {
+            return $0.SERInfo.eventResults.count > 0
+        }
+        return false
+    }
+    
+    private(set) lazy var shouldShowSmartEnergyEmptyState: Driver<Bool> = self.accountDetailDriver.map {
+        if $0.isBGEControlGroup && $0.isSERAccount {
+            return $0.SERInfo.eventResults.count == 0
+        }
+        return false
     }
 
 }

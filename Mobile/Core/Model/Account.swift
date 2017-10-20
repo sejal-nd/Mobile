@@ -186,9 +186,29 @@ struct AccountDetail: Mappable {
 
 struct SERInfo: Mappable {
     let controlGroupFlag: String?
+    let eventResults: [SERResult]
     
     init(map: Mapper) throws {
         controlGroupFlag = map.optionalFrom("ControlGroupFlag")
+        eventResults = map.optionalFrom("eventResults") ?? []
+    }
+}
+
+struct SERResult: Mappable {
+    let actualKWH: Double
+    let baselineKWH: Double
+    let eventStart: Date
+    let eventEnd: Date
+    let savingDollar: Double
+    let savingKWH: Double
+    
+    init(map: Mapper) throws {
+        try actualKWH = map.from("actualKWH")
+        try baselineKWH = map.from("baselineKWH")
+        try eventStart = map.from("eventStart", transformation: extractDate)
+        try eventEnd = map.from("eventEnd", transformation: extractDate)
+        try savingDollar = map.from("savingDollar")
+        try savingKWH = map.from("savingKWH")
     }
 }
 

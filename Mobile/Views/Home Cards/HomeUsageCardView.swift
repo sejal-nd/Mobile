@@ -13,14 +13,15 @@ class HomeUsageCardView: UIView {
     
     var disposeBag = DisposeBag()
     
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    @IBOutlet weak var stackView: UIStackView!
-    
+    // Bill Comparison
+    @IBOutlet weak var billComparisonView: UIView!
+    @IBOutlet weak var usageOverviewLabel: UILabel!
+    @IBOutlet weak var billComparisonStackView: UIStackView!
     @IBOutlet weak var segmentedControl: BillAnalysisSegmentedControl!
     
     @IBOutlet weak var billComparisonContentView: UIView!
 
+    // Bill Comparison - Bar Graph
     @IBOutlet weak var barGraphStackView: UIStackView!
     
     @IBOutlet weak var noDataContainerButton: ButtonControl!
@@ -40,20 +41,25 @@ class HomeUsageCardView: UIView {
     @IBOutlet weak var currentDateLabel: UILabel!
     @IBOutlet weak var currentBarHeightConstraint: NSLayoutConstraint!
     
+    // Bill Comparison - Bar Graph Description View
     @IBOutlet weak var barDescriptionView: UIView!
     @IBOutlet weak var barDescriptionDateLabel: UILabel!
     @IBOutlet weak var barDescriptionTotalBillTitleLabel: UILabel!
     @IBOutlet weak var barDescriptionTotalBillValueLabel: UILabel!
     @IBOutlet weak var barDescriptionUsageTitleLabel: UILabel!
     @IBOutlet weak var barDescriptionUsageValueLabel: UILabel!
-    
     @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var viewUsageButton: UIButton!
     
     @IBOutlet weak var loadingView: UIView!
+    
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    
+    @IBOutlet weak var smartEnergyRewardsView: UIView!
+    
+    @IBOutlet weak var smartEnergyRewardsEmptyStateView: UIView!
     
     var userTappedBarGraph = false
     
@@ -77,7 +83,7 @@ class HomeUsageCardView: UIView {
                                   rightLabel: NSLocalizedString("Gas", comment: ""),
                                   initialSelectedIndex: 0)
         
-        stackView.bringSubview(toFront: segmentedControl)
+        billComparisonStackView.bringSubview(toFront: segmentedControl)
     
         styleViews()
     }
@@ -95,8 +101,8 @@ class HomeUsageCardView: UIView {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         layer.cornerRadius = 2
         
-        titleLabel.textColor = .blackText
-        titleLabel.font = OpenSans.semibold.of(size: 18)
+        usageOverviewLabel.textColor = .blackText
+        usageOverviewLabel.font = OpenSans.semibold.of(size: 18)
         
         errorLabel.font = OpenSans.regular.of(textStyle: .title1)
         errorLabel.setLineHeight(lineHeight: 26)
@@ -144,6 +150,13 @@ class HomeUsageCardView: UIView {
     }
     
     private func bindViewModel() {
+        // Bill Comparison vs. SER Show/Hide
+        viewModel.shouldShowBillComparison.not().drive(billComparisonView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowSmartEnergyRewards.not().drive(smartEnergyRewardsView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowSmartEnergyEmptyState.not().drive(smartEnergyRewardsEmptyStateView.rx.isHidden).disposed(by: disposeBag)
+        
+        // --- Bill Comparison ---
+        
         // Loading/Error/Content States
         viewModel.shouldShowBillComparisonContentView.not().drive(billComparisonContentView.rx.isHidden).disposed(by: disposeBag)
         
