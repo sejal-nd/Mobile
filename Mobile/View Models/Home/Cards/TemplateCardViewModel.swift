@@ -13,7 +13,7 @@ import RxSwiftExt
 
 class TemplateCardViewModel {
     
-    private let accountDetailElements: Observable<AccountDetail>
+    let accountDetailElements: Observable<AccountDetail>
     private let accountDetailErrors: Observable<Error>
     
     required init(accountDetailEvents: Observable<Event<AccountDetail>>) {
@@ -190,5 +190,9 @@ class TemplateCardViewModel {
         }
         return NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
+    
+    private(set) lazy var isHourlyPricing: Driver<Bool> = self.accountDetailElements
+        .map { $0.isResidential && $0.isHourlyPricing }
+        .asDriver(onErrorDriveWith: .empty())
     
 }

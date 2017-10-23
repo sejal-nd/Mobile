@@ -70,12 +70,30 @@ class TemplateCardView: UIView {
         }).disposed(by: bag)
     }
     
-    private(set) lazy var callToActionViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()
+    private(set) lazy var safariViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()
+        .withLatestFrom(self.viewModel.isHourlyPricing)
+        .filter(!)
+        .withLatestFrom(self.viewModel.ctaUrl)
         .do(onNext: { [weak self] in
             guard let `self` = self else { return }
-            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue, dimensionIndex: Dimensions.DIMENSION_LINK.rawValue, dimensionValue: String(describing: self.viewModel.ctaUrl))
+            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue, dimensionIndex: Dimensions.DIMENSION_LINK.rawValue, dimensionValue: $0.absoluteString)
         })
-        .withLatestFrom(self.viewModel.ctaUrl)
         .map(SFSafariViewController.init)
+    
+    private(set) lazy var hourlyPricingViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()
+        .withLatestFrom(self.viewModel.isHourlyPricing)
+        .filter { $0 }
+        .withLatestFrom(self.viewModel.ctaUrl)
+        .do(onNext: { [weak self] in
+            guard let `self` = self else { return }
+            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue, dimensionIndex: Dimensions.DIMENSION_LINK.rawValue, dimensionValue: $0.absoluteString)
+        })
+        .withLatestFrom(self.viewModel.accountDetailElements.asDriver(onErrorDriveWith: .empty()))
+        .map {
+            let hourlyPricingVC = UIStoryboard(name: "Home", bundle: nil)
+                .instantiateViewController(withIdentifier: "hourlyPricingViewController") as! HourlyPricingViewController
+            hourlyPricingVC.accountDetail = $0
+            return hourlyPricingVC
+    }
     
 }
