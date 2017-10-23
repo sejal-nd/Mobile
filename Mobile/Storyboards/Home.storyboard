@@ -252,7 +252,7 @@
                                                             <constraint firstAttribute="height" constant="60" id="RF0-y8-pMy"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Usage Graph Placeholder"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="View My Usage Details"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOn-mh-ofI" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
