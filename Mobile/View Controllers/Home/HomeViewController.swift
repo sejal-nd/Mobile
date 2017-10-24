@@ -26,6 +26,10 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImage: UIImageView!
     
+    @IBOutlet weak var temperatureTipButton: ButtonControl!
+    @IBOutlet weak var temperatureTipImageView: UIImageView!
+    @IBOutlet weak var temperatureTipLabel: UILabel!
+    
     @IBOutlet weak var cardStackView: UIStackView!
     
     @IBOutlet weak var loadingView: UIView!
@@ -188,6 +192,8 @@ class HomeViewController: AccountPickerViewController {
         
         viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).disposed(by: bag)
         viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).disposed(by: bag)
+        viewModel.showTemperatureTip.not().drive(temperatureTipButton.rx.isHidden).disposed(by: bag)
+        
         viewModel.showWeatherDetails.drive(temperatureLabel.rx.isAccessibilityElement).disposed(by: bag)
         viewModel.showWeatherDetails.drive(weatherIconImage.rx.isAccessibilityElement).disposed(by: bag)
         
@@ -195,6 +201,9 @@ class HomeViewController: AccountPickerViewController {
         viewModel.weatherTemp.drive(temperatureLabel.rx.text).disposed(by: bag)
         viewModel.weatherIcon.drive(weatherIconImage.rx.image).disposed(by: bag)
         viewModel.weatherIconA11yLabel.drive(weatherIconImage.rx.accessibilityLabel).disposed(by: bag)
+        
+        viewModel.temperatureTipText.drive(temperatureTipLabel.rx.text).disposed(by: bag)
+        viewModel.temperatureTipImage.drive(temperatureTipImageView.rx.image).disposed(by: bag)
         
         noNetworkConnectionView.reload
             .map { FetchingAccountState.switchAccount }
@@ -228,6 +237,14 @@ class HomeViewController: AccountPickerViewController {
                 }
                 
                 self.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .disposed(by: bag)
+        
+        temperatureTipButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.temperatureTipModalData)
+            .map(InfoModalViewController.init)
+            .drive(onNext: { [weak self] in
+                self?.present($0, animated: true, completion: nil)
             })
             .disposed(by: bag)
         
