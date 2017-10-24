@@ -244,6 +244,7 @@ class HomeUsageCardViewModel {
     // MARK: Smart Energy Rewards
     
     private(set) lazy var shouldShowSmartEnergyRewards: Driver<Bool> = self.accountDetailDriver.map {
+        return true
         if $0.isBGEControlGroup && $0.isSERAccount {
             return $0.SERInfo.eventResults.count > 0
         }
@@ -251,6 +252,7 @@ class HomeUsageCardViewModel {
     }
     
     private(set) lazy var shouldShowSmartEnergyEmptyState: Driver<Bool> = self.accountDetailDriver.map {
+        return false
         if $0.isBGEControlGroup && $0.isSERAccount {
             return $0.SERInfo.eventResults.count == 0
         }

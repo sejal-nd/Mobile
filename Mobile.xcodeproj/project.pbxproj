@@ -1144,6 +1144,9 @@
 		E8B8C84C1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */; };
 		E8B8C84D1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */; };
 		E8B8C84E1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */; };
+		E8B956E21F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
+		E8B956E31F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
+		E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
 		E8B9BD891F88212A007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
 		E8B9BD8A1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
 		E8B9BD8B1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
@@ -1888,6 +1891,7 @@
 		E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
 		E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmartEnergyRewardsView.xib; sourceTree = "<group>"; };
 		E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsView.swift; sourceTree = "<group>"; };
+		E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsViewModel.swift; sourceTree = "<group>"; };
 		E8B9BD911F8826FD007C824C /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModel.swift; sourceTree = "<group>"; };
 		E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModelTests.swift; sourceTree = "<group>"; };
@@ -2636,6 +2640,7 @@
 			isa = PBXGroup;
 			children = (
 				82EAB3331F97E078008B55B1 /* UsageViewModel.swift */,
+				E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */,
 			);
 			path = Usage;
 			sourceTree = "<group>";
@@ -4529,6 +4534,7 @@
 				E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
 				54C1DEF61F01A1D000290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
+				E8B956E21F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -4777,6 +4783,7 @@
 				E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
+				E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				826DCCF41F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				2F3FA6391F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
@@ -5025,6 +5032,7 @@
 				E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
+				E8B956E31F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EB1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				826DCCF31F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				2F3FA6381F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,

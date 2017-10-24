@@ -58,6 +58,16 @@ class HomeUsageCardView: UIView {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var smartEnergyRewardsView: UIView!
+    @IBOutlet weak var smartEnergyRewardsTitleLabel: UILabel!
+    @IBOutlet weak var smartEnergyRewardsSeasonLabel: UILabel!
+    
+    @IBOutlet weak var smartEnergyRewardsGrayBackgroundView: UIView!
+    @IBOutlet weak var smartEnergyRewardsGraphView: SmartEnergyRewardsView!
+    
+    @IBOutlet weak var smartEnergyRewardsFooterLabel: UILabel!
+    
+    @IBOutlet weak var viewAllSavingsButton: UIButton!
+    
     
     @IBOutlet weak var smartEnergyRewardsEmptyStateView: UIView!
     
@@ -85,7 +95,8 @@ class HomeUsageCardView: UIView {
         
         billComparisonStackView.bringSubview(toFront: segmentedControl)
     
-        styleViews()
+        styleBillComparison()
+        styleSmartEnergyRewards()
     }
     
     func superviewDidLayoutSubviews() {
@@ -97,7 +108,7 @@ class HomeUsageCardView: UIView {
         }
     }
     
-    private func styleViews() {
+    private func styleBillComparison() {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         layer.cornerRadius = 2
         
@@ -112,26 +123,6 @@ class HomeUsageCardView: UIView {
         
         billComparisonContentView.backgroundColor = .softGray
         
-        styleBarGraph()
-        
-        barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
-        barDescriptionDateLabel.textColor = .blackText
-        barDescriptionDateLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        barDescriptionTotalBillTitleLabel.textColor = .blackText
-        barDescriptionTotalBillTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        barDescriptionTotalBillValueLabel.textColor = .blackText
-        barDescriptionTotalBillValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        barDescriptionUsageTitleLabel.textColor = .blackText
-        barDescriptionUsageTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        barDescriptionUsageValueLabel.textColor = .blackText
-        barDescriptionUsageValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
-
-        viewUsageButton.setTitleColor(.actionBlue, for: .normal)
-        viewUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
-
-    }
-    
-    private func styleBarGraph() {
         let dashedBorderColor = UIColor(red: 0, green: 80/255, blue: 125/255, alpha: 0.24)
         noDataBarView.addDashedBorder(color: dashedBorderColor)
         previousBarView.backgroundColor = .primaryColor
@@ -147,6 +138,42 @@ class HomeUsageCardView: UIView {
         
         // Bar Graph Text Fonts
         noDataLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        
+        barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
+        barDescriptionDateLabel.textColor = .blackText
+        barDescriptionDateLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        barDescriptionTotalBillTitleLabel.textColor = .blackText
+        barDescriptionTotalBillTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        barDescriptionTotalBillValueLabel.textColor = .blackText
+        barDescriptionTotalBillValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        barDescriptionUsageTitleLabel.textColor = .blackText
+        barDescriptionUsageTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        barDescriptionUsageValueLabel.textColor = .blackText
+        barDescriptionUsageValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
+
+        viewUsageButton.setTitleColor(.actionBlue, for: .normal)
+        viewUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        viewUsageButton.titleLabel?.text = NSLocalizedString("View Usage", comment: "")
+    }
+    
+    private func styleSmartEnergyRewards() {
+        smartEnergyRewardsTitleLabel.textColor = .blackText
+        smartEnergyRewardsTitleLabel.font = OpenSans.bold.of(textStyle: .title1)
+        smartEnergyRewardsTitleLabel.text = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+            NSLocalizedString("Smart Energy Rewards", comment: "")
+        
+        smartEnergyRewardsSeasonLabel.textColor = .deepGray
+        smartEnergyRewardsSeasonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        
+        smartEnergyRewardsGrayBackgroundView.backgroundColor = .softGray
+        
+        smartEnergyRewardsFooterLabel.textColor = .blackText
+        smartEnergyRewardsFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        smartEnergyRewardsFooterLabel.text = NSLocalizedString("You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
+        
+        viewAllSavingsButton.setTitleColor(.actionBlue, for: .normal)
+        viewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        viewAllSavingsButton.titleLabel?.text = NSLocalizedString("View All Savings", comment: "")
     }
     
     private func bindViewModel() {
