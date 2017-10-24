@@ -471,6 +471,10 @@
 		82E22B621F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E22B5D1F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib */; };
 		82E22B631F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E22B5D1F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib */; };
 		82E22B651F9FC7D8001F1A1B /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
+		82E22B671F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */; };
+		82E22B681F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */; };
+		82E22B691F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */; };
+		82E22B6A1F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */; };
 		82EAB3341F97E078008B55B1 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* UsageViewModel.swift */; };
 		82EAB3351F97E078008B55B1 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* UsageViewModel.swift */; };
 		82EAB3361F97E078008B55B1 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* UsageViewModel.swift */; };
@@ -1516,6 +1520,7 @@
 		82E22B571F9FC70A001F1A1B /* EnergyTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTip.swift; sourceTree = "<group>"; };
 		82E22B5C1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTipTableViewCell.swift; sourceTree = "<group>"; };
 		82E22B5D1F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyTipTableViewCell.xib; sourceTree = "<group>"; };
+		82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5EnergyTipsViewModel.swift; sourceTree = "<group>"; };
 		82EAB3331F97E078008B55B1 /* UsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModel.swift; sourceTree = "<group>"; };
 		82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageWebViewController.swift; sourceTree = "<group>"; };
 		82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5EnergyTipsViewController.swift; sourceTree = "<group>"; };
@@ -2651,6 +2656,7 @@
 			isa = PBXGroup;
 			children = (
 				82EAB3331F97E078008B55B1 /* UsageViewModel.swift */,
+				82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */,
 			);
 			path = Usage;
 			sourceTree = "<group>";
@@ -4450,6 +4456,7 @@
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */,
+				82E22B671F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				E89518731F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
@@ -4699,6 +4706,7 @@
 				82A18EDC1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				E841F3A41F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				822BBBA31EFC1A01004EBBAB /* WebViewController.swift in Sources */,
+				82E22B691F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				2F5A3F8A1EFD979F00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
 				82A18F0A1EBD12D600BE9F21 /* Control.swift in Sources */,
@@ -4948,6 +4956,7 @@
 				82A18EC51EBA676700BE9F21 /* Switch.swift in Sources */,
 				E841F3A31F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				822BBBA21EFC1A01004EBBAB /* WebViewController.swift in Sources */,
+				82E22B681F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				82A18EDB1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
@@ -5217,6 +5226,7 @@
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				E887C9D71ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				E88ECFF41E8ED6CC00A570D0 /* OMCAuthenticationService.swift in Sources */,
+				82E22B6A1F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8EDC5521F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				E8EDC5481F324DFB006DD927 /* FiservErrorMapper.swift in Sources */,
 				E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */,

@@ -29,6 +29,15 @@ protocol UsageService {
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain a TODO object on success, or a ServiceError on failure.
     func fetchBillForecast(accountNumber: String, premiseNumber: String, completion: @escaping (_ result: ServiceResult<[BillForecast?]>) -> Void)
+    
+    /// Fetches your projected usage
+    ///
+    /// - Parameters:
+    ///   - accountNumber: the account to fetch data for
+    ///   - premiseNumber: the premise to fetch data for
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain a TODO object on success, or a ServiceError on failure.
+    func fetchEnergyTips(accountNumber: String, premiseNumber: String, completion: @escaping (_ result: ServiceResult<[EnergyTip]>) -> Void)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,6 +65,21 @@ extension UsageService {
                 switch (result) {
                 case ServiceResult.Success(let billForecast):
                     observer.onNext(billForecast)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func fetchEnergyTips(accountNumber: String, premiseNumber: String) -> Observable<[EnergyTip]> {
+        return Observable.create { observer in
+            self.fetchEnergyTips(accountNumber: accountNumber, premiseNumber: premiseNumber, completion: { (result: ServiceResult<[EnergyTip]>) in
+                switch (result) {
+                case ServiceResult.Success(let energyTips):
+                    observer.onNext(energyTips)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

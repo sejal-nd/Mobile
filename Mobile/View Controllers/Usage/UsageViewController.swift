@@ -98,7 +98,8 @@ class UsageViewController: UIViewController {
         switch segue.destination {
         case let vc as UsageWebViewController:
             vc.accountDetail = accountDetail
-        case _ as Top5EnergyTipsViewController: break
+        case let vc as Top5EnergyTipsViewController:
+            vc.accountDetail = accountDetail
         case _ as MyHomeProfileViewController: break
         case let vc as HourlyPricingViewController:
             vc.accountDetail = accountDetail
