@@ -6,9 +6,12 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
+import RxCocoa
 
 class SmartEnergyRewardsView: UIView {
+    
+    var disposeBag = DisposeBag()
 
     @IBOutlet weak var view: UIView!
     
@@ -46,6 +49,14 @@ class SmartEnergyRewardsView: UIView {
     @IBOutlet weak var barDescriptionBillCreditValueLabel: UILabel!
     @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
+    var viewModel: SmartEnergyRewardsViewModel! {
+        didSet {
+            disposeBag = DisposeBag() // Clear all pre-existing bindings
+            bindViewModel()
+            onBarPress(sender: bar3ContainerButton)
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -70,7 +81,7 @@ class SmartEnergyRewardsView: UIView {
     
     private func styleViews() {
         // Bar Graph Text Colors
-        bar1DollarLabel.textColor = .deepGray
+        bar1DollarLabel.textColor = .blackText
         bar1DateLabel.textColor = .blackText
         bar2DollarLabel.textColor = .blackText
         bar2DateLabel.textColor = .blackText
@@ -98,6 +109,73 @@ class SmartEnergyRewardsView: UIView {
         barDescriptionBillCreditTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         barDescriptionBillCreditValueLabel.textColor = .blackText
         barDescriptionBillCreditValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
+    }
+    
+    private func bindViewModel() {
+        viewModel.shouldShowBar1.not().drive(bar1ContainerButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowBar2.not().drive(bar2ContainerButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowBar3.not().drive(bar3ContainerButton.rx.isHidden).disposed(by: disposeBag)
+        
+        // Bar Graph Text Fonts
+        bar1LabelFont.drive(bar1DollarLabel.rx.font).disposed(by: disposeBag)
+        bar1LabelFont.drive(bar1DateLabel.rx.font).disposed(by: disposeBag)
+        bar2LabelFont.drive(bar2DollarLabel.rx.font).disposed(by: disposeBag)
+        bar2LabelFont.drive(bar2DateLabel.rx.font).disposed(by: disposeBag)
+        bar3LabelFont.drive(bar3DollarLabel.rx.font).disposed(by: disposeBag)
+        bar3LabelFont.drive(bar3DateLabel.rx.font).disposed(by: disposeBag)
+        
+        // Bar Graph Label Text
+        viewModel.bar1DollarLabelText.drive(bar1DollarLabel.rx.text).disposed(by: disposeBag)
+        viewModel.bar1DateLabelText.drive(bar1DateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.bar2DollarLabelText.drive(bar2DollarLabel.rx.text).disposed(by: disposeBag)
+        viewModel.bar2DateLabelText.drive(bar2DateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.bar3DollarLabelText.drive(bar3DollarLabel.rx.text).disposed(by: disposeBag)
+        viewModel.bar3DateLabelText.drive(bar3DateLabel.rx.text).disposed(by: disposeBag)
+        
+        // Bar height constraints
+        viewModel.bar1HeightConstraintValue.drive(bar1HeightConstraint.rx.constant).disposed(by: disposeBag)
+        viewModel.bar2HeightConstraintValue.drive(bar2HeightConstraint.rx.constant).disposed(by: disposeBag)
+        viewModel.bar3HeightConstraintValue.drive(bar3HeightConstraint.rx.constant).disposed(by: disposeBag)
+        
+        // Bar description box
+        viewModel.barDescriptionDateLabelText.drive(barDescriptionDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.barDescriptionPeakHoursLabelText.drive(barDescriptionPeakHoursLabel.rx.text).disposed(by: disposeBag)
+        viewModel.barDescriptionTypicalUseValueLabelText.drive(barDescriptionTypicalUseValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.barDescriptionActualUseValueLabelText.drive(barDescriptionActualUseValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.barDescriptionEnergySavingsValueLabelText.drive(barDescriptionEnergySavingsValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.barDescriptionBillCreditValueLabelText.drive(barDescriptionBillCreditValueLabel.rx.text).disposed(by: disposeBag)
+    }
+    
+    @IBAction func onBarPress(sender: ButtonControl) {
+        let centerPoint = sender.center
+        moveTriangleTo(centerPoint: centerPoint)
+        viewModel.setBarSelected(tag: sender.tag)
+    }
+    
+    private func moveTriangleTo(centerPoint: CGPoint) {
+        let convertedPoint = barGraphStackView.convert(centerPoint, to: barDescriptionView)
+        
+        let centerXOffset = (barDescriptionView.bounds.width / 2)
+        if convertedPoint.x < centerXOffset {
+            barDescriptionTriangleCenterXConstraint.constant = -1 * (centerXOffset - convertedPoint.x)
+        } else if convertedPoint.x > centerXOffset {
+            barDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
+        } else {
+            barDescriptionTriangleCenterXConstraint.constant = 0
+        }
+    }
+    
+    // MARK: Bill Comparison Bar Graph Drivers
+    private(set) lazy var bar1LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[0].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
+    
+    private(set) lazy var bar2LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[1].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
+    
+    private(set) lazy var bar3LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[2].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
     }
 
 }

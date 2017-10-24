@@ -100,13 +100,20 @@ class HomeUsageCardViewModel {
     
     // MARK: Bill Comparison
     
-    private(set) lazy var shouldShowBillComparison: Driver<Bool> = Driver.combineLatest(self.shouldShowSmartEnergyRewards, self.shouldShowSmartEnergyEmptyState) {
-        return !$0 && !$1
+    private(set) lazy var shouldShowBillComparison: Driver<Bool> = Driver.combineLatest(self.shouldShowBillComparisonEmptyState,
+                                                                                        self.shouldShowSmartEnergyRewards,
+                                                                                        self.shouldShowSmartEnergyEmptyState) {
+        return !$0 && !$1 && !$2
     }
     
+    private(set) lazy var shouldShowBillComparisonEmptyState: Driver<Bool> = self.billComparisonEvents.map {
+        return $0.error != nil
+    }.asDriver(onErrorDriveWith: .empty())
+    
+    // Not currently using -- we'll show billComparisonEmptyStateView if any errors occur
     private(set) lazy var shouldShowErrorView: Driver<Bool> =
-        Observable.combineLatest(self.loadingTracker.asObservable(), self.billComparisonEvents) {
-            !$0 && $1.error != nil
+        Observable.combineLatest(self.loadingTracker.asObservable(), self.billComparisonEvents) { _, _ in
+            return false //!$0 && $1.error != nil
         }.asDriver(onErrorDriveWith: .empty())
     
     
@@ -244,7 +251,6 @@ class HomeUsageCardViewModel {
     // MARK: Smart Energy Rewards
     
     private(set) lazy var shouldShowSmartEnergyRewards: Driver<Bool> = self.accountDetailDriver.map {
-        return true
         if $0.isBGEControlGroup && $0.isSERAccount {
             return $0.SERInfo.eventResults.count > 0
         }
@@ -252,11 +258,19 @@ class HomeUsageCardViewModel {
     }
     
     private(set) lazy var shouldShowSmartEnergyEmptyState: Driver<Bool> = self.accountDetailDriver.map {
-        return false
         if $0.isBGEControlGroup && $0.isSERAccount {
             return $0.SERInfo.eventResults.count == 0
         }
         return false
+    }
+    
+    private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = self.accountDetailDriver.map {
+        let events = $0.SERInfo.eventResults
+        if let mostRecentEvent = events.last {
+            let latestEventYear = Calendar.opCoTime.component(.year, from: mostRecentEvent.eventStart)
+            return "Summer \(latestEventYear)"
+        }
+        return nil
     }
 
 }

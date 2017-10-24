@@ -54,8 +54,12 @@ class HomeUsageCardView: UIView {
     
     @IBOutlet weak var loadingView: UIView!
     
+    // Not currently using errorView -- we'll show billComparisonEmptyStateView if any errors occur
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    
+    @IBOutlet weak var billComparisonEmptyStateView: UIView!
+    @IBOutlet weak var billComparisonEmptyStateLabel: UILabel!
     
     @IBOutlet weak var smartEnergyRewardsView: UIView!
     @IBOutlet weak var smartEnergyRewardsTitleLabel: UILabel!
@@ -68,8 +72,9 @@ class HomeUsageCardView: UIView {
     
     @IBOutlet weak var viewAllSavingsButton: UIButton!
     
-    
     @IBOutlet weak var smartEnergyRewardsEmptyStateView: UIView!
+    @IBOutlet weak var smartEnergyRewardsEmptyStateTitleLabel: UILabel!
+    @IBOutlet weak var smartEnergyRewardsEmptyStateDetailLabel: UILabel!
     
     var userTappedBarGraph = false
     
@@ -83,6 +88,7 @@ class HomeUsageCardView: UIView {
     static func create(withViewModel viewModel: HomeUsageCardViewModel) -> HomeUsageCardView {
         let view = Bundle.main.loadViewFromNib() as HomeUsageCardView
         view.viewModel = viewModel
+        view.smartEnergyRewardsGraphView.viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: viewModel.accountDetailDriver)
         return view
     }
     
@@ -115,11 +121,17 @@ class HomeUsageCardView: UIView {
         usageOverviewLabel.textColor = .blackText
         usageOverviewLabel.font = OpenSans.semibold.of(size: 18)
         
-        errorLabel.font = OpenSans.regular.of(textStyle: .title1)
-        errorLabel.setLineHeight(lineHeight: 26)
-        errorLabel.textAlignment = .center
-        errorLabel.textColor = .middleGray
-        errorLabel.text = NSLocalizedString("Your usage overview will be available here once we have more data.", comment: "")
+//        errorLabel.font = OpenSans.regular.of(textStyle: .title1)
+//        errorLabel.setLineHeight(lineHeight: 26)
+//        errorLabel.textAlignment = .center
+//        errorLabel.textColor = .middleGray
+//        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
+        billComparisonEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
+        billComparisonEmptyStateLabel.setLineHeight(lineHeight: 26)
+        billComparisonEmptyStateLabel.textAlignment = .center
+        billComparisonEmptyStateLabel.textColor = .middleGray
+        billComparisonEmptyStateLabel.text = NSLocalizedString("Your usage overview will be available here once we have more data.", comment: "")
         
         billComparisonContentView.backgroundColor = .softGray
         
@@ -158,7 +170,7 @@ class HomeUsageCardView: UIView {
     
     private func styleSmartEnergyRewards() {
         smartEnergyRewardsTitleLabel.textColor = .blackText
-        smartEnergyRewardsTitleLabel.font = OpenSans.bold.of(textStyle: .title1)
+        smartEnergyRewardsTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         smartEnergyRewardsTitleLabel.text = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
@@ -169,11 +181,23 @@ class HomeUsageCardView: UIView {
         
         smartEnergyRewardsFooterLabel.textColor = .blackText
         smartEnergyRewardsFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        smartEnergyRewardsFooterLabel.text = NSLocalizedString("You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
+        smartEnergyRewardsFooterLabel.text = NSLocalizedString("You earn bill credits for every kWh you save. " +
+            "We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
         
         viewAllSavingsButton.setTitleColor(.actionBlue, for: .normal)
         viewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
         viewAllSavingsButton.titleLabel?.text = NSLocalizedString("View All Savings", comment: "")
+        
+        smartEnergyRewardsEmptyStateTitleLabel.textColor = .blackText
+        smartEnergyRewardsEmptyStateTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        smartEnergyRewardsEmptyStateTitleLabel.text = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+            NSLocalizedString("Smart Energy Rewards", comment: "")
+        
+        smartEnergyRewardsEmptyStateDetailLabel.textColor = .middleGray
+        smartEnergyRewardsEmptyStateDetailLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        smartEnergyRewardsEmptyStateDetailLabel.text = NSLocalizedString("As a \(smartEnergyRewardsEmptyStateTitleLabel.text!) customer, you can earn bill credits for every kWh you save. " +
+            "We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent " +
+            "\(smartEnergyRewardsEmptyStateTitleLabel.text!) season will display here once available.", comment: "")
     }
     
     private func bindViewModel() {
@@ -189,6 +213,8 @@ class HomeUsageCardView: UIView {
         
         viewModel.loadingTracker.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorView.not().drive(errorView.rx.isHidden).disposed(by: disposeBag)
+        
+        viewModel.shouldShowBillComparisonEmptyState.not().drive(billComparisonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         
         // Segmented Controls
         viewModel.shouldShowElectricGasSegmentedControl.not().drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
@@ -225,6 +251,9 @@ class HomeUsageCardView: UIView {
         viewModel.barDescriptionDateLabelText.drive(barDescriptionDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionTotalBillValueLabelText.drive(barDescriptionTotalBillValueLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionUsageValueLabelText.drive(barDescriptionUsageValueLabel.rx.text).disposed(by: disposeBag)
+        
+        // Smart Energy Rewards
+        viewModel.smartEnergyRewardsSeasonLabelText.drive(smartEnergyRewardsSeasonLabel.rx.text).disposed(by: disposeBag)
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {

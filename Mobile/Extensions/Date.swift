@@ -21,8 +21,16 @@ extension Date {
         return DateFormatter.fullMonthAndDayFormatter.string(from: self)
     }
     
+    @nonobjc var fullMonthDayAndYearString: String {
+        return DateFormatter.fullMonthDayAndYearFormatter.string(from: self)
+    }
+    
     @nonobjc var shortMonthDayAndYearString: String {
         return DateFormatter.shortMonthDayAndYearFormatter.string(from: self)
+    }
+    
+    @nonobjc var hourAmPmString: String {
+        return DateFormatter.hourAmPmFormatter.string(from: self)
     }
     
     @nonobjc var apiFormatString: String {
@@ -83,9 +91,21 @@ extension DateFormatter {
         return dateFormatter
     }()
     
+    @nonobjc static let fullMonthDayAndYearFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        return dateFormatter
+    }()
+    
     @nonobjc static let shortMonthDayAndYearFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd, yyyy"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let hourAmPmFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ha"
         return dateFormatter
     }()
     

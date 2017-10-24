@@ -203,12 +203,32 @@ struct SERResult: Mappable {
     let savingKWH: Double
     
     init(map: Mapper) throws {
-        try actualKWH = map.from("actualKWH")
-        try baselineKWH = map.from("baselineKWH")
         try eventStart = map.from("eventStart", transformation: extractDate)
         try eventEnd = map.from("eventEnd", transformation: extractDate)
-        try savingDollar = map.from("savingDollar")
-        try savingKWH = map.from("savingKWH")
+        
+        if let actualString: String = map.optionalFrom("actualKWH"), let doubleVal = Double(actualString) {
+            actualKWH = doubleVal
+        } else {
+            actualKWH = 0
+        }
+        
+        if let baselineString: String = map.optionalFrom("baselineKWH"), let doubleVal = Double(baselineString) {
+            baselineKWH = doubleVal
+        } else {
+            baselineKWH = 0
+        }
+
+        if let savingDollarString: String = map.optionalFrom("savingDollar"), let doubleVal = Double(savingDollarString) {
+            savingDollar = doubleVal
+        } else {
+            savingDollar = 0
+        }
+        
+        if let savingKWHString: String = map.optionalFrom("savingKWH"), let doubleVal = Double(savingKWHString) {
+            savingKWH = doubleVal
+        } else {
+            savingKWH = 0
+        }
     }
 }
 
