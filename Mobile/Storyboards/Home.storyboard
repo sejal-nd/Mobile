@@ -228,21 +228,21 @@
                         <viewControllerLayoutGuide type="bottom" id="3Ac-m9-Znx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MbZ-y6-3Ph">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wz6-M2-3es">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="1180"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cfs-H1-hlO">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="399.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="762"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKm-1i-2Xa" userLabel="Gray Background">
-                                                <rect key="frame" x="0.0" y="399.5" width="375" height="247.5"/>
+                                                <rect key="frame" x="0.0" y="762" width="375" height="418"/>
                                                 <color key="backgroundColor" red="0.93725490196078431" green="0.94509803921568625" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RHb-Wi-h1x">
-                                                <rect key="frame" x="29" y="16" width="317" height="383.5"/>
+                                                <rect key="frame" x="29" y="16" width="317" height="746"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGL-ZW-C2N" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
@@ -334,6 +334,54 @@
                                                             <constraint firstAttribute="bottom" secondItem="Rdg-fP-HLY" secondAttribute="bottom" constant="12" id="cuo-Fh-Bll"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEa-qA-uzE">
+                                                        <rect key="frame" x="0.0" y="393.5" width="317" height="352.5"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LEH-1u-imr">
+                                                                <rect key="frame" x="0.0" y="20" width="317" height="1"/>
+                                                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="Ief-Zj-8Bo"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smart Energy Rewards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZj-eq-tpj">
+                                                                <rect key="frame" x="71" y="37" width="174" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Season 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6J-NB-Ahn">
+                                                                <rect key="frame" x="109" y="65.5" width="98" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="317" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="8eT-lf-daa" customClass="SmartEnergyRewardsView" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="106" width="317" height="200"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lor-6B-wJX">
+                                                                <rect key="frame" x="102" y="322.5" width="112" height="30"/>
+                                                                <state key="normal" title="View All Savings"/>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="Lor-6B-wJX" firstAttribute="top" secondItem="8eT-lf-daa" secondAttribute="bottom" constant="16" id="3Fg-mv-IMw"/>
+                                                            <constraint firstItem="j6J-NB-Ahn" firstAttribute="top" secondItem="oZj-eq-tpj" secondAttribute="bottom" constant="8" id="7jG-g6-O0b"/>
+                                                            <constraint firstItem="oZj-eq-tpj" firstAttribute="centerX" secondItem="qEa-qA-uzE" secondAttribute="centerX" id="SNF-l7-w2t"/>
+                                                            <constraint firstItem="LEH-1u-imr" firstAttribute="top" secondItem="qEa-qA-uzE" secondAttribute="top" constant="20" id="VGV-Hj-Yuh"/>
+                                                            <constraint firstItem="8eT-lf-daa" firstAttribute="leading" secondItem="qEa-qA-uzE" secondAttribute="leading" id="Xaa-n0-0Ub"/>
+                                                            <constraint firstItem="Lor-6B-wJX" firstAttribute="centerX" secondItem="qEa-qA-uzE" secondAttribute="centerX" id="XjA-ec-wRT"/>
+                                                            <constraint firstAttribute="trailing" secondItem="LEH-1u-imr" secondAttribute="trailing" id="guE-5b-XaI"/>
+                                                            <constraint firstItem="LEH-1u-imr" firstAttribute="leading" secondItem="qEa-qA-uzE" secondAttribute="leading" id="hio-7b-gh7"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Lor-6B-wJX" secondAttribute="bottom" id="ifA-Fl-4mi"/>
+                                                            <constraint firstAttribute="trailing" secondItem="8eT-lf-daa" secondAttribute="trailing" id="jgw-BE-hwU"/>
+                                                            <constraint firstItem="j6J-NB-Ahn" firstAttribute="centerX" secondItem="qEa-qA-uzE" secondAttribute="centerX" id="la8-Mg-6jW"/>
+                                                            <constraint firstItem="oZj-eq-tpj" firstAttribute="top" secondItem="LEH-1u-imr" secondAttribute="bottom" constant="16" id="o40-8q-boU"/>
+                                                            <constraint firstItem="8eT-lf-daa" firstAttribute="top" secondItem="j6J-NB-Ahn" secondAttribute="bottom" constant="20" id="zdF-6H-IgL"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Us8-dE-Jko"/>
@@ -371,17 +419,21 @@
                             <constraint firstAttribute="trailing" secondItem="Wz6-M2-3es" secondAttribute="trailing" id="Zy0-Gq-9jI"/>
                             <constraint firstItem="3Ac-m9-Znx" firstAttribute="top" secondItem="Wz6-M2-3es" secondAttribute="bottom" id="kGH-3b-WKH"/>
                             <constraint firstItem="Wz6-M2-3es" firstAttribute="leading" secondItem="MbZ-y6-3Ph" secondAttribute="leading" id="oXB-kF-cKO"/>
-                            <constraint firstItem="3Ac-m9-Znx" firstAttribute="top" secondItem="hKm-1i-2Xa" secondAttribute="bottom" priority="750" id="oyp-it-jVe"/>
+                            <constraint firstItem="3Ac-m9-Znx" firstAttribute="top" secondItem="hKm-1i-2Xa" secondAttribute="bottom" priority="250" id="oyp-it-jVe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Usage" id="Eaz-ez-xP8">
                         <barButtonItem key="backBarButtonItem" title="Back" id="YTz-e5-ciM"/>
                     </navigationItem>
+                    <size key="freeformSize" width="375" height="1200"/>
                     <connections>
                         <outlet property="contentView" destination="Cfs-H1-hlO" id="jlM-Iq-ahW"/>
                         <outlet property="hourlyPricingBodyLabel" destination="dZQ-n7-DZ4" id="NXo-p5-Ahj"/>
                         <outlet property="hourlyPricingCard" destination="kvX-CQ-gj0" id="aoc-Yj-Q3W"/>
                         <outlet property="hourlyPricingTitleLabel" destination="n0W-jh-rBj" id="1h6-BL-7PJ"/>
+                        <outlet property="smartEnergyRewardsSeasonLabel" destination="j6J-NB-Ahn" id="idR-ax-Tmg"/>
+                        <outlet property="smartEnergyRewardsTitleLabel" destination="oZj-eq-tpj" id="xJc-Vc-YcN"/>
+                        <outlet property="smartEnergyRewardsView" destination="8eT-lf-daa" id="2HB-lG-L3P"/>
                         <outlet property="takeMeToSavingsButton" destination="Ivr-wK-nlu" id="tgJ-ZH-1oa"/>
                         <outlet property="top5EnergyTipsButton" destination="IOn-mh-ofI" id="tK1-8M-iBa"/>
                         <outlet property="updateYourHomeProfileButton" destination="ITH-nS-aBi" id="RQd-eo-oop"/>
@@ -502,7 +554,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOw-oB-ahT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3225" y="-1511"/>
+            <point key="canvasLocation" x="3225" y="-1466"/>
         </scene>
         <!--My Home Profile-->
         <scene sceneID="ade-rY-UQW">
@@ -569,7 +621,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yro-au-gbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2348" y="-670"/>
+            <point key="canvasLocation" x="2348" y="-423"/>
         </scene>
     </scenes>
     <resources>

@@ -23,6 +23,10 @@ class UsageViewController: UIViewController {
     @IBOutlet weak var hourlyPricingBodyLabel: UILabel!
     @IBOutlet weak var takeMeToSavingsButton: UIButton!
     
+    @IBOutlet weak var smartEnergyRewardsTitleLabel: UILabel!
+    @IBOutlet weak var smartEnergyRewardsSeasonLabel: UILabel!
+    @IBOutlet weak var smartEnergyRewardsView: SmartEnergyRewardsView!
+    
     var accountDetail: AccountDetail! // Passed from HomeViewController
     
     var gradientLayer = CAGradientLayer()
@@ -32,6 +36,8 @@ class UsageViewController: UIViewController {
         
         styleViews()
         buttonTapSetup()
+        
+        smartEnergyRewardsView.viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: Driver.just(accountDetail))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +56,7 @@ class UsageViewController: UIViewController {
         
         // for some reason the gradient layer was being cut short,
         // so I added 2 to the height 🤷🏻‍♂️
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: contentView.bounds.width, height: contentView.bounds.height+2)
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: contentView.bounds.width, height: contentView.bounds.height)
         gradientLayer.colors = [
             UIColor.white.cgColor,
             UIColor(red: 244/255, green: 245/255, blue: 246/255, alpha: 1).cgColor,
