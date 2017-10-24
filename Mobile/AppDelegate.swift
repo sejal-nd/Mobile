@@ -37,6 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             BITHockeyManager.shared().authenticator.authenticateInstallation()
         }
         
+        if Environment.sharedInstance.environmentName == "PROD" {
+            OMCMobileBackendManager.shared().logLevel = "none"
+        }
+        
         setupUserDefaults()
         setupToastStyles()
         setupAppearance()
@@ -45,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
-        
         
         return true
     }

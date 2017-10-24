@@ -23,6 +23,13 @@
 					<key>anonymousKey</key>
 					<string>YW5vbl9kZXY6QDNEdGx0ZiQ3VVF4YUdTYTZESCo=</string>
 				</dict>
+				<key>Basic</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>2b69703f-83b5-4ee2-95b6-316d90bb2838</string>
+					<key>anonymousKey</key>
+					<string>YW5vbl9kZXY6QDNEdGx0ZiQ3VVF4YUdTYTZESCo=</string>
+				</dict>
 			</dict>
 		</dict>
 		<key>Testing</key>
@@ -36,6 +43,13 @@
 				<key>authenticationType</key>
 				<string>SSOTokenExchange</string>
 				<key>SSOTokenExchange</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>09282f50-ed11-4d68-b5cb-20bbed263373</string>
+					<key>anonymousKey</key>
+					<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
+				</dict>
+				<key>Basic</key>
 				<dict>
 					<key>mobileBackendID</key>
 					<string>09282f50-ed11-4d68-b5cb-20bbed263373</string>
@@ -61,6 +75,13 @@
 					<key>anonymousKey</key>
 					<string>QTQ1MzU3Nl9FWEVMT05FVU1PQklMRUFQUFNUQUdFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WXV0LmY0cHE3bmllcm8=</string>
 				</dict>
+				<key>Basic</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>d612762f-f41d-432b-a056-83ef7780b44c</string>
+					<key>anonymousKey</key>
+					<string>QTQ1MzU3Nl9FWEVMT05FVU1PQklMRUFQUFNUQUdFX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6WXV0LmY0cHE3bmllcm8=</string>
+				</dict>
 			</dict>
 		</dict>
 		<key>ProdBGE</key>
@@ -74,6 +95,13 @@
 				<key>authenticationType</key>
 				<string>SSOTokenExchange</string>
 				<key>SSOTokenExchange</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>6681b1e8-bf86-40c2-8faf-66b140c76cea</string>
+					<key>anonymousKey</key>
+					<string>QTQ1MzU3Nl9FWEVMT05NT0JJTEVBUFBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDprc282Z3Robi5sT2UzZg==</string>
+				</dict>
+				<key>Basic</key>
 				<dict>
 					<key>mobileBackendID</key>
 					<string>6681b1e8-bf86-40c2-8faf-66b140c76cea</string>
@@ -99,6 +127,13 @@
 					<key>anonymousKey</key>
 					<string>QTQ1MzU3Nl9FWEVMT05NT0JJTEVBUFBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDprc282Z3Robi5sT2UzZg==</string>
 				</dict>
+				<key>Basic</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>e4018111-369f-418e-9d31-e95377170d0e</string>
+					<key>anonymousKey</key>
+					<string>QTQ1MzU3Nl9FWEVMT05NT0JJTEVBUFBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDprc282Z3Robi5sT2UzZg==</string>
+				</dict>
 			</dict>
 		</dict>
 		<key>ProdPECO</key>
@@ -118,10 +153,17 @@
 					<key>anonymousKey</key>
 					<string>QTQ1MzU3Nl9FWEVMT05NT0JJTEVBUFBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDprc282Z3Robi5sT2UzZg==</string>
 				</dict>
+				<key>Basic</key>
+				<dict>
+					<key>mobileBackendID</key>
+					<string>b7990531-b75c-4345-91c1-1c2ff9b81612</string>
+					<key>anonymousKey</key>
+					<string>QTQ1MzU3Nl9FWEVMT05NT0JJTEVBUFBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDprc282Z3Robi5sT2UzZg==</string>
+				</dict>
 			</dict>
 		</dict>
 	</dict>
 	<key>logLevel</key>
-	<string>none</string>
+	<string>debug</string>
 </dict>
 </plist>
