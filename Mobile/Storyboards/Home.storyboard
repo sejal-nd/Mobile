@@ -237,6 +237,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cfs-H1-hlO">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="399.5"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKm-1i-2Xa" userLabel="Gray Background">
+                                                <rect key="frame" x="0.0" y="399.5" width="375" height="247.5"/>
+                                                <color key="backgroundColor" red="0.93725490196078431" green="0.94509803921568625" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RHb-Wi-h1x">
                                                 <rect key="frame" x="29" y="16" width="317" height="383.5"/>
                                                 <subviews>
@@ -248,7 +252,7 @@
                                                             <constraint firstAttribute="height" constant="60" id="RF0-y8-pMy"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Usage Graph Placeholder"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="View My Usage Details"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOn-mh-ofI" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
@@ -342,10 +346,13 @@
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RHb-Wi-h1x" secondAttribute="trailing" constant="29" id="0FD-D2-SuY"/>
                                             <constraint firstAttribute="trailing" secondItem="RHb-Wi-h1x" secondAttribute="trailing" priority="750" constant="29" id="D5O-bO-t47"/>
                                             <constraint firstAttribute="bottom" secondItem="RHb-Wi-h1x" secondAttribute="bottom" id="E7P-W2-lVr"/>
+                                            <constraint firstItem="hKm-1i-2Xa" firstAttribute="leading" secondItem="Cfs-H1-hlO" secondAttribute="leading" id="GwQ-hK-O0N"/>
                                             <constraint firstItem="RHb-Wi-h1x" firstAttribute="top" secondItem="Cfs-H1-hlO" secondAttribute="top" constant="16" id="VtW-Eq-AbH"/>
                                             <constraint firstItem="RHb-Wi-h1x" firstAttribute="centerX" secondItem="Cfs-H1-hlO" secondAttribute="centerX" id="hoF-OJ-tct"/>
+                                            <constraint firstItem="hKm-1i-2Xa" firstAttribute="top" secondItem="Cfs-H1-hlO" secondAttribute="bottom" id="jKM-0T-UAf"/>
                                             <constraint firstItem="RHb-Wi-h1x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Cfs-H1-hlO" secondAttribute="leading" constant="29" id="lVO-Q3-zrP"/>
                                             <constraint firstItem="RHb-Wi-h1x" firstAttribute="leading" secondItem="Cfs-H1-hlO" secondAttribute="leading" priority="750" constant="29" id="lyi-p9-G8z"/>
+                                            <constraint firstAttribute="trailing" secondItem="hKm-1i-2Xa" secondAttribute="trailing" id="xkZ-Mv-8Fd"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -364,12 +371,14 @@
                             <constraint firstAttribute="trailing" secondItem="Wz6-M2-3es" secondAttribute="trailing" id="Zy0-Gq-9jI"/>
                             <constraint firstItem="3Ac-m9-Znx" firstAttribute="top" secondItem="Wz6-M2-3es" secondAttribute="bottom" id="kGH-3b-WKH"/>
                             <constraint firstItem="Wz6-M2-3es" firstAttribute="leading" secondItem="MbZ-y6-3Ph" secondAttribute="leading" id="oXB-kF-cKO"/>
+                            <constraint firstItem="3Ac-m9-Znx" firstAttribute="top" secondItem="hKm-1i-2Xa" secondAttribute="bottom" priority="750" id="oyp-it-jVe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Usage" id="Eaz-ez-xP8">
                         <barButtonItem key="backBarButtonItem" title="Back" id="YTz-e5-ciM"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="contentView" destination="Cfs-H1-hlO" id="jlM-Iq-ahW"/>
                         <outlet property="hourlyPricingBodyLabel" destination="dZQ-n7-DZ4" id="NXo-p5-Ahj"/>
                         <outlet property="hourlyPricingCard" destination="kvX-CQ-gj0" id="aoc-Yj-Q3W"/>
                         <outlet property="hourlyPricingTitleLabel" destination="n0W-jh-rBj" id="1h6-BL-7PJ"/>
@@ -385,7 +394,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yss-Hv-HTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2348" y="-1466"/>
+            <point key="canvasLocation" x="2348" y="-1466.7166416791606"/>
         </scene>
         <!--Usage-->
         <scene sceneID="7PC-Mn-FKi">
