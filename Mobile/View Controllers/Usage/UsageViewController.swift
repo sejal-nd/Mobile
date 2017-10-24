@@ -14,6 +14,7 @@ class UsageViewController: UIViewController {
     
     let disposeBag = DisposeBag()
 
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var usageGraphPlaceholderButton: DisclosureButton!
     @IBOutlet weak var top5EnergyTipsButton: DisclosureButton!
     @IBOutlet weak var updateYourHomeProfileButton: DisclosureButton!
@@ -23,6 +24,8 @@ class UsageViewController: UIViewController {
     @IBOutlet weak var takeMeToSavingsButton: UIButton!
     
     var accountDetail: AccountDetail! // Passed from HomeViewController
+    
+    var gradientLayer = CAGradientLayer()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +40,23 @@ class UsageViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setWhiteNavBar()
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        gradientLayer.removeFromSuperlayer()
+        gradientLayer = CAGradientLayer()
+        
+        // for some reason the gradient layer was being cut short,
+        // so I added 2 to the height 🤷🏻‍♂️
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: contentView.bounds.width, height: contentView.bounds.height+2)
+        gradientLayer.colors = [
+            UIColor.white.cgColor,
+            UIColor(red: 244/255, green: 245/255, blue: 246/255, alpha: 1).cgColor,
+            UIColor(red: 239/255, green: 241/255, blue: 243/255, alpha: 1).cgColor
+        ]
+        contentView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     func styleViews() {

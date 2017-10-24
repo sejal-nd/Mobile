@@ -98,10 +98,17 @@ class HomeViewController: AccountPickerViewController {
         viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: bag)
         
         let templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
-        templateCardView.callToActionViewController
+        
+        templateCardView.safariViewController
             .drive(onNext: { [weak self] viewController in
                 self?.present(viewController, animated: true, completion: nil)
             }).disposed(by: bag)
+        
+        templateCardView.hourlyPricingViewController
+            .drive(onNext: { [weak self] viewController in
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }).disposed(by: bag)
+        
         cardStackView.addArrangedSubview(templateCardView)
         cardStackView.isHidden = true
         
