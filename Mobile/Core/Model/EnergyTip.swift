@@ -16,26 +16,23 @@ struct EnergyTip: Mappable {
     
     init(map: Mapper) throws {
         title = try map.from("title")
-        body = try map.from("shortBody")
         
-        //TODO: Actually implement this
+        let htmlBody: String = try map.from("shortBody")
+        
+        guard let data = htmlBody.data(using: String.Encoding.utf8, allowLossyConversion: true) else {
+            throw MapperError.convertibleError(value: htmlBody, type: String.self)
+        }
+        
+        let attributedBody = try NSAttributedString(data: data,
+                                         options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+                                         documentAttributes: nil)
+        body = attributedBody.string
+        
+        //TODO: Actually implement something for this
         image = map.optionalFrom("image") {
             $0 as? UIImage
         }
         
     }
     
-    var parsedBody: String? {
-        do {
-            let data = body.data(using: String.Encoding.utf8, allowLossyConversion: true)
-            if let d = data {
-                let str = try NSAttributedString(data: d,
-                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
-                                                 documentAttributes: nil)
-                return str.string
-            }
-        } catch {
-        }
-        return nil
-    }
 }
