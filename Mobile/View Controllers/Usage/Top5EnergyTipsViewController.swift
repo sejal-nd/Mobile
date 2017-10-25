@@ -18,10 +18,11 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
     @IBOutlet weak var xButton: UIButton!
     
     let disposeBag = DisposeBag()
-    var energyTips = [EnergyTip]()
     var accountDetail: AccountDetail!
-    lazy var viewModel = Top5EnergyTipsViewModel(usageService: ServiceFactory.createUsageService(),
-                                                 accountDetail: self.accountDetail)
+    
+    private lazy var viewModel = Top5EnergyTipsViewModel(usageService: ServiceFactory.createUsageService(),
+                                                         accountDetail: self.accountDetail)
+    var energyTips = [EnergyTip]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,8 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
                            forCellReuseIdentifier: EnergyTipTableViewCell.className)
         tableView.dataSource = self
         tableView.estimatedRowHeight = 650
+        
+        // Header and footer for padding
         let header = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 16))
         header.backgroundColor = .clear
         tableView.tableHeaderView = header
