@@ -35,7 +35,7 @@ class UsageViewModel {
         let events = accountDetail.SERInfo.eventResults
         if let mostRecentEvent = events.last {
             let latestEventYear = Calendar.opCoTime.component(.year, from: mostRecentEvent.eventStart)
-            return "Summer \(latestEventYear)"
+            return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
         }
         return nil
     }
