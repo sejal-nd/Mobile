@@ -1241,6 +1241,9 @@
 		E8EA60161FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */; };
 		E8EA60171FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */; };
 		E8EA60181FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */; };
+		E8EA601A1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */; };
+		E8EA601B1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */; };
+		E8EA601C1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */; };
 		E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
 		E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
 		E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
@@ -1922,6 +1925,7 @@
 		E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPickerViewController.swift; sourceTree = "<group>"; };
 		E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntrinsicHeightTableView.swift; sourceTree = "<group>"; };
 		E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSavingsViewController.swift; sourceTree = "<group>"; };
+		E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSavingsTableViewCell.swift; sourceTree = "<group>"; };
 		E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDetectorTextView.swift; sourceTree = "<group>"; };
 		E8EDC5351F32403A006DD927 /* speedpay_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speedpay_errors.xml; sourceTree = "<group>"; };
 		E8EDC5371F324054006DD927 /* speedpay_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speedpay_errors.xml; sourceTree = "<group>"; };
@@ -2600,6 +2604,7 @@
 				82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */,
 				E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */,
 				E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */,
+				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -4376,6 +4381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EA601A1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60161FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
@@ -4626,6 +4632,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EA601C1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60181FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
@@ -4876,6 +4883,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EA601B1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60171FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
