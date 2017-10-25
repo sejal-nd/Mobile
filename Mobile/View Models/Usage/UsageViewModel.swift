@@ -19,6 +19,18 @@ class UsageViewModel {
         self.accountDetail = accountDetail
     }
     
+    var shouldShowSmartEnergyRewards: Bool {
+        if Environment.sharedInstance.opco != .peco {
+            return accountDetail.isSERAccount || accountDetail.isPTSAccount
+        }
+        return false
+    }
+    
+    var shouldShowSmartEnergyRewardsContent: Bool {
+        let events = accountDetail.SERInfo.eventResults
+        return events.count > 0
+    }
+    
     var smartEnergyRewardsSeasonLabelText: String? {
         let events = accountDetail.SERInfo.eventResults
         if let mostRecentEvent = events.last {

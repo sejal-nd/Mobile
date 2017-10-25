@@ -13,6 +13,8 @@ import RxCocoa
 class UsageViewController: UIViewController {
     
     let disposeBag = DisposeBag()
+    
+    @IBOutlet weak var gradientView: UIView!
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var usageGraphPlaceholderButton: DisclosureButton!
@@ -25,10 +27,15 @@ class UsageViewController: UIViewController {
     
     @IBOutlet weak var smartEnergyRewardsContainerView: UIView!
     @IBOutlet weak var smartEnergyRewardsTitleLabel: UILabel!
+    @IBOutlet weak var smartEnergyRewardsFooterLabel: UILabel!
+    
+    @IBOutlet weak var smartEnergyRewardsContentView: UIView!
     @IBOutlet weak var smartEnergyRewardsSeasonLabel: UILabel!
     @IBOutlet weak var smartEnergyRewardsView: SmartEnergyRewardsView!
     @IBOutlet weak var smartEnergyRewardsViewAllSavingsButton: UIButton!
-    @IBOutlet weak var smartEnergyRewardsFooterLabel: UILabel!
+    
+    @IBOutlet weak var smartEnergyRewardsEmptyStateView: UIView!
+    @IBOutlet weak var smartEnergyRewardsEmptyStateLabel: UILabel!
     
     var accountDetail: AccountDetail! // Passed from HomeViewController
     
@@ -39,13 +46,13 @@ class UsageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        gradientLayer.frame = contentView.bounds
+        gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
             UIColor.white.cgColor,
             UIColor(red: 244/255, green: 245/255, blue: 246/255, alpha: 1).cgColor,
             UIColor(red: 239/255, green: 241/255, blue: 243/255, alpha: 1).cgColor
         ]
-        contentView.layer.insertSublayer(gradientLayer, at: 0)
+        gradientView.layer.addSublayer(gradientLayer)
         
         styleViews()
         buttonTapSetup()
@@ -53,10 +60,6 @@ class UsageViewController: UIViewController {
         viewModel = UsageViewModel(accountDetail: accountDetail)
         smartEnergyRewardsView.viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: Driver.just(accountDetail))
         bindViewModel()
-        
-        if Environment.sharedInstance.opco == .peco {
-            smartEnergyRewardsContainerView.isHidden = true
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,16 +70,10 @@ class UsageViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        gradientLayer.frame = contentView.frame
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        gradientLayer.frame = contentView.frame
+        gradientLayer.frame = gradientView.frame
     }
     
     private func styleViews() {
@@ -118,6 +115,12 @@ class UsageViewController: UIViewController {
         smartEnergyRewardsFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
         smartEnergyRewardsFooterLabel.text = NSLocalizedString("You earn bill credits for every kWh you save. " +
             "We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
+        
+        smartEnergyRewardsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
+        smartEnergyRewardsEmptyStateLabel.setLineHeight(lineHeight: 26)
+        smartEnergyRewardsEmptyStateLabel.textAlignment = .center
+        smartEnergyRewardsEmptyStateLabel.textColor = .deepGray
+        smartEnergyRewardsEmptyStateLabel.text = NSLocalizedString("Your energy savings data will be available here once we have more data.", comment: "")
     }
     
     private func buttonTapSetup() {
@@ -132,6 +135,9 @@ class UsageViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        smartEnergyRewardsContainerView.isHidden = !viewModel.shouldShowSmartEnergyRewards
+        smartEnergyRewardsContentView.isHidden = !viewModel.shouldShowSmartEnergyRewardsContent
+        smartEnergyRewardsEmptyStateView.isHidden = viewModel.shouldShowSmartEnergyRewardsContent
         smartEnergyRewardsSeasonLabel.text = viewModel.smartEnergyRewardsSeasonLabelText
     }
 
