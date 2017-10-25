@@ -128,7 +128,7 @@ class UsageViewController: UIViewController {
                      top5EnergyTipsButton.rx.tap.asDriver().mapTo("top5EnergyTipsSegue"),
                      updateYourHomeProfileButton.rx.tap.asDriver().mapTo("updateYourHomeProfileSegue"),
                      takeMeToSavingsButton.rx.tap.asDriver().mapTo("hourlyPricingSegue"),
-                     smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().mapTo("savingsHistorySegue"))
+                     smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().mapTo("totalSavingsSegue"))
             .drive(onNext: { [weak self] in
                 self?.performSegue(withIdentifier: $0, sender: nil)
             })
@@ -150,7 +150,7 @@ class UsageViewController: UIViewController {
         case _ as MyHomeProfileViewController: break
         case let vc as HourlyPricingViewController:
             vc.accountDetail = accountDetail
-        case let vc as SmartEnergyRewardsHistoryViewController:
+        case let vc as TotalSavingsViewController:
             vc.eventResults = accountDetail.SERInfo.eventResults
         default: break
         }

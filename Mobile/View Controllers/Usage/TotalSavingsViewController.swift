@@ -8,15 +8,14 @@
 
 import UIKit
 
-class SmartEnergyRewardsHistoryViewController: UIViewController {
+class TotalSavingsViewController: UIViewController {
     
     var eventResults: [SERResult]! // Passed from HomeViewController/UsageViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Total Peak Time Savings", comment: "") :
-            NSLocalizedString("Total Smart Energy Rewards", comment: "")
+        title = NSLocalizedString("Total Savings", comment: "")
     }
  
     override func viewWillAppear(_ animated: Bool) {

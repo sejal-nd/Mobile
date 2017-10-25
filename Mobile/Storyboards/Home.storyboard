@@ -250,7 +250,7 @@
                         <outlet property="weatherIconImage" destination="aXQ-xP-rVE" id="3x5-5R-oMH"/>
                         <outlet property="weatherView" destination="ANG-nn-e6w" id="REK-LZ-Kwv"/>
                         <segue destination="PED-vj-t5U" kind="show" identifier="usageSegue" id="84U-Il-aeI"/>
-                        <segue destination="sRC-YE-f9Y" kind="show" identifier="savingsHistorySegue" id="Gdb-8Z-K6i"/>
+                        <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="Gdb-8Z-K6i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URM-gv-xjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -536,7 +536,7 @@
                         <segue destination="ElB-Na-CUh" kind="presentation" identifier="top5EnergyTipsSegue" modalPresentationStyle="formSheet" id="LcQ-ez-2gC"/>
                         <segue destination="HGo-e4-8Tq" kind="show" identifier="updateYourHomeProfileSegue" id="oip-LV-cyT"/>
                         <segue destination="0D0-c9-YsT" kind="show" identifier="hourlyPricingSegue" id="Pp6-ns-mZg"/>
-                        <segue destination="sRC-YE-f9Y" kind="show" identifier="savingsHistorySegue" id="PGo-sN-iCf"/>
+                        <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="PGo-sN-iCf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yss-Hv-HTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -670,10 +670,10 @@
             </objects>
             <point key="canvasLocation" x="3225" y="-767"/>
         </scene>
-        <!--Total Smart Energy Rewards-->
+        <!--Total Savings-->
         <scene sceneID="0Cd-Yk-FKK">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="sRC-YE-f9Y" customClass="SmartEnergyRewardsHistoryViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="sRC-YE-f9Y" customClass="TotalSavingsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AdG-nc-U18"/>
                         <viewControllerLayoutGuide type="bottom" id="hBO-Mn-PNA"/>
@@ -683,7 +683,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Total Smart Energy Rewards" id="eqB-Jd-lfk"/>
+                    <navigationItem key="navigationItem" title="Total Savings" id="eqB-Jd-lfk"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
