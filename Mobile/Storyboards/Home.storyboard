@@ -129,13 +129,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="751" text="Good Evening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uyw-91-O7K">
-                                                                <rect key="frame" x="16" y="23" width="175" height="38.5"/>
+                                                                <rect key="frame" x="16" y="23.5" width="175" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="98°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-co-jWg">
-                                                                <rect key="frame" x="263" y="23" width="44" height="38.5"/>
+                                                                <rect key="frame" x="263" y="23.5" width="44" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -442,15 +442,15 @@
                         <viewControllerLayoutGuide type="bottom" id="d05-yb-hPc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="983-2g-V1a">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="LmV-Pd-KdV" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="293.5" width="60" height="12"/>
+                                <rect key="frame" x="157.5" y="295.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mT7-3U-pey">
-                                <rect key="frame" x="29" y="289" width="317" height="21"/>
+                                <rect key="frame" x="29" y="291" width="317" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Zk4-7M-c4f"/>
                                 </constraints>
@@ -552,9 +552,162 @@
                     <view key="view" contentMode="scaleToFill" id="UDf-SR-XKQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZh-KK-jeH">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRV-81-fYu">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="577.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qxj-4t-4gY">
+                                                <rect key="frame" x="29" y="20" width="317" height="527.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update your home's profile and get more powerful and personalized insights into your energy use." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FR-dD-d60">
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="O7s-aY-GGW">
+                                                        <rect key="frame" x="0.0" y="39.5" width="317" height="87"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the type of home in which you live." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNT-K7-k0Y">
+                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSB-zX-5O6" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="27" width="317" height="60"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="60" id="NzT-nL-qIZ"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Home Type"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cfd-dK-Eak">
+                                                        <rect key="frame" x="0.0" y="146.5" width="317" height="87"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the source of your heat and can have a significant impact on your energy costs." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcc-kN-DcR">
+                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxj-3o-zqI" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="27" width="317" height="60"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="60" id="wGc-X1-LrF"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Heating Fuel"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Aay-HR-Yom">
+                                                        <rect key="frame" x="0.0" y="253.5" width="317" height="167"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number or residents living in your home most of the year." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsN-1c-QbV">
+                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qf9-2G-nID" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="27" width="317" height="60"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="60" id="l1N-HE-66N"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Number of Adults"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="riQ-3A-TBs" userLabel="Spacer">
+                                                                <rect key="frame" x="0.0" y="97" width="317" height="0.0"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" id="0SG-or-cKD"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENM-7m-JL1" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="107" width="317" height="60"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="60" id="WwJ-Yr-gPn"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Number of Children"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wOL-JB-Oyp">
+                                                        <rect key="frame" x="0.0" y="440.5" width="317" height="87"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home size in square feet. Heated and air conditioned space only." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svU-OB-1gx">
+                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="IEs-Fb-qtq" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="27" width="317" height="60"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" priority="750" constant="460" id="5Na-EE-rFT"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="TBR-98-Tlg"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="qxj-4t-4gY" secondAttribute="bottom" constant="30" id="63v-qB-Asq"/>
+                                            <constraint firstItem="qxj-4t-4gY" firstAttribute="leading" secondItem="dRV-81-fYu" secondAttribute="leading" priority="750" constant="29" id="6nl-KG-Kwu"/>
+                                            <constraint firstAttribute="trailing" secondItem="qxj-4t-4gY" secondAttribute="trailing" priority="750" constant="29" id="7L5-fu-Cfn"/>
+                                            <constraint firstItem="qxj-4t-4gY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dRV-81-fYu" secondAttribute="leading" constant="29" id="M1n-Ti-BHE"/>
+                                            <constraint firstItem="qxj-4t-4gY" firstAttribute="centerX" secondItem="dRV-81-fYu" secondAttribute="centerX" id="TUI-O8-72W"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qxj-4t-4gY" secondAttribute="trailing" constant="29" id="WE7-z7-KeG"/>
+                                            <constraint firstItem="qxj-4t-4gY" firstAttribute="top" secondItem="dRV-81-fYu" secondAttribute="top" constant="20" id="Ws7-24-Hlt"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="dRV-81-fYu" firstAttribute="top" secondItem="PZh-KK-jeH" secondAttribute="top" id="BtJ-fc-rAJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="dRV-81-fYu" secondAttribute="bottom" id="K1j-mF-paM"/>
+                                    <constraint firstItem="dRV-81-fYu" firstAttribute="leading" secondItem="PZh-KK-jeH" secondAttribute="leading" id="qZ3-Oj-OlM"/>
+                                    <constraint firstAttribute="trailing" secondItem="dRV-81-fYu" secondAttribute="trailing" id="vFO-by-gB7"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PZh-KK-jeH" firstAttribute="top" secondItem="1uh-16-ri3" secondAttribute="bottom" id="C6a-6P-A2s"/>
+                            <constraint firstItem="sul-3g-XTe" firstAttribute="top" secondItem="PZh-KK-jeH" secondAttribute="bottom" id="KV6-EJ-oKf"/>
+                            <constraint firstAttribute="trailing" secondItem="PZh-KK-jeH" secondAttribute="trailing" id="ZMd-j9-41X"/>
+                            <constraint firstItem="PZh-KK-jeH" firstAttribute="leading" secondItem="UDf-SR-XKQ" secondAttribute="leading" id="czY-TR-XOh"/>
+                            <constraint firstItem="dRV-81-fYu" firstAttribute="width" secondItem="UDf-SR-XKQ" secondAttribute="width" id="dWW-zl-DrZ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Home Profile" id="JUE-Hk-baU"/>
+                    <connections>
+                        <outlet property="headerLabel" destination="3FR-dD-d60" id="Wcp-ut-SCq"/>
+                        <outlet property="heatingFuelButton" destination="cxj-3o-zqI" id="JhO-44-lSz"/>
+                        <outlet property="heatingFuelInfoLabel" destination="Gcc-kN-DcR" id="ia6-lF-JNB"/>
+                        <outlet property="homeSizeInfoLabel" destination="svU-OB-1gx" id="3ja-WO-3tx"/>
+                        <outlet property="homeSizeTextField" destination="IEs-Fb-qtq" id="lGF-th-z0a"/>
+                        <outlet property="homeTypeButton" destination="hSB-zX-5O6" id="Sky-Cw-Qsy"/>
+                        <outlet property="homeTypeInfoLabel" destination="MNT-K7-k0Y" id="bCk-Zj-beN"/>
+                        <outlet property="numberOfAdultsButton" destination="qf9-2G-nID" id="WTB-mn-0Yb"/>
+                        <outlet property="numberOfChildrenButton" destination="ENM-7m-JL1" id="21a-ey-yJQ"/>
+                        <outlet property="numberOfResidentsInfoLabel" destination="xsN-1c-QbV" id="IKC-hw-1Ur"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1o5-xY-ey5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
