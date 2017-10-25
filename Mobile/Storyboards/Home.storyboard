@@ -129,13 +129,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="751" text="Good Evening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uyw-91-O7K">
-                                                                <rect key="frame" x="16" y="23" width="175" height="38.5"/>
+                                                                <rect key="frame" x="16" y="23.5" width="175" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="98°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-co-jWg">
-                                                                <rect key="frame" x="263" y="23" width="44" height="38.5"/>
+                                                                <rect key="frame" x="263" y="23.5" width="44" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -250,6 +250,7 @@
                         <outlet property="weatherIconImage" destination="aXQ-xP-rVE" id="3x5-5R-oMH"/>
                         <outlet property="weatherView" destination="ANG-nn-e6w" id="REK-LZ-Kwv"/>
                         <segue destination="PED-vj-t5U" kind="show" identifier="usageSegue" id="84U-Il-aeI"/>
+                        <segue destination="sRC-YE-f9Y" kind="show" identifier="savingsHistorySegue" id="Gdb-8Z-K6i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URM-gv-xjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -535,6 +536,7 @@
                         <segue destination="ElB-Na-CUh" kind="presentation" identifier="top5EnergyTipsSegue" modalPresentationStyle="formSheet" id="LcQ-ez-2gC"/>
                         <segue destination="HGo-e4-8Tq" kind="show" identifier="updateYourHomeProfileSegue" id="oip-LV-cyT"/>
                         <segue destination="0D0-c9-YsT" kind="show" identifier="hourlyPricingSegue" id="Pp6-ns-mZg"/>
+                        <segue destination="sRC-YE-f9Y" kind="show" identifier="savingsHistorySegue" id="PGo-sN-iCf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yss-Hv-HTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -668,6 +670,27 @@
             </objects>
             <point key="canvasLocation" x="3225" y="-767"/>
         </scene>
+        <!--Total Smart Energy Rewards-->
+        <scene sceneID="0Cd-Yk-FKK">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="sRC-YE-f9Y" customClass="SmartEnergyRewardsHistoryViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AdG-nc-U18"/>
+                        <viewControllerLayoutGuide type="bottom" id="hBO-Mn-PNA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MzG-Xm-OsS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Total Smart Energy Rewards" id="eqB-Jd-lfk"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aDg-zb-1M2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1441" y="-655"/>
+        </scene>
         <!--Hourly Pricing-->
         <scene sceneID="5d3-m7-Gff">
             <objects>
@@ -723,4 +746,7 @@
         <image name="ic_home_hightemp" width="12" height="19"/>
         <image name="ic_smartenergyempty" width="109" height="103"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="PGo-sN-iCf"/>
+    </inferredMetricsTieBreakers>
 </document>

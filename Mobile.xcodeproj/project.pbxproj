@@ -1238,6 +1238,9 @@
 		E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
 		E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
 		E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
+		E8EA60161FA1141A00FCE085 /* SmartEnergyRewardsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60151FA1141A00FCE085 /* SmartEnergyRewardsHistoryViewController.swift */; };
+		E8EA60171FA1141A00FCE085 /* SmartEnergyRewardsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60151FA1141A00FCE085 /* SmartEnergyRewardsHistoryViewController.swift */; };
+		E8EA60181FA1141A00FCE085 /* SmartEnergyRewardsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60151FA1141A00FCE085 /* SmartEnergyRewardsHistoryViewController.swift */; };
 		E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
 		E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
 		E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
@@ -1918,6 +1921,7 @@
 		E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
 		E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPickerViewController.swift; sourceTree = "<group>"; };
 		E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntrinsicHeightTableView.swift; sourceTree = "<group>"; };
+		E8EA60151FA1141A00FCE085 /* SmartEnergyRewardsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsHistoryViewController.swift; sourceTree = "<group>"; };
 		E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDetectorTextView.swift; sourceTree = "<group>"; };
 		E8EDC5351F32403A006DD927 /* speedpay_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speedpay_errors.xml; sourceTree = "<group>"; };
 		E8EDC5371F324054006DD927 /* speedpay_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speedpay_errors.xml; sourceTree = "<group>"; };
@@ -3342,6 +3346,7 @@
 				82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */,
 				82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */,
 				82EAB3431F97F01B008B55B1 /* MyHomeProfileViewController.swift */,
+				E8EA60151FA1141A00FCE085 /* SmartEnergyRewardsHistoryViewController.swift */,
 			);
 			path = Usage;
 			sourceTree = "<group>";
@@ -4372,6 +4377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
+				E8EA60161FA1141A00FCE085 /* SmartEnergyRewardsHistoryViewController.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
@@ -4621,6 +4627,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
+				E8EA60181FA1141A00FCE085 /* SmartEnergyRewardsHistoryViewController.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				54C1DEF81F01EBFA00290FE5 /* BGEasyViewController.swift in Sources */,
@@ -4870,6 +4877,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
+				E8EA60171FA1141A00FCE085 /* SmartEnergyRewardsHistoryViewController.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				54C1DEF71F01EBF900290FE5 /* BGEasyViewController.swift in Sources */,

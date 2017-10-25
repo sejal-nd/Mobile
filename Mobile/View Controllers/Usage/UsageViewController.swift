@@ -127,7 +127,8 @@ class UsageViewController: UIViewController {
         Driver.merge(usageGraphPlaceholderButton.rx.tap.asDriver().mapTo("usageWebViewSegue"),
                      top5EnergyTipsButton.rx.tap.asDriver().mapTo("top5EnergyTipsSegue"),
                      updateYourHomeProfileButton.rx.tap.asDriver().mapTo("updateYourHomeProfileSegue"),
-                     takeMeToSavingsButton.rx.tap.asDriver().mapTo("hourlyPricingSegue"))
+                     takeMeToSavingsButton.rx.tap.asDriver().mapTo("hourlyPricingSegue"),
+                     smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().mapTo("savingsHistorySegue"))
             .drive(onNext: { [weak self] in
                 self?.performSegue(withIdentifier: $0, sender: nil)
             })
@@ -149,6 +150,8 @@ class UsageViewController: UIViewController {
         case _ as MyHomeProfileViewController: break
         case let vc as HourlyPricingViewController:
             vc.accountDetail = accountDetail
+        case let vc as SmartEnergyRewardsHistoryViewController:
+            vc.eventResults = accountDetail.SERInfo.eventResults
         default: break
         }
     }
