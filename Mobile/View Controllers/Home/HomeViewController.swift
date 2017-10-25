@@ -35,6 +35,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var loadingView: UIView!
     
     var billCardView: HomeBillCardView!
+    var usageCardView: HomeUsageCardView!
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl? {
@@ -90,7 +91,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
         cardStackView.addArrangedSubview(billCardView)
         
-        let usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
+        usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
         usageCardView.viewUsageButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.accountDetailEvents.elements()
             .asDriver(onErrorDriveWith: .empty()))
@@ -98,6 +99,7 @@ class HomeViewController: AccountPickerViewController {
                 self?.performSegue(withIdentifier: "usageSegue", sender: $0)
             }).disposed(by: bag)
         cardStackView.addArrangedSubview(usageCardView)
+        viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: bag)
         
         let templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
         
@@ -136,6 +138,8 @@ class HomeViewController: AccountPickerViewController {
         super.viewDidLayoutSubviews()
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
+        
+        usageCardView.superviewDidLayoutSubviews()
     }
     
     func killRefresh() -> Void {
