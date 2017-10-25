@@ -8,14 +8,7 @@
 
 import UIKit
 
-protocol ExelonPickerDelegate: class {
-    func donePressed(selectedIndex: Int)
-    func cancelPressed()
-}
-
-class ExelonPickerContainerView: UIView {
-    
-    weak var delegate: ExelonPickerDelegate?
+class PickerView: UIView {
 
     @IBOutlet weak var containerView: UIView!
     
@@ -25,36 +18,34 @@ class ExelonPickerContainerView: UIView {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    var dataArray: [String]
-    var accessibleElements: [Any]
+    var dataArray = [String]()
+    var accessibleElements = [Any]()
     var selectedIndex = 0
-
-    override init(frame: CGRect) {
-        dataArray = []
-        accessibleElements = []
+    
+    private var onDone: ((_ selectedValue: String, _ selectedIndex: Int) -> ())?
+    private var onCancel: (() -> ())?
+    
+    private override init(frame: CGRect) {
         super.init(frame: frame)
         
         commonInit()
     }
     
-    init(frame: CGRect, dataArray: [String]) {
+    private init(dataArray: [String]) {
         self.dataArray = dataArray
-        accessibleElements = []
-        super.init(frame: frame)
+        super.init(frame: UIApplication.shared.keyWindow!.bounds)
         
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        dataArray = []
-        accessibleElements = []
         super.init(coder: aDecoder)
         
 //        commonInit()
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed(ExelonPickerContainerView.className, owner: self, options: nil)
+        Bundle.main.loadNibNamed(PickerView.className, owner: self, options: nil)
         
         cancelButton.accessibilityLabel = NSLocalizedString("Cancel", comment: "")
         doneButton.accessibilityLabel = NSLocalizedString("Done", comment: "")
@@ -71,7 +62,8 @@ class ExelonPickerContainerView: UIView {
         //
         containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
         containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-        bottomConstraint = containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+        bottomConstraint = containerView.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                                                 constant: containerView.frame.height + 8)
         bottomConstraint.isActive = true
         
         //
@@ -81,14 +73,8 @@ class ExelonPickerContainerView: UIView {
         
     }
     
-    func addNewData(dataArray: [String]) {
-        self.dataArray = dataArray
-        exelonPicker.reloadAllComponents()
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         containerView.layer.cornerRadius = 8
     }
     
@@ -96,13 +82,58 @@ class ExelonPickerContainerView: UIView {
         selectedIndex = row
         exelonPicker.selectRow(row, inComponent: 0, animated: false)
     }
+    
+    static func show(withData data: [String],
+                     selectedIndex: Int,
+                     onDone: ((_ selectedValue: String, _ selectedIndex: Int) -> ())?,
+                     onCancel: (()->())?) {
+        
+        let picker = PickerView(dataArray: data)
+        picker.onDone = onDone
+        picker.onCancel = onCancel
+        picker.selectRow(selectedIndex)
+        
+        
+        let window = UIApplication.shared.keyWindow!
+        window.addSubview(picker)
+        
+        picker.leadingAnchor.constraint(equalTo: window.leadingAnchor, constant: 0).isActive = true
+        picker.trailingAnchor.constraint(equalTo: window.trailingAnchor, constant: 0).isActive = true
+        picker.topAnchor.constraint(equalTo: window.topAnchor, constant: 0).isActive = true
+        
+        picker.backgroundColor = UIColor.black.withAlphaComponent(0)
+        
+        picker.layoutIfNeeded()
+        
+        picker.bottomConstraint.constant = -8
+        UIView.animate(withDuration: 0.25, animations: {
+            picker.layoutIfNeeded()
+            picker.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        }, completion: { [weak picker] _ in
+            picker?.accessibilityViewIsModal = false
+        })
+    }
+    
+    private func dismiss() {
+        bottomConstraint.constant = containerView.frame.height + 8
+        UIView.animate(withDuration: 0.25, animations: {
+            self.layoutIfNeeded()
+            self.backgroundColor = UIColor.black.withAlphaComponent(0)
+        }, completion: { [weak self] _ in
+            self?.accessibilityViewIsModal = true
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
+            self?.removeFromSuperview()
+        })
+    }
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        delegate?.cancelPressed()
+        onCancel?()
+        dismiss()
     }
 
     @IBAction func doneButtonPressed(_ sender: Any) {
-        delegate?.donePressed(selectedIndex: selectedIndex)
+        onDone?(dataArray[selectedIndex], selectedIndex)
+        dismiss()
     }
     
     //MARK: UIA11yContainer functions
@@ -138,7 +169,7 @@ class ExelonPickerContainerView: UIView {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-extension ExelonPickerContainerView: UIPickerViewDelegate {
+extension PickerView: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return dataArray[row]
     }
@@ -151,7 +182,7 @@ extension ExelonPickerContainerView: UIPickerViewDelegate {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-extension ExelonPickerContainerView: UIPickerViewDataSource {
+extension PickerView: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -160,6 +191,5 @@ extension ExelonPickerContainerView: UIPickerViewDataSource {
         return dataArray.count
     }
 }
-
 
 

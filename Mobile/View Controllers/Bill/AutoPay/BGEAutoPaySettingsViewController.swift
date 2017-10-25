@@ -86,8 +86,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
     let now = Calendar.opCoTime.startOfDay(for: Date())
     let lastDate = Calendar.opCoTime.date(byAdding: .year, value: 100, to: Calendar.opCoTime.startOfDay(for: Date()))
     
-    var dayPickerView: ExelonPickerContainerView!
-    
     var numberOfDaysBefore: [String]!
 
     var viewModel: BGEAutoPayViewModel! // Passed from BGEAutoPayViewController
@@ -138,7 +136,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
                     }
                 }
             }).disposed(by: disposeBag)
-        
     }
     
     deinit {
@@ -262,78 +259,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         if !isHidden {
             viewModel.howLongForAutoPay.value = .endDate
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        buildPickerView()
-    }
-    
-    func buildPickerView() {
-        
-        //build dataArray for picker
-        let dataArray = (1...15).map { $0 == 1 ? "\($0) Day" : "\($0) Days" }
-        
-        guard let currentWindow = UIApplication.shared.keyWindow else {
-            fatalError("No keyWindow?")
-        }
-        
-        dayPickerView = ExelonPickerContainerView(frame: currentWindow.frame, dataArray: dataArray)
-        
-        currentWindow.addSubview(dayPickerView)
-        
-        dayPickerView.leadingAnchor.constraint(equalTo: currentWindow.leadingAnchor, constant: 0).isActive = true
-        dayPickerView.trailingAnchor.constraint(equalTo: currentWindow.trailingAnchor, constant: 0).isActive = true
-        dayPickerView.topAnchor.constraint(equalTo: currentWindow.topAnchor, constant: 0).isActive = true
-
-        let height = dayPickerView.containerView.frame.size.height + 8
-        dayPickerView.bottomConstraint.constant = height
-        
-        dayPickerView.delegate = self
-        
-        zPositionForWindow = currentWindow.layer.zPosition
-
-        dayPickerView.isHidden = true
-    }
-    
-    func showPickerView(_ showPicker: Bool, completion: (() -> ())? = nil) {
-        if showPicker {
-            let row = viewModel.numberOfDaysBeforeDueDate.value == "0" ? 1 : Int(viewModel.numberOfDaysBeforeDueDate.value)!
-            dayPickerView.selectRow(row - 1)
-            dayPickerView.isHidden = false
-        }
-        
-        dayPickerView.layer.zPosition = showPicker ? zPositionForWindow : -1
-        UIApplication.shared.keyWindow?.layer.zPosition = showPicker ? -1 : zPositionForWindow
-        
-        var bottomAnchorLength = dayPickerView.containerView.frame.size.height + 8
-        var alpha: CGFloat = 0.0
-        
-        if showPicker {
-            alpha = 0.6
-            bottomAnchorLength = -8
-        }
-
-        dayPickerView.bottomConstraint.constant = bottomAnchorLength
-    
-        dayPickerView.layoutIfNeeded()
-        UIView.animate(withDuration: 0.25, animations: {
-            self.dayPickerView.layoutIfNeeded()
-            
-            self.dayPickerView.backgroundColor = UIColor.black.withAlphaComponent(alpha)
-        }, completion: { [weak self] _ in
-            guard let `self` = self else { return }
-            if !showPicker {
-                self.dayPickerView.accessibilityViewIsModal = false
-                self.dayPickerView.isHidden = true
-            } else {
-                self.dayPickerView.accessibilityViewIsModal = true
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.dayPickerView)
-            }
-            
-            completion?()
-        })
     }
     
     func buildStackViews() {
@@ -695,7 +620,23 @@ class BGEAutoPaySettingsViewController: UIViewController {
         // Delay here fixes a bug when button is tapped with keyboard up
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: { [weak self] in
             guard let `self` = self else { return }
-            self.showPickerView(true)
+            let selectedIndex = self.viewModel.numberOfDaysBeforeDueDate.value == "0" ?
+                0 : (Int(self.viewModel.numberOfDaysBeforeDueDate.value)! - 1)
+            PickerView
+                .show(withTitle: NSLocalizedString("Select Number", comment: ""),
+                      data: (1...15).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
+                      selectedIndex: selectedIndex,
+                      onDone: { [weak self] value, index in
+                        DispatchQueue.main.async { [weak self] in
+                            guard let `self` = self else { return }
+                            let day = index + 1
+                            self.viewModel.userDidChangeSettings.value = true
+                            self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"
+                            self.modifyBeforeDueDateDetailsLabel()
+                            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsSubmit.rawValue)
+                        }
+                    },
+                      onCancel: nil)
             UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select number of days", comment: ""))
         })
     }
@@ -770,14 +711,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         }
     }
     
-    @IBAction func pickerCancelButtonPressed(_ sender: Any) {
-        showPickerView(false)
-    }
-    
-    @IBAction func pickerDoneButtonPressed(_ sender: Any) {
-        showPickerView(false)
-    }
-    
     // MARK: - ScrollView
     
     func keyboardWillShow(notification: Notification) {
@@ -830,23 +763,4 @@ extension BGEAutoPaySettingsViewController: PDTSimpleCalendarViewDelegate {
     }
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-extension BGEAutoPaySettingsViewController: ExelonPickerDelegate {
-    func cancelPressed() {
-        showPickerView(false)
-    }
-    
-    func donePressed(selectedIndex: Int) {
-        DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else { return }
-            let day = selectedIndex + 1
-            self.viewModel.userDidChangeSettings.value = true
-            self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"
-            self.showPickerView(false, completion: self.modifyBeforeDueDateDetailsLabel)
-            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsSubmit.rawValue)
-        }
-    }
-}
 

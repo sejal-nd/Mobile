@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MyHomeProfileViewController: UIViewController {
+    
+    let disposeBag = DisposeBag()
 
     @IBOutlet weak var headerLabel: UILabel!
     
@@ -29,10 +33,26 @@ class MyHomeProfileViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""),
-                                                            style: .plain,
+                                                            style: .done,
                                                             target: self,
                                                             action: #selector(savePressed))
         styleViews()
+        
+        homeTypeButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                let dataArray = (1...10).map { $0 == 10 ? "\($0)+" : "\($0)" }
+                PickerView
+                    .show(withTitle: NSLocalizedString("Select Home Type", comment: ""),
+                          data: dataArray,
+                          selectedIndex: 0,
+                          onDone: { value, index in
+                            dLog("Value: \(value) Index: \(index)")
+                    },
+                          onCancel: {
+                            dLog("cancel!")
+                    })
+            })
+            .disposed(by: disposeBag)
     }
     
     func styleViews() {
@@ -60,7 +80,7 @@ class MyHomeProfileViewController: UIViewController {
             navController.setColoredNavBar()
         }
     }
-
+    
     @objc func savePressed() {
         dLog("Save Pressed")
     }
@@ -69,3 +89,5 @@ class MyHomeProfileViewController: UIViewController {
 extension MyHomeProfileViewController: UITextFieldDelegate {
     
 }
+
+

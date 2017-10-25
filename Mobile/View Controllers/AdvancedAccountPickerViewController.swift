@@ -20,8 +20,6 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
     
     var accounts: [Account]!
     
-    var premisePickerView: ExelonPickerContainerView!
-    
     var zPositionForWindow:CGFloat = 0.0
     
     var accountIndexToEditPremise = -1
@@ -43,72 +41,6 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
             navController.setWhiteNavBar()
         }
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        buildPickerView()
-    }
-    
-    func buildPickerView() {
-        
-        let currentWindow = UIApplication.shared.keyWindow
-        premisePickerView = ExelonPickerContainerView(frame: (currentWindow?.frame)!)
-        
-        currentWindow?.addSubview(premisePickerView)
-        
-        premisePickerView.leadingAnchor.constraint(equalTo: (currentWindow?.leadingAnchor)!, constant: 0).isActive = true
-        premisePickerView.trailingAnchor.constraint(equalTo: (currentWindow?.trailingAnchor)!, constant: 0).isActive = true
-        premisePickerView.topAnchor.constraint(equalTo: (currentWindow?.topAnchor)!, constant: 0).isActive = true
-        
-        let height = premisePickerView.containerView.frame.size.height + 8
-        premisePickerView.bottomConstraint.constant = height
-        
-        premisePickerView.delegate = self
-        
-        zPositionForWindow = (currentWindow?.layer.zPosition)!
-        
-        premisePickerView.isHidden = true
-    }
-    
-    func showPickerView(_ showPicker: Bool, completion: (() -> ())? = nil) {
-        if showPicker {
-            self.premisePickerView.isHidden = false
-            
-            let row = 0
-            
-            self.premisePickerView.selectRow(row)
-        }
-        
-        self.premisePickerView.layer.zPosition = showPicker ? self.zPositionForWindow : -1
-        UIApplication.shared.keyWindow?.layer.zPosition = showPicker ? -1 : self.zPositionForWindow
-        
-        var bottomAnchorLength = self.premisePickerView.containerView.frame.size.height + 8
-        var alpha: CGFloat = 0.0
-        
-        if showPicker {
-            alpha = 0.6
-            bottomAnchorLength = -8
-        }
-        
-        self.premisePickerView.bottomConstraint.constant = bottomAnchorLength
-        
-        self.premisePickerView.layoutIfNeeded()
-        UIView.animate(withDuration: 0.25, animations: {
-            self.premisePickerView.layoutIfNeeded()
-            self.premisePickerView.backgroundColor = UIColor.black.withAlphaComponent(alpha)
-        }, completion: { _ in
-            if !showPicker {
-                self.premisePickerView.accessibilityViewIsModal = false
-                self.premisePickerView.isHidden = true
-            } else {
-                self.premisePickerView.accessibilityViewIsModal = true
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.premisePickerView)
-            }
-            
-            completion?()
-        })
-    }
 
 }
 
@@ -123,11 +55,20 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
             UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select premises address", comment: ""))
             self.accountIndexToEditPremise = indexPath.row
             
-            let dataArray = account.premises.map({ (premise: Premise) -> String in
-                return premise.addressLineString
-            })
-            premisePickerView.addNewData(dataArray: dataArray)
-            self.showPickerView(true)
+            let dataArray = account.premises.map { $0.addressLineString }
+            PickerView
+                .show(withTitle: NSLocalizedString("Select Number", comment: ""),
+                      data: dataArray,
+                      selectedIndex: 0,
+                      onDone: { [weak self] value, index in
+                        guard let `self` = self else { return }
+                        self.accounts[self.accountIndexToEditPremise].currentPremise = self.accounts[self.accountIndexToEditPremise].premises[index]
+                        
+                        AccountsStore.sharedInstance.accounts = self.accounts
+                        
+                        self.exitWith(selectedAccount: self.accounts[self.accountIndexToEditPremise])
+                    },
+                      onCancel: nil)
         } else {
             self.exitWith(selectedAccount: accounts[indexPath.row])
         }
@@ -182,24 +123,5 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
         }
     }
 }
-
-extension AdvancedAccountPickerViewController: ExelonPickerDelegate {
-    func cancelPressed() {
-        self.showPickerView(false)
-    }
-    
-    func donePressed(selectedIndex: Int) {
-        dLog("selectedIndex \(selectedIndex)")
-        
-        self.accounts[self.accountIndexToEditPremise].currentPremise = self.accounts[self.accountIndexToEditPremise].premises[selectedIndex]
-        
-        AccountsStore.sharedInstance.accounts = self.accounts
-        
-        self.showPickerView(false) { 
-            self.exitWith(selectedAccount: self.accounts[self.accountIndexToEditPremise])
-        }
-    }
-}
-
 
 
